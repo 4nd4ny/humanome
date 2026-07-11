@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie RESPIRE — Profil de Compétences</title>
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            height: 100%;
+            overflow: hidden;
+            background: #eff6ff;
+        }
+
+        #app {
+            background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- ZONE HAUTE : Diagramme --- */
+        #diagram-zone {
+            width: 100%;
+            flex: 0 0 auto;
+            height: 55vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #diagram-container {
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            max-height: 100%;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #diagram {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* --- SLIDER de redimensionnement diagramme / info --- */
+        #resize-slider {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            cursor: ns-resize;
+            flex-shrink: 0;
+            position: relative;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            z-index: 30;
+            transition: background 0.15s;
+        }
+
+        #resize-slider:hover,
+        #resize-slider.dragging {
+            background: #cbd5e1;
+        }
+
+        #resize-slider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 3px;
+            background: #9ca3af;
+            border-radius: 2px;
+        }
+
+        /* --- Titre flottant au survol --- */
+        #hover-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 0.5rem 1.2rem;
+            border-radius: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.12s;
+            z-index: 50;
+            max-width: 92%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        #hover-overlay.visible {
+            opacity: 1;
+        }
+
+        /* --- ZONE BASSE : Information (Scrollable) --- */
+        #info-zone {
+            flex: 1;
+            min-height: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+            overflow-y: auto;
+            padding: 1.5rem;
+            z-index: 20;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #info-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- Stats au-dessus du diagramme --- */
+        .diagram-stats {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.25rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .diagram-stat {
+            font-size: 1.5rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .diagram-stat .stars { letter-spacing: 1px; }
+        .diagram-stat .star-on { color: #facc15; }
+        .diagram-stat .star-off { color: #d1d5db; }
+        .diagram-stat .score-label {
+            font-size: 0.85rem;
+            font-variant-numeric: tabular-nums;
+        }
+        /* v3 : libellés qualitatifs scindés
+           Titre (dans #stat-level) : net et lisible, à la place des étoiles
+           Description (dans #stat-tendance) : plus discrète, en dessous */
+        .diagram-stat .archetype-titre,
+        .diagram-stat .tendance-titre {
+            color: #1e293b;
+        }
+        .diagram-stat .archetype-titre strong,
+        .diagram-stat .tendance-titre strong {
+            font-weight: 600;
+        }
+        .diagram-stat .archetype-description,
+        .diagram-stat .tendance-description {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #475569;
+            line-height: 1.3;
+            display: inline-block;
+        }
+
+        /* --- Contenu info --- */
+        #info-details { margin-bottom: 1.5rem; }
+
+        #info-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        #info-description {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* --- STYLES POUR LE FEEDBACK HTML --- */
+        #feedback-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #374151;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+
+        #feedback-content p {
+            margin-bottom: 0.8rem;
+        }
+
+        #feedback-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        #feedback-content strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        #feedback-content em {
+            font-style: italic;
+            color: #4b5563;
+        }
+
+        #feedback-content h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 1.2rem 0 0.6rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        #feedback-content ul {
+            margin: 0.6rem 0 0.8rem 1.2rem;
+            padding: 0;
+        }
+
+        #feedback-content ul li {
+            margin-bottom: 0.4rem;
+            color: #4b5563;
+        }
+
+        #feedback-content blockquote {
+            background: #f8fafc;
+            border-left: 3px solid #94a3b8;
+            padding: 0.6rem 1rem;
+            margin: 0.6rem 0;
+            font-style: italic;
+            color: #4b5563;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+
+        /* Date de la trace (affiché dans les blockquotes) */
+        .trace-date {
+            display: block;
+            font-size: 0.75rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.03em;
+        }
+
+        /* Info temporelle sous le score */
+        .temporal-info {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 0.2rem;
+        }
+
+        .temporal-info .decay-indicator {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        #feedback-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+        }
+
+        #feedback-content table th {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 2px solid #e5e7eb;
+            font-weight: 600;
+        }
+
+        #feedback-content table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        #feedback-content table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* --- Badges de verdict --- */
+        .verdict-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+        }
+
+        .verdict-badge.etablie {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .verdict-badge.renvoi {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .verdict-badge.absente {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .verdict-badge.orpheline {
+            background: #f5f0eb;
+            color: #78716c;
+            border: 1px dashed #a8a29e;
+        }
+
+        /* --- Score summary --- */
+        .score-summary {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 0.8rem;
+        }
+
+        .score-preuves {
+            color: #166534;
+            font-weight: 600;
+        }
+
+        .score-indices {
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .score-confiance {
+            color: #6b7280;
+        }
+
+        .score-sep {
+            color: #d1d5db;
+        }
+
+        /* --- Test entretien --- */
+        .test-entretien {
+            background: #fefce8;
+            border: 1px solid #fde047;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        /* --- Délibérations (details/summary) --- */
+        #deliberation-content {
+            margin-top: 1.2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .delib-level1 {
+            margin: 0.6rem 0;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .delib-level1 > summary {
+            padding: 0.7rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #1e293b;
+            background: #f8fafc;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .delib-level1 > summary::before {
+            content: "\25B6";
+            font-size: 0.6rem;
+            transition: transform 0.2s;
+            color: #94a3b8;
+        }
+
+        .delib-level1[open] > summary::before {
+            transform: rotate(90deg);
+        }
+
+        .delib-level1 > summary::-webkit-details-marker { display: none; }
+
+        .delib-level1 > .delib-content {
+            padding: 0.8rem 1rem;
+        }
+
+        .delib-level2 {
+            margin: 0.4rem 0;
+            border: 1px solid #f1f5f9;
+            border-radius: 6px;
+        }
+
+        .delib-level2 > summary {
+            padding: 0.5rem 0.8rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #475569;
+            background: #f9fafb;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .delib-level2 > summary::before {
+            content: "\25B6";
+            font-size: 0.5rem;
+            transition: transform 0.2s;
+            color: #cbd5e1;
+        }
+
+        .delib-level2[open] > summary::before {
+            transform: rotate(90deg);
+        }
+
+        .delib-level2 > summary::-webkit-details-marker { display: none; }
+
+        .delib-level2 > .delib-content {
+            padding: 0.6rem 0.8rem;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        .delib-content h4 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 1rem 0 0.4rem 0;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .delib-content h5 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #334155;
+            margin: 0.8rem 0 0.3rem 0;
+        }
+
+        .delib-content h6 {
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: #475569;
+            margin: 0.6rem 0 0.2rem 0;
+        }
+
+        .delib-content p {
+            margin-bottom: 0.5rem;
+        }
+
+        .delib-content ul {
+            margin: 0.3rem 0 0.5rem 1rem;
+            padding: 0;
+        }
+
+        .delib-content ul li {
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+        }
+
+        .delib-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5rem 0;
+            font-size: 0.82rem;
+        }
+
+        .delib-content table th {
+            background: #f1f5f9;
+            padding: 0.4rem 0.5rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .delib-content table td {
+            padding: 0.4rem 0.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: top;
+        }
+
+        .delib-content blockquote {
+            background: #f8fafc;
+            border-left: 3px solid #cbd5e1;
+            padding: 0.4rem 0.8rem;
+            margin: 0.4rem 0;
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #64748b;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .delib-content code {
+            background: #f1f5f9;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-size: 0.82rem;
+        }
+
+        /* --- Lien "voir la feuille" (icône doc dans les blockquotes) --- */
+        .feuille-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            background: #e0f2fe;
+            color: #0369a1;
+            cursor: pointer;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+            transition: background 0.15s;
+            float: right;
+            text-decoration: none;
+        }
+
+        .feuille-btn:hover {
+            background: #bae6fd;
+        }
+
+        /* --- Empty & Error states --- */
+        #empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+
+        #empty-state .profile-summary {
+            text-align: left;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        #empty-state .profile-summary .stat-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        #empty-state .profile-summary .stat-line:last-child {
+            border-bottom: none;
+        }
+
+        #empty-state .profile-summary .stat-value {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        #error-state {
+            text-align: center;
+            padding: 2rem;
+            color: #dc2626;
+            background: #fef2f2;
+            border-radius: 8px;
+            margin: 1rem;
+        }
+
+        /* SVG STYLES */
+        .sector {
+            cursor: pointer;
+            transition: stroke-width 0.2s, stroke 0.2s, opacity 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .sector:hover { stroke: white; stroke-width: 2; opacity: 1 !important; }
+        .sector.dimmed { opacity: 0.8; filter: grayscale(0.5); }
+        .gray-sector { pointer-events: none; }
+        .renvoi-sector {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .renvoi-sector:hover { opacity: 1 !important; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+        .floating-btn {
+            position: fixed;
+            z-index: 1000;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: #4b5563;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #fullscreen-btn {
+            bottom: 0.5rem;
+            right: 0.5rem;
+        }
+
+        #print-btn {
+            bottom: 0.5rem;
+            right: 3.2rem;
+            display: none;
+        }
+
+        #print-btn.visible { display: flex; }
+
+        /* --- Impression --- */
+        @media print {
+            html, body {
+                height: auto !important;
+                overflow: visible !important;
+            }
+            #app {
+                display: block !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            #diagram-zone, #fullscreen-btn, #print-btn,
+            #resize-slider, #hover-overlay,
+            .diagram-stats { display: none !important; }
+            #info-zone {
+                flex: none !important;
+                min-height: 0 !important;
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 1cm;
+            }
+            #info-container { max-width: 100%; }
+            details, details.delib-level1, details.delib-level2 { display: block !important; }
+            details > summary { display: none !important; }
+            details > .delib-content { display: block !important; }
+            .delib-level1, .delib-level2 { border: none; }
+            .delib-level1 > .delib-content,
+            .delib-level2 > .delib-content { padding: 0; }
+            .delib-content h4 { page-break-after: avoid; }
+            blockquote { page-break-inside: avoid; }
+            .feuille-btn { display: none !important; }
+        }
+
+        /* Loading state */
+        #loading-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #8b5cf6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button id="print-btn" class="floating-btn" title="Imprimer la compétence">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/></svg>
+        </button>
+        <button id="fullscreen-btn" class="floating-btn" title="Plein écran">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </button>
+
+        <div id="diagram-zone">
+            <div id="diagram-container">
+                <div class="diagram-stats">
+                    <div class="diagram-stat" id="stat-level"></div>
+                    <div class="diagram-stat" id="stat-tendance"></div>
+                </div>
+                <svg id="diagram"></svg>
+                <div id="hover-overlay"></div>
+            </div>
+        </div>
+
+        <div id="resize-slider" role="separator" aria-orientation="horizontal" aria-label="Redimensionner les zones"></div>
+
+        <div id="info-zone">
+            <div id="info-container">
+                <div id="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Chargement des compétences...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chargement des données -->
+    <script src="carto-data.js"></script>
+
+    <script>
+        // --- CONFIGURATION ---
+        const niveaux = {
+            1: { nom: "Découverte", radiusFactor: 0.2 },
+            2: { nom: "Application", radiusFactor: 0.4 },
+            3: { nom: "Maîtrise", radiusFactor: 0.6 },
+            4: { nom: "Expertise", radiusFactor: 0.8 },
+            5: { nom: "Excellence", radiusFactor: 1.0 }
+        };
+
+        const RENVOI_RADIUS_FACTOR = 0.35;
+
+        const grayLevels = { 1: "#000000", 2: "#1f2937", 3: "#374151", 4: "#6b7280", 5: "#cbd5e1" };
+
+        const state = {
+            data: null,
+            hoveredSector: null,     // secteur actuellement survolé (overlay titre)
+            selectedSector: null,    // secteur cliqué (panneau info + dimming)
+            svgSize: { width: 400, height: 400 },
+            isMobile: false,
+            isLoaded: false
+        };
+
+        // --- GÉNÉRATION DES DONNÉES ---
+        function generateData() {
+            if (typeof domainsData === 'undefined') {
+                console.error('Les données de compétences ne sont pas chargées');
+                return null;
+            }
+
+            const rootNode = {
+                id: "Compétences RESPIRE",
+                parent: null,
+                children: [],
+                isLeaf: false,
+                niveau: 0,
+                points: 0
+            };
+
+            domainsData.forEach(domain => {
+                const dNode = {
+                    id: domain.id,
+                    parent: rootNode,
+                    color: domain.color,
+                    rapport_html: domain.rapport_html || "",
+                    children: [],
+                    isLeaf: false,
+                    points: 0,
+                    niveau: 0,
+                    niveau_moyen: 0,
+                    // v3 : tendance temporelle du pôle (titre + description séparés)
+                    tendance_temporelle: domain.tendance_temporelle || null,
+                    tendance_titre: domain.tendance_titre || "",
+                    tendance_description: domain.tendance_description || "",
+                    tendance_stats: domain.tendance_stats || null
+                };
+
+                domain.competences.forEach(comp => {
+                    const cNode = {
+                        id: comp.id,
+                        parent: dNode,
+                        points: comp.points,
+                        niveau: comp.niveau,
+                        statut: comp.statut || "présence établie",
+                        code: comp.code || "",
+                        description: comp.description,
+                        feedback: comp.feedback,
+                        temporal: comp.temporal || null,
+                        deliberation: comp.deliberation || null,
+                        color: domain.color,
+                        children: [],
+                        isLeaf: true,
+                        // v3 : archétype qualitatif (titre + description séparés)
+                        archetype: comp.archetype || null,
+                        archetype_titre: comp.archetype_titre || "",
+                        archetype_description: comp.archetype_description || ""
+                    };
+                    dNode.children.push(cNode);
+                    dNode.points += cNode.points;
+                    dNode.niveau = Math.max(dNode.niveau, Math.abs(cNode.niveau));
+                });
+
+                // Niveau moyen : moyenne des niveaux positifs (compétences établies
+                // ou orphelines). Les renvois (niveau=-1) sont écartés.
+                const positifs = dNode.children.filter(c => c.niveau > 0);
+                if (positifs.length > 0) {
+                    const sum = positifs.reduce((s, c) => s + c.niveau, 0);
+                    dNode.niveau_moyen = sum / positifs.length;
+                }
+
+                rootNode.children.push(dNode);
+                rootNode.points += dNode.points;
+            });
+
+            return { root: rootNode };
+        }
+
+        function getMaxDepth(node, currentDepth = 0) {
+            if (!node.children || node.children.length === 0) return currentDepth;
+            return Math.max(...node.children.map(child => getMaxDepth(child, currentDepth + 1)));
+        }
+
+        // --- RENDU DU DIAGRAMME ---
+        function renderCircularDiagram() {
+            const svg = document.getElementById('diagram');
+            const size = state.svgSize;
+
+            if (!svg || size.width <= 0 || size.height <= 0) return;
+
+            const centerX = size.width / 2;
+            const centerY = size.height / 2;
+            const maxRadius = Math.min(size.width, size.height) * 0.48;
+            const innerRadius = Math.min(size.width, size.height) * 0.08;
+
+            svg.innerHTML = '';
+            svg.setAttribute('width', size.width);
+            svg.setAttribute('height', size.height);
+
+            svg.addEventListener('click', (e) => {
+                if(e.target === svg) handleInteraction(null);
+            });
+
+            // Dégradé central
+            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+            const centerGradient = document.createElementNS('http://www.w3.org/2000/svg', 'radialGradient');
+            centerGradient.setAttribute('id', 'centerGradient');
+            centerGradient.innerHTML = `<stop offset="70%" stop-color="#fdf2f8" /><stop offset="100%" stop-color="#fdf2f8" />`;
+            defs.appendChild(centerGradient);
+
+            // Pattern hachures pour renvoi
+            const hatchPattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+            hatchPattern.setAttribute('id', 'hatch');
+            hatchPattern.setAttribute('patternUnits', 'userSpaceOnUse');
+            hatchPattern.setAttribute('width', '6');
+            hatchPattern.setAttribute('height', '6');
+            hatchPattern.setAttribute('patternTransform', 'rotate(45)');
+            hatchPattern.innerHTML = `<line x1="0" y1="0" x2="0" y2="6" stroke="#94a3b8" stroke-width="1.5" opacity="0.5"/>`;
+            defs.appendChild(hatchPattern);
+
+            svg.appendChild(defs);
+
+            if (!state.data) return;
+
+            const rootView = state.data.root;
+            const maxDepth = getMaxDepth(rootView);
+            const ringWidth = (maxRadius - innerRadius) / Math.max(maxDepth, 1);
+
+            // Cercles concentriques
+            for (let i = 0; i <= maxDepth; i++) {
+                const radius = innerRadius + (i * ringWidth);
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', centerX);
+                circle.setAttribute('cy', centerY);
+                circle.setAttribute('r', radius);
+                circle.setAttribute('fill', 'none');
+                circle.setAttribute('stroke', '#000');
+                circle.setAttribute('stroke-width', '0.5');
+                circle.setAttribute('stroke-opacity', '0.1');
+                circle.setAttribute('stroke-dasharray', '2,2');
+                circle.style.pointerEvents = 'none';
+                svg.appendChild(circle);
+            }
+
+            function renderSectors(nodes, startA, endA, depth, pColor) {
+                const curInR = innerRadius + (depth * ringWidth);
+                const curOutR = innerRadius + ((depth + 1) * ringWidth);
+                let curA = startA;
+                const total = nodes.reduce((s, n) => s + n.points, 0);
+
+                nodes.forEach((node) => {
+                    const ang = total > 0 ? ((node.points / total) * (endA - startA)) : 0;
+                    const end = curA + ang;
+                    const nodeColor = node.color || pColor;
+
+                    if (node.isLeaf && node.niveau !== 0) {
+                        const rDiff = curOutR - curInR;
+
+                        if (node.niveau === -1) {
+                            // --- RENVOI : hachures + bordure pointillée ---
+                            const effOutR = curInR + (rDiff * RENVOI_RADIUS_FACTOR);
+
+                            // Fond hachuré
+                            const bgPath = createSectorPath(centerX, centerY, curInR, effOutR, curA, end);
+                            const bgEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                            bgEl.setAttribute('d', bgPath);
+                            bgEl.setAttribute('fill', 'url(#hatch)');
+                            bgEl.setAttribute('stroke', nodeColor);
+                            bgEl.setAttribute('stroke-width', '1');
+                            bgEl.setAttribute('stroke-dasharray', '4,3');
+                            bgEl.setAttribute('fill-opacity', '0.6');
+                            bgEl.classList.add('renvoi-sector');
+
+                            if (state.selectedSector && state.selectedSector.id !== node.id) {
+                                bgEl.classList.add('dimmed');
+                            }
+
+                            bgEl.addEventListener('mouseenter', () => { if(!state.isMobile) handleHover(node); });
+                            bgEl.addEventListener('mouseleave', () => { if(!state.isMobile) handleHover(null); });
+                            bgEl.addEventListener('click', (e) => { e.stopPropagation(); handleInteraction(node); });
+                            svg.appendChild(bgEl);
+
+                        } else {
+                            // --- Compétence établie ou orpheline : rendu normal ---
+                            // Fonds grisés (5 niveaux)
+                            for (let l = 1; l <= 5; l++) {
+                                const lIn = curInR + (rDiff * (l===1?0:niveaux[l-1].radiusFactor));
+                                const lOut = curInR + (rDiff * niveaux[l].radiusFactor);
+                                const pD = createSectorPath(centerX, centerY, lIn, lOut, curA, end);
+                                const gp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                                gp.setAttribute('d', pD);
+                                gp.setAttribute('fill', grayLevels[l]);
+                                gp.setAttribute('fill-opacity', '0.4');
+                                gp.classList.add('gray-sector');
+                                svg.appendChild(gp);
+                            }
+
+                            // Secteur actif coloré
+                            const effOutR = curInR + (rDiff * niveaux[node.niveau].radiusFactor);
+                            const pD = createSectorPath(centerX, centerY, curInR, effOutR, curA, end);
+                            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                            path.setAttribute('d', pD);
+                            path.setAttribute('fill', nodeColor);
+                            path.setAttribute('fill-opacity', node.statut === 'orpheline' ? '0.7' : '1');
+                            path.setAttribute('stroke', '#fff');
+                            path.setAttribute('stroke-width', '0.5');
+
+                            if (node.statut === 'orpheline') {
+                                path.setAttribute('stroke-dasharray', '3,2');
+                            }
+
+                            path.classList.add('sector');
+
+                            if (state.selectedSector && state.selectedSector.id !== node.id) {
+                                path.classList.add('dimmed');
+                            }
+
+                            path.addEventListener('mouseenter', () => {
+                                if (!state.isMobile) handleHover(node);
+                            });
+                            path.addEventListener('mouseleave', () => {
+                                if (!state.isMobile) handleHover(null);
+                            });
+                            path.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                handleInteraction(node);
+                            });
+
+                            svg.appendChild(path);
+                        }
+                    } else if (!node.isLeaf) {
+                        // --- Domaines (anneaux parents) ---
+                        const pD = createSectorPath(centerX, centerY, curInR, curOutR, curA, end);
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('d', pD);
+                        path.setAttribute('fill', nodeColor);
+                        path.setAttribute('fill-opacity', '0.8');
+                        path.setAttribute('stroke', '#fff');
+                        path.classList.add('sector');
+
+                        if (state.selectedSector && state.selectedSector.id !== node.id) path.classList.add('dimmed');
+
+                        path.addEventListener('mouseenter', () => { if(!state.isMobile) handleHover(node); });
+                        path.addEventListener('mouseleave', () => { if(!state.isMobile) handleHover(null); });
+                        path.addEventListener('click', (e) => { e.stopPropagation(); handleInteraction(node); });
+                        svg.appendChild(path);
+                    }
+
+                    if (node.children && node.children.length > 0) renderSectors(node.children, curA, end, depth + 1, nodeColor);
+                    curA = end;
+                });
+            }
+
+            renderSectors(rootView.children, -90, 270, 0, null);
+
+            // Centre
+            const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            centerCircle.setAttribute('cx', centerX);
+            centerCircle.setAttribute('cy', centerY);
+            centerCircle.setAttribute('r', innerRadius);
+            centerCircle.setAttribute('fill', 'url(#centerGradient)');
+            centerCircle.setAttribute('stroke', '#ddd');
+            centerCircle.style.cursor = 'pointer';
+            centerCircle.addEventListener('click', (e) => { e.stopPropagation(); handleInteraction(null); });
+            svg.appendChild(centerCircle);
+        }
+
+        function createSectorPath(cx, cy, rIn, rOut, startAngle, endAngle) {
+            const rad = Math.PI / 180;
+            const x1 = cx + rIn * Math.cos(startAngle * rad);
+            const y1 = cy + rIn * Math.sin(startAngle * rad);
+            const x2 = cx + rOut * Math.cos(startAngle * rad);
+            const y2 = cy + rOut * Math.sin(startAngle * rad);
+            const x3 = cx + rOut * Math.cos(endAngle * rad);
+            const y3 = cy + rOut * Math.sin(endAngle * rad);
+            const x4 = cx + rIn * Math.cos(endAngle * rad);
+            const y4 = cy + rIn * Math.sin(endAngle * rad);
+            const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+            return `M ${x1} ${y1} L ${x2} ${y2} A ${rOut} ${rOut} 0 ${largeArc} 1 ${x3} ${y3} L ${x4} ${y4} A ${rIn} ${rIn} 0 ${largeArc} 0 ${x1} ${y1} Z`;
+        }
+
+        // --- INTERFACE UTILISATEUR ---
+        function renderDetailsPanel() {
+            const container = document.getElementById('info-container');
+            const node = state.selectedSector;
+
+            updateDiagramStats(node);
+
+            // Bouton impression : toujours visible — la zone info contient
+            // quelque chose d'imprimable quel que soit l'état (rapport global,
+            // rapport de pôle, ou verdict de compétence).
+            printBtn.classList.add('visible');
+
+            // État vide : résumé du profil + rapport prescriptif
+            if (!node) {
+                let summaryHtml = '';
+                if (typeof profilMeta !== 'undefined') {
+                    const m = profilMeta;
+                    summaryHtml = `
+                        <div class="profile-summary">
+                            <div class="stat-line">
+                                <span>Compétences établies</span>
+                                <span class="stat-value">${m.competences_etablies} / 61</span>
+                            </div>
+                            <div class="stat-line">
+                                <span>En renvoi (entretien)</span>
+                                <span class="stat-value">${m.competences_renvoyees}</span>
+                            </div>
+                            <div class="stat-line">
+                                <span>Compétences émergentes</span>
+                                <span class="stat-value">${m.competences_orphelines}</span>
+                            </div>
+                            <div class="stat-line">
+                                <span>Score total</span>
+                                <span class="stat-value">${Math.round(m.score_total)}</span>
+                            </div>
+                            ${m.ponderation_temporelle ? `<div class="stat-line">
+                                <span>Pondération temporelle</span>
+                                <span class="stat-value">-${Math.round(m.ponderation_temporelle.decote_annuelle * 100)} %/an</span>
+                            </div>` : ''}
+                        </div>
+                    `;
+                }
+                let rapportSection = '';
+                if (typeof rapportHtml !== 'undefined' && rapportHtml) {
+                    rapportSection = `<div id="feedback-content">${rapportHtml}</div>`;
+                }
+                container.innerHTML = `
+                    <div id="empty-state">
+                        <p>Touchez un secteur du diagramme pour voir le détail et les traces.</p>
+                        ${summaryHtml}
+                    </div>
+                    ${rapportSection}
+                `;
+                return;
+            }
+
+            let html = '';
+
+            // Titre et description
+            html += `<div id="info-details">`;
+            const titleColor = (node.color) ? node.color : '#1e293b';
+            html += `<div id="info-title" style="color:${titleColor}">${node.id}</div>`;
+
+            if (node.description && node.isLeaf) {
+                html += `<div id="info-description">${node.description}</div>`;
+                // Info temporelle si disponible
+                if (node.temporal) {
+                    const t = node.temporal;
+                    let temporalHtml = '<div class="temporal-info">';
+                    if (t.score_brut !== undefined && t.score_pondere !== undefined) {
+                        const diff = t.score_brut - t.score_pondere;
+                        if (diff > 0.1) {
+                            temporalHtml += `Score brut ${t.score_brut} → pondéré <span class="decay-indicator">${t.score_pondere.toFixed(1)}</span> `;
+                        }
+                    }
+                    if (t.trace_ancienne) {
+                        const oldest = new Date(t.trace_ancienne);
+                        const newest = t.trace_recente ? new Date(t.trace_recente) : null;
+                        const fmtDate = (d) => d.toLocaleDateString('fr-FR', {month:'short', year:'numeric'});
+                        if (newest && oldest.getTime() !== newest.getTime()) {
+                            temporalHtml += `Traces : ${fmtDate(oldest)} — ${fmtDate(newest)}`;
+                        } else {
+                            temporalHtml += `Trace : ${fmtDate(oldest)}`;
+                        }
+                    }
+                    temporalHtml += '</div>';
+                    html += temporalHtml;
+                }
+            } else if (!node.isLeaf) {
+                // Domaine : compter les compétences
+                const count = node.children ? node.children.length : 0;
+                const established = node.children ? node.children.filter(c => c.statut === 'présence établie').length : 0;
+                const renvois = node.children ? node.children.filter(c => c.niveau === -1).length : 0;
+                let desc = `${count} compétences dans ce pôle`;
+                if (established > 0) desc += ` — ${established} établie${established > 1 ? 's' : ''}`;
+                if (renvois > 0) desc += `, ${renvois} en renvoi`;
+                html += `<div id="info-description">${desc}. Sélectionnez une compétence pour le détail.</div>`;
+            }
+            html += `</div>`;
+
+            // Rapport du pôle (affiché quand un domaine est sélectionné — Aurora v2)
+            if (node.rapport_html) {
+                html += `<div id="feedback-content">${node.rapport_html}</div>`;
+            }
+
+            // Feedback HTML de compétence (verdict + traces)
+            if (node.feedback) {
+                html += `<div id="feedback-content">${node.feedback}</div>`;
+            }
+
+            // Délibération complète du jury (6 éclairages + Président)
+            if (node.deliberation) {
+                html += `<div id="deliberation-content">${node.deliberation}</div>`;
+            }
+
+            container.innerHTML = html;
+            document.getElementById('info-zone').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateDiagramStats(node) {
+            const levelEl = document.getElementById('stat-level');
+            const tendanceEl = document.getElementById('stat-tendance');
+
+            if (!node) {
+                levelEl.innerHTML = '';
+                tendanceEl.innerHTML = '';
+                return;
+            }
+
+            // --- Pôle (domaine) : titre tendance dans #stat-level, description dans #stat-tendance ---
+            if (!node.isLeaf) {
+                if (node.tendance_titre) {
+                    levelEl.innerHTML = `<span class="tendance-titre"><strong>${node.tendance_titre}</strong></span>`;
+                } else {
+                    levelEl.innerHTML = '';
+                }
+                if (node.tendance_description) {
+                    tendanceEl.innerHTML = `<span class="tendance-description">${node.tendance_description}</span>`;
+                } else {
+                    tendanceEl.innerHTML = '';
+                }
+                return;
+            }
+
+            // --- Renvoi (cas legacy, ne devrait pas apparaître en v3) ---
+            if (node.niveau === -1) {
+                levelEl.innerHTML = '<span style="color:#92400e;font-size:0.9rem;">? En renvoi</span>';
+                tendanceEl.innerHTML = '';
+                return;
+            }
+
+            // --- Orpheline (cas legacy, ne devrait pas apparaître en v3) ---
+            if (node.statut === 'orpheline') {
+                levelEl.innerHTML = '';
+                tendanceEl.innerHTML = '<span style="color:#78716c;font-size:0.85rem;">Hors référentiel</span>';
+                return;
+            }
+
+            // --- Compétence établie : titre archétype dans #stat-level, description dans #stat-tendance ---
+            if (node.archetype_titre) {
+                levelEl.innerHTML = `<span class="archetype-titre"><strong>${node.archetype_titre}</strong></span>`;
+            } else {
+                levelEl.innerHTML = '';
+            }
+            if (node.archetype_description) {
+                tendanceEl.innerHTML = `<span class="archetype-description">${node.archetype_description}</span>`;
+            } else {
+                tendanceEl.innerHTML = '';
+            }
+        }
+
+        function handleInteraction(sector) {
+            if (state.selectedSector === sector) return;
+            state.selectedSector = sector;
+            render();
+        }
+
+        function handleHover(sector) {
+            state.hoveredSector = sector;
+            const overlay = document.getElementById('hover-overlay');
+            if (!overlay) return;
+            if (sector && sector.id) {
+                overlay.textContent = sector.id;
+                overlay.classList.add('visible');
+            } else {
+                overlay.classList.remove('visible');
+            }
+        }
+
+        function render() {
+            renderCircularDiagram();
+            renderDetailsPanel();
+        }
+
+        // --- INITIALISATION & RESIZE ---
+        function init() {
+            if (typeof domainsData === 'undefined') {
+                document.getElementById('info-container').innerHTML = `
+                    <div id="error-state">
+                        <p><strong>Erreur de chargement</strong></p>
+                        <p>Le fichier <code>carto-data.js</code> n'a pas pu être chargé.</p>
+                        <p>Vérifiez qu'il est présent dans le même répertoire.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            state.data = generateData();
+            state.isLoaded = true;
+            checkMobile();
+            updateSVGSize();
+            render();
+        }
+
+        function checkMobile() {
+            state.isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 768;
+        }
+
+        function updateSVGSize() {
+            const container = document.getElementById('diagram-container');
+            if (!container) return;
+
+            const rect = container.getBoundingClientRect();
+            const size = Math.min(rect.width, rect.height) - 5;
+
+            if (size > 0) {
+                if (Math.abs(state.svgSize.width - size) > 5) {
+                    state.svgSize = { width: size, height: size };
+                    renderCircularDiagram();
+                }
+            }
+        }
+
+        // Plein écran
+        const fsBtn = document.getElementById('fullscreen-btn');
+        fsBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(e=>{});
+            else document.exitFullscreen();
+        });
+
+        // Impression
+        const printBtn = document.getElementById('print-btn');
+        printBtn.addEventListener('click', () => {
+            // Déployer toutes les sections <details>
+            const allDetails = document.querySelectorAll('#info-container details');
+            const wasOpen = [];
+            allDetails.forEach((d, i) => {
+                wasOpen[i] = d.open;
+                d.open = true;
+            });
+            window.print();
+            // Restaurer l'état après impression
+            allDetails.forEach((d, i) => { d.open = wasOpen[i]; });
+        });
+
+        // Resize handler
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                checkMobile();
+                updateSVGSize();
+            }, 150);
+        });
+
+        // --- SLIDER : redimensionnement diagramme/info ---
+        (function() {
+            const slider = document.getElementById('resize-slider');
+            const diagramZone = document.getElementById('diagram-zone');
+            const app = document.getElementById('app');
+            if (!slider || !diagramZone || !app) return;
+
+            let dragging = false;
+
+            function clientY(e) {
+                return e.touches && e.touches[0] ? e.touches[0].clientY : e.clientY;
+            }
+
+            function startDrag(e) {
+                dragging = true;
+                slider.classList.add('dragging');
+                document.body.style.cursor = 'ns-resize';
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function doDrag(e) {
+                if (!dragging) return;
+                const rect = app.getBoundingClientRect();
+                const y = clientY(e);
+                const minH = 80;
+                const maxH = rect.height - 100;
+                const newH = Math.max(minH, Math.min(maxH, y - rect.top));
+                diagramZone.style.height = `${newH}px`;
+                updateSVGSize();
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function endDrag() {
+                if (!dragging) return;
+                dragging = false;
+                slider.classList.remove('dragging');
+                document.body.style.cursor = '';
+            }
+
+            slider.addEventListener('mousedown', startDrag);
+            slider.addEventListener('touchstart', startDrag, { passive: false });
+            window.addEventListener('mousemove', doDrag);
+            window.addEventListener('touchmove', doDrag, { passive: false });
+            window.addEventListener('mouseup', endDrag);
+            window.addEventListener('mouseleave', endDrag);
+            window.addEventListener('touchend', endDrag);
+            window.addEventListener('touchcancel', endDrag);
+        })();
+
+        // Clavier global : Escape désélectionne la compétence courante.
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && state.selectedSector) {
+                e.preventDefault();
+                handleInteraction(null);
+            }
+        });
+
+        // Initialisation au chargement
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

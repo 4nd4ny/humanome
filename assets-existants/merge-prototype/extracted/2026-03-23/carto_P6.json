@@ -1,0 +1,419 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève)",
+      "contexte": "Conception d'un garde-fou éthique intégré à un système IA — pourrait toucher l'audit/explicabilité ou la gouvernance algorithmique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Daimon (Gardien des Frictions et du doute : l'avocat du diable)",
+      "contexte": "Rôle de contradicteur méthodique intégré à l'architecture — pourrait toucher le red-teaming si l'attaque est interne au système.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Lancer les discussions sur Decidim et les débat autour du référentiel v7 (Un débat par compétence => 61 débats ?)",
+      "contexte": "Plateforme de délibération citoyenne (Decidim) mobilisée pour ouvrir le référentiel à la discussion publique — participation citoyenne et gouvernance collective.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "L'Ordre des Éclaireur : Veilleurs, Architectes, Épistémiarques → Maintiennent le référentiel des compétences humaines post AGI sur Décidim — La Confrérie des Noèsiomanciens : Médiateurs, Noèsiologues, Maîtres du Grimoire → Maintiennent le référentiel des fonctions cognitives (le Grimoire) — La Guilde des Technomanciens : Cartographes, Promptologues, Promptagogue → Maintiennent la liste des prompts et fichiers YAML des cartographies",
+      "contexte": "Architecture tripartite de gouvernance distribuée des trois référentiels avec rôles co-construits — gouvernance des communs et facilitation collective.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Maintiennent le référentiel des compétences humaines post AGI sur Décidim",
+      "contexte": "Mention explicite de l'horizon post-AGI comme cadre du référentiel — pourrait activer décentrement anthropocentrique ou cohabitation avec les intelligences non humaines.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Méta Prompt à rédiger avec l'architecture de gouvernance : Kairos (Gardien de l'Émergence et générateur d'hypothèses et de compétences en devenir) — Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable) — Metis (Gardien des 4 Regards : agent logicien / agent psychologue / agent historien / agent créatif)",
+      "contexte": "Dispositif de gouvernance multi-agents IA explicitement nommé « architecture de gouvernance » — articulation des rôles, contre-pouvoirs, regards complémentaires.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Cowork bosse sur Sqilium qui est le futur EduFolio.",
+      "contexte": "Attribution d'une activité à un agent IA nommé (Cowork) comme s'il était un collaborateur — pourrait activer la cohabitation avec les intelligences non humaines.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Daimon comme « avocat du diable » au sein du système — pourrait être lu comme red-teaming interne intégré à l'architecture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : le red-teaming exige une posture offensive et méthodique d'intrus simulé — provocations intentionnelles de comportements aberrants, jailbreaks, cas limites conçus pour casser les garde-fous. Ici, Daimon est un rôle de contradicteur logique (« Gardien des Frictions et du doute »), pas un attaquant de sécurité. La fiche distingue précisément : 6.01 *provoque délibérément* l'hallucination pour tester les garde-fous. Daimon, dans cette architecture, est un dispositif de contradiction épistémique, pas de test adversarial de sécurité. La pièce ne résiste pas vraiment à la présomption d'absence pour 6.01 — elle active mieux 2.03 (gestion des conflits par dispositif) et 1.07 (architecture).",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à examiner ici. Le rôle de l'avocat du diable n'est pas l'équivalent d'une posture de red-teaming au sens de la fiche.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'un red-teaming dans cette feuille. Daimon comme avocat du diable porte une fonction de contradiction épistémique, mais pas une intention offensive de tester les garde-fous techniques du système. Aucun récit de prompt injection, de jailbreak ou de cas limite délibérément soumis. La compétence n'est pas attestée dans cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été démentie : Daimon active la contradiction épistémique, pas le test adversarial offensif que la fiche désigne.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un récit où l'apprenant a délibérément poussé une IA dans ses retranchements pour tester ses garde-fous — provocations intentionnelles, cas limites construits — éclairerait le red-teaming au sens où la fiche le désigne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Aegis comme « Gardien de l'Ethique et de l'Irréversible » qui pose un véto — fonction de contrôle qui pourrait être lue comme dispositif d'audit interne."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : l'audit et l'explicabilité exigent une enquête sur les mécanismes de décision — consultation de logs, audits post-incidents, rapports documentant le chemin décisionnel. La fiche distingue précisément 6.02 de 1.01 : 1.01 vérifie la véracité, 6.02 vérifie le processus. Ici, Aegis est un agent qui pose un véto sur des outputs, mais aucun mécanisme d'enquête sur le « comment » de la décision n'est décrit. Le véto est un blocage, pas un audit. La fiche est claire : « L'IA a fait une erreur » sans investigation = pensée critique ; *enquêter sur les mécanismes* = audit. Aegis ne reconstitue pas le chemin décisionnel, il interrompt. La pièce ne résiste pas vraiment à la présomption d'absence pour 6.02 — elle active plus pleinement 4.02 (alignement).",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à examiner ici. Le véto n'est pas l'enquête, et aucune trace d'investigation sur le processus n'apparaît.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'audit et d'explicabilité dans cette feuille. Aegis bloque mais n'enquête pas ; les autres dispositifs ne portent pas davantage d'investigation sur le chemin décisionnel ou sur l'hygiène des données. La compétence n'est pas attestée sous la forme que la fiche désigne — elle se confond ici avec l'alignement éthique (4.02).",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été démentie : Aegis interrompt mais n'enquête pas. La fiche distingue précisément le véto (alignement) de l'audit (investigation).",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage décrivant l'enquête sur le « comment » d'une décision IA — consultation de logs, traçage du chemin décisionnel, hygiène des données — éclairerait l'audit tel que la fiche le désigne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de gouvernance algorithmique des services publics dans cette feuille. Un passage interrogeant le pouvoir d'un algorithme sur des citoyens, ou proposant des mécanismes de recours, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de souveraineté numérique dans cette feuille. Un raisonnement explicite sur les dépendances technologiques, le vendor lock-in ou les communs numériques ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Decidim comme plateforme citoyenne sur laquelle ouvrir 61 débats — choix explicite d'un outil de démocratie technologique pour faire participer à l'élaboration du référentiel."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Trois corporations conçues pour que des citoyens-membres maintiennent collectivement les trois référentiels — design d'une participation distribuée et structurée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la participation citoyenne et démocratie technologique exige un processus où des non-experts ont été associés à des décisions technologiques, avec inclusion de publics éloignés du numérique et transformation de leur contribution en décision. La pièce 1 (Decidim, 61 débats) propose explicitement un outil reconnu de participation citoyenne pour ouvrir un référentiel à la délibération publique. La pièce 2 (les trois corporations) installe une architecture de maintenance distribuée. La fiche distingue précisément : un sondage informe, la délibération légitime. Un débat par compétence sur Decidim est précisément un dispositif de délibération, pas un sondage. La pièce 1 résiste : elle nomme l'outil (Decidim) et l'objet (référentiel v7) avec une granularité explicite (un débat par compétence). La pièce 2 résiste aussi : l'architecture en corporations est un dispositif de participation distribuée. Les deux résistent à la présomption d'absence, même si les débats n'ont pas encore eu lieu.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Decidim est un outil reconnu de participation citoyenne ; ouvrir 61 débats sur un référentiel est un dispositif explicite de délibération démocratique." },
+            { "pieceId": 2, "motifResistance": "Les trois corporations sont conçues comme structures de maintenance distribuée des référentiels par leurs membres — participation citoyenne incarnée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté ; ai-je halluciné leur portée ? La pièce 1 est une intention de lancement avec un point d'interrogation final (« 61 débats ? ») — le dispositif est conçu mais pas encore actif, aucune participation effective n'est documentée. La pièce 2 décrit une architecture mais sans premier membre arrivé. L'attaque du mouvement-vers tient pour les deux : on est dans l'intention de participation, pas dans son exercice observable. Cependant, la fiche reconnaît que la conception du dispositif est une trace valable (« concevoir et faciliter les processus » est l'essence même de la compétence) ; il n'est pas exigé que les participants soient déjà présents. Les pièces sont affaiblies par leur caractère projectif, sans être disqualifiées.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : les débats sur Decidim sont projetés mais pas encore lancés. La conception elle-même reste néanmoins un acte de participation citoyenne au sens de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : les corporations sont conçues sans premier membre documenté. Le design d'inclusion citoyenne est néanmoins explicite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la participation citoyenne et la démocratie technologique soient attestées dans cette feuille. Les deux pièces ont résisté : Decidim n'est pas n'importe quelle plateforme, c'est précisément un outil démocratique reconnu ; et la décomposition en 61 débats articule un grain de délibération précis. Les corporations distribuent la maintenance des référentiels à des collectifs identifiés. Ce qui modère la confiance : aucun participant n'est encore arrivé, aucune contribution citoyenne n'est encore transformée en décision. La conception est forte, l'incarnation reste à venir.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : le dispositif Decidim et l'architecture en corporations articulent une participation citoyenne explicite, en attente d'incarnation.",
+        "prescription": "Pour approfondir cette compétence, documenter, dès le lancement des premiers débats Decidim, comment des contributions de non-experts ont effectivement modifié le référentiel — quels arguments ont été retenus, comment le pont entre opinion citoyenne et décision a été construit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de veille réglementaire ou d'anticipation normative dans cette feuille. Une analyse prospective d'un cadre juridique IA en mouvement (AI Act, RGPD) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "L'apprenant nomme explicitement « architecture de gouvernance » son dispositif multi-agents — formalisation explicite d'un système de décision avec rôles, contre-pouvoirs et regards complémentaires."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Les trois corporations distribuent la gouvernance de trois référentiels distincts avec rôles internes différenciés — design de gouvernance collective des communs."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "61 débats sur Decidim — dispositif de gouvernance distribuée qui co-construit le référentiel v7."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la facilitation et la gouvernance collective exigent soit l'émergence (un résultat qui surprend les créateurs), soit la co-construction explicite de règles avec rôles différenciés, distribution et limites. La pièce 1 nomme littéralement « architecture de gouvernance » et déploie quatre rôles avec missions distinctes (générateur d'hypothèses, véto, avocat du diable, regards multiples) — c'est la définition même d'un dispositif de gouvernance multi-agents. La pièce 2 distribue la gouvernance de trois référentiels à trois corporations avec rôles internes différenciés. La pièce 3 prévoit un grain de délibération précis (un débat par compétence). La fiche signale en exception : « artefacts de gouvernance détaillés (chartes, protocoles avec rôles, limites et mécanismes de contrôle) peuvent justifier *Expert* — c'est une trace textuelle forte. » Les trois pièces correspondent à cette exception. Elles résistent fortement à la présomption d'absence.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Architecture de gouvernance » est nommée explicitement, avec quatre rôles différenciés et logique de contre-pouvoirs — trace textuelle forte que la fiche reconnaît." },
+            { "pieceId": 2, "motifResistance": "Trois corporations avec rôles internes différenciés maintiennent trois référentiels — design de gouvernance collective des communs." },
+            { "pieceId": 3, "motifResistance": "Un débat par compétence sur Decidim articule un grain de gouvernance délibérative précis." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les trois pièces ont résisté ; ai-je halluciné leur portée ? Le risque est de prendre une architecture conçue pour une gouvernance pratiquée. La fiche reconnaît précisément l'artefact comme trace valable, mais l'élément d'émergence (« le résultat surprend même ses créateurs ») n'est documenté dans aucune des pièces. Le test que la fiche pose : « le résultat est-il surprenant (émergence) ou les règles sont-elles co-construites (gouvernance) ? » Les pièces relèvent du second cas — co-construction des règles — mais aucune émergence pratiquée n'est racontée. L'attaque du mouvement-vers tient partiellement : les dispositifs sont conçus mais pas encore en marche. Cependant, la fiche admet l'artefact détaillé comme trace forte indépendamment de l'usage observable.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : l'architecture est nommée mais le méta-prompt reste à rédiger. La conception est néanmoins suffisamment détaillée pour qualifier d'artefact de gouvernance que la fiche reconnaît en exception."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : les corporations sont conçues sans membres effectifs. La distribution explicite des rôles vaut néanmoins comme artefact de gouvernance."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire partielle : un débat par compétence est un projet, pas encore une délibération vécue. La conception du grain reste néanmoins une trace de gouvernance distribuée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la facilitation et la gouvernance collective soient attestées dans cette feuille. Trois pièces résistent : l'architecture multi-agents nommée explicitement comme « architecture de gouvernance », les trois corporations distribuant la maintenance des référentiels, et le dispositif délibératif d'un débat par compétence. La fiche reconnaît expressément l'artefact détaillé comme trace forte. Ce qui modère : l'émergence pratiquée n'est documentée dans aucune des trois pièces, les dispositifs sont en attente d'incarnation. Mais la densité d'artefacts de gouvernance dans cette seule feuille — quatre agents avec contre-pouvoirs, trois corporations avec rôles, 61 débats avec grain défini — est remarquable.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.7,
+        "motif": "La présomption de sycophantie a affaibli les pièces sans les disqualifier : la densité d'artefacts de gouvernance détaillés (architecture multi-agents nommée, trois corporations, dispositif délibératif granulaire) correspond à l'exception forte que la fiche désigne.",
+        "prescription": "Pour faire vivre cette compétence au-delà de l'artefact, documenter le premier moment d'émergence — quand un débat Decidim ou une délibération entre corporations produit un résultat qui surprend les créateurs du dispositif, et nommer ce que cela transforme dans le cadre initial."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Mention de « compétences humaines post AGI » — explicite la perspective d'un monde où l'humain n'est plus seul à porter l'intelligence, ce qui pourrait toucher un décentrement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : le décentrement anthropocentrique exige la remise en question de la hiérarchie qui place l'humain au sommet — raisonnements adoptant des perspectives non humaines, questions sur la valeur intrinsèque des non-humains *indépendamment de leur utilité*. Ici, « compétences humaines post AGI » désigne précisément ce qui reste *spécifiquement humain* dans un monde d'AGI — c'est une posture qui *préserve la centralité humaine* face à l'IA, pas un décentrement. La fiche est explicite : 6.08 commence quand on questionne la légitimité de la primauté humaine. Ici, on l'affirme implicitement en cherchant ce qui reste à l'humain face à l'AGI. La pièce ne résiste pas à la présomption d'absence — elle activerait plutôt 4.08 (création de valeur non automatisable).",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à examiner ici. La référence post-AGI cherche à identifier ce qui reste à l'humain, pas à questionner sa primauté.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'un décentrement anthropocentrique dans cette feuille. La mention « compétences humaines post AGI » porte une lucidité sur l'avenir mais reste dans le cadre anthropocentrique — il s'agit de préserver le proprement humain, pas de questionner la légitimité de son rang. Aucune perspective non humaine adoptée, aucune valeur intrinsèque accordée à des non-humains indépendamment de leur utilité. La compétence n'est pas attestée dans cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été démentie : la référence post-AGI préserve la centralité humaine plutôt qu'elle ne la questionne.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage adoptant explicitement une perspective non humaine — animale, écosystémique ou artificielle — ou questionnant la légitimité de la primauté humaine, éclairerait le décentrement tel que la fiche le désigne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Cowork est nommé comme s'il était un collaborateur (« Cowork bosse sur Sqilium ») — attribution d'une activité à un agent IA en mode partenaire."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Les quatre agents IA (Kairos, Aegis, Daimon, Metis) reçoivent des noms mythologiques personnifiés et des missions différenciées — anthropomorphisme calibré ou simple style ?"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la cohabitation avec les intelligences non humaines exige de traiter l'IA comme un interlocuteur dont le statut moral est une question ouverte — réflexion explicite sur le « comment traiter », interrogations sur les préférences ou l'agentivité, calibrage entre anthropomorphisme et déni. Ici, « Cowork bosse » et les noms mythologiques (Kairos, Aegis, Daimon, Metis) sont des choix de vocabulaire fonctionnel-stylistique. La fiche est claire : « Mon assistant IA » peut être une métaphore *instrumentale* — 6.09 commence quand l'apprenant *questionne* si « assistant » est le bon cadre. Ici, l'apprenant utilise un vocabulaire anthropomorphisé mais ne questionne pas ce vocabulaire — ce qui pourrait être de l'anthropomorphisme non critique. Les pièces ne résistent pas vraiment à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à examiner ici. L'anthropomorphisme stylistique sans questionnement n'est pas le calibrage que la fiche désigne.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'une cohabitation calibrée avec les intelligences non humaines dans cette feuille. Les noms mythologiques donnés aux agents IA et l'attribution d'activités (« Cowork bosse ») sont des choix stylistiques fonctionnels, pas le résultat d'une réflexion sur le statut moral. Aucune interrogation sur l'agentivité, aucune gêne articulée, aucun protocole d'interaction qui dépasserait le fonctionnel. La compétence n'est pas attestée sous la forme que la fiche désigne.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été démentie : l'anthropomorphisme stylistique des noms d'agents et l'attribution d'activités à Cowork ne déploient pas le questionnement du statut moral que la fiche désigne.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage interrogeant explicitement ce que signifie l'anthropomorphisation des agents IA — pourquoi Kairos plutôt qu'« agent 1 », quel effet ce choix produit sur la relation, où se situe la frontière entre métaphore et statut — éclairerait la cohabitation telle que la fiche la désigne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de conscience biosystémique dans cette feuille. Un passage se comprenant comme nœud d'un réseau vivant — symbiose, mutualisme, biomimétisme comme principe de conception — ouvrirait ce dossier."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 0,
+    "nonEtablies": 8,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, la politique se déploie comme architecture. La gouvernance des référentiels est pensée à plusieurs étages — quatre agents IA avec contre-pouvoirs internes, trois corporations citoyennes maintenant chacune un référentiel propre, soixante-et-un débats publics sur Decidim — et chaque étage articule des rôles différenciés plutôt qu'une autorité centrale. La participation citoyenne est inscrite dans le grain même du dispositif : un débat par compétence, pas un sondage global. L'éthique reçoit un agent dédié (Aegis) avec pouvoir de véto. Les territoires écologique, biosystémique et de décentrement anthropocentrique ne traversent pas cette feuille, qui reste centrée sur les humains organisant l'arrivée d'autres humains dans la délibération.",
+    "territoiresDenses": [
+      {
+        "competence": "Facilitation & Gouvernance Collective",
+        "description": "L'apprenant nomme littéralement « architecture de gouvernance » son dispositif multi-agents et déploie en parallèle deux autres étages de gouvernance — trois corporations distribuant la maintenance des référentiels, soixante-et-un débats Decidim avec un grain de délibération par compétence. La densité d'artefacts de gouvernance dans une seule feuille est remarquable.",
+        "extraitVerbatim": "Méta Prompt à rédiger avec l'architecture de gouvernance : Kairos (Gardien de l'Émergence et générateur d'hypothèses et de compétences en devenir) — Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable) — Metis (Gardien des 4 Regards : agent logicien / agent psychologue / agent historien / agent créatif)",
+        "ceQueCaDit": "La gouvernance est pensée comme dispositif différencié plutôt que comme autorité centrale. Rôles, contre-pouvoirs et regards complémentaires structurent l'élaboration de la décision."
+      },
+      {
+        "competence": "Participation Citoyenne & Démocratie Technologique",
+        "description": "Decidim — outil reconnu de démocratie participative — est mobilisé pour ouvrir le référentiel v7 à la délibération publique avec un grain explicite : un débat par compétence. L'architecture en trois corporations distribue ensuite la maintenance des référentiels à des collectifs identifiés.",
+        "extraitVerbatim": "Lancer les discussions sur Decidim et les débat autour du référentiel v7 (Un débat par compétence => 61 débats ?)",
+        "ceQueCaDit": "La participation n'est pas une consultation ponctuelle mais un dispositif à grain fin. L'apprenant choisit la délibération qui légitime plutôt que le sondage qui informe."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas traversés dans cette feuille. La gouvernance algorithmique des services publics, la souveraineté numérique, la veille réglementaire et la conscience biosystémique n'y laissent pas de traces — ce qui ressemble à un choix d'angle, la feuille étant centrée sur la construction de dispositifs de gouvernance collective plutôt que sur la lecture des cadres juridiques ou écosystémiques. Le red-teaming et l'audit-explicabilité sont approchés par le rôle de Daimon et la fonction de véto d'Aegis, mais sous une forme épistémique-éthique qui n'est pas exactement celle que les fiches désignent (test offensif des garde-fous, enquête sur les mécanismes). Le décentrement anthropocentrique et la cohabitation avec les intelligences non humaines apparaissent en surface par l'anthropomorphisme stylistique des noms d'agents et la référence post-AGI, sans déployer le questionnement sur le statut moral ou la perspective non humaine. Ces zones mériteraient d'être documentées dans des feuilles où les cadres juridiques, l'interdépendance écosystémique ou le questionnement du statut de l'IA deviennent l'objet du récit.",
+    "emergencesPole": "Deux traversées émergent. La première : la gouvernance pensée en couches imbriquées. Au cœur, les agents IA s'autocontrôlent ; en bordure, les corporations humaines maintiennent ; à l'horizon, les citoyens délibèrent par compétence sur Decidim. Trois étages, trois grains, une cohérence d'ensemble. La seconde : la prédilection pour le dispositif plutôt que la déclaration. Là où d'autres affirmeraient l'importance de la démocratie ou de l'éthique, l'apprenant construit des architectures qui les inscrivent comme rôles et fonctions — Aegis n'est pas un principe affiché, c'est un agent qui peut interrompre.",
+    "pistes": [
+      "Pour faire vivre les dispositifs au-delà de l'artefact, un chemin possible serait de documenter le premier moment d'émergence — quand une délibération produit un résultat qui surprend les concepteurs — et nommer ce que cela transforme dans le cadre initial.",
+      "Pour ouvrir le territoire du décentrement, un chemin possible serait d'interroger explicitement la formule « compétences humaines post AGI » — pourquoi l'attention reste sur l'humain quand l'AGI ouvre par construction la possibilité de considérer d'autres formes d'intelligence comme légitimes.",
+      "Pour ouvrir le territoire de la souveraineté numérique, un chemin possible serait d'expliciter, lors du prochain choix technique pour Sqilium ou Decidim, ce qui motive le choix entre solution propriétaire et solution libre — au-delà du fonctionnel, en termes de dépendance et de communs."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, la politique se déploie comme architecture. La gouvernance des référentiels est pensée à plusieurs étages — quatre agents IA avec contre-pouvoirs internes, trois corporations citoyennes maintenant chacune un référentiel propre, soixante-et-un débats publics sur Decidim — et chaque étage articule des rôles différenciés plutôt qu'une autorité centrale. La participation citoyenne est inscrite dans le grain même du dispositif : un débat par compétence, pas un sondage global. L'éthique reçoit un agent dédié (Aegis) avec pouvoir de véto. Les territoires écologique, biosystémique et de décentrement anthropocentrique ne traversent pas cette feuille, qui reste centrée sur les humains organisant l'arrivée d'autres humains dans la délibération.\n\n## Territoires les plus denses\n\n### Facilitation & Gouvernance Collective\n\nL'apprenant nomme littéralement « architecture de gouvernance » son dispositif multi-agents et déploie en parallèle deux autres étages de gouvernance — trois corporations distribuant la maintenance des référentiels, soixante-et-un débats Decidim avec un grain de délibération par compétence. La densité d'artefacts de gouvernance dans une seule feuille est remarquable.\n\n> « Méta Prompt à rédiger avec l'architecture de gouvernance : Kairos (Gardien de l'Émergence et générateur d'hypothèses et de compétences en devenir) — Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable) — Metis (Gardien des 4 Regards : agent logicien / agent psychologue / agent historien / agent créatif) »\n\nLa gouvernance est pensée comme dispositif différencié plutôt que comme autorité centrale. Rôles, contre-pouvoirs et regards complémentaires structurent l'élaboration de la décision.\n\n### Participation Citoyenne & Démocratie Technologique\n\nDecidim — outil reconnu de démocratie participative — est mobilisé pour ouvrir le référentiel v7 à la délibération publique avec un grain explicite : un débat par compétence. L'architecture en trois corporations distribue ensuite la maintenance des référentiels à des collectifs identifiés.\n\n> « Lancer les discussions sur Decidim et les débat autour du référentiel v7 (Un débat par compétence => 61 débats ?) »\n\nLa participation n'est pas une consultation ponctuelle mais un dispositif à grain fin. L'apprenant choisit la délibération qui légitime plutôt que le sondage qui informe.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas traversés dans cette feuille. La gouvernance algorithmique des services publics, la souveraineté numérique, la veille réglementaire et la conscience biosystémique n'y laissent pas de traces — ce qui ressemble à un choix d'angle, la feuille étant centrée sur la construction de dispositifs de gouvernance collective plutôt que sur la lecture des cadres juridiques ou écosystémiques. Le red-teaming et l'audit-explicabilité sont approchés par le rôle de Daimon et la fonction de véto d'Aegis, mais sous une forme épistémique-éthique qui n'est pas exactement celle que les fiches désignent (test offensif des garde-fous, enquête sur les mécanismes). Le décentrement anthropocentrique et la cohabitation avec les intelligences non humaines apparaissent en surface par l'anthropomorphisme stylistique des noms d'agents et la référence post-AGI, sans déployer le questionnement sur le statut moral ou la perspective non humaine. Ces zones mériteraient d'être documentées dans des feuilles où les cadres juridiques, l'interdépendance écosystémique ou le questionnement du statut de l'IA deviennent l'objet du récit.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux traversées émergent. La première : la gouvernance pensée en couches imbriquées. Au cœur, les agents IA s'autocontrôlent ; en bordure, les corporations humaines maintiennent ; à l'horizon, les citoyens délibèrent par compétence sur Decidim. Trois étages, trois grains, une cohérence d'ensemble. La seconde : la prédilection pour le dispositif plutôt que la déclaration. Là où d'autres affirmeraient l'importance de la démocratie ou de l'éthique, l'apprenant construit des architectures qui les inscrivent comme rôles et fonctions — Aegis n'est pas un principe affiché, c'est un agent qui peut interrompre.\n\n## Pistes pour enrichir ce pôle\n\n> Pour faire vivre les dispositifs au-delà de l'artefact, un chemin possible serait de documenter le premier moment d'émergence — quand une délibération produit un résultat qui surprend les concepteurs — et nommer ce que cela transforme dans le cadre initial.\n\n> Pour ouvrir le territoire du décentrement, un chemin possible serait d'interroger explicitement la formule « compétences humaines post AGI » — pourquoi l'attention reste sur l'humain quand l'AGI ouvre par construction la possibilité de considérer d'autres formes d'intelligence comme légitimes.\n\n> Pour ouvrir le territoire de la souveraineté numérique, un chemin possible serait d'expliciter, lors du prochain choix technique pour Sqilium ou Decidim, ce qui motive le choix entre solution propriétaire et solution libre — au-delà du fonctionnel, en termes de dépendance et de communs."
+  }
+}

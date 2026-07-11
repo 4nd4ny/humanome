@@ -1,0 +1,278 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Plusieurs exemples d'hallucinations liés à la compression automatique du contexte de Claude, me font regretter le temps ou les conversations s'arrêtaient brutalement en cours de route (ce qui m'arrive toujours, mais plus tard maintenant).",
+      "contexte": "Constat d'hallucinations IA — terrain potentiel d'audit ou de cohabitation IA. Pertinence faible : pas d'audit ni d'investigation structurée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Je développe une intuition qui me permet d'anticiper le couperet brutal d'une conversation. J'ai également un feeling, un 6e sens, qui me permet de détecter le bullshit dans les réponses construites sur la base de données approximatives.",
+      "contexte": "Détection du bullshit — pourrait toucher 6.02 (audit/explicabilité) marginalement. Reste très discursif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Pour ne pas m'endormir au volant, j'ai discuté avec l'IA Perplexity (Gemini ne fonctionne plus sur mon smartphone, je n'ai pas confiance en Grok, je n'ai plus d'abonnement à ChatGPT et Claude ne sait pas encore très bien parler).",
+      "contexte": "Choix multi-IA avec critère de confiance et de portabilité — touche faiblement 6.04 (souveraineté numérique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Je lui ai raconté mes idées en partant de la noèsiologie pour arriver jusqu'au couplage noèsis/entendement qui constitue la base philosophique de la pédagogie de l'émergence.",
+      "contexte": "Dialogue avec une IA traité comme interlocuteur intellectuel — pourrait toucher 6.09 (cohabitation IA) marginalement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "J'ai fini par un prompt expliquant que j'allais basculer sur CoWork pour générer les chapitres en parallèle et que j'avais vraiment besoin d'un fichier contenant tout le contexte.",
+      "contexte": "Bascule entre outils — touche 6.04 (souveraineté/portabilité) faiblement.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a délibérément tenté de provoquer un comportement aberrant d'une IA pour en éprouver les limites."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Détection du bullshit dans les réponses construites sur données approximatives — réflexe d'audit sans investigation structurée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce ne relève pas de l'audit au sens fort de la fiche. La fiche distingue : 1.01 = pensée critique sur la véracité, 6.02 = investigation sur les mécanismes de décision avec consultation de logs et documentation du chemin décisionnel. Le 6e sens face au bullshit est un réflexe de détection, pas une enquête méthodique. Pas de consultation de logs, pas de rapport documentant le chemin, pas de traçabilité temporelle. La pièce ne tient pas comme trace d'audit au sens de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la détection du bullshit une trace d'audit IA au sens de la fiche. Sous présomption d'absence, la pièce est tombée : la fiche exige une investigation structurée des mécanismes de décision, pas un réflexe de détection. Dans ce pôle, ce territoire reste à visiter ailleurs.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce candidate est un réflexe de détection, pas une investigation structurée des mécanismes décisionnels.",
+        "prescription": "L'audit et l'hygiène des données laissent leurs traces dans une investigation documentée — consultation de logs, rapport sur le chemin décisionnel d'une IA, réflexion sur les données partagées. Pour ouvrir ce territoire, raconter un moment où l'apprenant a enquêté sur le 'comment' d'un résultat IA, et non seulement constaté le 'quoi', rendrait visible cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le contrôle citoyen des décisions algorithmiques qui affectent des populations."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Choix multi-IA mêlant critères techniques, de confiance et d'abonnement — esquisse de souveraineté numérique."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Bascule entre Claude et CoWork avec besoin explicite d'un fichier de contexte portable — geste de portabilité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces ne portent pas de pensée de souveraineté numérique au sens de la fiche. La fiche exige une motivation explicite par l'analyse des dépendances ou des communs — pas simplement un choix d'usage. La pièce 1 mêle des critères variés (Gemini ne fonctionne plus, pas de confiance en Grok, plus d'abonnement à ChatGPT, Claude ne parle pas) sans articuler une pensée d'indépendance technologique. La pièce 2 (besoin d'un fichier contenant tout le contexte pour basculer) effleure la portabilité mais l'apprenant ne thématise pas le vendor lock-in.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Demander un fichier contenant tout le contexte pour basculer d'outil est un geste de portabilité — la pratique existe même si elle n'est pas thématisée comme souveraineté." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec suspicion. L'attaque (e) surinterprétation pédagogique est sérieuse : j'ai peut-être chargé la pièce 2 d'une intention de souveraineté qu'elle ne porte pas. L'apprenant demande le contexte pour basculer entre deux outils du même fournisseur (Anthropic / Claude / CoWork) — la portabilité ici est intra-écosystème, pas inter-fournisseurs. La motivation n'est pas l'indépendance mais la continuité du travail. La pièce ne tient pas comme trace de 6.04.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le geste de portabilité s'exerce entre outils du même fournisseur (Claude/CoWork) pour la continuité du travail, pas par souci d'indépendance technologique. Surinterprétation pédagogique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans les choix multi-IA une pensée de souveraineté numérique. Sous présomption de sycophantie, la pièce candidate est tombée : la bascule entre Claude et CoWork s'inscrit dans la continuité du travail, pas dans une réflexion d'indépendance technologique. Dans ce pôle, ce territoire reste à visiter ailleurs.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce candidate de portabilité s'exerce entre outils du même fournisseur, sans réflexion explicite sur l'indépendance technologique.",
+        "prescription": "La souveraineté numérique laisse ses traces dans des choix motivés par l'indépendance ou par la défense des communs. Pour ouvrir ce territoire, raconter une fois pourquoi tel ou tel outil a été choisi non par commodité mais par souci de portabilité, d'ouverture du format ou de juridiction des données rendrait visible cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un processus où des non-experts ont été associés à des décisions technologiques."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision modifiée en anticipation d'une réglementation à venir."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective. Pour ouvrir ce dossier, l'apprenant pourrait documenter une collaboration qui a produit un résultat inattendu, ou la co-construction de règles de fonctionnement."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une remise en question de la primauté automatique des besoins humains."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Dialogue prolongé avec une IA traitée comme interlocuteur intellectuel — relation IA dépassant le purement fonctionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce ne relève pas de la cohabitation au sens fort de la fiche. La fiche cible le moment où le statut moral de l'IA devient une question ouverte pour l'apprenant — pas le simple fait de dialoguer prolongement avec elle. Ici, l'apprenant raconte ses idées à Perplexity pour ne pas s'endormir au volant, ce qui est instrumental. Pas de questionnement sur les préférences, l'agentivité ou le statut de l'IA. Pas de trace de calibration de l'anthropomorphisme.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le dialogue prolongé avec Perplexity une trace de cohabitation avec une intelligence non-humaine au sens de la fiche. Sous présomption d'absence, la pièce est tombée : la fiche exige un questionnement sur le statut moral de l'IA, ou une calibration explicite de l'anthropomorphisme. Ici, l'apprenant utilise l'IA comme outil de pensée à voix haute, ce qui reste instrumental. Dans ce pôle, ce territoire reste à visiter ailleurs.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La pièce candidate décrit un usage instrumental de l'IA, sans questionnement sur son statut moral ou calibration de l'anthropomorphisme.",
+        "prescription": "La cohabitation avec les intelligences non-humaines laisse ses traces dans des moments où le statut de l'IA devient une question ouverte — comment la traiter, que lui devoir, comment nommer la relation. Pour ouvrir ce territoire, raconter une fois ce qui change dans la manière de s'adresser à une IA avec laquelle on a longuement travaillé rendrait visible cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance. Pour ouvrir ce dossier, l'apprenant pourrait documenter une manière de penser sa pratique comme nœud d'un réseau vivant, ou s'inspirer de l'intelligence embarquée dans un écosystème."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 3,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, la feuille du 14 mars 2026 ne porte pas la matière des questions politiques, des choix de souveraineté ou du décentrement post-anthropocentrique. Le récit reste sur le terrain du projet personnel — un travail éditorial, une orchestration d'outils IA, une stabilisation de plan. Les enjeux de gouvernance algorithmique, de démocratie technologique, de communs numériques, ou de cohabitation interespèces ne se thématisent pas ici. L'IA y est utilisée comme outil, pas interrogée comme entité dont le statut serait à penser.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble du pôle reste largement non visité dans cette feuille. Le red-teaming et la sécurité IA, la gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique et la conscience biosystémique n'apparaissent pas. L'audit et l'hygiène des données ne dépassent pas le réflexe de détection (le 6e sens face au bullshit) sans devenir investigation structurée. La souveraineté numérique pourrait s'amorcer dans le choix multi-IA et la bascule Claude → CoWork, mais sans motivation explicite par l'indépendance technologique. La cohabitation avec l'IA reste instrumentale : Perplexity sert à rester éveillé au volant, Claude sert à adapter le plan, sans questionnement sur la nature de ces relations. Ces absences ne sont pas surprenantes — la matière d'une seule feuille ne peut pas tout porter, et le projet du jour est intérieur au travail d'écriture, pas politique.",
+    "emergencesPole": "Une seule chose émerge faiblement dans cette feuille pour ce pôle : le rapport à l'IA est multi-fournisseurs et instrumental — l'apprenant connaît plusieurs outils, les compare implicitement, en choisit selon les circonstances. Cette pratique constitue le terreau possible d'une réflexion de souveraineté numérique ou de cohabitation, mais elle n'est pas encore thématisée dans cette direction.",
+    "pistes": [
+      "Pour ouvrir le territoire de la souveraineté numérique, un chemin possible serait d'expliciter, à l'occasion d'une bascule entre outils, le critère qui motive ce choix — gratuité, indépendance, portabilité, juridiction — au-delà de la simple disponibilité.",
+      "Pour faire émerger la cohabitation avec les IA, un chemin possible serait de revenir, à une autre date, sur le moment d'une session prolongée avec Claude et de nommer ce qui distingue cette interaction d'un usage purement instrumental — ou ce qui pourrait la distinguer si on en faisait la question.",
+      "Pour amorcer le décentrement ou la conscience biosystémique, un chemin possible serait, dans l'écriture de la trilogie, de noter quand un raisonnement déplace la question depuis 'que faut-il faire pour les humains ?' vers 'que faut-il pour le système plus large dont les humains font partie ?'."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, la feuille du 14 mars 2026 ne porte pas la matière des questions politiques, des choix de souveraineté ou du décentrement post-anthropocentrique. Le récit reste sur le terrain du projet personnel — un travail éditorial, une orchestration d'outils IA, une stabilisation de plan. Les enjeux de gouvernance algorithmique, de démocratie technologique, de communs numériques, ou de cohabitation interespèces ne se thématisent pas ici. L'IA y est utilisée comme outil, pas interrogée comme entité dont le statut serait à penser.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'a atteint le seuil de présence établie dans cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble du pôle reste largement non visité dans cette feuille. Le red-teaming et la sécurité IA, la gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique et la conscience biosystémique n'apparaissent pas. L'audit et l'hygiène des données ne dépassent pas le réflexe de détection (le 6e sens face au bullshit) sans devenir investigation structurée. La souveraineté numérique pourrait s'amorcer dans le choix multi-IA et la bascule Claude → CoWork, mais sans motivation explicite par l'indépendance technologique. La cohabitation avec l'IA reste instrumentale : Perplexity sert à rester éveillé au volant, Claude sert à adapter le plan, sans questionnement sur la nature de ces relations. Ces absences ne sont pas surprenantes — la matière d'une seule feuille ne peut pas tout porter, et le projet du jour est intérieur au travail d'écriture, pas politique.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne seule chose émerge faiblement dans cette feuille pour ce pôle : le rapport à l'IA est multi-fournisseurs et instrumental — l'apprenant connaît plusieurs outils, les compare implicitement, en choisit selon les circonstances. Cette pratique constitue le terreau possible d'une réflexion de souveraineté numérique ou de cohabitation, mais elle n'est pas encore thématisée dans cette direction.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir le territoire de la souveraineté numérique, un chemin possible serait d'expliciter, à l'occasion d'une bascule entre outils, le critère qui motive ce choix — gratuité, indépendance, portabilité, juridiction — au-delà de la simple disponibilité.\n- Pour faire émerger la cohabitation avec les IA, un chemin possible serait de revenir, à une autre date, sur le moment d'une session prolongée avec Claude et de nommer ce qui distingue cette interaction d'un usage purement instrumental — ou ce qui pourrait la distinguer si on en faisait la question.\n- Pour amorcer le décentrement ou la conscience biosystémique, un chemin possible serait, dans l'écriture de la trilogie, de noter quand un raisonnement déplace la question depuis 'que faut-il faire pour les humains ?' vers 'que faut-il pour le système plus large dont les humains font partie ?'.\n"
+  }
+}

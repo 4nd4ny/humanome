@@ -1,0 +1,235 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-24",
+      "extraitVerbatim": "J'ai laissé le site en ligne dans un état stable, mais celui que j'ai sur mon ordinateur est partiellement migré (et non opérationnel → liens brisés multiples). Ça crée une tension en moi. J'ai besoin d'ordre et de stabilité.",
+      "contexte": "Nomination d'une tension intérieure liée à l'état partiellement opérationnel d'un chantier ; pourrait toucher 2.01 (intelligence émotionnelle, nomination de l'état interne).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-24",
+      "extraitVerbatim": "Je ne sais pas pourquoi, mais j'ai horreur des projets inachevés, alors que je suis polymathe avec tendance à partir dans tous les sens.",
+      "contexte": "Auto-description d'une contradiction interne sur un registre semi-affectif (« j'ai horreur »). Possible activation faible de 2.01.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-24",
+      "extraitVerbatim": "le bureau avec les téléchargements de vidéo pour regarder le soir la télé avec Soledad",
+      "contexte": "Mention d'un rituel partagé avec une personne nommée (Soledad). Possible activation faible de 2.09 (construction de communauté/lien quotidien).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant nomme une tension intérieure liée à un état partiellement opérationnel et la relie à un besoin (« ordre et stabilité »)."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Auto-observation d'une contradiction entre aversion pour l'inachevé et tendance polymathique — registre affectif (« j'ai horreur »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant l'absence : la fiche distingue 2.01 (intelligence émotionnelle et sollicitude active) des simples auto-descriptions. Une « tension en moi » n'est qu'un état nommé, sans régulation observable ni dimension relationnelle. « J'ai horreur des projets inachevés » est une auto-étiquette affective, pas une régulation ou une intelligence émotionnelle au sens fort. Les deux pièces nomment des états internes mais ne montrent ni perception de l'autre, ni régulation délibérée, ni sollicitude. La pièce 1 résiste très faiblement : la nomination est un peu plus précise (tension + besoin associé), ce qui est un marqueur initial. La pièce 2 ne résiste pas — c'est une auto-caractérisation, pas une lecture émotionnelle fine.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant nomme la tension ET relie son origine à un besoin (« ordre et stabilité »), ce qui est un début de lecture émotionnelle articulée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je l'examine avec scepticisme. La fiche écarte les nominations vagues (« c'était dur ») et privilégie la précision et la dimension de levier d'action. Ici, la tension est nommée mais pas régulée — l'apprenant constate, il n'agit pas sur l'état. Aucune dimension relationnelle ni anticipation des besoins d'autrui. L'attaque (a) — insuffisance probatoire — est pertinente : la pièce est trop courte et trop allusive pour porter 2.01.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La nomination de la tension n'est suivie ni d'une régulation décrite ni d'une dimension relationnelle. La pièce reste au stade du constat introspectif, en deçà du marqueur 2.01."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une trace d'intelligence émotionnelle au sens fort — perception, régulation, sollicitude active — et je n'ai trouvé que des constats d'états internes. La nomination de la tension est réelle mais ne débouche ni sur une action de régulation ni sur une lecture d'autrui. Sur cette feuille, le travail intérieur reste à l'arrêt sur l'observation, ce qui est différent de l'intelligence émotionnelle déployée. Une situation où l'état émotionnel serait nommé puis transformé en levier d'action, ou bien lu chez quelqu'un d'autre, ouvrirait cette zone.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les nominations d'états restent constatives, sans régulation décrite ni dimension relationnelle ; le marqueur de la fiche (émotion comme information et levier) n'est pas tenu.",
+        "prescription": "Pour ouvrir cette zone, un passage où une émotion serait nommée puis suivie d'une action de régulation, ou bien une lecture précise d'un état chez quelqu'un d'autre, donnerait à voir la compétence en mouvement. Le matériau émotionnel est nommé ; reste à le voir devenir levier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace de Communication Authentique. Une situation de prise de parole inconfortable, un feedback difficile donné, ou un changement de registre conscient dans une interaction ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace de Gestion des Conflits. Un récit de désaccord traversé avec un rôle actif (médiation, structuration du débat) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace d'Influence et Diplomatie. Un récit de préparation avant une proposition, ou de stratégie d'adhésion auprès d'un tiers, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace de Collaboration Divergente. Une situation où le désaccord persiste mais la collaboration produit malgré tout ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace d'Intelligence Culturelle. Un récit d'adaptation à un cadre de normes différent, ou de lecture d'un implicite culturel, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace de Sens Politique. Une lecture de dynamiques de pouvoir invisibles dans une organisation, ou un récit de contournement structuré, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace de Traduction entre Mondes. Une reformulation d'un savoir spécialisé pour un public d'un autre cadre conceptuel, ou un pontage explicite entre groupes qui ne se comprenaient pas, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Mention d'un rituel partagé avec Soledad — regarder la télé le soir ensemble. Possible trace de lien quotidien, mais hors du cadre projet/travail au sens strict."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence forte. La fiche définit 2.09 comme la construction de communautés durables avec un « nous » identitaire chargé d'émotion, des rituels partagés, du vocabulaire propre au groupe. La pièce mentionne en passant une personne (Soledad) et une activité partagée (regarder la télé le soir), au détour d'une description de bureaux virtuels. Il n'y a pas de « nous », pas de construction d'appartenance, pas de communauté au sens organisationnel. C'est une mention de vie domestique noyée dans une description technique. La pièce ne résiste pas à la présomption d'absence : elle est dans la catégorie « mention en passant » et non « construction de lien ».",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette mention comme une trace de construction de communauté et je n'ai trouvé qu'une référence quotidienne à un partage de soirée, située dans une description d'architecture de bureau. La fiche 2.09 demande des marqueurs plus consistants : un « nous » identitaire, des rituels nommés, une appartenance durable. Sur cette feuille, la trace n'est pas là. Une description d'un collectif autour du projet RESPIRE — qui en fait partie, comment le lien se tisse — ouvrirait cette zone.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La seule pièce est une mention domestique en passant, sans marqueurs de construction d'appartenance ; le critère de la fiche (« nous » identitaire, rituels, vocabulaire) n'est pas tenu.",
+        "prescription": "Pour ouvrir cette zone, un passage qui décrirait le collectif autour du projet — qui en fait partie, comment se tissent les liens, par quels rituels — rendrait visible la dimension communautaire qui ne se voit pas ici."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 2,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle des liens et des relations reste largement en veille. L'apprenant écrit depuis un espace de travail solitaire, organisé autour de chantiers individuels — manuels, site, prototype — et les autres apparaissent par allusions plutôt que par récit. Un « Soledad » nommé une fois au détour d'un bureau virtuel, des « élèves » qui surgiront plus tard, des « écoles RESPIRE » comme horizon abstrait. La voix est intérieure et concentrée sur les dispositifs de travail. Ce qui se nomme du côté affectif (« tension », « horreur de l'inachevé », « besoin d'ordre ») reste à l'état de constat introspectif, sans déboucher sur de la régulation observable ni sur une lecture d'autrui.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "La quasi-totalité du pôle est en territoires non visités sur cette feuille, ce qui ressemble plutôt à un choix de focus du jour — la journée est consacrée à un travail conceptuel et logistique solitaire — qu'à une absence de fond. Communication authentique, gestion des conflits, influence, collaboration divergente, intelligence culturelle, sens politique, traduction entre mondes : aucune scène n'active ces zones. L'intelligence émotionnelle apparaît en germe — la tension est nommée, le besoin associé — mais ne se déploie pas en régulation ou en lecture d'autrui. La construction de communautés se réduit à une mention domestique en passant. C'est une feuille de retrait, pas une feuille de vide.",
+    "emergencesPole": "Une chose mérite d'être notée : sur l'ensemble de cette feuille très productive, les autres n'apparaissent que comme destinataires futurs (les écoles RESPIRE, les apprenants des manuels à venir) ou comme contexte tu (Soledad, le travail d'enseignant et d'informaticien « en stand by »). L'apprenant travaille pour des relations qu'il anticipe, plus qu'il ne les vit ce jour. C'est cohérent avec une journée de rédaction stratégique, mais cela laisse le pôle relationnel à l'état de toile de fond.",
+    "pistes": [
+      "Pour relier le travail intérieur à ce pôle, un passage qui prolongerait la nomination d'une tension (« j'ai besoin d'ordre ») jusqu'à la régulation effectivement mise en œuvre ouvrirait le versant intelligence émotionnelle.",
+      "Pour donner du grain à la dimension communautaire, un mot sur le collectif autour du projet RESPIRE — qui le porte avec l'apprenant, comment circulent les décisions — ferait apparaître ce qui reste implicite.",
+      "Pour activer la traduction entre mondes, expliciter comment les futurs apprenants (tuteurs, experts, maîtres) vont accéder aux manuels — quel langage pour quel public — donnerait à voir la transposition à l'œuvre."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle des liens et des relations reste largement en veille. L'apprenant écrit depuis un espace de travail solitaire, organisé autour de chantiers individuels — manuels, site, prototype — et les autres apparaissent par allusions plutôt que par récit. Un « Soledad » nommé une fois au détour d'un bureau virtuel, des « élèves » qui surgiront plus tard, des « écoles RESPIRE » comme horizon abstrait. La voix est intérieure et concentrée sur les dispositifs de travail. Ce qui se nomme du côté affectif (« tension », « horreur de l'inachevé », « besoin d'ordre ») reste à l'état de constat introspectif, sans déboucher sur de la régulation observable ni sur une lecture d'autrui.\n\n## Territoires les plus denses\n\nAucune compétence du pôle ne porte de présence établie sur cette feuille seule.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa quasi-totalité du pôle est en territoires non visités sur cette feuille, ce qui ressemble plutôt à un choix de focus du jour — la journée est consacrée à un travail conceptuel et logistique solitaire — qu'à une absence de fond. Communication authentique, gestion des conflits, influence, collaboration divergente, intelligence culturelle, sens politique, traduction entre mondes : aucune scène n'active ces zones. L'intelligence émotionnelle apparaît en germe — la tension est nommée, le besoin associé — mais ne se déploie pas en régulation ou en lecture d'autrui. La construction de communautés se réduit à une mention domestique en passant. C'est une feuille de retrait, pas une feuille de vide.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose mérite d'être notée : sur l'ensemble de cette feuille très productive, les autres n'apparaissent que comme destinataires futurs (les écoles RESPIRE, les apprenants des manuels à venir) ou comme contexte tu (Soledad, le travail d'enseignant et d'informaticien « en stand by »). L'apprenant travaille pour des relations qu'il anticipe, plus qu'il ne les vit ce jour. C'est cohérent avec une journée de rédaction stratégique, mais cela laisse le pôle relationnel à l'état de toile de fond.\n\n## Pistes pour enrichir ce pôle\n\nPour relier le travail intérieur à ce pôle, un passage qui prolongerait la nomination d'une tension (« j'ai besoin d'ordre ») jusqu'à la régulation effectivement mise en œuvre ouvrirait le versant intelligence émotionnelle.\n\nPour donner du grain à la dimension communautaire, un mot sur le collectif autour du projet RESPIRE — qui le porte avec l'apprenant, comment circulent les décisions — ferait apparaître ce qui reste implicite.\n\nPour activer la traduction entre mondes, expliciter comment les futurs apprenants (tuteurs, experts, maîtres) vont accéder aux manuels — quel langage pour quel public — donnerait à voir la transposition à l'œuvre.\n"
+  }
+}

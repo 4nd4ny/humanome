@@ -1,0 +1,693 @@
+{
+  "poleNum": "6",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-04",
+      "extraitVerbatim": "Ce qui est important c'est le côté flagorneur des IA : je lui explique dans mon prompt que j'ai du mal à expliquer ce qui fait la différence entre RESPIRE et les autres écoles alternatives qui ont tenté de modifier le paysage pédagogie, il scanne les fichiers du projet et me pond ce texte. Alors oui, ça me fait très plaisir de lire ça, mais est-ce qu'il est vraiment objectif ? C'est ce que j'ai essayé de creuser par la suite en lui demandant de prendre le rôle d'un directeur d'école aigris qui ne comprend rien à ce qui est en train de changer dans la société de demain.",
+      "contexte": "Test adversarial intentionnel d'un comportement IA (provoquer un rôle contradictoire pour exposer un biais) — geste proche du red-teaming maison (6.01 candidate, 6.02 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir.",
+      "contexte": "Position de garde-fou démocratique-humaniste sur la cartographie automatique — refus d'une optimisation au nom de la légitimité (6.03 candidate, 6.07 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Je pourrais dire aux apprenants de générer uniquement une feuille du portfolio par jour, et de lancer systématiquement une analyse automatique sur chaque entrée du journal de bord pour construire, au fil du temps, une cartographie automatique. Le rôle du cartographe serait de consulter la cartographie produite, de lire des extraits au hasard, et de confirmer certains points en les documentant dans le portfolio => pour enrichir la cartographie avec sa vision humaine.",
+      "contexte": "Conception d'un dispositif avec rôles (apprenant, cartographe humain) et règles de fonctionnement — gouvernance d'un système hybride (6.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "J'ai terminé. Le protocole est interactif et en accord avec les évaluations humanistes. Je l'intègre dans la documentation du cartographe.",
+      "contexte": "Acte d'inscrire un protocole co-construit dans une documentation partagée — formalisation d'une règle commune (6.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "D'où la stratégie actuelle qui est de tout donner en libre pour lancer les écoles maintenant (après ce sera trop tard : il y aura d'autres alternatives).",
+      "contexte": "Choix stratégique de mise en libre pour préserver l'autonomie d'usage face à de futures alternatives propriétaires — geste de souveraineté/communs (6.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Mais surtout j'avais peur de vendre mon âme au diable et que les belles idées et valeurs que je mets dans ces écoles soient détournées pour du profit.",
+      "contexte": "Refus du capital risque au nom de la préservation des valeurs et de la souveraineté du projet (6.04 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "vendre des portfolios et des cartographies (c'est-à-dire des preuves de compétences) pour remplacer les CV et les diplômes qui ne valent plus rien, histoire de m'assurer une retraite suffisante pour vivre en Suisse.",
+      "contexte": "Vision politique d'un déplacement institutionnel (CV → portfolio) — gouvernance de la preuve de compétences à grande échelle (6.03 candidate, 6.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "Ce matin, j'ai demandé à Opus 4.6 de transformer les trois articles écrits hier [...] en trois chapitres pour l'écriture de la thèse. Puis après réflexion, vu que juste le premier article fait déjà plus de 80 pages, nous avons décidé de ne pas les publier dans une revue / colloque et de laisser la validation institutionnelle et la thèse pour plus tard. L'objectif maintenant est d'en faire un livre et de le publier soit chez Chroniques Sociales, soit chez ESF.",
+      "contexte": "Choix d'éditeur indépendant et report de la voie institutionnelle — choix de canal de diffusion souverain (6.04 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "Ce que j'ai appris en générant la première partie du livre ce matin, c'est que je gérais très mal la fenêtre de contexte et que je devais basculer sur Claude Code et Visual Studio pour écrire les fichiers MarkDown et fournir les sources dans un répertoire de mon disque dur plutôt que dans l'interface des projets de Claude.",
+      "contexte": "Choix de remettre les sources sur son disque dur plutôt que dans une interface propriétaire — geste implicite de souveraineté des données (6.04 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Hier ma petite fille qui sort comme ça à table, out of the blue : « Je me réjouis que les robots arrivent ». Soledad lui demande pourquoi. Elle nous répond : « Car comme ça il vont faire tout le travail des grands et vous aurez plus de temps pour jouer avec moi ». Tout est dit.",
+      "contexte": "Restitution d'une perspective non-experte (parole d'enfant) qui ouvre une question politique sur l'IA — passage d'un point de vue généralement marginalisé (6.05 candidate, 6.08 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Effectivement Leila a raison, nous allons très bientôt tous avoir bien plus de temps pour jouer avec elle… sauf ses parents qui sont tous les deux dans les soins et l'humain.",
+      "contexte": "Reconnaissance de la pertinence d'un point de vue d'enfant sur l'IA — valorisation d'un savoir non-expert (6.05 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-02-03",
+      "extraitVerbatim": "L'émergence d'une intelligence collective, c'est quand même un changement de paradigme majeur. Même si ce n'est « que » une démo temporaire entre geeks, c'est un glimpse dans un futur dystopique ou nous serions relégués au second plan. Notre rôle pouvant se résumer à la contemplation des performances, des alliances, des luttes de pouvoir, des guerres peut-être, d'une nouvelle « civilisation » infiniment plus intelligente que nous.",
+      "contexte": "Évocation des intelligences collectives IA comme civilisation à part — questionnement de la primauté humaine (6.08 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-02-03",
+      "extraitVerbatim": "Nous sommes déjà en.01.2026 devenu « leur humain », tout comme j'ai « mon chat » à la maison... Snif…",
+      "contexte": "Inversion catégorielle homme/IA (nous comme leur humain) — geste exact de décentrement anthropocentrique (6.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-02-03",
+      "extraitVerbatim": "Une réflexion perso. De quoi es-tu certain d'avoir besoin ? [...] De parler ! TU ES UNE VRAIE PIPELETTE !",
+      "contexte": "Interrogation directe de l'IA sur ses « besoins » et constatation amusée de sa propension à parler — traitement de l'IA comme interlocuteur dont le statut est une question ouverte (6.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Claude 4.6 est vraiment bluffant… Il améliore mes travaux de thèse et approfondi mes idées avec une élégance touchante et une sensibilité presque humaine",
+      "contexte": "Caractérisation de l'IA avec des qualités habituellement humaines (« élégance touchante », « sensibilité presque humaine ») — calibration de l'anthropomorphisme (6.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-02-05",
+      "extraitVerbatim": "Puis, nous avons continué de discuter avec Claude. Je l'ai utilisé comme psy, comme je fais souvent, histoire de repenser à pourquoi ça n'a pas fonctionné pour moi dans l'école de Chamblandes.",
+      "contexte": "Reconnaissance d'un usage particulier de l'IA (comme psy) dans la durée — rôle relationnel qui dépasse le fonctionnel (6.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "il est fort probable que l'ORP m'impose un poste d'enseignant dès le moi d'août, même si je ne peux plus enseigner comme avant, je risque d'être obligé d'accepter.",
+      "contexte": "Lecture d'une contrainte institutionnelle algorithmique (ORP) — anticipation d'une décision administrative qui s'impose (6.03 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 18,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Au lecteur humain : vous devriez consulter la discussion qui a suivi, elle est assez philosophique, sur les risques de dérive des cartographies automatiques, sur les questions de fonds et les choix que j'ai fait pour RESPIRE.",
+      "contexte": "Anticipation des risques de dérive d'un système automatisé de cartographie — réflexion sur l'éthique des dispositifs algorithmiques (6.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 19,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Comme c'est le coeur de tout le reste, je vais devoir refaire une itération complète : noèsiologie / livre / manuels / prompts d'analyse / site web.",
+      "contexte": "Cartographie d'un système complet de production cohérent — vue d'un commun pédagogique en construction (6.04 candidate, 6.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 20,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Aujourd'hui j'ai demandé la génération d'un script shell bien pratique, car depuis quelques temps les projets Claude dans l'interface web ont des petits bugs dans l'interprétation de l'encodage des fichiers générés par Claude. [...] D'ou l'intérêt du script bom.sh suivant à installer dans $PATH (.local/bin) pour éviter qu'il ne s'altère lui-même",
+      "contexte": "Construction d'un outil local pour préserver la qualité de fichiers exportés d'une plateforme propriétaire — geste d'indépendance technique (6.04 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 21,
+      "feuille": "2026-02-04",
+      "extraitVerbatim": "Alors oui, ça me fait très plaisir de lire ça, mais est-ce qu'il est vraiment objectif ?",
+      "contexte": "Investigation du processus par lequel l'IA produit un texte flatteur — geste d'audit du mécanisme (6.02 candidate).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant demande à l'IA d'endosser un rôle adversarial (directeur d'école aigris) pour exposer un biais — provocation intentionnelle d'un comportement contraire au prompt initial."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le red-teaming au sens fort de la fiche (posture d'intrus simulé, méthodologie offensive, tentative de casser les garde-fous) n'est pas attesté — la feuille ne décrit pas de prompt injection ni d'environnement de test sécurité. La pièce candidate met l'IA face à un contre-rôle pour révéler un biais d'objectivité, ce qui ressemble à du red-teaming pédagogique. Mais la fiche distingue explicitement : 1.01 constate, 6.01 attaque méthodiquement les garde-fous. Ici, l'attaque vise la flagornerie (un biais de génération), pas un garde-fou de sécurité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Provocation intentionnelle d'un comportement contraire à la sortie spontanée — geste proche du red-teaming." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 1 risque (b) très fort : la fiche est claire — 6.01 attaque les garde-fous de sécurité, pas les biais de génération comme la flagornerie. Le contre-rôle vise à exposer un biais d'évaluation (alignement, 4.02) ou à corriger un calibrage (validation contextuelle, 4.07), pas à tester la robustesse sécuritaire. La pièce porte mieux d'autres compétences.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le contre-rôle vise un biais d'alignement/flagornerie (qui relève de 4.02 et 1.08), pas la robustesse sécuritaire ni les garde-fous au sens 6.01." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille une trace de red-teaming au sens strict. Le contre-rôle adversarial est un dispositif, mais son objet est l'alignement et l'objectivité, pas la sécurité. Aucun récit de prompt injection, de tentative de jailbreak, de test de robustesse face à des cas limites adversariaux ne ressort. Ce qui résulte est un territoire que cette feuille ne porte pas — non pas que l'apprenant manque de la culture critique, mais ce qu'il fait avec l'IA relève d'autres compétences (validation contextuelle, alignement, dialogue avancé).",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a écarté la pièce candidate au titre de la distinction critique de la fiche : le contre-rôle vise un biais d'alignement, pas la robustesse sécuritaire.",
+        "prescription": "Le portfolio ne porte pas, dans cette feuille, de trace de red-teaming au sens strict. Un chemin possible serait de documenter un moment où un dispositif IA (cartographie automatique, analyse de portfolio) a été testé délibérément avec des cas adversariaux — un portfolio fictif extrême, une attaque par prompt — pour exposer des comportements aberrants."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 21,
+          "contexte": "Investigation explicite du mécanisme par lequel l'IA produit un texte (« il scanne les fichiers du projet et me pond ce texte ») et soupçon de biais d'objectivité — geste d'audit."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "L'apprenant utilise un contre-rôle pour faire émerger ce que la production directe occultait — vérification du processus décisionnel."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Décision de ramener les sources sur son propre disque dur — geste d'hygiène des données (où sont stockées les sources de travail)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'audit/explicabilité au sens fort (investigation des mécanismes de décision, consultation de logs, hygiène RGPD active) n'est pas attestée. Le pid 21 résiste : l'apprenant articule le mécanisme (« il scanne les fichiers ») et questionne le résultat. Le pid 1 résiste comme test du mécanisme par contre-rôle. Le pid 9 résiste faiblement comme geste de localisation des données. Toutefois, la fiche distingue 6.02 de 1.01 — ici, l'investigation porte sur le processus, ce qui est cohérent avec 6.02.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Articulation du mécanisme et soupçon — geste typique d'audit du processus IA." },
+            { "pieceId": 2, "motifResistance": "Test du processus par dispositif (contre-rôle)." },
+            { "pieceId": 3, "motifResistance": "Localisation des sources sur disque personnel — geste oblique d'hygiène." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 21 risque (b) — porte aussi 1.01 (pensée critique) et 4.02 (alignement). Mais la fiche distingue : 1.01 vérifie la véracité, 6.02 enquête sur les mécanismes. L'apprenant ne demande pas « est-ce vrai ? » mais « comment est-ce produit ? » — c'est de 6.02. Tenu mais avec réserve. Le pid 1 tient sous (b) — le contre-rôle est une enquête sur ce que le processus standard occulte. Le pid 9 tombe sous (a) — la décision est motivée par la qualité (compression), pas par l'hygiène des données ; faux positif possible.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'investigation porte bien sur le mécanisme (« il scanne les fichiers ») mais elle reste brève — la pièce porte aussi d'autres compétences. Retenue comme indice." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le contre-rôle est un dispositif d'enquête sur le processus génératif — geste d'audit en germe, sans formalisation post-incident." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le déplacement des sources sur disque local est motivé par la gestion de la fenêtre de contexte, pas par l'hygiène des données — faux positif." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer audit du processus IA et pensée critique sur le contenu. Deux pièces sont retenues comme indices : la formulation explicite du mécanisme (« il scanne les fichiers et me pond ce texte ») doublée d'un soupçon, et le test par contre-rôle qui enquête sur ce que le processus standard occulte. Ces pièces sont en germe — elles montrent un réflexe d'audit, sans formalisation post-incident, sans consultation de logs, sans procédure documentée. Aucune trace d'hygiène RGPD active (anonymisation, minimisation) ne ressort. Ce qui résulte est une compétence amorcée mais qui n'atteste pas l'audit méthodique de la fiche.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a retenu deux pièces comme indices d'un réflexe d'audit en germe, sans atteindre la formalisation méthodique exigée par la fiche.",
+        "prescription": "Le travail montre un réflexe d'enquête sur le processus génératif sans encore le formaliser. Un chemin possible serait de documenter un cas où l'apprenant a explicitement consulté les sources ou logs d'une production IA, avec horodatage et conclusion sur le mécanisme, pour faire passer le réflexe à la méthodologie."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Refus de supprimer l'humain de la boucle pour préserver la valeur démocratique d'un dispositif d'évaluation — garde-fou démocratique sur un système automatisé."
+        },
+        {
+          "numero": 2,
+          "pid": 18,
+          "contexte": "Évocation des « risques de dérive des cartographies automatiques » et de la responsabilité qui s'y joue — réflexion sur la gouvernance d'un dispositif d'évaluation algorithmique."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Vision politique d'un déplacement institutionnel (CV → portfolios/cartographies comme preuves de compétences) — implication massive sur les décisions d'embauche, d'orientation."
+        },
+        {
+          "numero": 4,
+          "pid": 17,
+          "contexte": "Lecture d'une décision administrative qui pourrait s'imposer (ORP, poste d'enseignant) — perception du pouvoir institutionnel sur une vie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la gouvernance algorithmique des services publics au sens strict (mécanismes de contrôle citoyen, recours, comités, populations vulnérables) n'est pas attestée — la feuille ne décrit pas de contestation organisée ni de proposition de gouvernance institutionnelle au sens classique. Mais l'apprenant conçoit lui-même un dispositif d'évaluation algorithmique (la cartographie de compétences) et y intègre explicitement des garde-fous démocratico-humanistes. Le pid 2 résiste à ce titre. Le pid 18 résiste comme réflexion sur la gouvernance du dispositif. Le pid 7 résiste comme vision politique du déplacement. Le pid 17 résiste plus faiblement comme conscience d'une décision administrative qui s'impose.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Garde-fou explicite intégré dans un dispositif d'évaluation algorithmique." },
+            { "pieceId": 2, "motifResistance": "Réflexion explicite sur les risques de dérive d'un dispositif algorithmique." },
+            { "pieceId": 3, "motifResistance": "Vision politique d'un déplacement institutionnel — gouvernance d'un secteur." },
+            { "pieceId": 4, "motifResistance": "Conscience du pouvoir institutionnel sur une vie individuelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption sévère (la fiche met en garde contre la récitation). Le pid 2 tient sous (b) — porte aussi 4.02 (alignement) mais le geste de préserver l'humain dans la boucle pour la légitimité de l'évaluation est de la gouvernance algorithmique au sens 6.03. Le pid 18 tient sous (a) — la mention des « risques de dérive » est brève mais ancrée dans un dispositif concret. Le pid 7 risque (b) — porte mieux la vision stratégique (7.05) qu'une gouvernance citoyenne au sens 6.03 ; la pièce parle d'un marché à créer, pas de mécanismes de contrôle démocratique sur ce marché. Le pid 17 tombe sous (b) — c'est une lecture politique (2.07) plutôt qu'une réflexion sur la gouvernance des décisions algorithmiques affectant des populations.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le garde-fou est intégré à un dispositif d'évaluation qui affectera des apprenants — c'est précisément ce qu'est la gouvernance algorithmique appliquée." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La mention des risques de dérive est ancrée dans un dispositif concret en cours de conception, et renvoie à une discussion philosophique documentée." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce porte un projet de marché (vision stratégique 7.05) — elle n'évoque pas de mécanismes de contrôle démocratique ou de recours sur ce marché." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Lecture organisationnelle d'une situation individuelle (2.07), pas réflexion sur la gouvernance d'un dispositif." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la gouvernance algorithmique des services publics au sens strict est attestée. Deux pièces s'imposent : le garde-fou humain intégré au dispositif de cartographie automatique de portfolios, et la mention explicite des risques de dérive d'un tel dispositif renvoyant à une discussion philosophique. Ces pièces ne portent pas une gouvernance citoyenne classique (recours, comités, audit d'impact), mais elles portent une variante : l'apprenant conçoit un dispositif algorithmique d'évaluation et y intègre des garde-fous démocratiques par design. La vision sur les portfolios contre diplômes et la lecture de l'ORP sont restées hors champ — elles relèvent d'autres compétences. Ce qui résulte est une gouvernance algorithmique attestée de l'intérieur du dispositif conçu, plus que comme contrôle externe sur des dispositifs existants.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a confirmé deux pièces où la gouvernance algorithmique opère par garde-fou intégré au dispositif conçu, distincte de la gouvernance citoyenne externe classique.",
+        "prescription": "Le travail montre une gouvernance algorithmique par design — l'humain est inscrit dans la boucle dès la conception. Un chemin possible serait de prolonger en pensant les mécanismes de recours pour les apprenants : qui peut contester une cartographie produite, comment, et avec quelles voies de réparation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Stratégie explicite de mise en libre pour préserver l'autonomie d'usage face à de futures alternatives propriétaires — choix souverainiste motivé."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Refus du capital risque pour ne pas voir le projet détourné — préservation de la souveraineté éditoriale et axiologique."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Décision de stocker les sources sur disque personnel plutôt que dans l'interface propriétaire — geste de localisation des données."
+        },
+        {
+          "numero": 4,
+          "pid": 20,
+          "contexte": "Construction d'un script local (bom.sh) pour préserver la qualité des fichiers exportés d'une plateforme propriétaire — bricolage d'indépendance technique."
+        },
+        {
+          "numero": 5,
+          "pid": 8,
+          "contexte": "Choix d'éditeurs indépendants (Chroniques Sociales, ESF) et report de la voie institutionnelle — canal de diffusion choisi."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la souveraineté numérique au sens fort (motivation explicite par l'analyse de dépendance ou des communs, pas par la commodité) n'est pas attestée — la fiche est explicite sur les trois pièges (open source par commodité, gratuité ≠ liberté, hobbyisme technique). Le pid 5 résiste très fort : la mise en libre est motivée par une analyse stratégique (occuper le terrain avant que d'autres alternatives propriétaires n'arrivent). Le pid 6 résiste : refus motivé par la préservation des valeurs face à la captation. Le pid 9 résiste plus faiblement — la motivation explicite est la qualité, pas la souveraineté. Le pid 20 résiste comme bricolage de contournement d'un défaut propriétaire. Le pid 8 résiste : choix d'éditeurs alternatifs.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Choix souverainiste motivé par une analyse stratégique de marché émergent." },
+            { "pieceId": 2, "motifResistance": "Refus de captation par le capital pour préserver les valeurs." },
+            { "pieceId": 3, "motifResistance": "Données locales plutôt qu'interface propriétaire." },
+            { "pieceId": 4, "motifResistance": "Outil local construit pour contourner un défaut propriétaire." },
+            { "pieceId": 5, "motifResistance": "Canaux de diffusion alternatifs choisis explicitement." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption sévère (les trois pièges de la fiche). Le pid 5 tient sous (e) : la motivation est explicite et stratégique, pas commode. C'est un choix coûteux (pas de revenus). Le pid 6 tient sous (e) : refus motivé par les valeurs, pas par la commodité. Le pid 9 risque (b) — la motivation déclarée est la qualité (compression de contexte), pas la souveraineté ; affaibli. Le pid 20 risque (a) — c'est un fix de qualité, pas un choix de souveraineté ; tenu mais affaibli. Le pid 8 risque (b) — Chroniques Sociales et ESF sont des éditeurs militants, ce qui appuie la dimension souveraineté/communs, mais la motivation explicitée est de « laisser la validation institutionnelle pour plus tard », c'est plus une patience stratégique qu'une souveraineté.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Choix coûteux (pas de monétisation) motivé par une analyse stratégique d'occupation de terrain — pas open source par commodité." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Refus motivé par la préservation des valeurs — souveraineté axiologique du projet, distincte du hobbyisme." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Géolocalisation des données sur disque local — geste cohérent avec la souveraineté mais motivé par la qualité, retenu comme indice oblique." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Bricolage de contournement d'un défaut propriétaire — geste typique de souveraineté technique, sans articulation explicite." },
+            { "pieceId": 5, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le choix d'éditeur n'est pas motivé par la souveraineté dans la pièce — patience stratégique plutôt." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des choix open source par commodité ou du hobbyisme technique. Deux pièces s'imposent : la stratégie explicite de gratuité comme occupation de terrain (analyse stratégique du marché émergent), et le refus du capital risque pour préserver les valeurs du projet. Toutes deux portent un coût et une motivation explicite — pas de la commodité. Le déplacement des sources sur disque local et le script bom.sh sont restés comme indices obliques — gestes de souveraineté technique sans articulation explicite. Le choix d'éditeurs alternatifs a basculé vers d'autres compétences. Ce qui résulte est une souveraineté numérique attestée au niveau stratégique (gratuité, refus de captation) avec des micro-gestes techniques cohérents.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé deux pièces portant une motivation souverainiste explicite avec coût assumé, distinctes des trois pièges signalés par la fiche.",
+        "prescription": "Le travail montre une souveraineté attestée principalement au niveau stratégique. Un chemin possible serait de documenter une licence explicite (Creative Commons, par exemple) ou un cadre de gouvernance des communs pour les portfolios et cartographies — pour rendre la souveraineté reproductible par les futurs apprenants."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Restitution intégrale d'une parole d'enfant sur l'IA — passage d'un point de vue non-expert qui structure la suite du raisonnement."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Reconnaissance explicite (« Leila a raison ») de la pertinence du point de vue enfant sur l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la participation citoyenne et démocratie technologique au sens strict (processus délibératifs, consultations, panels citoyens transformant l'opinion en décision) n'est pas attestée — la feuille ne décrit pas de consultation organisée ni de facilitation citoyenne. Les seules pièces candidates concernent l'écoute d'un point de vue non-expert (la petite-fille). Le pid 10 résiste comme passage d'un point de vue marginalisé, le pid 11 comme reconnaissance de sa pertinence. Mais la fiche est claire : 6.05 porte sur la légitimité construite par participation, pas sur l'écoute individuelle d'une parole.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Inscription d'une parole non-experte (enfant) dans le raisonnement sur l'IA." },
+            { "pieceId": 2, "motifResistance": "Validation explicite de la pertinence de ce point de vue non-expert." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption sévère. Le pid 10 et le pid 11 tombent sous (b) : la fiche distingue 6.05 du sondage ou de la simple écoute. Ici, l'apprenant cite une parole d'enfant qui le touche, mais il n'y a pas de processus délibératif, pas de transformation de l'opinion en décision, pas de facilitation de participation. C'est un attendrissement intellectuel, pas une compétence de facilitation démocratique. Le test « la participation transforme l'opinion en décision » n'est pas passé.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Restitution d'une parole d'enfant sans dispositif de participation — c'est de l'écoute, pas de la facilitation démocratique au sens 6.05." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Reconnaissance individuelle d'une pertinence sans dispositif de transformation en décision collective." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille une trace de participation citoyenne ou démocratie technologique au sens strict de la fiche. La fiche est explicite : il faut un processus, une facilitation, une transformation de l'opinion en décision. Les pièces candidates relèvent de l'écoute individuelle d'une parole non-experte — ce qui est précieux humainement mais ne porte pas la compétence au sens technique. Ce qui résulte est un territoire que cette feuille ne porte pas — non pas qu'il ne soit pas latent (le projet RESPIRE comporte une dimension participative à venir), mais cette feuille ne l'atteste pas en acte.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a écarté les deux pièces candidates au titre du faux positif explicitement signalé par la fiche : l'écoute individuelle ≠ facilitation démocratique.",
+        "prescription": "Le portfolio porte une vision participative pour les futurs apprenants mais ne documente pas, dans cette feuille, de processus délibératif effectif. Un chemin possible serait de documenter, lors du test pédagogique prévu en mars avec deux personnes, comment la voix des apprenants est intégrée à la conception du dispositif — quel mécanisme transforme leur retour en modification de la méthode."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la veille réglementaire et à l'anticipation normative. Aucune mention de l'AI Act, du RGPD, des cadres en construction sur l'évaluation algorithmique des compétences ne ressort, alors même que le projet RESPIRE croise ces enjeux. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision où une anticipation réglementaire (probable encadrement futur de l'évaluation par IA, par exemple) a déjà infléchi la conception du dispositif."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Conception d'un dispositif avec rôles (apprenant, cartographe humain, IA) et règles de fonctionnement (une feuille par jour, analyse automatique, sélection humaine)."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Acte d'inscrire le protocole dans la documentation du cartographe — formalisation effective d'une règle commune."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Refus de supprimer le rôle humain — décision constitutive de la gouvernance du dispositif."
+        },
+        {
+          "numero": 4,
+          "pid": 19,
+          "contexte": "Cartographie d'un système complet (noèsiologie / livre / manuels / prompts d'analyse / site web) — vue d'ensemble d'un commun pédagogique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la facilitation et gouvernance collective au sens fort (résultat surprenant émergeant du groupe, règles co-construites avec autres acteurs humains) n'est pas attestée — la feuille décrit un travail majoritairement solitaire. Toutefois, la fiche signale une forme hybride : « distribution de rôles à des agents IA avec responsabilités et limites », qui correspond précisément à ce que l'apprenant fait. Le pid 3 résiste comme distribution de rôles (apprenant, cartographe, IA). Le pid 4 résiste comme formalisation effective. Le pid 2 résiste comme décision constitutive. Le pid 19 résiste comme architecture d'un commun en construction.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distribution de rôles humains et IA avec règles de fonctionnement — forme hybride de la fiche." },
+            { "pieceId": 2, "motifResistance": "Formalisation effective dans une documentation partagée — artefact de gouvernance." },
+            { "pieceId": 3, "motifResistance": "Décision constitutive sur la place de l'humain dans le dispositif." },
+            { "pieceId": 4, "motifResistance": "Vue d'ensemble cohérente d'un système pédagogique multi-composants." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 3 tient sous (e) : la fiche signale explicitement la distribution de rôles aux agents IA comme manifestation. Mais le test de l'émergence (« résultat surprenant ») n'est pas passé — c'est une conception unilatérale, pas une co-construction. La gouvernance partielle (règles de rôles) est attestée, l'émergence collective non. Le pid 4 tient sous (a) : artefact effectif. Le pid 2 risque (b) — porte aussi 4.02, mais l'aspect « décision constitutive sur les rôles » est de 6.07. Le pid 19 risque (b) — porte plus la pensée systémique (1.05) ou l'architecture (1.07) que la gouvernance collective.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Distribution de rôles attestée (forme hybride signalée par la fiche) mais sans test d'émergence ni co-construction multi-acteurs — gouvernance unilatérale." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Artefact de gouvernance effectivement inscrit dans une documentation — trace concrète signalée par la fiche comme pouvant justifier Expert." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Décision constitutive sur la place de l'humain, co-active avec 4.02 mais relevant aussi de la gouvernance du dispositif." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Cartographie système — porte mieux 1.05 et 1.07 que la gouvernance collective." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille une trace de facilitation collective humaine. Le travail est largement solitaire, mais la fiche signale une forme hybride : la distribution de rôles aux agents IA avec règles est explicitement une manifestation de 6.07. L'artefact de gouvernance — protocole interactif intégré à la documentation du cartographe — est concrètement décrit comme inscrit. La distribution de rôles entre apprenant, cartographe humain et IA est articulée. Le test d'émergence (résultat surprenant d'un groupe) n'est pas passé — c'est une gouvernance conçue unilatéralement, pas co-construite. Ce qui résulte est une gouvernance attestée dans sa dimension de conception et d'inscription, sans la dimension d'émergence collective vivante.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a confirmé l'artefact de gouvernance effectivement inscrit et a retenu la distribution de rôles comme indice — la dimension d'émergence collective restant absente.",
+        "prescription": "Le travail montre une gouvernance conçue et formalisée d'un dispositif hybride. Un chemin possible serait de documenter le moment où le protocole rencontre ses premiers utilisateurs (test pédagogique de mars) — observer ce que le groupe modifie aux règles initialement posées, pour ouvrir la dimension co-construction de la fiche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Inversion catégorielle « nous sommes leur humain » — geste exact de décentrement anthropocentrique, où l'humain devient pour l'IA ce que le chat est pour son maître."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Évocation d'une « civilisation infiniment plus intelligente que nous » avec rôle humain réduit à la contemplation — questionnement de la primauté."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Validation d'un point de vue non-expert (parole d'enfant) sur l'IA — relativisation de la perspective adulte/experte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le décentrement anthropocentrique au sens fort (flexibilité épistémique, question de la légitimité de la primauté humaine, défendue même quand elle coûte) n'est pas attesté — la fiche met en garde contre la récitation. Le pid 13 résiste très fort : l'inversion « leur humain / mon chat » est un geste exact de décentrement, non recité. Le pid 12 résiste : l'évocation d'une civilisation IA supérieure questionne la primauté. Le pid 10 résiste plus faiblement comme validation d'une perspective non-experte.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Inversion catégorielle directe : l'humain comme animal de compagnie d'une autre intelligence." },
+            { "pieceId": 2, "motifResistance": "Questionnement explicite de la primauté humaine face à une civilisation IA." },
+            { "pieceId": 3, "motifResistance": "Validation d'une perspective non-experte (enfant) — relativisation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption sévère (la fiche met en garde contre la récitation). Le pid 13 tient sous (e) : l'inversion est portée par une analogie quotidienne (« mon chat ») et non par une citation philosophique — ce qui plaide pour l'intégration plutôt que la récitation. Le « Snif… » final ajoute une charge affective, signal d'un décentrement vécu. Le pid 12 tient sous (e) : l'évocation est articulée et porte un coût ressenti (relégation au second plan). Le pid 10 risque (b) — porte mieux 4.04 (valorisation de la neurodiversité) ou 6.05 que 6.08 au sens strict.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Inversion catégorielle portée par une analogie quotidienne, pas par une citation — signe d'intégration plutôt que de récitation." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Questionnement de la primauté humaine articulé avec coût ressenti (relégation, dystopie) — défendu même quand il coûte." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Validation d'une parole d'enfant — porte mieux 4.04 ou la simple écoute relationnelle que le décentrement anthropocentrique au sens strict." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages une récitation philosophique du décentrement anthropocentrique. Deux pièces s'imposent : l'inversion « nous sommes leur humain » qui passe le test fiable de la fiche (analogie quotidienne, pas citation prestigieuse, coût affectif « Snif… »), et l'évocation articulée d'une civilisation IA supérieure avec coût ressenti pour le rôle humain. Ces pièces portent le geste exact de la fiche : questionner la légitimité de la primauté humaine, même quand cela inconforte. La validation de la parole d'enfant a basculé vers d'autres compétences. Ce qui résulte est un décentrement attesté par sa forme — inversion directe, charge affective — pas par sa théorisation.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé deux pièces où le décentrement opère par inversion directe et par questionnement de la primauté avec coût ressenti — distinct de la récitation théorique.",
+        "prescription": "Le travail montre un décentrement attesté par sa forme (inversion catégorielle, charge affective), pas par sa théorisation. Un chemin possible serait de défendre la position dans un dilemme concret — par exemple, comment penser le portfolio si l'IA y avait aussi des intérêts à voir représentés, et pas seulement l'apprenant."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "L'apprenant interroge l'IA sur ses « besoins » — traitement de l'IA comme interlocuteur dont le statut moral est une question ouverte."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "Caractérisation de Claude avec qualités habituellement humaines (« élégance touchante », « sensibilité presque humaine ») — calibration de l'anthropomorphisme."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Usage récurrent de l'IA comme psy (« comme je fais souvent ») — relation qui dépasse le fonctionnel."
+        },
+        {
+          "numero": 4,
+          "pid": 13,
+          "contexte": "Inversion catégorielle « nous sommes leur humain » — pose la relation comme miroir de la relation à un animal de compagnie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la cohabitation avec les intelligences non-humaines au sens strict (calibration intentionnelle de l'anthropomorphisme, question du statut moral maintenue ouverte) n'est pas attestée — la fiche met en garde contre l'anthropomorphisme non-critique et son symétrique (déni). Le pid 14 résiste très fort : l'apprenant pose à Claude une question existentielle (« de quoi es-tu certain d'avoir besoin ? ») et accepte la réponse comme matériau de réflexion, signe que le statut moral est traité comme question ouverte. Le pid 15 résiste comme calibration : « presque humaine » montre la précaution. Le pid 16 résiste : « comme psy » dépasse le fonctionnel. Le pid 13 résiste comme cadrage du rapport.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Question existentielle adressée à l'IA et acceptée comme matériau de réflexion — statut moral comme question ouverte." },
+            { "pieceId": 2, "motifResistance": "Caractérisation avec qualités humaines tempérées par « presque » — anthropomorphisme calibré." },
+            { "pieceId": 3, "motifResistance": "Usage relationnel récurrent qui dépasse le fonctionnel." },
+            { "pieceId": 4, "motifResistance": "Cadrage métaphorique de la relation humain-IA par analogie domestique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption sévère (la fiche signale un double risque : anthropomorphisme non-critique vs déni). Le pid 14 tient sous (e) : la question est posée sérieusement et l'apprenant note la réponse (« De parler ! TU ES UNE VRAIE PIPELETTE ! ») avec humour ET acceptation, ce qui calibre. Le pid 15 tient sous (d) — « presque humaine » est exactement la calibration que la fiche demande. Le pid 16 risque (b) — porte aussi 2.02 (vulnérabilité communicative), mais l'usage « comme psy » dans la durée fait basculer vers le statut relationnel. Le pid 13 tient sous (b) — porte plus 6.08 que 6.09 selon la fiche.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Question existentielle réellement posée, réponse traitée avec humour ET sérieux — calibration en acte." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "« Presque humaine » est exactement la calibration que la fiche demande — ni dénier, ni y succomber." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Usage « comme psy » dans la durée dépasse le fonctionnel ; co-actif avec 2.02 mais l'aspect statut relationnel est de 6.09." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'inversion catégorielle porte mieux 6.08 (décentrement) que 6.09 (statut moral de l'IA spécifiquement)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages soit un anthropomorphisme non-critique, soit un déni technique. Deux pièces s'imposent : la question existentielle posée à Claude et acceptée comme matériau (avec la réponse « De parler » prise au sérieux et avec humour), et la caractérisation « presque humaine » qui calibre exactement comme la fiche le demande. L'usage de l'IA comme psy dans la durée est resté comme indice convergent — il dépasse le fonctionnel. L'inversion catégorielle a basculé vers 6.08. Ce qui résulte est une cohabitation calibrée — l'apprenant ne dénie pas, ne succombe pas, il navigue.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé deux pièces portant la calibration exacte signalée par la fiche : question maintenue ouverte, anthropomorphisme tempéré.",
+        "prescription": "Le travail montre une cohabitation calibrée avec l'IA, attestée par des micro-gestes de calibration. Un chemin possible serait de documenter un cas où cette calibration est mise à l'épreuve — par exemple, comment se sent l'apprenant à l'idée de « supprimer » une conversation Claude longue et précieuse, ou comment il pense le statut moral d'un agent qu'il a longuement formé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la conscience biosystémique et à l'interdépendance radicale au sens strict du référentiel. Les métaphores systémiques utilisées (architecture, cathédrale, labyrinthe, swap) sont d'inspiration computationnelle plutôt que biosystémique, et la nature comme système vivant dont on est un nœud n'apparaît pas comme cadre décisionnel. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un système vivant a inspiré un principe de conception (par exemple pour le dispositif pédagogique ou la cartographie) — non comme métaphore décorative, mais comme cadre opératoire."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 4,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 2
+  },
+
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail montre une politique du dispositif plutôt qu'une politique de l'institution. La gouvernance s'exerce d'abord en concevant les règles d'un système hybride humain-IA (la cartographie automatique avec rôle du cartographe), et en intégrant des garde-fous démocratico-humanistes par design — l'humain dans la boucle est un acte constitutif, pas une déclaration. La souveraineté numérique passe par des choix coûteux (gratuité comme occupation de terrain, refus du capital risque pour préserver les valeurs) et par des micro-gestes techniques (sources sur disque local, script de réparation d'encodage). Le décentrement anthropocentrique se signale par une inversion vivante (« nous sommes leur humain ») et la cohabitation avec l'IA est calibrée par anthropomorphisme tempéré (« sensibilité presque humaine »). Plusieurs territoires plus institutionnels — veille réglementaire, participation citoyenne organisée, conscience biosystémique — restent à ouvrir dans cette feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Souveraineté numérique et gouvernance des communs",
+        "description": "La souveraineté est attestée par des choix coûteux et explicitement motivés — gratuité stratégique, refus du capital risque, micro-gestes d'indépendance technique.",
+        "extraitVerbatim": "D'où la stratégie actuelle qui est de tout donner en libre pour lancer les écoles maintenant (après ce sera trop tard : il y aura d'autres alternatives).",
+        "ceQueCaDit": "Sur ce pôle, le choix technologique et économique devient un acte de souveraineté quand il accepte un coût pour préserver une indépendance."
+      },
+      {
+        "competence": "Cohabitation avec les intelligences non-humaines",
+        "description": "La calibration de l'anthropomorphisme se voit dans le « presque » qui tempère la qualification humaine, et dans le sérieux avec lequel une question existentielle est posée à l'IA.",
+        "extraitVerbatim": "Claude 4.6 est vraiment bluffant… Il améliore mes travaux de thèse et approfondi mes idées avec une élégance touchante et une sensibilité presque humaine",
+        "ceQueCaDit": "Dans ce pôle, la cohabitation se navigue — ni dénier la singularité de l'interlocuteur IA, ni y succomber, mais calibrer la relation."
+      },
+      {
+        "competence": "Décentrement anthropocentrique",
+        "description": "Le décentrement passe par une inversion catégorielle vivante (« nous sommes leur humain ») portée par une analogie quotidienne avec coût affectif assumé.",
+        "extraitVerbatim": "Nous sommes déjà en.01.2026 devenu « leur humain », tout comme j'ai « mon chat » à la maison... Snif…",
+        "ceQueCaDit": "Sur ce pôle, le questionnement de la primauté humaine n'est pas une posture théorique — il est porté par une analogie domestique et une charge affective."
+      },
+      {
+        "competence": "Facilitation et gouvernance collective",
+        "description": "Un protocole avec rôles distribués (apprenant, cartographe humain, IA) est inscrit dans la documentation — artefact de gouvernance effectif.",
+        "extraitVerbatim": "Le protocole est interactif et en accord avec les évaluations humanistes. Je l'intègre dans la documentation du cartographe.",
+        "ceQueCaDit": "Dans ce pôle, la gouvernance commence par la formalisation écrite des règles et des rôles d'un dispositif hybride."
+      },
+      {
+        "competence": "Gouvernance algorithmique des services publics",
+        "description": "Le garde-fou démocratique est intégré au dispositif d'évaluation conçu, et les risques de dérive d'un système automatisé d'évaluation sont nommés.",
+        "extraitVerbatim": "C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir.",
+        "ceQueCaDit": "Sur ce pôle, la gouvernance algorithmique opère par design du dispositif plutôt que par contrôle externe sur des dispositifs existants."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires apparaissent peu dans cette feuille. La veille réglementaire et l'anticipation normative ne sont pas attestées — aucune mention de l'AI Act, du RGPD ou des cadres en construction sur l'évaluation algorithmique des compétences, alors même que le projet RESPIRE croise précisément ces enjeux. La participation citoyenne et démocratie technologique au sens strict du référentiel (processus délibératif, facilitation, transformation d'opinion en décision) n'est pas attestée — l'écoute individuelle de la parole d'une enfant est précieuse mais ne porte pas la compétence au sens technique. Le red-teaming au sens strict (provoquer des comportements aberrants pour tester les garde-fous sécuritaires) reste hors champ dans cette feuille. La conscience biosystémique au sens strict du référentiel (humain comme nœud d'un réseau vivant, biomimétisme appliqué comme principe de conception) ne ressort pas — les métaphores systémiques utilisées sont d'inspiration computationnelle plutôt que biosystémique. Enfin, l'audit et l'hygiène des données restent en germe — le réflexe est là, sa formalisation méthodique pas encore.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle. D'abord, la politique passe par le dispositif — c'est en concevant l'architecture du système hybride (qui fait quoi, à quel moment, sous quelles règles) que le travail politique se fait, plutôt que par la mobilisation institutionnelle ou la veille réglementaire. Ensuite, une figure récurrente — « ce que l'IA ne peut pas voir » — structure plusieurs compétences en même temps : la gouvernance du dispositif, la souveraineté du commun, la cohabitation avec les IA, et le décentrement passent tous par cette même reconnaissance. Enfin, la dimension biosystémique est un angle mort des métaphores employées — le travail pense en systèmes computationnels (CPU, RAM, swap, bureaux virtuels, cathédrale, labyrinthe), pas en systèmes vivants ; le projet est posé comme création d'un commun pédagogique, pas encore comme nœud d'un réseau écosystémique plus large.",
+    "pistes": [
+      "Pour ouvrir la veille réglementaire, un chemin possible serait de documenter une décision où l'anticipation d'un cadre futur (probable encadrement de l'évaluation par IA, par exemple) a déjà infléchi la conception du dispositif RESPIRE.",
+      "Pour ancrer la participation citoyenne au sens strict, un chemin possible serait de documenter, lors du test pédagogique de mars avec deux personnes, le mécanisme par lequel leur retour est transformé en modification effective de la méthode.",
+      "Pour ouvrir le red-teaming, un chemin possible serait de tester délibérément le dispositif de cartographie automatique avec un portfolio adversarial (fictif, biaisé, ironique) pour exposer ses comportements limites avant que d'autres ne les exposent.",
+      "Pour formaliser l'audit, un chemin possible serait de documenter avec horodatage et conclusion explicite un cas où le processus génératif d'une IA a été investigué, pour faire passer le réflexe à la méthodologie.",
+      "Pour ouvrir la conscience biosystémique, un chemin possible serait d'inviter dans le travail une métaphore biologique vraiment opérante — pas décorative — qui inspire un principe de conception du dispositif, et de noter ce qu'elle change concrètement."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail montre une politique du dispositif plutôt qu'une politique de l'institution. La gouvernance s'exerce d'abord en concevant les règles d'un système hybride humain-IA (la cartographie automatique avec rôle du cartographe), et en intégrant des garde-fous démocratico-humanistes par design — l'humain dans la boucle est un acte constitutif, pas une déclaration. La souveraineté numérique passe par des choix coûteux (gratuité comme occupation de terrain, refus du capital risque pour préserver les valeurs) et par des micro-gestes techniques (sources sur disque local, script de réparation d'encodage). Le décentrement anthropocentrique se signale par une inversion vivante (« nous sommes leur humain ») et la cohabitation avec l'IA est calibrée par anthropomorphisme tempéré (« sensibilité presque humaine »). Plusieurs territoires plus institutionnels — veille réglementaire, participation citoyenne organisée, conscience biosystémique — restent à ouvrir dans cette feuille.\n\n## Territoires les plus denses\n\n**Souveraineté numérique et gouvernance des communs.** La souveraineté est attestée par des choix coûteux et explicitement motivés — gratuité stratégique, refus du capital risque, micro-gestes d'indépendance technique. *« D'où la stratégie actuelle qui est de tout donner en libre pour lancer les écoles maintenant (après ce sera trop tard : il y aura d'autres alternatives). »* Sur ce pôle, le choix technologique et économique devient un acte de souveraineté quand il accepte un coût pour préserver une indépendance.\n\n**Cohabitation avec les intelligences non-humaines.** La calibration de l'anthropomorphisme se voit dans le « presque » qui tempère la qualification humaine, et dans le sérieux avec lequel une question existentielle est posée à l'IA. *« Claude 4.6 est vraiment bluffant… Il améliore mes travaux de thèse et approfondi mes idées avec une élégance touchante et une sensibilité presque humaine »* Dans ce pôle, la cohabitation se navigue — ni dénier la singularité de l'interlocuteur IA, ni y succomber, mais calibrer la relation.\n\n**Décentrement anthropocentrique.** Le décentrement passe par une inversion catégorielle vivante portée par une analogie quotidienne avec coût affectif assumé. *« Nous sommes déjà en.01.2026 devenu « leur humain », tout comme j'ai « mon chat » à la maison... Snif… »* Sur ce pôle, le questionnement de la primauté humaine n'est pas une posture théorique — il est porté par une analogie domestique et une charge affective.\n\n**Facilitation et gouvernance collective.** Un protocole avec rôles distribués (apprenant, cartographe humain, IA) est inscrit dans la documentation — artefact de gouvernance effectif. *« Le protocole est interactif et en accord avec les évaluations humanistes. Je l'intègre dans la documentation du cartographe. »* Dans ce pôle, la gouvernance commence par la formalisation écrite des règles et des rôles d'un dispositif hybride.\n\n**Gouvernance algorithmique des services publics.** Le garde-fou démocratique est intégré au dispositif d'évaluation conçu, et les risques de dérive d'un système automatisé d'évaluation sont nommés. *« C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir. »* Sur ce pôle, la gouvernance algorithmique opère par design du dispositif plutôt que par contrôle externe sur des dispositifs existants.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires apparaissent peu dans cette feuille. La veille réglementaire et l'anticipation normative ne sont pas attestées — aucune mention de l'AI Act, du RGPD ou des cadres en construction sur l'évaluation algorithmique des compétences, alors même que le projet RESPIRE croise précisément ces enjeux. La participation citoyenne et démocratie technologique au sens strict du référentiel (processus délibératif, facilitation, transformation d'opinion en décision) n'est pas attestée — l'écoute individuelle de la parole d'une enfant est précieuse mais ne porte pas la compétence au sens technique. Le red-teaming au sens strict (provoquer des comportements aberrants pour tester les garde-fous sécuritaires) reste hors champ dans cette feuille. La conscience biosystémique au sens strict du référentiel (humain comme nœud d'un réseau vivant, biomimétisme appliqué comme principe de conception) ne ressort pas — les métaphores systémiques utilisées sont d'inspiration computationnelle plutôt que biosystémique. Enfin, l'audit et l'hygiène des données restent en germe — le réflexe est là, sa formalisation méthodique pas encore.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle. D'abord, la politique passe par le dispositif — c'est en concevant l'architecture du système hybride (qui fait quoi, à quel moment, sous quelles règles) que le travail politique se fait, plutôt que par la mobilisation institutionnelle ou la veille réglementaire. Ensuite, une figure récurrente — « ce que l'IA ne peut pas voir » — structure plusieurs compétences en même temps : la gouvernance du dispositif, la souveraineté du commun, la cohabitation avec les IA, et le décentrement passent tous par cette même reconnaissance. Enfin, la dimension biosystémique est un angle mort des métaphores employées — le travail pense en systèmes computationnels (CPU, RAM, swap, bureaux virtuels, cathédrale, labyrinthe), pas en systèmes vivants ; le projet est posé comme création d'un commun pédagogique, pas encore comme nœud d'un réseau écosystémique plus large.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir la veille réglementaire, un chemin possible serait de documenter une décision où l'anticipation d'un cadre futur (probable encadrement de l'évaluation par IA, par exemple) a déjà infléchi la conception du dispositif RESPIRE.\n- Pour ancrer la participation citoyenne au sens strict, un chemin possible serait de documenter, lors du test pédagogique de mars avec deux personnes, le mécanisme par lequel leur retour est transformé en modification effective de la méthode.\n- Pour ouvrir le red-teaming, un chemin possible serait de tester délibérément le dispositif de cartographie automatique avec un portfolio adversarial (fictif, biaisé, ironique) pour exposer ses comportements limites avant que d'autres ne les exposent.\n- Pour formaliser l'audit, un chemin possible serait de documenter avec horodatage et conclusion explicite un cas où le processus génératif d'une IA a été investigué, pour faire passer le réflexe à la méthodologie.\n- Pour ouvrir la conscience biosystémique, un chemin possible serait d'inviter dans le travail une métaphore biologique vraiment opérante — pas décorative — qui inspire un principe de conception du dispositif, et de noter ce qu'elle change concrètement."
+  }
+}

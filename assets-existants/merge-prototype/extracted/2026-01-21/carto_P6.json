@@ -1,0 +1,362 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Restructuration des niveaux de formation pour les tuteurs. La liste a été conçue en fonction de la valeur ajoutée que le niveau apporte à l'élève (niveau 1, 2 et 3), à un futur employeur (niveau 3 et 4), à l'école (niveau 4, 5 et 6).",
+      "contexte": "Ouverture qui distingue trois bénéficiaires (élève, employeur, école), donc trois plans de légitimité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le quatrième niveau serait celui de \"L'expert IA\". Son rôle : aider tous les apprenants de tous les niveaux, à mieux utiliser les IA, en proposant d'améliorer les prompts socratiques, en testant des prompts pour analyser les portfolios, en cherchant à mettre en évidence des indicateurs pour voir les compétences définies par la société civile sur notre plateforme Decidim.",
+      "contexte": "Articulation entre IA, prompts d'analyse de portfolios et une plateforme délibérative citoyenne (Decidim) — pivot entre outils IA et démocratie technologique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le cinquième niveau serait celui du \"Maître\". Son rôle : former les \"Cartographes\", les \"Médiateurs\", les \"Noèsiologues\", les \"Experts IA\" et les \"Maîtres\" eux-même (bootstrap du système). Les \"Maîtres\" élisent les \"Grand Maîtres\".",
+      "contexte": "Mécanisme de gouvernance interne par bootstrap et par élection — co-construction des règles d'évolution du dispositif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le sixième niveau des \"Grand Maîtres\" ont pour rôle d'améliorer les écoles \"Respire\" et les processus de formation des apprenants et des tuteurs, quelques soient leurs niveaux.",
+      "contexte": "Rôle de méta-amélioration du système, qui institue une fonction de gouvernance dédiée à l'évolution des règles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Ces niveaux ne sont pas hiérarchiques : un \"Accompagnant\" pourrait choisir d'apprendre à devenir \"Médiateur\" avant d'apprendre à devenir \"Cartographe\". Par contre, il faut avoir été \"Médiateur\" et \"Cartographe\" pour devenir \"Noèsiologue\" ou pour devenir \"Expert IA\". Il faut avoir été \"Noèsiologue\" et \"Expert IA\" pour devenir \"Maître\".",
+      "contexte": "Énoncé des règles de circulation entre rôles — gouvernance des trajectoires d'apprenants au sein du dispositif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Ce découpage permet de donner du sens à chaque niveau, d'expliciter les compétences à acquérir et qui seront travaillées. Puis de bien faire comprendre que pour un recruteur, il n'est pas nécessaire de devenir \"Maître\". Ce découpage permettra également d'avoir des manuels plus courts : ça structure la formation et les écoles.",
+      "contexte": "Justification finale orientée vers la lisibilité externe et la structuration des écoles — gouvernance pédagogique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming ou à la sécurité IA sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un test adversarial mené sur un prompt ou un système IA, avec ce que la tentative a révélé."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'Expert IA est chargé de « tester des prompts pour analyser les portfolios » et de « mettre en évidence des indicateurs » — fonction qui touche à l'investigation du fonctionnement des prompts d'analyse."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucun audit ou hygiène des données au sens 6.02 n'est attesté ici, alors la mention du test de prompts est un acte d'optimisation, pas d'audit du chemin décisionnel. La fiche distingue précisément l'audit (enquêter sur le comment l'IA produit ses décisions, consulter des logs, documenter des chemins décisionnels) et l'hygiène (RGPD, anonymisation, minimisation). La pièce 1 mentionne le test de prompts pour analyser les portfolios mais ne décrit aucun examen du chemin décisionnel, aucune lecture de logs, aucune réflexion sur l'hygiène des données portées dans les portfolios (alors que ce sont des données personnelles d'apprenants). L'absence de la dimension hygiène est notable étant donné l'enjeu (portfolios d'apprenants traités par IA). Aucune réflexion sur la traçabilité des analyses ne se déploie ici. La pièce ne porte pas le marqueur central.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, il n'y a pas d'examen critique à mener au temps 2. La fiche est claire sur le fait que 6.02 commence quand on enquête sur le mécanisme décisionnel ou qu'on protège les données ; cette feuille n'active aucun de ces deux versants.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si la mention du test de prompts pouvait attester un geste d'audit ou d'hygiène des données. Le test est posé comme acte d'optimisation, pas comme investigation du chemin décisionnel ; et l'enjeu d'hygiène des données portées par les portfolios n'est pas thématisé. Sur cette feuille, le travail conçoit un rôle qui pourrait s'inscrire dans 6.02 sans encore en activer les marqueurs.",
+          "confianceFinale": 0.20
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.20,
+        "motif": "Le temps 1 a fait tomber la pièce : le test de prompts est posé comme acte d'optimisation, sans audit du chemin décisionnel ni réflexion sur l'hygiène des données portées par les portfolios.",
+        "prescription": "Le territoire de l'audit pourrait s'ouvrir à partir du rôle d'Expert IA déjà défini ; un chemin possible serait de documenter, pour un prompt d'analyse de portfolio, comment vérifier le chemin par lequel l'analyse aboutit à un indicateur donné, et quelles précautions sont prises sur les données personnelles des apprenants."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une décision algorithmique affecte des populations vulnérables et proposer un mécanisme de recours ou d'audit."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le rôle de l'Expert IA articule outils IA et plateforme Decidim — Decidim étant un logiciel libre de démocratie participative. Le choix d'une plateforme libre comme pivot de définition des compétences relève de la souveraineté numérique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune souveraineté numérique au sens 6.04 n'est attestée ici, alors la mention de Decidim n'est qu'un nom d'outil parmi d'autres, sans charge souverainiste explicite. La fiche est exigeante : 6.04 exige une motivation *explicite* par une analyse de dépendance ou des communs ; sans cette motivation, l'usage d'un outil libre peut être de la commodité (« j'utilise un outil open source par commodité ») et non un acte de souveraineté. La pièce nomme Decidim sans expliciter le choix : aucune mention de l'enjeu de propriété des données, aucune comparaison avec une alternative propriétaire, aucune réflexion sur le vendor lock-in. L'apprenant ne dit pas « j'ai choisi Decidim parce que c'est un commun numérique » — il intègre Decidim dans la conception sans en faire le sujet. La pièce ne porte pas la motivation explicite que la fiche exige.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, il n'y a pas d'examen critique à mener au temps 2. La fiche est claire : sans motivation explicite par une analyse de dépendance, l'usage d'un outil libre n'atteste pas 6.04.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si la mention de Decidim pouvait attester un geste de souveraineté numérique. La fiche exige une motivation explicite par l'analyse des dépendances ou des communs, et l'apprenant intègre Decidim dans la conception du dispositif sans en faire le sujet, sans expliciter en quoi le choix d'une plateforme libre porte un enjeu de souveraineté. Sur cette feuille, le travail peut s'appuyer sur un commun numérique sans encore le revendiquer ni l'argumenter comme acte souverainiste.",
+          "confianceFinale": 0.28
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.28,
+        "motif": "Le temps 1 a fait tomber la pièce : la mention de Decidim n'est pas argumentée par une analyse de dépendance ou de commun, ce que la fiche exige pour distinguer 6.04 du simple usage d'un outil libre.",
+        "prescription": "Le geste de souveraineté pourrait se rendre visible en documentant, lors d'une prochaine décision technique du dispositif, pourquoi le choix s'est porté sur Decidim plutôt qu'une plateforme propriétaire, et ce que cette dépendance ouverte préserve pour les apprenants et la société civile."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'Expert IA met en évidence des indicateurs « pour voir les compétences définies par la société civile sur notre plateforme Decidim » — la définition des compétences est confiée à un processus délibératif citoyen."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune participation citoyenne au sens 6.05 n'est attestée ici, alors la mention de la « société civile » et de Decidim est une référence institutionnelle, pas un acte de facilitation démocratique. La fiche est précise : 6.05 commence par la conception ou la facilitation de processus participatifs où des non-experts pèsent sur des décisions technologiques. La pièce 1 décrit une architecture où la définition des compétences est confiée à un processus délibératif citoyen, ce qui résiste mal à la présomption d'absence — c'est exactement la posture inversée à un design top-down. L'apprenant ne se contente pas de communiquer sur l'IA, il conçoit un système où l'IA observe ce que la société civile a délibéré. Cependant, la pièce ne raconte aucun processus de facilitation vécu, aucune participation effectivement menée — elle pose une architecture qui suppose ce processus sans le documenter.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'architecture confie la définition des compétences à un processus de délibération de société civile via Decidim, ce qui place explicitement la légitimité du critère du côté participatif et non technocratique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois tester si je n'ai pas surinterprété une mention institutionnelle. Le risque dominant est le récit performatif : nommer la société civile et Decidim ne prouve pas qu'un processus participatif est effectivement organisé, ni que l'apprenant facilite ce processus. La fiche distingue précisément ce qui informe (sondage) de ce qui légitime (délibération) ; ici, la pièce nomme l'instance délibérative (Decidim) mais ne décrit pas comment cette délibération est organisée, ni le rôle de l'apprenant dans la facilitation. La pièce est touchée : elle pose l'architecture participative comme cadre, sans déployer le geste de facilitation.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'architecture participative est nommée (société civile, Decidim) mais aucun processus de facilitation effectif n'est documenté ; l'apprenant pose le cadre sans encore raconter le geste."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir la mention de la société civile et de Decidim comme un décor institutionnel sans charge participative. Une pièce a résisté : l'architecture confie effectivement la définition des compétences à un processus délibératif citoyen, ce qui place la légitimité du critère du côté participatif. Sous la présomption de sycophantie, la pièce a été affaiblie parce que l'apprenant pose le cadre sans documenter le geste de facilitation, sans décrire comment la délibération est organisée ni quel est son rôle dans ce processus. Sur cette feuille, le travail montre un parti-pris architectural en faveur de la participation citoyenne, sans encore en raconter la pratique.",
+          "confianceFinale": 0.48
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.48,
+        "motif": "Le temps 2 a retenu une pièce affaiblie : l'architecture place la définition des compétences du côté délibératif citoyen, mais le geste de facilitation reste à l'état d'énoncé, sans processus documenté.",
+        "prescription": "Le parti-pris participatif est présent dans la structure du dispositif ; un chemin possible serait de documenter, lors d'une prochaine étape sur Decidim, comment la délibération citoyenne autour des compétences a été organisée, qui a été inclus et qui ne l'a pas été, et ce qui a transformé un avis en décision."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une analyse prospective d'un cadre réglementaire en mouvement (AI Act, RGPD) et son influence sur le design du dispositif."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le Maître forme les Maîtres eux-mêmes (bootstrap) et élit les Grand Maîtres — protocole explicite de gouvernance par autoreproduction et délégation."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Les Grand Maîtres ont pour rôle d'améliorer les écoles et les processus de formation, ce qui institue une fonction explicite de modification des règles du système."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Les règles de circulation entre rôles (ordre libre, prérequis croisés) définissent un processus de progression au sein du collectif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune facilitation ou gouvernance collective au sens 6.07 n'est attestée ici, alors les règles décrites ne sont qu'une architecture organisationnelle classique d'une école, sans dimension d'émergence ni de co-construction. La fiche pose deux critères : émergence (résultat qualitativement nouveau, surprise) ou gouvernance (règles co-construites avec mécanismes de modification). La pièce 1 décrit un mécanisme de bootstrap (les Maîtres forment les Maîtres) et un mécanisme électif (les Maîtres élisent les Grand Maîtres) — c'est une procédure de gouvernance explicite avec rôles et limites. La pièce 2 institue une fonction de méta-amélioration des règles, ce qui correspond exactement au critère « décrire comment le groupe peut modifier ses propres règles ». La pièce 3 décrit des règles de circulation explicites. Les trois pièces résistent : elles dessinent un protocole de gouvernance détaillé.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Bootstrap et élection sont deux procédures de gouvernance explicites, avec des rôles et un mécanisme de désignation qui dépasse la hiérarchie classique."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Une fonction est instituée pour modifier les règles du système (Grand Maîtres), ce qui correspond exactement au critère « le groupe peut modifier ses propres règles »."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Les règles de circulation entre rôles sont explicites et compositionnelles, ce qui constitue un artefact de gouvernance détaillé."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté ; je dois tester si je n'ai pas confondu une organisation hiérarchique classique avec une véritable gouvernance collective. Pour la pièce 1, le risque dominant est l'insuffisance probatoire : « les Maîtres élisent les Grand Maîtres » est nommé sans que les modalités d'élection (à quelle majorité, avec quelles règles de candidature, avec quels mécanismes de révocation) soient précisées. L'attaque touche. Pour la pièce 2, le risque est la surinterprétation pédagogique : la fonction d'amélioration des écoles est nommée, mais aucun mécanisme par lequel cette amélioration se traduit en modification effective des règles n'est décrit. L'attaque touche. Pour la pièce 3, le risque est l'insuffisance probatoire aussi : les règles sont nommées mais on n'a pas accès au processus par lequel elles ont été co-construites (sont-elles posées par l'apprenant seul ou délibérées avec d'autres ?). L'attaque touche également. Toutes les pièces tiennent en tant qu'artefacts de gouvernance, mais affaiblies parce que leur mise en œuvre concrète et leur dimension co-construite restent à documenter.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Bootstrap et élection sont nommés sans que les modalités précises (règles de candidature, majorités, révocation) soient déployées, ce qui laisse l'artefact à un niveau de squelette."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La fonction de méta-amélioration est instituée mais aucun mécanisme concret de modification effective des règles n'est décrit."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les règles de circulation sont posées sans qu'on sache si elles ont été co-construites ou décidées unilatéralement par l'apprenant."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces règles comme une organisation hiérarchique classique sans gouvernance ni émergence. Trois pièces m'ont forcé à reconnaître autre chose : un mécanisme de bootstrap et d'élection des Grand Maîtres, une fonction explicite de méta-amélioration des règles, et un système de prérequis croisés qui dessine un graphe de circulation. Ces trois éléments correspondent au critère de la fiche : décrire comment le groupe peut modifier ses propres règles, distribuer les rôles avec limites. Sous la présomption de sycophantie, les trois pièces ont été affaiblies parce que les modalités concrètes (règles d'élection, mécanismes de modification effective, processus de co-construction) restent à l'état de squelette. Sur cette feuille, le travail montre un geste de conception de gouvernance qui pose l'architecture sans encore en déployer le déroulement, et sans qu'on puisse vérifier si les règles ont été délibérées collectivement ou posées par l'apprenant seul.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a retenu trois pièces affaiblies mais retenues comme artefacts de gouvernance : bootstrap, élection des Grand Maîtres, fonction de méta-amélioration des règles, règles de circulation entre rôles. L'architecture de gouvernance est explicite, même si ses modalités concrètes et son caractère co-construit restent à documenter.",
+        "prescription": "Le geste de gouvernance collective est posé dans l'architecture du dispositif ; un chemin possible serait de préciser, pour le mécanisme d'élection des Grand Maîtres ou la fonction de méta-amélioration, les modalités effectives (qui propose, qui vote, qui révoque, comment une règle est modifiée) et si ces modalités sont elles-mêmes l'objet d'une délibération collective."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la primauté des besoins humains a été interrogée dans une décision concrète, ou une perspective non-humaine prise au sérieux."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un questionnement sur le statut moral d'une IA avec laquelle il travaille, en notant ce qui le pousse à ouvrir ou non cette question."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un acte de conception inspiré d'un système vivant comme principe, pas comme décoration, ou un raisonnement situant l'humain comme nœud d'un réseau plutôt qu'extérieur à celui-ci."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 1,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle politique se manifeste principalement par un travail de conception de gouvernance interne au dispositif tutoral. L'apprenant pose une architecture où la formation produit ses propres formateurs (bootstrap des Maîtres), où une fonction est dédiée à l'amélioration du système lui-même (Grand Maîtres), et où la définition des compétences est confiée à une délibération de société civile sur une plateforme libre (Decidim). Ces trois traits dessinent ensemble une orientation politique : le critère ne descend pas de l'expertise unilatérale, il monte d'un processus collectif. Le geste reste cependant à l'état d'architecture posée — les modalités concrètes des élections, des modifications de règles, des délibérations citoyennes ne sont pas encore déployées. Les territoires post-anthropocentriques (décentrement, cohabitation IA, conscience biosystémique) ne sont pas activés sur cette feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Facilitation et gouvernance collective",
+        "description": "Le dispositif intègre des mécanismes explicites de gouvernance : bootstrap des Maîtres, élection des Grand Maîtres, fonction de méta-amélioration des écoles, règles de circulation compositionnelles entre rôles.",
+        "extraitVerbatim": "Le cinquième niveau serait celui du \"Maître\". Son rôle : former les \"Cartographes\", les \"Médiateurs\", les \"Noèsiologues\", les \"Experts IA\" et les \"Maîtres\" eux-même (bootstrap du système). Les \"Maîtres\" élisent les \"Grand Maîtres\".",
+        "ceQueCaDit": "Sur cette feuille, le travail montre la conception d'une architecture de gouvernance autoreproductrice et auto-modifiable, dont les modalités concrètes restent à préciser mais dont l'orientation politique est explicite."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à explorer à partir du matériau présent. La participation citoyenne via Decidim est posée comme cadre sans être encore racontée comme pratique facilitée. La souveraineté numérique pourrait s'argumenter à partir du choix de Decidim, mais la justification reste implicite. L'audit et l'hygiène des données prennent un enjeu particulier dans un dispositif où l'IA analyse des portfolios d'apprenants, mais ne sont pas thématisés. Les territoires post-anthropocentriques (décentrement, cohabitation IA, conscience biosystémique) sont absents de cette feuille — ce qui ressemble à un choix de cadrage, l'apprenant concentrant son effort sur la gouvernance humaine du dispositif. La sécurité IA (red-teaming) et la veille réglementaire (AI Act) ne sont pas mobilisées non plus.",
+    "emergencesPole": "Un fil traverse les zones actives : l'apprenant conçoit un système où l'autorité circule plutôt qu'elle ne descend. Le bootstrap des Maîtres, l'élection des Grand Maîtres, la délibération citoyenne sur Decidim composent une orientation où le critère et le pouvoir formateur sont produits par le collectif lui-même. Cette orientation est posée structurellement, sans être argumentée comme position politique — elle habite la conception sans devoir être justifiée.",
+    "pistes": [
+      "Pour préciser le geste de gouvernance, un chemin possible serait de documenter, pour le mécanisme d'élection des Grand Maîtres ou la fonction de méta-amélioration, les modalités effectives (qui propose, qui vote, qui révoque, comment une règle est modifiée) et si ces modalités sont elles-mêmes l'objet d'une délibération collective.",
+      "Pour rendre visible l'orientation participative, un chemin possible serait de raconter, lors d'une prochaine étape sur Decidim, comment la délibération citoyenne autour des compétences a été organisée, qui a été inclus, qui ne l'a pas été, et ce qui a transformé un avis en décision.",
+      "Pour ouvrir le territoire de l'audit, un chemin possible serait de documenter, pour un prompt d'analyse de portfolio, comment vérifier le chemin par lequel l'analyse aboutit à un indicateur donné, et quelles précautions sont prises sur les données personnelles des apprenants."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle politique se manifeste principalement par un travail de conception de gouvernance interne au dispositif tutoral. L'apprenant pose une architecture où la formation produit ses propres formateurs (bootstrap des Maîtres), où une fonction est dédiée à l'amélioration du système lui-même (Grand Maîtres), et où la définition des compétences est confiée à une délibération de société civile sur une plateforme libre (Decidim). Ces trois traits dessinent ensemble une orientation politique : le critère ne descend pas de l'expertise unilatérale, il monte d'un processus collectif. Le geste reste cependant à l'état d'architecture posée — les modalités concrètes des élections, des modifications de règles, des délibérations citoyennes ne sont pas encore déployées. Les territoires post-anthropocentriques (décentrement, cohabitation IA, conscience biosystémique) ne sont pas activés sur cette feuille.\n\n## Territoires les plus denses\n\n**Facilitation et gouvernance collective.** Le dispositif intègre des mécanismes explicites de gouvernance : bootstrap des Maîtres, élection des Grand Maîtres, fonction de méta-amélioration des écoles, règles de circulation compositionnelles entre rôles. Citation : « Le cinquième niveau serait celui du \"Maître\". Son rôle : former les \"Cartographes\", les \"Médiateurs\", les \"Noèsiologues\", les \"Experts IA\" et les \"Maîtres\" eux-même (bootstrap du système). Les \"Maîtres\" élisent les \"Grand Maîtres\". » Sur cette feuille, le travail montre la conception d'une architecture de gouvernance autoreproductrice et auto-modifiable, dont les modalités concrètes restent à préciser mais dont l'orientation politique est explicite.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à explorer à partir du matériau présent. La participation citoyenne via Decidim est posée comme cadre sans être encore racontée comme pratique facilitée. La souveraineté numérique pourrait s'argumenter à partir du choix de Decidim, mais la justification reste implicite. L'audit et l'hygiène des données prennent un enjeu particulier dans un dispositif où l'IA analyse des portfolios d'apprenants, mais ne sont pas thématisés. Les territoires post-anthropocentriques (décentrement, cohabitation IA, conscience biosystémique) sont absents de cette feuille — ce qui ressemble à un choix de cadrage, l'apprenant concentrant son effort sur la gouvernance humaine du dispositif. La sécurité IA (red-teaming) et la veille réglementaire (AI Act) ne sont pas mobilisées non plus.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn fil traverse les zones actives : l'apprenant conçoit un système où l'autorité circule plutôt qu'elle ne descend. Le bootstrap des Maîtres, l'élection des Grand Maîtres, la délibération citoyenne sur Decidim composent une orientation où le critère et le pouvoir formateur sont produits par le collectif lui-même. Cette orientation est posée structurellement, sans être argumentée comme position politique — elle habite la conception sans devoir être justifiée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour préciser le geste de gouvernance, un chemin possible serait de documenter, pour le mécanisme d'élection des Grand Maîtres ou la fonction de méta-amélioration, les modalités effectives (qui propose, qui vote, qui révoque, comment une règle est modifiée) et si ces modalités sont elles-mêmes l'objet d'une délibération collective.\n- Pour rendre visible l'orientation participative, un chemin possible serait de raconter, lors d'une prochaine étape sur Decidim, comment la délibération citoyenne autour des compétences a été organisée, qui a été inclus, qui ne l'a pas été, et ce qui a transformé un avis en décision.\n- Pour ouvrir le territoire de l'audit, un chemin possible serait de documenter, pour un prompt d'analyse de portfolio, comment vérifier le chemin par lequel l'analyse aboutit à un indicateur donné, et quelles précautions sont prises sur les données personnelles des apprenants."
+  }
+}

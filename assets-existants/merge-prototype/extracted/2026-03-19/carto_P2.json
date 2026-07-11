@@ -1,0 +1,435 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "qu'est-ce que c'était fun ! Je me suis régalé. Je n'ai pas perdu le plaisir d'être informaticien.",
+      "contexte": "Expression émotionnelle brute du plaisir technique. Active 2.01 (intelligence émotionnelle, nomination émotionnelle) et 2.02 (communication, registre).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "ce n'est pas ça qui me rebut dans le poste EPFL, c'est le niveau des questions qu'on m'a posé et c'est la projection que je me fais de devoir me conformer à un système qui est déjà plus comme moi, d'après ce qu'en j'en ai compris en 45 minutes",
+      "contexte": "Lecture organisationnelle après un entretien : décodage du décalage culturel/contextuel avec l'EPFL. Active 2.06 (intelligence culturelle), 2.07 (lecture organisationnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Soledad me dit de faire quand même un petit projet pour leur montrer que je sais vibe coder. Moi je crois que si c'est important pour eux d'avoir un développeur, qu'ils prennent un développeur.",
+      "contexte": "Conseil reçu d'un tiers nommé (Soledad), réponse argumentée de l'apprenant. Active 2.05 (collaboration divergente : tenir sa position face à un conseil divergent) et 2.04 (diplomatie/influence).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "ça fait depuis 2008 que je ne travaille plus sous les ordres de quelqu'un (donc presque 20 ans) et que depuis que c'est le cas, je n'ai jamais autant créer de belles choses. En fait, c'est vraiment ça le \"vivement la retraite\". J'ai l'impression d'être un samouraï qui a passé sa vie aux ordres de maîtres et qui n'a jamais pu exercer son art, sauf lorsqu'il est devenu enseignant.",
+      "contexte": "Métaphore du samouraï pour lire son rapport historique à la subordination. Active 2.07 (lecture organisationnelle longitudinale) et 2.02 (storytelling personnel).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Bref, fin de la petite disgression / pseudo-veille techno, retournons bosser.",
+      "contexte": "Auto-régulation conversationnelle avec le lecteur : l'apprenant clôt sa digression avec une formule d'humour qui assume l'écart. Active 2.02 (communication authentique, registre, autodérision).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Voilà le travail pour le référentiel v7, tout y est ! En local, la version de développement est dans un docker. En ligne, ça me coûte un peu d'argent, mais pour le moment c'est ici et c'est sur la version non modifiée du projet [...] et dès que j'ai une version en local qui vaut la peine d'être publié, je la mettrais sur sqilium à la place et je supprimerai l'autre.",
+      "contexte": "Adresse explicite à un lecteur (« voilà le travail ») avec partage d'URL et explication. Active 2.02 (communication, adresse à un destinataire) et 2.08 (traduction technique).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Nomination du plaisir technique avec précision (« fun », « régalé »), distinction entre le plaisir d'être informaticien et le coût d'y céder."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'intelligence émotionnelle n'est pas là : la fiche exige plus qu'une expression brute, elle attend la nomination précise des émotions et leur usage comme information ou levier. La pièce 1 nomme le plaisir avec deux mots (« fun », « régalé ») et le distingue de l'identité (« plaisir d'être informaticien »). C'est une nomination simple, sans lecture émotionnelle d'autrui ni régulation décrite. La pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Nomination explicite et différenciée du plaisir, distinguée du plaisir identitaire d'un métier."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 nomme un plaisir, mais sans dimension d'autrui ni régulation. C'est de l'expression émotionnelle, pas de l'intelligence émotionnelle au sens fort. L'attaque (f) — récit performatif — touche : l'apprenant raconte avoir éprouvé du plaisir sans en faire un levier d'action ou une information stratégique au moment où il l'éprouve.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le plaisir est nommé, mais ce n'est pas la même chose qu'une émotion utilisée comme information ou levier — la fiche exige une dimension supplémentaire que la pièce ne porte pas."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'intelligence émotionnelle dans cette feuille. La seule pièce candidate nomme un plaisir technique avec précision, mais ne le mobilise pas comme information ou levier d'action — elle reste sur le registre du récit. La régulation de soi ou de l'autre, la sollicitude active, la lecture émotionnelle d'un tiers ne sont pas présentes. La présomption d'absence tient.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "La pièce candidate relève d'une expression émotionnelle brute, pas d'une intelligence émotionnelle au sens de la fiche (régulation, levier, lecture d'autrui).",
+        "prescription": "Cette feuille porte du plaisir nommé sans le mobiliser comme information. Pour ouvrir ce dossier, un récit où l'apprenant nommerait l'état émotionnel d'un interlocuteur (par exemple Soledad pendant ses conseils, ou l'EPFL pendant l'entretien) ouvrirait la dimension de lecture d'autrui."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Auto-régulation conversationnelle avec autodérision : l'apprenant nomme sa propre digression et la clôt avec humour."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Adresse au lecteur avec partage du livrable et explication structurée du déploiement."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Storytelling personnel via la métaphore du samouraï pour donner du sens à 20 ans de parcours."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la communication authentique n'est pas là : la fiche exige du registre maîtrisé, de l'humour intégré, de la vulnérabilité stratégique. La pièce 1 m'oblige : la formule « disgression / pseudo-veille techno, retournons bosser » porte une autodérision lisible. La pièce 3 mobilise une métaphore personnelle (le samouraï) qui dépasse l'ornement. La pièce 2 est plus faible : c'est une adresse fonctionnelle au lecteur, sans variation de registre marquée. Les pièces 1 et 3 résistent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Autodérision explicite qui nomme la digression et la termine avec un imperatif familier (« retournons bosser »)."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Métaphore personnelle du samouraï investie pour donner sens à un parcours — pas un ornement décoratif."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 1 (autodérision) est courte mais porte une vraie variation de registre — du familier au directif. La pièce 3 (samouraï) est une métaphore personnelle, mais elle pourrait être un simple ornement narratif. L'attaque (e) — surinterprétation — touche la pièce 3 : peut-être que je charge la métaphore d'une intention communicationnelle qu'elle n'a pas, l'apprenant pouvant simplement parler pour lui-même dans un journal.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'autodérision est lisible mais brève ; elle marque une variation de registre sans pour autant constituer une conversation difficile maîtrisée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La métaphore du samouraï peut être lue comme un acte communicationnel adressé à un futur lecteur, mais aussi comme un mouvement réflexif privé. Elle tient comme indice mais avec une marge."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la communication authentique dans cette feuille. Deux pièces m'ont forcé à reconnaître quelque chose : la formule autodérisive qui clôt une digression, et la métaphore du samouraï qui élève un récit de carrière. Sous la présomption de sycophantie, les deux pièces ont été affaiblies mais retenues : ni la longueur ni la portée ne suffisent à parler d'une maîtrise de conversation difficile, mais le registre est conscient et travaillé. La présence se laisse établir au seuil bas.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a affaibli mais retenu deux pièces : autodérision et métaphore personnelle, qui montrent une conscience du registre.",
+        "prescription": "L'autodérision et le storytelling personnel sont au travail dans cette feuille. Pour prolonger, un récit qui détaillerait une conversation difficile (avec Soledad, avec l'EPFL) en restituant les choix de registre opérés donnerait à voir la communication en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un désaccord traversé avec rôle actif décrit (médiation, structuration du débat, tolérance d'une tension non résolue)."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Position argumentée face au conseil de Soledad : non pas convaincre Soledad mais articuler une contre-proposition (s'ils ont besoin d'un dev, qu'ils prennent un dev ; s'ils ont besoin de moi, c'est pour autre chose)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'influence et la diplomatie ne sont pas là : la fiche exige de la préparation, de la reformulation de l'objection, des stratégies d'alliance. La pièce 1 est un monologue interne où l'apprenant défend sa position face au conseil de Soledad, sans dialogue ni stratégie de persuasion. Ce n'est pas adressé à l'EPFL, c'est noté pour soi. La présomption d'absence tient.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. La position est tranchée mais elle ne vise pas l'adhésion de l'autre — c'est plutôt une déclaration de positionnement personnel.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'influence et la diplomatie. La position devant Soledad et l'EPFL est argumentée pour soi-même, pas adressée à un interlocuteur dans une logique d'adhésion. Il manque le geste de persuasion situé, le contournement diplomatique, la reformulation d'une objection. La présomption d'absence tient.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "La position est tranchée mais reste un monologue argumentatif pour soi, pas un acte de persuasion situé.",
+        "prescription": "Cette feuille montre un positionnement clair. Pour ouvrir l'influence et la diplomatie, un récit qui détaillerait comment ce positionnement a été présenté à un interlocuteur de l'EPFL — quelles objections anticipées, quelle reformulation — ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Position maintenue face au conseil divergent de Soledad : l'apprenant entend le conseil mais ne s'y plie pas, sans rupture de relation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la collaboration divergente n'est pas là : la fiche exige le « agree to disagree AND deliver » avec maintien des deux positions. La pièce 1 montre un désaccord avec Soledad sur la stratégie EPFL, mais on ne sait pas si la collaboration avec Soledad continue ni sur quel périmètre. Sans la dimension « livrer ensemble malgré le désaccord », ce n'est qu'un désaccord. La pièce résiste très faiblement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Le marqueur clé — « on n'est toujours pas d'accord MAIS on a livré » — n'apparaît pas.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la collaboration divergente. Le désaccord avec Soledad est noté mais sans dispositif de livraison commune malgré ce désaccord. Le critère discriminant de la fiche n'est pas activé. La présomption d'absence tient.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Le désaccord est noté mais sans dispositif de livraison commune malgré ce désaccord. Le marqueur clé n'apparaît pas.",
+        "prescription": "Cette feuille porte un désaccord stratégique. Pour ouvrir la collaboration divergente, un récit qui montrerait comment Soledad et l'apprenant continuent à travailler ensemble sur d'autres terrains malgré ce désaccord donnerait à voir la compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Décodage du décalage culturel/organisationnel avec l'EPFL après 45 minutes d'observation : « un système qui est déjà plus comme moi »."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'intelligence culturelle n'est pas là : la fiche exige une suspension du cadre de référence pour naviguer celui de l'autre, ou au moins une analyse du pourquoi des règles différentes. La pièce 1 nomme un décalage culturel-organisationnel sur la base de 45 minutes d'entretien. C'est une lecture, mais sans analyse du « pourquoi » : on a l'écart, on n'a pas le mécanisme. La pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant nomme un décalage culturel-organisationnel précis à partir d'un échantillon court d'observation."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce nomme un décalage mais ne suspend pas son propre cadre — au contraire, elle conforte le cadre de l'apprenant face à celui de l'EPFL. La fiche distingue précisément cela : la compétence commence quand on suspend son cadre, pas quand on le maintient face à un autre. L'attaque (b) — confusion avec 2.07 — touche : on est plus près de la lecture politique que de l'adaptation culturelle.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La lecture porte sur un décalage organisationnel, plus proche de 2.07 (lecture des dynamiques) que de 2.06 (suspension du cadre). La pièce tient comme indice mais sur la frontière."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'intelligence culturelle dans cette feuille. La pièce sur le décalage avec l'EPFL nomme un écart culturel-organisationnel mais sans suspendre le cadre de l'apprenant — elle constate l'incompatibilité plutôt qu'elle ne s'adapte. Sous la présomption de sycophantie, la pièce a été affaiblie : elle est plus proche de 2.07 que de 2.06. Le verdict tient comme renvoi : la trace est là mais ne porte pas pleinement le marqueur central.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "La pièce porte un décalage culturel mais sans suspension du cadre de l'apprenant ; elle relève davantage de la lecture organisationnelle.",
+        "prescription": "La lecture du décalage avec l'EPFL est présente, mais l'intelligence culturelle s'ouvre quand le cadre propre se suspend pour explorer celui de l'autre. Un récit qui détaillerait ce que les questions de l'entretien révélaient des codes internes de l'EPFL — pas seulement leur écart avec ceux de l'apprenant — ouvrirait cette dimension."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Lecture organisationnelle de l'EPFL après 45 minutes : décalage perçu avec un système, identification des questions comme indice du niveau de l'organisation."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Lecture longitudinale (20 ans) du rapport à la subordination organisationnelle : conditions historiques de la création, métaphore du samouraï."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le sens politique n'est pas là : la fiche exige la lecture des dynamiques invisibles, la distinction officiel/réel, l'identification des résistances structurelles. La pièce 1 lit un décalage culturel après un entretien, mais sans nommer le mécanisme politique précis (qui décide, qui bloque, pourquoi). La pièce 2 fait une lecture longitudinale du rapport à la hiérarchie, ce qui s'approche plus du sens politique de soi dans une organisation. Les deux pièces résistent partiellement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Diagnostic organisationnel après peu d'éléments : l'apprenant tire d'un entretien une lecture du système institutionnel sous-jacent."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Lecture des conditions structurelles de la création : 20 ans sans hiérarchie comme variable explicative."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 1 risque la lecture fantasmée signalée par la fiche (le risque spécifique) : 45 minutes d'observation suffisent-elles à diagnostiquer un système ? L'attaque (e) — surinterprétation — touche. La pièce 2 articule un lien entre conditions historiques et création — c'est une lecture organisationnelle longitudinale plus solide, qui mobilise des données vérifiables (20 ans de parcours).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le diagnostic est posé après 45 minutes : la fiche signale précisément le risque d'une lecture politique fantasmée. La pièce porte une lecture mais sa solidité reste à éprouver."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La lecture longitudinale est articulée — 20 ans, une bascule en 2008, un effet sur la production. C'est une analyse organisationnelle de soi dans la durée, pas une projection."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le sens politique en partant du risque de lecture fantasmée. La pièce sur l'EPFL après 45 minutes a été affaiblie : le diagnostic existe mais sa solidité est ouverte. La pièce sur les 20 ans m'a forcé à reconnaître autre chose : l'apprenant articule un lien entre subordination organisationnelle et capacité créative, sur une donnée temporelle longue. Cette lecture longitudinale tient. Une présence se dessine, portée surtout par la lecture du long cours.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé la pièce sur les 20 ans comme lecture organisationnelle longitudinale solide ; la pièce sur l'EPFL tient comme indice avec réserve.",
+        "prescription": "La lecture longitudinale du rapport à la subordination organisationnelle constitue un acte de sens politique de soi. Pour prolonger, un récit qui détaillerait la dynamique précise d'un blocage ou d'un déblocage dans une organisation passée — qui décidait vraiment, quelles règles non-écrites ont opéré — donnerait à voir la compétence en situation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Adresse à un lecteur autour d'un livrable technique : explication du déploiement, partage d'URL, anticipation du remplacement. Possible acte de traduction technique vers un destinataire non spécialisé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la traduction entre mondes n'est pas là : la fiche exige des analogies structurelles, du pontage entre groupes, de la bidirectionnalité. La pièce 1 est une explication technique adressée à un lecteur, mais le vocabulaire reste technique (docker, fly.dev, version) — il n'y a pas de transposition vers un autre cadre conceptuel. La présomption d'absence tient.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. L'adresse à un lecteur ne suffit pas — il faut une transposition de cadre.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la traduction entre mondes. L'adresse au lecteur dans la partie technique reste dans le vocabulaire spécialisé, sans analogie structurelle ni pontage vers un autre cadre. La présomption d'absence tient.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "La pièce candidate reste dans le vocabulaire technique sans transposition vers un autre cadre conceptuel.",
+        "prescription": "Cette feuille communique du technique à un lecteur sans le traduire pour un autre monde. Un récit où le déploiement Sqily serait expliqué par analogie structurelle (par exemple, l'image d'un déménagement ou d'une bibliothèque) à un public non-technique ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la construction de communautés dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un « nous » identitaire chargé d'émotion (au-delà du rapport à Soledad mentionné en passant) ou un rituel partagé."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 4,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille du 19 mars 2026 montre un travail relationnel dominé par le rapport de soi à l'institution et au lecteur. L'apprenant lit l'entretien EPFL et le système qui le porte, articule une position face au conseil d'une proche (Soledad), revient sur 20 ans de parcours sans hiérarchie avec une métaphore investie. La voix dominante est celle d'un narrateur qui parle à un lecteur attendu, avec autodérision lisible et adresse explicite. Les liens relationnels nommés sont peu nombreux et fonctionnent surtout comme arrière-plan d'une réflexion sur le positionnement.",
+    "territoiresDenses": [
+      {
+        "competence": "Sens Politique & Lecture Organisationnelle",
+        "description": "L'apprenant tire d'un entretien de 45 minutes une lecture du système EPFL et, en arrière-plan, articule une lecture longitudinale du rapport à la subordination organisationnelle sur 20 ans.",
+        "extraitVerbatim": "ça fait depuis 2008 que je ne travaille plus sous les ordres de quelqu'un (donc presque 20 ans) et que depuis que c'est le cas, je n'ai jamais autant créer de belles choses",
+        "ceQueCaDit": "Le travail dans ce pôle montre une lecture des conditions structurelles de la création, ancrée dans une temporalité longue."
+      },
+      {
+        "competence": "Communication Authentique",
+        "description": "Variations de registre et autodérision investissent le texte : la digression nommée comme telle, la métaphore du samouraï qui élève un récit de carrière.",
+        "extraitVerbatim": "Bref, fin de la petite disgression / pseudo-veille techno, retournons bosser.",
+        "ceQueCaDit": "Le travail montre une conscience du registre et une présence du destinataire dans la prose, sans cynisme."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs registres relationnels n'ont pas été ramenés dans cette feuille. L'intelligence émotionnelle au sens de la lecture d'autrui, la gestion des conflits avec rôle actif décrit, l'influence vers un interlocuteur, la collaboration divergente avec dispositif de livraison, la construction de communautés et la traduction entre mondes n'ont pas trouvé de matière. Une zone reste ouverte autour de l'intelligence culturelle : le décalage avec l'EPFL est nommé, mais sans suspension du cadre propre — cette compétence appelle un cartographe pour préciser ce qui s'y joue.",
+    "emergencesPole": "Une figure traverse plusieurs compétences : celle du destinataire — l'EPFL, Soledad, le lecteur du journal, les futurs lecteurs du référentiel v7. L'apprenant s'adresse beaucoup, écoute moins. Une seconde émergence : le motif de l'autonomie tenue dans la durée, qui colore aussi bien le refus d'un poste qu'une métaphore du samouraï à 20 ans de distance.",
+    "pistes": [
+      "Pour prolonger la lecture organisationnelle, un chemin possible serait de cartographier ce qui, dans une institution donnée (RESPIRE, EPFL, anciennes structures), décide réellement les choses — l'organigramme officiel et la réalité.",
+      "Pour ouvrir l'intelligence culturelle, un chemin possible serait d'expliciter ce que les questions posées par l'EPFL révèlent de leur propre culture interne, indépendamment du décalage avec celle de l'apprenant.",
+      "Pour enrichir la communication, un chemin possible serait de documenter une conversation difficile vécue récemment, en restituant les choix de registre opérés en direct."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille du 19 mars 2026 montre un travail relationnel dominé par le rapport de soi à l'institution et au lecteur. L'apprenant lit l'entretien EPFL et le système qui le porte, articule une position face au conseil d'une proche (Soledad), revient sur 20 ans de parcours sans hiérarchie avec une métaphore investie. La voix dominante est celle d'un narrateur qui parle à un lecteur attendu, avec autodérision lisible et adresse explicite. Les liens relationnels nommés sont peu nombreux et fonctionnent surtout comme arrière-plan d'une réflexion sur le positionnement.\n\n## Territoires les plus denses\n\n**Sens Politique & Lecture Organisationnelle** — L'apprenant tire d'un entretien de 45 minutes une lecture du système EPFL et, en arrière-plan, articule une lecture longitudinale du rapport à la subordination organisationnelle sur 20 ans. « ça fait depuis 2008 que je ne travaille plus sous les ordres de quelqu'un (donc presque 20 ans) et que depuis que c'est le cas, je n'ai jamais autant créer de belles choses ». Le travail dans ce pôle montre une lecture des conditions structurelles de la création, ancrée dans une temporalité longue.\n\n**Communication Authentique** — Variations de registre et autodérision investissent le texte : la digression nommée comme telle, la métaphore du samouraï qui élève un récit de carrière. « Bref, fin de la petite disgression / pseudo-veille techno, retournons bosser. » Le travail montre une conscience du registre et une présence du destinataire dans la prose, sans cynisme.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres relationnels n'ont pas été ramenés dans cette feuille. L'intelligence émotionnelle au sens de la lecture d'autrui, la gestion des conflits avec rôle actif décrit, l'influence vers un interlocuteur, la collaboration divergente avec dispositif de livraison, la construction de communautés et la traduction entre mondes n'ont pas trouvé de matière. Une zone reste ouverte autour de l'intelligence culturelle : le décalage avec l'EPFL est nommé, mais sans suspension du cadre propre — cette compétence appelle un cartographe pour préciser ce qui s'y joue.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne figure traverse plusieurs compétences : celle du destinataire — l'EPFL, Soledad, le lecteur du journal, les futurs lecteurs du référentiel v7. L'apprenant s'adresse beaucoup, écoute moins. Une seconde émergence : le motif de l'autonomie tenue dans la durée, qui colore aussi bien le refus d'un poste qu'une métaphore du samouraï à 20 ans de distance.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la lecture organisationnelle, un chemin possible serait de cartographier ce qui, dans une institution donnée (RESPIRE, EPFL, anciennes structures), décide réellement les choses — l'organigramme officiel et la réalité.\n- Pour ouvrir l'intelligence culturelle, un chemin possible serait d'expliciter ce que les questions posées par l'EPFL révèlent de leur propre culture interne, indépendamment du décalage avec celle de l'apprenant.\n- Pour enrichir la communication, un chemin possible serait de documenter une conversation difficile vécue récemment, en restituant les choix de registre opérés en direct."
+  }
+}

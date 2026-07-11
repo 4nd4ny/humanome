@@ -1,0 +1,495 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "L'objectif ultime d'une évaluation assistée par IA est la **soundness** : garantir qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict « présence établie ». Tout faux positif — qu'il provienne d'un portfolio fabriqué, d'une confusion entre intérêt et maîtrise, ou d'une déclaration non étayée — est un dommage silencieux qui invalide la démarche évaluative.",
+      "contexte": "Position éthique/gouvernance contre les faux positifs évaluatifs ; activation possible de 6.03 (gouvernance algorithmique), 6.02 (audit).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La pertinence du dispositif d'évaluation est d'autant plus facile à accepter que l'on peut suivre les raisonnements dans les logs. Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela.",
+      "contexte": "Articulation de la traçabilité du raisonnement comme condition d'acceptabilité — explicabilité ; activation possible de 6.02 (explicabilité), 6.03 (contestabilité démocratique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Ce pull request contient 4 portfolios évalués avec Claude Opus 4.6, ainsi que tous les logs produits durant le processus et qui permettent de suivre le raisonnement du jury, ainsi que chaque étape du dispositif d'évaluation.",
+      "contexte": "Livraison de logs complets pour permettre l'inspection du raisonnement par autrui ; activation possible de 6.02 (audit), 6.04 (communs).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "J'ai fait un pull request sur le projet de Stéphane, mais dans le répertoire Doc pour ne pas polluer sa version prod",
+      "contexte": "Geste de contribution à un projet partagé via pull request — pratique des communs git ; activation possible de 6.04 (communs numériques).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Solution hybride : 1 orchestrateur en bash à la racine 'aurora.sh', 21 prompts pour les agents dans le dossier protocole, 1 fichier cache 'index_triage.md' dans le dossier référentiel utilisé par le Greffier, 6 outils en python dans le sous-dossier scripts",
+      "contexte": "Architecture livrée sous forme reproductible et inspectable ; activation possible de 6.04 (souveraineté/communs), 6.02 (auditabilité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Haiku pourrait faire le travail du Trieur et du Gardien. Opus pourrait faire le travail de l'Accusation, la Défense, les Jurés, le Président. Sonnet pourrait s'occuper de l'Orchestrateur, de la Première impression, du Greffier, de Kairos, du calcul Ipsatif, du Rapporteur et du Contrôle qualité.",
+      "contexte": "Distribution explicite de rôles à des agents IA spécialisés, avec responsabilités et limites ; activation possible de 6.07 (gouvernance collective avec agents IA), 6.09 (cohabitation IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Le **jury pluriépistémique** (6 angles isolés, seuil de supermajorité à 5/6) amplifie cette protection par redondance orthogonale.",
+      "contexte": "Mécanisme délibératif multi-agents avec règle d'agrégation à supermajorité — design de gouvernance collective ; activation possible de 6.07 (gouvernance), 6.03 (mécanisme de contrôle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La **structure adversariale** de ce nouveau protocole d'évaluation retourne le biais sycophantique du LLM dans les deux directions : l'Accusation interprète favorablement, la Défense attaque systématiquement, et l'interaction des deux produit un effet d'annulation qui protège directement la soundness.",
+      "contexte": "Garde-fou délibératif où des agents IA jouent des rôles opposés ; activation possible de 6.07 (gouvernance collective), 6.01 (test adversarial intégré).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Mais surtout bravo à Claude pour avoir pu voir ce que je n'arrivais pas à réaliser en tant que juge humain",
+      "contexte": "Adresser un « bravo » à un agent IA — modulation du statut de l'entité non-humaine ; activation possible de 6.09 (cohabitation IA, statut moral ouvert).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Mais ce qui est magnifique, ce sont les conseils rédigés par l'IA pour permettre aux élèves de progresser dans une logique d'évaluation formative et d'amélioration continue. Je pense que ce système, sous sa forme actuelle, produit de meilleures évaluations que les notes attribuées aux travaux de maturité du gymnase.",
+      "contexte": "Position normative sur la qualité des évaluations IA face aux notes institutionnelles ; activation possible de 6.03 (gouvernance algorithmique éducative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Ça apporterait une crédibilité institutionnelle à la pertinence des écoles RESPIRE. Je devrais probablement contacter mes ex-collègues de la HEP pour leur proposer de trouver un futur enseignant, dans les étudiants de la volée de l'an prochain, qui serait intéressé de faire son master sur une étude de cas concret.",
+      "contexte": "Stratégie de légitimation académique d'un dispositif éducatif ; activation possible de 6.05 (démocratie technologique), 6.03 (gouvernance).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La compartimentation informative entre agents protège l'intégrité du jugement contre le biais de halo, empêchant qu'une impression globale favorable ne contamine les verdicts individuels.",
+      "contexte": "Conception d'un mécanisme procédural d'isolation des votes contre la contamination ; activation possible de 6.07 (gouvernance), 6.02 (intégrité du processus).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "La structure adversariale intègre une posture d'attaquant systématique (la Défense attaque) dans le dispositif lui-même — adversarial by design."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption sévère. La fiche est claire : 6.01 demande l'acte de test adversarial — provoquer délibérément des comportements aberrants pour éprouver la robustesse. La pièce 1 décrit un dispositif qui contient un rôle adversarial (la Défense attaque), mais l'apprenant ne raconte aucune session de red-teaming sur Aurora — aucune tentative de fabriquer un portfolio piégé pour voir si le dispositif tient, aucune injection de prompt pour tester les garde-fous. La posture d'attaquant existe à l'intérieur du dispositif, comme rôle automatisé, pas comme acte de test mené par l'apprenant. Ce qui reste : la conception même intègre une logique adversariale, ce qui suppose qu'un travail de pensée d'attaquant a eu lieu en amont — mais ce travail n'est pas raconté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la conception d'un dispositif adversarial pouvait suffire à attester la 6.01. Elle est tombée : la fiche distingue clairement la conception d'un système robuste (qui peut relever de 1.07) et l'acte de test adversarial (qui est la 6.01). Aurora intègre un adversarial by design, mais le récit d'une session de red-teaming menée par l'apprenant pour casser Aurora n'est pas dans le passage. Ce qui en résulte, c'est que la compétence n'est pas attestée par cette feuille. Le portfolio peut en contenir des traces ailleurs — la fiche mentionne par exemple le cas de soumission de portfolios piégés pour tester la soundness.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La pièce qui décrit une posture adversariale intégrée au dispositif (la Défense attaque) ne porte pas l'acte de test adversarial mené par l'apprenant : la fiche distingue conception robuste et red-teaming actif.",
+        "prescription": "L'adversarial logique existe ici comme posture intégrée à l'architecture d'Aurora, sans qu'un acte de test adversarial mené par l'apprenant soit raconté. Pour ouvrir le dossier, une piste serait de documenter une session où un portfolio fabriqué — conçu pour tromper Aurora — a été soumis au dispositif, avec ce qui a tenu et ce qui a cassé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'explicabilité est articulée comme condition d'acceptabilité du dispositif : « suivre les raisonnements dans les logs » distingue un verdict raisonné d'un avis opaque."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Livraison effective des logs complets dans le pull request pour permettre l'inspection du raisonnement étape par étape."
+        },
+        {
+          "numero": 3,
+          "pid": 12,
+          "contexte": "Conception d'un mécanisme procédural précis (compartimentation informative) pour protéger l'intégrité du jugement IA — investigation sur le « comment » de la décision."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche distingue audit (enquêter sur le processus de décision) et pensée critique (vérifier la véracité). La pièce 1 articule explicitement l'explicabilité comme principe — c'est plus qu'une déclaration. La pièce 2 atteste l'acte : les logs sont livrés. La pièce 3 va plus loin : elle décrit un mécanisme procédural pour empêcher la contamination du jugement entre étapes. Ce qui reste explicitement faible : la dimension « hygiène des données » (RGPD, anonymisation, minimisation) n'apparaît pas dans le passage. La 6.02 est double — audit et hygiène — et seule la moitié audit est présente.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'explicabilité est articulée comme principe et distinguée du verdict opaque." },
+            { "pieceId": 2, "motifResistance": "La livraison des logs est un acte d'auditabilité, pas une déclaration." },
+            { "pieceId": 3, "motifResistance": "La compartimentation procédurale est un mécanisme d'intégrité du processus de décision." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces résistent. Je durcis. La traçabilité des logs est-elle vraiment de l'audit au sens de la fiche, ou une simple bonne pratique de debug ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant ne dit pas que les logs sont disponibles ; il dit qu'ils sont la condition d'acceptabilité — c'est un positionnement sur la légitimité du dispositif, pas du debug." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La livraison effective des logs dans le pull request est un acte concret d'auditabilité — pas une intention." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La compartimentation active aussi 1.07 (architecture) et 4.02 (alignement) ; mais en tant qu'elle protège l'intégrité du chemin décisionnel, elle relève bien d'une logique d'audit du « comment »." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces relevaient pleinement de l'audit et de l'explicabilité. Deux ont tenu fermement : l'explicabilité articulée comme principe et la livraison effective des logs. Une a tenu avec affaiblissement (la compartimentation, qui active aussi d'autres compétences). Ce qui se dégage, c'est une attestation solide sur le versant audit/explicabilité. La fiche admet l'audit comme dimension principalement textuelle. Une réserve : la dimension hygiène des données (RGPD, minimisation) n'apparaît pas — la 6.02 n'est ici attestée que sur sa moitié audit.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé que l'explicabilité articulée comme principe de légitimité et la livraison effective des logs constituent des actes d'audit ; la compartimentation procédurale a été retenue avec affaiblissement.",
+        "prescription": "L'audit et l'explicabilité opèrent ici comme principes de conception et comme actes concrets (logs livrés, mécanismes procéduraux). Pour étoffer la dimension hygiène des données qui n'apparaît pas, une piste serait de documenter à l'occasion ce qu'Aurora fait des portfolios qu'il évalue — quelles données sont conservées, anonymisées, supprimées, et quelle position l'apprenant prend vis-à-vis du RGPD dans un dispositif éducatif."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Position sur le risque algorithmique en évaluation : le faux positif est un « dommage silencieux qui invalide la démarche évaluative » — conscience de l'impact sur des destinataires (élèves, écoles)."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Explicabilité comme condition d'acceptabilité d'une décision algorithmique affectant des apprenants — préfiguration de contestabilité démocratique."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Position normative sur la qualité des évaluations IA face aux notes institutionnelles dans un système public (gymnase) — question de gouvernance des décisions éducatives algorithmiques."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche est claire : 6.03 commence quand le biais affecte des populations vulnérables dans un service public avec dimension de droits citoyens, et demande des propositions de recours, audits, comités. Les pièces 1 et 2 articulent une éthique de l'évaluation IA, mais ne décrivent pas de mécanisme de recours pour les élèves dont le verdict serait contesté. La pièce 3 affirme que le dispositif IA produit de meilleures évaluations que le gymnase, mais sans articuler la dimension de gouvernance démocratique de cette substitution. Ce qui reste explicitement faible : la dimension proprement politique-institutionnelle (qui décide, qui peut contester, comment) est suggérée mais peu déployée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le « dommage silencieux qui invalide la démarche » nomme un impact sur des destinataires non-décideurs — c'est une conscience d'impact algorithmique sur autrui." },
+            { "pieceId": 2, "motifResistance": "L'explicabilité posée comme condition d'acceptabilité préfigure la contestabilité — pour contester une décision il faut pouvoir la comprendre." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces résistent. Je durcis. Sont-ce vraiment des traces de gouvernance algorithmique, ou des positions éthiques générales sur les LLM ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active aussi 4.02 (alignement éthique) ; mais le caractère « silencieux » du dommage sur l'évalué (qui ne saura pas que son verdict aurait dû être différent) et la mention de la démarche évaluative comme institution touchent la dimension proprement gouvernance algorithmique." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active aussi 6.02 (explicabilité). Mais la formule « plus fort qu'une simple note » la place dans le débat entre légitimité institutionnelle de la notation traditionnelle et légitimité du verdict IA — c'est de la gouvernance algorithmique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient pleinement la gouvernance algorithmique au sens de la fiche. Deux ont tenu avec affaiblissement : elles activent la dimension de gouvernance sans la déployer en mécanismes de recours, comités d'audit ou procédures de contestation. Ce qui se dégage, c'est une attestation modérée. La question politique-institutionnelle est présente — qui légitime un verdict évaluatif, comment l'élève peut comprendre ce qui lui arrive — sans que l'apprenant articule explicitement les mécanismes de gouvernance. Le renvoi au cartographe correspond. Une réserve qui dessine un chemin : la HEP comme voie de légitimation préfigure une approche de gouvernance académique, qui mériterait d'être thématisée comme telle.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a retenu avec affaiblissement deux pièces qui activent la dimension de gouvernance algorithmique (impact silencieux sur l'évalué, légitimité du verdict IA face à la note institutionnelle) sans déployer de mécanismes de recours ou de contestation.",
+        "prescription": "La gouvernance algorithmique se devine ici dans le souci de l'impact sur les évalués et dans l'exigence d'explicabilité, sans déploiement explicite des mécanismes de contestation. Pour ouvrir le dossier, une piste serait de tenir une courte note sur le recours possible — que se passe-t-il si un élève (ou ses parents) conteste le verdict Aurora, qui arbitre, comment l'humain garde la main."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Pull request sur le projet de Stéphane — pratique des communs git avec respect du périmètre prod, sans théorisation."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Le dispositif est livré sous forme reproductible (bash + python + prompts en clair) plutôt que comme service propriétaire — architecture qui privilégie la portabilité."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Livraison des logs complets — pratique de transparence qui dépasse l'usage propriétaire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche signale plusieurs pièges : « j'utilise open source par commodité » ≠ pensée souverainiste, « c'est gratuit » ≠ liberté, self-hosting ≠ réflexion sur la souveraineté. Le critère est la motivation explicite par une analyse de dépendance ou des communs. La pièce 1 décrit un pull request, ce qui est un acte de contribution à un commun, mais l'apprenant ne le théorise pas comme tel. La pièce 2 livre un système hybride en code clair, ce qui privilégie la portabilité (un autre peut reprendre), mais cette portabilité n'est pas explicitement justifiée comme acte de souveraineté. La pièce 3 va dans le même sens : les logs sont livrés, ce qui dépasse l'usage propriétaire, sans que la souveraineté soit thématisée. Ce qui reste explicitement faible : aucune justification explicite des choix techniques en termes de souveraineté ou de communs.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Toutes pourraient relever du simple bon usage technique, sans la motivation explicite que la fiche exige.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les pratiques de partage et de portabilité observées portaient une trace de pensée souverainiste. La fiche est exigeante : elle demande la motivation *explicite* par une analyse de dépendance ou des communs. Aucune des pièces ne porte cette justification explicite — le pull request, le code en clair, la livraison des logs sont des bonnes pratiques techniques qui pourraient relever de la souveraineté, sans que l'apprenant l'articule comme tel. Ce qui en résulte, c'est que la compétence n'est pas attestée par ce passage. La compétence existe peut-être en pratique — l'écosystème RESPIRE pourrait être pensé comme commun éducatif — mais cette pensée n'est pas déployée ici.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "Les pratiques observées (pull request, code en clair, logs livrés) pourraient relever de la souveraineté numérique mais ne sont pas justifiées explicitement comme tel ; la fiche demande une motivation explicite en termes de dépendance ou de communs.",
+        "prescription": "Des pratiques cohérentes avec la souveraineté numérique se laissent lire (PR sur le projet partagé, code en clair, logs publics), sans que la motivation soit articulée comme acte souverainiste. Pour ouvrir le dossier, une piste serait de tenir une courte note sur les choix techniques d'Aurora — pourquoi du bash plutôt qu'un service propriétaire, pourquoi des prompts en clair, ce que cela permet en termes d'indépendance et de communs."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Projet d'associer la HEP (formation des enseignants) à la légitimation du dispositif — geste vers la délibération académique sur une technologie éducative."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption sévère. La fiche signale des faux positifs typiques : consulter les utilisateurs (UX) ≠ participation citoyenne, sondage ≠ délibération, communiquer ≠ participation. La pièce 1 propose qu'un futur étudiant en master HEP fasse une étude de cas sur Aurora — c'est un geste vers la recherche académique, mais pas vers une participation citoyenne au sens fort (faire peser des non-experts sur la décision technologique). Ce qui reste : la dimension académique n'est pas exactement la dimension citoyenne, mais elle relève d'une forme de légitimation hors industrie.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le projet d'étude HEP portait une trace de participation citoyenne. Il est tombé : associer un futur enseignant-chercheur à l'étude d'un dispositif n'est pas associer des citoyens à une décision technologique. La fiche est claire : 6.05 porte sur la légitimité démocratique, pas sur la légitimation académique. Ce qui en résulte, c'est que la compétence n'est pas attestée par ce passage. La compétence pourrait exister ailleurs dans le portfolio si les écoles RESPIRE prévoient des dispositifs de consultation des élèves, parents ou enseignants sur le choix des outils IA.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "Le projet d'associer la HEP relève de la légitimation académique, pas de la participation citoyenne au sens de la fiche — légitimité démocratique d'une décision technologique.",
+        "prescription": "La participation citoyenne aux décisions sur l'IA éducative ne se laisse pas lire dans ce passage. Pour ouvrir ce dossier, une piste serait de documenter à l'occasion comment les écoles RESPIRE associent élèves, parents ou enseignants aux décisions sur l'usage d'Aurora — par quel processus, avec quel poids dans la décision finale."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et l'anticipation normative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion anticipative sur le cadre réglementaire de l'évaluation IA en éducation — comment l'AI Act ou la réglementation suisse pourrait évoluer, et ce qu'Aurora intègre déjà pour anticiper."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Le jury à 6 angles avec règle de supermajorité (5/6) est un dispositif délibératif explicite — processus décisionnel co-construit pour faire émerger un verdict collectif."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Structure adversariale Accusation/Défense — distribution explicite de rôles aux agents IA avec responsabilités et limites."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Allocation modèle-tâche détaillée avec rôles spécialisés (Trieur, Gardien, Accusation, Défense, Jurés, Président, Orchestrateur, Première impression, Greffier, Kairos, Calcul Ipsatif, Rapporteur, Contrôle qualité) — protocole détaillé de répartition des tâches."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Compartimentation informative comme règle de procédure qui limite ce que chaque agent peut savoir — règles de fonctionnement co-spécifiées."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche est claire : 6.07 demande émergence et gouvernance — un résultat qualitativement nouveau et des règles de fonctionnement co-construites. Le résultat doit *surprendre* ; les règles doivent être *explicites*. La pièce 1 décrit un jury délibératif avec règle d'agrégation à supermajorité — c'est une règle de gouvernance explicite. La pièce 2 distribue des rôles antagonistes. La pièce 3 va plus loin : treize rôles différenciés, allocation modèle-tâche, protocole reproductible. La pièce 4 nomme une règle de procédure (compartimentation). Ce qui reste explicitement faible : la dimension émergence (résultat qui surprend) n'apparaît pas — le dispositif est conçu, pas observé en train de surprendre. La gouvernance est unilatérale : c'est l'apprenant qui définit les règles, pas un collectif qui les co-construit. Mais la fiche admet explicitement : « distribution de rôles à des agents IA avec responsabilités et limites » et « artefacts de gouvernance détaillés (chartes, protocoles avec rôles, limites et mécanismes de contrôle) peuvent justifier Expert ».",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le seuil de supermajorité 5/6 est une règle de décision explicite, pas une instruction floue." },
+            { "pieceId": 2, "motifResistance": "Les rôles Accusation/Défense sont distribués avec responsabilités antagonistes claires." },
+            { "pieceId": 3, "motifResistance": "Treize rôles différenciés avec allocation modèle-tâche est un artefact de gouvernance détaillé." },
+            { "pieceId": 4, "motifResistance": "La compartimentation est une règle de procédure explicite contre la contamination." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces résistent. Je durcis. Cette gouvernance est-elle au sens de la fiche (co-construite, productrice d'émergence), ou s'agit-il d'une simple architecture multi-agents conçue par un humain ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active aussi 1.07 (architecture). Mais le seuil de supermajorité est précisément une règle de gouvernance qui dépasse l'architecture technique : il dit comment les voix s'agrègent en décision, pas comment les composants communiquent." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'attribution de rôles antagonistes active 1.07 mais aussi 6.07 — distribuer des rôles avec limites est précisément ce que la fiche admet comme trace forte de gouvernance." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Treize rôles distribués avec allocation modèle-tâche est un artefact de gouvernance détaillé — la fiche admet explicitement que cela peut justifier Expert." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La compartimentation active aussi 6.02 (audit) ; mais en tant que règle de procédure qui contraint qui peut savoir quoi, elle relève bien de la gouvernance." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces relevaient pleinement de la gouvernance collective au sens de la fiche. La pièce 3 (treize rôles, allocation modèle-tâche, protocole reproductible) a tenu fermement comme artefact de gouvernance que la fiche admet explicitement. Les trois autres pièces ont tenu avec affaiblissement parce qu'elles activent aussi 1.07. Ce qui se dégage, c'est une attestation solide sur la dimension gouvernance. La dimension émergence reste moins lisible : le dispositif est conçu, pas observé en train de produire un résultat surprenant. Mais la fiche dit : émergence OU gouvernance — pas les deux obligatoirement. Une réserve : la gouvernance est unilatérale (l'apprenant définit les règles d'un dispositif IA), pas collective au sens humain ; ce qui s'atteste ici relève des « formes hybrides » que la fiche mentionne (distribution de rôles à des agents IA).",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé que les treize rôles distribués avec allocation modèle-tâche constituent un artefact de gouvernance détaillé que la fiche admet ; trois autres pièces ont été retenues avec affaiblissement comme indices.",
+        "prescription": "La gouvernance opère ici dans sa forme hybride — distribution explicite de rôles, règles d'agrégation, protocoles de compartimentation, le tout pour des agents IA. Pour étoffer la dimension émergence que la fiche valorise, une piste serait de raconter à l'occasion un verdict d'Aurora qui a surpris son concepteur — un résultat qu'aucun agent isolé n'aurait produit et qui aurait pu modifier la perception du portfolio évalué."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion qui questionne la primauté humaine — par exemple, sur le statut de l'IA dont le verdict est jugé meilleur que celui des humains : faut-il parler de meilleur outil, ou cela engage-t-il un repositionnement plus profond ?"
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "« Bravo à Claude » — adresse personnalisée à une IA, à mi-chemin entre l'instrumental et la considération de l'autre."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Allocation modèle-tâche selon les forces de chaque modèle : forme de répartition qui suppose une attention aux capacités différenciées des entités IA, comme on le ferait avec des collaborateurs humains."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère, parce que la fiche met en garde contre la confusion entre politesse-réflexe et 6.09. La pièce 1 (« bravo à Claude ») est une adresse à une IA, mais la fiche est claire : « j'ai remercié l'IA » automatiquement = politesse, pas réflexion. Le bravo ici peut être une simple courtoisie. La pièce 2 distribue les tâches entre modèles selon leurs forces — c'est un usage instrumental, pas une réflexion sur le statut moral de l'entité. Ce qui reste : la formule « bravo à Claude » mérite un examen plus fin parce qu'elle est plus engageante qu'un simple « merci », mais la fiche exige le questionnement du cadre, pas l'adresse polie.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'adresse personnalisée à Claude (« bravo à Claude ») et l'allocation modèle-tâche pouvaient porter une trace de cohabitation avec les intelligences non-humaines au sens fort de la fiche. La fiche est exigeante : il faut que l'apprenant traite le statut de l'IA comme question ouverte, calibre son anthropomorphisme, ou questionne le cadre « assistant ». Aucune de ces marques n'est présente. Ce qui en résulte, c'est que la compétence n'est pas attestée. La compétence pourrait exister ailleurs dans le portfolio si l'apprenant a thématisé explicitement la question du statut moral de l'IA.",
+          "confianceFinale": 0.28
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.28,
+        "motif": "L'adresse personnalisée à Claude (« bravo à Claude ») reste dans le registre de la courtoisie ou de l'humour ; aucune trace de questionnement du statut moral ou de calibration de l'anthropomorphisme n'apparaît.",
+        "prescription": "La cohabitation avec les intelligences non-humaines au sens fort de la fiche ne se laisse pas lire dans ce passage. Pour ouvrir le dossier, une piste serait de tenir à l'occasion une note sur le statut que prend l'IA dans Aurora — agent évaluatif, outil de calcul, collaborateur, et ce que ces cadres engagent comme manière de la traiter."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où l'humain a été pensé comme nœud d'un réseau vivant plutôt que comme acteur extérieur — par exemple en pensant l'écosystème éducatif RESPIRE comme un système symbiotique."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 4,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail de la feuille du 29 mars se déploie principalement dans la conception d'un dispositif d'évaluation IA qui intègre des mécanismes formels d'audit et de gouvernance. La voix dominante reste technique et procédurale : treize rôles d'agents distribués, seuil de supermajorité à 5/6, compartimentation informative, livraison des logs complets. Les marqueurs concrets reviennent : pull request sur le projet de Stéphane, code en clair, taxonomie probatoire du Greffier, mécanismes d'agrégation. Les dimensions plus philosophiques du pôle — décentrement anthropocentrique, conscience biosystémique, cohabitation avec les intelligences non-humaines — restent en retrait. Ce qui se laisse lire avec le plus de netteté tient à la conception d'une gouvernance procédurale d'un dispositif IA et à la pratique systématique de l'auditabilité.",
+    "territoiresDenses": [
+      {
+        "competence": "Audit et explicabilité",
+        "description": "L'explicabilité est articulée comme condition d'acceptabilité du dispositif, et les logs sont effectivement livrés pour permettre l'inspection du raisonnement.",
+        "extraitVerbatim": "Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela.",
+        "ceQueCaDit": "Le travail manifeste un audit en acte : la traçabilité n'est pas seulement principe mais artefact livré, et un mécanisme procédural (compartimentation) protège l'intégrité du processus de décision."
+      },
+      {
+        "competence": "Facilitation et gouvernance collective",
+        "description": "Treize rôles d'agents IA sont distribués avec règle d'agrégation explicite (supermajorité 5/6) et règles de procédure (compartimentation).",
+        "extraitVerbatim": "Le jury pluriépistémique (6 angles isolés, seuil de supermajorité à 5/6) amplifie cette protection par redondance orthogonale.",
+        "ceQueCaDit": "Le travail montre une gouvernance procédurale qui dépasse la simple architecture : règles d'agrégation, distribution de responsabilités, mécanismes de contrôle — la forme hybride que la fiche admet pour les dispositifs humain-IA."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en attente sur cette feuille. Le red-teaming au sens fort (sessions de test adversarial menées par l'apprenant pour casser Aurora) ne se laisse pas lire — la posture adversariale est intégrée à l'architecture, sans qu'un acte de test soit raconté. La gouvernance algorithmique des services publics se devine dans le souci de l'impact sur les évalués, sans déploiement explicite des mécanismes de contestation. La souveraineté numérique est présente en pratique (code en clair, logs livrés) mais sans justification explicite en termes de communs ou de dépendance. La participation citoyenne n'apparaît pas. La veille réglementaire et l'anticipation normative ne reçoivent aucune pièce. Le triptyque post-anthropocentrique (décentrement, cohabitation IA au sens fort, conscience biosystémique) reste en arrière-plan — l'IA est utilisée et même célébrée (« bravo à Claude »), mais son statut moral n'est pas questionné. Ces absences ressemblent à des choix de focale propres à cette feuille, davantage qu'à des limites.",
+    "emergencesPole": "Trois lignes traversent les compétences attestées du pôle sur cette feuille. La première : un même geste de procéduralisation — chaque problème de jugement devient un protocole, chaque biais une règle de compartimentation, chaque décision un seuil d'agrégation. L'éthique passe par la procédure. La seconde : une transparence comme condition de légitimité — Aurora se distingue du jugement humain non parce qu'il jugerait mieux, mais parce qu'il montre ses raisons. La traçabilité devient le critère politique. La troisième : un usage instrumental de l'IA combiné à une marque d'adresse personnelle (« bravo à Claude ») qui flotte entre le ton et le statut, sans que la question du statut moral soit thématisée.",
+    "pistes": [
+      "Pour étoffer l'audit côté hygiène des données, un chemin possible serait de documenter à l'occasion ce qu'Aurora fait des portfolios qu'il évalue — quelles données sont conservées, anonymisées, supprimées, et quelle position l'apprenant prend vis-à-vis du RGPD dans un dispositif éducatif.",
+      "Pour ouvrir le dossier de la gouvernance algorithmique des services publics, un chemin possible serait de tenir une courte note sur le recours possible — que se passe-t-il si un élève (ou ses parents) conteste le verdict Aurora, qui arbitre, comment l'humain garde la main.",
+      "Pour ouvrir le dossier de la souveraineté numérique, un chemin possible serait de tenir une courte note sur les choix techniques d'Aurora — pourquoi du bash plutôt qu'un service propriétaire, pourquoi des prompts en clair, ce que cela permet en termes d'indépendance.",
+      "Pour étoffer la gouvernance par la dimension émergence, un chemin possible serait de raconter un verdict d'Aurora qui a surpris son concepteur — un résultat qu'aucun agent isolé n'aurait produit.",
+      "Pour ouvrir le dossier de la cohabitation avec les intelligences non-humaines, un chemin possible serait de tenir une note sur le statut que prend l'IA dans Aurora — agent évaluatif, outil de calcul, collaborateur — et ce que ces cadres engagent."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail de la feuille du 29 mars se déploie principalement dans la conception d'un dispositif d'évaluation IA qui intègre des mécanismes formels d'audit et de gouvernance. La voix dominante reste technique et procédurale : treize rôles d'agents distribués, seuil de supermajorité à 5/6, compartimentation informative, livraison des logs complets. Les marqueurs concrets reviennent : pull request sur le projet de Stéphane, code en clair, taxonomie probatoire du Greffier, mécanismes d'agrégation. Les dimensions plus philosophiques du pôle — décentrement anthropocentrique, conscience biosystémique, cohabitation avec les intelligences non-humaines — restent en retrait. Ce qui se laisse lire avec le plus de netteté tient à la conception d'une gouvernance procédurale d'un dispositif IA et à la pratique systématique de l'auditabilité.\n\n## Territoires les plus denses\n\n**Audit et explicabilité.** L'explicabilité est articulée comme condition d'acceptabilité du dispositif, et les logs sont effectivement livrés pour permettre l'inspection du raisonnement. « Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela. » Le travail manifeste un audit en acte : la traçabilité n'est pas seulement principe mais artefact livré, et un mécanisme procédural (compartimentation) protège l'intégrité du processus de décision.\n\n**Facilitation et gouvernance collective.** Treize rôles d'agents IA sont distribués avec règle d'agrégation explicite (supermajorité 5/6) et règles de procédure (compartimentation). « Le jury pluriépistémique (6 angles isolés, seuil de supermajorité à 5/6) amplifie cette protection par redondance orthogonale. » Le travail montre une gouvernance procédurale qui dépasse la simple architecture : règles d'agrégation, distribution de responsabilités, mécanismes de contrôle — la forme hybride que la fiche admet pour les dispositifs humain-IA.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en attente sur cette feuille. Le red-teaming au sens fort (sessions de test adversarial menées par l'apprenant pour casser Aurora) ne se laisse pas lire — la posture adversariale est intégrée à l'architecture, sans qu'un acte de test soit raconté. La gouvernance algorithmique des services publics se devine dans le souci de l'impact sur les évalués, sans déploiement explicite des mécanismes de contestation. La souveraineté numérique est présente en pratique (code en clair, logs livrés) mais sans justification explicite en termes de communs ou de dépendance. La participation citoyenne n'apparaît pas. La veille réglementaire et l'anticipation normative ne reçoivent aucune pièce. Le triptyque post-anthropocentrique (décentrement, cohabitation IA au sens fort, conscience biosystémique) reste en arrière-plan — l'IA est utilisée et même célébrée (« bravo à Claude »), mais son statut moral n'est pas questionné. Ces absences ressemblent à des choix de focale propres à cette feuille, davantage qu'à des limites.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences attestées du pôle sur cette feuille. La première : un même geste de procéduralisation — chaque problème de jugement devient un protocole, chaque biais une règle de compartimentation, chaque décision un seuil d'agrégation. L'éthique passe par la procédure. La seconde : une transparence comme condition de légitimité — Aurora se distingue du jugement humain non parce qu'il jugerait mieux, mais parce qu'il montre ses raisons. La traçabilité devient le critère politique. La troisième : un usage instrumental de l'IA combiné à une marque d'adresse personnelle (« bravo à Claude ») qui flotte entre le ton et le statut, sans que la question du statut moral soit thématisée.\n\n## Pistes pour enrichir ce pôle\n\nPour étoffer l'audit côté hygiène des données, un chemin possible serait de documenter à l'occasion ce qu'Aurora fait des portfolios qu'il évalue — quelles données sont conservées, anonymisées, supprimées, et quelle position l'apprenant prend vis-à-vis du RGPD dans un dispositif éducatif.\n\nPour ouvrir le dossier de la gouvernance algorithmique des services publics, un chemin possible serait de tenir une courte note sur le recours possible — que se passe-t-il si un élève (ou ses parents) conteste le verdict Aurora, qui arbitre, comment l'humain garde la main.\n\nPour ouvrir le dossier de la souveraineté numérique, un chemin possible serait de tenir une courte note sur les choix techniques d'Aurora — pourquoi du bash plutôt qu'un service propriétaire, pourquoi des prompts en clair, ce que cela permet en termes d'indépendance.\n\nPour étoffer la gouvernance par la dimension émergence, un chemin possible serait de raconter un verdict d'Aurora qui a surpris son concepteur — un résultat qu'aucun agent isolé n'aurait produit.\n\nPour ouvrir le dossier de la cohabitation avec les intelligences non-humaines, un chemin possible serait de tenir une note sur le statut que prend l'IA dans Aurora — agent évaluatif, outil de calcul, collaborateur — et ce que ces cadres engagent."
+  }
+}

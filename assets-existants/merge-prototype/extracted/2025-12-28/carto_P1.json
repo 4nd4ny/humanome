@@ -1,0 +1,515 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "J'ai évalué les supports générés pour la formation du tuteur : même prompt, 3 IA en mode de performance maximal. Résultats sur 10 points : Claude 9, ChatGPT 8, Gemini 2. Je continuerai donc avec Claude et ChatGPT (mais abandon de Gemini) pour les chapitres suivants.",
+      "contexte": "Mini-benchmark personnel comparant 3 IA sur un prompt unique, avec barème explicite et décision opérationnelle ; active la pensée critique, la littératie IA et le dialogue avancé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Je me demande si le mode \"deepthinking\" ne dégrade pas les performances des IA. Cela expliquerait peut-être les différences de qualité et en tout cas expliquerait le fait qu'on puisse choisir le mode de réflexion profonde. Je pourrais essayer de refaire le test avec Gemini qui a mal performé, en mode normal pour voir.",
+      "contexte": "Hypothèse causale sur un paramètre interne des IA (mode deepthinking) et protocole de re-test ; active la littératie IA et la pensée critique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Évaluation du travail des IA selon le barème suivant : 5 questions = 10 pts. La réponse est parfaite 2 pts (A). La réponse est ok 1 pt (B). La réponse semble incomplète 0pt (C).",
+      "contexte": "Dispositif d'évaluation chiffré et critérié appliqué à la production des IA ; active la pensée critique opérationnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "J'ai été très déçu du résultat de mon prompt d'hier soir avec Claude pour l'ajout de 34 nouvelles références bibliographiques. Il y avait de toute évidence trop d'informations pour sa fenêtre de contexte. Je recommencerai demain soir en épurant les données en input.",
+      "contexte": "Diagnostic explicite d'un échec via la fenêtre de contexte et action corrective (épurer l'input) ; active la littératie IA et le dialogue avancé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Mon constat : c'est comme avec la génération de code. Lorsqu'il s'agit de créer \"from scratch\", il fait des trucs biens. Lorsqu'il s'agit de reprendre l'existant et de l'améliorer, il s'embrouille. Je pense que la limite vient de la difficulté qu'il a de se recréer un modèle mental correct de ce qu'il a généré la première fois. A explorer.",
+      "contexte": "Pattern transversal entre génération de texte et génération de code, avec hypothèse mécaniste sur un \"modèle mental\" de l'IA ; active synthèse, littératie IA et pensée systémique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Il n'y a qu'en utilisant les LLM que l'on peut apprendre à comprendre leurs forces et leurs limites.",
+      "contexte": "Règle personnelle formulée sur la voie d'apprentissage des LLM ; encadrée par l'apprenant comme \"prise de conscience à valoriser\".",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "[Exemple] de prise de conscience à valoriser pour l'élaboration de la cartographie [...] (*) : Même si ce n'est pas vraiment authentique : cette prise de conscience je l'ai eu il y a bien longtemps déjà",
+      "contexte": "Auto-correction immédiate qui désamorce sa propre valorisation : l'apprenant qualifie sa prise de conscience de non-authentique au moment même de la mettre en avant ; trace de pensée critique réflexive.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Pour le chapitre 2, j'ai fait le test suivant : j'ai testé le même prompt from scratch, c'est-à-dire dans une nouvelle conversation et à la suite du prompt du chapitre 1, pour comparer ChatGPT et Claude. J'ai lu avec beaucoup d'attention les versions from scratch, et j'ai trouvé ChatGPT meilleur. J'ai ensuite lu la version de Claude posée à la suite du prompt du chapitre 1, et je l'ai trouvée meilleure encore.",
+      "contexte": "Protocole de test contrôlé (même prompt, contexte avec/sans) avec lecture attentive comparée ; active dialogue IA avancé, littératie IA et pensée critique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "J'ai ensuite demandé l'avis à Gémini qui est du même avis que moi [...]. Conclusion, je vais continuer uniquement avec Claude pour le chapitre 3 et le reste de la formation.",
+      "contexte": "Croisement d'un jugement humain avec un jugement IA tiers comme contrôle, puis décision opérationnelle ; active pensée critique, dialogue avancé, synergie.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "qu'il ne faut pas faire confiance aux benchmarks qui disent que Claude est moins bon que les deux autres dans les tâches qui ne sont pas du code : rien ne vaut un test perso sur une situation concrète avec un mini benchmark et une évaluation manuelle, même si elle confirmée par une évaluation IA.",
+      "contexte": "Règle personnelle articulant le doute envers les benchmarks publics et la primauté du test situé ; active pensée critique calibrée et littératie IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "qu'il est important d'apprendre à administrer plusieurs IA et à croiser leurs réponses pour tirer le meilleur résultat possible de ces outils, tout en exploitant leurs capacités (Gemini reste l'IA ayant la plus grande mémoire de contexte, même s'il est moins bon en rédaction du support de cours).",
+      "contexte": "Articulation d'une stratégie multi-IA fondée sur la spécialisation comparative des outils ; active synergie, dialogue avancé, littératie IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Évaluation chiffrée et critérée de trois IA, avec décision argumentée d'abandonner Gemini ; acte de jugement non délégué."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Barème de scoring construit (5 questions × 2 points avec critères A/B/C) : protocole personnel de vérification."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Auto-correction en plein élan : l'apprenant invalide partiellement sa propre prise de conscience au moment de la mettre en avant."
+        },
+        {
+          "numero": 4,
+          "pid": 9,
+          "contexte": "Demander l'avis d'une IA tierce comme contrôle d'un jugement humain — croisement de sources pour calibrer la confiance."
+        },
+        {
+          "numero": 5,
+          "pid": 10,
+          "contexte": "Doute méthodique calibré envers les benchmarks publics, fondé sur la valeur d'un test situé personnellement vécu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en cherchant à nier la pensée critique : un apprenant peut très bien donner des notes à des IA sans qu'il y ait là un quelconque doute méthodique, juste de la préférence subjective. La pièce 1 pourrait être une simple décision de consommateur. La pièce 4 (demander à Gemini son avis) pourrait n'être qu'une recherche de validation, pas un acte critique. Ce qui résiste : la pièce 3 décrit un dispositif évaluatif explicite avec critères, c'est une trace d'opérationnalisation du doute, pas un sentiment. La pièce 7 résiste avec force : auto-corriger sa propre prise de conscience en notant son inauthenticité, c'est exactement le scepticisme appliqué à soi en plein élan. La pièce 10 résiste : formuler que les benchmarks publics ne sont pas fiables et justifier pourquoi (test situé) est un acte de calibration explicite. La pièce 1 et la pièce 4 restent faibles si elles sont prises isolément.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Construction d'un barème évaluatif chiffré et critérié — dispositif explicite, pas opinion." },
+            { "pieceId": 3, "motifResistance": "Auto-correction qui désamorce sa propre valorisation — scepticisme appliqué à soi au moment de l'élan." },
+            { "pieceId": 4, "motifResistance": "Demande d'avis tiers comme contrôle de son propre jugement — geste de croisement, pas de validation." },
+            { "pieceId": 5, "motifResistance": "Calibrage explicite de la confiance accordée aux benchmarks publics, avec justification." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir quatre pièces. Maintenant je me méfie de moi. La pièce 2 (barème) : ai-je halluciné un protocole alors qu'il s'agit d'un simple décompte ? L'attaque (a) insuffisance probatoire est tentante mais la pièce décrit explicitement le dispositif. La pièce 3 (auto-correction) est la plus solide ; aucune attaque ne mord vraiment. La pièce 4 (avis Gemini) est plus fragile : peut-être que demander à Gemini ne contrôle rien si l'apprenant choisit l'IA dont il anticipe l'accord — attaque (e) surinterprétation. La pièce 5 (méfiance des benchmarks) est explicite et argumentée, l'attaque ne tient pas vraiment.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le barème est décrit comme un dispositif structuré (5 questions, 3 niveaux A/B/C, total sur 10), ce n'est pas une note jetée." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'auto-correction n'est pas une déclaration de critique mais l'acte critique lui-même posé sur la prose qui le précède." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Demander à Gemini son avis sur Claude vs ChatGPT peut être un croisement faible (Gemini n'est pas partie prenante), la portée critique du geste reste modeste." },
+            { "pieceId": 5, "attaqueDominante": "g", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La règle est formulée comme un acquis d'expérience consolidé (\"il ne faut pas faire confiance\"), pas comme une mise en route." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, j'ai cherché à les ramener à une simple consommation comparée d'outils IA, sans charge critique réelle. Ce qui m'a forcé à reconnaître quelque chose, c'est l'auto-correction sur la prise de conscience encadrée comme \"à valoriser\" : l'apprenant met en avant une réflexion et, dans le même geste, en note l'inauthenticité — la critique s'applique à soi en temps réel, pas à un objet extérieur. La construction du barème et la règle sur les benchmarks publics tiennent comme dispositifs explicites de calibration. Ce qui a moins tenu, c'est le geste de demander à Gemini : utile, mais la portée critique reste modeste et la pièce sort affaiblie. Au total, sur cette feuille, le doute méthodique se manifeste à la fois comme dispositif (barème, règle) et comme acte appliqué à soi (auto-correction). La pensée critique trouve un sol dans le travail du jour. Une réserve : on voit surtout du doute envers les outils et envers soi, peu envers les sources externes au sens classique — ce qui n'invalide pas, mais situe.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé deux pièces (barème, règle sur les benchmarks) et a maintenu l'auto-correction comme trace forte ; seule la pièce du croisement Gemini est sortie affaiblie.",
+        "prescription": "La feuille montre du doute méthodique appliqué aux outils et à soi-même. Pour épaissir ce territoire, un chemin possible consisterait à documenter aussi une situation où la critique a porté sur une source non-IA (un article, un avis d'expert, un manuel) avec le même type de dispositif. Documenter ce qui résiste à la critique, et pas seulement ce qui y tombe, renforcerait le caractère calibré du doute."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au cadrage de l'intention sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la formulation initiale du problème a été interrogée avant d'aborder son exécution."
+      }
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant noue son observation sur la rédaction de support de cours avec celle, antérieure, qu'il avait sur la génération de code : un même mécanisme expliquerait les deux limites — c'est un essai de synthèse transversale."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Articulation d'une stratégie multi-IA fondée sur la complémentarité des outils — synthèse intégrative de plusieurs expérimentations en un principe opérationnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la synthèse intégrative n'est pas là. Pour qu'elle le soit, il faut un insight émergent qui n'existait dans aucune source isolée, pas une compilation. La pièce 1 (parallèle texte/code) est intéressante mais fragile : c'est une analogie posée, peut-être pas une vraie fusion. Si je creuse, ce qui résiste, c'est que l'apprenant ne se contente pas du parallèle, il propose un mécanisme commun (\"se recréer un modèle mental correct de ce qu'il a généré\") qui unifie les deux observations sous une hypothèse causale. La pièce 2 (stratégie multi-IA) résiste aussi : elle agrège plusieurs expériences en un principe de répartition, ce que ni les expériences isolées ni la simple constatation \"Gemini a beaucoup de contexte\" ne contenaient. La densité reste modeste : deux pièces dans la feuille, mais qui portent toutes deux un mouvement de fusion plutôt qu'un empilement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le parallèle texte/code est doublé d'une hypothèse mécaniste commune — c'est une fusion, pas une analogie nue." },
+            { "pieceId": 2, "motifResistance": "La règle multi-IA agrège plusieurs constats hétérogènes (qualité, contexte, usage) en un principe de répartition unifié." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me méfie maintenant. Sur la pièce 1, ai-je halluciné la synthèse là où il y a juste un \"c'est comme avec...\" ? L'attaque (e) surinterprétation pédagogique est sérieuse : un parallèle court ne fait pas une synthèse. Mais l'apprenant ajoute le mécanisme commun, ce qui sauve partiellement la pièce. Sur la pièce 2, l'attaque (d) glissement lexical pourrait jouer : \"croiser plusieurs IA\" peut sonner comme synthèse sans en être une. Mais ici l'apprenant nomme bien la répartition des forces comparatives — c'est une intégration argumentée.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le parallèle est court et n'est pas développé en synthèse complète, mais l'hypothèse mécaniste commune l'extrait de la simple analogie." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce reste proche d'une stratégie d'usage plutôt qu'une synthèse théorique de la complémentarité, mais l'agrégation de constats hétérogènes en règle tient." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces deux pièces en présumant qu'elles n'étaient que des observations posées côte à côte, sans réelle fusion. Ce qui m'a forcé à reconnaître autre chose, c'est l'hypothèse causale commune sur le \"modèle mental\" : elle ne se contente pas de relever une ressemblance, elle propose un mécanisme partagé qui ferait sens des deux observations. Sous la présomption de sycophantie, les deux pièces sortent affaiblies — la synthèse reste embryonnaire, énoncée plutôt que déployée. Ce qui en résulte : une trace de synthèse en train de se faire sur cette feuille, plutôt qu'une synthèse stabilisée. Le verdict tient, avec une confiance modérée. Une orientation possible serait de prolonger l'hypothèse commune en la testant explicitement.",
+          "confianceFinale": 0.58
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.58,
+        "motif": "Les deux pièces ont été affaiblies mais retenues au temps 2 : elles portent un mouvement de fusion (hypothèse mécaniste commune, principe de répartition multi-IA) plutôt qu'une compilation.",
+        "prescription": "Sur cette feuille, la synthèse intégrative se manifeste à l'état naissant — un parallèle texte/code reposant sur un mécanisme commun, une règle multi-IA agrégeant plusieurs expériences. Un chemin possible serait de prendre le temps de développer l'hypothèse du \"modèle mental\" sur un cas concret pour vérifier si elle tient quand on la pousse. La synthèse gagne quand l'insight émergent est mis à l'épreuve, pas seulement formulé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'apprenant qualifie immédiatement sa propre prise de conscience d'inauthentique — réflexion sur la nature même de sa réflexion, à la limite du transfert métacognitif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce unique avec présomption d'absence : la métacognition exige que l'objet de la réflexion soit le processus cognitif lui-même, pas un objet externe. Ici l'apprenant note qu'une \"prise de conscience\" qu'il met en avant est antérieure — c'est un commentaire sur l'authenticité d'un acte réflexif. Est-ce de la métacognition, ou simplement de l'honnêteté factuelle ? Ce qui résiste : l'objet du commentaire est bien l'acte de prise de conscience en tant que tel, et le commentaire en pondère la portée pédagogique. Mais la pièce est isolée, brève, et ne déploie pas un vocabulaire de processus cognitif.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'objet de la note est bien un acte cognitif (la prise de conscience) et non un objet externe ; l'auto-évaluation pondère la portée d'un geste réflexif." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me méfie : ai-je vu de la métacognition là où il n'y a qu'une honnêteté factuelle (\"je l'avais déjà compris avant\") ? L'attaque (a) insuffisance probatoire est sérieuse — une seule pièce, brève, sans vocabulaire de processus. La pièce porte plus la trace d'une honnêteté que d'une observation sur la manière de penser.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Pièce courte et unique, sans description du processus cognitif lui-même ; la composante métacognitive reste implicite plutôt qu'articulée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener cette pièce à une simple honnêteté factuelle. Ce qui m'a forcé à laisser une trace : l'objet du commentaire est un acte cognitif et le commentaire en pondère la portée, ce qui touche la métacognition. Mais sous la présomption de sycophantie, la pièce sort affaiblie — un signal trop ténu pour porter seul une présence. Le verdict tient comme renvoi au cartographe : il y a quelque chose, mais la matière manque pour en faire une présence établie sur cette feuille. Une trace explicite du processus de pensée — comment l'apprenant a su que la prise de conscience était ancienne, ce que cela change pour lui — déplacerait le verdict.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Une seule pièce, affaiblie au temps 2 — l'objet métacognitif est implicite plutôt qu'articulé.",
+        "prescription": "La feuille porte un geste qui frôle la métacognition (auto-évaluation de l'authenticité d'une prise de conscience) sans déployer le vocabulaire du processus cognitif. Un chemin possible serait de raconter, sur une autre feuille, comment cette ancienneté de la prise de conscience a été reconnue : par quel souvenir, par quelle comparaison interne. C'est ce mouvement d'observation sur la manière de penser qui distingue la métacognition de l'honnêteté factuelle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée systémique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où des boucles de rétroaction ou des effets de second ordre ont été modélisés explicitement."
+      }
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Hypothèse mécaniste sur le mode \"deepthinking\" : l'apprenant propose un facteur causal interne (le mode de réflexion) pour expliquer les écarts de qualité observés."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Diagnostic explicite de la cause d'un échec : saturation de la fenêtre de contexte ; trace de littératie technique."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Hypothèse sur la difficulté à reconstruire un \"modèle mental\" de ce qui a été précédemment généré : analogie cognitive éclairant un échec récurrent."
+        },
+        {
+          "numero": 4,
+          "pid": 11,
+          "contexte": "Comparaison fine entre IA fondée sur leurs caractéristiques techniques (mémoire de contexte de Gemini vs qualité rédactionnelle)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la littératie IA n'est pas réellement présente : un apprenant peut utiliser le vocabulaire (\"fenêtre de contexte\", \"deepthinking\") sans en comprendre les mécanismes. La pièce 1 (hypothèse deepthinking) résiste : l'apprenant propose une hypothèse causale et un protocole de re-test, c'est un raisonnement, pas un mot. La pièce 2 (fenêtre de contexte) résiste fortement : diagnostic causal explicite d'un échec, suivi d'une action corrective (épurer l'input). La pièce 3 (modèle mental) résiste aussi : analogie cognitive éclairante, qui mobilise un mécanisme plausible. La pièce 4 est plus faible : elle articule des caractéristiques connues, sans creuser leur cause.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Hypothèse causale assortie d'un protocole de test : raisonnement, pas vocabulaire seul." },
+            { "pieceId": 2, "motifResistance": "Diagnostic causal explicite (fenêtre de contexte saturée) avec action corrective qui suit la cause." },
+            { "pieceId": 3, "motifResistance": "Analogie cognitive (modèle mental) qui propose un mécanisme pour expliquer un échec observé." },
+            { "pieceId": 4, "motifResistance": "Articulation fine des caractéristiques comparatives des IA (mémoire de contexte vs qualité rédactionnelle)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 : le mot \"deepthinking\" est en surface, l'hypothèse causale est-elle réellement substantielle ou seulement une supposition spontanée ? (d) glissement lexical. Mais l'apprenant propose un protocole de re-test, ce qui dépasse le mot. La pièce 2 est la plus solide : diagnostic + action corrective alignée. La pièce 3 est la plus marquée par (e) surinterprétation pédagogique : l'analogie est belle mais reste une proposition exploratoire (\"à explorer\"). La pièce 4 est touchée par (a) : énoncé bref qui pourrait être de la culture de surface.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'hypothèse causale reste exploratoire mais s'accompagne d'un protocole de re-test, ce qui sort la pièce du simple vocabulaire." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le diagnostic est précis, lié à un échec spécifique, et entraîne une action corrective directement reliée à la cause." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'hypothèse du modèle mental est suggestive mais reste à l'état d'esquisse (\"à explorer\") plutôt que développée." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'énoncé reste bref et descriptif, mais articule explicitement un trade-off entre deux caractéristiques techniques." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à du vocabulaire de surface — beaucoup d'apprenants parlent \"de tokens et de contexte\" sans comprendre. Ce qui m'a forcé à reconnaître autre chose, c'est la pièce du diagnostic sur les 34 références bibliographiques : la cause est nommée, le mécanisme implicite (saturation), et l'action corrective suit la cause. Cela tient comme trace d'une compréhension causale, pas d'un mot. Sous la présomption de sycophantie, les pièces 1, 3 et 4 sortent affaiblies — exploratoires, brèves ou descriptives. Mais elles tiennent comme indices corroboratifs. Le verdict : présence établie avec une trace centrale solide et plusieurs indices qui en élargissent le terrain. Une nuance : la feuille montre surtout de la littératie IA appliquée à l'usage, peu de littératie data au sens strict (distributions, biais statistiques).",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé la pièce du diagnostic \"fenêtre de contexte\" comme trace causale, et a retenu trois indices corroboratifs (hypothèses mécanistes, comparaisons fines).",
+        "prescription": "La feuille porte une compréhension causale des limites des IA, mobilisée pour diagnostiquer un échec concret et orienter l'action. Pour prolonger ce territoire, un chemin possible serait de pousser l'hypothèse du \"modèle mental\" ou du \"deepthinking\" jusqu'au test que l'apprenant envisage déjà, et de documenter le résultat. La littératie IA gagne en épaisseur quand l'hypothèse rencontre la vérification."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'architecture de systèmes IA sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter la conception d'un dispositif où plusieurs IA et humains interagissent avec des rôles définis et des flux explicites."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Protocole : même prompt envoyé à trois IA en mode de performance maximal — orchestration intentionnelle pour comparer des sorties."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Itération réfléchie : l'échec est analysé (trop d'input), et l'apprenant prévoit une reprise avec un input épuré — analyse pourquoi la reformulation devrait changer le résultat."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Protocole comparatif fin : même prompt testé from scratch versus à la suite d'un prompt précédent ; analyse de l'effet du contexte sur la sortie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ce qu'on appelle ici \"dialogue avancé\" pourrait n'être qu'un usage répété, sans sophistication. La pièce 1 (3 IA, même prompt) résiste : c'est un protocole comparatif explicite, pas un usage. La pièce 2 (échec sur 34 références) résiste : l'apprenant analyse pourquoi le prompt a échoué et planifie une reformulation guidée par la cause — itération stratégique, pas répétition. La pièce 3 résiste fortement : tester un prompt from scratch vs à la suite d'un autre prompt, c'est manipuler explicitement la variable de contexte conversationnel pour étudier son effet. Cela touche le cœur du dialogue avancé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Protocole de prompt unique appliqué à plusieurs IA — orchestration comparative explicite." },
+            { "pieceId": 2, "motifResistance": "Itération qui analyse la cause de l'échec précédent et oriente la reformulation en conséquence." },
+            { "pieceId": 3, "motifResistance": "Manipulation explicite de la variable \"contexte conversationnel\" pour étudier son effet sur la sortie." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me méfie. La pièce 1 : ai-je vu de l'orchestration là où il y a juste \"j'ai essayé trois IA\" ? L'attaque (a) est tentante, mais la pièce porte un protocole explicite (même prompt, mode max, scoring). La pièce 2 : itération est un mot fort, est-ce vraiment cela ? Oui — l'apprenant nomme la cause (\"trop d'informations pour sa fenêtre de contexte\") et oriente la reformulation. La pièce 3 est la plus solide pour cette compétence : elle isole une variable, c'est de la méta-analyse de prompt.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le protocole est nommé (même prompt, mode de performance maximal, barème commun), avec décision opérationnelle à la clé." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'itération n'est pas seulement annoncée, elle est motivée par une analyse causale de l'échec qui oriente le changement." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le test isole proprement la variable de contexte conversationnel et compare deux conditions explicitement décrites." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à un usage répété et zélé des IA. Ce qui m'a forcé à reconnaître plus, c'est la conjonction de trois gestes méthodologiques distincts sur la même feuille : un protocole de benchmark inter-IA, une itération guidée par diagnostic causal, et un test \"variable isolée\" sur l'effet du contexte conversationnel. Les trois pièces tiennent au temps 2 sans affaiblissement majeur. Le verdict : présence établie avec confiance élevée. Une réserve : le vocabulaire technique du prompting (chain-of-thought, few-shot, rôles) n'apparaît pas — la sophistication se manifeste par le protocole et l'analyse, pas par le vocabulaire académique. C'est plutôt une force, mais cela en fixe la nature.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 0,
+        "confiance": 0.82,
+        "motif": "Trois pièces confirmées au temps 2 sans affaiblissement majeur : protocole comparatif inter-IA, itération causalement motivée, test \"variable isolée\" sur le contexte conversationnel.",
+        "prescription": "La feuille montre un dialogue IA pensé comme une méthode : on tient les variables, on isole les effets, on relie l'échec à sa cause. Pour prolonger ce territoire, un chemin possible serait de documenter une expérience où la variable manipulée est la formulation du prompt elle-même (rôles, contraintes, exemples) à modèle constant. Cela mettrait en relief la sophistication du prompt comme outil de pensée, en complément de la méthode comparative déjà acquise."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la logique algorithmique (décomposition, conditionnelle, debugging mental) a été transférée à un problème hors informatique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Articulation explicite des forces comparatives des IA : qualité rédactionnelle de Claude, mémoire de contexte de Gemini ; stratégie de répartition multi-outils."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Croisement d'un jugement humain avec un jugement IA tiers — geste opérationnel qui mobilise les forces comparatives (l'humain juge, l'IA confirme/infirme)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la synergie n'est pas là : utiliser plusieurs IA ne suffit pas, la fiche insiste sur l'articulation des forces comparatives. La pièce 1 (\"Gemini reste l'IA ayant la plus grande mémoire de contexte, même s'il est moins bon en rédaction\") résiste : c'est exactement une articulation des forces comparatives, avec une stratégie de répartition implicite. La pièce 2 (avis Gemini comme contrôle) résiste plus faiblement : c'est une mobilisation conjointe, mais l'articulation des rôles \"humain juge, IA contrôle\" n'est pas formulée, elle reste pratique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Articulation explicite d'un trade-off entre deux forces comparatives d'IA différentes, fondant une stratégie de répartition." },
+            { "pieceId": 2, "motifResistance": "Geste opérationnel qui mobilise les forces comparatives humain/IA dans un dispositif de contrôle croisé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me méfie. La pièce 1 : l'articulation est-elle vraiment une synergie au sens fort, ou simplement un choix d'outils ? Elle énonce la complémentarité, ce qui distingue 1.10 d'un usage. L'attaque (g) mouvement-vers est tentante : peut-être qu'on assiste à l'émergence d'une stratégie synergique, pas à une synergie aboutie. La pièce 2 : ai-je halluciné une articulation humain-IA dans \"j'ai demandé son avis à Gemini\" ? L'attaque (e) surinterprétation a du mordant — l'apprenant n'explicite pas ce que l'humain garde et pourquoi.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La stratégie multi-IA est articulée mais reste émergente : une règle posée pour cette tâche plutôt qu'un modèle généralisé de complémentarité." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le geste de demander un avis à Gemini reste pratique : ce que l'humain garde et pourquoi l'IA est mobilisée à ce moment précis ne sont pas articulés." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à un simple usage de plusieurs IA. Ce qui m'a forcé à reconnaître autre chose, c'est l'énoncé de la complémentarité Claude/Gemini : la qualité de rédaction d'un côté, la mémoire de contexte de l'autre, avec une stratégie qui en découle. Cela touche la synergie, à un niveau émergent. Sous la présomption de sycophantie, la pièce sur l'avis de Gemini est tombée : trop pratique, trop peu articulée. Reste une seule pièce, affaiblie. Le verdict : renvoi au cartographe — il y a une amorce de synergie qui mérite d'être nourrie sur d'autres feuilles, mais sur la seule feuille du 28 décembre la matière est mince. La pièce manquante serait celle où l'apprenant articule ce qu'il garde lui-même comme rôle irremplaçable dans le processus.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une seule pièce affaiblie au temps 2 ; la seconde est tombée. La synergie est articulée côté IA (complémentarité d'outils) mais pas côté humain (ce qui revient à l'humain et pourquoi).",
+        "prescription": "La feuille amorce une articulation des forces comparatives entre IA. Pour ouvrir ce dossier, un chemin possible serait de prolonger cette articulation côté humain : qu'est-ce que l'apprenant garde, à chaque étape, qu'aucune IA ne pourrait faire à sa place, et pourquoi ? La synergie tient quand le rôle humain est articulé avec la même précision que le rôle IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 4,
+    "renvoisCartographe": 2,
+    "nonEtablies": 0,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 28 décembre, le travail de la tête se concentre autour des IA : non pas pour les célébrer, mais pour les tester, les mesurer, les diagnostiquer. La voix dominante est celle d'un praticien qui construit ses propres barèmes (« 5 questions = 10 pts. La réponse est parfaite 2 pts (A) ») et qui ne se contente pas des notes : il analyse les écarts. Les marqueurs concrets reviennent — fenêtre de contexte, mode deepthinking, modèle mental — mobilisés comme des leviers de diagnostic, pas comme du vocabulaire emprunté. Une note discrète à la fin de la prise de conscience (« cette prise de conscience je l'ai eu il y a bien longtemps déjà ») désamorce la mise en valeur au moment où elle est posée — geste qui dit quelque chose du rapport à la propre pensée. Le pôle se manifeste par la méthode, plus que par les concepts académiques.",
+    "territoiresDenses": [
+      {
+        "competence": "Dialogue avancé avec l'IA",
+        "description": "Le travail montre un dialogue IA pensé comme une méthode : on tient les variables (même prompt, modes de performance maximaux), on isole le contexte conversationnel (from scratch vs à la suite), on diagnostique les échecs pour réorienter la formulation suivante.",
+        "extraitVerbatim": "Pour le chapitre 2, j'ai fait le test suivant : j'ai testé le même prompt from scratch, c'est-à-dire dans une nouvelle conversation et à la suite du prompt du chapitre 1, pour comparer ChatGPT et Claude.",
+        "ceQueCaDit": "Le prompt n'y est pas un coup tenté, il y est un objet de comparaison et d'analyse. La sophistication se loge dans le protocole, pas dans le vocabulaire technique."
+      },
+      {
+        "competence": "Pensée critique appliquée aux outils et à soi",
+        "description": "Le doute méthodique se manifeste à la fois comme dispositif (barème explicite, règle sur les benchmarks) et comme acte appliqué à sa propre prose au moment de l'élan.",
+        "extraitVerbatim": "Même si ce n'est pas vraiment authentique : cette prise de conscience je l'ai eu il y a bien longtemps déjà",
+        "ceQueCaDit": "L'auto-correction n'attend pas la relecture : elle se pose dans le même mouvement que l'affirmation, ce qui en fait une trace forte d'un scepticisme tourné vers soi."
+      },
+      {
+        "competence": "Littératie IA pratiquée comme diagnostic",
+        "description": "Les hypothèses mécanistes (mode deepthinking, modèle mental, fenêtre de contexte) sont mobilisées pour expliquer des échecs concrets et orienter des actions correctives, pas seulement pour décrire.",
+        "extraitVerbatim": "Il y avait de toute évidence trop d'informations pour sa fenêtre de contexte. Je recommencerai demain soir en épurant les données en input.",
+        "ceQueCaDit": "Le diagnostic est causal et l'action corrective suit la cause — la littératie n'est pas du vocabulaire, elle pilote la décision."
+      },
+      {
+        "competence": "Synthèse intégrative à l'état naissant",
+        "description": "Plusieurs observations issues d'expériences différentes (génération de code, rédaction de support, comparaisons d'IA) se rejoignent dans une hypothèse mécaniste commune et dans une règle multi-outils.",
+        "extraitVerbatim": "C'est comme avec la génération de code. Lorsqu'il s'agit de créer \"from scratch\", il fait des trucs biens. Lorsqu'il s'agit de reprendre l'existant et de l'améliorer, il s'embrouille.",
+        "ceQueCaDit": "L'apprenant noue deux domaines sous une même hypothèse causale — la synthèse est embryonnaire mais identifiable."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas encore été ramenés sur cette feuille. Le cadrage de l'intention en amont (interroger le problème avant de chercher la solution) reste implicite — la feuille décrit des solutions appliquées à des problèmes posés, pas leur questionnement préalable. La pensée systémique au sens fort (boucles de rétroaction, effets de second ordre nommés) n'apparaît pas, même si la culture du diagnostic causal pourrait y conduire. L'architecture de systèmes IA (conception de flux multi-agents avec rôles documentés) et la pensée computationnelle transférée hors de l'informatique restent absentes sur cette journée. La synergie humain-IA et la métacognition ouvrent des dossiers (ce qui justifie un renvoi au cartographe) sans pouvoir être établies à partir de la seule matière de cette feuille — l'articulation côté humain (ce que l'apprenant garde et pourquoi) demanderait une trace supplémentaire.",
+    "emergencesPole": "Une posture traverse plusieurs compétences du jour : tester avant de croire. Que ce soit pour les performances des IA (mini-benchmark personnel), pour les benchmarks publics (méfiance argumentée), pour le mode deepthinking (protocole de re-test évoqué) ou pour son propre jugement (avis demandé à une IA tierce), le travail fait du test situé l'arbitre légitime. Une seconde observation : le diagnostic causal sert de pivot. Les échecs ne sont pas constatés, ils sont expliqués (fenêtre de contexte, modèle mental, deepthinking) et l'explication oriente la suite. Enfin, une note discrète sur l'authenticité de sa propre prise de conscience signale une vigilance que la prose qui l'entoure ne porte pas autrement.",
+    "pistes": [
+      "Pour épaissir la pensée critique, un chemin possible serait de documenter une situation où la critique a porté sur une source non-IA (un article, un manuel, l'avis d'un collègue) avec le même type de dispositif évaluatif que celui appliqué aux IA.",
+      "Pour ouvrir le cadrage de l'intention, un chemin possible serait de raconter, avant l'exécution d'une prochaine tâche, le moment où le problème a été reformulé — qu'est-ce qui a fait basculer la formulation initiale.",
+      "Pour prolonger la synergie humain-IA, un chemin possible serait d'articuler explicitement, sur une tâche concrète, ce que l'apprenant garde comme rôle irremplaçable et pourquoi l'humain le fait mieux que l'IA à cet endroit précis.",
+      "Pour épaissir la métacognition, un chemin possible serait de raconter comment la prise de conscience décrite a été reconnue comme ancienne : par quel souvenir, par quelle comparaison interne, et ce que cette reconnaissance change pour la suite.",
+      "Pour ouvrir la pensée systémique, un chemin possible serait de relier explicitement les choix d'outils (Claude, ChatGPT, Gemini) à des effets de second ordre sur la formation : qualité du support, temps de production, charge cognitive de l'apprenant lui-même."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 28 décembre, le travail de la tête se concentre autour des IA : non pas pour les célébrer, mais pour les tester, les mesurer, les diagnostiquer. La voix dominante est celle d'un praticien qui construit ses propres barèmes (« 5 questions = 10 pts. La réponse est parfaite 2 pts (A) ») et qui ne se contente pas des notes : il analyse les écarts. Les marqueurs concrets reviennent — fenêtre de contexte, mode deepthinking, modèle mental — mobilisés comme des leviers de diagnostic, pas comme du vocabulaire emprunté. Une note discrète à la fin de la prise de conscience (« cette prise de conscience je l'ai eu il y a bien longtemps déjà ») désamorce la mise en valeur au moment où elle est posée — geste qui dit quelque chose du rapport à la propre pensée. Le pôle se manifeste par la méthode, plus que par les concepts académiques.\n\n## Territoires les plus denses\n\n**Dialogue avancé avec l'IA.** Le travail montre un dialogue IA pensé comme une méthode : on tient les variables (même prompt, modes de performance maximaux), on isole le contexte conversationnel (from scratch vs à la suite), on diagnostique les échecs pour réorienter la formulation suivante. Extrait : « Pour le chapitre 2, j'ai fait le test suivant : j'ai testé le même prompt from scratch, c'est-à-dire dans une nouvelle conversation et à la suite du prompt du chapitre 1, pour comparer ChatGPT et Claude. » Le prompt n'y est pas un coup tenté, il y est un objet de comparaison et d'analyse. La sophistication se loge dans le protocole, pas dans le vocabulaire technique.\n\n**Pensée critique appliquée aux outils et à soi.** Le doute méthodique se manifeste à la fois comme dispositif (barème explicite, règle sur les benchmarks) et comme acte appliqué à sa propre prose au moment de l'élan. Extrait : « Même si ce n'est pas vraiment authentique : cette prise de conscience je l'ai eu il y a bien longtemps déjà ». L'auto-correction n'attend pas la relecture : elle se pose dans le même mouvement que l'affirmation, ce qui en fait une trace forte d'un scepticisme tourné vers soi.\n\n**Littératie IA pratiquée comme diagnostic.** Les hypothèses mécanistes (mode deepthinking, modèle mental, fenêtre de contexte) sont mobilisées pour expliquer des échecs concrets et orienter des actions correctives, pas seulement pour décrire. Extrait : « Il y avait de toute évidence trop d'informations pour sa fenêtre de contexte. Je recommencerai demain soir en épurant les données en input. » Le diagnostic est causal et l'action corrective suit la cause — la littératie n'est pas du vocabulaire, elle pilote la décision.\n\n**Synthèse intégrative à l'état naissant.** Plusieurs observations issues d'expériences différentes (génération de code, rédaction de support, comparaisons d'IA) se rejoignent dans une hypothèse mécaniste commune et dans une règle multi-outils. Extrait : « C'est comme avec la génération de code. Lorsqu'il s'agit de créer \"from scratch\", il fait des trucs biens. Lorsqu'il s'agit de reprendre l'existant et de l'améliorer, il s'embrouille. » L'apprenant noue deux domaines sous une même hypothèse causale — la synthèse est embryonnaire mais identifiable.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas encore été ramenés sur cette feuille. Le cadrage de l'intention en amont (interroger le problème avant de chercher la solution) reste implicite — la feuille décrit des solutions appliquées à des problèmes posés, pas leur questionnement préalable. La pensée systémique au sens fort (boucles de rétroaction, effets de second ordre nommés) n'apparaît pas, même si la culture du diagnostic causal pourrait y conduire. L'architecture de systèmes IA (conception de flux multi-agents avec rôles documentés) et la pensée computationnelle transférée hors de l'informatique restent absentes sur cette journée. La synergie humain-IA et la métacognition ouvrent des dossiers (ce qui justifie un renvoi au cartographe) sans pouvoir être établies à partir de la seule matière de cette feuille — l'articulation côté humain (ce que l'apprenant garde et pourquoi) demanderait une trace supplémentaire.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne posture traverse plusieurs compétences du jour : tester avant de croire. Que ce soit pour les performances des IA (mini-benchmark personnel), pour les benchmarks publics (méfiance argumentée), pour le mode deepthinking (protocole de re-test évoqué) ou pour son propre jugement (avis demandé à une IA tierce), le travail fait du test situé l'arbitre légitime. Une seconde observation : le diagnostic causal sert de pivot. Les échecs ne sont pas constatés, ils sont expliqués (fenêtre de contexte, modèle mental, deepthinking) et l'explication oriente la suite. Enfin, une note discrète sur l'authenticité de sa propre prise de conscience signale une vigilance que la prose qui l'entoure ne porte pas autrement.\n\n## Pistes pour enrichir ce pôle\n\n- Pour épaissir la pensée critique, un chemin possible serait de documenter une situation où la critique a porté sur une source non-IA (un article, un manuel, l'avis d'un collègue) avec le même type de dispositif évaluatif que celui appliqué aux IA.\n- Pour ouvrir le cadrage de l'intention, un chemin possible serait de raconter, avant l'exécution d'une prochaine tâche, le moment où le problème a été reformulé — qu'est-ce qui a fait basculer la formulation initiale.\n- Pour prolonger la synergie humain-IA, un chemin possible serait d'articuler explicitement, sur une tâche concrète, ce que l'apprenant garde comme rôle irremplaçable et pourquoi l'humain le fait mieux que l'IA à cet endroit précis.\n- Pour épaissir la métacognition, un chemin possible serait de raconter comment la prise de conscience décrite a été reconnue comme ancienne : par quel souvenir, par quelle comparaison interne, et ce que cette reconnaissance change pour la suite.\n- Pour ouvrir la pensée systémique, un chemin possible serait de relier explicitement les choix d'outils (Claude, ChatGPT, Gemini) à des effets de second ordre sur la formation : qualité du support, temps de production, charge cognitive de l'apprenant lui-même.\n"
+  }
+}

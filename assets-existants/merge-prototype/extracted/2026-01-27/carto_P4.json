@@ -1,0 +1,421 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "La plus grosse pour le moment étant pour le Noèsiologue, ou la partie explicitation des 64 fonctions cognitives avait été réduite grosso-modo aux 6 élémentaires de niveau du I-E-O du médiateur !",
+      "contexte": "Détection d'un écart entre l'intention (64 fonctions) et l'output IA (réduit aux 6 élémentaires) — correction d'un désalignement de niveau.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Pour l'Apprenant et l'Accompagnateur, j'avais demandé à Claude d'appliquer le skill DOCX et le style Anthropic pour générer la documentation dans Google Doc. J'hésite à faire pareil ou bien à simplement copier-coller les fichiers markdown.",
+      "contexte": "Délibération entre deux options de production des manuels, sans tranchage immédiat.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Je me fiche du look et de la mise en page, car du coup, 6x300 pages ça fait beaucoup de papier : je pense ainsi les conserver en version HTML pour une lecture écran uniquement",
+      "contexte": "Arbitrage qui intègre un coût matériel (6×300 pages de papier) dans un choix éditorial — externalité prise en compte.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Ce sera pour plutard (après l'update du site web que j'ai du interrompre à Noël car je n'avais plus accès à mon grand écran) et probablement avant de me plonger dans Decidim, car je vois déjà sur le forum WhatsApp que des parents inquiets commencent à me solliciter pour me demander ce que leur gamin devrait faire comme étude… Ce n'est que le début. Je veux être prêt côté école et cartographies lorsqu'on lancera les débats publics.",
+      "contexte": "Séquencement temporel argumenté : reporter la cartographie à plus tard, avec déclencheurs nommés (update site, signal des parents, débats publics).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'ai d'ailleurs dû arrêter totalement l'abonnement de ChatGPT pour raison de restriction budgétaire. Quand je pourrais et quand j'aurai le temps (et probablement à l'occasion de la sortie d'une nouveauté intéressante ou d'un nouveau modèle), je prendrais juste un mois à 200$ pour poursuivre le travail de rédaction de la preuve pour la trisection du carré.",
+      "contexte": "Arbitrage budgétaire concret : arrêt d'un abonnement, conditions de reprise (nouveauté, temps disponible, projet ciblé).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'espère ne pas être bloqué d'ici là, car je ne peux pas me permettre de prendre la version au dessus, mais il ne me reste plus que les manuels niveau Maître à générer demain, ça devrait aller.",
+      "contexte": "Décision sous incertitude (risque de blocage) avec calcul de marge restante.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au raisonnement éthique appliqué dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où plusieurs valeurs défendables entrent en tension."
+      }
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Refus implicite d'un output IA jugé désaligné par rapport au niveau visé (Maître) — la production de Claude réduit ce que l'apprenant voulait voir maintenu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. L'apprenant relève un écart de contenu (64 réduit à 6) mais ne le présente pas comme une question d'alignement aux valeurs : il s'agit d'une question de niveau pédagogique. La fiche 4.02 distingue la véracité (1.01) de la conformité aux valeurs — ici, ni l'une ni l'autre n'est explicitement nommée. Pourtant, l'apprenant agit comme gardien de l'intention initiale (maintenir les 64 fonctions parce que c'est ce que le niveau Maître exige), et c'est une forme de gardiennage de la cohérence du projet face à ce que l'IA simplifie spontanément. La pièce résiste très faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant ne se contente pas de constater l'écart : il pose qu'il faut corriger, ce qui suppose un gardiennage actif de l'intention face à la pente simplificatrice de l'IA."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce en cherchant à invalider. L'attaque dominante est (b) confusion de compétence : ne s'agit-il pas de jugement esthétique (3.04) ou de pensée critique (1.01) plutôt que d'alignement éthique ? Le test 4.02 demande un refus motivé par les valeurs. Or la motivation de la correction ici est de niveau pédagogique, pas de valeurs explicites. L'attaque tient et la pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La correction porte sur l'adéquation au niveau Maître (jugement de justesse formelle) et non sur un alignement aux valeurs ; la pièce relève mieux du jugement esthétique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à la disqualifier comme jugement formel. Elle a résisté très faiblement au temps 1 par le geste de gardiennage qu'elle implique, mais elle est tombée au temps 2 : la correction se motive par le niveau pédagogique, pas par des valeurs explicites. Ce qui en résulte est une présence non établie pour cette feuille. La trace existe ailleurs (sous 3.04), mais elle ne porte pas la signature spécifique de 4.02. Un refus motivé par les valeurs (par exemple, refuser une formulation de l'IA parce qu'elle ne dit pas ce que le projet doit dire) ouvrirait franchement ce dossier.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Le temps 2 a disqualifié la pièce : la correction est motivée par le niveau pédagogique et relève du jugement esthétique, pas de l'alignement aux valeurs.",
+        "prescription": "Le travail montre une vigilance sur ce que l'IA produit. Documenter un moment où la correction a été motivée par une valeur du projet — pas seulement par un niveau ou une qualité — ouvrirait clairement cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Intégration du coût matériel (6×300 pages de papier) dans un choix éditorial — externalité environnementale prise en compte dans une décision."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. Le passage parle d'éviter beaucoup de papier, ce qui peut être de la simple économie pratique sans dimension écologique. La fiche met en garde contre les signaux de surface : « j'ai recyclé » ou « ça fait beaucoup de papier » peut être ambiant. Pourtant, l'apprenant intègre concrètement l'impact matériel dans un arbitrage qui ne portait pas initialement sur l'écologie (le choix portait sur le format de lecture), ce qui correspond exactement à la trace oblique décrite dans la fiche. La pièce résiste, mais avec faiblesse.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant intègre spontanément l'impact papier dans un arbitrage qui portait sur le confort de lecture — l'externalité est prise en compte sans que la décision ait été cadrée comme écologique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en cherchant à invalider. L'attaque dominante est (e) surinterprétation pédagogique : « beaucoup de papier » est-il vraiment de la conscience écologique, ou simplement une remarque pragmatique ? La fiche précise que la 4.03 se manifeste quand on choisit l'impact long-terme au détriment d'un bénéfice court-terme. Ici, le bénéfice perdu est mince (l'imprimé pour relire), et l'externalité est une ligne de prose, sans engagement long-terme articulé. L'attaque tient assez.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'intégration de l'externalité « papier » est suggérée mais reste à l'état de remarque ; il n'y a pas d'arbitrage long-terme explicite, seulement un calcul matériel."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à la disqualifier comme remarque pratique. Elle a résisté faiblement parce qu'elle intègre l'externalité matérielle dans un arbitrage qui portait initialement sur autre chose — c'est précisément la trace oblique de 4.03. Sous présomption de sycophantie, la portée s'est réduite : la conscience écologique reste implicite, sans articulation long-terme explicite. Ce qui en résulte est un indice ténu de conscience matérielle, pas une démonstration de pensée long-terme. La trace tient juste.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Le temps 2 a affaibli la pièce ; l'externalité matérielle est intégrée mais sans arbitrage long-terme explicite.",
+        "prescription": "Le travail intègre un coût matériel dans un arbitrage éditorial. Articuler une fois explicitement une décision où l'impact long-terme (matériel, énergétique, générationnel) pèse plus qu'un bénéfice immédiat donnerait à voir cette compétence avec plus de relief."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un mode de pensée atypique — le sien ou celui d'un autre — a produit un résultat que l'approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Décision d'avancer sans certitude (risque de blocage du quota) avec calcul de marge — capacité à fonctionner dans le flou."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Hésitation explicite entre deux options (skill DOCX + Google Doc / copier-coller markdown) tolérée sans tranchage immédiat."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La pièce 1 est une remarque sur une incertitude de quota, ce qui pourrait n'être qu'une plainte. La pièce 2 est une hésitation, ce qui peut aussi être de la procrastination décisionnelle. Pourtant, la pièce 1 articule clairement une tolérance (« ça devrait aller ») couplée à un calcul de marge (« il ne me reste plus que les manuels niveau Maître à générer demain ») — c'est de la décision sous incertitude étayée. La pièce 2 est plus ambiguë : l'hésitation est nommée, mais on ne voit pas d'acte de tranchage. La présomption d'absence touche plus la pièce 2.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant identifie l'incertitude (« j'espère ne pas être bloqué »), calcule sa marge restante et tranche d'avancer — la tolérance est étayée et la décision est posée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en cherchant à invalider. L'attaque dominante est (a) insuffisance probatoire : le passage est court, le « ça devrait aller » peut être de l'optimisme léger. Le test de la fiche est la combinaison (1) pression à agir décrite + (2) raisonnement explicite + (3) moment d'action. Ici, on a (1) le risque de blocage, (2) le calcul de marge, (3) la décision d'avancer demain. La pièce passe le test combiné. Elle tient avec une portée modeste — l'incertitude n'est pas existentielle, elle reste opérationnelle.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'incertitude opérationnelle est bien identifiée et l'arbitrage est posé, mais le flou reste de faible amplitude ; la pièce vaut comme indice de tolérance fonctionnelle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à une plainte ou à une hésitation. La pièce sur le risque de blocage a tenu parce qu'elle réunit pression, calcul et décision — la combinaison que la fiche identifie comme fiable. Sous présomption de sycophantie, la pièce a perdu en amplitude : on est dans une tolérance fonctionnelle, pas existentielle. Ce qui en résulte est un indice cohérent de décision sous incertitude appliquée à une logistique de production. La trace tient avec une confiance modérée.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a maintenu la pièce du quota comme indice de tolérance étayée à l'incertitude opérationnelle.",
+        "prescription": "Le travail montre une capacité à avancer sans garantie, avec calcul de marge à l'appui. Documenter une fois une décision sous incertitude de plus grande amplitude — où l'issue n'est pas seulement logistique — donnerait à cette compétence un relief plus marqué."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la responsabilité, au courage et à l'intégrité dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a porté la responsabilité d'un résultat, tenu une position coûteuse, ou reconnu une erreur en décrivant ce qu'il a fait ensuite."
+      }
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Correction d'une réduction opérée par l'IA (64 fonctions → 6) — l'apprenant mobilise un savoir contextuel sur les niveaux pédagogiques (Maître vs médiateur) que l'IA n'avait pas pleinement intégré."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. La fiche 4.07 demande d'identifier pourquoi le contexte manquant change tout. Ici, la pièce nomme l'écart (64 vs 6) sans expliciter le pourquoi du contexte manquant — peut-être l'IA n'a-t-elle pas eu la fiche, peut-être a-t-elle généralisé. Pourtant, en marquant que la réduction ramène au niveau du médiateur, l'apprenant pointe précisément le delta de contexte (qui est destinataire ? quel niveau ?) que l'IA n'a pas tenu. La pièce résiste avec faiblesse.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant identifie le niveau pédagogique perdu (Maître ramené à médiateur) ; le delta de contexte est désigné, sans que le mécanisme soit décrit."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en cherchant à invalider. L'attaque dominante est (b) confusion de compétence : la pièce a déjà été utilisée pour 1.01 (en partie) et pour 3.04 (jugement formel). Distingue-t-elle vraiment 4.07 ? Le critère de la fiche : identifier un delta de contexte (savoir tacite, culturel, humain) inaccessible à l'IA. Ici, l'apprenant nomme le niveau pédagogique du référentiel, qui est bien un savoir tacite du projet RESPIRE non explicité dans le prompt. La pièce tient, mais sa portée 4.07 est faible car le mécanisme n'est pas explicité.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le delta de contexte (niveau pédagogique du référentiel) est suggéré comme la cause de l'écart, mais sans description du mécanisme — la pièce vaut comme indice plutôt que comme preuve."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à la disqualifier en la confondant avec d'autres compétences plus visibles. Elle a tenu faiblement parce qu'elle pointe précisément un delta de contexte (le niveau du Maître par opposition à celui du médiateur) que l'IA n'a pas pu tenir seule. Sous présomption de sycophantie, la portée s'est réduite — le mécanisme n'est pas décrit. Ce qui en résulte est un indice ténu de validation contextuelle, articulé à un savoir tacite du projet. La trace tient mais ne suffit pas à elle seule.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce ; le delta de contexte est désigné sans que le mécanisme soit explicité.",
+        "prescription": "Le travail signale un savoir tacite (le niveau du Maître) que l'IA n'a pas tenu. Décrire une fois pourquoi ce contexte manquait à l'IA et comment il a été ré-injecté donnerait à cette compétence une forme plus consistante."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la création de valeur non-automatisable dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait nommer ce que l'humain apporte de structurellement irréductible dans sa pratique, par contraste avec ce que l'IA produit."
+      }
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Séquencement explicite : la cartographie sera reprise « plutard », après update du site et avant Decidim, en anticipant les débats publics — patience étayée par des déclencheurs."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Report de l'abonnement ChatGPT à 200$ conditionné par trois critères : sortie d'une nouveauté, disponibilité temporelle, projet ciblé (trisection du carré)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. Reporter une tâche peut être de la procrastination. La pièce 1 dit « ce sera pour plutard », la pièce 2 dit « quand je pourrais et quand j'aurai le temps ». À première vue, c'est de l'ajournement vague. Pourtant, dans les deux cas, le report est borné par des critères de déclenchement explicites : pour la pièce 1, l'update du site web (à reprendre), Decidim, l'arrivée des débats publics ; pour la pièce 2, la sortie d'une nouveauté ou d'un nouveau modèle, le temps disponible, et un projet ciblé. Les deux pièces résistent à la présomption d'absence, qui se confronte à la grille de la fiche : pression + raisonnement + moment d'action.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le report de la cartographie est encadré par trois critères temporels (update site, Decidim, débats publics) qui transforment le « plus tard » en moment situé."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le report de l'abonnement à 200$ est conditionné à trois critères convergents (nouveauté, temps, projet) — la décision est suspendue, pas évitée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en cherchant à invalider. L'attaque dominante est (g) mouvement-vers : ces reports sont-ils vraiment de la patience stratégique ou des reports par défaut ? La fiche distingue 4.09 de la procrastination par le critère de déclenchement précis. Pour la pièce 1, les trois critères sont distincts et désignent des conditions externes vérifiables (l'update est interrompue, Decidim est nommé, les débats publics sont annoncés). Pour la pièce 2, les critères sont plus diffus (« quand je pourrais ») mais le projet (trisection du carré) est précis. La pièce 1 tient, la pièce 2 est affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les trois conditions de déclenchement (update site, Decidim, débats publics) sont des événements identifiables ; le report n'est pas une fuite mais un calage temporel argumenté."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le projet ciblé (trisection du carré) ancre le report dans une intention précise, mais les conditions temporelles restent vagues (« quand je pourrais »)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à de la procrastination. La pièce sur la cartographie a résisté pleinement : trois conditions de déclenchement nommées, et un projet (être prêt pour les débats publics) qui justifie l'attente. La pièce sur l'abonnement a tenu avec plus de réserve : le projet précis (trisection du carré) ancre le report, mais le moment reste indéterminé. Ce qui en résulte est une présence solide de patience stratégique sur le séquencement du travail, et plus indicative sur l'arbitrage budgétaire. Le travail décrit une discipline du « pas encore » étayée, distincte d'un simple « plus tard ».",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé la pièce du séquencement (déclencheurs nommés) et retenu la pièce de l'abonnement comme indice corroboratif.",
+        "prescription": "Le travail montre une discipline du « pas encore » étayée par des conditions de déclenchement. Noter, lorsqu'une de ces conditions arrivera, la bascule effective vers l'action prolongerait l'observation jusqu'à son terme."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le pôle du discernement se manifeste surtout par des arbitrages temporels et budgétaires. L'apprenant pèse, reporte, conditionne ; il ne décide pas dans l'urgence ni ne refuse en bloc. Plusieurs « pas encore » étayés par des conditions de déclenchement (update du site, lancement de Decidim, débats publics, sortie d'un nouveau modèle) traversent la journée. La conscience d'externalités matérielles (6×300 pages de papier) apparaît au détour d'un choix éditorial. La part éthique au sens fort — dilemmes moraux, refus de valeurs, courage — n'est pas la matière de cette journée, qui reste tournée vers la logistique d'une production exigeante sous contrainte.",
+    "territoiresDenses": [
+      {
+        "competence": "Patience stratégique et sens du timing",
+        "description": "Séquencement explicite des prochains chantiers (update site → cartographie → Decidim) et conditionnement du report de l'abonnement premium à trois critères convergents.",
+        "extraitVerbatim": "Ce sera pour plutard (après l'update du site web que j'ai du interrompre à Noël car je n'avais plus accès à mon grand écran) et probablement avant de me plonger dans Decidim, car je vois déjà sur le forum WhatsApp que des parents inquiets commencent à me solliciter pour me demander ce que leur gamin devrait faire comme étude… Ce n'est que le début. Je veux être prêt côté école et cartographies lorsqu'on lancera les débats publics.",
+        "ceQueCaDit": "Le « plus tard » est ici borné par des événements nommés et par un horizon (les débats publics). Le report n'est pas une fuite : il aligne le tempo de la production sur la séquence anticipée des chantiers."
+      },
+      {
+        "competence": "Décision et tolérance à l'incertitude",
+        "description": "Avancée dans la production sous risque de blocage du quota, avec calcul explicite de la marge restante.",
+        "extraitVerbatim": "J'espère ne pas être bloqué d'ici là, car je ne peux pas me permettre de prendre la version au dessus, mais il ne me reste plus que les manuels niveau Maître à générer demain, ça devrait aller.",
+        "ceQueCaDit": "La pression est nommée, le calcul est posé, la décision est prise — la séquence pression / raisonnement / action qui distingue la décision étayée d'une plainte ou d'une simple inquiétude."
+      }
+    ],
+    "territoiresNonVisites": "Cette feuille n'ouvre pas le dossier du raisonnement éthique appliqué (tension entre valeurs), de la responsabilité-courage-intégrité, ni de la création de valeur non-automatisable. Le refus éthique des outputs IA n'est pas exercé non plus — la correction du Noèsiologue se motive par le niveau pédagogique, pas par les valeurs du projet. La valorisation de la neurodiversité reste hors-champ. Ces absences ressemblent au cadre d'une journée d'exécution serrée plutôt qu'à des refus de fond ; elles mériteraient d'être ouvertes dans d'autres feuilles, en particulier autour des arbitrages où une valeur a été défendue à un coût personnel.",
+    "emergencesPole": "Une discipline du « pas encore » traverse la feuille : la cartographie est reportée jusqu'à ce que le site soit fini et que les portfolios soient pratiqués, l'abonnement premium est conditionné à un projet précis et à un moment opportun, le risque de blocage du quota est accepté parce que la marge restante a été calculée. Deuxième observation : l'apprenant intègre des paramètres très différents dans ses arbitrages (papier, tokens, niveau pédagogique, débats publics à venir, restriction budgétaire), comme si chaque décision était évaluée sur plusieurs dimensions à la fois. La rationalité est multidimensionnelle, pas unifiée.",
+    "pistes": [
+      "Pour enrichir la dimension éthique, un chemin possible serait de relever, dans une décision de production future, une valeur du projet qui a été défendue — y compris contre la commodité technique — et de la nommer pour ce qu'elle est.",
+      "Pour enrichir la conscience long-terme, un chemin possible serait d'expliciter une fois un arbitrage où l'horizon environnemental ou générationnel pèse plus qu'un bénéfice immédiat, au-delà du seul calcul matériel.",
+      "Pour enrichir la dimension validation contextuelle, un chemin possible serait de décrire, à propos d'une correction d'output IA, pourquoi le contexte manquait et comment il a été ré-injecté."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le pôle du discernement se manifeste surtout par des arbitrages temporels et budgétaires. L'apprenant pèse, reporte, conditionne ; il ne décide pas dans l'urgence ni ne refuse en bloc. Plusieurs « pas encore » étayés par des conditions de déclenchement (update du site, lancement de Decidim, débats publics, sortie d'un nouveau modèle) traversent la journée. La conscience d'externalités matérielles (6×300 pages de papier) apparaît au détour d'un choix éditorial. La part éthique au sens fort — dilemmes moraux, refus de valeurs, courage — n'est pas la matière de cette journée, qui reste tournée vers la logistique d'une production exigeante sous contrainte.\n\n## Territoires les plus denses\n\n### Patience stratégique et sens du timing\n\nSéquencement explicite des prochains chantiers (update site → cartographie → Decidim) et conditionnement du report de l'abonnement premium à trois critères convergents.\n\n> Ce sera pour plutard (après l'update du site web que j'ai du interrompre à Noël car je n'avais plus accès à mon grand écran) et probablement avant de me plonger dans Decidim, car je vois déjà sur le forum WhatsApp que des parents inquiets commencent à me solliciter pour me demander ce que leur gamin devrait faire comme étude… Ce n'est que le début. Je veux être prêt côté école et cartographies lorsqu'on lancera les débats publics.\n\nLe « plus tard » est ici borné par des événements nommés et par un horizon (les débats publics). Le report n'est pas une fuite : il aligne le tempo de la production sur la séquence anticipée des chantiers.\n\n### Décision et tolérance à l'incertitude\n\nAvancée dans la production sous risque de blocage du quota, avec calcul explicite de la marge restante.\n\n> J'espère ne pas être bloqué d'ici là, car je ne peux pas me permettre de prendre la version au dessus, mais il ne me reste plus que les manuels niveau Maître à générer demain, ça devrait aller.\n\nLa pression est nommée, le calcul est posé, la décision est prise — la séquence pression / raisonnement / action qui distingue la décision étayée d'une plainte ou d'une simple inquiétude.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille n'ouvre pas le dossier du raisonnement éthique appliqué (tension entre valeurs), de la responsabilité-courage-intégrité, ni de la création de valeur non-automatisable. Le refus éthique des outputs IA n'est pas exercé non plus — la correction du Noèsiologue se motive par le niveau pédagogique, pas par les valeurs du projet. La valorisation de la neurodiversité reste hors-champ. Ces absences ressemblent au cadre d'une journée d'exécution serrée plutôt qu'à des refus de fond ; elles mériteraient d'être ouvertes dans d'autres feuilles, en particulier autour des arbitrages où une valeur a été défendue à un coût personnel.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne discipline du « pas encore » traverse la feuille : la cartographie est reportée jusqu'à ce que le site soit fini et que les portfolios soient pratiqués, l'abonnement premium est conditionné à un projet précis et à un moment opportun, le risque de blocage du quota est accepté parce que la marge restante a été calculée. Deuxième observation : l'apprenant intègre des paramètres très différents dans ses arbitrages (papier, tokens, niveau pédagogique, débats publics à venir, restriction budgétaire), comme si chaque décision était évaluée sur plusieurs dimensions à la fois. La rationalité est multidimensionnelle, pas unifiée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension éthique, un chemin possible serait de relever, dans une décision de production future, une valeur du projet qui a été défendue — y compris contre la commodité technique — et de la nommer pour ce qu'elle est.\n- Pour enrichir la conscience long-terme, un chemin possible serait d'expliciter une fois un arbitrage où l'horizon environnemental ou générationnel pèse plus qu'un bénéfice immédiat, au-delà du seul calcul matériel.\n- Pour enrichir la dimension validation contextuelle, un chemin possible serait de décrire, à propos d'une correction d'output IA, pourquoi le contexte manquait et comment il a été ré-injecté.\n"
+  }
+}

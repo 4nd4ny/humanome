@@ -1,0 +1,352 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+      "contexte": "Refus argumenté d'une mesure de formation proposée — trace potentielle de 7.06 (efficacité personnelle par renoncement stratégique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "La seule qui m'intéresse encore un peu, c'est celle sur REACT, car ça m'aidera à développer EduFolio. Mais HERMES par exemple, qui est demandé sur la moitié des postes de développeurs, ne m'intéresse pas plus que ça.",
+      "contexte": "Arbitrage explicite entre mesures proposées avec critère articulé — manifestation de 7.06 (priorisation argumentée et refus du critère externe).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Ce sera peut-être mon dernier projet : après je me mets en pré-retraite, je retire le 2nd pilier pour faire le pont entre le chômage et l'AVS, éventuellement je gagne un peu d'argent avec mes boîtes \"Human Processor!\", avec mes 32 puzzles sur la trisection du carré, avec la partie commerciale du moteur de recherche de \"talents\" dans Respire",
+      "contexte": "Vision stratégique pluriannuelle reliant choix présents (Respire, refus de la mise à niveau ORP) et futur anticipé (pré-retraite, AVS, sources de revenus résiduels) — trace potentielle de 7.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Il me tarde de finaliser les manuels des différents niveaux de tuteurs.",
+      "contexte": "Annonce d'une production documentaire structurée par niveaux pour formation de tuteurs — touche 7.03 (documentation vivante) et 7.01 (architecture pédagogique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Mais avant je dois faire mes postulations de la semaine et demain mon inscription à la prochaine mesure ORP.",
+      "contexte": "Séquençage explicite de priorités avec contrainte temporelle nommée — manifestation de 7.06 (priorisation contextuelle).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "extraitVerbatim": "Il me tarde de finaliser les manuels des différents niveaux de tuteurs.",
+          "contexte": "Une structuration par niveaux des manuels de tuteurs suggère une architecture pédagogique différenciée — trace possible de 7.01 si l'architecture est effectivement conçue avec intention, plutôt qu'un simple empilement de cours.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que la maïeutique et la facilitation d'apprentissage demandent soit un acte de questionnement adressé à un apprenant (avec retenue de celui qui sait), soit une architecture pédagogique décrite. La pièce ne montre aucun questionnement ; elle ne fait qu'évoquer l'existence de manuels en attente de finalisation. Ce qui me force à m'arrêter : la mention de « différents niveaux de tuteurs » suppose une architecture pédagogique différenciée — pas un seul manuel, mais une gradation conçue. Ce qui reste explicitement faible : aucune description du dispositif lui-même, aucune intention pédagogique articulée, rien sur les passages entre niveaux.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Les « différents niveaux de tuteurs » impliquent une structuration pédagogique différenciée plutôt qu'un manuel unique — geste d'architecture qui dépasse la simple production d'un document." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas chargé d'intention pédagogique une simple annonce de production. La fiche est exigeante : la facilitation d'apprentissage est l'architecture d'un environnement, pas seulement la production de contenu. Or ici, on n'a ni les principes pédagogiques de la gradation, ni les dispositifs prévus entre niveaux, ni la posture maïeutique des manuels eux-mêmes. C'est une mention en passant d'une production en cours, pas un récit d'architecture. Le « différents niveaux » est presque tout ce qu'il y a, et c'est insuffisant.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est trop allusive et ne décrit pas le dispositif pédagogique lui-même ; la simple mention d'une gradation par niveaux survit toutefois comme indication d'une architecture conçue plutôt que d'un empilement, ce qui résiste minimalement à l'attaque d'insuffisance probatoire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir si quelque chose y attestait d'une compétence de facilitation d'apprentissage au sens du pôle — la conception d'un environnement où l'apprentissage se produit. Ce qui m'a forcé à m'arrêter, c'est l'existence d'une gradation par niveaux dans les manuels de tuteurs, qui suppose une architecture plutôt qu'un seul document. Sous la présomption de sycophantie, cette lecture est restée fragile : la mention reste allusive, le dispositif pédagogique n'est pas décrit, et la posture maïeutique n'est pas exposée. Sur cette feuille et dans ce pôle, le travail laisse entrevoir une architecture pédagogique en arrière-plan, sans en ouvrir le contenu. La nuance qui reste : le dossier mérite d'être ouvert sur les feuilles où ces manuels seront effectivement décrits ou cités.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "La seule pièce est restée affaiblie mais retenue au temps 2 ; elle suggère une architecture pédagogique différenciée sans la documenter, ce qui place le dossier en attente de matière.",
+        "prescription": "Cette feuille laisse entrevoir une architecture pédagogique en arrière-plan. Pour ouvrir ce dossier, un chemin possible serait de consacrer une feuille future à la conception des manuels — quel niveau de tuteur s'adresse à qui, ce qui marque le passage entre niveaux, et quelle posture pédagogique chaque manuel cherche à transmettre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un acte évaluatif adressé à un apprenant, avec ses critères et le miroir structuré qu'il aura renvoyé."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "extraitVerbatim": "Il me tarde de finaliser les manuels des différents niveaux de tuteurs.",
+          "contexte": "Mention d'une production documentaire structurée et intentionnelle (manuels par niveaux pour des tuteurs) — relève potentiellement de la documentation vivante si l'intention de transmission pour un futur lecteur est articulée.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que la documentation vivante demande une intention de pérennisation et une conscience explicite du destinataire — pas seulement la production d'un document. La pièce est une déclaration d'impatience à finaliser, sans description du dispositif documentaire lui-même. Ce qui me force à m'arrêter : la mention de « manuels des différents niveaux de tuteurs » suppose une structuration pour un destinataire explicite (les tuteurs, gradés par niveaux), ce qui correspond à la conscience du futur lecteur de la fiche. Ce qui reste explicitement faible : aucune mention de versioning, d'évolution, de mise à jour, de structure interne — c'est l'intention qui transparaît, pas l'artefact.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Les manuels sont structurés par niveaux et destinés à des tuteurs identifiés — conscience du destinataire et structuration intentionnelle pour la transmission." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu la simple existence d'un projet de manuels avec une pratique de documentation vivante. La fiche distingue explicitement la documentation vivante d'un simple « j'ai sauvegardé » ou « j'ai archivé » ; elle exige la structuration intentionnelle. Or la pièce ne décrit ni la structure interne, ni l'évolution des versions, ni les choix éditoriaux. Elle reste à un niveau d'annonce. Cependant, la fiche reconnaît aussi qu'un artefact destiné explicitement à un futur lecteur identifié (« les prochains étudiants pourront lire ceci pour... ») est une trace forte, et ici les destinataires sont identifiés (les tuteurs gradés par niveaux).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage est trop allusif et ne décrit pas l'artefact documentaire lui-même (structure, versioning, choix éditoriaux) ; il identifie toutefois un destinataire et une gradation, ce qui reste un indice minimal de conscience documentaire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir si la mention des manuels par niveaux de tuteurs attestait d'une pratique de documentation vivante. Ce qui m'a forcé à m'arrêter, c'est la double présence d'un destinataire identifié (les tuteurs) et d'une structuration par niveaux. Sous la présomption de sycophantie, cette lecture est restée fragile : on ne voit pas l'artefact, on ne voit pas la pratique de versioning, on ne voit qu'une intention de finalisation. Sur cette feuille et dans ce pôle, le travail laisse entrevoir une pratique de documentation orientée vers la transmission, sans encore en ouvrir le contenu. La nuance qui reste : ces manuels sont un objet à part entière, dont la documentation effective mérite d'être ouverte sur une feuille future qui en exposerait l'architecture.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "La pièce est restée affaiblie mais retenue au temps 2 ; elle suggère une pratique documentaire structurée pour des destinataires identifiés sans en exposer l'artefact lui-même.",
+        "prescription": "Cette feuille laisse entrevoir une pratique documentaire orientée vers la transmission. Pour ouvrir ce dossier, un chemin possible serait de décrire, sur une feuille future, la structure interne des manuels — table des matières, choix d'inclusion ou d'exclusion, mode de mise à jour prévu, lien vers les artefacts annexes."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au leadership situationnel et à l'orchestration sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment d'alternance délibérée entre direction et retrait, dans un binôme humain ou humain-IA."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Ce sera peut-être mon dernier projet : après je me mets en pré-retraite, je retire le 2nd pilier pour faire le pont entre le chômage et l'AVS, éventuellement je gagne un peu d'argent avec mes boîtes \"Human Processor!\", avec mes 32 puzzles sur la trisection du carré, avec la partie commerciale du moteur de recherche de \"talents\" dans Respire",
+          "contexte": "Vision pluriannuelle articulant projet présent (Respire), bascule personnelle (pré-retraite), instruments financiers (2nd pilier, AVS) et sources de revenus résiduels à activer — relie le présent à un futur multi-horizons.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que la vision stratégique et prospective demande un lien explicite entre projection future et décision présente — pas seulement un plan à long terme. La pièce articule effectivement plusieurs horizons (le projet en cours, la pré-retraite, le pont chômage-AVS, la monétisation des productions résiduelles), mais elle se présente principalement comme une projection de scénario de vie, pas comme la justification d'un choix présent par un futur anticipé. Ce qui me force à m'arrêter : l'enchaînement « ce sera peut-être mon dernier projet [...] après je me mets en pré-retraite » suppose que les choix actuels (consacrer son énergie à Respire, refuser la mise à niveau ORP) sont reliés à ce scénario long ; c'est implicite mais structurant. Ce qui reste explicitement faible : le lien argumenté entre futur et présent n'est pas formulé sous la forme « je fais X maintenant parce que Y », il est suggéré par la juxtaposition.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La pièce articule plusieurs horizons temporels (projet en cours, pré-retraite, AVS, monétisation des productions) et place le projet actuel en position structurante du scénario long, ce qui correspond à la signature de la prospective scénarisée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas chargé de stratégie ce qui pourrait n'être qu'un récit de bilan financier projeté. La fiche distingue la vision stratégique de la simple temporisation : il faut un *lien argumenté* entre futur et décision présente. Ici, l'argumentation explicite manque ; mais la fiche reconnaît aussi des traces obliques comme le « confort explicite avec un délai » et les « formulations conditionnelles ». La pièce contient les deux : « peut-être », « éventuellement », « pour faire le pont entre » — formulations conditionnelles qui ancrent une vision dans des conditions de réalisation. La pièce reste à un niveau de scénario plus que d'analyse stratégique poussée, mais elle dépasse le simple « plus tard ».",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage raconte un scénario plus qu'il ne formule explicitement le lien argumenté entre choix présent et futur anticipé ; les formulations conditionnelles (« peut-être », « pour faire le pont entre ») ancrent toutefois la vision dans des conditions de réalisation, ce qui maintient la pièce."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir si le plan à plusieurs horizons attestait d'une vision stratégique au sens du pôle, ou seulement d'une projection de scénario de vie. Ce qui m'a forcé à m'arrêter, c'est l'articulation explicite de plusieurs leviers (projet actuel, pré-retraite, 2nd pilier, AVS, monétisation des productions résiduelles) avec leurs modaux d'incertitude. Sous la présomption de sycophantie, la pièce a tenu, affaiblie : le lien argumenté futur-présent reste implicite, mais la prospective scénarisée est lisible. Sur cette feuille et dans ce pôle, le travail montre une vision stratégique à amplitude pluriannuelle, qui ne se déploie pas dans une argumentation explicite mais dans une juxtaposition structurante. La nuance qui reste : la justification du choix présent par le futur anticipé est suggérée plus que formulée.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La pièce a été retenue affaiblie au temps 2 ; la prospective scénarisée à plusieurs horizons est lisible et soutient une présence à confiance modérée.",
+        "prescription": "Le travail sur cette feuille rend visible une vision pluriannuelle qui place le projet actuel dans une trajectoire plus large. Pour approfondir ce territoire, un chemin possible serait de formuler explicitement, sur une feuille future, le lien entre une décision présente précise (un choix de formation, un arbitrage de calendrier, un investissement de temps) et la condition future qui la justifie."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+          "contexte": "Refus argumenté d'une mesure proposée avec motif explicite — exemple direct du « non stratégique argumenté » que la fiche identifie comme marqueur le plus fiable.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "La seule qui m'intéresse encore un peu, c'est celle sur REACT, car ça m'aidera à développer EduFolio. Mais HERMES par exemple, qui est demandé sur la moitié des postes de développeurs, ne m'intéresse pas plus que ça.",
+          "contexte": "Priorisation argumentée avec critère explicite (utilité pour EduFolio) et refus du critère externe d'employabilité — arbitrage articulé.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "extraitVerbatim": "Mais avant je dois faire mes postulations de la semaine et demain mon inscription à la prochaine mesure ORP.",
+          "contexte": "Séquençage explicite avec contrainte temporelle nommée — manifestation simple de priorisation contextuelle.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que l'efficacité personnelle au sens du pôle demande des arbitrages explicites et des refus argumentés — pas de la simple description d'agenda. La pièce 1 est précisément ce que la fiche appelle le « non stratégique argumenté » : un refus d'intérêt nommé avec son motif. La pièce 2 redouble : priorisation entre formations selon un critère articulé (utilité pour EduFolio) et refus explicite d'un critère externe (employabilité). La pièce 3 est plus modeste : une séquence d'actions sur deux jours avec contrainte temporelle. Ce qui me force à m'arrêter : les pièces 1 et 2 portent ensemble la signature la plus fiable de la compétence selon la fiche — un refus délibéré avec ses raisons et un arbitrage entre alternatives. Ce qui reste explicitement faible : la pièce 3 est une simple liste d'actions sans argumentation, et l'ensemble parle plutôt de choix de consommation de formations que de pilotage de ses propres ressources d'attention et d'énergie.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le refus de la mise à niveau ORP est argumenté par un motif articulé (perte de sens, abandon de l'enseignement de la discipline) — exactement le « non stratégique argumenté » que la fiche identifie comme marqueur le plus fiable." },
+            { "pieceId": 2, "motifResistance": "L'apprenant arbitre entre deux formations en explicitant son critère (utilité pour un projet en cours) et en refusant le critère externe (employabilité), ce qui rend visible le raisonnement de priorisation." },
+            { "pieceId": 3, "motifResistance": "Le séquençage sur deux jours avec contrainte temporelle nommée manifeste une priorisation contextuelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas confondu un choix de consommation de formations avec un véritable pilotage de ses ressources. La fiche est claire : l'efficacité personnelle est la gestion délibérée de son temps, de son énergie et de son attention, avec capacité de dire non et de s'arrêter. Les pièces 1 et 2 portent bien des « non » argumentés, mais ils portent sur des contenus de formation, pas directement sur l'allocation d'énergie. Néanmoins, le refus de continuer à se maintenir à jour techniquement « à mon âge » est un acte d'allocation d'énergie — décider de ne plus investir dans une dimension qui ne paye plus. La pièce 3 est plus banale : une simple séquence d'agenda. Reste à vérifier que ces refus ne sont pas simplement des préférences exprimées : la fiche met en garde contre « je suis occupé / j'ai beaucoup travaillé » comme signes d'absence de la compétence. Ici, l'apprenant ne se déclare pas occupé ; il pose un cadre de refus argumenté.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'attaque de surinterprétation ne tient pas : le refus est explicitement argumenté par trois motifs (perte de sens, abandon de l'enseignement de la discipline, refus du maintien à jour à son âge), ce qui correspond précisément au format « non stratégique argumenté » que la fiche identifie comme le plus fiable."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'arbitrage active aussi 1.02 (cadrage de l'intention par filtre projet), mais le marqueur central — priorisation explicite avec critère articulé et refus du critère externe — relève bien de l'efficacité personnelle, ce qui maintient la pièce."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce est trop allusive : un simple séquençage d'agenda sur deux jours, sans raisonnement de priorisation explicite, ne suffit pas au critère de la fiche, qui privilégie le « non » argumenté plutôt que la liste d'actions à venir."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir si les arbitrages exposés relevaient vraiment d'une efficacité personnelle au sens du pôle, ou seulement d'une préférence de consommation. Ce qui m'a forcé à m'arrêter, c'est la double présence d'un refus argumenté par trois motifs (mise à niveau ORP) et d'un arbitrage explicite entre deux formations (REACT vs HERMES) avec critère articulé. Sous la présomption de sycophantie, la pièce 1 a été confirmée comme « non stratégique argumenté » modèle ; la pièce 2 a été retenue affaiblie pour sa parenté avec le cadrage de l'intention ; la pièce 3 est tombée comme simple liste d'agenda. Sur cette feuille et dans ce pôle, le travail montre une efficacité personnelle qui se manifeste principalement par la capacité à refuser ce qui ne fait plus sens en l'argumentant, et à arbitrer entre alternatives selon un critère choisi. La nuance qui reste : ces refus portent sur des contenus de formation plutôt que sur l'allocation directe du temps et de l'énergie ; la dimension du « s'arrêter » que la fiche reconnaît comme noyau de la compétence est suggérée par d'autres mentions de la feuille (ralentir, prendre soin de soi) mais n'est pas portée par ces pièces.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Au temps 2, la pièce 1 a été confirmée comme exemple du « non stratégique argumenté » que la fiche identifie comme marqueur le plus fiable ; la pièce 2 a été retenue affaiblie pour la parenté avec le cadrage.",
+        "prescription": "Le travail sur cette feuille rend visible la capacité à refuser ce qui ne fait plus sens en l'argumentant et à arbitrer entre alternatives selon un critère choisi. Pour approfondir ce territoire, un chemin possible serait de documenter, lorsque l'arrêt ou le ralentissement se posera concrètement, la délibération interne qui le précède et le critère qui le rend non négociable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'agilité et à la conduite du changement sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un cycle itératif avec ajustements explicités, ou un accompagnement de résistances chez d'autres personnes."
+      }
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous pression temporelle extrême, avec sa séquence de décisions et ses erreurs assumées."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 2,
+    "nonEtablies": 0,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle de la transmission et du pilotage apparaît principalement par la facette de l'efficacité personnelle. Le texte du jour pose une série d'arbitrages explicites : refus d'une mise à niveau qui n'a plus de sens, priorisation d'une formation utile à un projet précis, séquençage de tâches sur deux jours. À côté de cette facette de pilotage de soi, une vision pluriannuelle se dessine — projet présent posé en position structurante d'un scénario long allant jusqu'à l'AVS. La dimension transmission apparaît en arrière-plan, par la mention de manuels gradués par niveaux de tuteurs, sans encore en ouvrir l'architecture. Les territoires de l'évaluation transformative, du leadership situationnel, de l'agilité et de la gestion de crise ne sont pas mobilisés par cette journée.",
+    "territoiresDenses": [
+      {
+        "competence": "Efficacité personnelle",
+        "description": "Refus argumenté d'une mesure de formation proposée, accompagné d'un arbitrage explicite entre alternatives avec critère articulé — exemple direct du « non stratégique argumenté » que ce territoire identifie comme marqueur le plus fiable.",
+        "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+        "ceQueCaDit": "Le travail montre une capacité à rendre visible le raisonnement de priorisation par le refus argumenté plutôt que par l'addition d'engagements. Ce qui est refusé est nommé avec ses motifs, ce qui rend la priorisation lisible."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Articulation pluriannuelle entre projet présent, bascule vers la pré-retraite, instruments financiers (2nd pilier, AVS) et sources de revenus résiduels — prospective scénarisée à plusieurs horizons.",
+        "extraitVerbatim": "Ce sera peut-être mon dernier projet : après je me mets en pré-retraite, je retire le 2nd pilier pour faire le pont entre le chômage et l'AVS, éventuellement je gagne un peu d'argent avec mes boîtes \"Human Processor!\", avec mes 32 puzzles sur la trisection du carré, avec la partie commerciale du moteur de recherche de \"talents\" dans Respire",
+        "ceQueCaDit": "Le travail montre une amplitude temporelle pluriannuelle dans laquelle le projet actuel trouve sa place. La justification du choix présent par le futur anticipé reste suggérée par juxtaposition plutôt que formulée explicitement."
+      }
+    ],
+    "territoiresNonVisites": "Sur cette feuille, quatre des huit territoires du pôle restent non visités, et deux autres restent en renvoi au cartographe. Une partie ressemble à un choix de feuille : le journal du jour ne porte ni acte évaluatif adressé à un apprenant, ni alternance entre direction et retrait, ni cycle itératif, ni incident géré sous pression — il est cohérent que l'évaluation transformative, le leadership situationnel, l'agilité et la gestion de crise n'y trouvent pas leur matière. D'autres absences ressemblent davantage à une limite du portfolio textuel sur cette journée : la maïeutique et la documentation vivante restent en seuil bas, à travers la seule mention des manuels par niveaux de tuteurs, sans que l'architecture pédagogique ou l'artefact documentaire eux-mêmes soient exposés.",
+    "emergencesPole": "Ce qui traverse plusieurs compétences du pôle sur cette feuille, c'est une économie du refus argumenté comme outil de pilotage. L'efficacité personnelle rend visible une priorisation par soustraction (ce qui est refusé est nommé avec ses motifs), la vision stratégique relie ce refus à un scénario long, et la documentation des manuels par niveaux est suggérée comme une autre forme du même geste — choisir ce qui mérite d'être structuré, transmis, gradué. Un second motif, plus discret, traverse le pôle : la sobriété, presque l'économie de moyens, dans la formulation des arbitrages.",
+    "pistes": [
+      "Pour approfondir le territoire de l'efficacité personnelle, un chemin possible serait de documenter, lorsque le ralentissement annoncé se posera concrètement, la délibération interne qui le précède et le critère qui le rend non négociable.",
+      "Pour ouvrir le territoire de la maïeutique et de la facilitation, un chemin possible serait de consacrer une feuille future à la conception des manuels de tuteurs — quel niveau s'adresse à qui, ce qui marque le passage entre niveaux, et quelle posture pédagogique chaque manuel cherche à transmettre.",
+      "Pour donner corps au territoire de la documentation vivante, un chemin possible serait de décrire, sur une feuille future, la structure interne des manuels — table des matières, choix d'inclusion ou d'exclusion, mode de mise à jour prévu, articulation entre les niveaux."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle de la transmission et du pilotage apparaît principalement par la facette de l'efficacité personnelle. Le texte du jour pose une série d'arbitrages explicites : refus d'une mise à niveau qui n'a plus de sens, priorisation d'une formation utile à un projet précis, séquençage de tâches sur deux jours. À côté de cette facette de pilotage de soi, une vision pluriannuelle se dessine — projet présent posé en position structurante d'un scénario long allant jusqu'à l'AVS. La dimension transmission apparaît en arrière-plan, par la mention de manuels gradués par niveaux de tuteurs, sans encore en ouvrir l'architecture. Les territoires de l'évaluation transformative, du leadership situationnel, de l'agilité et de la gestion de crise ne sont pas mobilisés par cette journée.\n\n## Territoires les plus denses\n\n### Efficacité personnelle\n\nRefus argumenté d'une mesure de formation proposée, accompagné d'un arbitrage explicite entre alternatives avec critère articulé — exemple direct du « non stratégique argumenté » que ce territoire identifie comme marqueur le plus fiable.\n\n> « Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge. »\n\nLe travail montre une capacité à rendre visible le raisonnement de priorisation par le refus argumenté plutôt que par l'addition d'engagements. Ce qui est refusé est nommé avec ses motifs, ce qui rend la priorisation lisible.\n\n### Vision stratégique et prospective\n\nArticulation pluriannuelle entre projet présent, bascule vers la pré-retraite, instruments financiers (2nd pilier, AVS) et sources de revenus résiduels — prospective scénarisée à plusieurs horizons.\n\n> « Ce sera peut-être mon dernier projet : après je me mets en pré-retraite, je retire le 2nd pilier pour faire le pont entre le chômage et l'AVS, éventuellement je gagne un peu d'argent avec mes boîtes \"Human Processor!\", avec mes 32 puzzles sur la trisection du carré, avec la partie commerciale du moteur de recherche de \"talents\" dans Respire »\n\nLe travail montre une amplitude temporelle pluriannuelle dans laquelle le projet actuel trouve sa place. La justification du choix présent par le futur anticipé reste suggérée par juxtaposition plutôt que formulée explicitement.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, quatre des huit territoires du pôle restent non visités, et deux autres restent en renvoi au cartographe. Une partie ressemble à un choix de feuille : le journal du jour ne porte ni acte évaluatif adressé à un apprenant, ni alternance entre direction et retrait, ni cycle itératif, ni incident géré sous pression — il est cohérent que l'évaluation transformative, le leadership situationnel, l'agilité et la gestion de crise n'y trouvent pas leur matière. D'autres absences ressemblent davantage à une limite du portfolio textuel sur cette journée : la maïeutique et la documentation vivante restent en seuil bas, à travers la seule mention des manuels par niveaux de tuteurs, sans que l'architecture pédagogique ou l'artefact documentaire eux-mêmes soient exposés.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse plusieurs compétences du pôle sur cette feuille, c'est une économie du refus argumenté comme outil de pilotage. L'efficacité personnelle rend visible une priorisation par soustraction (ce qui est refusé est nommé avec ses motifs), la vision stratégique relie ce refus à un scénario long, et la documentation des manuels par niveaux est suggérée comme une autre forme du même geste — choisir ce qui mérite d'être structuré, transmis, gradué. Un second motif, plus discret, traverse le pôle : la sobriété, presque l'économie de moyens, dans la formulation des arbitrages.\n\n## Pistes pour enrichir ce pôle\n\n- Pour approfondir le territoire de l'efficacité personnelle, un chemin possible serait de documenter, lorsque le ralentissement annoncé se posera concrètement, la délibération interne qui le précède et le critère qui le rend non négociable.\n- Pour ouvrir le territoire de la maïeutique et de la facilitation, un chemin possible serait de consacrer une feuille future à la conception des manuels de tuteurs — quel niveau s'adresse à qui, ce qui marque le passage entre niveaux, et quelle posture pédagogique chaque manuel cherche à transmettre.\n- Pour donner corps au territoire de la documentation vivante, un chemin possible serait de décrire, sur une feuille future, la structure interne des manuels — table des matières, choix d'inclusion ou d'exclusion, mode de mise à jour prévu, articulation entre les niveaux."
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Les choses sont plus claires ce matin. Hier j'écrivais à Stéphane : \"Je pense que je ne vais pas postuler\". Aujourd'hui j'en suis certain. Je ne veux pas. Je ne peux pas. Je préfère finir RESPIRE et prendre mon 3e pilier pour y arriver, que recevoir un salaire qui rendrait ma situation confortable et faire un travail qui m'éloigne de ce qui me semble être l'urgence aujourd'hui.",
+      "contexte": "Arbitrage explicite entre confort financier (salaire) et alignement avec ce qui semble être l'urgence (finir RESPIRE), avec maturation entre la veille et le jour même, et engagement financier personnel (3e pilier).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Après 4 semaines intenses de la mesure de Lab4Tech (qui s'est terminée par un repositionnement dans mes recherches de travail avec l'abandon des postes de développeurs et une refonte de mon CV pour des postes liés à la recherche)",
+      "contexte": "Décision d'abandonner toute une catégorie de postes (développeur) au profit d'une autre (recherche), au terme d'une mesure d'orientation de 4 semaines.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "C'est un signe que je ne suis plus capable de gérer 44 projets en parallèle tout en étant interrompu toutes les 30 minutes, et parfois 4 semaines avec l'ORP.",
+      "contexte": "Reconnaissance explicite d'une limite de capacité (« je ne suis plus capable de »), nommée à partir d'un signe (effacement de la mémoire de travail) et appuyée sur une référence personnelle passée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "il faut que je change de mode de fonctionnement et que je prévienne tout le monde que je ne suis plus disponible temporairement.",
+      "contexte": "Décision d'agir sur sa propre disponibilité et de la communiquer à un cercle, comme conséquence du diagnostic de saturation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "C'est décidé je reboote mon ordinateur pour passer à Tahoe 26.3.1. La dernière fois ça m'a pris 48h. J'espère réussir en 24h.",
+      "contexte": "Décision opérationnelle posée malgré une incertitude documentée sur la durée (la dernière fois 48h, espoir cette fois 24h).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Après, je me lancerai dans la finalisation de la cartographie automatique dans l'objectif de boucler cette partie du projet pour pouvoir éventuellement faire une démo vendredi 20.03.lors du hackathon Sqily.",
+      "contexte": "Planification d'une finalisation conditionnée à une date précise (démo du 20.03), avec un éventuellement qui ménage l'incertitude.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Je préfère finir RESPIRE et prendre mon 3e pilier pour y arriver, que recevoir un salaire qui rendrait ma situation confortable et faire un travail qui m'éloigne de ce qui me semble être l'urgence aujourd'hui.",
+      "contexte": "Arbitrage explicite entre deux valeurs : confort matériel (salaire confortable) versus alignement avec une urgence ressentie, avec engagement d'un coût personnel (3e pilier).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'arbitrage entre salaire confortable et alignement avec une urgence ressentie met en tension deux valeurs légitimes (sécurité matérielle / fidélité à un projet), avec assomption d'un coût personnel (3e pilier mobilisé)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'un simple choix personnel, pas d'un raisonnement éthique appliqué. Le critère 4.01 exige une mise en tension visible de valeurs, pas une préférence affirmée. La pièce contient les deux pôles d'un arbitrage (confort matériel / alignement projet) et nomme le coût personnel pris (3e pilier), ce qui dépasse la simple préférence. Mais elle ne thématise pas la tension comme dilemme moral — le ton est celui d'une décision assumée, pas celui d'un poids éthique exploré. La pièce résiste partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'arbitrage explicite entre deux valeurs (confort matériel / alignement projet) accompagné d'un coût personnel assumé (3e pilier) constitue une mise en tension lisible." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si j'ai surchargé un choix personnel en raisonnement éthique. L'attaque la plus pertinente est la confusion de compétence : l'arbitrage relève peut-être davantage du cadrage de l'intention (1.02) ou de la priorisation personnelle (7.06) que du raisonnement éthique au sens 4.01. Le critère 4.01 demande des valeurs en conflit, pas seulement des options en arbitrage. Ici, ce qui s'oppose est un confort matériel et un projet personnel — ce sont des biens, mais leur conflit n'est pas traversé comme dilemme moral (« d'un côté... de l'autre... », exploration des conséquences pour différentes parties prenantes). L'attaque tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Ce qui est en tension ici (salaire confortable vs alignement avec une urgence) relève d'une priorisation personnelle entre deux biens, pas d'un dilemme moral avec exploration des conséquences pour différentes parties prenantes. Le marqueur central de 4.01 (mise en tension de valeurs morales) n'est pas mobilisé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'arbitrage du salaire portait un raisonnement éthique au sens 4.01. Sous la présomption de sycophantie, l'attaque de confusion de compétence a tenu : ce qui est en tension ici n'est pas un dilemme moral entre valeurs concurrentes (avec exploration des conséquences pour différentes parties prenantes), mais une priorisation personnelle entre deux biens (sécurité matérielle / fidélité à un projet). Le raisonnement existe et il est lisible, mais il joue dans le registre du cadrage de l'intention plutôt que du raisonnement éthique. Ce qui en résulte, pour cette feuille, c'est l'absence d'établissement de la présence sur 4.01. La nuance qui reste : la frontière entre arbitrage de valeurs et dilemme moral est mince, et certaines feuilles ultérieures pourraient porter des arbitrages où le poids éthique est explicité.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "L'unique pièce a été disqualifiée par l'attaque de confusion de compétence : l'arbitrage relève d'une priorisation personnelle plutôt que d'un dilemme moral mettant en tension des valeurs concurrentes.",
+        "prescription": "Pour ouvrir ce dossier, raconter un arbitrage en explicitant les valeurs en tension, en explorant les conséquences pour les différentes parties prenantes et en maintenant l'incertitude morale rendrait le raisonnement éthique lisible. Documenter une décision où la bonne réponse n'était pas évidente moralement est plus probant qu'une décision où on a choisi sa préférence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne décrit pas d'acte d'alignement IA / valeurs humaines (refus d'une suggestion, garde-fou mis en place, diagnostic d'output désaligné). Documenter une situation où un output IA a été refusé ou recalibré au nom de valeurs explicites ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille n'intègre pas d'enjeu écologique ou générationnel dans ses arbitrages. Documenter une décision où l'impact long-terme (environnemental, sociétal, générationnel) a effectivement modifié le raisonnement, au-delà de la déclaration d'intention, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne relie pas une réussite ou un angle particulier à un mode de pensée divergent. Documenter un moment où la pensée non-linéaire ou atypique a produit un résultat qu'une approche standard n'aurait pas atteint ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Décision tranchée (« j'en suis certain. Je ne veux pas. Je ne peux pas. ») prise dans un contexte de pari personnel : finir RESPIRE en mobilisant le 3e pilier, sans garantie de succès et avec un coût matériel assumé."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Décision opérationnelle prise avec incertitude documentée sur la durée : « La dernière fois ça m'a pris 48h. J'espère réussir en 24h. » L'apprenant tranche malgré un précédent défavorable."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Planification d'une démo le 20.03 avec « éventuellement » qui maintient l'incertitude sur la tenue de l'objectif tout en posant la direction."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'il s'agit de décisions ordinaires, pas de tranchage en contexte de flou au sens 4.05. Le critère exige une combinaison : nommer ce qu'on ne savait pas, fonctionner malgré le flou, raconter un acte de tranchage. La pièce 1 trance avec netteté (« je ne veux pas, je ne peux pas ») et engage un coût (3e pilier) sans garantie — c'est un pari assumé, qui correspond au cœur de 4.05. La pièce 2 trance malgré un précédent défavorable (48h la dernière fois), avec un espoir explicite qui ne nie pas le risque — c'est de la décision avec incertitude documentée. La pièce 3 maintient l'incertitude (« éventuellement ») tout en posant la direction — c'est de la tolérance à l'incertitude opérationnelle. Les trois pièces résistent à la présomption d'absence.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La décision est tranchée et le coût personnel est assumé (3e pilier mobilisé) sans garantie de succès, ce qui correspond au pari assumé qui caractérise 4.05." },
+            { "pieceId": 2, "motifResistance": "La décision est prise malgré un précédent défavorable explicité (48h la dernière fois) avec espoir borné (24h cette fois), ce qui montre du tranchage en incertitude." },
+            { "pieceId": 3, "motifResistance": "Le « éventuellement » maintient l'incertitude tout en posant la direction, ce qui correspond à la tolérance opérationnelle au flou." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si j'ai surinterprété des décisions ordinaires en décisions sous incertitude. La pièce 1 souffre potentiellement de confusion de compétence : la netteté de la décision et l'arbitrage entre options en font davantage du cadrage (1.02) ou du sens / motivation intrinsèque (5.05) que de la tolérance au flou. Cependant, le pari sur un projet long sans garantie de succès, avec coût matériel assumé, est bien le marqueur central de 4.05. L'attaque touche sans disqualifier. La pièce 2 est solide : le précédent défavorable est explicité, la décision est prise, l'espoir borné montre que l'incertitude est connue. La pièce 3 souffre d'insuffisance probatoire : « éventuellement » est mince comme trace.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La décision pourrait être lue comme du cadrage de l'intention ou du sens intrinsèque. Mais le pari assumé avec coût matériel (3e pilier) sans garantie correspond au marqueur central de 4.05."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce contient les trois éléments : nomination de l'incertitude (48h la dernière fois), espoir borné (24h cette fois), décision tranchée (« c'est décidé »). C'est un combo presque idéal pour 4.05."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le « éventuellement » suggère la tolérance au flou mais reste un marqueur ténu. La pièce vaut comme indice plus que comme preuve."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les décisions de cette feuille relevaient simplement de l'arbitrage ordinaire ou portaient une trace de tranchage en contexte d'incertitude. Ce qui m'a forcé à reconnaître autre chose, c'est surtout la pièce 2 : nomination du précédent défavorable (48h), espoir borné (24h), décision tranchée — c'est la structure du tranchage en incertitude documentée. La pièce 1 a tenu sous la présomption de sycophantie en tant que pari assumé sur un projet long. La pièce 3 a tenu plus faiblement comme tolérance opérationnelle au flou. Ce qui en résulte, pour cette feuille, c'est une trace consolidée de décision et tolérance à l'incertitude, avec un cas de figure proche du combo le plus fiable (nomme l'incertitude, fonctionne avec elle, tranche). La nuance qui reste : la dimension existentielle de la tolérance (supporter le flou dans la durée) reste plus implicite que la dimension décisionnelle.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "La pièce 2 a résisté pleinement à l'attaque ; les pièces 1 et 3 ont été affaiblies mais retenues. Le verdict est porté par le combo de la pièce 2 (incertitude nommée, fonctionnement malgré le flou, tranchage assumé).",
+        "prescription": "Pour prolonger ce travail, raconter après-coup les conséquences réelles d'une décision prise sous incertitude (ce qui a tenu, ce qui a été surpris) consoliderait la dimension longitudinale. Documenter explicitement les paris en cours, leurs critères d'arrêt et leurs résultats permettrait de calibrer ce qui relève de la tolérance vécue versus de la déclaration d'intention."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Reconnaissance explicite d'une limite de capacité (« je ne suis plus capable de gérer 44 projets »), avec attribution à un facteur identifié (le couplage projets × interruptions). C'est une trace d'accountability rétrospective : l'apprenant ne minimise pas et nomme ce qui se passe."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Décision de prévenir tout le monde de sa non-disponibilité plutôt que de bricoler une indisponibilité tacite : c'est une décision d'intégrité (cohérence entre l'état réel et la communication publique) qui a un coût social."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Maintien d'une position qui a un coût personnel (renoncer à un salaire confortable, mobiliser le 3e pilier) au nom d'une fidélité à un projet et à ce qui est ressenti comme l'urgence du moment."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'il s'agit de constats ordinaires ou de choix de préférence, pas de courage et d'intégrité au sens 4.06. Le critère exige une combinaison : identification d'un dilemme, reconnaissance de sa part et du coût, action corrective ou maintien de position. La pièce 1 reconnaît une limite sans la minimiser (« je ne suis plus capable de »), ce qui dépasse la simple plainte. La pièce 2 articule une décision de transparence qui a un coût social (annoncer la non-disponibilité plutôt que de bricoler). La pièce 3 maintient une position au prix d'un renoncement matériel concret (3e pilier mobilisé). Les trois pièces résistent à la présomption d'absence par leur dimension de coût assumé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La reconnaissance d'une limite (« je ne suis plus capable de ») sans minimisation et avec attribution à un facteur identifié constitue une trace d'accountability." },
+            { "pieceId": 2, "motifResistance": "Décider de prévenir explicitement plutôt que de bricoler une indisponibilité tacite est une décision d'intégrité avec coût social." },
+            { "pieceId": 3, "motifResistance": "Mobiliser le 3e pilier pour finir RESPIRE plutôt qu'accepter un salaire confortable représente un maintien de position avec coût personnel concret." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si j'ai surinterprété des choix personnels en courage. La pièce 1 souffre potentiellement du récit performatif : « je ne suis plus capable » est une déclaration sur soi, pas nécessairement une accountability constructive. Cependant, la déclaration est suivie d'une action corrective dans la même feuille (changer de mode de fonctionnement, prévenir), ce qui correspond au critère de 4.06 (« c'est ma responsabilité ET voici ce que je fais maintenant »). La pièce 2 souffre du même problème : annoncer la non-disponibilité est une intention, pas un acte accompli — mais la décision est posée. La pièce 3 est la plus solide : le coût (3e pilier) est concret, le maintien de position est explicité. L'attaque touche les pièces 1 et 2 mais ne les disqualifie pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La déclaration de limite pourrait rester performative, mais elle est ici accompagnée d'une suite d'actions correctives explicitées dans la même feuille, ce qui satisfait le combo de 4.06."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'annonce reste au stade de l'intention dans cette feuille, mais la décision de transparence à coût social est posée et lisible."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le coût (mobilisation du 3e pilier) est concret et chiffrable, le maintien de position au prix d'un renoncement matériel est explicité. C'est le marqueur central de l'intégrité au sens 4.06."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les décisions de cette feuille portaient un travail de courage et d'intégrité ou si elles relevaient simplement de la préférence personnelle. Ce qui m'a forcé à reconnaître autre chose, c'est l'enchaînement : une limite est nommée sans être minimisée, une action corrective est décidée (changer de mode, prévenir), et une position est maintenue à un coût concret (3e pilier mobilisé). Sous la présomption de sycophantie, les pièces 1 et 2 se sont affaiblies parce qu'elles restent partiellement au stade de l'intention, mais elles ont tenu. La pièce 3 a pleinement résisté : le coût est concret et la position est maintenue. Ce qui en résulte, pour cette feuille, c'est une trace de responsabilité et d'intégrité à dimension constructive : la limite reconnue ouvre sur l'action, et la fidélité à un projet est tenue au prix d'un renoncement matériel. La nuance qui reste : la dimension du courage face à la pression d'autrui n'est pas explicitement décrite — c'est surtout l'intégrité personnelle (cohérence valeurs / actes) qui est lisible.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.65,
+        "motif": "La pièce 3 a résisté pleinement avec son coût concret ; les pièces 1 et 2 ont été affaiblies mais retenues. Le combo (limite reconnue → action corrective → maintien de position à coût) porte le verdict.",
+        "prescription": "Pour prolonger ce travail, raconter après-coup ce que la communication de retrait a réellement produit (qui a accueilli comment, ce que cela a coûté, ce que cela a libéré) consoliderait la dimension comportementale de l'accountability. Une autre piste serait de noter le moment où une position aurait pu être lâchée et ce qui a tenu malgré la pression."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne décrit pas d'erreur IA corrigée par un savoir contextuel que la machine ne possédait pas. Documenter un moment où un delta de contexte humain/machine a changé la décision ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne thématise pas ce que l'humain apporte structurellement et que l'IA ne peut pas reproduire. Documenter un moment où la valeur de l'interaction humaine a été nommée comme irréductible, avec lucidité bidirectionnelle, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Décision de retrait temporaire (« je ne suis plus disponible temporairement ») qui est un acte de patience stratégique : reporter les engagements actuels pour pouvoir reprendre les sous-projets dans des conditions soutenables, avec critère implicite (sortir de l'effacement de mémoire de travail)."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Planification de la finalisation de la cartographie automatique conditionnée à un déclencheur précis (« après » le reboot) et bornée par un événement daté (démo du 20.03 au hackathon Sqily). C'est un report borné avec critère de déclenchement explicite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'il s'agit de procrastination ou de simple planification, pas de patience stratégique au sens 4.09. Le critère exige une non-action délibérée avec critère de déclenchement, ou un report borné avec critère explicite. La pièce 1 est un report dont le critère implicite est la sortie de saturation cognitive — c'est un choix argumenté, pas une procrastination. La pièce 2 est explicite : le « après » le reboot est un critère de déclenchement, et la date du 20.03 borne le report. Les deux pièces résistent à la présomption d'absence par leur critère de déclenchement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le retrait est délibéré et borné dans le temps (« temporairement »), avec un critère implicite de retour à des conditions soutenables." },
+            { "pieceId": 2, "motifResistance": "Le report de la finalisation est conditionné à un déclencheur précis (« après » le reboot) et borné par une date (démo 20.03). Le combo critère + horizon est lisible." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si j'ai surinterprété de la planification ordinaire en patience stratégique. La pièce 1 souffre potentiellement de l'insuffisance probatoire : « temporairement » est un marqueur ténu, et le critère de retour n'est pas explicité (à quel signe l'apprenant saura-t-il être redevenu disponible ?). L'attaque touche. La pièce 2 est plus solide : le « après » établit un ordre, la date du 20.03 établit l'horizon, et le « éventuellement » montre que le report est calibré à la situation. L'attaque ne tient pas pour la pièce 2.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le « temporairement » est mince comme critère et l'apprenant ne précise pas à quel signe il saura être redevenu disponible. Le report existe mais le critère de fin reste implicite."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le combo critère + horizon est complet : « après » le reboot pose la séquence, la démo du 20.03 pose l'horizon, le « éventuellement » montre la calibration à la situation. C'est de la patience stratégique articulée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les décisions de report de cette feuille relevaient de la procrastination ou de la planification administrative. Ce qui m'a forcé à reconnaître autre chose, c'est la pièce 2 : la finalisation de la cartographie est différée jusqu'après le reboot, et bornée par la démo du 20.03 — c'est un report calibré avec critère et horizon. La pièce 1 a tenu plus faiblement : le retrait est délibéré mais son critère de fin reste implicite. Ce qui en résulte, pour cette feuille, c'est une trace de patience stratégique consolidée par la pièce 2 et étayée par la pièce 1. La nuance qui reste : la dimension de résistance à la fausse urgence n'est pas explicitement décrite — la patience est ici plus séquentielle (un avant / un après) qu'opposée à une pression d'agir maintenant.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La pièce 2 a résisté pleinement avec son combo critère + horizon ; la pièce 1 a été affaiblie mais retenue. Le verdict est porté par la calibration explicite du report dans la pièce 2.",
+        "prescription": "Pour prolonger ce travail, expliciter à l'avance les signaux qui marqueront la fin d'un retrait ou d'un report (à quoi reconnaîtrai-je que le moment est venu ?) consoliderait la dimension stratégique. Une autre piste serait de raconter, après-coup, un cas où la patience a produit un meilleur résultat que l'action immédiate."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 0,
+    "nonEtablies": 6,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle du discernement est traversé par un nœud serré entre décision et engagement personnel. L'apprenant tranche sur des situations à incertitude (un précédent informatique de 48h, une démo conditionnée à une date), prend des positions à coût matériel (mobilisation du 3e pilier pour finir RESPIRE), reconnaît des limites sans les minimiser (« je ne suis plus capable de gérer 44 projets »), et borne ses reports par des critères de déclenchement explicites (après le reboot, démo le 20.03). Le ton est sobre, les coûts sont nommés, et les décisions sont prises sans drame ni minimisation. Le geste éthique au sens fort (mise en tension de valeurs morales avec exploration des conséquences pour plusieurs parties prenantes) n'apparaît pas — ce qui se joue ici est davantage du côté du tranchage, de la cohérence et de la calibration temporelle.",
+    "territoiresDenses": [
+      {
+        "competence": "Décision et tolérance à l'incertitude",
+        "description": "L'apprenant tranche sur trois décisions à incertitude documentée : ne pas postuler avec coût matériel assumé, rebooter le système malgré un précédent de 48h, finaliser la cartographie en vue d'une démo « éventuelle ». Le combo nomme l'incertitude + fonctionne avec elle + tranche est visible.",
+        "extraitVerbatim": "C'est décidé je reboote mon ordinateur pour passer à Tahoe 26.3.1. La dernière fois ça m'a pris 48h. J'espère réussir en 24h.",
+        "ceQueCaDit": "La capacité de trancher est ici lisible parce que l'incertitude est nommée et bornée, pas niée. L'espoir d'un meilleur résultat (24h) ne vient pas effacer la connaissance du précédent (48h)."
+      },
+      {
+        "competence": "Responsabilité, courage et intégrité",
+        "description": "Une limite est reconnue sans minimisation, une action corrective est décidée (changer de mode, prévenir), et une position est maintenue au prix d'un renoncement matériel concret. L'enchaînement reconnaissance-action-coût correspond au combo de l'accountability constructive.",
+        "extraitVerbatim": "Je préfère finir RESPIRE et prendre mon 3e pilier pour y arriver, que recevoir un salaire qui rendrait ma situation confortable",
+        "ceQueCaDit": "L'intégrité au sens 4.06 se lit dans la cohérence entre la position défendue et le coût accepté. Le 3e pilier mobilisé n'est pas une métaphore — c'est l'épargne retraite engagée pour tenir un projet."
+      },
+      {
+        "competence": "Patience stratégique et sens du timing",
+        "description": "Les reports de cette feuille sont calibrés : la finalisation de la cartographie attend le reboot, la démo borne l'horizon au 20.03, et le retrait des engagements en cours est annoncé comme « temporaire ». Les critères de déclenchement structurent l'attente.",
+        "extraitVerbatim": "Après, je me lancerai dans la finalisation de la cartographie automatique dans l'objectif de boucler cette partie du projet pour pouvoir éventuellement faire une démo vendredi 20.03.lors du hackathon Sqily.",
+        "ceQueCaDit": "Le report n'est pas une procrastination parce qu'il est conditionné à un déclencheur (« après ») et borné par un événement daté. Le « éventuellement » montre que l'horizon est tenu sans rigidité."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés dans cette feuille. Le raisonnement éthique appliqué (mise en tension de valeurs morales avec exploration des conséquences pour plusieurs parties prenantes), l'alignement et le refus éthique face à l'IA, la conscience écologique long-terme, la valorisation de la neurodiversité, la validation contextuelle et la création de valeur non-automatisable ressemblent à des absences de cette feuille particulière, pas nécessairement à des absences du portfolio. L'arbitrage entre salaire confortable et finition de RESPIRE pourrait toucher au raisonnement éthique s'il était présenté comme dilemme moral plutôt que comme préférence assumée — la frontière est mince.",
+    "emergencesPole": "Trois observations traversent les compétences sondées dans cette feuille. D'abord, le coût explicite : chaque décision importante est accompagnée du prix payé (3e pilier mobilisé, retrait des engagements, 24 à 48h de reboot), ce qui ancre l'intégrité dans le concret. Ensuite, l'absence de drame : les limites sont nommées sans minimisation ni amplification, les paris sont assumés sans grandiloquence, le retrait est annoncé sans excuses ni justifications répétées. Enfin, une articulation séquentielle des actions : « après le reboot... », « pour pouvoir éventuellement... », « il faut que je change de mode et que je prévienne » — chaque décision s'inscrit dans un ordre temporel qui rend lisible la calibration des priorités.",
+    "pistes": [
+      "Pour prolonger le travail sur la décision en incertitude, un chemin possible serait de raconter après-coup les conséquences réelles d'un pari pris sous flou (ce qui a tenu, ce qui a été surpris, le coût final versus le coût anticipé).",
+      "Pour consolider la trace de patience stratégique, un chemin possible serait d'expliciter à l'avance les signaux qui marqueront la fin d'un retrait ou d'un report (à quoi reconnaître que le moment est venu ?).",
+      "Pour clarifier le dossier du raisonnement éthique, un chemin possible serait de présenter un arbitrage non plus comme une préférence assumée mais comme un dilemme dont les conséquences pour différentes parties prenantes sont explorées avant la décision."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle du discernement est traversé par un nœud serré entre décision et engagement personnel. L'apprenant tranche sur des situations à incertitude (un précédent informatique de 48h, une démo conditionnée à une date), prend des positions à coût matériel (mobilisation du 3e pilier pour finir RESPIRE), reconnaît des limites sans les minimiser (« je ne suis plus capable de gérer 44 projets »), et borne ses reports par des critères de déclenchement explicites (après le reboot, démo le 20.03). Le ton est sobre, les coûts sont nommés, et les décisions sont prises sans drame ni minimisation. Le geste éthique au sens fort (mise en tension de valeurs morales avec exploration des conséquences pour plusieurs parties prenantes) n'apparaît pas — ce qui se joue ici est davantage du côté du tranchage, de la cohérence et de la calibration temporelle.\n\n## Territoires les plus denses\n\n### Décision et tolérance à l'incertitude\n\nL'apprenant tranche sur trois décisions à incertitude documentée : ne pas postuler avec coût matériel assumé, rebooter le système malgré un précédent de 48h, finaliser la cartographie en vue d'une démo « éventuelle ». Le combo nomme l'incertitude + fonctionne avec elle + tranche est visible.\n\n> C'est décidé je reboote mon ordinateur pour passer à Tahoe 26.3.1. La dernière fois ça m'a pris 48h. J'espère réussir en 24h.\n\nLa capacité de trancher est ici lisible parce que l'incertitude est nommée et bornée, pas niée. L'espoir d'un meilleur résultat (24h) ne vient pas effacer la connaissance du précédent (48h).\n\n### Responsabilité, courage et intégrité\n\nUne limite est reconnue sans minimisation, une action corrective est décidée (changer de mode, prévenir), et une position est maintenue au prix d'un renoncement matériel concret. L'enchaînement reconnaissance-action-coût correspond au combo de l'accountability constructive.\n\n> Je préfère finir RESPIRE et prendre mon 3e pilier pour y arriver, que recevoir un salaire qui rendrait ma situation confortable\n\nL'intégrité au sens 4.06 se lit dans la cohérence entre la position défendue et le coût accepté. Le 3e pilier mobilisé n'est pas une métaphore — c'est l'épargne retraite engagée pour tenir un projet.\n\n### Patience stratégique et sens du timing\n\nLes reports de cette feuille sont calibrés : la finalisation de la cartographie attend le reboot, la démo borne l'horizon au 20.03, et le retrait des engagements en cours est annoncé comme « temporaire ». Les critères de déclenchement structurent l'attente.\n\n> Après, je me lancerai dans la finalisation de la cartographie automatique dans l'objectif de boucler cette partie du projet pour pouvoir éventuellement faire une démo vendredi 20.03.lors du hackathon Sqily.\n\nLe report n'est pas une procrastination parce qu'il est conditionné à un déclencheur (« après ») et borné par un événement daté. Le « éventuellement » montre que l'horizon est tenu sans rigidité.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas été ramenés dans cette feuille. Le raisonnement éthique appliqué (mise en tension de valeurs morales avec exploration des conséquences pour plusieurs parties prenantes), l'alignement et le refus éthique face à l'IA, la conscience écologique long-terme, la valorisation de la neurodiversité, la validation contextuelle et la création de valeur non-automatisable ressemblent à des absences de cette feuille particulière, pas nécessairement à des absences du portfolio. L'arbitrage entre salaire confortable et finition de RESPIRE pourrait toucher au raisonnement éthique s'il était présenté comme dilemme moral plutôt que comme préférence assumée — la frontière est mince.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences sondées dans cette feuille. D'abord, le coût explicite : chaque décision importante est accompagnée du prix payé (3e pilier mobilisé, retrait des engagements, 24 à 48h de reboot), ce qui ancre l'intégrité dans le concret. Ensuite, l'absence de drame : les limites sont nommées sans minimisation ni amplification, les paris sont assumés sans grandiloquence, le retrait est annoncé sans excuses ni justifications répétées. Enfin, une articulation séquentielle des actions : « après le reboot... », « pour pouvoir éventuellement... », « il faut que je change de mode et que je prévienne » — chaque décision s'inscrit dans un ordre temporel qui rend lisible la calibration des priorités.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le travail sur la décision en incertitude, un chemin possible serait de raconter après-coup les conséquences réelles d'un pari pris sous flou (ce qui a tenu, ce qui a été surpris, le coût final versus le coût anticipé).\n- Pour consolider la trace de patience stratégique, un chemin possible serait d'expliciter à l'avance les signaux qui marqueront la fin d'un retrait ou d'un report (à quoi reconnaître que le moment est venu ?).\n- Pour clarifier le dossier du raisonnement éthique, un chemin possible serait de présenter un arbitrage non plus comme une préférence assumée mais comme un dilemme dont les conséquences pour différentes parties prenantes sont explorées avant la décision.\n"
+  }
+}

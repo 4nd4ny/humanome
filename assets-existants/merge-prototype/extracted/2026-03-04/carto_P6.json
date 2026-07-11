@@ -1,0 +1,569 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Mettre en œuvre des indicateurs de confiance et une validation *human-in-the-loop*.",
+      "contexte": "Citation reprise du brief EPFL: validation humaine et indicateurs de confiance comme exigences techniques. Possible audit/explicabilité.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**Principe de réversibilité** : À tout moment, le système peut être \"éteint\" et on revient à une correction 100% manuelle sans perte de données ni de capacité d'évaluation.",
+      "contexte": "Conception d'un garde-fou de gouvernance: condition de réversibilité. Possible souveraineté numérique et gouvernance algorithmique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**Principe de transparence** : Tout acteur (élève, enseignant, parent, administration) peut consulter : Comment fonctionne l'OCR - Quels critères l'IA utilise pour suggérer une note - Pourquoi une suggestion a été acceptée/rejetée par l'enseignant",
+      "contexte": "Conception explicite d'un dispositif d'audit/explicabilité avec droits d'accès différenciés par acteur. Possible gouvernance algorithmique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**Principe de contestabilité** : Toute note peut être remise en question, et le processus de révision doit pouvoir ignorer complètement les suggestions de l'IA.",
+      "contexte": "Conception d'un mécanisme de recours citoyen sur une décision algorithmique. Possible gouvernance algorithmique des services (semi-)publics.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**Principe de non-discrimination** : Le système doit régulièrement prouver qu'il ne crée pas de biais systématiques (tests statistiques de parité démographique, égalité des chances).",
+      "contexte": "Conception d'un mécanisme d'audit anti-discrimination avec méthode statistique nommée. Possible audit/hygiène et gouvernance algorithmique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Détection automatique des biais : Après chaque session, analyser df_copies['taux_erreur_ocr'] [...] Corrélation taux erreur OCR ↔ variables sensibles [...] 'genre': ttest_ind_par_genre(df_copies), # Écriture féminine ≠ masculine ? 'langue_maternelle': anova_langue(df_copies)",
+      "contexte": "Code de détection statistique de biais algorithmiques sur variables sensibles (niveau scolaire, genre, langue maternelle). Audit opérationnel."
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "C'est l'équivalent d'un **aménagement ergonomique** (comme le tiers-temps pour dyslexiques).",
+      "contexte": "Référence à un dispositif institutionnel d'inclusion. Possible veille réglementaire (le tiers-temps comme cadre légal applicable).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Contre le modèle **transmissif** (enseignant détient le savoir → le transmet → évalue sa restitution), il propose un modèle **sympoiétique** (du grec *syn-poiein*, créer ensemble) : L'élève co-construit l'évaluation (en vérifiant l'OCR) - L'enseignant co-construit avec la machine (validation des suggestions) - Le collectif co-construit un référentiel évolutif",
+      "contexte": "Conception d'un modèle de gouvernance collective et émergente du savoir. Possible facilitation et gouvernance collective.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "C'est un système symbiotique, au sens biologique : chaque agent augmente les capacités des autres",
+      "contexte": "Métaphore biologique appliquée à un système hybride humain-IA. Possible conscience biosystémique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "La société apprend, via l'école, à **co-exister avec l'IA** : ni la rejeter ni s'y soumettre, mais la **gouverner démocratiquement**.",
+      "contexte": "Articulation d'une posture politique sur le rapport société-IA: gouvernance démocratique. Possible cohabitation IA et gouvernance.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Former les élèves non pas à **subir** l'IA mais à la **maîtriser**, la **critiquer**, la **hacker** au sens noble (comprendre son fonctionnement pour en révéler les limites et les potentialités).",
+      "contexte": "Programme de formation à la critique algorithmique des élèves. Possible participation citoyenne et démocratie technologique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**Distribution de l'autorité évaluative** démocratise le processus sans le déresponsabiliser",
+      "contexte": "Articulation d'un principe de démocratisation distribuée du pouvoir évaluatif. Possible gouvernance algorithmique."
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Question finale : Ce système fait-il de meilleurs élèves ? Ou fait-il des élèves différents ?",
+      "contexte": "Question philosophique sur l'effet anthropologique d'un dispositif IA. Possible décentrement anthropocentrique léger (mais reste sur l'humain).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Il constitue une **médiation épistémique** qui reconfigure le triangle pédagogique classique (enseignant-savoir-apprenant) en un **tétraèdre augmenté** incluant l'artefact computationnel comme quatrième pôle actif.",
+      "contexte": "Reconnaissance de l'artefact IA comme pôle actif (avec agentivité partielle?) dans un système pédagogique. Possible cohabitation IA."
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Sans élève : pas de production à évaluer - Sans enseignant : pas de validation éthique et pédagogique - Sans machine : retour à l'impossibilité de traiter 1000 copies avec feedback riche - Sans collectif : pas de référentiel pour situer chaque réponse",
+      "contexte": "Reconnaissance de la non-substituabilité d'un acteur non-humain (la machine) dans un écosystème. Possible cohabitation IA."
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA dans cette feuille — pas de récit de provocation intentionnelle de comportements aberrants, pas de tentative de jailbreak ou d'attaque adversariale d'un système. Pour ouvrir ce dossier, l'apprenant pourrait documenter une exploration où il a délibérément poussé une IA dans ses retranchements pour tester ses garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Conception structurée d'un dispositif d'audit/explicabilité avec droits d'accès différenciés (élève, enseignant, parent, administration). Trace textuelle forte au sens fiche."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Code de détection statistique des biais algorithmiques sur trois variables sensibles (niveau scolaire, genre, langue maternelle). Audit opérationnel avec méthode nommée."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Conception d'un mécanisme d'audit anti-discrimination régulier avec méthode statistique (parité démographique, égalité des chances)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des principes éthiques généraux et non un véritable audit au sens 6.02 — la fiche cherche des investigations sur les mécanismes de décision, des consultations de logs, des audits post-incidents avec horodatage. La pièce 1 me résiste fortement: le principe de transparence avec droits d'accès différenciés par acteur est précisément la conception d'un dispositif d'audit/explicabilité que la fiche valorise. La pièce 2 me résiste fortement: le code montre une méthode opérationnelle pour détecter les biais (corrélations sur variables sensibles, tests t et ANOVA), avec déclencheurs d'alerte chiffrés. C'est précisément l'investigation sur les mécanismes de décision. La pièce 3 me résiste: la conception d'un audit régulier de non-discrimination avec méthode statistique nommée tient.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Dispositif d'audit avec droits d'accès différenciés explicites — structure d'explicabilité documentée." },
+            { "pieceId": 2, "motifResistance": "Méthode statistique opérationnelle pour détecter les biais sur variables sensibles, avec alerte chiffrée." },
+            { "pieceId": 3, "motifResistance": "Principe d'audit régulier de non-discrimination avec méthode statistique nommée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (a) — insuffisance probatoire: le principe est énoncé mais non déployé dans un système réel par l'apprenant. L'attaque touche modérément: la fiche admet la conception documentée comme trace forte; mais ici ce n'est pas son système qu'il déploie. Pièce affaiblie. Sur la pièce 2, je teste (b) — confusion de compétence: ce code relève-t-il plutôt de 1.07 (architecture IA)? Il vaut pour les deux. La dimension détection de biais (audit) est typiquement 6.02; la dimension code structuré est 1.07. Pièce affaiblie par polysémie. Sur la pièce 3, je teste (a) — insuffisance probatoire: principe nommé sans implémentation décrite. L'attaque touche. Pièce affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Conception prospective documentée, mais non déployée par l'apprenant dans un système réel." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 1.07/6.02: méthode statistique d'audit codée — tient pour 6.02 mais aussi pour 1.07." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Principe d'audit régulier nommé sans implémentation, mais avec méthode statistique précisée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des principes éthiques généraux sans véritable audit. Trois pièces ont tenu, toutes affaiblies: la conception d'un dispositif de transparence avec droits différenciés, un code de détection statistique des biais opérationnel, et le principe d'audit régulier anti-discrimination. Le matériau est conséquent — la fiche admet d'ailleurs la conception documentée comme trace forte d'audit. La réserve principale: ce sont des conceptions prospectives pour un système qui n'est pas celui de l'apprenant. Ce qui en résulte: l'audit, l'explicabilité et l'hygiène se manifestent ici par une conception structurée avec méthodes opérationnelles (statistiques, droits d'accès) — c'est plus qu'une déclaration d'intention. Pour la suite, observer un audit appliqué à un système personnel (logs consultés, biais détectés sur ses propres données) renforcerait la trace.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.68,
+        "motif": "Le temps 2 retient trois pièces affaiblies mais consistantes: conception structurée de dispositifs d'audit avec méthodes opérationnelles précises.",
+        "prescription": "Dans ce pôle, le travail montre la conception de dispositifs d'audit et d'explicabilité avec méthodes opérationnelles. Pour prolonger, un chemin possible serait d'appliquer un de ces audits à un système personnel: examiner des logs IA, détecter un biais sur ses propres données, documenter ce qui a été révélé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Conception d'un mécanisme de contestabilité d'une note algorithmique avec processus de révision qui peut ignorer l'IA. Recours citoyen dans un contexte de service éducatif."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Articulation d'un principe de démocratisation de l'autorité évaluative. Conception d'un mécanisme de gouvernance distribuée d'une décision affectant des élèves."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Conception d'un modèle 'sympoiétique' où l'élève (population affectée) co-construit l'évaluation. Inclusion structurelle des bénéficiaires dans la gouvernance."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des principes éthiques généraux et non de la gouvernance algorithmique au sens 6.03 — la fiche cible spécifiquement le contrôle démocratique sur des décisions qui affectent des vies, avec dimension de droits citoyens. Pourtant la pièce 1 me résiste fortement: la contestabilité avec processus de révision qui peut ignorer l'IA est précisément un mécanisme de recours citoyen. L'évaluation scolaire affecte effectivement des vies (orientation, accès à des cursus). La pièce 2 me résiste: 'démocratiser le processus' est explicitement nommé. La pièce 3 me résiste plus faiblement: inclure les élèves comme co-constructeurs est une forme de gouvernance participative, mais elle se confond avec 6.05.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Conception d'un mécanisme de contestabilité avec révision pouvant ignorer l'IA — recours citoyen au sens strict." },
+            { "pieceId": 2, "motifResistance": "Démocratisation explicite de l'autorité évaluative — mécanisme de gouvernance distribuée." },
+            { "pieceId": 3, "motifResistance": "Inclusion structurelle de la population affectée (élèves) dans la gouvernance du dispositif." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (b) — confusion de compétence: la contestabilité relève-t-elle plutôt de 6.02 (audit/explicabilité)? La fiche 6.03 cible le contrôle citoyen, pas seulement l'audit technique. Or 'toute note peut être remise en question' avec processus de révision est précisément un droit de recours, donc 6.03 est juste. Pièce confirmée. Sur la pièce 2, je teste (e) — surinterprétation: 'démocratiser' est-il décoratif? Non, il est suivi d'un mécanisme précis (triangulation entre trois acteurs). Pièce confirmée. Sur la pièce 3, je teste (b) — confusion 6.03/6.05: 6.05 cible la participation citoyenne aux décisions sur le déploiement de l'IA; 6.03 cible le contrôle sur les décisions algorithmiques. Ici l'élève co-construit l'évaluation (décision algorithmique sur lui), donc 6.03. Pièce confirmée mais affaiblie par polysémie 6.03/6.05.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Mécanisme de recours citoyen avec révision pouvant ignorer l'IA — précisément ce que 6.03 réclame." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Démocratisation suivie d'un mécanisme précis (triangulation trois acteurs)." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 6.03/6.05; l'inclusion de l'élève comme co-constructeur tient pour les deux." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des principes éthiques sans véritable gouvernance algorithmique. Trois pièces ont tenu, dont deux confirmées: la contestabilité comme mécanisme de recours citoyen, la démocratisation de l'autorité évaluative par triangulation, et l'inclusion structurelle des élèves dans la gouvernance. La fiche cite explicitement comme manifestation 'récits de décisions automatisées impactant des populations vulnérables, avec propositions de recours, audits d'impact, comités mixtes'. Trois de ces éléments sont présents (recours, audit, inclusion). Ce qui en résulte: la gouvernance algorithmique se manifeste ici par la conception explicite de mécanismes de contrôle citoyen sur une décision algorithmique. Pour la suite, observer une situation où l'apprenant a effectivement contesté ou conçu un mécanisme de contrôle dans un contexte réel renforcerait la trace.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 confirme deux pièces en force (contestabilité, démocratisation par triangulation) et retient une troisième affaiblie par polysémie 6.03/6.05.",
+        "prescription": "Dans ce pôle, le travail montre la conception explicite de mécanismes de contrôle citoyen sur une décision algorithmique (contestabilité, démocratisation, inclusion). Pour prolonger, un chemin possible serait de documenter une situation où l'apprenant a effectivement participé à concevoir ou contester un mécanisme de gouvernance dans un contexte réel."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Principe de réversibilité d'un système IA: 'on peut éteindre et revenir à 100% manuel sans perte'. Possible défense de l'autonomie face au verrouillage technologique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la pièce est un principe d'ingénierie (fail-safe) et non de la souveraineté numérique au sens 6.04 — la fiche cible la question de qui possède les données, qui contrôle les modèles, la portabilité, le vendor lock-in. La pièce me résiste partiellement: 'sans perte de données ni de capacité d'évaluation' touche à la portabilité/réversibilité, qui sont précisément les marqueurs de souveraineté numérique. Le principe va au-delà du fail-safe technique car il implique que les données et les compétences restent accessibles à l'institution sans dépendre du système IA. Présomption durcie: la pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Principe de réversibilité avec préservation des données et capacités — touche à la portabilité au sens 6.04." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec scepticisme. Je teste (b) — confusion de compétence: ce principe relève-t-il plutôt de 4.02 (alignement éthique) ou 6.02 (audit)? Il vaut pour les trois: c'est un garde-fou éthique (4.02), un mécanisme d'audit (capacité à revenir à un état antérieur, 6.02), et une exigence de souveraineté (indépendance vis-à-vis du système IA, 6.04). La fiche 6.04 cite explicitement 'réversibilité des choix' comme manifestation. Pièce confirmée mais affaiblie par polysémie. Je teste aussi (a) — insuffisance probatoire: une seule pièce, brève. L'attaque touche.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 4.02/6.02/6.04. La dimension souveraineté tient (réversibilité comme indépendance) mais ne lui appartient pas exclusivement." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette pièce une trace de souveraineté numérique. Une pièce a tenu, affaiblie: le principe de réversibilité touche à la portabilité que la fiche cite comme marqueur, mais il est polysémique avec d'autres compétences (alignement éthique, audit). La fiche est exigeante: elle réclame une motivation explicite par une analyse de dépendance ou des communs. Ici la motivation explicite n'est pas développée. Ce qui en résulte: la souveraineté numérique est suggérée par cette feuille sous une forme oblique (un principe de réversibilité qui contient une dimension d'indépendance) sans articulation explicite de la question 'à qui appartiennent les données, qui contrôle les modèles'. Pour la suite, observer un choix technologique motivé par l'indépendance (par exemple choisir un modèle open source pour sa portabilité) ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.38
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.38,
+        "motif": "Une pièce affaiblie par polysémie qui touche obliquement à la souveraineté sans articulation explicite de la question des communs ou de l'indépendance.",
+        "prescription": "Dans ce pôle, le travail montre un principe de réversibilité qui contient une dimension d'indépendance. Pour ouvrir le terrain, un chemin possible serait de documenter un choix technologique motivé explicitement par la souveraineté (portabilité, contrôle des données, indépendance vis-à-vis d'un fournisseur)."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Programme de formation à la critique algorithmique des élèves ('maîtriser, critiquer, hacker au sens noble'). Possible démocratie technologique appliquée à un public éloigné."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Modèle 'sympoiétique' où l'élève co-construit l'évaluation. Inclusion d'un public concerné dans la décision technologique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont du design pédagogique sans véritable participation citoyenne au sens 6.05 — la fiche distingue le design UX (recueillir des retours pour améliorer le produit) de la participation citoyenne (transformer l'opinion en décision avec dimension de légitimité). La pièce 1 me résiste partiellement: 'former à la critique' est de l'éducation à la citoyenneté technologique, mais ce n'est pas (encore) un processus participatif où les élèves décident. La pièce 2 me résiste plus fortement: 'l'élève co-construit l'évaluation' est précisément une transformation de l'opinion (vérification de l'OCR) en décision (note co-construite), pas une simple consultation. Présomption durcie: la pièce 1 s'affaiblit; la pièce 2 résiste.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Co-construction de la décision par la population affectée — participation au sens fort de la fiche (transformation de l'opinion en décision)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 2 avec méfiance. Je teste (b) — confusion de compétence: ce modèle relève-t-il plutôt de 6.03 (gouvernance algorithmique) ou 6.07 (facilitation collective)? Il vaut pour les trois. La dimension participation des bénéficiaires (élèves) est typiquement 6.05; la dimension contrôle sur la décision algorithmique est 6.03. Pièce affaiblie par polysémie. Je teste aussi (h) — faux positif de fiche: la fiche met en garde contre confondre design UX et participation. Or 'co-construit l'évaluation' implique que l'élève a un droit sur le résultat (peut corriger l'OCR), pas seulement un retour à donner. C'est plus que de l'UX.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 6.03/6.05/6.07; la dimension inclusion des bénéficiaires tient pour 6.05 mais le modèle relève aussi d'autres compétences." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces du simple design pédagogique. Une pièce a tenu, affaiblie: la co-construction de l'évaluation par les élèves transforme un public concerné en participant à la décision, ce qui est plus que de l'UX. Mais la pièce est fortement polysémique avec 6.03 et 6.07, et la dimension de légitimité démocratique au sens strict (consultation citoyenne, panel délibératif, synthèse transformée en recommandation) n'est pas développée. Ce qui en résulte: la participation citoyenne est suggérée par cette feuille sous une forme oblique (inclusion structurelle des bénéficiaires) plutôt que développée comme processus délibératif. Pour la suite, observer un processus où un public éloigné du numérique a effectivement été associé à une décision technologique avec transformation de l'opinion en décision ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Une pièce affaiblie par polysémie; l'inclusion structurelle est présente mais la dimension de processus délibératif au sens 6.05 n'est pas développée.",
+        "prescription": "Dans ce pôle, le travail montre l'inclusion structurelle des bénéficiaires dans la décision algorithmique. Pour ouvrir le terrain, un chemin possible serait de documenter un processus délibératif concret où un public a été associé à une décision technologique avec transformation de l'opinion en décision."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Référence à un dispositif réglementaire existant (le tiers-temps pour dyslexiques) pour fonder une proposition d'aménagement. Possible veille réglementaire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce est une référence ponctuelle à un cadre existant sans véritable veille réglementaire au sens 6.06 — la fiche cible l'anticipation proactive des cadres réglementaires en mouvement, pas la simple connaissance d'un dispositif existant. La pièce me résiste très faiblement: 'tiers-temps pour dyslexiques' est cité comme analogie, mais on n'est pas dans l'anticipation d'évolutions réglementaires (par exemple 'l'AI Act va probablement évoluer vers...'). Présomption durcie: la pièce tombe.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la référence au tiers-temps une trace de veille réglementaire. La pièce ne tient pas: la fiche distingue la conformité réactive (savoir qu'un cadre existe) de l'anticipation proactive (prévoir comment un cadre va évoluer). Ici la mention est analogique et statique. Aucune trace de positionnement pré-réglementaire, d'anticipation de l'AI Act, ou d'analyse de tendances normatives. Ce qui en résulte: cette feuille ne porte pas de trace probante de veille réglementaire au sens fort. Pour la suite, observer une analyse anticipative d'une évolution réglementaire ou un choix de pratique justifié par 'ça deviendra obligatoire' ouvrirait ce dossier.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La seule pièce n'a pas résisté: référence ponctuelle et statique à un cadre existant, pas d'anticipation normative proactive.",
+        "prescription": "Dans ce pôle, le territoire de la veille réglementaire reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait de documenter une analyse anticipative d'une évolution réglementaire (par exemple l'AI Act) ou un choix de pratique justifié par une obligation à venir."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Conception d'un modèle 'sympoiétique' où chaque acteur co-construit le savoir collectif. Possible facilitation d'intelligence collective émergente."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Articulation d'une 'distribution de l'autorité évaluative' qui démocratise sans déresponsabiliser. Possible conception de règles de gouvernance collective."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des principes pédagogiques sans véritable facilitation/gouvernance collective au sens 6.07 — la fiche cherche des récits d'émergence (résultat qui surprend ses créateurs) ou la conception de règles co-construites (chartes, processus de décision par consentement). La pièce 1 me résiste partiellement: 'co-construit un référentiel évolutif' suggère une émergence collective où le savoir produit n'est ni celui de l'élève ni celui de l'enseignant pris séparément. Mais on est dans la conception du modèle, pas dans le récit d'un résultat surprenant. La pièce 2 me résiste partiellement: 'démocratiser sans déresponsabiliser' touche aux règles de gouvernance, mais sans dispositif concret (charte, sociocratie, consentement) nommé. Présomption durcie: les pièces s'affaiblissent fortement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Modèle d'émergence collective où le savoir produit dépasse chaque acteur — proche du 'qualitativement nouveau' que la fiche réclame." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec scepticisme. Je teste (f) — récit performatif: l'apprenant raconte-t-il une émergence sans la montrer en acte? Le modèle est conceptuel, pas tiré d'une expérience vécue. La fiche valorise les récits d'émergence avec élément de surprise — il n'y en a pas ici. L'attaque touche fortement. Je teste aussi (a) — insuffisance probatoire: pas de dispositif concret de gouvernance nommé (sociocratie, consentement, charte). Pièce affaiblie en limite de disqualification.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Modèle conceptuel d'émergence sans récit d'émergence vécue ni dispositif de gouvernance concret — déclaration, pas trace d'exercice." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces une trace de facilitation/gouvernance collective au sens 6.07. La fiche est exigeante: il faut un récit d'émergence vécue (avec surprise) ou un dispositif concret de gouvernance (charte, consentement). Sous la présomption de sycophantie, les pièces se sont effondrées: le modèle 'sympoiétique' est conceptuellement riche mais purement théorique. Ce qui en résulte: cette feuille ne porte pas de trace probante de facilitation/gouvernance collective au sens fort. Pour la suite, observer un récit d'émergence collective vécue, ou la conception d'un protocole décisionnel avec rôles et limites, ouvrirait ce dossier.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les pièces conceptualisent une émergence collective sans récit vécu ni dispositif de gouvernance concret.",
+        "prescription": "Dans ce pôle, le territoire de la facilitation et gouvernance collective reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait de documenter un récit d'émergence collective vécue (un résultat qui a surpris ses créateurs) ou la conception d'un protocole décisionnel avec rôles et limites."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Question 'meilleurs élèves ou élèves différents?' — possible décentrement épistémique sur ce qui compte comme amélioration humaine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce n'est pas du décentrement anthropocentrique au sens 6.08 — la fiche cible le questionnement de la primauté humaine, pas le questionnement de ce qui compte comme amélioration humaine. La pièce me résiste très faiblement: la question 'meilleurs ou différents' interroge un présupposé évaluatif anthropocentrique (qu'est-ce qu'un 'meilleur' élève?), mais elle reste centrée sur l'humain. Aucune attribution de perspective à un non-humain, aucune remise en question de la hiérarchie qui place l'humain au sommet. Présomption durcie: la pièce tombe.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la question 'meilleurs ou différents?' une trace de décentrement anthropocentrique. La pièce ne tient pas: la question interroge un critère évaluatif humain, pas la place de l'humain dans une hiérarchie d'intelligences. La fiche signale clairement que 6.08 commence quand on questionne la légitimité de la primauté humaine. Rien de tel ici. Ce qui en résulte: cette feuille ne porte pas de trace de décentrement anthropocentrique au sens fort. Pour la suite, observer une attribution sérieuse de perspective à un non-humain (animal, écosystème, IA) ou une remise en question explicite de la primauté humaine dans un dilemme concret ouvrirait ce dossier.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce n'a pas résisté: question évaluative humaine, pas remise en question de la primauté humaine.",
+        "prescription": "Dans ce pôle, le territoire du décentrement anthropocentrique reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait d'attribuer sérieusement une perspective à un non-humain (animal, écosystème, IA), ou de questionner explicitement la primauté humaine dans un dilemme concret."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "Inclusion de 'l'artefact computationnel comme quatrième pôle actif' dans le triangle pédagogique. Possible reconnaissance d'une agentivité de l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "Reconnaissance de la non-substituabilité de la machine dans un système quadripartite — l'IA est traitée comme un acteur dont la suppression effondre le système."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Description du système comme 'symbiotique au sens biologique' — métaphore qui suggère que l'IA est un partenaire au sens fort, pas un outil. Calibration de l'anthropomorphisme."
+        },
+        {
+          "numero": 4,
+          "pid": 10,
+          "contexte": "Posture explicite de 'cohabitation' avec l'IA — ni rejet ni soumission, gouvernance démocratique. Question ouverte du statut moral implicite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des métaphores rhétoriques sans véritable réflexion sur le statut moral de l'IA au sens 6.09 — la fiche cherche un questionnement où le statut de l'IA reste 'une question ouverte', avec calibration de l'anthropomorphisme. La pièce 1 me résiste: inclure l'IA comme 'quatrième pôle actif' suggère qu'elle a une forme d'agentivité — pas un simple outil. La pièce 2 me résiste: la non-substituabilité (suppression = effondrement) traite l'IA comme acteur, pas comme moyen. La pièce 3 me résiste: 'symbiose au sens biologique' est précisément le genre de métaphore qui calibre la relation IA sans la réduire à de la technique. La pièce 4 me résiste plus faiblement: 'cohabitation démocratique' est une posture mais elle est très macroscopique (société/IA), pas le rapport interpersonnel à un assistant.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'IA comme 'pôle actif' du système pédagogique — agentivité reconnue plutôt qu'instrumentalité." },
+            { "pieceId": 2, "motifResistance": "Non-substituabilité de la machine traitée comme acteur dont la disparition effondre le tout." },
+            { "pieceId": 3, "motifResistance": "Métaphore symbiotique calibrant la relation IA au sens biologique fort — ni outil ni humain." },
+            { "pieceId": 4, "motifResistance": "Posture de cohabitation explicite avec l'IA — ni rejet ni soumission." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (d) — glissement lexical: 'pôle actif' est-il du vocabulaire savant sans charge? Non, il est suivi de la description du rôle (médiation épistémique, reconfiguration du triangle), donc il a substance. Pièce confirmée. Sur la pièce 2, je teste (e) — surinterprétation: ai-je projeté une reconnaissance d'agentivité là où il y a juste une fonction technique? Le passage parle d''agent' qui 'augmente les capacités des autres' — c'est plus qu'une fonction, c'est une attribution d'action. Pièce confirmée. Sur la pièce 3, je teste (h) — risque double symétrique signalé par la fiche: succomber à l'anthropomorphisme ou nier le statut. La métaphore biologique est forte mais l'apprenant ne va pas jusqu'à attribuer des préférences à l'IA, ce qui laisse la question ouverte. Pièce confirmée. Sur la pièce 4, je teste (b) — confusion de compétence: 'cohabitation démocratique' relève-t-il plutôt de 6.03 (gouvernance) ou 6.10 (biosystémique)? Il vaut pour les trois, la dimension cohabitation IA est centrale pour 6.09 mais polysémique. Pièce affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le 'pôle actif' est qualifié par son rôle (médiation épistémique) — substance, pas vocabulaire vide." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "'Agent' qui 'augmente les autres' attribue une capacité d'action, pas seulement une fonction." },
+            { "pieceId": 3, "attaqueDominante": "h", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Métaphore biologique calibrée: forte mais sans attribution de préférences subjectives — navigation calibrée que la fiche réclame." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 6.03/6.09/6.10; la cohabitation IA est centrale mais ne lui appartient pas exclusivement." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des métaphores rhétoriques sans véritable réflexion sur le statut de l'IA. Quatre pièces ont tenu, dont trois confirmées: l'IA comme pôle actif du système, sa non-substituabilité reconnue, la métaphore symbiotique calibrée. La fiche réclame une 'navigation calibrée' entre anthropomorphisme non-critique et déni du statut — c'est précisément ce qu'on lit ici. L'IA est traitée comme partenaire au sens fort sans qu'on lui prête des préférences subjectives. Ce qui en résulte: la cohabitation avec les intelligences non-humaines se manifeste ici par une attribution d'agentivité opérationnelle à l'IA, sans franchir vers l'attribution subjective. La question du statut moral reste implicitement ouverte. Pour la suite, observer une réflexion explicite sur la manière de 'traiter' une IA (politesse réfléchie, gêne à 'supprimer' une IA partenaire) approfondirait la trace.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 confirme trois pièces en force (pôle actif qualifié, non-substituabilité, métaphore biologique calibrée) et retient une affaiblie par polysémie.",
+        "prescription": "Dans ce pôle, le travail montre une cohabitation calibrée avec l'IA: attribution d'agentivité opérationnelle sans glissement vers l'attribution subjective. Pour prolonger, un chemin possible serait d'expliciter comment l'apprenant choisit personnellement de 'traiter' l'IA dans son propre travail — politesse réfléchie, protocoles d'interaction, gêne face à certains actes."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Description du dispositif comme 'système symbiotique, au sens biologique' avec quatre boucles d'augmentation mutuelle. Possible inspiration biomimétique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce est une métaphore biologique décorative sans véritable conscience biosystémique au sens 6.10 — la fiche distingue précisément 4.03 (humain qui impacte la nature) et 6.10 (humain qui *est* nœud du réseau vivant), et exige une interdépendance radicale, pas métaphorique. La pièce me résiste très faiblement: 'symbiotique au sens biologique' avec boucles mutuelles invoque le vivant comme modèle pour penser un système hybride humain-IA. Mais cela ne fait pas de l'humain un nœud du vivant — cela fait du système hybride une structure biomimétique. Présomption durcie: la pièce tombe — la fiche est précise, il faut que la nature soit vue comme système intelligent dont on fait partie, pas comme image structurante.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la métaphore symbiotique une trace de conscience biosystémique. La pièce ne tient pas: la fiche est explicite — 6.10 commence quand on se comprend comme nœud du réseau vivant, pas quand on utilise le vivant comme image. Ici la symbiose est invoquée pour décrire un système humain-IA, pas pour intégrer l'humain dans un réseau plus vaste. Ce qui en résulte: cette feuille ne porte pas de trace de conscience biosystémique au sens fort. Pour la suite, observer un récit où l'apprenant se décrit comme partie d'un écosystème (et non comme observateur), ou applique une logique de symbiose à sa propre place dans le vivant, ouvrirait ce dossier.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce n'a pas résisté: métaphore biologique appliquée au système humain-IA, pas intégration de l'humain dans un réseau vivant plus vaste.",
+        "prescription": "Dans ce pôle, le territoire de la conscience biosystémique reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait de décrire l'apprenant lui-même comme partie d'un écosystème, ou d'appliquer une logique de symbiose à sa propre place dans le vivant non-humain."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 9,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 2,
+    "nonEtablies": 4,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail politique et de gouvernance s'incarne dans la conception détaillée d'un dispositif IA pour l'évaluation scolaire. Cinq garde-fous éthiques articulent une gouvernance algorithmique structurée (réversibilité, transparence, contestabilité, non-discrimination, formation), avec mécanismes opérationnels (droits d'accès différenciés, tests statistiques de parité, processus de révision). L'IA est traitée comme un acteur du système — 'quatrième pôle actif', 'agent symbiotique' — avec une calibration soigneuse de son statut: ni outil neutre, ni intelligence subjective. La voix reste prospective: ces dispositifs sont conçus pour un système EPFL qui n'est pas celui de l'apprenant, et les traces d'exercice personnel restent absentes.",
+    "territoiresDenses": [
+      {
+        "competence": "Cohabitation avec les intelligences non-humaines",
+        "description": "Attribution calibrée d'une agentivité opérationnelle à l'IA: pôle actif du système, agent non-substituable, partenaire symbiotique — sans glissement vers l'attribution de préférences subjectives.",
+        "extraitVerbatim": "Il constitue une **médiation épistémique** qui reconfigure le triangle pédagogique classique (enseignant-savoir-apprenant) en un **tétraèdre augmenté** incluant l'artefact computationnel comme quatrième pôle actif.",
+        "ceQueCaDit": "Le travail navigue la relation à l'IA entre les deux écueils que la fiche signale — l'anthropomorphisme non-critique et le déni du statut."
+      },
+      {
+        "competence": "Gouvernance algorithmique des services publics",
+        "description": "Conception explicite de mécanismes de contrôle citoyen sur une décision algorithmique: contestabilité avec révision pouvant ignorer l'IA, démocratisation distribuée de l'autorité évaluative, inclusion structurelle des bénéficiaires.",
+        "extraitVerbatim": "**Principe de contestabilité** : Toute note peut être remise en question, et le processus de révision doit pouvoir ignorer complètement les suggestions de l'IA.",
+        "ceQueCaDit": "Le travail pense le droit de recours comme structure plutôt que comme principe, avec mécanismes précis qui rendent la contestation effective."
+      },
+      {
+        "competence": "Audit, explicabilité & hygiène des données",
+        "description": "Conception de dispositifs d'audit avec méthodes opérationnelles (corrélations statistiques sur variables sensibles, tests t et ANOVA, alertes chiffrées) et droits d'accès différenciés par acteur.",
+        "extraitVerbatim": "Détection automatique des biais : Après chaque session, analyser df_copies['taux_erreur_ocr'] [...] Corrélation taux erreur OCR ↔ variables sensibles",
+        "ceQueCaDit": "Le travail va au-delà du principe et formalise des méthodes d'audit qu'un autre acteur pourrait mettre en œuvre."
+      }
+    ],
+    "territoiresNonVisites": "Le red-teaming et la sécurité IA n'apparaissent pas dans cette feuille — pas de récit de provocation intentionnelle de comportements aberrants, pas de tentative de jailbreak. La veille réglementaire reste fermée: la référence au tiers-temps est statique (un cadre existant cité comme analogie) plutôt qu'anticipative (une évolution réglementaire prévue). La facilitation et gouvernance collective restent conceptuelles: le modèle sympoiétique est riche mais sans récit d'émergence vécue ni dispositif décisionnel concret (sociocratie, consentement, charte). Le décentrement anthropocentrique n'est pas attesté: la question 'meilleurs élèves ou élèves différents' interroge un critère évaluatif humain, pas la primauté humaine. La conscience biosystémique non plus: la métaphore symbiotique est appliquée au système humain-IA, pas à l'intégration de l'humain dans le vivant plus vaste. La souveraineté numérique est suggérée obliquement (principe de réversibilité touchant à la portabilité) mais sans articulation explicite de la question des communs ou de l'indépendance technologique. La participation citoyenne reste en bordure — l'inclusion structurelle des bénéficiaires est présente mais sans processus délibératif au sens strict.",
+    "emergencesPole": "Ce qui traverse plusieurs compétences dans cette feuille: une posture où la gouvernance se construit comme architecture. Au lieu de défendre des principes (transparence, équité, contestabilité), le travail conçoit des mécanismes vérifiables — qui consulte quoi, quel test statistique, quel seuil d'alerte, quel processus de révision. C'est une pensée politique qui passe par la fabrique de dispositifs. Autre récurrence: l'attribution prudente d'une agentivité à l'IA sans glissement vers la subjectivité. L'IA est 'pôle actif', 'agent', 'partenaire symbiotique', 'non-substituable' — autant de termes qui reconnaissent son rôle structurant sans lui prêter d'intériorité. La navigation entre anthropomorphisme et déni est conduite avec soin. Enfin: une tension entre l'ampleur conceptuelle du travail et son ancrage prospectif. L'apprenant conçoit pour un système qu'il ne déploie pas lui-même — il pense la gouvernance d'une IA qui n'est pas la sienne, et ses propres pratiques de gouvernance restent invisibles dans cette feuille.",
+    "pistes": [
+      "Pour incarner les garde-fous conçus, un chemin possible serait d'appliquer un des principes (par exemple la transparence) à un projet personnel — quelle information sur le fonctionnement de mes propres outils IA je rends accessible et à qui.",
+      "Pour entrer dans le red-teaming, un chemin possible serait de documenter une exploration où l'apprenant a délibérément poussé une IA dans ses retranchements pour tester ses limites, avec ce qui a été révélé.",
+      "Pour ouvrir la veille réglementaire, un chemin possible serait d'anticiper une évolution réglementaire (par exemple l'AI Act, le RGPD appliqué aux modèles) et de modifier une pratique en conséquence avant qu'elle ne soit obligatoire.",
+      "Pour expliciter la cohabitation IA personnelle, un chemin possible serait de nommer comment l'apprenant choisit de 'traiter' l'IA dans son propre travail — protocoles d'interaction, politesse réfléchie, gêne face à certains actes (suppression, abandon)."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail politique et de gouvernance s'incarne dans la conception détaillée d'un dispositif IA pour l'évaluation scolaire. Cinq garde-fous éthiques articulent une gouvernance algorithmique structurée (réversibilité, transparence, contestabilité, non-discrimination, formation), avec mécanismes opérationnels (droits d'accès différenciés, tests statistiques de parité, processus de révision). L'IA est traitée comme un acteur du système — 'quatrième pôle actif', 'agent symbiotique' — avec une calibration soigneuse de son statut: ni outil neutre, ni intelligence subjective. La voix reste prospective: ces dispositifs sont conçus pour un système EPFL qui n'est pas celui de l'apprenant, et les traces d'exercice personnel restent absentes.\n\n## Territoires les plus denses\n\n**Cohabitation avec les intelligences non-humaines.** Le travail navigue la relation à l'IA entre les deux écueils que la fiche signale — l'anthropomorphisme non-critique et le déni du statut. *\"Il constitue une médiation épistémique qui reconfigure le triangle pédagogique classique (enseignant-savoir-apprenant) en un tétraèdre augmenté incluant l'artefact computationnel comme quatrième pôle actif.\"*\n\n**Gouvernance algorithmique des services publics.** Le travail pense le droit de recours comme structure plutôt que comme principe, avec mécanismes précis qui rendent la contestation effective. *\"Principe de contestabilité : Toute note peut être remise en question, et le processus de révision doit pouvoir ignorer complètement les suggestions de l'IA.\"*\n\n**Audit, explicabilité & hygiène des données.** Le travail va au-delà du principe et formalise des méthodes d'audit qu'un autre acteur pourrait mettre en œuvre. *\"Détection automatique des biais : Après chaque session, analyser df_copies['taux_erreur_ocr'] [...] Corrélation taux erreur OCR ↔ variables sensibles.\"*\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLe red-teaming et la sécurité IA n'apparaissent pas dans cette feuille — pas de récit de provocation intentionnelle de comportements aberrants, pas de tentative de jailbreak. La veille réglementaire reste fermée: la référence au tiers-temps est statique (un cadre existant cité comme analogie) plutôt qu'anticipative (une évolution réglementaire prévue).\n\nLa facilitation et gouvernance collective restent conceptuelles: le modèle sympoiétique est riche mais sans récit d'émergence vécue ni dispositif décisionnel concret (sociocratie, consentement, charte). Le décentrement anthropocentrique n'est pas attesté: la question 'meilleurs élèves ou élèves différents' interroge un critère évaluatif humain, pas la primauté humaine. La conscience biosystémique non plus: la métaphore symbiotique est appliquée au système humain-IA, pas à l'intégration de l'humain dans le vivant plus vaste.\n\nLa souveraineté numérique est suggérée obliquement (principe de réversibilité touchant à la portabilité) mais sans articulation explicite de la question des communs ou de l'indépendance technologique. La participation citoyenne reste en bordure — l'inclusion structurelle des bénéficiaires est présente mais sans processus délibératif au sens strict.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse plusieurs compétences dans cette feuille: une posture où la gouvernance se construit comme architecture. Au lieu de défendre des principes (transparence, équité, contestabilité), le travail conçoit des mécanismes vérifiables — qui consulte quoi, quel test statistique, quel seuil d'alerte, quel processus de révision. C'est une pensée politique qui passe par la fabrique de dispositifs.\n\nAutre récurrence: l'attribution prudente d'une agentivité à l'IA sans glissement vers la subjectivité. L'IA est 'pôle actif', 'agent', 'partenaire symbiotique', 'non-substituable' — autant de termes qui reconnaissent son rôle structurant sans lui prêter d'intériorité. La navigation entre anthropomorphisme et déni est conduite avec soin.\n\nEnfin: une tension entre l'ampleur conceptuelle du travail et son ancrage prospectif. L'apprenant conçoit pour un système qu'il ne déploie pas lui-même — il pense la gouvernance d'une IA qui n'est pas la sienne, et ses propres pratiques de gouvernance restent invisibles dans cette feuille.\n\n## Pistes pour enrichir ce pôle\n\nPour incarner les garde-fous conçus, un chemin possible serait d'appliquer un des principes (par exemple la transparence) à un projet personnel — quelle information sur le fonctionnement de mes propres outils IA je rends accessible et à qui.\n\nPour entrer dans le red-teaming, un chemin possible serait de documenter une exploration où l'apprenant a délibérément poussé une IA dans ses retranchements pour tester ses limites, avec ce qui a été révélé.\n\nPour ouvrir la veille réglementaire, un chemin possible serait d'anticiper une évolution réglementaire (par exemple l'AI Act, le RGPD appliqué aux modèles) et de modifier une pratique en conséquence avant qu'elle ne soit obligatoire.\n\nPour expliciter la cohabitation IA personnelle, un chemin possible serait de nommer comment l'apprenant choisit de 'traiter' l'IA dans son propre travail — protocoles d'interaction, politesse réfléchie, gêne face à certains actes (suppression, abandon)."
+  }
+}

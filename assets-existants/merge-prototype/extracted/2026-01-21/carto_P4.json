@@ -1,0 +1,304 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Restructuration des niveaux de formation pour les tuteurs. La liste a été conçue en fonction de la valeur ajoutée que le niveau apporte à l'élève (niveau 1, 2 et 3), à un futur employeur (niveau 3 et 4), à l'école (niveau 4, 5 et 6).",
+      "contexte": "L'ouverture distingue trois bénéficiaires — l'élève, l'employeur, l'école — dont les intérêts ne coïncident pas nécessairement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le quatrième niveau serait celui de \"L'expert IA\". Son rôle : aider tous les apprenants de tous les niveaux, à mieux utiliser les IA, en proposant d'améliorer les prompts socratiques, en testant des prompts pour analyser les portfolios, en cherchant à mettre en évidence des indicateurs pour voir les compétences définies par la société civile sur notre plateforme Decidim.",
+      "contexte": "L'Expert IA est défini comme aidant à « mieux utiliser » les IA et à mettre en évidence des indicateurs définis par la société civile — articulation entre usage IA, intention pédagogique et délibération citoyenne.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le premier niveau serait celui du \"Cartographe\". Son rôle : aider les apprenants à produire les données utiles pour pouvoir générer une cartographie des compétences humaines utiles à l'ère des AGI d'un point de vue des ressources humaines de leur futur employeur.",
+      "contexte": "L'expression « compétences humaines utiles à l'ère des AGI » est une prise de position implicite sur ce qu'il faut cultiver chez l'humain face au progrès IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Ce découpage permet de donner du sens à chaque niveau, d'expliciter les compétences à acquérir et qui seront travaillées. Puis de bien faire comprendre que pour un recruteur, il n'est pas nécessaire de devenir \"Maître\". Ce découpage permettra également d'avoir des manuels plus courts : ça structure la formation et les écoles.",
+      "contexte": "Justification finale qui pèse plusieurs effets recherchés du découpage : sens, lisibilité pour le recruteur, structuration des manuels.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Ces niveaux ne sont pas hiérarchiques : un \"Accompagnant\" pourrait choisir d'apprendre à devenir \"Médiateur\" avant d'apprendre à devenir \"Cartographe\". Par contre, il faut avoir été \"Médiateur\" et \"Cartographe\" pour devenir \"Noèsiologue\" ou pour devenir \"Expert IA\".",
+      "contexte": "Décision posée dans un contexte où plusieurs cheminements seraient légitimes, en assumant une règle qui laisse de la liberté tout en imposant des prérequis.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'articulation explicite entre trois bénéficiaires (élève, employeur, école) suppose la pesée de valeurs et d'intérêts qui ne coïncident pas, et que le découpage tente d'aligner."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "L'expression « compétences humaines utiles à l'ère des AGI » suppose une prise de position implicite sur ce qu'il convient de cultiver chez l'humain face au progrès IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucun raisonnement éthique appliqué au sens de la fiche n'est attesté ici, alors la mention des trois bénéficiaires n'est qu'une articulation utilitaire d'intérêts hétérogènes, pas une mise en tension de valeurs en conflit. La pièce 1 distribue des niveaux à des bénéficiaires différents sans nommer le conflit potentiel entre eux (par exemple, ce qui sert l'employeur peut différer de ce qui sert l'élève). Aucune structure en balancier « d'un côté... de l'autre » n'apparaît, aucune question ouverte sans résolution n'est maintenue. La pièce 2 contient l'expression « compétences humaines utiles à l'ère des AGI » qui pourrait porter une prise de position éthique sur ce qu'il faut préserver de l'humain, mais cette charge reste implicite — aucune interrogation explicite des critères, aucune mise en tension. Les pièces ne portent pas le marqueur central de 4.01 : un processus visible de pesée de valeurs en conflit.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, il n'y a pas d'examen critique à mener au temps 2. La fiche distingue précisément la sentence ou la distribution d'intérêts (non-4.01) du processus visible de mise en tension de valeurs (4.01), et cette feuille reste du côté de la distribution.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si l'articulation des trois bénéficiaires et l'expression « compétences humaines utiles à l'ère des AGI » pouvaient attester un raisonnement éthique en acte. La feuille distribue des intérêts sans nommer les conflits qui pourraient s'y nicher, et l'enjeu éthique de fond reste implicite, contenu dans le vocabulaire mais pas exploré. Sur cette feuille, le travail montre une conscience que plusieurs publics ont des attentes différentes, sans déployer le processus de mise en tension qui caractérise 4.01.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "Le temps 1 a fait tomber les pièces : l'articulation tripartite des bénéficiaires distribue des intérêts sans nommer le conflit, et l'enjeu éthique reste implicite dans le vocabulaire.",
+        "prescription": "Le territoire du raisonnement éthique pourrait s'ouvrir à partir des bénéficiaires déjà nommés ; un chemin possible serait de documenter, lors d'un prochain arbitrage de design, un moment où ce qui sert l'élève entre en tension avec ce qui sert l'employeur ou l'école, en gardant la tension visible plutôt qu'en la résorbant."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'Expert IA est conçu pour « mettre en évidence des indicateurs pour voir les compétences définies par la société civile sur notre plateforme Decidim » — l'IA est mise au service d'une intention humaine délibérée collectivement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucun alignement éthique au sens 4.02 n'est attesté ici, alors la mention de Decidim et de la société civile est une référence institutionnelle qui décrit où sont définies les compétences, pas un acte de gardiennage de l'alignement entre IA et valeurs humaines. La pièce ne raconte aucun refus, aucun garde-fou conçu, aucun diagnostic d'output désaligné. L'idée de « mettre en évidence des indicateurs pour voir les compétences définies par la société civile » suppose une articulation IA / valeurs humaines (les compétences ne sont pas définies par l'IA mais par les humains via Decidim), mais cette articulation est posée comme arrière-plan, pas exposée comme acte d'alignement. Pourtant, le choix de faire de l'IA un outil qui rend visible un référentiel humain délibéré collectivement, et non l'inverse, est une décision de gouvernance IA — un humain garde la main sur le critère, l'IA travaille sur l'observation.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La conception fait passer la définition des compétences par une délibération de société civile (Decidim) et n'en remet à l'IA que la mise en visibilité — c'est une architecture qui maintient le critère du côté humain."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce a résisté ; je dois tester si je n'ai pas surchargé une mention institutionnelle de sens éthique. Le risque dominant est la surinterprétation pédagogique : nommer Decidim n'implique pas nécessairement une réflexion sur l'alignement IA, c'est peut-être une simple mention d'outil. Pourtant, la pièce articule trois éléments — IA pour la visibilité, société civile pour la définition, plateforme délibérative pour l'arbitrage — qui ensemble dessinent bien une architecture où l'IA est subordonnée à une intention humaine collective. La charge éthique reste implicite mais elle est structurellement présente. La pièce reste, affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce ne thématise pas l'alignement IA explicitement mais l'incarne dans la répartition des rôles : la définition des critères reste du côté humain délibérant, l'IA n'agit qu'en aval pour rendre visible ce qui a été décidé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si la mention de Decidim et de la société civile pouvait attester un geste d'alignement éthique. Une pièce a résisté : l'Expert IA est conçu pour rendre visible ce qui a été défini par une délibération humaine, pas pour définir lui-même les critères. Sous la présomption de sycophantie, la pièce a été affaiblie parce que cette architecture est posée sans être thématisée comme acte d'alignement. Sur cette feuille, le travail montre une décision de gouvernance qui maintient implicitement la main humaine sur le critère, sans que l'apprenant en fasse un geste explicite de refus, de garde-fou ou de diagnostic d'alignement. Le marqueur reste structurel plutôt qu'argumenté.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a retenu une pièce affaiblie : l'architecture place implicitement le critère du côté humain délibérant (Decidim) et l'IA en aval, mais la dimension d'alignement n'est pas thématisée comme telle.",
+        "prescription": "Le geste d'alignement IA est présent dans la structure du dispositif sans être nommé ; un chemin possible serait de documenter, lors d'une prochaine décision technique sur la chaîne Expert IA / Decidim, ce qui a été délibérément confié à l'humain et ce qui a été confié à l'IA, et pourquoi cette répartition protège l'intention pédagogique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et long-terme sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage où l'impact long-terme ou les externalités ont concrètement modifié une décision."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un mode de pensée atypique a explicitement produit un résultat que l'approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant pose une règle qui laisse de la liberté locale (ordre libre entre Cartographe et Médiateur) tout en assumant des prérequis stricts ailleurs — décision posée dans un contexte où plusieurs choix de structure étaient légitimes."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "La justification finale tranche entre plusieurs effets recherchés et assume le découpage sans le présenter comme provisoire ou hypothétique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune décision sous incertitude au sens 4.05 n'est attestée ici, alors les règles posées ne sont que des choix de design ordinaires, sans flou ni risque assumé. La fiche exige un combo : (1) nommer ce qu'on ne savait pas, (2) décrire comment on a fonctionné malgré le flou, (3) raconter un acte de tranchage avec ses conséquences. La pièce 1 pose une règle structurelle mais ne nomme aucune incertitude explicite (l'apprenant ne dit pas « je ne savais pas quel ordre choisir »). La pièce 2 trancher entre plusieurs effets, mais sans flou nommé ni conséquences explorées. Les pièces ne portent pas le combo central de la compétence : elles décrivent des décisions assurées, pas des décisions prises malgré l'incertitude reconnue.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, il n'y a pas d'examen critique à mener au temps 2. La fiche est précise sur le besoin de nommer l'incertitude (1) en plus de la décision (3) — cette feuille ne nomme aucune incertitude.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si les règles de précédence et la justification finale pouvaient attester une décision prise sous incertitude. Les décisions sont posées sans flou nommé, sans hésitation explicitée, sans risque reconnu. Sur cette feuille, le travail montre l'assurance du concepteur qui pose ses règles, plutôt que la tolérance au flou de celui qui tranche malgré ce qu'il ne sait pas.",
+          "confianceFinale": 0.20
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.20,
+        "motif": "Le temps 1 a fait tomber les pièces : les règles posées sont assurées, sans incertitude nommée, sans description du fonctionnement dans le flou.",
+        "prescription": "Le territoire de la décision sous incertitude pourrait s'ouvrir en documentant, lors d'une prochaine révision du dispositif, ce qui n'était pas su au moment de trancher, comment on a continué à avancer malgré ce flou, et ce que la décision a produit."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la responsabilité, au courage et à l'intégrité sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a porté la responsabilité d'un résultat, maintenu une position malgré la pression, ou aligné un acte coûteux sur une valeur déclarée."
+      }
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la validation contextuelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a corrigé une IA en mobilisant un savoir qu'elle n'avait pas — culturel, relationnel ou situationnel — en nommant pourquoi ce contexte manquant changeait le résultat."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'expression « compétences humaines utiles à l'ère des AGI » désigne explicitement ce qu'il convient de cultiver chez l'humain à mesure que l'IA progresse — formulation prospective sur la valeur non-automatisable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune création de valeur non-automatisable au sens 4.08 n'est attestée ici, alors l'expression « compétences humaines utiles à l'ère des AGI » est une formule générale, pas un acte d'identification de ce qui reste structurellement humain. La fiche exige une lucidité bidirectionnelle (reconnaître ce que l'IA fait mieux ET identifier ce qui reste irremplaçable) et un test prospectif (cultiver pour rester pertinent). La pièce contient le test prospectif (« à l'ère des AGI ») mais ne nomme pas ce qui resterait irremplaçablement humain — elle pose seulement qu'il existe des compétences humaines à cartographier, sans les caractériser. La lucidité bidirectionnelle est implicite (si une cartographie est nécessaire, c'est qu'il y a quelque chose à cartographier), mais le geste 4.08 n'est pas pleinement déployé. La pièce ne résiste pas : l'horizon est posé sans que le geste de cultiver ce qui reste humain soit articulé.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, il n'y a pas d'examen critique à mener au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si l'expression « compétences humaines utiles à l'ère des AGI » pouvait attester un geste de création de valeur non-automatisable. L'horizon prospectif est bien là, mais le geste d'identifier précisément ce qui reste structurellement humain — et non temporairement non-automatisé — n'est pas déployé. Sur cette feuille, le travail pose le besoin d'une cartographie de l'humain à l'ère des AGI sans encore caractériser ce que cette cartographie aurait à montrer.",
+          "confianceFinale": 0.30
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.30,
+        "motif": "Le temps 1 a fait tomber la pièce : l'horizon prospectif est posé mais le geste d'identifier ce qui reste structurellement humain n'est pas déployé.",
+        "prescription": "Le geste 4.08 est latent dans l'horizon « ère des AGI » ; un chemin possible serait de documenter, lors d'une prochaine réflexion sur le dispositif, ce qui apparaît comme structurellement humain dans le travail tutoral — quelque chose qu'une IA bien équipée ne pourrait pas reproduire, et pourquoi."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la patience stratégique et au sens du timing sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la non-action délibérée a produit un meilleur résultat que l'action immédiate, en explicitant le critère de déclenchement."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle du discernement et du jugement éthique est traversé essentiellement par une décision implicite de gouvernance : faire de l'IA un outil au service d'un référentiel défini par la société civile, sans que l'apprenant en fasse un geste argumenté. L'horizon de fond — « les compétences humaines utiles à l'ère des AGI » — pose la question de ce qu'il faut cultiver chez l'humain face au progrès des modèles, mais cette question n'est pas explorée pour elle-même. Les décisions de design (règles de précédence, choix du découpage par fonction) sont posées avec assurance, sans flou nommé ni tension de valeurs explicitée. Le travail montre une orientation éthique cohérente, mais cette orientation reste enchâssée dans la conception du dispositif plutôt qu'exposée comme processus de jugement.",
+    "territoiresDenses": [
+      {
+        "competence": "Alignement et refus éthique",
+        "description": "L'architecture du dispositif maintient implicitement la définition des compétences du côté d'une délibération humaine collective (la société civile via Decidim), et n'en remet à l'IA que la mise en visibilité.",
+        "extraitVerbatim": "Le quatrième niveau serait celui de \"L'expert IA\". Son rôle : aider tous les apprenants de tous les niveaux, à mieux utiliser les IA, en proposant d'améliorer les prompts socratiques, en testant des prompts pour analyser les portfolios, en cherchant à mettre en évidence des indicateurs pour voir les compétences définies par la société civile sur notre plateforme Decidim.",
+        "ceQueCaDit": "Sur cette feuille, le travail montre une décision de gouvernance qui place le critère du côté humain délibérant et confie à l'IA un rôle d'aval, sans que cette répartition soit thématisée comme acte d'alignement."
+      }
+    ],
+    "territoiresNonVisites": "La plupart des territoires de ce pôle ne sont pas visités dans cette feuille. La pesée explicite de valeurs en conflit, la conscience écologique et long-terme, la valorisation de la neurodiversité, la responsabilité courageuse, la validation contextuelle et la patience stratégique n'apparaissent pas — ce qui ressemble à un effet de cadrage de la feuille, dont l'objet est la conception d'un dispositif et non un acte de jugement vécu. La décision sous incertitude est latente dans les choix de structure mais reste non explicitée comme telle. La création de valeur non-automatisable est suggérée par l'horizon « ère des AGI » sans que ce qui reste structurellement humain soit caractérisé. Ces absences ressemblent à des territoires que d'autres feuilles du portfolio sauront aborder, plutôt qu'à des manques propres.",
+    "emergencesPole": "Un fil discret traverse les zones actives : l'apprenant garde le critère du côté humain. Que ce soit en faisant définir les compétences par la société civile via Decidim, en distinguant ce qui sert l'élève de ce qui sert le recruteur, ou en posant comme prérequis un parcours humain (Médiateur et Cartographe) avant l'accès aux rôles d'Expert IA, le dispositif est traversé par un parti-pris implicite : la machine assiste, l'humain juge.",
+    "pistes": [
+      "Pour rendre visible l'orientation éthique qui traverse le dispositif, un chemin possible serait de documenter, lors d'une prochaine décision technique sur la chaîne Expert IA / Decidim, ce qui a été délibérément confié à l'humain et ce qui a été confié à l'IA, et pourquoi cette répartition protège l'intention pédagogique.",
+      "Pour ouvrir le territoire du raisonnement éthique en acte, un chemin possible serait de documenter, lors d'un prochain arbitrage de design, un moment où ce qui sert l'élève entre en tension avec ce qui sert l'employeur ou l'école, en gardant la tension visible plutôt qu'en la résorbant.",
+      "Pour caractériser ce qui reste structurellement humain, un chemin possible serait de nommer, pour l'un des rôles déjà définis, un acte tutoral qu'une IA bien équipée ne pourrait pas reproduire, et pourquoi."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle du discernement et du jugement éthique est traversé essentiellement par une décision implicite de gouvernance : faire de l'IA un outil au service d'un référentiel défini par la société civile, sans que l'apprenant en fasse un geste argumenté. L'horizon de fond — « les compétences humaines utiles à l'ère des AGI » — pose la question de ce qu'il faut cultiver chez l'humain face au progrès des modèles, mais cette question n'est pas explorée pour elle-même. Les décisions de design (règles de précédence, choix du découpage par fonction) sont posées avec assurance, sans flou nommé ni tension de valeurs explicitée. Le travail montre une orientation éthique cohérente, mais cette orientation reste enchâssée dans la conception du dispositif plutôt qu'exposée comme processus de jugement.\n\n## Territoires les plus denses\n\n**Alignement et refus éthique.** L'architecture du dispositif maintient implicitement la définition des compétences du côté d'une délibération humaine collective (la société civile via Decidim), et n'en remet à l'IA que la mise en visibilité. Citation : « Le quatrième niveau serait celui de \"L'expert IA\". Son rôle : [...] en cherchant à mettre en évidence des indicateurs pour voir les compétences définies par la société civile sur notre plateforme Decidim. » Sur cette feuille, le travail montre une décision de gouvernance qui place le critère du côté humain délibérant et confie à l'IA un rôle d'aval, sans que cette répartition soit thématisée comme acte d'alignement.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa plupart des territoires de ce pôle ne sont pas visités dans cette feuille. La pesée explicite de valeurs en conflit, la conscience écologique et long-terme, la valorisation de la neurodiversité, la responsabilité courageuse, la validation contextuelle et la patience stratégique n'apparaissent pas — ce qui ressemble à un effet de cadrage de la feuille, dont l'objet est la conception d'un dispositif et non un acte de jugement vécu. La décision sous incertitude est latente dans les choix de structure mais reste non explicitée comme telle. La création de valeur non-automatisable est suggérée par l'horizon « ère des AGI » sans que ce qui reste structurellement humain soit caractérisé. Ces absences ressemblent à des territoires que d'autres feuilles du portfolio sauront aborder, plutôt qu'à des manques propres.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn fil discret traverse les zones actives : l'apprenant garde le critère du côté humain. Que ce soit en faisant définir les compétences par la société civile via Decidim, en distinguant ce qui sert l'élève de ce qui sert le recruteur, ou en posant comme prérequis un parcours humain (Médiateur et Cartographe) avant l'accès aux rôles d'Expert IA, le dispositif est traversé par un parti-pris implicite : la machine assiste, l'humain juge.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre visible l'orientation éthique qui traverse le dispositif, un chemin possible serait de documenter, lors d'une prochaine décision technique sur la chaîne Expert IA / Decidim, ce qui a été délibérément confié à l'humain et ce qui a été confié à l'IA, et pourquoi cette répartition protège l'intention pédagogique.\n- Pour ouvrir le territoire du raisonnement éthique en acte, un chemin possible serait de documenter, lors d'un prochain arbitrage de design, un moment où ce qui sert l'élève entre en tension avec ce qui sert l'employeur ou l'école, en gardant la tension visible plutôt qu'en la résorbant.\n- Pour caractériser ce qui reste structurellement humain, un chemin possible serait de nommer, pour l'un des rôles déjà définis, un acte tutoral qu'une IA bien équipée ne pourrait pas reproduire, et pourquoi."
+  }
+}

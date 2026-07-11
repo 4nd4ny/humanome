@@ -1,0 +1,198 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire l'interface",
+      "contexte": "L'apprenant identifie une séquence de demandes différentes à l'IA — pourrait toucher à 7.04 (leadership situationnel et orchestration) si elle traduit une volonté de définir des rôles différenciés.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "Intégrer tous les éléments théoriques pour construire un jeu dont les racines plongent dans les documents fournis, n'est pas simple.",
+      "contexte": "Un jeu construit à partir de documents théoriques — projet pédagogique implicite — pourrait toucher à 7.01 (maïeutique, conception d'environnement d'apprentissage) si l'intention pédagogique se précise."
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant construit un jeu dont les racines plongent dans des documents théoriques — la nature de l'objet (un jeu) et l'ancrage théorique suggèrent une intention pédagogique implicite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche définit 7.01 par la méthode (questionnement socratique) et l'architecture pédagogique (conception d'environnements). Ici, l'apprenant construit un jeu, mais on ne sait pas de quel jeu il s'agit, ni s'il vise un apprentissage, ni qui en serait le public, ni quelle posture maïeutique il adopterait. Le mot « jeu » ne signale pas en soi de la pédagogie — il peut s'agir d'un jeu de divertissement, d'un prototype technique, ou d'un dispositif réflexif sans visée pédagogique. La fiche cite explicitement « j'ai aidé », « j'ai expliqué », « j'ai enseigné » comme faux positifs ; ici, il n'y a même pas de marqueur de transmission, juste une construction. La pièce ne résiste pas à la présomption d'absence — l'intention pédagogique reste hypothétique.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à savoir si la construction d'un jeu ancré dans des documents théoriques portait une intention de facilitation d'apprentissage. Ce qui m'a fait reculer, c'est l'absence totale de marqueurs pédagogiques explicites : pas de public nommé, pas de question maïeutique, pas de dispositif d'apprentissage décrit. La fiche est précise sur le fait que l'intention pédagogique doit être lisible — ici, elle est seulement hypothétique. La pièce relève peut-être d'une construction créative ou technique, qui ne devient pédagogique que si l'apprenant le formule explicitement dans une autre feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a porté : la construction du jeu ne porte aucun marqueur pédagogique explicite (public, dispositif, posture maïeutique).",
+        "prescription": "Cette feuille évoque un jeu en construction sans dire à qui il s'adresse ni quel apprentissage il vise. Si l'intention est pédagogique, un passage qui nomme le public, le dispositif et la posture (transmettre frontalement vs faire accoucher) viendrait porter cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative. Pour ouvrir ce dossier, l'apprenant pourrait documenter un acte évaluatif au service de la progression d'autrui."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la documentation vivante. La feuille elle-même est un journal personnel sans structuration intentionnelle pour un destinataire futur."
+      }
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant identifie qu'il aurait dû différencier deux demandes à l'IA — l'une pour réfléchir, l'autre pour construire — ce qui esquisse une assignation de rôles différenciés à l'agent IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche définit 7.04 par l'alternance délibérée entre direction et retrait, et par l'assignation de rôles différenciés à des agents IA (superviseur, bâtisseur, exécutant). La pièce esquisse bien une différenciation : « réfléchir au sens » est un rôle distinct de « construire l'interface ». Mais cette différenciation est nommée rétrospectivement comme une erreur — l'apprenant n'a pas exercé l'orchestration, il l'a manquée. La fiche est explicite : 7.04 cible *l'alternance consciente* qui est exercée, pas seulement diagnostiquée. De plus, il faudrait au moins une bascule explicite (« j'ai laissé X faire pendant que Y faisait Z », ou « j'ai repris la main parce que »), ce qui n'est pas le cas. Et la fiche distingue 7.04 de 1.10 : 1.10 = articulation des forces ; 7.04 = choix de posture à un moment donné. Ici, on est plutôt sur la matière de 1.10. La pièce ne résiste pas pour 7.04.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a rien à examiner. La présomption d'absence a tenu sur la distinction explicite 7.04/1.10 et sur l'exigence d'une orchestration exercée.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'identification rétrospective de deux rôles distincts (réfléchir / construire) portait une orchestration. Sous la présomption d'absence, la pièce n'a pas tenu : la fiche exige une alternance exercée, pas seulement nommée comme manquée. Le passage relève plutôt de la matière de 1.10 (synergie hybride) — il articule des rôles potentiels sans les déployer. Ce qui en résulte est un constat sobre : la conscience de la différenciation est présente, sa mise en œuvre orchestrée ne l'est pas dans cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a porté : 7.04 exige une orchestration exercée (bascule explicite, alternance consciente), et la feuille ne contient qu'une différenciation diagnostiquée rétrospectivement.",
+        "prescription": "Cette feuille esquisse rétrospectivement deux rôles distincts pour l'IA (réfléchir et construire). Pour rejoindre le leadership situationnel, un passage qui décrirait l'orchestration effectivement exercée — laisser l'IA explorer sur une phase, reprendre la main à un moment précis avec déclencheur identifié — viendrait porter cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la vision stratégique et prospective. Pour ouvrir ce dossier, l'apprenant pourrait relier explicitement un choix présent à une direction future anticipée."
+      }
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'efficacité personnelle. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage de priorité ou un refus stratégique argumenté."
+      }
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'agilité et à la conduite du changement. Pour ouvrir ce dossier, l'apprenant pourrait documenter un cycle d'itérations avec ajustements de plan explicités."
+      }
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel. La feuille raconte une difficulté ordinaire de production, pas un incident sous contrainte temporelle extrême."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 8,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille décrit un travail individuel et opérationnel avec l'IA. Aucun public n'est convoqué (pas d'apprenant à transmettre, pas de collègue à évaluer, pas d'équipe à piloter), aucun horizon stratégique n'est tracé, aucune crise n'est gérée. La feuille ne thématise ni la transmission, ni l'orchestration, ni la conduite du changement. Le pôle flambeau n'est pas exploré dans cette feuille.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'intégralité du pôle reste non visitée dans cette feuille. La maïeutique, l'évaluation transformative, la documentation vivante, le leadership situationnel, la vision stratégique, l'efficacité personnelle, l'agilité et la gestion de crise ne trouvent aucun écho. La feuille décrit un moment de travail très focalisé sur la production d'un jeu avec l'IA, sans articulation à un public destinataire ni à une stratégie long-terme. Le projet du jeu suggère implicitement une intention pédagogique, mais elle n'est pas formulée. L'orchestration possible des rôles IA (réfléchir vs construire) est diagnostiquée comme manquée, pas exercée.",
+    "emergencesPole": "Une chose émerge entre les lignes : l'apprenant commence à penser l'IA comme un agent à qui l'on assigne des rôles différenciés — réfléchir, construire — ce qui esquisse, sans la déployer, la matière du leadership situationnel. C'est un embryon, pas une trace ; il pourrait devenir compétence si l'apprenant raconte un jour avoir effectivement orchestré ces rôles successifs.",
+    "pistes": [
+      "Pour ouvrir 7.04, un chemin possible serait de raconter une session où l'apprenant donne explicitement à l'IA un rôle (« réfléchir au sens »), observe le résultat, puis lui donne un autre rôle (« construire ») — avec la bascule décrite.",
+      "Pour ouvrir 7.05, un chemin possible serait de relier le projet du jeu à un horizon : à quoi servira-t-il, qui le jouera, dans quel cadre — la justification long-terme du présent.",
+      "Pour ouvrir 7.01, un chemin possible serait de nommer le public du jeu et l'apprentissage visé — pas seulement construire, mais transmettre."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille décrit un travail individuel et opérationnel avec l'IA. Aucun public n'est convoqué (pas d'apprenant à transmettre, pas de collègue à évaluer, pas d'équipe à piloter), aucun horizon stratégique n'est tracé, aucune crise n'est gérée. La feuille ne thématise ni la transmission, ni l'orchestration, ni la conduite du changement. Le pôle flambeau n'est pas exploré dans cette feuille.\n\n## Territoires les plus denses\n\nAucun territoire dense ne ressort de cette feuille pour ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'intégralité du pôle reste non visitée dans cette feuille. La maïeutique, l'évaluation transformative, la documentation vivante, le leadership situationnel, la vision stratégique, l'efficacité personnelle, l'agilité et la gestion de crise ne trouvent aucun écho. La feuille décrit un moment de travail très focalisé sur la production d'un jeu avec l'IA, sans articulation à un public destinataire ni à une stratégie long-terme. Le projet du jeu suggère implicitement une intention pédagogique, mais elle n'est pas formulée. L'orchestration possible des rôles IA (réfléchir vs construire) est diagnostiquée comme manquée, pas exercée.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose émerge entre les lignes : l'apprenant commence à penser l'IA comme un agent à qui l'on assigne des rôles différenciés — réfléchir, construire — ce qui esquisse, sans la déployer, la matière du leadership situationnel. C'est un embryon, pas une trace ; il pourrait devenir compétence si l'apprenant raconte un jour avoir effectivement orchestré ces rôles successifs.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir 7.04, un chemin possible serait de raconter une session où l'apprenant donne explicitement à l'IA un rôle (« réfléchir au sens »), observe le résultat, puis lui donne un autre rôle (« construire ») — avec la bascule décrite.\n- Pour ouvrir 7.05, un chemin possible serait de relier le projet du jeu à un horizon : à quoi servira-t-il, qui le jouera, dans quel cadre — la justification long-terme du présent.\n- Pour ouvrir 7.01, un chemin possible serait de nommer le public du jeu et l'apprentissage visé — pas seulement construire, mais transmettre."
+  }
+}

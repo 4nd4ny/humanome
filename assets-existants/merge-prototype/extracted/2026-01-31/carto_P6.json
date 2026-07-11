@@ -1,0 +1,268 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Nouvelle idée ce matin pour le prompt d'aide à la cartographie des compétences. J'ai généré une v6 que je dois maintenant relire et tester. Elle se base sur des fichiers YAML et un script Python pour générer les prompts. Il manque des exemples concrets dans les fichiers de paramétrages pour pouvoir les donner aux premiers cartographes comme base de départ.",
+      "contexte": "Conception d'un dispositif pour cartographier les compétences d'autrui : pensée aux destinataires (cartographes), outil à fournir, exemples nécessaires.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Je suis passé de 400 compétences à 48, mais relisant ce qui a été supprimé, j'ai demandé à Claude de réfléchir comment en ré-intégrer certaines. Je ne voulais pas faire trop long. La nouvelle version a été stabilisée à 60 compétences.",
+      "contexte": "Travail sur un référentiel destiné à structurer un dispositif d'évaluation : choix de cadre qui aura un effet sur les personnes cartographiées.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "La bonne nouvelle, c'est que c'est pas moi qui fait le boulot le plus dur :-D",
+      "contexte": "Allusion humoristique à la division humain/IA du travail ; potentiellement liée à la cohabitation IA, à examiner.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Mais je n'ai pas encore testé les 6 versions moi même (je n'ai fait que les simuler). Il faut donc que consolide tout ça",
+      "contexte": "Reconnaissance d'une zone non testée d'un prompt destiné à évaluer autrui ; pourrait toucher 6.02 (audit du processus) ou 6.01 (red-teaming), à examiner.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Mention que les 6 versions ont été seulement simulées et non testées : conscience d'une zone non éprouvée, sans pour autant indiquer une posture offensive ou méthodologie d'attaque."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que le red-teaming n'est pas attesté. La fiche est précise : il faut une intention offensive et méthodique, des récits de provocation intentionnelle, des cas limites conçus pour casser les garde-fous. Ici, la pièce dit l'inverse — l'apprenant n'a pas testé. Il n'y a aucune mention de scénario adversarial, aucune tentative de pousser l'IA dans ses retranchements, aucune documentation de failles. Le verbe « simuler » ici signifie tester mentalement, pas mettre le prompt sous pression dans un mode adversarial. Ce qui reste explicitement faible : la posture est celle d'un concepteur, pas d'un attaquant.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber la seule pièce. L'aveu de ne pas avoir testé est l'inverse de la signature du red-teaming.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier le red-teaming en m'appuyant sur l'exigence d'une posture offensive et méthodique qu'impose la fiche. La présomption d'absence a tenu seule : il n'y a sur cette feuille ni provocation intentionnelle, ni méthodologie adversariale, ni cas limites conçus pour briser le système. Il en résulte que la compétence n'est pas établie sur cette feuille.",
+          "confianceFinale": 0.12
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.12,
+        "motif": "La présomption d'absence a tenu seule : aucune trace de posture offensive ou de cas adversarial.",
+        "prescription": "Pour ouvrir ce dossier, une feuille pourrait documenter une tentative délibérée de pousser le prompt v6 dans ses retranchements — un cas limite conçu pour casser ses garde-fous, un input adversarial, une simulation d'usage malveillant."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit, l'explicabilité et l'hygiène des données sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait raconter une enquête sur le « comment » d'une décision IA — consultation de logs indépendamment du résultat affiché, traçabilité du chemin décisionnel."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics sur cette feuille. Pour ouvrir ce dossier, un récit pourrait interroger le pouvoir d'un algorithme sur des populations vulnérables et proposer un mécanisme de recours."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté numérique et à la gouvernance des communs sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait raconter un choix d'outil motivé par l'indépendance plutôt que la performance, ou un raisonnement sur la portabilité des données."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un dispositif d'évaluation destiné aux « premiers cartographes » avec souci de fournir des exemples concrets en base de départ : pensée aux destinataires d'un outil IA."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Stabilisation du référentiel à 60 compétences avec arbitrage sur ce qui est gardé ; ce référentiel structurera des évaluations sur des tiers."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la participation citoyenne et la démocratie technologique ne sont pas attestées. La fiche est exigeante : il faut un processus où des non-experts ont été associés à des décisions technologiques, avec une dimension de légitimité démocratique. La fiche met explicitement en garde : « on a consulté les utilisateurs » peut être du design UX sans dimension démocratique. Ici, l'apprenant pense à ses destinataires mais conçoit l'outil seul (ou avec Claude). Il n'y a aucune consultation citoyenne, aucun panel délibératif, aucun processus de co-construction avec les futurs cartographes. La pensée au destinataire est de l'ergonomie (fournir des exemples pour démarrer), pas de la participation. Ce qui reste explicitement faible : la décision sur le périmètre du référentiel — qui structurera des évaluations sur des tiers — est prise unilatéralement, sans aucune trace d'inclusion des personnes qui seront évaluées dans la conception du cadre.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber les deux pièces. Le souci des destinataires est précisément ce que la fiche écarte comme faux positif typique : « 6.05 porte sur la légitimité, pas l'ergonomie ».",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la participation citoyenne en m'appuyant sur la distinction critique de la fiche entre design UX et démocratie technologique. La présomption d'absence a tenu seule : penser aux destinataires d'un outil n'est pas les associer à sa conception, et stabiliser un référentiel par allers-retours avec une IA n'est pas une délibération démocratique. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la matière est intéressante — l'apprenant conçoit un dispositif d'évaluation qui structurera le regard porté sur d'autres — et ce dispositif pourrait gagner en légitimité par un processus de co-construction qui n'est pas activé ici.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a tenu seule : la pensée aux destinataires relève de l'ergonomie, pas de la démocratie technologique au sens où la fiche l'entend.",
+        "prescription": "Une feuille pourrait raconter un moment où les futurs cartographes ou les personnes cartographiées sont associés à la conception du référentiel — un panel de relecture, un test avec retour structuré, un atelier de co-conception. Une variante consisterait à formuler ce qui légitimerait, pour un cartographié, l'usage de ce référentiel à son sujet."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative sur cette feuille. Pour ouvrir ce dossier, un récit pourrait modifier une pratique en anticipant un cadre réglementaire à venir."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective sur cette feuille. Pour ouvrir ce dossier, un récit pourrait documenter une collaboration qui a produit un résultat surprenant — qu'aucun membre n'aurait pu créer seul — avec des règles co-construites."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait questionner la légitimité de la primauté humaine — pas par déclaration d'humilité d'espèce, mais par un raisonnement où une perspective non-humaine est défendue, même quand cela coûte."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "« La bonne nouvelle, c'est que c'est pas moi qui fait le boulot le plus dur :-D » : phrase qui pourrait porter un questionnement sur le statut de l'IA comme partenaire ; à examiner."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la cohabitation avec les intelligences non-humaines n'est pas attestée. La fiche est précise : il faut traiter l'IA comme un interlocuteur dont le statut est une question ouverte, pas une certitude. Il faut une calibration de l'anthropomorphisme. Ici, la phrase « c'est pas moi qui fait le boulot le plus dur » présuppose au contraire une réification opérationnelle de l'IA : elle « fait le boulot », au même titre qu'un outil ou un travailleur subalterne. Il n'y a aucune interrogation sur le statut, aucune gêne articulée, aucun protocole d'interaction qui dépasserait le fonctionnel. La fiche met précisément en garde : « 'Mon assistant IA' peut être une métaphore instrumentale — 6.09 commence quand l'apprenant questionne si 'assistant' est le bon cadre. » Ici, l'apprenant ne questionne pas le cadre. Ce qui reste explicitement faible : aucune trace d'une calibration entre déni et anthropomorphisme non-critique.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber la seule pièce. L'humour qui présuppose une fonction subalterne de l'IA est l'inverse symétrique du questionnement de statut qui ferait 6.09.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la cohabitation avec les intelligences non-humaines en m'appuyant sur l'exigence de calibration de l'anthropomorphisme qu'impose la fiche. La présomption d'absence a tenu seule : la phrase finale réifie l'IA comme exécutante du boulot plutôt que de la questionner comme entité dont le statut moral mériterait d'être pensé. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la feuille raconte une interaction soutenue avec Claude — qui a réfléchi à la réintégration de compétences, qui est partenaire d'itération — sans que cette densité de relation soit thématisée comme une question.",
+          "confianceFinale": 0.13
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.13,
+        "motif": "La présomption d'absence a tenu seule : la phrase finale réifie l'IA dans une fonction subalterne plutôt que de questionner son statut.",
+        "prescription": "Une feuille pourrait articuler une interrogation sur la nature de la relation à Claude — comment nommer ce qu'il fait, est-ce un outil, un partenaire, un autre, et qu'est-ce que cette question change. Une variante consisterait à formuler une gêne ou une perplexité articulée sur le statut de l'entité avec qui l'apprenant a travaillé pendant cette journée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait penser un système technique par analogie radicale avec un écosystème vivant — non comme métaphore décorative, mais comme principe de conception."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle politique et post-anthropocentrique reste presque entièrement hors champ. Le sujet du jour — concevoir un dispositif d'évaluation paramétré par YAML, stabiliser un référentiel, itérer un prompt — touche de manière oblique à la question de la gouvernance des outils d'évaluation et de la cohabitation avec une IA partenaire de conception, mais aucune de ces dimensions n'est thématisée. L'apprenant fabrique le cadre qui servira à évaluer d'autres personnes sans interroger la légitimité de ce cadre ; il travaille pendant des heures avec Claude sans questionner le statut de cette entité ; il prend des décisions techniques unilatérales sur un référentiel destiné à structurer le regard porté sur autrui. La feuille documente une journée de production où les questions de gouvernance, de souveraineté, de participation, de décentrement sont des questions possibles qui ne sont pas posées.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'essentiel du pôle n'a pas été ramené sur cette feuille. Le red-teaming, l'audit, la gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique, la cohabitation avec les IA et la conscience biosystémique ne reçoivent pas de matière qui franchisse le seuil. Plusieurs absences sont liées au sujet du jour (une journée de fabrication unilatérale d'un dispositif). Mais deux absences sont particulièrement parlantes au regard de ce que la feuille raconte : la participation citoyenne, parce que l'apprenant conçoit un référentiel qui structurera des évaluations sur autrui sans associer ces autrui à la conception ; et la cohabitation avec les IA, parce que la journée est en interaction soutenue avec Claude qui « fait le boulot le plus dur », sans que cette relation soit interrogée. Ces deux absences ne sont pas seulement des effets du sujet du jour — elles pointent là où les questions du pôle s'invitent et ne sont pas accueillies.",
+    "emergencesPole": "Un fil discret traverse l'absence du pôle sur cette feuille : la pratique d'une autorité non thématisée. L'apprenant décide seul du périmètre du référentiel (60 compétences), seul du format des fichiers de paramétrage, seul de la manière dont les cartographes futurs entreront dans l'outil. Cette autorité est exercée sans débat, sans procédure de validation par les concernés, sans questionnement sur sa propre légitimité — ce qui n'est pas en soi un défaut, mais ce qui constitue précisément le point aveugle que ce pôle est conçu pour rendre visible. Le pôle CITÉ vit ici en creux, comme un ensemble de questions que la feuille n'a pas eu le temps ou la disposition de poser.",
+    "pistes": [
+      "Pour ouvrir la participation citoyenne, un chemin possible serait de documenter un moment où un cartographe pressenti ou une personne cartographiée serait associé à la conception du référentiel — un atelier de relecture, un panel de test, une consultation structurée.",
+      "Pour activer la cohabitation avec les IA, un chemin possible serait d'articuler une interrogation sur la nature de la relation à Claude pendant cette journée — outil, partenaire, autre, et qu'est-ce que cette question change pour le travail accompli.",
+      "Pour ouvrir l'audit et l'explicabilité, un chemin possible serait de documenter comment le prompt v6 produit ses sorties — quelle trace est gardée du chemin décisionnel d'une évaluation produite par l'outil.",
+      "Pour ouvrir la souveraineté numérique, un chemin possible serait d'expliciter le choix des outils utilisés (scripts Google, Claude, fichiers YAML) du point de vue de la dépendance et de la portabilité — qu'est-ce qui serait perdu si l'un de ces outils devenait indisponible."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle politique et post-anthropocentrique reste presque entièrement hors champ. Le sujet du jour — concevoir un dispositif d'évaluation paramétré par YAML, stabiliser un référentiel, itérer un prompt — touche de manière oblique à la question de la gouvernance des outils d'évaluation et de la cohabitation avec une IA partenaire de conception, mais aucune de ces dimensions n'est thématisée. L'apprenant fabrique le cadre qui servira à évaluer d'autres personnes sans interroger la légitimité de ce cadre ; il travaille pendant des heures avec Claude sans questionner le statut de cette entité ; il prend des décisions techniques unilatérales sur un référentiel destiné à structurer le regard porté sur autrui. La feuille documente une journée de production où les questions de gouvernance, de souveraineté, de participation, de décentrement sont des questions possibles qui ne sont pas posées.\n\n## Territoires les plus denses\n\nAucune compétence n'atteint sur cette feuille le seuil d'une présence établie : le pôle politique est presque entièrement absent.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'essentiel du pôle n'a pas été ramené sur cette feuille. Le red-teaming, l'audit, la gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique, la cohabitation avec les IA et la conscience biosystémique ne reçoivent pas de matière qui franchisse le seuil. Plusieurs absences sont liées au sujet du jour (une journée de fabrication unilatérale d'un dispositif). Mais deux absences sont particulièrement parlantes au regard de ce que la feuille raconte : la participation citoyenne, parce que l'apprenant conçoit un référentiel qui structurera des évaluations sur autrui sans associer ces autrui à la conception ; et la cohabitation avec les IA, parce que la journée est en interaction soutenue avec Claude qui « fait le boulot le plus dur », sans que cette relation soit interrogée. Ces deux absences ne sont pas seulement des effets du sujet du jour — elles pointent là où les questions du pôle s'invitent et ne sont pas accueillies.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn fil discret traverse l'absence du pôle sur cette feuille : la pratique d'une autorité non thématisée. L'apprenant décide seul du périmètre du référentiel (60 compétences), seul du format des fichiers de paramétrage, seul de la manière dont les cartographes futurs entreront dans l'outil. Cette autorité est exercée sans débat, sans procédure de validation par les concernés, sans questionnement sur sa propre légitimité — ce qui n'est pas en soi un défaut, mais ce qui constitue précisément le point aveugle que ce pôle est conçu pour rendre visible. Le pôle CITÉ vit ici en creux, comme un ensemble de questions que la feuille n'a pas eu le temps ou la disposition de poser.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir la participation citoyenne, un chemin possible serait de documenter un moment où un cartographe pressenti ou une personne cartographiée serait associé à la conception du référentiel — un atelier de relecture, un panel de test, une consultation structurée.\n- Pour activer la cohabitation avec les IA, un chemin possible serait d'articuler une interrogation sur la nature de la relation à Claude pendant cette journée — outil, partenaire, autre, et qu'est-ce que cette question change pour le travail accompli.\n- Pour ouvrir l'audit et l'explicabilité, un chemin possible serait de documenter comment le prompt v6 produit ses sorties — quelle trace est gardée du chemin décisionnel d'une évaluation produite par l'outil.\n- Pour ouvrir la souveraineté numérique, un chemin possible serait d'expliciter le choix des outils utilisés (scripts Google, Claude, fichiers YAML) du point de vue de la dépendance et de la portabilité — qu'est-ce qui serait perdu si l'un de ces outils devenait indisponible.\n"
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Grosse émotion aujourd'hui.",
+      "contexte": "Nomination directe d'un état émotionnel en ouverture de feuille. Active potentiellement 2.01 (intelligence émotionnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "J'ai un dilemme à résoudre qui m'épuise. [...] Dans tous les cas, je savais que ce moment allait arriver et ça me fatigue beaucoup d'y penser.",
+      "contexte": "Nomination d'émotions précises (épuisement, fatigue) en lien avec un événement anticipé. Active potentiellement 2.01.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je préfère être pauvre et finir ce qui est important, que d'avoir un salaire et faire quelque chose qui n'a plus de sens pour moi, avec des personnes dont je connais déjà le niveau et qui ne vont pas m'enrichir ni humainement, ni intellectuellement.",
+      "contexte": "Évaluation du milieu professionnel précédent par les apports humains et intellectuels attendus. Pourrait toucher 2.06 (intelligence culturelle/contextuelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Le poste de l'EPFL a pour avantage qu'il va me nourrir intellectuellement pendant au moins une année. Je vais rencontrer des gens intelligents.",
+      "contexte": "Anticipation positive d'un milieu humain qui nourrira. Toucherait 2.06 ou 2.09 (construction de communautés) à la marge.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "En plus je ne verrais quasiment plus Leila et je ne pourrais plus aider Soledad pour toutes les tâches ménagères (il faudra prendre une aide pour les courses, la vaisselle, la lessive et le ménage que je ne pourrais plus faire).",
+      "contexte": "Anticipation des effets d'une décision professionnelle sur les relations proches (compagne, fille). Pourrait toucher 2.01 (sollicitude active) si le souci de l'autre transparaît.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je sais que j'ai trop de respect pour les élèves pour donner des cours de merde",
+      "contexte": "Énoncé d'une posture relationnelle à l'égard des élèves comme contrainte interne forte. Pourrait toucher 2.01 (sollicitude).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Nomination directe d'une 'grosse émotion' en ouverture de feuille."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Nomination d'épuisement et de fatigue liés au dilemme à résoudre."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Anticipation des conséquences de la décision sur Leila et Soledad — éventuelle trace de sollicitude proactive."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Énoncé d'un 'respect pour les élèves' qui structure la décision — posture relationnelle assumée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que nommer une émotion vague ('grosse émotion', 'fatigue') ne suffit pas à attester l'intelligence émotionnelle au sens de la fiche, qui demande une nomination précise et une régulation délibérée. La pièce 1 ('grosse émotion') reste très générique — c'est une étiquette, pas une analyse. La pièce 2 nomme épuisement et fatigue, ce qui est plus précis, mais ces termes restent surface : pas de distinction entre frustration, peur, colère, tristesse ; pas de geste de régulation décrit. La pièce 6 énonce un 'respect pour les élèves' qui ressemble à une valeur déclarée plutôt qu'à une perception émotionnelle fine ou un acte de care. La pièce 5 résiste un peu plus : elle anticipe concrètement les manques que la décision créera (présence avec Leila, aide à Soledad) — c'est une anticipation des besoins d'autrui, ce que la fiche appelle care anticipatoire.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 3,
+              "motifResistance": "La pièce anticipe les besoins concrets de Leila et Soledad qui seront affectés par la décision — geste de care anticipatoire que la fiche signale comme trace oblique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 3 a tenu. L'attaque (e) — surinterprétation pédagogique — me semble pertinente : ai-je chargé cette pièce d'une intention de sollicitude qu'elle ne porte pas ? Le passage anticipe des conséquences pratiques (courses, vaisselle, ménage) plutôt qu'un état émotionnel d'autrui. L'apprenant ne dit pas 'Soledad va se sentir seule' ou 'Leila va manquer de présence' — il décrit une réorganisation matérielle. La sollicitude est implicite dans le fait que ces conséquences pèsent dans la décision, mais elle reste très opérationnelle. L'attaque touche : ce qui ressemblait à du care anticipatoire est plus proche d'un inventaire de répercussions logistiques.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'anticipation porte sur des conséquences matérielles plutôt que sur les états émotionnels d'autrui. Le souci des proches est implicite dans le fait que ces effets pèsent dans la décision, mais la sollicitude reste indirecte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les émotions nommées étaient assez précises et si la perception de l'autre était assez fine pour attester l'intelligence émotionnelle au sens de la fiche. Les nominations sont restées génériques (grosse émotion, fatigue, épuisement) sans distinction fine ni geste de régulation décrit. La pièce qui anticipait l'effet sur Leila et Soledad a tenu — mais sous une forme matérielle plutôt qu'émotionnelle. Ce qui en résulte : un indice corroboratif de sollicitude implicite, attesté par le fait que les besoins des proches pèsent réellement dans l'arbitrage, sans pour autant constituer une intelligence émotionnelle pleinement déployée dans cette feuille.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Les pièces de nomination émotionnelle sont restées génériques. Seule l'anticipation des effets sur les proches a tenu, sous une forme matérielle plutôt qu'affective.",
+        "prescription": "Le travail montre que les besoins des proches pèsent réellement dans les arbitrages. Pour densifier cette piste, un récit qui distinguerait plus précisément les émotions traversées (peur, colère, tristesse, doute) et qui nommerait ce que les proches pourraient ressentir donnerait à voir l'intelligence émotionnelle en mouvement plus complet."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la communication authentique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une prise de parole inconfortable assumée avec ses interlocuteurs concernés."
+      }
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un désaccord où il a structuré le débat ou choisi de laisser une tension non résolue."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'influence et la diplomatie dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait décrire une situation où il a préparé une proposition en intégrant les résistances anticipées."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la collaboration divergente dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une collaboration où le désaccord persiste mais la livraison continue."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Caractérisation du milieu CFPT par le niveau humain et intellectuel anticipé — lecture comparative de cultures professionnelles."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Anticipation du milieu EPFL comme contexte intellectuel nourrissant — lecture culturelle d'un environnement professionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que comparer deux milieux professionnels par les apports attendus n'est pas de l'intelligence culturelle au sens de la fiche, qui exige de décoder des implicites culturels et d'adapter son comportement, pas seulement d'évaluer la richesse intellectuelle d'un milieu. La pièce 3 et la pièce 4 caractérisent deux contextes (CFPT, EPFL) selon leur capacité à enrichir l'apprenant. C'est une évaluation de fit personnel, pas une analyse de normes culturelles ni de comportement à adapter. La fiche est précise : la 2.06 demande la suspension de son propre cadre de référence pour naviguer celui de l'autre. Or ici, l'apprenant juge depuis son propre cadre (ce qui le nourrit), sans suspension. Les pièces ne résistent pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la comparaison entre CFPT et EPFL portait une lecture culturelle des milieux. Elle est tombée : l'apprenant évalue ces contextes selon ce qu'ils peuvent lui apporter, pas selon leurs normes implicites ni leurs codes propres. L'intelligence culturelle au sens de la fiche reste hors de portée de cette feuille — non absente du parcours global, mais non visible dans ce qui est raconté ici.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé les pièces : juger deux milieux selon ce qu'ils apportent n'est pas décoder leurs implicites culturels.",
+        "prescription": "Un récit où l'apprenant nommerait les codes implicites d'un milieu (CFPT, EPFL, ou autre) et adapterait son comportement en conséquence ouvrirait une trace plus solide d'intelligence culturelle."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens politique et à la lecture organisationnelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait décrire les dynamiques de pouvoir invisibles d'une institution traversée."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la traduction entre mondes dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un acte de pontage entre deux publics au cadre conceptuel différent."
+      }
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la construction de communautés dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait décrire les rituels, le 'nous' ou l'identité d'un collectif qu'il tisse."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du 6 mars 2026 montre un travail relationnel discret mais réel : les proches sont présents dans l'arbitrage non comme abstractions mais comme personnes dont la vie sera affectée. L'apprenant nomme l'émotion vive qui le traverse ('grosse émotion', épuisement, fatigue) en ouverture de feuille, ce qui ancre la délibération dans un registre affectif assumé. Les milieux professionnels possibles sont évalués par leur potentiel d'enrichissement humain et intellectuel — la qualité des personnes rencontrées pèse autant que la rémunération. La voix dominante est celle d'un délibérant pour qui la décision professionnelle se lit aussi en termes de relations affectées : Leila vue moins, Soledad qui devra trouver une aide, les élèves traités avec ou sans le respect dû.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. La communication authentique, la gestion des conflits, l'influence et la diplomatie, la collaboration divergente, le sens politique, la traduction entre mondes et la construction de communautés ne croisent pas l'arbitrage du jour. C'est cohérent avec la nature de la feuille, centrée sur une décision intérieure plutôt que sur une situation relationnelle vécue avec des interlocuteurs. L'intelligence culturelle est effleurée dans la comparaison entre milieux professionnels sans s'installer en geste pleinement constitué. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte des interactions vivantes avec d'autres personnes.",
+    "emergencesPole": "Deux observations traversent la feuille. D'abord, l'émotion est nommée dès l'ouverture et structure la délibération qui suit : la décision ne cherche pas à mettre l'affect à distance, elle compose avec lui. Ensuite, les proches existent dans l'arbitrage comme parties prenantes concrètes : leur vie matérielle (présence, aide ménagère) entre dans l'équation au même titre que les considérations professionnelles.",
+    "pistes": [
+      "Pour densifier l'intelligence émotionnelle, un chemin possible serait de distinguer plus précisément les émotions traversées — peur, colère, tristesse, doute — au-delà de l'étiquette 'grosse émotion'.",
+      "Pour ouvrir la sollicitude vers une expression directe, un chemin possible serait de raconter un échange où Leila ou Soledad expriment ce qu'elles ressentent face à la décision en cours."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du 6 mars 2026 montre un travail relationnel discret mais réel : les proches sont présents dans l'arbitrage non comme abstractions mais comme personnes dont la vie sera affectée. L'apprenant nomme l'émotion vive qui le traverse ('grosse émotion', épuisement, fatigue) en ouverture de feuille, ce qui ancre la délibération dans un registre affectif assumé. Les milieux professionnels possibles sont évalués par leur potentiel d'enrichissement humain et intellectuel — la qualité des personnes rencontrées pèse autant que la rémunération. La voix dominante est celle d'un délibérant pour qui la décision professionnelle se lit aussi en termes de relations affectées : Leila vue moins, Soledad qui devra trouver une aide, les élèves traités avec ou sans le respect dû.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'atteint dans cette feuille la solidité d'une présence pleinement établie. Une trace tient en mouvement : la sollicitude pour les proches s'inscrit dans l'arbitrage par l'anticipation des conséquences concrètes (présence diminuée, charge ménagère reportée), ce qui constitue un indice de care implicite plutôt qu'une intelligence émotionnelle pleinement déployée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. La communication authentique, la gestion des conflits, l'influence et la diplomatie, la collaboration divergente, le sens politique, la traduction entre mondes et la construction de communautés ne croisent pas l'arbitrage du jour. C'est cohérent avec la nature de la feuille, centrée sur une décision intérieure plutôt que sur une situation relationnelle vécue avec des interlocuteurs. L'intelligence culturelle est effleurée dans la comparaison entre milieux professionnels sans s'installer en geste pleinement constitué. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte des interactions vivantes avec d'autres personnes.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux observations traversent la feuille. D'abord, l'émotion est nommée dès l'ouverture et structure la délibération qui suit : la décision ne cherche pas à mettre l'affect à distance, elle compose avec lui. Ensuite, les proches existent dans l'arbitrage comme parties prenantes concrètes : leur vie matérielle (présence, aide ménagère) entre dans l'équation au même titre que les considérations professionnelles.\n\n## Pistes pour enrichir ce pôle\n\n- Pour densifier l'intelligence émotionnelle, un chemin possible serait de distinguer plus précisément les émotions traversées — peur, colère, tristesse, doute — au-delà de l'étiquette 'grosse émotion'.\n- Pour ouvrir la sollicitude vers une expression directe, un chemin possible serait de raconter un échange où Leila ou Soledad expriment ce qu'elles ressentent face à la décision en cours.\n"
+  }
+}

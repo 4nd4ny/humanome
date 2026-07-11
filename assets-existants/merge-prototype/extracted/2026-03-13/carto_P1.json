@@ -1,0 +1,731 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "J'ai rencontré une difficulté avec la nomenclature pour la partie ludification qui n'a pas pu être stabilisée avant le mois d'interruption de la dernière mesure ORP. Hier soir et ce matin, j'ai donc travaillé sur ce cadre et comme les prompts d'analyse de portfolio n'ont pas facilement accès aux liens pour l'instant, je recopie ici le lexique qui va permettre de reprendre la structure du site web et clarifier des choses importantes dans la trilogie (ce qui me permet aussi de le compléter et le modifier à ma convenance).",
+      "contexte": "L'apprenant explique pourquoi il recopie le lexique de ludification dans le portfolio — diagnostic technique du contexte IA et arbitrage pratique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Comme Andreas Vesalius a disséqué le corps humain pour bâtir le De Humani Corporis Fabrica, les écoles RESPIRE dissèquent la pensée pour bâtir le De Humani Cerebri Fabrica.",
+      "contexte": "Métaphore-cadre qui unifie la trilogie symbolique des trois filières — synthèse intégrative entre histoire de la médecine et projet pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Vesalius avait ses scalpels et ses sondes — les Technomanciens ont les prompts, les fichiers YAML et les référentiels IA. La Guilde maintient la bibliothèque de prompts et de fichiers YAML du Google Workspace des écoles RESPIRE, permettant un repérage homogène et cohérent des traces d'apprentissage dans les portfolios des apprenants.",
+      "contexte": "Articulation explicite entre l'outillage anatomique vésalien et l'outillage IA contemporain — métaphore filée qui structure une filière entière.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Le Promptologue connaît les techniques avancées de prompt engineering et sait les appliquer pour créer des instruments d'analyse efficaces. Il conçoit les fichiers YAML permettant de détecter les traces d'apprentissage dans les portfolios des apprenants et contribue à la cohérence de la bibliothèque de prompts entre les écoles du réseau.",
+      "contexte": "Définition de rôle qui combine prompt engineering, conception d'instruments d'analyse et cohérence systémique d'une bibliothèque.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Le Maître Promptagogue forge les prompts socratiques — des tuteurs IA capables de guider les apprenants par le questionnement plutôt que par la réponse directe. Il crée les instruments qui permettent de bâtir les Cartographies des Compétences. Son suffixe l'identifie : comme le pédagogue guide l'enfant, le Promptagogue guide par le prompt.",
+      "contexte": "Définition d'un rôle qui orchestre des tuteurs IA socratiques — conception multi-agents pédagogique et néologisme assumé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Maintenant je travaille sur des visuels : https://claude.ai/public/artifacts/6dcd002e-c2e5-465e-a635-8c11db4ec7d1",
+      "contexte": "Mention courte d'un artefact Claude utilisé comme support de travail visuel — trace d'usage d'IA dans le pipeline créatif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Je n'ai jamais généré d'images avec les IA : j'ai préféré me spécialiser dans la génération de texte et de code. Du coup, je galère vraiment à obtenir quelque chose de potable. Après plusieurs tentatives infructueuses et l'épuisement de mon quota Gemini Pro, j'ai ouvert un compte sur Recraft AI pour continuer… et même cata : ce n'est pas l'outil qui est déficient, c'est moi qui ne sait pas prompter correctement donc qui ne suis pas capable d'adapter les prompts de Claude pour obtenir ce que je veux.",
+      "contexte": "Diagnostic frontal d'une zone d'incompétence en prompt-engineering image, attribuée à soi et non à l'outil.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Bref, j'ai cramé mes 1000 crédits en un rien de temps, juste pour redécouvrir ce que je savais déjà : c'est pas mon truc. La raison est très simple : je ne sais pas ce que je veux. Je m'en fiche en fait. Je veux juste que ce soit \"joli\" mais je ne sais pas définir ce qu'est \"joli\". Ce n'est pas mon métier.",
+      "contexte": "Analyse rétrospective d'un échec — l'apprenant relie le mauvais résultat à un défaut de cadrage de l'intention (\"je ne sais pas ce que je veux\").",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Les meilleurs rendus que j'ai eu ont finalement été réalisés par Gemini Nano Banana. […] Bon, merci à Claude pour m'avoir sauvé sur ce coup là et avoir réussi à générer les bons prompts pour Gemini.",
+      "contexte": "Reconnaissance d'un workflow hybride à deux modèles : Claude génère les prompts, Gemini produit l'image.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Ce que je constate avec ce demi-échec matinal en matière d'efficacité et d'homogénéité des rendus (qui, même si de loin se ressemblent, auraient beaucoup de détails à corriger), c'est qu'en ignorant depuis trois ans l'aspect génération d'images de sons ou de vidéo, aujourd'hui je me retrouve dans ces domaines avec le même handicap que les personnes qui testent pour la première fois ces outils en 2026.",
+      "contexte": "Métacognition sur ses propres choix de spécialisation (texte/code) et leurs effets cumulés sur sa courbe d'apprentissage IA image.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Le résultat est tellement décevant la première fois par rapport à un travail de pro, qu'on ne peut en déduire que tout ceci n'est que de la hype. Mais que nenni ! C'est juste que les outils sont devenus à la fois tellement performants lorsqu'on sait les utiliser, et toujours aussi incapables de comprendre notre contexte, lorsqu'on ne sait pas bien les utiliser, ce qui fait que le fossé créé entre les \"spécialiste\" et les nouveaux \"inutiles\" (dont on paye un salaire car personne ne sait comment prompter correctement les IA pour les remplacer pour le moment) est tout simplement immense.",
+      "contexte": "Analyse causale du fossé d'usage IA — distinction entre puissance brute de l'outil et compréhension contextuelle requise du prompteur.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "C'est à la fois rassurant sur le court terme et effrayant sur le long terme, car la locomotive de l'innovation est loin de réduire sa vitesse…",
+      "contexte": "Double lecture temporelle de la dynamique technologique — boucle court-terme/long-terme posée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Ici, si j'avais des sous, je délèguerai à un graphiste en lui demandant de ne pas se prendre la tête et de générer les sets d'icônes / logo / blason / écussons / visuels / illustrations ou quelque soit le mot adapté, pour que je puisse passer à la suite.",
+      "contexte": "Articulation d'une stratégie de répartition humain-IA-humain : ce qui pourrait revenir à un humain spécialiste plutôt qu'à soi-même via IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "J'ai tellement de mal à choisir ! Je mets tout de même dans le portfolio mes images préférées (toutes les meilleures images ont été générées par Gemini Nano Banana 2), même si je ne suis pas encore sûr si je les utiliseraient, car j'hésite avec le look plutôt cyberpunk présenté plus bas.",
+      "contexte": "Difficulté de curation devant l'abondance générée par IA et hésitation entre deux directions esthétiques.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Le Maître Épistémiarque est le garant des référentiels de compétences humaines post-AGI. Il orchestre le dialogue avec la société civile via Decidim pour définir et faire évoluer les compétences jugées essentielles à l'ère de l'intelligence artificielle.",
+      "contexte": "Vision long terme post-AGI articulée à un dispositif institutionnel (Decidim) et à un référentiel évolutif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-03-13",
+      "extraitVerbatim": "Le Noèsiologue maîtrise le cadre théorique complet de la noèsiologie. Il identifie avec précision les fonctions cognitives et métacognitives en jeu dans une situation d'apprentissage, repère les dysfonctions emblématiques, et contribue activement à enrichir le Grimoire par l'apport de cas cliniques documentés.",
+      "contexte": "Conceptualisation d'un rôle dont la fonction est d'observer et nommer des processus cognitifs et métacognitifs.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Autocritique en plein élan : l'apprenant retourne le diagnostic d'échec sur lui-même plutôt que sur l'outil — forme d'anti-attribution externe."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Démystification argumentée du hype : l'apprenant refuse l'explication facile (\"tout est hype\") et propose un mécanisme alternatif (fossé d'usage)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec l'hypothèse qu'elles ne portent probablement pas de pensée critique au sens fort. La pièce 1 est une autocritique de surface — un apprenant frustré qui se reproche son manque de maîtrise n'est pas nécessairement en train de pratiquer le doute méthodique. La pièce 2 est plus intéressante : elle contient un mouvement de réfutation explicite (\"on ne peut en déduire que… Mais que nenni !\") qui s'apparente à une réfutation de soi-même ou d'un public imaginé. C'est ce mouvement qui me force à reconnaître quelque chose — il y a un argument construit, pas une opinion lâchée. La pièce 1 reste plus faible : l'auto-attribution de la responsabilité est un signe d'intégrité mais ne prouve pas une vérification méthodique.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Réfutation construite d'une explication paresseuse (\"c'est de la hype\") avec proposition d'un mécanisme alternatif argumenté." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir la pièce 2 et je veux maintenant vérifier que je n'ai pas chargé cette résistance d'une portée qu'elle n'a pas. L'attaque dominante est (e) — surinterprétation pédagogique. L'apprenant déjoue un discours commun, mais le geste reste rhétorique : il oppose une thèse à une antithèse sans citer de cas, sans protocole, sans vérification. La pièce tient parce que le mouvement de réfutation est lisible, mais elle est affaiblie : il s'agit plus d'un raisonnement public que d'une vérification.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le geste de réfutation est lisible mais il reste argumentatif plutôt que vérificateur — pas de croisement de sources, pas de protocole. La pensée critique se manifeste comme posture, pas comme méthode."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces avec l'idée que la pensée critique au sens fort — doute méthodique, vérification, scepticisme calibré — n'était probablement pas centralement présente sur cette feuille. Le passage qui m'a forcé à reconnaître quelque chose est celui où l'apprenant déjoue l'explication paresseuse du hype en proposant un mécanisme alternatif : il y a là un mouvement argumentatif construit, pas une opinion réactive. Sous la présomption de sycophantie, cette pièce s'affaiblit : le geste reste rhétorique, sans dispositif de vérification ni croisement de sources. Ce qui se montre, dans le travail du 13 mars, c'est une posture critique active — une vigilance face aux discours convenus sur l'IA — plutôt qu'un protocole de doute méthodique. La trace existe, mais elle se déplace : la pensée critique s'incarne ici comme refus argumenté de l'explication facile, ce qui pourrait nourrir une compétence en construction si les feuilles suivantes la rejoignent.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Seule une pièce affaiblie a survécu au temps 2 : un mouvement argumentatif solide mais sans dispositif vérificateur. Indice unique, en deçà du seuil de présence établie.",
+        "prescription": "Pour donner plus d'assise à cette vigilance critique déjà active, un chemin possible serait de documenter, dans une feuille suivante, un cas où une vérification factuelle (croisement de sources, test direct) a transformé ou confirmé une intuition initiale. Le geste argumentatif est là ; ce qui pourrait le compléter, c'est le geste protocolaire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "L'apprenant identifie après coup le défaut de cadrage de l'intention comme cause profonde de l'échec : \"je ne sais pas ce que je veux\"."
+        },
+        {
+          "numero": 2,
+          "pid": 13,
+          "contexte": "Reformulation de la stratégie : ce n'est pas un problème de prompt, c'est un problème de répartition — déléguer à un graphiste serait le bon angle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec l'idée que le cadrage de l'intention est probablement absent. L'apprenant a essayé, ça n'a pas marché, il se plaint — ce ne sont pas a priori des marqueurs de cadrage. Mais quelque chose résiste : la pièce 1 contient explicitement la phrase \"je ne sais pas ce que je veux\" comme diagnostic *rétrospectif* du problème. C'est précisément le marqueur du recadrage émergent par la contrainte que la fiche signale : avoir bâclé une tâche et en tirer un meilleur cadrage. La pièce 2 va plus loin : l'apprenant ne reformule pas la solution (changer de prompt) mais l'objectif lui-même (qui doit faire ce travail). C'est un déplacement du problème, pas une optimisation. Ce qui reste faible : l'apprenant ne formule pas de nouveau cadrage opératoire — il reste au constat.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Diagnostic rétrospectif explicite du défaut de cadrage : \"je ne sais pas ce que je veux\" identifié comme cause racine, pas comme plainte." },
+            { "pieceId": 2, "motifResistance": "Déplacement de l'objectif lui-même : l'apprenant questionne si c'est à lui de faire ce travail, pas comment mieux le faire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté. Je veux maintenant vérifier que je ne projette pas. Pièce 1 : attaque (f) récit performatif — l'apprenant raconte un défaut de cadrage mais ne montre pas le travail de recadrage en acte. Verdict : affaiblie mais retenue, car la formulation \"redécouvrir ce que je savais déjà\" indique que ce diagnostic est intégré, pas neuf. Pièce 2 : attaque (e) surinterprétation — \"si j'avais des sous, je délèguerai\" peut être une plainte économique, pas un cadrage. Mais le contenu (déléguer parce que ce n'est pas mon métier) est bien une reformulation du problème : ce n'est pas \"comment générer\" mais \"qui doit générer\". La pièce tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le diagnostic du défaut de cadrage est nommé mais non encore opérationnalisé en nouveau cadre ; reste néanmoins un cadrage rétrospectif lucide."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le déplacement du problème (qui doit faire ce travail) est bien un acte de cadrage : l'apprenant change la nature de la question, pas seulement son périmètre."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte un cadrage de l'intention au sens fort — l'apprenant raconte un échec, ce qui ne suffit pas. Ce qui m'a forcé à reconnaître une trace : la formulation explicite \"je ne sais pas ce que je veux\" comme cause racine de l'échec graphique, et surtout le déplacement consécutif de l'objectif (déléguer à un graphiste plutôt que mieux prompter). Sous la présomption de sycophantie, le diagnostic rétrospectif s'affaiblit — il ne montre pas un recadrage en acte. Mais le déplacement du problème tient : l'apprenant a bien changé la nature de la question, pas son périmètre. Il sort du cadre \"comment générer ces visuels\" pour entrer dans le cadre \"qui doit générer ces visuels et pourquoi\". Ce travail montre un cadrage émergent par la contrainte — la forme la plus discrète et souvent la plus mature de cette compétence. Il reste à voir si ce déplacement débouche sur un acte concret de délégation ou de redéfinition.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.68,
+        "motif": "La pièce 2 a résisté avec verdict \"attaque non recevable\" : déplacement explicite de l'objectif. La pièce 1 corrobore comme diagnostic rétrospectif.",
+        "prescription": "Cette feuille montre un cadrage émergent par la contrainte. Pour prolonger ce travail, un chemin possible serait de documenter dans une feuille suivante l'arbitrage qui résulte de ce diagnostic — délégation effective, abandon de la piste visuelle pour l'instant, ou définition opérationnelle de ce que \"joli\" signifie dans ce projet précis."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Métaphore-cadre vésalienne qui fusionne l'histoire de l'anatomie et le projet pédagogique RESPIRE en un seul concept : De Humani Cerebri Fabrica."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Filage de la métaphore vers l'outillage : scalpels/sondes → prompts/YAML, transposition structurelle d'un univers à l'autre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : une métaphore peut être décorative, pas synthétique. Mais ce qui résiste, c'est l'architecture conceptuelle entière qui se construit autour : Vesalius ne sert pas d'ornement, il fournit la matrice qui structure les trois filières — Éclaireurs (planches anatomiques → cartographie du savoir), Noèsiomanciens (Theatrum Anatomicum → dissection cognitive), Technomanciens (scalpels et sondes → prompts et YAML). Ces correspondances ne sont pas l'illustration d'une idée préexistante ; elles produisent un insight que ni la noèsiologie seule, ni la prompt engineering seule, ni l'histoire de la médecine seule ne contenaient. C'est la signature de la synthèse intégrative.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Fusion de l'histoire de l'anatomie et du projet post-AGI en un concept unifié (De Humani Cerebri Fabrica) qui dit plus que la somme des sources." },
+            { "pieceId": 2, "motifResistance": "Transposition structurelle, pas décorative : scalpel/prompt, sonde/YAML — les outils gardent leur fonction épistémique en changeant de matière." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. Je veux vérifier si je ne suis pas séduit par l'érudition d'apparence. Attaque (d) glissement lexical : les mots Vesalius, Theatrum, dissection sont-ils vraiment chargés de leur sens, ou est-ce du vocabulaire décoratif ? La pièce 1 résiste car le parallèle est argumenté : Vesalius disséquait le corps → les écoles dissèquent la pensée — c'est une homologie de méthode, pas un emprunt lexical. La pièce 2 résiste plus encore car elle transpose la fonction des outils (scalpel sert à séparer/voir ; prompt sert à séparer/voir) en gardant le sens technique. L'attaque ne tient pas sur 2 ; elle affaiblit légèrement 1 par excès rhétorique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La métaphore-mère reste robuste mais s'expose à l'effet de surface littéraire : le test est de savoir si elle produit du levier d'action — la trilogie des filières montre que oui."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La transposition scalpel→prompt préserve la fonction épistémique (séparer pour comprendre) : ce n'est pas du vocabulaire mais une homologie structurelle qui tient."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces avec l'hypothèse que la métaphore vésalienne pouvait n'être qu'un habillage littéraire. Ce qui m'a forcé à reconnaître une trace de synthèse intégrative, c'est l'architecture cohérente que cette métaphore engendre : trois filières dont chacune trouve sa matrice dans une dimension distincte de l'œuvre de Vesalius (les planches → la cartographie du savoir, le Theatrum → la dissection cognitive, les instruments → l'outillage IA). Sous la présomption de sycophantie, la métaphore mère a été légèrement affaiblie par le risque d'effet rhétorique, mais la transposition scalpel/prompt a tenu : elle conserve la fonction épistémique des outils en changeant leur matière. Ce travail montre un acte de synthèse mature — un insight unifiant qui ne se trouve dans aucune source isolée et qui sert d'architecture, pas d'ornement. La singularité ici tient au mariage de l'histoire de la médecine et de la pédagogie post-AGI : un terrain peu fréquenté.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.82,
+        "motif": "La pièce 2 a tenu sans réserve (\"attaque non recevable\") comme transposition structurelle. La pièce 1 corrobore comme matrice unificatrice du projet.",
+        "prescription": "Ce travail de synthèse pourrait gagner en force articulée si la trilogie des livres mentionnée en début de feuille déploie chacune des trois filières en explicitant comment l'outil change la matière dissecable. Un chemin possible serait de marquer, dans le lexique du site, le moment où la métaphore vésalienne cesse d'être analogique pour devenir générative — où le scalpel-prompt n'imite plus le scalpel-Vesalius mais ouvre un geste neuf."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Auto-observation explicite d'une limite cognitive : ne pas savoir prompter en image, attribuer la cause à soi et pas à l'outil."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Métacognition sur le défaut de cadrage : \"je ne sais pas ce que je veux\" identifié comme processus, pas comme situation."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Observation de ses propres choix de spécialisation cumulés sur trois ans et de leurs effets actuels sur sa courbe d'apprentissage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption que la métacognition au sens fort — observation des processus cognitifs eux-mêmes — n'est probablement pas centralement là. Beaucoup d'apprenants disent \"je ne sais pas faire X\" sans observer leur fonctionnement. Mais trois pièces résistent. Pièce 1 : l'apprenant attribue explicitement la cause de l'échec à son propre processus de prompting, pas à l'outil — c'est un mouvement réflexif. Pièce 2 : \"je ne sais pas ce que je veux, je m'en fiche en fait\" — l'apprenant nomme précisément ce qui se passe dans sa propre tête (absence d'intention claire, désengagement), pas seulement le résultat. Pièce 3 : analyse causale entre choix de spécialisation passés et effet présent — c'est exactement le type de transfert métacognitif que la fiche signale. Ce qui reste faible : pas de protocole personnel formulé, pas de tag [META].",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Attribution de la cause à son propre processus cognitif (\"c'est moi qui ne sait pas prompter\"), pas à l'outil — réflexivité directe." },
+            { "pieceId": 2, "motifResistance": "Nomination précise d'un état mental (absence d'intention, désengagement) comme cause de l'échec — observation du processus, pas du résultat." },
+            { "pieceId": 3, "motifResistance": "Analyse causale longitudinale d'un choix de spécialisation et de ses effets cumulés — métacognition sur sa trajectoire d'apprentissage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je veux maintenant vérifier que je n'ai pas pris des plaintes pour de la métacognition. Pièce 1 : attaque (f) récit performatif — \"c'est moi qui ne sait pas prompter\" raconte-t-il une métacognition ou est-ce une auto-évaluation déguisée en réflexivité ? Verdict affaiblie : il y a appropriation de la cause mais peu d'observation du *comment*. Pièce 2 : la formulation \"je ne sais pas ce que je veux\" peut être de la plainte ; mais associée à \"je m'en fiche en fait\", elle devient un diagnostic du désengagement, qui est un processus. Verdict : non recevable, pièce confirmée. Pièce 3 : attaque (e) surinterprétation — l'analyse de spécialisation est-elle une vraie métacognition ou un récit d'identité ? L'apprenant relie cause et effet sur trois ans avec lucidité — c'est de l'observation de soi-pensant. Verdict : non recevable.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'attribution causale à soi est nette, mais l'observation du processus de prompting lui-même reste implicite — l'apprenant nomme qu'il ne sait pas, sans nommer comment il s'y prend."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La double formulation \"je ne sais pas ce que je veux / je m'en fiche en fait\" décrit un processus cognitif (absence d'intention articulable) avec une précision peu auto-flatteuse."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'apprenant relie un choix stratégique d'il y a trois ans à son handicap actuel — c'est une observation longitudinale de ses propres processus de spécialisation, pas un récit d'identité."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces avec l'idée que beaucoup d'apprenants confondent \"je ne sais pas faire\" avec \"je m'observe penser\". Ce qui m'a forcé à reconnaître une trace réelle, c'est la triple cohérence : l'attribution de la cause à son propre processus (pas à l'outil), la nomination précise d'un état mental (absence d'intention articulable), et l'analyse longitudinale qui relie un choix de spécialisation à son effet présent. Sous la présomption de sycophantie, la pièce d'attribution s'est affaiblie — l'apprenant nomme qu'il ne sait pas, sans nommer comment il s'y prend. Mais les deux autres pièces ont tenu sans réserve. Ce travail montre une métacognition opérante, pas thématisée comme telle : l'apprenant observe ses propres processus avec une lucidité peu auto-flatteuse (\"je m'en fiche en fait\") et accepte de voir où il est aveugle. La forme avancée — observer les limites mêmes de sa capacité d'observation — n'est pas atteinte, mais le geste central est solide.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Deux pièces ont tenu sans réserve sous la présomption de sycophantie : la nomination de l'absence d'intention et l'analyse longitudinale de spécialisation.",
+        "prescription": "L'observation de soi-pensant fonctionne ici sans avoir besoin de se nommer comme telle. Pour la prolonger, un chemin possible serait de revenir, dans une feuille future, sur ce diagnostic de spécialisation cumulée et noter si une réorientation délibérée modifie quelque chose dans le rapport aux outils image — la métacognition gagne en force quand elle débouche sur un ajustement observable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Modélisation du fossé d'usage IA comme système à deux régimes : performance haute pour qui sait prompter, contexte inaccessible pour qui ne sait pas — boucle de différenciation."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Double effet temporel anticipé : rassurant court-terme / effrayant long-terme — boucle d'accélération technologique."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Effet de cascade : ignorance d'un domaine sur trois ans → handicap actuel équivalent à un débutant — chaîne causale temporelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption que \"plein de facteurs\" et \"tout est lié\" ne sont pas de la pensée systémique. La pièce 1 dépasse ce seuil : l'apprenant ne dit pas \"l'IA c'est compliqué\", il identifie deux régimes (savoir prompter / pas savoir) et un mécanisme de différenciation qui produit un fossé social (spécialistes / inutiles). C'est une modélisation, pas un constat. La pièce 2 est plus mince : court-terme/long-terme avec une locomotive, c'est un schéma classique mais qui désigne bien une dynamique (vitesse d'innovation, accélération). La pièce 3 propose une chaîne causale temporelle (choix passé → effet présent) mais isolée. Ce qui reste faible : pas d'identification de points de levier explicites.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Modélisation explicite d'un mécanisme de différenciation à deux régimes produisant un fossé social — pensée systémique en acte." },
+            { "pieceId": 2, "motifResistance": "Double effet temporel anticipé avec moteur identifié (vitesse de la locomotive) — boucle d'accélération nommée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Pièce 1 : attaque (e) surinterprétation — l'apprenant parle-t-il vraiment d'un système, ou d'un constat sociologique standard ? Le passage relie cause (compétence de prompt) et effet (fossé spécialistes/inutiles) en passant par un mécanisme (les outils performants mais aveugles au contexte). C'est plus qu'un constat, c'est une chaîne mécanique. Pièce 2 : attaque (a) insuffisance probatoire — la formule court-terme/long-terme est-elle trop courte pour porter une pensée systémique ? Elle est courte mais elle articule deux échelles de temps avec un moteur (locomotive de l'innovation) — c'est suffisant pour rester un indice, sans plus.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La chaîne mécanique est explicite : performance des outils × compréhension contextuelle nulle → asymétrie sociale ; ce n'est pas \"plein de facteurs\" mais une modélisation."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Formulation brève mais articulant deux échelles de temps avec un moteur identifié — la pièce tient comme indice, sans suffire à porter seule un verdict."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte de la pensée systémique au-delà du constat. Ce qui m'a forcé à reconnaître une trace, c'est la pièce où l'apprenant articule une chaîne mécanique entre la performance des outils et l'asymétrie sociale qui en résulte — il identifie un mécanisme de différenciation, pas seulement un état du monde. Sous la présomption de sycophantie, cette chaîne a tenu : elle nomme une cause, un mécanisme et un effet. La pièce sur le double horizon temporel s'est affaiblie : la formule est courte mais articule deux échelles avec un moteur, ce qui en fait un indice valable. Ce travail montre une pensée systémique appliquée à la dynamique sociale de l'IA, plutôt qu'aux systèmes techniques. Le pas suivant serait peut-être d'identifier des points de levier — où agir dans ce système pour modifier sa trajectoire — mais le geste central de modélisation est là.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "La pièce 1 a tenu sans réserve comme modélisation d'un mécanisme de différenciation ; la pièce 2 corrobore comme articulation de deux horizons temporels.",
+        "prescription": "Le travail de modélisation est posé. Pour le déployer, un chemin possible serait d'identifier dans une feuille suivante un point de levier concret dans le système décrit — par exemple où placer une intervention pédagogique pour réduire le fossé d'usage IA — afin que la modélisation débouche sur une stratégie d'action."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Diagnostic causal du fossé d'usage : performance brute des outils vs. incapacité à comprendre le contexte du prompteur — explication mécanistique."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Workflow hybride Claude → Gemini : Claude génère les prompts adaptés que Gemini exécute — compréhension des forces différentielles des modèles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption qu'il s'agit d'usage, pas de littératie IA au sens fort (mécanismes sous le capot). La pièce 1 force à reconnaître quelque chose : l'apprenant explique que les outils sont \"performants quand on sait les utiliser et incapables de comprendre notre contexte quand on ne sait pas\" — c'est une description du mécanisme d'erreur (l'IA n'a pas le contexte) plus que de l'usage. Mais elle reste à mi-chemin : pas de vocabulaire technique (token, fenêtre de contexte, hallucination) mobilisé. La pièce 2 est plus opérationnelle : Claude est meilleur que l'apprenant pour formuler les bons prompts pour Gemini — c'est une compréhension fine de la différenciation des modèles, sans la nommer techniquement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Diagnostic causal du mécanisme d'échec : ce n'est pas l'outil qui manque, c'est le contexte que le prompteur n'arrive pas à transmettre." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce a résisté solidement. Attaque (d) glissement lexical : l'apprenant parle-t-il vraiment de mécanismes IA ou utilise-t-il un vocabulaire commun (\"comprendre le contexte\") sans charge technique ? Le passage évoque le contexte du prompteur, pas la fenêtre de contexte du modèle. C'est de la littératie en surface : l'apprenant sait que l'IA dépend du contexte transmis, mais ne nomme pas le mécanisme technique sous-jacent. La pièce s'affaiblit notablement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le mot \"contexte\" est utilisé dans son sens commun, pas comme concept technique (fenêtre de contexte) ; la littératie reste fonctionnelle, pas mécanistique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'une littératie IA au sens fort sur cette feuille. Ce qui m'a forcé à reconnaître quelque chose, c'est le diagnostic causal du fossé d'usage : l'apprenant ne dit pas \"l'IA c'est cool / l'IA c'est nul\", il identifie pourquoi elle échoue chez certains et réussit chez d'autres. Sous la présomption de sycophantie, cette pièce s'est affaiblie : le mot \"contexte\" reste utilisé dans son sens commun, sans la charge technique du vocabulaire spécialisé (tokens, fenêtre, hallucination, biais de distribution). Ce travail montre une littératie IA opérationnelle — l'apprenant sait que la qualité du résultat dépend de la qualité du contexte transmis — sans encore mobiliser les mécanismes techniques. Le geste pourrait gagner en force avec une explication causale plus précise des limites des modèles d'image (capacité de génération vs. capacité de compréhension de contraintes).",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce affaiblie a survécu : diagnostic causal du fossé d'usage sans charge technique du vocabulaire mécanistique.",
+        "prescription": "La littératie fonctionne ici comme intuition opérationnelle solide. Pour lui donner plus d'assise, un chemin possible serait d'expliciter, à l'occasion d'une prochaine séance avec un modèle d'image, ce qui se passe techniquement quand le prompt sous-spécifie (par exemple : comment le modèle complète l'incertain via sa distribution d'entraînement)."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Conception d'un rôle (Maître Promptagogue) qui forge des prompts socratiques en tant que tuteurs IA — composant d'un système éducatif multi-agents."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Le Promptologue conçoit des fichiers YAML pour détecter les traces d'apprentissage dans les portfolios — bibliothèque cohérente d'instruments d'analyse à l'échelle réseau."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Workflow hybride à deux modèles : Claude génère les prompts, Gemini produit l'image — pipeline avec rôles différenciés."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption que l'architecture de systèmes IA n'est pas centralement là : l'apprenant décrit des rôles de filière, pas des composants techniques. Mais quelque chose résiste. La pièce 2 décrit un Promptologue qui maintient une bibliothèque de fichiers YAML pour détecter les traces dans les portfolios — c'est une architecture documentée et maintenable (\"cohérence de la bibliothèque… entre les écoles du réseau\"). La pièce 1 va plus loin : les prompts socratiques forgés par le Maître Promptagogue sont des tuteurs IA, c'est-à-dire des composants à fonction définie. La pièce 3 est un cas concret de pipeline à deux modèles. Ce qui reste faible : pas de flux explicitement documenté entre composants, pas de mécanisme de monitoring ou de fallback.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Les prompts socratiques sont conçus comme des tuteurs IA avec rôle pédagogique défini — composants fonctionnels d'un système, pas prompts isolés." },
+            { "pieceId": 2, "motifResistance": "Bibliothèque maintenue à l'échelle réseau (\"entre les écoles\") avec critère explicite de cohérence — c'est une architecture, pas un assemblage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Pièce 1 : attaque (b) confusion de compétence — décrire un rôle pédagogique de prompteur n'est-il pas plutôt de la maïeutique (7.01) ou du dialogue IA avancé (1.08) ? Le marqueur d'architecture serait que ce rôle s'inscrit dans un système avec d'autres rôles et des flux entre eux. Or la trilogie des filières dans son ensemble dessine un système, mais cette pièce isolée porte plutôt sur la conception d'un composant. Verdict : affaiblie, car la dimension systémique est portée par la lecture d'ensemble, pas par cette pièce seule. Pièce 2 : attaque (b) — bibliothèque cohérente entre écoles, c'est une infrastructure documentaire. C'est plus proche de la documentation vivante (7.03) que de l'architecture IA. Verdict : affaiblie. Aucune pièce ne tient comme preuve forte d'architecture IA au sens strict.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le rôle décrit relève autant de la maïeutique pédagogique et du prompting avancé que de l'architecture IA — la dimension système est implicite via la trilogie d'ensemble."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La maintenance d'une bibliothèque cohérente entre écoles est plus proche de la documentation et de la gouvernance que de l'architecture technique IA stricto sensu."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces avec l'idée que décrire des rôles de filière n'est pas concevoir une architecture IA. Ce qui m'a forcé à reconnaître quelque chose, c'est que les rôles ne sont pas posés isolément : le Promptologue maintient une bibliothèque cohérente à l'échelle réseau, le Maître Promptagogue conçoit des tuteurs IA socratiques, et ces composants travaillent ensemble dans un système qui produit des cartographies de compétences. Sous la présomption de sycophantie, les pièces se sont affaiblies parce qu'elles portent davantage la conception institutionnelle (gouvernance, documentation) que l'architecture technique (flux, fallback, monitoring). Ce travail montre une pensée architecturale en germination : la structure existe en couches (qui fait quoi à quel niveau), mais les flux techniques entre composants restent implicites. C'est une architecture *organisationnelle* d'un système IA, plus qu'une architecture *technique*.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Les deux pièces ont été affaiblies sous la présomption de sycophantie : la dimension systémique est portée par la lecture d'ensemble, pas par des flux techniques documentés.",
+        "prescription": "L'architecture organisationnelle d'un système IA est ici esquissée par la trilogie des filières. Pour la renforcer côté ingénierie, un chemin possible serait de documenter, dans une feuille suivante, les flux concrets entre la bibliothèque de prompts, les tuteurs socratiques et les portfolios des apprenants — qui appelle qui, avec quels signaux d'erreur, et quelle voie de récupération."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Forger des prompts socratiques en tant que tuteurs IA — sophistication explicite de la formulation avec finalité pédagogique."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Reconnaissance que Claude a généré les bons prompts pour Gemini — méta-utilisation d'un modèle pour prompter un autre modèle."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Auto-diagnostic d'incapacité à adapter les prompts de Claude pour obtenir le résultat voulu — conscience de l'écart entre formulation et effet."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption que le dialogue IA avancé est probablement absent : l'apprenant raconte un échec de prompting image. Mais la pièce 2 force à reconnaître quelque chose : utiliser Claude pour prompter Gemini est exactement le type de méta-prompting que la fiche décrit (utiliser un LLM pour générer les prompts d'un autre LLM). La pièce 1 — forger des prompts socratiques pour tuteurs IA — est de la sophistication de formulation. La pièce 3, plus inattendue, contient un diagnostic d'écart entre prompt et effet (\"je ne suis pas capable d'adapter les prompts de Claude pour obtenir ce que je veux\") — ce qui est la marque d'une conscience que la formulation détermine le comportement. Ce qui reste faible : pas de technique nommée (chain-of-thought, few-shot), pas de système de rôles différenciés dans cette feuille.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Méta-prompting réel : utiliser un LLM (Claude) pour produire des prompts destinés à un autre LLM (Gemini) — orchestration entre modèles." },
+            { "pieceId": 3, "motifResistance": "Conscience explicite de l'écart entre formulation et effet — la formulation est identifiée comme variable causale, pas comme habillage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Pièce 2 : attaque (a) insuffisance probatoire — la phrase \"merci à Claude pour avoir réussi à générer les bons prompts pour Gemini\" est-elle suffisante pour porter du méta-prompting ? Elle est laconique, sans détail sur la méthode. Verdict : affaiblie mais retenue, car le geste est nommé et documenté ailleurs dans la feuille (lexique préparé pour Claude, etc.). Pièce 3 : attaque (g) mouvement-vers — l'apprenant est-il en train d'apprendre à prompter en image, et donc cette pièce témoigne-t-elle d'une compétence en construction plutôt qu'acquise ? Sur le domaine image, oui — il est explicite sur son handicap. Verdict : affaiblie mais retenue. Sur le domaine texte/code, la compétence est suggérée comme acquise sans être démontrée ici.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le méta-prompting est nommé sans être détaillé : la trace est légère mais authentique — Claude→Gemini est bien une orchestration entre modèles."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Sur le domaine image, l'apprenant se positionne en mouvement-vers ; sur le texte/code, la maîtrise est implicite mais non démontrée dans cette feuille seule."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces avec l'idée que la feuille raconte surtout un échec de prompting image, ce qui est l'opposé d'une trace de dialogue IA avancé. Ce qui m'a forcé à reconnaître quelque chose, c'est la combinaison de deux gestes : utiliser Claude pour prompter Gemini (méta-prompting réel, même s'il est mentionné brièvement), et identifier la formulation comme variable causale de l'échec (conscience de l'effet du prompt sur le comportement). Sous la présomption de sycophantie, ces pièces se sont affaiblies — l'une parce que mentionnée laconiquement, l'autre parce qu'elle témoigne d'une compétence en mouvement sur le domaine image. Ce travail montre un dialogue IA avancé asymétrique : aisance avérée par la sophistication des prompts forgés pour la trilogie symbolique (pièce 1) et par l'orchestration Claude→Gemini, et apprentissage en cours sur la génération d'image. Le geste central — la formulation comme outil de pensée — est posé.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Deux pièces affaiblies mais retenues survivent : méta-prompting Claude→Gemini et conscience explicite de l'écart formulation-effet. Le seuil de 2 indices avec confiance > 0.55 est atteint.",
+        "prescription": "Le dialogue avancé fonctionne sur le terrain texte/code et s'apprend sur le terrain image. Un chemin possible serait de transférer délibérément un protocole de prompting éprouvé (par exemple chaîne de raisonnement explicite ou rôles contradictoires) au domaine image pour observer ce qui se passe quand la méthode connue rencontre une matière nouvelle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au transfert de la logique computationnelle hors de l'informatique pour cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète où une structure conditionnelle ou un raisonnement algorithmique a été appliqué à un problème non technique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Articulation de ce qui devrait revenir à un humain spécialiste (graphiste) plutôt qu'à soi-même via IA — répartition explicite des forces."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Workflow hybride explicite : Claude fait ce que l'apprenant ne sait pas faire (formuler des prompts image), Gemini exécute — complémentarité reconnue."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Analyse de la complémentarité humain-IA : outils performants quand l'humain sait les utiliser, inutiles sans humain compétent — articulation des forces."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption que \"j'ai utilisé l'IA\" n'est pas de la synergie. Mais quelque chose résiste. La pièce 1 est intéressante : l'apprenant ne se contente pas de dire \"je ne sais pas\", il identifie le rôle d'un humain spécialiste (graphiste) comme alternative légitime à son propre prompting IA. C'est un arbitrage explicite humain-versus-humain-via-IA. La pièce 2 articule un partage des tâches Claude/humain : Claude formule, l'humain choisit. La pièce 3 va plus loin, en théorisant la dépendance des outils au contexte humain. Ce qui reste faible : pas d'articulation de la valeur irremplaçable de l'humain dans un workflow donné, juste de son utilité résiduelle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant identifie un rôle humain (graphiste) comme meilleure répartition que sa propre tentative IA — articulation explicite de qui ferait mieux." },
+            { "pieceId": 3, "motifResistance": "Théorisation de la complémentarité : la performance des outils est conditionnée par la compétence humaine qui les pilote — articulation des forces comparatives." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Pièce 1 : attaque (e) surinterprétation — \"si j'avais des sous, je délèguerai\" peut être une plainte financière, pas une articulation synergique. Mais le contenu argumentatif est bien là : ce n'est pas mon métier, un graphiste le ferait mieux. C'est une reconnaissance de force comparative humaine. Verdict : affaiblie mais retenue, car la dimension financière domine la formulation. Pièce 3 : attaque (e) — l'apprenant articule-t-il vraiment des forces comparatives, ou décrit-il un état du monde ? La formulation \"performants lorsqu'on sait les utiliser, incapables de comprendre notre contexte\" est bien une articulation de ce que fait l'outil et de ce que fait l'humain. Verdict : non recevable, pièce confirmée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'argument de répartition est lisible mais voisinant avec une justification financière — la pièce porte plus une frustration qu'un design de workflow."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'articulation \"l'outil fait X, l'humain doit faire Y\" est explicite : la compétence humaine de prompting est posée comme condition de la performance de l'outil."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une synergie articulée — il y a beaucoup d'usage IA, mais l'usage ne fait pas la synergie. Ce qui m'a forcé à reconnaître quelque chose, c'est la double articulation : reconnaissance qu'un graphiste humain ferait mieux que son propre prompting IA (force comparative humaine identifiée), et théorisation que les outils sont conditionnés par la compétence humaine de pilotage. Sous la présomption de sycophantie, la première pièce s'est affaiblie — l'argument de délégation reste mêlé à une plainte financière. Mais la deuxième a tenu : l'apprenant articule explicitement ce que fait l'outil, ce que fait l'humain, et pourquoi l'un ne fonctionne pas sans l'autre. Ce travail montre une synergie pensée plutôt que pratiquée — il manque encore la description d'un workflow hybride aux rôles explicites. Le geste central, savoir qui doit faire quoi et pourquoi, est posé.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "La pièce 3 a tenu sans réserve comme articulation des forces comparatives ; la pièce 1 corrobore comme arbitrage de répartition humain-humain-via-IA.",
+        "prescription": "La pensée synergique est posée comme principe. Pour la rendre opérationnelle, un chemin possible serait de formaliser dans une feuille suivante un workflow concret où les rôles humain / Claude / Gemini sont explicitement distribués, avec un critère de bascule (à quel moment l'humain reprend la main) — la synergie gagne en force quand elle devient un protocole partageable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 9,
+    "presencesEtablies": 6,
+    "renvoisCartographe": 3,
+    "nonEtablies": 0,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille du 13 mars, le travail intellectuel se déploie sur deux registres simultanés. D'un côté, une matinée d'échec assumé sur la génération d'images IA — un terrain non maîtrisé où l'apprenant retourne le diagnostic sur lui-même plutôt que sur les outils. De l'autre, la construction d'une architecture symbolique complète : la trilogie des trois filières des écoles RESPIRE, articulée autour de la métaphore vésalienne. Les deux registres se répondent : l'inconfort de l'amateur dans un domaine et la fluidité du concepteur dans un autre cohabitent sans contradiction. Le ton oscille entre l'autodérision lucide (\"je m'en fiche en fait\") et l'élaboration conceptuelle dense (les Maîtres Promptagogues, le De Humani Cerebri Fabrica), ce qui donne à cette feuille un rythme particulier — un même esprit qui se voit penser dans deux postures différentes.",
+    "territoiresDenses": [
+      {
+        "competence": "Synthèse Intégrative",
+        "description": "La métaphore-mère vésalienne fonctionne comme matrice productive plutôt que comme ornement, structurant la trilogie symbolique entière.",
+        "extraitVerbatim": "Comme Andreas Vesalius a disséqué le corps humain pour bâtir le De Humani Corporis Fabrica, les écoles RESPIRE dissèquent la pensée pour bâtir le De Humani Cerebri Fabrica.",
+        "ceQueCaDit": "Le geste de synthèse engendre une architecture cohérente où chaque filière trouve sa matrice dans une dimension distincte de l'œuvre vésalienne — un travail mature de fusion entre histoire de la médecine et projet pédagogique post-AGI."
+      },
+      {
+        "competence": "Métacognition & Humilité Épistémique",
+        "description": "Trois pièces successives montrent une observation de soi-pensant peu auto-flatteuse — diagnostic d'absence d'intention, analyse longitudinale de spécialisation cumulée.",
+        "extraitVerbatim": "en ignorant depuis trois ans l'aspect génération d'images de sons ou de vidéo, aujourd'hui je me retrouve dans ces domaines avec le même handicap que les personnes qui testent pour la première fois ces outils en 2026",
+        "ceQueCaDit": "L'observation des propres processus s'incarne sans avoir besoin de se nommer comme telle — l'apprenant relie ses choix stratégiques passés à leur effet présent avec une lucidité qui ne cherche pas à se rassurer."
+      },
+      {
+        "competence": "Pensée Systémique",
+        "description": "Modélisation d'un mécanisme de différenciation à deux régimes qui produit un fossé social entre spécialistes et nouveaux inutiles.",
+        "extraitVerbatim": "les outils sont devenus à la fois tellement performants lorsqu'on sait les utiliser, et toujours aussi incapables de comprendre notre contexte, lorsqu'on ne sait pas bien les utiliser, ce qui fait que le fossé créé entre les \"spécialiste\" et les nouveaux \"inutiles\" […] est tout simplement immense",
+        "ceQueCaDit": "Le diagnostic dépasse le constat sociologique : il identifie une chaîne mécanique entre la performance des outils et l'asymétrie sociale, ce qui ouvre une question de point de levier non encore traitée."
+      },
+      {
+        "competence": "Dialogue IA Avancé & Orchestration Multi-Agents",
+        "description": "Méta-prompting entre modèles : Claude formule les prompts que Gemini exécute, avec conscience explicite de l'écart entre formulation et effet.",
+        "extraitVerbatim": "merci à Claude pour m'avoir sauvé sur ce coup là et avoir réussi à générer les bons prompts pour Gemini",
+        "ceQueCaDit": "Le travail montre un dialogue IA avancé asymétrique : aisance avérée sur le terrain texte/code et apprentissage en cours sur l'image, avec un usage spontané de l'orchestration entre modèles."
+      },
+      {
+        "competence": "Synergie & Coordination Hybride",
+        "description": "Articulation des forces comparatives entre outil et humain, avec arbitrage explicite de répartition (graphiste humain plutôt que prompt IA personnel).",
+        "extraitVerbatim": "Ici, si j'avais des sous, je délèguerai à un graphiste en lui demandant de ne pas se prendre la tête",
+        "ceQueCaDit": "La synergie est pensée comme principe (qui fait quoi de mieux) plutôt que pratiquée comme workflow stabilisé — un cadre conceptuel qui appelle son protocole opérationnel."
+      },
+      {
+        "competence": "Cadrage de l'Intention",
+        "description": "Déplacement de l'objectif lui-même plutôt qu'optimisation de son périmètre — l'apprenant ne demande pas \"comment mieux prompter\" mais \"qui doit faire ce travail\".",
+        "extraitVerbatim": "je ne sais pas ce que je veux. Je m'en fiche en fait. Je veux juste que ce soit \"joli\" mais je ne sais pas définir ce qu'est \"joli\". Ce n'est pas mon métier.",
+        "ceQueCaDit": "Le recadrage émerge par la contrainte : l'échec graphique force à reformuler la question, ce qui est la forme la plus discrète et souvent la plus mature de cette compétence."
+      }
+    ],
+    "territoiresNonVisites": "Trois territoires restent en suspens sur cette feuille. La pensée critique est présente sous forme de réfutation rhétorique (refus de l'explication paresseuse du hype) sans encore se déployer comme protocole de vérification — un déplacement vers le geste de vérification factuelle pourrait l'épaissir. La littératie IA fonctionne comme intuition opérationnelle solide sans encore mobiliser le vocabulaire mécanistique des modèles. L'architecture de systèmes IA esquisse une structure organisationnelle complète mais les flux techniques entre composants restent implicites. La pensée computationnelle, enfin, ne s'illustre pas dans cette feuille particulière — ce qui ressemble à une limite ponctuelle du moment décrit plutôt qu'à un évitement.",
+    "emergencesPole": "Trois traversées se laissent voir entre les compétences. D'abord, une asymétrie assumée entre les terrains : ce qui est mature sur le texte/code se reformule en mouvement-vers sur l'image — la même personne se voit penser dans deux régimes différents. Ensuite, une métaphore corporelle filée (dissection, scalpel, sonde) qui devient principe d'architecture pédagogique — l'image vésalienne ne décore pas, elle structure. Enfin, une lucidité qui ne se rassure pas : les diagnostics d'incompétence (image, choix esthétique, sens du \"joli\") ne sont pas amortis par des consolations, ils sont posés et débouchent sur des reformulations.",
+    "pistes": [
+      "Pour donner au geste de réfutation argumentative l'épaisseur d'un protocole, un chemin possible serait de documenter, dans une feuille suivante, un cas où une vérification factuelle a transformé une intuition initiale.",
+      "Pour rendre opérationnelle la synergie pensée, un chemin possible serait de formaliser le workflow concret humain / Claude / Gemini avec critères de bascule explicites.",
+      "Pour épaissir la littératie IA côté mécanismes, un chemin possible serait d'expliciter à la prochaine séance avec un modèle d'image ce qui se passe techniquement quand le prompt sous-spécifie — comment le modèle complète l'incertain par sa distribution d'entraînement.",
+      "Pour relier l'architecture symbolique au flux technique, un chemin possible serait de tracer comment la bibliothèque de prompts, les tuteurs socratiques et les portfolios des apprenants s'appellent concrètement — qui déclenche qui, avec quelles voies de récupération."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille du 13 mars, le travail intellectuel se déploie sur deux registres simultanés. D'un côté, une matinée d'échec assumé sur la génération d'images IA — un terrain non maîtrisé où l'apprenant retourne le diagnostic sur lui-même plutôt que sur les outils. De l'autre, la construction d'une architecture symbolique complète : la trilogie des trois filières des écoles RESPIRE, articulée autour de la métaphore vésalienne. Les deux registres se répondent : l'inconfort de l'amateur dans un domaine et la fluidité du concepteur dans un autre cohabitent sans contradiction. Le ton oscille entre l'autodérision lucide (\"je m'en fiche en fait\") et l'élaboration conceptuelle dense (les Maîtres Promptagogues, le De Humani Cerebri Fabrica), ce qui donne à cette feuille un rythme particulier — un même esprit qui se voit penser dans deux postures différentes.\n\n## Territoires les plus denses\n\n**Synthèse intégrative.** La métaphore-mère vésalienne fonctionne comme matrice productive plutôt que comme ornement, structurant la trilogie symbolique entière. *« Comme Andreas Vesalius a disséqué le corps humain pour bâtir le De Humani Corporis Fabrica, les écoles RESPIRE dissèquent la pensée pour bâtir le De Humani Cerebri Fabrica. »* Le geste de synthèse engendre une architecture cohérente où chaque filière trouve sa matrice dans une dimension distincte de l'œuvre vésalienne — un travail mature de fusion entre histoire de la médecine et projet pédagogique post-AGI.\n\n**Métacognition.** Trois pièces successives montrent une observation de soi-pensant peu auto-flatteuse — diagnostic d'absence d'intention, analyse longitudinale de spécialisation cumulée. *« en ignorant depuis trois ans l'aspect génération d'images de sons ou de vidéo, aujourd'hui je me retrouve dans ces domaines avec le même handicap que les personnes qui testent pour la première fois ces outils en 2026 »*. L'observation des propres processus s'incarne sans avoir besoin de se nommer comme telle.\n\n**Pensée systémique.** Modélisation d'un mécanisme de différenciation à deux régimes qui produit un fossé social entre spécialistes et nouveaux inutiles. *« les outils sont devenus à la fois tellement performants lorsqu'on sait les utiliser, et toujours aussi incapables de comprendre notre contexte, lorsqu'on ne sait pas bien les utiliser »*. Le diagnostic dépasse le constat sociologique : il identifie une chaîne mécanique entre la performance des outils et l'asymétrie sociale.\n\n**Dialogue IA avancé.** Méta-prompting entre modèles : Claude formule les prompts que Gemini exécute, avec conscience explicite de l'écart entre formulation et effet. *« merci à Claude pour m'avoir sauvé sur ce coup là et avoir réussi à générer les bons prompts pour Gemini »*. Le travail montre un dialogue IA avancé asymétrique : aisance avérée sur le terrain texte/code et apprentissage en cours sur l'image.\n\n**Synergie hybride.** Articulation des forces comparatives entre outil et humain, avec arbitrage explicite de répartition. *« si j'avais des sous, je délèguerai à un graphiste en lui demandant de ne pas se prendre la tête »*. La synergie est pensée comme principe (qui fait quoi de mieux) plutôt que pratiquée comme workflow stabilisé.\n\n**Cadrage de l'intention.** Déplacement de l'objectif lui-même plutôt qu'optimisation de son périmètre. *« je ne sais pas ce que je veux. Je m'en fiche en fait. Je veux juste que ce soit \"joli\" mais je ne sais pas définir ce qu'est \"joli\". Ce n'est pas mon métier. »* Le recadrage émerge par la contrainte : l'échec graphique force à reformuler la question, ce qui est la forme la plus discrète et souvent la plus mature de cette compétence.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nTrois territoires restent en suspens sur cette feuille. La pensée critique est présente sous forme de réfutation rhétorique (refus de l'explication paresseuse du hype) sans encore se déployer comme protocole de vérification — un déplacement vers le geste de vérification factuelle pourrait l'épaissir. La littératie IA fonctionne comme intuition opérationnelle solide sans encore mobiliser le vocabulaire mécanistique des modèles. L'architecture de systèmes IA esquisse une structure organisationnelle complète mais les flux techniques entre composants restent implicites. La pensée computationnelle, enfin, ne s'illustre pas dans cette feuille particulière — ce qui ressemble à une limite ponctuelle du moment décrit plutôt qu'à un évitement.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois traversées se laissent voir entre les compétences. D'abord, une asymétrie assumée entre les terrains : ce qui est mature sur le texte/code se reformule en mouvement-vers sur l'image — la même personne se voit penser dans deux régimes différents. Ensuite, une métaphore corporelle filée (dissection, scalpel, sonde) qui devient principe d'architecture pédagogique — l'image vésalienne ne décore pas, elle structure. Enfin, une lucidité qui ne se rassure pas : les diagnostics d'incompétence (image, choix esthétique, sens du \"joli\") ne sont pas amortis par des consolations, ils sont posés et débouchent sur des reformulations.\n\n## Pistes pour enrichir ce pôle\n\n- Pour donner au geste de réfutation argumentative l'épaisseur d'un protocole, un chemin possible serait de documenter, dans une feuille suivante, un cas où une vérification factuelle a transformé une intuition initiale.\n- Pour rendre opérationnelle la synergie pensée, un chemin possible serait de formaliser le workflow concret humain / Claude / Gemini avec critères de bascule explicites.\n- Pour épaissir la littératie IA côté mécanismes, un chemin possible serait d'expliciter à la prochaine séance avec un modèle d'image ce qui se passe techniquement quand le prompt sous-spécifie — comment le modèle complète l'incertain par sa distribution d'entraînement.\n- Pour relier l'architecture symbolique au flux technique, un chemin possible serait de tracer comment la bibliothèque de prompts, les tuteurs socratiques et les portfolios des apprenants s'appellent concrètement — qui déclenche qui, avec quelles voies de récupération."
+  }
+}

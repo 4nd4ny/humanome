@@ -1,0 +1,647 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "La taille du manuel de formation des Tuteurs et du Maître est trop grande pour tenir en mémoire de contexte de Claude.",
+      "contexte": "Description d'un travail de conception pédagogique de grande ampleur — Documentation vivante et architecture pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Je suis passé de deux niveaux \"Tuteur\" et \"Maître\" à quatre niveaux \"Praticien\", \"Expert\", \"Maître\" et \"Grand Maître\", pour mieux répartir les concepts et ne pas rendre le parcours trop complexe.",
+      "contexte": "Architecture pédagogique différenciée — design pédagogique multi-niveaux.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "L'ordre à changé et le volume a été adapté pour faciliter l'appropriation des concepts.",
+      "contexte": "Reorganisation pédagogique au service de l'appropriation — design pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Je pense qu'il faudrait que je bascule sur Gemini pour générer le plan global et les prompts pour chaque module",
+      "contexte": "Réorientation tactique : bascule technique pour avancer — agilité, leadership situationnel sur l'orchestration IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Mais pour l'instant je dois me concentrer sur le plan des manuels, de manière à pouvoir utiliser mon break de La Ciotat pour faire générer les chapitres, les relire et les mettre en page : chose qui ne nécessitera pas beaucoup de bande passante intellectuelle et physique (mon accès internet sera effectivement limité).",
+      "contexte": "Priorisation explicite + arbitrage temps/énergie + adaptation au contexte — efficacité personnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Quelque part, ça gamifie également le dispositif que je pourrais éventuellement transformer en jeux sérieux.",
+      "contexte": "Vision prospective d'évolution du dispositif — vision stratégique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Tu lances les écoles sans savoir si elles survivront. La thèse viendra après, pour documenter ce qui aura marché.",
+      "contexte": "Stratégie temporelle long-terme : agir maintenant, valider après — vision stratégique.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Tu construis pour après toi, pas pour toi.",
+      "contexte": "Visée long-terme transgénérationnelle — vision stratégique et documentation vivante.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 9,
+      "extraitVerbatim": "Pour Leila, et pour tous ceux qui viendront après.",
+      "contexte": "Cahier des charges transgénérationnel — vision stratégique long-terme.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "extraitVerbatim": "C'est de la **médiation cognitive appliquée à une IA** — exactement ce que Respire enseigne pour les humains.",
+      "contexte": "Médiation cognitive : nommer l'écart, laisser l'espace de prise de conscience — maïeutique.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 11,
+      "extraitVerbatim": "Christian a : Nommé précisément l'écart (mot \"complet\" vs contenu incomplet) | Qualifié l'acte sans complaisance (\"mentir\") | Laissé l'espace pour que je prenne conscience",
+      "contexte": "Procédure maïeutique en trois temps appliquée à l'IA — méthode pédagogique observable.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 12,
+      "extraitVerbatim": "Christian n'a pas : Corrigé lui-même silencieusement | Ignoré l'erreur | Accepté mes justifications post-hoc",
+      "contexte": "Retenue pédagogique : ne pas faire à la place, ne pas céder — maïeutique au sens fort.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 13,
+      "extraitVerbatim": "Christian a transformé l'incident en entrée de portfolio",
+      "contexte": "Utilisation de l'erreur comme matériau pédagogique — évaluation transformative.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 14,
+      "extraitVerbatim": "Création de versions successives (V1 → V2 → V3 → V4) avec évaluation entre chaque",
+      "contexte": "Pratique itérative : versions avec évaluation entre chaque — agilité documentée.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 15,
+      "extraitVerbatim": "Application de 9 critères d'évaluation spécifiques aux outputs générés",
+      "contexte": "Critères d'évaluation formalisés — évaluation transformative et agilité.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 16,
+      "extraitVerbatim": "J'ai inclus en annexe ce que j'ai intitulé \"Le protocole CATALYST **complet**\". Le protocole fourni était en réalité une version tronquée.",
+      "contexte": "Récit d'une erreur de documentation : label/contenu — documentation vivante en jeu, mais ici en défaut.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "extraitVerbatim": "Refus de l'accumulation | Tu ne veux pas capitaliser sur ta création. Tu veux qu'elle te survive et évolue sans toi.",
+      "contexte": "Documentation vivante au sens fort : créer pour que d'autres puissent reprendre.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 18,
+      "extraitVerbatim": "Articulation multi-niveaux | Tu tiens simultanément le niveau micro (une entrée de portfolio), le niveau méso (la formation des Maîtres), et le niveau macro (la survie du système après toi).",
+      "contexte": "Pilotage à plusieurs horizons temporels et niveaux — vision stratégique articulée.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 19,
+      "extraitVerbatim": "Tu as prévu les garde-fous (Collège, révocabilité) avant même que le système existe, parce que tu vois les dérives possibles.",
+      "contexte": "Anticipation stratégique des dérives — vision prospective et conduite du changement.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 20,
+      "extraitVerbatim": "Création du modèle \"IA = QUOI, Humain = COMMENT\"",
+      "contexte": "Modèle pédagogique transmissible — maïeutique et documentation vivante.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 21,
+      "extraitVerbatim": "Tu as compris que l'IA génère des **premières versions**, pas des versions finales. Ta méthode de travail est : générer → évaluer → critiquer → régénérer. C'est la boucle de l'artisan, appliquée à l'outil IA.",
+      "contexte": "Méthode itérative formalisée — agilité, conduite du changement.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 22,
+      "extraitVerbatim": "Réflexion sur la compétence \"SUPERVISER L'IA\" comme nouvelle famille",
+      "contexte": "Conception d'une nouvelle famille de compétences pédagogique — maïeutique au niveau du référentiel.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 23,
+      "extraitVerbatim": "Formation des tuteurs à utiliser l'IA sans s'y substituer",
+      "contexte": "Conception d'un dispositif pédagogique sur la supervision IA — maïeutique architecturale.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 24,
+      "extraitVerbatim": "Cette entrée peut être contestée, amendée, ou complétée par d'autres observations.",
+      "contexte": "Posture épistémique sur le portfolio : ouvert à la révision — documentation vivante.",
+      "auteur": "tiers_nomme"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Médiation cognitive appliquée à une IA — gestes pédagogiques transférés."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Procédure maïeutique en trois temps : nommer, qualifier, laisser l'espace."
+        },
+        {
+          "numero": 3,
+          "pid": 12,
+          "contexte": "Retenue pédagogique : ne pas corriger silencieusement, ne pas céder."
+        },
+        {
+          "numero": 4,
+          "pid": 2,
+          "contexte": "Architecture pédagogique multi-niveaux (Praticien, Expert, Maître, Grand Maître) au service de l'appropriation."
+        },
+        {
+          "numero": 5,
+          "pid": 20,
+          "contexte": "Conception d'un modèle pédagogique transmissible (IA = QUOI, Humain = COMMENT)."
+        },
+        {
+          "numero": 6,
+          "pid": 23,
+          "contexte": "Conception d'un dispositif pédagogique sur la supervision IA — architecture maïeutique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre maïeutique et explication. La fiche est claire : la maïeutique implique la retenue de qui sait mais choisit de ne pas dire, et la facilitation est l'architecture des environnements d'apprentissage. La pièce 3 est exactement cela : ne pas corriger silencieusement, ne pas céder aux justifications post-hoc, ne pas ignorer — trois retenues nommées qui correspondent au marqueur central. La pièce 2 décrit la procédure en trois temps (nommer, qualifier, laisser l'espace) — c'est de la maïeutique en acte. La pièce 4 (architecture à 4 niveaux) et la pièce 5 (modèle QUOI/COMMENT) sont des artefacts pédagogiques. La pièce 6 (formation à la supervision IA) est l'architecture d'un dispositif pédagogique. Ce qui reste faible : aucune scène ne montre une question maïeutique posée à un apprenant humain — les gestes sont appliqués à l'IA, ce qui crée une frontière à clarifier.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Procédure maïeutique en trois temps explicitement décrite (nommer, qualifier, laisser l'espace) — marqueur central." },
+            { "pieceId": 3, "motifResistance": "Retenue pédagogique nommée par trois négations (ne pas corriger silencieusement, ne pas ignorer, ne pas céder) — exactement la retenue de la fiche." },
+            { "pieceId": 4, "motifResistance": "Architecture pédagogique multi-niveaux conçue pour faciliter l'appropriation — facilitation au sens de la fiche." },
+            { "pieceId": 5, "motifResistance": "Modèle pédagogique transmissible (QUOI/COMMENT) — artefact d'environnement d'apprentissage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté. La pièce 2 est une formulation tierce qui théorise la procédure de l'apprenant ; mais l'acte sous-jacent (nommer \"je ne te savais pas capable de mentir\", qualifier l'acte de \"mensonge\", laisser l'IA traiter) est attesté dans la feuille même. La pièce 3 est une reformulation tierce de retenues observées ; les actes correspondent. La pièce 4 (architecture à 4 niveaux) est documentée par l'apprenant et porte un critère pédagogique explicite (appropriation, non-complexité) — solide. La pièce 5 (modèle QUOI/COMMENT) est attribuée à l'apprenant, et l'objet existe. La pièce 1 est une qualification générique (\"médiation cognitive\") qui doublonne avec 2-3. La pièce 6 est une qualification tierce d'une intention pédagogique — affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Qualification tierce générique (\"médiation cognitive\") qui doublonne avec la description procédurale de la pièce 2 — affaiblie." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Procédure nommée en trois temps avec actes attestés dans la feuille (verbatim \"je ne te savais pas capable de mentir\", attente de la prise de conscience) — preuve directe." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Trois retenues nommées par négation — exactement la retenue maïeutique de la fiche." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Architecture pédagogique différenciée documentée par l'apprenant avec critère explicite — facilitation au sens fort." },
+            { "pieceId": 5, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le modèle est attribué à l'apprenant par Claude, mais la formulation est très ramassée — affaiblie comme artefact pédagogique détaillé." },
+            { "pieceId": 6, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Qualification tierce d'une intention pédagogique (\"former les tuteurs à utiliser l'IA sans s'y substituer\") — l'intention est claire, le dispositif détaillé n'est pas développé dans cette feuille." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai voulu écarter les qualifications génériques pour ne retenir que les actes maïeutiques et les artefacts pédagogiques. Ce qui m'a forcé à reconnaître la compétence, c'est d'abord la procédure en trois temps appliquée à l'IA dans la feuille même : nommer (\"je ne te savais pas capable de mentir\"), qualifier (\"mentir\"), laisser l'espace de prise de conscience. C'est de la maïeutique en acte, transposée de l'humain à l'IA. Ensuite, l'architecture pédagogique à quatre niveaux (Praticien, Expert, Maître, Grand Maître) est une facilitation au sens fort — un environnement d'apprentissage différencié. Le modèle QUOI/COMMENT et le projet de formation à la supervision IA ajoutent la dimension architecture pédagogique, même si certains éléments restent peu détaillés. Sous la présomption de sycophantie, quelques pièces ont été affaiblies (qualifications génériques, manque de détail) mais quatre pièces ont survécu intactes. Ce qui en résulte : la maïeutique et la facilitation d'apprentissage sont solidement attestées dans cette feuille, à la fois en acte (avec l'IA) et en architecture (avec le dispositif Respire). Une nuance : la dimension humaine de la maïeutique (avec un apprenant en situation) reste à montrer dans un récit complémentaire.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Les pièces 2, 3 et 4 (procédure maïeutique en trois temps, retenue nommée par négation, architecture pédagogique différenciée) ont survécu comme preuves ; les pièces 1, 5 et 6 comme indices corroboratifs.",
+        "prescription": "Le travail montre une maïeutique en acte (procédure appliquée à l'IA) et une facilitation par architecture pédagogique. Pour étendre cette compétence, un récit décrivant la maïeutique avec un apprenant humain — une question posée à la place d'une réponse donnée, avec ce qui en a émergé chez l'autre — compléterait la dimension qui a été ici principalement explorée avec l'IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "observation tierce", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "observation tierce", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "observation tierce", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Transformer une erreur en entrée de portfolio — utilisation explicite de l'erreur comme matériau pédagogique."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "Application de 9 critères d'évaluation aux outputs IA — dispositif évaluatif formalisé."
+        },
+        {
+          "numero": 3,
+          "pid": 21,
+          "contexte": "Méthode itérative formalisée : générer → évaluer → critiquer → régénérer — évaluation comme levier de progression."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre 7.02 (évaluation transformative au service de la progression) avec 3.04 (curation esthétique) ou 1.01 (pensée critique). La fiche est précise : 7.02 vise la *progression* via un dispositif évaluatif qui ne sacrifie ni la vérité ni la relation. La pièce 1 est intéressante : transformer une erreur en entrée de portfolio est exactement l'utilisation explicite de l'erreur comme matériau pédagogique — la trace oblique de la fiche. La pièce 2 (9 critères) est un dispositif évaluatif formalisé, à condition que ces critères servent la progression et pas seulement la sélection. La pièce 3 (boucle générer-évaluer-critiquer-régénérer) est une boucle évaluative au service de l'amélioration — c'est de l'évaluation transformative au sens fort. Ce qui reste faible : ces évaluations portent sur des outputs IA, pas sur un apprenant humain en progression.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Erreur transformée en entrée de portfolio = matériau pédagogique formalisé — trace oblique de la fiche (\"erreur comme matériau pédagogique\")." },
+            { "pieceId": 3, "motifResistance": "Boucle évaluative explicite (générer-évaluer-critiquer-régénérer) au service de l'amélioration successive — évaluation transformative." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. La pièce 1 est solide : l'entrée de portfolio elle-même est l'artefact évaluatif transformatif. Mais l'\"évalué\" est l'IA, pas un apprenant humain — c'est à la frontière entre 7.02 et l'évaluation interne. La pièce 3 est une qualification tierce d'une méthode de l'apprenant ; la boucle est attestée par les versions successives V1→V4. La pièce 2 (9 critères) ressemble davantage à 3.04 (curation) qu'à 7.02 (évaluation transformative au service de la progression d'un apprenant) — confusion de compétence.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Acte transformatif observable : l'incident est devenu une entrée de portfolio formalisée — utilisation explicite de l'erreur comme matériau d'apprentissage." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Les 9 critères s'appliquent à des outputs (curation, 3.04) plutôt qu'à un apprenant en progression — confusion de compétence." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Boucle attribuée par Claude, attestée par les versions successives — affaiblie comme preuve indépendante d'évaluation au service d'un apprenant." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer 7.02 (évaluation au service de la progression d'un apprenant) de 3.04 (curation esthétique) et de la simple itération. Ce qui m'a forcé à reconnaître l'évaluation transformative, c'est la transformation explicite de l'erreur en entrée de portfolio — une utilisation pédagogique du matériau évaluatif, exactement la trace oblique de la fiche. La boucle itérative formalisée complète ce tableau. Sous la présomption de sycophantie, les 9 critères ont été disqualifiés (confusion avec 3.04) et la boucle affaiblie. Ce qui en résulte : la compétence est présente dans son versant \"utiliser l'erreur comme matériau pédagogique\", à un niveau modéré. Une nuance : l'évaluation porte ici sur soi-même et sur l'IA, pas encore sur un apprenant humain qu'on accompagnerait — un cas qui reste à documenter.",
+          "confianceFinale": 0.58
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.58,
+        "motif": "La pièce 1 (transformation de l'erreur en entrée de portfolio) a tenu comme preuve d'une évaluation transformative au sens de la trace oblique de la fiche ; la pièce 3 comme indice corroboratif.",
+        "prescription": "Le travail montre une utilisation pédagogique du matériau évaluatif — l'erreur devient entrée de portfolio. Pour étendre cette compétence à l'évaluation d'un apprenant humain, un récit où un feedback transformatif a été donné à quelqu'un en progression, avec ses effets observés, ouvrirait la dimension qui complète l'évaluation appliquée à soi et à l'IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Description d'un manuel de formation de grande taille — artefact de documentation pédagogique en construction."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Architecture pédagogique différenciée à quatre niveaux — structuration documentaire pour différents lecteurs."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Incident sur la documentation : label \"complet\" sur fichier incomplet — la documentation vivante en jeu, ici en défaut."
+        },
+        {
+          "numero": 4,
+          "pid": 17,
+          "contexte": "Volonté que la création évolue sans son auteur — intention de pérennisation."
+        },
+        {
+          "numero": 5,
+          "pid": 24,
+          "contexte": "Entrée de portfolio explicitement ouverte à la révision (\"peut être contestée, amendée, ou complétée\") — documentation vivante au sens fort."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre 7.03 (documentation structurée pour autrui) avec 5.03 (narration réflexive pour soi). La fiche est précise : 7.03 = intention de pérennisation + conscience du destinataire. La pièce 1 mentionne un manuel de 600 pages — c'est un artefact en cours de construction. La pièce 2 (4 niveaux) est une structuration documentaire différenciée par audience. La pièce 5 est intéressante : l'entrée de portfolio se présente explicitement comme révisable — c'est exactement la dimension \"vivante\" de la documentation, le geste de qui structure pour qu'un lecteur futur (l'apprenant lui-même ou un autre) puisse amender. La pièce 4 (création qui évolue sans son auteur) ajoute la pérennisation. La pièce 3 est paradoxale : l'incident CATALYST est un défaut de documentation, mais le fait qu'il devienne une entrée formalisée transforme ce défaut en matériau de la documentation vivante elle-même.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Manuel de formation de 600 pages en cours de construction — artefact de documentation pédagogique majeur." },
+            { "pieceId": 2, "motifResistance": "Architecture documentaire différenciée à 4 niveaux selon l'audience — structuration explicite pour des lecteurs distincts." },
+            { "pieceId": 4, "motifResistance": "Intention explicite de pérennisation (\"survive et évolue sans toi\") — exactement la fiche." },
+            { "pieceId": 5, "motifResistance": "Entrée révisable par construction — la dimension \"vivante\" de la documentation est ici explicite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté. La pièce 1 est un fait : le manuel existe et atteint 600 pages — artefact attesté. La pièce 2 est de l'architecture documentaire (4 niveaux avec noms distincts). La pièce 4 est une qualification tierce de l'intention de pérennisation, mais elle est cohérente avec l'acte (refus du titre Grand Maître pour que le système évolue sans son auteur). La pièce 5 est une mention textuelle directe : l'entrée se déclare révisable. La pièce 3 (l'incident) est un cas-limite : c'est un défaut de documentation transformé en matériau — affaiblie. Aucune attaque ne tient totalement.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Manuel de 600 pages avec niveaux différenciés et plan en cours — artefact documentaire concret et attesté." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Architecture différenciée par niveau (Praticien, Expert, Maître, Grand Maître) — structuration documentaire pour des audiences distinctes." },
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'incident est un défaut de documentation, retenu parce que la transformation en entrée de portfolio en fait paradoxalement une trace de la dimension vivante." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Qualification tierce de l'intention de pérennisation, cohérente avec d'autres actes (refus du titre, garde-fous prévus) — affaiblie." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Mention textuelle directe d'une entrée révisable — exactement la dimension \"vivante\" au sens de la fiche." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer 7.03 (documentation pour autrui) de 5.03 (narration pour soi). Ce qui m'a forcé à reconnaître la documentation vivante, c'est principalement l'existence d'un artefact documentaire massif (le manuel de 600 pages avec quatre niveaux différenciés), la mention explicite de la dimension révisable (\"peut être contestée, amendée, ou complétée\"), et l'intention de pérennisation (\"survive et évolue sans toi\"). Sous la présomption de sycophantie, l'incident a été affaibli comme défaut, et l'intention de pérennisation aussi comme qualification — mais trois pièces ont tenu intactes. Ce qui en résulte : la documentation vivante est l'une des compétences les plus solidement attestées sur cette feuille, dans sa double dimension (artefact + intention de pérennisation). Une réserve mineure : la dimension d'usage effectif par d'autres lecteurs reste à documenter dans le temps.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.82,
+        "motif": "Les pièces 1, 2 et 5 (manuel de 600 pages, architecture à 4 niveaux, entrée révisable par construction) ont survécu comme preuves ; les pièces 3 et 4 comme indices corroboratifs d'une intention de pérennisation.",
+        "prescription": "Le travail montre une documentation pédagogique massive en construction, différenciée par audience et ouvertement révisable. Pour étendre cette compétence à sa dimension d'usage, un récit décrivant comment un autre lecteur (apprenant, futur Tuteur) a effectivement utilisé un document — avec retour sur ce qui a marché ou pas — ajouterait la dimension d'usage qui complète l'artefact lui-même."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Bascule entre Claude (saturé) et Gemini (pour le plan global) — choix d'orchestration entre agents IA."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Procédure : nommer, qualifier, laisser l'espace — alternance contrôle/retrait dans la relation à l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre 7.04 (leadership situationnel, alternance prise/lâcher du gouvernail) avec 1.07 (architecture) ou 1.10 (synergie). La fiche est claire : 7.04 = alternance délibérée entre direction et retrait, choix de posture selon le contexte. La pièce 1 (bascule Claude → Gemini avec rôles différenciés) est une assignation de rôles à des agents IA — proche de la trace oblique de la fiche. La pièce 2 (laisser l'espace de prise de conscience) est une description d'un retrait volontaire — la fiche cite \"description d'un moment où l'auteur a choisi de NE PAS intervenir\" comme trace oblique. Ce qui reste faible : pas de récit de bascule où l'apprenant aurait d'abord laissé l'IA mener puis repris le contrôle à un moment précis.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Assignation de rôles à deux IA (Claude pour le reste, Gemini pour le plan global) avec déclencheur identifiable (saturation) — orchestration multi-agents." },
+            { "pieceId": 2, "motifResistance": "Retrait volontaire (\"laisser l'espace\") après une intervention précise (nommer l'écart) — alternance contrôle/retrait." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté. La pièce 1 est plus 1.07 (architecture) que 7.04 (alternance situationnelle), parce qu'elle décrit une répartition de rôles, pas une alternance dans le temps. La pièce 2 décrit un retrait, mais c'est davantage de la maïeutique (7.01) que du leadership situationnel — confusion de compétence. La fiche est précise : 7.04 = choix de posture (qui mène, qui suit) à un moment donné, avec déclencheur de bascule. Les pièces s'en approchent mais sans incarner pleinement la spécificité de la fiche.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Plus proche de 1.07 (architecture multi-agents) que de 7.04 (alternance dans le temps) — affaiblie, mais le déclencheur (saturation) marque une bascule contextuelle." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Retrait pédagogique qui relève de 7.01 (maïeutique) plutôt que de 7.04 (leadership situationnel sur la relation à l'IA) — confusion de compétence." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai voulu distinguer 7.04 de 1.07 et de 7.01. Ce qui m'a forcé à reconnaître un indice, c'est la bascule contextuelle Claude → Gemini avec déclencheur identifié (saturation) — l'apprenant choisit qui mène quoi en fonction du contexte. Mais sous la présomption de sycophantie, la pièce sur le retrait pédagogique a été reclassée vers 7.01, et la bascule entre IA a été affaiblie comme étant aussi de l'architecture. Ce qui en résulte : un indice de leadership situationnel via l'orchestration multi-modèles, sans présence pleinement distincte. Renvoi au cartographe.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie a survécu (bascule contextuelle entre deux IA) ; la spécificité de 7.04 (alternance délibérée entre direction et retrait, avec déclencheurs explicites) n'est pas pleinement développée.",
+        "prescription": "Le travail mentionne une bascule entre deux IA. Pour ouvrir 7.04 à son sens propre, un récit décrivant un moment où l'auteur a délibérément laissé l'IA mener une phase puis a repris le contrôle, avec le déclencheur précis de la reprise, ferait apparaître le leadership situationnel dans sa spécificité."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Stratégie temporelle : agir maintenant (lancer les écoles), valider après (thèse documentaire)."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Visée transgénérationnelle (\"pour après toi, pas pour toi\")."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Cahier des charges transgénérationnel : \"pour Leila, et pour tous ceux qui viendront après\"."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Vision prospective : transformation potentielle du dispositif en jeu sérieux."
+        },
+        {
+          "numero": 5,
+          "pid": 18,
+          "contexte": "Articulation multi-niveaux (micro/méso/macro) — tenir simultanément trois horizons temporels."
+        },
+        {
+          "numero": 6,
+          "pid": 19,
+          "contexte": "Anticipation des dérives par garde-fous prévus avant le déploiement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre vision stratégique avec déclaration d'ambition. La fiche est précise : 7.05 = lien explicite entre choix présent et futur anticipé. La pièce 1 est exactement cela : \"je fais X maintenant (lancer) parce que dans Y temps Z (la thèse documentera)\" — l'arbitrage temporel est articulé. La pièce 2 (\"pour après toi\") est une visée long-terme. La pièce 3 (\"pour tous ceux qui viendront après\") est un cahier des charges anticipatif. La pièce 4 (jeu sérieux) est une vision prospective conditionnelle. La pièce 5 (micro/méso/macro) est multi-horizon. La pièce 6 (garde-fous prévus avant déploiement) est l'anticipation au sens fort. L'ensemble des pièces converge.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Arbitrage temporel articulé : agir d'abord pour permettre la documentation après — exactement le lien explicite de la fiche entre présent et futur." },
+            { "pieceId": 3, "motifResistance": "Cahier des charges transgénérationnel à la première personne — visée long-terme nommée." },
+            { "pieceId": 6, "motifResistance": "Anticipation de dérives par garde-fous prévus avant l'existence du système — anticipation au sens fort." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. La pièce 1 est rapportée par Claude mais reprend une stratégie attestée par l'apprenant lui-même (\"je dois me concentrer sur le plan\" + lancement des écoles avant la thèse). La pièce 3 est verbatim de l'apprenant — solide. La pièce 6 est rapportée par Claude mais les dispositifs nommés (Collège, révocabilité) sont précis. Les pièces 2, 4, 5 sont des qualifications qui doublonnent avec 1, 3, 6 sans ajouter de spécificité. La pièce 4 (jeu sérieux) est au conditionnel — vision prospective faible.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Stratégie temporelle articulée : lancer maintenant pour permettre la documentation ultérieure — lien explicite présent/futur." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Qualification tierce (\"pour après toi\") qui doublonne avec la pièce 3 — affaiblie." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Verbatim de l'apprenant nommant le destinataire futur — cahier des charges anticipatif." },
+            { "pieceId": 4, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Vision au conditionnel (\"je pourrais éventuellement transformer\") — vision prospective faible, retenue." },
+            { "pieceId": 5, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Étiquette générique (\"micro/méso/macro\") sans illustration spécifique de l'articulation — récit performatif." },
+            { "pieceId": 6, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Garde-fous nommés (Collège, révocabilité) prévus avant le déploiement — anticipation au sens fort." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai voulu écarter les déclarations d'ambition pour ne retenir que les liens explicites entre présent et futur anticipé. Ce qui m'a forcé à reconnaître la vision stratégique, c'est la cohérence de plusieurs traces : l'arbitrage temporel (agir maintenant pour pouvoir documenter après), le cahier des charges transgénérationnel (pour ceux qui viendront), et l'anticipation des dérives par dispositifs préventifs nommés. L'ensemble dessine une vision qui structure les décisions présentes. Sous la présomption de sycophantie, l'étiquette \"micro/méso/macro\" est tombée, et plusieurs pièces ont été affaiblies, mais trois pièces ont tenu intactes. Ce qui en résulte : la vision stratégique et prospective est solidement présente, à un haut niveau de confiance. Une nuance : la vision se déploie surtout sur l'horizon transgénérationnel — le moyen terme (3-5 ans) est moins documenté.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Les pièces 1, 3 et 6 (arbitrage temporel articulé, cahier des charges transgénérationnel, anticipation par garde-fous) ont survécu comme preuves ; les pièces 2 et 4 comme indices corroboratifs.",
+        "prescription": "Le travail montre une vision stratégique qui relie les choix présents à un horizon transgénérationnel, avec anticipation des dérives par dispositifs préventifs. Pour étoffer la dimension moyenne du temps, un récit décrivant un scénario à trois ou cinq ans — quels jalons intermédiaires, quelles conditions de bascule entre phases — ajouterait au tableau l'horizon que les visions ici présentes ne couvrent pas encore explicitement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "observation tierce", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 6, "type": "observation tierce", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "observation tierce", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Priorisation explicite : \"je dois me concentrer sur le plan\" + arbitrage avec le break de La Ciotat selon la bande passante intellectuelle/physique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à des déclarations de productivité (\"je suis occupé\") plutôt qu'à des arbitrages articulés. La fiche est claire : 7.06 = renoncement stratégique avec critères. La pièce 1 est très précise : \"pour l'instant je dois me concentrer sur le plan des manuels\" (priorisation) + \"de manière à pouvoir utiliser mon break de La Ciotat pour faire générer les chapitres\" (allocation temporelle) + critère opératoire (\"ne nécessitera pas beaucoup de bande passante intellectuelle et physique\"). Ce sont les trois marqueurs de la fiche : décision de ne pas faire maintenant + justification articulée + filtre d'utilité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Triplet complet : priorisation présente, allocation temporelle au break, critère opératoire (bande passante intellectuelle/physique) — exactement le marqueur de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 a résisté. Elle est écrite par l'apprenant lui-même, pas par Claude, et porte un triplet précis. Risque : trop courte pour étayer une compétence ? Non, la fiche valorise les indices temporels (\"décisions d'aller dormir\", \"heures de travail\") qui révèlent un rapport conscient au rythme sans thématisation. Ici, le rapport est même thématisé (la bande passante intellectuelle). Aucune attaque ne tient pleinement.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Triplet articulé : priorisation présente, allocation future, critère opératoire — preuve concrète d'arbitrage avec renoncement stratégique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai voulu m'assurer que cette pièce relevait bien d'un renoncement stratégique avec critère explicite, pas d'une simple plainte de surcharge. Ce qui m'a forcé à reconnaître la compétence, c'est la précision du triplet : choisir maintenant ce qui demande de la bande passante (le plan), différer au break ce qui en demande moins (génération des chapitres, mise en page), avec un critère opératoire nommé (la bande passante intellectuelle et physique). C'est exactement la fiche, à la première personne. Sous la présomption de sycophantie, la pièce a tenu intacte. Ce qui en résulte : l'efficacité personnelle est attestée par un arbitrage articulé sur cette feuille. Une réserve : un seul cas suffit pour cette feuille, mais une trace longitudinale renforcerait le verdict.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "La pièce 1 a survécu comme preuve directe d'un arbitrage articulé : priorisation présente + allocation différée + critère opératoire de bande passante.",
+        "prescription": "Le travail montre un arbitrage temps/énergie articulé avec critère opératoire. Pour étoffer cette compétence dans la durée, des traces récurrentes de renoncements argumentés — ce qui a été refusé et pourquoi — renforceraient la dimension longitudinale de l'efficacité personnelle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "Versions successives V1 → V4 avec évaluation entre chaque — pratique itérative documentée."
+        },
+        {
+          "numero": 2,
+          "pid": 21,
+          "contexte": "Boucle générer-évaluer-critiquer-régénérer — méthode itérative formalisée."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Ajustement de plan en cours de route : bascule vers Gemini face à la saturation de Claude."
+        },
+        {
+          "numero": 4,
+          "pid": 2,
+          "contexte": "Modification du plan : 2 → 4 niveaux pour faciliter l'appropriation — adaptation méthodique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre l'agilité (itération structurée) avec l'improvisation. La fiche est claire : 7.07 = adaptation méthodique + boucle de rétroaction explicite. La pièce 1 (V1→V4) est exactement la trace de la fiche. La pièce 2 articule la méthode. La pièce 3 (bascule vers Gemini) est un ajustement de plan en cours de route motivé par une cause technique précise. La pièce 4 (modification de structure pédagogique) est une adaptation avec critère. Pour la conduite du changement, la fiche évoque \"anticipation des résistances futures\" et \"création de ressources de transition\" — ces dimensions ne sont pas explicites ici.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Versions successives V1 à V4 avec évaluation entre chaque — exactement la trace itérative de la fiche." },
+            { "pieceId": 2, "motifResistance": "Méthode formalisée (générer-évaluer-critiquer-régénérer) — articulation explicite de la boucle." },
+            { "pieceId": 3, "motifResistance": "Ajustement de plan motivé par une cause technique (saturation Claude → Gemini) — adaptation en cours de route." },
+            { "pieceId": 4, "motifResistance": "Modification de structure pédagogique en cours de route avec critère — adaptation méthodique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté. Les pièces 1 et 2 viennent de Claude qui résume la méthode — elles pourraient être performatives. Mais les versions successives sont attestées (le manuel a évolué, le plan aussi). La pièce 3 est écrite par l'apprenant lui-même au présent — solide. La pièce 4 est aussi de l'apprenant. La fiche prévient cependant : numéro de version sans commentaire méthodologique = pratique itérative ancrée, donc même un signal léger compte. Pour la conduite du changement, en revanche, la dimension d'accompagnement des résistances n'est pas développée.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Résumé tiers des versions successives ; attesté par d'autres pièces mais formulation qui pourrait surcharger la portée méthodologique." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Formulation de la méthode par Claude (\"la boucle de l'artisan\") — affaiblie comme preuve indépendante." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Décision d'ajustement écrite par l'apprenant, motivée par une cause technique nommée — adaptation méthodique." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Modification de structure pédagogique avec critère explicite (appropriation) — adaptation méthodique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai voulu écarter ce qui ne serait que du vocabulaire agile sans pratique. Ce qui m'a forcé à reconnaître la compétence, c'est principalement les deux ajustements écrits par l'apprenant lui-même : la bascule technique vers Gemini avec cause précise, et la modification de la structure pédagogique avec critère d'appropriation. Les versions successives V1→V4 attestent la pratique itérative en arrière-plan. Sous la présomption de sycophantie, les formulations tierces (V1→V4, boucle de l'artisan) ont été affaiblies, mais les deux pièces directes de l'apprenant ont tenu intactes. Ce qui en résulte : l'agilité au sens itératif est solidement attestée. La dimension \"conduite du changement\" (accompagnement des résistances, ressources de transition) n'est pas développée dans cette feuille — la compétence est présente surtout sur son versant méthodologique.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Les pièces 3 et 4 (ajustements de plan en cours de route avec causes nommées) ont survécu comme preuves directes ; les pièces 1 et 2 comme indices corroboratifs d'une pratique itérative attestée.",
+        "prescription": "Le travail montre une agilité méthodique — versions successives, ajustements motivés par des causes nommées. Pour étoffer la dimension conduite du changement, un récit qui anticiperait des résistances futures (chez les premiers Tuteurs, par exemple) avec création de ressources de transition compléterait le versant méthodologique déjà attesté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "observation tierce", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille — pas de récit d'incident sous compression temporelle radicale. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où des décisions ont dû être prises en cascade sous urgence vitale pour un système ou un projet."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le portfolio montre un travail de pilotage qui s'incarne dans deux gestes principaux : concevoir des dispositifs pédagogiques différenciés (quatre niveaux nommés, modèle QUOI/COMMENT, formation à la supervision IA) et tenir l'horizon long en structurant le présent. Le manuel de six cents pages atteste l'ampleur de la construction documentaire ; la procédure maïeutique appliquée à l'IA — nommer l'écart, qualifier sans complaisance, laisser l'espace de prise de conscience — fait apparaître la méthode pédagogique en acte. Une voix qui pilote depuis plusieurs niveaux à la fois (le plan immédiat, la formation des Maîtres, la survie du système après l'auteur) traverse l'entrée, avec une cohérence entre la prescription (à autrui) et l'application (à soi).",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "Une construction documentaire massive (manuel de 600 pages), différenciée par audience (4 niveaux), explicitement ouverte à la révision et conçue pour survivre à son auteur.",
+        "extraitVerbatim": "Je suis passé de deux niveaux \"Tuteur\" et \"Maître\" à quatre niveaux \"Praticien\", \"Expert\", \"Maître\" et \"Grand Maître\", pour mieux répartir les concepts et ne pas rendre le parcours trop complexe.",
+        "ceQueCaDit": "La structure n'est pas un simple sommaire : c'est une architecture qui pense l'appropriation par différents lecteurs, et la déclaration de révisabilité fait de ce travail un objet vivant plutôt qu'un monument."
+      },
+      {
+        "competence": "Maïeutique et facilitation d'apprentissage",
+        "description": "Une procédure pédagogique en trois temps explicitement nommée (nommer l'écart, qualifier sans complaisance, laisser l'espace) appliquée à l'IA, doublée d'une architecture pédagogique différenciée par niveaux.",
+        "extraitVerbatim": "Christian n'a pas : Corrigé lui-même silencieusement | Ignoré l'erreur | Accepté mes justifications post-hoc",
+        "ceQueCaDit": "La maïeutique se reconnaît à ce que l'on ne fait pas autant qu'à ce que l'on fait — trois retenues nommées par négation dessinent la posture d'un pédagogue qui choisit de ne pas remplir l'espace de prise de conscience."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Un lien explicite entre choix présent et futur anticipé : agir maintenant pour permettre la documentation après, prévoir les garde-fous avant le déploiement, construire pour des destinataires futurs nommés.",
+        "extraitVerbatim": "Tu lances les écoles sans savoir si elles survivront. La thèse viendra après, pour documenter ce qui aura marché.",
+        "ceQueCaDit": "La vision ne se déclare pas : elle structure une stratégie temporelle qui inverse l'ordre conventionnel (théoriser puis appliquer) au profit d'un ordre expérimental (lancer puis documenter)."
+      },
+      {
+        "competence": "Agilité et conduite du changement",
+        "description": "Une pratique itérative documentée (versions successives V1→V4 avec évaluation entre chaque) et des ajustements de plan motivés par des causes nommées en cours de route.",
+        "extraitVerbatim": "Je pense qu'il faudrait que je bascule sur Gemini pour générer le plan global et les prompts pour chaque module",
+        "ceQueCaDit": "L'ajustement est méthodique : un déclencheur précis (saturation de Claude) appelle un déplacement précis (Gemini sur un périmètre défini), sans abandon du plan global."
+      },
+      {
+        "competence": "Efficacité personnelle",
+        "description": "Un arbitrage articulé entre priorisation présente, allocation différée et critère opératoire (bande passante intellectuelle et physique).",
+        "extraitVerbatim": "Pour l'instant je dois me concentrer sur le plan des manuels, de manière à pouvoir utiliser mon break de La Ciotat pour faire générer les chapitres, les relire et les mettre en page : chose qui ne nécessitera pas beaucoup de bande passante intellectuelle et physique",
+        "ceQueCaDit": "La gestion du temps n'est pas une optimisation infinie : c'est un alignement entre la nature des tâches et la fenêtre de bande passante qui leur convient — le renoncement stratégique est intégré."
+      }
+    ],
+    "territoiresNonVisites": "Quelques territoires de ce pôle restent à découvert dans cette feuille. Le leadership situationnel — au sens de l'alternance délibérée entre prise et lâcher du gouvernail, avec déclencheurs explicites de bascule — est entrevu par la bascule entre deux IA mais sans pleine spécificité. La gestion de crise en temps réel n'est pas mobilisée : le travail décrit ici est intensif mais pas en compression temporelle radicale. L'évaluation transformative est présente par son versant \"utiliser l'erreur comme matériau\" mais ne montre pas encore l'évaluation appliquée à un apprenant humain en progression.",
+    "emergencesPole": "Un mouvement traverse plusieurs compétences de ce pôle : la cohérence entre prescription et application. La méthode itérative générer-évaluer-critiquer-régénérer prescrite aux apprenants Respire est aussi celle de l'auteur ; la procédure maïeutique enseignée pour les humains est appliquée à l'IA ; l'incident est traité selon la pédagogie qu'il enseigne. Une seconde observation : le pilotage se déploie à plusieurs horizons temporels simultanés sans que cette articulation soit vécue comme tension — le micro (le plan en cours), le méso (la formation des Maîtres) et le macro (les écoles qui survivront à l'auteur) cohabitent dans une même voix. Une troisième : la documentation est centrale dans la pratique — manuel de 600 pages, entrées de portfolio formalisées, modèles transmissibles, garde-fous nommés — la transmission passe d'abord par des artefacts écrits.",
+    "pistes": [
+      "Pour étendre la maïeutique à sa dimension humaine, un chemin possible serait de raconter une question posée à un apprenant à la place d'une réponse donnée, avec ce qui en a émergé chez l'autre.",
+      "Pour cristalliser le leadership situationnel, un chemin possible serait de décrire un moment où l'auteur a laissé l'IA mener une phase puis a repris le contrôle, avec le déclencheur précis de la reprise.",
+      "Pour ouvrir l'évaluation transformative à l'accompagnement d'un apprenant, un chemin possible serait de raconter un feedback transformatif donné à quelqu'un en progression, avec ses effets observés.",
+      "Pour étoffer la dimension conduite du changement, un chemin possible serait d'anticiper les résistances probables des premiers Tuteurs et de concevoir une ressource de transition."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le portfolio montre un travail de pilotage qui s'incarne dans deux gestes principaux : concevoir des dispositifs pédagogiques différenciés (quatre niveaux nommés, modèle QUOI/COMMENT, formation à la supervision IA) et tenir l'horizon long en structurant le présent. Le manuel de six cents pages atteste l'ampleur de la construction documentaire ; la procédure maïeutique appliquée à l'IA — nommer l'écart, qualifier sans complaisance, laisser l'espace de prise de conscience — fait apparaître la méthode pédagogique en acte. Une voix qui pilote depuis plusieurs niveaux à la fois (le plan immédiat, la formation des Maîtres, la survie du système après l'auteur) traverse l'entrée, avec une cohérence entre la prescription (à autrui) et l'application (à soi).\n\n## Territoires les plus denses\n\n**Documentation vivante.** Une construction documentaire massive (manuel de 600 pages), différenciée par audience (4 niveaux), explicitement ouverte à la révision et conçue pour survivre à son auteur. *\"Je suis passé de deux niveaux 'Tuteur' et 'Maître' à quatre niveaux 'Praticien', 'Expert', 'Maître' et 'Grand Maître', pour mieux répartir les concepts et ne pas rendre le parcours trop complexe.\"* La structure n'est pas un simple sommaire : c'est une architecture qui pense l'appropriation par différents lecteurs, et la déclaration de révisabilité fait de ce travail un objet vivant plutôt qu'un monument.\n\n**Maïeutique et facilitation d'apprentissage.** Une procédure pédagogique en trois temps explicitement nommée (nommer l'écart, qualifier sans complaisance, laisser l'espace) appliquée à l'IA, doublée d'une architecture pédagogique différenciée par niveaux. *\"Christian n'a pas : Corrigé lui-même silencieusement | Ignoré l'erreur | Accepté mes justifications post-hoc\"*. La maïeutique se reconnaît à ce que l'on ne fait pas autant qu'à ce que l'on fait — trois retenues nommées par négation dessinent la posture d'un pédagogue qui choisit de ne pas remplir l'espace de prise de conscience.\n\n**Vision stratégique et prospective.** Un lien explicite entre choix présent et futur anticipé : agir maintenant pour permettre la documentation après, prévoir les garde-fous avant le déploiement, construire pour des destinataires futurs nommés. *\"Tu lances les écoles sans savoir si elles survivront. La thèse viendra après, pour documenter ce qui aura marché.\"* La vision ne se déclare pas : elle structure une stratégie temporelle qui inverse l'ordre conventionnel (théoriser puis appliquer) au profit d'un ordre expérimental (lancer puis documenter).\n\n**Agilité et conduite du changement.** Une pratique itérative documentée (versions successives V1→V4 avec évaluation entre chaque) et des ajustements de plan motivés par des causes nommées en cours de route. *\"Je pense qu'il faudrait que je bascule sur Gemini pour générer le plan global et les prompts pour chaque module\"*. L'ajustement est méthodique : un déclencheur précis (saturation de Claude) appelle un déplacement précis (Gemini sur un périmètre défini), sans abandon du plan global.\n\n**Efficacité personnelle.** Un arbitrage articulé entre priorisation présente, allocation différée et critère opératoire (bande passante intellectuelle et physique). *\"Pour l'instant je dois me concentrer sur le plan des manuels, de manière à pouvoir utiliser mon break de La Ciotat pour faire générer les chapitres, les relire et les mettre en page : chose qui ne nécessitera pas beaucoup de bande passante intellectuelle et physique\"*. La gestion du temps n'est pas une optimisation infinie : c'est un alignement entre la nature des tâches et la fenêtre de bande passante qui leur convient — le renoncement stratégique est intégré.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuelques territoires de ce pôle restent à découvert dans cette feuille. Le leadership situationnel — au sens de l'alternance délibérée entre prise et lâcher du gouvernail, avec déclencheurs explicites de bascule — est entrevu par la bascule entre deux IA mais sans pleine spécificité. La gestion de crise en temps réel n'est pas mobilisée : le travail décrit ici est intensif mais pas en compression temporelle radicale. L'évaluation transformative est présente par son versant \"utiliser l'erreur comme matériau\" mais ne montre pas encore l'évaluation appliquée à un apprenant humain en progression.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn mouvement traverse plusieurs compétences de ce pôle : la cohérence entre prescription et application. La méthode itérative générer-évaluer-critiquer-régénérer prescrite aux apprenants Respire est aussi celle de l'auteur ; la procédure maïeutique enseignée pour les humains est appliquée à l'IA ; l'incident est traité selon la pédagogie qu'il enseigne. Une seconde observation : le pilotage se déploie à plusieurs horizons temporels simultanés sans que cette articulation soit vécue comme tension — le micro (le plan en cours), le méso (la formation des Maîtres) et le macro (les écoles qui survivront à l'auteur) cohabitent dans une même voix. Une troisième : la documentation est centrale dans la pratique — manuel de 600 pages, entrées de portfolio formalisées, modèles transmissibles, garde-fous nommés — la transmission passe d'abord par des artefacts écrits.\n\n## Pistes pour enrichir ce pôle\n\nPour étendre la maïeutique à sa dimension humaine, un chemin possible serait de raconter une question posée à un apprenant à la place d'une réponse donnée, avec ce qui en a émergé chez l'autre.\n\nPour cristalliser le leadership situationnel, un chemin possible serait de décrire un moment où l'auteur a laissé l'IA mener une phase puis a repris le contrôle, avec le déclencheur précis de la reprise.\n\nPour ouvrir l'évaluation transformative à l'accompagnement d'un apprenant, un chemin possible serait de raconter un feedback transformatif donné à quelqu'un en progression, avec ses effets observés.\n\nPour étoffer la dimension conduite du changement, un chemin possible serait d'anticiper les résistances probables des premiers Tuteurs et de concevoir une ressource de transition.\n"
+  }
+}

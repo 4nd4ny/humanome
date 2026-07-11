@@ -1,0 +1,674 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury qui a procédé à l'évaluation de son portfolio.",
+      "contexte": "Conception des logs orientée vers la conviction de l'apprenant — geste pédagogique : rendre intelligible une évaluation pour celui qu'elle concerne, plutôt que produire un verdict opaque.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Certes un étudiant pourrait toujours faire recours et avancer des arguments. L'enseignant sera alors seul juge, délégant ainsi 99% du travail aux IA évaluatives.",
+      "contexte": "Conception d'un dispositif d'évaluation à plusieurs niveaux où l'enseignant garde l'arbitrage final et 99% est délégué — architecture évaluative pensée pour servir la progression.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Le résultat d'évaluation d'un portfolio avec Sonnet est excellent (j'ai choisi celui de Charlotte le no 108). [...] Maintenant je travaille à appliquer ce code à un portfolio d'un autre apprenant : Patrick.",
+      "contexte": "Évaluation effective de portfolios d'apprenants nommés (Charlotte, Patrick) — pratique évaluative en cours plutôt que conception théorique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "C'est cool finalement ces poses imposées par les défauts de service d'Anthropic ou les limitations de forfait : ça me permet de mettre au clair mes idées en les formalisant dans le portfolio qui sert à la fois de psy, de moyen indirect d'informer Stéphane sur ce que je fais, et surtout de conserver une trace de l'historique de construction de toute cette architecture",
+      "contexte": "Le portfolio est explicitement nommé comme « trace de l'historique de construction » — intention de pérennisation pour un futur lecteur, structuration consciente.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Avec Claude Code, j'ai ajouté une couche bash + python. Le bash pilote le processus et le python exécute les parties nécessitant un traitement algorithmiques. Le tout invoque les prompts créés avec CoWork et Claude Web.",
+      "contexte": "Description différenciée des rôles techniques (bash pilote, python exécute, prompts orchestrent) — orchestration assumée d'agents et de couches avec rôles spécialisés.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai mis « au bol » un historien, un philosophe, un pédagogue, un créatif, un logicien, un anthropologue, afin d'avoir un jury capable de couvrir le spectre le plus complet possible de la diversité des points de vue",
+      "contexte": "Attribution de rôles différenciés aux agents IA d'un jury — leadership orchestrant un collège.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "le but ultime, depuis 2013, est le développement de l'intelligence à l'école.",
+      "contexte": "Visée long-terme reliée à un projet en cours — lien explicite entre futur projeté et décision présente.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Lorsque j'aurai finalisé le prototype, minimisé la consommation de tokens, et maximiser la parallélisation du traitement, alors je basculerai de la version hybride actuelle bash + python dans Claude Code à une application 100% Python, peut-être en LangChain, peut-être avec une base de données vectorielle pour les exemples et contre-exemples extraits des portfolios, permettant de créer une base d'évaluation commune.",
+      "contexte": "Vision technique projetée avec étapes conditionnelles : « lorsque… alors je basculerai » — projection multi-horizons avec critères de déclenchement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "ma priorité première était de développer un système qui marche. Maintenant que c'est validé, ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel",
+      "contexte": "Priorisation explicite avec justification (« maintenant que c'est validé, ma nouvelle priorité est… ») — arbitrage argumenté entre étapes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Donc on fait avec, c'est-à-dire que je vais moins vite et moins loin (pas d'achat de serveur pour faire de l'inférence locale - ni location de services en ligne - ni d'utilisation de clé API).",
+      "contexte": "Refus argumenté de trois investissements (serveur, services en ligne, clé API) — « non » multi-critères articulé sur les ressources disponibles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Hélas mon temps d'usage de Claude est particulièrement limité en ce moment : les pannes d'un côté, le quota du forfait moyen à 100$ de l'autre. Comme j'ai pris un abonnement annuel, je ne peux pas basculer sur un forfait 200$ pour un mois. Mais je pourrais utiliser un second compte uniquement pour ça [...] : le compte blanvillain@harmonia.education pour la mémoire des conversations [...] et le compte andany@harmonia.education réservé uniquement pour Claude Code",
+      "contexte": "Adaptation de l'organisation de travail face à une contrainte (quota) en redistribuant les usages entre deux comptes — itération sur le dispositif personnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Toute tentative de reprendre le travail manuellement serait absurde et contre-productive car nous introduirions des erreurs qu'il faudrait corriger plus tard. C'est donc le bon moment pour remplir son portfolio !",
+      "contexte": "Réaction à une panne : redirection vers une activité productive plutôt que retour au manuel — adaptation immédiate à un imprévu opérationnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Le code d'hier est opérationnel à un petit détail près que je suis en train de régler.",
+      "contexte": "Travail en versions successives (hier / aujourd'hui, code opérationnel mais en cours d'ajustement) — cycle court de prototypage.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Les logs sont conçus pour « convaincre » l'apprenant de la pertinence des décisions — geste qui adresse le savoir à l'autre comme destinataire actif plutôt que comme objet à juger."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Architecture d'évaluation à étages où l'apprenant peut faire recours — environnement d'apprentissage conçu pour que l'évalué reste sujet de l'évaluation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la maïeutique et la facilitation, je dois lire ces pièces comme du design technique sans intention pédagogique. La fiche distingue précisément la facilitation comme architecture pédagogique pensée pour l'apprentissage autonome. La pièce 1 inscrit dans l'architecture l'orientation vers la conviction de l'apprenant (rendre intelligible plutôt qu'imposer un verdict). La pièce 2 dessine une procédure de recours où l'apprenant peut argumenter — c'est la posture qui *adresse l'autre comme source* que la fiche valorise. Toutefois, ni l'une ni l'autre ne décrit l'acte maïeutique proprement dit (questions adressées en situation, retenue de celui qui sait) — seulement son armature architecturale.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Concevoir l'évaluation comme acte qui doit *convaincre* l'apprenant l'inscrit comme interlocuteur, pas comme objet — racine de la posture maïeutique." },
+            { "pieceId": 2, "motifResistance": "L'environnement de recours fait de l'apprenant un sujet actif qui peut argumenter — facilitation architecturale." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier qu'elles relèvent bien de 7.01 et pas seulement de 7.02 (acte évaluatif) ou de 6.03 (gouvernance). La fiche distingue : 7.01 = architecture pédagogique générale ; 7.02 = acte évaluatif spécifique avec critères. Ces deux pièces sont à la frontière : elles inscrivent un environnement où l'apprenant reste sujet, ce qui est davantage 7.01 par son intention pédagogique d'autonomie. Mais l'acte maïeutique au sens étroit (questions, retenue) n'est pas observable ici.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 7.02 (acte évaluatif) et 6.02 (explicabilité). Pour 7.01, l'orientation vers la conviction de l'apprenant relève de l'architecture pédagogique, mais la dimension maïeutique au sens strict (questionnement) n'est pas en acte."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'environnement de recours active aussi 6.03 (gouvernance algorithmique). Pour 7.01, il fait de l'apprenant un sujet actif, mais sans déployer la posture maïeutique propre."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à les ramener à du design pur ou à de la gouvernance. Elles ont tenu mais affaiblies : l'orientation vers la conviction de l'apprenant et l'environnement de recours inscrivent l'autre comme sujet actif, ce qui relève de la facilitation architecturale au sens de la fiche, mais l'acte maïeutique en situation (questions adressées, retenue de celui qui sait) n'est pas observable sur cette feuille. Ce qui reste, c'est une trace d'intention pédagogique inscrite dans l'architecture du dispositif, sans la pratique vive du questionnement.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Les deux pièces survivent affaiblies : intention pédagogique inscrite dans l'architecture (conviction de l'apprenant, recours), mais l'acte maïeutique propre (questionnement, retenue en situation) n'est pas en acte sur cette feuille.",
+        "prescription": "Pour clarifier ce dossier, un chemin possible serait de raconter un moment où l'apprenant a posé une question à un évalué (ou à un collègue) plutôt que de donner la réponse — ou bien de décrire en propre les questions méta-pédagogiques que le dispositif d'évaluation est conçu pour adresser à l'apprenant final."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception explicite des logs comme acte évaluatif qui doit « convaincre » l'apprenant — finalité formative orientée vers la progression plutôt que vers le tri."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Évaluation effective de portfolios d'apprenants nommés (Charlotte n°108, Patrick) avec usage du dispositif construit — pratique évaluative en cours."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Construction d'un jury à six rôles différenciés (historien, philosophe, pédagogue, créatif, logicien, anthropologue) pour couvrir un spectre — dispositif évaluatif inventé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'évaluation transformative, je dois lire ces pièces autrement. La fiche pose un critère central : la finalité — trier (sommatif) vs faire progresser (transformatif). La pièce 1 oriente explicitement vers la progression (rendre les décisions intelligibles pour que l'apprenant puisse les intégrer). La pièce 2 est un acte évaluatif en cours sur des portfolios réels. La pièce 3 conçoit un dispositif qui couvre la diversité des points de vue plutôt que de produire une note simple — c'est l'invention d'un dispositif évaluatif au sens de la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'orientation vers la conviction inscrit l'évaluation comme outil de progression (l'apprenant doit pouvoir intégrer le retour) plutôt que comme verdict de tri." },
+            { "pieceId": 2, "motifResistance": "Évaluation effective sur des cas réels — la pratique évaluative est en cours, pas seulement conçue." },
+            { "pieceId": 3, "motifResistance": "La conception du jury à six rôles différenciés est un dispositif évaluatif inventé qui dépasse la grille standard." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier qu'il s'agit bien d'évaluation transformative et pas seulement de conception de système. La pièce 1 inscrit la finalité formative ; la pièce 2 est l'application ; la pièce 3 est l'architecture. Ensemble, elles dessinent un travail évaluatif orienté progression. Toutefois, les critères articulés du retour à l'apprenant (que dira précisément le jury, dans quel format, avec quelles pistes concrètes) ne sont pas encore visibles — le dispositif est en cours d'élaboration, pas encore en pleine production.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'orientation est nommée comme priorité mais les logs effectifs convaincants ne sont pas encore montrés. Mouvement-vers l'évaluation transformative plutôt qu'acte évaluatif accompli."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le test sur le portfolio n°108 a produit un résultat (« excellent »), l'application à Patrick est en cours — pratique évaluative effective sur des cas nommés."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le collège à six rôles active aussi 1.07 et 6.07. Pour 7.02, l'invention d'un dispositif évaluatif différencié est valide, mais sa dimension transformative au sens strict (faire progresser plutôt que juger) reste implicite dans la composition disciplinaire elle-même."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de la conception sans finalité formative. La pièce sur l'évaluation effective de Charlotte et Patrick a tenu sans faiblir comme acte évaluatif en cours sur des cas réels. L'orientation vers la conviction de l'apprenant et le collège à six rôles ont tenu plus modestement, comme indices d'une finalité formative inscrite dans l'architecture sans déploiement encore visible. Ce qui reste, c'est un fil d'évaluation transformative en exercice, particulièrement net sur la pratique effective, avec une finalité progression inscrite dans le dispositif.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.65,
+        "motif": "L'application à des portfolios d'apprenants nommés (pièce 2) a passé le temps 2 sans faiblir comme pratique évaluative effective ; l'orientation vers la conviction (pièce 1) et le dispositif à six rôles (pièce 3) corroborent comme finalité formative inscrite.",
+        "prescription": "Pour consolider cette pratique, un chemin possible serait de joindre un extrait d'évaluation effective (sur Charlotte ou Patrick) qui montre comment le retour est formulé pour faire progresser plutôt que pour juger — quelles pistes concrètes le dispositif ouvre, comment l'apprenant peut s'en saisir."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Le portfolio est nommé explicitement comme « trace de l'historique de construction de toute cette architecture » — intention de pérennisation et conscience d'un usage futur."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Les logs sont conçus comme documentation lisible par un humain destinataire (l'apprenant) plutôt que comme journal technique brut."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la documentation vivante, je dois lire ces pièces autrement. La fiche distingue 7.03 (documentation structurée avec intention de capitalisation et conscience du destinataire) de 5.03 (narration réflexive personnelle). La pièce 1 nomme explicitement la fonction d'archivage du portfolio (« conserver une trace de l'historique de construction ») — c'est l'intention de pérennisation au sens de la fiche. La pièce 2 conçoit les logs comme documentation destinée à un humain — conscience du destinataire. Toutefois, la feuille elle-même ressemble plus à un journal réflexif (5.03) qu'à de la documentation structurée pour autrui : pas de versioning, pas de séparation explicite d'artefacts, pas de README.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La nomination explicite de la fonction d'archivage (« trace de l'historique de construction ») relève de l'intention de pérennisation que la fiche valorise." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Je dois vérifier qu'elle ne tombe pas sous 5.03. La fiche pose un critère : la *structuration* et la *conscience du destinataire*. Ici, la nomination du portfolio comme « trace de l'historique » indique une intention de capitalisation, mais la feuille elle-même n'est pas structurée pour un lecteur futur — c'est plutôt un journal du présent qui mentionne sa fonction d'archive. La trace tient comme indice plus que comme preuve.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La fiche distingue 7.03 et 5.03 par la structuration et la conscience du destinataire. Ici, l'intention de pérennisation est nommée mais la structuration de la feuille reste celle d'un journal réflexif. La trace tient comme indice de l'intention 7.03, sans atteindre la documentation structurée pleine."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à voir si la documentation vivante était en acte. La pièce sur les logs est tombée parce qu'ils sont conçus pour l'apprenant final (proche de 7.02) plutôt que comme archive structurée du savoir. La pièce sur le portfolio comme « trace de l'historique » a tenu affaiblie : l'intention de pérennisation est nommée, mais la structuration effective de la feuille reste celle d'un journal réflexif. Ce qui reste, c'est un indice d'intention 7.03 inscrite dans le portfolio comme objet, sans que la pratique documentaire vivante (versioning, README, séparation d'artefacts) ne soit observable sur cette feuille.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie subsiste : intention de pérennisation nommée (« trace de l'historique de construction ») mais la structuration de la feuille reste celle d'un journal réflexif sans versioning ni séparation explicite d'artefacts pour un lecteur futur.",
+        "prescription": "Pour clarifier ce dossier, un chemin possible serait de produire un artefact documentaire propre (README du projet jury-IA, changelog des versions du code, guide pour un futur enseignant qui reprendrait le dispositif) avec structuration explicite et conscience d'un lecteur identifié."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Attribution de rôles différenciés aux couches techniques (bash pilote / python exécute / prompts orchestrent) — hiérarchie de décision distribuée entre agents avec rôles spécialisés."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Attribution de rôles disciplinaires différenciés aux six personas du jury — orchestration consciente d'un collège d'agents IA."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Délégation explicite de 99% du travail aux IA évaluatives avec reprise du contrôle par l'enseignant en cas de recours — bascule de leadership à condition explicite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier le leadership situationnel, je dois lire ces pièces autrement. La fiche valorise précisément l'assignation de rôles différenciés à des agents IA, la définition d'une hiérarchie de décision et les règles de bascule explicites. La pièce 1 distribue les rôles entre couches techniques avec leurs responsabilités. La pièce 2 assigne des rôles disciplinaires aux six personas. La pièce 3 nomme la règle de bascule (recours → enseignant juge) — c'est un critère explicite de reprise de contrôle. La combinaison correspond à l'architecture de leadership distribué qu'évoque la fiche, avec critère de bascule documenté.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distribution explicite des rôles aux couches techniques (qui pilote, qui exécute, qui orchestre) — assignation de rôles différenciés validée par la fiche." },
+            { "pieceId": 2, "motifResistance": "Six personas avec rôles disciplinaires distincts pour couvrir un spectre — orchestration de collège d'agents IA." },
+            { "pieceId": 3, "motifResistance": "La règle de bascule (recours → enseignant juge) est explicite : c'est exactement le critère de reprise de contrôle que la fiche demande." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier qu'il y a bien alternance consciente, pas seulement délégation. La pièce 3 nomme explicitement la condition de bascule (le recours), ce qui correspond au critère central de la fiche. La pièce 1 distribue des rôles techniques mais ne raconte pas un moment où l'apprenant a *cédé* le lead ou *choisi de ne pas intervenir*. La pièce 2 idem : composition, pas alternance vécue. Le marqueur précis de la fiche (« décrire AUSSI des moments où il a cédé le lead ») n'est pleinement présent que dans la pièce 3.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La distribution active aussi 1.07 (architecture). Pour 7.04, c'est de l'assignation de rôles différenciés au sens hybride de la fiche, mais l'alternance consciente du leadership entre l'apprenant et les couches n'est pas racontée comme acte."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La composition est posée mais pas l'alternance vécue (« j'ai laissé le philosophe trancher / je suis revenu sur l'avis de l'historien »). La trace est de l'orchestration sans la pratique d'alternance."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La règle de bascule est explicite : 99% au jury IA, reprise du contrôle par l'enseignant en cas de recours. C'est la définition même du leadership situationnel avec critère de bascule documenté."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de l'architecture sans alternance. La règle de bascule sur le recours a tenu sans faiblir comme critère explicite de reprise de contrôle — exactement le marqueur central de la fiche. Les deux autres ont tenu plus modestement comme attribution de rôles différenciés (version hybride de la fiche), sans encore la pratique d'alternance vécue. Ce qui reste, c'est un fil de leadership orchestral net, particulièrement bien posé sur la règle de bascule, avec la dimension d'alternance vécue à approfondir.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "La règle de bascule explicite (pièce 3) a passé le temps 2 sans faiblir comme critère de reprise de contrôle — marqueur central de la fiche ; la distribution des rôles techniques (pièce 1) et la composition du collège (pièce 2) corroborent comme orchestration assumée.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de raconter un moment précis où l'apprenant a *cédé* le lead à un persona ou à une couche du dispositif (laissé un agent trancher contre sa première intuition), ou inversement où il a *choisi de ne pas intervenir* quand une issue contraire à son attente émergeait."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Visée long-terme depuis 2013 reliée au projet présent (« le but ultime, depuis 2013, est le développement de l'intelligence à l'école ») — lien explicite entre futur visé et décisions actuelles."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Projection technique multi-horizons : prototype → application 100% Python → LangChain → base vectorielle → base d'évaluation commune. Conditions de réalisation explicites (« lorsque j'aurai… alors »)."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Conception des logs orientée vers la conviction de l'apprenant à un horizon futur du dispositif déployé — vision pédagogique projetée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la vision stratégique et prospective, je dois lire ces pièces autrement. La fiche pose un critère central : le *lien argumenté* entre futur anticipé et décision présente. La pièce 1 ancre la visée actuelle dans un horizon de plus de douze ans (« depuis 2013 ») et nomme la finalité (« développement de l'intelligence à l'école »). La pièce 2 articule des étapes successives avec conditions de réalisation — « lorsque j'aurai finalisé… alors je basculerai » est exactement la formulation conditionnelle prospective de la fiche. La pièce 3 ancre une conception présente dans un horizon futur (le dispositif déployé doit convaincre des apprenants à venir).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le « depuis 2013 » ancre les décisions présentes dans un horizon long que la fiche valorise (lien explicite passé/présent/futur sur une visée tenue)." },
+            { "pieceId": 2, "motifResistance": "Les formulations conditionnelles (« lorsque… alors je basculerai ») correspondent exactement aux marqueurs obliques de la fiche (« quand ce sera mature », « si la technologie le permet »)." },
+            { "pieceId": 3, "motifResistance": "La conception est orientée vers un usage futur (apprenants destinataires d'un dispositif déployé) — anticipation d'audience qui guide l'architecture actuelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier que ce sont bien des liens argumentés futur→présent et pas de la simple temporisation. La pièce 1 fonde la visée actuelle sur un horizon de 13 ans — le lien est argumenté (« le but ultime, depuis 2013, est… »). La pièce 2 trace une progression technique avec critères de bascule — c'est de la prospective conditionnelle déployée. La pièce 3 est plus déclarative : la conviction des apprenants futurs guide la conception, mais sans déploiement de plusieurs scénarios.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Treize ans de visée tenue + nomination de la finalité = lien argumenté entre futur visé et décisions présentes. La pièce ne se limite pas à une déclaration : elle relie un projet présent à un horizon long."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'enchaînement « prototype → 100% Python → LangChain → base vectorielle → base d'évaluation commune » avec conditions de bascule explicites est une projection prospective déployée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'anticipation d'audience est posée mais sans déploiement de plusieurs scénarios. Trace réelle, indice plutôt que preuve."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de la simple temporisation. Elles ont toutes tenu. La visée « depuis 2013 » a tenu sans faiblir comme lien argumenté entre passé tenu et présent actif. La projection technique multi-horizons a tenu sans faiblir comme prospective conditionnelle déployée. L'anticipation d'audience pour le dispositif déployé a tenu plus modestement. Ce qui reste, c'est un fil prospectif particulièrement dense sur cette feuille, articulant horizon long (13 ans), prospective conditionnelle multi-étapes, et anticipation d'usage.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.82,
+        "motif": "La visée depuis 2013 (pièce 1) et la prospective technique conditionnelle (pièce 2) ont passé le temps 2 sans faiblir comme liens argumentés futur→présent ; l'anticipation d'audience (pièce 3) corrobore.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de produire des scénarios alternatifs explicites pour la prochaine bascule (Python + LangChain) : « si les modèles open source rivalisent, alors X ; si pas avant fin d'année, alors Y » — afin de rendre la prospective conditionnelle pleinement multi-domaines."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Refus argumenté de trois investissements (serveur, services en ligne, clé API) lié à la contrainte budgétaire — « non » multi-critères articulé."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Arbitrage explicite entre étapes : « ma priorité première était… ma nouvelle priorité est… » avec critère de transition (« maintenant que c'est validé »)."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Adaptation de l'organisation de travail face à la contrainte de quota par redistribution des usages entre deux comptes — pilotage des ressources personnelles."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Décision de ne pas reprendre le travail manuellement pendant la panne, mais de remplir le portfolio — refus argumenté qui préserve la qualité future."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'efficacité personnelle, je dois lire ces pièces autrement. La fiche pose un critère central : le « non » stratégique argumenté est le marqueur le plus fiable. La pièce 1 est exactement cela : trois refus alignés (serveur, cloud, API) avec justification (budget). La pièce 2 articule un arbitrage explicite entre étapes avec critère de transition. La pièce 3 décrit une réorganisation des ressources personnelles (deux comptes pour différencier usages). La pièce 4 est un autre refus argumenté (ne pas faire manuellement → préserver la qualité). La fiche valorise précisément ce type de processus de délibération.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Trois refus alignés avec critère commun (budget) — « non » multi-critères articulé que la fiche valorise comme marqueur fiable." },
+            { "pieceId": 2, "motifResistance": "Arbitrage entre étapes avec critère de transition (« maintenant que c'est validé ») — priorisation argumentée." },
+            { "pieceId": 3, "motifResistance": "Réorganisation des ressources personnelles (deux comptes) — pilotage opérationnel de l'attention et du quota." },
+            { "pieceId": 4, "motifResistance": "Refus argumenté du travail manuel (ne pas introduire d'erreurs) — délibération interne entre tentation et critère." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté. Je dois vérifier qu'il s'agit bien de renoncement stratégique et pas de simple gestion de contrainte. La pièce 1 est claire : le « non » est articulé sur des critères de ressources. La pièce 2 est un arbitrage entre priorités, ce qui est exactement 7.06. La pièce 3 est un bricolage d'organisation des ressources. La pièce 4 est le marqueur le plus net de la fiche : « tentation suivie d'un refus argumenté ».",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le « non » multi-critères est explicite avec justification commune. C'est exactement le marqueur le plus fiable de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'arbitrage est nommé avec critère de transition, ce qui répond précisément à « j'ai fait passer X avant Y parce que… » que la fiche valorise."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 5.06 (débrouillardise). Pour 7.06, le pilotage des ressources personnelles est valide — différenciation d'usages entre comptes pour maintenir la capacité de travail."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce articule tentation potentielle (reprendre manuellement) et refus argumenté (coût des erreurs futures) — délibération interne au sens strict de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces quatre pièces, j'ai cherché à les ramener à de la submersion ou à de la simple gestion. Trois ont tenu sans faiblir : le « non » multi-critères sur les investissements, l'arbitrage entre priorités avec critère de transition, et le refus argumenté du travail manuel. La réorganisation à deux comptes a tenu plus modestement, partagée avec la débrouillardise. Ce qui reste, c'est un fil d'efficacité personnelle particulièrement dense sur cette feuille : refus stratégiques alignés, priorisation argumentée, pilotage opérationnel des ressources, délibération entre tentation et critère. La feuille rend visible le raisonnement de priorisation à plusieurs moments.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.82,
+        "motif": "Les pièces 1, 2 et 4 ont passé le temps 2 sans faiblir comme « non » stratégiques argumentés et priorisation explicite — marqueurs les plus fiables de la fiche ; la pièce 3 corrobore comme pilotage opérationnel des ressources.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de noter, en marge des décisions de refus, l'énergie ou le temps préservés par chaque renoncement — ce qui rendrait visible le bénéfice net du « non » stratégique au-delà de la délibération."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Travail en versions successives : « Le code d'hier est opérationnel à un petit détail près que je suis en train de régler » — cycle court de prototypage en cours."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Ajustement de priorités en cours de route avec raison explicitée (« maintenant que c'est validé, ma nouvelle priorité est… ») — modification du plan en fonction d'un point de validation."
+        },
+        {
+          "numero": 3,
+          "pid": 12,
+          "contexte": "Réaction immédiate à un imprévu (panne) par redirection vers une autre activité productive — ajustement de plan en temps réel."
+        },
+        {
+          "numero": 4,
+          "pid": 11,
+          "contexte": "Adaptation du dispositif personnel (deux comptes) en réponse à une nouvelle contrainte (quota) — bricolage adaptatif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'agilité et la conduite du changement, je dois lire ces pièces autrement. La fiche valorise le travail en versions successives, l'ajustement de plan avec raison explicitée, l'adaptation aux imprévus. La pièce 1 décrit un cycle court (hier / aujourd'hui avec ajustement). La pièce 2 modifie explicitement le plan en cours, avec raison. La pièce 3 réagit à un imprévu par redirection productive. La pièce 4 adapte le dispositif personnel face à une nouvelle contrainte. La dimension « conduite du changement » au sens d'accompagnement humain des transitions (élèves, équipe, public) n'apparaît pas — seulement la dimension agile (itération structurée).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Cycle court hier/aujourd'hui avec ajustement en cours — pratique itérative ancrée." },
+            { "pieceId": 2, "motifResistance": "Modification du plan avec raison explicitée — critère d'ajustement nommé." },
+            { "pieceId": 3, "motifResistance": "Réaction à imprévu par redirection productive — adaptation en temps réel." },
+            { "pieceId": 4, "motifResistance": "Adaptation du dispositif face à nouvelle contrainte — itération sur l'organisation personnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté. Je dois vérifier qu'il s'agit bien d'agilité (adaptation structurée) et pas d'improvisation ni d'opportunisme. La pièce 1 est de l'itération courte. La pièce 2 est explicitement un ajustement avec raison. La pièce 3 est une réponse rationnelle (pas une fuite). La pièce 4 est un bricolage justifié. Toutefois, la dimension conduite du changement (accompagner humainement des transitions) n'est pas présente — c'est purement de l'agilité personnelle ou technique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le travail hier/aujourd'hui avec un détail en cours de réglage est exactement le cycle itératif ancré que la fiche valide comme « numéro de version élevé sans commentaire méthodologique »."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'ajustement du plan est nommé avec raison (« maintenant que c'est validé ») — adaptation structurée typique de l'agilité au sens de la fiche."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 5.01 (antifragilité) et 7.06. Pour 7.07, c'est un ajustement de plan en temps réel face à un imprévu — version partielle de la compétence sans dimension de conduite du changement humain."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 7.06 (efficacité personnelle). Pour 7.07, c'est de l'itération sur le dispositif personnel face à une contrainte évolutive — agilité personnelle valide mais sans dimension conduite du changement."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces quatre pièces, j'ai cherché à les ramener à de l'opportunisme ou à de l'improvisation. Les deux premières ont tenu sans faiblir comme pratique itérative ancrée (cycle court hier/aujourd'hui, ajustement avec raison). Les deux autres ont tenu plus modestement comme ajustements en temps réel ou itération sur le dispositif personnel. Ce qui reste, c'est une pratique d'agilité particulièrement nette sur la dimension itérative et adaptative, sans déploiement de la dimension conduite du changement humain. La nuance assumée : sur cette feuille, l'agilité est solo et technique, sans accompagnement de transitions vécues par d'autres acteurs.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "Les pièces 1 et 2 ont passé le temps 2 sans faiblir comme pratique itérative ancrée avec ajustement raisonné ; les pièces 3 et 4 corroborent comme adaptations en temps réel et itération sur le dispositif personnel.",
+        "prescription": "Pour ouvrir la dimension conduite du changement, un chemin possible serait de décrire un moment où la transition vers le nouveau dispositif (jury IA) sera vécue par un autre acteur (apprenant, enseignant en recours, futur utilisateur du système) — quelles résistances anticiper, quelles ressources de transition créer."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 12,
+          "contexte": "Réaction à une panne de Claude par une décision immédiate (ne pas faire manuellement, basculer sur le portfolio) — réponse à un imprévu mais sans compression temporelle radicale ni urgence vitale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la gestion de crise en temps réel, je dois lire cette pièce autrement. La fiche est très exigeante : crise = imprévu + urgence vitale + décisions rapides en cascade. La pièce décrit un imprévu (panne de Claude) et une décision immédiate, mais pas d'urgence vitale (pour le projet, le système, l'organisation) — il s'agit d'une interruption gérable, pas d'une crise. La fiche met explicitement en garde : « stress ordinaire (deadline, examen, présentation) n'est pas une crise ». Une panne d'IA dans un projet personnel ne franchit pas le seuil de la crise au sens strict. La pièce ne survit pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai testé si la réponse à la panne de Claude pouvait être lue comme gestion de crise. La fiche est claire : il faut imprévu + urgence vitale + décisions rapides en cascade. Ici, la panne est un imprévu mais la décision (suspendre, basculer sur le portfolio) est posée sereinement et n'engage pas une cascade. La compression temporelle radicale, le triage sous pression, le passage en mode dégradé proactif — rien de tout cela. Le territoire est non visité sur cette feuille.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La seule pièce extractible (réponse à la panne de Claude) décrit un imprévu sans compression temporelle radicale ni urgence vitale — le seuil que la fiche pose pour distinguer crise et stress ordinaire n'est pas franchi.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de décrire un incident technique ou organisationnel passé géré sous pression temporelle réelle (avec horodatages, séquence de décisions, mentions des erreurs commises pendant l'action) — ou bien de produire un runbook préventif pour le dispositif d'évaluation construit."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail montre un pilotage personnel dense et lucide, articulé à une vision longue. La feuille du 27 mars relate des refus argumentés (« pas d'achat de serveur, ni de cloud, ni de clé API »), des arbitrages de priorité avec critères de transition (« maintenant que c'est validé, ma nouvelle priorité est… »), un cycle court hier/aujourd'hui sur un code en cours d'ajustement, et une projection technique multi-horizons (prototype → Python pur → LangChain → base vectorielle). La visée tenue depuis 2013 (« le développement de l'intelligence à l'école ») fonde l'ensemble dans un horizon long. L'apprenant orchestre aussi un collège d'agents IA avec rôles différenciés et règle de bascule explicite vers l'enseignant en cas de recours. La voix dominante est celle d'un pilote qui sait dire non, qui priorise ouvertement, et qui adapte le plan en cours de route. Les dimensions plus collectives (conduite du changement vécue par d'autres acteurs, documentation structurée pour des lecteurs identifiés, gestion de crise sous compression temporelle radicale) restent à l'écart d'une feuille à dominante d'autopilotage solo.",
+    "territoiresDenses": [
+      {
+        "competence": "Efficacité personnelle",
+        "description": "« Non » multi-critères articulés (refus de trois investissements liés à la contrainte budgétaire), arbitrage explicite entre priorités avec critère de transition, délibération entre tentation et critère sur le travail manuel pendant la panne.",
+        "extraitVerbatim": "Donc on fait avec, c'est-à-dire que je vais moins vite et moins loin (pas d'achat de serveur pour faire de l'inférence locale - ni location de services en ligne - ni d'utilisation de clé API).",
+        "ceQueCaDit": "Le « non » stratégique argumenté est le marqueur le plus fiable de cette compétence, et il apparaît plusieurs fois sur cette feuille avec des critères explicites. La feuille rend visible le raisonnement de priorisation, ce qui distingue l'efficacité personnelle de la simple submersion."
+      },
+      {
+        "competence": "Vision stratégique & prospective",
+        "description": "Visée tenue depuis 2013 reliée au projet présent, projection technique conditionnelle multi-étapes (« lorsque j'aurai… alors je basculerai »), anticipation d'audience pour le dispositif déployé.",
+        "extraitVerbatim": "Lorsque j'aurai finalisé le prototype, minimisé la consommation de tokens, et maximiser la parallélisation du traitement, alors je basculerai de la version hybride actuelle bash + python dans Claude Code à une application 100% Python, peut-être en LangChain, peut-être avec une base de données vectorielle",
+        "ceQueCaDit": "Le lien argumenté entre futur anticipé et décision présente est articulé à plusieurs échelles : horizon long (13 ans depuis 2013), horizon moyen (prochaine bascule architecturale avec critères de déclenchement), horizon proche (le détail en cours de réglage). La prospective conditionnelle est pleinement déployée."
+      },
+      {
+        "competence": "Agilité & conduite du changement",
+        "description": "Travail en versions successives avec ajustement en cours, modification de plan avec raison explicitée, réponse à des imprévus par adaptation structurée du dispositif personnel.",
+        "extraitVerbatim": "Le code d'hier est opérationnel à un petit détail près que je suis en train de régler. Maintenant je travaille à appliquer ce code à un portfolio d'un autre apprenant : Patrick.",
+        "ceQueCaDit": "Le cycle court hier/aujourd'hui sans commentaire méthodologique signale une pratique itérative ancrée. La dimension conduite du changement vécue par d'autres acteurs reste à venir, mais la dimension agile (itération structurée, ajustement raisonné) est en exercice."
+      },
+      {
+        "competence": "Leadership situationnel & orchestration",
+        "description": "Règle de bascule explicite (99% au jury IA, reprise du contrôle par l'enseignant en cas de recours), attribution de rôles différenciés aux couches techniques et aux six personas du jury.",
+        "extraitVerbatim": "Certes un étudiant pourrait toujours faire recours et avancer des arguments. L'enseignant sera alors seul juge, délégant ainsi 99% du travail aux IA évaluatives.",
+        "ceQueCaDit": "La règle de bascule est exactement le critère de reprise de contrôle que la fiche valorise. La délégation est délimitée (99%) et le déclencheur de reprise est nommé (le recours). L'orchestration du collège d'agents IA prolonge cette pensée du qui-mène-quand."
+      },
+      {
+        "competence": "Évaluation transformative",
+        "description": "Pratique évaluative effective sur des portfolios d'apprenants nommés (Charlotte n°108, Patrick) avec le dispositif construit, et orientation explicite des logs vers la conviction de l'apprenant.",
+        "extraitVerbatim": "Le résultat d'évaluation d'un portfolio avec Sonnet est excellent (j'ai choisi celui de Charlotte le no 108). [...] Maintenant je travaille à appliquer ce code à un portfolio d'un autre apprenant : Patrick.",
+        "ceQueCaDit": "L'évaluation n'est pas seulement conçue, elle est pratiquée sur des cas réels. L'orientation vers la conviction de l'apprenant inscrit la finalité formative dans l'architecture — l'évaluation est pensée comme outil de progression, pas comme verdict de tri."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à l'écart sur cette feuille. La maïeutique au sens strict (questions adressées en situation, retenue de celui qui sait) n'est pas en acte — seule son armature architecturale apparaît à travers l'orientation vers la conviction et la procédure de recours. La documentation vivante au sens de la fiche (structuration pour un destinataire identifié, versioning explicite, séparation d'artefacts) reste à l'état d'intention nommée — le portfolio est dit « trace de l'historique » sans encore présenter la structure d'une base de connaissances accessible. La conduite du changement vécue par d'autres acteurs (élèves, enseignants, futurs utilisateurs du dispositif) n'est pas représentée sur cette feuille à dominante d'autopilotage. La gestion de crise en temps réel ne franchit pas le seuil que la fiche pose pour distinguer crise et stress ordinaire — la panne de Claude est gérée sereinement, pas dans la compression temporelle radicale.",
+    "emergencesPole": "Trois observations traversent ce pôle. D'abord, le pilotage est ici principalement personnel : refus, priorités, ajustements, adaptations — tout passe par la délibération d'un seul acteur. La dimension collective (équipes accompagnées, transitions humaines facilitées, formations conduites) reste hors champ de cette feuille. Ensuite, l'horizon long ancre le présent : la visée « depuis 2013 » donne aux décisions techniques d'aujourd'hui un sens qui dépasse le cycle court — la prospective n'est pas un exercice séparé du faire. Enfin, le dispositif d'évaluation construit cristallise plusieurs compétences à la fois : l'évaluation transformative (orientation vers la progression), le leadership orchestral (règle de bascule, six personas), la maïeutique architecturale (conviction de l'apprenant), la prospective (audience future) — comme si le projet en cours était lui-même un terrain d'intégration de la pédagogie et du pilotage.",
+    "pistes": [
+      "Pour ouvrir la dimension maïeutique en acte, un chemin possible serait de raconter un moment où l'apprenant a posé une question à un évalué (Charlotte, Patrick) plutôt que de donner la réponse, ou de décrire les questions méta-pédagogiques que le dispositif est conçu pour adresser.",
+      "Pour ancrer la documentation vivante, un chemin possible serait de produire un artefact documentaire propre (README du projet jury-IA, changelog des versions, guide pour un futur enseignant) avec structuration explicite et conscience d'un lecteur identifié.",
+      "Pour ouvrir la dimension conduite du changement, un chemin possible serait de décrire un moment où la transition vers le nouveau dispositif sera vécue par un autre acteur — quelles résistances anticiper, quelles ressources de transition créer.",
+      "Pour rendre visible le bénéfice net des refus stratégiques, un chemin possible serait de noter, en marge des décisions de « non », l'énergie ou le temps préservés par chaque renoncement.",
+      "Pour déployer la prospective conditionnelle multi-domaines, un chemin possible serait de produire des scénarios alternatifs explicites pour la prochaine bascule architecturale (« si les modèles open source rivalisent, alors X ; sinon, alors Y »)."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail montre un pilotage personnel dense et lucide, articulé à une vision longue. La feuille du 27 mars relate des refus argumentés (« pas d'achat de serveur, ni de cloud, ni de clé API »), des arbitrages de priorité avec critères de transition (« maintenant que c'est validé, ma nouvelle priorité est… »), un cycle court hier/aujourd'hui sur un code en cours d'ajustement, et une projection technique multi-horizons (prototype → Python pur → LangChain → base vectorielle). La visée tenue depuis 2013 (« le développement de l'intelligence à l'école ») fonde l'ensemble dans un horizon long. L'apprenant orchestre aussi un collège d'agents IA avec rôles différenciés et règle de bascule explicite vers l'enseignant en cas de recours. La voix dominante est celle d'un pilote qui sait dire non, qui priorise ouvertement, et qui adapte le plan en cours de route. Les dimensions plus collectives (conduite du changement vécue par d'autres acteurs, documentation structurée pour des lecteurs identifiés, gestion de crise sous compression temporelle radicale) restent à l'écart d'une feuille à dominante d'autopilotage solo.\n\n## Territoires les plus denses\n\n**Efficacité personnelle.** « Non » multi-critères articulés (refus de trois investissements liés à la contrainte budgétaire), arbitrage explicite entre priorités avec critère de transition, délibération entre tentation et critère sur le travail manuel pendant la panne. *« Donc on fait avec, c'est-à-dire que je vais moins vite et moins loin (pas d'achat de serveur pour faire de l'inférence locale - ni location de services en ligne - ni d'utilisation de clé API). »* Le « non » stratégique argumenté est le marqueur le plus fiable de cette compétence, et il apparaît plusieurs fois sur cette feuille avec des critères explicites. La feuille rend visible le raisonnement de priorisation, ce qui distingue l'efficacité personnelle de la simple submersion.\n\n**Vision stratégique & prospective.** Visée tenue depuis 2013 reliée au projet présent, projection technique conditionnelle multi-étapes (« lorsque j'aurai… alors je basculerai »), anticipation d'audience pour le dispositif déployé. *« Lorsque j'aurai finalisé le prototype, minimisé la consommation de tokens, et maximiser la parallélisation du traitement, alors je basculerai de la version hybride actuelle bash + python dans Claude Code à une application 100% Python, peut-être en LangChain, peut-être avec une base de données vectorielle »* Le lien argumenté entre futur anticipé et décision présente est articulé à plusieurs échelles : horizon long (13 ans depuis 2013), horizon moyen (prochaine bascule architecturale avec critères de déclenchement), horizon proche (le détail en cours de réglage). La prospective conditionnelle est pleinement déployée.\n\n**Agilité & conduite du changement.** Travail en versions successives avec ajustement en cours, modification de plan avec raison explicitée, réponse à des imprévus par adaptation structurée du dispositif personnel. *« Le code d'hier est opérationnel à un petit détail près que je suis en train de régler. Maintenant je travaille à appliquer ce code à un portfolio d'un autre apprenant : Patrick. »* Le cycle court hier/aujourd'hui sans commentaire méthodologique signale une pratique itérative ancrée. La dimension conduite du changement vécue par d'autres acteurs reste à venir, mais la dimension agile (itération structurée, ajustement raisonné) est en exercice.\n\n**Leadership situationnel & orchestration.** Règle de bascule explicite (99% au jury IA, reprise du contrôle par l'enseignant en cas de recours), attribution de rôles différenciés aux couches techniques et aux six personas du jury. *« Certes un étudiant pourrait toujours faire recours et avancer des arguments. L'enseignant sera alors seul juge, délégant ainsi 99% du travail aux IA évaluatives. »* La règle de bascule est exactement le critère de reprise de contrôle que la fiche valorise. La délégation est délimitée (99%) et le déclencheur de reprise est nommé (le recours). L'orchestration du collège d'agents IA prolonge cette pensée du qui-mène-quand.\n\n**Évaluation transformative.** Pratique évaluative effective sur des portfolios d'apprenants nommés (Charlotte n°108, Patrick) avec le dispositif construit, et orientation explicite des logs vers la conviction de l'apprenant. *« Le résultat d'évaluation d'un portfolio avec Sonnet est excellent (j'ai choisi celui de Charlotte le no 108). […] Maintenant je travaille à appliquer ce code à un portfolio d'un autre apprenant : Patrick. »* L'évaluation n'est pas seulement conçue, elle est pratiquée sur des cas réels. L'orientation vers la conviction de l'apprenant inscrit la finalité formative dans l'architecture — l'évaluation est pensée comme outil de progression, pas comme verdict de tri.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à l'écart sur cette feuille. La maïeutique au sens strict (questions adressées en situation, retenue de celui qui sait) n'est pas en acte — seule son armature architecturale apparaît à travers l'orientation vers la conviction et la procédure de recours. La documentation vivante au sens de la fiche (structuration pour un destinataire identifié, versioning explicite, séparation d'artefacts) reste à l'état d'intention nommée — le portfolio est dit « trace de l'historique » sans encore présenter la structure d'une base de connaissances accessible. La conduite du changement vécue par d'autres acteurs (élèves, enseignants, futurs utilisateurs du dispositif) n'est pas représentée sur cette feuille à dominante d'autopilotage. La gestion de crise en temps réel ne franchit pas le seuil que la fiche pose pour distinguer crise et stress ordinaire — la panne de Claude est gérée sereinement, pas dans la compression temporelle radicale.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, le pilotage est ici principalement personnel : refus, priorités, ajustements, adaptations — tout passe par la délibération d'un seul acteur. La dimension collective (équipes accompagnées, transitions humaines facilitées, formations conduites) reste hors champ de cette feuille. Ensuite, l'horizon long ancre le présent : la visée « depuis 2013 » donne aux décisions techniques d'aujourd'hui un sens qui dépasse le cycle court — la prospective n'est pas un exercice séparé du faire. Enfin, le dispositif d'évaluation construit cristallise plusieurs compétences à la fois : l'évaluation transformative (orientation vers la progression), le leadership orchestral (règle de bascule, six personas), la maïeutique architecturale (conviction de l'apprenant), la prospective (audience future) — comme si le projet en cours était lui-même un terrain d'intégration de la pédagogie et du pilotage.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir la dimension maïeutique en acte, un chemin possible serait de raconter un moment où l'apprenant a posé une question à un évalué (Charlotte, Patrick) plutôt que de donner la réponse, ou de décrire les questions méta-pédagogiques que le dispositif est conçu pour adresser.\n- Pour ancrer la documentation vivante, un chemin possible serait de produire un artefact documentaire propre (README du projet jury-IA, changelog des versions, guide pour un futur enseignant) avec structuration explicite et conscience d'un lecteur identifié.\n- Pour ouvrir la dimension conduite du changement, un chemin possible serait de décrire un moment où la transition vers le nouveau dispositif sera vécue par un autre acteur — quelles résistances anticiper, quelles ressources de transition créer.\n- Pour rendre visible le bénéfice net des refus stratégiques, un chemin possible serait de noter, en marge des décisions de « non », l'énergie ou le temps préservés par chaque renoncement.\n- Pour déployer la prospective conditionnelle multi-domaines, un chemin possible serait de produire des scénarios alternatifs explicites pour la prochaine bascule architecturale (« si les modèles open source rivalisent, alors X ; sinon, alors Y »)."
+  }
+}

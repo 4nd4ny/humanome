@@ -1,0 +1,626 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "j'ai terminé de lire le manuel du Tuteur Praticien : c'est excellent ! Il y a quelques erreurs, mais pas trop. Le dernier chapitre peut être réduit à la section 5.1 (la 5.2 n'est que du \"bruit\") mais dans l'ensemble ça colle bien avec ce que je voulais.",
+      "contexte": "Lecture critique d'un manuel produit antérieurement avec identification de défauts précis et propositions de coupes ; pourrait activer pensée critique (1.01) et cadrage (1.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Les 4 manuels forment un ensemble cohérent avec ce que je voulais faire dans mes classes : c'est de la noèsiologie appliquée et pas de la masturbation intellectuelle.",
+      "contexte": "Bilan d'ensemble sur la cohérence d'un corpus en quatre volumes, avec distinction qualitative entre théorie appliquée et théorie pour elle-même ; pourrait activer synthèse intégrative (1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "maintenant que j'ai amélioré les travaux de Reuven Feuerstein, ça me donne envie de supprimer I-E-O pour introduire dès le niveau Praticien, mon modèle ou éventuellement celui de Pierre Vianin qui est plus simple ? Ou peut-être pas : conserver une approche épistémique de la compréhension des mécanismes cognitifs est peut-être meilleur pour diminuer la complexité ? Je déciderai en lisant le manuel du Maître.",
+      "contexte": "Délibération à voix haute sur une décision pédagogique de fond, avec arguments contraires et report de la décision à l'achèvement d'une autre lecture ; pourrait activer pensée critique (1.01), cadrage (1.02), synthèse (1.03) et métacognition (1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Je pense qu'avec Respire j'ai réussi à aller jusqu'au bout de mes idées sur l'école, en intégrant les IA dans ma pédagogie (ce qui n'était pas gagné d'avance).",
+      "contexte": "Bilan d'intégration entre un dispositif pédagogique et l'IA, avec reconnaissance que l'intégration n'était pas évidente ; pourrait activer synergie hybride (1.10) et synthèse intégrative (1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Pour l'Eclaireur j'ai besoin de lire encore et de réfléchir aux obstacles et à la valeur ajoutée que le manuel pourra apporter : ce n'est pas comme le reste qui formalisait des années de réflexions.",
+      "contexte": "Distinction entre un manuel qui formalise un acquis et un manuel qui aborde un territoire encore peu pensé, avec besoin annoncé de réflexion supplémentaire ; pourrait activer cadrage (1.02) et métacognition (1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "je vais m'attaquer à la dernière pièce manquante du puzzle : les prompts pour assister les tuteurs dans leur travail de lecture et de cartographie des portfolios. J'ajouterai alors un chapitre dans le manuel Praticien pour expliquer comment utiliser les IA pour pré-macher le travail d'analyse des portfolios, complémentaire à leur analyse in vivo, au sein de la micro-classe.",
+      "contexte": "Conception d'un dispositif IA-tuteur avec répartition explicite des rôles (IA prémâche, tuteur analyse in vivo) ; pourrait activer architecture systèmes IA (1.07), dialogue IA avancé (1.08) et synergie hybride (1.10).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "L'unité des cartographies sera le nombre d'occurrence, quelque soit la durée de la tâche ou sa complexité pour le moment. On verra s'il faudra pondérer ça lorsqu'on aura les premières classes.",
+      "contexte": "Choix méthodologique de mesure, assumé comme provisoire et ajustable à l'épreuve du terrain ; pourrait activer pensée systémique (1.05) et pensée computationnelle (1.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Arg… J'ai commencé le premier chapitre du manuel de l'Expert et il a halluciné le référentiel de compétences (les 11 irréductibles) ! J'ai du oublier d'inclure une pièce jointe au moment de la génération du plan et avec la précipitation du départ, je n'ai pas pu relire les prompts générés. Ce n'est pas grave, juste un chapitre à régénérer normalement.",
+      "contexte": "Détection d'une hallucination IA avec diagnostic causal de sa propre erreur (pièce jointe oubliée, prompts non relus) ; pourrait activer pensée critique (1.01), littératie IA (1.06), dialogue IA avancé (1.08) et métacognition (1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "La suite à l'air d'aller. C'est amusant de voir comment il a interprété les compétences humaines. C'est juste pas en rapport avec ce que l'on peut observer en classe, mais intéressant quand même de voir comme Claude perçoit les humains.",
+      "contexte": "Distance critique amusée face à l'interprétation IA, avec décrochage entre la production du modèle et l'observation terrain ; pourrait activer pensée critique (1.01) et littératie IA (1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Je me souviens avoir bâclé la génération du référentiel de compétences, sachant qu'il allait être de toute façon redéfini via Decidim. Mais du coup ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales.",
+      "contexte": "Reconnaissance qu'une exécution bâclée a produit un meilleur cadrage que prévu (catégories au lieu d'éléments) ; pourrait activer cadrage par la contrainte (1.02) et métacognition (1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Claude les a appelé les compétences irréductibles (je ne lui ai pas demandé pourquoi). Mais je crois que je devrais en imposer quelques unes quand même, plus concrètes, pour au moins les utiliser comme exemple dans la documentation en disant que l'on explique le principe mais qu'il faut ensuite adapter bien évidemment aux référentiels vivants co-construits avec la société civile.",
+      "contexte": "Observation d'un choix lexical de l'IA non interrogé sur le moment, puis décision de réinjection de compétences concrètes à titre d'exemple ; pourrait activer dialogue IA avancé (1.08) et littératie IA (1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Dans mes bookmarks j'ai des aupers référentiels officiels européens, je pourrais aussi juste me baser sur ces travaux qui seront se toute façon meilleur que ce que je peux faire seul.",
+      "contexte": "Reconnaissance explicite de la limite de sa production solo face à des travaux institutionnels existants ; pourrait activer humilité épistémique (1.04) et pensée critique (1.01).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Lecture critique d'un manuel avec identification de défauts précis (erreurs, section qui n'est que du \"bruit\"). Acte d'évaluation critique d'une production, même la sienne."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Détection explicite d'une hallucination IA et diagnostic causal personnel de l'erreur (pièce jointe oubliée, prompts non relus). Vérification a posteriori, doute calibré."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Distance critique sur la production IA, avec articulation de l'écart entre l'interprétation du modèle et le réel observable en classe."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Auto-évaluation lucide de sa production face à des travaux institutionnels potentiellement meilleurs ; doute appliqué à sa propre œuvre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en m'attendant à ne trouver que des constats ordinaires de relecture. La pensée critique au sens de 1.01 demande un doute méthodique calibré, pas seulement un jugement de qualité. La pièce 1 pourrait n'être qu'un bilan de lecture sans dispositif de vérification. La pièce 12 pourrait être une simple modestie sociale. Mais les pièces 8 et 9 me posent un problème : l'apprenant a détecté une hallucination IA précise (les 11 irréductibles), a remonté à la cause (pièce jointe manquante, précipitation), et maintient une distance amusée plutôt qu'une adhésion. La pièce 1 dit aussi quelque chose, parce qu'elle ne se contente pas du jugement \"excellent\" mais identifie une section précise à supprimer. Ce qui reste faible : aucun protocole formalisé de vérification n'apparaît.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant ne se contente pas d'un bilan global mais découpe précisément ce qui tient et ce qui ne tient pas (\"la 5.2 n'est que du bruit\")." },
+            { "pieceId": 2, "motifResistance": "Détection d'hallucination IA suivie d'un diagnostic causal sur sa propre négligence — autocritique en plein cours de l'action." },
+            { "pieceId": 3, "motifResistance": "Maintien d'une distance critique amusée sur la production IA plutôt qu'une adhésion par défaut." },
+            { "pieceId": 4, "motifResistance": "Auto-évaluation honnête de la qualité comparée de sa production face à des travaux institutionnels." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir quatre pièces et je dois maintenant me demander si je n'ai pas surinterprété. La pièce 1 pourrait n'être que du goût personnel, pas un acte de critique méthodique. La pièce 4 pourrait être de la modestie performative. Mais la pièce 2 est solide : l'apprenant ne se laisse pas convaincre par l'IA, il identifie une hallucination, en cherche la cause matérielle, et calibre la suite (\"juste un chapitre à régénérer\"). La pièce 3 montre la même posture — l'IA produit, l'apprenant compare avec le réel et trace la ligne. La pièce 1 tient avec affaiblissement parce qu'elle isole un segment précis (section 5.2) sans s'en satisfaire d'une appréciation globale.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le critère de jugement (\"bruit\") n'est pas explicité, donc la pièce reste allusive ; mais l'acte de découpe précis tient." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant nomme l'hallucination, en remonte la cause à son propre acte (oubli de pièce jointe), et calibre la réponse — la critique est en acte, pas chargée par moi." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le récit est très court (\"amusant de voir\") et risque le performatif ; la résistance tient parce que la distance critique est articulée à un référent (l'observable en classe)." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La reconnaissance peut sonner comme posture de modestie ; elle tient parce qu'elle débouche sur une décision opérationnelle (s'appuyer sur les référentiels européens)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces qu'un bilan d'humeur sur des lectures et des productions. Ce qui m'a forcé à reconnaître autre chose, c'est l'épisode de l'hallucination IA : l'apprenant n'avale pas la production du modèle, il la diagnostique, remonte à la cause matérielle et calibre la suite sans dramatiser. Une partie de mes premiers retournements n'a pas tenu — la lecture critique du manuel et l'auto-évaluation face aux référentiels européens restent un peu allusives, sans protocole explicite. Ce qui en résulte concrètement : dans cette feuille, la pensée critique se montre en acte sur la production IA, avec un doute calibré qui distingue ce qui tient de ce qui dérape. La nuance qui reste : aucun dispositif formalisé de vérification n'est décrit, le doute se déploie au coup par coup. Cette compétence circule visiblement dans le travail sur le manuel de l'Expert.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.7,
+        "motif": "La présomption de sycophantie a confirmé sans réserve la pièce 2 (hallucination IA diagnostiquée), ce qui suffit à établir la présence avec des indices corroboratifs sur la lecture du manuel et la distance critique à l'IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Délibération sur le bon cadre conceptuel à transmettre (I-E-O vs modèle personnel vs Vianin), avec recadrage en cours (diminuer la complexité, conserver l'approche épistémique)."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Distinction explicite entre formaliser un acquis et aborder un territoire à penser ; besoin de réflexion préalable identifié comme tel."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Reconnaissance que l'exécution bâclée a produit un meilleur cadrage — catégories générales au lieu de compétences élémentaires. Recadrage émergent par contrainte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à ne trouver que des décisions d'exécution sans questionnement du cadre. La pièce 1 pourrait n'être qu'une oscillation entre options sans cadrage réel. La pièce 2 pourrait n'être qu'une remarque banale (\"il faut encore réfléchir\"). Mais la pièce 3 me résiste fortement parce qu'elle correspond exactement à la trace oblique de la fiche : un cadrage émergent par contrainte, qui transforme la nature de ce qu'on cherche (catégories au lieu d'éléments). La pièce 2 tient aussi parce qu'elle distingue deux régimes d'écriture — formaliser vs penser un objet nouveau — avant d'écrire, ce qui est un acte de cadrage préalable.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La délibération est explicitement orientée par un critère méta (\"diminuer la complexité\"), pas par l'attrait des options." },
+            { "pieceId": 2, "motifResistance": "Distinction lucide entre deux régimes d'écriture qui ne demandent pas le même travail préalable." },
+            { "pieceId": 3, "motifResistance": "Reconnaissance d'un recadrage émergent — trace oblique nommée par la fiche elle-même." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces tiennent. La 3 est très solide parce que c'est précisément la trace oblique listée dans la fiche. La 1 pourrait pourtant être de la simple indécision, pas du cadrage. La 2 pourrait être une généralité. Je dois resserrer.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La délibération touche aussi à la planification (quoi mettre dans quel niveau de manuel), mais elle interroge bien le contenu épistémique transmis, pas seulement l'organisation." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Sans dispositif décrit, la distinction reste à l'état de constat ; elle tient parce qu'elle change explicitement la posture de travail à venir." },
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le seuil est franchi : l'apprenant ne raconte pas un mouvement vers le cadrage, il raconte un recadrage déjà advenu (catégories au lieu d'éléments) et le revendique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces que de la décision d'exécution. Ce qui m'a forcé à reconnaître un cadrage actif, c'est le récit du référentiel bâclé : l'apprenant identifie que la contrainte (\"de toute façon redéfini via Decidim\") l'a obligé à passer de compétences élémentaires à des catégories — c'est exactement la trace oblique du cadrage par contrainte, et il en a conscience rétrospective. La délibération sur I-E-O ne tient qu'à moitié parce qu'elle reste oscillante, mais elle interroge bien le cadre cognitif transmis. Ce qui en résulte concrètement : dans cette feuille, le cadrage se manifeste surtout par un retour réflexif sur un cadrage passé bien plus que par un cadrage en cours d'élaboration. La nuance qui reste : aucun protocole préalable de questionnement n'est décrit ici ; le cadrage se révèle après coup ou se déploie en délibération ouverte.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.65,
+        "motif": "La présomption de sycophantie a confirmé la pièce 3 (recadrage émergent par contrainte, trace oblique explicitement listée dans la fiche) avec deux indices délibératifs autour."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Cohérence d'ensemble des 4 manuels articulée à une catégorie unifiante (\"noèsiologie appliquée\") qui les nomme comme un tout."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Bilan d'intégration entre un dispositif pédagogique (Respire) et l'IA — articulation d'un \"aller jusqu'au bout\" résultant de la fusion."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à ne trouver que des bilans de cohérence sans insight émergent. La fiche est explicite : compilation, résumé et accumulation ≠ synthèse. La pièce 1 pourrait être un simple constat de cohérence éditoriale. La pièce 2 pourrait être un bilan d'intégration narrative. Pourtant la pièce 1 me résiste un peu parce qu'elle nomme l'ensemble par une catégorie qui le distingue (\"appliquée pas masturbation intellectuelle\") — c'est moins de l'insight que du tri qualitatif. La pièce 2 me résiste plus : Respire et l'IA n'étaient pas évidents à articuler (\"pas gagné d'avance\"), et l'apprenant rapporte qu'il est allé \"jusqu'au bout\" — le tout dit plus que les parties.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Catégorie unifiante nommée pour qualifier un ensemble (\"noèsiologie appliquée\")." },
+            { "pieceId": 2, "motifResistance": "Articulation d'une intégration non évidente entre dispositif pédagogique et IA." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces tiennent. Je dois maintenant me demander si je n'ai pas surinterprété. La pièce 1 risque le récit performatif — affirmer la cohérence ne la montre pas en acte. La pièce 2 risque pareil — \"j'ai réussi à aller jusqu'au bout\" est très déclaratif.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'apprenant nomme un ensemble par une catégorie qualitative, mais ne montre pas en acte la fusion entre les 4 manuels — c'est plus une étiquette qu'un insight émergent. Tient parce que la catégorie est non triviale (\"noèsiologie appliquée\" distingue d'une production académique pure)." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le récit est entièrement déclaratif (\"j'ai réussi à aller jusqu'au bout\"). L'intégration Respire-IA est affirmée mais aucune trace n'est donnée de la fusion qui aurait produit un insight nouveau." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces qu'un bilan d'édition et un récit d'intégration. La pièce 2 n'a pas tenu : elle dit qu'une fusion s'est faite mais ne la montre pas. La pièce 1 tient à moitié — l'apprenant nomme un ensemble par une catégorie qui le distingue d'autre chose, et c'est un acte de synthèse, mais minimal. Ce qui en résulte concrètement : dans cette feuille, la synthèse intégrative ne se déploie pas pleinement ; elle se signale par une étiquette unifiante sur un corpus en quatre volumes, sans qu'on voie le travail de fusion en acte. La nuance qui reste : le portfolio sur d'autres feuilles pourrait porter cette compétence de manière plus visible ; ici, la trace est trop allusive pour fonder un verdict ferme.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Seule la pièce 1 tient avec réserves comme étiquette unifiante ; la pièce 2 est tombée comme purement déclarative. Le matériel disponible sur cette feuille ne permet pas de trancher entre synthèse en acte et constat de cohérence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Délibération à voix haute sur ses propres critères de décision (complexité, approche épistémique) — l'apprenant s'observe arbitrer."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Diagnostic de sa propre négligence (pièce jointe oubliée, précipitation au départ, prompts non relus) après détection d'une hallucination IA."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Retour réflexif sur un acte ancien (\"avoir bâclé\") avec lecture explicite de l'effet imprévu de cet acte sur son propre travail."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Reconnaissance assumée d'une limite de sa production face à des travaux institutionnels — \"je ne sais pas\" calibré sur la qualité comparative."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est claire : \"j'ai progressé\" ou \"j'ai beaucoup appris\" ne suffit pas — il faut que l'objet de la réflexion soit le processus cognitif lui-même. Je m'attends à ne trouver que de l'introspection narrative. La pièce 1 pourrait n'être qu'une hésitation racontée. La pièce 4 pourrait n'être qu'une modestie. Mais la pièce 8 me résiste : l'apprenant ne dit pas \"l'IA a halluciné\", il dit \"j'ai dû oublier d'inclure une pièce jointe\" puis \"je n'ai pas pu relire les prompts générés\" — c'est une lecture de ses propres conditions de production. La pièce 10 me résiste fortement : \"avoir bâclé\" + \"mais du coup ça m'a obligé à\" = lecture d'un effet réflexif inattendu sur son propre processus.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Lecture des conditions de sa propre production comme cause de l'erreur, pas comme circonstances extérieures." },
+            { "pieceId": 3, "motifResistance": "Réflexion explicite sur l'effet d'une exécution bâclée sur son propre processus de conception." },
+            { "pieceId": 4, "motifResistance": "Auto-évaluation calibrée de sa production solo face à des travaux institutionnels." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces tiennent. Je dois maintenant resserrer. La pièce 2 risque une attaque de surinterprétation : peut-être que je lis comme métacognition ce qui n'est qu'un mea culpa banal. La pièce 4 risque le performatif. La pièce 3 est la plus solide parce qu'elle articule explicitement un retour réflexif sur le processus.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le récit pourrait être une simple excuse, mais la chaîne causale (oubli pièce jointe → précipitation → prompts non relus → hallucination IA) constitue une lecture du processus de production." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'objet de la réflexion est précisément le processus cognitif (\"ça m'a obligé à identifier non pas des compétences élémentaires mais des catégories\") — critère central de la fiche." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'aveu de limite est court et pourrait être posture, mais il est concret (référentiels européens existants) et débouche sur une décision opérationnelle." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces que des excuses, des hésitations et des modesties. Ce qui m'a forcé à reconnaître autre chose, c'est la pièce 10 : l'apprenant n'écrit pas qu'il a appris, il décrit l'effet réflexif d'une exécution bâclée sur la nature même de ce qu'il a produit. C'est une métacognition rétrospective qui prend pour objet son propre processus de conception. Une partie des autres pièces tient avec affaiblissement — le mea culpa autour de l'hallucination IA touche au processus de production, l'aveu de limite reste honnête sans dispositif décrit. Ce qui en résulte concrètement : dans cette feuille, la métacognition se déploie en lectures rétrospectives de ses propres actes de travail. L'humilité épistémique apparaît dans la calibration de la qualité comparée de sa production. La nuance qui reste : aucune pratique en temps réel n'est décrite — pas de méta-tag, pas de règle personnelle formulée explicitement.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "La pièce 10 (retour réflexif sur l'effet d'une exécution bâclée sur la nature de ce qui a été produit) a tenu sans réserve, avec deux indices corroboratifs sur la lecture des conditions de production et l'auto-évaluation calibrée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Conception d'un dispositif où l'IA pré-mâche le travail d'analyse pour les tuteurs, qui complètent in vivo dans la micro-classe — modélisation d'un flux entre acteurs."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Choix d'une unité de mesure simple (occurrence) avec anticipation d'un ajustement futur (\"on verra s'il faudra pondérer\") à l'épreuve du terrain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est exigeante : \"tout est lié\" ne suffit pas — il faut nommer quels liens, dans quelle direction, avec quels effets. Je m'attends à ne trouver que des descriptions linéaires. La pièce 1 décrit un flux IA → tuteur → classe, ce qui ressemble plus à un pipeline qu'à un système avec boucles. La pièce 2 anticipe un ajustement futur, ce qui pourrait être une simple modestie méthodologique. Pourtant la pièce 2 me résiste un peu : \"On verra s'il faudra pondérer ça lorsqu'on aura les premières classes\" décrit une boucle de rétroaction entre le terrain et la mesure — l'apprenant ne fige pas le système, il anticipe que les données futures modifieront le modèle.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Anticipation d'une boucle d'ajustement entre données terrain et choix méthodologique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce tient et je dois la mettre à l'épreuve. Est-ce que j'ai halluciné une boucle systémique dans ce qui n'est qu'une prudence méthodologique standard ?",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le \"on verra s'il faudra pondérer\" est une posture itérative standard, pas une modélisation de boucle. Aucun mécanisme de rétroaction n'est nommé, aucun effet de cascade n'est anticipé. Le glissement lexical vers une lecture systémique n'est pas justifié par le passage." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas trouver de pensée systémique dans cette feuille. La pièce 1 décrit un pipeline mais pas un système bouclé. La pièce 2 a semblé tenir un instant comme anticipation d'ajustement, mais sous présomption de sycophantie elle est tombée — c'est de la prudence itérative ordinaire, pas une boucle de rétroaction nommée. Ce qui en résulte concrètement : dans cette feuille, la pensée systémique ne se manifeste pas. La conception du dispositif tuteur-IA reste linéaire, et l'anticipation d'ajustement est trop générique pour porter le marqueur central de la fiche. La nuance qui reste : la conception du dispositif global (Respire + IA + tuteurs + portfolios) pourrait porter cette compétence dans d'autres feuilles, mais ici les pièces extraites ne suffisent pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les deux pièces sont tombées sous présomption de sycophantie : la première décrit un pipeline plutôt qu'un système bouclé, la seconde est une prudence itérative ordinaire qui n'atteint pas le seuil de la modélisation systémique.",
+        "prescription": "Sur cette feuille, le matériel ne porte pas explicitement la modélisation des boucles et des effets de cascade. Un chemin possible consisterait à documenter une situation où une décision dans un manuel modifie le comportement attendu d'un autre, ou à nommer dans un récit les rétroactions entre le travail des tuteurs et la production des portfolios."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Détection d'une hallucination IA précise avec diagnostic causal (pièce jointe oubliée → précipitation → prompts non relus → hallucination du référentiel) — compréhension du mécanisme de génération."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Observation amusée sur la façon dont \"Claude perçoit les humains\" et l'écart avec l'observable en classe — articulation entre la production du modèle et le réel."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Observation d'un choix lexical du modèle (\"compétences irréductibles\") non interrogé sur le moment — réflexion rétrospective sur la production lexicale du modèle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est exigeante : réutiliser le mot \"hallucination\" ne suffit pas — il faut comprendre le pourquoi causal du mécanisme. Je m'attends à ne trouver que du vocabulaire ambiant. La pièce 1 me résiste : l'apprenant ne se contente pas du mot \"halluciné\", il remonte à la condition de production (pièce jointe oubliée au moment de la génération du plan). C'est un diagnostic du contexte d'entrée comme cause de l'output défaillant. La pièce 2 est plus faible — \"comment il a interprété\" est un constat, pas une explication du mécanisme. La pièce 3 m'intéresse parce qu'elle distingue un choix lexical du modèle (\"compétences irréductibles\") du choix de l'utilisateur — c'est une distinction fine sur ce que le modèle produit en propre.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Diagnostic causal qui relie une condition d'entrée (pièce jointe manquante) à une défaillance de sortie (hallucination du référentiel) — compréhension de l'effet du contexte sur la génération." },
+            { "pieceId": 3, "motifResistance": "Distinction entre ce que l'apprenant a demandé et ce que le modèle a produit en propre (le mot \"irréductibles\")." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces résistent. Je dois maintenant durcir. La pièce 1 pourrait être un simple constat (\"j'ai oublié la pièce jointe et ça a planté\") sans compréhension du mécanisme de génération sous le capot. La pièce 3 pourrait être une remarque sans portée — l'apprenant note un mot sans en faire un objet d'analyse.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le terme \"halluciné\" est utilisé, mais l'apprenant fait plus que réutiliser le mot : il identifie une cause matérielle (input incomplet) liée à un effet structurel (le modèle invente plutôt que d'avouer son ignorance). La compréhension causale est implicite mais cohérente." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le \"je ne lui ai pas demandé pourquoi\" est court et allusif, mais il pose bien la question de l'origine d'un choix lexical du modèle comme un objet à interroger — pas un acquis ambiant." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne voir dans ces pièces que du vocabulaire ambiant sur l'IA. Ce qui m'a forcé à reconnaître autre chose, c'est la chaîne causale dans la pièce 1 : un input incomplet a produit une hallucination — l'apprenant lie l'état du contexte d'entrée à la qualité de sortie. C'est une compréhension du fonctionnement, pas une réutilisation du mot. La pièce 3 reste plus allusive mais tient parce qu'elle prend pour objet la production lexicale propre du modèle. Ce qui en résulte concrètement : dans cette feuille, la littératie IA se manifeste comme diagnostic causal d'une défaillance, et comme observation que le modèle produit ses propres choix lexicaux. La nuance qui reste : aucune description sous-jacente des mécanismes (tokens, fenêtre de contexte, distributions) n'est explicitée — la compréhension est en acte, pas formalisée.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Deux indices retenus avec affaiblissement (diagnostic causal de l'hallucination + observation du choix lexical propre du modèle), suffisants pour établir la présence avec une confiance modérée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Conception d'un système où l'IA pré-mâche l'analyse des portfolios, en amont du travail des tuteurs en micro-classe — répartition des rôles dans un flux."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est exigeante : critère discriminant = quelqu'un d'autre pourrait comprendre et maintenir le système. Je m'attends à ne trouver qu'une intention de dispositif. La pièce 1 décrit un projet (\"je vais m'attaquer à\") avec une répartition des rôles (IA pré-mâche, humain in vivo) et une logique d'intégration au manuel Praticien. Pourtant aucun composant technique n'est nommé (pas de RAG, pas de pipeline, pas de mécanisme de fallback), pas de description des connexions entre prompts. La résistance reste faible — c'est une intention de système, pas une description architecturale.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Répartition explicite des rôles entre IA et humain au sein d'un dispositif global avec deux moments distincts (pré-mâchage automatisé et analyse in vivo)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce tient et je dois la mettre à l'épreuve. La frontière avec 1.10 (synergie) est fine : la pièce décrit la complémentarité humain-IA, pas l'architecture d'un système où l'output de l'un alimente l'input de l'autre avec des règles de routing.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le passage active mieux 1.10 (synergie hybride : qui fait quoi et pourquoi) que 1.07 (architecture technique). Aucun composant, aucune connexion, aucun mécanisme de contrôle n'est décrit — seulement une intention de dispositif." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir d'architecture dans cette pièce. Ce qui m'a un instant retenu, c'est la mention explicite de deux temps articulés (IA pré-mâche, tuteur analyse). Mais sous présomption de sycophantie, la pièce est tombée : la description active la compétence voisine 1.10 (synergie hybride) bien plus que 1.07 (architecture technique). Aucun composant n'est nommé, aucune règle de routing décrite. Ce qui en résulte concrètement : dans cette feuille, l'architecture de systèmes IA n'est pas mobilisée — l'apprenant pense la répartition des forces, pas la mécanique technique d'un pipeline. La nuance qui reste : le projet annoncé (les prompts pour assister les tuteurs) pourrait, dans des feuilles ultérieures, porter cette compétence si la mécanique technique est décrite.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce extraite a été disqualifiée comme appartenant en propre à 1.10 (synergie hybride) plutôt qu'à l'architecture technique de système.",
+        "prescription": "Un chemin possible serait de documenter, quand le travail sur les prompts pour tuteurs avancera, les composants concrets du dispositif (rôles différenciés des prompts, mécanismes de fallback en cas d'erreur, flux d'information entre la phase de cartographie et la phase d'analyse in vivo)."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Mention du chantier à venir : les prompts pour assister les tuteurs — formulation explicite que ces prompts sont l'objet du travail à faire."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Diagnostic d'un contexte IA défaillant (pièce jointe oubliée) avec lecture des conséquences sur la génération — debugging de contexte rétrospectif."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Réflexion sur ce que le modèle a produit lexicalement de son propre chef (\"compétences irréductibles\") versus ce qui a été demandé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche distingue 1.08 (sophistication de la formulation, méta-prompting, orchestration de rôles) de 1.07. Je m'attends à ne trouver que des mentions d'usage IA sans technique de prompting articulée. La pièce 1 n'est qu'une annonce de chantier — pas de technique de prompting décrite. La pièce 2 décrit un contexte d'input défaillant, c'est plus proche de 1.06 (compréhension du mécanisme) que de 1.08 (formulation). La pièce 3 me résiste un peu parce qu'elle prend pour objet la production du modèle en propre, ce qui est un acte de réflexion sur l'effet du dialogue ; mais le \"je ne lui ai pas demandé pourquoi\" est précisément l'aveu que le méta-prompting n'a pas eu lieu.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Réflexion rétrospective sur ce que le modèle a produit de lui-même, distincte de la commande utilisateur." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce tient et elle est faible. Je dois la mettre à l'épreuve : peut-être que je vois du méta-prompting dans ce qui n'est qu'une remarque sur le vocabulaire du modèle.",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le \"je ne lui ai pas demandé pourquoi\" est précisément un mouvement-vers une question méta non posée. L'apprenant constate qu'il aurait pu interroger le modèle mais ne l'a pas fait. C'est l'envers d'une trace de méta-prompting, pas une trace." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir de dialogue IA avancé dans cette feuille. La pièce 3 a semblé tenir un instant comme prise pour objet de la production lexicale du modèle, mais sous présomption de sycophantie elle est tombée — l'apprenant note précisément qu'il n'a pas posé la question méta au moment où il aurait pu le faire. Ce qui en résulte concrètement : dans cette feuille, le dialogue IA avancé ne se manifeste pas en acte. L'apprenant utilise l'IA et la regarde produire, mais aucune technique de prompting n'est articulée, aucun méta-prompting n'est posé en cours d'échange. La nuance qui reste : le projet annoncé d'écrire des prompts pour tuteurs pourrait porter cette compétence dans des feuilles à venir si les techniques de formulation sont explicitées.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les trois pièces n'ont pas tenu : annonce de chantier sans technique, debugging de contexte qui appartient à 1.06, et aveu explicite qu'une question méta n'a pas été posée.",
+        "prescription": "Un chemin possible serait de documenter, lors de la rédaction des prompts pour tuteurs, les choix de formulation et leurs effets sur les sorties — par exemple en gardant trace d'une itération qui a changé le résultat, ou d'un rôle attribué dans un prompt."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Choix d'une unité de mesure simple pour la cartographie (occurrence) avec anticipation d'une pondération future — décomposition d'un problème de mesure."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est très exigeante : critère discriminant = le TRANSFERT de la logique algorithmique HORS de l'informatique. Je m'attends à ne rien trouver. La pièce 1 propose une unité de mesure simple, c'est un choix méthodologique, mais ça ne porte pas la marque d'une logique algorithmique transférée. Pas d'arbre de décision, pas de structure conditionnelle, pas de décomposition formalisée d'un problème non-technique. La résistance est très faible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas trouver de pensée computationnelle dans cette feuille. La seule pièce extraite n'a pas résisté à la présomption d'absence — choisir une unité de mesure simple n'est pas en soi un transfert de logique algorithmique vers un domaine non-technique. Ce qui en résulte concrètement : dans cette feuille, la pensée computationnelle au sens fort de la fiche (transfert hors-informatique) ne se manifeste pas. La nuance qui reste : le travail sur la cartographie des portfolios, qui mêle décomposition, comptage et règles de routage, pourrait porter cette compétence sur d'autres feuilles si le transfert est explicité.",
+          "confianceFinale": 0.12
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.12,
+        "motif": "La seule pièce extraite n'a pas résisté à la présomption d'absence — un choix d'unité de mesure n'atteint pas le seuil du transfert de logique algorithmique hors-informatique.",
+        "prescription": "Un chemin possible serait de documenter une situation où une structure algorithmique (conditionnelle, arbre de décision, debugging mental) a été appliquée explicitement à un problème non-technique, par exemple à la conception d'un dispositif pédagogique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Bilan d'intégration Respire-IA articulé à la difficulté préalable de l'intégration (\"ce qui n'était pas gagné d'avance\")."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Conception d'un workflow où l'IA pré-mâche l'analyse des portfolios et les tuteurs analysent in vivo en micro-classe — articulation explicite de rôles complémentaires."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche distingue \"j'ai utilisé l'IA\" (insuffisant) de l'articulation explicite des forces comparatives. Je m'attends à ne trouver que de l'usage. La pièce 1 est déclarative — \"j'ai réussi à intégrer les IA dans ma pédagogie\" — sans articulation des rôles. La pièce 2 me résiste fortement : l'apprenant ne se contente pas d'utiliser l'IA, il pose explicitement deux temps (\"pré-mâcher\" automatisé / \"in vivo, au sein de la micro-classe\" humain) avec une justification implicite de la complémentarité (l'IA accélère, l'humain enrichit sur place).",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Articulation explicite de deux rôles dans un workflow hybride avec une fonction propre à chacun (IA pré-mâche, humain analyse in vivo)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce tient. Je dois maintenant la durcir. Est-ce que je surinterprète une simple répartition pratique comme une synergie articulée ?",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant ne déclare pas \"j'ai créé une synergie\", il décrit en acte une répartition explicite : l'IA produit une cartographie pré-traitée, les tuteurs complètent in vivo. Le \"complémentaire à leur analyse\" pose le critère de complémentarité ; le \"au sein de la micro-classe\" pose ce que l'humain garde irremplaçablement." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces que des affirmations d'usage IA. La pièce 1 n'a pas tenu — elle dit qu'une intégration s'est faite sans en montrer l'articulation. La pièce 2 a tenu sans réserve : l'apprenant pose explicitement un workflow où l'IA fait quelque chose (pré-mâcher), les tuteurs font autre chose (analyser in vivo), et nomme la relation entre les deux (\"complémentaire\"). C'est la définition de la fiche en acte. Ce qui en résulte concrètement : dans cette feuille, la synergie hybride se manifeste comme conception explicite d'un workflow différencié, avec ce que l'IA fait mieux (passer à l'échelle sur les portfolios) et ce que l'humain fait mieux (lire en situation, dans la micro-classe). La nuance qui reste : le passage est court et programmatique — le dispositif est annoncé pour la suite plutôt que déjà éprouvé.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.72,
+        "motif": "La pièce 2 (workflow IA pré-mâche / humain analyse in vivo) a tenu sans réserve sous présomption de sycophantie, portant le marqueur central de l'articulation des forces comparatives."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 1,
+    "nonEtablies": 4,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 10 janvier 2026 montre un apprenant en posture de relecture critique : un voyage en train a permis d'achever la lecture d'un manuel produit, dont les forces et les défauts sont identifiés avec précision. Le travail décrit articule deux mouvements simultanés : la mise en cohérence d'un corpus en quatre volumes (le manuel Praticien tient avec les autres), et la délibération ouverte sur des choix pédagogiques de fond (conserver I-E-O ou introduire un modèle plus simple dès le niveau Praticien). Une part importante du récit porte sur le rapport à l'IA générative — détection d'une hallucination, diagnostic causal de l'erreur d'entrée, distance amusée sur la façon dont le modèle interprète les compétences humaines. Le ton est posé, jamais triomphant : l'auteur reconnaît une limite de sa production solo face à des référentiels institutionnels existants.",
+    "territoiresDenses": [
+      {
+        "competence": "Métacognition & humilité épistémique",
+        "description": "Le travail décrit une lecture rétrospective des effets d'une exécution bâclée sur la nature même de ce qui a été produit, et une auto-évaluation calibrée des limites de sa production solo.",
+        "extraitVerbatim": "Je me souviens avoir bâclé la génération du référentiel de compétences, sachant qu'il allait être de toute façon redéfini via Decidim. Mais du coup ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales.",
+        "ceQueCaDit": "L'objet de la réflexion est ici le processus de conception lui-même, pas un résultat. Le retour sur soi prend pour cible la manière dont une contrainte d'exécution a infléchi la forme conceptuelle de la production."
+      },
+      {
+        "competence": "Synergie & coordination hybride",
+        "description": "Le travail décrit la conception d'un workflow où l'IA pré-mâche le travail d'analyse des portfolios pour préparer l'analyse in vivo des tuteurs en micro-classe.",
+        "extraitVerbatim": "comment utiliser les IA pour pré-macher le travail d'analyse des portfolios, complémentaire à leur analyse in vivo, au sein de la micro-classe.",
+        "ceQueCaDit": "La complémentarité est articulée explicitement : ce que l'IA fait (passer à l'échelle sur les portfolios) et ce que l'humain garde (lecture en situation dans la classe). La répartition n'est pas implicite, elle est nommée."
+      },
+      {
+        "competence": "Pensée critique & anti-hallucination",
+        "description": "Le travail décrit une détection d'hallucination IA suivie d'un diagnostic causal de sa propre négligence, et plus généralement un doute calibré sur ses propres productions comme sur celles du modèle.",
+        "extraitVerbatim": "il a halluciné le référentiel de compétences (les 11 irréductibles) ! J'ai du oublier d'inclure une pièce jointe au moment de la génération du plan et avec la précipitation du départ, je n'ai pas pu relire les prompts générés.",
+        "ceQueCaDit": "La critique se déploie en acte sur la chaîne de production : la défaillance de l'IA est lue comme un effet d'un input incomplet plus que comme un mystère technique. Le doute s'applique d'abord à ses propres conditions de travail."
+      },
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Le travail décrit un recadrage rétrospectif où la contrainte d'exécution (sachant que tout serait redéfini via Decidim) a transformé la nature de ce qui a été produit, et une délibération ouverte sur le bon cadre cognitif à transmettre.",
+        "extraitVerbatim": "ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales.",
+        "ceQueCaDit": "Le cadrage se manifeste ici principalement par la reconnaissance d'un effet produit — la contrainte a déplacé l'objet du travail. La délibération sur I-E-O montre aussi un questionnement actif du cadre épistémique transmis."
+      },
+      {
+        "competence": "Littératie IA & data literacy",
+        "description": "Le travail relie une condition d'entrée défaillante (pièce jointe oubliée) à un comportement de sortie spécifique du modèle (hallucination du référentiel), et observe la production lexicale propre du modèle.",
+        "extraitVerbatim": "il a halluciné le référentiel de compétences (les 11 irréductibles) ! J'ai du oublier d'inclure une pièce jointe au moment de la génération du plan",
+        "ceQueCaDit": "La compréhension du fonctionnement de l'IA s'exprime en acte : un input incomplet produit une hallucination plausible plutôt qu'une demande de précision. C'est un diagnostic causal, pas une réutilisation du mot."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires du pôle n'ont pas été ramenés sur cette feuille. La pensée systémique, qui demande la modélisation de boucles et d'effets de cascade, reste en pointillé : la conception du dispositif IA-tuteurs est décrite comme un flux linéaire, et la prudence méthodologique sur l'unité de mesure (\"on verra s'il faudra pondérer\") relève plus de l'itération standard que de la modélisation systémique. L'architecture de systèmes IA n'apparaît qu'à l'état d'intention — les prompts pour tuteurs sont annoncés comme chantier futur, sans description technique des composants ou des règles de routage. Le dialogue IA avancé est dans le même cas : la feuille décrit des usages et un constat d'erreur, mais aucune technique de formulation n'est articulée. La pensée computationnelle au sens du transfert hors-informatique ne se manifeste pas non plus ici. La synthèse intégrative est en demi-teinte : une étiquette unifiante (\"noèsiologie appliquée\") est posée sur les quatre manuels, mais le travail de fusion n'est pas montré en acte. Sur cette synthèse, le matériel disponible ne permet pas de trancher franchement.",
+    "emergencesPole": "Trois observations traversent les compétences du pôle. D'abord, le rapport à l'IA est traité comme un objet d'analyse autant que comme un outil : l'apprenant la fait travailler, mais il l'observe aussi produire, et il garde une distance amusée sur ses choix lexicaux. Ensuite, le retour réflexif sur les actes anciens (le référentiel bâclé, l'oubli de pièce jointe) tient une place plus grande que la planification de l'à-venir — la pensée se déploie sur des matières déjà déposées plus que sur des projections. Enfin, la lucidité sur ses propres limites — face aux référentiels européens, face à un chantier (l'Éclaireur) où les années de réflexion préalable manquent — apparaît plusieurs fois sans dramatisation.",
+    "pistes": [
+      "Pour prolonger le diagnostic des défaillances IA, un chemin possible serait de noter, lors d'une prochaine hallucination, non seulement la cause d'entrée mais aussi le type d'erreur produit (fabrication plausible, dérive de catégories, perte de contexte) pour affiner la lecture du fonctionnement du modèle.",
+      "Pour prolonger la conception du dispositif tuteurs-IA, un chemin possible serait de décrire concrètement les rôles différenciés des prompts (cartographie initiale, audit, synthèse) et les règles de passage de relais entre la machine et le tuteur.",
+      "Pour prolonger la délibération sur le cadre cognitif transmis (I-E-O vs modèle personnel vs Vianin), un chemin possible serait de noter pendant la lecture du manuel du Maître les critères concrets qui font pencher la décision, plutôt que de la trancher in fine.",
+      "Pour prolonger la lecture de la production IA comme objet, un chemin possible serait de poser parfois explicitement la question rétrospective (\"pourquoi ce mot-là plutôt qu'un autre ?\") quand un choix lexical du modèle surprend."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 10 janvier 2026 montre un apprenant en posture de relecture critique : un voyage en train a permis d'achever la lecture d'un manuel produit, dont les forces et les défauts sont identifiés avec précision. Le travail décrit articule deux mouvements simultanés : la mise en cohérence d'un corpus en quatre volumes (le manuel Praticien tient avec les autres), et la délibération ouverte sur des choix pédagogiques de fond (conserver I-E-O ou introduire un modèle plus simple dès le niveau Praticien). Une part importante du récit porte sur le rapport à l'IA générative — détection d'une hallucination, diagnostic causal de l'erreur d'entrée, distance amusée sur la façon dont le modèle interprète les compétences humaines. Le ton est posé, jamais triomphant : l'auteur reconnaît une limite de sa production solo face à des référentiels institutionnels existants.\n\n## Territoires les plus denses\n\n**Métacognition & humilité épistémique** — Le travail décrit une lecture rétrospective des effets d'une exécution bâclée sur la nature même de ce qui a été produit, et une auto-évaluation calibrée des limites de sa production solo. Verbatim : « Je me souviens avoir bâclé la génération du référentiel de compétences, sachant qu'il allait être de toute façon redéfini via Decidim. Mais du coup ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales. » L'objet de la réflexion est ici le processus de conception lui-même, pas un résultat. Le retour sur soi prend pour cible la manière dont une contrainte d'exécution a infléchi la forme conceptuelle de la production.\n\n**Synergie & coordination hybride** — Le travail décrit la conception d'un workflow où l'IA pré-mâche le travail d'analyse des portfolios pour préparer l'analyse in vivo des tuteurs en micro-classe. Verbatim : « comment utiliser les IA pour pré-macher le travail d'analyse des portfolios, complémentaire à leur analyse in vivo, au sein de la micro-classe. » La complémentarité est articulée explicitement : ce que l'IA fait (passer à l'échelle sur les portfolios) et ce que l'humain garde (lecture en situation dans la classe). La répartition n'est pas implicite, elle est nommée.\n\n**Pensée critique & anti-hallucination** — Le travail décrit une détection d'hallucination IA suivie d'un diagnostic causal de sa propre négligence. Verbatim : « il a halluciné le référentiel de compétences (les 11 irréductibles) ! J'ai du oublier d'inclure une pièce jointe au moment de la génération du plan et avec la précipitation du départ, je n'ai pas pu relire les prompts générés. » La critique se déploie en acte sur la chaîne de production : la défaillance de l'IA est lue comme un effet d'un input incomplet plus que comme un mystère technique. Le doute s'applique d'abord à ses propres conditions de travail.\n\n**Cadrage de l'intention** — Le travail décrit un recadrage rétrospectif où la contrainte d'exécution a transformé la nature de ce qui a été produit. Verbatim : « ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales. » Le cadrage se manifeste ici principalement par la reconnaissance d'un effet produit — la contrainte a déplacé l'objet du travail.\n\n**Littératie IA & data literacy** — Le travail relie une condition d'entrée défaillante à un comportement de sortie spécifique du modèle. Verbatim : « il a halluciné le référentiel de compétences (les 11 irréductibles) ! J'ai du oublier d'inclure une pièce jointe au moment de la génération du plan ». La compréhension du fonctionnement de l'IA s'exprime en acte : un input incomplet produit une hallucination plausible plutôt qu'une demande de précision. C'est un diagnostic causal, pas une réutilisation du mot.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires du pôle n'ont pas été ramenés sur cette feuille. La pensée systémique, qui demande la modélisation de boucles et d'effets de cascade, reste en pointillé : la conception du dispositif IA-tuteurs est décrite comme un flux linéaire, et la prudence méthodologique sur l'unité de mesure relève plus de l'itération standard que de la modélisation systémique. L'architecture de systèmes IA n'apparaît qu'à l'état d'intention — les prompts pour tuteurs sont annoncés comme chantier futur, sans description technique des composants ou des règles de routage. Le dialogue IA avancé est dans le même cas : la feuille décrit des usages et un constat d'erreur, mais aucune technique de formulation n'est articulée. La pensée computationnelle au sens du transfert hors-informatique ne se manifeste pas non plus ici. La synthèse intégrative est en demi-teinte : une étiquette unifiante (« noèsiologie appliquée ») est posée sur les quatre manuels, mais le travail de fusion n'est pas montré en acte.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences du pôle. D'abord, le rapport à l'IA est traité comme un objet d'analyse autant que comme un outil : l'apprenant la fait travailler, mais il l'observe aussi produire, et il garde une distance amusée sur ses choix lexicaux. Ensuite, le retour réflexif sur les actes anciens (le référentiel bâclé, l'oubli de pièce jointe) tient une place plus grande que la planification de l'à-venir — la pensée se déploie sur des matières déjà déposées plus que sur des projections. Enfin, la lucidité sur ses propres limites — face aux référentiels européens, face à un chantier (l'Éclaireur) où les années de réflexion préalable manquent — apparaît plusieurs fois sans dramatisation.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le diagnostic des défaillances IA, un chemin possible serait de noter, lors d'une prochaine hallucination, non seulement la cause d'entrée mais aussi le type d'erreur produit (fabrication plausible, dérive de catégories, perte de contexte) pour affiner la lecture du fonctionnement du modèle.\n- Pour prolonger la conception du dispositif tuteurs-IA, un chemin possible serait de décrire concrètement les rôles différenciés des prompts (cartographie initiale, audit, synthèse) et les règles de passage de relais entre la machine et le tuteur.\n- Pour prolonger la délibération sur le cadre cognitif transmis, un chemin possible serait de noter pendant la lecture du manuel du Maître les critères concrets qui font pencher la décision, plutôt que de la trancher in fine.\n- Pour prolonger la lecture de la production IA comme objet, un chemin possible serait de poser parfois explicitement la question rétrospective (« pourquoi ce mot-là plutôt qu'un autre ? ») quand un choix lexical du modèle surprend."
+  }
+}

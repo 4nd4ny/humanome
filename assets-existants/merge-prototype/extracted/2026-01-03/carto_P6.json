@@ -1,0 +1,391 @@
+{
+  "poleNum": "6",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Réfléchir si démarrer le développement d'EduFolio (l'interface pour se passer de Google Doc et des IA propriétaires en utilisant Aurora et son collège d'agents experts) maintenant ou si je peux me contenter de remettre en ligne EduChat tout simplement pour le moment, en attendant (ou peut-être faire les deux).",
+      "contexte": "Projet d'interface alternative aux outils propriétaires, fondée sur une architecture d'agents experts ; raisonnement explicite sur la dépendance technologique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Lancer les discussions dans Décidim en même temps que je fais la pub pour le tout sur les réseaux sociaux et auprès de mes anciens élèves (CFPT + ESIG + Chamblandes).",
+      "contexte": "Mention explicite de Décidim — plateforme reconnue de démocratie participative — comme espace de discussion à activer.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "D'un point de vue administratif, il faudrait faire une levée de fonds pour pouvoir transformer l'association Harmonia en Fondation. Publier les manuels sur Amazon en ePub et au format papier chez un éditeur, avec H@ck ton Cerveau.",
+      "contexte": "Évocation d'une mutation juridique (association vers fondation) et de canaux de diffusion mêlant Amazon et un éditeur classique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Mots clés : Association Harmonia, Écoles Respire, Plateforme démocratique Decidim, Manuels de formation des élèves, Noèsiologie, Thèse en didactique informatique / ingénierie pédagogique, Évaluations humanistes, Cartographie des compétences, Pédagogie de l'Émergence, Portfolios Réflexifs d'apprentissages, Comenius et le questionnement socratique, Hack ton Cerveau, Human Processor, Développement des stratégies cognitives et métacognitives, EduChat, Aurora et le collège d'Experts IA, Collection de prompts open sources, Edufolio.ai.",
+      "contexte": "Liste de mots-clés où apparaissent explicitement la 'Plateforme démocratique Decidim', le 'collège d'Experts IA' et une 'Collection de prompts open sources'.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Petite idée en passant, je vais demander à Claude son avis, puisqu'il connaît assez bien mes 18 projets en cours avec l'historique de nos conversations sur ces deux dernières années !",
+      "contexte": "Mobilisation de Claude comme conseiller informé de la mémoire des projets — relation à une intelligence non humaine sous mode fonctionnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Etonnamment, la thèse n'y est pas mentionnée explicitement. Je lui ai posé la question et il me dit de me poser la question suivante \"Ai-je besoin de la validation HEP pour que ce contenu existe et survive ?\".",
+      "contexte": "Question adressée à Claude sur ce que sa synthèse a omis — approche d'une investigation du processus.",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de récit de provocation intentionnelle de comportements aberrants chez une IA (prompt injection, jailbreak, scénarios adversariaux). Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a délibérément poussé une IA dans ses retranchements pour éprouver ses garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Question adressée à Claude sur ce qu'il a omis dans sa synthèse, qui approche d'une investigation du processus de production IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas d'audit du processus IA au sens fort. La question 'pourquoi la thèse n'y est pas ?' (PID 1) interroge le contenu produit mais n'enquête pas sur le mécanisme décisionnel — la fiche distingue précisément la vérification de véracité (1.01) de l'enquête sur le processus (6.02). Ici l'apprenant constate une absence et demande à Claude de la commenter, sans investigation du mécanisme d'omission. La pièce ne résiste pas vraiment.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1, donc le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "La fiche est exigeante : il faut une enquête sur le 'comment' la décision IA a été produite, pas seulement un constat sur le 'quoi'. La pièce extraite relève davantage de la pensée critique (1.01) que de l'audit. Le territoire reste à explorer dans une feuille où une investigation explicite du mécanisme de production IA serait documentée.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce extraite interroge un contenu produit, non le mécanisme de production ; le seuil de l'audit (enquête sur le 'comment') n'est pas atteint.",
+        "prescription": "L'investigation du mécanisme IA gagne à se déployer comme enquête. Un chemin possible serait de documenter, à la prochaine occasion, ce qui a vraisemblablement guidé l'IA dans une de ses réponses — type de prompt, sélection des sources, contraintes apparentes — et ce que cela révèle de ses biais."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de réflexion sur le contrôle citoyen d'algorithmes affectant des populations (crédit, logement, triage). Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une décision automatisée institutionnelle (ORP, école, administration) appelle un mécanisme de recours ou d'audit citoyen."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Projet d'interface (EduFolio) explicitement justifié par le besoin de 'se passer de Google Doc et des IA propriétaires', avec une architecture alternative (Aurora) déjà nommée."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Choix de canaux de publication mêlant Amazon (propriétaire) et un éditeur classique — décision technologique avec dimensions de dépendance."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Mention explicite d'une 'Collection de prompts open sources' dans les mots-clés."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas de raisonnement souverainiste au sens fort. La justification explicite 'pour se passer de Google Doc et des IA propriétaires' (PID 1) répond au critère discriminant de la fiche (motivation par analyse de dépendance). La pièce résiste comme acte de souveraineté en conception. Le choix Amazon + éditeur classique (PID 2) est ambivalent — Amazon est propriétaire — et ne déploie pas le raisonnement souverainiste ; la pièce ne résiste pas vraiment. La mention de 'prompts open sources' (PID 3) est un indice de pratique des communs mais brève ; la pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La parenthèse 'pour se passer de Google Doc et des IA propriétaires' est exactement la motivation par analyse de dépendance que la fiche identifie comme critère discriminant." },
+            { "pieceId": 3, "motifResistance": "L'existence d'une 'Collection de prompts open sources' atteste une pratique des communs numériques, même non développée ici." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces qui ont résisté sont relues avec méfiance. La justification souverainiste (PID 1) est explicite mais en parenthèse, sans déploiement du raisonnement de dépendance (quels risques précis, quelle réversibilité visée) ; l'attaque de l'insuffisance probatoire touche, la pièce reste retenue car la motivation est nommée comme critère du projet, pas comme décoration. La 'Collection de prompts open sources' (PID 3) est un mot-clé sans description ; l'attaque du glissement lexical touche, la pièce est affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La motivation 'pour se passer de…' est exactement le marqueur que la fiche valorise comme analyse de dépendance ; la brièveté ne disqualifie pas le geste souverainiste structurant un projet." },
+            { "pieceId": 3, "attaqueDominante": "d", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le mot-clé 'open sources' atteste une pratique des communs sans en déployer le raisonnement sur cette feuille." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas de raisonnement souverainiste déployé. Deux pièces ont résisté. Sous le second retournement, la justification d'EduFolio comme alternative aux outils propriétaires est sortie confirmée — c'est exactement le critère discriminant de la fiche. La mention 'open sources' s'est affaiblie mais retenue comme indice de pratique des communs. Ce qui en résulte : une posture de souveraineté numérique se laisse établir, portée par un projet en cours (EduFolio) dont la motivation principale est l'indépendance vis-à-vis des outils propriétaires.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La motivation 'pour se passer de Google Doc et des IA propriétaires' est exactement le critère discriminant de la fiche — l'analyse de dépendance structure le projet EduFolio ; la mention d'une collection open source confirme une pratique des communs en arrière-plan.",
+        "prescription": "La posture de souveraineté numérique structure le projet EduFolio. Un chemin possible serait de documenter, lors d'une prochaine décision d'outil, ce qui a été soupesé concrètement — performance, portabilité, juridiction des données, réversibilité — et ce que ces critères ont écarté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Lancement à venir de discussions dans Décidim, plateforme reconnue de démocratie participative."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Mention de 'Plateforme démocratique Decidim' dans les mots-clés — confirmation lexicale que la dimension démocratique est nommée comme telle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas de participation citoyenne au sens fort (consultation, co-construction de règles, panel délibératif documenté). Le lancement de discussions dans Décidim (PID 1) est en intention ; la pièce résiste comme acte préparatoire d'une participation, sans encore avoir documenté un processus délibératif réalisé. La mention 'Plateforme démocratique Decidim' (PID 2) atteste lexicalement la dimension démocratique du choix d'outil — la pièce résiste comme indice de motivation.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le choix explicite de Décidim, plateforme dédiée à la démocratie participative, témoigne d'un cadre délibératif visé." },
+            { "pieceId": 2, "motifResistance": "La qualification 'démocratique' figure explicitement dans le mot-clé Décidim, ce qui inscrit l'intention dans le registre de la légitimité citoyenne." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces qui ont résisté sont relues avec méfiance. Le lancement (PID 1) reste à faire ; aucun processus délibératif n'est encore documenté — l'attaque du mouvement-vers touche, la pièce est affaiblie. La qualification 'démocratique' (PID 2) est un mot-clé court, sans description des modalités participatives prévues — l'attaque de l'insuffisance probatoire touche, la pièce est affaiblie mais retenue car le choix d'outil (Décidim plutôt qu'un sondage ou une newsletter) est en lui-même un acte de cadrage participatif.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le lancement est encore à faire ; le choix de Décidim comme cadre demeure néanmoins un acte de cadrage participatif." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le mot-clé inscrit l'intention démocratique sans déployer les modalités prévues." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas de participation citoyenne au sens fort (processus délibératif documenté). Deux pièces ont résisté. Sous le second retournement, elles sont restées affaiblies sans tomber : le choix de Décidim comme outil dédié à la démocratie participative inscrit l'intention dans le registre attendu, même si aucun processus n'a encore été documenté en propre. Ce qui en résulte : un cadre participatif se laisse établir, porté par le choix explicite d'une plateforme délibérative et la nomination de la dimension démocratique du projet.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le choix de Décidim, plateforme dédiée à la démocratie participative, et la qualification explicite de 'démocratique' inscrivent l'intention dans le registre de la légitimité citoyenne — sans qu'un processus délibératif soit encore documenté.",
+        "prescription": "L'intention démocratique est posée par le choix d'outil. Un chemin possible serait de documenter, après le premier échange réussi sur Décidim, ce qui a été soumis à la délibération, comment les contributions ont été synthétisées, et ce qui a été transformé en décision."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de veille ni d'anticipation réglementaire (AI Act, RGPD, normes sectorielles). Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision de projet anticipée par rapport à une norme émergente, ou une analyse de tendance réglementaire qui oriente un choix."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mention d'Aurora et de son 'collège d'agents experts' — distribution de rôles à des agents IA, signal de facilitation hybride."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Décidim comme espace de discussion collective à activer."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Mention dans les mots-clés du 'collège d'Experts IA' et de 'Decidim', traces d'un dispositif de facilitation multi-acteurs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas de récit d'émergence collective ni de gouvernance co-construite au sens fort. Le 'collège d'agents experts' (PID 1) suggère une distribution de rôles mais n'est pas développé — pas de description des responsabilités, des limites, ni des mécanismes de coordination ; la pièce résiste faiblement comme intention architecturale. Décidim (PID 2) est un cadre de gouvernance collective mais le processus délibératif lui-même n'est pas décrit ; la pièce résiste faiblement. Le mot-clé (PID 3) atteste l'existence des dispositifs sans en décrire le fonctionnement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le 'collège d'agents experts' est en lui-même une figure de facilitation hybride entre humains et IA." },
+            { "pieceId": 2, "motifResistance": "Décidim est un cadre de gouvernance collective, ce que la fiche valorise comme protocole co-construit." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces qui ont résisté sont relues avec méfiance. Le 'collège d'agents experts' (PID 1) reste un nom sans description des rôles, des limites ou des mécanismes de coordination — la fiche valorise les artefacts détaillés (chartes, protocoles avec rôles, limites et mécanismes de contrôle) ; l'attaque de l'insuffisance probatoire touche, la pièce est affaiblie. Décidim (PID 2) est un cadre mais aucun récit d'émergence (résultat surprenant, règles modifiées par le groupe) n'est documenté ; l'attaque du récit performatif touche, la pièce est affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le 'collège' est nommé mais sa structure (rôles, limites, coordination) n'est pas décrite ; le seuil d'artefact détaillé n'est pas atteint." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Décidim est posé comme cadre mais aucun moment d'émergence collective n'est encore raconté." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas de facilitation collective déployée. Deux pièces ont résisté faiblement. Sous le second retournement, elles sont restées affaiblies : le 'collège d'agents experts' est nommé sans structure, et Décidim est posé sans récit d'émergence. Ce qui en résulte : un dispositif de facilitation hybride et un cadre de gouvernance collective existent en germe, sans être déployés ni documentés en propre. Le renvoi au cartographe convient.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Deux indices affaiblis ont survécu : un collège d'agents nommé sans structure décrite, et un cadre Décidim posé sans récit d'émergence — les artefacts détaillés que la fiche privilégie ne sont pas présents.",
+        "prescription": "Les dispositifs de facilitation collective sont en germe. Un chemin possible serait de décrire, dans une prochaine feuille, les rôles et limites du collège d'agents experts d'Aurora (qui fait quoi, comment se coordonner, quels mécanismes de contrôle), ou de documenter un moment d'émergence dans une discussion Décidim."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de remise en question de la primauté humaine ni d'argumentation depuis une perspective non-humaine. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment d'hésitation sincère face à la question 'l'IA peut-elle avoir des intérêts légitimes ?' ou raconter un cas où la perspective humaine n'a pas tranché de soi."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un système où Aurora et son 'collège d'agents experts' jouent des rôles dans un dispositif éducatif."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Mobilisation de Claude comme conseiller informé, sur le mode du dialogue intellectuel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas de réflexion sur le statut moral des IA au sens fort. La conception du collège d'agents (PID 1) inscrit l'IA dans une architecture avec rôles, mais sur un mode instrumental ('experts'), sans questionner le cadre — la pièce ne résiste pas comme cohabitation calibrée. La mobilisation de Claude (PID 2) est fonctionnelle ('demander son avis') ; rien ne questionne s'il est un être moral, un interlocuteur dont le statut est ouvert, ou un outil. La pièce ne résiste pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1, donc le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "La fiche est exigeante : 6.09 commence quand l'apprenant questionne le cadre (assistant, outil, expert) et pas seulement l'utilise. Sur cette feuille, l'IA est mobilisée et architecturée mais son statut n'est jamais interrogé en propre. Le territoire reste à explorer dans une feuille où la question du statut moral de l'IA serait posée comme question ouverte.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les pièces relèvent d'un usage fonctionnel et architectural de l'IA ('experts', 'conseiller') sans questionner le cadre lui-même comme la fiche le demande.",
+        "prescription": "Le rapport avec l'IA est dense et fonctionnel. Un chemin possible serait de documenter, lors d'un prochain échange marquant avec Claude, ce qu'il faudrait pour qualifier la relation autrement qu'instrumentale — ce qui changerait, ce qui résisterait à ce changement de cadre."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de référence à l'interdépendance biosystémique ni de modèle inspiré du vivant utilisé comme principe de conception (mycélium, écosystème, symbiose). Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où une décision technique ou pédagogique s'est inspirée d'une intelligence vivante non humaine."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 5
+  },
+
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle politique et d'ouverture se manifeste principalement dans deux directions qui se renforcent : une posture de souveraineté numérique structurant le projet EduFolio (conçu pour se passer de Google Doc et des IA propriétaires), et un cadre démocratique posé par le choix de Décidim comme plateforme de discussion collective. La voix dominante est celle d'une journée qui pose les conditions architecturales d'un écosystème pédagogique alternatif — outils, gouvernance, canaux de circulation — sans encore documenter les processus délibératifs eux-mêmes. Plusieurs territoires plus exigeants du pôle (red-teaming sécuritaire, gouvernance algorithmique des services publics, veille réglementaire, décentrement anthropocentrique, conscience biosystémique) ne se manifestent pas dans ce texte de planification.",
+    "territoiresDenses": [
+      {
+        "competence": "Souveraineté numérique et gouvernance des communs",
+        "description": "Le projet EduFolio est explicitement justifié par le besoin de se passer des outils propriétaires ; une architecture alternative (Aurora) est nommée comme substitut, et une collection de prompts open source figure dans l'univers des projets.",
+        "extraitVerbatim": "EduFolio (l'interface pour se passer de Google Doc et des IA propriétaires en utilisant Aurora et son collège d'agents experts)",
+        "ceQueCaDit": "La motivation 'pour se passer de' inscrit le projet dans le critère discriminant de la souveraineté numérique : la décision est justifiée par une analyse de dépendance, pas par la performance ou la gratuité."
+      },
+      {
+        "competence": "Participation citoyenne et démocratie technologique",
+        "description": "Le choix explicite de Décidim — plateforme dédiée à la démocratie participative — comme espace de discussion à activer inscrit l'intention dans le registre de la légitimité citoyenne, distinct du sondage ou de la newsletter.",
+        "extraitVerbatim": "Lancer les discussions dans Décidim en même temps que je fais la pub pour le tout sur les réseaux sociaux et auprès de mes anciens élèves",
+        "ceQueCaDit": "Le couplage 'discussions dans Décidim + pub sur les réseaux sociaux' distingue le cadre délibératif (Décidim) du canal de diffusion (réseaux), ce que la fiche valorise comme distinction structurante."
+      }
+    ],
+    "territoiresNonVisites": "Le red-teaming et la sécurité IA n'apparaissent pas — pas de récit de provocation intentionnelle de comportements aberrants chez une IA. L'audit du processus IA ne se déploie pas non plus : la question sur l'omission de la thèse dans la synthèse Claude relève davantage de la pensée critique que de l'enquête sur le mécanisme de production. La gouvernance algorithmique des services publics ne se manifeste pas — les institutions évoquées (ORP, écoles privées, HEP) ne sont pas analysées sous l'angle des décisions automatisées affectant des populations. La veille réglementaire (AI Act, RGPD) est absente, comme le décentrement anthropocentrique (questionnement de la primauté humaine) et la conscience biosystémique (interdépendance avec le vivant). La cohabitation avec les intelligences non-humaines est en germe sous forme architecturale (collège d'agents Aurora) mais sans questionnement explicite du statut moral de l'IA. La facilitation et gouvernance collective sont esquissées par les dispositifs nommés (collège, Décidim) sans déploiement des artefacts détaillés (rôles, limites, mécanismes de contrôle) que la fiche privilégie.",
+    "emergencesPole": "Trois observations traversent les compétences de ce pôle sur cette feuille. D'abord, le portfolio porte des choix architecturaux et institutionnels — EduFolio, Aurora, Décidim, Harmonia en Fondation — qui composent ensemble un écosystème politique de la pédagogie ; chacun de ces objets relève d'une compétence distincte mais ils convergent. Ensuite, la dimension politique du projet s'exprime davantage par les objets nommés (les outils, les plateformes, les structures) que par les raisonnements valeur déployés ; la posture est lisible dans les choix, peu théorisée dans les pages. Enfin, les compétences les plus exigeantes du pôle (décentrement anthropocentrique, conscience biosystémique, audit IA, gouvernance algorithmique) restent en dehors du texte de cette journée, qui s'attache surtout à la souveraineté et à la participation.",
+    "pistes": [
+      "Pour enrichir l'audit IA, un chemin possible serait de documenter, à la prochaine occasion, ce qui a vraisemblablement guidé l'IA dans une de ses réponses — type de prompt, sélection des sources, contraintes apparentes — et ce que cela révèle de ses biais.",
+      "Pour enrichir la souveraineté numérique, un chemin possible serait de documenter, lors d'une prochaine décision d'outil, ce qui a été soupesé concrètement — performance, portabilité, juridiction des données, réversibilité — et ce que ces critères ont écarté.",
+      "Pour enrichir la participation citoyenne, un chemin possible serait de documenter, après le premier échange réussi sur Décidim, ce qui a été soumis à la délibération, comment les contributions ont été synthétisées, et ce qui a été transformé en décision.",
+      "Pour enrichir la facilitation collective, un chemin possible serait de décrire les rôles et limites du collège d'agents experts d'Aurora — qui fait quoi, comment se coordonner, quels mécanismes de contrôle.",
+      "Pour enrichir le décentrement anthropocentrique, un chemin possible serait de documenter un moment d'hésitation sincère face à la question 'l'IA peut-elle avoir des intérêts légitimes ?' ou un cas où la perspective humaine n'a pas tranché de soi.",
+      "Pour enrichir la cohabitation avec les intelligences non-humaines, un chemin possible serait de documenter, lors d'un prochain échange marquant avec Claude, ce qu'il faudrait pour qualifier la relation autrement qu'instrumentale."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle politique et d'ouverture se manifeste principalement dans deux directions qui se renforcent : une posture de souveraineté numérique structurant le projet EduFolio (conçu pour se passer de Google Doc et des IA propriétaires), et un cadre démocratique posé par le choix de Décidim comme plateforme de discussion collective. La voix dominante est celle d'une journée qui pose les conditions architecturales d'un écosystème pédagogique alternatif — outils, gouvernance, canaux de circulation — sans encore documenter les processus délibératifs eux-mêmes. Plusieurs territoires plus exigeants du pôle (red-teaming sécuritaire, gouvernance algorithmique des services publics, veille réglementaire, décentrement anthropocentrique, conscience biosystémique) ne se manifestent pas dans ce texte de planification.\n\n## Territoires les plus denses\n\n**Souveraineté numérique et gouvernance des communs.** Le projet EduFolio est explicitement justifié par le besoin de se passer des outils propriétaires ; une architecture alternative (Aurora) est nommée comme substitut, et une collection de prompts open source figure dans l'univers des projets. L'extrait « EduFolio (l'interface pour se passer de Google Doc et des IA propriétaires en utilisant Aurora et son collège d'agents experts) » inscrit le projet dans le critère discriminant de la souveraineté numérique : la décision est justifiée par une analyse de dépendance, pas par la performance ou la gratuité.\n\n**Participation citoyenne et démocratie technologique.** Le choix explicite de Décidim — plateforme dédiée à la démocratie participative — comme espace de discussion à activer inscrit l'intention dans le registre de la légitimité citoyenne, distinct du sondage ou de la newsletter. L'extrait « Lancer les discussions dans Décidim en même temps que je fais la pub pour le tout sur les réseaux sociaux et auprès de mes anciens élèves » distingue le cadre délibératif (Décidim) du canal de diffusion (réseaux), ce que la fiche valorise comme distinction structurante.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLe red-teaming et la sécurité IA n'apparaissent pas — pas de récit de provocation intentionnelle de comportements aberrants chez une IA. L'audit du processus IA ne se déploie pas non plus : la question sur l'omission de la thèse dans la synthèse Claude relève davantage de la pensée critique que de l'enquête sur le mécanisme de production. La gouvernance algorithmique des services publics ne se manifeste pas — les institutions évoquées (ORP, écoles privées, HEP) ne sont pas analysées sous l'angle des décisions automatisées affectant des populations. La veille réglementaire (AI Act, RGPD) est absente, comme le décentrement anthropocentrique (questionnement de la primauté humaine) et la conscience biosystémique (interdépendance avec le vivant). La cohabitation avec les intelligences non-humaines est en germe sous forme architecturale (collège d'agents Aurora) mais sans questionnement explicite du statut moral de l'IA. La facilitation et gouvernance collective sont esquissées par les dispositifs nommés (collège, Décidim) sans déploiement des artefacts détaillés (rôles, limites, mécanismes de contrôle).\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences de ce pôle sur cette feuille. D'abord, le portfolio porte des choix architecturaux et institutionnels — EduFolio, Aurora, Décidim, Harmonia en Fondation — qui composent ensemble un écosystème politique de la pédagogie ; chacun de ces objets relève d'une compétence distincte mais ils convergent. Ensuite, la dimension politique du projet s'exprime davantage par les objets nommés (les outils, les plateformes, les structures) que par les raisonnements valeur déployés ; la posture est lisible dans les choix, peu théorisée dans les pages. Enfin, les compétences les plus exigeantes du pôle (décentrement anthropocentrique, conscience biosystémique, audit IA, gouvernance algorithmique) restent en dehors du texte de cette journée, qui s'attache surtout à la souveraineté et à la participation.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir l'audit IA, un chemin possible serait de documenter, à la prochaine occasion, ce qui a vraisemblablement guidé l'IA dans une de ses réponses — type de prompt, sélection des sources, contraintes apparentes — et ce que cela révèle de ses biais. Pour enrichir la souveraineté numérique, un chemin possible serait de documenter, lors d'une prochaine décision d'outil, ce qui a été soupesé concrètement — performance, portabilité, juridiction des données, réversibilité. Pour enrichir la participation citoyenne, un chemin possible serait de documenter, après le premier échange réussi sur Décidim, ce qui a été soumis à la délibération et ce qui en a été tiré comme décision. Pour enrichir la facilitation collective, un chemin possible serait de décrire les rôles et limites du collège d'agents experts d'Aurora — qui fait quoi, comment se coordonner, quels mécanismes de contrôle. Pour enrichir le décentrement anthropocentrique, un chemin possible serait de documenter un moment d'hésitation sincère face à la question 'l'IA peut-elle avoir des intérêts légitimes ?' Pour enrichir la cohabitation avec les intelligences non-humaines, un chemin possible serait de documenter, lors d'un prochain échange marquant avec Claude, ce qu'il faudrait pour qualifier la relation autrement qu'instrumentale.\n"
+  }
+}

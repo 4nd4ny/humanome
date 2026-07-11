@@ -1,0 +1,340 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "là ça fait 3 semaines que je fais autre chose avec l'orp qui me prend beaucoup de temps. je repense le CV, mes compétences. on m'a dirigé vers le métier de business analyste.",
+      "contexte": "Mention de la mesure ORP (Office régional de placement) et d'un accompagnement professionnel. Touche au sens politique/organisationnel et à l'intelligence contextuelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "je sens que je suis vieux et que j'en ai marre et que je me languis la retraite",
+      "contexte": "Expression émotionnelle directe d'une fatigue et d'un désir de fin de carrière. Touche à l'intelligence émotionnelle et à la communication authentique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "Cela fait trois semaines que je consacre mon temps à la mesure ORP, ce qui est très chronophage. [...] Apprendre pour le simple plaisir d'apprendre, alors que j'ai tant à faire avec RESPIRE, me décharge de mon énergie. Je me sens fatigué, et j'aspire à la retraite.",
+      "contexte": "Version rédigée par Gemini à partir de la dictée — touche à la traduction entre registres (oralité brute → écriture formelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "Le texte ci-dessus n'a pas été tapé mais dicté puis rédigé par Gemini (la version de Gemini qui fonctionne avec l'abonnement fourni avec Google Workspace pour 15 CHF / mois et par étudiant). C'est l'avenir des portfolios réflexifs ! J'ai laissé le texte original pour que le lecteur puisse apprécier la puissance de l'outil.",
+      "contexte": "Méta-commentaire adressé au lecteur, articulant un choix de communication (laisser les deux versions) et un registre pédagogique (apprécier la puissance de l'outil).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Nomination directe d'un état émotionnel — fatigue, lassitude, désir de retraite — formulé sans détour à la première personne."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : nommer une émotion ne suffit pas à l'intelligence émotionnelle, qui suppose perception fine ET régulation. La pièce nomme la fatigue, la lassitude, le désir de retraite — c'est de la nomination, et elle est précise (pas un vague 'c'est dur'). Mais le second versant de la compétence — utiliser l'émotion comme information ou levier d'action, réguler activement — n'est pas visible. Reste explicitement faible : pas de perception de l'état d'autrui, pas de geste de sollicitude active, pas de transformation de la frustration en clarification de besoin. La pièce résiste partiellement à la présomption sur le seul versant de la nomination émotionnelle.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La formulation 'je sens que je suis vieux et que j'en ai marre et que je me languis la retraite' nomme trois états distincts avec précision, dans un registre qui dépasse le vague affectif."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné une intelligence émotionnelle là où il y a une simple plainte ? L'attaque dominante est le récit performatif : la pièce raconte un ressenti sans montrer de travail de régulation ni d'usage de l'émotion comme information. La nomination est là, mais elle ne se prolonge pas en analyse, ni en action de soin de soi, ni en perception d'autrui. La pièce reste retenue mais affaiblie : la nomination émotionnelle précise est attestée, le reste de la compétence ne l'est pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce nomme l'émotion mais ne montre pas de travail de régulation, ni de geste de sollicitude, ni de perception d'autrui. Seul le versant nomination tient."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'une plainte sur la fatigue suffise à attester une intelligence émotionnelle au sens 2.01. La nomination des trois états — vieillesse ressentie, lassitude, désir de retraite — résiste : elle est précise et différenciée, pas un vague malaise. Sous la présomption de sycophantie, la pièce a tenu mais affaiblie : la régulation active, la sollicitude envers autrui et la perception non-verbalisée d'autrui ne se manifestent pas dans cette feuille. Le verdict tient comme renvoi au cartographe — la nomination est là, le reste de la compétence reste à voir. Une piste serait d'articuler ce que cette fatigue nommée déclenche comme action concrète de soin de soi ou comme réajustement du rythme.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "La présomption de sycophantie a affaibli la pièce : la nomination émotionnelle est précise, mais la régulation et la sollicitude active ne se manifestent pas dans cette feuille.",
+        "prescription": "Pour prolonger cette piste, un chemin possible serait d'articuler ce que la fatigue nommée déclenche concrètement — un réajustement du rythme, une décision de pause, un changement de cap. La nomination gagnerait à se prolonger en geste."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Méta-commentaire au lecteur articulant un choix éditorial (laisser le texte original côte à côte avec la version remaniée) et un registre pédagogique de partage."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Expression vulnérable à la première personne — 'je sens que je suis vieux' — qui partage un état intime dans un contexte professionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la communication authentique suppose un choix délibéré de ce qu'on partage, quand et comment, avec maîtrise du registre. La pièce 1 articule un choix éditorial assumé envers un lecteur ('j'ai laissé le texte original pour que le lecteur puisse apprécier'), ce qui révèle une conscience du destinataire et un registre pédagogique. La pièce 2 est une expression vulnérable dans un document partagé — partage assumé d'un état intime, qui correspond à la vulnérabilité stratégique décrite par la fiche. Reste faible : pas d'autodérision dosée explicite, pas d'humour de désamorçage, pas de conversation difficile racontée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le méta-commentaire explicite un choix de communication (laisser le texte original visible) avec adressage au lecteur et registre pédagogique assumé."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le partage à la première personne d'un état intime ('je me languis la retraite') dans un document partagé porte la vulnérabilité stratégique décrite par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné une communication authentique là où il y a simplement de l'écriture intime ? Pour la pièce 1, l'attaque qui peut tenir est la confusion de compétence — le choix de garder les deux versions relève peut-être plus de la pédagogie sur l'outil que d'une stratégie de communication maîtrisée. Elle reste néanmoins retenue car le geste éditorial est conscient. Pour la pièce 2, l'attaque est l'insuffisance probatoire : un partage de fatigue n'est pas en soi un acte de communication authentique au sens 2.02 — qui suppose un choix calibré du registre, pas une expression brute. Elle tombe sous la présomption.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le geste de garder les deux versions tient comme acte communicationnel conscient, mais sa visée première semble pédagogique (sur l'outil) plutôt que rhétorique. Affaiblie mais retenue."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'expression brute d'une fatigue ne suffit pas à attester une vulnérabilité stratégique au sens 2.02 — il manque le choix calibré du registre, le dosage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à nier qu'un texte intime et un méta-commentaire suffisent à attester une communication authentique. La pièce sur la fatigue est tombée : son énonciation reste de l'expression brute, pas du choix calibré du registre. Ce qui m'a forcé à reconnaître une trace, c'est le méta-commentaire au lecteur — geste éditorial assumé qui montre une conscience du destinataire et un choix de transparence (garder les deux versions, et expliquer pourquoi). Sous la présomption de sycophantie, cette pièce a tenu mais affaiblie : la visée semble plus pédagogique sur l'outil que rhétorique au sens fort. Le verdict tient comme renvoi au cartographe. Une piste serait de prolonger ces choix éditoriaux explicites — décider à voix haute, dans le portfolio, pourquoi telle entrée prend tel registre.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "La présomption de sycophantie a fait tomber l'expression brute mais affaibli sans disqualifier le méta-commentaire éditorial. Une trace reste, mais elle a une visée plus pédagogique que stratégique.",
+        "prescription": "Pour approfondir ce territoire, un chemin possible serait de prolonger les choix éditoriaux explicites — décider à voix haute, dans le portfolio, pourquoi telle entrée prend tel registre, ce qui se gagne ou se perd dans cette décision."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation de désaccord avec un rôle actif décrit — médiation, structuration du débat, ou tension explicitement laissée non-résolue."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'influence et la diplomatie. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une stratégie de préparation, une reformulation des objections d'autrui ou une proposition gagnant-gagnant a permis de mobiliser une adhésion durable."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la collaboration divergente. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un désaccord persiste tout en permettant un livrable commun."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mention de la mesure ORP et du métier de business analyste — l'apprenant navigue les codes d'un dispositif institutionnel et d'un cadre professionnel suisse spécifique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : l'intelligence culturelle suppose un récit de modification de comportement à cause de règles différentes, avec analyse du pourquoi. La pièce mentionne l'ORP et le métier de business analyste comme cadres extérieurs reçus, sans analyse de leurs normes implicites ni récit d'adaptation. La fiche est explicite sur le faux positif : il faut une analyse du pourquoi les règles diffèrent, pas une simple mention du contexte. La pièce ne résiste pas vraiment : elle décrit une orientation reçue, pas une lecture culturelle.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a pas matière à examen.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'une mention de l'ORP et d'un métier proposé suffise à attester une intelligence culturelle. La pièce est tombée : elle décrit une orientation reçue, sans analyse des codes du dispositif ni récit d'adaptation. La présence n'est pas établie. Une piste serait de documenter, à l'occasion d'un entretien à l'EPFL, ce que les codes culturels du contexte académique imposent comme adaptation par rapport au précédent contexte professionnel.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a tenu : la pièce mentionne un cadre institutionnel sans en analyser les normes ni décrire d'adaptation.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter, à l'occasion d'une candidature ou d'un entretien, ce que les codes du nouveau contexte (académique, technologique) imposent comme adaptation comparée au précédent."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens politique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la lecture de dynamiques de pouvoir invisibles (qui décide vraiment, qui bloque, pourquoi) a orienté une stratégie."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Version rédigée par Gemini à partir de la dictée — l'apprenant fait passer un texte oral brut dans un registre écrit formel et le présente comme tel. Geste de traduction entre registres."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Méta-commentaire qui présente le dispositif au lecteur et nomme la valeur de l'outil. L'apprenant fait la traduction entre l'univers technique (Gemini, abonnement Workspace) et l'enjeu pédagogique (l'avenir des portfolios réflexifs)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la traduction entre mondes ne consiste pas à simplifier mais à transposer en préservant le sens. La pièce 1 est une recopie de la version Gemini — elle a été produite par l'IA, pas par l'apprenant qui aurait traduit. C'est une délégation, pas un acte de traduction par l'apprenant. La pièce 2, en revanche, opère une traduction : l'apprenant fait passer une description technique (Gemini, Workspace, 15 CHF) dans un registre adressé au lecteur du portfolio, et y greffe une lecture pédagogique ('l'avenir des portfolios réflexifs'). Cela porte la bidirectionnalité signalée par la fiche — remonter un besoin pédagogique en langage technique, et redescendre un détail technique en enjeu de pratique. Elle résiste.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Le méta-commentaire opère une traduction réelle entre univers technique (modèle IA, abonnement) et enjeu pédagogique (l'avenir des portfolios) avec adressage au lecteur."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné une traduction là où il y a une simple parenthèse explicative ? L'attaque dominante est l'insuffisance probatoire : le méta-commentaire est court, et la 'traduction' qu'il opère reste modeste — il décrit un usage et nomme un enjeu, sans déployer la bidirectionnalité sur plus d'un échange. Mais le test fondamental de la fiche ('l'expert d'origine reconnaîtrait-il son savoir dans la version traduite ?') est plutôt rencontré : un usager Workspace reconnaîtrait la description, et un lecteur de portfolio comprendrait l'enjeu. La pièce reste retenue mais affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le geste de traduction tient mais reste court ; il ne se déploie pas sur plusieurs reformulations ou audiences successives."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à nier que la version Gemini et le méta-commentaire suffisent à attester une traduction entre mondes. La version Gemini est tombée : elle est produite par l'IA, pas par l'apprenant qui aurait traduit lui-même. Ce qui m'a forcé à reconnaître une trace, c'est le méta-commentaire — bref passage qui fait passer un détail technique en enjeu pédagogique pour un lecteur de portfolio. Sous la présomption de sycophantie, la pièce a tenu mais affaiblie : la traduction est réelle mais courte, pas déployée sur plusieurs registres successifs. Le verdict tient comme renvoi au cartographe. Une piste serait de prolonger cette pratique — expliciter, à différents moments du portfolio, comment un savoir technique se laisse rendre intelligible pour un destinataire qui n'a pas le même cadre conceptuel.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La présomption de sycophantie a affaibli la pièce retenue : la traduction opérée est réelle mais brève, pas déployée sur plusieurs reformulations.",
+        "prescription": "Pour approfondir cette piste, un chemin possible serait de prolonger ces brefs gestes de traduction — expliciter, à différents moments, comment un savoir technique se laisse rendre intelligible pour un destinataire qui n'a pas le même cadre conceptuel."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la construction de communautés. Pour ouvrir ce dossier, l'apprenant pourrait documenter un lien collectif, un rituel partagé, ou un sentiment d'appartenance qui dépasse la simple coordination de tâche."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 3,
+    "nonEtablies": 6,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail se laisse traverser par une voix solitaire qui se parle plus qu'elle ne se relie. Le journal, dicté puis remanié, expose des états intimes — fatigue, lassitude, désir de retraite — sans encore les déployer en geste relationnel. Quelques articulations communicationnelles émergent : un méta-commentaire au lecteur sur le dispositif Gemini, un partage assumé d'une difficulté professionnelle. Le contexte institutionnel suisse (l'ORP, les codes du métier de business analyste) apparaît en surface mais n'est pas encore lu comme système de normes culturelles.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à explorer dans cette feuille. La gestion des conflits ne se manifeste pas — pas de désaccord raconté, pas de tension structurée. L'influence et la diplomatie n'apparaissent pas non plus, ni la collaboration divergente. Le sens politique et la lecture des dynamiques organisationnelles, qui pourraient s'éveiller dans un parcours ORP, restent en attente d'articulation. La construction de communautés ne laisse pas de trace dans cette entrée — un 'nous' identitaire chargé d'émotion n'a pas encore été ramené. L'intelligence culturelle est effleurée mais non déployée : les codes du dispositif d'accompagnement professionnel ne sont pas encore lus comme normes à interpréter.",
+    "emergencesPole": "Ce qui traverse la feuille à voix basse, c'est un mouvement entre dictée et écriture remaniée par IA — un geste qui touche à la fois la communication et la traduction entre registres. La fatigue nommée sans détour côtoie un méta-commentaire pédagogique adressé à un lecteur futur ; les deux registres coexistent dans la même feuille, ce qui constitue en soi une variation de ton non encore théorisée.",
+    "pistes": [
+      "Pour prolonger la nomination émotionnelle déjà présente, un chemin possible serait d'articuler ce que la fatigue nommée déclenche concrètement — un réajustement du rythme, une décision de pause, un changement de cap.",
+      "Pour approfondir le territoire de la communication, un chemin possible serait de prolonger les choix éditoriaux explicites — décider à voix haute, dans le portfolio, pourquoi telle entrée prend tel registre et ce qui se gagne ou se perd dans cette décision.",
+      "Pour enrichir le territoire de la traduction entre mondes, un chemin possible serait de pratiquer plus souvent, à différents endroits du portfolio, le passage d'un savoir technique vers un destinataire qui n'a pas le même cadre conceptuel."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail se laisse traverser par une voix solitaire qui se parle plus qu'elle ne se relie. Le journal, dicté puis remanié, expose des états intimes — fatigue, lassitude, désir de retraite — sans encore les déployer en geste relationnel. Quelques articulations communicationnelles émergent : un méta-commentaire au lecteur sur le dispositif Gemini, un partage assumé d'une difficulté professionnelle. Le contexte institutionnel suisse (l'ORP, les codes du métier de business analyste) apparaît en surface mais n'est pas encore lu comme système de normes culturelles.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'a atteint, dans cette feuille, le seuil d'une présence établie. Trois esquisses ont émergé — autour de la nomination émotionnelle, du méta-commentaire au lecteur, et du geste de traduction entre registres technique et pédagogique — toutes sous la forme d'indices affaiblis plutôt que de traces solides.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à explorer dans cette feuille. La gestion des conflits ne se manifeste pas — pas de désaccord raconté, pas de tension structurée. L'influence et la diplomatie n'apparaissent pas non plus, ni la collaboration divergente. Le sens politique et la lecture des dynamiques organisationnelles, qui pourraient s'éveiller dans un parcours ORP, restent en attente d'articulation. La construction de communautés ne laisse pas de trace dans cette entrée — un \"nous\" identitaire chargé d'émotion n'a pas encore été ramené. L'intelligence culturelle est effleurée mais non déployée : les codes du dispositif d'accompagnement professionnel ne sont pas encore lus comme normes à interpréter.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse la feuille à voix basse, c'est un mouvement entre dictée et écriture remaniée par IA — un geste qui touche à la fois la communication et la traduction entre registres. La fatigue nommée sans détour côtoie un méta-commentaire pédagogique adressé à un lecteur futur ; les deux registres coexistent dans la même feuille, ce qui constitue en soi une variation de ton non encore théorisée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la nomination émotionnelle déjà présente, un chemin possible serait d'articuler ce que la fatigue nommée déclenche concrètement — un réajustement du rythme, une décision de pause, un changement de cap.\n- Pour approfondir le territoire de la communication, un chemin possible serait de prolonger les choix éditoriaux explicites — décider à voix haute, dans le portfolio, pourquoi telle entrée prend tel registre et ce qui se gagne ou se perd dans cette décision.\n- Pour enrichir le territoire de la traduction entre mondes, un chemin possible serait de pratiquer plus souvent, à différents endroits du portfolio, le passage d'un savoir technique vers un destinataire qui n'a pas le même cadre conceptuel."
+  }
+}

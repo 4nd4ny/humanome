@@ -1,0 +1,426 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "le fait que le cartographe DOIT avoir un compte Google Workspace PAYANT pour que les données extraites du portfolio et qui servent à lancer l'interface de cartographie en React, puissent être protégées ET non modifiables à la main par l'apprenant. RESPIRE se positionne ainsi comme un tier de confiance qui MONÉTISE non pas l'accès aux cartographies (publiques si l'apprenant le souhaite), ni aux portfolio (visibles au sein de RESPIRE mais privés, sauf action de publication par l'apprenant), mais au moteur de recherche de candidats pour les entreprises.",
+      "contexte": "Conception d'un dispositif de protection des données avec règles d'accès graduées selon les rôles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Important : tout l'argent généré servira à faire fonctionner les écoles et sera donc essentiellement utilisé pour payer les abonnements des membres actifs à l'espace Google Workspace avec Gemini, qui est donc inclus. Le conseil des maîtres décidera de l'usage qui sera fait des éventuels bénéfices. Ceci devra être documenté quelque part, peut-être dans le règlement intérieur des écoles RESPIRE ?",
+      "contexte": "Conception d'une gouvernance financière collective ('conseil des maîtres') avec inscription institutionnelle envisagée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Mais du coup ce n'est pas honnête vis à vis des cartographes qui se sentiront exploités si un jour je change tout sans consulter personne : chose que je n'ai pas le droit de faire si je suis le manuel que je suis en train de générer. Toute modification de l'école doit passer par un vote au niveau du cercle des Maîtres…",
+      "contexte": "Règle de gouvernance explicite : la modification du dispositif requiert un vote collectif, pas une décision unilatérale du fondateur.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Non pas dans le but de se faire de l'argent mais dans celui de rendre Gemini gratuit pour le maximum d'apprenants via le WorkSpace de Google.",
+      "contexte": "Finalité énoncée : maximiser l'accès à l'IA pour les apprenants — orientation vers les communs d'usage plutôt que vers la rente.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Mais finalement qui suis-je pour décider ça ? Peut-être qu'il faut juste laisser totale liberté maintenant aux gens d'utiliser ou pas Workspace.",
+      "contexte": "Renoncement à imposer un choix technique pour préserver l'autonomie des futurs cartographes — geste de retrait politique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Vous pouvez en tant que cartographe faire office de tiers de confiance et certifier vous-même, l'authenticité, des compétences des apprenants pour qui vous avez travaillé. Un cartographe qui souhaite s'améliorer, améliorer sa réputation, monter en niveau, sera amené à apprendre les compétences des noèsiologues pour améliorer la pertinence des traces de ses apprenants. Ainsi, nous avons tous un but commun qui est la prospérité de l'école, ce qui se traduit par faire réussir les apprenants en cartographiant au mieux leurs compétences.",
+      "contexte": "Distribution de la fonction de certification entre acteurs (vs. centralisation institutionnelle) — émergence par alignement d'intérêts.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Tout cartographe, en créant une cartographie, devient représentant des écoles RESPIRE. Son travail consistant à faire émerger les compétences utiles du référentiel, dans les traces du portfolio, est ce qui apporte de la valeur aux écoles. Il peut offrir ce travail aux apprenants et vendre l'accès à ces données à un employeur éventuel. Il devient alors le tiers de confiance pour l'employeur, le garant de la qualité de la cartographie. S'il décide de monétiser son travail pour les employeurs ou pas, cela ne concerne pas l'école.",
+      "contexte": "Définition d'un rôle institutionnel décentralisé avec règle explicite de non-interférence sur les choix individuels de monétisation.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming ou au test adversarial d'IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a délibérément cherché à provoquer un comportement aberrant d'un modèle pour en tester les garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un dispositif où les données du portfolio sont 'protégées ET non modifiables à la main par l'apprenant' — réflexion d'hygiène sur l'intégrité des traces."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas véritablement d'audit ou d'hygiène au sens de la fiche — la pièce 1 mentionne une protection des données, mais sans investigation des mécanismes de décision algorithmique. La protection contre la modification manuelle relève davantage de l'intégrité des données que de l'hygiène RGPD ou de l'audit d'explicabilité. Toutefois, la pièce contient un élément précis : un choix de dispositif justifié par une exigence de non-modifiabilité, ce qui est un raisonnement d'hygiène appliqué.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le choix d'un Workspace payant est justifié par une exigence précise (protection + non-modifiabilité des données extraites), ce qui correspond à un raisonnement d'hygiène appliqué aux données."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois me demander si je n'ai pas surinterprété un choix d'infrastructure commerciale. L'attaque (b) confusion de compétence pèse fortement : la pièce relève plus de 1.07 (architecture) ou de 6.04 (souveraineté numérique) que de 6.02 (audit et hygiène). La fiche 6.02 cible 'comment l'IA a produit ses décisions' et la protection RGPD — ici, il s'agit de protection contre la modification, pas d'audit du processus décisionnel ni d'hygiène au sens RGPD strict.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce relève de l'architecture (1.07) ou de la souveraineté (6.04) plutôt que de l'audit/hygiène — elle ne décrit ni investigation des mécanismes décisionnels ni hygiène RGPD au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une trace d'audit ou d'hygiène. La pièce extraite décrit une protection des données contre la modification, ce qui touche à l'intégrité plus qu'à l'audit ou à la protection des personnes. La présomption de sycophantie a disqualifié la pièce. Ce qui reste : pas de trace de 6.02 dans cette feuille — le travail se situe du côté de la souveraineté et de l'architecture, pas de l'audit.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a été disqualifiée comme relevant d'une autre compétence (1.07 ou 6.04) plutôt que de l'audit/hygiène au sens strict.",
+        "prescription": "Sur cette feuille, le travail porte sur la protection structurelle des données, pas sur leur audit ou leur hygiène. Pour ouvrir ce dossier, un chemin possible serait de documenter une investigation des mécanismes par lesquels une IA est arrivée à un résultat — consultation de logs, audit post-incident, traçabilité décisionnelle."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au contrôle démocratique des algorithmes affectant les services publics ou les populations vulnérables. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur les recours possibles face à une décision automatisée affectant des droits citoyens."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Choix d'un dispositif (Workspace payant) justifié par la protection des données extraites du portfolio."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Finalité explicite : rendre Gemini gratuit pour le maximum d'apprenants — orientation vers les communs d'usage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas de pensée souveraineté au sens de la fiche — le choix de Google Workspace est paradoxalement un choix d'enfermement dans un écosystème propriétaire. Pourtant, la pièce 1 justifie le choix par une exigence précise (protection + non-modifiabilité), et la pièce 4 articule une finalité de communs ('Gemini gratuit pour le maximum d'apprenants'). Cela ressemble à une pensée souverainiste paradoxale : utiliser le propriétaire pour produire du commun d'accès. La fiche reconnaît la 'gouvernance des communs' comme dimension de 6.04.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La finalité 'rendre Gemini gratuit pour le maximum d'apprenants' correspond à une logique de communs d'usage que la fiche cite dans son essence."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois me demander si la finalité 'gratuit pour le maximum' est vraiment de la gouvernance des communs. L'attaque (d) glissement lexical est sérieuse : 'gratuit' n'égale pas 'commun', et la fiche cite explicitement ce piège ('c'est gratuit ≠ liberté'). De plus, l'apprenant ne thématise pas la dépendance à Google ni les risques de vendor lock-in — ce qui est précisément ce que la fiche réclame ('motivation explicite par une analyse de dépendance ou des communs'). La pièce ne porte pas la charge sémantique requise.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'expression 'gratuit pour le maximum' relève du registre de l'accès, pas de la souveraineté. La fiche signale précisément ce piège : 'c'est gratuit ≠ liberté'. Aucune analyse de dépendance ni de portabilité n'accompagne le choix de Workspace."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une trace de pensée souverainiste. La finalité de gratuité pour les apprenants m'a forcé à reconnaître une intention de communs d'accès, mais la fiche signale précisément ce piège — la gratuité n'est pas la souveraineté. La présomption de sycophantie a disqualifié la pièce. Ce qui reste : pas de trace solide de 6.04 dans cette feuille — l'apprenant raisonne en termes d'accès et de protection, pas en termes de dépendance ou de communs au sens strict.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce porteuse a été disqualifiée : la finalité de gratuité n'équivaut pas à une analyse de dépendance ou de communs au sens de la fiche.",
+        "prescription": "Sur cette feuille, le choix de Google Workspace n'est pas accompagné d'une analyse de dépendance. Pour ouvrir ce dossier, un chemin possible serait de poser explicitement la question de la portabilité des données, de la juridiction, et des alternatives possibles si Google modifiait les conditions d'usage."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Renoncement à imposer un choix technique pour préserver l'autonomie des futurs cartographes."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Engagement à ce que toute modification passe par un vote du cercle des Maîtres, pas par décision unilatérale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas de participation citoyenne au sens fort — ni consultation menée, ni panel délibératif organisé. La pièce 5 renonce à imposer ('laisser totale liberté') ce qui est plus une posture de non-interférence qu'une organisation de participation. La pièce 3 mentionne un vote du cercle des Maîtres, ce qui est un mécanisme de décision collective interne à une instance restreinte, pas une participation citoyenne ouverte. Aucun des deux ne décrit un processus où des non-experts ont été associés à une décision technologique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Le mécanisme de vote du cercle des Maîtres institue une décision collective sur les modifications de l'école — c'est une procédure de légitimité plus que d'ergonomie."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois me demander si le vote du cercle des Maîtres relève de la participation citoyenne ou plutôt de la gouvernance collective (6.07). La fiche 6.05 cible la participation des non-experts aux décisions technologiques. Ici, le cercle des Maîtres n'est pas défini comme un panel de non-experts mais comme une instance interne du dispositif. L'attaque (b) confusion de compétence s'applique : la pièce relève davantage de 6.07 (gouvernance collective) que de 6.05 (participation citoyenne).",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le vote du cercle des Maîtres est un mécanisme de gouvernance interne (6.07) plutôt qu'une organisation de participation citoyenne au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une organisation de la participation des non-experts à des décisions technologiques. La pièce extraite décrit un vote interne à une instance, ce qui relève d'une autre compétence. La présomption de sycophantie a disqualifié la pièce. Ce qui reste : pas de trace de 6.05 dans cette feuille — le travail se situe du côté de la gouvernance interne, pas de la participation citoyenne ouverte.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce porteuse a été disqualifiée comme relevant de la gouvernance collective interne (6.07) plutôt que de la participation citoyenne.",
+        "prescription": "Sur cette feuille, les mécanismes décisionnels imaginés sont internes au dispositif. Pour ouvrir ce dossier, un chemin possible serait de documenter un processus où des publics éloignés du numérique (apprenants débutants, employeurs non-techniques) auraient été associés à un choix qui les concerne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille ou à l'anticipation réglementaire. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision de pratique IA prise en anticipation d'une évolution normative."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Conception d'un 'conseil des maîtres' comme instance décisionnelle collective avec règles d'usage des bénéfices."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Règle de gouvernance explicite : toute modification de l'école requiert un vote du cercle des Maîtres."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Description d'un mécanisme d'émergence : alignement d'intérêts entre cartographes, noèsiologues et apprenants débouchant sur la prospérité de l'école."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Définition de rôles et de limites explicites (le choix de monétisation 'ne concerne pas l'école')."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas de gouvernance au sens fort — il manque les retours d'expérience d'un collectif qui aurait modifié ses propres règles. Pourtant, les quatre pièces dessinent ensemble une architecture précise : une instance décisionnelle nommée ('cercle des Maîtres'), une règle de modification ('vote au niveau du cercle'), un mécanisme d'émergence par alignement d'intérêts, et la distribution des rôles avec limites explicites. La fiche reconnaît explicitement les 'artefacts de gouvernance détaillés (chartes, protocoles avec rôles, limites et mécanismes de contrôle)' comme trace textuelle forte justifiant *Expert*.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La création d'une instance ('conseil des maîtres') avec un domaine de compétence précis (usage des bénéfices) constitue un élément de protocole de gouvernance."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La règle 'toute modification doit passer par un vote' est une règle de modification des règles — méta-gouvernance explicite."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "La description d'un mécanisme d'émergence par alignement d'intérêts ('tout le travail dans le même sens') correspond au marqueur d'émergence cité par la fiche."
+            },
+            {
+              "pieceId": 4,
+              "motifResistance": "La distribution des rôles avec limites ('cela ne concerne pas l'école') est un élément structurant explicite de la gouvernance."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté ; je dois me demander si je n'ai pas chargé une architecture conçue d'une portée de gouvernance vécue. L'attaque (g) mouvement-vers est sérieuse : aucune de ces instances n'existe encore — pas de cercle réuni, pas de vote tenu, pas d'émergence observée. La fiche est cependant explicite sur l'exception : les artefacts de gouvernance détaillés sont une trace textuelle forte. Ici, on a précisément un artefact en cours de rédaction qui décrit l'instance, la règle de modification, le mécanisme d'émergence et la distribution des rôles. La présomption ne tient pas pleinement : les pièces 2 et 3 articulent des principes de méta-gouvernance et d'émergence qui dépassent la simple description organisationnelle.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'instance est conçue mais pas encore active ; l'artefact rédigé reste cependant détaillé et structuré, ce que la fiche reconnaît."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La règle de modification des règles est un élément de méta-gouvernance précis ; l'artefact textuel l'inscrit, ce qui correspond exactement à la trace textuelle forte citée par la fiche."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'émergence est décrite comme résultat attendu d'un alignement d'intérêts, mais elle n'est pas encore observée — il s'agit d'une émergence projetée, pas vécue."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La distribution des rôles avec limites ('cela ne concerne pas l'école') est une règle structurante précise inscrite dans l'artefact."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme une simple description organisationnelle. Ce qui m'a forcé à reconnaître une trace de gouvernance, c'est la cohérence de quatre éléments : instance nommée, règle de modification des règles, mécanisme d'émergence par alignement, et limites explicites entre acteurs. La présomption de sycophantie a affaibli les pièces 1 et 3 (l'instance n'est pas active, l'émergence n'est pas vécue) mais a confirmé les pièces 2 et 4 — la fiche reconnaît explicitement l'artefact de gouvernance détaillé comme trace forte. Ce qui reste : une trace solide de conception de gouvernance, qui dépasse la simple organisation administrative parce qu'elle inscrit la règle de modification des règles et la distribution des limites entre acteurs.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Les pièces 2 et 4 ont survécu sans affaiblissement : elles inscrivent dans l'artefact une règle de méta-gouvernance et une distribution explicite des limites, ce que la fiche reconnaît comme trace textuelle forte.",
+        "prescription": "Le travail montre ici la conception d'une gouvernance avec instance dédiée, règle de modification des règles, et distribution explicite des limites entre acteurs. Pour prolonger cette compétence, un chemin possible serait de documenter le premier moment où le cercle des Maîtres se réunit effectivement, et de noter ce qui distingue l'émergence attendue de ce qui s'est réellement produit."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 4,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au questionnement de la primauté humaine. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion où une perspective non-humaine (animale, écosystémique, artificielle) a été prise au sérieux comme légitime."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au questionnement du statut moral des IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur la manière dont il traite l'IA avec laquelle il travaille et sur les raisons éthiques de ce choix."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un système vivant a inspiré une décision de conception ou un raisonnement structurel."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 0,
+    "nonEtablies": 9,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail politique se concentre presque entièrement sur la conception d'une gouvernance interne. L'apprenant inscrit dans son artefact rédigé une instance ('cercle des Maîtres'), une règle de modification des règles ('toute modification doit passer par un vote'), un mécanisme d'émergence par alignement d'intérêts, et la distribution explicite des limites entre acteurs (le choix de monétisation 'ne concerne pas l'école'). Le registre est celui de l'architecte institutionnel, qui pense le collectif comme structure plus que comme expérience vécue. Ce qui ressort, c'est moins une lecture des dynamiques de pouvoir existantes qu'une invention de procédures collectives à venir.",
+    "territoiresDenses": [
+      {
+        "competence": "Facilitation et gouvernance collective",
+        "description": "Le dispositif RESPIRE est conçu avec une instance décisionnelle dédiée, une règle de modification des règles, et une distribution explicite des limites entre acteurs.",
+        "extraitVerbatim": "Toute modification de l'école doit passer par un vote au niveau du cercle des Maîtres…",
+        "ceQueCaDit": "L'inscription d'une règle de modification des règles dans l'artefact rédigé constitue une méta-gouvernance précise — ce que la fiche reconnaît comme trace textuelle forte."
+      }
+    ],
+    "territoiresNonVisites": "De nombreux territoires de ce pôle restent silencieux sur cette feuille. Le red-teaming, l'audit, la veille réglementaire ne sont pas mobilisés. La souveraineté numérique apparaît en germe, mais le choix de Google Workspace n'est pas accompagné d'une analyse de dépendance qui en ferait une véritable trace souverainiste. La participation citoyenne au sens des non-experts associés aux décisions technologiques n'apparaît pas — les mécanismes décisionnels imaginés restent internes au dispositif. Le triptyque post-anthropocentrique (décentrement, cohabitation IA, conscience biosystémique) reste un territoire non visité dans cette feuille. La gouvernance algorithmique des services publics n'est pas non plus thématisée, alors même que le dispositif RESPIRE touche à des questions de certification de compétences qui s'en rapprochent.",
+    "emergencesPole": "Ce qui traverse cette feuille, c'est une pensée de gouvernance qui s'inscrit dans la structure même de l'artefact textuel — le manuel rédigé est lui-même un acte de gouvernance, qui contraint son auteur. Une seconde émergence : la distribution explicite des limites entre acteurs ('cela ne concerne pas l'école', 'totale liberté aux gens') signale une posture où la gouvernance se définit autant par ce qu'elle ne cherche pas à régir que par ce qu'elle régit. Enfin, le pari de l'émergence — alignement d'intérêts produisant un résultat collectif — est explicitement préféré à un pilotage centralisé.",
+    "pistes": [
+      "Pour observer la gouvernance en acte, un chemin possible serait de documenter le premier moment où le cercle des Maîtres se réunit effectivement, et de noter ce qui distingue l'émergence attendue de ce qui s'est réellement produit.",
+      "Pour épaissir la dimension de souveraineté numérique, un chemin possible serait de poser explicitement la question de la portabilité des données et des alternatives possibles si Google modifiait les conditions d'usage de Workspace.",
+      "Pour ouvrir le triptyque post-anthropocentrique, un chemin possible serait de questionner ce que le dispositif RESPIRE suppose comme rapport à l'IA — outil, partenaire, entité dont le statut reste ouvert."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail politique se concentre presque entièrement sur la conception d'une gouvernance interne. L'apprenant inscrit dans son artefact rédigé une instance ('cercle des Maîtres'), une règle de modification des règles ('toute modification doit passer par un vote'), un mécanisme d'émergence par alignement d'intérêts, et la distribution explicite des limites entre acteurs (le choix de monétisation 'ne concerne pas l'école'). Le registre est celui de l'architecte institutionnel, qui pense le collectif comme structure plus que comme expérience vécue. Ce qui ressort, c'est moins une lecture des dynamiques de pouvoir existantes qu'une invention de procédures collectives à venir.\n\n## Territoires les plus denses\n\n**Facilitation et gouvernance collective.** Le dispositif RESPIRE est conçu avec une instance décisionnelle dédiée, une règle de modification des règles, et une distribution explicite des limites entre acteurs. « Toute modification de l'école doit passer par un vote au niveau du cercle des Maîtres… » L'inscription d'une règle de modification des règles dans l'artefact rédigé constitue une méta-gouvernance précise — ce que la fiche reconnaît comme trace textuelle forte.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nDe nombreux territoires de ce pôle restent silencieux sur cette feuille. Le red-teaming, l'audit, la veille réglementaire ne sont pas mobilisés. La souveraineté numérique apparaît en germe, mais le choix de Google Workspace n'est pas accompagné d'une analyse de dépendance qui en ferait une véritable trace souverainiste. La participation citoyenne au sens des non-experts associés aux décisions technologiques n'apparaît pas — les mécanismes décisionnels imaginés restent internes au dispositif. Le triptyque post-anthropocentrique (décentrement, cohabitation IA, conscience biosystémique) reste un territoire non visité dans cette feuille. La gouvernance algorithmique des services publics n'est pas non plus thématisée, alors même que le dispositif RESPIRE touche à des questions de certification de compétences qui s'en rapprochent.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse cette feuille, c'est une pensée de gouvernance qui s'inscrit dans la structure même de l'artefact textuel — le manuel rédigé est lui-même un acte de gouvernance, qui contraint son auteur. Une seconde émergence : la distribution explicite des limites entre acteurs signale une posture où la gouvernance se définit autant par ce qu'elle ne cherche pas à régir que par ce qu'elle régit. Enfin, le pari de l'émergence — alignement d'intérêts produisant un résultat collectif — est explicitement préféré à un pilotage centralisé.\n\n## Pistes pour enrichir ce pôle\n\n- Pour observer la gouvernance en acte, un chemin possible serait de documenter le premier moment où le cercle des Maîtres se réunit effectivement, et de noter ce qui distingue l'émergence attendue de ce qui s'est réellement produit.\n- Pour épaissir la dimension de souveraineté numérique, un chemin possible serait de poser explicitement la question de la portabilité des données et des alternatives possibles si Google modifiait les conditions d'usage de Workspace.\n- Pour ouvrir le triptyque post-anthropocentrique, un chemin possible serait de questionner ce que le dispositif RESPIRE suppose comme rapport à l'IA — outil, partenaire, entité dont le statut reste ouvert.\n"
+  }
+}

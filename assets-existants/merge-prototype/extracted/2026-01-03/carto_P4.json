@@ -1,0 +1,496 @@
+{
+  "poleNum": "4",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Réfléchir si démarrer le développement d'EduFolio (l'interface pour se passer de Google Doc et des IA propriétaires en utilisant Aurora et son collège d'agents experts) maintenant ou si je peux me contenter de remettre en ligne EduChat tout simplement pour le moment, en attendant (ou peut-être faire les deux).",
+      "contexte": "Question posée sur le démarrage d'une interface alternative aux outils propriétaires, mêlant positionnement éthique (se passer des IA propriétaires) et indécision tolérée (maintenant, plus tard, ou les deux).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Alors c'est clair que ça donnerait un boost magnifique à la pédagogie de l'émergence, mais le coût en temps et en énergie et en frustration pour me plier aux exigences \"scientifiques\" des institutions, risque de me gonfler une fois de plus.",
+      "contexte": "Pesée des bénéfices et coûts d'une démarche institutionnelle (thèse HEP) avec mise entre guillemets de la norme attendue ('scientifiques').",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Sauf que je la vois comme un outil stratégique pour Respire, par une validation personnelle de compétence.",
+      "contexte": "Pushback contre la lecture de Claude (qui voyait la thèse comme contradiction philosophique) en mobilisant un contexte stratégique que Claude ne pouvait avoir : la fonction de la thèse pour Respire.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "J'y songerai, dans quelques années peut-être.",
+      "contexte": "Report explicite de la décision sur la thèse avec horizon temporel long ('dans quelques années').",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Tu juges les compétences par la maîtrise réelle, pas par les diplômes. Tu as écrit dans tes manuels que \"le diplôme est une photo d'un train qui est déjà passé. La thèse HEP serait une contradiction avec ta propre philosophie\"",
+      "contexte": "Citation de Claude rappelant à l'apprenant sa propre philosophie écrite dans ses manuels ; appropriation marquée par 'J'ai d'ailleurs beaucoup aimé ce passage'.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Pas super motivé de regarder ces travaux maintenant. Je préfère avancer sur la lecture des manuels de formation.",
+      "contexte": "Décision explicite de ne pas explorer maintenant une liste de personnes-ressources, avec préférence assumée pour une autre tâche.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Si tout va bien, disons avec 200 pages de relecture et mise en page journalière, je devrais pouvoir commencer à rédiger le manuel de l'Éclaireur lundi 5. C'est le dernier jour de tranquillité car le 6 j'ai ma première matinée à l'école privée Chantemerle qui est à Blonay (45mn direction Vevey) s'ils me le confirme, le 7 j'ai l'entretient avec l'école privée de CFC Bureautique : Lemania qui est à la gare de Lausanne, le 8 j'ai rendez-vous avec l'ORP, le 9 je descend à La Ciotat pour une semaine ou pour quatre jour, selon la réponse et la date de début à Chantemerle.",
+      "contexte": "Séquencement précis de la semaine à venir avec dépendances conditionnelles ('s'ils me le confirme', 'selon la réponse').",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Sa réponse : aller aux entretiens et dire \"Je développe un projet de recherche en pédagogie assistée par IA. Je cherche des contextes où tester certaines approches, pas nécessairement un poste à temps plein. [AJOUT-CA] Est-ce que votre établissement pourra m'offrir cet espace de liberté ? [/AJOUT-CA]\" → ce qui m'évitera de perdre mon temps.",
+      "contexte": "Adoption d'une formulation co-produite avec Claude — modifiée par un ajout marqué [AJOUT-CA] — pour les entretiens à venir ; filtre assumé sur les contextes incompatibles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Etonnamment, la thèse n'y est pas mentionnée explicitement. Je lui ai posé la question et il me dit de me poser la question suivante \"Ai-je besoin de la validation HEP pour que ce contenu existe et survive ?\".",
+      "contexte": "Détection d'une absence dans la synthèse IA suivie d'une méta-question adressée à Claude sur ce manque.",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mise en balance des bénéfices et coûts d'une démarche institutionnelle ; tension entre l'apport pour la pédagogie de l'émergence et le coût personnel de la conformité aux exigences."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Recadrage qui pose la thèse comme outil stratégique, déplaçant la nature de l'arbitrage."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Maintien de l'incertitude sur la décision par un report explicite ('dans quelques années peut-être')."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "Énoncé par Claude d'une tension entre les valeurs déclarées par l'apprenant ('le diplôme est une photo d'un train qui est déjà passé') et l'option d'une thèse institutionnelle, appropriée par lui."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Ce pôle est à signaux de surface trompeurs. La fiche est exigeante : il faut un processus visible de mise en tension de valeurs, pas un trade-off pragmatique. La pesée bénéfices/coûts (PID 2) est essentiellement pratique (temps, énergie, frustration vs apport pédagogique), elle ne porte pas sur des valeurs morales en conflit. Le recadrage stratégique (PID 3) glisse vers d'autres compétences. Le report (PID 4) maintient l'incertitude mais sans déployer les valeurs qui s'opposent. La citation de Claude (PID 5), appropriée par l'apprenant, formule la seule tension de valeurs explicite : intégrité philosophique anti-diplôme vs stratégie collective pour Respire. C'est ce passage qui résiste, faiblement, en passant par une médiation externe.",
+          "piecesQuiResistent": [
+            { "pieceId": 4, "motifResistance": "L'énoncé appropriée par 'j'ai d'ailleurs beaucoup aimé ce passage' formule explicitement la contradiction entre la philosophie écrite et l'option institutionnelle, ce qui pose les termes d'une tension de valeurs." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté est relue avec méfiance. La tension de valeurs est formulée par Claude, pas par l'apprenant lui-même ; l'attaque du faux positif (la tension est portée par un tiers, l'appropriation est passive) touche fortement. L'apprenant pousse en retour ('Sauf que je la vois comme outil stratégique') sans déplier les valeurs qu'il met en concurrence — il pose une lecture stratégique qui désamorce la tension morale au lieu de la traverser. La pièce est affaiblie au point de la disqualifier comme attestation propre de raisonnement éthique.",
+          "examenPieces": [
+            { "pieceId": 4, "attaqueDominante": "h", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La mise en tension est portée par Claude ; l'apprenant la désamorce par une lecture stratégique plutôt que de la traverser comme dilemme éthique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille porte des trade-offs pragmatiques plutôt qu'un raisonnement éthique au sens fort. Une seule pièce a résisté, celle où Claude formule pour l'apprenant la tension entre philosophie déclarée et option institutionnelle. Sous le second retournement, cette pièce est tombée : la tension est portée par un tiers, et l'apprenant la désamorce par une lecture stratégique plutôt que de la traverser. Ce qui en résulte : le raisonnement éthique appliqué n'est pas attesté sur cette feuille. Les arbitrages présents relèvent plutôt de la patience stratégique et de la décision en contexte incertain.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les arbitrages sur cette feuille relèvent du trade-off pragmatique ou du recadrage stratégique ; la mise en tension de valeurs est portée par un tiers (Claude) plutôt que par l'apprenant en propre.",
+        "prescription": "Plusieurs décisions de cette feuille touchent à des questions de valeurs sans que la mise en tension soit dépliée. Un chemin possible serait de documenter, sur une de ces décisions, les deux ou trois valeurs qui s'opposent, ce qu'elles défendent chacune, et ce qui rend l'arbitrage difficile."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mention d'EduFolio comme 'interface pour se passer de Google Doc et des IA propriétaires' — choix architectural posé contre les outils propriétaires."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Modification d'une formulation Claude par un ajout signé [AJOUT-CA], qui inscrit une question valeur ('espace de liberté') dans la formulation initiale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas d'acte d'alignement éthique explicite. La parenthèse 'pour se passer de Google Doc et des IA propriétaires' (PID 1) est un positionnement architectural concret : EduFolio est conçu comme refus des outils propriétaires. La pièce résiste, mais le refus n'est pas raconté en acte sur cette feuille — il est postulé comme finalité du projet. La balise [AJOUT-CA] (PID 8) marque une modification du texte produit par Claude ; l'ajout est une question valeur ('espace de liberté'), ce qui se rapproche d'un alignement de l'output IA sur des critères humains. La pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le projet EduFolio est explicitement conçu pour se passer des outils propriétaires, ce qui inscrit un refus structurel dans l'architecture même." },
+            { "pieceId": 2, "motifResistance": "L'ajout [AJOUT-CA] introduit une question valeur dans la formulation Claude, ce qui constitue une opération d'alignement." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces qui ont résisté sont relues avec méfiance. Le projet EduFolio est mentionné en passant, dans le contexte d'une autre question (démarrer maintenant ou plus tard) ; le refus des outils propriétaires y est postulé sans être déployé comme raisonnement d'alignement. L'attaque de l'insuffisance probatoire touche, la pièce est affaiblie. La balise [AJOUT-CA] est un marqueur de modification ; sa qualification d'alignement éthique est plausible mais la justification valeur n'est pas explicitée. L'attaque du glissement lexical touche, la pièce est affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le refus structurel est postulé en parenthèse ; le raisonnement d'alignement qui le motive n'est pas déployé sur cette feuille." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La balise marque une modification ; la justification valeur de l'ajout n'est pas explicitée comme acte d'alignement." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas d'acte d'alignement déployé. Deux pièces ont fait pression : le projet EduFolio comme refus structurel des outils propriétaires, et l'ajout valeur dans la formulation Claude. Sous le second retournement, les deux ont été affaiblies sans tomber : le refus est postulé sans être déployé, l'ajout est marqué sans être justifié. Ce qui en résulte : un alignement éthique se laisse percevoir en arrière-plan, sans être documenté en propre dans cette feuille. Le renvoi au cartographe convient.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Deux indices affaiblis ont survécu : la conception d'EduFolio comme refus structurel des outils propriétaires, et la modification valeur d'une formulation Claude — sans déploiement du raisonnement d'alignement.",
+        "prescription": "Le refus structurel des outils propriétaires est en germe dans EduFolio. Un chemin possible serait de documenter, lors d'un prochain choix d'outil IA, les critères valeur qui ont tranché — souveraineté des données, transparence du modèle, ouverture du code — et ce que ces critères excluent."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas d'arbitrage explicite intégrant les impacts environnementaux, les externalités non comptabilisées ou les parties prenantes non-humaines/générationnelles. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision où une dimension écologique ou long-terme générationnelle (au-delà de l'usager direct) a pesé concrètement."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de valorisation explicite d'un mode de pensée atypique relié à un résultat concret ('c'est parce que je pense autrement que j'ai vu ceci'). Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un fonctionnement cognitif personnel a permis de voir un angle qu'une approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Indécision tolérée entre trois options ('maintenant', 'pour le moment', 'les deux') pour le démarrage d'EduFolio."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Tranchage explicite d'une priorité face à une liste de ressources externes ; choix immédiat assumé."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Séquencement précis d'une semaine avec dépendances conditionnelles assumées ('s'ils me le confirme', 'selon la réponse')."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas de tranchage en contexte d'incertitude au sens fort. L'indécision EduFolio (PID 1) est de la réflexion, pas un tranchage — la pièce résiste comme tolérance à l'incertitude, sans facette décision. La priorisation manuels vs ressources externes (PID 6) est un tranchage explicite — la pièce résiste comme facette décision. Le séquencement de la semaine (PID 7) accepte des dépendances conditionnelles ('s'ils me le confirme', 'selon la réponse') — la pièce résiste comme tolérance à fonctionner dans le flou.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'option 'ou peut-être faire les deux' tolère l'incertitude sans paniquer, en gardant les chemins ouverts." },
+            { "pieceId": 2, "motifResistance": "La phrase tranche immédiatement face à une liste de ressources, en explicitant la préférence." },
+            { "pieceId": 3, "motifResistance": "Le séquencement de la semaine assume plusieurs dépendances conditionnelles sans rigidifier le planning." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les trois pièces qui ont résisté sont relues avec méfiance. La tolérance à trois options (PID 1) est brève et reste en mode réflexion sans aboutir à un acte ; l'attaque du mouvement-vers touche, la pièce est affaiblie mais retenue comme indice de tolérance. Le tranchage immédiat (PID 6) est concret mais peu coûteux (juste une priorité du jour) ; l'attaque de l'insuffisance probatoire touche, la pièce reste retenue comme acte de tranchage attesté. Le séquencement (PID 7) ressemble à de la planification logistique plus qu'à une tolérance existentielle au flou ; l'attaque de la confusion de compétence touche, mais la conditionnalité assumée demeure ; la pièce est affaiblie mais retenue.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'option triple reste en mode réflexion sans aboutir à un tranchage ; elle atteste néanmoins une tolérance à garder les chemins ouverts." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le tranchage est explicite et porte sur une demande externe ; le geste de décision est attesté." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce relève partiellement de la planification (7.07) ; la dimension de tolérance à la conditionnalité reste néanmoins lisible." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porterait que de la planification, sans tranchage en contexte d'incertitude. Trois pièces ont fait pression. Sous le second retournement, le tranchage explicite face à la liste de ressources est sorti confirmé — c'est un acte de décision, même peu coûteux. Les deux autres pièces se sont affaiblies sans tomber : la tolérance à trois options EduFolio reste indécise, le séquencement conditionnel relève partiellement de la planification. Ce qui en résulte : la facette décision est attestée par un acte ; la facette tolérance est lisible mais peu déployée. Le combo demandé par la fiche (nommer le flou, fonctionner malgré, raconter un tranchage avec ses conséquences) est partiellement présent.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le tranchage face à la liste de ressources externes constitue un acte de décision ; deux autres pièces composent une tolérance à fonctionner avec des chemins ouverts ou des dépendances conditionnelles.",
+        "prescription": "La décision face à des options conditionnelles est lisible ici. Pour enrichir ce territoire, un chemin possible serait de documenter, après l'un des rendez-vous à venir, ce qui a été tranché en contexte d'information manquante et ce que cette décision a produit ensuite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Maintien d'une lecture propre face à la conclusion de Claude qui pointait une contradiction philosophique."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Citation par Claude de la philosophie écrite par l'apprenant, appropriée par 'j'ai d'ailleurs beaucoup aimé ce passage' — confrontation à sa propre cohérence."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Adoption d'une formulation d'entretien qui assume un filtre potentiellement coûteux ('pas nécessairement un poste à temps plein') et ouvre sur une question d'espace de liberté."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas d'acte de courage ou d'intégrité au sens fort de la fiche (assumer une position qui coûte, maintenir une cohérence sous pression). Le pushback contre Claude (PID 3) est un désaccord intellectuel sans pression réelle — l'autorité d'une IA n'est pas une pression sociale qui coûterait. La citation par Claude de la propre philosophie (PID 5) ne fait que poser une cohérence externe à vérifier ; l'apprenant l'apprécie sans s'y engager pleinement. La formulation d'entretien (PID 8) assume un filtre qui peut coûter des opportunités professionnelles — la pièce résiste comme acte courageux avec coût explicite ('pas nécessairement un poste à temps plein').",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "La formulation arrête un filtre qui peut faire perdre des opportunités, ce qui assume un coût personnel concret au nom d'une valeur (la liberté de mener la recherche)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté est relue avec méfiance. La formulation est co-produite avec Claude ; l'apprenant l'adopte avec un ajout [AJOUT-CA], mais le geste courageux (assumer le filtre) est partiellement délégué. L'attaque du faux positif touche, la pièce est affaiblie. Néanmoins, l'ajout [AJOUT-CA] et la finalité assumée ('ce qui m'évitera de perdre mon temps') sont des décisions personnelles ; la pièce reste retenue comme acte courageux co-produit.",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "h", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La formulation initiale vient de Claude ; l'adoption assumée et l'ajout marqué constituent néanmoins une appropriation courageuse de la posture." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas d'acte de courage avec coût personnel. Une pièce a fait pression : la formulation d'entretien adoptée qui assume un filtre potentiellement coûteux. Sous le second retournement, la pièce a été affaiblie par la provenance partagée avec Claude, sans tomber. Ce qui en résulte : un acte d'intégrité par cohérence entre valeurs (refuser un poste qui ne donnerait pas l'espace nécessaire) et action (le filtre assumé en entretien) se laisse établir, avec la réserve que la formulation est co-produite et que le coût réel reste à venir (les entretiens n'ont pas encore eu lieu).",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "L'adoption d'une formulation d'entretien qui assume un filtre coûteux constitue un acte d'intégrité par cohérence valeur/action, malgré une co-production avec Claude.",
+        "prescription": "Le filtre assumé en entretien atteste une cohérence entre valeurs et action. Pour la confirmer, un chemin possible serait de documenter, après chaque entretien, comment la phrase a été reçue, ce qui a été tenu malgré les réactions, et ce qui a été ajusté ou pas."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Correction de Claude en mobilisant un contexte stratégique (la thèse comme outil pour Respire) que la machine ne pouvait pas connaître."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Repérage d'une absence dans la synthèse Claude (la thèse n'y figure pas), accompagnée d'une méta-question sur ce manque."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas de validation contextuelle au sens fort de la fiche (identifier pourquoi le contexte manquant change tout). Le pushback (PID 3) corrige Claude avec un contexte que la machine ne pouvait pas avoir — la stratégie envisagée pour Respire ; la pièce résiste. Le repérage d'absence (PID 9) constate que la synthèse Claude omet la thèse, mais ne déploie pas pourquoi ce contexte manquant change quelque chose — c'est plus de la pensée critique (1.01) que de la validation contextuelle. La pièce ne résiste pas vraiment pour 4.07.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le pushback mobilise un contexte (la stratégie Respire) inaccessible à Claude depuis ce qui était dans l'échange, ce qui correspond au mécanisme de validation contextuelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté est relue avec méfiance. Le contexte mobilisé (la stratégie Respire) est posé comme évident pour l'apprenant mais le mécanisme de l'erreur Claude n'est pas explicité ('Claude ne savait pas que…' n'est pas dit comme tel). L'attaque de la confusion de compétence est plausible : la pièce peut être lue comme 4.06 (cohérence valeur) ou 1.01 (pensée critique sur sortie IA). La validation contextuelle au sens propre demande une articulation du delta de savoir humain/machine, qui n'est pas explicite ici. La pièce est affaiblie sans tomber tout à fait.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le delta de contexte humain/machine est en arrière-plan ; il n'est pas explicité comme mécanisme d'erreur attribué à un savoir contextuel inaccessible." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas de validation contextuelle au sens fort. Une pièce a résisté : le pushback qui mobilise une stratégie Respire que Claude ne pouvait pas connaître. Sous le second retournement, la pièce a été affaiblie : le delta de contexte est en arrière-plan, sans être explicité comme tel. Ce qui en résulte : la validation contextuelle se laisse percevoir mais n'est pas déployée. Le renvoi au cartographe convient.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie a survécu : le pushback mobilise un contexte stratégique inaccessible à Claude, sans que le delta de savoir soit explicité comme mécanisme.",
+        "prescription": "La correction de l'IA par contexte humain est en germe. Pour la rendre plus lisible, un chemin possible serait de noter, à la prochaine occasion, ce que l'IA ne pouvait pas savoir précisément (un savoir relationnel, historique, ou tacite) et ce qui en résultait dans son output."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Question 'Est-ce que votre établissement pourra m'offrir cet espace de liberté ?' qui nomme une valeur (l'espace de liberté pédagogique) comme condition de la collaboration."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas d'articulation de valeur non-automatisable au sens fort. La question 'espace de liberté' (PID 1) nomme une valeur humaine qu'un cadre institutionnel doit offrir — mais elle ne fait pas la comparaison avec ce que l'IA pourrait ou ne pourrait pas faire, ni n'articule la lucidité bidirectionnelle demandée par la fiche. La pièce résiste faiblement comme valorisation d'un type de travail humain, sans articulation explicite de sa non-automatisabilité structurelle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'ajout marqué [AJOUT-CA] pose l'espace de liberté comme valeur de la collaboration, ce qui pointe vers une valeur humaine que le cadre doit offrir." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté est relue avec méfiance. L'espace de liberté pédagogique est une valeur, mais rien ne la pose comme non-automatisable au sens structurel de la fiche (ce que l'IA ne peut pas faire). L'attaque du faux positif touche : la valeur peut être lue comme une demande professionnelle classique (autonomie au travail) plutôt que comme identification de ce qui reste irremplaçablement humain. La pièce est affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "h", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'espace de liberté est une valeur, mais l'articulation de sa non-automatisabilité structurelle n'est pas posée — la pièce reste un indice." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas d'articulation de valeur non-automatisable. La seule pièce qui a résisté est restée affaiblie : la valeur 'espace de liberté' est posée comme condition d'un cadre, sans articulation de ce qui resterait irremplaçablement humain face à l'IA. Le territoire n'est pas attesté sur cette feuille au sens fort. Le renvoi au cartographe convient.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une pièce affaiblie a survécu : la valeur 'espace de liberté' est posée comme condition professionnelle sans articulation explicite de ce qui resterait irremplaçablement humain.",
+        "prescription": "La valeur d'un espace humain est posée. Un chemin possible serait de documenter, dans une feuille à venir, ce que la pédagogie de l'émergence permet en présence d'élèves qu'aucune interaction médiée par IA ne pourrait reproduire — et pourquoi structurellement, pas circonstanciellement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Maintien d'un choix EduFolio/EduChat à 'pour le moment, en attendant' — patience avec un horizon implicite."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Report explicite de la décision sur la thèse à 'dans quelques années peut-être' — horizon temporel long assumé."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Non-action immédiate sur une liste de personnes-ressources, avec préférence explicite pour une autre tâche."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Séquencement précis de la semaine avec critères de déclenchement conditionnels."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas de patience stratégique au sens fort (combo : pression à agir + raisonnement explicite d'attente + moment d'action prévu). Le 'pour le moment, en attendant' (PID 1) tolère l'attente mais ne nomme pas le critère de déclenchement — la pièce résiste faiblement. Le 'dans quelques années peut-être' (PID 4) pose un horizon temporel long avec un 'peut-être' qui affaiblit le critère — la pièce résiste, partiellement. La priorisation manuels vs ressources (PID 6) est une décision de timing avec critère explicite (priorité immédiate) — la pièce résiste. Le séquencement (PID 7) est une planification conditionnelle ; il relève plus de l'organisation que de la patience stratégique au sens propre — la pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le 'dans quelques années peut-être' pose un horizon temporel long pour une décision lourde, ce qui dépasse la procrastination par sa durée assumée." },
+            { "pieceId": 3, "motifResistance": "La non-action sur les ressources externes est justifiée par une priorité explicite (les manuels en cours)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces qui ont résisté sont relues avec méfiance. Le 'dans quelques années peut-être' (PID 2) est long, mais l'absence de critère de déclenchement précis ('peut-être' au lieu de 'quand X') l'expose à l'attaque de la procrastination ; la pièce est affaiblie mais retenue car la durée assumée et le 'peut-être' s'inscrivent dans un raisonnement déployé sur la thèse. La priorisation manuels (PID 3) est un tranchage immédiat avec critère, conforme au combo demandé par la fiche ; l'attaque ne tient pas, la pièce est confirmée.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le 'peut-être' affaiblit le critère de déclenchement ; le report reste néanmoins inscrit dans un raisonnement déployé sur la thèse." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le tranchage est immédiat, justifié par une priorité explicite ; le critère de timing est posé." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas de patience stratégique au sens du combo demandé par la fiche. Deux pièces ont résisté. Sous le second retournement, la priorisation manuels vs ressources est sortie confirmée comme acte de timing assumé avec critère explicite. Le report 'dans quelques années peut-être' s'est affaibli (le 'peut-être' ne pose pas un critère précis de déclenchement) mais reste retenu car le report long est posé dans le cadre d'un raisonnement déployé. Ce qui en résulte : une discipline du non-agir-maintenant se laisse établir, portée par un acte de tranchage immédiat et un report long argumenté.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Une priorisation immédiate avec critère explicite a survécu confirmée, et un report long argumenté a survécu affaibli ; ensemble, ils composent une discipline du timing.",
+        "prescription": "La discipline du timing se lit ici. Pour la consolider, un chemin possible serait de revenir, dans une feuille à venir, sur une décision reportée pour identifier ce qui a fait que le moment était venu (ou pas encore), distinct de la pression du contexte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 3,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail de discernement se concentre principalement sur des questions de timing et de positionnement : quoi faire maintenant, quoi reporter, quel filtre poser en entretien, quelle posture maintenir face à une lecture proposée par Claude. La voix dominante est celle d'une journée où plusieurs décisions sont posées, plusieurs sont reportées sciemment, et une posture de cohérence se dessine en filigrane (refuser les outils propriétaires par conception d'EduFolio, refuser un poste qui n'offrirait pas l'espace de liberté). Les territoires plus marqués éthiquement — raisonnement moral dans la contradiction de valeurs, conscience écologique, valorisation explicite d'une neurodiversité — n'apparaissent pas en propre sur cette feuille, ou sont portés par un tiers (Claude) plutôt que déployés par l'apprenant.",
+    "territoiresDenses": [
+      {
+        "competence": "Patience stratégique et sens du timing",
+        "description": "Plusieurs décisions sont posées avec un horizon temporel explicite : un report long pour la thèse, une priorisation immédiate des manuels sur d'autres ressources, une indécision tolérée sur le démarrage d'EduFolio.",
+        "extraitVerbatim": "Pas super motivé de regarder ces travaux maintenant. Je préfère avancer sur la lecture des manuels de formation.",
+        "ceQueCaDit": "Le tranchage est immédiat et justifié par une priorité explicite ; il distingue le non-faire stratégique de la procrastination en posant son critère."
+      },
+      {
+        "competence": "Décision et tolérance à l'incertitude",
+        "description": "Plusieurs dépendances conditionnelles sont assumées sur la semaine à venir, plusieurs options sont gardées ouvertes ('ou peut-être faire les deux'), une priorité est tranchée face à une liste de ressources.",
+        "extraitVerbatim": "le 9 je descend à La Ciotat pour une semaine ou pour quatre jour, selon la réponse et la date de début à Chantemerle.",
+        "ceQueCaDit": "Le séquencement de la semaine accepte de fonctionner avec des données manquantes sans bloquer le planning, ce qui correspond à la facette tolérance de la compétence."
+      },
+      {
+        "competence": "Responsabilité, courage et intégrité",
+        "description": "L'adoption d'une formulation d'entretien qui assume explicitement un filtre potentiellement coûteux ('pas nécessairement un poste à temps plein') aligne valeur déclarée et action concrète.",
+        "extraitVerbatim": "Je développe un projet de recherche en pédagogie assistée par IA. Je cherche des contextes où tester certaines approches, pas nécessairement un poste à temps plein.",
+        "ceQueCaDit": "Le filtre annonce d'emblée un coût (la disponibilité partielle) qui peut faire perdre des opportunités, ce qui inscrit l'intégrité dans un acte plutôt qu'une déclaration."
+      }
+    ],
+    "territoiresNonVisites": "Le raisonnement éthique appliqué n'est pas attesté en propre sur cette feuille : la tension de valeurs la plus visible (la thèse comme contradiction philosophique vs outil stratégique) est portée par Claude plutôt que déployée par l'apprenant en propre, qui la désamorce par un recadrage stratégique. La conscience écologique et long-terme générationnelle ne se manifeste pas dans les arbitrages de cette journée — pas d'externalité non comptabilisée ni de partie prenante non-humaine évoquée. La valorisation de la neurodiversité n'est pas explicite : la mention de la distance pédagogique de trente ans est posée comme obstacle plutôt que comme ressource. L'alignement et refus éthique se lit en arrière-plan (EduFolio conçu pour se passer des outils propriétaires) sans être déployé comme raisonnement d'alignement. La validation contextuelle et la création de valeur non-automatisable existent en germe, sans articuler le mécanisme du delta humain/machine ni la dimension structurelle de la valeur humaine.",
+    "emergencesPole": "Trois observations traversent les compétences de ce pôle sur cette feuille. D'abord, le travail de discernement passe ici principalement par le timing : reporter, prioriser, garder ouvert, tolérer le conditionnel — la posture est davantage temporelle qu'éthique au sens des valeurs. Ensuite, plusieurs décisions s'appuient sur des contextes ou des valeurs qui ne sont pas explicités : on perçoit qu'EduFolio refuse les outils propriétaires, que la thèse est outil stratégique pour Respire, que l'espace de liberté importe — sans que les raisonnements valeur soient déployés. Enfin, le rapport avec Claude est lui-même un terrain de discernement : on accepte ce qui aide à structurer, on conteste ce qui simplifie trop, on ajoute là où la formulation manque d'une valeur.",
+    "pistes": [
+      "Pour enrichir le raisonnement éthique appliqué, un chemin possible serait de documenter, sur une décision qui pèse, les deux ou trois valeurs qui s'opposent, ce qu'elles défendent chacune, et ce qui rend l'arbitrage difficile.",
+      "Pour enrichir l'alignement et le refus éthique, un chemin possible serait de documenter, lors d'un prochain choix d'outil IA, les critères valeur qui ont tranché — souveraineté des données, transparence du modèle, ouverture du code — et ce que ces critères excluent.",
+      "Pour enrichir la conscience écologique et long-terme, un chemin possible serait de relever, sur un des projets actuels, une externalité non comptabilisée (énergie, attention captive, déchets numériques) et ce qu'elle change pour la suite.",
+      "Pour enrichir la valorisation de la neurodiversité, un chemin possible serait de documenter une situation où une façon personnelle de penser a permis de voir un angle qu'une approche standard n'aurait pas atteint.",
+      "Pour enrichir la validation contextuelle, un chemin possible serait de noter, à la prochaine occasion, ce que l'IA ne pouvait pas savoir précisément (un savoir relationnel, historique ou tacite) et ce qui en résultait dans son output.",
+      "Pour enrichir la création de valeur non-automatisable, un chemin possible serait de documenter ce que la pédagogie de l'émergence permet en présence d'élèves qu'aucune interaction médiée par IA ne pourrait reproduire — et pourquoi structurellement."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail de discernement se concentre principalement sur des questions de timing et de positionnement : quoi faire maintenant, quoi reporter, quel filtre poser en entretien, quelle posture maintenir face à une lecture proposée par Claude. La voix dominante est celle d'une journée où plusieurs décisions sont posées, plusieurs sont reportées sciemment, et une posture de cohérence se dessine en filigrane (refuser les outils propriétaires par conception d'EduFolio, refuser un poste qui n'offrirait pas l'espace de liberté). Les territoires plus marqués éthiquement — raisonnement moral dans la contradiction de valeurs, conscience écologique, valorisation explicite d'une neurodiversité — n'apparaissent pas en propre sur cette feuille, ou sont portés par un tiers (Claude) plutôt que déployés par l'apprenant.\n\n## Territoires les plus denses\n\n**Patience stratégique et sens du timing.** Plusieurs décisions sont posées avec un horizon temporel explicite : un report long pour la thèse (« j'y songerai, dans quelques années peut-être »), une priorisation immédiate des manuels sur d'autres ressources, une indécision tolérée sur le démarrage d'EduFolio. L'extrait « Pas super motivé de regarder ces travaux maintenant. Je préfère avancer sur la lecture des manuels de formation. » porte un tranchage immédiat justifié par une priorité explicite ; il distingue le non-faire stratégique de la procrastination en posant son critère.\n\n**Décision et tolérance à l'incertitude.** Plusieurs dépendances conditionnelles sont assumées sur la semaine à venir, plusieurs options sont gardées ouvertes (« ou peut-être faire les deux »), une priorité est tranchée face à une liste de ressources. L'extrait « le 9 je descend à La Ciotat pour une semaine ou pour quatre jour, selon la réponse et la date de début à Chantemerle. » montre un séquencement qui accepte de fonctionner avec des données manquantes sans bloquer le planning.\n\n**Responsabilité, courage et intégrité.** L'adoption d'une formulation d'entretien qui assume explicitement un filtre potentiellement coûteux aligne valeur déclarée et action concrète. L'extrait « Je développe un projet de recherche en pédagogie assistée par IA. Je cherche des contextes où tester certaines approches, pas nécessairement un poste à temps plein. » annonce d'emblée un coût (la disponibilité partielle) qui peut faire perdre des opportunités, ce qui inscrit l'intégrité dans un acte plutôt qu'une déclaration.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLe raisonnement éthique appliqué n'est pas attesté en propre sur cette feuille : la tension de valeurs la plus visible (la thèse comme contradiction philosophique vs outil stratégique) est portée par Claude plutôt que déployée par l'apprenant en propre, qui la désamorce par un recadrage stratégique. La conscience écologique et long-terme générationnelle ne se manifeste pas dans les arbitrages de cette journée — pas d'externalité non comptabilisée ni de partie prenante non-humaine évoquée. La valorisation de la neurodiversité n'est pas explicite : la mention de la distance pédagogique de trente ans est posée comme obstacle plutôt que comme ressource. L'alignement et refus éthique se lit en arrière-plan (EduFolio conçu pour se passer des outils propriétaires) sans être déployé comme raisonnement d'alignement. La validation contextuelle et la création de valeur non-automatisable existent en germe, sans articuler le mécanisme du delta humain/machine ni la dimension structurelle de la valeur humaine.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences de ce pôle sur cette feuille. D'abord, le travail de discernement passe ici principalement par le timing : reporter, prioriser, garder ouvert, tolérer le conditionnel — la posture est davantage temporelle qu'éthique au sens des valeurs. Ensuite, plusieurs décisions s'appuient sur des contextes ou des valeurs qui ne sont pas explicités : on perçoit qu'EduFolio refuse les outils propriétaires, que la thèse est outil stratégique pour Respire, que l'espace de liberté importe — sans que les raisonnements valeur soient déployés. Enfin, le rapport avec Claude est lui-même un terrain de discernement : on accepte ce qui aide à structurer, on conteste ce qui simplifie trop, on ajoute là où la formulation manque d'une valeur.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir le raisonnement éthique appliqué, un chemin possible serait de documenter, sur une décision qui pèse, les deux ou trois valeurs qui s'opposent, ce qu'elles défendent chacune, et ce qui rend l'arbitrage difficile. Pour enrichir l'alignement et le refus éthique, un chemin possible serait de documenter, lors d'un prochain choix d'outil IA, les critères valeur qui ont tranché — souveraineté des données, transparence du modèle, ouverture du code — et ce que ces critères excluent. Pour enrichir la conscience écologique et long-terme, un chemin possible serait de relever, sur un des projets actuels, une externalité non comptabilisée (énergie, attention captive, déchets numériques) et ce qu'elle change pour la suite. Pour enrichir la valorisation de la neurodiversité, un chemin possible serait de documenter une situation où une façon personnelle de penser a permis de voir un angle qu'une approche standard n'aurait pas atteint. Pour enrichir la validation contextuelle, un chemin possible serait de noter, à la prochaine occasion, ce que l'IA ne pouvait pas savoir précisément et ce qui en résultait dans son output. Pour enrichir la création de valeur non-automatisable, un chemin possible serait de documenter ce que la pédagogie de l'émergence permet en présence d'élèves qu'aucune interaction médiée par IA ne pourrait reproduire.\n"
+  }
+}

@@ -1,0 +1,356 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Je lis les premières pages et je jubile ! Ce cours de noèsiologie : c'est tellement ce que j'aurai voulu avoir à la HEP et à la HEFP/IFFP !",
+      "contexte": "Expression vive d'une émotion (jubilation) nommée à la lecture du manuel de noèsiologie.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Qu'est ce que ça me fait plaisir d'avoir atteint ce niveau en IA : de réussir à lui faire générer un livre que j'aurai voulu être capable d'écrire, c'est top !",
+      "contexte": "Énoncé d'un plaisir et d'une satisfaction liés à un accomplissement personnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "C'est vraiment ça le métier d'enseignant : aider l'élève à dépasser ses limites cognitives… pas transmettre des savoirs. Pour moi, enseigner c'est être un coach cognitif.",
+      "contexte": "Reformulation du rôle de l'enseignant comme accompagnant cognitif de l'élève.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "RESPIRE c'est l’alignement de l'enseignement avec les mutations sociétales en cours tout en redonnant du sens au travail de prof.",
+      "contexte": "Définition du projet RESPIRE reliant enseignement, mutations sociétales et sens du métier.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Il n'est pas du même acabit que les autres, car il ne parle pas de pédagogie ou de noèsiologie, mais de comment faire évoluer les écoles.",
+      "contexte": "Distinction du contenu d'un manuel (faire évoluer les écoles) par rapport aux autres.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant nomme une émotion vive (« je jubile ») et la relie à un manque ressenti dans sa propre formation passée, ce qui pourrait toucher à la nomination émotionnelle.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "L'expression « ça me fait plaisir » nomme un état affectif lié à un accomplissement, marqueur possible de lucidité émotionnelle.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence d'intelligence émotionnelle au sens de la fiche : exprimer de la joie en travaillant n'est pas en soi une compétence de reconnaissance, de régulation ou de sollicitude. La pièce 2 (« ça me fait plaisir ») tombe vite : c'est une émotion exprimée, pas observée ni régulée, et elle ne porte sur personne d'autre. La pièce 1 (« je jubile ») résiste un peu : l'émotion est nommée avec précision et reliée à une histoire personnelle (ce qu'il aurait voulu avoir en formation). Mais ce qui reste faible : la fiche distingue exprimer une émotion de la travailler comme information ou levier, et ici l'émotion reste pur ressenti, sans co-régulation, sans perception de l'état d'autrui, sans geste de sollicitude.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'émotion est nommée précisément (« je jubile ») et adossée à un vécu, ce qui dépasse le « c'était dur » générique que la fiche écarte." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je teste si j'ai pris une effusion spontanée pour une compétence émotionnelle. La fiche définit 2.01 comme reconnaître, nommer ET réguler ses émotions ou celles d'autrui, l'émotion devenant information et levier d'action. Or ici l'émotion est simplement vécue et dite, sans recul régulateur ni dimension relationnelle. C'est un récit performatif d'émotion plutôt qu'une trace de régulation : l'apprenant exprime sa jubilation, il ne montre pas qu'il la traite comme information.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage exprime une émotion vive mais ne montre ni régulation, ni perception d'autrui, ni usage de l'émotion comme levier ; il dit l'émotion sans attester la compétence émotionnelle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en présumant qu'un journal enthousiaste exprime des émotions sans pour autant les travailler. Les deux expressions de joie sont restées de ce côté : elles disent ce qui est ressenti, vivement et sincèrement, mais elles ne montrent ni régulation, ni lecture de l'état d'un autre, ni geste de sollicitude. La nomination « je jubile » m'a retenu un instant par sa précision, puis s'est révélée pur ressenti. Pour cette journée, l'intelligence émotionnelle au sens de la fiche — l'émotion comme information et levier, le care actif — reste un territoire que le texte n'a pas traversé, parce que la feuille est un récit de travail solitaire sans scène relationnelle.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a disqualifié la pièce résistante par récit performatif : l'émotion est exprimée mais ni régulée ni mise au service d'autrui.",
+        "prescription": "Les émotions sont nommées avec justesse dans ce journal. Pour ouvrir le dossier de l'intelligence émotionnelle relationnelle, un passage où une émotion a été régulée en situation, ou où l'état d'une autre personne a été perçu et accompagné, offrirait une trace à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "La formule « enseigner c'est être un coach cognitif » est un acte de storytelling personnel qui donne du sens, ce qui pourrait toucher à la communication authentique.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de communication authentique : la fiche vise une communication *vers l'autre* — assertivité, vulnérabilité stratégique, registre choisi en situation. Or ce journal est une écriture pour soi, sans destinataire. La pièce 1 (« coach cognitif ») est une formule qui condense une conviction, mais elle n'est adressée à personne et ne montre aucune prise de parole inconfortable ni adaptation de registre à un interlocuteur. Elle résiste très peu : c'est une note réflexive privée, pas un acte de communication calibré. Ce qui reste : aucune trace de feedback difficile, de pose de limite, ou de variation de ton consciente vers un public.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La formule frappante « enseigner c'est être un coach cognitif » a une qualité de storytelling qui pourrait servir à faire passer un message à d'autres." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1, retenue de justesse. Je vérifie si j'ai pris une note intime pour de la communication. La fiche 2.02 porte sur le partage délibéré vers autrui ; ici la formule est écrite dans un journal personnel, sans destinataire ni intention communicationnelle situationnelle. Le biais de medium est l'attaque centrale : la phrase existe parce que le journal invite à formuler des convictions, pas parce qu'une communication a eu lieu. La trace de communication-vers-l'autre est absente.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La formule est une notation réflexive de journal, sans destinataire ni acte de communication situé ; sa présence tient au medium introspectif, pas à un partage calibré vers autrui."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si une communication adressée se donnait à lire dans cette feuille. La formule sur le coach cognitif a une force d'énoncé qui m'a fait hésiter, parce qu'elle pourrait porter un message. Mais sous la seconde lecture, elle reste une conviction notée pour soi, dans un journal sans destinataire, sans prise de parole inconfortable ni registre ajusté à un interlocuteur. Pour cette journée, la communication authentique au sens de la fiche reste un territoire non visité : la feuille est une réflexion privée, et c'est une limite du support de ce jour plus qu'un trait du travail.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a disqualifié la pièce par biais de medium : formule de journal introspectif sans acte de communication adressé.",
+        "prescription": "L'écriture porte des formules denses et habitées. Pour ouvrir le dossier de la communication, un récit où l'une de ces convictions a été partagée à un interlocuteur, avec un choix conscient de ton ou de moment, donnerait une trace adressée à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la gestion des conflits. Pour ouvrir ce dossier, l'apprenant pourrait documenter un désaccord où son rôle (médiation, structuration, tension assumée) a été décrit."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à l'influence et la diplomatie. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a cherché l'adhésion d'autrui en intégrant ses objections."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Faire produire à l'IA un livre que l'apprenant n'aurait pas su écrire pourrait relever d'une collaboration avec une IA aux capacités hétérogènes.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de collaboration divergente : la fiche vise un travail productif *malgré* un désaccord ou des limites reconnues, avec des compensations explicites. La pièce 1 décrit un succès de génération, pas une divergence gérée. L'apprenant constate ailleurs dans la feuille que le manuel est incomplet, mais il ne décrit pas une collaboration où la limite de l'IA est reconnue ET compensée tout en continuant à travailler avec — il prévoit plutôt de tout régénérer. La pièce résiste à peine : il n'y a pas de marqueur « ça ne va pas mais on livre quand même », ni d'architecture compensatoire à étages. Ce qui reste faible : la collaboration avec l'IA est ici lisse et satisfaite, pas divergente.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Travailler avec une IA pour produire un ouvrage que l'on ne maîtrise pas pourrait supposer de composer avec ses limites." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1, faiblement. Je teste si j'y ai projeté une divergence gérée. La fiche est précise : le marqueur est « on n'est toujours pas d'accord MAIS on a livré », ou la reconnaissance d'une imperfection que l'on compense en continuant. Ici l'apprenant est pleinement satisfait du résultat sur ce manuel court ; il n'y a ni divergence persistante, ni compensation décrite, ni tolérance assumée à l'imperfection en cours de travail. La surinterprétation pédagogique me guette : j'ai voulu voir une collaboration divergente dans une simple réussite d'usage.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage relate une production réussie sans divergence persistante ni compensation décrite ; le marqueur central de la collaboration divergente (livrer malgré un désaccord ou une limite reconnue) est absent."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant une collaboration où une limite de l'IA serait reconnue et compensée tout en continuant à produire. Le fait que l'apprenant fasse générer un ouvrage qu'il ne saurait écrire m'a fait hésiter, parce qu'une telle collaboration suppose souvent de composer avec des imperfections. Mais sous la seconde lecture, la feuille décrit une réussite satisfaisante sur ce manuel, sans divergence persistante ni compensation explicitée. Pour cette journée, la collaboration divergente reste un territoire non visité : le travail avec l'IA y apparaît fluide plutôt que tendu, et c'est l'absence de friction décrite qui ferme ce dossier ici.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a disqualifié la pièce par surinterprétation : une réussite d'usage de l'IA a été prise pour une divergence gérée, qui n'est pas décrite.",
+        "prescription": "Le travail avec l'IA est ici fluide et satisfaisant. Pour ouvrir le dossier de la collaboration divergente, un passage où une limite de l'IA est reconnue puis compensée, tout en continuant à livrer, offrirait le marqueur attendu."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à l'intelligence culturelle et contextuelle. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a adapté son comportement à des normes différentes des siennes, avec l'analyse du pourquoi."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives au sens politique et à la lecture organisationnelle. Pour ouvrir ce dossier, l'apprenant pourrait documenter une lecture des dynamiques de pouvoir réelles dans une organisation et la manière de les naviguer."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "La métaphore « enseigner c'est être un coach cognitif » transpose la fonction enseignante dans un autre registre, ce qui pourrait relever de la traduction entre mondes.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "La définition de RESPIRE comme « alignement de l'enseignement avec les mutations sociétales » transpose un projet complexe en une formule intelligible.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de traduction entre mondes : la fiche vise la transposition d'un savoir spécialisé pour un public d'un autre cadre conceptuel, avec un test fort (l'expert d'origine reconnaîtrait-il son savoir ?) et idéalement de la bidirectionnalité ou un pontage entre groupes. La pièce 2 (formule RESPIRE) est une définition condensée pour soi, pas une transposition vers une audience identifiée. La pièce 1 (« coach cognitif ») résiste un peu : c'est une analogie qui transpose la fonction enseignante depuis le registre de la transmission vers celui de l'accompagnement cognitif. Mais ce qui reste faible : l'analogie est notée dans un journal, sans destinataire, sans pontage entre deux groupes qui ne se comprenaient pas, sans reformulation successive pour des publics distincts.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'analogie « coach cognitif » transpose la fonction enseignante d'un registre à un autre, ce qui frôle le geste de traduction structurelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je teste si j'ai pris une métaphore réflexive pour une traduction. La fiche distingue la traduction (transposer en préservant le sens pour un autre public) d'une simple formule frappante. Ici l'analogie « coach cognitif » est une reformulation pour soi de ce qu'est enseigner, pas un pontage adressé à un public qui pense dans un autre cadre. Le glissement lexical est l'attaque dominante : le geste a l'allure d'une transposition, mais il n'y a ni audience cible, ni vérification que le sens d'origine survit, ni bidirectionnalité. L'attaque touche fort mais ne disqualifie pas tout à fait, car l'analogie capture réellement un mécanisme (déplacer le focus du savoir vers le fonctionnement cognitif).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'analogie a la forme d'une transposition structurelle (du transmettre vers l'accompagner cognitif), mais elle reste une reformulation pour soi sans public cible ni pontage explicite ; le sens de la traduction est activé en surface plus qu'en acte adressé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant une transposition adressée à un public d'un autre cadre conceptuel. La formule RESPIRE est restée une définition pour soi. L'analogie du coach cognitif m'a retenu plus longtemps, parce qu'elle déplace réellement la fonction enseignante d'un registre à un autre et capture un mécanisme plutôt qu'une ressemblance vague. Sous la seconde lecture, cette transposition demeure une reformulation de journal, sans audience ni pontage entre deux mondes qui ne se comprenaient pas. Pour cette journée, on peut parler d'une trace de transposition réelle mais faible, davantage tournée vers la clarification personnelle que vers la traduction adressée, et qui demanderait confirmation par un cas de pontage entre publics.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante (transposition pour soi sans public cible) ; le temps 3 conclut à une trace réelle mais sous le seuil de présence établie.",
+        "prescription": "L'analogie qui redéfinit l'enseignement transpose réellement d'un registre à un autre. Pour la rendre plus probante comme traduction, un passage où une idée spécialisée est reformulée pour un public précis qui pense autrement — et où l'on vérifie que le sens d'origine survit — donnerait une trace de pontage adressé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "La formule « redonnant du sens au travail de prof » évoque une visée d'appartenance ou de communauté professionnelle, ce qui pourrait toucher à la construction de communautés.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de construction de communautés : la fiche cherche un « nous » identitaire chargé d'émotion, des rituels partagés, un vocabulaire de groupe, une architecture d'espace d'appartenance. La pièce 1 évoque « redonner du sens au travail de prof » et le projet RESPIRE, mais à l'échelle d'une visée abstraite, sans groupe réel nommé, sans « nous » incarné, sans rituel ni espace conçu. Elle résiste à peine : il n'y a ici aucune communauté décrite, seulement l'idée qu'un projet pourrait toucher des enseignants. Ce qui reste faible : la dimension d'appartenance vécue est absente, c'est une intention de portée collective, pas une communauté tissée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La visée de « redonner du sens au travail de prof » s'adresse à un collectif d'enseignants et pourrait porter une intention d'appartenance." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1, très faiblement. Je teste si j'ai confondu une ambition de projet avec une construction de communauté. La fiche est nette : le critère est l'appartenance qui survit au projet, le « nous » identitaire émotionnel. Ici il n'y a ni « nous », ni groupe réel, ni rituel, ni espace : seulement une finalité énoncée pour un métier en général. C'est une déclaration nue d'intention de portée collective. L'attaque du récit performatif disqualifie : le passage évoque le sens pour les profs sans montrer aucun lien tissé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage énonce une visée de sens pour les enseignants en général, sans « nous » incarné, sans rituel ni espace d'appartenance ; aucune communauté n'est décrite, seulement une intention de portée collective."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant une trace d'appartenance vécue ou d'un espace communautaire conçu. La visée de redonner du sens au travail enseignant m'a fait hésiter, parce qu'elle s'adresse à un collectif. Mais sous la seconde lecture, il n'y a ni groupe réel, ni « nous » identitaire, ni rituel, ni architecture d'espace : seulement une finalité énoncée pour le métier en général. Pour cette journée, la construction de communautés reste un territoire non visité ; ce que la feuille porte, c'est une ambition de portée collective, pas le tissage concret de liens, et cette ambition trouvera mieux sa place ailleurs que dans ce pôle.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a disqualifié la pièce par récit performatif : visée collective énoncée sans aucun lien d'appartenance décrit.",
+        "prescription": "Le projet porte une visée tournée vers le collectif enseignant. Pour ouvrir le dossier de la construction de communautés, un passage où un groupe réel se reconnaît, avec ses rituels ou son vocabulaire propre, donnerait une trace d'appartenance à examiner."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 4,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du jour se présente comme un journal de travail solitaire : l'apprenant lit, évalue et conçoit des manuels, seul face à ses textes et à l'IA. La voix est habitée, parfois exubérante — la jubilation à la lecture du cours de noèsiologie, le plaisir d'un accomplissement — mais elle s'exprime pour elle-même, sans scène relationnelle, sans interlocuteur, sans groupe. Les thèmes du pôle relationnel n'apparaissent qu'en filigrane, à travers une visée tournée vers le métier d'enseignant et vers d'autres profs, plus que par des interactions vécues. Cette feuille touche au cœur du travail intellectuel de l'apprenant bien plus qu'à sa vie relationnelle, ce qui laisse ce pôle largement en réserve pour cette journée.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "La plupart des territoires de ce pôle n'ont pas été ramenés dans cette feuille, et cela ressemble surtout à une limite du support du jour : un journal de conception solitaire ne met en scène ni conflit, ni influence, ni navigation culturelle, ni lecture des pouvoirs, ni communauté tissée. Ces territoires — gestion des conflits, influence et diplomatie, intelligence culturelle, sens politique, construction de communautés — sont restés hors champ faute d'interaction documentée ce jour-là. Deux territoires affleurent tout de même : la nomination des émotions, présente mais non régulée, et la transposition d'un savoir en formule, présente mais tournée vers soi ; ce dernier mériterait d'être exploré dans un contexte adressé à autrui.",
+    "emergencesPole": "Une même chose traverse les rares pièces de ce pôle : tout est orienté vers le travail et l'œuvre, jamais vers une relation en acte. Les émotions fortes qui apparaissent — jubilation, plaisir — sont des émotions de l'ouvrier face à son ouvrage, pas des émotions partagées ou régulées avec d'autres. De même, les formules qui pourraient ressembler à de la communication ou à de la traduction sont des notations pour soi, où l'apprenant clarifie sa propre pensée. Le pôle relationnel apparaît ici comme un horizon visé (le sens pour les profs, l'élève à accompagner) plutôt que comme un espace pratiqué dans la feuille.",
+    "pistes": [
+      "Pour enrichir la traduction entre mondes, un chemin possible serait de raconter un moment où une idée a été reformulée pour un public précis qui pense dans un autre cadre, en vérifiant que le sens d'origine a survécu.",
+      "Pour enrichir l'intelligence émotionnelle relationnelle, un chemin possible serait de décrire une situation où une émotion a été régulée en présence d'autrui, ou l'état d'une autre personne perçu et accompagné.",
+      "Pour enrichir la construction de communautés, un chemin possible serait de documenter un moment où un groupe réel d'enseignants s'est reconnu autour du projet, avec ses mots ou ses rituels propres."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du jour se présente comme un journal de travail solitaire : l'apprenant lit, évalue et conçoit des manuels, seul face à ses textes et à l'IA. La voix est habitée, parfois exubérante — la jubilation à la lecture du cours de noèsiologie, le plaisir d'un accomplissement — mais elle s'exprime pour elle-même, sans scène relationnelle, sans interlocuteur, sans groupe. Les thèmes du pôle relationnel n'apparaissent qu'en filigrane, à travers une visée tournée vers le métier d'enseignant et vers d'autres profs, plus que par des interactions vécues. Cette feuille touche au cœur du travail intellectuel de l'apprenant bien plus qu'à sa vie relationnelle, ce qui laisse ce pôle largement en réserve pour cette journée.\n\n## Territoires les plus denses\n\nPour cette seule journée, aucune compétence du pôle n'a atteint le seuil d'une présence établie. Un seul territoire affleure de façon notable : la transposition d'un savoir en formule habitée, lisible dans l'analogie qui redéfinit l'enseignement comme un accompagnement cognitif. Cette transposition reste tournée vers la clarification de sa propre pensée plutôt que vers un public à atteindre, ce qui en fait un dossier ouvert plutôt qu'un acquis attesté.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa plupart des territoires de ce pôle n'ont pas été visités dans cette feuille, et cela ressemble surtout à une limite du support du jour : un journal de conception solitaire ne met en scène ni conflit, ni influence, ni navigation entre cultures, ni lecture des pouvoirs, ni communauté tissée. Ces territoires sont restés hors champ faute d'interaction documentée ce jour-là. La nomination des émotions, elle, est bien présente, mais sous une forme exprimée plutôt que régulée, ce qui la maintient au seuil du pôle sans encore l'y faire entrer pleinement.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne même chose traverse les rares pièces de ce pôle : tout est orienté vers le travail et l'œuvre, jamais vers une relation en acte. Les émotions fortes qui apparaissent — jubilation, plaisir — sont des émotions de l'artisan face à son ouvrage, plus que des émotions partagées ou régulées avec d'autres. De même, les formules qui pourraient ressembler à de la communication ou à de la traduction sont des notations pour soi, où le travail clarifie sa propre pensée. Le pôle relationnel apparaît ici comme un horizon visé — le sens pour les profs, l'élève à accompagner — plutôt que comme un espace pratiqué dans la feuille.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir la traduction entre mondes, un chemin possible serait de raconter un moment où une idée a été reformulée pour un public précis qui pense dans un autre cadre, en vérifiant que le sens d'origine a survécu. Pour enrichir l'intelligence émotionnelle relationnelle, un chemin possible serait de décrire une situation où une émotion a été régulée en présence d'autrui, ou l'état d'une autre personne perçu et accompagné. Pour enrichir la construction de communautés, un chemin possible serait de documenter un moment où un groupe réel d'enseignants s'est reconnu autour du projet, avec ses mots ou ses rituels propres."
+  }
+}

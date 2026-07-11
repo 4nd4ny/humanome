@@ -1,0 +1,760 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Plusieurs exemples d'hallucinations liés à la compression automatique du contexte de Claude, me font regretter le temps ou les conversations s'arrêtaient brutalement en cours de route (ce qui m'arrive toujours, mais plus tard maintenant).",
+      "contexte": "Diagnostic technique d'un mécanisme IA (compression de contexte / hallucinations). Active 1.06 (littératie IA), 1.01 (pensée critique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Apprendre à crafter les données minimales importantes à charger en mémoire est tout un art et c'est encore plus important que le prompt engineering.",
+      "contexte": "Hiérarchisation explicite entre deux pratiques (context engineering vs prompt engineering). Active 1.08 (dialogue IA), 1.04 (métacognition sur pratique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Je développe une intuition qui me permet d'anticiper le couperet brutal d'une conversation. J'ai également un feeling, un 6e sens, qui me permet de détecter le bullshit dans les réponses construites sur la base de données approximatives.",
+      "contexte": "Auto-description d'un dispositif intuitif de détection des hallucinations. Active 1.01 (anti-hallucination), 1.06 (littératie IA), 1.04 (métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Il s'agit donc de trouver le bon équilibre entre utiliser le système par défaut, et savoir quand exporter les données pour recommencer une nouvelle conversation.",
+      "contexte": "Articulation d'un trade-off / point de bascule. Active 1.10 (synergie hybride), 1.08 (dialogue IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Si je m'en étais satisfait sans prendre les précautions nécessaires, je perdrais des idées fondamentales du discours, alors qu'elles étaient dans le contexte mais qu'elles se sont perdues.",
+      "contexte": "Auto-vigilance critique sur un risque IA précis. Active 1.01 (pensée critique anti-hallucination), 1.06 (littératie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Le simple \"vérifie que tu n'as rien oublié\" est purement inutile, c'est comme lui demander s'il est sûr de lui, sans lui expliquer quoi faire savoir s'il n'a rien oublié.",
+      "contexte": "Diagnostic mécaniste d'un échec de prompt naïf. Active 1.08 (dialogue avancé), 1.06 (littératie IA), 1.01 (pensée critique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Ma stratégie a été de lui demander de lister chapitre par chapitre chacun des concepts couverts par la v3. Puis de faire de même avec la v2. Puis de comparer les deux en ignorant les différences (évolution du concept) mais en repérant uniquement les oublis des concepts présents dans la v2 et absents de la v3.",
+      "contexte": "Décomposition algorithmique d'un problème non-trivial en sous-étapes vérifiables. Active 1.09 (pensée computationnelle), 1.08 (dialogue avancé), 1.03 (synthèse).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Ce faisant, j'ai imposé un narratif, un fil rouge, pour expliquer comment raconter le tout et je lui ai demandé de revoir l'architecture complète de la trilogie en suivant ce fil rouge et en intégrant les oublis.",
+      "contexte": "Imposition d'un fil narratif intégrateur sur un système. Active 1.03 (synthèse intégrative), 1.08 (dialogue avancé).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Résultat, un v4 avec des chapitres entiers dans lesquels étaient écrit \"idem que v2\" ou \"idem que v3\", donc pas utilisables. Après avoir demandé une consolidation du v4, même problème.",
+      "contexte": "Constat d'échec itératif documenté. Active 1.01 (pensée critique), 1.06 (littératie IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "J'ai fini par un prompt expliquant que j'allais basculer sur CoWork pour générer les chapitres en parallèle et que j'avais vraiment besoin d'un fichier contenant tout le contexte. J'ai aussi mentionné mon intention d'ajouter un 4e livre.",
+      "contexte": "Reformulation stratégique du prompt après échec, mention d'orchestration multi-outils (Claude+CoWork). Active 1.08, 1.07 (architecture systèmes IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Avec ce prompt (et donc 2h de discussion – tout en buvant mon café) j'ai réussi à obtenir un plan v5 qui me semble tenir la route.",
+      "contexte": "Aboutissement d'un cycle itératif via dialogue IA prolongé. Active 1.08 (dialogue avancé).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Pour ne pas m'endormir au volant, j'ai discuté avec l'IA Perplexity (Gemini ne fonctionne plus sur mon smartphone, je n'ai pas confiance en Grok, je n'ai plus d'abonnement à ChatGPT et Claude ne sait pas encore très bien parler).",
+      "contexte": "Choix raisonné d'un outil IA parmi plusieurs avec critères articulés. Active 1.10 (synergie hybride), 1.06 (littératie IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Je lui ai raconté mes idées en partant de la noèsiologie pour arriver jusqu'au couplage noèsis/entendement qui constitue la base philosophique de la pédagogie de l'émergence.",
+      "contexte": "Articulation conceptuelle d'un édifice théorique personnel. Active 1.03 (synthèse intégrative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "En arrivant à la maison, j'ai demandé à Claude d'adapter le plan du livre en fonction de cette discussion. Il en est ressorti qu'un livre ne serait pas suffisant et qu'il fallait au moins s'adresser à trois publics différents, et donc faire une trilogie.",
+      "contexte": "Bascule d'un projet (1 livre → 3 livres) issue d'un dialogue IA. Active 1.02 (cadrage), 1.08 (dialogue IA), 1.03 (synthèse).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "L'ordre de rédaction et l'ordre de publication sont inversés. La séquence de publication (pourquoi → comment → quoi) est contre-intuitive pour un académique — qui commencerait par le quoi. Mais elle est optimale pour un lancement : on crée d'abord le besoin, puis on donne les moyens, puis on offre la légitimation à ceux qui veulent aller plus loin.",
+      "contexte": "Modélisation d'une boucle stratégique inversée (rédaction vs publication) avec justification systémique. Active 1.05 (pensée systémique), 1.02 (cadrage).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Le lecteur attentif aura remarqué que j'ai rédigé le portfolio du 12.03.après celui du 13. En effet, en cours de route Claude m'a posé des questions qui montraient que le contexte que je lui avais donné était trop vieux. J'ai donc dû consolider la structure des filières des écoles et la nomenclature des rôles ludifiés, pour ne pas m'embrouiller entre les différentes versions.",
+      "contexte": "Diagnostic d'un problème de contexte IA + action de consolidation. Active 1.06 (littératie IA), 1.08 (dialogue avancé), 1.04 (métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Les plans comportent quelques erreurs que je vais corriger à la main. Je ne pense pas générer les livres maintenant, car je n'ai pas terminé de lire la version 1. Et je n'ai pas généré la version 2. Heureusement, car ceci est la version 3.",
+      "contexte": "Constat des erreurs IA + réflexion sur l'itération évitée. Active 1.01 (pensée critique), 1.04 (métacognition).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Constat lucide d'hallucinations IA liées à un mécanisme technique précis (compression de contexte) — détection active, pas passive."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Auto-description d'un sixième sens de détection du bullshit dans les réponses IA construites sur données approximatives — scepticisme calibré."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Vigilance critique anticipée : aurait perdu des idées fondamentales sans précautions — pratique de non-confiance active."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Diagnostic du fait qu'un prompt naïf de vérification ('vérifie que tu n'as rien oublié') est purement inutile — autocritique méta sur le prompting."
+        },
+        {
+          "numero": 5,
+          "pid": 9,
+          "contexte": "Constat lucide de l'échec du v4 et de la consolidation — l'apprenant ne se satisfait pas du résultat IA."
+        },
+        {
+          "numero": 6,
+          "pid": 17,
+          "contexte": "Constat explicite des erreurs dans les plans générés que l'apprenant corrigera à la main."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'hypothèse que la pensée critique anti-hallucination y est plus déclarée que pratiquée. Mention du mot 'hallucination' ne suffit pas — la fiche exige une compréhension causale et une auto-correction en temps réel. Les pièces 1 et 9 (constats d'hallucinations / d'échecs) pourraient n'être que descriptives. Mais la pièce 6 (diagnostic d'un prompt naïf comme 'purement inutile') force la reconnaissance d'une autocritique technique fine sur sa propre pratique. La pièce 3 (6e sens de détection du bullshit) résiste aussi, parce qu'elle décrit un dispositif intuitif personnel développé, pas une posture déclarée. Et la pièce 5 (si je m'en étais satisfait... je perdrais des idées) montre une vigilance qui anticipe le piège.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le mot 'hallucination' est utilisé avec un mécanisme technique attaché (compression automatique du contexte), pas comme vocabulaire ambiant." },
+            { "pieceId": 2, "motifResistance": "Le 6e sens de détection du bullshit décrit un dispositif réflexif personnel, pas une simple déclaration." },
+            { "pieceId": 3, "motifResistance": "L'anticipation de la perte d'idées sans précaution est une vigilance active, pas un constat rétrospectif." },
+            { "pieceId": 4, "motifResistance": "Diagnostic mécaniste d'un prompt naïf : autocritique méta-pratique forte." },
+            { "pieceId": 5, "motifResistance": "Reconnaissance de l'échec d'un livrable IA et action corrective (re-prompt) — pas acceptation passive." },
+            { "pieceId": 6, "motifResistance": "Correction à la main des erreurs IA — pratique de vérification incarnée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces avec la suspicion que je me suis laissé séduire par leur vocabulaire technique. Plusieurs sont susceptibles d'attaque (a) insuffisance probatoire ou (f) récit performatif. Pièce 2 (6e sens) est l'attaque la plus tentante : c'est une déclaration ('j'ai un feeling') sans illustration explicite. Mais la pièce 4 (le diagnostic du prompt 'purement inutile' avec explication mécaniste) la rachète : c'est un acte de pensée critique en exercice. Pièce 6 est légèrement performative mais le geste (correction à la main) est concret.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant ne se contente pas de nommer l'hallucination : il l'attribue à un mécanisme précis (compression du contexte) et la situe dans une histoire (regret d'un temps où la conversation s'arrêtait nettement). La pièce porte un raisonnement, pas un mot." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La formulation 'j'ai un 6e sens' est performative (raconte la compétence sans la montrer en acte précis), mais elle est immédiatement suivie d'une démonstration concrète dans les pièces 4 et 5." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le 'si je m'en étais satisfait, je perdrais des idées fondamentales' contient un dispositif anticipateur précis — l'apprenant nomme ce qu'il aurait perdu (idées présentes dans le contexte mais perdues) et ce qu'il a fait pour l'éviter." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le diagnostic 'c'est comme lui demander s'il est sûr de lui, sans lui expliquer quoi faire pour savoir s'il n'a rien oublié' est un raisonnement méta-pratique précis, pas une déclaration." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le constat d'échec est suivi d'une bascule stratégique (CoWork, nouveau prompt), pas d'un abandon résigné." },
+            { "pieceId": 6, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'affirmation de correction à la main est exprimée mais non documentée précisément — reste un indice solide d'attitude critique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette compétence en présumant que le vocabulaire d'hallucination, omniprésent dans le portfolio, n'était que de surface. Ce qui m'a forcé à reconnaître autre chose, c'est la conjonction de trois actes distincts : un diagnostic mécaniste (un prompt naïf de vérification ne peut pas faire ce qu'il prétend faire), une vigilance anticipatrice (sans précaution, je perdrais des idées fondamentales) et une action corrective (relance avec stratégie de comparaison v2/v3, puis basculement sur CoWork). Sous présomption de sycophantie, le récit du sixième sens s'est affaibli — il raconte plus qu'il ne montre — mais il est rattrapé par les pièces concrètes qui suivent. Dans ce pôle, le travail montre une pratique de scepticisme calibré : l'apprenant ne refuse pas l'IA et ne s'y abandonne pas, il identifie ce qui peut tomber et invente le geste qui rattrape. La présence est solide.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 4,
+        "nombreIndices": 2,
+        "confiance": 0.82,
+        "motif": "Quatre pièces ont passé l'attaque (a) insuffisance probatoire avec verdict 'attaque non recevable' : elles portent des dispositifs concrets (diagnostic, anticipation, action corrective), pas du vocabulaire de surface.",
+        "prescription": "La pratique anti-hallucination s'est ici incarnée dans un cycle complet (constat-diagnostic-action). Pour prolonger ce chemin, un format de capitalisation des prompts qui marchent et de ceux qui échouent — avec l'analyse causale du pourquoi — donnerait une matière transférable à d'autres situations de craft du contexte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 6, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "Bascule d'un livre vers une trilogie — non pas exécution d'un plan mais redéfinition de l'objectif lui-même (qui est le public, quoi écrire pour qui)."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "Inversion ordre de rédaction / ordre de publication — re-questionnement de la définition même du projet (qu'est-ce qu'on cherche à atteindre, dans quel ordre)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je suppose d'abord que ces pièces racontent simplement un changement de plan, pas un recadrage. La pièce 1 (passage d'un livre à trois) pourrait n'être qu'une expansion du périmètre. Mais en lisant la pièce 2, le mouvement va plus loin : l'apprenant articule POURQUOI l'ordre de publication doit être l'inverse de l'ordre de rédaction, en raisonnant sur la nature du public visé. Cela cesse d'être de la planification (7.07) pour devenir une interrogation de l'objectif lui-même : on n'écrit pas un livre, on conçoit un dispositif de diffusion stratifié.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La bascule vers trois publics distincts est une redéfinition de la question initiale ('quel livre écrire ?' devient 'pour qui, dans quel ordre, avec quelle légitimation ?')." },
+            { "pieceId": 2, "motifResistance": "L'inversion rédaction/publication est argumentée par la nature de l'objectif (créer le besoin puis donner les moyens puis légitimer) — c'est le 'vrai problème' qui change." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas trop chargé ces pièces. L'attaque (e) surinterprétation pédagogique est tentante : peut-être que l'apprenant ne fait que planifier finement, sans vraiment recadrer. Mais la pièce 2 contient un mouvement métacognitif explicite : il nomme la contre-intuition académique (commencer par le quoi) et l'oppose au choix qu'il fait. Ce n'est pas un planning, c'est une interrogation du critère même de l'objectif. La pièce 1 pourrait être attaquée comme glissement lexical (b) confusion de compétence — c'est peut-être 3.03 (design de problèmes) plus que 1.02 — mais elle reste valide car elle reformule l'objectif d'écriture.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Frontière fine avec 3.03 (design de problèmes), mais le geste reste une reformulation de l'objectif initial plus qu'une création de problème nouveau." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'inversion rédaction/publication est argumentée en interne par l'apprenant lui-même — pas une lecture chargée par moi : il déroule la logique 'créer le besoin → donner les moyens → légitimer'." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces de la simple planification fine. Ce qui m'a forcé à reconnaître autre chose, c'est la deuxième pièce : l'apprenant n'organise pas l'exécution, il argumente le critère même de l'ordre (rédiger vs publier dans des sens inverses). C'est un acte de cadrage explicite. Sous présomption de sycophantie, la première pièce s'est affaiblie — elle pourrait relever du design de problèmes — mais la deuxième tient. Dans ce pôle, le travail montre un mouvement de redéfinition d'objectif au moment où l'exécution révèle un mauvais angle initial : un seul livre devient trois, et la séquence se renverse en route. Le cadrage est ici en exercice, pas seulement énoncé.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.68,
+        "motif": "La pièce 2 a tenu sous attaque de surinterprétation : l'argumentation interne de l'inversion rédaction/publication est portée par l'apprenant lui-même, pas par ma lecture.",
+        "prescription": "Le cadrage s'est ici exercé sur un projet personnel devenu trilogie. Pour approfondir, expliciter le critère qui a fait basculer un livre vers trois — c'est-à-dire reconstituer la question qui a permis cette bascule — donnerait un outil de recadrage transférable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Imposer un fil rouge unificateur sur une trilogie en construction — assemblage d'éléments dispersés en un tout cohérent."
+        },
+        {
+          "numero": 2,
+          "pid": 13,
+          "contexte": "Articulation d'un édifice théorique reliant noèsiologie → couplage noèsis/entendement → pédagogie de l'émergence."
+        },
+        {
+          "numero": 3,
+          "pid": 14,
+          "contexte": "De la discussion en voiture (Perplexity) émerge la trilogie — synthèse entre un échange informel et un projet d'écriture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces relèvent de l'organisation plutôt que de la synthèse intégrative. La fiche exige un insight émergent que les sources ne contenaient pas individuellement. La pièce 1 (fil rouge imposé) pourrait être une simple structuration. La pièce 2 (édifice noèsiologie) pourrait être une récitation d'un cadre déjà constitué. La pièce 3 (passage de la discussion routière à la trilogie) résiste mieux : un échange informel produit un dispositif d'écriture stratifié, ce qui ressemble à de la fusion plus qu'à un empilement. Reste à voir si la pièce 1 tient sous une attaque plus précise.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le fil rouge n'est pas qu'une organisation : il devient le critère qui réécrit l'architecture entière de la trilogie." },
+            { "pieceId": 3, "motifResistance": "La trilogie émerge d'une discussion informelle (Perplexity en voiture) — l'output n'existait dans aucune source isolée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant que j'ai chargé l'idée d'émergence intégrative. L'attaque dominante pour la pièce 1 est (d) glissement lexical : 'fil rouge' n'est pas un marqueur fort de synthèse — c'est un mot fréquent pour 'cohérence narrative'. La pièce 3 est plus solide : le passage d'une discussion brouillonne à une architecture en trois livres adressés à des publics distincts est un acte de fusion qui n'existait dans aucune source. La pièce 2 (édifice théorique) pourrait être une récitation et tomber sous (f) récit performatif.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "'Fil rouge' est un terme générique de cohérence — mais le geste qui suit (revoir l'architecture complète en intégrant les oublis) montre une refonte intégrative, pas un simple alignement narratif." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'édifice noèsiologie est récité dans une formule courte sans être démontré dans ce passage — mais l'enchaînement (noèsis → entendement → pédagogie de l'émergence) suggère une intégration personnelle déjà faite." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le passage de la discussion routière à la décision 'trois publics, trois livres' est explicitement raconté comme une émergence — l'output dépasse la somme des éléments d'entrée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à réduire ces pièces à de l'organisation. Ce qui m'a forcé à reconnaître autre chose, c'est la pièce 3 : la trilogie n'est pas dans la noèsiologie seule, ni dans la discussion en voiture seule, ni dans la demande à Claude seule. Elle émerge de leur composition, et l'apprenant raconte cette émergence. Sous présomption de sycophantie, les pièces 1 et 2 ont perdu en force — 'fil rouge' reste un terme commode, et l'édifice théorique est plus invoqué que démontré dans ce passage. Mais la pièce 3 tient seule la présence. Dans ce pôle, le travail montre une capacité à laisser un dispositif nouveau (la trilogie stratifiée) surgir de la rencontre entre un cadre conceptuel et un échange contextuel — fusion, pas empilement.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "La pièce 3 a tenu sous attaque de surinterprétation — l'émergence de la trilogie depuis une discussion routière est portée comme telle par l'apprenant, pas par ma lecture.",
+        "prescription": "La synthèse intégrative s'est ici manifestée dans une bascule stratégique de l'écriture. Pour prolonger, expliciter ce que chacune des sources (noèsiologie, discussion routière, dialogue avec Claude) a apporté de spécifique à la composition finale rendrait visible le mécanisme de fusion qui a opéré."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Hiérarchisation entre context engineering et prompt engineering — réflexion sur la nature même de la pratique."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Auto-observation d'un dispositif intuitif personnel (6e sens) — méta-conscience sur sa propre détection."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Reconnaissance que l'ordre de rédaction du portfolio est inversé, avec explication méta sur le pourquoi (consolidation préalable nécessaire)."
+        },
+        {
+          "numero": 4,
+          "pid": 17,
+          "contexte": "Bilan sur le fait de ne pas générer les livres maintenant — réflexion sur sa propre pratique d'évitement de la sur-itération."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je suppose que ces pièces sont des bilans ('j'ai progressé', 'j'ai appris'), pas de la métacognition. La fiche exige que l'objet de la réflexion soit le processus cognitif lui-même. La pièce 4 (bilan v3) ressemble à un constat factuel — pas de méta. La pièce 1 (hiérarchisation context > prompt engineering) résiste : elle nomme une distinction de niveau dans la pratique elle-même. La pièce 3 (ordre inversé des portfolios) résiste aussi : elle explicite le raisonnement qui a piloté la séquence de l'écriture. La pièce 2 (6e sens) est plus floue — la nommer ne suffit pas.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distinguer context engineering et prompt engineering, et hiérarchiser leur importance, est une réflexion sur la nature même de l'activité." },
+            { "pieceId": 3, "motifResistance": "Expliciter pourquoi le portfolio du 12 a été écrit après celui du 13 (consolidation nécessaire en amont) est une observation du processus d'écriture." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en doutant. Pièce 1 : c'est une affirmation, pas une observation détaillée d'un mécanisme cognitif personnel. Attaque (f) récit performatif. Pièce 3 : c'est une note de bas de page qui explicite une séquence d'écriture — c'est de la métacognition légère mais réelle. L'attaque (a) insuffisance probatoire est plausible mais la pièce reste informative.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La hiérarchisation est affirmée sans démonstration détaillée — c'est une thèse, pas une observation processuelle. Reste recevable comme jugement sur la pratique." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'observation de l'inversion est brève mais elle articule un raisonnement causal (consolidation préalable nécessaire) sur sa propre écriture." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces de simples bilans plutôt que de la métacognition. Ce qui m'a forcé à reconnaître une présence, c'est la pièce 3 : l'apprenant interrompt son récit pour expliquer pourquoi il a écrit le portfolio du 12 après celui du 13 — c'est une observation sur le processus d'écriture lui-même. Sous présomption de sycophantie, la pièce 1 (hiérarchisation context > prompt) a perdu en force : elle affirme plus qu'elle ne démontre. Les deux pièces survivent affaiblies. Dans ce pôle, le travail montre une métacognition légère et fonctionnelle — non pas un palais d'auto-observation, mais des micro-arrêts qui nomment la mécanique de la pratique au moment où elle se déroule.",
+          "confianceFinale": 0.52
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.52,
+        "motif": "Deux pièces sont survivantes affaiblies mais retenues, suffisantes pour établir la présence à confiance modérée (indices ≥ 2).",
+        "prescription": "La métacognition s'est ici manifestée par des notes latérales nommant la mécanique de l'écriture. Pour la déployer plus avant, un protocole de relecture périodique où la question ne porte pas sur le contenu mais sur la manière dont il a été produit ouvrirait un espace de pilotage cognitif plus explicite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 15,
+          "contexte": "Inversion ordre de rédaction / ordre de publication avec modélisation d'une cascade stratégique (besoin → moyens → légitimation)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la pensée systémique n'est pas vraiment là. La fiche exige une modélisation de boucles, points de levier, effets en cascade — pas un simple plan séquentiel. La pièce 1 (inversion rédaction/publication) raconte une séquence linéaire (Livre 1 → Livre 2 → Livre 3), pas une boucle. Mais en regardant de plus près : l'apprenant articule un effet de cascade explicite — créer le besoin produit la demande, qui légitime la suite. C'est un raisonnement séquentiel orienté par un mécanisme social, pas une simple liste. Mince résistance.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La séquence pourquoi → comment → quoi est argumentée par un effet de cascade (créer le besoin, puis donner les moyens, puis légitimer) — c'est un mécanisme, pas un ordre arbitraire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 1 décrit-elle vraiment une boucle de rétroaction, ou simplement un ordre stratégique de publication ? L'attaque (d) glissement lexical est sérieuse : un séquencement n'est pas une pensée systémique. La fiche insiste sur les boucles et les liens directionnels. Ici, il y a un raisonnement de cascade, mais sans boucle de retour, sans point de levier explicite. La pièce reste un indice limite.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le raisonnement décrit une cascade orientée (besoin → moyens → légitimation) mais pas une boucle de rétroaction. C'est de la pensée séquentielle stratégique, à la frange de la pensée systémique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'inversion rédaction/publication relevait d'une pensée de boucles ou d'un simple plan stratégique. Sous présomption de sycophantie, la pièce est affaiblie : on a une cascade orientée, pas une boucle de rétroaction. Dans ce pôle, le travail montre une amorce de pensée séquentielle stratégique articulée — l'inversion est argumentée par un mécanisme — mais pas encore une modélisation de boucles. Le seuil de la pensée systémique n'est pas clairement franchi sur cette seule pièce.",
+          "confianceFinale": 0.38
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.38,
+        "motif": "La pièce unique a survécu mais affaiblie : raisonnement de cascade plutôt que modélisation de boucles. Indice insuffisant pour établir la présence ; renvoi au cartographe pour examen complémentaire.",
+        "prescription": "Une modélisation explicite d'une boucle de rétroaction (par exemple, comment la publication du Livre 1 va nourrir l'écriture du Livre 3 et inversement) montrerait la pensée systémique en exercice. Pour aller plus loin, documenter un effet de second ordre — quel résultat indirect attend l'apprenant de l'inversion rédaction/publication — ouvrirait ce chantier."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Attribution explicite des hallucinations à la compression automatique du contexte — mécanisme technique nommé."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le craft des données minimales à charger en mémoire formalisé comme art plus important que le prompt engineering — distinction technique fine."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Trouver l'équilibre entre système par défaut et export pour nouvelle conversation — connaissance du fonctionnement interne du modèle."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "Anticipation que des idées étaient dans le contexte mais s'en sont perdues — compréhension causale de la perte de contexte."
+        },
+        {
+          "numero": 5,
+          "pid": 6,
+          "contexte": "Diagnostic du prompt naïf 'vérifie que tu n'as rien oublié' — comprendre pourquoi l'IA ne peut pas répondre utilement."
+        },
+        {
+          "numero": 6,
+          "pid": 12,
+          "contexte": "Choix multi-IA (Perplexity vs Gemini vs Grok vs ChatGPT vs Claude) avec critères techniques articulés."
+        },
+        {
+          "numero": 7,
+          "pid": 16,
+          "contexte": "Détection que le contexte fourni à Claude était trop vieux à partir des questions qu'il pose — diagnostic de l'état de la mémoire IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont du vocabulaire ambiant ('hallucination', 'contexte', 'prompt') sans compréhension causale. La fiche exige une compréhension du POURQUOI l'IA échoue, pas un réflexe lexical. Les pièces 1, 4 et 5 résistent immédiatement : elles attribuent un comportement IA à un mécanisme précis (compression du contexte, perte d'idées présentes-puis-absentes, inefficacité d'un prompt naïf). La pièce 7 est forte aussi : déduire l'état du contexte IA à partir des questions qu'il pose est une lecture du fonctionnement interne. Les pièces 2 et 3 (craft des données, équilibre par défaut/export) montrent un savoir pratique sur la fenêtre de contexte. La pièce 6 (choix multi-IA) est un peu marginale mais utile.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Attribution explicite des hallucinations à un mécanisme technique nommé (compression automatique du contexte)." },
+            { "pieceId": 2, "motifResistance": "Le 'craft des données minimales à charger en mémoire' nomme la gestion de la fenêtre de contexte comme pratique distincte." },
+            { "pieceId": 3, "motifResistance": "Équilibre entre système par défaut et export — connaissance du comportement du modèle en limite de fenêtre." },
+            { "pieceId": 4, "motifResistance": "L'apprenant comprend que des idées présentes dans le contexte peuvent se perdre — c'est une compréhension du compactage." },
+            { "pieceId": 5, "motifResistance": "Le diagnostic du prompt naïf est un raisonnement sur les limites du modèle." },
+            { "pieceId": 7, "motifResistance": "Déduire l'état du contexte IA à partir des questions posées est une lecture diagnostique fine." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces avec suspicion. L'attaque (d) glissement lexical est tentante : utiliser 'compression du contexte' et 'hallucination' n'est-il qu'un vocabulaire ambiant ? Non — la pièce 1 attache un mécanisme à un effet, ce qui dépasse le mot. Pièce 5 (diagnostic du prompt naïf) est manifestement une compréhension causale, pas un mot. Pièce 7 (déduction de l'état du contexte) est une lecture active. La pièce 6 (choix multi-IA) est la plus faible — critères mêlés (technique, confiance, abonnement) — attaque (a) insuffisance probatoire.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le mot 'hallucination' est attaché à un mécanisme technique nommé : la compression automatique du contexte. Compréhension causale, pas vocabulaire ambiant." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le concept de 'craft des données minimales' est précis et hiérarchisé par rapport au prompt engineering — montre une littératie technique fine." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'équilibre est nommé mais non détaillé en mécanismes — reste un indice solide d'orientation pratique." },
+            { "pieceId": 4, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Décrire le compactage comme 'idées présentes dans le contexte qui se perdent' est une compréhension causale précise." },
+            { "pieceId": 5, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'analogie 'comme lui demander s'il est sûr de lui sans lui expliquer quoi faire pour savoir s'il n'a rien oublié' est un raisonnement mécaniste sur les limites du modèle." },
+            { "pieceId": 6, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le choix multi-IA mêle critères techniques et personnels — reste un indice de discernement entre outils mais n'est pas la pièce la plus forte." },
+            { "pieceId": 7, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Déduire l'âge du contexte IA à partir des questions qu'il pose est un diagnostic actif du fonctionnement interne." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces du vocabulaire ambiant sans compréhension causale. Ce qui m'a forcé à reconnaître autre chose, c'est leur récurrence convergente : la même mécanique (compression de la fenêtre de contexte, perte d'éléments présents-mais-anciens) est mobilisée dans plusieurs situations différentes, avec à chaque fois une lecture diagnostique précise. Sous présomption de sycophantie, la plupart des pièces ont passé l'épreuve : le diagnostic du prompt naïf, la déduction de l'âge du contexte, et la métaphore du craft des données minimales sont des manifestations claires d'une compréhension du fonctionnement interne. Seules les pièces 3 et 6 sont affaiblies sans tomber. Dans ce pôle, le travail montre une littératie IA en pratique — l'apprenant ne raconte pas seulement ce qu'il observe, il en attribue les causes au bon endroit.",
+          "confianceFinale": 0.86
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 5,
+        "nombreIndices": 2,
+        "confiance": 0.86,
+        "motif": "Cinq pièces ont passé l'attaque (d) glissement lexical avec verdict 'attaque non recevable' : les mots techniques sont attachés à des mécanismes nommés, pas utilisés de manière ambiante.",
+        "prescription": "La littératie IA s'incarne ici dans un diagnostic mécaniste répétable. Pour densifier, formaliser quelques règles personnelles tirées de ces observations (par exemple : quand exporter, quand re-injecter, quel marqueur trahit un contexte vieillissant) en ferait une grammaire transférable et partageable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 7, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 6, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Mention de bascule sur CoWork pour génération en parallèle des chapitres — orchestration multi-outils."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce n'est pas une architecture de système IA mais une simple mention d'outil. La fiche exige une conception explicite avec composants, rôles, mécanismes de contrôle, et critère de maintenabilité par un tiers. La pièce 1 mentionne CoWork pour parallélisation, ce qui esquisse une architecture (un outil pour le contexte, un autre pour l'exécution parallèle), mais ne la décrit pas. Il manque la documentation des flux, des rôles, des mécanismes de fallback. La résistance est faible.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La mention de bascule sur CoWork pour génération en parallèle esquisse une répartition de tâches entre systèmes IA — micro-trace d'architecture." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en doutant. L'attaque (a) insuffisance probatoire est sérieuse : la mention de CoWork est très brève, sans description de l'architecture, sans rôles différenciés explicités, sans mécanisme de monitoring. C'est une intention d'usage, pas une conception. La pièce ne tient pas comme architecture.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La mention de bascule sur CoWork est trop allusive : pas de description du système, pas de composants nommés, pas de flux décrit. Reste une intention d'usage, pas une architecture conçue." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la mention de CoWork une pratique d'architecture de systèmes IA. Sous présomption d'absence puis de sycophantie, la pièce n'a pas tenu : elle annonce un usage à venir sans en décrire la mécanique. L'architecture exige des composants nommés, des flux explicités, un critère de maintenabilité — rien de tout cela ici. Dans ce pôle, ce que le travail montre dans cette feuille est plutôt du côté du dialogue avancé (1.08) que de la conception architecturale. Le territoire de la conception systémique reste à visiter ici.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La pièce unique a été disqualifiée sous attaque d'insuffisance probatoire : mention d'usage de CoWork sans description d'architecture, de rôles, ou de flux.",
+        "prescription": "L'architecture de systèmes IA n'a pas encore laissé de trace claire dans cette feuille. Pour ouvrir ce chantier, documenter le passage Claude→CoWork sous forme de schéma (qui produit quoi, dans quel ordre, avec quel handoff) rendrait visible un dispositif déjà à l'œuvre."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Distinction explicite entre context engineering et prompt engineering — méta-conscience sur la sophistication de la formulation."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Diagnostic du prompt naïf 'vérifie que tu n'as rien oublié' et explication du mécanisme — debugging avancé du prompt."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Stratégie de prompt en trois étapes : lister v3 → lister v2 → comparer en ignorant les évolutions mais en repérant les oublis — décomposition d'une consigne complexe."
+        },
+        {
+          "numero": 4,
+          "pid": 8,
+          "contexte": "Imposition d'un fil rouge et demande de revoir l'architecture complète — itération stratégique sur la formulation."
+        },
+        {
+          "numero": 5,
+          "pid": 10,
+          "contexte": "Reformulation finale du prompt avec contexte complet + mention du 4e livre — réécriture stratégique après échec."
+        },
+        {
+          "numero": 6,
+          "pid": 11,
+          "contexte": "2h de dialogue itératif aboutissant à un plan v5 utilisable — orchestration prolongée d'un dialogue stratégique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des récits d'usage IA sans sophistication particulière. La fiche exige des techniques nommées, des itérations qui analysent pourquoi la reformulation change le résultat, du méta-prompting. La pièce 3 (stratégie en trois étapes : lister, lister, comparer en ignorant et en repérant) résiste fortement : c'est une décomposition explicite et fine d'une consigne complexe. La pièce 2 (diagnostic du prompt naïf) résiste : c'est du debugging de prompt méta. La pièce 5 (reformulation après échec avec contexte complet et mention du 4e livre) résiste : itération stratégique. Pièces 1, 4, 6 plus discursives mais convergentes.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distinguer context engineering / prompt engineering est une méta-conscience sur la pratique." },
+            { "pieceId": 2, "motifResistance": "Diagnostic d'un prompt naïf comme 'purement inutile' est du debugging de formulation." },
+            { "pieceId": 3, "motifResistance": "Stratégie en trois étapes (lister v3, lister v2, comparer en ignorant les évolutions mais en repérant les oublis) — décomposition explicite et originale." },
+            { "pieceId": 4, "motifResistance": "Imposer un fil rouge ET demander de revoir l'architecture est une itération stratégique." },
+            { "pieceId": 5, "motifResistance": "Le prompt final avec contexte complet et anticipation du 4e livre est une reformulation stratégique après échec." },
+            { "pieceId": 6, "motifResistance": "2h de dialogue prolongé pour obtenir un plan tenable — orchestration prolongée d'un dialogue." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec suspicion. L'attaque (a) insuffisance probatoire est tentante pour la pièce 1 (déclaration sans démonstration). Pour les pièces 2, 3 et 5, l'attaque ne tient pas : ce sont des dispositifs précis de formulation. La pièce 6 (2h de dialogue) est un peu descriptive mais s'appuie sur les pièces précédentes pour exister. La pièce 4 reste solide. Le risque (c) biais de medium est faible ici : le journal raconte l'acte, ne l'invente pas.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La distinction context/prompt est affirmée plus que démontrée — reste un indice de méta-conscience." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le diagnostic du prompt naïf est explicite et argumenté — debugging avancé manifeste." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La stratégie en trois étapes (lister, lister, comparer avec critère de filtrage explicite) est un acte de prompting sophistiqué et précis." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Imposer un fil rouge est une itération stratégique mais le passage est court — reste un indice." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le prompt final avec mention de bascule sur CoWork et anticipation du 4e livre est documenté comme acte délibéré de reformulation après échec." },
+            { "pieceId": 6, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La mention de 2h de dialogue est descriptive ; sa valeur repose sur les pièces précédentes — reste un indice de durée de l'orchestration." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces étaient des récits d'usage sans sophistication. Ce qui m'a forcé à reconnaître autre chose, c'est la séquence concrète et raisonnée : un prompt naïf jugé inutile, une stratégie en trois étapes pour faire émerger les oublis, une reformulation finale après deux échecs intermédiaires. Sous présomption de sycophantie, les pièces les plus discursives (1, 4, 6) ont perdu en force mais les pièces concrètes (2, 3, 5) ont tenu sans réserve. Dans ce pôle, le travail montre une orchestration de dialogue qui ne se contente pas de demander : elle décompose, analyse l'échec, restructure la formulation et reprend.",
+          "confianceFinale": 0.84
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 3,
+        "confiance": 0.84,
+        "motif": "Trois pièces ont passé l'attaque d'insuffisance probatoire avec verdict 'attaque non recevable' : diagnostic du prompt naïf, décomposition en trois étapes, et reformulation stratégique après échec.",
+        "prescription": "Le dialogue avancé s'est manifesté ici dans une séquence complète d'analyse-décomposition-relance. Pour le déployer plus encore, capitaliser la stratégie 'lister v3, lister v2, comparer en ignorant les évolutions mais en repérant les oublis' comme template réutilisable pour d'autres comparaisons rendrait une intuition opérationnelle transférable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 6, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Décomposition algorithmique d'une tâche non-technique (comparer deux versions de plan en ignorant l'évolution mais en repérant les oublis) — pattern conditionnel appliqué hors code."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce relève du prompting (1.08) plutôt que de la pensée computationnelle transférée. La fiche exige un TRANSFERT de la logique algorithmique hors de l'informatique. Or, la pièce 7 décrit une consigne donnée à l'IA — c'est de la formulation, pas un transfert. Cependant, la consigne elle-même contient une structure conditionnelle ('ignorer X, repérer Y'), une décomposition en étapes, et un filtrage par critère — ce qui ressemble à un algorithme appliqué à un problème éditorial. Reste à voir si le seuil du transfert est franchi.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La consigne 'lister, lister, comparer en ignorant les évolutions et en repérant les oublis' est une décomposition algorithmique appliquée à un problème éditorial — algorithme appliqué hors code." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute fortement. L'attaque (b) confusion de compétence est sérieuse : cette pièce active davantage 1.08 (dialogue avancé) que 1.09 (pensée computationnelle). Le critère discriminant de 1.09 est le transfert d'une logique algorithmique HORS de l'informatique vers un autre domaine. Ici, la logique est dans la consigne adressée à une IA, donc encore dans le périmètre du dialogue IA. Le transfert hors-IA n'est pas avéré.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La décomposition algorithmique s'applique à une consigne IA — elle relève donc de 1.08 (dialogue avancé / prompting structuré), pas du transfert algorithmique hors-informatique requis par 1.09." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la stratégie de comparaison v2/v3 un transfert de logique algorithmique hors-informatique. Sous présomption de sycophantie, la pièce n'a pas tenu : la décomposition existe, mais elle s'applique à une consigne IA — elle relève donc du prompting structuré (1.08). La fiche de 1.09 est claire : la pensée computationnelle commence quand l'algorithme est appliqué hors-informatique. Dans ce pôle, le territoire de la pensée computationnelle transférée hors-code reste à visiter ici.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce unique a été disqualifiée par confusion de compétence : la décomposition algorithmique s'inscrit dans le dialogue IA (1.08), pas dans un transfert hors-informatique.",
+        "prescription": "La pensée computationnelle transférée n'a pas encore laissé de trace claire dans cette feuille. Pour ouvrir ce chantier, raconter un moment où une logique de décomposition ou de conditionnelle s'est appliquée à un problème humain ou organisationnel — sans IA — rendrait visible la compétence telle que la fiche la définit."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Trade-off entre utiliser le système par défaut et savoir quand exporter — articulation explicite du moment où l'humain doit reprendre la main."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Choix multi-IA (Perplexity en voiture pour parler, Claude pour adapter le plan) — répartition des rôles selon force comparative."
+        },
+        {
+          "numero": 3,
+          "pid": 17,
+          "contexte": "Choix de ne pas générer les livres maintenant et de corriger les plans à la main — répartition humain/IA explicitée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des usages d'IA sans véritable articulation des forces comparatives. La fiche exige une réflexion sur CE QUI revient à l'humain et POURQUOI. La pièce 1 (trouver l'équilibre entre système par défaut et export) articule un point de bascule mais sans nommer la force humaine spécifique. La pièce 2 (choix multi-IA) explicite des critères d'usage mais reste opérationnelle. La pièce 3 (corriger à la main) montre une répartition humain-IA dans le geste : la machine génère, l'humain corrige. Résistance moyenne.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'équilibre entre système par défaut et export articule un point où l'humain doit reprendre la main face à la limite du modèle." },
+            { "pieceId": 3, "motifResistance": "Corriger les plans à la main + choisir de ne pas générer maintenant montre une délimitation explicite de ce qui revient à l'humain et de ce qui peut attendre." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec suspicion. La pièce 1 est plutôt 1.08/1.06 (gestion de la fenêtre de contexte) que 1.10 (synergie). L'articulation des forces comparatives n'est pas vraiment faite. La pièce 3 est plus convaincante : l'humain choisit de corriger à la main parce que la machine n'a pas le bon résultat — mais le 'pourquoi' n'est pas explicité comme force humaine intrinsèque. Attaque (b) confusion de compétence applicable.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'équilibre par défaut/export relève davantage de la littératie IA (1.06) et du dialogue (1.08) — pas d'articulation des forces comparatives humain/IA." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Corriger à la main est un geste humain reconnu, mais le 'pourquoi l'humain le fait mieux' n'est pas articulé. Reste un indice." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces une articulation explicite des forces comparatives humain-IA. Sous présomption de sycophantie, la pièce 1 est tombée vers 1.06/1.08 et la pièce 3 ne tient qu'affaiblie. La fiche de 1.10 exige que l'apprenant articule ce qu'il garde et pourquoi l'humain le fait mieux — ici, l'apprenant fait des choix de répartition mais sans expliciter pourquoi cette tâche revient à lui plutôt qu'à l'IA. Dans ce pôle, le geste de synergie est sans doute pratiqué mais peu thématisé. Le seuil de 1.10 n'est pas clairement franchi dans cette feuille.",
+          "confianceFinale": 0.32
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.32,
+        "motif": "Pièce affaiblie unique : geste de répartition humain-IA présent mais sans articulation des forces comparatives. Renvoi au cartographe pour examen complémentaire.",
+        "prescription": "Pour faire émerger la synergie comme compétence articulée, nommer une fois — même brièvement — ce que l'humain fait mieux dans la correction des plans, ou ce que l'IA ne pourrait pas saisir dans la trilogie, transformerait un geste actuellement implicite en réflexion partageable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 6,
+    "renvoisCartographe": 2,
+    "nonEtablies": 2,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail de la feuille du 14 mars 2026 montre une pensée centrée sur la mécanique des outils IA et sur l'orchestration d'un dialogue prolongé. La voix dominante est celle de quelqu'un qui regarde sa propre pratique avec une lucidité technique : ce qui marche, ce qui ne marche pas, et pourquoi. Le récit du plan v5 — passé par les versions v3, v4 puis v5 avec autant d'échecs intermédiaires — n'est pas raconté comme une réussite mais comme une enquête sur les conditions qui permettent à un dialogue avec une IA de produire un livrable tenable. Les marqueurs concrets reviennent : la compression automatique du contexte, le 'craft des données minimales à charger en mémoire', la stratégie en trois étapes pour faire émerger les oublis. La pensée se déploie au plus près de l'outil, dans la précision du geste.",
+    "territoiresDenses": [
+      {
+        "competence": "Littératie IA et compréhension des mécanismes",
+        "description": "Le portfolio attache des comportements observés de l'IA à des mécanismes techniques précis — compression du contexte, perte d'éléments anciens, inefficacité des prompts naïfs.",
+        "extraitVerbatim": "Plusieurs exemples d'hallucinations liés à la compression automatique du contexte de Claude, me font regretter le temps ou les conversations s'arrêtaient brutalement en cours de route (ce qui m'arrive toujours, mais plus tard maintenant).",
+        "ceQueCaDit": "Cette compétence se manifeste ici comme un savoir diagnostique partagé entre plusieurs situations : la même mécanique (le compactage) est nommée chaque fois qu'un comportement IA en dépend. Ce n'est pas du vocabulaire, c'est une lecture causale."
+      },
+      {
+        "competence": "Dialogue avancé avec l'IA",
+        "description": "L'orchestration du dialogue passe par des décompositions explicites, des reformulations stratégiques après échec, et une attention au prompt comme outil de pensée.",
+        "extraitVerbatim": "Ma stratégie a été de lui demander de lister chapitre par chapitre chacun des concepts couverts par la v3. Puis de faire de même avec la v2. Puis de comparer les deux en ignorant les différences (évolution du concept) mais en repérant uniquement les oublis des concepts présents dans la v2 et absents de la v3.",
+        "ceQueCaDit": "La pratique du prompting s'incarne ici dans une décomposition fine — pas une consigne mais un protocole qui dit quoi ignorer et quoi repérer. C'est un acte de structuration de la pensée par la formulation."
+      },
+      {
+        "competence": "Pensée critique et anti-hallucination",
+        "description": "Le scepticisme s'exerce avec calibration : ne pas refuser l'IA, ne pas s'y abandonner, identifier ce qui peut tomber et inventer le geste qui rattrape.",
+        "extraitVerbatim": "Si je m'en étais satisfait sans prendre les précautions nécessaires, je perdrais des idées fondamentales du discours, alors qu'elles étaient dans le contexte mais qu'elles se sont perdues.",
+        "ceQueCaDit": "La vigilance anticipe la perte plutôt que de la constater. Le geste critique s'incarne dans la précaution, pas dans le refus."
+      },
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Le projet de livre devient une trilogie quand l'apprenant interroge non l'exécution mais l'objectif lui-même — qui sont les publics, dans quel ordre.",
+        "extraitVerbatim": "L'ordre de rédaction et l'ordre de publication sont inversés. La séquence de publication (pourquoi → comment → quoi) est contre-intuitive pour un académique — qui commencerait par le quoi.",
+        "ceQueCaDit": "Le cadrage opère ici en posant la question 'pour qui, dans quel ordre' à un moment où l'exécution révèle un mauvais angle initial. C'est une redéfinition de l'objectif, pas un ajustement de plan."
+      },
+      {
+        "competence": "Synthèse intégrative",
+        "description": "La trilogie émerge de la rencontre entre un édifice théorique préexistant (noèsiologie), une discussion routière informelle, et une demande à Claude — fusion plutôt qu'empilement.",
+        "extraitVerbatim": "Je lui ai raconté mes idées en partant de la noèsiologie pour arriver jusqu'au couplage noèsis/entendement qui constitue la base philosophique de la pédagogie de l'émergence.",
+        "ceQueCaDit": "L'émergence d'un dispositif d'écriture stratifié est rendue lisible dans le récit lui-même — l'apprenant raconte d'où elle vient. Cela donne au geste de synthèse une qualité documentée."
+      },
+      {
+        "competence": "Métacognition légère",
+        "description": "Des micro-arrêts dans le récit nomment la mécanique de l'écriture en train de se faire — par exemple, pourquoi un portfolio a été rédigé après l'autre.",
+        "extraitVerbatim": "Le lecteur attentif aura remarqué que j'ai rédigé le portfolio du 12.03.après celui du 13. En effet, en cours de route Claude m'a posé des questions qui montraient que le contexte que je lui avais donné était trop vieux.",
+        "ceQueCaDit": "La métacognition n'occupe pas ici un espace dédié de réflexion — elle se glisse en commentaire latéral, et c'est dans cette discrétion qu'elle se manifeste comme habitude."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires du pôle restent en retrait dans cette feuille. La conception explicite d'architectures multi-agents (qui produit quoi, dans quel ordre, avec quel relais) est mentionnée brièvement à travers la bascule sur CoWork, mais sans description du dispositif. La pensée computationnelle transférée hors-informatique — appliquer une logique algorithmique à un problème humain ou organisationnel — n'apparaît pas ici, même si la décomposition en trois étapes du prompting s'en rapproche. La synergie articulée (nommer ce que l'humain fait mieux et pourquoi) reste implicite : les choix de répartition humain/IA sont posés sans être thématisés. La pensée systémique en boucles, avec points de levier identifiés, est amorcée par l'inversion rédaction/publication mais ne se déploie pas encore en modélisation explicite.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle dans la feuille. D'abord, une métaphore implicite récurrente : celle du contexte comme matière qui peut se perdre, fuir, vieillir — une matière à 'crafter', à 'consolider', à 'recharger'. Cette métaphore relie la littératie IA, le dialogue avancé et la pensée critique. Ensuite, un pattern temporel : l'apprenant écrit en revenant en arrière (le portfolio du 12 après celui du 13), itère sur plusieurs versions (v3, v4, v5), et reporte délibérément la suite (les livres ne seront pas générés maintenant). Le rapport au temps n'est pas linéaire mais itératif et différé. Enfin, une attention récurrente au point de bascule : quand exporter, quand reformuler, quand basculer sur un autre outil. Le geste critique se loge dans la détection de ces seuils.",
+    "pistes": [
+      "Pour prolonger la pratique de craft du contexte, un chemin possible serait de tenir une courte fiche par projet recensant les éléments minimaux à recharger pour une reprise sans perte, et les marqueurs qui trahissent un contexte vieillissant.",
+      "Pour rendre plus explicite la synergie humain-IA, un chemin possible serait de noter une fois, à la fin d'un cycle d'itération, ce que l'humain a apporté que l'IA n'aurait pas pu produire — pas pour palmarès, mais pour articuler la complémentarité.",
+      "Pour ouvrir le territoire de l'architecture de systèmes IA, un chemin possible serait de documenter, même de manière esquissée, la bascule Claude → CoWork comme un diagramme de flux avec rôles et handoffs.",
+      "Pour transférer la logique algorithmique hors-informatique, un chemin possible serait d'appliquer la stratégie 'lister, lister, comparer en ignorant les différences et en repérant les oublis' à un problème non-IA — un projet d'équipe, une conversation difficile, une révision pédagogique — et de raconter ce que cela donne."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail de la feuille du 14 mars 2026 montre une pensée centrée sur la mécanique des outils IA et sur l'orchestration d'un dialogue prolongé. La voix dominante est celle de quelqu'un qui regarde sa propre pratique avec une lucidité technique : ce qui marche, ce qui ne marche pas, et pourquoi. Le récit du plan v5 — passé par les versions v3, v4 puis v5 avec autant d'échecs intermédiaires — n'est pas raconté comme une réussite mais comme une enquête sur les conditions qui permettent à un dialogue avec une IA de produire un livrable tenable. Les marqueurs concrets reviennent : la compression automatique du contexte, le 'craft des données minimales à charger en mémoire', la stratégie en trois étapes pour faire émerger les oublis. La pensée se déploie au plus près de l'outil, dans la précision du geste.\n\n## Territoires les plus denses\n\n**Littératie IA et compréhension des mécanismes.** Le portfolio attache des comportements observés de l'IA à des mécanismes techniques précis — compression du contexte, perte d'éléments anciens, inefficacité des prompts naïfs. Verbatim : *« Plusieurs exemples d'hallucinations liés à la compression automatique du contexte de Claude, me font regretter le temps ou les conversations s'arrêtaient brutalement en cours de route (ce qui m'arrive toujours, mais plus tard maintenant). »* Cette compétence se manifeste ici comme un savoir diagnostique partagé entre plusieurs situations : la même mécanique (le compactage) est nommée chaque fois qu'un comportement IA en dépend. Ce n'est pas du vocabulaire, c'est une lecture causale.\n\n**Dialogue avancé avec l'IA.** L'orchestration du dialogue passe par des décompositions explicites, des reformulations stratégiques après échec, et une attention au prompt comme outil de pensée. Verbatim : *« Ma stratégie a été de lui demander de lister chapitre par chapitre chacun des concepts couverts par la v3. Puis de faire de même avec la v2. Puis de comparer les deux en ignorant les différences (évolution du concept) mais en repérant uniquement les oublis des concepts présents dans la v2 et absents de la v3. »* La pratique du prompting s'incarne ici dans une décomposition fine — pas une consigne mais un protocole qui dit quoi ignorer et quoi repérer.\n\n**Pensée critique et anti-hallucination.** Le scepticisme s'exerce avec calibration : ne pas refuser l'IA, ne pas s'y abandonner, identifier ce qui peut tomber et inventer le geste qui rattrape. Verbatim : *« Si je m'en étais satisfait sans prendre les précautions nécessaires, je perdrais des idées fondamentales du discours, alors qu'elles étaient dans le contexte mais qu'elles se sont perdues. »* La vigilance anticipe la perte plutôt que de la constater.\n\n**Cadrage de l'intention.** Le projet de livre devient une trilogie quand l'apprenant interroge non l'exécution mais l'objectif lui-même — qui sont les publics, dans quel ordre. Verbatim : *« L'ordre de rédaction et l'ordre de publication sont inversés. La séquence de publication (pourquoi → comment → quoi) est contre-intuitive pour un académique — qui commencerait par le quoi. »* Le cadrage opère en posant la question 'pour qui, dans quel ordre' à un moment où l'exécution révèle un mauvais angle initial.\n\n**Synthèse intégrative.** La trilogie émerge de la rencontre entre un édifice théorique préexistant (noèsiologie), une discussion routière informelle, et une demande à Claude — fusion plutôt qu'empilement. Verbatim : *« Je lui ai raconté mes idées en partant de la noèsiologie pour arriver jusqu'au couplage noèsis/entendement qui constitue la base philosophique de la pédagogie de l'émergence. »* L'émergence du dispositif d'écriture stratifié est rendue lisible dans le récit lui-même.\n\n**Métacognition légère.** Des micro-arrêts dans le récit nomment la mécanique de l'écriture en train de se faire — par exemple, pourquoi un portfolio a été rédigé après l'autre. Verbatim : *« Le lecteur attentif aura remarqué que j'ai rédigé le portfolio du 12.03.après celui du 13. En effet, en cours de route Claude m'a posé des questions qui montraient que le contexte que je lui avais donné était trop vieux. »* La métacognition se glisse en commentaire latéral.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires du pôle restent en retrait dans cette feuille. La conception explicite d'architectures multi-agents (qui produit quoi, dans quel ordre, avec quel relais) est mentionnée brièvement à travers la bascule sur CoWork, mais sans description du dispositif. La pensée computationnelle transférée hors-informatique — appliquer une logique algorithmique à un problème humain ou organisationnel — n'apparaît pas ici, même si la décomposition en trois étapes du prompting s'en rapproche. La synergie articulée (nommer ce que l'humain fait mieux et pourquoi) reste implicite : les choix de répartition humain/IA sont posés sans être thématisés. La pensée systémique en boucles, avec points de levier identifiés, est amorcée par l'inversion rédaction/publication mais ne se déploie pas encore en modélisation explicite.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle dans la feuille. D'abord, une métaphore implicite récurrente : celle du contexte comme matière qui peut se perdre, fuir, vieillir — une matière à 'crafter', à 'consolider', à 'recharger'. Cette métaphore relie la littératie IA, le dialogue avancé et la pensée critique. Ensuite, un pattern temporel : l'apprenant écrit en revenant en arrière (le portfolio du 12 après celui du 13), itère sur plusieurs versions (v3, v4, v5), et reporte délibérément la suite (les livres ne seront pas générés maintenant). Le rapport au temps n'est pas linéaire mais itératif et différé. Enfin, une attention récurrente au point de bascule : quand exporter, quand reformuler, quand basculer sur un autre outil. Le geste critique se loge dans la détection de ces seuils.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la pratique de craft du contexte, un chemin possible serait de tenir une courte fiche par projet recensant les éléments minimaux à recharger pour une reprise sans perte, et les marqueurs qui trahissent un contexte vieillissant.\n- Pour rendre plus explicite la synergie humain-IA, un chemin possible serait de noter une fois, à la fin d'un cycle d'itération, ce que l'humain a apporté que l'IA n'aurait pas pu produire — pas pour palmarès, mais pour articuler la complémentarité.\n- Pour ouvrir le territoire de l'architecture de systèmes IA, un chemin possible serait de documenter, même de manière esquissée, la bascule Claude → CoWork comme un diagramme de flux avec rôles et handoffs.\n- Pour transférer la logique algorithmique hors-informatique, un chemin possible serait d'appliquer la stratégie 'lister, lister, comparer en ignorant les différences et en repérant les oublis' à un problème non-IA — un projet d'équipe, une conversation difficile, une révision pédagogique — et de raconter ce que cela donne.\n"
+  }
+}

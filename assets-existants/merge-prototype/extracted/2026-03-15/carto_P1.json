@@ -1,0 +1,398 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Ce qui m'a motivé à faire le roman en priorité, c'est d'une part que le site web n'est plus du tout à jour, et d'autre part, lorsque je le montre à des jeunes, ils le scrollent sans le lire. Du coup aucun intérêt. Je me dis qu'on ne feuillette pas une histoire. Le format livre est peut être un média plus adapté pour faire comprendre les concepts.",
+      "contexte": "Reformulation du problème de transmission : changer le média pour servir l'intention de compréhension — touche potentiellement 1.02 (cadrage) et 1.10 (synergie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "J'ai au moins maintenant quelque chose à partager de compréhensible par tout le monde, pour expliquer le projet.",
+      "contexte": "Évaluation rétrospective de l'objectif atteint — touche obliquement 1.02 (clarification d'intention).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Le début est pas mal. Le milieu est un peu light en profondeur réflexive, mais Claude me dit que c'est nécessaire.",
+      "contexte": "Évaluation contrastée d'un livre coproduit avec l'IA, avec acceptation argumentée du verdict de l'IA — touche 1.06 et 1.10.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Je n'ai pas du tout l'habitude de lire des romans. Je ne sais pas si c'est bien ou pas. Je vais le proposer au club de lecture de Soledad, voir si quelqu'un peut me faire un feedback.",
+      "contexte": "Calibration explicite d'une zone d'ignorance suivie d'un protocole de vérification externe — touche 1.01 et 1.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "D'un point de vue technique je suis un peu resté sur ma faim, mais l'objectif n'était pas de tout expliquer : juste donner envie, éveiller la curiosité, et ça je pense que ça fonctionne bien.",
+      "contexte": "Auto-correction du critère d'évaluation en revenant à l'intention initiale du projet — touche 1.02 (cadrage) et 1.04 (métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique.",
+      "contexte": "Décision active de réintroduire des éléments retirés par l'IA, sur la base d'un jugement humain — touche 1.01 et 1.10.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Mais bon : je ne cherche pas à lui faire générer le prix Hugo du meilleur roman de SF : je veux juste parler du projet à la base !",
+      "contexte": "Recadrage explicite de l'intention initiale en cours de route, après dérive — touche 1.02 frontalement.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant note une faiblesse perçue du texte mais accepte la justification de l'IA. Forme de scepticisme calibré : il ne suit pas son premier jugement aveuglément, ni la machine aveuglément."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Calibration explicite de sa propre zone d'ignorance (« je ne sais pas si c'est bien ou pas ») suivie d'un protocole de vérification externe — un acte de pensée critique calibrée."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Réintroduction délibérée de notions que l'IA avait supprimées — refus de la déférence automatique au verdict de l'IA, posture critique en acte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que la pensée critique n'est pas vraiment attestée — l'apprenant raconte simplement une journée de relecture. La pièce 1 pourrait n'être qu'un constat. La pièce 2 pourrait être de la simple modestie sociale. La pièce 3 pourrait être une simple préférence personnelle. Pourtant, la pièce 2 articule une zone d'ignorance et un dispositif pour la combler ; la pièce 3 montre un retournement contre le verdict de l'IA, pas une simple humeur ; la pièce 1 montre une suspension du jugement initial au profit d'un argument. Ce qui reste faible : aucune des pièces ne nomme explicitement un biais ou un mécanisme.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant nomme son ignorance de manière calibrée et la traite par un protocole concret (feedback externe via le club de lecture), pas par bluff." },
+            { "pieceId": 3, "motifResistance": "Réintroduire ce que l'IA avait retiré exige d'avoir maintenu son propre jugement contre la suggestion machine — c'est exactement la posture critique non déférente." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces et je me demande si je les ai surchargées. La pièce 2 pourrait n'être qu'une formule polie (« je ne sais pas ») sans réel mécanisme critique derrière. La pièce 3 pourrait être une simple préférence esthétique, pas une critique méthodique. J'examine.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est brève et le protocole reste hypothétique (proposer au club de lecture, qui d'ailleurs ne se fera pas). La trace existe mais reste légère."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "On peut me reprocher de lire un acte critique là où il y a peut-être surtout une préférence d'auteur. Toutefois, l'apprenant nomme explicitement l'objet du désaccord (« plus humain et moins technique »), ce qui dépasse l'humeur."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, je cherchais à voir si l'apprenant tenait vraiment une posture critique calibrée ou s'il racontait simplement une journée d'édition. Deux pièces m'ont forcé à reconnaître quelque chose : la calibration d'une ignorance assumée et traitée par un protocole de vérification, et le refus de la déférence à l'IA lorsque le jugement humain plaide pour autre chose. Sous la présomption de sycophantie, ces deux pièces ont été affaiblies (l'une parce que le protocole reste hypothétique, l'autre parce que la frontière avec la simple préférence reste poreuse), mais elles ont tenu. Ce qui en résulte dans ce pôle : une trace de pensée critique en exercice plutôt que théorisée, qui s'exerce dans la friction concrète avec l'IA et avec son propre jugement. La réserve qui reste : aucune métaphore ni protocole nommé n'apparaît ; le scepticisme se joue dans l'acte, pas dans la formulation.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a affaibli les deux pièces sans les disqualifier ; la trace tient mais reste légère, sans métaphore ni mécanisme nommé.",
+        "prescription": "Le travail montre, sur cette feuille, une pensée critique qui s'exerce dans l'acte plus que dans la formulation. Une piste possible serait de nommer, dans une prochaine entrée, le mécanisme qui a conduit à réintégrer ce que l'IA avait retiré — quel critère a tranché, et en réponse à quel risque perçu."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant reformule le problème de transmission : ce n'est plus « rendre le site à jour » mais « trouver un média que les jeunes lisent ». Le périmètre change, l'intention reste."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Recadrage explicite du critère d'évaluation : revenir à l'intention initiale (« donner envie, éveiller la curiosité ») contre une dérive technique."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Recadrage frontal de l'objectif en cours de soirée : « je ne cherche pas à lui faire générer le prix Hugo... je veux juste parler du projet »."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à du cadrage n'est en fait que de l'arbitrage d'exécution. La pièce 1 pourrait n'être qu'un changement de support, pas un recadrage de problème. Les pièces 5 et 7 pourraient être des justifications rétrospectives pour clôturer un travail imparfait. Pourtant : la pièce 1 articule un constat empirique (« ils le scrollent sans le lire ») suivi d'une hypothèse sur le média lui-même — c'est exactement la question « cherche-t-on à résoudre le bon problème ? ». La pièce 7 contient une formulation quasi-pure du cadrage : nommer ce qu'on ne cherche pas pour clarifier ce qu'on cherche. Ce qui reste faible : aucune trace de récursivité explicite (pas de « est-ce que je cadre bien ? »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le passage articule un constat d'échec du média actuel et propose un changement de problème (rendre lisible, pas mettre à jour), c'est le marqueur central du cadrage." },
+            { "pieceId": 2, "motifResistance": "L'apprenant ramène le critère d'évaluation à l'intention initiale, ce qui suppose d'avoir gardé l'intention en mémoire active." },
+            { "pieceId": 3, "motifResistance": "La phrase nomme par contraste ce qu'on cherche en disant ce qu'on ne cherche pas — formulation canonique du cadrage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. J'examine si je n'ai pas chargé une simple décision pragmatique du poids d'un acte de cadrage. La pièce 1 pourrait être une simple substitution de support sans interrogation du problème. La pièce 2 pourrait être une rationalisation a posteriori. La pièce 3 pourrait être une boutade.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage ne se contente pas de changer de support : il observe un comportement (« ils le scrollent sans le lire »), formule une hypothèse sur le média (« on ne feuillette pas une histoire »), et en tire un changement d'angle. C'est un raisonnement sur la nature du problème."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce raconte plus qu'elle ne montre l'acte de cadrage : « l'objectif n'était pas... ». On peut y voir une rationalisation. Mais elle articule un critère opérationnel (« donner envie, éveiller la curiosité ») contre lequel l'auteur mesure le résultat, ce qui dépasse la pure déclaration."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La formulation par contraste (« je ne cherche pas X, je veux Y ») est précisément le geste de cadrage — affirmer l'intention en délimitant ce qui en sort. Le ton léger ne diminue pas la portée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si ce qui ressemblait à du cadrage n'était pas simplement de l'arbitrage entre options déjà posées. Trois pièces m'ont forcé à reconnaître autre chose : un constat empirique transformé en hypothèse sur le média, un retour conscient à l'intention initiale, et une formulation par contraste de ce qu'on cherche. Sous la présomption de sycophantie, deux pièces sont sorties confirmées et une affaiblie. Ce qui en résulte sur cette feuille : un travail de cadrage qui s'exerce non pas en amont du projet mais en cours d'exécution, par retours répétés à la question « qu'est-ce que je cherche vraiment ? ». La trace est cohérente sur l'ensemble de l'entrée : trois passages distincts portent le même mouvement, et la phrase du prix Hugo en condense la matière.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.8,
+        "motif": "Le temps 2 a confirmé deux pièces et affaibli une troisième sans la disqualifier ; le cadrage traverse l'entrée comme un fil cohérent.",
+        "prescription": "Le travail montre, sur cette feuille, un cadrage qui s'opère par retours répétés à l'intention initiale en cours d'exécution. Une piste possible serait de poser, en amont d'un futur livrable, la question « cherche-t-on à résoudre le bon problème ? » de manière explicite, et de regarder ce que ce questionnement change pour le périmètre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la synthèse intégrative. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où plusieurs sources hétérogènes se sont croisées pour produire une idée nouvelle."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant nomme une zone d'ignorance calibrée (« je n'ai pas du tout l'habitude de lire des romans ») et la traite — c'est de l'humilité épistémique en acte."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "L'apprenant observe que sa propre faim technique a failli détourner le critère d'évaluation, et corrige — c'est un regard sur son propre processus."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que l'apprenant fait de l'introspection ordinaire, pas de la métacognition. La pièce 1 pourrait être une simple modestie sociale. La pièce 2 pourrait être un bilan, pas une observation du processus. Pourtant la pièce 1 ne dit pas « j'ai progressé », elle nomme précisément une compétence absente (lire des romans), articule la conséquence sur le jugement et propose un dispositif. La pièce 2 est plus ambiguë : elle pourrait être un retour à l'intention (1.02) ou une observation du processus (1.04). Ce qui reste faible : aucune métacognition récursive (pas d'observation sur l'observation), aucun tag explicite type [META].",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Calibration précise d'une zone d'ignorance qui débouche sur un protocole, pas un bilan vague — marqueur d'humilité épistémique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. J'examine si je n'ai pas pris pour une métacognition ce qui est en réalité une simple précaution sociale. La pièce 2 n'a pas résisté car elle relève plus du cadrage que de l'observation du processus.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est brève. Elle nomme une ignorance et un protocole, mais ne porte pas de réflexion sur le processus cognitif lui-même (« comment je juge un roman »). C'est une humilité calibrée plus qu'une métacognition au sens strict."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant observait son propre fonctionnement cognitif ou s'il faisait simplement de l'introspection narrative. Une pièce m'a forcé à reconnaître une trace : l'articulation d'une zone d'ignorance précisément calibrée et traitée par un dispositif. Sous la présomption de sycophantie, cette pièce est restée mais affaiblie : elle relève plus de l'humilité épistémique pratique que de la métacognition réflexive sur ses propres mécanismes de pensée. Ce qui en résulte sur cette feuille : une trace légère, qui ressemble à l'amont d'une métacognition plus articulée — calibration d'incompétence, mais pas encore observation du processus de jugement.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante ; la trace tient mais reste à la lisière entre humilité épistémique et métacognition stricte.",
+        "prescription": "Le travail montre, sur cette feuille, une humilité épistémique en exercice plutôt qu'une observation du processus de pensée. Une piste possible serait, lors d'une prochaine relecture du roman, de noter non seulement le jugement porté mais le mécanisme par lequel ce jugement se forme — sur quels critères, et comment ces critères évoluent."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la pensée systémique. Pour ouvrir ce dossier, l'apprenant pourrait modéliser une boucle de rétroaction — par exemple entre la diffusion du livre et la motivation à le retravailler."
+      }
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la littératie IA. Pour ouvrir ce dossier, l'apprenant pourrait expliciter un mécanisme observé (pourquoi Claude a supprimé certaines notions, par quelle dynamique du modèle)."
+      }
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à l'architecture de systèmes IA. Pour ouvrir ce dossier, l'apprenant pourrait décrire le pipeline complet d'écriture du roman (rôles, flux, mécanismes de contrôle entre Claude et lui)."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives au dialogue IA avancé. Pour ouvrir ce dossier, l'apprenant pourrait documenter une formulation précise donnée à l'IA et l'effet observé sur le résultat."
+      }
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la pensée computationnelle. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où une logique algorithmique s'est transférée hors-informatique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant accepte l'argument de l'IA sur la profondeur du milieu — il s'agit d'une articulation de répartition de jugement entre lui et l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "L'apprenant réintroduit ce que l'IA avait supprimé pour rendre le texte « plus humain » — articulation explicite de ce que l'humain garde et de ce que l'IA fait moins bien."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce n'est pas de la synergie articulée, mais simplement de l'usage de l'IA. La pièce 1 pourrait être une simple acceptation passive. La pièce 2 pourrait être une simple préférence d'auteur sans articulation de complémentarité. Pourtant : la pièce 2 nomme l'angle (« plus humain et moins technique »), ce qui sous-entend une lecture comparative de ce que l'humain apporte là où l'IA a soustrait. Ce qui reste faible : aucune théorisation explicite du « qui fait quoi mieux », pas de trade-off articulé.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant identifie un axe (« plus humain ») sur lequel il intervient là où l'IA a coupé — geste de répartition implicite des rôles." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. J'examine si je n'ai pas chargé du sens là où il y a simplement une décision d'auteur.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce active mieux 1.01 (refus de la déférence à l'IA) que 1.10 (articulation des forces comparatives). Pour 1.10, il faudrait que l'apprenant articule pourquoi cet axe (« humain ») revient à l'humain et pas à l'IA — or il décrit un acte, pas une théorie de la répartition."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant articulait explicitement les forces comparatives humain-IA, ou s'il décrivait simplement un usage. La pièce qui avait résisté au temps 1 (la réintégration de ce que l'IA avait retiré) est tombée au temps 2 : elle parle mieux d'un acte critique que d'une articulation de répartition. La distinction critique de la fiche est explicite : sans articulation des forces comparatives, ce n'est pas 1.10. Ce qui en résulte sur cette feuille : l'apprenant travaille en synergie effective avec l'IA, mais ne théorise pas encore cette synergie dans le texte.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce sur la base de la distinction critique de la fiche : usage effectif n'est pas articulation de complémentarité.",
+        "prescription": "Le travail montre, sur cette feuille, une coopération en acte avec l'IA sans théorisation explicite des forces comparatives. Une piste possible serait, lors d'un prochain travail commun, de noter en marge ce que l'humain garde et pourquoi, et ce que l'IA fait mieux et pourquoi."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 7,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, l'entrée du 15 mars montre un travail de pensée qui s'exerce dans la friction concrète avec un objet en cours de finition : un roman destiné à transmettre un projet. La voix dominante est celle d'un praticien qui revient sur sa journée et mesure son résultat contre une intention initiale. Le registre est sobre, factuel, parsemé de petites évaluations contrastées (« le début est pas mal », « le milieu est un peu light »). Le micro-fait récurrent : un retour répété à la question « qu'est-ce que je cherche vraiment ? », qui structure la décision de réintégrer des éléments retirés par l'IA et celle de ne pas viser le prix Hugo. Le travail de cadrage traverse l'entrée comme un fil, là où d'autres registres cognitifs (systémique, computationnel, architecture IA) ne sont pas mobilisés sur cette feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Le cadrage revient comme un fil tout au long de l'entrée : reformulation du problème de média, retour au critère initial, formulation par contraste de ce qu'on cherche.",
+        "extraitVerbatim": "Mais bon : je ne cherche pas à lui faire générer le prix Hugo du meilleur roman de SF : je veux juste parler du projet à la base !",
+        "ceQueCaDit": "Le cadrage s'opère ici en cours d'exécution, par retours répétés à l'intention. Il fonctionne comme un garde-fou contre la dérive technique."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs registres cognitifs ne sont pas mobilisés sur cette feuille. La pensée systémique, l'architecture de systèmes IA, le dialogue IA avancé, la pensée computationnelle et la littératie IA restent silencieux — ce qui ressemble à un choix d'angle pour cette entrée (centrée sur le résultat livré, pas sur le dispositif). La synthèse intégrative aussi est absente : le travail décrit est plutôt un travail de tri et d'arbitrage. La métacognition et la pensée critique laissent des traces légères, qui ressemblent à un terrain à approfondir plutôt qu'à un manque : la calibration de l'ignorance et le refus de la déférence à l'IA pourraient nourrir, dans une entrée à venir, une réflexion plus explicite sur les mécanismes du jugement.",
+    "emergencesPole": "Une observation traverse les compétences de ce pôle sur cette feuille : la trace dominante n'est pas un acte de pensée à part, mais un acte de pensée intriqué à la finition d'un livrable concret. Le cadrage, le scepticisme et l'humilité épistémique s'exercent tous dans la même séquence — relire, juger, réintroduire, accepter, recadrer. Une seconde observation : l'IA est présente comme interlocuteur dont l'avis est tantôt suivi (sur la profondeur du milieu), tantôt révoqué (sur les notions retirées). Cette tension n'est pas théorisée dans le texte, mais elle structure l'entrée.",
+    "pistes": [
+      "Pour enrichir la trace de pensée critique, un chemin possible serait de noter, lors d'un prochain dialogue avec l'IA, le mécanisme qui a conduit à accepter ou à révoquer un de ses verdicts.",
+      "Pour enrichir la trace de métacognition, un chemin possible serait de décrire non seulement ce qui a été jugé, mais comment le critère de jugement s'est formé en cours de relecture.",
+      "Pour enrichir la trace de synergie humain-IA, un chemin possible serait d'articuler explicitement, après une session, ce que l'humain a gardé sous sa main et pourquoi, et ce que l'IA a porté et pourquoi."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, l'entrée du 15 mars montre un travail de pensée qui s'exerce dans la friction concrète avec un objet en cours de finition : un roman destiné à transmettre un projet. La voix dominante est celle d'un praticien qui revient sur sa journée et mesure son résultat contre une intention initiale. Le registre est sobre, factuel, parsemé de petites évaluations contrastées (« le début est pas mal », « le milieu est un peu light »). Le micro-fait récurrent : un retour répété à la question « qu'est-ce que je cherche vraiment ? », qui structure la décision de réintégrer des éléments retirés par l'IA et celle de ne pas viser le prix Hugo. Le travail de cadrage traverse l'entrée comme un fil, là où d'autres registres cognitifs ne sont pas mobilisés sur cette feuille.\n\n## Territoires les plus denses\n\n**Cadrage de l'intention.** Le cadrage revient comme un fil tout au long de l'entrée : reformulation du problème de média (passer du site au livre parce que les jeunes scrollent sans lire), retour au critère initial après une dérive technique, formulation par contraste de ce qu'on cherche. La phrase qui condense la matière : « Mais bon : je ne cherche pas à lui faire générer le prix Hugo du meilleur roman de SF : je veux juste parler du projet à la base ! ». Le cadrage s'opère ici en cours d'exécution, par retours répétés à l'intention ; il fonctionne comme un garde-fou contre la dérive technique.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres cognitifs ne sont pas mobilisés sur cette feuille. La pensée systémique, l'architecture de systèmes IA, le dialogue IA avancé, la pensée computationnelle et la littératie IA restent silencieux — ce qui ressemble à un choix d'angle pour cette entrée (centrée sur le résultat livré, pas sur le dispositif). La synthèse intégrative aussi est absente : le travail décrit est plutôt un travail de tri et d'arbitrage. La métacognition et la pensée critique laissent des traces légères, qui ressemblent à un terrain à approfondir plutôt qu'à un manque : la calibration de l'ignorance et le refus de la déférence à l'IA pourraient nourrir, dans une entrée à venir, une réflexion plus explicite sur les mécanismes du jugement.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse les compétences de ce pôle sur cette feuille : la trace dominante n'est pas un acte de pensée à part, mais un acte de pensée intriqué à la finition d'un livrable concret. Le cadrage, le scepticisme et l'humilité épistémique s'exercent tous dans la même séquence — relire, juger, réintroduire, accepter, recadrer. Une seconde observation : l'IA est présente comme interlocuteur dont l'avis est tantôt suivi (sur la profondeur du milieu), tantôt révoqué (sur les notions retirées). Cette tension n'est pas théorisée dans le texte, mais elle structure l'entrée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la trace de pensée critique, un chemin possible serait de noter, lors d'un prochain dialogue avec l'IA, le mécanisme qui a conduit à accepter ou à révoquer un de ses verdicts.\n- Pour enrichir la trace de métacognition, un chemin possible serait de décrire non seulement ce qui a été jugé, mais comment le critère de jugement s'est formé en cours de relecture.\n- Pour enrichir la trace de synergie humain-IA, un chemin possible serait d'articuler explicitement, après une session, ce que l'humain a gardé sous sa main et pourquoi, et ce que l'IA a porté et pourquoi.\n"
+  }
+}

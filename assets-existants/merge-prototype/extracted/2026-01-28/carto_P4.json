@@ -1,0 +1,323 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Oups : Claude a oublié de documenter le bootstrap. Aucun souci : je lui demande d'ajouter les chapitres manquants dans les manuels + copier-coller et c'est réglé !",
+      "contexte": "L'apprenant détecte un manque dans la production IA, identifie ce qui manque et décide la correction — possible trace de validation contextuelle et/ou d'alignement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Maintenant il suffit de tout relire, corriger, adapter la structure et la mise en page… J'en ai pour un moment 😅",
+      "contexte": "L'apprenant assume la responsabilité finale de la relecture et de la mise en forme du livrable IA — possible trace d'accountability post-IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Ça m'a conduit à définir le référentiel des compétences à valider pour passer au niveau supérieur.",
+      "contexte": "L'apprenant définit des critères de validation — possible trace de cadre éthique/évaluatif.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au raisonnement éthique appliqué dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a senti une tension entre deux valeurs légitimes et a maintenu l'incertitude au lieu de la trancher prématurément."
+      }
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant repère ce qui manque dans la production IA et engage une correction — possible amorce de gardiennage."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le travail de relecture/correction systématique post-IA peut signaler un réflexe d'alignement entre la production IA et une exigence humaine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.02 avec présomption d'absence : l'alignement et le refus éthique supposent un gardiennage actif de la conformité entre ce que l'IA produit et ce que des valeurs humaines exigent — diagnostic, garde-fous, refus motivés par des valeurs. Ici l'apprenant constate un oubli (le bootstrap) et programme une relecture générale, mais aucune valeur n'est nommée, aucune position éthique n'est posée. La fiche cite « reformuler systématiquement les outputs IA pour les rendre plus humains ou plus authentiques » comme trace oblique : la pièce 2 effleure cela. Les deux pièces résistent faiblement parce qu'elles décrivent une posture de relecteur qui ne laisse pas passer ce que l'IA produit tel quel.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant ne laisse pas l'oubli de l'IA passer inaperçu et engage une correction, ce qui suppose une exigence sur ce qu'un livrable doit contenir."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le programme « tout relire, corriger, adapter » suppose un réflexe systématique de retraitement de la production IA avant publication."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ces gestes relèvent vraiment de l'alignement éthique ou seulement du contrôle qualité fonctionnel. L'attaque dominante sur la pièce 1 est la confusion de compétence : la correction porte sur une omission factuelle (« le bootstrap n'est pas documenté »), pas sur une question d'alignement aux valeurs humaines — c'est un correctif de complétude, pas un acte d'alignement. Sur la pièce 2, l'attaque dominante est aussi la confusion de compétence : la relecture/correction/adaptation de structure et de mise en page relève de la curation formelle (3.04), pas de l'alignement éthique au sens de la fiche, qui suppose une exigence de conformité aux valeurs humaines explicitement formulée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Compléter une omission factuelle (chapitre manquant sur le bootstrap) n'est pas un acte d'alignement aux valeurs ; aucune valeur n'est nommée, aucun « ce n'est pas nous » formulé."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Relire, corriger, adapter la structure et la mise en page relèvent du jugement esthétique et de la curation, pas du gardiennage des valeurs ; rien n'indique un refus éthique ou une exigence d'alignement spécifique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'alignement éthique en doutant que des correctifs sur une production IA suffisent à attester un gardiennage des valeurs. Les deux pièces ont brièvement résisté parce que l'apprenant manifeste l'exigence qu'un livrable IA ne soit pas publié tel quel. Sous présomption de sycophantie, elles tombent : aucune valeur nommée, aucune position éthique formulée, le travail de relecture relève du contrôle qualité et de la curation formelle. Le territoire de l'alignement éthique proprement dit reste à documenter dans cette feuille.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a porté le verdict : les correctifs et la relecture relèvent du contrôle qualité, pas du gardiennage aux valeurs.",
+        "prescription": "Pour ouvrir ce territoire, raconter un moment où une production IA a été corrigée *parce qu'elle ne reflétait pas une valeur* — pas seulement parce qu'elle était incomplète ou mal mise en page — donnerait à l'alignement sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et long-terme dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage concret où le long terme ou les externalités ont modifié une décision."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un mode de pensée différent — le sien ou celui d'un autre — a produit un résultat qu'une approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la décision dans le flou dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un acte de tranchage assumé alors que les données manquaient, et ses conséquences."
+      }
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant assume la charge de relecture/correction après la production IA — possible trace d'appropriation de la responsabilité finale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.06 avec présomption d'absence : la responsabilité, le courage et l'intégrité supposent l'attribution explicite de la responsabilité (« c'est sur moi »), une position maintenue malgré la pression, ou la cohérence entre parole et acte sous coût. Ici l'apprenant note seulement qu'il va falloir tout relire et corriger — c'est une planification de travail, pas une revendication d'accountability formulée. La fiche cite « ce n'est pas la faute de l'IA » comme trace oblique d'appropriation : la pièce ne dit pas cela. La pièce résiste très faiblement parce que prendre en charge le travail de relecture suppose tacitement que la responsabilité du livrable final reste à l'apprenant, pas à l'IA.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant prend en charge le travail de finition lui-même au lieu de le déléguer ou de l'omettre, ce qui suppose tacitement que la responsabilité finale du livrable est à lui."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si cette prise en charge atteste vraiment l'accountability au sens de la fiche. L'attaque dominante est l'insuffisance probatoire : aucune formulation explicite de la responsabilité, aucun « c'est sur moi », aucune reconnaissance d'erreur, aucune position maintenue sous pression. La planification de la relecture est un acte logistique, pas un acte de courage moral ou d'intégrité. La pièce ne tient pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La phrase « il suffit de tout relire, corriger, adapter » est une annonce de travail ; rien dans le texte ne formule explicitement la responsabilité, le courage ou l'intégrité du triptyque."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence du triptyque responsabilité-courage-intégrité en doutant qu'une planification de relecture suffise. La pièce a brièvement résisté parce que prendre en charge la finition manifeste tacitement une appropriation. Mais sous présomption de sycophantie, elle tombe : aucun « c'est sur moi », aucune position défendue sous coût, aucun dilemme énoncé. Le territoire de l'accountability proprement dite reste à documenter dans cette feuille.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption de sycophantie a porté le verdict : insuffisance probatoire d'une planification de travail sans formulation d'accountability.",
+        "prescription": "Pour ouvrir ce territoire, expliciter à quel moment une erreur du livrable IA est devenue la responsabilité de l'apprenant — ce qu'il a corrigé, à quel coût — donnerait à la responsabilité sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant identifie que Claude a omis quelque chose que lui-même savait nécessaire (le bootstrap) — possible delta de contexte entre humain et machine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.07 avec présomption d'absence : la validation contextuelle suppose que l'apprenant identifie POURQUOI le contexte manquant change tout — pas seulement que l'IA s'est trompée. Ici l'apprenant constate que Claude a oublié de documenter le bootstrap, sans expliquer pourquoi Claude l'a oublié, ni quel contexte lui manquait. C'est plus proche de la détection d'erreur (qui serait 1.01) que de la validation contextuelle au sens fort. La pièce résiste faiblement parce que la correction présuppose un savoir que l'apprenant a et que l'IA n'avait pas — savoir que le bootstrap est un chapitre nécessaire dans le canon des manuels — même si ce savoir n'est pas nommé comme delta de contexte.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant porte un savoir tacite — que le bootstrap doit être documenté — que l'IA n'a pas mobilisé spontanément."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si la pièce atteste vraiment la validation contextuelle. L'attaque dominante est la confusion de compétence : l'apprenant détecte une omission, ce qui est plus proche de la pensée critique (1.01) que de l'identification d'un delta de contexte. La fiche est explicite : « 1.01 détecte une erreur factuelle ou une hallucination ; 4.07 identifie un delta de contexte ». Ici on ne lit pas de raisonnement sur « pourquoi Claude n'a pas pu savoir ». La pièce ne tient pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La détection de l'omission relève de 1.01 (erreur factuelle) plutôt que de 4.07 (delta de contexte) : aucun raisonnement explicite sur ce que l'IA ne pouvait pas savoir."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de validation contextuelle en doutant que constater un oubli suffise. La pièce a brièvement résisté parce qu'identifier un manque suppose un savoir que l'IA n'avait pas mobilisé. Mais sous présomption de sycophantie, la pièce tombe : aucun raisonnement explicite sur le delta de contexte, aucun « l'IA ne pouvait pas savoir que », aucune analyse de ce qui manquait à la machine. La fiche est sans ambiguïté sur la distinction avec 1.01. Le territoire de la validation contextuelle au sens fort reste à documenter.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a porté le verdict : confusion de compétence avec la pensée critique — détection d'omission sans analyse du delta de contexte.",
+        "prescription": "Pour ouvrir ce territoire, expliciter pourquoi Claude pouvait difficilement penser au bootstrap — quel savoir du dispositif lui manquait — donnerait à la validation contextuelle sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'énumération des tâches humaines (relire, corriger, adapter) après le travail IA peut esquisser une lecture de ce qui reste structurellement à l'humain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.08 avec présomption d'absence : la création de valeur non-automatisable suppose une lucidité bidirectionnelle — reconnaître ce que l'IA fait mieux ET identifier ce qui reste irremplaçablement humain. La fiche pose un test prospectif : 4.08 regarde vers l'avenir (« que vais-je cultiver pour rester pertinent ? »). Ici l'apprenant énumère ce qu'il va faire après l'IA (relire, corriger, adapter) sans articuler pourquoi cette part reviendrait structurellement à l'humain. C'est une répartition de tâches, pas une réflexion sur le non-automatisable. La pièce résiste très faiblement parce que l'énumération suppose tacitement une conscience d'une valeur ajoutée humaine.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'énumération des tâches que l'apprenant garde pour lui suppose tacitement une conscience que cette part n'est pas automatisable."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si cette énumération atteste la création de valeur non-automatisable au sens fort. L'attaque dominante est l'insuffisance probatoire : aucune articulation de ce qui est structurellement humain, aucune réflexion prospective, aucune nomination d'une valeur irremplaçable. Relire, corriger et adapter sont précisément des tâches que l'IA fait aussi (en deuxième passage, en retraitement) — la frontière entre « ce que je garde » et « ce que je délègue » n'est pas posée comme une frontière de valeur, juste comme une routine de finition.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'énumération « relire, corriger, adapter » ne pose aucun motif pour lequel ces tâches resteraient structurellement humaines ; ce sont des tâches précisément aussi automatisables que le reste."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de création de valeur non-automatisable en doutant qu'une énumération de tâches humaines suffise. La pièce a brièvement résisté parce que choisir ce qu'on garde implique tacitement une conscience d'une valeur ajoutée. Mais sous présomption de sycophantie, la pièce tombe : aucune articulation de ce qui est structurellement humain, et les tâches retenues sont précisément celles que l'IA peut aussi exécuter. Le territoire de la valeur non-automatisable au sens prospectif reste à documenter.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption de sycophantie a porté le verdict : insuffisance probatoire — aucune articulation de ce qui serait structurellement non-automatisable.",
+        "prescription": "Pour ouvrir ce territoire, nommer ce qui, dans ce qui reste à l'humain, ne pourrait pas être délégué à l'IA même demain — et pourquoi — donnerait à cette compétence sa trace prospective."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la patience stratégique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une non-action délibérée associée à un raisonnement de timing et à un critère de déclenchement."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 9,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail de cette feuille montre un apprenant en régime de finition technique — une journée qui ne convoque pas spontanément le registre du discernement et du jugement éthique. La voix dominante est opératoire : repérer, corriger, planifier la relecture. Les micro-faits qui pourraient toucher ce pôle — la posture de relecteur après la production IA, l'identification d'un oubli, la définition d'un référentiel — restent à l'état de gestes pragmatiques sans articulation éthique formulée. Aucun dilemme tenu, aucune position défendue sous coût, aucun « c'est sur moi » assumé. Ce qui passe ici, dans le registre de l'Âme, c'est l'envers d'une journée éthiquement éloquente : une journée où le travail technique ne fait pas surgir l'occasion du discernement.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Ce pôle est largement non visité dans cette feuille. Le raisonnement éthique appliqué, la conscience écologique, la valorisation de la neurodiversité, la décision dans le flou et la patience stratégique n'ont aucune trace ici — ce qui ressemble très clairement à une caractéristique du jour : une journée de finition documentaire avec une IA ne sollicite pas spontanément le registre de l'arbitrage moral, du long terme ou du timing. L'alignement éthique, la responsabilité, la validation contextuelle et la création de valeur non-automatisable sont effleurés par les gestes (correction d'oubli, relecture, énumération des tâches humaines) sans que la dimension éthique ou prospective n'y soit articulée. Le format du jour — bref, technique — est la limite, pas l'absence de fond.",
+    "emergencesPole": "Trois observations traversent ce pôle dans cette feuille. D'abord, l'apprenant occupe la place du relecteur final post-IA, posture qui *suppose* une appropriation et une exigence sans les nommer comme valeurs. Ensuite, la frontière humain/IA est en pratique — l'apprenant garde la relecture, délègue la génération — mais reste un fait, pas un argument. Enfin, la création d'un référentiel pour passer au niveau supérieur introduit la question des critères, sans que ces critères ne soient encore explicités comme jugement.",
+    "pistes": [
+      "Pour enrichir le territoire de la responsabilité, un chemin possible serait de nommer le moment où le livrable IA devient le livrable de l'apprenant — ce qu'il assume en propre, à quel coût.",
+      "Pour enrichir le territoire de la validation contextuelle, un chemin possible serait d'expliciter ce que Claude ne pouvait pas savoir du dispositif, là où l'apprenant le savait.",
+      "Pour enrichir le territoire de la création de valeur non-automatisable, un chemin possible serait de nommer ce qui, dans la relecture humaine, n'est pas reproductible par l'IA — et pourquoi.",
+      "Pour enrichir le territoire de l'alignement éthique, un chemin possible serait de raconter, lors d'une prochaine entrée, une retouche qui aurait porté sur une valeur — pas seulement sur une complétude ou une forme."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail de cette feuille montre un apprenant en régime de finition technique — une journée qui ne convoque pas spontanément le registre du discernement et du jugement éthique. La voix dominante est opératoire : repérer, corriger, planifier la relecture. Les micro-faits qui pourraient toucher ce pôle — la posture de relecteur après la production IA, l'identification d'un oubli, la définition d'un référentiel — restent à l'état de gestes pragmatiques sans articulation éthique formulée. Aucun dilemme tenu, aucune position défendue sous coût, aucun « c'est sur moi » assumé. Ce qui passe ici, dans le registre de l'Âme, c'est l'envers d'une journée éthiquement éloquente : une journée où le travail technique ne fait pas surgir l'occasion du discernement.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'atteint dans cette feuille seule le seuil de la présence pleinement établie, et aucun n'est ouvert en renvoi au cartographe. Ce qui pourrait s'inscrire dans le registre de l'Âme — assumer la finition, identifier l'oubli, poser des critères de validation — reste à l'état d'acte pragmatique sans articulation explicite. La matière éthique ou décisionnelle de ce pôle ne se déploie pas dans cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCe pôle est largement non visité dans cette feuille. Le raisonnement éthique appliqué, la conscience écologique, la valorisation de la neurodiversité, la décision dans le flou et la patience stratégique n'ont aucune trace ici — ce qui ressemble très clairement à une caractéristique du jour : une journée de finition documentaire avec une IA ne sollicite pas spontanément le registre de l'arbitrage moral, du long terme ou du timing. L'alignement éthique, la responsabilité, la validation contextuelle et la création de valeur non-automatisable sont effleurés par les gestes — correction d'oubli, relecture, énumération des tâches humaines — sans que la dimension éthique ou prospective n'y soit articulée. Le format du jour — bref, technique — est la limite, pas l'absence de fond.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, l'apprenant occupe la place du relecteur final post-IA, posture qui *suppose* une appropriation et une exigence sans les nommer comme valeurs. Ensuite, la frontière humain/IA est en pratique — l'apprenant garde la relecture, délègue la génération — mais reste un fait, pas un argument. Enfin, la création d'un référentiel pour passer au niveau supérieur introduit la question des critères, sans que ces critères ne soient encore explicités comme jugement.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir le territoire de la responsabilité, un chemin possible serait de nommer le moment où le livrable IA devient le livrable de l'apprenant — ce qu'il assume en propre, à quel coût. Pour enrichir le territoire de la validation contextuelle, un chemin possible serait d'expliciter ce que Claude ne pouvait pas savoir du dispositif, là où l'apprenant le savait. Pour enrichir le territoire de la création de valeur non-automatisable, un chemin possible serait de nommer ce qui, dans la relecture humaine, n'est pas reproductible par l'IA — et pourquoi. Pour enrichir le territoire de l'alignement éthique, un chemin possible serait de raconter, lors d'une prochaine entrée, une retouche qui aurait porté sur une valeur — pas seulement sur une complétude ou une forme."
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "là ça fait 3 semaines que je fais autre chose avec l'orp qui me prend beaucoup de temps. je repense le CV, mes compétences.",
+      "contexte": "Constat d'allocation de temps sur trois semaines et de retravail du CV — touche au pilotage des ressources personnelles et à la conduite du changement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "à prendre pour le plaisir d'apprendre alors que j'ai tant de choses à faire avec respire, ça me gonfle un peu.",
+      "contexte": "Arbitrage de priorités explicite — l'apprenant pose RESPIRE comme charge prioritaire face à un effort d'apprentissage exogène. Touche à l'efficacité personnelle et à la priorisation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "Le texte ci-dessus n'a pas été tapé mais dicté puis rédigé par Gemini [...] C'est l'avenir des portfolios réflexifs ! J'ai laissé le texte original pour que le lecteur puisse apprécier la puissance de l'outil.",
+      "contexte": "Méta-commentaire qui structure le document pour un futur lecteur, et annonce une vision prospective sur l'avenir des portfolios réflexifs. Touche à la documentation vivante et à la vision stratégique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "et là il y a une offre epfl où il faut de l'évaluation et de l'intelligence artificielle. du coup je reprends le CV. ça tombe bien : la mesure orp m'aide à améliorer le CV mais je sens une espèce de lassitude même sur ce poste epfl qui a priori m'intéresserait",
+      "contexte": "Récit d'un ajustement de cap face à une opportunité (poste EPFL) — touche à l'agilité, à l'efficacité personnelle et à la conduite du changement professionnel.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la maïeutique et à la facilitation d'apprentissage. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une question adressée à autrui — non pour informer mais pour faire émerger une prise de conscience — a structuré un échange."
+      }
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative. Pour ouvrir ce dossier, l'apprenant pourrait documenter un retour évaluatif adressé à autrui qui ouvre une piste de progression, avec critères articulés."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Méta-commentaire adressé à un futur lecteur ('pour que le lecteur puisse apprécier la puissance de l'outil') qui explicite le choix de conserver les deux versions du texte. Conscience du destinataire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la documentation vivante au sens 7.03 suppose une intention de pérennisation ET une conscience du destinataire, avec structuration intentionnelle pour autrui. La pièce porte explicitement l'adresse au lecteur ('pour que le lecteur puisse apprécier') et un choix structuré de conserver deux versions côte à côte — c'est de la documentation pensée pour autrui, pas un simple journal cathartique. La fiche distingue précisément 5.03 (expression personnelle) et 7.03 (structuration avec intention de capitalisation) : ici, l'élément qui penche vers 7.03 est l'adresse explicite au lecteur. Reste faible : pas de versioning explicite (v1, v2), pas d'archivage intentionnel pour réexploitation future, pas de wiki ni de README. La pièce résiste partiellement par sa conscience du destinataire.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'adresse explicite au lecteur ('pour que le lecteur puisse apprécier') et le choix structuré de conserver deux versions du texte manifestent une conscience du destinataire qui dépasse l'expression personnelle."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné une documentation vivante là où il y a une simple parenthèse explicative ? L'attaque dominante est l'insuffisance probatoire : un méta-commentaire bref ne fait pas une documentation structurée — il manque les attributs habituels (sections, versioning, mise à jour, hiérarchie de l'information). Toutefois, le geste de garder l'original et la version IA côte à côte avec une explication adressée au lecteur est précisément l'archivage intentionnel de traces brutes signalé par la fiche comme manifestation de 7.03. La pièce reste retenue mais affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le geste de documentation est court et ne déploie pas les attributs structurels classiques, mais il porte l'adresse au lecteur et l'archivage intentionnel signalé par la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'un méta-commentaire bref équivaille à une documentation vivante. La pièce a résisté : l'adresse explicite au lecteur et le choix de conserver les deux versions du texte avec une justification écrite sont précisément ce que la fiche identifie comme archivage intentionnel pour réexploitation. Sous la présomption de sycophantie, la pièce a tenu mais affaiblie : la documentation reste embryonnaire, sans versioning ni structuration sophistiquée. Le verdict tient comme renvoi au cartographe. Une piste serait de prolonger ce geste — créer une section explicite du portfolio où le dispositif Gemini-dictée est documenté comme une pratique réutilisable, avec ses avantages, ses limites et ses critères d'usage.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La présomption de sycophantie a affaibli la pièce : la conscience du destinataire et l'archivage intentionnel sont présents, mais la documentation reste embryonnaire, sans structuration sophistiquée.",
+        "prescription": "Pour approfondir cette piste, un chemin possible serait de prolonger ce geste en créant une section explicite du portfolio où le dispositif Gemini-dictée serait documenté comme pratique réutilisable, avec ses avantages, ses limites et ses critères d'usage."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au leadership situationnel et à l'orchestration. Pour ouvrir ce dossier, l'apprenant pourrait documenter une alternance consciente entre prise et lâcher de contrôle, ou une assignation de rôles différenciés à des agents (humains ou IA)."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Affirmation prospective explicite — 'C'est l'avenir des portfolios réflexifs !' — qui projette une direction et la relie à une pratique présente (dictée-Gemini)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la vision stratégique au sens 7.05 suppose un lien explicite entre projection future et décision présente, pas une simple anticipation enthousiaste. La pièce affirme 'C'est l'avenir des portfolios réflexifs !' — c'est une projection prospective, et elle est reliée à une pratique présente (dictée-Gemini-conservation des deux versions). Mais la fiche est claire : la vision prospective produit un lien argumenté entre futur anticipé et décision présente, pas un simple slogan. Ici, l'affirmation est lancée sans déploiement : pourquoi cet avenir, à quelle échéance, à quelles conditions ? La pièce résiste partiellement parce qu'elle articule bien projection et pratique, mais l'argumentation manque.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'affirmation prospective est reliée à une pratique présente concrète (dictée-Gemini-conservation des deux versions), ce qui constitue le lien minimal exigé par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné une vision stratégique là où il y a un enthousiasme sans argument ? L'attaque dominante est le récit performatif : 'c'est l'avenir' annonce une vision mais ne la déploie pas — elle n'identifie pas les conditions de réalisation ('quand', 'à quelles conditions'), ne pose pas de scénario prospectif, ne justifie pas le choix présent par l'anticipation. C'est un slogan plus qu'une analyse prospective. La pièce tombe sous la présomption.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "'C'est l'avenir des portfolios réflexifs' est un slogan affirmatif sans déploiement prospectif — pas de scénario, pas de condition de réalisation, pas d'argumentation reliant futur et décision présente."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'une affirmation enthousiaste sur l'avenir équivaille à une vision stratégique. La pièce a résisté à la présomption d'absence par son lien minimal entre projection et pratique. Mais elle est tombée sous la présomption de sycophantie : la fiche exige un *lien argumenté* entre futur et décision présente, et la pièce livre un slogan sans déploiement. La présence n'est pas établie. Une piste serait de prolonger cette intuition — pourquoi est-ce l'avenir, quelles conditions le rendent probable, quelles pratiques actuelles deviendront obsolètes, quels obstacles restent à lever. Le slogan gagnerait à se transformer en scénario.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a fait tomber la pièce : l'affirmation prospective est un slogan sans déploiement, qui ne livre pas le lien argumenté entre futur anticipé et décision présente.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de prolonger l'intuition — pourquoi est-ce l'avenir, quelles conditions le rendent probable, quelles pratiques actuelles deviendront obsolètes, quels obstacles restent à lever. Le slogan gagnerait à se transformer en scénario."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Arbitrage de priorités explicite — RESPIRE versus apprentissage des prérequis EPFL. Forme de 'non' stratégique implicite à l'effort d'apprentissage hors contexte."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Constat sur trois semaines consacrées à l'ORP — touche au pilotage du temps personnel et à la conscience des ressources cognitives investies."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : l'efficacité personnelle au sens 7.06 suppose un renoncement stratégique argumenté, pas une plainte de surcharge. La pièce 1 articule un arbitrage entre apprendre et poursuivre RESPIRE, avec un raisonnement — l'apprentissage hors contexte ne marche pas pour lui, RESPIRE le mobilise. La fiche précise que 'le marqueur le plus fiable est le non stratégique argumenté'. Ici, l'apprenant pose précisément ce 'non' implicite : il ne va pas se lancer dans l'apprentissage des prérequis avec entrain parce que c'est hors contexte et qu'il y a RESPIRE. La pièce 2 est plus faible : 'trois semaines avec l'ORP qui me prend beaucoup de temps' constate un état sans nommer d'arbitrage assumé — c'est une description de surcharge plus qu'une stratégie de gestion. Reste faible : pas de filtre d'utilité explicite, pas de découverte d'une technique personnelle, pas de pause volontaire articulée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'arbitrage entre apprendre les prérequis et poursuivre RESPIRE pose une priorisation argumentée — forme de 'non' stratégique implicite à l'effort d'apprentissage hors contexte."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné un renoncement stratégique là où il y a une réticence affective ? L'attaque dominante est la confusion de compétence : la fiche prévient que 'je suis occupé' / 'j'ai beaucoup travaillé' peut signaler l'absence de 7.06 plutôt que sa présence. Ici, 'ça me gonfle' colore l'arbitrage comme plainte. Mais la structure est bien celle d'un 'non' argumenté (deux raisons : hors contexte + autre priorité), et la fiche dit que décrire ce qu'on refuse est plus probant que décrire ce qu'on accomplit. La pièce reste retenue mais affaiblie : le renoncement est articulé mais enveloppé d'un registre affectif qui en obscurcit la dimension stratégique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'arbitrage est argumenté mais enveloppé d'une réticence affective ('ça me gonfle') qui en obscurcit la dimension proprement stratégique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à nier qu'une plainte de surcharge équivaille à une efficacité personnelle. Le constat sur les trois semaines ORP est tombé : il décrit un état sans articuler de stratégie. Ce qui m'a forcé à reconnaître une trace, c'est l'arbitrage entre apprendre les prérequis et poursuivre RESPIRE — un 'non' implicite à l'apprentissage hors contexte, avec deux raisons articulées (efficacité d'apprentissage en situation, priorité du projet en cours). Sous la présomption de sycophantie, cette pièce a tenu mais affaiblie : la dimension stratégique est obscurcie par un registre affectif. Le verdict tient comme renvoi au cartographe. Une piste serait de formuler ce 'non' explicitement comme principe de gestion — par exemple 'je n'apprends pas hors contexte sauf si X', en posant le critère qui rendrait l'arbitrage stratégique plutôt que ressenti.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La présomption de sycophantie a affaibli la pièce retenue : l'arbitrage est argumenté mais enveloppé d'un registre affectif qui obscurcit sa dimension proprement stratégique.",
+        "prescription": "Pour approfondir cette piste, un chemin possible serait de formuler ce 'non' explicitement comme principe de gestion — par exemple 'je n'apprends pas hors contexte sauf si X', en posant le critère qui rendrait l'arbitrage stratégique plutôt que ressenti."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Ajustement de cap professionnel — l'apprenant ajuste son CV en cours de route face à une nouvelle opportunité (poste EPFL). Touche à l'agilité d'orientation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : l'agilité-conduite du changement au sens 7.07 suppose un travail par versions successives avec cycle observable, ou une conduite humaine d'une transition (anticipation de résistances, normalisation, ressources de transition). La pièce raconte un ajustement de CV en cours de route face à une opportunité — c'est un ajustement de plan, mais s'agit-il d'une boucle de rétroaction structurée ? L'apprenant pivote (business analyste écarté → business architecte → poste EPFL), avec un ajustement de l'objet (le CV). C'est une forme d'itération sur le contenu d'une candidature. Mais la fiche distingue l'agilité de l'improvisation sans méthode. Ici, l'ajustement est réactif à une offre, pas issu d'une méthodologie d'itération consciente. Reste faible : pas de numéro de version explicite, pas de cycle générer-relire-tester-ajuster nommé, pas de normalisation d'une résistance future. La pièce résiste partiellement par son mouvement d'ajustement réel.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'ajustement du CV face à une nouvelle opportunité est un mouvement de modification de plan en cours de route, mouvement signalé par la fiche comme manifestation possible."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné une agilité là où il y a un opportunisme normal ? L'attaque dominante est la confusion de compétence : la fiche distingue précisément 'j'ai planifié' du waterfall et 'j'ai improvisé' sans méthode, et signale le risque du 'théâtre agile'. Ici, l'ajustement de CV face à une offre EPFL n'est pas une itération structurée — c'est une réponse à un stimulus externe, sans méthodologie d'adaptation explicite. Le cycle générer-relire-tester-ajuster n'est pas visible, et aucun versioning n'est mentionné. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'ajustement est une réponse à un stimulus externe (l'offre EPFL), pas une boucle de rétroaction structurée. L'agilité au sens 7.07 exige une méthodologie d'itération consciente que la pièce ne porte pas."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'un ajustement de CV face à une offre suffise à attester une agilité. La pièce a résisté à la présomption d'absence par son mouvement d'ajustement réel. Mais elle est tombée sous la présomption de sycophantie : l'ajustement est réactif, pas structuré par une méthodologie d'itération consciente. La présence n'est pas établie. Une piste serait de prolonger cette pratique — décrire le CV comme un artefact qui passe par des versions successives, avec ce qui change à chaque passage et pourquoi.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a fait tomber la pièce : l'ajustement est réactif à un stimulus externe, pas structuré par une méthodologie d'itération consciente.",
+        "prescription": "Pour ouvrir cette piste, un chemin possible serait de prolonger la pratique en décrivant le CV comme un artefact qui passe par des versions successives, avec ce qui change à chaque passage et pourquoi — la boucle générer-relire-tester-ajuster rendue visible."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident ou une panne gérée sous pression, avec détails temporels précis (séquence de décisions, timing, escalade)."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 6,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail se laisse traverser par un pilotage qui se cherche entre la pression d'un parcours imposé (ORP), une opportunité saisie (poste EPFL) et un projet qui tient bon (RESPIRE). Le journal porte un méta-commentaire structuré adressé au lecteur, qui ouvre la documentation du dispositif d'écriture, et un arbitrage de priorités argumenté qui pose un 'non' implicite à l'apprentissage hors contexte. Deux territoires s'esquissent : la documentation vivante, par la conscience du destinataire et le choix de garder les deux versions du texte, et l'efficacité personnelle, par l'articulation d'une priorisation entre RESPIRE et l'effort d'apprentissage exogène. Une affirmation prospective ('l'avenir des portfolios réflexifs') ouvre un terrain de vision stratégique sans encore en déployer les conditions.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à explorer dans cette feuille. La maïeutique et l'évaluation transformative n'apparaissent pas — pas de question adressée à autrui pour faire émerger une prise de conscience, pas de retour évaluatif construit. Le leadership situationnel n'est pas thématisé : l'alternance entre prendre et lâcher le contrôle, notamment dans le tandem avec Gemini, reste implicite. La gestion de crise en temps réel ne laisse pas de trace. La vision stratégique est effleurée par une affirmation prospective sur l'avenir des portfolios, mais sans déploiement en scénario. L'agilité est elle aussi effleurée par un ajustement de CV, mais celui-ci reste réactif plutôt qu'issu d'une méthodologie d'itération consciente.",
+    "emergencesPole": "Ce qui traverse la feuille à voix basse, c'est un rapport au pilotage marqué par la lassitude — l'apprenant arbitre, ajuste, priorise, mais le registre affectif domine sur le registre stratégique. La même articulation porte plusieurs compétences à la fois : la distinction entre apprentissage situé et apprentissage hors contexte fonctionne comme un principe de cadrage cognitif et comme un principe de gestion personnelle. Les deux registres pourraient se renforcer si l'apprenant en faisait un concept réutilisable.",
+    "pistes": [
+      "Pour approfondir le territoire de la documentation vivante, un chemin possible serait de prolonger le geste en créant une section explicite du portfolio où le dispositif Gemini-dictée serait documenté comme pratique réutilisable, avec ses avantages, ses limites et ses critères d'usage.",
+      "Pour enrichir le territoire de l'efficacité personnelle, un chemin possible serait de formuler le 'non' à l'apprentissage hors contexte explicitement comme principe de gestion — par exemple 'je n'apprends pas hors contexte sauf si X', en posant le critère qui rendrait l'arbitrage stratégique plutôt que ressenti.",
+      "Pour ouvrir le territoire de la vision stratégique, un chemin possible serait de prolonger l'intuition sur 'l'avenir des portfolios réflexifs' — pourquoi est-ce l'avenir, quelles conditions le rendent probable, quelles pratiques actuelles deviendront obsolètes, quels obstacles restent à lever."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail se laisse traverser par un pilotage qui se cherche entre la pression d'un parcours imposé (ORP), une opportunité saisie (poste EPFL) et un projet qui tient bon (RESPIRE). Le journal porte un méta-commentaire structuré adressé au lecteur, qui ouvre la documentation du dispositif d'écriture, et un arbitrage de priorités argumenté qui pose un \"non\" implicite à l'apprentissage hors contexte. Deux territoires s'esquissent : la documentation vivante, par la conscience du destinataire et le choix de garder les deux versions du texte, et l'efficacité personnelle, par l'articulation d'une priorisation entre RESPIRE et l'effort d'apprentissage exogène. Une affirmation prospective (\"l'avenir des portfolios réflexifs\") ouvre un terrain de vision stratégique sans encore en déployer les conditions.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'a atteint, dans cette feuille, le seuil d'une présence établie. Deux esquisses ont émergé — la documentation vivante par l'adresse au lecteur, et l'efficacité personnelle par l'arbitrage de priorités — toutes deux comme indices affaiblis. Les structures de l'argument sont là ; ce qui manque, c'est leur déploiement en principes assumés et réutilisables.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à explorer dans cette feuille. La maïeutique et l'évaluation transformative n'apparaissent pas — pas de question adressée à autrui pour faire émerger une prise de conscience, pas de retour évaluatif construit. Le leadership situationnel n'est pas thématisé : l'alternance entre prendre et lâcher le contrôle, notamment dans le tandem avec Gemini, reste implicite. La gestion de crise en temps réel ne laisse pas de trace. La vision stratégique est effleurée par une affirmation prospective sur l'avenir des portfolios, mais sans déploiement en scénario. L'agilité est elle aussi effleurée par un ajustement de CV, mais celui-ci reste réactif plutôt qu'issu d'une méthodologie d'itération consciente.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse la feuille à voix basse, c'est un rapport au pilotage marqué par la lassitude — l'apprenant arbitre, ajuste, priorise, mais le registre affectif domine sur le registre stratégique. La même articulation porte plusieurs compétences à la fois : la distinction entre apprentissage situé et apprentissage hors contexte fonctionne comme un principe de cadrage cognitif et comme un principe de gestion personnelle. Les deux registres pourraient se renforcer si l'apprenant en faisait un concept réutilisable.\n\n## Pistes pour enrichir ce pôle\n\n- Pour approfondir le territoire de la documentation vivante, un chemin possible serait de prolonger le geste en créant une section explicite du portfolio où le dispositif Gemini-dictée serait documenté comme pratique réutilisable, avec ses avantages, ses limites et ses critères d'usage.\n- Pour enrichir le territoire de l'efficacité personnelle, un chemin possible serait de formuler le \"non\" à l'apprentissage hors contexte explicitement comme principe de gestion — par exemple \"je n'apprends pas hors contexte sauf si X\", en posant le critère qui rendrait l'arbitrage stratégique plutôt que ressenti.\n- Pour ouvrir le territoire de la vision stratégique, un chemin possible serait de prolonger l'intuition sur \"l'avenir des portfolios réflexifs\" — pourquoi est-ce l'avenir, quelles conditions le rendent probable, quelles pratiques actuelles deviendront obsolètes, quels obstacles restent à lever."
+  }
+}

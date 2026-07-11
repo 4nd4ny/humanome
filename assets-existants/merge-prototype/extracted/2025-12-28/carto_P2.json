@@ -1,0 +1,267 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "J'ai été très déçu du résultat de mon prompt d'hier soir avec Claude pour l'ajout de 34 nouvelles références bibliographiques.",
+      "contexte": "Nomination d'une déception ressentie face à un résultat technique ; trace possible d'expression émotionnelle au sein d'un récit analytique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Même si ce n'est pas vraiment authentique : cette prise de conscience je l'ai eu il y a bien longtemps déjà 🙂",
+      "contexte": "Auto-correction publique avec emoji souriant ; trace possible d'autodérision et de variation de registre dans la prose.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "J'ai ensuite demandé l'avis à Gémini qui est du même avis que moi",
+      "contexte": "Mobilisation d'une IA tierce pour confirmer un jugement ; possible trace de \"collaboration\" avec un agent non-humain.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "qu'il est important d'apprendre à administrer plusieurs IA et à croiser leurs réponses pour tirer le meilleur résultat possible de ces outils, tout en exploitant leurs capacités (Gemini reste l'IA ayant la plus grande mémoire de contexte, même s'il est moins bon en rédaction du support de cours).",
+      "contexte": "Articulation d'une stratégie multi-IA fondée sur la complémentarité de leurs limites ; trace possible de collaboration divergente avec des agents IA imparfaits.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Nomination explicite d'une émotion (\"très déçu\") face à un résultat technique — possible trace d'une émotion utilisée comme information."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que l'intelligence émotionnelle n'est pas là : nommer brièvement \"très déçu\" ne suffit pas, la fiche demande une émotion mobilisée comme information et levier d'action, voire un care actif envers autrui. La pièce est seule, courte, et l'émotion nommée est utilisée pour transitionner vers une analyse technique, pas pour être travaillée comme information. Aucun autre marqueur sur la feuille : pas de perception d'autrui, pas de régulation décrite, pas de geste de sollicitude. Ce qui résiste à peine : la déception est nommée précisément (pas \"c'était dur\") et est suivie d'une action corrective, ce qui pourrait évoquer la régulation. Mais le mouvement reste très ténu.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Émotion nommée précisément (\"très déçu\") plutôt que floue, suivie d'une action corrective — possible trace de régulation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me méfie maintenant. Cette nomination de la déception est probablement un simple connecteur narratif, pas un travail sur l'émotion. L'attaque (a) insuffisance probatoire est massive : une demi-phrase, pas de description du ressenti, pas de régulation thématisée, pas d'autrui dans le champ. Le mot \"déçu\" est presque une formule de transition pour introduire l'analyse de la cause technique. La pièce ne porte pas la charge sémantique de la compétence.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La nomination est brève, sans déploiement du ressenti ni mobilisation de l'émotion comme information ; elle fonctionne comme connecteur narratif vers l'analyse technique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une trace d'intelligence émotionnelle dans la nomination de la déception, et la présomption d'absence n'a laissé qu'un signal très ténu. Sous la présomption de sycophantie, ce signal est tombé : la pièce est trop brève et fonctionne comme connecteur, pas comme travail émotionnel. Ce qui en résulte : sur cette feuille, l'intelligence émotionnelle ne trouve pas de sol. La journée porte un travail cognitif et méthodologique dense, mais la dimension affective et relationnelle n'y est pas thématisée. Une orientation possible serait, sur une autre feuille, de raconter une situation où la déception a été observée, accueillie, traduite — pas seulement signalée.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "L'unique pièce a été disqualifiée au temps 2 : nomination brève fonctionnant comme connecteur narratif, sans travail sur l'émotion.",
+        "prescription": "Sur cette feuille, l'intelligence émotionnelle n'a pas trouvé de matière à se déployer — la journée porte d'autres travaux. Un chemin possible serait de documenter, sur une feuille à venir, une situation où une émotion (déception, frustration, joie) a été non seulement nommée mais accueillie, comprise et mobilisée comme information utile pour la suite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Auto-correction publique ponctuée d'un emoji souriant — trace possible d'autodérision dosée et de variation de registre au sein d'un journal d'apprentissage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la communication authentique n'est pas attestée par cette pièce. La fiche demande des récits de prise de parole inconfortables, des variations de registre conscientes, du storytelling, de l'humour comme désamorçage. Ici, le journal s'adresse essentiellement à l'apprenant lui-même (et au dispositif d'évaluation) : ce n'est pas exactement une communication \"vers l'autre\". Ce qui résiste un peu : la note avec l'astérisque et l'emoji souriant désamorce sa propre valorisation avec une touche d'autodérision — micro-geste de registre. Mais l'absence d'un véritable interlocuteur affaiblit la portée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le geste d'autodérision combiné à l'emoji crée une variation de registre consciente dans un texte par ailleurs analytique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me méfie. Ai-je halluciné une trace de communication là où il n'y a qu'une note marginale ? L'attaque (a) insuffisance probatoire est sérieuse — un emoji et une astérisque ne font pas une communication authentique au sens de la fiche. L'attaque (c) biais de medium est aussi pertinente : c'est un journal, l'humour discret y est presque attendu.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Un emoji et une auto-correction marginale ne portent pas la charge d'une communication authentique au sens de prise de parole travaillée — le geste reste périphérique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir de l'autodérision et un travail de registre dans la note avec emoji. Ce qui m'a brièvement fait reconnaître un signal, c'est la variation consciente de ton dans un texte par ailleurs analytique. Mais sous la présomption de sycophantie, ce signal s'est révélé trop périphérique pour porter la compétence. La feuille du 28 décembre ne raconte pas de prise de parole vers l'extérieur, pas de conversation difficile, pas de feedback travaillé. Le verdict d'absence tient. Une orientation possible serait de documenter, sur une autre feuille, une situation où la parole a été calibrée pour un interlocuteur particulier — choix du ton, du moment, du registre.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "L'unique pièce a été disqualifiée au temps 2 : le geste reste un micro-marqueur de journal, sans communication thématisée vers l'autre.",
+        "prescription": "La feuille n'est pas tournée vers l'extériorisation de la parole. Un chemin possible serait de raconter, sur une feuille à venir, un moment où la parole a été préparée pour quelqu'un de précis — qu'est-ce qui a été pesé dans le choix des mots, du moment, du registre."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un désaccord a été structuré pour produire de la valeur plutôt que d'être fui ou écrasé."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'influence et à la diplomatie sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a cherché à mobiliser l'adhésion d'une personne ou d'un groupe en intégrant explicitement leurs perspectives."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Stratégie multi-IA fondée sur la reconnaissance des limites de chaque outil ; trace oblique possible de collaboration divergente — travailler avec des agents IA imparfaits sans chercher à corriger leur divergence."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Mobilisation conjointe d'IA et de jugement humain pour aboutir à une décision opérationnelle ; trace possible de productivité tirée de plusieurs sources divergentes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la collaboration divergente n'est pas attestée : la fiche demande de continuer à livrer *malgré* une divergence persistante, pas seulement d'utiliser plusieurs outils. La pièce 1 résiste partiellement : la trace oblique explicite de la fiche est précisément \"l'IA hallucine, donc je vérifie avec un humain\" — l'apprenant énonce ici un dispositif similaire (« croiser leurs réponses pour tirer le meilleur résultat »), avec reconnaissance des limites comparatives sans chercher à les abolir. La pièce 2 résiste moins : demander un avis pour confirmation n'est pas vraiment travailler avec une divergence persistante, c'est chercher la convergence.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Articulation d'une collaboration avec des IA aux capacités divergentes (Gemini fort en contexte, faible en rédaction) où la divergence est conservée et exploitée plutôt que résolue." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me méfie. La pièce 1 est-elle vraiment une collaboration divergente, ou juste une utilisation pragmatique d'outils différents ? L'attaque (b) confusion de compétence est sérieuse : ce que la pièce montre ressemble plus à la synergie hybride (1.10, articulation des forces comparatives) qu'à la collaboration divergente au sens strict (livrer ensemble malgré le désaccord persistant). Les IA ne sont pas en désaccord entre elles dans la pièce — elles sont juste différentes. La fiche insiste sur \"on n'est *toujours pas* d'accord MAIS on a livré\" : ici il n'y a pas vraiment de \"désaccord\" entre Gemini et Claude, juste une répartition des forces.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active plus nettement la synergie humain-IA (1.10) que la collaboration divergente ; mais la mention que Gemini \"reste l'IA ayant la plus grande mémoire de contexte, même s'il est moins bon\" préserve une divergence avec laquelle l'apprenant travaille sans la résoudre, ce qui touche le cœur oblique de la fiche." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener cette pièce à un simple usage d'outils différents. Ce qui m'a forcé à laisser une trace, c'est que la fiche elle-même donne en trace oblique \"l'IA hallucine, donc je vérifie avec un humain\" comme architecture compensatoire — et la pièce 1 énonce une variante de ce dispositif appliqué à plusieurs IA. Sous la présomption de sycophantie, la frontière avec la synergie hybride est devenue mince : la pièce pourrait être lue à 80% comme 1.10 et à 20% comme 2.05. La pièce est tenue mais affaiblie. Le verdict : renvoi au cartographe sur cette feuille — il y a une amorce de collaboration avec des IA divergentes, mais la dimension proprement collaborative (livrer malgré un désaccord conservé) reste à documenter plus explicitement.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Une seule pièce affaiblie au temps 2 : la trace oblique de la fiche est touchée mais la frontière avec la synergie hybride reste poreuse.",
+        "prescription": "La feuille amorce un travail avec des IA aux capacités divergentes, sans chercher à uniformiser. Pour ouvrir plus nettement ce dossier, un chemin possible serait de documenter une situation où la divergence elle-même devient productive — non pas la complémentarité des forces, mais le maintien volontaire d'un désaccord entre sources qui débouche sur un résultat livré."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence culturelle et contextuelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la lecture des normes d'un contexte (organisationnel, disciplinaire, générationnel) a modifié son comportement, ou identifier un biais culturel d'un outil IA utilisé."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens politique et à la lecture organisationnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la lecture des dynamiques invisibles d'un milieu (qui décide, qui bloque, par quels chemins) a orienté son action."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la traduction entre mondes sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un savoir spécialisé a été transposé pour un autre cadre conceptuel, ou inversement, où un besoin non-technique a été reformulé en langage spécialisé."
+      }
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la construction de communautés sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un \"nous\" identitaire chargé, un rituel partagé, ou la conception d'un espace où des personnes s'auto-organisent au-delà du projet immédiat."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 28 décembre, le cœur — au sens des compétences relationnelles du pôle 2 — n'est presque pas convoqué par le récit. La journée est tournée vers les machines et la méthode : tester, mesurer, diagnostiquer. Quand des affects affleurent (« j'ai été très déçu », un emoji souriant après une auto-correction), ils fonctionnent comme connecteurs vers l'analyse plutôt que comme matière travaillée pour elle-même. Aucun interlocuteur humain n'apparaît dans le champ : pas de collègue, pas d'apprenant, pas de pair à convaincre, à contredire ou à comprendre. Le seul espace relationnel actif est celui qui se noue avec les IA, et il est traité comme un dispositif outillé, non comme une présence à laquelle on s'adresse. C'est une feuille honnête dans son centre de gravité : elle ne joue pas le pôle 2.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Six des neuf territoires du pôle ne sont pas ramenés sur cette feuille — gestion des conflits, influence, intelligence culturelle, sens politique, traduction entre mondes, construction de communautés. Cette absence ressemble largement à un choix de centre de gravité plutôt qu'à une limite d'écriture : la journée raconte un travail de laboratoire personnel sur les IA, sans interactions sociales documentées. L'intelligence émotionnelle (déception nommée brièvement, autodérision discrète) et la communication authentique (variation de registre dans la note marginale) restent à l'état de micro-signaux, trop périphériques pour porter une compétence par eux-mêmes. La collaboration divergente est la seule à ouvrir un dossier, par le biais oblique d'un travail avec des IA aux capacités différentes — c'est là que se loge un renvoi au cartographe, à creuser sur des feuilles à venir.",
+    "emergencesPole": "Une observation traverse plusieurs des compétences absentes : sur cette journée, les agents IA tiennent la place que tiendraient habituellement des interlocuteurs humains dans le pôle 2 — on \"demande l'avis\" à Gemini comme on consulterait un collègue, on accepte que Claude soit \"meilleur\" pour la rédaction comme on accepterait une compétence chez un autre, on travaille avec leurs limites comme on composerait avec celles d'un partenaire. Cela pose une question intéressante (mais sans la trancher) : ce qui ressemble ici à une absence de relation pourrait être une relation en train de se déplacer vers d'autres types d'interlocuteurs.",
+    "pistes": [
+      "Pour ouvrir l'intelligence émotionnelle, un chemin possible serait de documenter sur une feuille à venir une déception ou une frustration en prenant le temps de la décrire avant de la résoudre — qu'est-ce qu'elle dit, qu'est-ce qu'elle révèle, comment elle se transforme.",
+      "Pour ouvrir la communication authentique, un chemin possible serait de raconter une situation où la parole a été préparée pour quelqu'un de précis — choix du ton, du moment, des mots — avec l'arrière-plan de ce qui a été pesé dans cette préparation.",
+      "Pour épaissir la collaboration divergente, un chemin possible serait de documenter explicitement un cas où la divergence entre sources (deux IA, une IA et un humain, deux humains) a été *conservée* dans le livrable plutôt que résolue avant — qu'est-ce que la divergence elle-même a apporté.",
+      "Pour ouvrir la construction de communautés, un chemin possible serait de raconter un moment où un \"nous\" est apparu — non pas un groupe assigné par le projet, mais une appartenance qui s'est tissée d'elle-même, avec son vocabulaire ou ses rituels."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 28 décembre, le cœur — au sens des compétences relationnelles du pôle 2 — n'est presque pas convoqué par le récit. La journée est tournée vers les machines et la méthode : tester, mesurer, diagnostiquer. Quand des affects affleurent (« j'ai été très déçu », un emoji souriant après une auto-correction), ils fonctionnent comme connecteurs vers l'analyse plutôt que comme matière travaillée pour elle-même. Aucun interlocuteur humain n'apparaît dans le champ : pas de collègue, pas d'apprenant, pas de pair à convaincre, à contredire ou à comprendre. Le seul espace relationnel actif est celui qui se noue avec les IA, et il est traité comme un dispositif outillé, non comme une présence à laquelle on s'adresse. C'est une feuille honnête dans son centre de gravité : elle ne joue pas le pôle 2.\n\n## Territoires les plus denses\n\nAucun territoire dense ne ressort de ce pôle sur la feuille du 28 décembre — aucune présence n'a été établie. Le seul dossier ouvert (collaboration divergente, par le biais oblique des IA aux capacités différentes) reste à l'état d'amorce, sans matière suffisante pour porter une présence sur cette seule journée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSix des neuf territoires du pôle ne sont pas ramenés sur cette feuille — gestion des conflits, influence, intelligence culturelle, sens politique, traduction entre mondes, construction de communautés. Cette absence ressemble largement à un choix de centre de gravité plutôt qu'à une limite d'écriture : la journée raconte un travail de laboratoire personnel sur les IA, sans interactions sociales documentées. L'intelligence émotionnelle (déception nommée brièvement, autodérision discrète) et la communication authentique (variation de registre dans la note marginale) restent à l'état de micro-signaux, trop périphériques pour porter une compétence par eux-mêmes. La collaboration divergente est la seule à ouvrir un dossier, par le biais oblique d'un travail avec des IA aux capacités différentes — c'est là que se loge un renvoi au cartographe, à creuser sur des feuilles à venir.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse plusieurs des compétences absentes : sur cette journée, les agents IA tiennent la place que tiendraient habituellement des interlocuteurs humains dans le pôle 2 — on \"demande l'avis\" à Gemini comme on consulterait un collègue, on accepte que Claude soit \"meilleur\" pour la rédaction comme on accepterait une compétence chez un autre, on travaille avec leurs limites comme on composerait avec celles d'un partenaire. Cela pose une question intéressante (mais sans la trancher) : ce qui ressemble ici à une absence de relation pourrait être une relation en train de se déplacer vers d'autres types d'interlocuteurs.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir l'intelligence émotionnelle, un chemin possible serait de documenter sur une feuille à venir une déception ou une frustration en prenant le temps de la décrire avant de la résoudre — qu'est-ce qu'elle dit, qu'est-ce qu'elle révèle, comment elle se transforme.\n- Pour ouvrir la communication authentique, un chemin possible serait de raconter une situation où la parole a été préparée pour quelqu'un de précis — choix du ton, du moment, des mots — avec l'arrière-plan de ce qui a été pesé dans cette préparation.\n- Pour épaissir la collaboration divergente, un chemin possible serait de documenter explicitement un cas où la divergence entre sources (deux IA, une IA et un humain, deux humains) a été *conservée* dans le livrable plutôt que résolue avant — qu'est-ce que la divergence elle-même a apporté.\n- Pour ouvrir la construction de communautés, un chemin possible serait de raconter un moment où un \"nous\" est apparu — non pas un groupe assigné par le projet, mais une appartenance qui s'est tissée d'elle-même, avec son vocabulaire ou ses rituels.\n"
+  }
+}

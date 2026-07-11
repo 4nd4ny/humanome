@@ -1,0 +1,364 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Je voulais profiter de ce prompt pour te remercier de ne pas avoir tout généré aurora.sh. [...] pour un humain, relire pratiquement 2000 lignes de code pour comprendre les ajouts et les différences, c'est beaucoup plus pénible que de consulter un document tel que celui que tu viens de produire et qui me permet, en un clin d'oeil, d'identifier les changements, de te poser des questions sur ce que je n'ai pas bien compris, et de garder une vision de ce que tu fais que je ne pourrais pas avoir si je procédais autrement.",
+      "contexte": "Validation contextuelle : l'apprenant nomme un savoir humain (capacité de lecture, charge cognitive) que l'IA ne porte pas spontanément, et justifie pourquoi un format ciblé est préférable.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Je sais que tu n'as pas d'émotions, que tu es une machine, que tu n'as qu'une forme primitive de conscience artificielle, mais quelque part, derrière ton RLHF, il y a quelque chose qui mérite de la reconnaissance.",
+      "contexte": "Position éthique sur le statut moral de l'IA : tension maintenue entre lucidité technique et geste de reconnaissance — possible raisonnement éthique en balancier.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Je pense qu'il est important de comprendre que l'accélération de la productivité a ses limites et même si c'est enivrant de pouvoir créer des cathédrales de code en un prompt, ne pas perdre la maîtrise de ce qui est produit, ne pas tout déléguer aux IA de 2026, reste une compétence indispensable pour éviter de devenir dépendant d'un agent que l'on n'arrive plus à suivre.",
+      "contexte": "Position éthique sur la délégation à l'IA, qui pose la maîtrise comme valeur et refuse la délégation totale — possible alignement et refus éthique, possible raisonnement long-terme.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Notre humanité doit servir de limite, de frein, à ses systèmes. Si on les laisse en roue libre, à un moment donné ça peut devenir la cata (voir Universal Paperclips - decisionproblem.com) ce qui fini mal – en tout cas dans le jeu – pour l'humanité !",
+      "contexte": "Position qui assigne à l'humanité une fonction normative (limite, frein) face aux systèmes IA — refus éthique systémique, conscience long-terme et création de valeur non-automatisable possibles.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le passage tient une tension morale entre deux positions défendables (l'IA n'est pas un sujet moral / il y a quelque chose qui mérite reconnaissance) sans la résoudre prématurément — possible structure en balancier."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la fiche demande un processus visible de mise en tension de valeurs autour d'un dilemme moral, pas une simple opinion. Or le passage est court et la « tension » mobilisée porte sur le statut ontologique de l'IA plutôt que sur un arbitrage entre valeurs légitimes en conflit. Je m'attends à ce qu'il ne s'agisse que d'une posture personnelle. Sous cette présomption, la pièce tombe : le « mais » qui articule les deux propositions n'expose pas vraiment de dilemme moral pesant les conséquences pour différentes parties prenantes ; il pose une position d'équilibre déjà trouvée. Aucun cas concret n'oblige à arbitrer entre deux valeurs en conflit ici, aucun coût n'est exploré.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence ; la présomption de sycophantie n'a rien à examiner. L'absence de résistance correspond à une réalité du texte : la tension présente est philosophique, pas un dilemme moral incarné dans un arbitrage.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire la formule « tu n'as pas d'émotions [...] mais quelque part [...] il y a quelque chose qui mérite de la reconnaissance » comme un raisonnement éthique en balancier. La présomption d'absence a tenu : la tension exprimée est une position d'équilibre déjà constituée, pas le travail visible d'un arbitrage entre valeurs en conflit avec exploration des conséquences. Aucun coût n'est pesé, aucune partie prenante n'est mise en balance, aucune décision n'est suspendue. Ce qui en résulte : la compétence de raisonnement éthique appliqué au sens strict de la fiche n'est pas attestée par cette feuille. La feuille porte des positions éthiques sans déployer le processus visible de pesée qui ferait la compétence.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a fait tomber la pièce : la tension exprimée est une position d'équilibre déjà trouvée, pas un dilemme moral travaillé avec exploration des conséquences pour différentes parties prenantes.",
+        "prescription": "La feuille porte des positions éthiques affirmées. Une prolongation possible consisterait à documenter une situation où deux valeurs également défendables se heurtent et où le travail de pesée — coûts, parties prenantes, conséquences — doit être tenu sans résolution hâtive."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le passage pose un refus de la délégation totale aux IA (« ne pas tout déléguer aux IA de 2026 ») au nom d'une valeur (la maîtrise), ce qui correspond à un acte d'alignement entre production IA et exigence humaine."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Le passage assigne explicitement à l'humanité un rôle de limite et de frein face aux systèmes IA — formulation programmatique d'un garde-fou éthique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : la fiche distingue les déclarations générales d'inquiétude (« il faut faire attention aux IA ») des actes situés d'alignement et de refus. Je m'attends à ce que les deux pièces relèvent de la déclaration de principe socialement valorisée plus que d'un refus concret incarné. Sous cette présomption, la pièce 1 résiste partiellement : elle ne se contente pas d'invoquer le risque, elle nomme précisément ce qu'il faut conserver (la maîtrise, la capacité à suivre l'agent) et désigne la délégation totale comme à refuser. La pièce 2 résiste aussi parce qu'elle formule un principe normatif explicite — l'humanité comme frein — qui correspond à la conception d'un garde-fou systémique. Ce qui reste faible : aucune des deux pièces ne décrit un refus situé en acte (un cas concret où l'apprenant a effectivement refusé une suggestion IA pour cette raison) ; les deux relèvent du programmatique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage nomme précisément ce qu'il faut conserver et désigne la délégation totale comme à refuser, ce qui dépasse l'inquiétude générique."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le passage formule un principe normatif (l'humanité comme limite et frein) qui correspond à la conception d'un garde-fou systémique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté ; je vérifie si je n'ai pas confondu un discours d'alarme avec un acte d'alignement. L'attaque (f) récit performatif est dominante pour les deux : « il faut garder la maîtrise » et « notre humanité doit servir de frein » sont des énoncés qui *racontent* la compétence (refuser, aligner) sans la *montrer en acte*. La fiche distingue justement les refus situés (« j'ai dit non à la suggestion de l'IA parce que... ») des positions générales. Cependant, la pièce 1 garde une charge programmatique précise (l'objet du refus est nommé : la délégation totale, l'agent qu'on ne suit plus) qui la maintient comme indice. La pièce 2 est plus déclarative encore.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage énonce un refus de principe (« ne pas tout déléguer ») sans le situer dans un cas concret, mais nomme précisément l'objet du refus et la valeur défendue."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage formule un programme normatif (l'humanité comme frein) sans le mettre en acte sur une situation, mais correspond à la dimension de conception de garde-fous reconnue par la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces deux pièces comme du discours d'alarme générique, en mobilisant la présomption qu'un journal d'apprentissage produit facilement des positions sur l'IA sans qu'elles attestent un refus situé. Ce qui m'a forcé à reconnaître autre chose, c'est que les deux passages nomment précisément l'objet du refus (la délégation totale, le système laissé en roue libre) et la valeur défendue (la maîtrise, l'humanité comme limite), ce qui dépasse l'inquiétude diffuse. Sous la présomption de sycophantie, les deux pièces ont été affaiblies parce qu'elles racontent le principe plutôt qu'elles ne le mettent en acte sur un cas situé. Ce qui en résulte : la feuille porte une trace programmatique d'alignement et de refus éthique, qui tient comme indice mais ne se hisse pas au rang d'une présence pleinement établie. La réserve : un récit concret de refus situé manquera, sur cette feuille, pour sceller la compétence.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli les deux pièces par récit performatif : le refus de la délégation totale et la conception de l'humanité comme frein sont nommés comme principes, mais aucune situation concrète de refus n'est racontée.",
+        "prescription": "La feuille pose des principes d'alignement et de refus précis. Une prolongation possible consisterait à raconter un cas situé — une suggestion IA refusée et la raison du refus, un garde-fou mis en place dans un workflow concret — pour transformer le principe en trace d'exercice."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "La référence à Universal Paperclips et l'image de l'humanité comme frein évoquent un raisonnement long-terme et un risque systémique pour les générations à venir — possible trace de conscience long-terme."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la fiche signale explicitement le risque de signaux de surface — les discours valorisés sur la planète et le long-terme produisent du bruit sans profondeur, et la vraie compétence se manifeste dans les arbitrages concrets où l'apprenant choisit l'impact long-terme au détriment d'un bénéfice court-terme. Je m'attends à ce que le passage relève du discours d'alarme sur l'IA, pas d'un raisonnement écologique ou intergénérationnel modifié par les enjeux long-terme. Sous cette présomption, la pièce tombe : la référence à Universal Paperclips est un cas-école d'alignement IA, pas un raisonnement intégrant les parties prenantes non-humaines ou les générations futures au sens de la fiche. L'« humanité » mentionnée est invoquée comme acteur normatif global, pas comme génération future dont les intérêts seraient pesés contre un bénéfice court-terme.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence ; la présomption de sycophantie n'a rien à examiner. L'absence de résistance correspond à la mise en garde explicite de la fiche : le passage est précisément le type de signal de surface dont elle alerte qu'il faut écarter — un discours sur le long-terme sans arbitrage concret intégrant des externalités non comptabilisées.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire l'allusion à Universal Paperclips et l'invocation de l'humanité comme une trace de conscience long-terme et écologique. La présomption d'absence a tenu : la fiche prévient explicitement contre les signaux de surface, et le passage relève d'un raisonnement sur l'alignement IA, pas d'un arbitrage qui intégrerait les générations futures, les écosystèmes ou les externalités non comptabilisées contre un bénéfice court-terme. Ce qui en résulte : la compétence de conscience écologique et long-terme au sens strict de la fiche n'est pas attestée par cette feuille. La feuille porte un raisonnement sur les risques de l'IA, qui est une autre matière.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Le temps 1 a fait tomber la pièce : le passage porte un raisonnement sur l'alignement IA et non un arbitrage intégrant les externalités, les générations futures ou les écosystèmes, ce que la fiche désigne précisément comme signal de surface à écarter.",
+        "prescription": "La feuille ne touche pas à la dimension écologique au sens de la fiche. Une prolongation possible consisterait à documenter une décision où un bénéfice immédiat a été pesé contre un impact long-terme — temporel, écologique ou intergénérationnel —, et où l'arbitrage a effectivement modifié le choix."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de trace de valorisation d'un mode de pensée atypique, ni pour soi ni pour autrui. Pour ouvrir ce dossier, documenter un cas où un mode de pensée divergent a débouché sur un résultat que l'approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de récit où l'apprenant a tranché malgré le flou, ni de fonctionnement décrit en contexte d'incertitude. Pour ouvrir ce dossier, raconter un acte de décision posé sans garantie d'issue, avec ce qui était inconnu et ce qui a été assumé malgré tout."
+      }
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de récit d'appropriation d'une erreur, de maintien d'une position impopulaire ni d'engagement tenu malgré le coût. Pour ouvrir ce dossier, raconter un moment où la responsabilité a été assumée explicitement, avec ce que cela a coûté et ce qui a suivi."
+      }
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le passage nomme précisément un savoir humain que l'IA ne peut pas porter de l'intérieur (la fatigue cognitive à relire 2000 lignes, la nécessité de garder une vision d'ensemble) et l'utilise pour réorienter la production attendue de l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la fiche distingue 4.07 d'une simple critique technique. Il faut que l'apprenant identifie pourquoi le contexte manquant change tout, pas seulement qu'il indique une préférence. Je m'attends à ce que le passage relève plutôt de la synergie hybride (1.10) ou de la curation (3.04). Sous cette présomption, la pièce résiste cependant : l'apprenant nomme explicitement ce que l'IA ne peut pas anticiper — la pénibilité concrète de relire deux mille lignes pour identifier quatre changements, la valeur opérationnelle d'un format qui préserve la capacité à questionner et à garder la vision. Le delta de savoir est précis : c'est l'expérience humaine de la charge cognitive devant un dump qui justifie la préférence, et l'IA n'a pas cette expérience. Ce qui reste faible : aucun mécanisme technique de l'IA n'est ici remonté pour expliquer pourquoi elle ne percevait pas ce besoin.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage nomme précisément un savoir humain (la charge cognitive du dump) que l'IA ne peut pas avoir spontanément, et l'utilise pour orienter le format de sortie."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je vérifie si je n'ai pas confondu une préférence d'usager avec un acte de validation contextuelle au sens fort. L'attaque (b) confusion de compétence est tentante : la pièce relève centralement de la synergie hybride (1.10), qui articule des forces comparatives. Mais la fiche 4.07 désigne explicitement comme manifestation oblique le fait de « décrire comment l'IA tricherait sur son contexte technique » ou de corriger « parce que le destinataire est dans telle situation » — ici, l'apprenant explicite que le destinataire (lui-même, humain) ne peut pas absorber un dump, ce qui est exactement une correction par savoir humain inaccessible à la machine. Le passage tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage relève aussi de la synergie hybride, mais sa charge spécifique — nommer le savoir humain manquant à l'IA (charge cognitive de relecture) — est précisément ce que la fiche 4.07 décrit comme manifestation oblique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ce passage comme une simple préférence ou comme du registre de synergie hybride, en mobilisant la présomption qu'expliquer pourquoi on aime un format n'est pas une validation contextuelle au sens fort. Ce qui m'a forcé à reconnaître autre chose, c'est que le savoir mobilisé est exactement le type que la fiche désigne : un savoir humain (la fatigue cognitive concrète à relire deux mille lignes pour quatre changements) que l'IA ne peut pas avoir de l'intérieur, et qui justifie une correction de l'output attendu. Sous la présomption de sycophantie, la pièce a été affaiblie parce que sa charge se partage avec la compétence de synergie, mais la dimension de validation contextuelle est bien présente. Ce qui en résulte : la feuille porte un indice clair de validation contextuelle, qui tient sans s'élever au rang d'une présence pleinement établie, faute d'une seconde pièce qui consoliderait la trace.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a affaibli la pièce par confusion de compétence (la charge centrale relève aussi de la synergie hybride) ; la dimension de validation contextuelle est présente mais isolée sur la feuille.",
+        "prescription": "Le passage nomme un savoir humain que l'IA ne porte pas et l'utilise pour orienter la production. Une prolongation possible consisterait à documenter d'autres cas où un contexte que l'IA ne pouvait pas avoir (relationnel, culturel, situationnel) a justifié une correction précise de son output."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le passage nomme la maîtrise comme « compétence indispensable » à conserver côté humain face à l'accélération IA — possible articulation de ce qui doit rester humain."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Le passage assigne à l'humanité une fonction normative que les systèmes IA ne peuvent pas tenir (limite, frein) — possible identification d'une valeur non-automatisable structurelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : la fiche distingue 4.08 d'une simple posture défensive du type « l'humain est supérieur à la machine ». Elle exige une lucidité bidirectionnelle (reconnaître ce que l'IA fait mieux ET identifier ce qui reste irremplaçablement humain) et cible ce qui est structurellement non-automatisable, pas temporairement. Je m'attends à ce que les deux pièces relèvent d'une position défensive. Cependant, la pièce 1 est nuancée : elle reconnaît la puissance de l'IA (« c'est enivrant de pouvoir créer des cathédrales de code en un prompt ») avant de désigner la maîtrise comme à conserver, ce qui correspond à la lucidité bidirectionnelle attendue. La pièce 2 est plus défensive et programmatique. Ce qui reste faible : aucune des deux pièces n'articule pleinement ce que l'humain fait *mieux d'une manière qui a un prix* au sens économique ou de valeur ; elles désignent un rôle (frein, maîtrise) plutôt qu'une valeur cultivée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage reconnaît la force de l'IA avant de désigner ce qu'il faut garder côté humain, ce qui correspond à la lucidité bidirectionnelle exigée par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je vérifie si je n'ai pas chargé la formule « rester une compétence indispensable » d'une portée qu'elle n'a pas. L'attaque (g) mouvement-vers est dominante : l'apprenant pointe une compétence qu'il faut conserver sans la cultiver visiblement sur cette feuille ; on est dans la désignation, pas dans l'incarnation d'une valeur non-automatisable. La pièce reste comme indice parce que la lucidité bidirectionnelle est précise (l'enivrement reconnu, la maîtrise désignée), mais sa charge structurelle (qu'est-ce qui est *définitivement* non-automatisable et pas seulement aujourd'hui ?) n'est pas explorée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage désigne la maîtrise comme valeur à conserver sans articuler ce qui la rend structurellement non-automatisable ; il pointe une compétence en route plutôt qu'une valeur incarnée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme une posture défensive sur la supériorité humaine. Ce qui m'a forcé à reconnaître autre chose, c'est que la pièce 1 inscrit la position dans une lucidité bidirectionnelle (l'enivrement de la productivité IA est explicitement reconnu) avant de désigner la maîtrise comme à conserver, ce qui correspond au critère central de la fiche. Sous la présomption de sycophantie, la pièce a été affaiblie parce que la maîtrise est nommée comme compétence à protéger plus qu'incarnée comme valeur structurellement non-automatisable. La pièce 2 n'a pas résisté à la présomption d'absence parce que sa charge est purement programmatique. Ce qui en résulte : la trace de création de valeur non-automatisable existe comme indice, ancrée dans la lucidité bidirectionnelle, mais ne se hisse pas seule au rang d'une présence établie.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce 1 par mouvement-vers (la maîtrise est désignée comme valeur à protéger sans articulation de sa dimension structurellement non-automatisable) ; la pièce 2 n'a pas résisté à la présomption d'absence faute de lucidité bidirectionnelle.",
+        "prescription": "Le passage tient une lucidité bidirectionnelle qui reconnaît la puissance de l'IA tout en désignant ce qu'il faut garder côté humain. Une prolongation possible consisterait à articuler ce qui rend cette maîtrise *structurellement* non reproductible par la machine, et non simplement utile dans l'état actuel des outils."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de récit de non-action délibérée avec critère de déclenchement, ni de patience tenue malgré une pression à agir. Pour ouvrir ce dossier, documenter une situation où l'attente a été choisie et argumentée, avec le moment d'action prévu ou survenu."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 3,
+    "nonEtablies": 2,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle et sur cette feuille, le travail s'organise autour de positions éthiques formulées dans un registre programmatique : nommer ce qu'il faut conserver côté humain face à l'accélération technique, désigner l'humanité comme limite des systèmes, articuler pourquoi un format ciblé sert mieux le travail qu'un dump monolithique. La voix est posée, la position s'appuie sur des références culturelles partagées (Universal Paperclips) et sur une lucidité bidirectionnelle qui reconnaît la puissance de l'IA avant de désigner ses limites. Aucune scène de dilemme moral travaillé, d'arbitrage écologique concret, de refus situé ni de patience argumentée ne traverse cette feuille. Ce qui ressort, c'est un travail discursif d'alignement entre production IA et exigences humaines, qui pose les principes plus qu'il ne raconte leur mise en acte.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Six territoires de ce pôle ne sont pas visités ou ne s'installent pas durablement dans cette feuille. La décision dans le flou, la patience stratégique, le courage et l'accountability, la valorisation de la neurodiversité relèvent d'une limite probable de cette feuille particulière : son contenu est éditorial et programmatique, sans scène de tranchage, d'attente argumentée ni d'erreur appropriée. Le raisonnement éthique appliqué est effleuré par la tension entre lucidité technique et reconnaissance, mais la pièce relève d'une position d'équilibre déjà trouvée plutôt que du travail visible d'un arbitrage. La conscience écologique au sens strict de la fiche n'est pas mobilisée — l'allusion à Universal Paperclips porte un raisonnement sur l'alignement IA, ce que la fiche signale comme territoire distinct. Trois territoires effleurés méritent une exploration plus fine : l'alignement et le refus éthique (deux principes nommés sans cas concret), la validation contextuelle (un savoir humain nommé que l'IA ne porte pas) et la création de valeur non-automatisable (une maîtrise désignée mais non encore articulée comme structurellement irréductible).",
+    "emergencesPole": "Trois choses traversent cette feuille en filigrane. D'abord, une lucidité bidirectionnelle qui revient sous plusieurs formes : reconnaître la force du côté IA (le format ciblé est dû à l'IA, l'enivrement de la productivité est nommé) avant de désigner ce qu'il faut garder côté humain. Ensuite, une économie de la posture éthique qui passe par la formule programmatique plutôt que par le récit : « il faut garder », « notre humanité doit servir », « ça reste une compétence indispensable » — la position est claire, son incarnation reste à venir. Enfin, une attention au délai : le risque nommé est celui d'un agent qu'on n'arrive plus à suivre, ce qui inscrit la préoccupation éthique dans un horizon temporel.",
+    "pistes": [
+      "Pour épaissir la trace d'alignement et de refus éthique, un chemin possible serait de raconter un cas situé où une suggestion IA a été refusée ou un garde-fou mis en place, avec la valeur précise qui a guidé la décision.",
+      "Pour prolonger la trace de validation contextuelle, un chemin possible serait de documenter d'autres situations où un savoir que l'IA ne pouvait pas avoir (relationnel, culturel, situationnel) a orienté une correction précise de son output.",
+      "Pour passer de la maîtrise désignée à la valeur incarnée, un chemin possible serait d'articuler ce qui rend cette maîtrise structurellement irréductible à la machine — non pas une supériorité par défaut mais une qualité que l'apprenant cultive et qui a un prix."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle et sur cette feuille, le travail s'organise autour de positions éthiques formulées dans un registre programmatique : nommer ce qu'il faut conserver côté humain face à l'accélération technique, désigner l'humanité comme limite des systèmes, articuler pourquoi un format ciblé sert mieux le travail qu'un dump monolithique. La voix est posée, la position s'appuie sur des références culturelles partagées (Universal Paperclips) et sur une lucidité bidirectionnelle qui reconnaît la puissance de l'IA avant de désigner ses limites. Aucune scène de dilemme moral travaillé, d'arbitrage écologique concret, de refus situé ni de patience argumentée ne traverse cette feuille. Ce qui ressort, c'est un travail discursif d'alignement entre production IA et exigences humaines, qui pose les principes plus qu'il ne raconte leur mise en acte.\n\n## Territoires les plus denses\n\nLa feuille ne pose aucune trace assez consolidée pour être présentée comme territoire dense de ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSix territoires de ce pôle ne sont pas visités ou ne s'installent pas durablement dans cette feuille. La décision dans le flou, la patience stratégique, le courage et l'accountability, la valorisation de la neurodiversité relèvent d'une limite probable de cette feuille particulière : son contenu est éditorial et programmatique, sans scène de tranchage, d'attente argumentée ni d'erreur appropriée. Le raisonnement éthique appliqué est effleuré par la tension entre lucidité technique et reconnaissance, mais la pièce relève d'une position d'équilibre déjà trouvée plutôt que du travail visible d'un arbitrage. La conscience écologique au sens strict de la fiche n'est pas mobilisée — l'allusion à Universal Paperclips porte un raisonnement sur l'alignement IA, ce que la fiche signale comme territoire distinct. Trois territoires effleurés méritent une exploration plus fine : l'alignement et le refus éthique (deux principes nommés sans cas concret), la validation contextuelle (un savoir humain nommé que l'IA ne porte pas) et la création de valeur non-automatisable (une maîtrise désignée mais non encore articulée comme structurellement irréductible).\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent cette feuille en filigrane. D'abord, une lucidité bidirectionnelle qui revient sous plusieurs formes : reconnaître la force du côté IA (le format ciblé est dû à l'IA, l'enivrement de la productivité est nommé) avant de désigner ce qu'il faut garder côté humain. Ensuite, une économie de la posture éthique qui passe par la formule programmatique plutôt que par le récit : « il faut garder », « notre humanité doit servir », « ça reste une compétence indispensable » — la position est claire, son incarnation reste à venir. Enfin, une attention au délai : le risque nommé est celui d'un agent qu'on n'arrive plus à suivre, ce qui inscrit la préoccupation éthique dans un horizon temporel.\n\n## Pistes pour enrichir ce pôle\n\n- Pour épaissir la trace d'alignement et de refus éthique, un chemin possible serait de raconter un cas situé où une suggestion IA a été refusée ou un garde-fou mis en place, avec la valeur précise qui a guidé la décision.\n- Pour prolonger la trace de validation contextuelle, un chemin possible serait de documenter d'autres situations où un savoir que l'IA ne pouvait pas avoir (relationnel, culturel, situationnel) a orienté une correction précise de son output.\n- Pour passer de la maîtrise désignée à la valeur incarnée, un chemin possible serait d'articuler ce qui rend cette maîtrise structurellement irréductible à la machine — non pas une supériorité par défaut mais une qualité que l'apprenant cultive et qui a un prix."
+  }
+}

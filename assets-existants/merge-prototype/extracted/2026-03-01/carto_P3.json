@@ -1,0 +1,208 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "Le texte ci-dessus n'a pas été tapé mais dicté puis rédigé par Gemini (la version de Gemini qui fonctionne avec l'abonnement fourni avec Google Workspace pour 15 CHF / mois et par étudiant). C'est l'avenir des portfolios réflexifs ! J'ai laissé le texte original pour que le lecteur puisse apprécier la puissance de l'outil. Tout ça depuis mon smartphone.",
+      "contexte": "Méta-commentaire sur le dispositif de production du texte — dictée vocale, traitement IA, rédaction. Choix éditorial de garder les deux versions visibles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "j'ai découvert le métier de business architecte, ça correspond un peu plus mais c'est pas forcément ce qui m'intéresse le plus.",
+      "contexte": "Évaluation qualitative et nuancée d'une option professionnelle — pas un rejet ni une adhésion, mais une appréciation dosée du degré d'adéquation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "je sens que je suis vieux et que j'en ai marre et que je me languis la retraite",
+      "contexte": "Expression sensorielle et corporelle de la fatigue — verbe 'sentir' qui désigne un ressenti incarné.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la créativité itérative ou radicale. Pour ouvrir ce dossier, l'apprenant pourrait documenter des versions successives d'une production, avec apprentissage explicite entre chaque cycle, ou un geste de transgression consciente d'une règle établie."
+      }
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et à la signature. La détection de cette compétence nécessite un corpus plus large où des récurrences stylistiques pourraient apparaître à travers plusieurs entrées."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au design de problèmes. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une question nouvelle a été créée, ouvrant un champ d'action qui n'existait pas avant."
+      }
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Choix éditorial assumé de garder le texte dicté original ET la version rédigée par Gemini, présentés ensemble avec adresse au lecteur. Acte de curation explicite."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Évaluation qualitative et dosée du métier de business architecte — 'correspond un peu plus mais c'est pas forcément ce qui m'intéresse le plus' — qui hiérarchise sans rejeter ni adopter."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : le jugement esthétique au sens 3.04 suppose un discernement de la qualité formelle avec critères articulés, et la curation implique de la soustraction. La pièce 1 est intéressante : l'apprenant choisit de garder les deux versions ('pour que le lecteur puisse apprécier la puissance de l'outil') — mais ce choix relève précisément de l'absence de soustraction, ce que la fiche identifie comme anti-curation ('j'ai tout gardé'). Cependant, la motivation est articulée et le geste est délibéré — c'est un choix éditorial assumé, même s'il consiste à ne pas trier. La pièce 2 nuance la qualité formelle d'une option ('correspond un peu plus mais pas forcément...') sans expliciter les critères. Reste explicitement faible : pas de vocabulaire esthétique précis, pas de hiérarchisation rigoureuse, pas de récit de retouche ou de rejet motivé.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le choix de garder les deux versions est motivé par une intention éditoriale envers le lecteur — geste assumé même s'il consiste à conserver plutôt qu'à soustraire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné un jugement esthétique là où il y a une simple démonstration ? L'attaque dominante est le faux positif de fiche : la fiche pose explicitement que 'j'ai tout gardé = anti-curation (l'abondance non triée n'est pas de la valeur)' et que 'la curation implique de la soustraction'. Or la pièce 1 consiste précisément à tout garder. Même si la motivation est éditoriale, le geste est l'opposé de la curation au sens 3.04. La pièce tombe sous la présomption.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La fiche signale précisément ce cas comme anti-curation : conserver les deux versions au lieu de trancher est l'opposé du geste 3.04, qui exige de la soustraction."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'un choix de garder les deux versions équivaille à un jugement esthétique. La pièce a résisté à la présomption d'absence parce que le choix éditorial est articulé ; mais elle est tombée sous la présomption de sycophantie : la fiche identifie précisément ce geste — tout garder — comme l'opposé de la curation, qui exige de la soustraction. La présence n'est pas établie. Une piste serait de prolonger un acte de tri explicite — choisir entre la dictée et la version rédigée pour une entrée, et articuler le critère qui a fait basculer.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption de sycophantie a fait tomber la pièce retenue : la fiche identifie l'absence de soustraction comme anti-curation. Tout garder ne fait pas un jugement esthétique au sens 3.04.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de pratiquer un tri explicite — choisir, pour une entrée, entre la dictée brute et la version remaniée, et articuler le critère formel qui a fait basculer. La soustraction est ce qui ouvre la curation."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle ou artisanale. Pour ouvrir ce dossier, l'apprenant pourrait documenter une interaction physique avec un matériau, un objet, un outil, avec détails sensoriels (résistance, texture, ajustement)."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Verbe 'sentir' associé à un ressenti corporel — la fatigue, la vieillesse perçue, le désir de retraite. Forme phénoménologique brute, sans suite décisionnelle visible."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : l'ancrage sensoriel au sens 3.06 suppose une descente dans l'incarnation avec conscience, et la fiche insiste sur le combo 'sensation nommée + suite (décision ou action)'. La pièce dit 'je sens que je suis vieux' — c'est un verbe phénoménologique, mais utilisé au sens figuré ('je sens que', équivalent à 'je crois que' ou 'j'ai l'impression que'), pas comme description précise d'une sensation physique. Aucune description phénoménologique détaillée, aucun ralentissement intentionnel, aucune écoute profonde sans agenda, aucun signal corporel suivi d'action concrète. La pièce ne résiste pas vraiment : le 'je sens' est ici un marqueur de subjectivité, pas un acte d'ancrage sensoriel.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a pas matière à examen.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'un 'je sens que je suis vieux' équivaille à un ancrage sensoriel. La pièce est tombée : le verbe est utilisé au sens figuré ('j'ai l'impression que'), pas comme description précise d'une sensation physique, et aucune suite décisionnelle ne vient appuyer un ressenti corporel mobilisé. La présence n'est pas établie. Une piste serait de prolonger ce ressenti vers la description phénoménologique précise — où dans le corps la fatigue se loge, quel signal elle envoie, quelle décision elle déclenche.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a tenu : le 'je sens' est utilisé au sens figuré comme marqueur de subjectivité, pas comme description précise d'une sensation corporelle suivie d'action.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de prolonger un ressenti corporel vers sa description précise — où il se loge dans le corps, quel signal il envoie, quelle décision il déclenche. Le combo signal-décision-action est ce que la compétence cherche à rendre visible."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et la performance live. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment en présentiel où une interaction bidirectionnelle ou une improvisation face à l'imprévu a produit quelque chose de meilleur que le script."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 7,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail n'a pas encore été ramené dans cette feuille. Le journal, court et dicté, ne porte ni récit de geste manuel, ni récit de présence physique en situation, ni description sensorielle précise. Les deux esquisses qui pouvaient s'approcher du pôle — le choix de garder deux versions du texte, et le ressenti de fatigue exprimé par 'je sens' — n'ont pas tenu sous examen : la première parce qu'elle consiste à tout garder plutôt qu'à trancher, la seconde parce que le 'sentir' est utilisé au sens figuré plutôt que comme description corporelle. Ce pôle reste un territoire à visiter.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble du pôle reste à explorer dans cette feuille. La créativité itérative ou radicale n'apparaît pas — pas de versions successives racontées, pas de geste de transgression consciente. La signature stylistique nécessiterait un corpus plus large pour être détectée. Le design de problèmes ne se manifeste pas — aucune question nouvelle créée. Le jugement esthétique est effleuré par un choix de conserver les deux versions du texte, mais la fiche identifie précisément ce geste comme l'opposé de la curation. L'intelligence manuelle ne laisse pas de trace : aucune interaction physique avec un matériau. L'ancrage sensoriel est effleuré par un 'je sens' qui reste au registre figuré, sans description corporelle précise. La présence en performance live ne se manifeste pas non plus.",
+    "emergencesPole": "Ce qui traverse la feuille à voix basse, c'est l'écart entre une voix dictée brute et une version remaniée par IA — un terrain où une pratique de curation pourrait s'éveiller si l'apprenant commençait à arbitrer entre les deux. Le ressenti de fatigue, lui, attend une description plus précise du signal corporel pour quitter le registre figuré.",
+    "pistes": [
+      "Pour ouvrir le territoire du jugement esthétique, un chemin possible serait de pratiquer un tri explicite — choisir, pour une entrée, entre la dictée brute et la version remaniée, et articuler le critère formel qui a fait basculer.",
+      "Pour ouvrir le territoire de l'ancrage sensoriel, un chemin possible serait de prolonger un ressenti corporel vers sa description précise — où il se loge dans le corps, quel signal il envoie, quelle décision il déclenche.",
+      "Pour rendre visible la créativité itérative déjà à l'œuvre dans le dispositif Gemini, un chemin possible serait de raconter la séquence dictée → relecture → ajustement comme un cycle conscient, avec ce qui a été appris à chaque passage."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail n'a pas encore été ramené dans cette feuille. Le journal, court et dicté, ne porte ni récit de geste manuel, ni récit de présence physique en situation, ni description sensorielle précise. Les deux esquisses qui pouvaient s'approcher du pôle — le choix de garder deux versions du texte, et le ressenti de fatigue exprimé par \"je sens\" — n'ont pas tenu sous examen : la première parce qu'elle consiste à tout garder plutôt qu'à trancher, la seconde parce que le \"sentir\" est utilisé au sens figuré plutôt que comme description corporelle. Ce pôle reste un territoire à visiter.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'a atteint, dans cette feuille, le seuil d'une présence établie ou même d'un renvoi au cartographe. Les pistes ouvertes sont à reprendre depuis le début, avec des récits concrets de geste, de matière, ou de sensation incarnée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble du pôle reste à explorer dans cette feuille. La créativité itérative ou radicale n'apparaît pas — pas de versions successives racontées, pas de geste de transgression consciente. La signature stylistique nécessiterait un corpus plus large pour être détectée. Le design de problèmes ne se manifeste pas — aucune question nouvelle créée. Le jugement esthétique est effleuré par un choix de conserver les deux versions du texte, mais la fiche identifie précisément ce geste comme l'opposé de la curation. L'intelligence manuelle ne laisse pas de trace : aucune interaction physique avec un matériau. L'ancrage sensoriel est effleuré par un \"je sens\" qui reste au registre figuré, sans description corporelle précise. La présence en performance live ne se manifeste pas non plus.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse la feuille à voix basse, c'est l'écart entre une voix dictée brute et une version remaniée par IA — un terrain où une pratique de curation pourrait s'éveiller si l'apprenant commençait à arbitrer entre les deux. Le ressenti de fatigue, lui, attend une description plus précise du signal corporel pour quitter le registre figuré.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir le territoire du jugement esthétique, un chemin possible serait de pratiquer un tri explicite — choisir, pour une entrée, entre la dictée brute et la version remaniée, et articuler le critère formel qui a fait basculer.\n- Pour ouvrir le territoire de l'ancrage sensoriel, un chemin possible serait de prolonger un ressenti corporel vers sa description précise — où il se loge dans le corps, quel signal il envoie, quelle décision il déclenche.\n- Pour rendre visible la créativité itérative déjà à l'œuvre dans le dispositif Gemini, un chemin possible serait de raconter la séquence dictée → relecture → ajustement comme un cycle conscient, avec ce qui a été appris à chaque passage."
+  }
+}

@@ -1,0 +1,450 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Maintenant il suffit de tout relire, corriger, adapter la structure et la mise en page… J'en ai pour un moment 😅",
+      "contexte": "L'apprenant constate qu'après la génération des manuels par IA, un travail humain de relecture/correction/adaptation reste à faire — trace possible de synergie hybride et de littératie IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Oups : Claude a oublié de documenter le bootstrap. Aucun souci : je lui demande d'ajouter les chapitres manquants dans les manuels + copier-coller et c'est réglé !",
+      "contexte": "L'apprenant détecte une omission de l'IA et engage une remédiation dialogique — trace de pensée critique anti-hallucination et de dialogue IA avancé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Ça m'a conduit à définir le référentiel des compétences à valider pour passer au niveau supérieur.",
+      "contexte": "L'apprenant transforme une correction ponctuelle en occasion de structurer un référentiel — trace possible de synthèse intégrative et de cadrage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Et à mettre à jour la doc de l'Apprenant et de l'Accompagnant en conséquence.",
+      "contexte": "L'apprenant propage la mise à jour à travers plusieurs documents liés — trace possible de pensée systémique (effets de cascade documentaire).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant repère un oubli de l'IA (« Claude a oublié de documenter le bootstrap ») et y répond par une correction concrète — acte de vérification de la production IA pertinent pour 1.01."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : un simple « oups, Claude a oublié » ne suffit pas à attester un doute méthodique calibré. La pensée critique anti-hallucination demande une vérification active, idéalement avec auto-correction en plein élan ou métaphore conceptualisant un biais IA. Ici l'apprenant relève une omission factuelle et passe immédiatement à la remédiation : c'est efficace mais le geste critique reste très ténu, presque accessoire. La pièce 1 résiste minimalement parce qu'elle suppose tout de même une relecture comparative entre ce que Claude a produit et ce qui aurait dû être produit — il y a donc un acte de vérification, même très léger.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant a dû comparer la production IA à un attendu pour repérer l'oubli du bootstrap, ce qui suppose une vigilance critique active."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce avec présomption de sycophantie : ai-je halluciné la portée de ce repérage ? L'attaque la plus pertinente est l'insuffisance probatoire — la pièce est très courte, ne décrit pas le protocole de vérification, ne nomme aucun mécanisme et ne montre pas de scepticisme calibré. Le repérage de l'oubli relève davantage d'un constat d'usage que d'une pensée critique méthodique. La pièce ne tient pas comme preuve.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La mention « Claude a oublié de documenter le bootstrap » suit immédiatement « Aucun souci » et passe à la solution : le geste critique n'est pas développé, ni protocolisé, ni explicité dans son mécanisme."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de pensée critique en doutant qu'un simple repérage d'oubli puisse attester un doute méthodique. La pièce a brièvement résisté parce que repérer une omission suppose une vigilance comparative. Mais sous la présomption de sycophantie, la pièce s'effondre : aucun protocole, aucune métaphore conceptualisant un biais, aucune auto-correction explicite — juste un constat factuel suivi d'une correction. Ce qui reste dans ce qui a été écrit, ce n'est pas la pensée critique en acte mais l'efficacité du flux de travail. Le territoire de la vérification calibrée n'a pas été visité dans cette feuille.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a porté le verdict : la seule pièce a été disqualifiée pour insuffisance probatoire.",
+        "prescription": "Pour ouvrir ce territoire, un récit court mais précis du moment où la vérification a eu lieu — ce qui a déclenché le doute, ce qui a été comparé, ce qui a été conclu — donnerait à la pensée critique sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant passe d'une correction technique (ajouter des chapitres manquants) à un cadrage plus large (définir un référentiel de compétences) — possible recadrage émergent."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 1.02 avec présomption d'absence : le cadrage suppose une interrogation explicite sur l'objectif lui-même, pas un simple élargissement de scope. Ici l'apprenant glisse d'une correction ponctuelle (ajouter des chapitres) à la création d'un référentiel — le mouvement est intéressant, mais l'enchaînement est raconté très elliptiquement (« Ça m'a conduit à »). On ne voit pas l'apprenant se demander « est-ce vraiment le bon problème ? ». La pièce résiste faiblement parce qu'il y a tout de même un saut de niveau : passer d'un correctif local à un référentiel global suppose une reformulation tacite de l'enjeu.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage du correctif local à un référentiel global suppose un repositionnement de l'objectif, même non explicité."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous la présomption de sycophantie, je teste si ce « saut » est vraiment du cadrage ou une simple expansion opportuniste. L'attaque dominante est la surinterprétation pédagogique : je projette un acte de cadrage dans un récit qui dit seulement « ça m'a conduit à » — formule causale floue, sans questionnement sur l'objectif. L'apprenant ne montre pas avoir interrogé le problème ; il a saisi une opportunité. La pièce ne tient pas comme cadrage en acte.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Ça m'a conduit à définir le référentiel » décrit un enchaînement, pas un cadrage : aucune question posée sur le bon problème, aucun retour réflexif sur l'objectif initial."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de cadrage en supposant qu'un simple élargissement de scope ne suffisait pas. La pièce a brièvement résisté parce que le saut entre correctif et référentiel paraissait riche. Mais sous la présomption de sycophantie, ce saut s'avère raconté sans le travail de questionnement qui ferait du cadrage. Le récit est elliptique — « ça m'a conduit à » — et ne montre pas l'interrogation préalable sur le bon problème. Le territoire du cadrage explicite reste non visité dans cette feuille.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a porté le verdict : surinterprétation pédagogique d'un enchaînement narratif.",
+        "prescription": "Pour ouvrir ce territoire, raconter comment la création du référentiel a fait surgir une question sur ce qu'il fallait vraiment accomplir donnerait au cadrage sa trace réflexive."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Définir un référentiel de compétences en aval d'un travail de manuels suppose une intégration de fragments — possible synthèse."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 1.03 avec présomption d'absence : la synthèse intégrative demande un insight émergent que les sources ne contenaient pas individuellement, pas un assemblage administratif. La création d'un référentiel peut être de la synthèse, mais peut aussi être une simple compilation listée. Ici on lit seulement la mention « définir le référentiel des compétences à valider pour passer au niveau supérieur » — sans accès au contenu du référentiel lui-même, on ne voit ni les sources croisées, ni l'insight émergent, ni la métaphore unificatrice. La pièce résiste très faiblement parce que produire un référentiel suppose tout de même un acte d'organisation conceptuelle.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La production d'un référentiel suppose une mise en relation conceptuelle, même non décrite ici."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste : ai-je halluciné une synthèse à partir de la simple mention d'un livrable ? L'attaque dominante est le récit performatif : la pièce nomme l'acte (« définir le référentiel ») sans le montrer. On ne voit ni les fragments assemblés, ni l'insight produit, ni la fusion conceptuelle. C'est une déclaration de livrable, pas une synthèse en acte.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le texte annonce un référentiel sans en montrer la genèse conceptuelle ; la synthèse n'est pas mise en scène, seul son résultat est mentionné par un lien."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de synthèse en doutant qu'une simple mention de livrable suffise. La pièce a brièvement résisté parce que produire un référentiel suppose une organisation conceptuelle. Mais sous présomption de sycophantie, la pièce tombe : aucun fragment croisé, aucun insight émergent, aucune métaphore unificatrice visible dans la feuille elle-même. Le territoire de la synthèse en acte reste à documenter — le livrable existe, mais le mouvement qui l'a produit n'est pas raconté ici.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a porté le verdict : récit performatif d'un livrable sans mise en scène de la synthèse.",
+        "prescription": "Pour ouvrir ce territoire, raconter ce que la production du référentiel a fait converger — quels morceaux disparates se sont mis à dialoguer — donnerait à la synthèse sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la métacognition et à l'humilité épistémique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il observe sa propre manière de penser pendant qu'il travaille, plutôt que le résultat de sa pensée."
+      }
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant propage la mise à jour à travers plusieurs documents (référentiel → doc Apprenant → doc Accompagnant) — possible trace d'effets de cascade systémique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 1.05 avec présomption d'absence : la pensée systémique modélise des boucles, des effets de second ordre, des points de levier. Une simple mise à jour propagée à travers des documents liés relève de la cohérence documentaire, pas nécessairement de la modélisation de boucles. La pièce mentionne juste « mettre à jour la doc de l'Apprenant et de l'Accompagnant en conséquence » — c'est de l'hygiène documentaire, pas une analyse de rétroaction. La pièce résiste très faiblement parce qu'il y a tout de même une conscience implicite d'un réseau de documents en dépendance.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La formule « en conséquence » suggère une conscience des liens de dépendance entre artefacts du dispositif."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si « en conséquence » porte vraiment une pensée systémique. L'attaque dominante est le glissement lexical : le mot suggère une cascade, mais ce n'est qu'une routine de cohérence éditoriale. Aucune boucle nommée, aucun effet de second ordre anticipé, aucun point de levier identifié. La pièce ne tient pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« En conséquence » suggère une cascade, mais le texte ne nomme ni la nature des liens, ni la direction des effets, ni le mécanisme — seulement une obligation de mise à jour."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de pensée systémique en supposant qu'une simple mise à jour propagée ne suffisait pas. La pièce a brièvement résisté parce que la formule « en conséquence » évoque une conscience des dépendances. Mais sous présomption de sycophantie, ce mot s'avère un glissement lexical : le texte ne modélise rien, il signale juste une routine de cohérence. Le territoire de la modélisation systémique reste non visité dans cette feuille.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption de sycophantie a porté le verdict : glissement lexical sur « en conséquence » sans modélisation effective.",
+        "prescription": "Pour ouvrir ce territoire, nommer les liens de dépendance entre référentiel, doc Apprenant et doc Accompagnant — direction des effets, points de levier — donnerait à la pensée systémique sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant identifie qu'une production IA est incomplète et y répond — trace possible de littératie IA fonctionnelle (diagnostic d'un comportement IA)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 1.06 avec présomption d'absence : la littératie IA suppose une compréhension causale du pourquoi l'IA échoue (tokens, fenêtre de contexte, biais), pas seulement le constat d'un échec. Ici l'apprenant note que Claude « a oublié de documenter le bootstrap » et y répond par une demande de complément — c'est un constat fonctionnel, pas une analyse mécanistique. La pièce résiste minimalement parce qu'elle attribue à l'IA un comportement spécifique (oubli) et engage une correction — il y a une posture de copilote averti, même non théorisée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant traite l'oubli de l'IA comme un défaut prévisible et corrigible plutôt que comme une anomalie déstabilisante, ce qui suppose une compréhension implicite des limites du modèle."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si cette posture de copilote averti relève vraiment de la littératie. L'attaque dominante est l'insuffisance probatoire : la pièce ne nomme aucun mécanisme (fenêtre de contexte, oubli de contexte intermédiaire, déperdition d'instructions), aucune analogie causale, aucune analyse fine. Le « oups » est plus proche du haussement d'épaule pragmatique que de la compréhension sous le capot. La pièce ne tient pas comme preuve.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le texte constate l'oubli sans en expliquer le mécanisme ; aucune référence à la fenêtre de contexte, à la longueur du dialogue, ou à un autre facteur causal."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de littératie IA en doutant qu'un simple « Claude a oublié » suffise à attester une compréhension sous le capot. La pièce a brièvement résisté parce que la posture d'aisance avec l'oubli de l'IA suppose une familiarité implicite avec ses limites. Mais sous présomption de sycophantie, cette familiarité ne se déploie pas en analyse mécanistique : aucun mécanisme nommé, aucune analogie causale. Le territoire du diagnostic technique reste à documenter — l'aisance d'usage existe, mais la compréhension argumentée n'est pas mise en mots ici.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.35,
+        "motif": "La présomption de sycophantie a porté le verdict : insuffisance probatoire — aucun mécanisme nommé pour expliquer l'oubli.",
+        "prescription": "Pour ouvrir ce territoire, expliquer ce qui rend l'oubli du bootstrap prévisible côté IA — fenêtre de contexte, ordre des instructions, longueur du dialogue — donnerait à la littératie IA sa trace mécanistique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'architecture de systèmes IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où plusieurs IA et humains interagissent avec des rôles définis et des flux décrits."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant relance Claude avec une instruction de complétion (ajouter chapitres manquants + copier-coller) — possible trace de dialogue IA itératif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 1.08 avec présomption d'absence : le dialogue IA avancé suppose des itérations stratégiques qui analysent pourquoi la reformulation change le résultat, du méta-prompting, ou de l'orchestration de rôles. Ici l'apprenant fait une demande de complétion simple, sans technique nommée, sans méta-prompt, sans analyse de la formulation. La pièce résiste minimalement parce qu'elle est l'amorce d'une itération — détecter l'oubli puis demander la correction — mais le geste reste très basique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La demande de complétion suit le repérage d'un manque : il y a un cycle minimal de dialogue itératif IA."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ce cycle minimal mérite d'être appelé dialogue IA avancé. L'attaque dominante est le mouvement-vers : l'apprenant est dans la pratique d'itération IA, mais le seuil de transformation (méta-prompting, analyse de la formulation, orchestration de rôles) n'est pas franchi dans cette feuille. C'est une itération basique, pas un dialogue stratégique sophistiqué.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant utilise l'IA de manière itérative et fluide — détecter, corriger, valider — ce qui manifeste une familiarité avancée. Mais la sophistication propre à 1.08 (méta-prompting, rôles, analyse de prompt) n'est pas mise en mots ici."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de dialogue IA avancé en doutant qu'une simple itération de correction suffise. La pièce a résisté parce qu'il y a bien un cycle d'itération IA en acte. Sous présomption de sycophantie, elle s'affaiblit : le seuil de la sophistication propre à 1.08 — méta-prompting, orchestration de rôles, analyse de la formulation — n'est pas franchi dans cette feuille. Ce qui reste, c'est un apprenant clairement à l'aise avec l'itération IA, mais dont la trace écrite ici ne déploie pas la dimension stratégique. Le mouvement existe ; l'attestation pleine demande une narration plus détaillée du dialogue.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : pièce de mouvement-vers retenue comme indice, mais sans atteindre le seuil de la présence établie.",
+        "prescription": "Pour consolider ce territoire, raconter une itération en détail — quelle reformulation a marché, pourquoi, ce que cela apprend sur l'IA — transformerait l'indice en preuve. L'aisance d'usage est là, c'est sa mise en mots qui ouvrirait pleinement le dossier."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle transférée hors-informatique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement algorithmique ou conditionnel appliqué à un problème non-technique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant explicite ce qui reste à sa charge après le travail de l'IA (relire, corriger, adapter structure et mise en page) — possible trace d'articulation des forces comparatives humain/IA."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "L'apprenant orchestre une remédiation où l'IA produit le contenu et l'humain pilote (« je lui demande d'ajouter… + copier-coller ») — possible répartition des rôles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 1.10 avec présomption d'absence : la synergie hybride suppose l'articulation explicite des forces comparatives — ce que l'humain garde et pourquoi, ce que l'IA fait et pourquoi. Une simple répartition de tâches en flux n'est pas une synergie articulée. Ici l'apprenant décrit deux moments : ce qui reste à faire après la génération IA (relire, corriger, adapter), et la délégation à l'IA pour compléter les chapitres. La pièce 1 résiste assez bien parce qu'elle explicite ce qui revient à l'humain après l'IA — non pas n'importe quoi, mais relire, corriger, adapter, c'est-à-dire le contrôle qualité et l'adaptation contextuelle. La pièce 2 résiste plus faiblement : c'est de la délégation, pas une articulation théorique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant nomme explicitement ce qui reste à sa charge après le travail de l'IA (relire, corriger, adapter structure et mise en page), ce qui constitue une articulation, même implicite, des rôles."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le geste « je lui demande d'ajouter + copier-coller » répartit clairement une production à l'IA et un pilotage à l'humain."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je relis les pièces avec méfiance. Sur la pièce 1, l'attaque dominante est le mouvement-vers : la liste des tâches humaines (relire, corriger, adapter) montre un partage de fait, mais l'articulation théorique des forces comparatives (« pourquoi l'humain le fait mieux ») n'est pas explicitée — c'est implicite, glissé dans une routine. La pièce tient affaiblie. Sur la pièce 2, l'attaque dominante est l'insuffisance probatoire : un « copier-coller » ne suffit pas à attester une stratégie hybride pensée — c'est une délégation pragmatique. La pièce ne tient pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant énumère les tâches humaines après l'IA, ce qui implique une conscience de la répartition, mais sans articuler pourquoi ces tâches reviennent à l'humain ; la conscience est en route, pas pleinement énoncée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« je lui demande + copier-coller » est un acte d'usage, sans articulation des forces comparatives ni théorisation de la complémentarité."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de synergie en doutant qu'une simple répartition de tâches suffise. La pièce 1 a résisté parce que l'apprenant nomme ce qui reste à sa charge après l'IA — relire, corriger, adapter — ce qui implique une conscience de la valeur ajoutée humaine. Sous présomption de sycophantie, cette conscience s'avère implicite, en route, non encore théorisée. La pièce 2 tombe : c'est de la délégation, pas de la synergie articulée. Ce qui reste, c'est un apprenant qui pratique la coordination hybride sans encore en nommer la logique. Le mouvement est là ; la mise en mots du « pourquoi humain, pourquoi IA » reste à venir.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier la pièce 1 : indice corroboratif de pratique hybride non encore théorisée.",
+        "prescription": "Pour consolider ce territoire, expliciter pourquoi relire, corriger et adapter reviennent à l'humain plutôt qu'à l'IA — quelle valeur ajoutée seule la lecture humaine apporte — transformerait l'indice en preuve. La pratique est là, c'est son énonciation théorique qui ouvrirait pleinement le dossier."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 8,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail de cette feuille montre un apprenant en plein régime de production avec l'IA : deux manuels finalisés, un référentiel établi, des documents propagés. La voix dominante est celle de l'opérateur efficace — bref, factuel, en flux. Les micro-faits récurrents tournent autour de la collaboration avec Claude : génération, repérage d'oubli, demande de complément, propagation. Le registre cognitif reste implicite : les actes posés supposent une littératie IA et une coordination hybride en pratique, mais le pôle TÊTE — penser et comprendre — ne s'écrit pas ici en plein, il transparaît dans les gestes. Ce qui passe dans cette feuille, c'est moins la pensée déployée que la pensée au travail, en arrière-plan d'un geste de production.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Cette feuille laisse plusieurs territoires non visités du pôle. La métacognition, l'architecture de systèmes IA et la pensée computationnelle hors-informatique n'ont aucune trace ici — ce qui ressemble moins à un choix qu'à une caractéristique du jour : une journée de finalisation et d'exécution n'appelle pas spontanément la réflexion sur la réflexion. La pensée critique, le cadrage, la synthèse et la pensée systémique sont effleurées mais sans mise en scène réflexive ; le format du jour — court, journal de bord — semble plutôt être la limite, pas l'absence elle-même. Deux territoires méritent un regard : le dialogue IA avancé et la synergie hybride apparaissent comme des renvois au cartographe — la pratique est là, c'est l'énonciation qui manque.",
+    "emergencesPole": "Trois observations traversent l'ensemble du pôle dans cette feuille. D'abord, le rapport à l'IA est manifestement intériorisé — repérer un oubli, demander un complément, propager une mise à jour se font dans une fluidité qui présuppose des compétences acquises mais non explicitées. Ensuite, l'écriture est plus opératoire que réflexive : le journal documente ce qui a été fait, peu ce qui a été pensé. Enfin, la structure documentaire elle-même (référentiel, doc Apprenant, doc Accompagnant) suggère une architecture mentale en place, dont seuls les artefacts apparaissent ici.",
+    "pistes": [
+      "Pour enrichir le territoire du dialogue IA, un chemin possible serait de raconter en détail une itération précise — quelle reformulation a marché, pourquoi, ce que cela enseigne sur la machine.",
+      "Pour enrichir le territoire de la synergie hybride, un chemin possible serait d'expliciter pourquoi certaines tâches (relire, adapter, corriger) reviennent à l'humain plutôt qu'à l'IA.",
+      "Pour enrichir le territoire de la littératie IA, un chemin possible serait de nommer le mécanisme derrière l'oubli du bootstrap — fenêtre de contexte, longueur du dialogue, position dans l'instruction initiale.",
+      "Pour enrichir le territoire de la métacognition, un chemin possible serait d'ajouter, après la liste des actes, une phrase sur ce qui s'est passé dans la manière de travailler ce jour-là."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail de cette feuille montre un apprenant en plein régime de production avec l'IA : deux manuels finalisés, un référentiel établi, des documents propagés. La voix dominante est celle de l'opérateur efficace — bref, factuel, en flux. Les micro-faits récurrents tournent autour de la collaboration avec Claude : génération, repérage d'oubli, demande de complément, propagation. Le registre cognitif reste implicite : les actes posés supposent une littératie IA et une coordination hybride en pratique, mais le pôle TÊTE — penser et comprendre — ne s'écrit pas ici en plein, il transparaît dans les gestes. Ce qui passe dans cette feuille, c'est moins la pensée déployée que la pensée au travail, en arrière-plan d'un geste de production.\n\n## Territoires les plus denses\n\nAucun territoire n'atteint dans cette feuille seule le seuil de la présence pleinement établie. Deux dossiers ont été ouverts en renvoi au cartographe — le dialogue avec l'IA et la coordination hybride — parce que la pratique y est manifestement à l'œuvre sans que son énonciation théorique ne soit déployée dans le texte du jour. La trace la plus parlante reste celle de l'aisance avec Claude : le repérage d'un oubli et la demande de complément se font dans une économie de mots qui présuppose une familiarité acquise. De même, l'énumération des tâches qui restent à l'humain après la génération IA — « relire, corriger, adapter la structure et la mise en page » — manifeste une conscience pratique de la répartition des rôles, sans encore en formaliser la logique comparative.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa métacognition, l'architecture de systèmes IA et la pensée computationnelle hors-informatique n'ont aucune trace dans cette feuille — ce qui ressemble moins à un choix de fond qu'à une caractéristique du jour : une journée de finalisation et d'exécution n'appelle pas spontanément la réflexion sur la réflexion. La pensée critique, le cadrage, la synthèse intégrative et la pensée systémique sont effleurées mais sans mise en scène réflexive ; le format du jour — court, journal de bord — semble plutôt être la limite, pas l'absence elle-même. Deux dossiers, dialogue IA avancé et synergie hybride, restent ouverts et appellent une narration plus détaillée pour basculer en présence établie.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent l'ensemble. D'abord, le rapport à l'IA paraît intériorisé : repérer un oubli, demander un complément, propager une mise à jour se font dans une fluidité qui présuppose des compétences acquises mais non explicitées dans le texte du jour. Ensuite, l'écriture est plus opératoire que réflexive : le journal documente ce qui a été fait, peu ce qui a été pensé. Enfin, la structure documentaire elle-même — référentiel, doc Apprenant, doc Accompagnant — suggère une architecture mentale en place, dont seuls les artefacts apparaissent ici, sans la cartographie qui les relierait.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir le territoire du dialogue IA, un chemin possible serait de raconter en détail une itération précise — quelle reformulation a marché, pourquoi, ce que cela enseigne sur la machine. Pour enrichir le territoire de la synergie hybride, un chemin possible serait d'expliciter pourquoi certaines tâches (relire, adapter, corriger) reviennent à l'humain plutôt qu'à l'IA. Pour enrichir le territoire de la littératie IA, un chemin possible serait de nommer le mécanisme derrière l'oubli du bootstrap — fenêtre de contexte, longueur du dialogue, position dans l'instruction initiale. Pour enrichir le territoire de la métacognition, un chemin possible serait d'ajouter, après la liste des actes, une phrase sur ce qui s'est passé dans la manière de travailler ce jour-là."
+  }
+}

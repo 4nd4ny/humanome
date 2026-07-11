@@ -1,0 +1,283 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "La création d'une interface est rapide avec ces outils. Hélas, avoir l'idée de la bonne interface de jeu à construire, ça elle n'y arrive pas encore.",
+      "contexte": "Lucidité bidirectionnelle sur ce que l'IA fait bien et ce qu'elle ne fait pas — pourrait toucher à la valeur non-automatisable (4.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "C'est certainement une erreur d'engineering que j'ai fait : j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire l'interface.",
+      "contexte": "Attribution explicite de la responsabilité (« erreur que j'ai fait ») — touche obliquement à 4.06 (responsabilité & accountability).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "L'autre souci c'est la taille de la mémoire de contexte. Intégrer tous les éléments théoriques pour construire un jeu dont les racines plongent dans les documents fournis, n'est pas simple.",
+      "contexte": "Diagnostic d'une limite technique de l'IA — touche obliquement à 4.07 (validation contextuelle), si la limite est utilisée pour expliquer pourquoi l'IA ne parvient pas à intégrer un savoir disponible aux humains.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au raisonnement éthique appliqué. Pour ouvrir ce dossier, l'apprenant pourrait documenter un dilemme moral concret où deux valeurs légitimes entrent en tension, sans résolution prématurée."
+      }
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'alignement et au refus éthique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a refusé une suggestion IA pour raison de valeurs, ou conçu un garde-fou."
+      }
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et au long-terme. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage où l'impact long-terme ou les parties prenantes non-humaines ont modifié une décision."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité. Pour ouvrir ce dossier, l'apprenant pourrait relier un résultat concret à sa propre façon atypique de penser, ou documenter une adaptation pour un profil cognitif différent."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la décision dans l'incertitude. Pour ouvrir ce dossier, l'apprenant pourrait documenter un acte de tranchage assumé malgré des données manquantes."
+      }
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Attribution explicite de l'erreur à soi-même (« erreur d'engineering que j'ai fait ») sans blâmer l'IA — réflexe d'appropriation que la fiche identifie comme trace oblique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche définit 4.06 comme un triptyque assumer-oser-rester-cohérent. Ici, on n'a que la première facette (assumer), et de manière très ténue : « erreur d'engineering que j'ai fait ». Il manque le coût de la position (oser) et la cohérence dans la durée (rester). La fiche cite explicitement la trace oblique « reconnaissance d'erreur passée sans minimiser ('j'aurais dû vérifier') = responsabilité par autocritique rétrospective » — c'est précisément la structure du passage. Mais elle exige aussi le combo (1) identifier le problème, (2) reconnaître sa part et le coût potentiel, (3) décrire l'action corrective. Le (3) manque — l'apprenant identifie l'erreur et nomme la correction qu'il aurait dû faire, mais ne décrit pas d'action corrective dans cette feuille. La pièce résiste très faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La formulation « erreur que j'ai fait » sans minimisation ni renvoi vers l'IA correspond précisément à la trace oblique citée par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir cette pièce. Peut-être ai-je halluciné de l'accountability là où il n'y a qu'une formulation de circonstance. Je teste avec (g) mouvement-vers : la fiche est claire — sans (3) (action corrective décrite), on ne franchit pas le seuil de la responsabilité constructive. L'apprenant identifie l'erreur (1), nomme implicitement le coût (le jeu n'avance pas comme prévu, 2), mais ne décrit aucune action corrective : il dit ce qu'il aurait dû faire, pas ce qu'il va faire maintenant. L'attaque touche fortement. La pièce ne survit pas comme trace pleine ; elle reste un indice mince. Je teste aussi avec (e) surinterprétation pédagogique : ai-je projeté une posture éthique sur une simple remarque procédurale ? Le verbe « engineering » suggère bien un terrain technique, mais la formulation « que j'ai fait » avec l'auto-attribution n'est pas du langage purement procédural. La pièce tient affaiblie comme indice, pas comme preuve.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'accountability est nommée mais l'action corrective décrite manque — l'apprenant dit ce qu'il aurait dû faire, pas ce qu'il fait maintenant. Le combo (1)(2)(3) que la fiche exige pour une trace probante n'est pas complet."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'auto-attribution de l'erreur portait de la responsabilité au sens de la fiche. Ce qui m'a forcé à m'arrêter, c'est précisément la trace oblique que la fiche cite : « 'j'aurais dû...' = responsabilité par autocritique rétrospective ». Sous la seconde présomption, la pièce a été affaiblie : il manque l'action corrective qui distinguerait l'accountability constructive de la simple reconnaissance d'erreur. Ce qui en résulte est un indice mince mais réel : l'apprenant prend pour lui ce qui aurait pu être attribué à l'outil. Sur cette seule pièce, le verdict reste fragile — une trace ultérieure qui décrirait l'action corrective déployée à partir de ce diagnostic viendrait consolider la compétence.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "La présomption de sycophantie a affaibli la pièce sans la disqualifier : la trace oblique « j'aurais dû » est présente, mais le combo complet exigé par la fiche n'est pas atteint dans cette seule feuille.",
+        "prescription": "Cette feuille montre une auto-attribution de l'erreur sans renvoi vers l'IA, ce qui est un indice de responsabilité. Pour franchir le seuil, un passage qui décrirait l'action corrective déployée à partir de ce diagnostic viendrait compléter le geste — pas seulement nommer l'erreur, mais raconter ce qui change ensuite."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant identifie la taille de la mémoire de contexte comme limite technique qui explique pourquoi l'IA n'intègre pas bien les éléments théoriques — description d'un mécanisme d'erreur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche est très précise : 4.07 cible un *delta de contexte* entre humain et machine — l'humain identifie pourquoi le contexte manquant change tout. La pièce mentionne la « taille de la mémoire de contexte » comme limite technique. La fiche cite explicitement comme trace oblique : « Apprenant qui décrit comment l'IA 'trichait' sur son contexte technique (charger partiellement les fichiers, tronquer les données) = validation contextuelle avancée déguisée en critique technique. » Le passage de l'apprenant correspond à cela : la mémoire de contexte tronque, donc l'IA n'intègre pas tout le savoir contenu dans les documents fournis. Le delta humain/machine est nommé : l'apprenant a accès à tout le matériel théorique, l'IA non. La pièce résiste, mais avec une réserve : la limite est technique, pas culturelle ou relationnelle au sens premier de la fiche.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La mention de la taille de la mémoire de contexte comme mécanisme expliquant la limite d'intégration correspond précisément à la trace oblique citée par la fiche (critique technique qui révèle une validation contextuelle)."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir cette pièce. Peut-être ai-je trop rapidement importé la pièce de la littératie IA (1.06) dans la validation contextuelle. Je teste avec (b) confusion de compétence : la fiche distingue 1.01 (véracité) de 4.07 (delta de contexte) ; la limite de mémoire ici relève-t-elle d'une connaissance du modèle (1.06) ou d'une identification du contexte manquant qui change tout (4.07) ? La nuance : l'apprenant ne se contente pas de constater la limite mémoire — il la relie à un effet précis (« intégrer tous les éléments théoriques »). C'est bien le contexte manquant qui est nommé comme cause d'un échec d'intégration. La fiche cite ce type de cas presque mot pour mot. L'attaque ne disqualifie pas ; elle pointe que la pièce vit simultanément dans 1.06 et 4.07. La fiche reconnaît cette double appartenance possible. Je teste aussi avec (a) insuffisance probatoire : la pièce est courte, et la dimension culturelle/relationnelle (forme la plus typique de 4.07) n'est pas présente. C'est une validation contextuelle *technique*. La pièce tient affaiblie mais ne tombe pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce vit à la frontière de 1.06 (littératie IA) et 4.07 (validation contextuelle) : le mécanisme technique est nommé, et il est explicitement relié à un échec d'intégration de savoir. La fiche valide ce type de trace oblique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à séparer la littératie IA (savoir comment l'IA fonctionne) de la validation contextuelle (identifier pourquoi le contexte manquant change tout). Ce qui m'a forcé à reconnaître la seconde compétence, c'est précisément la formulation de l'apprenant : la limite mémoire est nommée avec son effet — l'IA ne peut pas intégrer tous les éléments théoriques. Le delta est explicite. Sous la seconde présomption, la pièce a été affaiblie parce qu'elle vit à la frontière de deux compétences, et parce qu'elle reste technique (la fiche reconnaît ce type d'oblique, mais la forme typique implique des dimensions culturelles ou relationnelles). Ce qui en résulte est un indice solide : l'apprenant pense le rapport humain/IA en termes de savoir disponible vs savoir intégrable, ce qui est exactement le cœur de 4.07. La compétence est en exercice à un seuil modéré.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Le mécanisme technique nommé (mémoire de contexte) est explicitement relié à un échec d'intégration de savoir, ce qui correspond à la trace oblique de validation contextuelle que la fiche identifie.",
+        "prescription": "Cette feuille raconte une validation contextuelle technique. Pour épaissir cette compétence, un passage qui décrirait une correction de l'IA basée sur un savoir relationnel, culturel ou situationnel — pas seulement technique — viendrait élargir le territoire."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Lucidité bidirectionnelle : l'IA est rapide pour l'interface, mais l'idée juste reste hors de sa portée — articulation de ce que l'IA fait et de ce qu'elle ne fait pas."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche définit 4.08 comme l'identification de ce qui est *structurellement* non-automatisable — présence authentique, confiance incarnée, intimité professionnelle. La pièce articule bien une bidirectionnalité (l'IA fait X, ne fait pas Y), ce que la fiche valorise. Mais le « Y » ici est « avoir l'idée de la bonne interface » — est-ce structurellement non-automatisable ? La fiche met explicitement en garde contre le test prospectif vs rétrospectif : 4.08 cible ce qui ne pourra jamais être automatisé, pas ce qui n'est pas encore automatisé. Or l'apprenant dit « elle n'y arrive pas *encore* » — ce « encore » signale une limitation temporaire, pas structurelle. La fiche est claire : « 'L'IA ne sait pas faire X' peut être une limitation *temporaire* (technique aujourd'hui, possible demain). 4.08 cible ce qui est *structurellement* non-automatisable. » La pièce ne résiste pas — le « encore » la fait tomber.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a rien à examiner. La présomption d'absence a tenu sur le critère discriminant explicite de la fiche (le « encore » signale temporel, pas structurel).",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à savoir si la lucidité bidirectionnelle de la pièce portait l'identification d'une valeur non-automatisable. Ce qui m'a fait reculer, c'est précisément le mot « encore » dans le passage de l'apprenant. La fiche fait de la distinction prospectif/rétrospectif et structurel/temporel le critère discriminant. Le « encore » place l'observation dans le registre de la limitation actuelle qui pourrait être dépassée, pas dans celui de la non-automatisabilité structurelle. Ce qui en résulte n'est pas une absence de bidirectionnalité chez l'apprenant — il observe finement ce que l'IA fait et ne fait pas — mais une absence de l'inscription de cette observation dans la temporalité structurelle qui définit 4.08. Une trace future où l'apprenant nommerait ce que l'IA *ne pourra jamais* faire (et non « pas encore ») viendrait nourrir cette compétence.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a porté sur le critère discriminant explicite de la fiche : le « encore » signale une limitation temporelle, pas la non-automatisabilité structurelle que 4.08 cible.",
+        "prescription": "Cette feuille observe une limite actuelle de l'IA (« pas encore »). Pour rejoindre la création de valeur non-automatisable au sens de la fiche, un passage qui identifierait ce qui restera structurellement hors de portée de l'IA — par sa nature, pas par son stade de développement — viendrait nourrir ce territoire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la patience stratégique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une non-action délibérée avec critère de déclenchement explicite."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille touche au pôle âme par deux entrées discrètes : l'apprenant prend pour lui une erreur de méthode sans la renvoyer à l'outil, et identifie un mécanisme technique (mémoire de contexte) qui révèle un delta de savoir entre humain et machine. Le ton reste sobre, sans déclaration de principe ni vocabulaire éthique explicite. Les dimensions du jugement de valeur (raisonnement éthique, refus, conscience écologique, neurodiversité, patience stratégique) ne sont pas convoquées dans ce moment du récit.",
+    "territoiresDenses": [
+      {
+        "competence": "Validation contextuelle",
+        "description": "L'apprenant identifie la taille de la mémoire de contexte comme mécanisme expliquant pourquoi l'IA n'intègre pas tous les éléments théoriques — le delta entre savoir disponible (à l'humain) et savoir intégrable (par la machine) est rendu lisible.",
+        "extraitVerbatim": "L'autre souci c'est la taille de la mémoire de contexte. Intégrer tous les éléments théoriques pour construire un jeu dont les racines plongent dans les documents fournis, n'est pas simple.",
+        "ceQueCaDit": "Le travail mobilise une critique technique qui sert en réalité d'identification de delta de contexte — exactement la trace oblique que la fiche pointe pour cette compétence. La forme reste technique ; la dimension culturelle ou relationnelle de la validation contextuelle est absente de cette feuille."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas ramenés ici. Le raisonnement éthique, l'alignement IA, la conscience écologique, la valorisation de la neurodiversité, la décision dans l'incertitude et la patience stratégique n'apparaissent pas dans le récit — ce qui correspond à la focale très technique de la feuille, pas nécessairement à un évitement. La responsabilité est nommée à travers une auto-attribution d'erreur, mais sans l'action corrective qui complèterait le geste. La création de valeur non-automatisable est effleurée par la lucidité bidirectionnelle, mais le mot « encore » la fait basculer vers une limitation temporelle plutôt que structurelle — exactement la distinction sur laquelle la fiche insiste.",
+    "emergencesPole": "Deux choses traversent ce pôle dans la feuille. La première : un réflexe d'appropriation — l'apprenant ne dit pas « l'IA n'a pas réussi », il dit « j'ai fait une erreur ». L'outil est tenu pour ce qu'il est, l'erreur reste du côté humain. La seconde : une lecture du delta humain/machine en termes de savoir intégrable, qui se présente sous l'habillage technique de la mémoire de contexte. La compétence éthique se manifeste ici par la précision de la prise en charge, pas par le vocabulaire moral.",
+    "pistes": [
+      "Pour compléter la responsabilité amorcée, un chemin possible serait de documenter l'action corrective qui suit le diagnostic — pas seulement nommer l'erreur, mais raconter ce qui change dans la pratique ensuite.",
+      "Pour élargir la validation contextuelle au-delà du technique, un chemin possible serait de raconter une correction de l'IA fondée sur un savoir relationnel ou culturel — quelque chose que l'IA ne pouvait pas savoir parce que ça ne s'écrit pas dans les documents.",
+      "Pour rejoindre la création de valeur non-automatisable, un chemin possible serait de nommer ce qui restera structurellement humain dans le travail — non pas « pas encore », mais « jamais, par nature »."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille touche au pôle âme par deux entrées discrètes : l'apprenant prend pour lui une erreur de méthode sans la renvoyer à l'outil, et identifie un mécanisme technique (mémoire de contexte) qui révèle un delta de savoir entre humain et machine. Le ton reste sobre, sans déclaration de principe ni vocabulaire éthique explicite. Les dimensions du jugement de valeur (raisonnement éthique, refus, conscience écologique, neurodiversité, patience stratégique) ne sont pas convoquées dans ce moment du récit.\n\n## Territoires les plus denses\n\n**Validation contextuelle.** L'apprenant identifie la taille de la mémoire de contexte comme mécanisme expliquant pourquoi l'IA n'intègre pas tous les éléments théoriques — le delta entre savoir disponible (à l'humain) et savoir intégrable (par la machine) est rendu lisible. Extrait : « L'autre souci c'est la taille de la mémoire de contexte. Intégrer tous les éléments théoriques pour construire un jeu dont les racines plongent dans les documents fournis, n'est pas simple. » Le travail mobilise une critique technique qui sert en réalité d'identification de delta de contexte — exactement la trace oblique que la fiche pointe pour cette compétence. La forme reste technique ; la dimension culturelle ou relationnelle de la validation contextuelle est absente de cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas ramenés ici. Le raisonnement éthique, l'alignement IA, la conscience écologique, la valorisation de la neurodiversité, la décision dans l'incertitude et la patience stratégique n'apparaissent pas dans le récit — ce qui correspond à la focale très technique de la feuille, pas nécessairement à un évitement. La responsabilité est nommée à travers une auto-attribution d'erreur, mais sans l'action corrective qui complèterait le geste. La création de valeur non-automatisable est effleurée par la lucidité bidirectionnelle, mais le mot « encore » la fait basculer vers une limitation temporelle plutôt que structurelle — exactement la distinction sur laquelle la fiche insiste.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux choses traversent ce pôle dans la feuille. La première : un réflexe d'appropriation — l'apprenant ne dit pas « l'IA n'a pas réussi », il dit « j'ai fait une erreur ». L'outil est tenu pour ce qu'il est, l'erreur reste du côté humain. La seconde : une lecture du delta humain/machine en termes de savoir intégrable, qui se présente sous l'habillage technique de la mémoire de contexte. La compétence éthique se manifeste ici par la précision de la prise en charge, pas par le vocabulaire moral.\n\n## Pistes pour enrichir ce pôle\n\n- Pour compléter la responsabilité amorcée, un chemin possible serait de documenter l'action corrective qui suit le diagnostic — pas seulement nommer l'erreur, mais raconter ce qui change dans la pratique ensuite.\n- Pour élargir la validation contextuelle au-delà du technique, un chemin possible serait de raconter une correction de l'IA fondée sur un savoir relationnel ou culturel — quelque chose que l'IA ne pouvait pas savoir parce que ça ne s'écrit pas dans les documents.\n- Pour rejoindre la création de valeur non-automatisable, un chemin possible serait de nommer ce qui restera structurellement humain dans le travail — non pas « pas encore », mais « jamais, par nature »."
+  }
+}

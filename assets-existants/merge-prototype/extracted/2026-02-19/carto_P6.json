@@ -1,0 +1,244 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Hier journée de \"formation pour informaticien\" proposée par l'ORP. Bilan : [...]",
+      "contexte": "Mention d'une journée de formation institutionnelle dont le compte-rendu est confié à un dialogue IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+      "contexte": "Travail sur un référentiel structuré pensé pour l'horizon post-AGI — projection vers un monde où l'IA aura largement progressé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+      "contexte": "Production massive de débats destinée à une plateforme de participation citoyenne (Decidim), avec une intention explicite de faire avancer un sujet collectif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "A1 — Pensée Critique & Anti-Hallucination",
+      "contexte": "Titre du premier exemple de débat généré, qui prend pour objet la pensée critique face à l'IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de tentative de provoquer un comportement aberrant d'un système IA. Pour ouvrir ce dossier, l'apprenant pourrait noter, sur un débat généré qui dérive, le geste de test adversarial opéré pour pousser l'IA dans ses retranchements."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas d'investigation des mécanismes IA ni de questionnement sur les données mobilisées. Pour ouvrir ce dossier, l'apprenant pourrait noter, sur la génération des soixante débats, le geste d'audit posé pour vérifier comment l'IA a fabriqué ses sorties."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de réflexion sur le contrôle citoyen des algorithmes publics. Pour ouvrir ce dossier, l'apprenant pourrait, à propos d'une décision automatisée affectant un public vulnérable, noter quels mécanismes de recours ou d'audit seraient à concevoir."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille mentionne Decidim — outil libre et civic tech — sans justifier ce choix par une analyse de dépendance ou de communs. Pour ouvrir ce dossier, l'apprenant pourrait noter pourquoi Decidim plutôt qu'une plateforme propriétaire, en termes de souveraineté ou de réversibilité."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 6.05, Decidim est la plateforme flagship de participation citoyenne aux décisions technologiques ; produire et y déposer des débats sur les compétences humaines post-AGI est typiquement un geste de mise en délibération démocratique.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 6.05 demande davantage qu'un dépôt sur une plateforme — elle suppose une organisation de la délibération, une inclusion de publics éloignés du numérique, une transformation de l'opinion en décision. La phrase parle d'un dépôt à venir, pas d'un processus délibératif effectif. La pièce résiste pourtant, et plus fortement que les autres pièces de cette feuille pour d'autres pôles : le choix de Decidim n'est pas anodin (c'est l'outil emblématique de la participation citoyenne) ; l'objet (compétences humaines post-AGI) est un sujet technologique exactement du type que 6.05 cible ; et la production de soixante débats représente une matière de délibération significative, pas un sondage déguisé.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le choix de Decidim et le format \"débats\" sont structurellement orientés vers la délibération démocratique, pas vers le recueil d'avis ; le geste participe d'une démarche de participation citoyenne aux décisions technologiques, même s'il en est l'amont."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de reconnaître à la pièce une vraie portée — elle s'inscrit dans le bon canal pour le bon sujet. À la relecture critique, je vois pourtant que ce que la phrase décrit, c'est la PRÉPARATION de la participation, pas son organisation effective. Le test fin de 6.05 sépare le \"design UX\" (recueillir des retours) de la participation citoyenne authentique (transformer l'opinion en décision). La pièce attesterait pleinement 6.05 si elle décrivait comment les contributions seront synthétisées et reversées à une décision ; sur cette feuille, on est en amont du processus. La pièce ne tombe pas pour autant — elle reste affaiblie mais retenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : la pièce manifeste un apprenant en route vers la pratique participative — il prépare la matière, choisit le canal, formule l'intention — sans que la facilitation effective de la délibération soit encore décrite. Le seuil est entamé, pas encore franchi."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la participation citoyenne soit attestée sur cette feuille, et la lecture serrée a tenu une position intermédiaire. La pièce a résisté parce que tout — le canal (Decidim), le format (débats), le sujet (post-AGI) — est cohérent avec une démarche de mise en délibération démocratique. Mais elle est restée affaiblie parce que la feuille décrit l'amont, pas le processus délibératif lui-même. Ce qui reste honnêtement attesté ici : un geste préparatoire orienté vers la participation citoyenne, dont la portée effective dépendra de la manière dont les contributions seront ensuite reçues et synthétisées. Un renvoi pour un examen plus large du portfolio paraît juste — d'autres feuilles pourraient préciser ce qui n'est ici qu'à l'état d'intention orientée.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Au temps 2, la pièce a été retenue affaiblie : le choix de Decidim et le format des débats orientent l'action vers la participation citoyenne, mais la feuille décrit l'amont du processus délibératif plutôt que sa facilitation effective.",
+        "prescription": "Pour donner consistance à cette compétence, l'apprenant pourrait, dans une feuille suivante, noter comment les premières contributions arrivées sur Decidim sont accueillies, classées ou synthétisées — le geste qui transforme un dépôt en délibération. Une lecture transversale du portfolio entier pourrait aussi clarifier si d'autres feuilles décrivent déjà ce travail aval."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne mentionne pas de cadre réglementaire ni d'anticipation normative. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos du référentiel post-AGI, en quoi l'évolution probable de l'AI Act ou d'autres normes oriente déjà ses choix de structure."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille décrit une production individuelle déposée sur une plateforme, sans co-construction de règles ni émergence collective. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un moment collaboratif sur le projet Respire, un résultat qui aurait surpris ses créateurs ou une règle co-construite avec d'autres."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille mentionne l'horizon post-AGI sans questionner la primauté humaine — l'objet est un référentiel des compétences HUMAINES, ce qui maintient le cadre anthropocentrique. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'une compétence du référentiel, ce qui change si on regarde la même situation depuis une perspective non-humaine."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille décrit un usage instrumental de l'IA (faire générer des débats) sans questionner son statut d'interlocuteur. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos du dialogue qui a produit le bilan ORP, ce qui change selon que l'IA est traitée comme outil ou comme interlocuteur dont le statut est une question ouverte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne pense pas l'humain comme nœud d'un réseau vivant. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos du projet Respire ou du référentiel, une métaphore vivante (mycélium, écosystème, symbiose) mobilisée comme principe de conception et non comme décoration."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 1,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 9
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 19 février 2026, le pôle CITÉ trouve un point d'ancrage modeste mais réel : le travail décrit converge vers une plateforme de participation citoyenne (Decidim), avec une intention explicite de faire circuler des débats sur les compétences humaines à l'horizon post-AGI. L'apprenant ne se contente pas de penser pour lui — il prépare une matière destinée à entrer dans une délibération démocratique. Les autres dimensions du pôle (gouvernance, audit, souveraineté, décentrement) restent à l'arrière-plan ; le fil dominant est celui de la mise en circulation publique d'un travail intellectuel.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Neuf compétences du pôle restent sans trace sur cette feuille : le red-teaming, l'audit et l'hygiène des données, la gouvernance algorithmique des services publics, la souveraineté numérique (alors même que Decidim est un commun libre — la justification souverainiste n'est pas verbalisée), la veille réglementaire, la gouvernance collective, le décentrement anthropocentrique, la cohabitation avec l'IA et la conscience biosystémique. Une compétence — la participation citoyenne et démocratie technologique — a reçu une attestation partielle : le geste de dépôt sur Decidim est cohérent avec la pratique participative, mais la feuille décrit l'amont du processus délibératif plutôt que sa facilitation effective. Le verdict reste donc en suspens, en attente de feuilles qui décriraient l'accueil et la synthèse des contributions.",
+    "emergencesPole": "Un fil traverse la feuille brève : le travail intellectuel solitaire (référentiel YAML) est conçu pour entrer dans un espace public de délibération (Decidim). Ce mouvement du privé vers le public, de la production individuelle vers la circulation collective, est précisément ce que le pôle CITÉ cherche à attester. Sur cette journée, on en voit le geste préparatoire — pas encore son aboutissement délibératif.",
+    "pistes": [
+      "Pour donner consistance à la dimension participative du projet, un chemin possible serait de noter, sur une feuille suivante, comment les premières contributions arrivées sur Decidim sont accueillies, classées ou synthétisées.",
+      "Pour rendre lisible la dimension souverainiste du choix de Decidim, un chemin possible serait de noter en marge pourquoi cette plateforme — libre, civic tech — plutôt qu'un outil propriétaire de sondage ou de discussion.",
+      "Pour ouvrir le décentrement anthropocentrique encore en sommeil, un chemin possible serait de noter, à propos d'une compétence du référentiel, ce qui change si on regarde la même situation depuis une perspective non-humaine (animale, écosystémique, machinique)."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 19 février 2026, le pôle CITÉ trouve un point d'ancrage modeste mais réel : le travail décrit converge vers une plateforme de participation citoyenne (Decidim), avec une intention explicite de faire circuler des débats sur les compétences humaines à l'horizon post-AGI. L'apprenant ne se contente pas de penser pour lui — il prépare une matière destinée à entrer dans une délibération démocratique. Les autres dimensions du pôle (gouvernance, audit, souveraineté, décentrement) restent à l'arrière-plan ; le fil dominant est celui de la mise en circulation publique d'un travail intellectuel.\n\n## Territoires les plus denses\n\nSur cette seule feuille, aucune compétence n'a atteint le seuil d'une présence pleinement établie. La compétence la plus proche — la participation citoyenne et démocratie technologique — a été examinée comme un renvoi au cartographe : le geste préparatoire est attesté, son aboutissement délibératif ne l'est pas encore sur cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nNeuf compétences du pôle restent sans trace sur cette feuille : le red-teaming, l'audit et l'hygiène des données, la gouvernance algorithmique des services publics, la souveraineté numérique (alors même que Decidim est un commun libre — la justification souverainiste n'est pas verbalisée), la veille réglementaire, la gouvernance collective, le décentrement anthropocentrique, la cohabitation avec l'IA et la conscience biosystémique. Une compétence — la participation citoyenne et démocratie technologique — a reçu une attestation partielle : le geste de dépôt sur Decidim est cohérent avec la pratique participative, mais la feuille décrit l'amont du processus délibératif plutôt que sa facilitation effective. Le verdict reste donc en suspens, en attente de feuilles qui décriraient l'accueil et la synthèse des contributions.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn fil traverse la feuille brève : le travail intellectuel solitaire (référentiel YAML) est conçu pour entrer dans un espace public de délibération (Decidim). Ce mouvement du privé vers le public, de la production individuelle vers la circulation collective, est précisément ce que le pôle CITÉ cherche à attester. Sur cette journée, on en voit le geste préparatoire — pas encore son aboutissement délibératif.\n\n## Pistes pour enrichir ce pôle\n\n- Pour donner consistance à la dimension participative du projet, un chemin possible serait de noter, sur une feuille suivante, comment les premières contributions arrivées sur Decidim sont accueillies, classées ou synthétisées.\n- Pour rendre lisible la dimension souverainiste du choix de Decidim, un chemin possible serait de noter en marge pourquoi cette plateforme — libre, civic tech — plutôt qu'un outil propriétaire de sondage ou de discussion.\n- Pour ouvrir le décentrement anthropocentrique encore en sommeil, un chemin possible serait de noter, à propos d'une compétence du référentiel, ce qui change si on regarde la même situation depuis une perspective non-humaine (animale, écosystémique, machinique)."
+  }
+}

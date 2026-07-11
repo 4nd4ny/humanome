@@ -1,0 +1,519 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Finalement c'est pas trop mal. Il y a de bonnes choses à conserver. Je vais quand même tout régénérer en rentrant, car c'est plus simple.",
+      "contexte": "Évaluation d'un manuel généré et décision de le régénérer entièrement plutôt que corriger.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Il est bien écrit : très peu de modifications à apporter ou de sections à supprimer. Il n'est pas du même acabit que les autres, car il ne parle pas de pédagogie ou de noèsiologie, mais de comment faire évoluer les écoles.",
+      "contexte": "Jugement comparatif de la qualité et de la nature d'un manuel par rapport aux autres.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Celui-ci tient la route, tout comme le manuel du Praticien et donc avec moins de corrections à apporter que celui de l'expert.",
+      "contexte": "Évaluation comparée de plusieurs manuels selon le volume de corrections nécessaires.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Qu'est ce que ça me fait plaisir d'avoir atteint ce niveau en IA : de réussir à lui faire générer un livre que j'aurai voulu être capable d'écrire, c'est top !",
+      "contexte": "Réflexion sur le fait de faire produire à l'IA un ouvrage que l'apprenant n'aurait pas su écrire seul.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "C'est vraiment ça le métier d'enseignant : aider l'élève à dépasser ses limites cognitives… pas transmettre des savoirs. Pour moi, enseigner c'est être un coach cognitif. Les savoirs sont dans les livres, internet, les IA. C'est facile à trouver. Perdre du temps là dessus c'est inutile. Savoir bien utiliser son cerveau par contre, ça c'est vraiment utile.",
+      "contexte": "Reformulation de la finalité du métier d'enseignant en s'appuyant sur la disponibilité des savoirs via les IA et internet.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "RESPIRE c'est l’alignement de l'enseignement avec les mutations sociétales en cours tout en redonnant du sens au travail de prof.",
+      "contexte": "Définition synthétique du projet RESPIRE reliant enseignement et mutations sociétales.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "côté manuel il y a encore du travail : aucune présentation des 42 fonctions cognitives avec exemples et exercices, on dirait juste une introduction à noèsiologie alors que je voulais une formation complète.",
+      "contexte": "Diagnostic d'écart entre l'objectif visé (formation complète) et le résultat produit par l'IA (introduction).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Le premier chapitre est bien, mais il en faudrait d'autres comme celui-ci, pour couvrir l'intégralité des fonctions cognitives.",
+      "contexte": "Projection de la structure manquante à partir d'un chapitre jugé satisfaisant.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant relativise un premier jugement positif (« pas trop mal ») et décide tout de même de régénérer, ce qui pourrait signaler une lecture critique de sa propre première impression.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Détection d'un écart entre ce qui était attendu et ce que l'IA a réellement produit : forme de vérification critique de l'output IA contre l'intention.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la pensée critique n'est pas attestée ici : juger qu'un texte est « pas trop mal » ou « il y a encore du travail » relève de l'appréciation ordinaire de qualité, pas d'un doute méthodique calibré. La pièce 1 ressemble à une révision de jugement esthétique, sans protocole de vérification ni détection de biais. La pièce 7 me résiste un peu plus : l'apprenant ne se contente pas de recevoir l'output de l'IA, il le confronte à une attente précise (« je voulais une formation complète ») et identifie ce qui manque (présentation des 42 fonctions, exemples, exercices). Ce qui reste faible : aucune mention d'hallucination, de croisement de sources, ni d'auto-correction de ses propres idées au moment de les formuler.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Confronter l'output IA à une intention explicite et nommer précisément l'écart est un acte de vérification, pas une réception passive." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La seule pièce qui a résisté est la 2 (pid 7). Je me demande si j'ai surévalué un simple constat de complétude. La fiche 1.01 vise le doute méthodique et l'anti-hallucination — or ici l'apprenant ne détecte pas une fausseté de l'IA, il constate qu'elle n'est pas allée assez loin. L'attaque de confusion de compétence est la plus mordante : ce passage active bien plus nettement le cadrage de l'intention (l'objectif visé vs le résultat) que la pensée critique anti-hallucination.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le marqueur central de 1.01 (vérification calibrée, détection d'erreur ou de biais) n'est pas présent : l'apprenant constate un manque de couverture, ce qui relève du cadrage/diagnostic d'objectif (1.02), pas du scepticisme méthodique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à nier toute pensée critique au sens fort, en partant du principe qu'apprécier la qualité d'un manuel reste un jugement courant. La pièce où l'apprenant confronte l'output de l'IA à son intention m'a d'abord forcé à hésiter, parce qu'il ne se laisse pas imposer le résultat. Mais sous la seconde lecture, ce geste s'est révélé être un diagnostic d'écart d'objectif bien plus qu'une vérification anti-hallucination : aucune trace de doute calibré, de croisement de sources ou d'auto-correction en temps réel n'apparaît dans cette feuille. Ce qui en résulte : sur ce pôle et pour cette journée, la pensée critique au sens de la fiche reste un territoire que le texte n'a pas encore traversé. Un même geste reviendra plus loin sous le cadrage de l'intention, où il trouve sa place plus naturellement.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "La présomption de sycophantie (temps 2) a porté le verdict : la seule pièce résistante relevait du cadrage d'objectif, pas du doute méthodique anti-hallucination.",
+        "prescription": "Le doute méthodique gagnerait à devenir visible dans une situation où une vérification a effectivement renversé une première lecture. Pour ouvrir ce territoire, un récit où une source ou un output IA a été recoupé puis corrigé donnerait une trace concrète à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'apprenant distingue ce qu'il visait (« une formation complète ») de ce qui a été produit (« juste une introduction »), nommant le bon problème par contraste avec le résultat.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "À partir d'un chapitre réussi, l'apprenant reformule la structure-cible manquante, ce qui touche au cadrage de l'objectif à atteindre.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "La décision de tout régénérer plutôt que corriger pourrait porter un recadrage du mode d'action.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume d'abord que le cadrage de l'intention n'est pas là : constater qu'un manuel est incomplet relève du contrôle qualité, pas de l'interrogation de l'objectif lui-même. La pièce 3 (régénérer plutôt que corriger) tombe vite : c'est un choix d'exécution, pas une redéfinition du problème. La pièce 2 reste descriptive d'un manque de contenu. La pièce 1 résiste davantage : l'apprenant articule explicitement l'écart entre l'intention initiale (« je voulais une formation complète ») et la nature de ce qui a été produit (« on dirait juste une introduction »), ce qui suppose qu'il tient un cadrage clair de ce que la chose devait être. Ce qui reste faible : le cadrage est ici rétrospectif et porté sur un livrable IA, pas un questionnement préalable de type « faut-il vraiment résoudre ça ? ».",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Nommer la différence de nature entre l'objectif visé et le résultat (formation vs introduction) suppose un cadrage tenu de l'intention." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je me méfie de l'avoir surinterprétée : peut-être que distinguer « introduction » de « formation complète » n'est qu'un jugement de volume, pas un cadrage d'intention. Mais la fiche admet le constat rétrospectif (« j'aurais dû me poser la question ») comme registre bas de 1.02, et le marqueur « le vrai problème c'est » est obliquement présent : l'apprenant identifie que le problème n'est pas la qualité du chapitre mais la couverture des 42 fonctions cognitives. L'attaque d'insuffisance probatoire touche — la trace est courte et rétrospective — mais ne disqualifie pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est brève et rétrospective, sans protocole de cadrage préalable explicite ; elle atteste néanmoins une distinction tenue entre l'objectif réel et le résultat, ce qui correspond au registre bas documenté de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant à les ramener au simple contrôle qualité d'un livrable. La décision de régénérer et le constat d'incomplétude sont effectivement tombés de ce côté-là. Ce qui a résisté, c'est le passage où le travail distingue la nature de ce qui était visé — une formation complète sur les 42 fonctions cognitives — de la nature de ce qui a été produit, une introduction. Cette distinction suppose un objectif tenu avec assez de netteté pour mesurer un écart de nature, pas seulement de quantité. La trace reste rétrospective et adossée à un livrable, donc le cadrage apparaît davantage comme une boussole en arrière-plan que comme un questionnement délibéré formulé en amont. Pour cette journée, on peut parler d'une trace de cadrage réelle mais discrète, qui mériterait confirmation par un cas où la question de l'objectif se pose avant l'action.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La conclusion adversariale (temps 3) retient une seule pièce affaiblie, sous le seuil de présence établie : le cadrage est attesté mais rétrospectif et adossé à un livrable.",
+        "prescription": "La distinction entre objectif visé et résultat produit affleure ici de façon nette. Pour la consolider, un récit où la question « quel est vraiment le bon problème ? » se pose avant de lancer la génération offrirait une trace de cadrage en amont, complémentaire de ce constat rétrospectif."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant relie disponibilité des savoirs (livres, internet, IA) et redéfinition du métier d'enseignant comme coach cognitif, ce qui pourrait être une fusion d'idées débouchant sur un insight.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "La définition de RESPIRE relie enseignement et mutations sociétales en une formule, posant une articulation transversale.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de synthèse intégrative : énoncer une vision du métier ou une devise de projet peut n'être qu'une affirmation d'opinion, pas une fusion produisant un insight nouveau. La pièce 2 (formule RESPIRE) résiste mal : c'est une définition condensée, un slogan, dont rien n'indique qu'il émerge du croisement de sources distinctes au fil de la feuille. La pièce 1 résiste davantage : l'apprenant articule un raisonnement — les savoirs sont désormais accessibles partout, donc la valeur de l'enseignant se déplace vers l'usage du cerveau — qui relie un constat sur l'IA/internet à une redéfinition de la finalité enseignante (« coach cognitif »). Ce qui reste faible : la chaîne est courte et l'idée du déplacement de valeur n'est pas radicalement neuve, elle circule dans le discours ambiant sur l'IA et l'éducation.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant tire d'un constat sur l'accessibilité des savoirs une conclusion sur la nature même du métier, ce qui ressemble à une fusion débouchant sur une métaphore unificatrice (« coach cognitif »)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je me demande si j'ai pris pour une synthèse ce qui est une conviction reformulée. La métaphore « coach cognitif » est unificatrice, mais le critère de la fiche est sévère : l'insight ne doit exister dans aucune source isolée. Or l'idée que les savoirs sont accessibles et que l'enseignant doit donc se recentrer sur les compétences est un lieu commun du champ, pas un insight émergent propre au croisement opéré ici. La surinterprétation pédagogique me guette : j'ai voulu lire une fusion là où il y a une thèse adoptée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'articulation relie bien deux registres (état des savoirs / rôle enseignant), mais l'insight reste proche d'une position déjà disponible dans le champ ; la trace tient comme synthèse modeste, pas comme fusion radicale."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à réduire ces passages à des slogans et à des opinions reçues. La formule RESPIRE est tombée de ce côté : trop condensée pour qu'on y voie une fusion en acte. Le passage sur le coach cognitif m'a retenu plus longtemps, parce qu'il enchaîne un constat sur l'accessibilité des savoirs et une redéfinition de la finalité du métier en une métaphore qui tient. Sous la seconde lecture, cette synthèse s'est révélée modeste : elle relie deux registres réellement, mais l'insight obtenu circule déjà dans les conversations sur l'IA et l'école, donc je ne peux pas lui attribuer la nouveauté forte que la fiche réclame. Ce qui reste pour cette journée : une trace de synthèse présente mais légère, qui demande confirmation par un croisement où l'idée produite surprend par rapport à ses ingrédients.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante (insight proche d'une position déjà disponible) ; le temps 3 conclut à une synthèse réelle mais trop légère pour une présence établie.",
+        "prescription": "Le mouvement qui relie l'accessibilité des savoirs à une nouvelle finalité enseignante affleure ici. Pour le rendre plus probant, un passage où deux domaines éloignés se rencontrent et produisent une idée que ni l'un ni l'autre ne portait offrirait une trace de fusion plus nette."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant situe son propre niveau atteint en IA et reconnaît une limite dépassée (faire générer un livre qu'il n'aurait pas su écrire), ce qui touche à l'observation de ses propres capacités.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "La valorisation de « savoir bien utiliser son cerveau » comme objet utile pourrait être une réflexion sur les processus cognitifs eux-mêmes.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la métacognition n'est pas attestée : se réjouir d'avoir « atteint ce niveau en IA » est un bilan de progression, et la fiche exclut explicitement « j'ai progressé » comme métacognition. La pièce 1 tombe sous cette lecture : c'est un bilan de compétence acquise, l'objet de la réflexion est une habileté avec l'IA, pas le processus cognitif lui-même. La pièce 2 résiste un peu : valoriser « savoir bien utiliser son cerveau » comme l'enjeu central déplace le regard vers le fonctionnement cognitif. Mais ce qui reste faible : l'apprenant parle du cerveau de l'élève en général, pas d'une observation de ses propres stratégies de pensée en train de se dérouler. Aucune trace de tag [META], de règle personnelle formulée, ou de transfert métacognitif.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Poser que l'enjeu utile est de savoir utiliser son cerveau déplace l'attention vers le processus cognitif, ce qui frôle le marqueur métacognitif." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 2. Je teste si j'ai halluciné une métacognition là où il y a un discours pédagogique général. La fiche est nette : la métacognition prend pour objet *le processus cognitif lui-même*, et de préférence le sien. Or ici l'apprenant énonce une finalité pédagogique pour les élèves (« savoir bien utiliser son cerveau, ça c'est utile »), sans s'observer penser ni piloter ses propres stratégies. Le glissement lexical est l'attaque dominante : le champ cognitif est nommé en surface, mais ce qui est mobilisé est une thèse sur l'éducation, pas une auto-observation.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le vocabulaire cognitif (« utiliser son cerveau ») est présent en surface, mais il porte une finalité pédagogique adressée aux élèves, sans observation par l'apprenant de ses propres processus de pensée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en présumant qu'un bilan de progression et une thèse pédagogique ne sont pas de la métacognition. Le passage où l'apprenant se réjouit d'avoir atteint un niveau est resté de ce côté : c'est un bilan, pas une observation de sa manière de penser. La valorisation du « savoir utiliser son cerveau » m'a retenu un instant, parce qu'elle déplace le regard vers le fonctionnement cognitif. Mais sous la seconde lecture, ce déplacement vise les élèves et porte une conviction éducative, pas un retour réflexif de l'apprenant sur ses propres stratégies en train de s'exercer. Pour cette journée, l'auto-observation des processus de pensée reste un territoire non visité par le texte, alors même que la thématique cognitive y est très présente côté contenu.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a disqualifié la seule pièce résistante par glissement lexical : le champ cognitif est nommé pour les élèves, pas observé chez soi.",
+        "prescription": "L'attention portée au fonctionnement cognitif est manifeste dans le contenu travaillé. Pour qu'elle devienne une trace métacognitive, un passage où l'apprenant observe sa propre manière de raisonner ou de décider, en la nommant, ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant articule un déplacement de valeur (savoirs accessibles → recentrage de l'enseignant), ce qui pourrait esquisser un raisonnement de système éducatif.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "RESPIRE relie enseignement, mutations sociétales et sens du travail enseignant, ce qui pourrait porter une vision systémique du changement scolaire.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de pensée systémique : parler de mutations sociétales et d'alignement de l'enseignement reste un constat de complexité, pas une modélisation de boucles. La pièce 2 tombe : RESPIRE relie des grands ensembles (enseignement, société, sens) sans nommer quels liens, dans quelle direction, avec quels effets — c'est exactement le « tout est lié » que la fiche écarte. La pièce 1 résiste un peu : on y devine une relation causale (les savoirs deviennent accessibles → la valeur de l'enseignant se déplace). Mais ce qui reste faible : il n'y a ni boucle de rétroaction, ni point de levier, ni effet de cascade — juste une implication linéaire à un pas.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "On y trouve une relation causale orientée (accessibilité des savoirs → déplacement de la valeur enseignante), ce qui dépasse le simple constat de complexité." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je vérifie si j'ai pris une implication simple pour une modélisation systémique. La fiche exige des boucles, des directions multiples, des effets de second ordre ; or ce passage tient en une seule flèche causale linéaire, sans rétroaction ni levier identifié. L'attaque d'insuffisance probatoire est décisive : il manque la structure de système que la fiche réclame, et la distinction critique vise précisément ce cas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La relation reste une implication linéaire à un pas, sans boucle de rétroaction, point de levier ni effet de cascade ; le marqueur central de la modélisation systémique manque."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à ramener le vocabulaire des mutations et de l'alignement au simple constat que tout est lié. La formule RESPIRE est tombée de ce côté sans résistance. Le raisonnement sur le déplacement de la valeur enseignante m'a retenu, parce qu'il porte une vraie flèche causale. Mais sous la seconde lecture, cette flèche reste isolée et linéaire : aucune boucle, aucun effet de retour, aucun point de levier nommé ne vient en faire un système modélisé. Pour cette journée, la modélisation des boucles et des leviers reste un territoire non visité, même si l'apprenant pense visiblement à grande échelle.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "Le temps 2 a disqualifié la pièce résistante par insuffisance probatoire : implication causale linéaire sans structure de système.",
+        "prescription": "La réflexion à l'échelle du système éducatif est présente en arrière-plan. Pour qu'elle devienne une trace systémique, un passage qui nomme une boucle de rétroaction ou un point de levier précis — où agir ici produit tel effet de retour là — donnerait la structure attendue."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant évalue son propre niveau d'usage de l'IA et ce qu'elle permet de produire, ce qui pourrait toucher à la compréhension de ses capacités.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Le constat que l'IA a produit « juste une introduction » au lieu d'une formation complète pourrait refléter une compréhension des limites du modèle.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de littératie IA au sens de la fiche : aucune des pièces n'explique un mécanisme (tokens, fenêtre de contexte, hallucination causale). La pièce 1 est un ressenti de maîtrise, pas une compréhension sous le capot. La pièce 2 résiste un peu : constater que l'IA s'arrête à une introduction alors qu'on visait une formation complète pourrait pointer une limite réelle du modèle face à une tâche longue et structurée. Mais ce qui reste faible : l'apprenant n'attribue pas ce résultat à un mécanisme (par exemple une limite de contexte ou une tendance à généraliser), il constate l'écart sans en diagnostiquer la cause.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le constat que l'IA produit une introduction plutôt qu'une formation complète touche à un comportement caractéristique du modèle sur les tâches longues." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 2. Je teste si j'ai projeté une compréhension causale là où il n'y a qu'un constat de résultat. La fiche est explicite : le critère est la compréhension du *pourquoi* l'IA échoue, pas la simple observation qu'elle échoue. Or l'apprenant ne formule aucune hypothèse mécanique ; il décrit un livrable incomplet. L'attaque d'insuffisance probatoire tient : il manque tout le versant diagnostic qui ferait de ce constat une trace de littératie.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage constate un output incomplet sans proposer d'explication mécanique du comportement du modèle ; la compréhension causale exigée par la fiche est absente."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en présumant qu'utiliser l'IA avec aisance ne dit rien de la compréhension de ses mécanismes. Le ressenti de maîtrise est resté un ressenti. Le constat que l'IA livre une introduction au lieu d'une formation complète m'a retenu, parce qu'il touche à un comportement réel des modèles sur les tâches longues. Mais sous la seconde lecture, ce constat reste descriptif : l'apprenant voit l'écart sans en proposer la cause, et c'est précisément cette compréhension causale que la fiche demande. Pour cette journée, le diagnostic du fonctionnement de l'IA sous le capot reste un territoire non visité, même si l'apprenant la manie de façon avancée.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a disqualifié la pièce résistante : constat d'un output incomplet sans explication mécanique du comportement du modèle.",
+        "prescription": "L'usage avancé de l'IA est manifeste. Pour ouvrir le dossier de la littératie technique, un passage qui formule une hypothèse sur le pourquoi d'un comportement observé — par exemple pourquoi un modèle synthétise au lieu de développer — transformerait le constat en diagnostic."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à l'architecture de systèmes IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où plusieurs IA ou humains interagissent avec des rôles définis et des flux décrits."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant évoque avoir su faire générer à l'IA un livre entier qu'il n'aurait pas su écrire, ce qui pourrait témoigner d'une orchestration de dialogue avancée.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de dialogue IA avancé : dire qu'on a « atteint ce niveau en IA » et fait générer un livre ne montre aucune technique de prompting, aucune itération analysée, aucun méta-prompting. La pièce 1 est une affirmation de résultat, pas une trace de la formulation qui l'a produit. Elle résiste très peu : rien dans la feuille ne décrit comment l'apprenant a structuré ses prompts, ni pourquoi telle reformulation a changé l'output. Ce qui reste : une déclaration de compétence sans montrer la compétence en acte.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant revendique un résultat d'orchestration élaboré (faire générer un livre entier), ce qui suppose en amont un dialogue IA non trivial." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1, retenue faute de mieux. Je teste si je n'ai pas pris une revendication pour une démonstration. La fiche 1.08 vise la sophistication de la *formulation* montrée en acte ; or ici l'apprenant raconte le résultat (« réussir à lui faire générer un livre ») sans rien exposer du dialogue. C'est un récit performatif typique : il dit qu'il sait orchestrer, il ne le montre pas. L'attaque du récit performatif disqualifie la pièce.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage raconte la compétence (« j'ai réussi à lui faire générer ») sans montrer la moindre technique de formulation, itération ou méta-prompting en acte ; c'est une déclaration, pas une trace d'exercice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant si l'orchestration du dialogue IA s'y donnait à voir. Le résultat revendiqué — faire générer un livre entier — laisse supposer un travail réel de dialogue en amont, et c'est ce qui m'a poussé à la retenir un instant. Mais sous la seconde lecture, la feuille ne montre rien de ce dialogue : ni technique de prompting, ni itération analysée, ni méta-prompting. Le passage raconte la compétence sans la mettre en scène. Pour cette journée, l'orchestration du dialogue avec l'IA reste un territoire dont on devine l'existence sans qu'il soit documenté, ce qui invite à en montrer le détail plutôt que le seul résultat.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a disqualifié la pièce par récit performatif : le résultat est revendiqué sans que le dialogue qui l'a produit soit montré.",
+        "prescription": "Le résultat obtenu avec l'IA laisse deviner un travail de dialogue réel. Pour en faire une trace, un passage qui décrit une reformulation précise et l'effet qu'elle a eu sur l'output rendrait visible l'orchestration elle-même."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la pensée computationnelle. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où une logique de décomposition ou de condition « si… alors… sinon » a été transférée à un problème non technique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant articule ce que l'IA lui permet de produire au-delà de ses propres limites d'écriture, ce qui pourrait toucher à la complémentarité humain-IA.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "La répartition implicite (les savoirs accessibles via l'IA, la valeur humaine recentrée sur l'usage du cerveau) pourrait articuler des forces comparatives.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de synergie articulée : dire que l'IA a permis de générer un livre est un usage, pas une théorisation de la complémentarité. La pièce 1 tombe : elle décrit ce que l'IA fait pour l'apprenant sans articuler ce qu'il garde et pourquoi l'humain le ferait mieux. La pièce 2 résiste davantage : en posant que les savoirs relèvent désormais des livres/internet/IA et que la valeur humaine se déplace vers « savoir utiliser son cerveau », l'apprenant esquisse une répartition des rôles entre ce que la machine couvre et ce qui reste proprement humain. Ce qui reste faible : la répartition est posée à l'échelle du métier, pas comme un workflow hybride concret avec rôles assignés.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant distingue ce que les IA et internet couvrent (les savoirs) de ce qui reste la valeur humaine (l'usage du cerveau), ce qui articule des forces comparatives." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 2. Je teste si j'ai surinterprété une thèse pédagogique en réflexion synergique. La fiche demande que l'apprenant articule *ce qu'il garde* et *pourquoi* l'humain le fait mieux. Ici la distinction porte sur l'enseignement en général (les savoirs vs l'usage du cerveau), et touche obliquement la complémentarité humain-IA puisque les IA sont nommées comme dépositaires des savoirs. Le glissement de compétence vers la synthèse (1.03) est tentant, mais la pièce articule réellement une répartition de forces : ce que la machine prend en charge versus ce qui reste irremplaçablement humain. L'attaque affaiblit sans disqualifier, car la répartition reste générale et non opérationnelle.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La répartition des forces comparatives est posée à l'échelle abstraite du métier, sans workflow hybride concret ni rôles assignés ; elle atteste néanmoins une articulation de ce que la machine couvre et de ce qui reste humain."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en présumant qu'évoquer l'IA comme productrice de contenu ne dit rien de la synergie pensée comme telle. La pièce où l'apprenant se félicite du livre généré est restée du côté de l'usage. La distinction entre les savoirs — désormais portés par les livres, internet et les IA — et la valeur humaine recentrée sur l'usage du cerveau m'a retenu plus longtemps : elle articule réellement ce que la machine couvre et ce qui reste proprement humain, ce qui est le cœur de la complémentarité. Sous la seconde lecture, cette articulation demeure générale, posée à l'échelle du métier plutôt que dans un workflow concret aux rôles assignés. Pour cette journée, on peut parler d'une trace de répartition des forces réelle mais encore théorique, qui gagnerait à se poser sur un processus de travail précis.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 3 retient une seule pièce affaiblie : l'articulation des forces comparatives est réelle mais reste abstraite, sous le seuil de présence établie.",
+        "prescription": "La distinction entre ce que les IA prennent en charge et ce qui reste la valeur humaine est posée nettement à l'échelle du métier. Pour la consolider, un passage où cette répartition se décline en rôles concrets dans un processus de travail donnerait à la synergie une assise opérationnelle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 3,
+    "nonEtablies": 5,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du jour montre un travail tourné vers la conception d'une œuvre intellectuelle ambitieuse : une série de manuels, dont un cœur de thèse en noèsiologie. La voix dominante évalue, compare et projette — elle pèse la qualité des textes, distingue leur nature, et mesure l'écart entre ce qui était visé et ce qui a été produit. Le registre est celui de l'enthousiasme lucide : la joie d'avoir fait produire à l'IA un ouvrage hors de portée de sa propre plume coexiste avec un repérage précis de ce qui manque encore. Les thèmes cognitifs sont très présents dans le contenu travaillé, ce qui crée une proximité réelle avec ce pôle, sans que le texte bascule pour autant dans l'observation des mécanismes de pensée eux-mêmes.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés dans cette feuille. L'observation de ses propres processus de pensée, la modélisation systémique par boucles et leviers, le diagnostic du fonctionnement de l'IA sous le capot et l'orchestration montrée du dialogue avec la machine ressemblent ici à des limites du support textuel d'une seule journée plutôt qu'à des choix : l'apprenant manie visiblement ces matières, mais la feuille en garde surtout les résultats, pas les mécanismes. Trois territoires affleurent et mériteraient d'être explorés davantage : le cadrage de l'intention, la synthèse intégrative et la répartition des forces entre humain et IA, chacun présent sous une forme discrète qui appelle confirmation.",
+    "emergencesPole": "Un même geste traverse plusieurs compétences : l'apprenant confronte presque toujours un résultat à une intention tenue en arrière-plan — le manuel à ce qu'il devait être, l'IA à ce qu'il en attendait, le métier à ce qu'il pourrait devenir. Cette boussole d'intention circule du cadrage à la synthèse jusqu'à la répartition humain-IA, sans jamais être thématisée pour elle-même. On remarque aussi que les thèmes cognitifs sont travaillés comme objet de production (le contenu des manuels) bien plus que comme objet d'auto-observation, ce qui laisse une grande proximité de surface avec le pôle sans toujours en activer le marqueur central.",
+    "pistes": [
+      "Pour enrichir le cadrage de l'intention, un chemin possible serait de raconter un moment où la question « quel est vraiment le bon problème ? » s'est posée avant de lancer une génération, plutôt qu'après.",
+      "Pour enrichir le diagnostic de l'IA, un chemin possible serait de noter, face à un output décevant, une hypothèse sur le pourquoi du comportement observé.",
+      "Pour enrichir l'observation de sa propre pensée, un chemin possible serait de décrire une décision en train de se prendre et la manière dont elle a été pesée."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du jour montre un travail tourné vers la conception d'une œuvre intellectuelle ambitieuse : une série de manuels, dont un cœur de thèse en noèsiologie. La voix dominante évalue, compare et projette — elle pèse la qualité des textes, distingue leur nature, et mesure l'écart entre ce qui était visé et ce qui a été produit. Le registre est celui de l'enthousiasme lucide : la joie d'avoir fait produire à l'IA un ouvrage hors de portée de sa propre plume coexiste avec un repérage précis de ce qui manque encore. Les thèmes cognitifs traversent tout le contenu travaillé, ce qui crée une proximité réelle avec ce pôle, sans que le texte bascule pour autant dans l'observation des mécanismes de pensée eux-mêmes.\n\n## Territoires les plus denses\n\nPour cette seule journée, aucune compétence du pôle n'a atteint le seuil d'une présence pleinement établie après examen. Trois territoires affleurent néanmoins de façon nette et demandent confirmation : la manière de distinguer l'objectif réel du résultat produit, le geste qui relie l'accessibilité des savoirs à une nouvelle finalité de l'enseignant, et la distinction entre ce que les machines prennent en charge et ce qui reste la valeur humaine. Chacun s'est présenté sous une forme réelle mais discrète, ce qui en fait des dossiers ouverts plutôt que des acquis attestés.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires n'ont pas été visités dans cette feuille. L'observation de ses propres processus de pensée, la modélisation systémique par boucles et leviers, le diagnostic du fonctionnement de l'IA sous le capot et l'orchestration montrée du dialogue avec la machine ressemblent ici à des limites du support textuel d'une seule journée plutôt qu'à des choix : l'apprenant manie visiblement ces matières, mais la feuille en garde surtout les résultats, pas les mécanismes qui les ont produits. Le cadrage en amont, par contraste, ressemble davantage à une occasion qui ne s'est simplement pas présentée ce jour-là.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn même geste traverse plusieurs compétences : le travail confronte presque toujours un résultat à une intention tenue en arrière-plan — le manuel à ce qu'il devait être, l'IA à ce qu'on en attendait, le métier à ce qu'il pourrait devenir. Cette boussole d'intention circule du cadrage à la synthèse jusqu'à la répartition humain-IA, sans jamais être thématisée pour elle-même. On remarque aussi que les thèmes cognitifs sont travaillés comme objet de production, le contenu des manuels, bien plus que comme objet d'auto-observation, ce qui crée une grande proximité de surface avec le pôle sans toujours en activer le marqueur central.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir le cadrage de l'intention, un chemin possible serait de raconter un moment où la question « quel est vraiment le bon problème ? » s'est posée avant de lancer une génération, plutôt qu'après. Pour enrichir le diagnostic de l'IA, un chemin possible serait de noter, face à un output décevant, une hypothèse sur le pourquoi du comportement observé. Pour enrichir l'observation de sa propre pensée, un chemin possible serait de décrire une décision en train de se prendre et la manière dont elle a été pesée."
+  }
+}

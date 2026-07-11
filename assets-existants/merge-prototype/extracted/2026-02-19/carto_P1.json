@@ -1,0 +1,311 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Hier journée de \"formation pour informaticien\" proposée par l'ORP. Bilan : [...]",
+      "contexte": "Mention d'une journée de formation institutionnelle, dont le bilan est confié à un dialogue avec une IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+      "contexte": "Travail en cours de finalisation d'un référentiel structuré dédié aux compétences humaines à l'horizon post-AGI.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+      "contexte": "Délégation à l'IA d'une production massive de débats, suivie d'une publication sur une plateforme délibérative citoyenne.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "A1 — Pensée Critique & Anti-Hallucination",
+      "contexte": "Titre du premier exemple de débat généré, qui prend pour objet la compétence de pensée critique face à l'hallucination IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de récit où l'apprenant vérifie une affirmation, s'auto-corrige en plein élan ou désamorce une hallucination IA en acte — seul le titre d'un débat à venir nomme le sujet. Pour ouvrir ce dossier, une feuille suivante pourrait raconter un moment précis où une affirmation a paru douteuse, avec le geste de recoupement opéré."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille décrit l'exécution d'un référentiel en cours plutôt qu'un moment de cadrage. Pour ouvrir ce dossier, l'apprenant pourrait revenir sur la question initiale qui a déclenché le projet de référentiel post-AGI et noter comment cette question a évolué."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne montre pas de croisement de sources distinctes débouchant sur un insight neuf. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où deux fragments éloignés (par exemple la formation ORP et le projet Respire) se sont rejoints dans une formulation inédite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille reste dans le faire sans s'arrêter sur la manière dont la pensée s'organise. Pour ouvrir ce dossier, l'apprenant pourrait noter un moment où il a observé sa propre stratégie cognitive en cours d'usage, par exemple lors de la finalisation des YAML."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne nomme pas de boucles, de leviers ou d'effets en cascade. Pour ouvrir ce dossier, l'apprenant pourrait décrire comment la dynamique Decidim, la génération IA et la cartographie Respire s'alimentent mutuellement."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 1.06, la délégation à l'IA d'une génération massive pourrait trahir une compréhension de ce que l'outil peut produire à l'échelle, donc une littératie d'usage.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "extraitVerbatim": "A1 — Pensée Critique & Anti-Hallucination",
+          "contexte": "Pour 1.06, le choix de prendre l'anti-hallucination comme premier sujet de débat trahirait une conscience du phénomène d'hallucination IA.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : la littératie IA exige une compréhension causale des mécanismes (fenêtre de contexte, tokens, hallucinations), pas seulement une familiarité de surface avec le vocabulaire. La pièce 1 décrit un usage à grande échelle mais ne dit rien des mécanismes mobilisés. La pièce 2 n'est qu'un titre où le mot \"anti-hallucination\" apparaît sans explication. Aucune des deux ne montre l'apprenant articulant pourquoi l'IA hallucine ou comment l'éviter. Une seule pièce résiste, faiblement : le fait de retenir l'anti-hallucination comme premier sujet de débat pourrait trahir un intérêt pour la mécanique en arrière-plan.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Le choix éditorial du sujet trahirait une conscience minimale que l'hallucination est un enjeu à part entière, ce qui n'est pas rien."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de reconnaître que la pièce 2 résiste, mais à la relecture critique cette résistance ressemble fort à un glissement lexical : le mot \"anti-hallucination\" est présent en surface sans aucune charge sémantique correspondante dans la feuille. La compétence demande une explication causale — pourquoi l'IA hallucine, quel mécanisme la produit. Le titre nu ne porte rien de tel.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Glissement lexical : le mot-clé \"anti-hallucination\" apparaît sans que le mécanisme soit explicité ; le vocabulaire est activé sans la charge sémantique correspondante."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la littératie IA soit attestée dans cette feuille, et la lecture serrée m'a donné raison. La pièce 1 ne décrit qu'un usage, pas une compréhension. La pièce 2 nomme un sujet sans en démonter le mécanisme. Sur cette seule feuille, le travail décrit reste à hauteur d'agenda — pas à hauteur d'explicitation des dessous techniques. La compétence pourrait être présente ailleurs dans le portfolio, mais elle ne se laisse pas attester ici. Aucune pièce n'a tenu sous la présomption de sycophantie.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Au temps 2, la seule pièce qui avait résisté est tombée sur glissement lexical : le vocabulaire de l'anti-hallucination est présent sans que le mécanisme soit explicité.",
+        "prescription": "Pour donner à voir la littératie IA dans une feuille future, l'apprenant pourrait, à l'occasion d'un comportement IA observé, écrire deux ou trois phrases d'hypothèse mécanique — par exemple ce qui dans la fenêtre de contexte ou la distribution explique l'erreur. Le geste n'a pas besoin d'être long ; il suffit qu'il passe du nommage au démontage."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille mentionne un workflow IA mais sans en décrire les composants, les flux ou les rôles. Pour ouvrir ce dossier, l'apprenant pourrait expliciter l'architecture du pipeline qui produit les soixante débats — où se branche l'IA, qui valide, comment l'output remonte vers Decidim."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 1.08, faire générer soixante débats suppose un prompt soigneusement préparé et probablement itéré ; la sophistication de la formulation serait alors la trace recherchée.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 1.08 demande de voir la sophistication de la formulation, l'itération stratégique, le méta-prompting. La phrase \"je fais générer 60 débats\" décrit une action mais ne donne à lire ni le prompt, ni l'analyse de pourquoi il fonctionne, ni les ajustements opérés. La quantité (soixante) pourrait laisser supposer un workflow templaté, mais on ne le voit pas. La pièce résiste très faiblement à la présomption — uniquement parce que générer soixante variations sur un même format demande au moins un patron prompt structuré.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'échelle (soixante débats) suggère un prompt patronné plutôt qu'un dialogue ad hoc, ce qui pourrait porter une forme minimale de pilotage IA."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La résistance que j'ai accordée à la pièce repose sur une inférence — je suppose un prompt sophistiqué que la feuille ne montre pas. C'est typiquement le piège du récit performatif : \"je fais générer\" raconte l'acte de génération sans en exhiber l'art. Le prompt n'est ni cité, ni analysé. La sophistication, si elle existe, est entièrement hors-feuille (les artefacts liés ne sont pas dans le texte).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Récit performatif : l'apprenant rapporte une génération réalisée sans donner à voir le dialogue IA qui l'a produite ; c'est une déclaration d'usage, pas une trace d'art du prompt."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que le dialogue IA avancé soit attesté sur cette feuille. La pièce a paru résister un instant — soixante débats demandent forcément quelque chose en amont — puis la critique sycophantique l'a renvoyée à sa nature : une mention d'usage, pas une trace de sophistication. Le prompt qui produit les débats existe peut-être quelque part, mais il n'est ni cité, ni discuté, ni itéré sous mes yeux. Sur cette seule feuille, je ne peux pas attester la compétence ; je peux seulement constater qu'elle pourrait s'écrire ailleurs.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "Au temps 2, la pièce est tombée pour récit performatif : la génération est annoncée mais le travail de prompt n'est ni cité, ni analysé.",
+        "prescription": "Pour rendre visible le pilotage des dialogues IA, l'apprenant pourrait, lors d'une prochaine génération massive, coller un extrait du prompt utilisé et une note d'une ou deux phrases sur ce qui a été ajusté entre deux essais. Le geste de citation suffit à transformer un usage en trace lisible."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de transfert de logique algorithmique hors de l'informatique. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a décomposé une situation non-technique en étapes conditionnelles, par exemple le déroulé d'un atelier ou d'un échange."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 1.10, la pièce décrit explicitement une division en deux étapes : l'IA génère, l'humain publie. Le geste de partition pourrait porter une synergie minimale.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 1.10 demande l'articulation explicite des forces comparatives — pourquoi l'IA fait mieux ceci, pourquoi l'humain garde cela. La phrase décrit une division du travail (générer / publier) mais ne dit pas pourquoi cette répartition a été retenue. Le \"je posterai ensuite\" pourrait être de la simple chronologie plutôt que de la synergie pensée. La pièce résiste faiblement parce que la partition est tout de même nommée, ce qui n'est pas rien — mais l'argument de complémentarité manque.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La pièce nomme explicitement deux acteurs et deux étapes, ce qui constitue un minimum de cadrage hybride, même sans articulation du pourquoi."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de reconnaître une partition IA/humain, mais à la relecture le marqueur central de 1.10 manque : l'articulation des forces comparatives. Dire que l'IA génère et que l'humain poste n'est pas dire pourquoi l'humain garde la publication — est-ce parce que Decidim demande un compte humain, parce que l'humain trie, parce qu'il contextualise ? Rien de cela n'est explicite. C'est de l'usage hybride, pas de la synergie articulée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Insuffisance probatoire : la pièce nomme la division du travail mais n'articule aucune force comparative ; le marqueur central de 1.10 (le pourquoi de la répartition) reste hors de la phrase."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la synergie hybride soit attestée ici. La pièce a résisté un instant parce que la partition IA/humain est lisible dans la phrase. Mais sous la présomption de sycophantie, elle est tombée : nommer une division n'est pas la même chose qu'articuler une complémentarité. Le critère de 1.10 — \"l'apprenant articule explicitement ce qu'il garde et pourquoi\" — n'est pas rempli par cette feuille. Une feuille suivante pourrait reprendre cette même division et y ajouter la phrase qui manque : \"je garde la publication parce que…\".",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Au temps 2, la pièce est tombée pour insuffisance probatoire : la division IA/humain est nommée mais le pourquoi de la répartition reste hors-feuille.",
+        "prescription": "Pour donner corps à la synergie hybride, l'apprenant pourrait, sur une prochaine étape du projet Decidim, ajouter une ligne expliquant ce qui revient à l'humain dans le workflow et ce que cette part apporte que l'IA ne pourrait pas fournir. Une phrase suffit à transformer une chronologie en arbitrage."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 3,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 19 février 2026, le pôle TÊTE n'apparaît pas en premier plan. Le texte est court — quelques phrases qui situent une journée de formation extérieure, un retour sur un projet et la délégation à l'IA d'une génération de soixante débats destinés à Decidim. Le travail cognitif est là en arrière-plan (finaliser des fichiers YAML demande du tri et de l'analyse), mais il ne se laisse pas observer en acte dans ce qui a été écrit. L'écriture reste à hauteur d'agenda, sans s'arrêter sur la mécanique de la pensée qui sous-tend les actes décrits.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Sept compétences du pôle restent sans trace sur cette feuille : la pensée critique en acte, le cadrage de l'intention, la synthèse intégrative, la métacognition, la pensée systémique, l'architecture de systèmes IA et la pensée computationnelle. Trois autres compétences — la littératie IA, le dialogue IA avancé et la synergie hybride — ont reçu des allusions, mais aucune n'a tenu sous la double présomption : la feuille décrit l'usage sans donner à voir la sophistication sous-jacente. Ces absences ressemblent moins à des choix qu'à une limite du format de la feuille, qui condense la journée en quelques lignes sans s'attarder sur les coulisses cognitives.",
+    "emergencesPole": "Une chose traverse pourtant ce texte bref : l'objet sur lequel travaille l'apprenant — un référentiel de compétences humaines post-AGI — suppose en arrière-plan une réflexion soutenue sur ce que l'IA peut et ne peut pas faire. Cette réflexion n'est pas mise en scène ici, mais elle est le tissu silencieux du projet. La feuille montre aussi une délégation à l'IA d'une tâche de génération massive — un geste qui pourrait s'inscrire dans une pensée hybride mature sans la rendre explicite.",
+    "pistes": [
+      "Pour donner à voir le pilotage des dialogues IA, un chemin possible serait de coller un extrait du prompt qui produit les soixante débats, accompagné d'une note brève sur ce qui a été ajusté entre les versions.",
+      "Pour rendre lisible l'arbitrage hybride sous-jacent à la délégation IA, un chemin possible serait de noter, en marge du workflow Decidim, ce qui reste à l'humain dans la chaîne et pourquoi cette part a été retenue.",
+      "Pour faire respirer la pensée critique en acte, un chemin possible serait de documenter sur une feuille suivante un moment où une sortie IA a été rejetée ou reformulée, avec le motif de la révision."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 19 février 2026, le pôle TÊTE n'apparaît pas en premier plan. Le texte est court — quelques phrases qui situent une journée de formation extérieure, un retour sur un projet et la délégation à l'IA d'une génération de soixante débats destinés à Decidim. Le travail cognitif est là en arrière-plan (finaliser des fichiers YAML demande du tri et de l'analyse), mais il ne se laisse pas observer en acte dans ce qui a été écrit. L'écriture reste à hauteur d'agenda, sans s'arrêter sur la mécanique de la pensée qui sous-tend les actes décrits.\n\n## Territoires les plus denses\n\nSur cette seule feuille, aucun territoire dense ne se laisse cartographier dans ce pôle. Les compétences pour lesquelles des allusions existaient — la littératie IA, le dialogue IA avancé, la synergie hybride — sont restées au stade de l'évocation, sans que la feuille en montre la profondeur. Le rapport revient sur ce point dans les sections suivantes plutôt que de remplir cette case par défaut.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSept compétences du pôle restent sans trace sur cette feuille : la pensée critique en acte, le cadrage de l'intention, la synthèse intégrative, la métacognition, la pensée systémique, l'architecture de systèmes IA et la pensée computationnelle. Trois autres compétences — la littératie IA, le dialogue IA avancé et la synergie hybride — ont reçu des allusions, mais aucune n'a tenu sous la double présomption : la feuille décrit l'usage sans donner à voir la sophistication sous-jacente. Ces absences ressemblent moins à des choix qu'à une limite du format de la feuille, qui condense la journée en quelques lignes sans s'attarder sur les coulisses cognitives.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse pourtant ce texte bref : l'objet sur lequel travaille l'apprenant — un référentiel de compétences humaines post-AGI — suppose en arrière-plan une réflexion soutenue sur ce que l'IA peut et ne peut pas faire. Cette réflexion n'est pas mise en scène ici, mais elle est le tissu silencieux du projet. La feuille montre aussi une délégation à l'IA d'une tâche de génération massive — un geste qui pourrait s'inscrire dans une pensée hybride mature sans la rendre explicite.\n\n## Pistes pour enrichir ce pôle\n\n- Pour donner à voir le pilotage des dialogues IA, un chemin possible serait de coller un extrait du prompt qui produit les soixante débats, accompagné d'une note brève sur ce qui a été ajusté entre les versions.\n- Pour rendre lisible l'arbitrage hybride sous-jacent à la délégation IA, un chemin possible serait de noter, en marge du workflow Decidim, ce qui reste à l'humain dans la chaîne et pourquoi cette part a été retenue.\n- Pour faire respirer la pensée critique en acte, un chemin possible serait de documenter sur une feuille suivante un moment où une sortie IA a été rejetée ou reformulée, avec le motif de la révision."
+  }
+}

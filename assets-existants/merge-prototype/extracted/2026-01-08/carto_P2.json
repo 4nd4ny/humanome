@@ -1,0 +1,458 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Pendant que Claude travaille, je me prépare pour un entretien d'embauche pour enseigner la bureautique en CFC à mi-temps dès juillet dans une école privée. Je suis toujours moyennement motivé, mais la formation professionnelle reste alignée avec ce que je pense qui est utile pour les élèves, contrairement au gymnase, donc ça devrait bien se passer. Je vais essayer de ne pas parler de mes idées et l'entretien. Si on me questionne sur Chamblandes, alors là ça risque de déraper. On verra.",
+      "contexte": "Préparation d'un entretien avec stratégie de retenue (« ne pas parler de mes idées ») et anticipation d'un point de tension (Chamblandes). Active possiblement 2.02 (communication, registres), 2.04 (influence, préparation), 2.07 (lecture organisationnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Nous avons déjà constaté avec Stéphane que la qualité des productions de Claude n'était pas constante.",
+      "contexte": "Co-observation partagée avec un pair nommé — communauté de pratique implicite autour de l'usage de l'IA. Active possiblement 2.09 (construction de communautés).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "C'est sympa de se dire que peut-être les futurs étudiants Respire pourront un jour lire ces pages pour comprendre comment j'ai généré les manuels, afin de créer une nouvelle version en s'inspirant de ces techniques ou en les améliorant.",
+      "contexte": "Projection affective vers une communauté future d'apprenants Respire — appartenance imaginée à un collectif qui se transmettrait des savoir-faire. Active possiblement 2.09 (construction de communautés).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Rappel : dédoubler les niveau c'est fait de manière naturelle, en affinant les compétences les plus utiles pour le système : générer de belles cartographie pour le Tuteur Praticien (suite logique des prises de conscience de la manière d'apprendre des Accompagnants), puis aider les élèves en difficultés avec la métacognition pour le Tuteur Expert chez qui nous introduisons les concepts de médiation cognitives (ce qui devrait être enseigné à l'HEFP/IFFP et la HEP et qui ne l'est pas), enfin, aide complète au développement de l'intelligence des élèves pour les aider à atteindre leur potentiel maximal pour le Maître Tuteur (idem : pas enseigné en formation d'enseignant).",
+      "contexte": "Pointage de lacunes systémiques de la formation des enseignants (HEFP/IFFP et HEP) — lecture institutionnelle qui localise un manque dans un système. Active possiblement 2.07 (lecture organisationnelle), 2.08 (traduction entre mondes — concepts cognitifs vers pédagogues).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "la formation professionnelle reste alignée avec ce que je pense qui est utile pour les élèves, contrairement au gymnase",
+      "contexte": "Distinction entre deux contextes institutionnels (formation pro vs gymnase) selon leur alignement avec les valeurs pédagogiques de l'apprenant. Active possiblement 2.06 (intelligence contextuelle), 2.07 (lecture organisationnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Je suis toujours moyennement motivé, mais la formation professionnelle reste alignée avec ce que je pense qui est utile pour les élèves",
+      "contexte": "Nomination émotionnelle modérée (« moyennement motivé ») mise en relation avec un alignement professionnel. Active possiblement 2.01 (intelligence émotionnelle — nomination calibrée).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "L'apprenant nomme son niveau de motivation avec une nuance précise (« moyennement ») et l'articule à un raisonnement sur l'alignement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 2.01 en supposant que la feuille porte essentiellement un travail technique d'élaboration de manuels, pas un travail émotionnel. La fiche est claire : ce qui distingue la compétence, c'est l'émotion comme information et levier, et le care actif. La pièce 1 nomme une émotion (« moyennement motivé ») mais ne la mobilise pas comme levier — elle la constate plutôt. Aucune nomination plus fine, aucun geste de care envers un tiers, aucune perception d'un état émotionnel d'autrui n'est présente sur cette feuille. La pièce pourrait tomber.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La nomination émotionnelle modérée (« moyennement motivé »), articulée à un raisonnement d'alignement, dépasse le simple « c'était dur » que la fiche cite comme contre-exemple." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surinterprété cette nomination. « Moyennement motivé » est une formule très commune, presque conversationnelle. Elle ne montre pas l'émotion comme information mobilisable, mais comme état constaté. Aucun travail réflexif ou régulateur ne s'attache à cette nomination. La fiche signale que la régulation délibérée est un marqueur — elle est absente ici.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La formule « moyennement motivé » reste à un niveau déclaratif sans devenir un levier d'action ni une information mobilisée. La nomination existe mais ne montre pas la compétence en acte au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de l'intelligence émotionnelle au sens de la fiche, j'attendais de ne rien trouver de robuste. Ce qui m'a brièvement retenu, c'est la modération de la nomination (« moyennement ») qui dépasse le « c'était dur » disqualifié. Mais l'attaque par récit performatif a tenu : la nomination reste conversationnelle, sans devenir un levier d'action ni une information mobilisée. Dans ce pôle, le travail du 8 janvier reste centré sur la production technique et ne montre pas, sur cette seule feuille, la palette qui caractérise la compétence — perception d'autrui, régulation délibérée, sollicitude active. Cela ne dit rien d'un territoire absent ailleurs ; c'est ce que cette feuille seule porte. Une piste consiste à documenter, lors d'une prochaine entrée, ce qui se passe émotionnellement pendant le travail d'élaboration ou lors d'une interaction avec un collègue.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La seule pièce a été disqualifiée par l'attaque du récit performatif : la nomination est présente mais reste déclarative, sans devenir levier ou information mobilisée.",
+        "prescription": "Cette feuille travaille essentiellement le territoire technique. Documenter ce qui se passe émotionnellement pendant un moment précis du travail — un blocage, une surprise positive, l'attente d'un entretien — et ce que cette émotion a déclenché ou orienté ouvrirait un dossier encore peu visité ici."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Stratégie explicite de retenue pour l'entretien (« je vais essayer de ne pas parler de mes idées ») avec anticipation d'un point qui « risque de déraper » — choix conscient de registre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 2.02 en supposant que l'évocation rapide de l'entretien n'est pas une trace de communication maîtrisée. La fiche distingue la communication comme expression vers l'autre avec choix délibéré du registre. La pièce 1 esquisse une intention de retenue mais ne décrit pas un dispositif communicationnel — pas de variation de registre dans le texte, pas de récit d'une prise de parole inconfortable accomplie, pas d'humour stratégique. C'est une anticipation, pas une trace d'exercice. Pourtant : nommer explicitement « essayer de ne pas parler de mes idées » et anticiper le point de bascule (Chamblandes) montre une conscience de l'effet du discours sur l'interlocuteur.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant nomme un filtre intentionnel (« ne pas parler de mes idées »), identifie un trigger relationnel précis (Chamblandes) et accepte l'incertitude (« on verra ») — la conscience du registre est articulée même si l'acte est à venir." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si cette anticipation n'est pas seulement une stratégie d'évitement plutôt qu'une trace de communication authentique. La fiche valorise les récits de prises de parole *inconfortables* accomplies — ici on est dans l'avant. Le « on verra » signale que la maîtrise est incertaine. La pièce reste un mouvement-vers, pas une trace d'exercice acquis.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant est en mouvement vers une communication calibrée mais le récit reste à l'avant — l'entretien n'a pas eu lieu. La conscience est présente, l'exercice n'est pas encore documenté."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de la communication authentique au sens de la fiche, je m'attendais à ne trouver qu'une mention banale d'un entretien. Ce qui m'a forcé à retenir quelque chose, c'est la précision avec laquelle l'apprenant nomme un filtre intentionnel et identifie un point de bascule potentiel. La présomption de sycophantie a affaibli cette pièce sans la disqualifier : elle dit le projet de calibrer son registre, sans encore raconter comment il a été tenu. Dans ce pôle, le travail montre une conscience de l'écart entre ce qu'on pense et ce qu'on choisit de partager, sans encore en livrer l'exercice. Une piste consiste à raconter, après coup, ce qui s'est joué effectivement dans l'entretien et comment la retenue a été tenue ou pas.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie subsiste mais la barème en cascade place ce résultat en deçà du seuil de présence établie (nombrePreuves ≥ 1 OU nombreIndices ≥ 2) : la trace anticipe sans accomplir.",
+        "prescription": "L'anticipation d'un entretien avec choix de retenue est dessinée. Documenter, après l'événement, comment l'intention a tenu ou a été ajustée en direct — ce qui a été dit ou tu — transformerait ce mouvement en exercice documenté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un désaccord a été tenu, structuré, ou laissé non-résolu de façon assumée."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Préparation d'un entretien avec choix stratégique de ce qui sera dit et tu — préparation d'une situation d'adhésion vers un employeur potentiel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 2.04 en supposant que l'apprenant n'est pas en train d'influencer mais simplement de passer un entretien. La fiche pose des marqueurs précis : préparation décrite avant proposition, identification des décideurs, reformulation des objections. La pièce 1 contient une intention de retenue mais pas une stratégie d'adhésion construite. Aucune anticipation des résistances de l'interlocuteur n'est présente, aucune proposition gagnant-gagnant. La trace est très mince. Pourtant : l'apprenant nomme un trigger (Chamblandes) qui suggère qu'il a identifié une zone à risque dans la lecture qu'on pourrait avoir de lui — c'est un fragment d'anticipation des résistances.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'identification d'un point de bascule potentiel (« si on me questionne sur Chamblandes, alors là ça risque de déraper ») est un fragment d'anticipation des résistances de l'interlocuteur." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si cette identification d'un trigger n'est pas plutôt de la lecture politique (2.07) que de l'influence (2.04). L'apprenant ne dit pas comment il compte gérer ce point, juste qu'il le reconnaît. Il n'y a aucune stratégie d'adhésion explicite, pas de reformulation des objections, pas de proposition gagnant-gagnant. La trace ne porte pas la charge.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce active mieux 2.07 (lecture organisationnelle, identification d'un trigger institutionnel) que 2.04 (influence). Le marqueur central de 2.04 — la stratégie d'adhésion construite — n'est pas présent."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que la feuille porte une trace d'influence au sens de la fiche, j'ai d'abord retenu l'identification d'un trigger pour l'entretien. Mais l'attaque par confusion de compétence a tenu : ce geste relève plutôt de la lecture politique que de la construction d'une stratégie d'adhésion. Aucun marqueur central de 2.04 — préparation des décideurs, anticipation des résistances avec contre-stratégie, propositions gagnant-gagnant — n'est documenté sur cette feuille. Dans ce pôle, le travail du 8 janvier reste sur le terrain de la production technique et de la lecture de contexte ; l'influence vers un tiers reste un territoire à part. Une piste consiste à documenter, lors d'une prochaine entrée, comment l'adhésion d'un interlocuteur a été cherchée — éventuellement le retour de l'entretien et la manière dont une question délicate a été déplacée vers du commun.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce qui avait résisté est tombée sous la confusion de compétence : le geste relève plutôt de la lecture organisationnelle que d'une stratégie d'adhésion construite.",
+        "prescription": "Le territoire de l'influence n'est pas encore visité sur cette feuille. Documenter, après une situation où il a fallu obtenir l'adhésion d'un interlocuteur — un employeur, un collègue, un décideur — ce qui a été préparé en amont et comment les objections probables ont été abordées ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant accepte de candidater à un poste alors qu'il est « moyennement motivé » et que sa vision pédagogique diffère probablement de celle de l'institution — collaboration avec un cadre qu'il n'épouse pas pleinement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 2.05 en supposant que cette feuille ne porte pas de collaboration divergente. La fiche pose un marqueur très précis : « on n'est toujours pas d'accord MAIS on a livré ». La pièce 1 décrit une motivation moyenne et un projet de retenue, mais pas une collaboration accomplie avec un partenaire dont la vision diffère. C'est une posture pré-collaboration, pas une trace de collaboration tenue. La compétence demande des résultats produits malgré le désaccord — ici rien n'est encore produit dans ce cadre. Aucune pièce ne semble résister.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a pas d'objet à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de la collaboration divergente au sens de la fiche, je n'ai trouvé qu'une posture pré-collaboration : une candidature avec motivation modérée et anticipation d'un point de tension. Le marqueur clé — « on n'est toujours pas d'accord MAIS on a livré » — n'est pas activé. Dans ce pôle, le travail du 8 janvier ne porte pas, sur cette seule feuille, de trace de production conjointe avec un partenaire aux visions divergentes. Une piste consiste à documenter, ailleurs dans le portfolio, des collaborations existantes (avec Stéphane par exemple, ou dans le cadre Respire) où un désaccord a persisté pendant une livraison.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté au temps 1 : la feuille décrit une posture pré-collaboration, pas une production tenue malgré un désaccord persistant.",
+        "prescription": "Le marqueur clé de cette compétence — livrer ensemble en gardant un désaccord — n'est pas porté par cette feuille. Documenter, lors d'une prochaine entrée, un moment où une collaboration a continué alors qu'un point de divergence n'avait pas été résolu, ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Distinction explicite entre l'environnement de la formation professionnelle et celui du gymnase selon l'alignement aux valeurs pédagogiques — lecture comparative de deux cultures institutionnelles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 2.06 en supposant que cette mention n'est pas une trace d'intelligence culturelle. La fiche valorise la *modification du comportement* avec *analyse du pourquoi*, ou les comparaisons entre systèmes de normes. La pièce 1 fait une comparaison brève entre deux contextes institutionnels mais reste à un niveau d'affinité personnelle (« aligné avec ce que je pense qui est utile »). Le récit ne décrit pas comment l'apprenant ajuste son comportement à ces cultures — il dit lequel lui convient. C'est de l'évaluation, pas de l'adaptation. Pourtant : nommer que la formation pro a sa logique propre, distincte du gymnase, est un fragment de lecture des normes partagées.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La distinction entre formation professionnelle et gymnase comme deux cultures pédagogiques différentes est un fragment de lecture comparative de cultures organisationnelles." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si ce fragment porte vraiment la compétence. La fiche exige une *analyse du pourquoi*, et ici l'apprenant énonce une préférence sans déplier la lecture culturelle. « La formation professionnelle reste alignée avec ce que je pense qui est utile pour les élèves » est une formule courte qui n'explore pas les normes du milieu. La pièce est insuffisante.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La comparaison entre formation pro et gymnase reste allusive, sans analyse des normes propres à chaque culture. La pièce annonce une lecture sans la livrer."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de l'intelligence culturelle au sens de la fiche, j'ai d'abord retenu la comparaison entre formation pro et gymnase. Mais l'attaque par insuffisance probatoire a tenu : la comparaison reste à un niveau de préférence sans analyse des cadres normatifs propres à chaque milieu. Dans ce pôle, le travail du 8 janvier nomme deux contextes pédagogiques différents sans encore explorer ce qui les distingue culturellement. Une piste consiste à documenter, sur une prochaine entrée, ce que les normes implicites d'une école privée de CFC sollicitent différemment de ce qu'attend un gymnase — comment on s'y prend, ce qu'on dit, ce qu'on ne dit pas.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La pièce qui avait résisté est tombée sous l'attaque d'insuffisance probatoire : la comparaison entre milieux est annoncée mais l'analyse culturelle n'est pas livrée.",
+        "prescription": "La distinction entre formation pro et gymnase est posée comme préférence. Déplier, lors d'une prochaine entrée, ce qui dans les normes implicites d'un milieu professionnel diffère de celles du gymnase — codes, attentes, ce qui se dit et ne se dit pas — transformerait cette préférence en lecture culturelle articulée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Pointage de lacunes systémiques dans la formation des enseignants (HEFP/IFFP et HEP) — lecture d'un blocage institutionnel structurel."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Anticipation d'un trigger institutionnel (« si on me questionne sur Chamblandes, alors là ça risque de déraper ») — lecture du potentiel de tension dans l'entretien."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Identification du gymnase comme institution non alignée avec ce que l'apprenant considère utile aux élèves — lecture d'un décalage entre culture officielle et conviction pédagogique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 2.07 en supposant que ces mentions ne sont pas une lecture politique articulée. La fiche est particulièrement vigilante : risque de paranoïa organisationnelle, ou d'analyse politique brillante mais fantasmée. La pièce 1 affirme que la médiation cognitive n'est pas enseignée dans deux institutions précises — mais c'est une revendication didactique, pas nécessairement une lecture du pouvoir. La pièce 2 anticipe un trigger sans dire qui décide ou pourquoi. La pièce 3 est une préférence présentée comme une critique du gymnase. Pourtant : nommer précisément deux institutions de formation et pointer ce qu'elles n'enseignent pas révèle une lecture du système plus articulée que la frustration brute. L'anticipation du trigger Chamblandes signale qu'un nœud institutionnel personnel a été identifié et pris en compte.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le pointage précis de ce qui manque à l'HEFP/IFFP et à la HEP est une lecture structurelle, pas une frustration générique." },
+            { "pieceId": 2, "motifResistance": "L'anticipation que « ça risque de déraper » sur Chamblandes signale qu'un nœud institutionnel a été identifié et est tenu en considération dans la stratégie." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si la pièce 1 n'est pas plus un manifeste pédagogique qu'une lecture organisationnelle. L'apprenant ne décrit pas *pourquoi* ces institutions n'enseignent pas la médiation cognitive — qui bloque, quels intérêts sont en jeu, quelles résistances structurelles. C'est une constatation de manque, pas une analyse causale du blocage. La pièce 2 est plus solide : l'identification du trigger reste un acte de lecture politique appliqué à une situation concrète. La pièce 3 est trop courte pour porter seule.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le pointage des manques institutionnels est précis mais l'analyse des causes structurelles (qui bloque, pourquoi) n'est pas dépliée. La pièce signale une lecture amorcée plus qu'achevée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'anticipation du trigger Chamblandes est implicite — l'apprenant pressent un nœud sans le décrire. La trace est réelle mais courte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte une lecture organisationnelle au sens de la fiche, je m'attendais à ne trouver que des revendications pédagogiques et des préférences. Ce qui m'a forcé à reconnaître autre chose, c'est le pointage précis de deux institutions et de leur lacune, doublé de l'anticipation d'un trigger institutionnel concret. La présomption de sycophantie a affaibli les deux pièces : la lecture des causes structurelles n'est pas dépliée, et l'anticipation du trigger reste allusive. Le verdict tient avec réserves. Dans ce pôle, le travail montre une lecture des écarts entre ce qu'une institution affiche et ce qu'elle fait — au niveau de la formation des enseignants comme au niveau de l'entretien à venir. La portée politique de cette lecture, et ses risques (paranoïa vs lucidité que la fiche signale), demandent à être étalonnés par des récits plus dépliés.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Les pièces ont toutes deux tenu affaiblies au temps 2 ; ensemble elles donnent un indice de lecture organisationnelle mais aucune ne déplie l'analyse causale demandée par la fiche.",
+        "prescription": "Le pointage de lacunes institutionnelles et l'anticipation de triggers signalent une lecture amorcée des écarts entre culture affichée et réalité. Documenter, lors d'une prochaine entrée, ce qui *bloque structurellement* l'enseignement de la médiation cognitive dans les HEP/HEFP — qui décide des programmes, quelles résistances ont déjà été observées — donnerait à cette lecture sa pleine articulation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Articulation entre concepts spécialisés (médiation cognitive, noésiologie) et le public d'enseignants en formation — projet de transposition d'un savoir didactique de recherche vers un savoir enseignable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 2.08 en supposant que la mention de la médiation cognitive et de la noésiologie n'est pas une trace de traduction entre mondes. La fiche est précise : il faut une transposition qui préserve le sens dans un autre registre, avec un test (l'expert d'origine reconnaîtrait-il son savoir ?). La pièce 1 mentionne ces concepts comme contenus à enseigner, sans montrer le travail de transposition lui-même. Le projet du manuel est annoncé, mais la traduction effective n'est pas livrée sur cette feuille. Pourtant : le découpage en niveaux (Praticien, Expert, Maître) avec des contenus progressivement spécialisés est *en soi* un acte de pontage entre la complexité du savoir source et la progressivité de réception du public.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La gradation Praticien/Expert/Maître/Grand-Maître structure une transposition progressive d'un savoir de recherche vers des publics de pédagogues, pas seulement une liste de contenus." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si cette gradation est une vraie traduction au sens de la fiche, ou une simple stratification pédagogique. Le test de la fiche est : « l'expert d'origine reconnaîtrait-il son savoir ? ». L'apprenant *est* l'expert d'origine ici (« mes travaux de recherche en didactique informatique »), donc le test devient circulaire. La traduction est annoncée comme projet mais pas livrée — on n'a pas l'analogie structurelle, pas l'exemple de transposition, juste l'architecture des niveaux.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La gradation en niveaux annonce un travail de transposition à venir mais n'en livre pas la matière sur cette feuille. L'apprenant est en mouvement vers la traduction, dont les manuels en cours d'élaboration seront la trace effective."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que la feuille porte une traduction entre mondes au sens de la fiche, je m'attendais à ne trouver que des mentions de contenus. Ce qui m'a forcé à reconnaître autre chose, c'est la structuration en niveaux pensée comme progression de transposition — d'un savoir de recherche vers des publics de pédagogues progressivement spécialisés. La présomption de sycophantie a affaibli cette pièce : le travail de transposition est en cours, dans les manuels en élaboration, plutôt que livré sur la feuille elle-même. Dans ce pôle, le travail montre l'architecture d'une traduction longue qui se déploie sur plusieurs supports, plus que la traduction elle-même. Une piste consiste à raconter, lors d'une prochaine entrée, un moment précis de transposition — comment un concept du chapitre s'est transformé en métaphore opérationnelle pour le Praticien, par exemple.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce affaiblie subsiste mais la confiance reste en deçà de 0.55 et la trace est un mouvement-vers la traduction plutôt qu'une traduction livrée sur cette feuille.",
+        "prescription": "La gradation Praticien/Expert/Maître annonce un travail de transposition que les manuels en cours portent. Documenter, lors d'une prochaine entrée, un moment précis où un concept spécialisé a été transposé pour un public de pédagogues — l'analogie trouvée, l'exemple choisi — rendrait cette traduction visible en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Projection affective vers les « futurs étudiants Respire » qui pourraient lire les pages, s'en inspirer, en faire de nouvelles versions — appartenance imaginée à une communauté de transmission."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Co-observation partagée avec Stéphane sur la qualité de Claude — pratique commune nommée comme telle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 2.09 en supposant que ces mentions ne portent pas de construction de communauté au sens fort. La fiche pose un critère discriminant : si le projet s'arrête, les gens continuent-ils à se voir ? La pièce 1 imagine des lecteurs futurs qui n'existent pas encore. La pièce 2 mentionne une observation partagée avec Stéphane mais ne décrit pas un rituel, un espace, un nous identitaire. Pourtant : la formule « les futurs étudiants Respire » utilise un nom collectif chargé — Respire est un dispositif communautaire dont l'apprenant se sent membre, pas un simple programme. L'usage du « nous » avec Stéphane (« nous avons constaté ») est un nous de pratique partagée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'expression « les futurs étudiants Respire » suppose une communauté nommée (Respire) à laquelle l'apprenant se sent appartenir et dont la continuité est imaginée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si « les futurs étudiants Respire » n'est pas plus une projection institutionnelle qu'une trace de construction de communauté. L'apprenant imagine une postérité mais ne décrit ni rituel, ni rencontre, ni vocabulaire propre à un groupe vivant. La fiche valorise les rituels partagés, le vocabulaire propre, les jeux de mots identitaires — rien de tout cela ici. La pièce 2, quand on la regarde de près, est un « nous » de constat empirique, pas un « nous » identitaire chargé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'évocation de futurs étudiants Respire reste une projection sans description de rituels, espaces ou vocabulaire identitaire propre. La trace existe en référence implicite à un collectif nommé, sans en livrer la matière."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de la construction de communauté au sens de la fiche, je m'attendais à ne trouver qu'une mention de Stéphane et une projection vague. Ce qui m'a brièvement retenu, c'est l'usage de l'expression « les futurs étudiants Respire » comme nom d'un collectif imaginé avec continuité. La présomption de sycophantie a affaibli cette pièce sans la disqualifier : le rattachement à Respire est implicite, le rituel ou le « nous » identitaire chargé d'émotion ne sont pas livrés. Dans ce pôle, le travail du 8 janvier touche au sentiment d'appartenance à une trajectoire collective sans documenter la communauté en acte. Une piste consiste à raconter, lors d'une prochaine entrée, un moment où l'appartenance à Respire s'est manifestée concrètement — un échange, un rituel, un mot partagé.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une seule pièce affaiblie subsiste ; la projection vers une communauté future existe mais les marqueurs vivants (rituel, vocabulaire propre, nous identitaire chargé) sont absents.",
+        "prescription": "Le sentiment d'appartenance à Respire est entrevu en filigrane. Documenter, lors d'une prochaine entrée, un moment vivant de cette communauté — une rencontre, un échange marquant, un mot que vous partagez — ferait basculer cette projection en trace incarnée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 7,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, la feuille du 8 janvier touche le relationnel par effleurements — un nom de collègue mentionné dans une observation partagée, des futurs lecteurs imaginés, un entretien d'embauche évoqué avec sa stratégie de retenue. Le centre de gravité de la journée est ailleurs : dans la fabrication de manuels. Quand le relationnel apparaît, c'est souvent sous forme d'anticipation (l'entretien à venir) ou de projection (les futurs étudiants Respire). Les pièces les plus consistantes touchent à la lecture des institutions — pointer ce qu'une école ne fait pas, anticiper où un échange risque de déraper — plutôt qu'à l'exercice direct du lien. Le « nous » apparaît une fois, avec Stéphane, dans un constat empirique partagé sur Claude. Le territoire du Cœur n'est pas absent, il est cité depuis le territoire de la Tête.",
+    "territoiresDenses": [
+      {
+        "competence": "Lecture des institutions et de leurs lacunes",
+        "description": "Pointage précis de ce qui manque à des institutions identifiées (HEP, HEFP/IFFP) et anticipation des nœuds potentiels d'un échange institutionnel à venir.",
+        "extraitVerbatim": "aider les élèves en difficultés avec la métacognition pour le Tuteur Expert chez qui nous introduisons les concepts de médiation cognitives (ce qui devrait être enseigné à l'HEFP/IFFP et la HEP et qui ne l'est pas)",
+        "ceQueCaDit": "Le travail nomme des lacunes structurelles avec précision plutôt que de les éprouver comme frustration générique. Dans ce pôle, c'est la trace la plus articulée — encore en deçà d'une analyse causale des blocages, mais déjà au-delà du constat brut."
+      }
+    ],
+    "territoiresNonVisites": "L'intelligence émotionnelle au sens de la fiche — perception fine des états d'autrui, régulation délibérée, sollicitude active — reste un territoire non visité sur cette feuille : la seule nomination émotionnelle (« moyennement motivé ») reste à un niveau conversationnel. La gestion des conflits et la collaboration divergente n'apparaissent pas ici, ce qui ressemble plus à une focalisation de la journée qu'à une absence de fond — le travail est centré sur la production. L'influence et la diplomatie sont effleurées par la préparation de l'entretien sans qu'une stratégie d'adhésion soit construite. La construction de communauté est entrevue par la projection vers les futurs étudiants Respire, sans documenter le quotidien vivant d'un collectif. La traduction entre mondes est annoncée par l'architecture des manuels mais n'est pas livrée en acte sur cette feuille.",
+    "emergencesPole": "Quelques fils traversent les compétences. D'abord, un goût pour les architectures de transmission — futurs lecteurs, manuels qui survivront au moment de leur écriture, structuration en niveaux pour des publics qu'on imagine sans les connaître encore. Ensuite, une lecture critique mais située des institutions — gymnase non aligné, HEP qui n'enseigne pas la médiation cognitive, Chamblandes comme nœud personnel — qui montre que la relation à l'organisationnel passe par une cartographie des manques. Enfin, la présence discrète mais répétée d'un collectif (Stéphane, Respire, futurs étudiants) qui suggère que l'identité de travail s'inscrit dans une trajectoire commune, sans encore que cette trajectoire soit décrite en acte.",
+    "pistes": [
+      "Pour enrichir la communication et l'influence, un chemin possible serait de revenir, après l'entretien, sur ce qui a été dit et tu — comment la retenue annoncée a tenu, ce qui s'est joué quand le sujet Chamblandes a (ou n'a pas) été abordé.",
+      "Pour enrichir la construction de communauté, un chemin possible serait de documenter un moment concret où l'appartenance à Respire ou à un autre collectif s'est manifestée — un échange marquant, un mot partagé, un rituel.",
+      "Pour enrichir la lecture organisationnelle, un chemin possible serait de déplier les causes structurelles qui font que la médiation cognitive n'est pas enseignée dans les HEP — qui décide des programmes, quelles résistances ont déjà été observées.",
+      "Pour enrichir la traduction entre mondes, un chemin possible serait de raconter un moment précis de transposition — comment un concept de recherche a trouvé son équivalent opérationnel pour un Praticien, quelle analogie ou quel exemple a fait passer le sens."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, la feuille du 8 janvier touche le relationnel par effleurements — un nom de collègue mentionné dans une observation partagée, des futurs lecteurs imaginés, un entretien d'embauche évoqué avec sa stratégie de retenue. Le centre de gravité de la journée est ailleurs : dans la fabrication de manuels. Quand le relationnel apparaît, c'est souvent sous forme d'anticipation (l'entretien à venir) ou de projection (les futurs étudiants Respire). Les pièces les plus consistantes touchent à la lecture des institutions — pointer ce qu'une école ne fait pas, anticiper où un échange risque de déraper — plutôt qu'à l'exercice direct du lien. Le « nous » apparaît une fois, avec Stéphane, dans un constat empirique partagé sur Claude. Le territoire du Cœur n'est pas absent, il est cité depuis le territoire de la Tête.\n\n## Territoires les plus denses\n\n**Lecture des institutions et de leurs lacunes.** Pointage précis de ce qui manque à des institutions identifiées (HEP, HEFP/IFFP) et anticipation des nœuds potentiels d'un échange institutionnel à venir.\n\n> « aider les élèves en difficultés avec la métacognition pour le Tuteur Expert chez qui nous introduisons les concepts de médiation cognitives (ce qui devrait être enseigné à l'HEFP/IFFP et la HEP et qui ne l'est pas) »\n\nLe travail nomme des lacunes structurelles avec précision plutôt que de les éprouver comme frustration générique. Dans ce pôle, c'est la trace la plus articulée — encore en deçà d'une analyse causale des blocages, mais déjà au-delà du constat brut.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'intelligence émotionnelle au sens de la fiche — perception fine des états d'autrui, régulation délibérée, sollicitude active — reste un territoire non visité sur cette feuille : la seule nomination émotionnelle (« moyennement motivé ») reste à un niveau conversationnel. La gestion des conflits et la collaboration divergente n'apparaissent pas ici, ce qui ressemble plus à une focalisation de la journée qu'à une absence de fond — le travail est centré sur la production. L'influence et la diplomatie sont effleurées par la préparation de l'entretien sans qu'une stratégie d'adhésion soit construite. La construction de communauté est entrevue par la projection vers les futurs étudiants Respire, sans documenter le quotidien vivant d'un collectif. La traduction entre mondes est annoncée par l'architecture des manuels mais n'est pas livrée en acte sur cette feuille.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nQuelques fils traversent les compétences. D'abord, un goût pour les architectures de transmission — futurs lecteurs, manuels qui survivront au moment de leur écriture, structuration en niveaux pour des publics qu'on imagine sans les connaître encore. Ensuite, une lecture critique mais située des institutions — gymnase non aligné, HEP qui n'enseigne pas la médiation cognitive, Chamblandes comme nœud personnel — qui montre que la relation à l'organisationnel passe par une cartographie des manques. Enfin, la présence discrète mais répétée d'un collectif (Stéphane, Respire, futurs étudiants) qui suggère que l'identité de travail s'inscrit dans une trajectoire commune, sans encore que cette trajectoire soit décrite en acte.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la communication et l'influence, un chemin possible serait de revenir, après l'entretien, sur ce qui a été dit et tu — comment la retenue annoncée a tenu, ce qui s'est joué quand le sujet Chamblandes a (ou n'a pas) été abordé.\n- Pour enrichir la construction de communauté, un chemin possible serait de documenter un moment concret où l'appartenance à Respire ou à un autre collectif s'est manifestée — un échange marquant, un mot partagé, un rituel.\n- Pour enrichir la lecture organisationnelle, un chemin possible serait de déplier les causes structurelles qui font que la médiation cognitive n'est pas enseignée dans les HEP — qui décide des programmes, quelles résistances ont déjà été observées.\n- Pour enrichir la traduction entre mondes, un chemin possible serait de raconter un moment précis de transposition — comment un concept de recherche a trouvé son équivalent opérationnel pour un Praticien, quelle analogie ou quel exemple a fait passer le sens.\n"
+  }
+}

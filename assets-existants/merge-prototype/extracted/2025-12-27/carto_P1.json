@@ -1,0 +1,728 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Le processus que j'ai utilisé a consisté à : uploader le manuel de méta-pédagogie de Christine Mayer dans Gémini, pour lui demander, sur la base d'une version markdown du site web, d'extraire du manuel un plan de formation pour les tuteurs. [...] Je lui ai ensuite demandé de rédiger pour chaque chapitre de chaque module, en le lui demandant un par un afin de ne pas saturer la fenêtre d'output, un prompt qui permettrait à une IA de générer le module. Je lui ai enfin demandé en lui partageant l'intégrale du site web, de faire une synthèse des documents pour accompagner chaque prompt par un contexte clair pour une nouvelle conversation.",
+      "contexte": "Pipeline en trois étapes avec Gemini pour générer des prompts de formation tuteurs (architecture multi-IA, dialogue avancé, cadrage).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail et que je me suis arrêté ici. Je travaille avec la version payante \"Ultra\" qui permet d'avoir accès au meilleur modèle grand public.",
+      "contexte": "Choix d'outil justifié par la compréhension des forces et faiblesses du modèle (hallucination vs fenêtre de contexte).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai ensuite récupéré le travail de Gemini et je l'ai soumis à Claude, en lui donnant cette fois-ci le narratif de Maya comme base, afin qu'il s'assure que les prompts soient bien alignés avec la manière d'apprendre des écoles Respire.",
+      "contexte": "Passage de relai entre deux IA avec rôles différenciés : Gemini pour le volume, Claude pour l'alignement pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai décidé de faire ça en parallèle, pour utiliser mes temps d'attente de réponse des IA pour faire travailler d'autres IA (ou parfois la même dans une nouvelle discussion) en parallèle et optimiser le faible volume d'heure disponible pour travailler.",
+      "contexte": "Description d'un workflow parallèle multi-sessions IA pour maximiser le temps de travail disponible.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je dois également faire une re-numérotation par rapport aux références qui ont été déplacées dans les autres chapitres. Je pourrais alors intégrer les dernières propositions de Claude sur les nouvelles références que je souhaite voir apparaître. Ou bien faire les deux à la fois, ce qui nécessitera d'avoir un temps continu de travail diurne, car je devrais charger dans ma mémoire de travail toutes les modifications partielles et en cours, qui ne résolveront qu'à la fin de la session : toute interruption serait fatale et nécessiterait de reprendre le travail depuis le début afin de ne pas générer des références brisées.",
+      "contexte": "Analyse cognitive du coût d'interruption : décrit explicitement la charge en mémoire de travail et les dépendances entre modifications.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Claude m'a donné une idée intéressante, c'est d'ajouter un 7e chapitre sur la documentation du processus de construction des agents IA : ça pourrait effectivement être intéressant que Stéphane décrive son architecture et pourquoi le fait de travailler avec un collègue d'experts IA \"éveillées à leur propre conscience\" devrait améliorer les feedbacks fournis aux élèves.",
+      "contexte": "Reprise d'une idée venue de Claude pour documenter une architecture multi-agents IA et justifier ses choix.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai réalisé en générant le CSS de la fonction d'impression du site (qui ne marche pas sur tous les navigateurs mobiles, mais ça je n'y peux rien hélas) que le site devient le manifeste des écoles : c'est comme un livre qui décrit le pourquoi du comment, et quis sert à documenter les idées autant que possible tout en gardant une structure légère pour le lecteur pressé.",
+      "contexte": "Reformulation rétrospective de la nature du site web en cours d'exécution technique : recadrage de l'objet.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je voudrais terminer mes notes d'aujourd'hui par une remarque sur le processus de construction de la formation des tuteurs : la technique que j'utilise ici n'est pas un mélange de prompt choral et de contexte engineering, c'est vraiment une approche très personnelle dans laquelle je mixe les techniques de prompt engineering que je connais pour créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question (rédige le chapitre de formation).",
+      "contexte": "Explicitation d'une technique personnelle de prompt engineering : nommer les techniques mobilisées et l'objectif (créer les bons tokens).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "En bref, j'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre qui va pouvoir amener les autres élèves à cette conscientisation.",
+      "contexte": "Articulation entre le façonnage du contexte IA et l'objectif pédagogique : le prompt comme dispositif didactique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Contrairement à quand je travaillais, je dis oui à tout le monde, ce qui fait qu'il ne me reste plus que les nuits pour poursuivre le travail de recherche que je faisais en tant qu'enseignant.",
+      "contexte": "Auto-observation d'un changement de comportement situé (chômage / dire oui / travail nocturne) avec ses effets en cascade.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je pourrais y inclure toutes les références bibliographiques sur le développement intellectuel des élèves, ce qui apporterait à notre école une orientation noèsiologue qui est effectivement sous-jacente à nos visions respectives à Stéphane et à moi, de ce qu'il est important de faire apprendre aux élèves.",
+      "contexte": "Synthèse entre une suggestion technique (chapitre 7), un corpus bibliographique et une orientation philosophique sous-jacente (noèsiologie).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention explicite de l'hallucination résiduelle de Gemini comme critère de choix d'outil, et auto-limitation (« je me suis arrêté ici »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence en partant du principe qu'elle n'est probablement pas attestée : le portfolio mentionne le mot « hallucine » mais peut-être seulement comme vocabulaire ambiant, sans véritable doute méthodique appliqué. La pièce 1 (pid 2) déclare que Gemini hallucine encore et qu'à cause de cela l'apprenant s'arrête à un point précis du pipeline. Cette pièce résiste parce qu'elle ne se contente pas de nommer l'hallucination : elle décrit une décision opérationnelle prise en fonction (s'arrêter avant la rédaction finale, déléguer la suite à Claude). Ce qui reste faible, c'est qu'il n'y a pas de récit de vérification concrète d'une hallucination identifiée — c'est plutôt une posture préventive générale.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant ne se contente pas de mentionner l'hallucination, il en tire une règle d'usage : arrêter Gemini au stade des prompts et basculer sur Claude pour l'étape sensible." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir la pièce 1 parce qu'elle articule un comportement à un risque IA nommé. Mais peut-être que je me suis laissé séduire par le simple usage du mot « hallucine ». L'attaque la plus pertinente ici est le glissement lexical : le vocabulaire est présent mais sans démonstration de la mécanique sous-jacente. L'apprenant ne décrit pas un cas d'hallucination détectée, juste un risque général anticipé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le mot « hallucine » apparaît, mais la pièce ne montre pas un cas vérifié de doute calibré sur un output spécifique ; elle reste à un niveau de précaution générale. Toutefois la décision opérationnelle (arrêter le pipeline à un stade donné) sauve la pièce d'une simple incantation lexicale."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette compétence, j'ai cherché à nier que le portfolio porte autre chose qu'un vocabulaire IA ambiant. Ce qui m'a forcé à reconnaître une trace, c'est que la mention de l'hallucination est couplée à une décision opérationnelle d'arrêt : l'apprenant utilise Gemini jusqu'à un point précis et confie la suite à un autre modèle. Sous la présomption de sycophantie, la pièce s'est affaiblie : il n'y a pas de cas concret d'hallucination détectée et corrigée dans cette feuille, seulement une posture préventive. Il en reste une trace réelle mais discrète : un doute méthodique routinisé plutôt qu'un doute méthodique mis en scène. La feuille du 27 décembre montre la posture en arrière-plan d'un workflow technique, ce qui ouvre la possibilité de la documenter plus frontalement dans une autre entrée. Une situation où la vérification d'un output suspect serait racontée pas à pas viendrait considérablement renforcer ce dossier.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la seule pièce sans la disqualifier : un seul indice corroboratif, pas de preuve décisive d'un doute calibré démontré en acte sur cette feuille.",
+        "prescription": "Pour épaissir ce territoire, un récit pas à pas d'une vérification ou d'un croisement de sources, avec le détail de ce qui a déclenché le doute et de la manière dont il a été tranché, viendrait donner à voir le doute méthodique en train d'opérer plutôt que sa version routinisée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Recadrage en cours d'exécution : ce qui devait être un site web s'avère être un manifeste, et l'apprenant le nomme."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Cadrage de la formation tuteurs : reformulation de l'objectif (faire passer les tuteurs du statut de récepteurs passifs à celui d'autonomes conscients)."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Articulation explicite : créer le contexte est lui-même la question préalable à « rédige le chapitre de formation »."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec la présomption que le portfolio raconte surtout une exécution, pas un cadrage. Trois pièces ont été extraites. La pièce 1 (pid 7) raconte une réalisation rétrospective : « le site devient le manifeste des écoles ». Cela ressemble à un constat plus qu'à un cadrage actif. La pièce 2 (pid 9) reformule l'objectif de la formation des tuteurs, ce qui est plus proche du cadrage. La pièce 3 (pid 8) est l'articulation la plus nette : créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question — le cadrage est explicitement identifié comme préalable à la formulation. Ce qui reste faible : la pièce 1 reste un constat, pas un acte de cadrage.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Reformulation explicite de l'objectif pédagogique, qui ne se contente pas d'organiser l'exécution mais redéfinit ce qu'il faut faire apprendre aux tuteurs." },
+            { "pieceId": 3, "motifResistance": "Distinction explicite entre la question terminale (« rédige le chapitre ») et le travail préparatoire de construction du contexte — c'est exactement la posture du cadrage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu deux pièces. Je les attaque maintenant. Pour la pièce 2 (pid 9), le risque est la surinterprétation pédagogique : ai-je lu un objectif pédagogique de surface comme un cadrage profond ? Pour la pièce 3 (pid 8), le risque est le récit performatif : l'apprenant peut décrire sa technique sans la mettre en acte ici. Pour la pièce 2, la reformulation est suffisamment substantielle pour tenir. Pour la pièce 3, l'articulation « créer les bons tokens pour pouvoir poser ma question » est une vraie distinction épistémique entre demande de surface et conditions de la demande.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce ne se contente pas d'énoncer un objectif vague : elle redéfinit la nature de ce que doit produire la formation (conscientisation de la manière d'apprendre). C'est un cadrage substantiel et non un objectif décoratif."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce raconte la technique plus qu'elle ne la montre en acte ; mais l'articulation entre construction du contexte et formulation de la question est un acte de cadrage en soi, qui justifie de la retenir."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir surtout de l'exécution. Ce qui m'a forcé à reconnaître autre chose, c'est la double articulation entre ce qui doit être produit (la conscientisation des tuteurs) et la manière dont l'apprenant prépare la demande à l'IA (créer les bons tokens avant de poser la question). Sous la présomption de sycophantie, la pièce 3 s'est affaiblie sans tomber, parce que le récit de la technique reste un récit, mais sa précision conceptuelle (distinguer la question des conditions de la question) sauve la pièce. Il reste un cadrage qui opère à deux niveaux dans cette feuille : un cadrage didactique sur la finalité de la formation, et un cadrage opératoire sur la fabrication du contexte qui précède la demande. Ce qui n'est pas encore documenté ici, c'est la trace d'un recadrage en cours de route — un moment où l'objectif initial aurait été révisé en pleine exécution. Le portrait gagnerait à inclure une telle bascule.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 3 a tenu sur deux pièces qui survivent à la sycophantie : une articulation substantielle entre finalité pédagogique et conditions de la demande à l'IA.",
+        "prescription": "Pour aller plus loin dans ce territoire, un récit qui rendrait visible un moment de recadrage en pleine exécution — un objectif révisé parce que le faire a révélé un mauvais angle — donnerait à voir le cadrage récursif en train d'opérer."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Croisement entre une idée venue de Claude, un corpus bibliographique et une orientation philosophique partagée avec Stéphane — production d'un insight (l'orientation noèsiologue) qui n'existait dans aucune source isolée."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Émergence d'une catégorie nouvelle (« le site devient le manifeste des écoles ») à partir de l'exécution d'une tâche technique (CSS d'impression)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : le portfolio peut décrire des accumulations de matériaux sans synthèse réelle. La pièce 1 (pid 11) connecte une idée IA, un corpus bibliographique et une orientation philosophique sous-jacente (noèsiologie) ; c'est une fusion plutôt qu'un empilement. La pièce 2 (pid 7) nomme un objet (le manifeste) que la fabrication technique a fait émerger — c'est une synthèse rétrospective qui apparaît sous la forme d'une réalisation. Ce qui pourrait tomber : peut-être que la pièce 2 est trop allusive pour porter le poids d'une synthèse.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La connexion entre architecture IA, bibliographie sur le développement intellectuel et orientation noèsiologue produit une catégorie qui n'existait dans aucune source isolée." },
+            { "pieceId": 2, "motifResistance": "L'apprenant transforme un constat technique (CSS d'impression) en redéfinition du statut de l'objet (le site devient un manifeste) — c'est un insight émergent." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis maintenant ces deux pièces avec méfiance envers ma propre lecture. Pour la pièce 1, le risque est la surinterprétation : ai-je projeté une synthèse là où il y a une simple juxtaposition de thèmes ? Pour la pièce 2, le risque est l'insuffisance probatoire : une phrase isolée suffit-elle à porter un acte de synthèse ? La pièce 1 tient parce que les trois ingrédients (idée IA, bibliographie, noèsiologie) sont nommés et que leur articulation produit une orientation conceptuelle nouvelle. La pièce 2 s'affaiblit : elle est saisissante mais brève, et la « synthèse » qu'elle opère est plus métaphorique qu'argumentée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les trois éléments mis en relation sont identifiés explicitement et leur articulation produit une catégorie (« orientation noèsiologue ») qui n'est dans aucun des trois pris isolément. La synthèse est argumentée, pas projetée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est courte et l'insight est posé plus que développé. Elle reste retenue parce que la transformation d'objet (site → manifeste) est nette et nommée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir de l'empilement plus que de la fusion. Ce qui m'a forcé à reconnaître autre chose, c'est la pièce qui articule explicitement trois sources hétérogènes (suggestion IA, bibliographie, orientation philosophique) pour produire une catégorie absente dans chacune prise isolément. Sous la présomption de sycophantie, la pièce 2 s'est affaiblie parce qu'elle reste à l'état d'illumination brève, mais elle reste comme indice de la même opération en miniature. Il en résulte un dossier où la synthèse intégrative est visible une fois pleinement et une fois en germe. Ce qui n'apparaît pas dans cette feuille, c'est la trace du chemin d'élaboration — comment l'idée a pris forme, quelles tentatives ratées, quels chevauchements progressifs.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 3 a tenu sur la pièce 1, qui montre une synthèse argumentée entre trois sources hétérogènes, corroborée par la pièce 2 affaiblie mais retenue.",
+        "prescription": "Pour épaissir ce territoire, un récit du chemin d'élaboration d'une synthèse — les fragments avant qu'ils se rejoignent, les détours, le moment où la connexion se fait — viendrait donner à voir le processus de fusion plutôt que son résultat."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Analyse explicite du fonctionnement de sa propre mémoire de travail face à un travail à dépendances multiples — la métacognition prend pour objet le processus cognitif lui-même."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Auto-observation calibrée d'un changement de comportement (dire oui à tout le monde) et de ses conséquences sur le temps de recherche disponible."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : un journal d'apprentissage produit naturellement des réflexions personnelles qui ressemblent à de la métacognition sans en être. La pièce 1 (pid 5) prend pour objet la mémoire de travail elle-même : l'apprenant explique pourquoi le travail doit se faire en continu et pourquoi une interruption serait fatale, parce que toutes les modifications partielles doivent rester chargées en mémoire de travail. C'est exactement un cas où l'objet de la réflexion est le processus cognitif. La pièce 2 (pid 10) est une auto-observation située : un changement de comportement nommé et relié à ses effets temporels. Ce qui reste faible : la pièce 2 pourrait n'être qu'un bilan, pas une métacognition.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant ne raconte pas seulement un travail difficile : il décrit la mécanique cognitive (charge en mémoire de travail, dépendances, fragilité à l'interruption) qui le rend tel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir la pièce 1. Je l'attaque maintenant pour vérifier que je ne projette pas de la métacognition là où il y a une simple description fonctionnelle. Le risque le plus pertinent est le glissement lexical : l'expression « mémoire de travail » est utilisée, mais avec quelle charge sémantique ? La pièce tient parce qu'autour de l'expression, le mécanisme est décrit : modifications partielles, résolution finale, fatalité de l'interruption, nécessité d'un temps continu. La compréhension causale est présente.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le terme technique « mémoire de travail » est accompagné de sa mécanique : pourquoi une interruption serait fatale, pourquoi un travail continu est nécessaire. La charge sémantique est là, pas seulement le mot."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un journal qui réfléchit, pas un journal qui s'observe penser. Ce qui m'a forcé à reconnaître la métacognition, c'est la description explicite de la mémoire de travail comme contrainte opératoire du travail à faire — l'apprenant prend pour objet sa propre architecture cognitive et en tire des règles d'organisation. Sous la présomption de sycophantie, la pièce a tenu : la charge sémantique du vocabulaire est étayée par la description du mécanisme. Il reste un dossier où la métacognition s'exprime sous une forme particulière — l'analyse fonctionnelle de ses propres conditions de pensée plutôt que la réflexion sur ses biais ou ses stratégies. Cette feuille montre une forme robuste, qui mériterait d'être complétée par d'autres formes (par exemple le tag explicite [META], la comparaison de méthodes anciennes et nouvelles, ou la calibration de zones d'ignorance).",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Le temps 3 a tenu sur la pièce 1, qui décrit la mémoire de travail comme objet propre et en tire une règle d'organisation — métacognition fonctionnelle attestée.",
+        "prescription": "Pour étoffer ce territoire, un récit qui prendrait pour objet une stratégie cognitive utilisée puis remise en cause, ou la comparaison explicite d'une ancienne et d'une nouvelle manière de travailler, donnerait à voir d'autres facettes du même mouvement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Le passage décrit une chaîne de dépendances entre modifications partielles dont la rupture en cours produit des « références brisées » — modélisation systémique implicite."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Boucle situationnelle : chômage → dire oui à tout le monde → plus de temps que les nuits → moins de temps pour la recherche d'enseignant. Effet en cascade nommé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la pensée systémique est souvent confondue avec le simple constat de complexité. La pièce 1 (pid 5) décrit un système de dépendances entre modifications partielles, où une interruption produit des références brisées — c'est une modélisation, pas un constat. La pièce 2 (pid 10) nomme une cascade entre situation sociale (chômage), comportement (dire oui), et conséquence (travail nocturne). Ce qui reste faible : aucune des deux pièces n'utilise le vocabulaire systémique formel (boucle, levier, rétroaction).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La description identifie quels liens (dépendances entre modifications), dans quelle direction (cumul partiel jusqu'à résolution finale), avec quels effets (interruption = références brisées) — c'est précisément le critère de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je retiens la pièce 1. Je l'attaque maintenant pour vérifier que je ne charge pas indûment une description fonctionnelle d'un sens systémique. Le risque dominant est la confusion de compétence : peut-être que cette pièce relève davantage de la planification (7.07) que de la pensée systémique. L'argument qui sauve la pièce 1 : l'apprenant ne planifie pas, il décrit pourquoi le système se brise sous certaines conditions — c'est une analyse causale du mécanisme, pas une organisation de tâches. La pièce 2 reste comme indice mais elle est plus narrative que modélisatrice.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La frontière avec la planification (7.07) est mince, mais la pièce reste systémique parce qu'elle décrit un mécanisme causal d'effondrement plutôt qu'une organisation de tâches. La nuance est fine, d'où l'affaiblissement."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir des constats de complexité plutôt qu'une modélisation. Ce qui m'a forcé à reconnaître la pensée systémique, c'est la description précise d'un mécanisme : telles modifications, telles dépendances, telle conséquence en cas d'interruption. Sous la présomption de sycophantie, la pièce s'est affaiblie parce que la frontière avec la planification organisationnelle est ténue, mais elle a tenu : l'apprenant modélise pourquoi le système se brise, pas comment l'organiser. Il en résulte une trace réelle mais singulière, attestée sur un cas précis (la cohérence des références bibliographiques) et complétée par une cascade situationnelle plus narrative. Le territoire gagnerait à être documenté sur d'autres systèmes — pédagogique, relationnel, technique — pour rendre lisible la transférabilité de cette manière de modéliser.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.55,
+        "motif": "Le temps 3 a tenu sur la pièce 1, qui décrit un mécanisme causal et non une simple complexité, tout en restant fragile sur la frontière avec la planification.",
+        "prescription": "Pour épaissir ce territoire, un récit qui modélise un autre système — pédagogique, relationnel, ou IA multi-agents — en identifiant les boucles, les points de levier et les effets de second ordre, donnerait à voir la transférabilité de cette manière de penser."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant cite explicitement la « fenêtre d'output » comme contrainte qui justifie de demander un prompt par chapitre plutôt que tous d'un coup."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Caractérisation de Gemini par sa fenêtre de travail énorme et son hallucination résiduelle — distinction entre types de comportement IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : l'apprenant peut connaître le vocabulaire IA sans en avoir la compréhension causale. La pièce 1 (pid 1) cite la fenêtre d'output comme contrainte qui guide la stratégie (demander chapitre par chapitre). C'est une compréhension du mécanisme. La pièce 2 (pid 2) distingue deux dimensions d'un modèle (fenêtre / hallucination) et justifie un choix d'usage en conséquence. Ce qui reste faible : la pièce 2 reste à un niveau utilitaire, ce n'est pas une analyse profonde des mécanismes.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La fenêtre d'output est citée non comme jargon mais comme contrainte concrète qui détermine la stratégie d'interaction (un prompt par chapitre)." },
+            { "pieceId": 2, "motifResistance": "L'apprenant distingue explicitement la fenêtre de contexte et l'hallucination, et oriente l'usage en fonction des forces du modèle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. Je les attaque pour vérifier qu'il ne s'agit pas de vocabulaire ambiant. Le risque dominant est le glissement lexical pour la pièce 2 : les mots « fenêtre » et « hallucine » apparaissent, mais avec quelle compréhension du mécanisme ? La pièce 1 tient parce qu'elle décrit le mécanisme en acte (« afin de ne pas saturer la fenêtre d'output ») — c'est une raison causale, pas une décoration. La pièce 2 s'affaiblit parce qu'elle juxtapose les notions sans expliquer pourquoi un grand modèle hallucine ou pourquoi la fenêtre est différente du contexte d'entrée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La fenêtre d'output est citée avec sa fonction causale : la saturer dégrade l'output, donc on fragmente. La charge sémantique est présente."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les deux notions sont nommées mais leur mécanique n'est pas dépliée. La pièce reste retenue comme indice corroboratif parce que la distinction opérationnelle entre les deux dimensions est faite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à n'y voir que du vocabulaire ambiant. Ce qui m'a forcé à reconnaître une littératie IA, c'est la pièce 1 où la fenêtre d'output est citée non comme jargon mais comme contrainte qui modifie concrètement la stratégie d'interaction. Sous la présomption de sycophantie, la pièce 2 s'est affaiblie parce que les notions sont nommées sans être dépliées, mais elle reste utile comme indice du même mouvement. Il en résulte un dossier où la compréhension causale est présente au moins sur un point précis (fragmenter pour ne pas saturer l'output), et où la distinction entre dimensions du modèle (fenêtre / hallucination) est faite sans être théorisée. Le territoire gagnerait à inclure une analyse plus profonde d'un comportement IA observé : une hypothèse mécanique pour expliquer un échec, par exemple.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 3 a tenu sur la pièce 1 (mécanisme causal cité), corroborée par la pièce 2 affaiblie mais retenue.",
+        "prescription": "Pour aller plus loin dans ce territoire, un récit qui formulerait une hypothèse mécanique pour expliquer un comportement IA observé — pourquoi telle erreur, pourquoi tel oubli, pourquoi tel succès — donnerait à voir la littératie au-delà du vocabulaire en usage."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Pipeline en plusieurs étapes : upload du manuel → extraction d'un plan → génération de prompts par chapitre → synthèse de contexte par prompt. Composants et flux décrits."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Passage de relai entre Gemini et Claude avec un rôle spécifique pour Claude (alignement avec le narratif de Maya) — chaque IA tient un rôle dans l'architecture."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Parallélisation explicite de sessions IA pour optimiser un temps contraint — orchestration de sessions multiples."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Mention de l'architecture des agents IA de Stéphane à documenter dans un futur chapitre 7 — réflexion sur l'architecture comme objet de documentation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : utiliser plusieurs IA ne suffit pas à faire de l'architecture. Le critère de la fiche est que quelqu'un d'autre pourrait comprendre et maintenir le système. La pièce 1 (pid 1) décrit un pipeline avec rôles, étapes et flux ; la pièce 2 (pid 3) explicite le rôle attribué à Claude (alignement pédagogique) ; la pièce 3 (pid 4) décrit l'orchestration parallèle de sessions ; la pièce 4 (pid 6) reconnaît l'architecture comme objet à documenter. Ce qui reste faible : aucune pièce ne décrit de mécanisme de monitoring, de fallback ou de règle de routing formalisée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le pipeline est décrit avec étapes nommées, justifications (fragmentation pour ne pas saturer la fenêtre), et flux entre composants." },
+            { "pieceId": 2, "motifResistance": "Le passage de relai donne à chaque IA un rôle différent (Gemini pour le volume, Claude pour l'alignement), ce qui est la définition même d'une architecture multi-IA." },
+            { "pieceId": 4, "motifResistance": "L'apprenant identifie explicitement l'architecture comme objet de documentation à part entière, ce qui est la posture d'architecte." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces trois pièces avec méfiance. Le risque dominant est la confusion entre architecture (1.07) et dialogue avancé (1.08) : la fiche est explicite, 1.07 = conception technique avec output de l'un alimentant l'input de l'autre, 1.08 = sophistication d'un prompt isolé. La pièce 1 décrit un flux entre composants — c'est 1.07. La pièce 2 décrit un passage de relai avec rôles différenciés — c'est 1.07. La pièce 4 parle d'architecture des agents — c'est 1.07. La pièce 3 est plus ambiguë : c'est une orchestration temporelle, pas un flux. Elle s'affaiblit.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le pipeline décrit clairement un système où l'output d'une étape (plan extrait) devient l'input de la suivante (prompts par chapitre) puis de la troisième (synthèse de contexte). C'est exactement la conception technique visée par la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le rôle attribué à Claude (alignement avec le narratif de Maya) est distinct du rôle attribué à Gemini (extraction et rédaction en volume). C'est un routing par compétence du modèle, qui relève de l'architecture."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce parle de documenter l'architecture mais ne décrit pas une architecture conçue par l'apprenant — elle reste comme indice du fait qu'il pense en termes d'architecture."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un simple usage de plusieurs IA. Ce qui m'a forcé à reconnaître une architecture, c'est que les pièces décrivent un pipeline avec étapes nommées, flux entre composants, rôles différenciés par modèle, et justifications techniques pour chaque choix. Sous la présomption de sycophantie, la pièce 4 s'est affaiblie parce qu'elle parle d'une architecture extérieure à documenter, mais elle reste comme indice de la posture d'architecte. Il en résulte un dossier solide : le pipeline Gemini → Claude avec rôles distincts est un cas d'école de conception multi-IA. Ce qui n'apparaît pas encore dans cette feuille, c'est la description des mécanismes de monitoring ou de fallback — ce qui se passe quand une étape échoue, ce qui est récupérable. Une feuille future pourrait documenter ce point.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 3 a tenu sur deux pièces décrivant un pipeline IA avec rôles différenciés et flux entre composants — la définition même de l'architecture multi-IA selon la fiche.",
+        "prescription": "Pour épaissir ce territoire, un récit qui décrirait les mécanismes de récupération ou de contrôle dans un pipeline IA — ce qui se passe quand une étape échoue, comment l'erreur est détectée, comment on retombe sur ses pieds — viendrait compléter le tableau architectural déjà dessiné."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Nommage explicite de la technique : mixer prompt engineering et création de tokens pour construire le contexte, en distinguant cela du « prompt choral » et du « contexte engineering »."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Articulation du « façonnage des prompts selon la méthode didactique » — le prompt est explicitement pensé comme dispositif didactique."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Stratégie d'itération : demander chapitre par chapitre pour ne pas saturer l'output, puis joindre la synthèse comme contexte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : parler de prompt engineering ne suffit pas à le pratiquer. La pièce 1 (pid 8) nomme explicitement plusieurs techniques (prompt choral, contexte engineering) et explique ce qui se passe à la racine (créer les bons tokens pour poser la question). La pièce 2 (pid 9) articule la méthode didactique au façonnage du prompt. La pièce 3 (pid 1) montre une itération raisonnée : fragmenter pour préserver la qualité de l'output. Ce qui reste faible : aucune pièce ne décrit du méta-prompting récursif ni de rôles différenciés (AVOCAT, CHASSEUR).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant ne se contente pas de prompter : il nomme et compare des techniques (prompt choral, contexte engineering) et identifie sa propre méthode comme une combinaison." },
+            { "pieceId": 2, "motifResistance": "Le prompt est explicitement pensé comme un dispositif didactique, ce qui est une forme avancée de conscience de l'effet du prompt sur le comportement de l'IA." },
+            { "pieceId": 3, "motifResistance": "L'itération est justifiée par une compréhension du mécanisme (saturation de l'output) et adaptée en conséquence." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces trois pièces avec méfiance. Le risque dominant est le récit performatif : l'apprenant raconte sa technique sans la montrer en acte. Pour la pièce 1, la technique est nommée mais l'extrait n'en montre pas l'exécution dans la feuille. La pièce 2 articule un principe mais ne contient pas le prompt façonné lui-même. La pièce 3 est plus concrète : la stratégie d'itération (chapitre par chapitre) est exécutée dans le récit, pas seulement décrite. La frontière avec 1.07 (architecture) est ténue mais distincte ici : on parle de la fabrique du prompt, pas du flux entre composants.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La technique est nommée et conceptualisée mais l'exécution n'est pas montrée dans la feuille. La distinction entre prompt choral, contexte engineering et la méthode personnelle reste un acte de conceptualisation valide."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le principe (façonner les prompts selon la méthode didactique) est articulé mais le prompt façonné lui-même n'apparaît pas. L'articulation conceptuelle entre prompt et didactique justifie de retenir la pièce."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'itération est exécutée dans le récit : un prompt par chapitre, avec une justification technique. La pièce porte une trace d'exercice, pas seulement un récit."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un récit de techniques sans pratique. Ce qui m'a forcé à reconnaître la compétence, c'est la conjonction de trois éléments : un vocabulaire technique précis avec distinction entre techniques voisines, une articulation entre prompt et méthode didactique, et une stratégie d'itération exécutée avec justification mécanique. Sous la présomption de sycophantie, les pièces 1 et 2 se sont affaiblies parce qu'elles racontent plus qu'elles ne montrent, mais la pièce 3 a tenu pleinement. Il en résulte un dossier où la sophistication du prompting est attestée à un niveau conceptuel élevé, et exécutée concrètement sur la dimension itérative. Ce qui n'apparaît pas dans cette feuille, c'est une trace de méta-prompting récursif ou de mise en scène de rôles différenciés dans un même dialogue.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.68,
+        "motif": "Le temps 3 a tenu sur la pièce 3 (itération exécutée et justifiée) et sur deux indices conceptuels qui montrent une conscience explicite de l'effet du prompt.",
+        "prescription": "Pour approfondir ce territoire, un récit qui rendrait visible le prompt lui-même — son texte, ses itérations successives, ce qui change à chaque réécriture — donnerait à voir la technique en acte, au-delà de sa conceptualisation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Description du travail comme une transaction de modifications partielles qui doivent toutes être présentes pour résoudre — analogie avec une opération atomique sans le nommer."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Parallélisation des tâches IA pour utiliser les temps d'attente — transfert de pensée parallèle algorithmique à l'organisation du travail."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : le critère discriminant est le transfert de logique algorithmique hors-informatique. L'apprenant manipule de l'IA et du code, mais ce n'est pas le critère. La pièce 1 (pid 5) décrit son travail bibliographique comme un système où les modifications partielles ne résolvent qu'à la fin — c'est exactement le pattern d'une transaction atomique appliqué à un travail intellectuel. La pièce 2 (pid 4) décrit la parallélisation de sessions IA, appliquée à une contrainte de temps personnelle — c'est un transfert de pattern algorithmique (parallel processing). Ce qui reste faible : aucune des pièces ne nomme explicitement le transfert.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La structure « modifications partielles qui ne résolvent qu'à la fin, interruption fatale » applique un pattern de transaction algorithmique à un travail bibliographique non-technique." },
+            { "pieceId": 2, "motifResistance": "La parallélisation des sessions IA pour utiliser les temps d'attente est un transfert direct du pattern de parallel processing à l'organisation du temps personnel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces avec méfiance. Le risque dominant est la surinterprétation pédagogique : ai-je chargé ces pièces du concept de transfert algorithmique parce que je voulais le voir ? La pièce 1 tient si on accepte que « toute interruption serait fatale et nécessiterait de reprendre le travail depuis le début » est bien une formulation transactionnelle, ce qui paraît robuste. La pièce 2 est plus fragile : la parallélisation peut être simplement de la gestion du temps multitâche, sans qu'un transfert algorithmique soit en jeu. Elle s'affaiblit.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'analogie transactionnelle n'est pas nommée par l'apprenant, c'est moi qui la lis. Mais la structure « tout ou rien, rollback complet en cas d'interruption » est bien là et correspond précisément à une transaction. La pièce reste comme indice."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La parallélisation de tâches en temps d'attente est commune sans pour autant traduire un transfert de pensée algorithmique. La pièce ne franchit pas le seuil du critère discriminant de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à n'y voir que de la gestion du temps, pas du transfert algorithmique. Ce qui m'a forcé à reconnaître une trace, c'est la pièce 1 où la structure du travail (modifications partielles, résolution finale, interruption fatale) est exactement un pattern de transaction atomique, même si l'apprenant ne le nomme pas. Sous la présomption de sycophantie, la pièce 1 s'est affaiblie parce que le transfert n'est pas explicitement reconnu par l'apprenant, et la pièce 2 a été disqualifiée parce que la parallélisation peut s'expliquer sans transfert algorithmique. Il en résulte un dossier mince mais réel : une trace oblique de pensée computationnelle appliquée à un travail intellectuel, sans que l'apprenant en nomme la mécanique. Le territoire gagnerait à être documenté par un cas où l'apprenant nomme explicitement le pattern algorithmique qu'il transfère.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Le temps 2 a affaibli une pièce et disqualifié l'autre ; ne reste qu'un indice oblique non nommé par l'apprenant, ce qui justifie le renvoi plutôt que la présence établie.",
+        "prescription": "Pour ouvrir ce dossier, un récit qui nommerait explicitement un pattern algorithmique transféré à un problème non-technique — un arbre de décision pour un choix de vie, un debugging mental d'une méthode de travail, une structure conditionnelle appliquée à une situation pédagogique — donnerait à voir le transfert que la fiche exige."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Articulation explicite des rôles : Gemini pour l'extraction et la rédaction en volume, Claude pour l'alignement pédagogique avec le narratif de Maya."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Justification du choix d'outil par ses forces et faiblesses comparatives (fenêtre énorme vs hallucination résiduelle)."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "L'apprenant garde pour lui le façonnage des prompts selon la méthode didactique, ce qui relève d'un travail proprement humain qu'il ne délègue pas à l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : utiliser l'IA n'est pas faire de la synergie. Le critère est l'articulation explicite des forces comparatives. La pièce 1 (pid 3) attribue à Claude un rôle spécifique (alignement) que Gemini ne fait pas, et à Gemini un rôle (volume) que Claude n'a pas dans ce pipeline. La pièce 2 (pid 2) justifie le choix de Gemini par une force comparative explicite (fenêtre de travail énorme) et reconnaît sa faiblesse (hallucination). La pièce 3 (pid 9) reste implicite sur la complémentarité humain/IA mais montre l'apprenant gardant un travail (le façonnage didactique du prompt). Ce qui reste faible : la pièce 3 n'explicite pas ce qu'elle garde et pourquoi.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant articule un partage des tâches entre deux IA en fonction de leurs forces respectives — c'est exactement le critère de la fiche pour la synergie." },
+            { "pieceId": 2, "motifResistance": "Le choix d'outil est explicitement justifié par une analyse des forces comparatives, pas seulement par un usage opportuniste." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces avec méfiance. Le risque dominant est la confusion de compétence : la fiche 1.10 distingue la synergie de l'architecture (1.07). Le critère de 1.10 est l'articulation des forces comparatives, pas le simple flux entre composants. La pièce 1 articule à la fois un flux (1.07) et une raison comparative (1.10 : Gemini pour le volume, Claude pour l'alignement). La double attribution est valide, mais ici la pièce porte davantage l'angle synergique. La pièce 2 est clairement synergique : c'est une analyse des forces de Gemini.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est partagée avec 1.07 mais l'articulation explicite des forces comparatives (volume vs alignement) la rend pertinente pour 1.10. L'angle synergique tient sans dominer."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce est explicitement comparative : grande fenêtre comme force, hallucination comme faiblesse, et un usage qui s'arrête là où la faiblesse commence à coûter. C'est de la synergie articulée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un simple usage d'outils. Ce qui m'a forcé à reconnaître la synergie, c'est l'articulation explicite des forces comparatives : Gemini pour la fenêtre énorme malgré l'hallucination, Claude pour l'alignement pédagogique, l'humain pour le façonnage didactique du prompt. Sous la présomption de sycophantie, la pièce 1 s'est affaiblie parce qu'elle se partage avec l'architecture, mais l'angle synergique tient. La pièce 2 a tenu pleinement : c'est une analyse comparative en bonne et due forme. Il en résulte un dossier consistant où la complémentarité IA/IA est bien articulée. Ce qui n'apparaît pas pleinement, c'est l'articulation symétrique de ce que l'humain fait mieux et pourquoi — la pièce 3 le suggère sans l'expliciter. Une feuille où la valeur irremplaçable de l'humain serait nommée donnerait au dossier sa face manquante.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 3 a tenu sur deux pièces qui articulent explicitement les forces comparatives entre modèles IA, satisfaisant le critère discriminant de la fiche.",
+        "prescription": "Pour compléter ce territoire, un récit qui articulerait explicitement ce que l'humain garde pour lui et pourquoi — ce que l'IA ne peut pas voir, ce que l'humain fait mieux — donnerait à la complémentarité IA/IA sa face symétrique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 7,
+    "renvoisCartographe": 2,
+    "nonEtablies": 0,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille montre un travail mental dense, conduit dans un cadre temporel contraint : quelques heures nocturnes pendant des congés scolaires, plusieurs chantiers menés de front. Le récit décrit un pipeline de fabrication d'une formation pour tuteurs en s'appuyant sur deux IA aux rôles distincts, et l'apprenant raconte la fabrique de ce dispositif autant que le résultat. Les marqueurs récurrents sont précis : la fenêtre de contexte, l'hallucination, le passage de relai entre Gemini et Claude, la mémoire de travail comme contrainte. Le registre mêle technique IA, didactique pédagogique et observation de ses propres conditions de travail. La voix est analytique mais incarnée, l'apprenant nomme ses choix et leurs raisons, et ouvre des chantiers conceptuels (le site comme manifeste, l'orientation noèsiologue) sans en revendiquer la finalisation.",
+    "territoiresDenses": [
+      {
+        "competence": "Architecture de Systèmes IA",
+        "description": "Conception d'un pipeline multi-IA où chaque modèle tient un rôle défini et où l'output d'une étape devient l'input de la suivante.",
+        "extraitVerbatim": "J'ai ensuite récupéré le travail de Gemini et je l'ai soumis à Claude, en lui donnant cette fois-ci le narratif de Maya comme base, afin qu'il s'assure que les prompts soient bien alignés avec la manière d'apprendre des écoles Respire.",
+        "ceQueCaDit": "Le travail montre une conception multi-IA où Gemini et Claude tiennent des rôles distincts, avec des justifications techniques explicites pour chaque maillon. La forme architecturale est attestée à travers un cas concret, pas par une déclaration générale."
+      },
+      {
+        "competence": "Métacognition et humilité épistémique",
+        "description": "Prise pour objet de ses propres conditions cognitives — la mémoire de travail, la fatigue nocturne, les effets d'interruption sur la cohérence d'un travail.",
+        "extraitVerbatim": "Toute interruption serait fatale et nécessiterait de reprendre le travail depuis le début afin de ne pas générer des références brisées.",
+        "ceQueCaDit": "La métacognition opère ici sous une forme fonctionnelle : décrire le mécanisme cognitif lui-même (mémoire de travail, dépendances entre modifications) et en tirer une règle d'organisation. Le récit du travail devient en même temps un récit du fonctionnement cognitif qui le rend possible."
+      },
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Distinction explicite entre la question terminale posée à l'IA (« rédige le chapitre ») et le travail préalable de construction du contexte qui permet de la poser.",
+        "extraitVerbatim": "Je mixe les techniques de prompt engineering que je connais pour créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question.",
+        "ceQueCaDit": "Le cadrage opère à deux niveaux : un cadrage didactique sur la finalité de la formation pour tuteurs, et un cadrage opératoire sur la fabrication du contexte qui précède la demande à l'IA. Les deux registres se rejoignent dans une même posture de questionnement préalable."
+      },
+      {
+        "competence": "Synthèse intégrative",
+        "description": "Articulation entre une suggestion venue de Claude, un corpus bibliographique sur le développement intellectuel et une orientation philosophique (la noèsiologie).",
+        "extraitVerbatim": "Je pourrais y inclure toutes les références bibliographiques sur le développement intellectuel des élèves, ce qui apporterait à notre école une orientation noèsiologue qui est effectivement sous-jacente à nos visions respectives à Stéphane et à moi.",
+        "ceQueCaDit": "La synthèse produit une catégorie (« orientation noèsiologue ») qui n'existait dans aucune des sources prises isolément. L'opération assemble idée IA, corpus bibliographique et orientation philosophique pour faire émerger un positionnement collectif."
+      },
+      {
+        "competence": "Synergie et coordination hybride",
+        "description": "Articulation explicite des forces comparatives entre modèles IA, et choix d'usage en conséquence.",
+        "extraitVerbatim": "Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail et que je me suis arrêté ici.",
+        "ceQueCaDit": "La complémentarité IA/IA est articulée par les forces comparatives — fenêtre énorme contre alignement pédagogique — et non par un usage opportuniste. Le travail montre une logique de répartition assumée, qui pourrait être prolongée par une articulation symétrique de la valeur de l'humain dans le dispositif."
+      }
+    ],
+    "territoiresNonVisites": "Certains territoires restent à explorer dans cette feuille. Le doute méthodique en acte — un récit pas à pas d'une vérification ou d'un croisement de sources sur un output suspect — apparaît en arrière-plan d'un workflow déjà rôdé mais sans démonstration frontale. La pensée computationnelle hors-informatique reste à l'état d'indice oblique : un pattern de transaction atomique se devine dans le récit de la mémoire de travail, mais l'apprenant ne nomme pas le transfert. La littératie IA est attestée par l'usage situé du vocabulaire technique (fenêtre, hallucination), sans descendre au niveau d'une hypothèse mécanique pour expliquer un comportement IA observé. Ces absences ressemblent moins à un choix qu'à un effet de format : une feuille de journal qui raconte une nuit de travail privilégie le récit de l'action sur la décomposition analytique.",
+    "emergencesPole": "Plusieurs lignes traversent les compétences de ce pôle dans cette feuille. D'abord, la conscience du temps comme ressource rare structure tout le récit : le travail nocturne, les sessions parallèles, la fragilité à l'interruption, la mémoire de travail comme contrainte. Ensuite, la pensée se fait sur l'objet en train d'être fabriqué : c'est en générant le CSS d'impression que le site se révèle être un manifeste, c'est en orchestrant les IA que la méthode personnelle se nomme. La réflexion conceptuelle naît de l'exécution, pas en amont. Enfin, l'IA est moins traitée comme outil que comme collègue de travail aux compétences spécifiques, avec des rôles distincts et des relais — ce qui colore l'architecture, la synergie et le dialogue d'une même teinte.",
+    "pistes": [
+      "Pour rendre visible le doute méthodique en acte, un chemin possible serait de raconter pas à pas une vérification d'un output IA suspect, en détaillant ce qui a déclenché le doute et la manière dont il a été tranché.",
+      "Pour ouvrir le territoire de la pensée computationnelle hors-informatique, un chemin possible serait de nommer explicitement un pattern algorithmique transféré à un problème non-technique — un arbre de décision pour une réorganisation pédagogique, ou un debugging mental appliqué à une méthode de travail.",
+      "Pour approfondir la littératie IA, un chemin possible serait de formuler une hypothèse mécanique pour un comportement IA observé — pourquoi telle erreur, pourquoi tel oubli — au-delà du vocabulaire de surface.",
+      "Pour étoffer la synergie hybride, un chemin possible serait d'articuler explicitement ce que l'humain garde pour lui et pourquoi, en miroir de ce qui est confié à chaque IA, afin de rendre symétrique la cartographie des rôles.",
+      "Pour épaissir la pensée systémique, un chemin possible serait de modéliser un autre système — pédagogique, relationnel, multi-agents — en identifiant les boucles, les points de levier et les effets de second ordre, afin de rendre lisible la transférabilité de cette manière de modéliser."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille montre un travail mental dense, conduit dans un cadre temporel contraint : quelques heures nocturnes pendant des congés scolaires, plusieurs chantiers menés de front. Le récit décrit un pipeline de fabrication d'une formation pour tuteurs en s'appuyant sur deux IA aux rôles distincts, et l'apprenant raconte la fabrique de ce dispositif autant que le résultat. Les marqueurs récurrents sont précis : la fenêtre de contexte, l'hallucination, le passage de relai entre Gemini et Claude, la mémoire de travail comme contrainte. Le registre mêle technique IA, didactique pédagogique et observation de ses propres conditions de travail. La voix est analytique mais incarnée, l'apprenant nomme ses choix et leurs raisons, et ouvre des chantiers conceptuels (le site comme manifeste, l'orientation noèsiologue) sans en revendiquer la finalisation.\n\n## Territoires les plus denses\n\n**Architecture de Systèmes IA.** Conception d'un pipeline multi-IA où chaque modèle tient un rôle défini et où l'output d'une étape devient l'input de la suivante. L'extrait — « J'ai ensuite récupéré le travail de Gemini et je l'ai soumis à Claude, en lui donnant cette fois-ci le narratif de Maya comme base, afin qu'il s'assure que les prompts soient bien alignés avec la manière d'apprendre des écoles Respire » — donne à voir une conception multi-IA où Gemini et Claude tiennent des rôles distincts, avec des justifications techniques explicites pour chaque maillon. La forme architecturale est attestée à travers un cas concret, pas par une déclaration générale.\n\n**Métacognition et humilité épistémique.** Prise pour objet de ses propres conditions cognitives — la mémoire de travail, la fatigue nocturne, les effets d'interruption sur la cohérence d'un travail. L'extrait — « Toute interruption serait fatale et nécessiterait de reprendre le travail depuis le début afin de ne pas générer des références brisées » — montre une métacognition fonctionnelle : décrire le mécanisme cognitif lui-même et en tirer une règle d'organisation. Le récit du travail devient en même temps un récit du fonctionnement cognitif qui le rend possible.\n\n**Cadrage de l'intention.** Distinction explicite entre la question terminale posée à l'IA et le travail préalable de construction du contexte qui permet de la poser. L'extrait — « Je mixe les techniques de prompt engineering que je connais pour créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question » — articule un cadrage à deux niveaux : didactique sur la finalité de la formation, opératoire sur la fabrication du contexte qui précède la demande à l'IA.\n\n**Synthèse intégrative.** Articulation entre une suggestion venue de Claude, un corpus bibliographique sur le développement intellectuel et une orientation philosophique. L'extrait — « Je pourrais y inclure toutes les références bibliographiques sur le développement intellectuel des élèves, ce qui apporterait à notre école une orientation noèsiologue qui est effectivement sous-jacente à nos visions respectives à Stéphane et à moi » — montre une synthèse qui produit une catégorie (« orientation noèsiologue ») absente dans chacune des sources prises isolément.\n\n**Synergie et coordination hybride.** Articulation explicite des forces comparatives entre modèles IA, et choix d'usage en conséquence. L'extrait — « Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail et que je me suis arrêté ici » — articule la complémentarité par les forces comparatives, et non par un usage opportuniste. Le travail montre une logique de répartition assumée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCertains territoires restent à explorer dans cette feuille. Le doute méthodique en acte — un récit pas à pas d'une vérification ou d'un croisement de sources sur un output suspect — apparaît en arrière-plan d'un workflow déjà rôdé mais sans démonstration frontale. La pensée computationnelle hors-informatique reste à l'état d'indice oblique : un pattern de transaction atomique se devine dans le récit de la mémoire de travail, mais l'apprenant ne nomme pas le transfert. La littératie IA est attestée par l'usage situé du vocabulaire technique (fenêtre, hallucination), sans descendre au niveau d'une hypothèse mécanique pour expliquer un comportement IA observé. Ces absences ressemblent moins à un choix qu'à un effet de format : une feuille de journal qui raconte une nuit de travail privilégie le récit de l'action sur la décomposition analytique.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nPlusieurs lignes traversent les compétences de ce pôle dans cette feuille. D'abord, la conscience du temps comme ressource rare structure tout le récit : le travail nocturne, les sessions parallèles, la fragilité à l'interruption, la mémoire de travail comme contrainte. Ensuite, la pensée se fait sur l'objet en train d'être fabriqué : c'est en générant le CSS d'impression que le site se révèle être un manifeste, c'est en orchestrant les IA que la méthode personnelle se nomme. La réflexion conceptuelle naît de l'exécution, pas en amont. Enfin, l'IA est moins traitée comme outil que comme collègue de travail aux compétences spécifiques, avec des rôles distincts et des relais — ce qui colore l'architecture, la synergie et le dialogue d'une même teinte.\n\n## Pistes pour enrichir ce pôle\n\nPour rendre visible le doute méthodique en acte, un chemin possible serait de raconter pas à pas une vérification d'un output IA suspect, en détaillant ce qui a déclenché le doute et la manière dont il a été tranché.\n\nPour ouvrir le territoire de la pensée computationnelle hors-informatique, un chemin possible serait de nommer explicitement un pattern algorithmique transféré à un problème non-technique — un arbre de décision pour une réorganisation pédagogique, ou un debugging mental appliqué à une méthode de travail.\n\nPour approfondir la littératie IA, un chemin possible serait de formuler une hypothèse mécanique pour un comportement IA observé — pourquoi telle erreur, pourquoi tel oubli — au-delà du vocabulaire de surface.\n\nPour étoffer la synergie hybride, un chemin possible serait d'articuler explicitement ce que l'humain garde pour lui et pourquoi, en miroir de ce qui est confié à chaque IA, afin de rendre symétrique la cartographie des rôles.\n\nPour épaissir la pensée systémique, un chemin possible serait de modéliser un autre système — pédagogique, relationnel, multi-agents — en identifiant les boucles, les points de levier et les effets de second ordre, afin de rendre lisible la transférabilité de cette manière de modéliser."
+  }
+}

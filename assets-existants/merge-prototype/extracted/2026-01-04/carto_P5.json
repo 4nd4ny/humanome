@@ -1,0 +1,330 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Bilan de fin de journée : les deux premières formations sont maintenant beaucoup mieux (et finalisées). En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+      "contexte": "Bilan qui extrait un apprentissage transférable formulé en règle générale — pourrait activer 5.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous. Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool ! En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé",
+      "contexte": "Tissage explicite entre l'acte d'écrire les manuels, les lectures de thèse, et une vision pédagogique personnelle non-réalisée dans le cadre antérieur — pourrait activer 5.03, 5.02, 5.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "et dire qu'on m'a reproché de ne pas avoir suivi le PER — ce qui c'est passé à Chamblandes n'a toujours aucun sens pour moi (et je pense que ça n'en aura jamais !)",
+      "contexte": "Évocation d'une adversité institutionnelle passée, dont le sens reste explicitement déclaré inaccessible — pourrait activer 5.01.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Heureusement qu'il y a ce projet qui me fait du bien !",
+      "contexte": "Énoncé sobre, à valeur de litote, qui nomme l'effet du projet sur soi — pourrait activer 5.05.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "et dire qu'on m'a reproché de ne pas avoir suivi le PER — ce qui c'est passé à Chamblandes n'a toujours aucun sens pour moi (et je pense que ça n'en aura jamais !)",
+          "contexte": "Évocation d'une adversité institutionnelle passée juxtaposée au projet actuel qui « fait du bien » — possible structure d'un retournement implicite.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que l'antifragilité au sens de la fiche n'y est pas. La fiche est exigeante : il faut une transformation explicite, un dépassement, un récit où l'épreuve devient matière première de création. Or la pièce dit l'inverse — le sens du reproche reçu reste explicitement déclaré inaccessible (« n'aura jamais de sens »), ce qui interdit le travail de transformation. La distinction critique de la fiche est explicite : « Je suis passé à autre chose » peut être de la fuite, pas du rebond. La pièce ne résiste pas vraiment à la présomption d'absence : l'adversité n'est pas traitée, elle est tenue à distance.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'évocation de Chamblandes pouvait porter une trace d'antifragilité, même oblique. Elle ne la porte pas dans cette feuille : l'adversité est tenue à distance plutôt que travaillée, et le projet actuel n'est pas explicitement présenté comme né de cette épreuve. Sur cette journée, le pôle de l'antifragilité ne s'établit pas. Une trace future pourrait apparaître si l'apprenant articulait, sans chercher à donner du sens au reproche reçu, ce que cette adversité a néanmoins déposé en lui et qui se retrouve dans le projet présent.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "L'unique pièce a été disqualifiée dès le temps 1 : la fiche exige un travail de transformation par l'adversité, or la pièce déclare le sens inaccessible — l'épreuve est tenue à distance plutôt que traitée.",
+        "prescription": "L'évocation de Chamblandes apparaît comme une trace non-métabolisée. La fiche distingue le rebond (avoir traité l'adversité et en avoir extrait quelque chose) du déplacement (être passé à autre chose). Articuler dans une feuille future ce que cette épreuve a déposé dans la pratique présente — sans chercher à lui donner du sens — ouvrirait ce territoire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous. Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool ! En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé",
+          "contexte": "Énoncé d'une vision pédagogique personnelle qui s'oppose à un cadre institutionnel antérieur — possible trace d'un désapprentissage en filigrane.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la plasticité au sens de la fiche n'y est pas. La fiche est claire : 5.02 implique l'abandon d'un modèle antérieur, pas son enrichissement, et la trace fiable contient une tension entre l'ancien et le nouveau. Or la pièce affirme une vision (« comment j'aurai aimé pouvoir enseigner ») sans nommer explicitement ce qui a dû être lâché — quel savoir, quelle posture, quelle identité antérieure. La tension entre ancien et nouveau est implicite, jamais articulée. La pièce résiste très faiblement : la mention du « plan d'étude imposé » pointe vers un cadre antérieur dont l'apprenant s'est déplacé, mais le mécanisme du désapprentissage n'est pas décrit.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'énoncé d'une vision pédagogique opposée au cadre institutionnel antérieur suggère qu'un déplacement identitaire ou cognitif est en cours, sans le nommer." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu un changement de contexte avec un travail de désapprentissage. La fiche distingue explicitement « j'ai changé de job » (changement externe) de la transformation interne du penser. Or la pièce décrit plutôt un changement de cadre institutionnel (HEP imposé → Respire) sans le travail interne d'abandon d'un modèle. Le risque de surinterprétation est élevé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Surinterprétation pédagogique : j'ai prêté à un changement de cadre la dignité d'un désapprentissage interne ; elle subsiste comme indice qu'un déplacement existe, pas comme preuve d'une mue cognitive articulée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette pièce ne portait pas une plasticité au sens fort. Le constat tient en grande partie : aucun savoir ancien explicitement abandonné, aucune tension entre l'ancien et le nouveau articulée, aucun mécanisme d'enfermement cognitif décrit. Ce qui résiste, faiblement : la formule « comment j'aurai aimé pouvoir enseigner » signale qu'une autre manière a été préférée à une manière antérieure, ce qui suppose en arrière-plan un travail de séparation. Sur cette journée, la trace existe à l'état d'écho. Un renvoi au cartographe est l'option honnête.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "L'unique pièce subsiste en forme affaiblie : un déplacement de cadre est suggéré sans que le travail interne d'abandon d'un modèle antérieur soit décrit.",
+        "prescription": "Le déplacement d'un cadre institutionnel imposé vers une pédagogie choisie pourrait être prolongé par la nomination de ce qui a dû être lâché — un savoir cru permanent qui s'est révélé inadéquat, une posture qui ne tient plus. La fiche signale qu'une trace fiable contient une tension entre l'ancien et le nouveau ; cette tension pourrait être déployée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Bilan de fin de journée : les deux premières formations sont maintenant beaucoup mieux (et finalisées). En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+          "contexte": "Extraction explicite d'une leçon transférable à partir de l'expérience du jour — passage du QUOI au QU'EST-CE QUE ÇA SIGNIFIE.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous. Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool ! En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé",
+          "contexte": "Tissage de plusieurs domaines (acte d'écrire, lectures de thèse, vision pédagogique personnelle, cadre institutionnel antérieur) qui structure le sens au-delà de la chronologie.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'elles relèvent du journal de bord descriptif plutôt que de la narration réflexive. Le critère de la fiche est exigeant : passage du QUOI au POURQUOI au QU'EST-CE QUE ÇA SIGNIFIE, extraction d'un apprentissage transférable, connexions entre événements distants. Or la pièce 1 livre clairement une leçon nommée et spécifique (« on gagne du temps mais souvent on en perd ») à partir d'une situation concrète — c'est exactement le mouvement du QUOI au SIGNIFIE. La pièce 2 connecte au moins trois domaines distants : l'acte d'écrire dans la journée, des lectures de thèse antérieures, une vision pédagogique personnelle. La pièce 1 résiste fortement, la pièce 2 résiste avec une fragilité (le tissage est dense mais l'extraction d'un sens unifié reste implicite).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La leçon est nommée et spécifique, extraite d'une situation concrète — passage explicite du vécu au transférable." },
+            { "pieceId": 2, "motifResistance": "Connexions entre plusieurs domaines distants (manuels, thèse, vision pédagogique, cadre institutionnel) qui structurent un sens au-delà de la chronologie." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces pour voir si je n'ai pas confondu un bilan ordinaire avec une narration réflexive. La pièce 1 est-elle vraiment réflexive ou un proverbe sentencieux ? La fiche signale précisément ce piège : confondre intensité émotionnelle et profondeur réflexive. Mais la pièce extrait une règle précise d'une situation décrite — c'est le mouvement réflexif minimal. La pièce 2 est plus fragile : les connexions sont nombreuses mais le sens unifié n'est pas formulé en propre — le lecteur doit le composer.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Insuffisance probatoire non recevable : la leçon est tirée d'une expérience concrète du jour, formulée en règle générale, et inscrite dans un bilan qui en cite le résultat (« beaucoup mieux, finalisées ») — la pièce contient les trois temps du mouvement réflexif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : le tissage est dense (manuels, thèse, vision, cadre) mais le sens unifié reste implicite — la pièce vaut comme trace d'un travail réflexif en cours, pas comme preuve d'une théorisation aboutie."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette journée ne portait que des bilans descriptifs, pas de la narration réflexive au sens fort. La pièce 1 a résisté pleinement : elle livre une leçon nommée et spécifique tirée d'une expérience concrète, et l'inscrit dans un bilan qui en montre le résultat. La pièce 2 a résisté en forme affaiblie : elle tisse plusieurs domaines distants sans formuler explicitement le sens unifié — le lecteur le compose. Sur cette journée, le pôle de la narration réflexive est attesté dans sa dimension la plus quotidienne : une règle compacte tirée du jour, et un tissage qui prépare une théorisation à venir. Le seuil de la présence est franchi avec une confiance modérée.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La pièce du bilan a été confirmée au temps 2 comme trace d'extraction explicite de sens ; une seconde pièce a résisté en forme affaiblie comme indice d'un tissage entre domaines distants.",
+        "prescription": "La narration réflexive apparaît ici en format compact : règle tirée d'un jour, connexions ouvertes entre la pratique du présent et les lectures antérieures. Pour approfondir, prendre une fois le temps de formuler explicitement le sens unifié qui traverse plusieurs entrées — quel motif se dégage de la rédaction des manuels lue à la lumière de la thèse — rendrait visible la théorisation qui semble déjà à l'œuvre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'acceptation de l'intelligence supérieure sur cette journée — aucune tension émotionnelle décrite face à une production IA, aucun moment où l'IA aurait fait mieux que l'apprenant. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où une suggestion de l'IA l'a surpris, dérangé ou impressionné, et ce que cela a fait à sa propre estime de soi."
+      }
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "extraitVerbatim": "Heureusement qu'il y a ce projet qui me fait du bien !",
+          "contexte": "Énoncé sobre, à valeur de litote, qui nomme l'effet du projet sur soi en clôture du message.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous. Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool ! En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé",
+          "contexte": "Alignement explicite entre le projet en cours et une vision pédagogique personnelle longtemps tenue à distance par le cadre institutionnel.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que le sens intrinsèque au sens fort de la fiche n'y est pas. La fiche est exigeante : il faut un « pourquoi » qui survit aux échecs, qui précède le projet, qui s'incarne dans l'action. Or les pièces énoncent un effet positif (« fait du bien ») et un intérêt (« très intéressant ») sans documenter la persévérance dans l'adversité ni la stabilité du moteur face au coût. Pourtant les pièces résistent. La pièce 1 résiste par sa forme — la litote est précisément signalée par la fiche comme trace fiable, plus que les envolées lyriques. La pièce 2 résiste par l'alignement entre le projet et une vision tenue à distance par un cadre antérieur — ce qui suggère un « pourquoi » qui précédait le projet. Reste explicitement faible : aucune trace de persévérance dans l'invisibilité ou l'ingratitude n'est citée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La litote « fait du bien » est précisément la forme que la fiche signale comme trace fiable du sens, par contraste avec les envolées lyriques." },
+            { "pieceId": 2, "motifResistance": "L'alignement entre le projet présent et une vision pédagogique antérieurement contrariée suggère un « pourquoi » qui précédait le projet et qui le porte." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas confondu un enthousiasme situationnel avec une motivation intrinsèque. La fiche distingue précisément « j'aime bien » (situationnel) du sens (qui survit aux échecs). Ici, l'effet positif est nommé sans contre-épreuve : qu'arriverait-il si le projet devenait ingrat ? On ne le saura pas sur cette feuille. La pièce 1 résiste par sa sobriété (la litote indique souvent une intériorité plus solide que la déclaration). La pièce 2 est plus fragile : l'alignement est nommé mais le « pourquoi » sous-jacent n'est pas formulé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la litote est brève et la persévérance hors confort n'est pas documentée ; elle subsiste comme indice fiable selon la fiche elle-même qui signale la litote comme trace plus solide que les déclarations lyriques."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif partiel : le projet est dit aligné avec une vision personnelle, mais le « pourquoi » de cette vision n'est pas formulé — la pièce vaut comme indice d'un sens en cours d'articulation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette journée ne portait que de l'enthousiasme situationnel. Ce qui résiste néanmoins : la pièce 1 utilise précisément la forme — la litote — que la fiche signale comme trace fiable du sens intrinsèque, plus solide que les envolées. La pièce 2 articule un alignement entre le projet présent et une vision pédagogique antérieurement contrariée, ce qui dépasse l'intérêt ponctuel. Sur cette journée, la trace du sens existe sous une forme à la fois sobre et structurelle, sans encore se laisser voir dans la persévérance face à l'adversité. Un renvoi au cartographe est l'option honnête.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Deux pièces ont résisté en forme affaiblie : la litote « fait du bien » et l'alignement entre projet et vision personnelle ; la dimension de persévérance face à l'adversité n'apparaît pas dans la feuille pour confirmer la solidité du sens.",
+        "prescription": "Le sens intrinsèque apparaît sous une forme sobre, conforme à ce que la fiche signale comme trace fiable. Pour approfondir, raconter une fois ce qui maintient cette motivation quand le travail devient ingrat — pas seulement quand il « fait du bien » — rendrait visible la solidité du « pourquoi ». Le sens se vérifie dans la traversée de l'inconfort autant que dans le sentiment de bien-être."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie en mode dégradé sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où une panne, une coupure ou une indisponibilité d'outil l'a forcé à improviser avec les moyens du bord."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté attentionnelle sur cette journée — aucune décision explicite de déconnexion ou de protection du focus. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a choisi de couper une source de distraction alors qu'il aurait pu la laisser ouverte."
+      }
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la vérification terrain sur cette journée — aucun test concret contre la réalité non-médiatisée. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où une affirmation (de l'IA, du dashboard, ou d'un système) a été confrontée à un test direct dans le réel."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée, le pôle existentiel apparaît surtout dans le tissage qui clôt la feuille : un bilan en règle générale, un message à Stéphane qui connecte la pratique du jour aux lectures de thèse et à une vision pédagogique personnelle, et une phrase finale sobre qui nomme l'effet du projet sur soi. Les traces sont plus narratives que somatiques — l'apprenant tire du sens du jour sans encore traverser des épreuves ou opérer des ruptures explicites.",
+    "territoiresDenses": [
+      {
+        "competence": "Narration réflexive",
+        "description": "L'extraction d'une leçon transférable à partir du jour est explicite, et le message à Stéphane tisse plusieurs domaines distants — la pratique du présent, les lectures antérieures de thèse, une vision pédagogique personnelle, le cadre institutionnel contrarié.",
+        "extraitVerbatim": "En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+        "ceQueCaDit": "Le bilan ne se contente pas de décrire ; il extrait une règle qui pourra agir sur les prochains cycles. À côté, le tissage entre la rédaction des manuels et les lectures de thèse prépare une théorisation qui n'est pas encore explicitée mais qui se laisse voir en filigrane."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas traversés sur cette feuille. L'autonomie en mode dégradé, la souveraineté attentionnelle et la vérification terrain relèvent d'une limite de l'objet du jour — une journée d'écriture solitaire de manuels n'appelle pas naturellement ces angles. L'acceptation de l'intelligence supérieure n'apparaît pas : l'IA est utilisée mais aucune tension émotionnelle face à elle n'est documentée. La résilience apparaît en creux à travers l'évocation de Chamblandes, mais l'adversité est tenue à distance plutôt que travaillée — le sens du reproche est explicitement déclaré inaccessible. La plasticité est suggérée par le déplacement d'un cadre institutionnel imposé vers une pédagogie choisie, sans que le travail interne d'abandon d'un modèle antérieur soit décrit. Le sens intrinsèque se montre dans la forme — la litote « fait du bien » est précisément ce que la fiche signale comme marqueur fiable — mais la dimension de persévérance face à l'adversité n'apparaît pas pour confirmer la solidité du « pourquoi ».",
+    "emergencesPole": "Trois fils traversent ce pôle sur cette journée. Le premier : le sens s'exprime en litote (« fait du bien ») plutôt qu'en envolée, ce qui appartient au registre que la fiche signale comme le plus solide. Le deuxième : les passés institutionnels (Chamblandes, PER) reviennent comme des traces non-décryptées, ce qui ferme leur potentiel d'antifragilité. Le troisième : la narration réflexive se manifeste dans des formats compacts — une règle tirée du jour, des connexions ouvertes entre domaines distants — qui pourraient gagner à être prolongées dans une théorisation explicite.",
+    "pistes": [
+      "Pour enrichir la narration réflexive, un chemin possible serait de formuler une fois le sens unifié qui traverse plusieurs entrées — quel motif se dégage de la rédaction des manuels lue à la lumière de la thèse.",
+      "Pour enrichir l'antifragilité, un chemin possible serait d'articuler ce que l'adversité de Chamblandes a déposé dans la pratique présente, sans chercher à donner du sens au reproche reçu.",
+      "Pour enrichir le sens intrinsèque, un chemin possible serait de nommer ce qui maintient la motivation quand le travail devient ingrat — pas seulement quand il « fait du bien ».",
+      "Pour enrichir la plasticité, un chemin possible serait de nommer ce qui a dû être lâché dans le passage du cadre institutionnel imposé à la pédagogie choisie — un savoir cru permanent, une posture qui ne tient plus."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée, le pôle existentiel apparaît surtout dans le tissage qui clôt la feuille : un bilan en règle générale, un message à Stéphane qui connecte la pratique du jour aux lectures de thèse et à une vision pédagogique personnelle, et une phrase finale sobre qui nomme l'effet du projet sur soi. Les traces sont plus narratives que somatiques — l'apprenant tire du sens du jour sans encore traverser des épreuves ou opérer des ruptures explicites.\n\n## Territoires les plus denses\n\n**Narration réflexive.** L'extraction d'une leçon transférable à partir du jour est explicite : « En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd ! » Le bilan ne se contente pas de décrire ; il extrait une règle qui pourra agir sur les prochains cycles. À côté, le message à Stéphane tisse plusieurs domaines distants — la pratique du présent, les lectures antérieures de thèse, une vision pédagogique personnelle, le cadre institutionnel contrarié. Ce tissage prépare une théorisation qui n'est pas encore explicitée mais qui se laisse voir en filigrane.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas traversés sur cette feuille. L'autonomie en mode dégradé, la souveraineté attentionnelle et la vérification terrain relèvent d'une limite de l'objet du jour — une journée d'écriture solitaire de manuels n'appelle pas naturellement ces angles. L'acceptation de l'intelligence supérieure n'apparaît pas : l'IA est utilisée mais aucune tension émotionnelle face à elle n'est documentée. La résilience apparaît en creux à travers l'évocation de Chamblandes, mais l'adversité est tenue à distance plutôt que travaillée — le sens du reproche est explicitement déclaré inaccessible. La plasticité est suggérée par le déplacement d'un cadre institutionnel imposé vers une pédagogie choisie, sans que le travail interne d'abandon d'un modèle antérieur soit décrit. Le sens intrinsèque se montre dans la forme — la litote « fait du bien » est précisément ce que la fiche signale comme marqueur fiable — mais la dimension de persévérance face à l'adversité n'apparaît pas pour confirmer la solidité du « pourquoi ».\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent ce pôle sur cette journée. Le premier : le sens s'exprime en litote (« fait du bien ») plutôt qu'en envolée, ce qui appartient au registre que la fiche signale comme le plus solide. Le deuxième : les passés institutionnels (Chamblandes, PER) reviennent comme des traces non-décryptées, ce qui ferme leur potentiel d'antifragilité. Le troisième : la narration réflexive se manifeste dans des formats compacts — une règle tirée du jour, des connexions ouvertes entre domaines distants — qui pourraient gagner à être prolongées dans une théorisation explicite.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir la narration réflexive, un chemin possible serait de formuler une fois le sens unifié qui traverse plusieurs entrées — quel motif se dégage de la rédaction des manuels lue à la lumière de la thèse.\n\nPour enrichir l'antifragilité, un chemin possible serait d'articuler ce que l'adversité de Chamblandes a déposé dans la pratique présente, sans chercher à donner du sens au reproche reçu.\n\nPour enrichir le sens intrinsèque, un chemin possible serait de nommer ce qui maintient la motivation quand le travail devient ingrat — pas seulement quand il « fait du bien ».\n\nPour enrichir la plasticité, un chemin possible serait de nommer ce qui a dû être lâché dans le passage du cadre institutionnel imposé à la pédagogie choisie — un savoir cru permanent, une posture qui ne tient plus."
+  }
+}

@@ -1,0 +1,496 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Idéalement, j'aimerai générer les 21 chapitres des 5 livres avant le départ de la Suisse, pour pouvoir faire la lecture, les corrections et la mise en page durant les vacances.",
+      "contexte": "Lien explicite entre une action présente (générer maintenant) et un futur précis (relire pendant les vacances) — possible trace de vision stratégique articulée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "J'ai testé la génération parallèle des chapitres dans des onglets de mon navigateur : ça fonctionne très bien, ça mange juste mon forfait plus vite, mais il se réinitialise assez rapidement (tous les 3h environs).",
+      "contexte": "Optimisation du tempo de production par parallélisation, avec observation des coûts et du cycle — possible trace de pilotage des ressources personnelles."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "on peut voir l'avancement du nombre de tokens disponibles avant le prochain reset dans les paramètres du compte, ce qui est très pratique pour planifier les pauses",
+      "contexte": "Lecture du compteur de tokens comme outil de planification du rythme de travail — possible trace de pilotage temporel."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Consulte la table-des-matieres-augmentee-v5.md pour avoir la vue d'ensemble de la formation et prompts-expert-chapitre-1.md pour avoir la vue d'ensemble du chapitre.",
+      "contexte": "Architecture documentaire structurée : table des matières augmentée v5, fichiers de prompts par chapitre — possible trace de documentation vivante par versionnement et fragmentation."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Les exercices sont détaillés dans specification-exercices-respire-v5.md et tu peux adapter ou les améliorer si nécessaire.",
+      "contexte": "Référence à un document de spécification versionné (v5) qui sert d'entrée à la génération — possible trace de capitalisation structurée par artefacts réutilisables."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "j'ai contraint dans le prompt ci-dessus la longueur dans une version précédente en demandant à Claude de rester concis dans les textes produits, mais c'était pratiquement incompréhensible car trop résumé.",
+      "contexte": "Cycle de versions sur un prompt (version précédente / version améliorée) avec apprentissage entre les itérations — trace classique d'agilité méthodologique."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Évite le remplissage. Évite les redondances. La qualité est dans l'intelligence de la structure narrative et la cohérence que tu construiras au fil des chapitres.",
+      "contexte": "Énoncé d'un critère pédagogique structurant pour la génération — possible trace de design pédagogique articulé dans le prompt lui-même."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "J'ai remplacé jeunes adultes par adolescents pour les niveaux Praticien et Tuteur, et j'ai supprimé cette phrase pour le niveau Grand Maître.",
+      "contexte": "Calibration du registre par niveau de la formation — geste pédagogique de différenciation par public."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Je vais les imprimer (600 pages) et les relire sur papier pour m'obliger à ne pas prendre mon ordinateur pendant la semaine de vacances.",
+      "contexte": "Décision explicite d'arrêt et de gestion de l'énergie : dispositif matériel pour s'imposer une pause — possible trace d'efficacité personnelle par renoncement stratégique."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Etant donné que j'ai réussi à générer les 5 manuels durant la matinée.",
+      "contexte": "Constat d'atteinte d'un objectif majeur en une matinée — possible trace d'efficacité opérationnelle."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Après avoir trouvé le bon prompt pour générer un chapitre, j'ai lancé la génération des chapitres les uns après les autres.",
+      "contexte": "Bascule entre phase d'exploration (recherche du bon prompt) et phase d'industrialisation (production en série) — possible trace d'agilité par cycles."
+,
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Critère pédagogique articulé dans le prompt : qualité par structure narrative et cohérence, contre le remplissage — design pédagogique en acte."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Calibration du registre par niveau (Praticien, Tuteur, Grand Maître) — geste de différenciation par public, signature d'une architecture pédagogique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la maïeutique n'est pas attestée. La fiche distingue précisément maïeutique (questionner pour faire accoucher) de transmission frontale ou de design pédagogique. Si je durcis, je note que la feuille décrit la fabrication d'un manuel — un acte de transmission descendant, pas un questionnement adressé à l'apprenant. Les pièces candidates ne portent pas de question maïeutique adressée à autrui. Ce qui résiste pourtant : la fiche évoque aussi \"l'architecture pédagogique\" (concevoir l'environnement où l'apprentissage se produit). Les pièces décrivent un design pédagogique structurant — critère qualité, différenciation par niveau — qui pourrait relever de cet axe.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le critère \"intelligence de la structure narrative et cohérence au fil des chapitres\" pose un design pédagogique articulé — ce qui fera que les apprenants pourront s'orienter dans la formation." },
+            { "pieceId": 2, "motifResistance": "La calibration du registre par niveau de formation est une architecture pédagogique différenciée, geste typique de conception d'environnements d'apprentissage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je dois examiner si je n'ai pas chargé ces pièces. L'attaque (b) confusion de compétence pèse fort : ce qui est décrit est plutôt du jugement esthétique (3.04) et de la traduction entre publics (2.08) que de la maïeutique. La fiche est claire : la maïeutique est interrogative (\"que ferais-tu ?\") et le design pédagogique implique des dispositifs où l'apprentissage se produit *de manière autonome*. Or les pièces décrivent du contenu prescriptif (un manuel à lire), pas un dispositif autonome de mise en situation. L'attaque (b) tient assez fort.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le critère pédagogique est articulé mais relève plus du design éditorial (3.04) que de la facilitation d'apprentissage autonome ; la pièce reste comme indice partiel de design pédagogique." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La différenciation par niveau est pédagogique, mais elle agit sur le registre, pas sur le dispositif d'apprentissage lui-même ; la pièce reste un indice." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le design des prompts une trace de maïeutique. Sous la présomption d'absence, j'ai déjà reconnu qu'aucune question maïeutique n'est adressée à autrui — la feuille décrit la fabrication d'un support de transmission, pas un dialogue qui fait accoucher. Sous la présomption de sycophantie, les deux pièces ont perdu de l'épaisseur en glissant vers d'autres compétences (jugement esthétique, traduction entre publics). Ce qui reste : un design pédagogique articulé dans le prompt et une différenciation par niveau, ce qui ouvre un dossier sans le clore. Le verdict honnête est un renvoi : la matière est présente mais s'arrête à la conception du support, sans déployer la dimension maïeutique au sens fort.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli les pièces : design pédagogique articulé et différenciation par niveau, mais sans dimension maïeutique au sens interrogatif ni dispositif d'apprentissage autonome.",
+        "prescription": "Pour approfondir cet axe, un chemin possible serait de documenter, à propos d'un exercice du manuel, une question maïeutique qui ferait accoucher l'apprenant plutôt que de lui transmettre frontalement — ou un dispositif où il devra construire lui-même la réponse."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un retour adressé à un apprenant ou à un pair, qui nomme ce qui fonctionne et ouvre des pistes concrètes de progression."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Architecture documentaire structurée par fichiers de prompts par chapitre et table des matières augmentée v5 — capitalisation par fragmentation et versionnement."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Référence à un document de spécification versionné (v5) utilisé comme entrée pour la génération — geste de capitalisation par artefact réutilisable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la documentation vivante n'est pas pleinement attestée. La fiche demande une structuration intentionnelle pour un futur lecteur, du versioning explicite, une conscience du destinataire. Si je durcis, je note que les pièces mentionnent des noms de fichiers et des numéros de version, mais sans description détaillée de la structure interne, sans changelog, sans indication que ces documents évoluent dans le temps avec la pratique. Ce qui résiste pourtant : la nomenclature elle-même est révélatrice — \"table-des-matieres-augmentee-v5\", \"prompts-expert-chapitre-1\", \"specification-exercices-respire-v5\" témoignent d'un travail de capitalisation par fragmentation thématique avec versionnement explicite. Le fait que la v5 soit utilisée signale un historique d'évolution.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La nomenclature des fichiers révèle une architecture documentaire structurée par thème et par version — table des matières, prompts par chapitre, spécifications — qui correspond à la signature d'une documentation vivante." },
+            { "pieceId": 2, "motifResistance": "La référence à un fichier v5 utilisé comme entrée signale un cycle d'évolution documentaire qui a déjà eu cinq passages — pratique de versionnement ancrée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je dois examiner si je n'ai pas chargé ces pièces. L'attaque (a) insuffisance probatoire pèse : les noms de fichiers sont cités, mais leur structure interne n'est pas décrite, et la conscience explicite du destinataire futur n'est pas formulée. La fiche distingue 7.03 de 5.03 par la structuration et la conscience du destinataire — ici, la structuration est manifeste, mais le destinataire reste implicite. L'attaque (a) tient en partie. La pièce 2 ajoute néanmoins un élément important : le v5 atteste cinq itérations passées, ce qui dépasse la simple sauvegarde.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Les noms de fichiers révèlent une architecture, mais la structure interne et la conscience explicite du destinataire ne sont pas déployées dans cette feuille — la pièce reste un indice." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le v5 signale cinq itérations passées sur un document de spécification structuré pour servir d'entrée à la production — pratique de versionnement et de capitalisation ancrée, qui résiste à l'insuffisance probatoire." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans les noms de fichiers cités une simple convention administrative. Ce qui m'a obligé à m'arrêter, c'est la cohérence de l'architecture : une table des matières augmentée, des prompts par chapitre, des spécifications versionnées, le tout en v5. Cette nomenclature témoigne d'une pratique de capitalisation structurée par fragmentation thématique, avec un historique d'évolution implicite dans le v5. Sous la présomption de sycophantie, la pièce 1 a perdu de l'épaisseur (la structure interne n'est pas décrite), mais la pièce 2 a tenu : cinq itérations passées sur un document de spécification réutilisable est un marqueur fort. Ce qui en résulte : une présence attestée d'une documentation vivante, portée principalement par les artefacts eux-mêmes plutôt que par leur description.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé la pièce 2 (versionnement v5 attestant cinq itérations) et retenu la pièce 1 comme indice corroboratif d'une architecture documentaire structurée.",
+        "prescription": "Pour approfondir cet axe, un chemin possible serait de documenter, à propos d'un de ces fichiers v5, ce qui a changé entre v4 et v5 et pourquoi — rendre explicite l'historique d'évolution renforce la dimension vivante de la documentation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Délégation de la génération à plusieurs sessions Claude en parallèle, avec coordination par l'humain — possible trace de leadership distribué."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Choix conscient de bascule entre phase d'exploration (recherche du bon prompt) et phase de délégation (lancement en série) — alternance déclarée de posture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le leadership situationnel n'est pas pleinement attesté. La fiche exige une alternance consciente entre direction et retrait, des moments où l'apprenant choisit de NE PAS intervenir, des règles de bascule explicites. Si je durcis, je note que la pièce 1 décrit une parallélisation par onglets — ce n'est pas vraiment de la délégation différenciée avec règles de bascule, c'est de la duplication. La pièce 2 décrit la bascule d'une phase à l'autre, mais sans dépliage des règles de reprise du contrôle. Ce qui résiste pourtant : la pièce 2 nomme explicitement deux postures successives (chercher le bon prompt → lancer la génération en série), avec un déclencheur clair (\"après avoir trouvé\").",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La pièce articule explicitement deux postures successives — phase exploratoire suivie d'une phase de délégation en série — avec un déclencheur de bascule clair (\"après avoir trouvé le bon prompt\")." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je dois examiner si je n'ai pas chargé la pièce 2. L'attaque (a) insuffisance probatoire pèse : la pièce ne décrit pas la reprise du contrôle après la délégation, ni les moments où l'humain serait revenu en supervision. La fiche cite explicitement \"je suis obligé de le faire revenir sur terre un prompt sur deux\" comme trace oblique — ici on n'a pas ce niveau d'alternance. L'attaque (g) mouvement-vers est aussi pertinente : on voit un geste de délégation, mais sans déployer le cycle complet supervision-retrait-reprise.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'alternance entre exploration et délégation est posée, mais le cycle complet supervision-retrait-reprise n'est pas déployé ; la pièce porte un geste de leadership en gestation plutôt qu'une compétence pleinement installée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la parallélisation un acte de leadership situationnel. Sous la présomption d'absence, la pièce 1 n'a pas tenu (la parallélisation est de la duplication, pas une délégation différenciée), mais la pièce 2 a résisté en articulant deux postures successives. Sous la présomption de sycophantie, la pièce 2 a perdu de l'épaisseur — le cycle complet n'est pas déployé. Ce qui en résulte : une trace de leadership en gestation, qui ne franchit pas le seuil de la présence pleinement établie. Le verdict honnête est un renvoi.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce 2 : alternance entre deux postures bien articulée, sans déploiement du cycle complet supervision-retrait-reprise.",
+        "prescription": "Pour approfondir cet axe, un chemin possible serait de documenter, durant la phase de production en série, les moments où une supervision a été reprise — l'IA dérivait, un chapitre était à reformuler, le contrôle a basculé — avec le déclencheur de chaque bascule."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Lien explicite entre l'action présente (générer maintenant les 21 chapitres) et un futur précis (relire, corriger, mettre en page pendant les vacances) — articulation classique de la vision stratégique."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Choix du papier comme dispositif anticipant la phase vacances — décision présente fondée sur une projection de l'usage futur (relecture loin de l'ordinateur)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la vision stratégique n'est pas pleinement attestée. La fiche demande un *lien argumenté* entre futur anticipé et décision présente, pas un simple \"plus tard\". Si je durcis, je note que la pièce 1 lie le présent au futur (\"générer maintenant pour relire pendant les vacances\"), ce qui correspond exactement à la signature de la fiche (\"je fais X maintenant parce que dans Y temps...\"). La pièce 2 prolonge cette projection en choisissant un dispositif matériel. Le \"idéalement\" pose une vision sans la rigidifier. Ce qui résiste : les deux pièces ensemble forment un raisonnement présent-futur explicite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La pièce articule explicitement \"je fais X maintenant POUR pouvoir Y dans le futur\" — c'est la signature exacte de la fiche, et l'horizon (\"avant le départ de la Suisse\") est borné." },
+            { "pieceId": 2, "motifResistance": "La décision d'imprimer s'appuie sur une projection de l'usage futur (relecture loin de l'ordinateur) — la décision présente est fondée par l'anticipation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Toutes les pièces ont résisté ; je dois durcir l'attaque. L'attaque (a) insuffisance probatoire tente : l'horizon est court (une semaine ou deux), pas une vision long-terme stratégique au sens fort. La fiche cible \"des scénarios prospectifs à plusieurs horizons temporels\" et \"des anticipations de ruptures technologiques\" — ici on est dans la planification de moyen terme. Pourtant la fiche admet aussi le spectre du simple \"je sens que c'est la bonne voie\". L'attaque (f) récit performatif pèse aussi sur la pièce 1 : le \"idéalement\" est conditionnel et peut être lu comme une intention.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'horizon temporel est court (semaines, pas années) et la projection ne convoque pas de scénarios prospectifs riches ; la pièce porte la signature de la vision stratégique mais sur une échelle modeste." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le lien présent-futur est réel mais peut être lu en surinterprétation comme un simple choix logistique habillé d'une justification ; la pièce reste comme indice corroboratif." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le \"idéalement, avant le départ\" un simple effet d'annonce. Ce qui m'a obligé à m'arrêter, c'est la structure exacte du lien présent-futur cité par la fiche : \"je fais X maintenant POUR pouvoir Y plus tard\". Sous la présomption de sycophantie, les pièces ont perdu de l'épaisseur — l'horizon est court et la projection est modeste — mais la signature reste lisible et opératoire. Ce qui en résulte : une présence attestée d'une vision stratégique à l'échelle d'un projet, sans déployer encore les horizons multiples ou les scénarios prospectifs qui caractérisent les formes les plus abouties.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a retenu les deux pièces : un lien présent-futur explicite et un dispositif matériel qui matérialise la projection — vision stratégique opératoire sur l'échelle du projet.",
+        "prescription": "Pour approfondir cet axe, un chemin possible serait de déplier, au-delà du \"avant le départ\", l'horizon plus long du projet de formation — qu'est-ce que ces manuels permettent dans six mois, un an, et quelles décisions présentes en découlent."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Décision explicite d'arrêt assorti d'un dispositif (impression) pour s'imposer la pause — \"m'obliger à ne pas prendre mon ordinateur\" est une formulation classique du non stratégique."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Optimisation du tempo de production par parallélisation, avec lecture des contraintes (forfait, reset) — pilotage des ressources temporelles."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Lecture du compteur de tokens pour planifier les pauses — outil personnel de pilotage du rythme."
+        },
+        {
+          "numero": 4,
+          "pid": 10,
+          "contexte": "Constat d'atteinte d'un objectif majeur en une matinée — efficacité opérationnelle qui pose la base de la planification de l'après-midi."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'efficacité personnelle n'est pas vraiment attestée. La fiche est claire : le marqueur le plus fiable est le \"non\" stratégique argumenté, et \"j'ai beaucoup travaillé\" peut être un signe d'absence (submersion, productivisme). La pièce 4 (\"générer les 5 manuels durant la matinée\") pourrait justement être de cette nature. Si je durcis, je note que la feuille est très orientée production, ce qui pourrait masquer un défaut de priorisation. Ce qui résiste pourtant : la pièce 1 contient exactement le \"non\" stratégique cible (\"m'obliger à ne pas prendre mon ordinateur\"), avec dispositif et raisons articulées. Les pièces 2 et 3 portent un pilotage explicite du rythme (parallélisation calibrée, lecture des compteurs).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le verbe \"m'obliger\" combiné à un dispositif matériel concret (impression) et une raison sociale/personnelle articulée — c'est la signature exacte du non stratégique argumenté cible par la fiche." },
+            { "pieceId": 2, "motifResistance": "La parallélisation est explicitement calibrée par observation des contraintes (forfait, reset) — pilotage du tempo avec critères de décision." },
+            { "pieceId": 3, "motifResistance": "La lecture du compteur de tokens est convertie en outil de planification des pauses — rapport conscient au rythme, signature d'un pilotage personnel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Toutes les pièces ont résisté ; je dois durcir. L'attaque (b) confusion de compétence pèse sur la pièce 1 : c'est aussi une trace de souveraineté attentionnelle (5.07), peut-être plus que d'efficacité personnelle au sens strict. La fiche est explicite : 7.06 est le pilotage des ressources personnelles (temps, énergie, attention) par renoncement stratégique. La pièce 1 entre exactement dans cette définition — la souveraineté attentionnelle est un sous-cas du pilotage des ressources. Les pièces 2 et 3 sont plus pures sur 7.06 (pilotage du rythme par lecture des contraintes). L'attaque (a) insuffisance probatoire pèse sur la pièce 4 qui est un constat de production sans déploiement de la stratégie qui l'a produit.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La pièce active aussi 5.07, mais elle entre pleinement dans la signature de 7.06 (non stratégique argumenté avec dispositif) ; la polysémie est attendue, pas un défaut." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La pièce déploie un pilotage explicite : observation de l'effet sur le forfait, observation du cycle de reset, conclusion sur le tempo — ce n'est pas une déclaration de production mais une description de pilotage." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La mention est courte, mais la conversion explicite du compteur en outil de planification des pauses suffit à signer un rapport conscient au rythme." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille un récit de production sans pilotage, où \"j'ai tout fait\" masquerait l'absence de priorisation. Ce qui m'a obligé à m'arrêter, ce sont trois gestes nets : un non stratégique avec dispositif matériel (\"m'obliger à ne pas prendre l'ordinateur\"), un pilotage du tempo par lecture des contraintes du service (parallélisation calibrée), et une conversion explicite d'un compteur en outil de planification. Sous la présomption de sycophantie, les pièces ont résisté ; la pièce 4 reste plus faible (constat de production sans dépliage du pilotage), mais elle vient en environnement, pas comme preuve. Ce qui en résulte : une présence solidement attestée d'un pilotage personnel articulé, avec à la fois le renoncement stratégique (pause forcée) et le pilotage de tempo (parallélisation, tokens, planification des pauses).",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé les pièces 1 et 2 (non stratégique argumenté + pilotage du tempo par lecture des contraintes) et retenu la pièce 3 — environnement cohérent d'efficacité personnelle par renoncement et calibration.",
+        "prescription": "Pour approfondir cet axe, un chemin possible serait de documenter, à propos du retour des vacances, comment le rythme s'est ajusté entre matinée de production intense et phase de relecture papier — qu'est-ce que le renoncement à l'ordinateur a coûté ou produit comme bénéfice."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Cycle de versions sur le prompt avec apprentissage explicite entre une version antérieure (\"trop résumée\") et la version actuelle — boucle générer-tester-ajuster."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Bascule de la phase exploratoire (recherche du bon prompt) à la phase industrielle (production en série) — ajustement de plan en cours de route."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Mention d'un fichier v5 (table des matières augmentée) qui atteste cinq itérations passées — pratique de versionnement ancrée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'agilité méthodologique n'est pas vraiment attestée. La fiche met en garde contre le \"théâtre agile\" (les rituels sans adaptation réelle) et exige une boucle de rétroaction explicite. Si je durcis, je note que la feuille parle de versions de prompts (v5) mais ne décrit pas vraiment une cycle complet générer-relire-tester-ajuster avec des artefacts agiles (backlogs, issues). Ce qui résiste pourtant : la pièce 1 articule explicitement une boucle d'apprentissage entre versions (\"version précédente trop résumée\" → \"version actuelle\"), la pièce 2 décrit un ajustement de plan en cours de route, et la pièce 3 atteste cinq itérations sur un artefact structurant. La fiche cite explicitement \"numéro de version élevé (v6, v7) sans commentaire méthodologique = pratique itérative ancrée non thématisée\" comme trace oblique, ce qui correspond exactement à \"v5\".",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La pièce déploie une boucle explicite version-précédente → ajustement → version-actuelle avec apprentissage entre cycles, ce qui est la signature même de l'itération agile." },
+            { "pieceId": 2, "motifResistance": "La pièce nomme l'ajustement de plan en cours de route (basculer d'exploration vers production en série après convergence) — geste agile classique." },
+            { "pieceId": 3, "motifResistance": "Le v5 atteste une pratique itérative ancrée non thématisée, exactement le marqueur oblique cité par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Toutes les pièces ont résisté ; je durcis. L'attaque (b) confusion de compétence pèse sur la pièce 1 — c'est aussi de la créativité itérative (3.01). La fiche distingue toutefois 7.07 comme pilotage par itération structurée, ce qui est exactement le cas ici (boucle générer-tester-ajuster sur des artefacts de production). La pièce 3 est courte mais le marqueur v5 est explicite. L'attaque (a) insuffisance probatoire pourrait peser sur la dimension \"conduite du changement humain\" qui n'est pas vraiment activée dans cette feuille — il n'y a pas d'anticipation de résistances chez d'autres acteurs.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La polysémie avec 3.01 est attendue, mais la signature de 7.07 (pilotage par itération structurée sur des artefacts de production) est claire et tient indépendamment." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'ajustement de plan est posé mais sans dépliage des critères qui ont déclenché la bascule ; la pièce reste un indice." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le v5 dans un nom de fichier est un marqueur très court, mais la fiche le cite explicitement comme trace oblique forte d'une pratique itérative ancrée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille un récit d'exécution sans agilité réelle (\"j'ai planifié et j'ai exécuté\"). Ce qui m'a obligé à m'arrêter, ce sont trois marqueurs convergents : une boucle d'apprentissage entre versions du prompt, un ajustement de plan en cours de route, et un v5 dans un nom de fichier qui atteste cinq itérations passées sur un artefact structurant. Sous la présomption de sycophantie, les pièces ont tenu, avec une réserve sur la dimension \"conduite du changement humain\" qui n'est pas activée dans cette feuille. Ce qui en résulte : une présence attestée de l'agilité côté pilotage par itération structurée, sans déployer le versant humain (anticipation des résistances, accompagnement des transitions).",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé les pièces 1 et 3 (boucle d'apprentissage entre versions + marqueur v5) et retenu la pièce 2 — environnement cohérent d'agilité méthodologique sur le versant itération structurée.",
+        "prescription": "Pour approfondir cet axe, un chemin possible serait de documenter, à propos d'un futur déploiement de la formation auprès d'apprenants, comment la résistance probable à un nouveau dispositif (sur écran, papier, manuels) serait anticipée et accompagnée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention d'une interruption de génération hier — possible trace de gestion d'incident, mais sans déploiement temporel précis."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la gestion de crise n'est pas attestée. La fiche est très exigeante : il faut une compression temporelle radicale, des décisions en cascade, un récit avec détails temporels précis. L'interruption d'hier d'un script de génération n'est pas une crise au sens fort — c'est un incident mineur. Si je durcis, je note qu'aucun timing précis n'est donné, aucune séquence de décisions, aucun post-mortem structuré, aucun vocabulaire technique de crise (rollback, hotfix, SLA).",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La fiche est claire : le stress ordinaire (une interruption d'un script) n'est pas une crise — la crise se distingue par l'urgence vitale et les décisions rapides en cascade.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans l'interruption d'hier une trace de gestion de crise. Sous la présomption d'absence, la pièce n'a pas tenu : incident mineur, pas de compression temporelle radicale, pas de cascade de décisions sous urgence. Ce qui en résulte : pas de présence attestée sur cette feuille.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : incident mineur d'interruption, sans compression temporelle ni cascade de décisions sous urgence.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une situation de crise réelle (panne majeure, urgence opérationnelle) avec la séquence précise des décisions, le timing, et le post-mortem qui en aura été tiré."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 2,
+    "nonEtablies": 4,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée du portfolio, le travail montre un pilote au tableau de bord : un objectif borné (les 21 chapitres avant le départ), des artefacts structurés (table des matières augmentée v5, prompts par chapitre, spécifications versionnées), un pilotage du rythme (parallélisation calibrée par lecture des tokens et du cycle de reset), et un renoncement stratégique articulé (impression papier pour s'imposer la pause des vacances). La voix dominante est celle de quelqu'un qui sait ce qu'il fait maintenant et pour quoi il le fait — l'action présente est liée à un futur précis, et les artefacts produits visent leur réutilisation dans les itérations suivantes.",
+    "territoiresDenses": [
+      {
+        "competence": "Efficacité personnelle",
+        "description": "Le travail montre un pilotage articulé : un non stratégique avec dispositif matériel (papier au lieu d'ordinateur), un pilotage du tempo par lecture des contraintes du service (parallélisation, tokens, reset), et un constat d'atteinte d'objectif qui ouvre la planification suivante.",
+        "extraitVerbatim": "Je vais les imprimer (600 pages) et les relire sur papier pour m'obliger à ne pas prendre mon ordinateur pendant la semaine de vacances.",
+        "ceQueCaDit": "Le verbe « m'obliger » combiné à un dispositif matériel est la signature d'un non stratégique argumenté — pas un simple refus déclaratif, mais un renoncement opératoire."
+      },
+      {
+        "competence": "Agilité méthodologique",
+        "description": "Le travail montre une boucle d'apprentissage explicite entre versions de prompts, un ajustement de plan en cours de route, et un v5 dans un nom de fichier qui atteste cinq itérations passées sur un artefact structurant.",
+        "extraitVerbatim": "j'ai contraint dans le prompt ci-dessus la longueur dans une version précédente en demandant à Claude de rester concis dans les textes produits, mais c'était pratiquement incompréhensible car trop résumé.",
+        "ceQueCaDit": "La boucle générer-tester-ajuster est déployée avec son contenu : ce qui a échoué, pourquoi, et la révision qui en a découlé. C'est de l'itération structurée, pas un simple récit de production."
+      },
+      {
+        "competence": "Vision stratégique",
+        "description": "Le travail articule explicitement le présent (générer aujourd'hui) et un futur précis (relire pendant les vacances), avec un dispositif matériel (l'impression) qui matérialise la projection.",
+        "extraitVerbatim": "Idéalement, j'aimerai générer les 21 chapitres des 5 livres avant le départ de la Suisse, pour pouvoir faire la lecture, les corrections et la mise en page durant les vacances.",
+        "ceQueCaDit": "Le « pour pouvoir » est la signature exacte du lien argumenté entre futur anticipé et décision présente — une vision stratégique opératoire à l'échelle d'un projet."
+      },
+      {
+        "competence": "Documentation vivante",
+        "description": "Le travail mobilise une architecture documentaire fragmentée par thème et versionnée (table des matières augmentée v5, prompts par chapitre, spécifications d'exercices v5) — une pratique de capitalisation ancrée.",
+        "extraitVerbatim": "Les exercices sont détaillés dans specification-exercices-respire-v5.md et tu peux adapter ou les améliorer si nécessaire.",
+        "ceQueCaDit": "Le v5 atteste cinq itérations passées sur un document de spécification réutilisable — capitalisation structurée plutôt que simple sauvegarde."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs compétences du pôle n'ont pas trouvé de matière dans cette feuille. L'évaluation transformative reste un territoire non visité : la journée n'a pas mis en jeu un retour adressé à un apprenant ou un pair. La gestion de crise n'a pas franchi le seuil : l'interruption d'hier est un incident mineur sans compression temporelle ni cascade de décisions sous urgence. La maïeutique et la facilitation d'apprentissage, ainsi que le leadership situationnel, ont laissé des traces ténues — design pédagogique articulé d'un côté, alternance entre phase exploratoire et phase de délégation de l'autre — mais sans déployer respectivement la dimension interrogative et le cycle complet supervision-retrait-reprise.",
+    "emergencesPole": "Trois fils traversent les compétences attestées de ce pôle. D'abord, une économie de la capitalisation : tout ce qui est produit (prompts, spécifications, table des matières) est versionné et fragmenté pour être réutilisé. Ensuite, un rapport au temps articulé : action présente liée à un futur précis, pilotage du tempo par lecture des contraintes du service, renoncement stratégique pour préserver une phase distincte (les vacances). Enfin, une discipline de retenue : la qualité est définie par ce qu'on évite (remplissage, redondances, romans de 1200 pages) autant que par ce qu'on produit.",
+    "pistes": [
+      "Pour approfondir la maïeutique et la facilitation d'apprentissage, un chemin possible serait de concevoir, pour un exercice du manuel, un dispositif où l'apprenant construit lui-même la réponse plutôt que de la recevoir — avec la question qui ouvre l'exploration.",
+      "Pour approfondir le leadership situationnel, un chemin possible serait de documenter, durant la production en série, les moments où une supervision a été reprise — l'IA dérivait, un chapitre était à reformuler — avec le déclencheur de chaque bascule.",
+      "Pour ouvrir l'évaluation transformative, un chemin possible serait de documenter le retour donné à un premier relecteur des manuels (un proche, un futur apprenant) sur ce qui fonctionne et ce qui ouvre des pistes de progression.",
+      "Pour prolonger la vision stratégique, un chemin possible serait de déplier l'horizon au-delà du \"avant le départ\" — qu'est-ce que ces manuels permettent dans six mois ou un an, et quelles décisions présentes en découlent.",
+      "Pour rendre plus explicite la documentation vivante, un chemin possible serait de documenter, à propos d'un fichier v5, ce qui a changé entre v4 et v5 et pourquoi — rendre l'historique d'évolution lisible renforce la dimension vivante de la documentation."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée du portfolio, le travail montre un pilote au tableau de bord : un objectif borné (les 21 chapitres avant le départ), des artefacts structurés (table des matières augmentée v5, prompts par chapitre, spécifications versionnées), un pilotage du rythme (parallélisation calibrée par lecture des tokens et du cycle de reset), et un renoncement stratégique articulé (impression papier pour s'imposer la pause des vacances). La voix dominante est celle de quelqu'un qui sait ce qu'il fait maintenant et pour quoi il le fait — l'action présente est liée à un futur précis, et les artefacts produits visent leur réutilisation dans les itérations suivantes.\n\n## Territoires les plus denses\n\n### Efficacité personnelle\n\nLe travail montre un pilotage articulé : un non stratégique avec dispositif matériel (papier au lieu d'ordinateur), un pilotage du tempo par lecture des contraintes du service (parallélisation, tokens, reset), et un constat d'atteinte d'objectif qui ouvre la planification suivante.\n\n> « Je vais les imprimer (600 pages) et les relire sur papier pour m'obliger à ne pas prendre mon ordinateur pendant la semaine de vacances. »\n\nLe verbe « m'obliger » combiné à un dispositif matériel est la signature d'un non stratégique argumenté — pas un simple refus déclaratif, mais un renoncement opératoire.\n\n### Agilité méthodologique\n\nLe travail montre une boucle d'apprentissage explicite entre versions de prompts, un ajustement de plan en cours de route, et un v5 dans un nom de fichier qui atteste cinq itérations passées sur un artefact structurant.\n\n> « j'ai contraint dans le prompt ci-dessus la longueur dans une version précédente en demandant à Claude de rester concis dans les textes produits, mais c'était pratiquement incompréhensible car trop résumé. »\n\nLa boucle générer-tester-ajuster est déployée avec son contenu : ce qui a échoué, pourquoi, et la révision qui en a découlé. C'est de l'itération structurée, pas un simple récit de production.\n\n### Vision stratégique\n\nLe travail articule explicitement le présent (générer aujourd'hui) et un futur précis (relire pendant les vacances), avec un dispositif matériel (l'impression) qui matérialise la projection.\n\n> « Idéalement, j'aimerai générer les 21 chapitres des 5 livres avant le départ de la Suisse, pour pouvoir faire la lecture, les corrections et la mise en page durant les vacances. »\n\nLe « pour pouvoir » est la signature exacte du lien argumenté entre futur anticipé et décision présente — une vision stratégique opératoire à l'échelle d'un projet.\n\n### Documentation vivante\n\nLe travail mobilise une architecture documentaire fragmentée par thème et versionnée (table des matières augmentée v5, prompts par chapitre, spécifications d'exercices v5) — une pratique de capitalisation ancrée.\n\n> « Les exercices sont détaillés dans specification-exercices-respire-v5.md et tu peux adapter ou les améliorer si nécessaire. »\n\nLe v5 atteste cinq itérations passées sur un document de spécification réutilisable — capitalisation structurée plutôt que simple sauvegarde.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs compétences du pôle n'ont pas trouvé de matière dans cette feuille. L'évaluation transformative reste un territoire non visité : la journée n'a pas mis en jeu un retour adressé à un apprenant ou un pair. La gestion de crise n'a pas franchi le seuil : l'interruption d'hier est un incident mineur sans compression temporelle ni cascade de décisions sous urgence. La maïeutique et la facilitation d'apprentissage, ainsi que le leadership situationnel, ont laissé des traces ténues — design pédagogique articulé d'un côté, alternance entre phase exploratoire et phase de délégation de l'autre — mais sans déployer respectivement la dimension interrogative et le cycle complet supervision-retrait-reprise.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent les compétences attestées de ce pôle. D'abord, une économie de la capitalisation : tout ce qui est produit (prompts, spécifications, table des matières) est versionné et fragmenté pour être réutilisé. Ensuite, un rapport au temps articulé : action présente liée à un futur précis, pilotage du tempo par lecture des contraintes du service, renoncement stratégique pour préserver une phase distincte (les vacances). Enfin, une discipline de retenue : la qualité est définie par ce qu'on évite (remplissage, redondances, romans de 1200 pages) autant que par ce qu'on produit.\n\n## Pistes pour enrichir ce pôle\n\n- Pour approfondir la maïeutique et la facilitation d'apprentissage, un chemin possible serait de concevoir, pour un exercice du manuel, un dispositif où l'apprenant construit lui-même la réponse plutôt que de la recevoir — avec la question qui ouvre l'exploration.\n- Pour approfondir le leadership situationnel, un chemin possible serait de documenter, durant la production en série, les moments où une supervision a été reprise — l'IA dérivait, un chapitre était à reformuler — avec le déclencheur de chaque bascule.\n- Pour ouvrir l'évaluation transformative, un chemin possible serait de documenter le retour donné à un premier relecteur des manuels (un proche, un futur apprenant) sur ce qui fonctionne et ce qui ouvre des pistes de progression.\n- Pour prolonger la vision stratégique, un chemin possible serait de déplier l'horizon au-delà du « avant le départ » — qu'est-ce que ces manuels permettent dans six mois ou un an, et quelles décisions présentes en découlent.\n- Pour rendre plus explicite la documentation vivante, un chemin possible serait de documenter, à propos d'un fichier v5, ce qui a changé entre v4 et v5 et pourquoi — rendre l'historique d'évolution lisible renforce la dimension vivante de la documentation."
+  }
+}

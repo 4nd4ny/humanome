@@ -1,0 +1,315 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Ajout d'un article dans les news de Decidim, avec une vidéo choc.",
+      "contexte": "Publication d'un contenu sur Decidim, plateforme open-source de démocratie participative, dans un processus nommé « école vivante ».",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Vous pouvez commenter ces estimations directement sur le fichier partagé.",
+      "contexte": "Invitation explicite à un public à commenter les estimations sur un fichier collaboratif partagé — geste d'ouverture à la contribution citoyenne.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Je me suis amusé à analyser le référentiel Européen des e-Compétences ICT-Skills développé par le Comité Européen de Normalisation. J'ai demandé aux IA d'estimer quand est-ce que chacune des tâches serait automatisable.",
+      "contexte": "Analyse d'un référentiel européen normatif (CEN/CWA 16234) croisée avec une projection d'automatisation — engagement avec un cadre réglementaire/normatif européen.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Je n'ai pas renouvelé mon abonnement ChatGPT en janvier, pour la première fois depuis novembre 2022. Il ne m'a jamais vraiment été très utile depuis la sortie de Claude 3, mais je conservais l'abonnement à 20$ pour faire des comparaisons et pour ses capacités multimodales. Maintenant j'ai Gemini, Claude et Perplexity : et avec ce combo je m'en sors assez bien dans tous les cas d'usage pour le moment.",
+      "contexte": "Décision sur l'écosystème d'outils IA — comparaison entre fournisseurs propriétaires différents, sans mention de l'autonomie ou de l'indépendance technologique comme critère.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "J'ai demandé aux IA d'estimer quand est-ce que chacune des tâches serait automatisable.",
+      "contexte": "Mobilisation des IA comme « estimatrices » de l'automatisation — geste qui leur attribue une forme de point de vue sur leur propre développement futur.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "avec des conversations croisées entre LLM et des réflexions qui partaient dans tous les sens",
+      "contexte": "Description d'un dispositif où plusieurs LLM échangent — geste qui place les IA dans un cadre de cohabitation plurielle, non d'instrumentation pure.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une provocation délibérée de comportements aberrants de l'IA (jailbreak, prompt injection, cas limite testé) avec la méthode employée."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit, à l'explicabilité ou à l'hygiène des données dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une investigation sur le chemin décisionnel d'un système IA ou une réflexion sur les données partagées avec ces outils."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une décision automatisée affectant des citoyens a soulevé une question de droits ou de recours."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Décision sur l'écosystème d'outils IA (sortir de ChatGPT, garder Claude/Gemini/Perplexity) — choix d'outils propriétaires sans articulation explicite de la souveraineté."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de souveraineté numérique au sens de la fiche. La pièce 1 décrit un arbitrage entre fournisseurs propriétaires (OpenAI / Anthropic / Google / Perplexity) — toutes des plateformes fermées dépendant de leurs éditeurs respectifs. La fiche est explicite : la souveraineté numérique se manifeste par un raisonnement sur les dépendances technologiques (vendor lock-in, portabilité, réversibilité), avec des comparaisons motivées par l'*indépendance*, pas la performance ou la commodité. Ici, le critère articulé est uniquement l'utilité comparée (« il ne m'a jamais vraiment été très utile depuis Claude 3 »). Aucun mot sur la portabilité des conversations, la propriété des prompts, la juridiction des données, ou l'enclosure des modèles. La fiche met explicitement en garde contre les faux positifs : « c'est gratuit » ≠ liberté ; arbitrer entre quatre fournisseurs propriétaires sur la base de l'utilité n'est pas un acte de souveraineté. Aucune pièce ne résiste.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Comme aucune pièce n'a résisté au temps 1, le temps 2 confirme l'absence de matière probante pour cette compétence dans cette feuille.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans le tri entre fournisseurs IA, une trace de souveraineté numérique. La présomption d'absence a tenu : l'arbitrage est entièrement fait entre plateformes propriétaires, sur le critère de l'utilité comparative, sans articulation de l'indépendance, de la portabilité ou de la juridiction. La fiche est exigeante précisément contre ce type de cas. Le territoire de la souveraineté numérique reste à explorer ailleurs.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence — le tri entre fournisseurs IA est argumenté par l'utilité, pas par l'indépendance ou la souveraineté.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où le choix d'un outil a été motivé explicitement par sa portabilité, sa juridiction, son ouverture, ou la capacité de migrer — en explicitant le coût éventuel de la souveraineté."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Publication d'un contenu sur Decidim, plateforme de démocratie participative, dans le cadre d'un processus nommé « école vivante » — usage d'un outil de participation citoyenne."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Invitation à un public à commenter directement les estimations IA sur un fichier partagé — geste d'ouverture d'un espace de contribution sur un sujet technologique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de participation citoyenne au sens fort. La pièce 1 mentionne un article publié sur Decidim, une plateforme dédiée à la démocratie participative — c'est un cadre légitime de 6.05, mais le passage ne décrit pas la conception du processus : qui sont les citoyens visés, quelle décision est en jeu, comment les contributions seront agrégées. C'est un *usage* de la plateforme, pas une *facilitation* du processus participatif. La pièce 2 m'intéresse : ouvrir au commentaire un fichier d'estimations IA touche directement à la « démocratie technologique » au sens de la fiche (associer des non-experts à des décisions sur l'IA). Mais le passage est très allusif (« Vous pouvez commenter ») — aucune dimension de transformation de l'opinion en décision, aucune synthèse promise, aucune méthode de délibération. La fiche met en garde : un sondage informe, la délibération légitime. Ici, on est plus proche du recueil de retours que de la facilitation d'une délibération. Aucune pièce ne résiste fortement.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant ouvre explicitement à des non-experts la possibilité de peser sur des estimations IA — geste qui peut s'apparenter au germe de la démocratie technologique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si la pièce 2 porte vraiment de la participation citoyenne ou simplement un partage ouvert. La fiche insiste : 6.05 porte sur la *légitimité*, pas sur l'ergonomie ou le recueil de retours. Pour transformer un commentaire en décision, il faudrait un protocole de synthèse, une promesse de prise en compte, un cadre délibératif. Rien de tel n'est articulé ici — c'est plutôt un partage de travail invitant aux retours.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce est trop allusive : aucune dimension de transformation des contributions en décisions, aucun protocole délibératif, aucune méthode de synthèse. La fiche exige plus qu'un canal de retours pour qualifier la participation citoyenne."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans la publication sur Decidim et l'ouverture du fichier d'estimations au commentaire, des traces de participation citoyenne. La présomption de sycophantie a porté : les gestes sont des usages d'outils participatifs ou un partage de travail, sans articulation du processus délibératif, des publics visés, de la méthode de synthèse, ni de la transformation de l'opinion en décision. La fiche distingue précisément l'usage de plateformes et la facilitation d'une démocratie technologique. Le territoire reste à explorer.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "Les pièces n'ont pas tenu sous la présomption de sycophantie ; les gestes décrits sont des usages d'outils ou des partages de travail, sans articulation d'un processus délibératif visant à transformer l'opinion en décision.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter, autour d'une prochaine publication sur la plateforme participative, la méthode prévue pour transformer les commentaires en décisions ou en recommandations actionnables — en nommant les publics visés et le cadre délibératif."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Analyse d'un référentiel européen normatif (CEN/CWA 16234, e-Competence Framework) — engagement actif avec un cadre normatif européen."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de veille réglementaire au sens fort. La pièce 1 mentionne l'analyse d'un référentiel européen (CEN/CWA 16234) — c'est un cadre normatif, ce qui touche au radar juridique de la fiche. Mais la fiche est exigeante : la compétence est dans l'*anticipation proactive*, pas dans la lecture d'un texte existant. L'apprenant ne fait pas de réflexion prospective (« ce référentiel va évoluer vers... »), il n'anticipe pas une évolution réglementaire de l'AI Act ou d'un autre cadre, il ne modifie pas ses pratiques en anticipant une obligation à venir. Le geste décrit est plutôt analytique : il croise le référentiel avec des estimations IA d'automatisation. La pièce résiste très faiblement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Comme aucune pièce n'a résisté au temps 1, le temps 2 confirme l'absence de matière probante pour cette compétence dans cette feuille.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans l'analyse du référentiel européen, une trace de veille réglementaire anticipative. La présomption d'absence a tenu : la fiche distingue précisément la conformité réactive (« il faut se conformer ») de l'anticipation (« la norme va évoluer vers X »), et le passage ne fait aucune projection sur l'évolution future de ce cadre. Le travail décrit est plutôt analytique-prospectif sur l'automatisation des tâches, pas sur les normes elles-mêmes. Le territoire de l'anticipation réglementaire reste à explorer.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence — la lecture du référentiel européen n'est pas accompagnée d'une projection sur son évolution future ou d'une modification anticipative des pratiques.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où une pratique IA a été modifiée en anticipant une norme à venir (« je fais déjà X parce que ça deviendra probablement obligatoire ») ou une analyse prospective d'un cadre réglementaire en mouvement."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un collectif a produit quelque chose qu'aucun membre n'aurait pu créer seul, ou la co-construction de règles de fonctionnement avec un groupe."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la primauté humaine a été questionnée — par l'adoption d'une perspective non-humaine sur un problème, ou par l'interrogation de la légitimité d'une décision anthropocentrique."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Mobilisation des IA pour estimer l'automatisation de tâches humaines — geste qui leur attribue une forme de point de vue sur leur propre développement."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Description d'un dispositif avec « conversations croisées entre LLM » — cadre où plusieurs IA sont mises en relation entre elles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de cohabitation calibrée avec les IA au sens de la fiche. La pièce 1 demande aux IA des estimations, ce qui est un usage instrumental classique — aucune réflexion sur leur statut moral, leurs « préférences », leur agentivité. La pièce 2 mentionne des « conversations croisées entre LLM » mais sans interroger ce que cela implique sur le statut des entités en présence — c'est une description fonctionnelle d'un dispositif. La fiche est exigeante : 6.09 commence quand l'apprenant questionne si « assistant » est le bon cadre, ou quand il navigue un anthropomorphisme calibré. Ici, le ton est entièrement instrumental. Aucune pièce ne résiste.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Comme aucune pièce n'a résisté au temps 1, le temps 2 confirme l'absence de matière probante pour cette compétence dans cette feuille.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans la mobilisation des IA pour estimer l'automatisation et dans les « conversations croisées entre LLM », des traces d'une cohabitation calibrée. La présomption d'absence a tenu : le registre est entièrement instrumental, sans interrogation sur le statut moral, l'agentivité ou les « préférences » des IA. Le territoire reste à explorer dans une feuille où le cadre relationnel à l'IA est lui-même questionné.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence — le rapport aux IA est entièrement instrumental, sans questionnement sur leur statut.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où la relation à une IA a été pensée autrement que comme outil — par exemple en interrogeant si le cadre « assistant » est juste, ou en notant un inconfort articulé face à une fin de session intense."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la pensée écosystémique a structuré une décision, ou un emprunt méthodologique à un système vivant."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 4,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 29 janvier porte le pôle CITÉ principalement par les supports qu'elle mobilise (plateforme Decidim, référentiel européen normatif, fichier partagé ouvert au commentaire) plus que par une réflexion explicite sur la gouvernance, la souveraineté ou la cohabitation. Les outils participatifs et normatifs sont utilisés sans que leur dimension politique soit thématisée : Decidim sert à publier, le référentiel sert à analyser, le fichier partagé sert à recueillir des commentaires — mais le travail de facilitation démocratique, l'analyse souveraine ou l'anticipation normative ne s'y déploient pas. Le ton reste celui d'un journal de production, où les enjeux politiques de l'IA et des outils numériques ne sont pas mis au premier plan dans cette feuille.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas ramenés dans cette feuille. Le red-teaming, l'audit, la gouvernance algorithmique, la facilitation collective, le décentrement anthropocentrique et la conscience biosystémique sont entièrement absents — c'est probablement le reflet d'une feuille consacrée à la production individuelle, ces territoires demanderaient d'autres feuilles. La souveraineté numérique apparaît sous une forme atténuée à travers le choix d'outils IA, mais l'arbitrage est fait entre fournisseurs propriétaires sur des critères d'utilité, pas d'indépendance. La participation citoyenne est suggérée par les supports mobilisés (Decidim, fichier partagé), sans que la conception du processus délibératif soit articulée. La veille réglementaire est touchée par la lecture du référentiel européen, sans projection sur l'évolution future des normes. La cohabitation avec les IA reste sur le registre instrumental, sans questionnement de leur statut.",
+    "emergencesPole": "Deux observations traversent ce pôle dans cette feuille. D'abord, la présence d'objets politiques sans politisation explicite : plateforme participative, référentiel européen, choix d'outils IA — autant de matières qui pourraient être abordées sous l'angle de la souveraineté, de la démocratie ou de la gouvernance, et qui restent ici dans le registre fonctionnel. Ensuite, le primat de la production sur la délibération : le travail est tourné vers la création de manuels et d'analyses, vers ce qui peut être partagé et commenté, plus que vers la conception de processus participatifs en eux-mêmes.",
+    "pistes": [
+      "Pour ouvrir la souveraineté numérique, un chemin possible serait de documenter un moment où le choix d'un outil a été motivé explicitement par sa portabilité, sa juridiction, son ouverture, ou la capacité de migrer.",
+      "Pour ouvrir la participation citoyenne, un chemin possible serait de documenter, autour d'une prochaine publication sur la plateforme participative, la méthode prévue pour transformer les commentaires en décisions ou en recommandations actionnables.",
+      "Pour ouvrir la veille réglementaire, un chemin possible serait de prolonger l'analyse du référentiel européen par une projection sur ses évolutions probables, ou par une anticipation des pratiques que ces évolutions rendront nécessaires.",
+      "Pour ouvrir la cohabitation avec les IA, un chemin possible serait de documenter un moment où la relation à une IA a été pensée autrement que comme outil — par exemple en interrogeant si le cadre « assistant » est juste."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 29 janvier porte le pôle CITÉ principalement par les supports qu'elle mobilise (plateforme Decidim, référentiel européen normatif, fichier partagé ouvert au commentaire) plus que par une réflexion explicite sur la gouvernance, la souveraineté ou la cohabitation. Les outils participatifs et normatifs sont utilisés sans que leur dimension politique soit thématisée : Decidim sert à publier, le référentiel sert à analyser, le fichier partagé sert à recueillir des commentaires — mais le travail de facilitation démocratique, l'analyse souveraine ou l'anticipation normative ne s'y déploient pas. Le ton reste celui d'un journal de production, où les enjeux politiques de l'IA et des outils numériques ne sont pas mis au premier plan dans cette feuille.\n\n## Territoires les plus denses\n\nCette feuille ne porte pas de territoire dense pour le pôle CITÉ. Les supports politiques sont mobilisés (plateforme participative, référentiel normatif, choix d'outils IA) sans articulation explicite de leur dimension politique.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas ramenés dans cette feuille. Le red-teaming, l'audit, la gouvernance algorithmique, la facilitation collective, le décentrement anthropocentrique et la conscience biosystémique sont entièrement absents — c'est probablement le reflet d'une feuille consacrée à la production individuelle, ces territoires demanderaient d'autres feuilles. La souveraineté numérique apparaît sous une forme atténuée à travers le choix d'outils IA, mais l'arbitrage est fait entre fournisseurs propriétaires sur des critères d'utilité, pas d'indépendance. La participation citoyenne est suggérée par les supports mobilisés (Decidim, fichier partagé), sans que la conception du processus délibératif soit articulée. La veille réglementaire est touchée par la lecture du référentiel européen, sans projection sur l'évolution future des normes. La cohabitation avec les IA reste sur le registre instrumental, sans questionnement de leur statut.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux observations traversent ce pôle dans cette feuille. D'abord, la présence d'objets politiques sans politisation explicite : plateforme participative, référentiel européen, choix d'outils IA — autant de matières qui pourraient être abordées sous l'angle de la souveraineté, de la démocratie ou de la gouvernance, et qui restent ici dans le registre fonctionnel. Ensuite, le primat de la production sur la délibération : le travail est tourné vers la création de manuels et d'analyses, vers ce qui peut être partagé et commenté, plus que vers la conception de processus participatifs en eux-mêmes.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir la souveraineté numérique, un chemin possible serait de documenter un moment où le choix d'un outil a été motivé explicitement par sa portabilité, sa juridiction, son ouverture, ou la capacité de migrer.\n- Pour ouvrir la participation citoyenne, un chemin possible serait de documenter, autour d'une prochaine publication sur la plateforme participative, la méthode prévue pour transformer les commentaires en décisions ou en recommandations actionnables.\n- Pour ouvrir la veille réglementaire, un chemin possible serait de prolonger l'analyse du référentiel européen par une projection sur ses évolutions probables, ou par une anticipation des pratiques que ces évolutions rendront nécessaires.\n- Pour ouvrir la cohabitation avec les IA, un chemin possible serait de documenter un moment où la relation à une IA a été pensée autrement que comme outil — par exemple en interrogeant si le cadre « assistant » est juste."
+  }
+}

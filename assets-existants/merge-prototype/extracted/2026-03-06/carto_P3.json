@@ -1,0 +1,264 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "L'école de demain à des années d'avances en intégrant noèsiologie et évaluations humanistes au cœur du projet. Je ne veux pas arrêter avant d'avoir lancer le processus, qui, ensuite, n'a plus besoin de moi pour exister.",
+      "contexte": "Projet décrit comme inédit ('des années d'avances') intégrant des objets que l'apprenant assemble. Pourrait toucher 3.01 (créativité radicale) ou 3.03 (design de problèmes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je sais que j'ai trop de respect pour les élèves pour donner des cours de merde",
+      "contexte": "Énoncé d'un seuil de qualité personnel face aux élèves. Pourrait toucher 3.04 (jugement esthétique) si la qualité est articulée, ou 3.07 (présence live) si le rapport aux élèves se joue en direct.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Mais le démarrage nécessite une énergie et une concentration que même en étant au chômage je n'arrive que très difficilement à avoir.",
+      "contexte": "Description d'une ressource somatique (énergie, concentration) comme condition de la production. Pourrait toucher 3.06 (ancrage sensoriel) si la sensation est nommée précisément.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Faire 1h15 de route pour commencer à 7h30 le matin, ça implique une routine de levé à 5h du matin toute la semaine avec un retour vers 18h30 pour un dodo vers 22h30 si je ne veux pas m'épuiser de nouveau.",
+      "contexte": "Anticipation corporelle d'un rythme et de son coût en énergie ('m'épuiser de nouveau'). Pourrait toucher 3.06 si l'écoute du corps précède la décision.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le projet d'école de demain est présenté comme inédit ('des années d'avances') articulant noèsiologie et évaluations humanistes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que déclarer un projet 'en avance' n'est pas une trace de créativité radicale au sens de la fiche, qui demande soit des itérations traçables, soit une rupture documentée. La pièce 1 énonce une affirmation sur le caractère innovant du projet, mais ne montre ni le processus créatif (itérations, prototypes, versions), ni l'acte de rupture, ni la transgression d'une règle. C'est une déclaration sur le résultat, pas un récit de l'acte créatif. La fiche signale explicitement que 'c'est original' peut être de la simple variation. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'affirmation que l'école de demain a 'des années d'avances' montrait un acte créatif en train de se faire. Elle est tombée : la pièce affirme la nouveauté du résultat sans donner à voir le processus, ni les itérations, ni la transgression. La créativité itérative ou radicale au sens de la fiche reste hors de portée de cette feuille — non absente du parcours global, mais non visible dans ce qui est raconté ici.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : déclarer un projet innovant n'est pas raconter l'acte créatif qui le produit.",
+        "prescription": "Un récit qui montrerait les versions successives du projet d'école de demain, ou qui nommerait précisément la règle transgressée pour produire la nouveauté, ouvrirait une trace plus solide."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et signature dans cette feuille. La détection de la signature exige de comparer plusieurs feuilles entre elles pour repérer les patterns récurrents."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le projet d'école de demain pourrait constituer la formulation d'un problème nouveau (comment construire une école qui intègre noèsiologie et évaluations humanistes ?) plutôt qu'une réponse à un problème existant."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que le design de problèmes au sens de la fiche exige un acte explicite de création d'une question nouvelle, distinct de la reformulation d'un problème existant (qui serait 1.02). La pièce 1 mentionne un projet qui intègre noèsiologie et évaluations humanistes, mais sans formuler explicitement la question nouvelle que ce projet ouvrirait. L'apprenant décrit le résultat anticipé ('école de demain'), pas l'acte de poser une question que personne n'avait formulée. Pas de 'et si le vrai sujet c'était...', pas de récit où l'apprenant cesse de résoudre pour poser. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le projet d'école de demain portait l'acte de poser une question nouvelle. Il est tombé : la pièce nomme un projet et ses ingrédients, sans formuler explicitement la question inédite qui l'ouvre. Le design de problèmes au sens de la fiche reste hors de portée de cette feuille — non absent du parcours global, mais non visible ici sous cette forme.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : nommer un projet ne suffit pas à attester l'acte de poser une question nouvelle.",
+        "prescription": "Un récit qui formulerait explicitement la question que personne n'avait posée et que le projet d'école de demain rendrait visible donnerait à voir le design de problèmes en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Énoncé d'un seuil de qualité ('cours de merde' à éviter) qui pourrait fonctionner comme jugement esthétique implicite sur ce qu'est un cours juste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que rejeter une qualité dégradée ('cours de merde') ne suffit pas à attester un jugement esthétique au sens de la fiche, qui demande l'articulation de critères, ou au moins le geste de soustraction motivée. La pièce 2 énonce un refus d'un seuil bas, mais ne nomme pas les critères qui définissent un 'bon cours' — ton, structure, adéquation au public, cohérence. L'expression 'cours de merde' est intuitive et catégorielle, sans articulation. La fiche signale que le rejet intuitif peut être un signal de jugement esthétique actif, mais sans développement ni curation. La pièce résiste faiblement : il y a bien un filtre qualitatif révélé par le rejet, mais sans articulation des critères.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le rejet d'un 'cours de merde' révèle l'existence d'un filtre qualitatif intériorisé, même s'il n'est pas articulé."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 a tenu faiblement. L'attaque (a) — insuffisance probatoire — me semble dominante : l'expression est très courte ('cours de merde'), purement catégorielle, sans critère ni description de ce qui ferait la qualité d'un cours. La fiche admet le jugement intuitif révélé par le rejet, mais plafonne ce type de trace à 'Émergent'. Ici, la pièce est trop allusive pour soutenir un verdict de présence. L'attaque tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'expression 'cours de merde' est trop courte et catégorielle pour soutenir un jugement esthétique articulé. Le filtre existe mais reste invisible — pas de critère, pas de soustraction décrite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le rejet implicite d'un 'cours de merde' portait un jugement esthétique articulé. La pièce a tenu faiblement au temps 1 (un filtre qualitatif est révélé par le rejet), mais elle est tombée au temps 2 : trop courte, trop catégorielle, sans description des critères. Ce qui en résulte : un jugement esthétique probablement actif chez l'apprenant, mais non rendu visible dans cette feuille sous une forme articulée.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "L'unique pièce a tenu faiblement au temps 1 puis a été disqualifiée au temps 2 pour insuffisance probatoire.",
+        "prescription": "Un récit qui nommerait explicitement les critères qui font qu'un cours est juste — ton, structure, adéquation aux élèves, cohérence — donnerait à voir le jugement esthétique en acte plutôt que seulement le rejet de ce qui ne convient pas."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une interaction physique avec la matière (montage, réparation, fabrication)."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Description d'une ressource somatique (énergie, concentration) nommée comme condition de la production cognitive."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Anticipation corporelle du coût d'un rythme imposé : 'm'épuiser de nouveau' suggère une mémoire corporelle d'un épuisement antérieur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que parler d'énergie et de fatigue ne suffit pas à attester un ancrage sensoriel au sens de la fiche, qui exige une attention incarnée précise (sensations physiques nommées finement, intuition corporelle suivie d'action). La pièce 1 ('énergie et concentration') et la pièce 2 ('m'épuiser de nouveau') restent dans un vocabulaire générique de la fatigue, sans description phénoménologique précise (tension corporelle nommée, sensation localisée, nœud à l'estomac, etc.). Pas de description du corps comme capteur d'information, pas de signal corporel précis suivi d'une décision. Néanmoins, la pièce 2 résiste faiblement : 'm'épuiser de nouveau' suggère une mémoire corporelle d'un épuisement antérieur qui pèse dans la décision présente — c'est un signal corporel rétrospectif qui informe l'arbitrage en cours.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "L'expression 'm'épuiser de nouveau' évoque une mémoire corporelle d'un épuisement passé qui informe l'anticipation présente — signal corporel utilisé comme information décisionnelle."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a tenu faiblement. L'attaque (a) — insuffisance probatoire — me semble dominante : 'm'épuiser de nouveau' reste très court, sans description phénoménologique de l'épuisement (où dans le corps, comment, à quels signaux), sans détail sensoriel précis. La fiche signale que les traces fiables sont les descriptions phénoménologiques détaillées, l'intuition suivie d'action ET de résultat. Ici, il y a anticipation à partir d'une mémoire, mais sans description fine. L'attaque touche fort.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'expression 'm'épuiser de nouveau' reste générique : pas de description sensorielle fine, pas de phénoménologie corporelle décrite. Le signal existe mais sa formulation est trop allusive pour soutenir une présence."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'anticipation de l'épuisement portait un ancrage sensoriel au sens de la fiche. La pièce qui parlait d'énergie et concentration est tombée au temps 1 (vocabulaire générique). La pièce qui évoquait 'm'épuiser de nouveau' a tenu faiblement (mémoire corporelle utilisée comme information) puis est tombée au temps 2 (formulation trop allusive). Ce qui en résulte : une attention au corps qui existe sans doute chez l'apprenant, mais qui ne se montre pas dans cette feuille sous une forme phénoménologique articulée.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces sont tombées : le vocabulaire de l'énergie reste générique, et la mémoire d'un épuisement antérieur n'est pas décrite phénoménologiquement.",
+        "prescription": "Un récit qui nommerait précisément où dans le corps se loge la fatigue, à quels signaux elle se reconnaît, et comment ces signaux ont orienté une décision concrète ouvrirait une trace plus solide d'ancrage sensoriel."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment de classe ou de présentation où sa présence physique a transformé l'interaction."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 7,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du 6 mars 2026 montre une voix qui pense plus qu'elle ne fabrique : le projet d'école de demain est nommé, le seuil de qualité face aux élèves est posé, le coût corporel d'un rythme imposé est anticipé. Le faire est convoqué comme horizon et comme contrainte, mais il n'apparaît pas en action dans cette feuille. L'apprenant parle de ce qu'il veut produire (un processus auto-suffisant qui n'aura plus besoin de lui), de ce qu'il refuse de produire (des cours de merde) et du corps qui doit suivre ou résister. La voix dominante est celle d'une délibération sur les conditions de la création, plus que d'un récit de création en cours.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. La créativité itérative en acte, la signature stylistique observable sur plusieurs feuilles, l'intelligence manuelle et la performance live ne croisent pas l'arbitrage du jour. C'est cohérent avec la nature de la feuille, centrée sur une décision plutôt que sur un acte de production. Le design de problèmes, le jugement esthétique et l'ancrage sensoriel sont effleurés sans s'installer en gestes pleinement constitués. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte des moments de fabrication, d'enseignement en direct ou d'écoute corporelle précise.",
+    "emergencesPole": "Deux observations traversent la feuille. D'abord, le projet d'école de demain est posé comme objet à terminer mais reste opaque dans cette feuille : sa nouveauté est affirmée sans qu'on voie le geste qui la produit. Ensuite, le corps apparaît comme contrainte plus que comme capteur : la fatigue limite, l'énergie manque, mais ces sensations ne sont pas décrites en détail.",
+    "pistes": [
+      "Pour rendre visible le geste créatif derrière l'école de demain, un chemin possible serait de raconter une version concrète du projet et la transgression précise qu'elle opère par rapport au modèle scolaire courant.",
+      "Pour densifier l'ancrage sensoriel, un chemin possible serait de décrire la fatigue avec une précision phénoménologique — où dans le corps, à quels signaux, et comment ces signaux ont déjà orienté une décision."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du 6 mars 2026 montre une voix qui pense plus qu'elle ne fabrique : le projet d'école de demain est nommé, le seuil de qualité face aux élèves est posé, le coût corporel d'un rythme imposé est anticipé. Le faire est convoqué comme horizon et comme contrainte, mais il n'apparaît pas en action dans cette feuille. L'apprenant parle de ce qu'il veut produire (un processus auto-suffisant qui n'aura plus besoin de lui), de ce qu'il refuse de produire (des cours de merde) et du corps qui doit suivre ou résister. La voix dominante est celle d'une délibération sur les conditions de la création, plus que d'un récit de création en cours.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'atteint dans cette feuille la solidité d'une présence pleinement établie. Les traces existent en germes (intention créatrice, filtre qualitatif, mémoire corporelle de l'épuisement), mais elles demandent à être consolidées dans des feuilles où l'apprenant raconte un acte de création en cours plutôt que les conditions qui le rendent possible.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. La créativité itérative en acte, la signature stylistique observable sur plusieurs feuilles, l'intelligence manuelle et la performance live ne croisent pas l'arbitrage du jour. C'est cohérent avec la nature de la feuille, centrée sur une décision plutôt que sur un acte de production. Le design de problèmes, le jugement esthétique et l'ancrage sensoriel sont effleurés sans s'installer en gestes pleinement constitués. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte des moments de fabrication, d'enseignement en direct ou d'écoute corporelle précise.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux observations traversent la feuille. D'abord, le projet d'école de demain est posé comme objet à terminer mais reste opaque dans cette feuille : sa nouveauté est affirmée sans qu'on voie le geste qui la produit. Ensuite, le corps apparaît comme contrainte plus que comme capteur : la fatigue limite, l'énergie manque, mais ces sensations ne sont pas décrites en détail.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre visible le geste créatif derrière l'école de demain, un chemin possible serait de raconter une version concrète du projet et la transgression précise qu'elle opère par rapport au modèle scolaire courant.\n- Pour densifier l'ancrage sensoriel, un chemin possible serait de décrire la fatigue avec une précision phénoménologique — où dans le corps, à quels signaux, et comment ces signaux ont déjà orienté une décision.\n"
+  }
+}

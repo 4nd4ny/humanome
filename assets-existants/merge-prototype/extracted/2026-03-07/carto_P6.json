@@ -1,0 +1,269 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Après, je me lancerai dans la finalisation de la cartographie automatique dans l'objectif de boucler cette partie du projet pour pouvoir éventuellement faire une démo vendredi 20.03.lors du hackathon Sqily. De plus, ça va aider Stéphane à comparer Aurora à une cartographie mono-agent.",
+      "contexte": "Travail visant à comparer une architecture multi-agent (Aurora) à une architecture mono-agent, ce qui suppose un test comparatif organisé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Ajout des concepts de promptologue (personne qui étudie et conçoit des prompts de manière systématique, pour comprendre comment formuler les meilleures instructions possibles aux IA) et de promptagogue (personne qui enseigne l'art de rédiger et d'utiliser des prompts, c'est‑à‑dire un formateur ou pédagogue spécialisé dans les usages pédagogiques et pratiques des prompts avec les IA).",
+      "contexte": "Création de catégories professionnelles pour nommer et structurer la pratique autour des prompts IA, en distinguant l'étude et l'enseignement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Au passage de la réorganisation du bureau je tombe sur quelques perles, telles que la nouvelle landing page du site sur laquelle j'avais beaucoup travaillé. C'est un hub en fait, qui redirige vers les principaux composants du projet, organisés par cas d'usage / persona",
+      "contexte": "Architecture d'un hub redirigeant vers des composants organisés par cas d'usage et persona — c'est une logique d'agrégation et de partage qui se rapproche du commun numérique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "J'ai retrouvé quelques artifacts sympa à inclure dans \"De Humani Cerebri Fabrica\" qui seront accessibles via l'url noesiology.education que j'ai achetée, mais qui est vide actuellement",
+      "contexte": "Acquisition d'un nom de domaine (noesiology.education) destiné à héberger des artifacts en accès public.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne contient pas de test adversarial d'un système IA (prompt injection, jailbreak, cas limites). Documenter une situation où l'IA a été délibérément poussée hors de ses garde-fous, avec rapport de ce qui a cassé ou tenu, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La comparaison Aurora multi-agent vs cartographie mono-agent suppose une démarche d'audit comparatif : tester comment chaque architecture produit ses résultats. Cela touche obliquement à l'explicabilité (comprendre comment l'IA arrive à ses résultats)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'un benchmark technique ordinaire, pas d'un audit au sens 6.02. Le critère exige une investigation sur les mécanismes de décision (comment l'IA est-elle arrivée à ce résultat ?) ou une rigueur d'hygiène des données. La pièce mentionne la comparaison comme objectif mais ne décrit pas la méthode d'audit (quels critères, quels logs, quelle traçabilité). La dimension d'investigation du « comment » est évoquée plus que pratiquée. La pièce résiste très faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La comparaison Aurora / mono-agent présuppose un examen des mécanismes de production des résultats, même si la méthode d'audit n'est pas explicitée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si j'ai surinterprété une mention de comparaison en pratique d'audit. L'attaque la plus pertinente est l'insuffisance probatoire : la pièce mentionne que la cartographie « va aider Stéphane à comparer », mais ne décrit ni les critères de comparaison, ni les logs examinés, ni le protocole. L'attaque tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La mention d'une comparaison à venir n'est pas une pratique d'audit décrite. Le « comment » de l'examen (critères, logs, traçabilité) n'est pas explicité dans cette feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la comparaison Aurora / mono-agent portait une trace d'audit au sens 6.02. Sous la présomption de sycophantie, l'attaque d'insuffisance probatoire a tenu : la pièce mentionne la finalité (comparer) mais ne décrit ni méthode ni critères. Ce qui en résulte, pour cette feuille, c'est l'absence d'établissement de la présence. La nuance qui reste : la comparaison à venir pourrait, dans des feuilles ultérieures, donner lieu à un protocole d'audit explicite (critères, dispositif, examen des logs).",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "L'unique pièce a été disqualifiée pour insuffisance probatoire : la mention d'une comparaison à venir ne constitue pas une pratique d'audit décrite.",
+        "prescription": "Pour ouvrir ce dossier, documenter le protocole d'audit qui accompagnera la comparaison Aurora / mono-agent (critères de jugement, logs examinés, traçabilité des décisions) rendrait la pratique lisible. Une autre piste serait de décrire un cas où la vérification des données brutes en-dessous d'un résumé a fait basculer une décision."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne thématise pas la gouvernance algorithmique des services publics (qui décide, qui peut contester, qui est affecté). Documenter une situation où le pouvoir d'un algorithme sur des populations vulnérables a été interrogé ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'acquisition d'un nom de domaine personnel (noesiology.education) pour héberger les artifacts du projet correspond à un geste de souveraineté numérique : indépendance d'accès via une URL maîtrisée, plutôt que dépendance à une plateforme tierce. La motivation explicite (souveraineté vs commodité) reste implicite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'un simple achat de domaine, pas d'un acte de souveraineté au sens 6.04. Le critère exige une motivation explicite par l'analyse de dépendance ou par la défense des communs — pas la commodité. La pièce mentionne l'acquisition du domaine et le fait que les artifacts y seront accessibles. La dimension de souveraineté est en germe (URL personnelle plutôt que sous-domaine d'une plateforme tierce) mais la motivation n'est pas explicitée comme telle. La pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'acquisition d'un nom de domaine personnel pour héberger les artifacts constitue un geste d'indépendance d'accès, même si la motivation par la souveraineté n'est pas explicitée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si j'ai surinterprété un achat de domaine en pensée souverainiste. L'attaque la plus pertinente est la distinction critique de la fiche : « j'héberge moi-même » peut être du hobbyisme technique sans réflexion sur la souveraineté. La fiche signale précisément ce piège. La pièce ne motive pas l'achat par une analyse de dépendance, par un raisonnement sur le vendor lock-in ou par la défense des communs — c'est une mention en passant. L'attaque tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La distinction critique de la fiche écarte précisément ce cas : sans motivation explicite par une analyse de dépendance ou par la défense des communs, l'achat d'un domaine n'est pas un acte souverainiste — c'est un choix d'indépendance d'accès sans pensée du commun."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'achat du nom de domaine portait une trace de souveraineté numérique au sens 6.04. Sous la présomption de sycophantie, l'attaque de faux positif de fiche a tenu : la distinction critique signale précisément ce cas — sans motivation explicite par l'analyse de dépendance, l'achat d'un domaine n'est pas souverainiste. Ce qui en résulte, pour cette feuille, c'est l'absence d'établissement de la présence. La nuance qui reste : le geste d'avoir un espace numérique personnel pour les artifacts (plutôt qu'un sous-domaine de plateforme) est en germe d'une posture souveraine — il faudrait qu'elle soit thématisée pour entrer dans 6.04.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "L'unique pièce a été disqualifiée par la distinction critique de la fiche : sans motivation explicite par l'analyse de dépendance, l'achat d'un domaine ne constitue pas un acte souverainiste.",
+        "prescription": "Pour ouvrir ce dossier, articuler l'analyse de dépendance qui motive un choix technologique (par exemple : pourquoi un domaine personnel plutôt qu'un sous-domaine de plateforme, pourquoi tel outil plutôt que tel autre) rendrait la pensée souveraine lisible."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne décrit pas de processus de participation citoyenne aux décisions technologiques (consultation, co-construction, panel délibératif). Documenter une situation où des non-experts ont été associés à un choix d'outil IA ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne contient pas d'analyse de tendances normatives ni d'anticipation réglementaire. Documenter une décision prise en anticipation d'une régulation à venir (par exemple AI Act, RGPD, normes sectorielles) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Aurora est un système multi-agent en cours de comparaison avec une cartographie mono-agent. La structure multi-agent suppose une distribution de rôles entre agents, ce qui touche obliquement à la facilitation et à l'orchestration de l'émergence collective entre agents IA — variante hybride du marqueur de 6.07."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'une mention d'architecture IA, pas de facilitation au sens 6.07. Le critère exige un récit de collaboration qui a produit quelque chose qu'aucun membre n'aurait pu créer seul, avec un élément de surprise, ou la description de règles co-construites et de processus décisionnels explicites. La pièce mentionne Aurora comme système multi-agent mais ne décrit pas la distribution des rôles, ni les règles de coordination, ni l'émergence d'un résultat collectif inattendu. C'est de l'architecture mentionnée, pas de la facilitation en acte. La pièce résiste très faiblement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Le temps 2 ne porte sur rien. La lecture critique au temps 1 a déjà conclu que la mention d'un système multi-agent sans description des rôles et de l'émergence ne portait pas le marqueur de 6.07.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la mention d'Aurora portait une trace de facilitation au sens 6.07. La présomption d'absence a tenu : la pièce mentionne l'architecture sans décrire la distribution des rôles, les règles de coordination, ou l'émergence d'un résultat collectif inattendu. Ce qui en résulte, pour cette feuille, c'est l'absence d'établissement de la présence. La nuance qui reste : Aurora est un objet de pratique probablement riche, et des feuilles ultérieures pourraient documenter la distribution des rôles entre agents et l'émergence collective.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce n'a pas résisté à la présomption d'absence : la mention d'une architecture multi-agent sans description des rôles ni de l'émergence ne porte pas le marqueur de facilitation.",
+        "prescription": "Pour ouvrir ce dossier, documenter la distribution des rôles entre agents d'Aurora (qui fait quoi, quelles règles de coordination, quels moments d'émergence) rendrait la facilitation lisible. Une autre piste serait de raconter un moment où le résultat de la collaboration entre agents a surpris l'orchestrateur lui-même."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne questionne pas la hiérarchie implicite qui place l'humain au sommet ni n'adopte de perspective non-humaine. Documenter un moment où la primauté humaine a été interrogée de manière argumentée (face à un dilemme concret) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne traite pas l'IA comme un interlocuteur dont le statut moral serait une question ouverte. Documenter un moment où la relation avec une IA a été interrogée sur ses cadres (assistant, collaborateur, autre chose) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne décrit pas de pensée d'interdépendance radicale (l'humain comme nœud d'un réseau vivant, biomimétisme appliqué). Documenter un moment où un système vivant a servi de modèle de conception ou où le « nous » a inclus des non-humains ouvrirait ce dossier."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 7
+  },
+  "rapport": null
+}

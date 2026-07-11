@@ -1,0 +1,398 @@
+# Histoire d'apprentissage — Compétence 6.10 : Conscience Biosystémique & Interdépendance
+
+Tu es chargé d'écrire un **court paragraphe** qui raconte l'**évolution de cette compétence** pour l'apprenant à travers les feuilles cartographiées du portfolio.
+
+## Cadre
+
+- Compétence : **6.10 — Conscience Biosystémique & Interdépendance** (Pôle 6 — CITE — Gouverner & S'ouvrir)
+- Période : du **22/12/2025** au **29/03/2026**
+- Nombre de feuilles cartographiées : **59** ; feuilles ayant établi cette compétence : **0**
+- Statut final cumulé : **présence non établie**
+- Cumul : **0** preuves décisives, **0** indices ; confiance moyenne : **0.00** ; score cumulé : **0.00**
+
+## Ta tâche
+
+Écris **un seul paragraphe** (3 à 5 phrases, **600 caractères max**) qui raconte la trajectoire de cette compétence : comment elle s'est déposée, oubliée, retrouvée, précisée, déplacée d'une feuille à l'autre.
+
+## Consignes
+
+- Mets l'accent sur la TRAJECTOIRE — pas sur l'état figé. Si le score a augmenté, dis comment ; si la confiance s'est consolidée, dis pourquoi ; si la compétence a basculé d'un renvoi à une présence établie, nomme le mouvement
+- **Ne réécris PAS** les verdicts ni les prescriptions individuels — ils restent accessibles séparément dans un menu ouvrable. Tu peux y faire référence (« le verdict du 26/12 a noté... ») mais sans les paraphraser intégralement
+- Pas de listes, pas de titres, pas de blockquotes — juste **un paragraphe de prose**
+- Si la compétence n'apparaît qu'une seule fois, dis-le simplement et mentionne ce qu'elle a manifesté à ce moment-là (1-2 phrases suffisent)
+- Si la compétence n'apparaît dans aucune feuille (aucune trace), dis : *« Aucune trace dans la période cartographiée. »* — un seul paragraphe, rien de plus
+- Tonalité Aurora : précise, située, sans grandiloquence
+- N'INVENTE RIEN : appuie-toi exclusivement sur les données fournies
+
+## Format de sortie
+
+Un seul paragraphe Markdown, **sans titre, sans préambule, sans signature**. Commence directement par la première phrase.
+
+---
+
+# Données : présence par feuille (ordre chronologique)
+
+## Feuille du 22/12/2025 (date ISO : 2025-12-22)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 27/12/2025 (date ISO : 2025-12-27)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 28/12/2025 (date ISO : 2025-12-28)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 29/12/2025 (date ISO : 2025-12-29)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 30/12/2025 (date ISO : 2025-12-30)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 01/01/2026 (date ISO : 2026-01-01)
+
+- **Statut** : présence non établie
+- **Preuves** : 0, **Indices** : 0, **Confiance** : 0.15, **Score** : 0.00
+- **Verdict (motif)** : La pièce décrit un réseau technique et computationnel, pas une interdépendance avec le vivant ; le critère central de la fiche (la nature comme système intelligent dont on fait partie) n'est pas satisfait.
+- **Prescription** : Pour ouvrir cet axe, un chemin possible serait de documenter un moment où un système vivant (mycélium, banc de poissons, forêt, microbiome) a inspiré une décision ou une conception — non comme métaphore décorative mais comme principe organisateur effectivement appliqué.
+
+---
+
+## Feuille du 02/01/2026 (date ISO : 2026-01-02)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 03/01/2026 (date ISO : 2026-01-03)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 04/01/2026 (date ISO : 2026-01-04)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 06/01/2026 (date ISO : 2026-01-06)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 07/01/2026 (date ISO : 2026-01-07)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 08/01/2026 (date ISO : 2026-01-08)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 09/01/2026 (date ISO : 2026-01-09)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 10/01/2026 (date ISO : 2026-01-10)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 11/01/2026 (date ISO : 2026-01-11)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 12/01/2026 (date ISO : 2026-01-12)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 13/01/2026 (date ISO : 2026-01-13)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 15/01/2026 (date ISO : 2026-01-15)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 19/01/2026 (date ISO : 2026-01-19)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 20/01/2026 (date ISO : 2026-01-20)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 21/01/2026 (date ISO : 2026-01-21)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 22/01/2026 (date ISO : 2026-01-22)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 23/01/2026 (date ISO : 2026-01-23)
+
+- **Statut** : présence non établie
+- **Preuves** : 0, **Indices** : 0, **Confiance** : 1.00, **Score** : 0.00
+
+---
+
+## Feuille du 24/01/2026 (date ISO : 2026-01-24)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 25/01/2026 (date ISO : 2026-01-25)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 26/01/2026 (date ISO : 2026-01-26)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 27/01/2026 (date ISO : 2026-01-27)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 28/01/2026 (date ISO : 2026-01-28)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 29/01/2026 (date ISO : 2026-01-29)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 30/01/2026 (date ISO : 2026-01-30)
+
+- **Statut** : présence non établie
+- **Preuves** : 0, **Indices** : 0, **Confiance** : 0.15, **Score** : 0.00
+- **Verdict (motif)** : Aucune pièce n'a résisté au temps 1 : la métaphore d'organisation apprenante est cybernétique, pas biosystémique au sens de la fiche.
+- **Prescription** : Pour ouvrir ce dossier, un chemin possible serait de documenter un raisonnement où un système vivant non-humain (mycélium, écosystème corallien, intelligence végétale) servirait de modèle de conception pour le dispositif RESPIRE, intégré dans des décisions concrètes.
+
+---
+
+## Feuille du 31/01/2026 (date ISO : 2026-01-31)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 10/02/2026 (date ISO : 2026-02-10)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 11/02/2026 (date ISO : 2026-02-11)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 12/02/2026 (date ISO : 2026-02-12)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 13/02/2026 (date ISO : 2026-02-13)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 14/02/2026 (date ISO : 2026-02-14)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 15/02/2026 (date ISO : 2026-02-15)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 19/02/2026 (date ISO : 2026-02-19)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 20/02/2026 (date ISO : 2026-02-20)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 22/02/2026 (date ISO : 2026-02-22)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 01/03/2026 (date ISO : 2026-03-01)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 04/03/2026 (date ISO : 2026-03-04)
+
+- **Statut** : présence non établie
+- **Preuves** : 0, **Indices** : 0, **Confiance** : 0.18, **Score** : 0.00
+- **Verdict (motif)** : La seule pièce n'a pas résisté: métaphore biologique appliquée au système humain-IA, pas intégration de l'humain dans un réseau vivant plus vaste.
+- **Prescription** : Dans ce pôle, le territoire de la conscience biosystémique reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait de décrire l'apprenant lui-même comme partie d'un écosystème, ou d'appliquer une logique de symbiose à sa propre place dans le vivant non-humain.
+
+---
+
+## Feuille du 06/03/2026 (date ISO : 2026-03-06)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 07/03/2026 (date ISO : 2026-03-07)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 08/03/2026 (date ISO : 2026-03-08)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 13/03/2026 (date ISO : 2026-03-13)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 14/03/2026 (date ISO : 2026-03-14)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 15/03/2026 (date ISO : 2026-03-15)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 16/03/2026 (date ISO : 2026-03-16)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 17/03/2026 (date ISO : 2026-03-17)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 18/03/2026 (date ISO : 2026-03-18)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 19/03/2026 (date ISO : 2026-03-19)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 21/03/2026 (date ISO : 2026-03-21)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 23/03/2026 (date ISO : 2026-03-23)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 24/03/2026 (date ISO : 2026-03-24)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 26/03/2026 (date ISO : 2026-03-26)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 27/03/2026 (date ISO : 2026-03-27)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 28/03/2026 (date ISO : 2026-03-28)
+
+- **Statut** : court-circuit (compétence non triée pour cette feuille)
+
+---
+
+## Feuille du 29/03/2026 (date ISO : 2026-03-29)
+
+- **Statut** : présence non établie
+- **Preuves** : 0, **Indices** : 0, **Confiance** : 1.00, **Score** : 0.00
+
+---

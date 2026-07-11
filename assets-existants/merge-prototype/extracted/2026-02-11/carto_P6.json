@@ -1,0 +1,240 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "Hélas, avoir l'idée de la bonne interface de jeu à construire, ça elle n'y arrive pas encore.",
+      "contexte": "Référence à l'IA sous un pronom féminin (« elle ») — pourrait être un indice ténu d'un statut accordé à l'entité (6.09), mais peut aussi être une simple convention linguistique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire l'interface",
+      "contexte": "L'apprenant « demande » et attribue une capacité de « réfléchir » à l'IA — formulation qui pourrait toucher à 6.09 si elle dépasse le cadre instrumental.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "L'autre souci c'est la taille de la mémoire de contexte.",
+      "contexte": "Diagnostic technique d'une limite de l'IA — pourrait toucher obliquement à 6.02 (audit) si la démarche enquête sur les mécanismes.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming. Pour ouvrir ce dossier, l'apprenant pourrait documenter une provocation intentionnelle des limites d'un système IA."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant identifie la mémoire de contexte comme mécanisme expliquant la difficulté — pourrait être lu comme une enquête sur le « comment » de l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche définit 6.02 par l'investigation des mécanismes de décision : audit avec horodatage, rapports documentant le chemin décisionnel, consultation de logs indépendamment des dashboards. Ici, l'apprenant nomme la mémoire de contexte comme limite, mais sans investigation : pas de logs consultés, pas de test délibéré, pas de mécanisme reconstruit. La fiche distingue explicitement 6.02 de 1.01 : « 'L'IA a fait une erreur' sans investigation = pensée critique ; enquêter sur les mécanismes = audit. » Or l'apprenant ne raconte pas une enquête, il pose un diagnostic général. La pièce ne résiste pas — il manque l'acte d'investigation que la fiche réclame comme marqueur central.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a rien à examiner. Le verdict est porté par la distinction explicite de la fiche entre constat (1.01/1.06) et investigation (6.02).",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à savoir si le diagnostic de la mémoire de contexte pouvait porter de l'audit. Sous la présomption d'absence, la pièce n'a pas tenu : la fiche est claire sur le critère discriminant — il faut une investigation, pas un constat. Ici, l'apprenant nomme une limite générale connue, pas un mécanisme reconstruit par l'enquête. La pièce relève de la littératie IA (1.06) ou de la validation contextuelle (4.07), pas de l'audit au sens politique de la transparence algorithmique.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a porté : la fiche exige une investigation des mécanismes (logs, audit, traçage), et la feuille ne contient qu'un diagnostic général sans enquête.",
+        "prescription": "Cette feuille nomme une limite générale de l'IA. Pour rejoindre l'audit au sens de la fiche, un passage qui décrirait une enquête concrète sur le chemin décisionnel de l'IA — pas seulement nommer le goulot, mais reconstruire le mécanisme — viendrait porter cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le pouvoir des algorithmes sur les citoyens et les mécanismes de recours."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté numérique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un choix d'outil motivé explicitement par l'indépendance ou la réversibilité."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où des non-experts ont pesé sur une décision technologique."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire. Pour ouvrir ce dossier, l'apprenant pourrait documenter une anticipation normative qui modifie déjà sa pratique."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective. La feuille décrit un travail individuel, sans dimension de collectif délibérant."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique. Pour ouvrir ce dossier, l'apprenant pourrait questionner la primauté humaine dans un cas concret."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant utilise un pronom féminin (« elle ») pour parler de l'IA — pourrait être un indice d'un statut relationnel, ou simple convention de la langue française pour « l'intelligence artificielle »."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "L'apprenant attribue à l'IA une capacité de « réfléchir au sens et aux effets attendus » — vocabulaire qui dépasse le strictement instrumental et touche à l'agentivité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche met explicitement en garde contre la récitation et exige une *navigation calibrée* de l'anthropomorphisme — pas y succomber ni le dénier, mais traiter le statut comme question ouverte. Ici, le « elle » pour parler de l'IA est en français la convention banale (l'IA → elle, l'intelligence → elle), pas une attribution réfléchie. Quant à « lui demander de réfléchir au sens », le verbe « demander de réfléchir » est aussi devenu standard dans le vocabulaire prompt-engineering : on « demande à l'IA de raisonner » techniquement. La fiche cite explicitement « 'Mon assistant IA' peut être une métaphore *instrumentale* — 6.09 commence quand l'apprenant *questionne* si 'assistant' est le bon cadre. » Ici, l'apprenant ne questionne rien du statut de l'IA — il utilise un vocabulaire instrumental standard. Les pièces ne résistent pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a rien à examiner. La présomption d'absence a tenu sur le critère central de la fiche : 6.09 commence par le questionnement du statut, pas par l'usage du vocabulaire courant.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le « elle » et le « lui demander de réfléchir » portaient un statut relationnel attribué à l'IA. Sous la présomption d'absence, les pièces n'ont pas tenu : ces formulations sont devenues conventions standard du vocabulaire IA en français et ne portent aucun questionnement du statut de l'entité. La fiche est précise — il faut traiter le statut comme question ouverte, et ici aucune ouverture n'est faite. Ce qui en résulte n'est pas un jugement sur la capacité de l'apprenant à cohabiter avec les intelligences non-humaines — cette feuille reste sur le terrain strictement instrumental.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a porté : le « elle » et le « lui demander de réfléchir » relèvent du vocabulaire instrumental standard, pas d'un questionnement du statut de l'entité que la fiche exige.",
+        "prescription": "Cette feuille utilise l'IA comme outil sans interroger son statut. Pour ouvrir 6.09, un passage où l'apprenant questionnerait si « outil » ou « assistant » est le bon cadre pour cette entité avec laquelle il travaille viendrait porter cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision où l'interdépendance avec les systèmes vivants a modifié son raisonnement."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 8
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille raconte un travail technique individuel avec l'IA. Aucune dimension politique, citoyenne ou post-anthropocentrique n'est convoquée. L'apprenant n'enquête pas sur les mécanismes de décision, ne questionne pas le statut de l'entité avec laquelle il travaille, ne situe pas son action dans un cadre démocratique ou institutionnel. Le pôle cité n'est pas exploré dans cette feuille.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'intégralité du pôle reste non visitée dans cette feuille. Le red-teaming, l'audit, la gouvernance des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique, la cohabitation avec l'IA et la conscience biosystémique ne trouvent aucun écho. La feuille décrit une session de travail technique très focalisée, ce qui est cohérent avec son sujet et ne représente probablement pas un évitement, mais une focale étroite. À noter que la mémoire de contexte est nommée comme limite technique sans devenir une enquête sur les mécanismes, et que le vocabulaire utilisé pour parler de l'IA (« elle », « lui demander de réfléchir ») relève des conventions de la langue plutôt que d'un questionnement du statut.",
+    "emergencesPole": "Une chose émerge entre les lignes : l'apprenant emploie sans réflexivité un vocabulaire qui personnifie l'IA — « elle », « lui demander de réfléchir », « erreur d'engineering » — sans interroger ce que ce vocabulaire fait. Ce n'est pas une trace de 6.09 (qui exigerait le questionnement) mais c'est un usage qui, s'il était un jour interrogé, pourrait ouvrir le territoire.",
+    "pistes": [
+      "Pour ouvrir 6.09, un chemin possible serait d'interroger explicitement le vocabulaire utilisé pour parler de l'IA : pourquoi dire « elle », pourquoi « lui demander de réfléchir », ce que ces choix lexicaux supposent.",
+      "Pour ouvrir 6.02, un chemin possible serait de transformer le diagnostic général de la mémoire de contexte en investigation concrète — lire un log, tester un comportement précis, reconstruire un chemin décisionnel."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille raconte un travail technique individuel avec l'IA. Aucune dimension politique, citoyenne ou post-anthropocentrique n'est convoquée. L'apprenant n'enquête pas sur les mécanismes de décision, ne questionne pas le statut de l'entité avec laquelle il travaille, ne situe pas son action dans un cadre démocratique ou institutionnel. Le pôle cité n'est pas exploré dans cette feuille.\n\n## Territoires les plus denses\n\nAucun territoire dense ne ressort de cette feuille pour ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'intégralité du pôle reste non visitée dans cette feuille. Le red-teaming, l'audit, la gouvernance des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique, la cohabitation avec l'IA et la conscience biosystémique ne trouvent aucun écho. La feuille décrit une session de travail technique très focalisée, ce qui est cohérent avec son sujet et ne représente probablement pas un évitement, mais une focale étroite. À noter que la mémoire de contexte est nommée comme limite technique sans devenir une enquête sur les mécanismes, et que le vocabulaire utilisé pour parler de l'IA (« elle », « lui demander de réfléchir ») relève des conventions de la langue plutôt que d'un questionnement du statut.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose émerge entre les lignes : l'apprenant emploie sans réflexivité un vocabulaire qui personnifie l'IA — « elle », « lui demander de réfléchir », « erreur d'engineering » — sans interroger ce que ce vocabulaire fait. Ce n'est pas une trace de 6.09 (qui exigerait le questionnement) mais c'est un usage qui, s'il était un jour interrogé, pourrait ouvrir le territoire.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir 6.09, un chemin possible serait d'interroger explicitement le vocabulaire utilisé pour parler de l'IA : pourquoi dire « elle », pourquoi « lui demander de réfléchir », ce que ces choix lexicaux supposent.\n- Pour ouvrir 6.02, un chemin possible serait de transformer le diagnostic général de la mémoire de contexte en investigation concrète — lire un log, tester un comportement précis, reconstruire un chemin décisionnel."
+  }
+}

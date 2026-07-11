@@ -1,0 +1,649 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres. Le rôle de ces derniers étant d'améliorer l'école, de maintenir les référentiels de compétences en lien avec les décisions de la société civile, de modifier les manuels de formation qui déterminent le protocole de réplication des écoles.",
+      "contexte": "Conceptualisation systémique d'une école comme entité apprenante avec boucle de rétroaction via les Maîtres ; pensée d'architecture institutionnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Pour l'Apprenant et l'Accompagnateur, j'avais demandé à Claude d'appliquer le skill DOCX et le style Anthropic pour générer la documentation dans Google Doc. J'hésite à faire pareil ou bien à simplement copier-coller les fichiers markdown.",
+      "contexte": "Délibération sur le format de sortie des manuels en mobilisant un savoir technique sur les skills de Claude et les pipelines de génération.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "La plupart des manuels dépassent 300 pages lorsque je génère un PDF avec l'application MacOS NoteBooks. Je préfère les inclure dans G-Doc pour pouvoir relire sur mon smartphone et faire les corrections ou ajouter des chapitres en direct. Je me fiche du look et de la mise en page, car du coup, 6x300 pages ça fait beaucoup de papier : je pense ainsi les conserver en version HTML pour une lecture écran uniquement, ce qui fait sens, vu la quantité de prompts à copier-coller qu'ils contiennent, contrairement aux deux premiers volumes Apprenant et Accompagnateur.",
+      "contexte": "Arbitrage de format motivé par l'usage réel (mobilité, édition en direct, copier-coller de prompts) plutôt que par l'esthétique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "À ce stade, il faudrait que je commence à lire / corriger / compléter les manuels générés, tout en continuant à lancer les prompts les uns après les autres.",
+      "contexte": "Plan d'action en double piste : production parallèle et relecture critique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'utilise la commande shell : `cat manuel-cartographe-partie{0..7}.md > manuel-cartographe.md` pour n'avoir qu'un seul fichier à importer dans Goole Doc.",
+      "contexte": "Description d'un pipeline shell concret pour agréger les parties d'un manuel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'ai apporté quelques modifications au fur et à mesure. La plus grosse pour le moment étant pour le Noèsiologue, ou la partie explicitation des 64 fonctions cognitives avait été réduite grosso-modo aux 6 élémentaires de niveau du I-E-O du médiateur !",
+      "contexte": "Détection d'une réduction non souhaitée opérée par l'IA (64 → 6) ; correction critique de l'output.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "je vais devoir reprendre celle du Cartographe pour présenter le processus de cartographie de A à Z. Pour celà, il faut que je m'entraîne à en faire sur le portfolio de Stéphane et sur le mien, pour mettre au point le processus.",
+      "contexte": "Stratégie d'apprentissage par la pratique préalable avant de formaliser un manuel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "je vois déjà sur le forum WhatsApp que des parents inquiets commencent à me solliciter pour me demander ce que leur gamin devrait faire comme étude… Ce n'est que le début. Je veux être prêt côté école et cartographies lorsqu'on lancera les débats publics.",
+      "contexte": "Anticipation systémique de la demande sociale à venir et alignement de la production présente sur cette projection.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Ce qui est cool avec ce système, c'est que regénérer une partie coûte zéro efforts. Mon prompt est toujours le même : \"Execute prompt-protocole-manuel.md. Traitement du manuel {Noèsiologue} de la filière {Humain}. Génération de la partie PARTIE {4}\". Ça coûte juste des tokens.",
+      "contexte": "Description d'un template de prompt paramétré qui réifie une logique d'orchestration ; pensée d'architecture IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'ai le reset de mon quota chez Claude avec mon forfait \"Max\" à 100$/mois qui va arriver jeudi. J'espère ne pas être bloqué d'ici là, car je ne peux pas me permettre de prendre la version au dessus, mais il ne me reste plus que les manuels niveau Maître à générer demain, ça devrait aller.",
+      "contexte": "Calibration concrète du quota / coût et estimation de la marge restante pour finir la production.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'ai d'ailleurs dû arrêter totalement l'abonnement de ChatGPT pour raison de restriction budgétaire. Quand je pourrais et quand j'aurai le temps (et probablement à l'occasion de la sortie d'une nouveauté intéressante ou d'un nouveau modèle), je prendrais juste un mois à 200$ pour poursuivre le travail de rédaction de la preuve pour la trisection du carré.",
+      "contexte": "Arbitrage économique entre prestataires IA et calage temporel de l'usage premium sur un usage particulier.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Détection et correction d'une réduction non voulue opérée par l'IA dans le plan du Noèsiologue ; relecture critique de l'output."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en cherchant des raisons pour laquelle elle ne suffirait pas à attester la pensée critique. Le passage est rapide, ne décrit pas de protocole de vérification, et pourrait n'être qu'un constat d'écart sans véritable mécanisme calibré de doute. Cependant, l'apprenant a effectivement repéré que les 64 fonctions cognitives avaient été réduites aux 6 élémentaires — il a fallu rouvrir le plan, comparer à l'intention initiale, repérer la coupe et décider de corriger. Le verbe « réduite grosso-modo » et le « ! » signalent une réaction de scepticisme actif face à l'output. Ce qui reste explicitement faible, c'est qu'un seul cas est documenté ce jour-là.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant détecte un écart précis et chiffré (64 vs 6) entre son intention et la production de l'IA, ce qui suppose une relecture active et non un acquiescement."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas chargé cette pièce d'une intention critique qu'elle ne porte pas. L'apprenant constate un écart, mais constater n'est pas vérifier ; on pourrait y voir une simple comparaison avec sa propre attente. L'attaque la plus pertinente est (a) insuffisance probatoire — un seul écart relevé, sans protocole détaillé. Je teste cette attaque : la pièce porte tout de même la trace d'un acte de relecture critique d'un output IA, avec correction décidée. Elle tient, mais avec une portée modeste.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'épisode est unique dans cette feuille et la trace de vérification reste implicite (pas de description du processus de relecture) ; elle suffit à indiquer un réflexe critique sans constituer une démonstration de scepticisme calibré."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette unique pièce avec présomption d'absence, je cherchais à la disqualifier comme simple constat sans mécanisme. Elle a tenu parce que la détection précise d'une réduction de 64 à 6 suppose une lecture comparative active de l'output IA, ce qui dépasse l'acquiescement sycophant qu'on rencontre souvent. Sous la présomption de sycophantie, la pièce a perdu en portée — elle ne décrit pas le protocole, elle nomme seulement le résultat de la relecture. Ce qui en résulte, dans cette feuille, est un indice modeste de relecture critique d'un output IA, sans démonstration plus large. La trace reste utile mais ne porte pas seule une présence pleinement établie. Un complément documentant le processus de vérification renforcerait considérablement cette compétence.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier ; un seul indice de relecture critique survit, insuffisant pour établir une présence solide.",
+        "prescription": "Dans cette feuille, le travail montre une attention au décalage entre intention et output IA. Documenter la séquence de vérification — comment l'écart a été repéré, sur quelle base — ouvrirait davantage ce dossier."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Stratégie : avant de rédiger le manuel du Cartographe, passer par la pratique sur des portfolios concrets pour mettre au point le processus — déplacement de l'objectif."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Reformulation implicite du plan Noèsiologue : ce qui devait porter sur 64 fonctions a été ramené à 6, et l'apprenant retient qu'il faut redéfinir le plan."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles décrivent de la planification opérationnelle, pas un véritable cadrage de l'intention. La pièce 1 dit « il faut que je m'entraîne avant », ce qui ressemble à un séquencement d'exécution. La pièce 2 est un constat d'écart, pas une reformulation. Pourtant, dire « je dois reprendre celle du Cartographe pour présenter le processus de cartographie de A à Z » suppose d'avoir interrogé ce que doit faire le manuel et non seulement comment l'écrire — le cadrage interroge l'objectif. La pièce 2 résiste moins : elle est un constat de plan dévié, pas une reformulation explicite du problème.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant repose la question de ce que doit faire le manuel (présenter le processus de A à Z) avant de le rédiger, et conditionne l'écriture à une expérimentation préalable."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surinterprété la pièce 1 — il s'agit peut-être d'une simple décision de méthode (s'entraîner avant) qu'on prendrait dans n'importe quel projet, et non d'un cadrage de l'intention. L'attaque dominante est (e) surinterprétation pédagogique : j'ai pu charger la pièce d'une intention de questionnement qu'elle ne porte pas explicitement. La pièce passe partiellement le test : l'apprenant nomme bien que le manuel doit décrire le processus « de A à Z » et qu'il faut l'avoir vécu pour le décrire — il pose la bonne question avant d'agir, ce qui est plus que de la planification.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le cadrage de l'intention est suggéré par la conditionnalité « il faut que je m'entraîne… pour mettre au point le processus », mais reste partiellement implicite — on est entre planification consciente et reformulation de l'objectif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à de la planification d'exécution. La pièce sur le manuel du Cartographe a résisté parce qu'elle conditionne explicitement l'écriture à une expérimentation préalable du processus — l'apprenant ne demande pas comment écrire, il demande quoi décrire et reconnaît que la réponse passe par un détour. Sous la présomption de sycophantie, la pièce a perdu en netteté : le cadrage reste implicite, on perçoit une mise en tension du « quoi » plus qu'une formulation explicite du problème. Ce qui en résulte est un indice cohérent mais discret de questionnement préalable, pas une démonstration franche de cadrage récursif. La trace tient à condition de l'inscrire dans un mouvement plus large que cette seule feuille.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante ; le cadrage de l'intention apparaît mais reste implicite dans cette feuille.",
+        "prescription": "Dans le travail décrit, on perçoit une attention au « quoi décrire avant comment l'écrire ». Expliciter la question préalable — ce que le manuel du Cartographe doit faire et pour qui — rendrait visible un acte de cadrage qui circule pour l'instant en sous-texte."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synthèse intégrative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où des fragments de domaines différents ont produit un insight qui n'existait dans aucun isolément."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la métacognition dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il observe la manière dont il pense, pas ce qu'il pense."
+      }
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conceptualisation de l'école RESPIRE comme système apprenant dont la mémoire est constituée des portfolios des Maîtres, avec rôle systémique de maintien des référentiels et de modification des manuels."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Anticipation de l'effet de cascade entre arrivée des sollicitations parentales, lancement des débats publics et état de préparation des écoles et cartographies."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La pièce 1 pourrait n'être qu'une vision conceptuelle d'une école, pas une modélisation systémique. La pièce 2 pourrait n'être qu'une anticipation de demande, pas une lecture de système. Pourtant, la pièce 1 décrit une boucle explicite : les Maîtres modifient les référentiels et les manuels qui déterminent la réplication, ce qui crée une rétroaction de l'usage vers la structure — ce n'est pas une ligne, c'est une boucle. La pièce 2 nomme un déclenchement (débats publics) qui s'enchaîne avec des sollicitations en amont (parents inquiets) et conditionne la production présente. Les deux résistent à la présomption d'absence.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La structure décrite (portfolios → Maîtres → référentiels et manuels → protocole de réplication des écoles) est une boucle de rétroaction explicite, pas une chaîne linéaire."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant relie un signal faible (sollicitations parentales sur WhatsApp) à un événement systémique à venir (débats publics) et calibre son action présente sur cette cascade."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces avec méfiance envers ma propre lecture. La pièce 1 pourrait être un récit performatif (annoncer que les écoles « apprennent ») sans décrire un mécanisme. Mais le passage liste bien les éléments du circuit (portfolios, Maîtres, référentiels, manuels, protocole de réplication) et la direction des influences, ce qui n'est pas de la simple déclaration. La pièce 2 pourrait être une simple intuition stratégique sans vraie modélisation. L'attaque (f) récit performatif n'est pas vraiment recevable pour la pièce 1 ; l'attaque (a) insuffisance probatoire touche la pièce 2 qui reste à l'état d'intuition de cascade.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage nomme les composants, leur fonction et la direction des influences (portfolios → mémoire ; Maîtres → maintenance ; manuels → réplication) ; il s'agit d'une modélisation, pas seulement d'une déclaration d'intention."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La cascade est nommée mais peu détaillée — on perçoit une lecture systémique de la demande sociale plus qu'on ne la voit développée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à des visions conceptuelles ou des intuitions. La pièce sur l'école RESPIRE a tenu sans réserve : elle décrit une boucle de rétroaction explicite entre l'usage (portfolios des Maîtres) et la structure (référentiels, manuels, protocole de réplication), ce qui distingue la modélisation de la simple complexité constatée. La pièce sur les parents et les débats publics a tenu avec moins de portée ; elle indique une lecture de cascade mais reste à un niveau d'intuition argumentée. Ce qui en résulte est une présence solide de pensée systémique appliquée à un système institutionnel et à un calendrier social. Le mouvement consiste à voir les choses sous forme d'influences réciproques et de moments de bascule, pas sous forme d'étapes alignées.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 1 a fait apparaître deux pièces résistantes ; le temps 2 a confirmé la modélisation de boucle de l'école RESPIRE comme preuve décisive.",
+        "prescription": "Le travail montre une lecture en termes de boucles et de bascules. Documenter une ou deux autres situations où une optimisation locale (par exemple un raccourci de production) produit un effet de cascade sur le système global enrichirait ce dossier déjà bien ouvert."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention explicite des skills de Claude (skill DOCX, style Anthropic) comme leviers techniques pour orienter la génération."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Calibration du quota Claude Max ($100/mois) et anticipation du moment de reset, articulée à l'estimation du volume de production restant."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : peut-être ne s'agit-il que d'usage utilisateur, pas de littératie IA. La pièce 1 mentionne un nom de skill et un nom de style mais ne décrit aucun mécanisme. La pièce 2 parle d'un forfait et d'un reset, ce qui relève de la facturation. Pourtant, l'apprenant mobilise la notion de « skill » de manière contextualisée, distingue les pipelines de génération selon le format de sortie, et raisonne sur son quota en termes d'estimation de tokens restants — ce qui suppose une représentation du coût marginal du LLM. La présomption d'absence est partiellement battue pour la pièce 2, plus difficilement pour la pièce 1.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant raisonne sur le quota en tokens et la cadence de production restante, ce qui suppose un modèle économique et opérationnel du LLM, pas une simple plainte de facturation."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 2 en cherchant à invalider ma lecture. L'attaque dominante est (d) glissement lexical : « quota », « tokens » sont des mots ambiants qui peuvent être utilisés sans représentation technique réelle. Cependant, l'apprenant articule le quota à un volume précis (« il ne me reste plus que les manuels niveau Maître à générer demain »), donc le mot « tokens » a ici une charge opérationnelle : il indexe une capacité de production. La pièce tient sous l'attaque, avec une portée modeste. La pièce 1 reste trop allusive pour résister à la même attaque.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le vocabulaire technique (quota, tokens) est ici lié à une estimation pratique de la production restante, ce qui lui donne une charge sémantique réelle ; l'évaluation du mécanisme sous-jacent reste cependant peu développée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à de l'usage. La pièce sur le quota Max a résisté : l'apprenant raisonne sur sa capacité de production restante en termes de tokens et de cadence, ce qui suppose une représentation au moins fonctionnelle du coût marginal du modèle. La pièce sur les skills DOCX a perdu sous présomption de sycophantie, faute de description du mécanisme. Ce qui en résulte est un indice plus qu'une preuve : la littératie IA opérationnelle existe mais reste mobilisée dans une logique de production, pas de compréhension causale du fonctionnement du modèle. La trace tient à condition de ne pas surcharger sa portée.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce sur les skills et retenu de justesse la pièce sur le quota ; un seul indice fonctionnel survit.",
+        "prescription": "Le travail mobilise un vocabulaire technique articulé à des décisions opérationnelles. Décrire une fois la mécanique d'un phénomène IA observé — par exemple pourquoi une réduction de plan a eu lieu, ou ce qu'un skill change concrètement dans la génération — ferait passer cette trace d'indice à preuve."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Description d'un système de génération paramétré (prompt-protocole-manuel.md, variables Manuel/Filière/Partie) qui orchestre la production de l'ensemble des manuels."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Pipeline shell (cat … > …) qui agrège les fragments produits par le LLM en un fichier unique, intégré au flux de génération."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La pièce 1 décrit un prompt paramétré, ce qui pourrait n'être qu'un template de formulation (donc 1.08) et pas une architecture (1.07). La pièce 2 est un one-liner shell, ce qui pourrait n'être qu'une commande utile sans logique d'architecture. Pourtant, mises ensemble, ces deux pièces décrivent un flux : un prompt-protocole exécuté répétitivement avec paramètres, qui produit des parties numérotées que la commande shell agrège ensuite. Il s'agit bien d'un pipeline avec des composants, des règles d'enchaînement et des artefacts intermédiaires — quelqu'un d'autre pourrait comprendre et maintenir le système.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le prompt-protocole nommé, paramétré par Manuel/Filière/Partie, fonctionne comme un composant de pipeline qui produit des artefacts numérotés, pas comme une formulation isolée."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La commande d'agrégation des parties est l'étape d'aval explicite du pipeline ; elle relie les outputs IA en un livrable unique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en cherchant à les disqualifier. L'attaque la plus pertinente est (b) confusion de compétence : ces pièces n'activent-elles pas plutôt 1.08 (dialogue avancé / prompts) que 1.07 (architecture) ? Le test est : décrit-on un prompt isolé sophistiqué ou un système où l'output de l'un alimente l'input de l'autre ? Ici, les parties numérotées (0..7) du manuel sont produites par exécutions séparées du même prompt-protocole, puis concaténées par shell : c'est un flux orchestré, pas un dialogue. L'attaque ne tient pas pour la pièce 1. Pour la pièce 2, l'attaque (a) insuffisance probatoire peut être tentée — un seul cat — mais la commande s'inscrit explicitement dans la chaîne de production, donc elle tient avec une portée modeste.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage décrit un dispositif paramétré, exécuté à répétition, dont les sorties numérotées alimentent une étape d'agrégation — c'est une architecture, pas un prompt isolé."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le one-liner shell est l'étape d'aval explicite du pipeline ; sa concision le rend allusif, mais il s'inscrit dans une chaîne nommée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à du prompting ou à des commandes shell isolées. Elles ont tenu parce que, prises ensemble, elles dessinent un pipeline reproductible : un prompt-protocole paramétré qui produit des artefacts numérotés, puis une commande d'agrégation qui les recompose en livrable. Sous présomption de sycophantie, le cœur (la pièce 1) n'a pas été ébranlé ; la pièce 2 a perdu un peu en portée individuelle mais reste cohérente avec le système décrit. Ce qui en résulte est une présence solide d'architecture de systèmes IA, ici au service d'une production industrielle de manuels. Le système est explicite, paramétrable et reproductible — un autre opérateur pourrait s'en saisir avec la même logique.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé la nature architecturale du dispositif décrit (prompt paramétré + agrégation), ce qui dépasse le simple prompting.",
+        "prescription": "Le travail montre un pipeline de production reproductible. Documenter ses points de fragilité — par exemple ce qui se passe quand une partie est incomplète, ou comment l'agrégation gère les conflits — préciserait le portrait d'un système qui s'écrit déjà comme tel."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Template de prompt paramétré (Manuel/Filière/Partie) réutilisé tel quel pour générer des fragments numérotés — formulation calibrée pour la répétition."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Mention de l'application du skill DOCX et du style Anthropic comme leviers pour orienter le comportement du modèle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : peut-être que la sophistication relève de l'architecture (1.07) et non de la formulation (1.08). La pièce 1 montre un prompt court et fixe, ce qui peut paraître trivial. La pièce 2 nomme deux leviers (skill, style) sans expliquer pourquoi ils changent le résultat. Pourtant, fixer un template au mot près pour le réutiliser à l'identique est en soi une décision de formulation : l'apprenant a calibré l'invariant et placé les variables aux bons endroits. La pièce 1 résiste à ce titre. La pièce 2 résiste plus faiblement, car le levier est nommé sans charge sémantique explicite.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le prompt est stabilisé au mot près et structuré par trois variables ; cette fixité témoigne d'un travail de formulation dont l'invariance est explicitement valorisée par l'apprenant."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en cherchant à invalider ma lecture. L'attaque pertinente est (b) confusion de compétence : ce template ne relève-t-il pas mieux de 1.07 (architecture du pipeline) ? Le test : la pièce nomme-t-elle la formulation en tant que telle ? Oui — « Mon prompt est toujours le même » valorise explicitement la stabilité de la formulation comme propriété opératoire. Donc l'attaque ne disqualifie pas, mais elle indique que la pièce participe aux deux compétences à la fois. Elle tient ici avec une portée réduite parce que le portfolio ne décrit pas l'élaboration du prompt, seulement son usage stabilisé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage valorise l'invariance du prompt comme propriété opératoire, ce qui relève bien de la formulation ; cependant l'élaboration du prompt n'est pas décrite, seulement son usage répété."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à de l'architecture pure ou à des mots d'ambiance. La pièce sur le prompt invariant a résisté parce que l'apprenant valorise explicitement la stabilité de la formulation et l'a calibrée avec un emplacement précis pour ses paramètres. Sous présomption de sycophantie, la portée s'est réduite : la formulation est mobilisée pour la production, pas pour la pensée. Ce qui en résulte est un indice de dialogue IA mature, ancré dans une logique de réutilisation. La trace tient sans appeler une confiance élevée.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce principale en révélant son chevauchement avec l'architecture ; l'indice retenu reste discret.",
+        "prescription": "Le travail montre une formulation stabilisée pour la production en série. Décrire une fois pourquoi ce prompt-là (et pas un autre) et ce qui a été itéré pour y arriver rendrait visible un acte de dialogue IA qui reste pour l'instant à l'arrière-plan."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Usage d'une expansion shell (manuel-cartographe-partie{0..7}.md) et d'une redirection pour concaténer des fragments — pensée algorithmique appliquée à la production documentaire."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Paramétrage d'un prompt par variables nommées appliqué à un domaine non strictement informatique (production de manuels pédagogiques)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. Le critère discriminant de 1.09 est le transfert hors-informatique. La pièce 1 est purement shell, donc à risque de rester en informatique. La pièce 2 paramètre un prompt — c'est encore une opération informatique. Pourtant, la pièce 2 applique une logique algorithmique (boucle paramétrée, abstraction de variables) à un objet pédagogique (manuels), et la pièce 1 traite un livrable rédactionnel comme une suite indexée 0..7 — un pattern informatique projeté sur un texte. Ces deux pièces résistent partiellement à la présomption.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le manuel rédigé est traité comme une suite indexée concaténable, ce qui projette une structure algorithmique sur un objet documentaire."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le prompt paramétré décompose la production de manuels en triplet (Manuel, Filière, Partie), structure de boucle imbriquée appliquée à un domaine pédagogique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en cherchant à les disqualifier. L'attaque dominante est (g) mouvement-vers : l'apprenant utilise des outils computationnels (shell, prompt paramétré) sur des objets de son métier, mais cela n'atteste pas qu'il pense en algorithmes hors-informatique au sens fort. Le test : décompose-t-il un problème non-technique en algorithme indépendamment de l'outil ? Ici, l'outil est présent, donc le transfert reste incarné par l'outil. Les deux pièces sont affaiblies mais tiennent : la décomposition (Manuel, Filière, Partie) est une abstraction algorithmique du domaine pédagogique, même si elle s'incarne dans un prompt.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'application de la pensée computationnelle reste incarnée par l'outil shell ; le transfert se lit dans le choix de structurer un manuel en fragments indexés, sans que la pensée soit indépendante de l'outil."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La décomposition en triplet de variables (Manuel/Filière/Partie) abstrait la production pédagogique en pattern de boucle ; le transfert hors-informatique est suggéré mais reste adossé à l'outil-prompt."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à du simple usage d'outils techniques. Elles ont tenu parce que l'apprenant traite un livrable rédactionnel comme une structure indexée et abstrait la production pédagogique en triplet de variables — un transfert de pensée computationnelle vers un domaine pédagogique. Sous présomption de sycophantie, les deux pièces ont perdu en netteté : le transfert est partiel, encore dépendant de l'outil. Ce qui en résulte est un indice de pensée computationnelle appliquée, à confirmer par des transferts plus indépendants de l'outil. La trace tient avec une confiance modérée.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a affaibli les deux pièces mais leur convergence (décomposition algorithmique appliquée à la production pédagogique) maintient la présence avec une confiance modérée.",
+        "prescription": "Le travail montre un découpage en variables et fragments indexés appliqué à la rédaction. Repérer une fois où cette logique a structuré une décision sans outil — par exemple en organisant une discussion ou une journée — ferait apparaître plus nettement le transfert hors-informatique."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Double piste assumée : continuer à lancer les prompts (l'IA produit) et relire / corriger / compléter les manuels (l'humain garde)."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Reconnaissance d'une réduction non voulue opérée par l'IA, et nécessité de la corriger manuellement — articulation implicite de ce que l'humain reprend en main."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. Le critère 1.10 exige une articulation explicite des forces comparatives humain-IA. La pièce 1 décrit une coexistence des deux tâches mais ne formule pas pourquoi l'humain fait quoi. La pièce 2 est un cas de correction, ce qui montre une activité humaine de récupération mais ne théorise pas la complémentarité. Pourtant, la pièce 1 distingue bien ce qui est délégué (la production) de ce qui est gardé (la lecture critique et le complément), ce qui est plus qu'une simple utilisation. La présomption d'absence est partiellement battue.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant articule deux postures simultanées : l'IA continue à produire pendant que l'humain commence à lire, corriger et compléter — la répartition est nommée, pas seulement effectuée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en cherchant à invalider ma lecture. L'attaque pertinente est (f) récit performatif : « il faudrait que je commence à lire / corriger / compléter » est-il vraiment une articulation des forces comparatives, ou seulement une description d'enchaînement de tâches ? La répartition est nommée mais pas justifiée (pourquoi l'humain corrige, pourquoi l'IA génère). La pièce tient, mais avec une portée réduite ; elle relève d'une synergie opérationnelle sans articulation théorique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La répartition est nommée mais pas justifiée par les forces comparatives — c'est une synergie opérationnelle plus qu'une théorisation explicite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à de l'utilisation. La pièce sur la double piste a résisté parce qu'elle distingue ce qui est délégué (production en série) de ce qui est repris (lecture, correction, complément), ce qui dépasse l'usage. Sous présomption de sycophantie, la pièce a perdu en portée : l'apprenant nomme la répartition sans expliquer pourquoi l'humain est mieux placé pour chacune des tâches. Ce qui en résulte est un indice de synergie opérationnelle, pas encore une théorisation des forces comparatives. La trace tient avec une confiance modérée.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier ; la répartition est nommée mais l'articulation des forces comparatives reste implicite.",
+        "prescription": "Le travail montre une coexistence assumée entre production déléguée à l'IA et reprise critique par l'humain. Nommer une fois pourquoi la relecture, la correction ou le complément reviennent à l'humain ferait passer cette trace d'opération à théorisation."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 5,
+    "nonEtablies": 0,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le travail montre une pensée orientée vers la mise en système. L'apprenant articule une vision où l'école elle-même apprend à travers les portfolios de ses Maîtres, et il construit en parallèle un pipeline industriel pour produire les manuels qui accompagnent cette école. Le registre est concret, opérationnel, attentif aux détails techniques (commandes shell, paramètres de prompt, quotas de tokens) et simultanément attentif aux effets de cascade (parents inquiets sur WhatsApp, débats publics à venir). Quelques retours critiques sur les outputs IA (la réduction de 64 à 6) ponctuent la journée. L'ensemble dessine une journée de production intensive où la conception du système et son exécution se nourrissent l'une l'autre.",
+    "territoiresDenses": [
+      {
+        "competence": "Pensée systémique",
+        "description": "Modélisation de l'école comme entité apprenante avec boucle de rétroaction entre les portfolios des Maîtres et la maintenance des référentiels et manuels.",
+        "extraitVerbatim": "les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres. Le rôle de ces derniers étant d'améliorer l'école, de maintenir les référentiels de compétences en lien avec les décisions de la société civile, de modifier les manuels de formation qui déterminent le protocole de réplication des écoles.",
+        "ceQueCaDit": "Cette formulation traite une institution comme un système qui boucle sur lui-même : les usages remontent dans les référentiels et redescendent dans la réplication. La pensée s'attache aux directions d'influence, pas aux étapes."
+      },
+      {
+        "competence": "Architecture de systèmes IA",
+        "description": "Pipeline de génération paramétré reliant un prompt-protocole, des fragments numérotés et une étape d'agrégation shell — chaîne reproductible documentée.",
+        "extraitVerbatim": "Mon prompt est toujours le même : \"Execute prompt-protocole-manuel.md. Traitement du manuel {Noèsiologue} de la filière {Humain}. Génération de la partie PARTIE {4}\". Ça coûte juste des tokens.",
+        "ceQueCaDit": "La production des manuels n'est pas confiée à une suite d'échanges ad hoc avec l'IA : elle passe par un dispositif paramétré, exécuté en série, dont les sorties sont ensuite recomposées par script. C'est un système, pas une conversation."
+      },
+      {
+        "competence": "Pensée computationnelle",
+        "description": "Décomposition d'un domaine pédagogique en triplet de variables (Manuel/Filière/Partie) et structuration d'un livrable comme suite indexée concaténable.",
+        "extraitVerbatim": "J'utilise la commande shell : `cat manuel-cartographe-partie{0..7}.md > manuel-cartographe.md` pour n'avoir qu'un seul fichier à importer dans Goole Doc.",
+        "ceQueCaDit": "Le manuel rédigé est traité comme un objet structuré, indexable et reconstructible, ce qui projette des patterns algorithmiques sur un travail de rédaction."
+      }
+    ],
+    "territoiresNonVisites": "Cette feuille n'aborde pas la synthèse intégrative (croiser des fragments disparates pour produire un insight inédit) ni la métacognition (s'observer penser plutôt que penser à un sujet). Ces deux territoires ne sont pas refermés : ils ne sont simplement pas visités dans cette journée tournée vers la production. La pensée critique et le cadrage de l'intention apparaissent en pointillés, plus en posture qu'en démonstration : une réduction de 64 à 6 est repérée, une stratégie d'expérimentation préalable est mentionnée, mais sans déploiement complet du processus de doute ou de questionnement de l'objectif. Ces dossiers mériteraient d'être ouverts plus largement dans d'autres feuilles.",
+    "emergencesPole": "Une logique de production en série traverse plusieurs compétences : le prompt invariant (formulation), le triplet de variables (computationnel), la concaténation par script (architecture), le quota Max calibré au volume restant (littératie IA). L'apprenant pense en termes de cadence et de capacité plus qu'en termes de pièce unique. Deuxième observation : la même journée articule un horizon long (école apprenante, débats publics à venir, parents qui s'avancent) et un horizon court (manuels Maître à finir demain, reset du forfait jeudi). Le système est conçu pour rester opérationnel dans ces deux temporalités.",
+    "pistes": [
+      "Pour enrichir le travail critique sur les outputs IA, un chemin possible serait de documenter une fois la séquence complète d'une vérification — depuis le signal qui a alerté jusqu'à la décision prise.",
+      "Pour enrichir le cadrage d'intention, un chemin possible serait de noter, avant d'écrire le manuel du Cartographe, la question de fond qu'il doit traiter et pour qui — l'expérimentation préalable y trouverait son point d'ancrage.",
+      "Pour enrichir la synergie humain-IA, un chemin possible serait de nommer, à propos d'une tâche précise, ce que l'humain garde et pourquoi — la répartition décrite gagnerait en lisibilité."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le travail montre une pensée orientée vers la mise en système. L'apprenant articule une vision où l'école elle-même apprend à travers les portfolios de ses Maîtres, et il construit en parallèle un pipeline industriel pour produire les manuels qui accompagnent cette école. Le registre est concret, opérationnel, attentif aux détails techniques (commandes shell, paramètres de prompt, quotas de tokens) et simultanément attentif aux effets de cascade (parents inquiets sur WhatsApp, débats publics à venir). Quelques retours critiques sur les outputs IA (la réduction de 64 à 6) ponctuent la journée. L'ensemble dessine une journée de production intensive où la conception du système et son exécution se nourrissent l'une l'autre.\n\n## Territoires les plus denses\n\n### Pensée systémique\n\nModélisation de l'école comme entité apprenante avec boucle de rétroaction entre les portfolios des Maîtres et la maintenance des référentiels et manuels.\n\n> les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres. Le rôle de ces derniers étant d'améliorer l'école, de maintenir les référentiels de compétences en lien avec les décisions de la société civile, de modifier les manuels de formation qui déterminent le protocole de réplication des écoles.\n\nCette formulation traite une institution comme un système qui boucle sur lui-même : les usages remontent dans les référentiels et redescendent dans la réplication. La pensée s'attache aux directions d'influence, pas aux étapes.\n\n### Architecture de systèmes IA\n\nPipeline de génération paramétré reliant un prompt-protocole, des fragments numérotés et une étape d'agrégation shell — chaîne reproductible documentée.\n\n> Mon prompt est toujours le même : \"Execute prompt-protocole-manuel.md. Traitement du manuel {Noèsiologue} de la filière {Humain}. Génération de la partie PARTIE {4}\". Ça coûte juste des tokens.\n\nLa production des manuels n'est pas confiée à une suite d'échanges ad hoc avec l'IA : elle passe par un dispositif paramétré, exécuté en série, dont les sorties sont ensuite recomposées par script. C'est un système, pas une conversation.\n\n### Pensée computationnelle\n\nDécomposition d'un domaine pédagogique en triplet de variables (Manuel/Filière/Partie) et structuration d'un livrable comme suite indexée concaténable.\n\n> J'utilise la commande shell : `cat manuel-cartographe-partie{0..7}.md > manuel-cartographe.md` pour n'avoir qu'un seul fichier à importer dans Goole Doc.\n\nLe manuel rédigé est traité comme un objet structuré, indexable et reconstructible, ce qui projette des patterns algorithmiques sur un travail de rédaction.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille n'aborde pas la synthèse intégrative (croiser des fragments disparates pour produire un insight inédit) ni la métacognition (s'observer penser plutôt que penser à un sujet). Ces deux territoires ne sont pas refermés : ils ne sont simplement pas visités dans cette journée tournée vers la production. La pensée critique et le cadrage de l'intention apparaissent en pointillés, plus en posture qu'en démonstration : une réduction de 64 à 6 est repérée, une stratégie d'expérimentation préalable est mentionnée, mais sans déploiement complet du processus de doute ou de questionnement de l'objectif. Ces dossiers mériteraient d'être ouverts plus largement dans d'autres feuilles.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne logique de production en série traverse plusieurs compétences : le prompt invariant (formulation), le triplet de variables (computationnel), la concaténation par script (architecture), le quota Max calibré au volume restant (littératie IA). L'apprenant pense en termes de cadence et de capacité plus qu'en termes de pièce unique. Deuxième observation : la même journée articule un horizon long (école apprenante, débats publics à venir, parents qui s'avancent) et un horizon court (manuels Maître à finir demain, reset du forfait jeudi). Le système est conçu pour rester opérationnel dans ces deux temporalités.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir le travail critique sur les outputs IA, un chemin possible serait de documenter une fois la séquence complète d'une vérification — depuis le signal qui a alerté jusqu'à la décision prise.\n- Pour enrichir le cadrage d'intention, un chemin possible serait de noter, avant d'écrire le manuel du Cartographe, la question de fond qu'il doit traiter et pour qui — l'expérimentation préalable y trouverait son point d'ancrage.\n- Pour enrichir la synergie humain-IA, un chemin possible serait de nommer, à propos d'une tâche précise, ce que l'humain garde et pourquoi — la répartition décrite gagnerait en lisibilité.\n"
+  }
+}

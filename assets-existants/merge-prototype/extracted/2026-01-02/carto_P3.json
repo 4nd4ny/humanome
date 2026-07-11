@@ -1,0 +1,424 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Le souci que j'ai en ce moment c'est que je génère des supports de cours plus rapidement que ce que j'arrive à les lire. J'ai actuellement 5 versions juste pour le Tuteur.",
+      "contexte": "Aveu d'une production itérative qui a dépassé la capacité d'assimilation, signalant un mode 'produire vite'.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Je me suis amusé à donner les mêmes prompts sur les versions 1 et 2 de la formation Tuteur / Maître, dans deux conversations parallèles, pour avoir l'avis de Gemini avant de commencer à les lire.",
+      "contexte": "Tonalité expérimentale et ludique d'une mise en place d'une expérience à deux instances parallèles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Voici ton avis dans une autre discussion. Explique la contradiction. [INSÉRER ICI LE RÉSULTAT DU PROMPT PRÉCÉDENT]",
+      "contexte": "Invention d'un méta-prompt qui renvoie à une instance sa propre contradiction inter-conversations, geste peu standard.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Sans aucun prompt ici : juste le copier-coller de la réponse précédente. Là, ils finissent par converger et proposent de lire les deux documents.",
+      "contexte": "Expérience originale du prompt vide pour observer un comportement des modèles non scripté.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Donc la v3 et la v4 sont nulles, contrairement à ce que tu m'as dit avant ? Je peux les éliminer entièrement ?",
+      "contexte": "Acte de curation par soustraction présenté comme question, en confrontant le modèle à son incohérence d'évaluation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "En gros il kiffe le module 0 de la v2 pour les apprenants, la v5 pour les tuteurs, la v2 pour les maîtres formateurs et me dit de garder la v1 sous le coude. Nous ne sommes pas d'accord, mais ça me permet de mieux comprendre la portée des documents avant des les avoir entièrement lus.",
+      "contexte": "Restitution rapide d'un jugement qualitatif rendu par le modèle, avant repositionnement personnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "| v2 initiation | Apprenants | Apprendre à apprendre. | | v5 manifeste | Accompagnants | Autoformation, habilité à créer une micro-classe. | | v1 médiation | Tuteurs | ex-Accompagnant, formé par un Maître, habilité à générer des cartographies de compétences. | | v2 noèsiologue | Maîtres | ex-Tuteur, formé par un Maître, habilité à modifier Respire. |",
+      "contexte": "Tableau de sélection finale qui ordonne quatre des cinq versions selon des critères de public et d'objectif, après expérimentation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Gémini 3 Pro DeepThinking c'est bien pour un résumé rapide sur mon smartphone, ou pour discuter de philosophie avec une IA en conduisant en voiture. Pour le vrai travail, Claude 4.5 Opus Extended Thinking est mieux, mais il est nul en math. Pour les maths, c'est ChatGPT 5.2 Pro Extended Thinking qui explose tout le monde.",
+      "contexte": "Jugement qualitatif articulé qui hiérarchise trois outils par cas d'usage avec un registre familier.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "le temps que je le fasse et il y aura ChatGPT 5.5 ou Gemini 3.5 qui sortira et il faudra tout recommencer…",
+      "contexte": "Aparté en parenthèse avec point de suspension qui fait entendre une voix personnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Il ne me restera plus qu'à générer un document pour former les Éclaireur, mais là dessus ma valeur ajoutée est quasiment nulle pour le moment.",
+      "contexte": "Autodérision dosée intégrée dans une planification opérationnelle, marqueur de ton récurrent dans la feuille.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Ce que j'ai surtout appris, c'est de baisser mon niveau de confiance dans les réponses de Gémini.",
+      "contexte": "Conclusion qui hiérarchise l'apprentissage tiré d'une journée d'expérimentation - geste de tri qualitatif.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Le souci que j'ai en ce moment c'est que je génère des supports de cours plus rapidement que ce que j'arrive à les lire. J'ai actuellement 5 versions juste pour le Tuteur.",
+          "contexte": "Production itérative de cinq versions avant lecture - bâclage assumé du cycle produire-évaluer.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "Je me suis amusé à donner les mêmes prompts sur les versions 1 et 2 de la formation Tuteur / Maître, dans deux conversations parallèles, pour avoir l'avis de Gemini avant de commencer à les lire.",
+          "contexte": "Cycle expérimental ludique qui injecte du jeu dans le travail de production-évaluation.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "extraitVerbatim": "Voici ton avis dans une autre discussion. Explique la contradiction. [INSÉRER ICI LE RÉSULTAT DU PROMPT PRÉCÉDENT]",
+          "contexte": "Invention d'un dispositif de prompt non-évident : envoyer à un modèle son propre avis pour observer sa réconciliation.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "extraitVerbatim": "Sans aucun prompt ici : juste le copier-coller de la réponse précédente. Là, ils finissent par converger et proposent de lire les deux documents.",
+          "contexte": "Geste original du prompt vide qui isole un comportement caché des modèles.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'il s'agit d'usage répété d'un outil, pas de création. Produire cinq versions peut n'être qu'un emballement productiviste sans cycle itératif. Lancer deux conversations parallèles peut n'être qu'un test. Ce qui me force à m'arrêter : la pièce 1 décrit explicitement le mode 'produire plus vite que je n'évalue' - c'est précisément la posture itérative de la fiche, vite et mal pour apprendre. La pièce 3 invente un prompt qu'on ne trouve pas dans les manuels de prompting : envoyer à un modèle l'avis d'une autre instance pour observer comment il gère sa propre contradiction. La pièce 4 va plus loin avec le prompt vide comme variable expérimentale. La pièce 2 reste plus faible : décrire l'expérimentation ne suffit pas à attester la créativité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La production qui dépasse la capacité d'évaluation est le marqueur même du cycle itératif rapide." },
+            { "pieceId": 3, "motifResistance": "Le méta-prompt 'explique la contradiction entre tes deux instances' est peu standard et invente un dispositif." },
+            { "pieceId": 4, "motifResistance": "Le prompt vide comme variable expérimentale est un geste rare qui révèle un comportement modèle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces et je me demande si je ne projette pas une intention créative sur des gestes de curiosité ordinaire. La pièce 1 reste sur le fil : la surproduction peut être bâclage involontaire, non choix stratégique. Les pièces 3 et 4 tiennent : leurs verbatims sont des dispositifs concrets, observables, qui dépassent l'usage standard. Le test de la fiche - 'l'IA l'aurait-elle suggéré ?' - tend ici vers le non, ces prompts sont des gestes humains non scriptés.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le bâclage de production est observé mais pas explicitement nommé comme stratégie - mouvement vers l'itération assumée plus que itération pleinement consciente."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le prompt est cité textuellement et constitue un dispositif inventé, pas une projection d'intention sur un acte banal."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'observation 'ils finissent par converger' atteste un résultat issu d'une variation expérimentale délibérée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces de l'usage curieux plutôt que de la création. La présomption d'absence a laissé tomber la pièce d'expérimentation décrite (pièce 2) qui restait descriptive. La présomption de sycophantie a affaibli la pièce 1 mais confirmé les deux gestes les plus inventifs : le méta-prompt qui renvoie à un modèle sa propre contradiction, et le prompt vide expérimental. Ce qui reste : une itération assumée sur le cycle produire-évaluer, doublée d'une invention de dispositifs de prompt qui sortent du répertoire standard. La radicalité reste mesurée - ces gestes sont créatifs sans être de l'ordre du jamais-vu - mais l'acte itératif assumé tient.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.62,
+        "motif": "Le temps 2 a confirmé deux pièces décisives - le méta-prompt inter-instances et le prompt vide expérimental - et a maintenu une pièce d'itération assumée comme indice corroboratif.",
+        "prescription": "Le cycle 'produire vite, évaluer ensuite' s'observe ici sur les supports de formation et sur les prompts eux-mêmes. Pour épaissir cette pratique, un chemin possible serait de noter, sur l'un de ces dispositifs de prompt inventés, la version brute initiale et la version retravaillée qui a tenu, afin de rendre visible le pivot entre les deux."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "extraitVerbatim": "Gémini 3 Pro DeepThinking c'est bien pour un résumé rapide sur mon smartphone, ou pour discuter de philosophie avec une IA en conduisant en voiture. Pour le vrai travail, Claude 4.5 Opus Extended Thinking est mieux, mais il est nul en math. Pour les maths, c'est ChatGPT 5.2 Pro Extended Thinking qui explose tout le monde.",
+          "contexte": "Coexistence dans la même phrase d'un lexique technique exact et de marqueurs familiers ('explose tout le monde'), tournure stylistique singulière.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "extraitVerbatim": "le temps que je le fasse et il y aura ChatGPT 5.5 ou Gemini 3.5 qui sortira et il faudra tout recommencer…",
+          "contexte": "Aparté en parenthèse avec point de suspension qui suspend le propos sur une lassitude rieuse, marqueur tonal.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "extraitVerbatim": "Il ne me restera plus qu'à générer un document pour former les Éclaireur, mais là dessus ma valeur ajoutée est quasiment nulle pour le moment.",
+          "contexte": "Autodérision dosée intégrée à une planification - le 'mais là dessus ma valeur ajoutée est quasiment nulle' fonctionne comme tic de modestie active.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent de traits de plume ponctuels et non d'une signature au sens de la fiche. Le critère central de la singularité est la récurrence dans le temps : un même style qui revient d'une entrée à l'autre. Sur une seule feuille, je ne peux pas confirmer la récurrence transversale. Ce qui me force à m'arrêter : les trois pièces affichent dans une même journée des marqueurs concordants - registre hybride familier/technique, parenthèses à point de suspension, autodérision dosée. Si ces marqueurs reviennent ailleurs, on aurait une signature ; en l'état, on a un faisceau d'indices pour une seule feuille.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La cohabitation de lexique technique exact et de marqueurs familiers dans une même phrase est un marqueur stylistique fort." },
+            { "pieceId": 2, "motifResistance": "La parenthèse avec trois points en fin de phrase installe une voix personnelle reconnaissable." },
+            { "pieceId": 3, "motifResistance": "L'autodérision en marge d'un acte planificatoire forme un tic récurrent dans le texte du jour." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces et je me demande si je n'ai pas confondu un style ponctuel avec une signature. Le test de la fiche est explicite : 'quelqu'un d'autre pourrait-il identifier l'auteur sans voir son nom ?' Sur une seule feuille, on a des marqueurs cohérents mais on ne peut pas tester la récurrence inter-feuilles. Les trois pièces tiennent comme indices d'une voix - le portfolio n'a pas la patine homogénéisée d'un output IA - mais le verdict de signature au sens strict requiert plus de matière. L'attaque pertinente est celle de l'insuffisance probatoire, non parce que les pièces sont faibles, mais parce qu'une signature se constate sur la durée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce porte un marqueur stylistique mais une seule occurrence ne permet pas de conclure à la récurrence."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La parenthèse trailing est expressive mais isolée - elle tient comme indice à confirmer."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'autodérision est dosée mais isolée à cette feuille ; sa récurrence transversale reste à vérifier."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces les marqueurs d'une signature au sens fort. La présomption d'absence et la présomption de sycophantie ont toutes deux pointé la même chose : la singularité réclame la récurrence dans le temps, et une seule feuille ne suffit pas à l'attester. Les trois pièces survivent comme indices concordants d'une voix personnelle - registre hybride, parenthèses expressives, autodérision dosée - mais le verdict de présence pleine demande à être confirmé par d'autres feuilles. Le renvoi au cartographe traduit honnêtement l'état du dossier : présence émergente, vérification multi-feuilles nécessaire.",
+          "confianceFinale": 0.50
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.50,
+        "motif": "Les trois pièces survivent affaiblies au temps 2 ; elles forment un faisceau cohérent mais la signature au sens de la fiche réclame une récurrence inter-feuilles que cette feuille seule ne permet pas d'attester.",
+        "prescription": "Sur cette journée, une voix se laisse entendre - registre hybride entre familier et technique, parenthèses qui suspendent le propos, autodérision en marge des actes planificateurs. Pour confirmer cette tenue stylistique comme signature, un chemin possible serait de relire trois feuilles éloignées et de noter les tournures, métaphores ou tics d'écriture qui reviennent indépendamment du sujet traité."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio reformule ici un problème existant (comment utiliser cinq versions pour quatre publics) plutôt qu'il n'invente un problème nouveau. Pour ouvrir ce territoire, un chemin possible serait de documenter un moment où la nature même de la question posée a changé en cours d'exécution, et où ce déplacement a ouvert un champ d'action qui n'existait pas auparavant."
+      }
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "extraitVerbatim": "Donc la v3 et la v4 sont nulles, contrairement à ce que tu m'as dit avant ? Je peux les éliminer entièrement ?",
+          "contexte": "Acte de curation par soustraction explicite : tester la possibilité d'éliminer deux versions du corpus.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "extraitVerbatim": "| v2 initiation | Apprenants | Apprendre à apprendre. | | v5 manifeste | Accompagnants | Autoformation, habilité à créer une micro-classe. | | v1 médiation | Tuteurs | ex-Accompagnant, formé par un Maître, habilité à générer des cartographies de compétences. | | v2 noèsiologue | Maîtres | ex-Tuteur, formé par un Maître, habilité à modifier Respire. |",
+          "contexte": "Tableau de sélection finale qui ordonne et éditorialise le corpus selon des critères articulés (public, objectif).",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "extraitVerbatim": "Gémini 3 Pro DeepThinking c'est bien pour un résumé rapide sur mon smartphone, ou pour discuter de philosophie avec une IA en conduisant en voiture. Pour le vrai travail, Claude 4.5 Opus Extended Thinking est mieux, mais il est nul en math. Pour les maths, c'est ChatGPT 5.2 Pro Extended Thinking qui explose tout le monde.",
+          "contexte": "Hiérarchisation qualitative articulée de trois outils selon plusieurs cas d'usage.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 4,
+          "pid": 11,
+          "extraitVerbatim": "Ce que j'ai surtout appris, c'est de baisser mon niveau de confiance dans les réponses de Gémini.",
+          "contexte": "Geste de tri qualitatif sur les apprentissages eux-mêmes - hiérarchisation de ce qui a vraiment compté.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent de la décision opérationnelle et non du jugement esthétique. Choisir d'éliminer deux versions peut n'être qu'arbitrage pratique ; faire un tableau d'allocation peut n'être que rangement. Ce qui me force à m'arrêter : la pièce 1 thématise explicitement la soustraction ('éliminer entièrement'), qui est le critère discriminant de la fiche - la curation implique de la soustraction. La pièce 2 ordonne, hiérarchise et éditorialise un corpus avec des critères explicites (public, objectif), ce qui correspond à 'sélectionner, hiérarchiser, contextualiser'. La pièce 3 articule des critères qualitatifs ('bien pour', 'nul en', 'explose tout le monde') différenciés par contexte d'usage. La pièce 4 reste plus faible : c'est une hiérarchisation des apprentissages, plus métacognitive qu'esthétique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La soustraction est explicite dans le verbatim - critère discriminant de la curation selon la fiche." },
+            { "pieceId": 2, "motifResistance": "Le tableau ordonne quatre versions selon deux critères (public, objectif) - architecture éditoriale en acte." },
+            { "pieceId": 3, "motifResistance": "Les critères qualitatifs sont articulés et différenciés par contexte d'usage, non énoncés en bloc." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces et je me demande si je n'ai pas confondu la curation esthétique avec la décision pratique. La pièce 1 tient : la question 'je peux les éliminer entièrement ?' fait de la soustraction l'objet du dialogue, pas seulement une conséquence. La pièce 2 tient également : le tableau dépasse l'allocation administrative en articulant pour chaque pièce un objectif pédagogique propre. La pièce 3 reste plus marginale pour la curation au sens propre : elle évalue des outils plus qu'elle ne sélectionne des contenus parmi ceux produits.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le verbatim formule explicitement la soustraction comme test, ce qui exclut la projection d'intention - la pièce porte le geste discriminant."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le tableau est complet et lisible, il fournit une architecture éditoriale au sens fort - hiérarchisation, ordonnancement, contextualisation."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.06 (littératie IA) ; elle tient pour 3.04 dans la mesure où elle articule des critères qualitatifs différenciés."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme des arbitrages pratiques et non comme un jugement esthétique. La présomption d'absence a laissé tomber la pièce 4 (hiérarchisation des apprentissages, plutôt métacognitive). La présomption de sycophantie a confirmé l'acte de soustraction et l'architecture du tableau, et a maintenu la hiérarchisation des outils comme indice. Ce qui reste : un travail de curation qui passe par la soustraction explicite, l'ordonnancement éditorialisé d'un corpus restant, et l'articulation de critères qualitatifs différenciés. Les trois gestes correspondent aux marqueurs de la fiche.",
+          "confianceFinale": 0.74
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.74,
+        "motif": "Le temps 2 a confirmé l'acte de soustraction explicite et l'architecture éditoriale du tableau comme preuves décisives, corroborées par la hiérarchisation articulée des outils.",
+        "prescription": "L'acte de curation s'incarne ici dans la soustraction nommée comme telle et dans l'ordonnancement d'un corpus restant selon des critères explicites. Pour densifier cette pratique, un chemin possible serait de tenir, sur l'une des versions retenues, une trace des passages qui ont été écartés lors de la mise en forme finale, avec le critère qui a fait pencher la balance."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio se déroule entièrement dans le domaine numérique sans interaction physique avec une matière tangible. Pour ouvrir ce territoire, un chemin possible serait de documenter un acte de bricolage, de réparation ou d'assemblage avec ses détails sensoriels (résistance, ajustement, geste précis)."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La mention 'je m'endormais derrière mon écran' évoque une présence atténuée plutôt qu'une attention incarnée. Pour ouvrir ce territoire, un chemin possible serait de documenter un moment où une sensation corporelle a précédé et orienté une décision concrète."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne porte pas ici de scène en présence physique avec un public. Pour ouvrir ce territoire, un chemin possible serait de documenter un moment d'enseignement, d'animation ou d'intervention où la présence en direct a transformé l'imprévu en occasion."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail visible ce jour-là se concentre dans la zone créative-éditoriale et reste éloigné du faire manuel ou du présentiel. La journée raconte la mise au point de cinq versions d'un même cours, l'invention de dispositifs de prompts non standard, et un tri assumé qui élimine certaines versions et en redistribue d'autres selon des critères explicites. L'expérimentation prime sur la finition : les supports sont produits 'plus vite que je n'arrive à les lire', puis triés ensuite. La voix porte des marqueurs reconnaissables - registre hybride entre familier et technique, parenthèses qui suspendent le propos, autodérision dosée - sans que cette feuille suffise à parler de signature pleinement assumée. La matière physique, la pleine présence corporelle et le contact direct avec un public ne traversent pas ce jour-là.",
+    "territoiresDenses": [
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "Soustraction explicite de versions, ordonnancement du corpus restant selon des critères articulés, hiérarchisation qualitative différenciée par contexte d'usage.",
+        "extraitVerbatim": "Donc la v3 et la v4 sont nulles, contrairement à ce que tu m'as dit avant ? Je peux les éliminer entièrement ?",
+        "ceQueCaDit": "Le geste de curation ne se contente pas d'évaluer : il nomme la soustraction comme objet du dialogue, et l'allocation finale par public produit une architecture éditoriale."
+      },
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "Cycle 'produire vite, évaluer ensuite' assumé sur les supports, doublé d'inventions de dispositifs de prompt qui sortent du répertoire standard (méta-prompt inter-instances, prompt vide).",
+        "extraitVerbatim": "Voici ton avis dans une autre discussion. Explique la contradiction. [INSÉRER ICI LE RÉSULTAT DU PROMPT PRÉCÉDENT]",
+        "ceQueCaDit": "L'itération ne porte pas seulement sur les supports de cours mais aussi sur les prompts eux-mêmes, qui deviennent objets d'invention. La radicalité reste mesurée mais le geste créatif tient."
+      }
+    ],
+    "territoiresNonVisites": "Quatre territoires du pôle restent hors champ dans cette feuille. Le design de problèmes ne trouve pas de prise franche : la journée reformule un problème existant (cinq versions pour quatre publics) plutôt qu'elle n'invente une question qui n'existait pas avant. L'intelligence manuelle ne se manifeste pas - la matière traversée est entièrement numérique. L'ancrage sensoriel et la pleine présence ne sont pas thématisés ; la seule notation phénoménologique ('je m'endormais derrière mon écran') évoque plutôt une présence atténuée. La performance en direct enfin ne traverse pas la feuille, qui se déroule dans un face-à-face solitaire avec plusieurs instances IA. La singularité, quant à elle, laisse des indices concordants mais la récurrence transversale ne peut s'attester sur une seule feuille - le territoire reste ouvert et mérite un suivi inter-feuilles.",
+    "emergencesPole": "Trois lignes traversent la matière créative du jour. D'abord, la création passe par le prompt autant que par le contenu : inventer un dispositif de prompt occupe ici autant de place que produire un support. Ensuite, la curation prime sur la production - les versions sont multipliées à dessein pour permettre le tri ; l'écart entre cinq versions et quatre publics est ce qui rend l'éditorialisation possible. Enfin, le créatif et le réflexif se tiennent côte à côte : le même geste 'je me suis amusé à' ouvre une expérimentation et installe une voix.",
+    "pistes": [
+      "Pour rendre lisible le pivot itératif sur les dispositifs de prompts, un chemin possible serait de consigner, pour l'un d'entre eux, la version brute initiale et la version retravaillée qui a tenu, en nommant ce qui s'est joué dans le passage.",
+      "Pour confirmer ou infirmer la signature stylistique qui s'esquisse, un chemin possible serait de relire trois feuilles éloignées et de noter les tournures, parenthèses ou métaphores qui reviennent indépendamment du sujet traité.",
+      "Pour ouvrir le design de problèmes, un chemin possible serait de documenter un moment où la nature même de la question posée a changé en cours d'exécution, et où ce déplacement a ouvert un champ d'action qui n'existait pas auparavant.",
+      "Pour ramener l'intelligence manuelle ou le rapport à la matière, un chemin possible serait de documenter un geste hors écran qui a fait avancer le projet Respire d'une autre manière (impression, manipulation papier, espace physique aménagé pour une session).",
+      "Pour ouvrir l'ancrage sensoriel, un chemin possible serait de noter une fois, en marge du récit méthodologique, ce que le corps a fait savoir au moment de prendre une décision (fatigue qui pousse à interrompre, élan qui fait persévérer)."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail visible ce jour-là se concentre dans la zone créative-éditoriale et reste éloigné du faire manuel ou du présentiel. La journée raconte la mise au point de cinq versions d'un même cours, l'invention de dispositifs de prompts non standard, et un tri assumé qui élimine certaines versions et en redistribue d'autres selon des critères explicites. L'expérimentation prime sur la finition : les supports sont produits 'plus vite que je n'arrive à les lire', puis triés ensuite. La voix porte des marqueurs reconnaissables - registre hybride entre familier et technique, parenthèses qui suspendent le propos, autodérision dosée - sans que cette feuille suffise à parler de signature pleinement assumée. La matière physique, la pleine présence corporelle et le contact direct avec un public ne traversent pas ce jour-là.\n\n## Territoires les plus denses\n\n**Jugement esthétique et curation.** Le travail de tri opère explicitement par soustraction et par ordonnancement éditorialisé d'un corpus restant. *« Donc la v3 et la v4 sont nulles, contrairement à ce que tu m'as dit avant ? Je peux les éliminer entièrement ? »* Le verbatim fait de la soustraction l'objet du dialogue, pas une conséquence implicite. L'allocation finale en tableau articule pour chacune des versions retenues un public spécifique et un objectif propre, ce qui produit une architecture éditoriale au sens fort.\n\n**Créativité itérative et radicale.** L'itération assumée traverse la feuille : production qui dépasse la capacité d'évaluation, expérimentations parallèles, dispositifs de prompts inventés. *« Voici ton avis dans une autre discussion. Explique la contradiction. [INSÉRER ICI LE RÉSULTAT DU PROMPT PRÉCÉDENT] »* L'itération ne porte pas seulement sur les supports de cours mais aussi sur les prompts eux-mêmes, qui deviennent objets d'invention. La radicalité reste mesurée - ces gestes ne relèvent pas du jamais-vu - mais le geste créatif tient comme cycle vite-évaluer-pivoter.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuatre territoires du pôle restent hors champ dans cette feuille. Le design de problèmes ne trouve pas de prise franche : la journée reformule un problème existant (cinq versions pour quatre publics) plutôt qu'elle n'invente une question qui n'existait pas avant. L'intelligence manuelle ne se manifeste pas - la matière traversée est entièrement numérique. L'ancrage sensoriel et la pleine présence ne sont pas thématisés ; la seule notation phénoménologique ('je m'endormais derrière mon écran') évoque plutôt une présence atténuée. La performance en direct enfin ne traverse pas la feuille, qui se déroule dans un face-à-face solitaire avec plusieurs instances IA. La singularité, quant à elle, laisse des indices concordants mais la récurrence transversale ne peut s'attester sur une seule feuille - le territoire reste ouvert et mérite un suivi inter-feuilles.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent la matière créative du jour. D'abord, la création passe par le prompt autant que par le contenu : inventer un dispositif de prompt occupe ici autant de place que produire un support. Ensuite, la curation prime sur la production - les versions sont multipliées à dessein pour permettre le tri ; l'écart entre cinq versions et quatre publics est ce qui rend l'éditorialisation possible. Enfin, le créatif et le réflexif se tiennent côte à côte : le même geste 'je me suis amusé à' ouvre une expérimentation et installe une voix.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre lisible le pivot itératif sur les dispositifs de prompts, un chemin possible serait de consigner, pour l'un d'entre eux, la version brute initiale et la version retravaillée qui a tenu, en nommant ce qui s'est joué dans le passage.\n- Pour confirmer ou infirmer la signature stylistique qui s'esquisse, un chemin possible serait de relire trois feuilles éloignées et de noter les tournures, parenthèses ou métaphores qui reviennent indépendamment du sujet traité.\n- Pour ouvrir le design de problèmes, un chemin possible serait de documenter un moment où la nature même de la question posée a changé en cours d'exécution, et où ce déplacement a ouvert un champ d'action qui n'existait pas auparavant.\n- Pour ramener l'intelligence manuelle ou le rapport à la matière, un chemin possible serait de documenter un geste hors écran qui a fait avancer le projet Respire d'une autre manière (impression, manipulation papier, espace physique aménagé pour une session).\n- Pour ouvrir l'ancrage sensoriel, un chemin possible serait de noter une fois, en marge du récit méthodologique, ce que le corps a fait savoir au moment de prendre une décision (fatigue qui pousse à interrompre, élan qui fait persévérer)."
+  }
+}

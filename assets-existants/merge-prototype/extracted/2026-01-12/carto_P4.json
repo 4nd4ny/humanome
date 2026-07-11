@@ -1,0 +1,382 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Je ne vais plus avoir beaucoup de temps ces 5 prochains jours. Je ne pense pas pouvoir le finir avant la semaine prochaine.",
+      "contexte": "Constat d'une contrainte de temps et report assumé de l'achèvement du manuel à la semaine suivante.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Maintenant j'attaque le cœur de mes travaux de thèse : le manuel de noèsiologie du Maître.",
+      "contexte": "Décision d'attaquer la partie centrale de la thèse, qualifiée de cœur du travail.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "de réussir à lui faire générer un livre que j'aurai voulu être capable d'écrire, c'est top !",
+      "contexte": "Réflexion sur le fait que l'IA produit un ouvrage que l'apprenant n'aurait pas su écrire seul.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "C'est vraiment ça le métier d'enseignant : aider l'élève à dépasser ses limites cognitives… pas transmettre des savoirs. Pour moi, enseigner c'est être un coach cognitif. Les savoirs sont dans les livres, internet, les IA. C'est facile à trouver. Perdre du temps là dessus c'est inutile. Savoir bien utiliser son cerveau par contre, ça c'est vraiment utile.",
+      "contexte": "Reformulation de la valeur propre de l'enseignant face à la disponibilité des savoirs via l'IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Je vais quand même tout régénérer en rentrant, car c'est plus simple.",
+      "contexte": "Décision tranchée de régénérer l'ensemble du manuel malgré ses qualités, pour la simplicité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "RESPIRE c'est l’alignement de l'enseignement avec les mutations sociétales en cours tout en redonnant du sens au travail de prof.",
+      "contexte": "Définition de RESPIRE comme alignement de l'enseignement avec les mutations sociétales.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'affirmation que transmettre des savoirs est « inutile » et que la valeur est ailleurs pourrait porter une mise en tension de finalités éducatives.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de raisonnement éthique appliqué : la fiche réclame une mise en tension visible de valeurs légitimes en conflit, maintenue plutôt que tranchée hâtivement. La pièce 1 énonce au contraire une thèse ferme et résolue (transmettre = inutile, accompagner = utile), sans balancier ni exploration des conséquences pour différentes parties prenantes. Elle résiste à peine : il n'y a pas de dilemme traversé, mais une conviction affirmée. Ce qui reste faible : aucune incertitude morale n'est maintenue, aucune question ouverte sur les critères du jugement — c'est une sentence, pas un arbitrage.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La position oppose deux conceptions du métier, ce qui pourrait esquisser une tension de valeurs sur la finalité de l'enseignement." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je teste si j'ai pris une opinion tranchée pour un raisonnement éthique. La fiche est explicite : une sentence (« c'est inutile ») n'est pas un raisonnement éthique appliqué ; le critère est le processus visible de mise en tension, pas la conclusion réactive. Ici l'apprenant tranche d'emblée en faveur d'une conception, sans explorer ce que l'autre conception préserve ni ce qu'on perd en l'abandonnant. Le faux positif de fiche s'applique : la distinction critique écarte précisément les sentences.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La fiche écarte les sentences : « transmettre c'est inutile » est une conclusion morale affirmée, sans balancier ni incertitude maintenue, donc hors du raisonnement éthique appliqué."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant un arbitrage de valeurs traversé dans l'inconfort. La prise de position sur la finalité de l'enseignement m'a fait hésiter, parce qu'elle oppose deux conceptions du métier. Mais sous la seconde lecture, l'opposition est résolue d'emblée par une affirmation ferme, sans que les conséquences de l'abandon de la transmission soient pesées ni que l'incertitude soit maintenue. La fiche range ce type d'énoncé du côté des sentences. Pour cette journée, le raisonnement éthique appliqué reste un territoire non visité : ce que la feuille porte, c'est une conviction pédagogique assumée plus qu'un dilemme moral exploré.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a disqualifié la pièce par faux positif de fiche : conviction affirmée sans mise en tension maintenue de valeurs.",
+        "prescription": "Les convictions sur le sens du métier sont nettes et engagées. Pour ouvrir le dossier du raisonnement éthique, un passage où deux valeurs également défendables s'opposent sans solution évidente, et où la tension est tenue plutôt que tranchée, donnerait une trace d'arbitrage à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Décider de tout régénérer plutôt que conserver l'output de l'IA pourrait relever d'un réflexe d'alignement (garder le contrôle sur ce que produit la machine).",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence d'alignement et refus éthique : la fiche vise le gardiennage de la conformité entre ce que l'IA produit et les valeurs humaines — refus justifié, garde-fous, constat que quelque chose « sonne faux ». La pièce 1 décrit une décision de régénération motivée par la simplicité, pas par un désalignement de valeurs. Elle résiste très peu : l'apprenant ne refuse pas un output parce qu'il trahirait son intention ou ses valeurs, il choisit de repartir à neuf par commodité. Ce qui reste faible : aucun « ce n'est pas nous », aucun garde-fou, aucun inconfort éthique face à la production IA.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Choisir de régénérer entièrement l'output IA maintient un contrôle humain sur le produit final, geste de la famille du gardiennage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je teste si j'ai pris une décision de confort pour un acte d'alignement. La fiche demande un refus *sélectif et justifié par des valeurs* ; ici le motif est « c'est plus simple », sans aucune référence à un désalignement ou à une valeur menacée. Le glissement lexical guette : régénérer ressemble à un contrôle, mais la charge sémantique d'alignement éthique est absente. L'attaque disqualifie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La décision de régénérer est motivée par la simplicité d'exécution, sans référence à une valeur menacée ou à un désalignement de l'output ; le marqueur central du refus éthique manque."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant un acte de gardiennage des valeurs face à la production de l'IA. La décision de tout régénérer m'a fait hésiter, parce qu'elle maintient l'humain aux commandes du résultat. Mais sous la seconde lecture, son motif est la simplicité, sans qu'aucune valeur menacée ni aucun désalignement ne soit nommé. Pour cette journée, l'alignement et le refus éthique restent un territoire non visité : le contrôle exercé sur l'output relève de l'organisation du travail plus que d'un gardiennage de valeurs.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a disqualifié la pièce par glissement lexical : contrôle de commodité pris pour un gardiennage de valeurs.",
+        "prescription": "Le contrôle sur la production de l'IA est bien présent dans l'organisation du travail. Pour ouvrir le dossier de l'alignement éthique, un passage où un output est refusé parce qu'il trahit une valeur ou une intention — et non pour la simplicité — donnerait une trace de gardiennage à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la conscience écologique et long-terme. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage où l'impact à long terme ou des externalités non comptabilisées ont concrètement pesé sur une décision."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la valorisation de la neurodiversité. Pour ouvrir ce dossier, l'apprenant pourrait relier un résultat concret à une façon différente de penser, la sienne ou celle d'autrui."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "La décision de tout régénérer malgré la qualité du texte existant est un acte de tranchage assumé sur la manière de procéder.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Accepter de ne pas finir avant la semaine prochaine sans dramatiser pourrait signaler une tolérance à un planning incertain.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de décision dans l'incertitude : la fiche réclame que l'apprenant nomme ce qu'il ne sait pas, fonctionne malgré le flou et tranche avec des conséquences. La pièce 1 (régénérer) est une décision, mais elle se prend en terrain clair, pas dans le brouillard : l'apprenant sait ce qu'il fait et pourquoi (« c'est plus simple »), il n'y a pas d'incertitude tranchée. La pièce 2 (ne pas finir avant la semaine prochaine) est un constat de planning plus qu'un pari assumé sous incertitude. Aucune des deux ne résiste vraiment : il n'y a ni 50/50, ni IA qui hésite et qu'on surpasse, ni flou existentiel toléré. Ce qui reste faible : les décisions de la feuille sont des décisions de confort en terrain maîtrisé.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 : la présomption d'absence a absorbé les deux. Les décisions de la feuille se prennent en terrain clair, sans flou nommé ni tranchage sous incertitude. Il n'y a donc rien à réexaminer sous l'angle de la sycophantie — aucune résistance n'a été relevée que je pourrais soupçonner d'avoir hallucinée.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant un acte de tranchage dans le brouillard, ou une tolérance assumée au flou. Les deux décisions de la feuille — régénérer le manuel, reporter son achèvement — se sont révélées prises en terrain clair : l'apprenant sait ce qu'il fait, son motif est la simplicité, et le report relève du constat de planning plus que du pari. Rien n'a résisté à ma présomption d'absence. Pour cette journée, la décision et la tolérance à l'incertitude restent un territoire non visité : ce que la feuille montre, ce sont des choix posés avec aisance dans un cadre maîtrisé, pas des arbitrages sous données manquantes.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé les deux pièces : décisions prises en terrain clair, sans flou nommé ni tranchage sous incertitude.",
+        "prescription": "Les décisions de cette journée se prennent avec aisance dans un cadre maîtrisé. Pour ouvrir le dossier de la décision dans l'incertitude, un récit où il a fallu trancher sans savoir, en nommant ce qui manquait, donnerait une trace de pari assumé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la responsabilité, au courage et à l'intégrité. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a assumé une part de responsabilité, ou maintenu une position malgré un coût personnel."
+      }
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Faire générer à l'IA un livre que l'apprenant n'aurait pas su écrire pourrait supposer d'apporter un savoir ou un contexte que la machine n'a pas.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de validation contextuelle : la fiche vise la correction de l'IA par un savoir qu'elle ne possède pas (culturel, situationnel, tacite), avec le delta humain/machine nommé. La pièce 1 raconte une réussite de génération, pas une correction fondée sur un contexte manquant. Elle résiste à peine : l'apprenant ne dit pas « l'IA ne pouvait pas savoir que… », il se réjouit du résultat obtenu. Ce qui reste faible : aucun delta de contexte n'est identifié, aucun mécanisme d'erreur contextuelle n'est décrit.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La feuille ne contient pas de moment où l'apprenant corrige l'IA en mobilisant un savoir qu'elle n'a pas ; elle contient une satisfaction face à un output réussi. Il n'y a donc rien à réexaminer sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant un delta de contexte que l'apprenant aurait identifié et mobilisé pour corriger l'IA. Faire générer un livre hors de sa portée m'a fait hésiter, parce qu'on pourrait y voir un apport humain. Mais sous la seconde lecture, rien dans la feuille ne décrit une correction fondée sur un savoir inaccessible à la machine : il y a une réussite, pas un diagnostic d'erreur contextuelle. Pour cette journée, la validation contextuelle reste un territoire non visité.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : réussite de génération sans correction fondée sur un contexte manquant.",
+        "prescription": "Le travail avec l'IA produit ici des résultats appréciés. Pour ouvrir le dossier de la validation contextuelle, un passage où l'apprenant corrige l'IA parce qu'elle ignorait un contexte précis — et où il nomme ce contexte — donnerait la trace recherchée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant distingue ce que l'IA et internet couvrent (les savoirs) de ce qui reste la valeur propre (savoir utiliser son cerveau, accompagner l'élève), ce qui pourrait identifier une valeur non-automatisable.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Reconnaître que l'IA produit un livre hors de sa portée d'écriture montre une lucidité sur ce que la machine fait mieux, premier versant de la lucidité bidirectionnelle.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de création de valeur non-automatisable : la fiche réclame une lucidité bidirectionnelle (ce que l'IA fait mieux ET ce qui reste structurellement humain), tournée vers l'avenir, pas une position défensive « l'humain est supérieur ». La pièce 2 atteste seulement le premier versant : l'apprenant reconnaît que l'IA fait mieux que lui sur l'écriture du livre. La pièce 1 résiste davantage : l'apprenant pose que les savoirs relèvent désormais des livres, d'internet et des IA, et que la valeur humaine se déplace vers « savoir utiliser son cerveau » et accompagner l'élève à dépasser ses limites cognitives. C'est une articulation de ce qui reste proprement humain face à ce que la machine couvre. Ce qui reste faible : le « savoir utiliser son cerveau » est posé comme valeur pour l'élève, et la dimension structurellement non-automatisable n'est pas nommée comme telle ; le caractère prospectif est implicite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant articule ce que les machines prennent en charge (les savoirs) et ce qui reste la valeur humaine (l'usage du cerveau, l'accompagnement cognitif), ce qui esquisse une lucidité bidirectionnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je teste si j'ai surinterprété une thèse pédagogique en identification de valeur non-automatisable. La fiche demande la lucidité bidirectionnelle, et elle est ici réellement présente : sur la feuille, l'apprenant reconnaît que l'IA produit ce qu'il n'aurait pas su écrire (pièce 2) ET pose que la valeur humaine se loge dans l'accompagnement cognitif, là où les savoirs sont devenus accessibles à tous. La distinction structurel/temporaire est cependant floue : rien ne garantit que « savoir utiliser son cerveau » soit pensé comme structurellement non-automatisable plutôt que comme un avantage actuel. L'insuffisance probatoire affaiblit la pièce sans la disqualifier, car l'articulation des deux versants est bien là.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'articulation de la valeur humaine face à l'IA est réelle et bidirectionnelle, mais la dimension structurellement non-automatisable et le caractère prospectif restent implicites plutôt que nommés ; la trace tient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en présumant qu'évoquer l'IA et l'enseignement ne suffit pas à identifier une valeur non-automatisable, surtout quand le propos pourrait virer à la posture défensive. Le simple constat que l'IA écrit mieux que soi est resté un versant isolé. Mais le passage sur le coach cognitif a résisté aux deux mouvements : il articule ce que les machines couvrent désormais — les savoirs, accessibles partout — et ce qui reste proprement humain, l'accompagnement de l'élève à dépasser ses limites cognitives. Cette lucidité va dans les deux sens, sans nostalgie ni supériorité revendiquée. Sous la présomption de sycophantie, la pièce s'est révélée moins explicite que la fiche l'attend : le caractère structurellement non-automatisable et l'horizon prospectif demeurent implicites. Pour cette journée, on tient donc une trace réelle d'identification de la valeur humaine face à l'IA, encore à nommer plus précisément pour franchir le seuil d'une présence pleinement établie.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 3 retient une seule pièce affaiblie : la lucidité bidirectionnelle est réelle mais la dimension structurellement non-automatisable reste implicite, sous le seuil de présence établie.",
+        "prescription": "La distinction entre ce que les machines couvrent et ce qui reste la valeur humaine est posée nettement, dans les deux sens. Pour la consolider, un passage qui nomme ce qui restera structurellement hors de portée de l'IA — et que l'apprenant choisit de cultiver pour l'avenir — donnerait à cette identification une assise plus explicite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Accepter de ne pas finir le manuel avant la semaine prochaine, en raison d'une contrainte de temps assumée, pourrait relever d'un report borné dans le temps.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Choisir maintenant le bon moment pour « attaquer le cœur » de la thèse pourrait signaler un sens du timing dans l'ordre des travaux.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de patience stratégique : la fiche réclame une non-action *délibérée* malgré une pression, avec un raisonnement d'attente explicite et un moment d'action prévu — faute de quoi c'est de la procrastination ou un simple constat. La pièce 2 (attaquer maintenant le cœur de la thèse) est une action engagée, pas une attente : elle ne relève pas de 4.09. La pièce 1 résiste un peu : l'apprenant borne dans le temps l'achèvement (« pas avant la semaine prochaine ») en raison d'une contrainte nommée (« plus beaucoup de temps ces 5 prochains jours »), ce qui ressemble au report borné avec critère que la fiche décrit. Ce qui reste faible : il s'agit surtout d'une estimation réaliste imposée par les circonstances, pas d'une résistance délibérée à une fausse urgence ; le « ce n'est pas grave » serein, marqueur oblique de la fiche, n'est qu'implicite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le report de l'achèvement est borné dans le temps et adossé à une contrainte nommée, ce qui ressemble au report argumenté que la fiche valorise." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 1. Je teste si j'ai pris une estimation de calendrier pour une patience stratégique. La fiche distingue le report *choisi* (avec résistance à la pression et critère de déclenchement) de la simple contrainte subie. Ici l'apprenant ne décide pas d'attendre : il constate qu'il manquera de temps et en déduit un délai. La dimension de non-action délibérée face à une pression d'agir est absente — c'est une lecture lucide de ses contraintes, pas un silence tactique. L'insuffisance probatoire affaiblit fortement, mais la borne temporelle et l'absence de dramatisation laissent subsister un mince indice.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le report est borné et serein, mais il découle d'une contrainte subie plutôt que d'une non-action délibérée face à une pression ; le raisonnement d'attente stratégique reste embryonnaire, la trace tient faiblement comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant une attente choisie, argumentée, avec un moment d'action identifié. La décision d'attaquer maintenant la thèse est tombée du côté de l'action, pas de la patience. Le report de l'achèvement à la semaine suivante m'a retenu, parce qu'il est borné dans le temps et énoncé sans dramatisation, ce qui ressemble à la sérénité que la fiche associe à la patience stratégique. Mais sous la seconde lecture, ce report découle d'une contrainte de temps subie plus que d'une résistance délibérée à une urgence : c'est une estimation lucide de ses moyens. Pour cette journée, on tient au mieux une trace ténue, où la sérénité face au délai affleure sans que le raisonnement d'attente soit vraiment stratégique ; elle demande confirmation par un report assumé contre une pression d'agir.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante (report subi plutôt que délibéré) ; le temps 3 conclut à une trace ténue sous le seuil de présence établie.",
+        "prescription": "La sérénité face à un délai borné affleure dans cette feuille. Pour la rendre plus probante comme patience stratégique, un récit où l'apprenant choisit de ne pas agir malgré une pression, avec le critère qui déclenchera l'action le moment venu, donnerait la trace attendue."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 3,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du jour montre un travail qui décide avec aisance dans un cadre maîtrisé : régénérer un manuel, attaquer le cœur de la thèse, borner un délai. La voix dominante est résolue plus qu'hésitante — elle tranche vite, sans s'attarder sur l'inconfort d'un dilemme. Ce qui affleure de plus consistant relève du rapport à l'IA : une lucidité sur ce que la machine fait mieux et sur ce qui reste la valeur propre de l'humain, l'accompagnement cognitif. Les territoires de l'éthique traversée, du courage sous pression et de la conscience long-terme restent hors champ ce jour-là ; la feuille porte des convictions et des choix nets bien plus que des arbitrages dans l'incertitude.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés dans cette feuille, et cela ressemble à une limite du support : un journal d'avancement de travail ne met en scène ni dilemme moral traversé, ni courage sous pression, ni conscience écologique en arbitrage, ni valorisation d'un mode de pensée divergent. Le raisonnement éthique et l'alignement affleurent sous forme de convictions tranchées plutôt que de tensions tenues, ce qui les maintient au seuil du pôle. Deux territoires affleurent et mériteraient d'être explorés : l'identification de la valeur humaine non-automatisable face à l'IA, présente sous forme bidirectionnelle mais implicite, et la patience face au délai, sereine mais encore subie plutôt que choisie.",
+    "emergencesPole": "Un trait traverse les pièces de ce pôle : la décision s'y prend en terrain clair, avec une économie de doute. Là où la fiche cherche l'inconfort de l'arbitrage ou la résistance délibérée à l'urgence, la feuille donne à voir des choix posés avec netteté et une sérénité tranquille face au temps qui manque. On remarque aussi que le rapport à l'IA structure plusieurs réflexions : c'est en pensant ce que la machine fait et ne fait pas que la feuille s'approche le plus des thèmes décisionnels et éthiques, notamment autour de ce qui reste irréductiblement humain.",
+    "pistes": [
+      "Pour enrichir l'identification de la valeur humaine, un chemin possible serait de nommer ce qui restera structurellement hors de portée de l'IA et que l'on choisit de cultiver pour l'avenir.",
+      "Pour enrichir le raisonnement éthique, un chemin possible serait de raconter un moment où deux valeurs également défendables se sont opposées sans solution évidente, en tenant la tension plutôt qu'en la tranchant.",
+      "Pour enrichir la patience stratégique, un chemin possible serait de décrire un report choisi malgré une pression d'agir, avec le critère précis qui déclenchera l'action."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du jour montre un travail qui décide avec aisance dans un cadre maîtrisé : régénérer un manuel, attaquer le cœur de la thèse, borner un délai. La voix dominante est résolue plus qu'hésitante — elle tranche vite, sans s'attarder sur l'inconfort d'un dilemme. Ce qui affleure de plus consistant relève du rapport à l'IA : une lucidité sur ce que la machine fait mieux et sur ce qui reste la valeur propre de l'humain, l'accompagnement cognitif. Les territoires de l'éthique traversée, du courage sous pression et de la conscience long-terme restent hors champ ce jour-là ; la feuille porte des convictions et des choix nets bien plus que des arbitrages dans l'incertitude.\n\n## Territoires les plus denses\n\nPour cette seule journée, aucune compétence du pôle n'a atteint le seuil d'une présence établie. Deux territoires affleurent néanmoins de façon notable et demandent confirmation : l'identification de ce qui reste la valeur humaine face à l'IA, lisible dans la distinction entre des savoirs devenus accessibles partout et un accompagnement cognitif qui reste propre à l'humain ; et la sérénité face à un délai borné, qui touche à la patience sans encore en porter le caractère délibéré. Chacun s'est présenté sous une forme réelle mais implicite, ce qui en fait des dossiers ouverts plutôt que des acquis attestés.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires n'ont pas été visités dans cette feuille, et cela ressemble à une limite du support : un journal d'avancement de travail ne met en scène ni dilemme moral traversé, ni courage sous pression, ni conscience écologique en arbitrage, ni valorisation d'un mode de pensée divergent. Le raisonnement éthique et l'alignement affleurent sous forme de convictions tranchées plutôt que de tensions tenues, ce qui les maintient au seuil du pôle plutôt que de les y faire entrer.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn trait traverse les pièces de ce pôle : la décision s'y prend en terrain clair, avec une économie de doute. Là où l'on chercherait l'inconfort de l'arbitrage ou la résistance délibérée à l'urgence, la feuille donne à voir des choix posés avec netteté et une sérénité tranquille face au temps qui manque. On remarque aussi que le rapport à l'IA structure plusieurs réflexions : c'est en pensant ce que la machine fait et ne fait pas que la feuille s'approche le plus des thèmes décisionnels et éthiques, notamment autour de ce qui reste irréductiblement humain.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir l'identification de la valeur humaine, un chemin possible serait de nommer ce qui restera structurellement hors de portée de l'IA et que l'on choisit de cultiver pour l'avenir. Pour enrichir le raisonnement éthique, un chemin possible serait de raconter un moment où deux valeurs également défendables se sont opposées sans solution évidente, en tenant la tension plutôt qu'en la tranchant. Pour enrichir la patience stratégique, un chemin possible serait de décrire un report choisi malgré une pression d'agir, avec le critère précis qui déclenchera l'action."
+  }
+}

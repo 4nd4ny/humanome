@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie de Compétences - Ère des Super IA</title>
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            /* Key change: Fix the viewport and prevent global scroll */
+            height: 100%;
+            overflow: hidden;
+            background: #eff6ff;
+        }
+
+        #app {
+            background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%);
+            display: flex;
+            flex-direction: column; /* Systematic vertical split */
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- ZONE HAUTE : Diagramme (Carré et Fixe) --- */
+        #diagram-zone {
+            width: 100%;
+            flex-shrink: 0; /* Must not shrink */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+        }
+
+        #diagram-container {
+            /* Goal: A square that uses space intelligently */
+
+            /* Default (Portrait): Width is the constraint */
+            width: 100%;
+            aspect-ratio: 1 / 1;
+
+            /* Safety: Ensure it doesn't take the whole screen height */
+            max-height: 60vh;
+
+            /* Keep diagram small on wide screens so info stays below */
+            max-width: 60vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Mobile Landscape Optimization */
+        @media (orientation: landscape) and (max-width: 1023px) {
+            #diagram-zone {
+                 /* In landscape, height is the main constraint */
+                 flex: 1;
+                 max-height: 100%;
+                 min-height: 50vh;
+            }
+            #diagram-container {
+                /* Height becomes the constraint for the square */
+                height: 100%;
+                width: auto;
+                max-height: none;
+            }
+        }
+
+        #diagram {
+            transition: all 0.3s ease;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* --- ZONE BASSE : Information (Scrollable) --- */
+        #info-zone {
+            flex: 1; /* Takes remaining space */
+            min-height: 40vh; /* Guaranteed minimum height */
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+
+            /* Key change: Enable scroll ONLY in this zone */
+            overflow-y: auto;
+            padding: 1.5rem;
+            z-index: 20;
+            -webkit-overflow-scrolling: touch; /* Fluid scroll iOS */
+        }
+
+        #info-container {
+            /* Contains dynamic content */
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- Styles du Contenu (Fusionné) --- */
+
+        /* 1. Stats au-dessus du diagramme */
+        .diagram-stats {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.25rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .diagram-stat {
+            font-size: 1.5rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .diagram-stat .stars {
+            letter-spacing: 1px;
+        }
+
+        .diagram-stat .star-on {
+            color: #facc15;
+        }
+
+        .diagram-stat .star-off {
+            color: #d1d5db;
+        }
+
+        .diagram-stat .hours {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* 2. Titre et Description */
+        #info-details {
+             margin-bottom: 1.5rem;
+        }
+
+        #info-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        #info-description {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* 3. Feedback (simple, sous le séparateur) */
+        #feedback-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #475569;
+            font-style: italic;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+
+        #empty-state { text-align: center; padding: 2rem; color: #9ca3af; font-style: italic; }
+
+
+        /* SVG STYLES */
+        .sector {
+            cursor: pointer;
+            transition: stroke-width 0.2s, stroke 0.2s, opacity 0.2s;
+            -webkit-tap-highlight-color: transparent; /* Enlève le flash bleu sur mobile */
+        }
+        .sector:hover { stroke: white; stroke-width: 2; opacity: 1 !important; }
+        .sector.dimmed { opacity: 0.8; filter: grayscale(0.5); }
+        .gray-sector { pointer-events: none; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+        #fullscreen-btn {
+            position: fixed;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            z-index: 1000;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: #4b5563;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button id="fullscreen-btn" title="Plein écran">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </button>
+
+        <div id="diagram-zone">
+            <div id="diagram-container">
+                <div class="diagram-stats">
+                    <div class="diagram-stat" id="stat-level"></div>
+                    <div class="diagram-stat" id="stat-time"></div>
+                </div>
+                <svg id="diagram"></svg>
+            </div>
+        </div>
+
+        <div id="info-zone">
+            <div id="info-container">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION & DONNÉES (Identique) ---
+        const niveaux = {
+            1: { nom: "Découverte", radiusFactor: 0.2 },
+            2: { nom: "Pratique", radiusFactor: 0.4 },
+            3: { nom: "Maîtrise", radiusFactor: 0.6 },
+            4: { nom: "Expertise", radiusFactor: 0.8 },
+            5: { nom: "Transcendance", radiusFactor: 1.0 }
+        };
+
+        const grayLevels = { 1: "#000000", 2: "#1f2937", 3: "#374151", 4: "#6b7280", 5: "#cbd5e1" };
+
+        const state = {
+            data: null,
+            hoveredSector: null,
+            svgSize: { width: 400, height: 400 }, // Default size
+            isMobile: false
+        };
+
+        // Générateur de données (Identique)
+        function generateData() {
+            const rootNode = {
+                id: "Compétences Humaines",
+                parent: null,
+                children: [],
+                isLeaf: false,
+                niveau: 0,
+                points: 0
+            };
+
+            const domains = [
+                {
+                    id: "Métacognition & Pensée",
+                    color: "#2563eb",
+                    competences: [
+                        {
+                            id: "Pensée critique", points: 95, niveau: 5,
+                            description: "Évaluer, analyser, déconstruire l'information avec discernement.",
+                            feedback: "L'étudiant a démontré une capacité exceptionnelle à déconstruire les biais algorithmiques dans son mémoire final. Le chapitre 3 du portfolio illustre parfaitement cette analyse pointue des sources contradictoires."
+                        },
+                        {
+                            id: "Pensée systémique", points: 88, niveau: 4,
+                            description: "Comprendre les interconnexions et dynamiques complexes.",
+                            feedback: "Validation acquise suite à la modélisation de l'écosystème énergétique proposée lors du projet de groupe. La cartographie des flux (Portfolio p.12) témoigne d'une excellente compréhension des boucles de rétroaction."
+                        },
+                        {
+                            id: "Résolution créative", points: 65, niveau: 3,
+                            description: "Aborder les défis avec originalité et pragmatisme.",
+                            feedback: "Bonne application des méthodes divergentes lors du hackathon. L'étudiant sait sortir des sentiers battus, bien que la faisabilité technique doive parfois être vérifiée plus tôt dans le processus."
+                        },
+                        {
+                            id: "Métacognition", points: 45, niveau: 2,
+                            description: "Conscience et gestion de ses propres processus cognitifs.",
+                            feedback: "L'étudiant commence à documenter ses stratégies d'apprentissage dans son journal de bord. Il identifie ses moments de distraction mais doit encore formaliser ses méthodes de reconcentration."
+                        },
+                        {
+                            id: "Curiosité intellectuelle", points: 75, niveau: 4,
+                            description: "Exploration autonome et questionnement permanent.",
+                            feedback: "Une soif d'apprendre évidente. La veille technologique présentée en semaine 4 (voir annexe B) allait bien au-delà des attentes du cours, explorant des papiers de recherche très récents."
+                        },
+                        {
+                            id: "Apprentissage adaptatif", points: 25, niveau: 1,
+                            description: "Capacité à apprendre de nouvelles compétences rapidement.",
+                            feedback: "Compétence en cours d'acquisition. L'étudiant a eu des difficultés à changer d'outil de prototypage à mi-semestre, mais a montré de la bonne volonté pour suivre les tutoriels de rattrapage."
+                        }
+                    ]
+                },
+                {
+                    id: "Relations & Collab.",
+                    color: "#10b981",
+                    competences: [
+                        {
+                            id: "Intelligence émotionnelle", points: 92, niveau: 5,
+                            description: "Conscience et gestion des émotions propres et d'autrui.",
+                            feedback: "Remarquable gestion des tensions lors de la phase critique du projet annuel. L'analyse réflexive (Portfolio p.24) montre une maturité rare dans la compréhension des dynamiques de groupe."
+                        },
+                        {
+                            id: "Empathie profonde", points: 78, niveau: 4,
+                            description: "Compréhension authentique du vécu d'autrui.",
+                            feedback: "L'étudiant a su se mettre à la place des utilisateurs finaux lors des interviews utilisateurs. Les verbatims recueillis ont été traduits avec une grande justesse en besoins fonctionnels."
+                        },
+                        {
+                            id: "Com. authentique", points: 55, niveau: 3,
+                            description: "Expression claire et connexion véritable.",
+                            feedback: "La communication est claire et directe. L'étudiant doit cependant veiller à adapter son niveau de langage technique face à des interlocuteurs non-experts, comme noté lors de la soutenance blanche."
+                        },
+                        {
+                            id: "Collaboration hybride", points: 40, niveau: 2,
+                            description: "Travailler efficacement avec humains et IA.",
+                            feedback: "Utilisation correcte des assistants IA pour la génération de code, mais l'intégration dans le flux de travail de l'équipe humaine manque encore de fluidité. À approfondir au prochain semestre."
+                        },
+                        {
+                            id: "Leadership adaptatif", points: 70, niveau: 3,
+                            description: "Guider et inspirer dans la complexité.",
+                            feedback: "A pris l'initiative de réorganiser le planning quand le projet a pris du retard. Une posture de leader serviteur appréciée par ses pairs, validée par l'évaluation 360°."
+                        },
+                        {
+                            id: "Médiation de conflits", points: 30, niveau: 1,
+                            description: "Transformer les tensions en opportunités.",
+                            feedback: "Face au désaccord sur le choix technologique en semaine 2, l'étudiant s'est mis en retrait. Doit apprendre à faciliter le dialogue plutôt que d'éviter la confrontation."
+                        },
+                        {
+                            id: "Intelligence collective", points: 72, niveau: 3,
+                            description: "Orchestrer la synergie de groupe.",
+                            feedback: "A su animer les ateliers d'idéation en utilisant des méthodes favorisant la participation de tous. Le résultat final dépasse la somme des individualités."
+                        }
+                    ]
+                },
+                {
+                    id: "Créativité & Innovation",
+                    color: "#ec4899",
+                    competences: [
+                        {
+                            id: "Créativité générative", points: 90, niveau: 5,
+                            description: "Générer du véritablement nouveau et original.",
+                            feedback: "Le concept de 'Jardin Numérique' proposé est une véritable innovation de rupture. L'alliance entre botanique et data-viz (Portfolio Section Art) est tout simplement brillante."
+                        },
+                        {
+                            id: "Pensée latérale", points: 62, niveau: 3,
+                            description: "Approches non conventionnelles.",
+                            feedback: "Bonne capacité à faire des liens entre des domaines éloignés. L'analogie entre l'architecture gothique et la structure de la base de données était audacieuse et pertinente."
+                        },
+                        {
+                            id: "Co-création avec IA", points: 85, niveau: 4,
+                            description: "Collaboration créative augmentée.",
+                            feedback: "Maîtrise excellente des outils génératifs d'images (Midjourney). L'étudiant ne subit pas l'outil mais le dirige avec précision pour obtenir l'esthétique exacte recherchée (voir Galerie p.8)."
+                        },
+                        {
+                            id: "Design thinking", points: 48, niveau: 2,
+                            description: "Approche centrée humain et itérative.",
+                            feedback: "Le processus de double diamant est compris théoriquement, mais la phase de convergence a été bâclée par manque de temps. Il faut mieux respecter les temps de définition."
+                        },
+                        {
+                            id: "Innovation de rupture", points: 68, niveau: 3,
+                            description: "Créer de nouveaux paradigmes.",
+                            feedback: "L'étudiant remet en question le statu quo de manière constructive. Son essai sur 'La fin des apps' propose des pistes intéressantes bien que techniquement risquées."
+                        },
+                        {
+                            id: "Storytelling", points: 22, niveau: 1,
+                            description: "Tisser des récits qui donnent sens.",
+                            feedback: "La présentation finale manquait de narratif. Les faits sont là, mais l'histoire qui lie le tout pour convaincre l'auditoire reste à construire."
+                        }
+                    ]
+                },
+                {
+                    id: "Littératie Techno.",
+                    color: "#06b6d4",
+                    competences: [
+                        {
+                            id: "Littératie IA avancée", points: 88, niveau: 4,
+                            description: "Comprendre et utiliser l'IA de manière critique.",
+                            feedback: "Excellente compréhension des limites des LLM. L'étudiant a su identifier les hallucinations dans les résultats de recherche et a mis en place un protocole de vérification rigoureux."
+                        },
+                        {
+                            id: "Prompt engineering", points: 80, niveau: 4,
+                            description: "Art de communiquer efficacement avec l'IA.",
+                            feedback: "Les prompts documentés dans le portfolio montrent une grande sophistication (Chain-of-Thought, Few-shot). Une compétence solidement acquise et appliquée."
+                        },
+                        {
+                            id: "Pensée computationnelle", points: 58, niveau: 3,
+                            description: "Raisonnement algorithmique et systématique.",
+                            feedback: "L'algorithme de tri proposé est efficace. La décomposition du problème complexe en sous-tâches gérables a été correctement réalisée lors de l'examen pratique."
+                        },
+                        {
+                            id: "Data literacy", points: 42, niveau: 2,
+                            description: "Interpréter et utiliser les données.",
+                            feedback: "Sait lire un graphique mais a fait une erreur d'interprétation sur la corrélation vs causalité dans le rapport d'analyse de données du module 4."
+                        },
+                        {
+                            id: "Cybersécurité perso", points: 35, niveau: 2,
+                            description: "Protéger sa vie numérique.",
+                            feedback: "A appliqué les bases (2FA, gestionnaire de mots de passe) mais a laissé une clé API exposée dans un dépôt public Git pendant 24h. Vigilance à renforcer."
+                        },
+                        {
+                            id: "Veille technologique", points: 18, niveau: 1,
+                            description: "Se tenir informé des évolutions tech.",
+                            feedback: "L'étudiant semble subir l'actualité plutôt que de la structurer. Il est recommandé de mettre en place un agrégateur de flux RSS pour filtrer le bruit."
+                        }
+                    ]
+                },
+                {
+                    id: "Éthique & Sens",
+                    color: "#8b5cf6",
+                    competences: [
+                        {
+                            id: "Raisonnement éthique", points: 90, niveau: 5,
+                            description: "Naviguer les dilemmes moraux complexes.",
+                            feedback: "L'analyse du dilemme de la voiture autonome rendue en fin de semestre est d'une profondeur philosophique remarquable, citant à bon escient l'utilitarisme et l'éthique de la vertu."
+                        },
+                        {
+                            id: "Conscience existentielle", points: 75, niveau: 4,
+                            description: "Questionner le sens et la finalité.",
+                            feedback: "L'étudiant a pivoté son projet final pour qu'il serve une cause sociale plutôt que le simple profit, démontrant un alignement fort avec ses valeurs personnelles."
+                        },
+                        {
+                            id: "Resp. technologique", points: 60, niveau: 3,
+                            description: "Usage conscient et responsable des outils.",
+                            feedback: "Bonne prise en compte de l'empreinte carbone numérique dans les choix d'hébergement du projet web. Une démarche responsable validée."
+                        },
+                        {
+                            id: "Critique des biais", points: 52, niveau: 3,
+                            description: "Identifier les biais systémiques.",
+                            feedback: "A su repérer le biais de genre dans le dataset d'entraînement fourni en cours. L'analyse corrective proposée était pertinente et nécessaire."
+                        },
+                        {
+                            id: "Sagesse pratique", points: 38, niveau: 2,
+                            description: "Discernement dans l'action.",
+                            feedback: "L'étudiant sait ce qui est juste en théorie, mais a parfois du mal à l'appliquer sous la pression des deadlines. Le pragmatisme éthique demande de l'entraînement."
+                        },
+                        {
+                            id: "Citoyenneté num.", points: 28, niveau: 1,
+                            description: "Participer de manière constructive.",
+                            feedback: "Participation timide aux forums communautaires open-source. L'étudiant consomme des ressources mais ne contribue pas encore en retour."
+                        }
+                    ]
+                },
+                {
+                    id: "Résilience & Adapt.",
+                    color: "#f59e0b",
+                    competences: [
+                        {
+                            id: "Résilience transfo.", points: 88, niveau: 4,
+                            description: "Croître à travers l'adversité.",
+                            feedback: "Après l'échec du premier prototype (crash complet), l'étudiant ne s'est pas découragé et a reconstruit une version 2.0 bien plus robuste en un temps record. Bravo."
+                        },
+                        {
+                            id: "Adaptabilité radicale", points: 92, niveau: 5,
+                            description: "Flexibilité profonde face au changement.",
+                            feedback: "A changé de rôle (de dev à designer) en plein milieu du semestre pour combler un départ dans l'équipe, et a excellé dans les deux postes. Une flexibilité exemplaire."
+                        },
+                        {
+                            id: "Tolérance ambiguïté", points: 66, niveau: 3,
+                            description: "Confort dans l'incertain.",
+                            feedback: "Gère bien le flou artistique en début de projet, mais demande parfois trop de réassurance quand les consignes sont volontairement ouvertes."
+                        },
+                        {
+                            id: "Agilité mentale", points: 75, niveau: 4,
+                            description: "Pivots cognitifs rapides.",
+                            feedback: "Capacité impressionnante à passer d'une tâche créative à une tâche logique sans perte de productivité. Le 'context switching' est maîtrisé."
+                        },
+                        {
+                            id: "Gestion du stress", points: 44, niveau: 2,
+                            description: "Maintenir l'équilibre sous pression.",
+                            feedback: "Des signes de fatigue visibles avant le rendu final. L'étudiant doit apprendre à mieux ménager sa monture pour durer, la gestion du temps est à revoir."
+                        },
+                        {
+                            id: "Pleine conscience", points: 58, niveau: 3,
+                            description: "Présence et attention au moment.",
+                            feedback: "Pratique régulière de pauses attentionnelles documentée dans le journal de bord. Cela semble aider à la qualité du code produit."
+                        },
+                        {
+                            id: "Antifragilité", points: 32, niveau: 1,
+                            description: "Devenir plus fort par le chaos.",
+                            feedback: "L'étudiant craint encore l'imprévu. Il cherche à tout blinder à l'avance au lieu de concevoir des systèmes capables de bénéficier des perturbations."
+                        }
+                    ]
+                }
+            ];
+
+            domains.forEach(domain => {
+                const dNode = { id: domain.id, parent: rootNode, color: domain.color, children: [], isLeaf: false, points: 0, niveau: 0 };
+                domain.competences.forEach(comp => {
+                    const cNode = {
+                        id: comp.id, parent: dNode, points: comp.points, niveau: comp.niveau,
+                        description: comp.description, feedback: comp.feedback, color: domain.color, children: [], isLeaf: true
+                    };
+                    dNode.children.push(cNode);
+                    dNode.points += cNode.points;
+                    dNode.niveau = Math.max(dNode.niveau, cNode.niveau);
+                });
+                rootNode.children.push(dNode);
+                rootNode.points += dNode.points;
+            });
+            return { root: rootNode };
+        }
+
+        function getMaxDepth(node, currentDepth = 0) {
+            if (!node.children || node.children.length === 0) return currentDepth;
+            return Math.max(...node.children.map(child => getMaxDepth(child, currentDepth + 1)));
+        }
+
+        // --- RENDU DU DIAGRAMME ---
+        function renderCircularDiagram() {
+            const svg = document.getElementById('diagram');
+            const size = state.svgSize;
+
+            if (!svg || size.width <= 0 || size.height <= 0) return;
+
+            const centerX = size.width / 2;
+            const centerY = size.height / 2;
+            const maxRadius = Math.min(size.width, size.height) * 0.48;
+            const innerRadius = Math.min(size.width, size.height) * 0.08;
+
+            svg.innerHTML = '';
+            svg.setAttribute('width', size.width);
+            svg.setAttribute('height', size.height);
+
+            // Gestionnaire pour "cliquer dans le vide" pour désélectionner
+            svg.addEventListener('click', (e) => {
+                if(e.target === svg) handleInteraction(null);
+            });
+
+            // Dégradé central
+            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+            const centerGradient = document.createElementNS('http://www.w3.org/2000/svg', 'radialGradient');
+            centerGradient.setAttribute('id', 'centerGradient');
+            centerGradient.innerHTML = `<stop offset="70%" stop-color="#fdf2f8" /><stop offset="100%" stop-color="#fdf2f8" />`;
+            defs.appendChild(centerGradient);
+            svg.appendChild(defs);
+
+            if (!state.data) return;
+
+            const rootView = state.data.root;
+            const maxDepth = getMaxDepth(rootView);
+            const ringWidth = (maxRadius - innerRadius) / Math.max(maxDepth, 1);
+
+            // Cercles concentriques
+            for (let i = 0; i <= maxDepth; i++) {
+                const radius = innerRadius + (i * ringWidth);
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', centerX);
+                circle.setAttribute('cy', centerY);
+                circle.setAttribute('r', radius);
+                circle.setAttribute('fill', 'none');
+                circle.setAttribute('stroke', '#000');
+                circle.setAttribute('stroke-width', '0.5');
+                circle.setAttribute('stroke-opacity', '0.1');
+                circle.setAttribute('stroke-dasharray', '2,2');
+                circle.style.pointerEvents = 'none';
+                svg.appendChild(circle);
+            }
+
+            function renderSectors(nodes, startA, endA, depth, pColor) {
+                const curInR = innerRadius + (depth * ringWidth);
+                const curOutR = innerRadius + ((depth + 1) * ringWidth);
+                let curA = startA;
+                const total = nodes.reduce((s, n) => s + n.points, 0);
+
+                nodes.forEach((node) => {
+                    const ang = total > 0 ? ((node.points / total) * (endA - startA)) : 0;
+                    const end = curA + ang;
+                    const nodeColor = node.color || pColor;
+
+                    if (node.isLeaf && node.niveau) {
+                        const rDiff = curOutR - curInR;
+                        // Fonds grisés
+                        for (let l = 1; l <= 5; l++) {
+                            const lIn = curInR + (rDiff * (l===1?0:niveaux[l-1].radiusFactor));
+                            const lOut = curInR + (rDiff * niveaux[l].radiusFactor);
+                            const pD = createSectorPath(centerX, centerY, lIn, lOut, curA, end);
+                            const gp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                            gp.setAttribute('d', pD);
+                            gp.setAttribute('fill', grayLevels[l]);
+                            gp.setAttribute('fill-opacity', '0.4');
+                            gp.classList.add('gray-sector');
+                            svg.appendChild(gp);
+                        }
+
+                        // Secteur actif
+                        const effOutR = curInR + (rDiff * niveaux[node.niveau].radiusFactor);
+                        const pD = createSectorPath(centerX, centerY, curInR, effOutR, curA, end);
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('d', pD);
+                        path.setAttribute('fill', nodeColor);
+                        path.setAttribute('fill-opacity', '1');
+                        path.setAttribute('stroke', '#fff');
+                        path.setAttribute('stroke-width', '0.5');
+                        path.classList.add('sector');
+
+                        if (state.hoveredSector && state.hoveredSector.id !== node.id) {
+                            path.classList.add('dimmed');
+                        }
+
+                        // INTERACTION HYBRIDE (Mouse + Touch)
+                        path.addEventListener('mouseenter', () => {
+                            if (!state.isMobile) handleInteraction(node);
+                        });
+                        path.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            handleInteraction(node); // Force la sélection (utile sur mobile)
+                        });
+
+                        svg.appendChild(path);
+                    } else {
+                        // Domaines
+                        const pD = createSectorPath(centerX, centerY, curInR, curOutR, curA, end);
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('d', pD);
+                        path.setAttribute('fill', nodeColor);
+                        path.setAttribute('fill-opacity', '0.8');
+                        path.setAttribute('stroke', '#fff');
+                        path.classList.add('sector');
+
+                        if (state.hoveredSector && state.hoveredSector.id !== node.id) path.classList.add('dimmed');
+
+                        path.addEventListener('mouseenter', () => { if(!state.isMobile) handleInteraction(node); });
+                        path.addEventListener('click', (e) => { e.stopPropagation(); handleInteraction(node); });
+                        svg.appendChild(path);
+                    }
+
+                    if (node.children && node.children.length > 0) renderSectors(node.children, curA, end, depth + 1, nodeColor);
+                    curA = end;
+                });
+            }
+
+            renderSectors(rootView.children, -90, 270, 0, null);
+
+            // Centre
+            const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            centerCircle.setAttribute('cx', centerX);
+            centerCircle.setAttribute('cy', centerY);
+            centerCircle.setAttribute('r', innerRadius);
+            centerCircle.setAttribute('fill', 'url(#centerGradient)');
+            centerCircle.setAttribute('stroke', '#ddd');
+            centerCircle.style.cursor = 'pointer';
+            centerCircle.addEventListener('click', (e) => { e.stopPropagation(); handleInteraction(null); });
+            svg.appendChild(centerCircle);
+        }
+
+        function createSectorPath(cx, cy, rIn, rOut, startAngle, endAngle) {
+            const rad = Math.PI / 180;
+            const x1 = cx + rIn * Math.cos(startAngle * rad);
+            const y1 = cy + rIn * Math.sin(startAngle * rad);
+            const x2 = cx + rOut * Math.cos(startAngle * rad);
+            const y2 = cy + rOut * Math.sin(startAngle * rad);
+            const x3 = cx + rOut * Math.cos(endAngle * rad);
+            const y3 = cy + rOut * Math.sin(endAngle * rad);
+            const x4 = cx + rIn * Math.cos(endAngle * rad);
+            const y4 = cy + rIn * Math.sin(endAngle * rad);
+            const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+            return `M ${x1} ${y1} L ${x2} ${y2} A ${rOut} ${rOut} 0 ${largeArc} 1 ${x3} ${y3} L ${x4} ${y4} A ${rIn} ${rIn} 0 ${largeArc} 0 ${x1} ${y1} Z`;
+        }
+
+        // --- INTERFACE UTILISATEUR ---
+
+        // renderTreeView() has been removed.
+
+        // New unified rendering function for the info zone (Stats + Info + Feedback)
+        function renderDetailsPanel() {
+            const container = document.getElementById('info-container');
+            const node = state.hoveredSector;
+
+            // Update stats above diagram
+            updateDiagramStats(node);
+
+            // 0. Empty State
+            if (!node) {
+                container.innerHTML = `
+                    <div id="empty-state">
+                        <p>Touchez une compétence sur le diagramme pour voir les détails et l'évaluation.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+
+            // 1. Title and Description
+            html += `<div id="info-details">`;
+            const titleColor = (node.color) ? node.color : '#1e293b';
+            html += `<div id="info-title" style="color:${titleColor}">${node.id}</div>`;
+
+            if (node.description) {
+                html += `<div id="info-description">${node.description}</div>`;
+            } else if (!node.isLeaf) {
+                // Fallback description for domains
+                html += `<div id="info-description">Domaine regroupant plusieurs compétences clés. Sélectionnez une compétence spécifique pour plus de détails.</div>`;
+            }
+            html += `</div>`;
+
+
+            // 2. Feedback (just the content with CSS separator)
+            if (node.feedback) {
+                html += `<div id="feedback-content">${node.feedback}</div>`;
+            }
+
+            container.innerHTML = html;
+
+            // Scroll the info zone to the top when content changes
+            document.getElementById('info-zone').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Update stats displayed above the diagram
+        function updateDiagramStats(node) {
+            const levelEl = document.getElementById('stat-level');
+            const timeEl = document.getElementById('stat-time');
+
+            if (!node || !node.isLeaf || (node.niveau === 0 && node.points === 0)) {
+                levelEl.innerHTML = '';
+                timeEl.innerHTML = '';
+                return;
+            }
+
+            // Level as 5 stars
+            if (node.niveau > 0) {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= node.niveau) {
+                        stars += '<span class="star-on">★</span>';
+                    } else {
+                        stars += '<span class="star-off">★</span>';
+                    }
+                }
+                levelEl.innerHTML = `<span class="stars">${stars}</span>`;
+            } else {
+                levelEl.innerHTML = '';
+            }
+
+            // Time in hours (days * 8)
+            if (node.points > 0) {
+                const hours = Math.round(node.points * 8);
+                timeEl.innerHTML = `<span class="hours">${hours} h</span>`;
+            } else {
+                timeEl.innerHTML = '';
+            }
+        }
+
+
+        function handleInteraction(sector) {
+            if (state.hoveredSector === sector) return;
+            state.hoveredSector = sector;
+            render();
+        }
+
+        function render() {
+            renderCircularDiagram();
+            // renderTreeView(); // Removed
+            renderDetailsPanel();
+        }
+
+        // --- INITIALISATION & RESIZE ---
+        function init() {
+            state.data = generateData();
+            checkMobile();
+            updateSVGSize(); // Initial call
+            render();
+        }
+
+        function checkMobile() {
+            // Use robust detection (pointer: coarse) or screen width
+            state.isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 768;
+        }
+
+        function updateSVGSize() {
+            const container = document.getElementById('diagram-container');
+            if (!container) return;
+
+            // Base the size on the dimensions calculated by CSS for the container (the square)
+            const rect = container.getBoundingClientRect();
+
+            // The SVG should fill this container, minus a small margin
+            const size = Math.min(rect.width, rect.height) - 5;
+
+            if (size > 0) {
+                 // Update size only if it changed significantly
+                if (Math.abs(state.svgSize.width - size) > 5) {
+                    state.svgSize = { width: size, height: size };
+                    // Redraw the diagram
+                    renderCircularDiagram();
+                }
+            }
+        }
+
+        // Plein écran
+        const fsBtn = document.getElementById('fullscreen-btn');
+        fsBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(e=>{});
+            else document.exitFullscreen();
+        });
+
+        // Écouteurs globaux
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                checkMobile();
+                updateSVGSize();
+            }, 150); // Debounce
+        });
+
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

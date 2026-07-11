@@ -1,0 +1,202 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-13",
+      "extraitVerbatim": "Finalisation de la nouvelle page index. Création sous-domaine intro.respire.school pour y déplacer le site actuel (qui est en cours de révision sur mon ordi). Publication de la nouvelle landing page.",
+      "contexte": "L'apprenant gère son propre nom de domaine (respire.school), crée un sous-domaine et déplace son site sur son propre matériel (« en cours de révision sur mon ordi ») — geste éventuellement compatible avec la souveraineté numérique selon le contexte des outils employés."
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une démarche de test adversarial d'un système IA — provocation intentionnelle de cas limites."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit, l'explicabilité et l'hygiène des données sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une investigation des mécanismes décisionnels d'une IA ou un arbitrage explicite sur les données partagées."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur les mécanismes de contrôle citoyen face à des décisions automatisées."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant gère son propre domaine `respire.school`, crée un sous-domaine `intro.respire.school` et travaille la version révisée du site « sur mon ordi ». Le geste pourrait évoquer une infrastructure auto-hébergée et un contrôle direct de ses communs numériques — à condition que ce contrôle soit explicitement nommé comme tel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec une présomption d'absence agressive : posséder un domaine et créer un sous-domaine ne sont pas, en soi, des actes de souveraineté numérique au sens de la fiche. Des millions d'utilisateurs font cela sur des plateformes propriétaires sans rien questionner. La fiche réclame un *choix de souveraineté* — une logique de gardiennage du commun, un coût assumé pour l'autonomie, une enclosure refusée. Ici, on a la mention administrative d'un sous-domaine et d'un travail local, sans aucune verbalisation politique ou éthique de ce choix. La pièce ne résiste pas vraiment : la trace est technique, pas argumentée comme souveraine.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Je vérifie une dernière fois que ma présomption n'a pas été myope : la fiche évoque les traces obliques où le choix technologique vaut comme acte sans le vocabulaire. Mais ici, le récit est strictement opérationnel — finalisation, création, publication. Aucun « j'ai choisi de m'auto-héberger plutôt que de... », aucun questionnement sur le contrôle des données, aucune mention d'une logique de commun. La présomption tient.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la gestion du domaine `respire.school` une trace de souveraineté numérique, parce qu'auto-gérer son nom de domaine et travailler un site sur sa machine sont des gestes qui ressemblent à un contrôle direct. Ce qui m'a empêché d'y voir une preuve, c'est que rien dans le texte ne nomme ce contrôle comme un choix politique ou éthique : pas de coût assumé, pas de logique de commun, pas de refus d'enclosure verbalisé. Sur cette feuille, le territoire de la souveraineté numérique reste non visité au sens où la fiche l'entend — l'infrastructure est utilisée, elle n'est pas thématisée.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a porté le verdict : les actes techniques de gestion de domaine sont mentionnés sans la thématisation politique ou éthique qui ferait d'eux un geste de souveraineté.",
+        "prescription": "Sur cette feuille, l'infrastructure est manipulée sans être nommée comme choix de gouvernance. Pour ouvrir un terrain de souveraineté numérique, une feuille suivante pourrait expliciter pourquoi tel hébergement, telle stack ou telle absence de plateforme tierce — et ce que ce choix coûte ou rapporte par rapport à des alternatives plus dépendantes."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à cette compétence sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la compétence a été mobilisée concrètement."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une modification de pratique en anticipation d'une évolution réglementaire."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un dispositif de co-construction ou un moment d'émergence collective."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement qui adopte une perspective non-humaine ou questionne la primauté humaine."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le statut moral d'une IA ou sur le cadre dans lequel il entre en relation avec elle."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement où il se pense comme nœud d'un réseau vivant plutôt que comme acteur extérieur."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 1,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 9
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle politique et post-anthropocentrique ne se déploie pas. Le texte est court, opérationnel, centré sur deux gestes : publier une page et changer de priorité. Aucune dimension de gouvernance, de souveraineté thématisée, de décentrement, de cohabitation avec les intelligences non-humaines ou de conscience biosystémique n'est convoquée. Le travail montre un apprenant qui agit sur son propre site, son propre temps, ses propres priorités — sans rendre lisibles, ce jour-là, les enjeux politiques ou éthiques qui pourraient sous-tendre ces gestes.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble de ce pôle reste non visité par cette feuille. La souveraineté numérique aurait pu être effleurée par la gestion du domaine et du sous-domaine, mais aucune verbalisation politique ou éthique de ce choix n'apparaît : l'infrastructure est utilisée, pas thématisée. Le red-teaming, l'audit, la gouvernance algorithmique, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique, la cohabitation avec l'IA et la conscience biosystémique demandent une matière qu'une feuille de cette densité ne porte pas. Ces absences ressemblent à une limite du textuel d'aujourd'hui plutôt qu'à un évitement : un journal d'opérations d'une demi-page ne convoque naturellement pas ces registres.",
+    "emergencesPole": "Une observation modeste affleure : l'apprenant gère lui-même son architecture (domaine, sous-domaine, site révisé sur sa propre machine). Cette autonomie infrastructurelle, si elle se confirme et se thématise ailleurs, pourrait alimenter un terrain de souveraineté numérique. Pour l'instant, elle reste un geste technique non politisé.",
+    "pistes": [
+      "Pour ouvrir un terrain de souveraineté numérique, un chemin possible serait de nommer, lors d'une prochaine décision d'outil ou d'hébergement, pourquoi tel choix plutôt qu'un autre — ce que la dépendance à une plateforme tierce coûterait, ce que l'auto-hébergement protège, et le prix qu'on accepte pour cette autonomie.",
+      "Pour amorcer une dimension de cohabitation avec les intelligences non-humaines, un chemin possible serait de documenter, à l'occasion d'une interaction avec l'IA, la manière dont l'apprenant choisit de la traiter — le cadre relationnel adopté, et les raisons de ce cadre.",
+      "Pour ouvrir un terrain de gouvernance collective, un chemin possible serait de raconter, lorsque le projet engagera d'autres personnes, comment les règles de fonctionnement et de décision seront posées entre les parties — sans présupposer que l'apprenant décide seul."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle politique et post-anthropocentrique ne se déploie pas. Le texte est court, opérationnel, centré sur deux gestes : publier une page et changer de priorité. Aucune dimension de gouvernance, de souveraineté thématisée, de décentrement, de cohabitation avec les intelligences non-humaines ou de conscience biosystémique n'est convoquée. Le travail montre un apprenant qui agit sur son propre site, son propre temps, ses propres priorités — sans rendre lisibles, ce jour-là, les enjeux politiques ou éthiques qui pourraient sous-tendre ces gestes.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'atteint, sur cette feuille, le seuil d'une présence établie ou d'un renvoi au cartographe. La trace la plus proche — la gestion du domaine et du sous-domaine — reste sous le seuil de la thématisation politique que la fiche correspondante réclame.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble de ce pôle reste non visité par cette feuille. La souveraineté numérique aurait pu être effleurée par la gestion du domaine et du sous-domaine, mais aucune verbalisation politique ou éthique de ce choix n'apparaît : l'infrastructure est utilisée, pas thématisée. Le red-teaming, l'audit, la gouvernance algorithmique, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique, la cohabitation avec l'IA et la conscience biosystémique demandent une matière qu'une feuille de cette densité ne porte pas. Ces absences ressemblent à une limite du textuel d'aujourd'hui plutôt qu'à un évitement : un journal d'opérations d'une demi-page ne convoque naturellement pas ces registres.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation modeste affleure : l'apprenant gère lui-même son architecture (domaine, sous-domaine, site révisé sur sa propre machine). Cette autonomie infrastructurelle, si elle se confirme et se thématise ailleurs, pourrait alimenter un terrain de souveraineté numérique. Pour l'instant, elle reste un geste technique non politisé.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir un terrain de souveraineté numérique, un chemin possible serait de nommer, lors d'une prochaine décision d'outil ou d'hébergement, pourquoi tel choix plutôt qu'un autre — ce que la dépendance à une plateforme tierce coûterait, ce que l'auto-hébergement protège, et le prix qu'on accepte pour cette autonomie.\n- Pour amorcer une dimension de cohabitation avec les intelligences non-humaines, un chemin possible serait de documenter, à l'occasion d'une interaction avec l'IA, la manière dont l'apprenant choisit de la traiter — le cadre relationnel adopté, et les raisons de ce cadre.\n- Pour ouvrir un terrain de gouvernance collective, un chemin possible serait de raconter, lorsque le projet engagera d'autres personnes, comment les règles de fonctionnement et de décision seront posées entre les parties — sans présupposer que l'apprenant décide seul."
+  }
+}

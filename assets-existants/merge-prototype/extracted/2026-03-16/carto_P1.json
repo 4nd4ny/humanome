@@ -1,0 +1,353 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Journée difficile. Trop d'accumulations de choses sur une base déjà sensibilisée par les souvenirs de l'an passé qui continuent de hanter mes nuits ou me faire pleurer.",
+      "contexte": "Ouverture du journal : nomination d'un état de saturation cognitivo-émotionnelle ; possible trace métacognitive de surcharge.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Le coup de grâce, ça a été l'appel de l'EPFL pour un entretien pour le poste d'évaluation avec les IA.",
+      "contexte": "Événement déclencheur situé dans une chaîne causale ; mention d'un poste lié à l'évaluation des IA, sans contenu technique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "J'ai donc maintenant 4 choses à faire cumulées pour 17h, en plus de l'admin en retard, des postulations chômage en retard et des autres sous-projets interrompus.",
+      "contexte": "Inventaire chiffré des charges en cours ; trace de cartographie du système de tâches.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Je dois renoncer à Leila et Alicia, le Liban et le GREN, la révision en cours du chapitre 19, pour me concentrer sur le coup de fil de l'EPFL pour le rendez-vous.",
+      "contexte": "Décision de tri sous contrainte : nommer ce qui est lâché et ce qui est gardé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "J'ai besoin de me ressourcer mais je n'arrive plus à trouver le moyen de le faire. J'ai l'impression d'avoir toujours les batteries à plat depuis le 15 mai 2025.",
+      "contexte": "Métaphore énergétique datée précisément ; observation d'un état durable.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Pause RESPIRE jusqu'à ce week-end : maximum d'heure de sommeil, plus d'écran après 22h30 et manettes à fond formation LangChain + bases de données vectorielles pour me sentir prêt pour l'entretien de jeudi.",
+      "contexte": "Décision opérationnelle assortie de règles concrètes ; mention explicite de technologies IA (LangChain, vector DB) liées à un objectif d'évaluation IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée critique et l'anti-hallucination dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une information (issue de l'IA, d'une source, ou de sa propre intuition) a été vérifiée, croisée ou écartée avec un motif explicite."
+      }
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Le passage décrit un tri explicite entre objectifs en cours et un objectif priorisé. Recadrage opérationnel : l'apprenant redéfinit ce qu'il a à faire maintenant, pas seulement comment le faire."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "La décision de basculer en pause RESPIRE et de cibler LangChain + bases vectorielles redéfinit l'objet de l'effort court terme — moins « avancer sur tout » que « préparer l'entretien de jeudi »."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'hypothèse que rien de ce qui ressemble à un cadrage d'intention n'a vraiment lieu ici : ce qui se passe, c'est une réaction d'urgence sous saturation, pas un questionnement sur le bon problème à résoudre. La pièce 1 nomme ce qui est lâché et ce qui est gardé, mais c'est une priorisation sous contrainte temporelle, pas une interrogation de l'objectif. La pièce 2 prescrit des règles d'exécution (sommeil, écrans, focus sur deux technologies), ce qui ressemble plus à de la planification qu'à du cadrage. Ce qui résiste malgré tout : le geste de re-définir ce que veut dire « avancer » en ce moment, en transformant un objectif diffus (« faire avancer tout ») en un objectif resserré (« être prêt jeudi »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'acte de renoncer nommément à Leila et Alicia, Liban, GREN, chapitre 19 pour se concentrer sur l'EPFL est une redéfinition du périmètre du problème à résoudre maintenant, pas un simple agenda." },
+            { "pieceId": 2, "motifResistance": "Le basculement en « Pause RESPIRE » transforme la nature de la semaine — d'une marche-de-front à un objectif unique préparatoire — et porte une bascule de cadre, pas seulement d'horaire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces, je dois maintenant me demander si je n'ai pas chargé du cadrage là où il n'y a que de la priorisation. La fiche distingue très clairement le cadrage (interrogation de l'objectif lui-même) de la planification (organisation de l'exécution). La pièce 1 reste à la frontière : on peut lire un nouveau cadre (« la semaine ne sert plus à tout, elle sert à un seul rendez-vous »), ou simplement une coupe de tâches sous pression. La pièce 2 ressemble davantage à une planification opérationnelle qu'à un cadrage : les règles concrètes (sommeil, écrans, technologies à apprendre) supposent que le bon problème est déjà identifié.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active à la fois 1.02 et 7.07 ; on peut lire une priorisation pure, mais le passage de « avancer sur tout » à « préparer l'entretien » porte une redéfinition du périmètre, pas seulement un ordre des tâches."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Les règles concrètes (sommeil, plus d'écran après 22h30, focus LangChain + vector DB) sont de l'ordre de l'exécution une fois l'objectif posé : c'est de la planification (7.07), pas une interrogation du bon problème à résoudre."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille, j'ai cherché à nier qu'il s'y joue un cadrage d'intention : le contexte est celui d'une urgence, et l'urgence pousse à exécuter, pas à interroger. Ce qui m'a forcé à reconnaître quelque chose, c'est la pièce sur le renoncement nommé — l'acte d'écrire « je dois renoncer à Leila et Alicia, le Liban et le GREN » redéfinit ce que la semaine sert à produire, pas seulement comment elle l'organisera. La pièce sur la « Pause RESPIRE » et les règles concrètes n'a pas tenu sous la seconde lecture : elle organise l'exécution une fois la cible identifiée. Il en résulte une trace discrète : un acte de re-cadrage sous contrainte, plus proche du geste de tri que du protocole, mais qui se distingue d'une simple priorisation par la mention explicite de ce qui sort du champ. La réserve à assumer : on ne voit pas, dans cette feuille, la question « est-ce le bon problème ? » formulée pour elle-même.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le second temps (présomption de sycophantie) a fait tomber la pièce de planification et a affaibli la pièce de tri, qui survit seule comme indice corroboratif sans dispositif de cadrage explicite.",
+        "prescription": "Pour creuser cette zone, un chemin possible serait de revenir, à froid, sur la décision de pivoter la semaine vers l'entretien EPFL et de noter ce que cette bascule a changé non seulement dans l'agenda, mais dans la définition de ce qu'« avancer » voulait dire. Une trace écrite de la question « est-ce vraiment le bon problème à résoudre cette semaine ? » consoliderait le dossier."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synthèse intégrative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où deux sources de nature différente (un retour d'IA et une lecture humaine, par exemple) ont produit ensemble une compréhension qu'aucune ne portait isolément."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Nomination précise d'un état cognitif (accumulation sur base sensibilisée) ; observation de soi-même en train de fonctionner sous charge."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Métaphore énergétique datée du 15 mai 2025 : tentative de qualifier un état durable, signal possible d'observation de ses propres ressources de travail."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars de l'hypothèse que ces pièces sont du récit introspectif, pas de la métacognition au sens strict — c'est-à-dire qu'elles décrivent un état émotionnel sans se retourner sur le processus cognitif lui-même. La pièce 1 nomme une saturation mais s'arrête là : le rapport à la pensée ou aux stratégies de travail n'est pas explicité. La pièce 5 est une auto-observation, mais elle porte sur l'énergie disponible plutôt que sur la manière de réfléchir. Ce qui résiste, c'est tout de même un effort de qualification précise — l'apprenant ne dit pas « ça va mal », il dit « accumulations sur base déjà sensibilisée » et il date la bascule. Ce qui reste faible : aucune des deux pièces n'observe l'apprenant en train de penser, elles observent l'apprenant en train de tenir.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La formulation « accumulations sur une base déjà sensibilisée » montre un effort d'analyse de son propre état, pas une plainte brute." },
+            { "pieceId": 2, "motifResistance": "Dater l'épuisement au 15 mai 2025 est une opération d'observation de soi dans la durée, qui suppose de relier état actuel et historique personnel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces, et je dois me demander si je n'ai pas confondu introspection émotionnelle avec métacognition. La fiche est ferme : l'objet de la réflexion doit être le processus cognitif lui-même, pas un problème externe ni un état d'être. Or, ce qui est observé ici, c'est l'énergie disponible et la sensibilité émotionnelle, pas la manière de penser, de décider ou d'apprendre. La pièce 1 reste un constat d'état, et la pièce 5 une métaphore d'énergie : aucune ne porte le retour sur la stratégie cognitive.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce active mieux un registre émotionnel (saturation, fatigue) qu'un registre métacognitif au sens de la fiche ; l'objet de la réflexion est l'état, pas le processus cognitif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La métaphore des batteries à plat décrit une ressource énergétique observée dans la durée, pas une observation de la manière dont l'apprenant pense ou décide."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à reconnaître ici une trace de métacognition, et le premier temps a laissé passer deux pièces parce qu'elles montraient un effort d'auto-observation précis. Le second temps a fait tomber les deux : ce qui est observé, c'est l'état émotionnel et énergétique, pas le processus cognitif lui-même. La fiche distingue nettement la métacognition d'une auto-observation d'état, et cette feuille reste du côté de l'état. Ce qui en résulte : la trace métacognitive au sens strict n'est pas attestée par cette feuille. L'effort de nommer précisément existe, mais il porte sur ce que l'apprenant ressent, pas sur la manière dont il pense. Une réserve à assumer : sur d'autres feuilles, cette même finesse de qualification pourrait se retourner vers le processus de travail lui-même.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Le second temps a disqualifié les deux pièces : l'objet de la réflexion reste l'état émotionnel et énergétique, pas le processus cognitif tel que la fiche le définit.",
+        "prescription": "Pour enrichir cette zone, un chemin possible serait de prolonger l'observation fine de soi vers le processus de travail lui-même — non pas seulement « j'étais saturé », mais « voilà comment ma pensée a fonctionné quand j'étais saturé, ce qu'elle a court-circuité, ce qu'elle a tenu ». Le retour sur la stratégie cognitive prise dans une situation donnée ouvrirait clairement ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Inventaire des charges en cours : trace possible d'une vue d'ensemble du système de projets, mais sans modélisation explicite des interactions."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars de l'hypothèse qu'aucune pensée systémique au sens de la fiche n'est attestée ici. La fiche est très exigeante : il ne suffit pas de constater la complexité, il faut nommer des boucles, des effets de cascade, des points de levier. La pièce 1 énumère des tâches accumulées (4 choses pour 17h, admin en retard, postulations chômage en retard, sous-projets interrompus), ce qui dit « il y en a beaucoup » plutôt que « voilà comment cela s'auto-alimente ». La pièce ne nomme aucune boucle de rétroaction. Ce qui pourrait éventuellement résister, c'est l'idée implicite que la saturation et les retards se nourrissent l'un l'autre, mais le passage ne formule pas ce lien.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au premier temps : l'inventaire des charges ne porte pas la modélisation que la fiche exige. La phrase « tout est lié » est explicitement nommée par la fiche comme insuffisante ; ici, on n'a même pas cette formulation. Il n'y a rien à attaquer en second temps.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce avec présomption d'absence et la présomption a tenu sans difficulté : l'inventaire des charges du jour est un constat de surcharge, pas une analyse des boucles entre projets, retards et énergie. La fiche distingue clairement le constat de complexité de la modélisation, et cette feuille reste du côté du constat. Il en résulte que la pensée systémique n'est pas attestée ici. La réserve à assumer : un même matériau, repris ailleurs en mode analytique, pourrait donner lieu à une modélisation — la matière brute est présente, le geste de modélisation manque.",
+          "confianceFinale": 0.1
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.1,
+        "motif": "Le temps 1 a fait tomber la seule pièce candidate : un inventaire de charges n'est pas une modélisation des boucles ou des effets de cascade au sens de la fiche.",
+        "prescription": "Pour ouvrir cette zone, un chemin possible serait de reprendre, à froid, ce même inventaire de charges et d'y tracer les boucles : comment la fatigue alimente le retard, comment le retard alimente la fatigue, où se situerait un point de levier. Nommer la direction des liens, pas seulement leur existence, ferait la différence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention d'un poste d'évaluation avec les IA à l'EPFL : signal d'un environnement professionnel orienté IA, mais sans contenu technique sur les mécanismes."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Mention de LangChain et de bases de données vectorielles comme contenu de formation ciblée : objets techniques nommés, mais sans explicitation du mécanisme."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars de l'hypothèse que la simple mention de technologies IA ne suffit pas à attester de littératie IA. La fiche est claire : « réutiliser le mot ‘hallucination' sans expliquer le mécanisme n'est pas de la littératie ». Ici, on a des étiquettes (« évaluation avec les IA », « LangChain », « bases de données vectorielles ») mais aucune explicitation de ce qu'elles font, de comment elles échouent, de pourquoi elles sont pertinentes. La pièce 1 nomme un poste sans en décrire le travail. La pièce 2 nomme deux technologies sans expliquer ce que LangChain orchestre ni ce qu'une recherche vectorielle calcule. Ce qui résiste très légèrement, c'est le fait que l'apprenant cible précisément ces deux technologies pour un entretien d'évaluation IA, ce qui suppose au minimum de savoir qu'elles sont structurantes pour ce type de poste — mais cette inférence reste mince.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le choix ciblé de LangChain + bases vectorielles pour un entretien d'évaluation IA suppose une cartographie minimale du paysage technique, même non explicitée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce sur la base d'une inférence ; je dois me demander si je n'ai pas comblé un blanc avec ma propre compréhension du domaine. La pièce ne dit pas pourquoi LangChain ou pourquoi les bases vectorielles ; je le sais, mais le portfolio ne le montre pas. La fiche demande une compréhension causale du « pourquoi » de l'IA, ce qui n'est pas le cas ici — il s'agit d'un choix de formation, pas d'une explicitation de mécanisme.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Glissement lexical : les noms techniques apparaissent (LangChain, bases vectorielles) mais leur charge sémantique n'est pas mobilisée dans le passage. On ne sait pas ce que l'apprenant en comprend."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à nier que la littératie IA y soit attestée, parce que la fiche exige une explicitation des mécanismes, pas une mention de vocabulaire. Le premier temps a laissé passer le choix ciblé de deux technologies comme indice faible d'une cartographie minimale. Le second temps a fait tomber cette pièce sur le glissement lexical : les noms sont là, leur charge sémantique n'est pas mobilisée dans le portfolio. Il en résulte que la littératie IA, au sens où la fiche la définit (compréhension causale), n'est pas attestée par cette feuille. La réserve à assumer : la décision de se former à ces objets précis suppose un substrat de connaissance qui pourrait être documenté ailleurs.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le second temps a disqualifié la pièce restante au titre du glissement lexical : les technologies sont nommées sans que leur mécanisme ou leur intérêt soit explicité.",
+        "prescription": "Pour ouvrir cette zone, un chemin possible serait, après la formation visée, de revenir sur ce qu'une base vectorielle calcule réellement et sur ce que LangChain orchestre, en formulant la compréhension dans les mots de l'apprenant. Une trace de ce type — un mécanisme dit avec ses propres mots — installerait la littératie IA dans le portfolio."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'architecture de systèmes IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter, sur d'autres jours, une situation où plusieurs IA ou plusieurs sessions sont articulées avec des rôles définis et un flux d'information explicite entre elles."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au dialogue IA avancé et à l'orchestration multi-agents dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une itération de prompt qui a changé un résultat, en expliquant pourquoi la reformulation a modifié la sortie."
+      }
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un transfert de logique algorithmique hors informatique — par exemple une décomposition en sous-problèmes appliquée à une situation relationnelle ou organisationnelle."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synergie et coordination hybride humain-IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où le partage des tâches entre IA et humain a été explicité : ce qui revient à la machine, ce qui revient à l'humain, et pourquoi."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 9,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée du 16 mars, le pôle Tête s'écrit à voix basse, surtout en creux. La feuille porte une saturation cognitive et émotionnelle, datée précisément, et un basculement opérationnel : poser la semaine sur un seul rendez-vous, l'entretien EPFL de jeudi. La pensée se montre moins comme analyse explicite que comme tri sous pression, avec une mention ciblée de deux technologies (LangChain, bases de données vectorielles) comme contenu de préparation. Le registre dominant est celui de la décision contrainte plus que celui du questionnement réflexif.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs zones du pôle Tête ne sont pas visitées sur cette feuille, et la nature de l'absence diffère selon les compétences. Pour la pensée critique, la synthèse intégrative, l'architecture de systèmes IA, le dialogue IA avancé, la pensée computationnelle et la synergie hybride, l'absence ressemble à une limite du document plus qu'à un choix : une journée d'urgence laisse peu de place à ces gestes-là, qui peuvent apparaître ailleurs dans le portfolio. Pour la métacognition, l'observation de soi existe mais porte sur l'état énergétique et émotionnel plutôt que sur le processus cognitif lui-même — un territoire voisin, qui pourrait se rouvrir par un retour à froid sur la manière dont la pensée a fonctionné ce jour-là. Pour la pensée systémique, l'inventaire des charges est présent mais reste descriptif ; les boucles entre fatigue, retards et accumulations attendent une modélisation explicite. Pour la littératie IA, les noms techniques sont posés sans que leur mécanisme soit dit : un dossier qui se constituera quand la compréhension prendra la parole.",
+    "emergencesPole": "Une chose traverse plusieurs compétences sans être nommée comme telle : la pensée travaille ici sous contrainte de ressources. L'inventaire chiffré (« 4 choses pour 17h »), le renoncement nommé (Leila et Alicia, Liban, GREN, chapitre 19) et la métaphore datée des batteries à plat composent ensemble un récit d'allocation cognitive plus que d'analyse cognitive — un mode de pensée qui mériterait d'être observé pour lui-même.",
+    "pistes": [
+      "Pour enrichir l'observation de soi en train de penser, un chemin possible serait de revenir à froid, dans une feuille ultérieure, sur la manière dont la pensée a fonctionné ce 16 mars : ce qu'elle a coupé en premier, ce qu'elle a tenu, ce qu'elle a refusé.",
+      "Pour enrichir la pensée systémique, un chemin possible serait de reprendre l'inventaire des charges et d'y tracer les boucles — fatigue qui ralentit l'admin, admin en retard qui pèse sur le sommeil — en nommant la direction des liens.",
+      "Pour enrichir la littératie IA, un chemin possible serait, après la formation LangChain et bases vectorielles, de formuler dans ses propres mots ce qu'une recherche vectorielle calcule et ce qu'une chaîne orchestre, plutôt que de garder les termes comme étiquettes."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée du 16 mars, le pôle Tête s'écrit à voix basse, surtout en creux. La feuille porte une saturation cognitive et émotionnelle, datée précisément, et un basculement opérationnel : poser la semaine sur un seul rendez-vous, l'entretien EPFL de jeudi. La pensée se montre moins comme analyse explicite que comme tri sous pression, avec une mention ciblée de deux technologies (LangChain, bases de données vectorielles) comme contenu de préparation. Le registre dominant est celui de la décision contrainte plus que celui du questionnement réflexif.\n\n## Territoires les plus denses\n\nCette feuille ne porte pas de territoire dense au sens d'une présence établie. Une zone reste cependant ouverte au cartographe : autour du cadrage de l'intention, le geste de renoncer nommément à des projets en cours pour resserrer la semaine sur un seul objectif tient comme indice, sans atteindre le seuil d'une présence pleine.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs zones ne sont pas visitées ici, et la nature de l'absence diffère selon les compétences. Pour la pensée critique, la synthèse intégrative, l'architecture de systèmes IA, le dialogue IA avancé, la pensée computationnelle et la synergie hybride, l'absence ressemble à une limite du document plus qu'à un choix : une journée d'urgence laisse peu de place à ces gestes-là, qui peuvent apparaître ailleurs dans le portfolio. Pour la métacognition, l'observation de soi existe mais porte sur l'état énergétique et émotionnel plutôt que sur le processus cognitif lui-même — un territoire voisin, qui pourrait se rouvrir par un retour à froid sur la manière dont la pensée a fonctionné ce jour-là. Pour la pensée systémique, l'inventaire des charges est présent mais reste descriptif ; les boucles entre fatigue, retards et accumulations attendent une modélisation explicite. Pour la littératie IA, les noms techniques sont posés sans que leur mécanisme soit dit : un dossier qui se constituera quand la compréhension prendra la parole.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse plusieurs compétences sans être nommée comme telle : la pensée travaille ici sous contrainte de ressources. L'inventaire chiffré (« 4 choses pour 17h »), le renoncement nommé (Leila et Alicia, Liban, GREN, chapitre 19) et la métaphore datée des batteries à plat composent ensemble un récit d'allocation cognitive plus que d'analyse cognitive — un mode de pensée qui mériterait d'être observé pour lui-même.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir l'observation de soi en train de penser, un chemin possible serait de revenir à froid, dans une feuille ultérieure, sur la manière dont la pensée a fonctionné ce 16 mars : ce qu'elle a coupé en premier, ce qu'elle a tenu, ce qu'elle a refusé.\n\nPour enrichir la pensée systémique, un chemin possible serait de reprendre l'inventaire des charges et d'y tracer les boucles — fatigue qui ralentit l'admin, admin en retard qui pèse sur le sommeil — en nommant la direction des liens.\n\nPour enrichir la littératie IA, un chemin possible serait, après la formation LangChain et bases vectorielles, de formuler dans ses propres mots ce qu'une recherche vectorielle calcule et ce qu'une chaîne orchestre, plutôt que de garder les termes comme étiquettes."
+  }
+}

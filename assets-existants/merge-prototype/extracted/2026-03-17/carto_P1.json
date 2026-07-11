@@ -1,0 +1,730 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "dans mon mode de fonctionnement, j'ai une inertie importante pour pouvoir me mettre en condition de travail. Si mon temps de travail disponible est inférieur ou égal à mon temps d'inertie, je ne fais rien, même si je suis sur l'ordinateur 1 ou 2h par jour. Pour être productif, je dois d'abord gérer le tout venant et la veille, puis ensuite charger en mémoire de travail le contexte du projet, puis je peux enfin me mettre à bosser.",
+      "contexte": "Auto-modélisation de son propre fonctionnement cognitif (métacognition, pensée computationnelle appliquée au soi, possiblement systémique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "à répéter 44 fois depuis juin pour se rendre compte du problème de la discontinuité du temps de travail chez une personne perfectionniste ayant de nouvelles idées toutes les 15 minutes avec 2h seulement à disposition pour avancer tous les jours",
+      "contexte": "Analyse rétrospective d'un pattern observé sur plusieurs mois — métacognition diagnostique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Car plus le temps passe, plus j'ai de choses à faire, alors que ça devrait être l'inverse vu que je travaille tout le temps… Finalement j'ai peut [être] réussi à démontrer que la deuxième loi de la thermodynamique est erronée ? Vive l'entropie !",
+      "contexte": "Constat d'une boucle de rétroaction négative (charge de travail qui croît avec le travail) nommée à travers une métaphore systémique (entropie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Ça y est, j'ai compris LangChain et bases de données vectorielles. […] J'ai juste trouvé la bonne vidéo qui montre comment ça marche. Vu que je connais déjà pas mal de choses, j'ai tout de suite compris le concept de vecteur.",
+      "contexte": "Acquisition d'un mécanisme technique IA (vector stores, LangChain) — littératie IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Dans la démo que j'ai vu, il y a déjà des points d'amélioration évidents : la taille des chunks est fixe ! Alors qu'on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs en lui demandant de reformuler les phrases comme il le ferait pour écrire de la poésie en respectant un certain nombre de pieds. Dès lors, le découpage de concepts normalisés rendrait plus efficace la fonction de similarité vectorielles. Un peu comme une fonction de hachage.",
+      "contexte": "Critique technique d'une démo RAG suivie d'une proposition d'amélioration architecturale, avec analogie (poésie, fonction de hachage).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "C'est tellement évident que je pense que soit j'ai mal compris, soit j'ai pas tout compris, soit ils l'ont déjà fait.",
+      "contexte": "Auto-critique en plein élan d'idée — calibration épistémique : envisage trois hypothèses alternatives à sa propre intuition.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Perplexity confirme mon intuition : Des solutions plus avancées (chunking sémantique, clustering de chunks, LLM‑based re‑ranking) existent, mais elles sont plus complexes et donc moins mises en avant dans les tutoriels de niveau \"intro\"",
+      "contexte": "Vérification croisée d'une intuition technique via une source externe (Perplexity) — geste de pensée critique calibrée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "J'ai découvert le Saint Graal pour construire les architectures de prompts ! Ça s'appelle LangFlow et c'est une interface visuelle pour orchestrer des scripts LangChain.",
+      "contexte": "Découverte d'un outil d'orchestration d'architectures de prompts — résonne avec architecture IA et dialogue avancé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "J'avais compartimenté de la sorte mon Mac pour ne pas avoir besoin de jongler avec les VM. […] ça me permet d'avoir un \"palais mental\" assez simple pour pouvoir, même un an plus tard, m'y retrouver rapidement.",
+      "contexte": "Dispositif d'organisation de l'environnement de travail conçu comme un palais mental — métacognition appliquée à l'outillage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "j'ai saturé mes 16 bureaux virtuels de multiples fenêtres pour chacun des projets interrompus. C'est la 17e interruption et je n'ai pas droit à 17 bureaux virtuels sous MacOS. Je vais donc réouvrir mon utilisateur C. J'ai trois users sur le Mac",
+      "contexte": "Architecture personnelle multi-utilisateurs / multi-bureaux pour cloisonner les contextes mentaux — pensée computationnelle appliquée à l'organisation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Ces trois noms correspondent aux trois phases de ma vie (C:0-17, B:17-47, A:47-57+) et aux trois métiers que j'ai fait en lien avec les trois noms de famille que j'ai portés",
+      "contexte": "Décomposition systématique de l'identité professionnelle en trois rôles attribués à trois sessions utilisateur — geste de structuration computationnelle de soi.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "j'ai prévu maintenant une formation éclair Microsoft sur les technologies que je ne maîtrise pas encore. Ça me fera du bien pour l'anglais également, car l'entretien d'embauche est tout en anglais et je n'ai pas forcément le vocabulaire technique des LLM en tête.",
+      "contexte": "Identification calibrée d'une zone d'ignorance (vocabulaire technique LLM en anglais) et action correctrice — humilité épistémique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Bref, j'ai compressé une formation longue en 12 minutes, et maintenant je vais coder tout ça pour bien l'assimiler.",
+      "contexte": "Stratégie d'apprentissage explicite — compression puis assimilation par le code — pilotage métacognitif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Au passage, j'ai vu la pub d'une station de travail intéressante pour la suite du projet, qui permettrait de faire tourner Aurora en local […] La RAM est un peu limitée : c'est 496 Gb mais en vrai elle n'est pas toute dédiée au NPU (seulement 252 Gb sont alloués au GB300).",
+      "contexte": "Analyse fine des contraintes matérielles pour héberger un système IA — littératie technique sur l'infrastructure.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Auto-critique en plein élan d'enthousiasme : après avoir formulé une idée d'amélioration RAG, l'apprenant envisage immédiatement qu'il puisse avoir mal compris ou que l'idée existe déjà. Marqueur direct du scepticisme calibré décrit dans la fiche."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Vérification croisée d'une intuition technique auprès d'une source externe (Perplexity) — geste de doute méthodique en action."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec l'hypothèse que la pensée critique n'est pas réellement à l'œuvre — ce pourrait être de la fausse modestie rhétorique ou un réflexe de prudence superficielle. La pièce 1 (« soit j'ai mal compris, soit j'ai pas tout compris, soit ils l'ont déjà fait ») me force à reconnaître quelque chose : trois hypothèses alternatives à sa propre intuition sont formulées à chaud, au moment même où l'enthousiasme pourrait fermer le doute. La pièce 2 montre l'action correspondante : aller vérifier auprès d'une source tierce plutôt que rester dans la satisfaction d'avoir eu une bonne idée. Ce qui reste faible : l'épisode est ponctuel, et la vérification est légère (un coup de Perplexity).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'autocritique formulée au moment précis de l'enthousiasme correspond au signal le plus fort listé dans la fiche." },
+            { "pieceId": 2, "motifResistance": "Action de vérification effectivement menée, et non simple intention de vérifier." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas surchargé une formule de modestie passagère du poids d'une vraie pratique critique. Sur la pièce 1, l'attaque (f) — récit performatif — est tentante : peut-être que l'apprenant raconte le doute sans vraiment le vivre. Mais la pièce 2 vient en contrepoint dans le même flux narratif et montre l'acte de vérification. Sur la pièce 2, l'attaque (a) — insuffisance probatoire — touche : la vérification est expéditive. Pas de protocole sophistiqué, juste un recoupement rapide.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le doute n'est pas seulement déclaré : la pièce 2 du même passage le rend opérationnel par la vérification Perplexity. Le doute est suivi d'un acte."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le recoupement est léger (une seule source consultée) mais réel, et il vient documenter le doute formulé en pièce 1."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces deux pièces comme une simple modestie rhétorique sans pratique critique réelle. L'enchaînement immédiat entre l'autocritique formulée à chaud et la vérification effective auprès d'une source tierce m'a forcé à reconnaître autre chose : un geste critique calibré qui n'attend pas le doute généralisé mais qui se déclenche au moment précis où l'enthousiasme pourrait fermer la question. Ce qui n'a pas tenu sous l'attaque : la robustesse du dispositif de vérification (une seule source, recoupement rapide). Ce qui reste : le réflexe d'autocritique en plein élan est attesté sur cette journée, et il déclenche une action de vérification réelle. Une nuance demeure — la portée d'un protocole critique plus systématique ne se lit pas dans cet extrait, ce qui laisse cette compétence visible mais non encore déployée à grande échelle.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.68,
+        "motif": "Le second temps a confirmé l'autocritique à chaud comme signal fort ; le recoupement externe, même léger, vient documenter le geste.",
+        "prescription": "Sur cette journée, le doute s'est levé au bon moment et a déclenché une vérification. Pour approfondir, un chemin possible serait de documenter une fois prochaine non seulement le doute et la vérification, mais aussi le critère qui a fait basculer la confiance d'un côté ou de l'autre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au cadrage de l'intention sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète où la définition du problème lui-même a basculé en cours de route."
+      }
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant fusionne trois domaines éloignés — RAG/vector stores, poésie et nombre de pieds, fonctions de hachage — pour proposer une amélioration de l'embedding. La synthèse produit un insight (chunking sémantique normalisé) qui n'existe dans aucune des trois sources isolées."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Mise en correspondance des trois noms de famille portés, des trois phases biographiques (0-17, 17-47, 47-57+), des trois métiers et des trois sessions utilisateur du Mac — fusion identité/biographie/outil en une seule architecture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'il s'agit de rapprochements anecdotiques plutôt que de synthèse intégrative au sens strict. La pièce 1 me résiste : trois domaines réellement éloignés (architecture IA, métrique poétique, fonction de hachage) y sont fusionnés en une proposition technique opérationnelle. C'est l'écho radical entre univers incompatibles mentionné dans la fiche. La pièce 2 me résiste aussi mais autrement : la coïncidence entre trois noms de famille, trois phases de vie et trois sessions utilisateur Mac forme une architecture symbolique cohérente que ni la biographie seule ni l'outil seul ne portaient. Ce qui reste faible : la synthèse de la pièce 1 reste à l'état d'intuition non implémentée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Fusion de domaines éloignés (IA / poésie / cryptographie informelle) produisant une proposition technique qui n'existait dans aucun." },
+            { "pieceId": 2, "motifResistance": "Mise en correspondance triadique biographie/identité/outil qui produit un schéma d'organisation non préexistant." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas pris une métaphore décorative pour une synthèse opérante. Sur la pièce 1, l'attaque (e) — surinterprétation pédagogique — pourrait toucher : peut-être que l'analogie poésie/hachage est juste une figure de style chez quelqu'un de cultivé. Mais la proposition technique qui en sort (normaliser la taille des vecteurs pour rendre la similarité plus efficace) tient son rang d'insight technique réel. Sur la pièce 2, l'attaque (d) — glissement lexical — est tentante : peut-être que l'apprenant aime simplement les triades. Mais la mise en correspondance avec une décision technique concrète (réouvrir l'utilisateur C) ancre la synthèse dans un acte.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'analogie poésie/hachage ne reste pas décorative : elle débouche sur une proposition technique précise (chunking sémantique de taille normalisée) qui anticipe une amélioration architecturale réelle."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le schéma triadique est élégant et fonctionne, mais il pourrait relever d'une mise en récit a posteriori plutôt que d'une vraie architecture cognitive ; il tient cependant comme synthèse de la biographie en outil de travail."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces rapprochements de simples métaphores décoratives plutôt qu'une vraie pratique de synthèse. La pièce sur le RAG et la poésie m'a forcé à reconnaître autre chose : la fusion produit une proposition technique qui n'existait dans aucun des trois domaines, et elle est suivie d'une vérification confirmant que la communauté technique explore effectivement le chunking sémantique. La pièce sur les trois noms a tenu moins fortement — elle peut relever d'une mise en récit a posteriori — mais elle illustre le même geste à un autre niveau, celui de la biographie organisée en architecture de travail. Ce qui en résulte : sur cette journée, la synthèse intégrative se manifeste comme une habitude de fusion entre domaines éloignés qui produit des objets nouveaux, pas des résumés.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le premier temps a fait tomber l'hypothèse de la simple métaphore décorative ; le second a confirmé la pièce technique et affaibli sans disqualifier la pièce biographique.",
+        "prescription": "Sur cette journée, la synthèse s'exerce comme un réflexe de mise en correspondance entre domaines éloignés. Pour prolonger, un chemin possible serait de documenter une fois prochaine la trajectoire d'une synthèse depuis l'étincelle initiale jusqu'à son test, afin de voir ce qui résiste au passage à l'acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Auto-modélisation explicite du fonctionnement cognitif personnel : temps d'inertie, charge en mémoire de travail, conditions de productivité. Vocabulaire précis appliqué au processus lui-même."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Repérage d'un pattern personnel sur plusieurs mois (44 interruptions depuis juin) — recul métacognitif sur sa propre manière de fonctionner."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Mention explicite du « palais mental » comme dispositif organisationnel — métacognition sur l'outillage de sa propre pensée."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "« Je n'ai pas forcément le vocabulaire technique des LLM en tête » — calibration explicite d'une zone d'ignorance."
+        },
+        {
+          "numero": 5,
+          "pid": 13,
+          "contexte": "Stratégie d'apprentissage formulée explicitement : compresser, puis coder pour assimiler. Pilotage conscient de sa stratégie d'acquisition."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces cinq pièces en supposant qu'il s'agit de bilans personnels ordinaires plutôt que de métacognition au sens strict — observation du processus cognitif lui-même. La pièce 1 me résiste fortement : le vocabulaire (inertie, mémoire de travail, charge de contexte) décrit littéralement le processus, pas le contenu. La pièce 2 me résiste : compter 44 itérations depuis juin pour caractériser un pattern personnel est un acte d'observation sur une longue durée, pas un constat ponctuel. La pièce 3 me résiste de manière oblique : l'expression « palais mental » est nommée et appliquée à son propre outillage cognitif. La pièce 4 résiste comme calibration explicite d'ignorance. La pièce 5 résiste comme formulation de stratégie d'apprentissage. La présomption d'absence est ici franchement débordée — ce qui m'incite à durcir le temps 2.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Modèle explicite du propre fonctionnement cognitif avec termes empruntés à la computation (inertie, mémoire de travail, charge)." },
+            { "pieceId": 2, "motifResistance": "Comptage longitudinal d'un pattern personnel sur 9 mois — observation d'une régularité de son propre fonctionnement." },
+            { "pieceId": 3, "motifResistance": "« Palais mental » nommé comme dispositif d'auto-organisation cognitive durable." },
+            { "pieceId": 4, "motifResistance": "Énoncé calibré d'une ignorance précise plutôt que d'une ignorance globale." },
+            { "pieceId": 5, "motifResistance": "Stratégie d'apprentissage formulée à la première personne et au futur immédiat." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si l'abondance de matière métacognitive ne m'a pas séduit. Sur la pièce 1, l'attaque (c) — biais de medium — pourrait toucher : le portfolio sollicite l'introspection, donc la métacognition pourrait être une production du dispositif. Mais le vocabulaire technique précis (mémoire de travail, charge de contexte) déborde ce qu'un journal sollicite naturellement. Sur la pièce 4, l'attaque (a) — insuffisance probatoire — touche : la mention est brève. Sur la pièce 5, l'attaque (f) — récit performatif — pourrait toucher : « je vais coder pour assimiler » est une intention déclarée. Mais l'enchaînement avec la pièce 13 et la formation Microsoft annoncée ancre l'intention dans un plan d'action.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le vocabulaire technique (inertie, mémoire de travail, charge de contexte) dépasse ce que le journal sollicite ordinairement : c'est une modélisation, pas une introspection convenue."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le chiffre 44 est posé sans détail sur la méthode de comptage, mais il situe explicitement le pattern dans une durée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "« Palais mental » n'est pas employé comme mot-clef ambiant : il désigne précisément la fonction du dispositif (retrouver un contexte un an plus tard)."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mention brève, mais calibrée — l'apprenant nomme précisément où sa connaissance s'arrête (vocabulaire technique LLM en anglais)."
+            },
+            {
+              "pieceId": 5,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'énoncé est performatif (« je vais coder ») mais s'inscrit dans une régulation explicite de la stratégie d'apprentissage (compresser puis pratiquer)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme des bilans introspectifs convenus du journal d'apprentissage. La modélisation explicite du temps d'inertie, de la charge en mémoire de travail et des conditions de productivité m'a forcé à reconnaître autre chose : une auto-observation qui prend pour objet le processus cognitif lui-même, avec un vocabulaire emprunté à la computation. Le repérage du pattern sur 44 occurrences depuis juin n'a pas tenu très fortement sous l'attaque probatoire — le chiffre est isolé — mais il a tenu comme observation longitudinale réelle. Le palais mental nommé comme dispositif et la stratégie d'apprentissage (compresser puis coder) confirment un pilotage conscient des stratégies cognitives. Ce qui en résulte : sur cette journée, la métacognition se manifeste comme une pratique installée, pas comme un exercice ponctuel.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 3,
+        "confiance": 0.82,
+        "motif": "Le premier temps a été débordé ; le second a confirmé deux pièces (auto-modélisation, palais mental) et a affaibli sans disqualifier les trois autres.",
+        "prescription": "Sur cette journée, le travail montre une auto-observation qui prend pour objet le processus cognitif lui-même. Pour prolonger, un chemin possible serait de documenter une fois prochaine une stratégie cognitive qui a échoué — et ce qui a été ajusté à partir de cette observation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Identification d'une boucle de rétroaction négative — plus on travaille, plus il y a de choses à faire — nommée à travers une métaphore systémique (entropie, seconde loi de la thermodynamique)."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Description d'une dynamique non-linéaire entre temps disponible et productivité : si temps disponible ≤ temps d'inertie, sortie = 0, même avec input présent. Modélisation d'un effet de seuil."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces en supposant qu'il s'agit de constats ordinaires sur la complexité du quotidien, pas d'une vraie modélisation systémique. La pièce 1 me résiste : la boucle est nommée dans la direction précise (plus de travail → plus de travail à faire), et la mobilisation de l'entropie/seconde loi est plus qu'une figure — c'est une mise en système. La pièce 2 me résiste comme modélisation d'un effet de seuil non-linéaire : la productivité ne décroît pas progressivement avec le temps disponible, elle s'effondre quand le seuil d'inertie est franchi. C'est précisément ce que la fiche appelle modéliser plutôt que constater. Ce qui reste faible : pas d'identification de point de levier en regard de ces boucles.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Boucle de rétroaction nommée avec direction et invocation cohérente d'un cadre systémique (entropie)." },
+            { "pieceId": 2, "motifResistance": "Effet de seuil non-linéaire modélisé : passage de productivité non-nulle à zéro selon une condition booléenne sur la durée disponible." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas pris des images pour des modèles. Sur la pièce 1, l'attaque (e) — surinterprétation pédagogique — pourrait toucher : peut-être que l'entropie est juste une figure rhétorique. Mais la phrase « j'ai peut-être réussi à démontrer que la deuxième loi de la thermodynamique est erronée » suppose une compréhension du cadre physique inversée par humour, ce qui demande la maîtrise de ce cadre. Sur la pièce 2, l'attaque (b) — confusion de compétence — pourrait toucher : c'est peut-être plutôt de la métacognition (1.04). Mais l'objet n'est pas le processus cognitif comme tel, c'est la dynamique entre une variable (temps disponible) et une sortie (productivité), avec un seuil. C'est systémique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La référence à l'entropie tient comme cadre mobilisé, mais le ton humoristique (« vive l'entropie ! ») affaiblit la portée modélisatrice ; la boucle nommée reste cependant claire."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'objet de la modélisation est bien la dynamique non-linéaire (effet de seuil) entre input (temps) et output (productivité), pas le processus cognitif. La pièce relève de la pensée systémique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme des constats sur la complexité plutôt que comme une vraie modélisation systémique. L'identification de la boucle « plus on travaille, plus il y a à faire » et la description de l'effet de seuil d'inertie m'ont forcé à reconnaître autre chose : sur cette journée, le travail nomme des dynamiques avec leur direction et leurs effets de cascade, pas seulement leur existence. L'invocation de l'entropie n'a pas tenu très fortement sous l'attaque — le ton est ludique — mais l'effet de seuil sur la productivité a tenu comme modélisation réelle. Ce qui en résulte : la compétence se manifeste comme une habitude de penser en boucles et en effets de seuil. Une nuance reste : aucun point de levier n'est identifié dans ces boucles, ce qui laisse la modélisation à mi-chemin entre la description et l'intervention.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le second temps a confirmé la modélisation de l'effet de seuil et affaibli sans disqualifier la pièce entropique.",
+        "prescription": "Sur cette journée, le travail nomme des boucles et des effets de seuil dans son propre fonctionnement. Pour prolonger, un chemin possible serait de documenter, pour l'une de ces boucles identifiées, un point de levier testé et son effet observé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Acquisition explicite du concept de vector store et de LangChain — compréhension des mécanismes sous-jacents au RAG."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Critique technique pointue d'une démo RAG (taille de chunks fixe) débouchant sur une proposition d'amélioration architecturale (chunking sémantique normalisé)."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Validation externe de l'intuition technique sur les approches avancées de chunking (sémantique, clustering, re-ranking par LLM)."
+        },
+        {
+          "numero": 4,
+          "pid": 14,
+          "contexte": "Analyse fine des contraintes matérielles pour héberger un système IA en local (distinction entre RAM totale et RAM dédiée au NPU)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que l'apprenant réutilise du vocabulaire technique sans nécessairement comprendre les mécanismes. La pièce 1 résiste faiblement seule (« j'ai compris le concept de vecteur » est une déclaration). La pièce 2 me résiste plus fortement : la critique de la taille fixe des chunks suppose la compréhension de la similarité vectorielle et de l'impact d'une taille hétérogène sur les calculs de distance. La pièce 3 résiste comme vérification externe qui confirme l'angle technique (chunking sémantique). La pièce 4 résiste sur un autre versant : distinguer 496 Gb totaux et 252 Gb dédiés au NPU suppose une compréhension de l'architecture matérielle d'inférence.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La critique fait apparaître une compréhension causale du pourquoi (impact de la taille hétérogène sur la similarité vectorielle)." },
+            { "pieceId": 3, "motifResistance": "L'intuition technique est confirmée par une source externe sur des techniques précises (chunking sémantique, re-ranking)." },
+            { "pieceId": 4, "motifResistance": "Discrimination fine entre RAM totale et RAM dédiée au calcul neural." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas pris du vocabulaire bien employé pour de la littératie causale. Sur la pièce 1, l'attaque (d) — glissement lexical — tient : « j'ai compris le concept de vecteur » reste déclaratif. Sur la pièce 2, l'attaque (a) — insuffisance probatoire — touche : l'analogie est élégante mais aucun prototype n'est encore testé. Sur la pièce 3, l'attaque (c) — biais de medium — est mince : la validation Perplexity est externe. Sur la pièce 4, l'attaque (a) — insuffisance probatoire — touche : la distinction est juste mais brève.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« J'ai compris le concept de vecteur » reste une déclaration sans démonstration de la compréhension causale."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La critique de la taille fixe des chunks et la proposition de normalisation impliquent une compréhension du mécanisme de similarité vectorielle, pas seulement du vocabulaire."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La validation Perplexity confirme l'angle, sans démontrer la profondeur ; reste comme corroboration."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La distinction entre RAM totale et RAM dédiée au NPU est précise mais brève, sans approfondissement sur les conséquences pour l'inférence."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme un usage de vocabulaire ambiant sur les LLM. La critique opérante de la taille fixe des chunks dans une démo RAG, suivie de la proposition technique de normalisation par reformulation poétique, m'a forcé à reconnaître autre chose : la compréhension va sous le capot et identifie un mécanisme (similarité vectorielle sur chunks hétérogènes) puis propose une intervention causale. La déclaration « j'ai compris le concept de vecteur » est tombée seule, mais l'acte qui suit (critique technique de la démo) atteste effectivement de la compréhension. Ce qui en résulte : sur cette journée, le travail montre un saut de la familiarité avec le vocabulaire vers la compréhension mécanique, attestée par la critique architecturale.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Le second temps a confirmé la pièce 2 comme preuve décisive (compréhension causale opérante) et a retenu deux pièces corroboratives.",
+        "prescription": "Sur cette journée, le travail montre une compréhension causale des mécanismes RAG. Pour prolonger, un chemin possible serait d'implémenter la proposition de chunking normalisé sur un mini-corpus et de comparer la similarité obtenue à celle d'un chunking fixe."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Proposition d'un pré-processing du RAG par un LLM avant indexation — schéma architectural en pipeline (LLM normaliseur → embedding → similarité)."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Découverte et nomination explicite de LangFlow comme « Saint Graal pour construire les architectures de prompts », interface visuelle d'orchestration."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces en supposant qu'il s'agit d'idées techniques isolées plutôt que d'une vraie conception architecturale au sens où quelqu'un d'autre pourrait reprendre et maintenir le système. La pièce 1 me résiste partiellement : la proposition décrit un pipeline (pré-processing LLM → embedding) avec un rôle et une fonction pour chaque composant, mais elle reste à l'état de proposition. La pièce 2 me résiste comme reconnaissance d'un besoin architectural (orchestration des prompts via une interface visuelle), mais c'est plus une découverte d'outil qu'une conception. La présomption tient assez bien : aucune architecture multi-agents complète n'est dessinée dans cette journée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Pipeline architectural à deux étages (LLM normaliseur puis embedding) avec rôle distinct pour chaque composant." },
+            { "pieceId": 2, "motifResistance": "Vocabulaire « architectures de prompts » employé explicitement, et identification d'un outil d'orchestration." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si j'ai surinterprété des propositions ponctuelles comme de l'architecture. Sur la pièce 1, l'attaque (g) — mouvement-vers — tient : la proposition esquisse un pipeline sans le formaliser comme système avec inputs, outputs, contrôles, fallbacks. Sur la pièce 2, l'attaque (e) — surinterprétation — touche : « Saint Graal » indique l'enthousiasme, pas la maîtrise. La fiche distingue 1.07 (conception technique avec règles de routing) de 1.08 (sophistication de la formulation). Aucune des deux pièces ne décrit un système où l'output de l'un alimente l'input de l'autre avec règles documentées.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le pipeline est esquissé (deux étages, fonction de chaque), mais il n'est pas formalisé comme système maintenable par un tiers."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Mention d'un outil découvert avec enthousiasme, sans description d'un système conçu — la pièce parle d'une intention d'usage, pas d'une architecture posée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les deux pièces dépassaient la proposition technique ponctuelle pour atteindre la conception architecturale au sens de la fiche — un système qu'un tiers pourrait reprendre. La pièce sur le pipeline RAG a tenu en partie : elle dessine deux étages avec leurs fonctions, mais sans la formalisation qui distingue 1.07. La pièce sur LangFlow n'a pas tenu : elle relève de la découverte d'outil, pas de la conception. Ce qui en résulte : sur cette journée, la pensée architecturale est en mouvement-vers, pas encore en acte de conception complète. Le travail montre une lucidité sur le besoin (orchestrer) et une intuition de pipeline (pré-processer avant indexation), ce qui est l'amont de l'architecture, pas l'architecture elle-même.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le second temps a disqualifié une pièce et affaibli la seconde sans la confirmer ; le seuil de la présence établie n'est pas atteint, mais une trace réelle de pensée architecturale subsiste.",
+        "prescription": "Sur cette journée, la conception architecturale apparaît en amont — comme un besoin nommé et une esquisse de pipeline. Pour ouvrir ce dossier, un chemin possible serait de documenter une fois prochaine un schéma de système avec composants, flux et règles de routing tel qu'un tiers pourrait le reprendre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Reconnaissance que la construction des architectures de prompts nécessite un outillage dédié (LangFlow) — conscience de l'effet de la formulation sur le comportement IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'il s'agit d'un simple enthousiasme pour un outil, pas d'une pratique de dialogue IA avancée. La pièce résiste faiblement : la mention « architectures de prompts » au pluriel et l'idée d'orchestrer signalent une conscience que les prompts ne sont pas isolés mais composables. C'est une trace oblique. Ce qui reste très faible : aucune technique de prompting nommée (chain-of-thought, few-shot, rôles), aucune itération stratégique racontée, aucun méta-prompting en action sur cette journée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La formulation « architectures de prompts » suggère une conscience que les prompts se composent en systèmes orchestrés." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas chargé une mention enthousiaste d'une pratique qu'elle ne porte pas. L'attaque (e) — surinterprétation — touche : « Saint Graal » indique le désir d'avoir, pas l'acte de faire. L'attaque (d) — glissement lexical — touche aussi : le vocabulaire est présent mais la charge sémantique de la pratique (itération, méta-prompting, rôles différenciés) n'est pas démontrée dans cette journée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La mention enthousiaste de LangFlow comme « Saint Graal » signale une attente, pas une pratique de dialogue avancé en acte sur cette journée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire la mention de LangFlow comme un signal de pratique de dialogue IA avancé. Elle n'a pas tenu : enthousiasme ne fait pas pratique. Sur cette journée, aucune technique de prompting, aucune itération stratégique racontée, aucun méta-prompting en action ne sont visibles. Ce qui en résulte : la compétence n'est pas attestée dans cette feuille, même s'il subsiste l'intuition d'un besoin (orchestrer des prompts).",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce a été disqualifiée au second temps : enthousiasme pour un outil sans pratique de dialogue avancé visible.",
+        "prescription": "Sur cette journée, le dialogue IA avancé apparaît comme aspiration plutôt que comme acte. Pour ouvrir ce dossier, un chemin possible serait de documenter une fois prochaine une itération de prompt précise et d'expliciter pourquoi la reformulation a changé le résultat."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Modélisation algorithmique du propre fonctionnement : conditionnelle (« si temps disponible ≤ temps d'inertie, alors je ne fais rien »), pipeline (« gérer le tout venant, puis charger en mémoire de travail, puis bosser »)."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Décomposition systématique de l'environnement de travail en 16 bureaux virtuels par projet, 3 sessions utilisateur par rôle — structure de données appliquée à sa propre organisation."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Mise en correspondance triadique (noms / phases / métiers / sessions) — structuration logique d'une identité plurielle."
+        },
+        {
+          "numero": 4,
+          "pid": 13,
+          "contexte": "« J'ai compressé une formation longue en 12 minutes » — vocabulaire computationnel (compression) transféré à un processus d'apprentissage humain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'il s'agit de tournures de langage chez un développeur, pas d'un vrai transfert de la logique computationnelle hors informatique — critère discriminant de la fiche. La pièce 1 me résiste : la structure conditionnelle + pipeline appliquée à son propre fonctionnement quotidien est un transfert clair. La pièce 2 me résiste : le découpage en 16 + 1 bureaux par projet et 3 sessions par rôle est une organisation algorithmique de l'environnement de travail. La pièce 3 me résiste comme structuration logique. La pièce 4 me résiste sur le mot « compressé » appliqué à l'apprentissage.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Conditionnelle et pipeline appliqués au fonctionnement personnel, pas à un programme." },
+            { "pieceId": 2, "motifResistance": "Décomposition systématique de l'environnement par projet et par rôle." },
+            { "pieceId": 3, "motifResistance": "Structuration triadique d'une identité — appariement logique entre quatre dimensions." },
+            { "pieceId": 4, "motifResistance": "« Compression » d'une formation est un transfert lexical computationnel vers l'humain." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je ne prends pas l'idiome d'un développeur pour un vrai transfert algorithmique. Sur la pièce 1, l'attaque (b) — confusion de compétence — pourrait toucher : c'est peut-être plutôt 1.04 (métacognition). Mais la fiche 1.09 cite explicitement « les structures conditionnelles appliquées à du non-technique » comme marqueur fort. Sur la pièce 4, l'attaque (d) — glissement lexical — tient : « compressé » peut être un mot ambiant chez quelqu'un de technique, sans charge sémantique algorithmique. Sur la pièce 2, l'attaque (a) — insuffisance probatoire — est mince car le détail (16 bureaux, 3 sessions) est précis.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce active simultanément 1.04 et 1.09, mais sa structure (conditionnelle, pipeline) relève spécifiquement de la pensée computationnelle appliquée hors informatique."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le détail de l'architecture personnelle (16 bureaux par projet, 3 sessions par rôle) atteste une décomposition algorithmique de l'environnement de travail."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'appariement triadique peut être une mise en récit a posteriori, mais la cohérence du schéma (4 dimensions correspondantes) tient comme exercice de structuration logique."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« Compressé » est un mot du registre développeur, mais son application à une formation humaine (compresser une longue vidéo en 12 minutes d'extraction) atteste le transfert."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme l'idiome d'un développeur plutôt que comme un transfert algorithmique réel. La modélisation conditionnelle + pipeline de son propre fonctionnement, et l'architecture multi-utilisateurs / multi-bureaux par projet et par rôle, m'ont forcé à reconnaître autre chose : la logique computationnelle est appliquée hors informatique, à l'organisation de la vie et de l'apprentissage. L'appariement triadique (noms/phases/métiers/sessions) a tenu en partie comme exercice de structuration. Le mot « compressé » a tenu plus faiblement. Ce qui en résulte : sur cette journée, la pensée computationnelle s'exerce comme une habitude — pas comme un fait isolé. Elle traverse l'auto-observation, l'organisation matérielle et la stratégie d'apprentissage.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le second temps a confirmé deux pièces (modélisation conditionnelle/pipeline du fonctionnement personnel et architecture multi-bureaux) et a retenu deux pièces corroboratives.",
+        "prescription": "Sur cette journée, le travail montre une logique algorithmique transférée à l'organisation de la vie et de l'apprentissage. Pour prolonger, un chemin possible serait de documenter une situation où la décomposition computationnelle a échoué, et ce que cette défaillance a révélé du problème."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synergie & coordination hybride sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il articule ce qu'il garde à sa charge et ce qu'il confie à l'IA, en explicitant les forces comparatives mobilisées."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 6,
+    "renvoisCartographe": 1,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée, le travail montre une pensée qui s'observe penser au moment où elle agit, et qui prend pour objet ses propres processus avec un vocabulaire emprunté à la computation. La voix dominante oscille entre l'auto-modélisation précise (inertie, mémoire de travail, charge de contexte) et le saut analogique entre domaines éloignés (poésie, fonction de hachage, vector store). Les marqueurs concrets reviennent : 44 interruptions comptées depuis juin, 16 bureaux virtuels saturés, 3 sessions utilisateur pour 3 phases de vie, 12 minutes pour compresser une formation. Le registre est celui d'un atelier mental où le fonctionnement personnel devient un objet à diagnostiquer, à reconfigurer, parfois à hacker.",
+    "territoiresDenses": [
+      {
+        "competence": "Métacognition & humilité épistémique",
+        "description": "Une auto-observation qui prend pour objet le processus cognitif lui-même, avec un vocabulaire qui dépasse l'introspection ordinaire.",
+        "extraitVerbatim": "dans mon mode de fonctionnement, j'ai une inertie importante pour pouvoir me mettre en condition de travail. Si mon temps de travail disponible est inférieur ou égal à mon temps d'inertie, je ne fais rien",
+        "ceQueCaDit": "Sur cette journée, la métacognition se manifeste comme une pratique installée — pilotage conscient de stratégies, calibration de zones d'ignorance, dispositif de palais mental nommé."
+      },
+      {
+        "competence": "Pensée computationnelle",
+        "description": "Une logique algorithmique appliquée hors informatique — à l'organisation de la vie, à la stratégie d'apprentissage, à la structuration de l'identité.",
+        "extraitVerbatim": "j'ai saturé mes 16 bureaux virtuels de multiples fenêtres pour chacun des projets interrompus. C'est la 17e interruption et je n'ai pas droit à 17 bureaux virtuels sous MacOS",
+        "ceQueCaDit": "Sur cette journée, le travail décompose, structure et pipeline son environnement et ses processus — la pensée algorithmique opère sur des objets non-techniques."
+      },
+      {
+        "competence": "Littératie IA & data literacy",
+        "description": "Une compréhension causale des mécanismes IA qui passe de la familiarité avec le vocabulaire à la critique architecturale opérante.",
+        "extraitVerbatim": "Dans la démo que j'ai vu, il y a déjà des points d'amélioration évidents : la taille des chunks est fixe ! Alors qu'on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs",
+        "ceQueCaDit": "Sur cette journée, la compréhension va sous le capot et identifie un mécanisme (similarité vectorielle sur chunks hétérogènes) avant de proposer une intervention causale."
+      },
+      {
+        "competence": "Synthèse intégrative",
+        "description": "Une fusion entre domaines éloignés qui produit des objets nouveaux — propositions techniques, schémas biographiques.",
+        "extraitVerbatim": "on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs en lui demandant de reformuler les phrases comme il le ferait pour écrire de la poésie en respectant un certain nombre de pieds",
+        "ceQueCaDit": "Sur cette journée, la synthèse fonctionne comme un réflexe de rapprochement entre univers incompatibles qui débouche sur des propositions opérantes."
+      },
+      {
+        "competence": "Pensée critique & anti-hallucination",
+        "description": "Un doute calibré qui se déclenche au moment précis de l'enthousiasme et qui passe à l'acte de vérification.",
+        "extraitVerbatim": "C'est tellement évident que je pense que soit j'ai mal compris, soit j'ai pas tout compris, soit ils l'ont déjà fait",
+        "ceQueCaDit": "Sur cette journée, l'autocritique à chaud déclenche une vérification externe — le doute ne reste pas formule, il devient acte."
+      },
+      {
+        "competence": "Pensée systémique",
+        "description": "Une lecture des boucles et des effets de seuil qui caractérisent son propre fonctionnement et son rapport au travail.",
+        "extraitVerbatim": "plus le temps passe, plus j'ai de choses à faire, alors que ça devrait être l'inverse vu que je travaille tout le temps",
+        "ceQueCaDit": "Sur cette journée, le travail nomme des dynamiques avec leur direction et leurs effets — pas seulement leur existence."
+      }
+    ],
+    "territoiresNonVisites": "Sur cette feuille, certains territoires restent à explorer. Le cadrage de l'intention — l'art d'interroger l'objectif lui-même avant de chercher la solution — n'apparaît pas en acte : les projets sont énumérés, hiérarchisés, mais la question « faut-il vraiment résoudre ça ? » ne traverse pas la journée. La synergie & coordination hybride reste également non visitée sous sa forme articulée : l'IA est convoquée et utilisée (vidéo, Perplexity, projet LangChain), mais le récit ne décrit pas explicitement ce qui revient à l'humain et pourquoi, ni ce qui revient à l'IA et pourquoi. L'architecture de systèmes IA et le dialogue IA avancé apparaissent en mouvement-vers — comme besoin nommé (LangFlow, orchestration de prompts) plutôt que comme conception ou pratique documentée. Ces absences ressemblent moins à des manques qu'à des territoires que la journée n'a pas eu le temps d'arpenter, et que d'autres feuilles éclairent peut-être différemment.",
+    "emergencesPole": "Trois choses traversent ce pôle sur cette journée. D'abord, le motif du compartimentage cognitif : entre les 16 bureaux virtuels, les 3 sessions utilisateur, les 3 phases de vie, les 3 styles d'écriture du roman, le travail organise sa pensée par cloisonnement structurel — c'est à la fois une habitude métacognitive, computationnelle et synergique. Ensuite, l'usage de la métaphore comme outil opérant : l'entropie pour nommer une boucle de surcharge, la poésie pour proposer une amélioration RAG, le palais mental pour décrire l'organisation Mac. La métaphore ne décore pas, elle fait travailler. Enfin, le mouvement permanent entre l'observation et l'action : presque chaque insight métacognitif est suivi d'une décision (réouvrir l'utilisateur C, faire la formation Microsoft, coder pour assimiler).",
+    "pistes": [
+      "Pour prolonger la modélisation systémique de ses propres boucles, un chemin possible serait de tester un point de levier identifié — par exemple, isoler explicitement un bloc de temps long sans le tout venant — et de documenter l'effet observé.",
+      "Pour prolonger la pensée critique calibrée, un chemin possible serait de documenter, sur un épisode prochain, le critère précis qui a fait basculer la confiance vers une source plutôt qu'une autre, au-delà de la simple confirmation.",
+      "Pour prolonger l'architecture de systèmes IA, un chemin possible serait d'écrire un schéma de pipeline RAG amélioré tel qu'un tiers pourrait le reprendre — composants, flux, règles de routing — afin de faire basculer l'intuition en conception.",
+      "Pour prolonger la synthèse intégrative, un chemin possible serait de suivre une analogie cross-domaine depuis l'étincelle jusqu'au test concret, et de documenter ce qui résiste au passage à l'acte."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée, le travail montre une pensée qui s'observe penser au moment où elle agit, et qui prend pour objet ses propres processus avec un vocabulaire emprunté à la computation. La voix dominante oscille entre l'auto-modélisation précise (inertie, mémoire de travail, charge de contexte) et le saut analogique entre domaines éloignés (poésie, fonction de hachage, vector store). Les marqueurs concrets reviennent : 44 interruptions comptées depuis juin, 16 bureaux virtuels saturés, 3 sessions utilisateur pour 3 phases de vie, 12 minutes pour compresser une formation. Le registre est celui d'un atelier mental où le fonctionnement personnel devient un objet à diagnostiquer, à reconfigurer, parfois à hacker.\n\n## Territoires les plus denses\n\n**Métacognition & humilité épistémique** — Une auto-observation qui prend pour objet le processus cognitif lui-même, avec un vocabulaire qui dépasse l'introspection ordinaire. *« dans mon mode de fonctionnement, j'ai une inertie importante pour pouvoir me mettre en condition de travail. Si mon temps de travail disponible est inférieur ou égal à mon temps d'inertie, je ne fais rien »*. Sur cette journée, la métacognition se manifeste comme une pratique installée — pilotage conscient de stratégies, calibration de zones d'ignorance, dispositif de palais mental nommé.\n\n**Pensée computationnelle** — Une logique algorithmique appliquée hors informatique — à l'organisation de la vie, à la stratégie d'apprentissage, à la structuration de l'identité. *« j'ai saturé mes 16 bureaux virtuels de multiples fenêtres pour chacun des projets interrompus. C'est la 17e interruption et je n'ai pas droit à 17 bureaux virtuels sous MacOS »*. Sur cette journée, le travail décompose, structure et pipeline son environnement et ses processus — la pensée algorithmique opère sur des objets non-techniques.\n\n**Littératie IA & data literacy** — Une compréhension causale des mécanismes IA qui passe de la familiarité avec le vocabulaire à la critique architecturale opérante. *« Dans la démo que j'ai vu, il y a déjà des points d'amélioration évidents : la taille des chunks est fixe ! Alors qu'on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs »*. Sur cette journée, la compréhension va sous le capot et identifie un mécanisme avant de proposer une intervention causale.\n\n**Synthèse intégrative** — Une fusion entre domaines éloignés qui produit des objets nouveaux — propositions techniques, schémas biographiques. *« on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs en lui demandant de reformuler les phrases comme il le ferait pour écrire de la poésie en respectant un certain nombre de pieds »*. Sur cette journée, la synthèse fonctionne comme un réflexe de rapprochement entre univers incompatibles qui débouche sur des propositions opérantes.\n\n**Pensée critique & anti-hallucination** — Un doute calibré qui se déclenche au moment précis de l'enthousiasme et qui passe à l'acte de vérification. *« C'est tellement évident que je pense que soit j'ai mal compris, soit j'ai pas tout compris, soit ils l'ont déjà fait »*. Sur cette journée, l'autocritique à chaud déclenche une vérification externe — le doute ne reste pas formule, il devient acte.\n\n**Pensée systémique** — Une lecture des boucles et des effets de seuil qui caractérisent son propre fonctionnement et son rapport au travail. *« plus le temps passe, plus j'ai de choses à faire, alors que ça devrait être l'inverse vu que je travaille tout le temps »*. Sur cette journée, le travail nomme des dynamiques avec leur direction et leurs effets — pas seulement leur existence.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, certains territoires restent à explorer. Le cadrage de l'intention — l'art d'interroger l'objectif lui-même avant de chercher la solution — n'apparaît pas en acte : les projets sont énumérés, hiérarchisés, mais la question « faut-il vraiment résoudre ça ? » ne traverse pas la journée. La synergie & coordination hybride reste également non visitée sous sa forme articulée : l'IA est convoquée et utilisée, mais le récit ne décrit pas explicitement ce qui revient à l'humain et pourquoi, ni ce qui revient à l'IA et pourquoi. L'architecture de systèmes IA et le dialogue IA avancé apparaissent en mouvement-vers — comme besoin nommé plutôt que comme conception ou pratique documentée. Ces absences ressemblent moins à des manques qu'à des territoires que la journée n'a pas eu le temps d'arpenter, et que d'autres feuilles éclairent peut-être différemment.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent ce pôle sur cette journée. D'abord, le motif du compartimentage cognitif : entre les 16 bureaux virtuels, les 3 sessions utilisateur, les 3 phases de vie, les 3 styles d'écriture du roman, le travail organise sa pensée par cloisonnement structurel — c'est à la fois une habitude métacognitive, computationnelle et synergique. Ensuite, l'usage de la métaphore comme outil opérant : l'entropie pour nommer une boucle de surcharge, la poésie pour proposer une amélioration RAG, le palais mental pour décrire l'organisation Mac. La métaphore ne décore pas, elle fait travailler. Enfin, le mouvement permanent entre l'observation et l'action : presque chaque insight métacognitif est suivi d'une décision (réouvrir l'utilisateur C, faire la formation Microsoft, coder pour assimiler).\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la modélisation systémique de ses propres boucles, un chemin possible serait de tester un point de levier identifié — par exemple, isoler explicitement un bloc de temps long sans le tout venant — et de documenter l'effet observé.\n- Pour prolonger la pensée critique calibrée, un chemin possible serait de documenter, sur un épisode prochain, le critère précis qui a fait basculer la confiance vers une source plutôt qu'une autre, au-delà de la simple confirmation.\n- Pour prolonger l'architecture de systèmes IA, un chemin possible serait d'écrire un schéma de pipeline RAG amélioré tel qu'un tiers pourrait le reprendre — composants, flux, règles de routing — afin de faire basculer l'intuition en conception.\n- Pour prolonger la synthèse intégrative, un chemin possible serait de suivre une analogie cross-domaine depuis l'étincelle jusqu'au test concret, et de documenter ce qui résiste au passage à l'acte.\n"
+  }
+}

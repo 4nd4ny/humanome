@@ -1,0 +1,425 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "Imprévu hier : peu de temps après le reboot, une amie de Soledad a débarqué et en même temps Alicia avec Leila qui dormait et qu'elle a mis dans ma chambre ou j'ai mon ordi. Obligé de rester avec la copine de Soledad. Ensuite Leila est Alicia sont restée dormir, bref, ma journée d'hier s'est arrêté à la pause de midi et je n'ai pas pu travailler la nuit non plus, puisque c'est moi qui garde Leila lorsque Soledad et Alicia dorment (Leila dors aussi peu que moi, c'est à dire 3h de moins par nuit que sa mère ou que Soledad à 4 ans et demi).",
+      "contexte": "Récit d'un imprévu domestique qui a interrompu une journée entière de travail et empêché le travail nocturne.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "Là elles viennent de partir : ce sont donc 24h que je ne compte pas dans le temps du reboot.",
+      "contexte": "Comptabilisation explicite d'un temps soustrait d'un dispositif personnel de remise à neuf.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**Desktops**  \n**01: WORK** → Sites web Mimi  \n**02: ORP** → Job-Room + LinkedIn  \n**03: COM** → eMail + Grpes discussions  \n**04: YAML** → Génération des YAML & Prompts ipsatifs via script Python v2   \n**05: GRIMOIRE** → Ajout des l'Ordre des Éclaireurs + Site web Grimoire  \n**06: NOESIO** → noesiology.education + De Humani Cerebris Fabrica + Labo + Cartes + Dynamica Animata  \n**07: LIVRE** → Pédagogie Émergence + couplage Noèsis-Entendement + revoir plan v2  \n**08: MANUELS** → 9 manuels + ludification : quel impact ? + générer v2  \n**09: G-WORKSPACE** → Test carto + portfolio + comparaisons projet Aurora  \n**10: RESPIRE** → Site web v2 + add réf. + refonte new landing page  \n**11: DECIDIM** → Discussions référentiels + CSS update + commencer à en parler  \n**12: REFERENTIELS** → v7 + Réflexions NotebookLM + publier débâts dans Décidim  \n**13: CARTO** → CartoViewer Prototypes : fusionner + créer site React  \n**14: EDUFOLIO** → Sqily + Cahier des charges + suite au hackathon décider si Sqily = base EduFolio ou pas  \n**15: ORG** → Journal de bord + Plannifications + notes réflexions  \n**16: FUN** → Udopia",
+      "contexte": "Inventaire complet d'une architecture personnelle de 16 desktops thématiques avec leurs sous-chantiers respectifs — artefact de pilotage de portefeuille de projets.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**15: ORG** → Journal de bord + Plannifications + notes réflexions",
+      "contexte": "Un desktop dédié à l'organisation, au journal de bord, aux planifications et aux notes — espace explicite de pilotage personnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "Voici ma todo list avant refactoring :  \n![][image25]![][image26]\n\nVoici ma todo list après refactoring :  \n![][image27]",
+      "contexte": "Mise en regard d'un avant et d'un après de la todo list — geste de réorganisation d'un instrument de pilotage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "J'y vois plus clair maintenant. Il n'y a plus qu'à recharger dans ma mémoire de contexte les différents projets (de plusieurs centaines à plusieurs milliers de pages à relire…) !",
+      "contexte": "Après le refactoring, l'apprenant constate une amélioration de la visibilité et identifie la prochaine étape — relire l'ensemble des projets.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**08: MANUELS** → 9 manuels + ludification : quel impact ? + générer v2",
+      "contexte": "Question ouverte sur l'impact pédagogique de la ludification appliquée à neuf manuels — geste de réflexion pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**07: LIVRE** → Pédagogie Émergence + couplage Noèsis-Entendement + revoir plan v2",
+      "contexte": "Livre en cours sur la \"Pédagogie Émergence\" et le couplage de concepts cognitifs — travail conceptuel à dimension pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**14: EDUFOLIO** → Sqily + Cahier des charges + suite au hackathon décider si Sqily = base EduFolio ou pas",
+      "contexte": "Arbitrage prospectif d'outil suite à un hackathon — choix stratégique pour un projet de portfolio pédagogique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "La question \"ludification : quel impact ?\" appliquée à neuf manuels est une question ouverte de méta-apprentissage sur un dispositif pédagogique."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Le projet de livre sur la \"Pédagogie Émergence\" suggère une réflexion conceptuelle sur la facilitation d'apprentissage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la maïeutique n'est pas attestée. La fiche demande soit une retenue délibérée (\"j'aurais pu lui dire mais...\"), soit des questions adressées à autrui pour provoquer une prise de conscience, soit des artefacts pédagogiques traçables et déployés. Sur cette feuille, les deux pièces sont des items de todo : une question sur la ludification, un titre de livre. Aucune question maïeutique adressée à un apprenant n'est citée, aucun dispositif pédagogique n'est décrit en détail. Sous présomption d'absence, les pièces tombent : elles signalent un travail pédagogique en cours sans le déployer.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Pas d'examen à conduire au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir si la maïeutique se manifestait sur cette feuille. Les mentions \"ludification : quel impact ?\" et \"Pédagogie Émergence\" indiquent qu'un travail pédagogique est en cours, mais ne montrent ni la posture de questionnement adressée à autrui, ni l'architecture pédagogique déployée. Ce qui en résulte, c'est qu'il n'y a pas de trace attestée de cette compétence sur cette feuille — l'apprenant travaille sur de la pédagogie, mais la trace maïeutique elle-même est ailleurs.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence ; les items de todo signalent un travail pédagogique sans déployer la posture maïeutique elle-même.",
+        "prescription": "Pour ouvrir ce dossier, citer une fois la question posée à un apprenant à la place d'une réponse donnée, ou décrire un dispositif pédagogique conçu pour qu'un autre découvre par lui-même, donnerait à la maïeutique sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas d'acte d'évaluation au service de la progression d'un apprenant. Pour ouvrir ce dossier, raconter une fois un feedback formulé pour faire progresser — pas pour trier — documenterait cette compétence."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Le desktop ORG mentionne explicitement \"Journal de bord + Planifications + notes réflexions\" — l'apprenant tient un espace dédié à la documentation de son travail."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Les mentions de \"v2\", \"v7\", \"refonte new landing page\" et \"site web v2\" supposent un versionnage explicite d'artefacts produits — geste de capitalisation et de traçage de l'évolution."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la documentation vivante n'est pas attestée. La fiche distingue \"stocker\" de \"transmettre en structurant pour un futur lecteur\" : 7.03 exige l'intention de pérennisation et la conscience du destinataire. La pièce 1 mentionne un journal de bord et des planifications, mais sur cette feuille seule, je ne vois pas comment ce journal est structuré pour autrui ni à quel destinataire il est adressé — l'apprenant est probablement son propre destinataire. La pièce 2 atteste un versionnage explicite (v2, v7), ce qui est une trace réelle de capitalisation : on conserve les versions, on travaille en cycles documentés. Sous présomption d'absence, la pièce 1 tombe — c'est un cadre, pas une démonstration. La pièce 2 résiste un peu : le versionnage explicite est un marqueur listé par la fiche (\"v1, v2... mises à jour de documents existants\").",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Le versionnage explicite (v2, v7) est cité comme manifestation directe de 7.03 par la fiche elle-même : versioning, historique d'évolution, mises à jour."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Sous la présomption de sycophantie, je dois demander si le simple numérotage des versions suffit à porter la compétence. La fiche pose comme critère discriminant l'intention de pérennisation et la conscience du destinataire. Numéroter v1, v2 peut être une simple convention personnelle d'archivage, sans destinataire externe ni structuration pensée pour autrui. Le risque est de prendre un marqueur lexical (v2) pour une compétence (documentation pensée pour un lecteur futur).",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le glissement lexical est plausible : \"v2\", \"v7\" peuvent être de simples étiquettes d'archivage personnel. Toutefois, leur omniprésence (plusieurs chantiers, plusieurs supports) suggère une discipline réelle de versionnage — pas un mot isolé. La pièce reste valide mais affaiblie par l'absence de description du destinataire et de la structuration."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir si la documentation vivante s'attestait. Le journal de bord mentionné comme desktop ORG est un cadre sans démonstration. Le versionnage omniprésent (v2, v7) a résisté à la présomption d'absence parce que la fiche le cite comme manifestation directe. Sous présomption de sycophantie, cette pièce a été affaiblie : la simple numérotation peut être un archivage personnel sans intention de transmission. Ce qui en résulte, c'est un indice fragile d'une discipline de capitalisation, sans démonstration sur cette feuille de la conscience du destinataire futur. Le verdict tient en renvoi au cartographe.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce (le versionnage omniprésent) a survécu affaiblie au temps 2 ; la discipline est visible mais la conscience du destinataire futur n'est pas explicitée sur cette feuille seule.",
+        "prescription": "Pour approfondir cette piste, expliciter une fois pour qui une version donnée est faite — soi à six mois, un collaborateur, un public extérieur — donnerait à la pratique de versionnage sa dimension pleinement documentaire au sens de la fiche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de récit de leadership d'équipe ou de mobilisation collective. Pour ouvrir ce dossier, raconter une situation où une équipe ou un groupe a été orienté vers un but commun nommerait cette compétence."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'architecture de 16 desktops thématiques couvrant un univers complet de projets — site, livre, manuels, référentiels, cartographie, portfolio — peut signaler une vision d'ensemble qui dépasse l'horizon de la journée."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "L'arbitrage \"décider si Sqily = base EduFolio ou pas\" mobilise une décision présente liée à un futur projet (EduFolio) — possible lien futur/présent."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la vision stratégique n'est pas attestée. La fiche exige un lien argumenté entre futur anticipé et décision présente. La pièce 1 décrit une architecture, mais aucune phrase ne dit \"je fais X maintenant parce que dans Y temps...\". La pièce 2 annonce un arbitrage mais ne déploie pas la projection. Sous présomption d'absence, les pièces tombent. Ce qui résiste très fragilement, c'est la cohérence d'ensemble des 16 desktops : ils couvrent un univers articulé (un livre, des manuels, des référentiels, une cartographie, un portfolio, des sites de soutien). Cette articulation suggère qu'une direction structure le tout, même non explicitée. La fiche cite parmi les traces obliques \"architecture de travail surdimensionnée pour l'usage actuel\" comme signe de vision prospective incarnée dans la structure.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La fiche prévoit que l'architecture de travail surdimensionnée pour l'usage actuel — comme ici 16 desktops articulés autour d'un univers cohérent de production — peut être une trace prospective incarnée dans la structure même."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Sous la présomption de sycophantie, je dois demander si l'architecture des 16 desktops porte vraiment une vision ou si c'est simplement un partitionnement d'attention. La fiche est exigeante : il faut un lien explicite entre futur et présent, ou au minimum une architecture qui anticipe un usage. Sur cette feuille, l'architecture est montrée mais ses raisons stratégiques ne sont pas explicitées. Le risque de surinterprétation pédagogique est réel : je vois de la vision parce que je veux en voir.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'attaque de surinterprétation pédagogique pèse : l'architecture montrée pourrait être un rangement opérationnel sans vision sous-jacente. Elle ne disqualifie toutefois pas la pièce, parce que la diversité (sites de soutien, livre théorique, manuels, référentiels, cartographie, portfolio) suggère une finalité d'ensemble vers laquelle convergent les chantiers — finalité que la fiche reconnaît comme trace prospective incarnée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir si une vision stratégique reliait les chantiers à un futur anticipé. La feuille ne contient aucune phrase explicite du type \"je fais cela maintenant parce que plus tard...\". L'architecture des 16 desktops a résisté à la présomption d'absence parce qu'elle révèle un univers articulé qui dépasse l'horizon d'une journée. Sous présomption de sycophantie, cette pièce a été affaiblie sans tomber : l'architecture montre une cohérence sans expliciter la vision. Ce qui en résulte, c'est un indice fragile d'une visée stratégique incarnée dans la structure même du travail, qui mériterait d'être verbalisée. Le verdict tient en renvoi au cartographe.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce (l'architecture des 16 desktops articulés) a survécu affaiblie ; la vision est incarnée dans la structure mais aucun lien futur/présent n'est verbalisé sur cette feuille.",
+        "prescription": "Pour approfondir cette piste, dire une fois en quelques phrases vers quoi convergent les seize chantiers — quel horizon donne sens à leur coexistence, quel artefact final imagine relier les sites, le livre, les manuels et les référentiels — rendrait la vision stratégique pleinement lisible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le récit d'un arrêt à la pause de midi suite à l'arrivée de proches et de l'impossibilité de travailler la nuit signale une situation où l'efficacité personnelle a été heurtée par des contraintes externes."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le geste de soustraire 24h du \"temps du reboot\" est un acte de priorisation comptabilisée d'un dispositif de pilotage personnel."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Le refactoring de la todo list est un acte explicite de pilotage personnel — l'apprenant retravaille son instrument de gestion."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Le constat \"j'y vois plus clair\" après refactoring suggère un effet attendu et obtenu d'un geste de gestion."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que l'efficacité personnelle n'est pas attestée. La fiche est exigeante : le marqueur le plus fiable est le \"non\" stratégique argumenté, ou un arbitrage de priorisation explicite, ou un récit de tentation suivie de refus. Sur cette feuille, l'apprenant n'a pas dit \"non\" à ses visiteurs — il les a accueillis. Il n'arbitre rien explicitement entre des tâches concurrentes. Le \"24h que je ne compte pas\" est plutôt une comptabilité ex-post qu'un arbitrage présent. La pièce 1 tombe. La pièce 2 est affaiblie mais résiste un peu : tenir une comptabilité du temps de reboot, et choisir de l'ajuster honnêtement, est une forme de pilotage personnel. Les pièces 3 et 4 résistent davantage : le refactoring de la todo est précisément un acte de gestion qui produit un effet observable (\"j'y vois plus clair\"), c'est-à-dire une mise en ordre des priorités. La fiche cite l'idée de \"découverte et formalisation de techniques personnelles\" comme manifestation.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Tenir une comptabilité honnête du \"temps du reboot\" est un acte délibéré de pilotage personnel — l'apprenant ne s'auto-trompe pas sur ce qu'il a accompli."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Le refactoring explicite de la todo, avec un avant/après produit comme artefact, est un acte de gestion observable de ses propres priorités."
+            },
+            {
+              "pieceId": 4,
+              "motifResistance": "Le constat \"j'y vois plus clair\" relie le geste de gestion à un effet vérifié — la priorisation a effectivement amélioré la visibilité du travail à faire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Sous la présomption de sycophantie, je dois demander si j'ai chargé les gestes de pilotage d'une portée qu'ils ne portent pas. La fiche distingue l'efficacité personnelle articulée (avec critères) de la simple agitation organisationnelle. La pièce 2 reste fragile : comptabiliser le temps est un geste, mais aucun arbitrage explicite n'est articulé sur cette feuille. Les pièces 3 et 4 forment un couple — refactoring + résultat — qui ressemble à une boucle d'auto-pilotage : on identifie un problème (todo trop dense), on agit (refactor), on constate l'effet (j'y vois plus clair). C'est précisément la \"découverte et formalisation de techniques personnelles\" que la fiche cite.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est courte et n'articule pas explicitement un critère de priorisation. Elle reste néanmoins une trace d'auto-pilotage honnête — l'apprenant ne maquille pas son rapport au temps."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le récit performatif serait \"j'ai refactorisé ma todo\" sans rien d'autre. Ici, l'apprenant produit un artefact (todo avant/après) et constate un effet (j'y vois plus clair). L'acte n'est pas seulement raconté, il est montré et son effet est vérifié. L'attaque n'est pas recevable."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le \"j'y vois plus clair\" est court et sans critère explicite, mais il fonctionne comme retour d'expérience d'un acte de gestion. Couplé à la pièce 3, il forme une boucle de pilotage observable."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir si l'efficacité personnelle s'attestait sur cette feuille au sens où la fiche la définit. La feuille ne contient pas de \"non\" stratégique argumenté ni d'arbitrage de priorisation déployé en mots. Trois pièces ont résisté à la présomption d'absence : la comptabilité du temps de reboot, le refactoring de la todo, et le constat de son effet. Sous présomption de sycophantie, deux de ces pièces ont été affaiblies, mais la troisième — le refactoring lui-même, attesté par l'artefact avant/après et confirmé par l'effet observé — a tenu pleinement. Ce qui en résulte, c'est une boucle d'auto-pilotage en acte sur cette feuille : identifier un état (todo trop dense, peu lisible), agir (refactor), constater le résultat (visibilité). Le combo correspond bien au cœur de 7.06, sans atteindre la pleine sophistication du \"non\" argumenté. Le verdict tient comme présence établie à confiance modérée.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le couple refactoring de la todo + constat de visibilité accrue forme une boucle d'auto-pilotage observable et confirmée au temps 2 ; les deux autres pièces ajoutent un appui d'auto-comptabilité honnête.",
+        "prescription": "Pour approfondir cette compétence, expliciter une fois le critère qui a guidé le refactoring — quelles tâches ont été déplacées et selon quel principe — donnerait à cette pratique sa dimension de priorisation pleinement articulée. Tenir l'exercice du \"non\" sur une sollicitation à venir consoliderait la même piste."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Les nombreuses mentions de versions successives (v2, v7) et de refonte indiquent un travail en cycles itératifs — possible marqueur d'agilité."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Le refactoring de la todo avec un avant/après est précisément un ajustement de plan en cours de route, avec mise en visibilité du geste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que l'agilité n'est pas attestée. La fiche distingue l'adoption formelle de rituels (\"théâtre agile\") de la vraie compétence : capacité à MODIFIER le plan, boucle de rétroaction explicite, ajustements avec raisons explicitées. La pièce 1 montre un travail en versions, mais sans description des cycles ni des raisons d'ajustement entre versions. La pièce 2 montre un acte d'ajustement (refactoring) avec un résultat visible — mais aucune phrase n'explicite quel apprentissage a guidé l'ajustement. Sous présomption d'absence, la pièce 1 tombe : un numéro de version sans raison d'ajustement n'atteste pas d'agilité. La pièce 2 résiste : la fiche cite explicitement \"Numéro de version élevé (v6, v7) sans commentaire méthodologique = pratique itérative ancrée non thématisée\" et \"abandon d'un canal de communication inefficace au profit d'un autre = ajustement agile sans vocabulaire Scrum\". Le refactoring de la todo entre dans ce schéma.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La fiche cite comme trace oblique \"abandon d'un instrument inefficace au profit d'un autre\" — le refactoring d'une todo entre dans ce schéma d'ajustement opérationnel non thématisé comme méthode agile."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Sous la présomption de sycophantie, je dois demander si le refactoring d'une todo suffit à porter le marqueur d'agilité. La fiche est exigeante : il faut une boucle de rétroaction explicite ou une normalisation des résistances. Sur cette feuille, le refactoring est un acte ponctuel, pas un cycle documenté avec retour explicite. Le risque de surinterprétation est réel — l'apprenant n'a pas dit \"j'itère sur mon outil de gestion\" ; j'ai chargé un acte ordinaire d'une portée méthodologique. Le mouvement-vers est probable plutôt que la compétence pleine.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le mouvement-vers pèse : le refactoring est un ajustement ponctuel sans boucle de rétroaction explicite ni description du cycle générer-relire-tester-ajuster. La pièce porte une pratique en cours d'ancrage, pas une méthodologie pleinement déployée, mais elle est confirmée par les nombreuses versions actives ailleurs sur la feuille (v2, v7)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir si l'agilité s'attestait au sens de la fiche. Le refactoring de la todo a résisté à la présomption d'absence : il correspond à la trace oblique d'un ajustement opérationnel non thématisé. Sous présomption de sycophantie, cette pièce a été affaiblie : un acte ponctuel ne fait pas une boucle de rétroaction explicite. Ce qui en résulte, c'est un indice fragile d'une agilité en pratique sans verbalisation méthodologique. Le verdict tient en renvoi au cartographe.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce (refactoring de la todo) a survécu affaiblie ; le geste d'ajustement est visible mais la boucle de rétroaction explicite n'est pas verbalisée sur cette feuille.",
+        "prescription": "Pour approfondir cette piste, expliciter une fois la boucle qui a conduit du constat à l'ajustement — quel signal a déclenché le refactoring, quel cycle de rétroaction a été suivi — donnerait à la pratique d'itération sa dimension méthodologique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas d'incident géré en urgence avec compression temporelle. Pour ouvrir ce dossier, raconter un moment où des décisions ont dû être prises en cascade sous pression extrême — avec timing, séquence, erreurs reconnues — documenterait la gestion de crise."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 5,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 8 mars 2026 montre un apprenant en pleine activité de pilotage personnel après une interruption de 24 heures. L'inventaire de seize desktops thématiques, la mention d'un journal de bord dédié, le refactoring d'une todo list avec un avant/après explicitement montré, et le constat \"j'y vois plus clair\" forment ensemble l'image d'un travail qui sait s'organiser sur lui-même. La voix dominante est celle d'un opérateur qui pilote un portefeuille étendu de projets et qui revient à son tableau de bord après l'imprévu pour reprendre la main. Sur ce pôle, la feuille porte des marqueurs forts d'efficacité personnelle et d'itération en pratique, plus discrets sur les dimensions pédagogiques ou de gestion de crise.",
+    "territoiresDenses": [
+      {
+        "competence": "Efficacité personnelle et pilotage de soi",
+        "description": "L'apprenant identifie un état de surcharge de sa todo, agit (refactoring), constate l'effet (j'y vois plus clair) et identifie la prochaine étape (recharger en mémoire de contexte les projets). Cette boucle d'auto-pilotage est observable et confirmée par l'artefact avant/après.",
+        "extraitVerbatim": "Voici ma todo list avant refactoring [...] Voici ma todo list après refactoring [...] J'y vois plus clair maintenant.",
+        "ceQueCaDit": "Sur ce pôle, la feuille du 8 mars montre un rapport au pilotage de soi qui ne se contente pas de raconter — il produit un artefact et en vérifie l'effet. La pratique est ancrée en acte plus qu'en méthode explicite."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent non visités dans cette feuille. La maïeutique, l'évaluation transformative, le leadership et la gestion de crise n'y trouvent pas d'occasion pour se déployer — non parce qu'ils seraient absents du travail global, mais parce que la matière de la feuille porte sur la reprise de chantiers, pas sur des actes pédagogiques ou des incidents. Deux territoires sont effleurés à hauteur de renvoi au cartographe : la documentation vivante, attestée par la discipline de versionnage omniprésente (v2, v7) sans que la conscience du destinataire soit explicitée ; et la vision stratégique, incarnée dans l'articulation de seize desktops cohérents sans que le lien futur/présent soit verbalisé. L'agilité est elle aussi en renvoi, à travers le refactoring qui ressemble à un ajustement non thématisé comme méthodologie.",
+    "emergencesPole": "Une observation traverse cette feuille : le pilotage se manifeste par artefacts plutôt que par discours méthodologiques. L'apprenant ne dit pas \"j'applique telle méthode\" ; il montre l'avant et l'après d'une todo, énumère ses seize desktops, mentionne ses versions. Cette manière de piloter par production d'instruments visibles plutôt que par énoncés méthodologiques est cohérente sur l'ensemble de la feuille et caractérise un rapport pragmatique au pôle pilotage. Une seconde observation : la cohérence des seize desktops dépasse la liste — sites de soutien, livre théorique, manuels, référentiels, cartographie, portfolio convergent visiblement vers un projet d'ensemble qui demande encore à être nommé.",
+    "pistes": [
+      "Pour donner à la pratique de versionnage sa dimension de documentation vivante, un chemin possible serait d'expliciter une fois pour qui une version donnée est faite — soi à six mois, un collaborateur, un public extérieur.",
+      "Pour rendre visible la vision qui structure l'architecture des seize desktops, un chemin possible serait de dire en quelques phrases vers quoi convergent ces chantiers — quel artefact final imagine relier les sites, le livre, les manuels et les référentiels.",
+      "Pour donner à la pratique d'ajustement sa dimension méthodologique, un chemin possible serait d'expliciter une fois le signal qui a déclenché le refactoring et le critère qui a guidé la nouvelle organisation."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 8 mars 2026 montre un apprenant en pleine activité de pilotage personnel après une interruption de 24 heures. L'inventaire de seize desktops thématiques, la mention d'un journal de bord dédié, le refactoring d'une todo list avec un avant/après explicitement montré, et le constat \"j'y vois plus clair\" forment ensemble l'image d'un travail qui sait s'organiser sur lui-même. La voix dominante est celle d'un opérateur qui pilote un portefeuille étendu de projets et qui revient à son tableau de bord après l'imprévu pour reprendre la main. Sur ce pôle, la feuille porte des marqueurs forts d'efficacité personnelle et d'itération en pratique, plus discrets sur les dimensions pédagogiques ou de gestion de crise.\n\n## Territoires les plus denses\n\n**Efficacité personnelle et pilotage de soi.** L'apprenant identifie un état de surcharge de sa todo, agit (refactoring), constate l'effet (j'y vois plus clair) et identifie la prochaine étape (recharger en mémoire de contexte les projets). Cette boucle d'auto-pilotage est observable et confirmée par l'artefact avant/après. Extrait : *« Voici ma todo list avant refactoring [...] Voici ma todo list après refactoring [...] J'y vois plus clair maintenant. »* Sur ce pôle, la feuille du 8 mars montre un rapport au pilotage de soi qui ne se contente pas de raconter — il produit un artefact et en vérifie l'effet. La pratique est ancrée en acte plus qu'en méthode explicite.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent non visités dans cette feuille. La maïeutique, l'évaluation transformative, le leadership et la gestion de crise n'y trouvent pas d'occasion pour se déployer — non parce qu'ils seraient absents du travail global, mais parce que la matière de la feuille porte sur la reprise de chantiers, pas sur des actes pédagogiques ou des incidents. Deux territoires sont effleurés à hauteur de renvoi au cartographe : la documentation vivante, attestée par la discipline de versionnage omniprésente (v2, v7) sans que la conscience du destinataire soit explicitée ; et la vision stratégique, incarnée dans l'articulation de seize desktops cohérents sans que le lien futur/présent soit verbalisé. L'agilité est elle aussi en renvoi, à travers le refactoring qui ressemble à un ajustement non thématisé comme méthodologie.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse cette feuille : le pilotage se manifeste par artefacts plutôt que par discours méthodologiques. L'apprenant ne dit pas \"j'applique telle méthode\" ; il montre l'avant et l'après d'une todo, énumère ses seize desktops, mentionne ses versions. Cette manière de piloter par production d'instruments visibles plutôt que par énoncés méthodologiques est cohérente sur l'ensemble de la feuille et caractérise un rapport pragmatique au pôle pilotage. Une seconde observation : la cohérence des seize desktops dépasse la liste — sites de soutien, livre théorique, manuels, référentiels, cartographie, portfolio convergent visiblement vers un projet d'ensemble qui demande encore à être nommé.\n\n## Pistes pour enrichir ce pôle\n\nPour donner à la pratique de versionnage sa dimension de documentation vivante, un chemin possible serait d'expliciter une fois pour qui une version donnée est faite — soi à six mois, un collaborateur, un public extérieur.\n\nPour rendre visible la vision qui structure l'architecture des seize desktops, un chemin possible serait de dire en quelques phrases vers quoi convergent ces chantiers — quel artefact final imagine relier les sites, le livre, les manuels et les référentiels.\n\nPour donner à la pratique d'ajustement sa dimension méthodologique, un chemin possible serait d'expliciter une fois le signal qui a déclenché le refactoring et le critère qui a guidé la nouvelle organisation."
+  }
+}

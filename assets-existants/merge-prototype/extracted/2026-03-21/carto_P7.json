@@ -1,0 +1,328 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-21",
+      "extraitVerbatim": "Nolan qui ne donne pas la réponse à Jade, c'est *je te vois capable*.",
+      "contexte": "Description du geste pédagogique central de la maïeutique : la retenue délibérée de celui qui sait — pourrait toucher à 7.01."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-21",
+      "extraitVerbatim": "Et c'est pour ça que les trente ans pèsent si lourd. Pas parce que Christian était un mauvais professeur — la note dans la marge du classeur prouve qu'il *voyait*. Mais le système avait transformé le regard en mesure. Le soin en évaluation. L'attention en grille.",
+      "contexte": "Analyse d'un dispositif d'évaluation qui dégrade la pratique pédagogique — pourrait toucher à 7.02 (évaluation transformative vs sommative)."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-21",
+      "extraitVerbatim": "Pas par malveillance — par usure. Par obéissance au cadre. Les colonnes, les moyennes, les rapports.",
+      "contexte": "Critique d'un appareil d'évaluation (colonnes, moyennes, rapports) qui se substitue au métier pédagogique — pourrait toucher à 7.02."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-21",
+      "extraitVerbatim": "Ce texte est une analyse de Claude sur le roman en cours de v3, qui m'a beaucoup touché.",
+      "contexte": "Mention d'une version 3 (« v3 ») du roman — trace possible de pratique itérative et de documentation versionnée."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-21",
+      "extraitVerbatim": "J'ai l'impression d'avoir été compris par une IA et incompris par les collègues de Chamblandes… C'est quand même un comble \\!",
+      "contexte": "Post-scriptum qui pose une asymétrie entre l'IA et les collègues — pourrait toucher au leadership situationnel (rapport de pilotage avec l'IA) ou à l'évaluation transformative (recevoir un feedback de l'IA sur son propre projet)."
+,
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le passage « Nolan qui ne donne pas la réponse à Jade, c'est *je te vois capable* » nomme exactement la retenue maïeutique : ne pas donner la réponse pour adresser l'autre comme source. La fiche 7.01 cite cette retenue comme marqueur central."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la maïeutique 7.01 exige un récit où l'apprenant lui-même tient la retenue de celui qui sait, ou architecture un environnement d'apprentissage. Or, la pièce 1 est issue du texte attribué à Claude et décrit un personnage (Nolan) qui adopte cette posture. Sous présomption d'absence, ce n'est donc pas l'apprenant qui pratique la maïeutique — c'est un personnage de roman dont l'apprenant a aimé l'analyse. La pièce tombe : l'auteur de l'acte maïeutique n'est pas l'apprenant dans cette feuille. Ce qui pourrait résister à la marge, c'est que l'apprenant a explicitement retenu cette formulation parmi d'autres — il en a fait un point de cristallisation, ce qui suppose qu'il y reconnaît un geste qu'il pratique. Mais cette reconnaissance n'est pas l'acte.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille atteste une pratique maïeutique de l'apprenant. La pièce qui décrit la retenue de Nolan vient du texte attribué à Claude et concerne un personnage de roman. La feuille ne contient pas de récit où l'apprenant lui-même tient la retenue, pose une question au lieu de donner une réponse, ou architecture un dispositif pédagogique. Le geste maïeutique est nommé avec précision dans la feuille, mais en tant qu'objet d'analyse, pas en tant qu'acte de l'apprenant. Une trace solide se trouverait dans un récit où l'apprenant raconterait un moment d'enseignement où il a tenu cette retenue avec un élève précis.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Le geste maïeutique de la retenue est nommé avec précision dans la feuille mais comme acte d'un personnage de roman analysé par une IA, pas comme acte de l'apprenant.",
+        "prescription": "Une piste possible : raconter un moment d'enseignement précis où la tentation de donner la réponse a été tenue à distance — quel élève, quelle question, quelle retenue. L'acte maïeutique deviendrait alors un geste de l'apprenant traçable."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le passage analyse comment un système (évaluation par grilles) dégrade la qualité pédagogique en transformant le regard en mesure — analyse critique d'un dispositif d'évaluation sommative qui se substitue au formatif. Pourrait toucher à 7.02 par renversement (savoir ce que l'évaluation transformative N'EST PAS)."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Critique des « colonnes, moyennes, rapports » comme appareil mécanique d'évaluation — diagnostic d'un dispositif qui trie sans faire progresser."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : l'évaluation transformative 7.02 exige un acte évaluatif décrit comme levier d'apprentissage par l'apprenant — pas la critique d'un système d'évaluation extérieur. Les pièces 1 et 2 sont des critiques du dispositif d'évaluation sommative décrit dans le roman, et elles sont issues du texte attribué à Claude. Sous présomption d'absence, elles tombent : il n'y a aucun acte évaluatif décrit dans cette feuille, ni de dispositif inventé, ni de critère articulé, ni de feedback donné. La critique du modèle inverse (la grille qui trie) n'est pas en soi la compétence — c'est tout au plus un signal que l'apprenant n'est pas indifférent à la question de l'évaluation. Aucune pièce ne résiste comme trace d'un acte évaluatif transformatif.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille atteste une pratique d'évaluation transformative. Les pièces qui critiquent la grille d'évaluation sont des fragments du texte attribué à Claude et n'attestent pas un acte évaluatif transformatif de l'apprenant. La fiche est explicite : il faut un acte décrit, un dispositif, un feedback. Aucun de ces éléments n'apparaît. Ce qui reste, c'est un climat — l'apprenant a retenu un texte critique de l'évaluation mécanique, ce qui suggère qu'il n'est pas à l'aise avec cet appareil. Une trace solide se trouverait dans un récit où l'apprenant raconterait un feedback donné à un élève, ou un dispositif évaluatif qu'il a conçu pour faire progresser plutôt que pour trier.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les pièces critiquent un dispositif d'évaluation sommative dans le texte attribué à Claude ; aucun acte d'évaluation transformative de l'apprenant n'apparaît dans la feuille.",
+        "prescription": "Une piste possible : raconter un feedback récent donné à un élève — quels critères, quelle formulation, quelle invitation à se voir autrement. L'évaluation transformative deviendrait alors un acte de l'apprenant traçable."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Mention de « v3 » du roman — trace possible d'un versioning et donc d'une documentation vivante d'un projet d'écriture en cours."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "L'apprenant intègre un texte produit par une IA dans son portfolio, avec un post-scriptum qui le contextualise (provenance, date, effet) — geste de capitalisation et d'archivage intentionnel d'une production hybride."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la documentation vivante 7.03 exige une attention délibérée à la structuration pour autrui ou pour soi futur, avec conscience du destinataire. La pièce 1 (« v3 ») est l'indice ténu d'une pratique de versioning, mais sans plus d'élaboration — une simple mention. La pièce 2 est plus intéressante : l'apprenant intègre un texte tiers dans son portfolio en le contextualisant (provenance, date, effet), ce qui est un geste de capitalisation traçable. Toutefois, la fiche distingue 7.03 de la narration réflexive (5.03) par la *structuration pour un futur lecteur* — et la feuille ne montre pas explicitement cette structuration : c'est une entrée de journal datée, avec un texte conservé et un post-scriptum, sans titre interne ni sections ni signalement explicite d'un futur usage. Les pièces résistent un peu parce que le geste de tenir un portfolio nominatif et de dater chaque entrée est en soi une documentation vivante, mais le déploiement reste minimal dans cette unique feuille.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "L'intégration d'un texte tiers dans le portfolio, avec un post-scriptum qui en explicite la provenance, la version (« v3 ») et l'effet, est un acte de contextualisation pour un futur lecteur (soi ou autre)."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu cette pièce parce que le post-scriptum contextualise une production. Mais en y regardant à deux fois, le post-scriptum est très court (deux phrases), et il ne montre pas une intention claire de capitalisation pour autrui — il pourrait tout aussi bien être une note personnelle. L'attaque (a) — insuffisance probatoire — tient en partie : trop court pour attester pleinement la compétence. Mais l'attaque ne disqualifie pas la pièce, car le geste minimal de noter la provenance et la version reste une trace, même mince. La pièce s'affaiblit.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le post-scriptum est court et n'indique pas explicitement une intention de capitalisation pour autrui. Il reste comme indice ténu d'un geste de contextualisation (provenance, version, effet) qui est de l'ordre de la documentation vivante minimale."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille atteste une documentation vivante de l'apprenant. La pièce sur le « v3 » est un indice mince de pratique versionnée mais ne se déploie pas. La pièce du post-scriptum a résisté en partie parce qu'elle contextualise une production (provenance, date, version, effet), puis s'est affaiblie sous l'attaque d'insuffisance probatoire : c'est trop court pour attester une documentation vivante au sens plein de la fiche. Ce qui reste, c'est un indice corroboratif faible — l'apprenant tient un portfolio, date ses entrées, mentionne des versions de son travail, contextualise des productions tierces. C'est de la documentation vivante en germe, à valider sur d'autres feuilles. Une trace plus solide se trouverait dans une feuille où l'apprenant nommerait explicitement le destinataire futur (« pour les prochains lecteurs »), structurerait par sections, ou ferait un changelog.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "La pièce 2 a survécu sous forme affaiblie : la contextualisation (provenance, version, effet) est un geste de documentation vivante minimal, mais trop court pour attester pleinement la compétence sur cette seule feuille.",
+        "prescription": "Une piste possible : à l'occasion d'une prochaine entrée importante, expliciter le destinataire futur (« pour qui je garde ceci »), structurer le contenu pour qu'il soit relisible plus tard, et tenir un changelog des évolutions du portfolio. La documentation vivante deviendrait alors lisible comme architecture, et non plus comme geste minimal."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Le post-scriptum signale une production où l'IA a mené (elle a écrit l'analyse) et où l'apprenant a accepté son output sans en reprendre la main — possible trace de leadership situationnel en mode délégation, sans le récit du cycle de bascule."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : le leadership situationnel 7.04 exige une alternance consciente — l'apprenant décrit aussi des moments où il a repris le contrôle, ou inversement où il a cédé le lead avec un déclencheur identifiable. Le post-scriptum nous dit que l'IA a produit l'analyse, et que l'apprenant l'a conservée parce qu'elle l'a touché. Mais on ne sait pas comment cette production a été commandée, ni s'il y a eu un cycle (prompt, lecture, correction, validation). Sous présomption d'absence, la pièce tombe : il n'y a pas de description de bascule consciente, juste un résultat livré. La pièce ne résiste pas comme trace de leadership situationnel attesté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille atteste un leadership situationnel. La pièce du post-scriptum ne décrit pas un cycle de bascule entre l'apprenant et l'IA : on a seulement le résultat final (l'analyse produite) et son effet (touchant). On ne sait pas si l'apprenant a corrigé, relancé, validé, ou simplement reçu. Aucune trace d'alternance consciente. Le dossier reste à ouvrir par un récit où l'apprenant décrirait ses moments de prise de contrôle et de retrait dans un travail hybride.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce ne décrit pas un cycle de bascule conscient entre apprenant et IA ; le post-scriptum livre le résultat sans tracer l'alternance qui caractérise le leadership situationnel.",
+        "prescription": "Une piste possible : décrire le travail avec l'IA qui a précédé l'analyse retenue — quand l'IA a mené, quand l'apprenant a repris la main, quels déclencheurs ont produit ces bascules. Le leadership situationnel deviendrait alors un acte traçable."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la vision stratégique et à la prospective dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait justifier un choix présent par une direction long-terme articulée."
+      }
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'efficacité personnelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un refus argumenté ou une priorisation explicite."
+      }
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Mention de « v3 » d'un roman — trace possible d'un travail itératif en versions successives, marqueur d'agilité méthodologique sur un projet d'écriture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : l'agilité 7.07 exige un cycle observable de générer-relire-tester-ajuster, avec ajustements de plan en cours de route et raisons explicitées. La mention « v3 » est un indice de pratique versionnée, mais elle est entièrement allusive — l'apprenant ne décrit pas la boucle d'itération, ni ce qui a justifié le passage de v2 à v3, ni comment le plan a évolué. Sous présomption d'absence, c'est un numéro de version sans le récit qui l'accompagnerait. Toutefois, la fiche cite explicitement comme trace oblique « numéro de version élevé sans commentaire méthodologique = pratique itérative ancrée non thématisée ». À ce titre, la pièce résiste un peu.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La fiche 7.07 reconnaît qu'un numéro de version élevé sans commentaire méthodologique peut être une trace oblique d'une pratique itérative ancrée. « v3 » est une mention discrète de ce type."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu cette pièce en m'appuyant sur la fiche qui reconnaît la trace oblique du numéro de version. Mais je dois m'interroger : « v3 » apparaît dans une phrase qui décrit l'analyse de Claude sur le roman, pas dans un récit méthodologique de l'apprenant. Le numéro est mentionné en passant, comme situation temporelle, pas comme indicateur d'une boucle d'itération que l'apprenant tiendrait. L'attaque (a) — insuffisance probatoire — tient : c'est trop allusif pour attester pleinement la compétence. Mais l'attaque ne disqualifie pas la pièce, car la fiche elle-même prévoit ce type d'indice mince. La pièce s'affaiblit.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« v3 » est mentionné en passant, sans description du cycle d'itération. La trace est mince mais reconnue par la fiche comme oblique — elle reste comme indice faible d'une pratique versionnée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille atteste une agilité méthodologique. La mention « v3 » a résisté un peu parce que la fiche reconnaît ces indices obliques, puis s'est affaiblie sous la seconde présomption parce qu'aucun cycle d'itération n'est décrit. Ce qui reste, c'est un indice corroboratif faible : l'apprenant travaille sur un roman dans sa troisième version, ce qui suppose un travail itératif, mais cette pratique n'est pas documentée dans la feuille. Une trace solide se trouverait dans une feuille où l'apprenant décrirait la boucle d'itération elle-même : qu'est-ce qui a changé entre v2 et v3, quels signaux ont déclenché la révision.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "La mention « v3 » est une trace oblique reconnue par la fiche mais reste allusive — le cycle d'itération lui-même n'est pas décrit dans la feuille.",
+        "prescription": "Une piste possible : décrire ce qui a changé entre deux versions du roman — quelle relecture a déclenché quel ajustement, quel feedback a réorienté l'écriture. La pratique itérative deviendrait alors lisible comme méthode."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous pression avec timing précis, ou un dispositif préventif (monitoring, runbook)."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 6,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du 21 mars 2026 nomme finement plusieurs gestes pédagogiques — la retenue de celui qui sait, l'évaluation comme grille mécanique qui dégrade la pratique — mais ces analyses sont tenues par le texte attribué à Claude, qui les déploie sur des personnages de roman. La voix qui aurait pu attester ces compétences chez l'apprenant lui-même reste implicite. Deux mentions discrètes ouvrent toutefois une porte : la version « v3 » du roman et le geste d'intégrer un texte produit par une IA dans le portfolio avec un post-scriptum contextuel. Ces deux gestes-là appartiennent à l'apprenant en propre et signalent une pratique itérative et une documentation minimale, sans déploiement.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent non visités dans cette feuille. La vision stratégique et prospective, l'efficacité personnelle, la gestion de crise : aucun de ces dossiers n'est ouvert. La maïeutique et l'évaluation transformative ont reçu une matière riche, mais cette matière vient du texte attribué à Claude et concerne des personnages de roman — la trace propre à l'apprenant manque. Le leadership situationnel a reçu une pièce qui ne décrit pas le cycle de bascule. Deux territoires ont reçu un indice corroboratif faible — la documentation vivante et l'agilité — qui les place sous l'horizon d'un renvoi au cartographe plutôt que d'une présence établie. Ces absences ressemblent à une limite du dispositif de cette feuille (analyse littéraire intégrée plus post-scriptum bref) plus qu'à un choix de ne pas explorer ces territoires.",
+    "emergencesPole": "Ce qui traverse la feuille, et qui mérite d'être noté pour ce pôle, c'est la précision de la nomination des gestes pédagogiques — la retenue de celui qui sait, l'évaluation comme grille, le regard transformé en mesure. L'apprenant a sélectionné un texte qui dit avec exactitude ce qu'il faut nommer en pédagogie. Cette sélection même est un acte de discernement professionnel : reconnaître la formulation juste d'un geste pédagogique fin. Une seconde émergence : la mention « v3 » et le geste d'archiver un texte produit par une IA dans le portfolio signalent une pratique de travail par itérations et de capitalisation des traces, qui pourrait, sur d'autres feuilles, s'affirmer comme méthode.",
+    "pistes": [
+      "Pour ouvrir le dossier de la maïeutique en propre, un chemin possible serait de raconter un moment d'enseignement précis où la tentation de donner la réponse a été tenue à distance — quel élève, quelle question, quelle retenue, quel résultat.",
+      "Pour ouvrir le dossier de l'évaluation transformative, un chemin possible serait de décrire un feedback récent donné à un élève — quels critères, quelle formulation, quelle invitation à se voir autrement.",
+      "Pour déployer ce que la mention « v3 » et la capitalisation du texte IA esquissent, un chemin possible serait de documenter la boucle d'itération du roman et le statut du portfolio comme archive vivante — qui est destinataire, quelle structure, quelle évolution prévue."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du 21 mars 2026 nomme finement plusieurs gestes pédagogiques — la retenue de celui qui sait, l'évaluation comme grille mécanique qui dégrade la pratique — mais ces analyses sont tenues par le texte attribué à Claude, qui les déploie sur des personnages de roman. La voix qui aurait pu attester ces compétences chez l'apprenant lui-même reste implicite. Deux mentions discrètes ouvrent toutefois une porte : la version « v3 » du roman et le geste d'intégrer un texte produit par une IA dans le portfolio avec un post-scriptum contextuel. Ces deux gestes-là appartiennent à l'apprenant en propre et signalent une pratique itérative et une documentation minimale, sans déploiement.\n\n## Territoires les plus denses\n\nAucun territoire n'a atteint le seuil de la présence établie sur cette seule feuille. Deux territoires ont reçu un indice corroboratif faible — la documentation vivante et l'agilité — qui les place sous l'horizon d'un renvoi au cartographe.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent non visités dans cette feuille. La vision stratégique et prospective, l'efficacité personnelle, la gestion de crise : aucun de ces dossiers n'est ouvert. La maïeutique et l'évaluation transformative ont reçu une matière riche, mais cette matière vient du texte attribué à Claude et concerne des personnages de roman — la trace propre à l'apprenant manque. Le leadership situationnel a reçu une pièce qui ne décrit pas le cycle de bascule. Deux territoires ont reçu un indice corroboratif faible — la documentation vivante et l'agilité — qui les place sous l'horizon d'un renvoi au cartographe plutôt que d'une présence établie. Ces absences ressemblent à une limite du dispositif de cette feuille (analyse littéraire intégrée plus post-scriptum bref) plus qu'à un choix de ne pas explorer ces territoires.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse la feuille, et qui mérite d'être noté pour ce pôle, c'est la précision de la nomination des gestes pédagogiques — la retenue de celui qui sait, l'évaluation comme grille, le regard transformé en mesure. L'apprenant a sélectionné un texte qui dit avec exactitude ce qu'il faut nommer en pédagogie. Cette sélection même est un acte de discernement professionnel : reconnaître la formulation juste d'un geste pédagogique fin. Une seconde émergence : la mention « v3 » et le geste d'archiver un texte produit par une IA dans le portfolio signalent une pratique de travail par itérations et de capitalisation des traces, qui pourrait, sur d'autres feuilles, s'affirmer comme méthode.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir le dossier de la maïeutique en propre, un chemin possible serait de raconter un moment d'enseignement précis où la tentation de donner la réponse a été tenue à distance — quel élève, quelle question, quelle retenue, quel résultat.\n- Pour ouvrir le dossier de l'évaluation transformative, un chemin possible serait de décrire un feedback récent donné à un élève — quels critères, quelle formulation, quelle invitation à se voir autrement.\n- Pour déployer ce que la mention « v3 » et la capitalisation du texte IA esquissent, un chemin possible serait de documenter la boucle d'itération du roman et le statut du portfolio comme archive vivante — qui est destinataire, quelle structure, quelle évolution prévue.\n"
+  }
+}

@@ -1,0 +1,386 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Je repense à la structure globale des 4 manuels (il ne me reste plus que quelques chapitres du manuel du Maître à lire). Je me dis que j'ai mal réfléchi à l'objectif final de ces manuels.",
+      "contexte": "Reconnaissance assumée d'une erreur de cadrage initial — auto-accountability sans externalisation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Praticien : comment générer une cartographie avec les IA. Que doit-on vérifier manuellement pour confirmer les compétences proposées.",
+      "contexte": "Articulation explicite d'un savoir contextuel humain à mobiliser pour vérifier les propositions de l'IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "La formation entière serait ainsi dédiée à l'acquisition de la compétence d'apprendre à apprendre, qui est peut-être encore une compétence utile à l'ère des super IA. Mais même ça je n'en sais rien. J'ai peur de rester enfermé dans la logique de l'ère pré-AGI de l'ancienne école \\!",
+      "contexte": "Doute existentiel maintenu : l'apprenant ne tranche pas sur la pertinence de son projet face aux super IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Si une IA tuteur personnel nous aide à apprendre tout au long de la vie, ce n'est peut-être plus la compétence ultime à maîtriser.",
+      "contexte": "Réflexion sur ce que l'IA pourrait reprendre dans la transmission humaine — articulation de ce qui resterait spécifiquement humain ou non.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Je vois que je doute du chemin que doit prendre la formation des Tuteurs. Je vais terminer mes lectures de la formation v1 et attendre d'avoir accès à un ordinateur pour réfléchir avec Claude à tout ça.",
+      "contexte": "Décision argumentée de non-action immédiate avec deux critères de déclenchement (fin des lectures + accès ordinateur).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Tension maintenue entre deux positions défendables (« apprendre à apprendre » reste utile / cette compétence est obsolète à l'ère des super IA) sans résolution prématurée."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Question ouverte sur ce que l'on doit encore enseigner à l'humain si une IA tuteur personnel prend en charge l'apprentissage à vie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'on a affaire à un doute pédagogique ou stratégique, pas à un raisonnement éthique. La fiche cible la mise en tension de valeurs légitimes en conflit, l'inconfort moral maintenu. Or, le doute exprimé ici porte sur l'utilité d'une compétence pédagogique à l'ère des super IA — pas sur des valeurs morales en tension. La pièce 3 articule un balancement (« peut-être utile / je n'en sais rien »), mais c'est un balancement épistémique, pas éthique. La pièce 4 pose une question prospective. Reste explicitement faible : pas de parties prenantes en tension, pas de critère du jugement interrogé, pas de dilemme moral nommé.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un raisonnement éthique appliqué dans le doute sur l'utilité future de « apprendre à apprendre ». La fiche distingue le raisonnement éthique (tension de valeurs morales légitimes en conflit) du doute stratégique ou pédagogique. Ici, le doute porte sur l'utilité d'une compétence dans un futur technologique — pas sur un dilemme entre valeurs (par exemple, autonomie de l'apprenant vs efficacité de l'IA, vérité vs gentillesse). Ce qui en résulte : la compétence n'est pas attestée dans cette feuille. La réserve : la question « doit-on encore enseigner X si l'IA peut faire X mieux ? » pourrait virer à l'éthique dans une feuille ultérieure, si les valeurs en tension sont nommées.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La présomption d'absence n'a pas été renversée : le doute exprimé est épistémique et stratégique, pas un dilemme moral où des valeurs en tension seraient explicitement nommées.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, lorsque le doute prend une couleur morale (par exemple, sur ce qu'on a le droit de laisser à l'IA), de nommer les valeurs en présence et de tenir l'inconfort plutôt que de le résoudre."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'alignement et au refus éthique dans cette feuille. Pour ouvrir ce dossier, un récit de refus concret d'une suggestion IA pour des raisons de valeurs pourrait être documenté."
+      }
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et long-terme dans cette feuille. Pour ouvrir ce dossier, un arbitrage concret entre bénéfice immédiat et impact long-terme pourrait être documenté."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité dans cette feuille. Pour ouvrir ce dossier, un récit reliant un résultat concret à un mode de pensée divergent pourrait être documenté."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Tolérance au flou explicitée : l'apprenant nomme l'incertitude (« je n'en sais rien ») sans paniquer et tout en gardant une direction (continuer le projet)."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Décision face à l'incertitude : l'apprenant ne tranche pas maintenant mais pose un plan d'action concret pour avancer (terminer les lectures, attendre l'ordinateur)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que c'est de la procrastination ou du flou non assumé. La pièce 1 nomme l'incertitude (« même ça je n'en sais rien ») — c'est de la tolérance à l'incertitude au sens de la fiche : capacité à nommer le brouillard sans paniquer. La pièce 2 décrit une non-décision immédiate avec un plan : lire la fin du manuel, attendre l'ordinateur, réfléchir avec Claude. Ce n'est pas un tranchage dans l'urgence, mais un fonctionnement dans le flou avec direction conservée. La fiche prévoit explicitement « capacité existentielle à fonctionner dans le brouillard ». Reste faible : pas de récit de pari assumé, pas de moment où l'apprenant tranche contre l'IA ou pour une option à 50/50 ; on est plus dans la tolérance que dans la décision dure.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'incertitude est nommée explicitement (« je n'en sais rien ») et tenue sans précipitation à conclure — c'est précisément la facette tolérance de 4.05." },
+            { "pieceId": 2, "motifResistance": "Plutôt qu'une paralysie, l'apprenant pose une suite concrète d'actions (« je vais terminer mes lectures et attendre ») qui permet de fonctionner dans le flou." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur les deux pièces : suis-je en train d'halluciner ? La pièce 1 est claire dans sa tolérance ; la pièce 2 pourrait être lue comme de la procrastination déguisée. Mais la fiche est précise : la procrastination est « j'attends sans pourquoi ni quand » ; ici, on a un quand (fin des lectures, accès ordinateur) et un pourquoi (réfléchir avec Claude). La frontière avec 4.09 (patience stratégique) est fine : cette pièce porte les deux facettes — tolérance à l'incertitude ET reformulation tempo­raisée — mais c'est bien la facette « fonctionner dans le flou » qui prédomine ici, plus que le sens du kairos.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'attaque récit performatif (« je n'en sais rien » pourrait être un tic) ne tient pas : l'incertitude est nommée comme état épistémique réel, articulée à un projet en cours et maintenue sans rabattement sur une réponse facile."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Frontière fine avec 4.09 (patience stratégique). Ce qui retient la pièce pour 4.05 : la décision n'est pas d'attendre le kairos d'agir, c'est de continuer à fonctionner dans le doute (lire, réfléchir) sans avoir tranché sur la direction de fond."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme du flou non assumé ou de la procrastination. La pièce où l'incertitude est nommée explicitement et tenue sans précipitation a tenu sans réserve. La pièce de décision-en-attente a tenu avec une affaiblissement lié à la proximité de 4.09. Ce qui reste : une tolérance à l'incertitude clairement attestée, doublée d'une capacité à maintenir une direction (continuer à lire, à projeter, à structurer) en l'absence de réponse définitive. La facette « décision dure » (trancher quand l'IA hésite, parier) n'est pas activée dans cette feuille ; on est sur la facette « tolérance » de la compétence. La réserve : pour porter la compétence plus haut, il manque un récit de tranchage assumé dans le flou.",
+          "confianceFinale": 0.66
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.66,
+        "motif": "La présomption de sycophantie a confirmé la pièce 1 et seulement affaibli la pièce 2 ; la facette tolérance à l'incertitude est lisible, articulée et maintenue, ce qui suffit à établir la présence avec une confiance modérée.",
+        "prescription": "L'incertitude est nommée et tenue, ce qui est rare. Une piste pour prolonger : à côté du « je n'en sais rien », noter sur quels critères on saura que la question s'est éclaircie — pour distinguer l'attente productive de l'attente indéfinie."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Reconnaissance assumée d'une erreur de cadrage : « j'ai mal réfléchi à l'objectif final de ces manuels » — accountability rétrospective sans dérobade."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'on a affaire à de l'autocritique légère, pas à une accountability constructive. La fiche distingue clairement « c'est ma faute » en boucle (auto-flagellation) de « c'est ma responsabilité, et voici ce que je fais maintenant ». La pièce 1 contient les deux mouvements : reconnaissance (« j'ai mal réfléchi à l'objectif final ») + action corrective projetée (régénérer les manuels avec la modification suivante). Reste faible : pas de récit de courage moral sous pression, pas de maintien de position impopulaire, pas de cohérence parole/acte vérifiable dans cette seule feuille — on est sur la facette responsabilité, pas sur le triptyque complet.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'erreur est attribuée à soi (« j'ai mal réfléchi ») et suivie d'un plan correctif articulé — c'est le mouvement « ma responsabilité + ce que je fais maintenant » de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur la pièce qui a résisté : suis-je en train de surinterpréter ? La reconnaissance d'erreur est claire, mais elle porte sur un travail personnel, pas sur un acte qui aurait des conséquences pour autrui — il n'y a pas de coût explicite. La fiche signale que la responsabilité s'observe particulièrement « quand l'IA a contribué ou quand ça coûte ». Ici, l'erreur est attribuée à soi seul, ce qui est honnête mais relativement peu coûteux dans le contexte.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'extrait est court et n'expose pas de coût personnel ou collectif important — pas de récit où la responsabilité aurait été lourde à porter. Ce qui le retient : la structure « reconnaissance + action corrective » est explicite, et l'apprenant ne minimise pas (« j'ai mal réfléchi », pas « ce n'était pas optimal »)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir cette pièce comme une simple autocritique légère. Elle a tenu, mais affaiblie : la reconnaissance est claire et suivie d'un projet d'action, ce qui est bien la structure de l'accountability constructive. Cependant, le coût personnel ou collectif n'est pas explicite, et les facettes courage/intégrité ne sont pas activées dans cette feuille. Ce qui reste : une trace de responsabilité honnête, sans dramatisation ni dérobade. La réserve : pour porter la compétence plus haut, il manque la dimension de coût et la dimension courage sous pression.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce affaiblie a survécu, sans atteinte du seuil de 2 indices ; la confiance sous 0.55 oriente le verdict vers le renvoi plutôt que l'établissement.",
+        "prescription": "La reconnaissance d'erreur ici se fait sans dérobade, ce qui est appréciable. Pour ouvrir plus largement le dossier, un chemin possible serait, lorsqu'une erreur a un coût pour autrui ou pour le projet, de tracer ce coût et l'action corrective ensemble — pour rendre la responsabilité visible jusque dans ses conséquences."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Articulation explicite de ce que l'humain doit vérifier sur les sorties IA — savoir contextuel qui n'est pas accessible à la machine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'une simple division des tâches IA/humain (1.10), pas d'une validation contextuelle au sens strict. La fiche 4.07 cible précisément l'identification d'un *delta de contexte* entre humain et machine — ce que l'IA ne peut pas savoir. La pièce 2 est une amorce : « Que doit-on vérifier manuellement pour confirmer les compétences proposées » — cela articule qu'il y a quelque chose à vérifier que l'IA seule ne fait pas, mais le mécanisme exact (pourquoi le contexte manque à l'IA) n'est pas explicité ici. Reste faible : pas de récit d'une correction concrète appuyée sur un savoir culturel ou relationnel inaccessible à l'IA.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une validation contextuelle dans la phrase qui articule le rôle de vérification humaine. La fiche distingue 4.07 (delta de contexte explicite) de 1.10 (articulation générale des forces comparatives). Ici, la formulation est précisément du registre de 1.10 (qui vérifie quoi, comme contenu pédagogique), pas du registre de 4.07 où le delta de contexte est nommé (l'IA ne pouvait pas savoir que… parce que…). Ce qui en résulte : la compétence n'est pas attestée dans cette feuille — elle pourrait l'être ailleurs, quand un cas concret de correction contextuelle sera raconté.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption d'absence n'a pas été renversée : l'articulation reste au niveau de la division des rôles (1.10), sans nommer le delta de contexte qui est le marqueur central de 4.07.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, à l'occasion d'une vérification réelle d'une cartographie générée, de noter précisément ce que l'IA n'a pas pu voir et pourquoi — par exemple, ce qui se cache dans une feuille de portfolio que le contexte de l'IA ne lui a pas livré."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Hypothèse prospective : si une IA tuteur personnel reprend une grande partie de l'apprentissage, qu'est-ce qui restera spécifiquement humain à transmettre ? La question pose le delta humain-IA dans la durée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'un constat techno-prospectif, pas d'une réflexion sur la valeur non-automatisable. La fiche cible une lucidité bidirectionnelle (reconnaître ce que l'IA fait mieux ET nommer ce qui reste irremplaçablement humain) et une dimension économique. La pièce 1 pose la question dans le bon sens (qu'est-ce qui resterait à enseigner à l'humain si l'IA fait), mais ne répond pas — elle ouvre l'interrogation. Reste faible : pas d'identification explicite de ce qui resterait structurellement non-automatisable (présence, confiance incarnée…), pas de dimension économique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant pose explicitement la question prospective de ce qui resterait à maîtriser face à des IA tutorielles — c'est l'amorce du test prospectif que la fiche cite (« que vais-je cultiver pour rester pertinent ? »)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur la pièce qui a résisté : suis-je en train d'halluciner ? La question est bien prospective au sens de la fiche, mais elle reste une question, pas une articulation de réponse. La fiche distingue clairement « ce qui restera humain » articulé (4.08) de « l'humain est supérieur » défensif. Ici, on a ni l'un ni l'autre — on a un doute honnête.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers caractérisé : l'apprenant ouvre la question (que reste-t-il à maîtriser ?) sans pouvoir y répondre. Le seuil de transformation — articuler clairement la valeur non-automatisable — n'est pas franchi, mais la question est posée dans les termes de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir cette pièce comme un constat technique sur l'IA. Elle a tenu, mais affaiblie : l'apprenant amorce la question prospective au cœur de 4.08 (que reste-t-il à cultiver pour rester pertinent face aux IA tuteurs ?) sans y répondre. Ce qui reste : un mouvement-vers la compétence — la question est posée, le travail de la réponse reste à faire. La réserve : sans articulation de ce qui resterait structurellement non-automatisable, on est sur le seuil de la compétence, pas dedans.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Une seule pièce affaiblie a survécu, sans atteinte du seuil de 2 indices ; le mouvement-vers est lisible mais le seuil de la compétence n'est pas franchi dans cette feuille.",
+        "prescription": "La question prospective est ouverte avec honnêteté (« je n'en sais rien »). Une piste pour avancer serait de nommer une hypothèse, même provisoire, de ce qui resterait spécifiquement humain à transmettre — pour transformer le doute en cible de travail plutôt qu'en suspens."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Non-action délibérée articulée avec un critère de déclenchement explicite (terminer les lectures + avoir accès à un ordinateur) — structure typique de la patience stratégique selon la fiche."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit de procrastination ou de simple report. La fiche est très précise : 4.09 implique (1) une pression à agir décrite, (2) un raisonnement explicite d'attente, (3) un moment d'action prévu. Sans (2), c'est de la procrastination ; sans (3), c'est de la paralysie. La pièce 1 contient (3) (« je vais terminer mes lectures et attendre d'avoir accès à un ordinateur »), elle contient (2) implicitement (réfléchir avec Claude demande de l'attention soutenue, donc l'ordinateur), mais elle ne contient pas vraiment (1) — il n'y a pas de pression explicite à agir maintenant. L'apprenant constate qu'il doute et choisit d'attendre, sans pression visible. Reste faible : le critère (1) manque, on ne voit pas pourquoi il aurait pu y avoir tentation d'agir tout de suite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La structure « pas maintenant + critère de déclenchement précis (lectures finies + ordinateur) » correspond au combo « report borné avec critère explicite » que la fiche cite comme marqueur central." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur la pièce qui a résisté : suis-je en train de l'embellir ? La pièce contient bien le critère de déclenchement, mais le contexte de pression manque. La fiche prévoit ce cas (le combo le plus fiable nécessite les trois éléments). On a un report bien borné, ce qui exclut la procrastination ; mais sans la pression à agir, on est plus dans une organisation séquentielle naturelle (lire avant de réfléchir avec Claude) que dans une patience stratégique au sens fort.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire partielle : la pièce porte deux des trois éléments du combo fiable (raisonnement d'attente + moment d'action prévu), mais pas la pression à agir maintenant. C'est moins du timing kairotique au sens fort que de l'organisation séquentielle bornée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme de la procrastination, ce qui a immédiatement échoué : il y a un critère de déclenchement explicite et une suite d'actions prévues. J'ai ensuite cherché à voir si c'était une patience stratégique pleine, ce qui a partiellement échoué : la pression à agir n'est pas thématisée. Ce qui reste : un report borné, conscient, qui n'a rien d'une fuite ; le « ce n'est pas grave d'attendre » implicite est porté par la conviction que la réflexion sera meilleure avec Claude et un ordinateur. La réserve : la dimension de résistance à une fausse urgence n'est pas activée, ce qui empêche de porter la compétence plus haut.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.55,
+        "motif": "La présomption de sycophantie n'a affaibli la pièce que partiellement ; la structure report-borné-avec-critère est lisible et tient comme trace concrète, ce qui suffit à établir une présence avec confiance modérée.",
+        "prescription": "Le report avec critère explicite distingue ici l'attente productive de la procrastination. Une piste pour prolonger : quand une pression à agir vite est ressentie, noter pourquoi le moment n'est pas venu, et quel signal permettra de basculer dans l'action."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 2,
+    "nonEtablies": 5,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le pôle ÂME se travaille sur la temporalité du jugement et sur l'honnêteté avec le doute. Le texte tient une incertitude (« même ça je n'en sais rien »), nomme un mauvais cadrage initial (« j'ai mal réfléchi à l'objectif final »), et décide de ne pas trancher tout de suite tout en posant des critères de reprise (terminer les lectures, attendre l'ordinateur, réfléchir avec Claude). Le registre est sobre et réflexif, sans dramatisation. Deux gestes dominent : la tolérance à l'incertitude doublée d'une direction préservée, et l'attente bornée qui distingue le report assumé de la procrastination. Le pôle est ici travaillé surtout dans sa dimension décisionnelle ; les territoires éthiques au sens strict (raisonnement moral, alignement IA, écologie, neurodiversité) ne sont pas activés.",
+    "territoiresDenses": [
+      {
+        "competence": "Décision et tolérance à l'incertitude",
+        "description": "L'apprenant nomme explicitement l'incertitude et la tient sans précipitation à conclure, tout en maintenant une direction de travail (continuer la lecture, projeter la régénération, prévoir la réflexion avec Claude).",
+        "extraitVerbatim": "La formation entière serait ainsi dédiée à l'acquisition de la compétence d'apprendre à apprendre, qui est peut-être encore une compétence utile à l'ère des super IA. Mais même ça je n'en sais rien.",
+        "ceQueCaDit": "Le « même ça je n'en sais rien » désigne précisément l'objet de l'incertitude (la pertinence du projet à l'ère des super IA) et le maintient sans rabattement, ce qui est la facette tolérance de la compétence."
+      },
+      {
+        "competence": "Patience stratégique et sens du timing",
+        "description": "La décision de non-action immédiate est articulée avec des critères de déclenchement précis, ce qui distingue un report conscient d'une simple procrastination.",
+        "extraitVerbatim": "Je vais terminer mes lectures de la formation v1 et attendre d'avoir accès à un ordinateur pour réfléchir avec Claude à tout ça.",
+        "ceQueCaDit": "Le report est borné par deux conditions de bascule explicites ; l'attente n'est pas indéfinie, elle est calibrée par ce qu'il manque pour penser correctement."
+      }
+    ],
+    "territoiresNonVisites": "Cette feuille n'a pas ramené de traces sur le raisonnement éthique au sens strict (tension de valeurs morales), ni sur l'alignement et le refus éthique de l'IA, ni sur la conscience écologique, ni sur la valorisation de la neurodiversité, ni sur la validation contextuelle où le delta de contexte humain-IA serait nommé. Plusieurs de ces absences ressemblent à un choix d'angle : la feuille parle de structure pédagogique et de doute prospectif, pas de dilemmes moraux concrets ni d'écologie. La création de valeur non-automatisable est en germe (la question prospective est posée) mais la réponse reste suspendue ; ce serait un territoire à approfondir par un récit où l'apprenant articule ce qu'il choisit de ne pas déléguer.",
+    "emergencesPole": "Un fil traverse les deux compétences les plus présentes : la temporalité du jugement. L'apprenant n'est pas dans l'urgence et ne se le fait pas reprocher ; il préfère tenir l'incertitude le temps qu'il faut, en posant des balises pour ne pas dériver. Ce que cela montre, c'est un rapport au temps de décision qui sépare la lenteur d'une fatigue (« j'ai un peu le flegme ») et la patience d'une stratégie (« je vais terminer, puis réfléchir »). Un second motif affleure : l'autocritique sans dramatisation. L'erreur de cadrage est reconnue sans drame, comme un fait à partir duquel on peut travailler.",
+    "pistes": [
+      "Pour prolonger la tolérance à l'incertitude, un chemin possible serait de noter, à côté du « je n'en sais rien », sur quels critères on saura que la question s'est éclaircie — pour distinguer l'attente productive de l'attente indéfinie.",
+      "Pour ouvrir le territoire du raisonnement éthique, un chemin possible serait, lorsqu'un doute prend une couleur morale, de nommer les valeurs en tension et de tenir l'inconfort plutôt que de le résoudre par une réponse rapide.",
+      "Pour prolonger l'amorce sur la valeur non-automatisable, un chemin possible serait de nommer une hypothèse, même provisoire, de ce qui resterait spécifiquement humain à transmettre, pour transformer le doute prospectif en cible de travail."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le pôle ÂME se travaille sur la temporalité du jugement et sur l'honnêteté avec le doute. Le texte tient une incertitude (« même ça je n'en sais rien »), nomme un mauvais cadrage initial (« j'ai mal réfléchi à l'objectif final »), et décide de ne pas trancher tout de suite tout en posant des critères de reprise (terminer les lectures, attendre l'ordinateur, réfléchir avec Claude). Le registre est sobre et réflexif, sans dramatisation. Deux gestes dominent : la tolérance à l'incertitude doublée d'une direction préservée, et l'attente bornée qui distingue le report assumé de la procrastination. Le pôle est ici travaillé surtout dans sa dimension décisionnelle ; les territoires éthiques au sens strict (raisonnement moral, alignement IA, écologie, neurodiversité) ne sont pas activés.\n\n## Territoires les plus denses\n\n### Décision et tolérance à l'incertitude\n\nL'apprenant nomme explicitement l'incertitude et la tient sans précipitation à conclure, tout en maintenant une direction de travail (continuer la lecture, projeter la régénération, prévoir la réflexion avec Claude).\n\n> « La formation entière serait ainsi dédiée à l'acquisition de la compétence d'apprendre à apprendre, qui est peut-être encore une compétence utile à l'ère des super IA. Mais même ça je n'en sais rien. »\n\nLe « même ça je n'en sais rien » désigne précisément l'objet de l'incertitude (la pertinence du projet à l'ère des super IA) et le maintient sans rabattement, ce qui est la facette tolérance de la compétence.\n\n### Patience stratégique et sens du timing\n\nLa décision de non-action immédiate est articulée avec des critères de déclenchement précis, ce qui distingue un report conscient d'une simple procrastination.\n\n> « Je vais terminer mes lectures de la formation v1 et attendre d'avoir accès à un ordinateur pour réfléchir avec Claude à tout ça. »\n\nLe report est borné par deux conditions de bascule explicites ; l'attente n'est pas indéfinie, elle est calibrée par ce qu'il manque pour penser correctement.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille n'a pas ramené de traces sur le raisonnement éthique au sens strict (tension de valeurs morales), ni sur l'alignement et le refus éthique de l'IA, ni sur la conscience écologique, ni sur la valorisation de la neurodiversité, ni sur la validation contextuelle où le delta de contexte humain-IA serait nommé. Plusieurs de ces absences ressemblent à un choix d'angle : la feuille parle de structure pédagogique et de doute prospectif, pas de dilemmes moraux concrets ni d'écologie. La création de valeur non-automatisable est en germe (la question prospective est posée) mais la réponse reste suspendue ; ce serait un territoire à approfondir par un récit où l'apprenant articule ce qu'il choisit de ne pas déléguer.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn fil traverse les deux compétences les plus présentes : la temporalité du jugement. L'apprenant n'est pas dans l'urgence et ne se le fait pas reprocher ; il préfère tenir l'incertitude le temps qu'il faut, en posant des balises pour ne pas dériver. Ce que cela montre, c'est un rapport au temps de décision qui sépare la lenteur d'une fatigue (« j'ai un peu le flegme ») et la patience d'une stratégie (« je vais terminer, puis réfléchir »). Un second motif affleure : l'autocritique sans dramatisation. L'erreur de cadrage est reconnue sans drame, comme un fait à partir duquel on peut travailler.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la tolérance à l'incertitude, un chemin possible serait de noter, à côté du « je n'en sais rien », sur quels critères on saura que la question s'est éclaircie — pour distinguer l'attente productive de l'attente indéfinie.\n- Pour ouvrir le territoire du raisonnement éthique, un chemin possible serait, lorsqu'un doute prend une couleur morale, de nommer les valeurs en tension et de tenir l'inconfort plutôt que de le résoudre par une réponse rapide.\n- Pour prolonger l'amorce sur la valeur non-automatisable, un chemin possible serait de nommer une hypothèse, même provisoire, de ce qui resterait spécifiquement humain à transmettre, pour transformer le doute prospectif en cible de travail.\n"
+  }
+}

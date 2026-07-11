@@ -1,0 +1,373 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Apprendre à crafter les données minimales importantes à charger en mémoire est tout un art et c'est encore plus important que le prompt engineering.",
+      "contexte": "Le 'craft' nommé comme art — vocabulaire artisanal appliqué à la pratique IA. Active 3.01 (créativité itérative), 3.04 (jugement esthétique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Je développe une intuition qui me permet d'anticiper le couperet brutal d'une conversation. J'ai également un feeling, un 6e sens, qui me permet de détecter le bullshit dans les réponses construites sur la base de données approximatives.",
+      "contexte": "Intuition et 6e sens — perception fine non discursive. Active 3.06 (ancrage sensoriel) marginalement, 3.04 (jugement esthétique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "La v3 du plan du livre est un exemple parfait. Si je m'en étais satisfait sans prendre les précautions nécessaires, je perdrais des idées fondamentales du discours, alors qu'elles étaient dans le contexte mais qu'elles se sont perdues.",
+      "contexte": "Itération créative : v3 jugée insuffisante, v4, v5 produites. Active 3.01 (créativité itérative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Résultat, un v4 avec des chapitres entiers dans lesquels étaient écrit \"idem que v2\" ou \"idem que v3\", donc pas utilisables. Après avoir demandé une consolidation du v4, même problème.",
+      "contexte": "Rejet d'un résultat insuffisant — jugement esthétique d'un livrable IA. Active 3.04 (jugement esthétique), 3.01 (itération).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Avec ce prompt (et donc 2h de discussion – tout en buvant mon café) j'ai réussi à obtenir un plan v5 qui me semble tenir la route.",
+      "contexte": "Aboutissement d'un cycle itératif après plusieurs tentatives. Active 3.01 (créativité itérative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Il en est ressorti qu'un livre ne serait pas suffisant et qu'il fallait au moins s'adresser à trois publics différents, et donc faire une trilogie.",
+      "contexte": "Bascule créative : un livre devient trois. Active 3.01 (créativité radicale/itérative), 3.03 (design de problèmes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "L'ordre de rédaction et l'ordre de publication sont inversés. La séquence de publication (pourquoi → comment → quoi) est contre-intuitive pour un académique — qui commencerait par le quoi. Mais elle est optimale pour un lancement : on crée d'abord le besoin, puis on donne les moyens, puis on offre la légitimation à ceux qui veulent aller plus loin.",
+      "contexte": "Inversion qui dépasse le cadre attendu (rédiger et publier dans des sens opposés) — rupture par rapport à la norme académique. Active 3.01 (créativité radicale).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "L'idée du volume zéro est de produire un texte non technique, non scientifique, non philosophique, à destination du grand public, pour expliquer les idées principales sous la forme d'une histoire romancée.",
+      "contexte": "Création d'un format nouveau (volume zéro narratif) en complément d'une trilogie. Active 3.01 (créativité radicale), 3.04 (jugement).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-14",
+      "extraitVerbatim": "Les plans comportent quelques erreurs que je vais corriger à la main. Je ne pense pas générer les livres maintenant, car je n'ai pas terminé de lire la version 1.",
+      "contexte": "Choix de corriger à la main + report — jugement de curation et patience créative. Active 3.04 (jugement esthétique).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Cycle itératif sur le plan du livre : v3 jugée insuffisante, déclenchement d'un nouveau cycle pour faire émerger les oublis."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "v4 produite mais 'pas utilisable' — pivot après échec intermédiaire, relance d'un nouveau cycle."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Aboutissement à la v5 après 2h de dialogue — itération longue documentée avec apprentissage entre chaque passage."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Un livre devient une trilogie — bascule radicale du périmètre créatif."
+        },
+        {
+          "numero": 5,
+          "pid": 7,
+          "contexte": "Inversion rédaction/publication contre-intuitive pour un académique — rupture par rapport à la norme du genre."
+        },
+        {
+          "numero": 6,
+          "pid": 8,
+          "contexte": "Création d'un volume zéro romancé en complément — invention d'un format non prévu initialement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces relèvent de la simple révision plutôt que de la créativité itérative au sens de la fiche. La fiche exige un choix stratégique de l'imperfection, pas seulement une succession de versions corrigées. Les pièces 1 à 3 décrivent un enchaînement v3 → v4 → v5 mais le récit raconte des échecs successifs plus que des prototypes stratégiquement bâclés. Les pièces 4, 5 et 6 sont plus fortes : le passage d'un livre à trois, l'inversion publication/rédaction et l'invention d'un volume zéro romancé relèvent davantage de la rupture radicale (0→1) que de l'itération disciplinée. Le test de la fiche : 'l'IA l'aurait-elle suggéré ?' — l'inversion rédaction/publication et le volume zéro sont peu probables comme suggestion IA spontanée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'itération de la v3 à la v4 documente un cycle avec apprentissage entre chaque passage (constat d'oubli puis stratégie de comparaison)." },
+            { "pieceId": 2, "motifResistance": "v4 jugée inutilisable puis abandonnée pour relancer un nouveau cycle — pivot après échec." },
+            { "pieceId": 3, "motifResistance": "La v5 aboutie après 2h de dialogue itératif est l'aboutissement traçable d'une boucle complète." },
+            { "pieceId": 4, "motifResistance": "Le passage d'un livre à trois est une bascule de périmètre, pas une variation marginale." },
+            { "pieceId": 5, "motifResistance": "Inverser l'ordre de rédaction et l'ordre de publication contre l'attente académique est une transgression consciente de la norme." },
+            { "pieceId": 6, "motifResistance": "Le volume zéro romancé est un format nouveau ajouté en complément — invention de catégorie." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec suspicion. Pour les pièces 1 à 3, l'attaque (f) récit performatif est possible : 'j'ai itéré' raconte la compétence sans toujours la montrer en acte stratégique. Mais la stratégie de comparaison v2/v3 (déjà décomptée en 1.08) est ici l'acte itératif lui-même. Pour les pièces 4 et 5, l'attaque (a) insuffisance probatoire est tentable : la transgression est annoncée mais pas pratiquée — on parle de plans, pas encore de livres écrits. La pièce 6 reste solide : le volume zéro a été généré dans la nuit.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La v3 est suivie d'une stratégie précise pour faire émerger les oublis — l'itération est en acte, pas seulement nommée." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le rejet du v4 inutilisable est documenté avec le détail concret ('idem que v2', 'idem que v3') — c'est un constat précis qui déclenche la relance." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La v5 est jugée 'tenir la route' — formule prudente — mais elle est l'aboutissement traçable d'un long cycle." },
+            { "pieceId": 4, "attaqueDominante": "g", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le passage d'un livre à trois publics est posé comme décision aboutie ('il fallait au moins s'adresser à trois publics différents') et le travail sur les trois plans est en cours, pas un mouvement-vers." },
+            { "pieceId": 5, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'inversion est articulée comme principe mais pas encore éprouvée par la publication. Reste un acte de rupture pensé." },
+            { "pieceId": 6, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le volume zéro a été généré dans la nuit ('J'ai terminé de le générer tard') — c'est un acte créatif accompli, pas une intention." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ce récit d'itérations une simple succession de révisions plutôt qu'une pratique de créativité au sens de la fiche. Ce qui m'a forcé à reconnaître autre chose, c'est la conjonction de deux registres : l'itération disciplinée (v3 → v4 → v5 avec apprentissage entre les cycles) et la rupture par rapport à la norme (un livre devient trois, l'ordre académique est inversé, un volume zéro romancé est inventé). Sous présomption de sycophantie, certaines pièces ont perdu en force — la v5 n'a pas encore prouvé qu'elle tient, l'inversion n'est pas encore éprouvée — mais le volume zéro généré dans la nuit et la stratégie de comparaison v2/v3 ont tenu sans réserve. Dans ce pôle, le travail montre une créativité qui se déploie sur les deux versants : produire vite pour apprendre, et oser ce que la norme académique du genre n'attendait pas.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 4,
+        "nombreIndices": 2,
+        "confiance": 0.82,
+        "motif": "Quatre pièces ont tenu sans réserve : la stratégie d'émergence des oublis, le rejet du v4 inutilisable, le passage à la trilogie et la génération du volume zéro. Itération disciplinée et rupture par rapport à la norme coexistent.",
+        "prescription": "La créativité s'est ici manifestée à la fois dans la patience itérative et dans la rupture (le volume zéro romancé n'était pas dans le plan initial). Pour la prolonger, garder une trace explicite, entre deux versions, de ce que la version précédente a appris ou rejeté donnerait à voir le mécanisme d'apprentissage par cycles courts."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 6, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Volume zéro romancé : une forme inattendue ajoutée à une trilogie — touche personnelle ou signature ?"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce ne suffit pas à établir une signature au sens de la fiche. La singularité exige une empreinte récurrente identifiable, pas un acte unique. Une seule feuille de portfolio ne permet pas de tester la récurrence à travers plusieurs entrées. Le volume zéro romancé pourrait être une signature personnelle (mélange genre académique / récit) ou une décision opportuniste. La pièce ne résiste pas seule au test de récurrence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le volume zéro romancé une signature personnelle. Sous présomption d'absence, la pièce est tombée : la signature est une empreinte récurrente, pas un acte unique. Une seule feuille ne permet pas de tester la récurrence à travers plusieurs entrées du portfolio. Dans ce pôle, la singularité reste un territoire dont l'analyse demanderait à comparer cette feuille avec d'autres pour repérer ce qui revient.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "L'unique pièce candidate ne suffit pas à tester la récurrence stylistique exigée par la fiche.",
+        "prescription": "La signature se révèle dans la comparaison entre plusieurs entrées. Pour ouvrir ce territoire, une relecture transversale du portfolio identifiant les tics d'écriture, les métaphores propres et les structures qui reviennent rendrait visible l'empreinte qui traverse les feuilles."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Constat qu'un seul livre ne suffit pas — création d'un problème de segmentation du public qui n'existait pas dans le projet initial."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Inversion de l'ordre attendu (rédaction vs publication) — formulation d'un problème stratégique nouveau (créer la demande avant de donner les moyens)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces relèvent de 1.02 (cadrage de l'intention) plutôt que de 3.03 (design de problèmes). La distinction critique de la fiche est cruciale : 1.02 reformule un problème existant, 3.03 crée un problème qui n'existait pas. La pièce 1 (un livre → trois) reformule le périmètre — c'est plutôt 1.02. La pièce 2 (inversion rédaction/publication) pose une question qui n'était pas dans le projet initial : 'dans quel ordre publier et dans quel ordre rédiger ?'. C'est une question nouvelle, mais elle reste dans le périmètre de l'objectif initial (écrire un livre). La résistance est faible.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'inversion rédaction/publication pose une question stratégique que le projet initial ne contenait pas — création de problème nouveau plutôt que reformulation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec suspicion. L'attaque (b) confusion de compétence est sérieuse : l'inversion rédaction/publication active plus clairement 1.02 (cadrage) que 3.03 (design de problèmes). La fiche de 3.03 demande de créer un problème *qualitativement différent* qui ouvre un champ d'action inédit. Ici, le problème est formulé dans le périmètre du projet (écrire pour publier) — la question 'dans quel ordre' est nouvelle mais n'ouvre pas un champ inédit, elle optimise un champ existant.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'inversion rédaction/publication est une reformulation stratégique d'un problème existant (publier un livre), pas la création d'un problème nouveau qui ouvrirait un champ d'action inédit. Confusion de compétence avec 1.02." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la bascule trilogie + inversion une création de problème nouveau au sens de la fiche. Sous présomption de sycophantie, la pièce est tombée par confusion de compétence : le travail est plus proche de la reformulation (1.02) que de la création d'un champ d'action inédit. Dans ce pôle, le territoire du design de problèmes reste à visiter dans cette feuille. La fiche est exigeante sur ce point — il faudrait un acte qui ouvre une question que personne n'avait formulée, pas seulement une question nouvelle dans le projet existant.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce candidate a été disqualifiée par confusion de compétence : la reformulation stratégique active 1.02 (cadrage), pas 3.03 (création d'un problème nouveau qui ouvre un champ d'action inédit).",
+        "prescription": "Le design de problèmes laisse ses traces dans un moment où l'on cesse de résoudre un problème donné pour en poser un autre, qualitativement différent. Pour ouvrir ce territoire, raconter un moment où une question inédite a émergé d'une contrainte ou d'un accident, et où cette question a ouvert un champ d'action que personne n'avait formulé, rendrait visible cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le craft nommé comme art — vocabulaire artisanal et qualitatif appliqué à la pratique IA."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "6e sens pour détecter le bullshit — discernement qualitatif d'un output IA."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "v4 rejetée comme 'pas utilisable' avec critère précis ('idem que v2', 'idem que v3') — acte de curation par soustraction."
+        },
+        {
+          "numero": 4,
+          "pid": 9,
+          "contexte": "Choix de corriger les erreurs à la main + report de la génération des livres — jugement de curation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces relèvent de la pensée critique (1.01) plutôt que du jugement esthétique au sens de la fiche. La distinction critique est claire : 1.01 évalue la véracité, 3.04 évalue la justesse formelle. La pièce 3 (v4 rejetée car des chapitres sont 'idem que v2', 'idem que v3') évalue la complétude/véracité, pas la qualité formelle — c'est 1.01. La pièce 2 (6e sens) détecte le bullshit, qui est aussi de la véracité. Pièce 1 (craft comme art) résiste mieux : 'art' est un vocabulaire qualitatif. La pièce 4 (corriger à la main) relève plus de l'efficacité personnelle que du jugement esthétique articulé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le 'craft' nommé comme 'art' importe un vocabulaire qualitatif et artisanal — c'est un jugement de forme, pas de véracité." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec suspicion. L'attaque (d) glissement lexical est sérieuse : nommer le craft comme 'art' est-il un vrai jugement esthétique ou un simple emprunt lexical ? La fiche de 3.04 demande des critères articulés, y compris l'intuition. Ici, le mot 'art' apparaît mais sans critère articulé. La pièce résiste faiblement.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le 'craft comme art' importe le vocabulaire qualitatif sans articuler de critère esthétique précis — reste un indice de sensibilité à la forme du geste." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille un jugement esthétique distinct de la pensée critique. Sous présomption d'absence, plusieurs pièces se sont rabattues sur 1.01 (véracité) : la v4 rejetée parce qu'elle copiait la v2, le bullshit détecté. Sous présomption de sycophantie, ce qui reste est mince : le 'craft comme art' garde une nuance qualitative mais ne s'articule pas en critère explicite. Dans ce pôle, le jugement esthétique reste implicite — il opère probablement dans les décisions mais ne se thématise pas dans cette feuille comme un acte de curation aux critères articulés.",
+          "confianceFinale": 0.32
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.32,
+        "motif": "Pièce affaiblie unique : le 'craft comme art' importe un vocabulaire qualitatif sans articuler de critère esthétique précis. Renvoi au cartographe pour examen complémentaire.",
+        "prescription": "Le jugement esthétique articulé exige des critères verbalisés. Pour faire émerger cette compétence, nommer une fois ce qui rend un plan v5 préférable au v4 — pas seulement en termes de complétude (véracité) mais en termes de justesse de forme — rendrait visible un discernement qui opère déjà sans se dire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la matière physique a été manipulée — bricolage, montage, cuisine, réparation."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "6e sens et feeling pour détecter le bullshit — perception intuitive non analytique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce ne relève pas de l'ancrage sensoriel au sens de la fiche. La fiche distingue 3.06 (perception corporelle/phénoménologique du physique) de 2.01 (perception relationnelle) : 'j'ai senti' appliqué à un phénomène physique = 3.06, appliqué à autrui = 2.01. Ici, le '6e sens' s'applique à des réponses IA — pas à un phénomène physique ou corporel. C'est une intuition cognitive, pas somatique. La pièce ne résiste pas au critère de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le 6e sens et le feeling une trace d'ancrage sensoriel au sens corporel. Sous présomption d'absence, la pièce est tombée : la fiche est explicite — la perception doit porter sur un phénomène physique ou corporel. Le 6e sens face à l'IA est une intuition cognitive, pas somatique. Dans ce pôle, ce territoire reste à visiter ailleurs — peut-être dans les passages mentionnant la fatigue physique au volant, mais ils ne sont pas reliés à une décision incarnée racontée dans cette feuille.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce candidate active une perception cognitive (face à l'IA) plutôt que somatique — hors champ de la fiche.",
+        "prescription": "L'ancrage sensoriel laisse ses traces dans la description précise d'une sensation corporelle reliée à une action. Pour ouvrir ce territoire, raconter un moment où un signal corporel (fatigue, tension, intuition somatique) a guidé une décision concrète rendrait visible cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment en présentiel où sa présence a fait une différence en temps réel."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, la feuille du 14 mars 2026 montre un travail créatif qui se déploie dans la matière numérique et conceptuelle plutôt que physique. La création passe ici par l'itération sur des plans, par l'invention de nouveaux formats (la trilogie devient quadrilogie avec le volume zéro romancé), et par la rupture par rapport aux normes attendues — l'ordre académique est inversé, le grand public reçoit une histoire au lieu d'un traité. Le vocabulaire artisanal apparaît, mais pour parler du numérique : 'crafter les données minimales à charger en mémoire est tout un art'. La main est ici métaphorique. La création s'exerce sur des plans, des prompts, des architectures éditoriales.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "Le travail combine deux registres complémentaires : l'itération longue (v3 → v4 → v5 avec apprentissage entre chaque cycle) et la rupture par rapport au cadre attendu (un livre devient trois, l'ordre publication/rédaction est inversé, un volume zéro romancé est inventé).",
+        "extraitVerbatim": "L'idée du volume zéro est de produire un texte non technique, non scientifique, non philosophique, à destination du grand public, pour expliquer les idées principales sous la forme d'une histoire romancée.",
+        "ceQueCaDit": "La créativité ne se manifeste pas seulement comme exécution améliorée d'un plan, mais comme capacité à reconfigurer le projet lui-même quand l'itération en révèle les limites. Le volume zéro n'était pas prévu — il a été inventé en réponse au constat qu'aucun des trois publics initialement visés ne reçoit la matière de manière narrative."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en retrait dans cette feuille. L'intelligence manuelle et artisanale n'apparaît pas — la matière ici est numérique. L'ancrage sensoriel et la pleine présence ne s'incarnent pas dans des sensations corporelles décrites comme guides de décision : la fatigue au volant est mentionnée mais sans extraction phénoménologique. La présence et performance live ne sont pas thématisées — la feuille raconte un travail solitaire entre l'apprenant et plusieurs IA. Le jugement esthétique articulé reste implicite : les rejets de versions sont justifiés par la véracité ou la complétude, pas par des critères de forme verbalisés. Le design de problèmes au sens strict de la fiche (créer une question qui ouvre un champ d'action inédit) n'est pas non plus clairement franchi — les questions nouvelles s'inscrivent dans le périmètre du projet existant. La singularité, qui exige une lecture transversale de plusieurs entrées, ne peut pas se tester sur une feuille seule.",
+    "emergencesPole": "Deux choses traversent ce pôle dans la feuille. D'abord, un déplacement du vocabulaire artisanal vers le numérique — le 'craft' s'applique aux données à charger en mémoire, pas au bois ou au métal. L'apprenant pense sa pratique IA comme une matière à façonner. Ensuite, une oscillation entre patience itérative et rupture franche : la même feuille raconte deux heures de dialogue pour stabiliser un plan, et l'invention dans la nuit d'un format qui n'était pas prévu. La création se loge dans cette tension entre ce qu'on retravaille jusqu'à ce que ça tienne, et ce qu'on ose ajouter quand le cadre attendu ne suffit plus.",
+    "pistes": [
+      "Pour faire émerger un jugement esthétique articulé, un chemin possible serait de nommer une fois, après la lecture du volume zéro, ce qui le rendrait préférable ou inférieur au monument pour son public — non en termes d'exactitude, mais en termes de justesse de ton, de rythme, de forme.",
+      "Pour ouvrir le territoire de l'intelligence manuelle, un chemin possible serait de raconter, à l'occasion, un geste physique qui a fait avancer un projet — un schéma au tableau, une maquette papier, un objet bricolé.",
+      "Pour explorer le design de problèmes au sens strict de la fiche, un chemin possible serait de remonter dans le projet jusqu'au moment où la question 'comment publier ça ?' s'est transformée en 'à qui parle-t-on et pour quoi faire ?' — ce moment marque une création de question, pas une reformulation."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, la feuille du 14 mars 2026 montre un travail créatif qui se déploie dans la matière numérique et conceptuelle plutôt que physique. La création passe ici par l'itération sur des plans, par l'invention de nouveaux formats (la trilogie devient quadrilogie avec le volume zéro romancé), et par la rupture par rapport aux normes attendues — l'ordre académique est inversé, le grand public reçoit une histoire au lieu d'un traité. Le vocabulaire artisanal apparaît, mais pour parler du numérique : 'crafter les données minimales à charger en mémoire est tout un art'. La main est ici métaphorique. La création s'exerce sur des plans, des prompts, des architectures éditoriales.\n\n## Territoires les plus denses\n\n**Créativité itérative et radicale.** Le travail combine deux registres complémentaires : l'itération longue (v3 → v4 → v5 avec apprentissage entre chaque cycle) et la rupture par rapport au cadre attendu (un livre devient trois, l'ordre publication/rédaction est inversé, un volume zéro romancé est inventé). Verbatim : *« L'idée du volume zéro est de produire un texte non technique, non scientifique, non philosophique, à destination du grand public, pour expliquer les idées principales sous la forme d'une histoire romancée. »* La créativité ne se manifeste pas seulement comme exécution améliorée d'un plan, mais comme capacité à reconfigurer le projet lui-même quand l'itération en révèle les limites. Le volume zéro n'était pas prévu — il a été inventé en réponse au constat qu'aucun des trois publics initialement visés ne reçoit la matière de manière narrative.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en retrait dans cette feuille. L'intelligence manuelle et artisanale n'apparaît pas — la matière ici est numérique. L'ancrage sensoriel et la pleine présence ne s'incarnent pas dans des sensations corporelles décrites comme guides de décision : la fatigue au volant est mentionnée mais sans extraction phénoménologique. La présence et performance live ne sont pas thématisées — la feuille raconte un travail solitaire entre l'apprenant et plusieurs IA. Le jugement esthétique articulé reste implicite : les rejets de versions sont justifiés par la véracité ou la complétude, pas par des critères de forme verbalisés. Le design de problèmes au sens strict de la fiche (créer une question qui ouvre un champ d'action inédit) n'est pas non plus clairement franchi — les questions nouvelles s'inscrivent dans le périmètre du projet existant. La singularité, qui exige une lecture transversale de plusieurs entrées, ne peut pas se tester sur une feuille seule.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux choses traversent ce pôle dans la feuille. D'abord, un déplacement du vocabulaire artisanal vers le numérique — le 'craft' s'applique aux données à charger en mémoire, pas au bois ou au métal. L'apprenant pense sa pratique IA comme une matière à façonner. Ensuite, une oscillation entre patience itérative et rupture franche : la même feuille raconte deux heures de dialogue pour stabiliser un plan, et l'invention dans la nuit d'un format qui n'était pas prévu. La création se loge dans cette tension entre ce qu'on retravaille jusqu'à ce que ça tienne, et ce qu'on ose ajouter quand le cadre attendu ne suffit plus.\n\n## Pistes pour enrichir ce pôle\n\n- Pour faire émerger un jugement esthétique articulé, un chemin possible serait de nommer une fois, après la lecture du volume zéro, ce qui le rendrait préférable ou inférieur au monument pour son public — non en termes d'exactitude, mais en termes de justesse de ton, de rythme, de forme.\n- Pour ouvrir le territoire de l'intelligence manuelle, un chemin possible serait de raconter, à l'occasion, un geste physique qui a fait avancer un projet — un schéma au tableau, une maquette papier, un objet bricolé.\n- Pour explorer le design de problèmes au sens strict de la fiche, un chemin possible serait de remonter dans le projet jusqu'au moment où la question 'comment publier ça ?' s'est transformée en 'à qui parle-t-on et pour quoi faire ?' — ce moment marque une création de question, pas une reformulation.\n"
+  }
+}

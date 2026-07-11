@@ -1,0 +1,270 @@
+{
+  "poleNum": "7",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-20",
+      "extraitVerbatim": "Pour moi, la noèsiologie est un profil interdisciplinaire qui allie neurosciences, neuroéducation, psychologie cognitive, théorie de la motivation, et épistémologie de la création. Le noèsiologue maîtrise les stratégies cognitives et fonctions cognitives utiles pour apprendre à apprendre et pour apprendre à résoudre des problèmes de manière créative.",
+      "contexte": "Définition d'un profil interdisciplinaire au service de l'apprentissage et de la résolution de problèmes ; potentielle architecture pédagogique en gestation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-20",
+      "extraitVerbatim": "Fourni moi la liste des compétences du noèsiologue de 2035, un spécialiste en dialogique et collaboration avec les intelligences artificielles.",
+      "contexte": "Requête prospective sur les compétences d'un métier en 2035 ; potentielle vision stratégique à dix ans.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-20",
+      "extraitVerbatim": "Du coup, c'est probablement une chose à mettre en avant dans Respire et dans les manuels du Maître Tuteur.",
+      "contexte": "Décision d'intégration dans deux dispositifs nommés ; potentielle inscription dans une documentation vivante ou une vision stratégique.",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La définition du noèsiologue centre la pratique sur « apprendre à apprendre » ; potentielle facilitation d'apprentissage en arrière-plan d'une réflexion sur le profil idéal."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la maïeutique et la facilitation d'apprentissage ne sont pas attestées ici. La fiche 7.01 demande des questions adressées à autrui pour provoquer une prise de conscience, des récits de retenue délibérée (« j'aurais pu lui dire mais… »), des dispositifs pédagogiques conçus avec intention. La pièce 1 parle d'« apprendre à apprendre » mais comme attribut abstrait d'une figure (le noèsiologue), pas comme acte pédagogique exercé par l'apprenant envers un autre. Aucun récit de questionnement socratique, aucune retenue racontée, aucun dispositif décrit. La fiche met en garde : « j'ai expliqué » est un transfert descendant, « j'ai enseigné » peut être de la transmission frontale — la maïeutique exige la retenue interrogative. Ici, l'apprenant définit un profil ; il ne questionne ni ne fait accoucher. La pièce ne résiste pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'une maïeutique sur cette feuille. La présomption d'absence a tenu : « apprendre à apprendre » est posé comme attribut de la figure du noèsiologue, sans acte pédagogique correspondant exercé par l'apprenant lui-même. La fiche exige la retenue interrogative adressée à un autre, qui n'apparaît pas. Ce qui en résulte est une présence non établie. La feuille parle de la maîtrise de l'apprentissage comme objet à transmettre, sans encore montrer le geste de transmission.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "Le temps 1 a absorbé la pièce candidate : la formule « apprendre à apprendre » qualifie un profil abstrait sans constituer un acte de maïeutique adressé à un autre.",
+        "prescription": "Pour ouvrir un dossier maïeutique depuis cette définition, un chemin possible serait de raconter un moment où l'apprenant a aidé un élève ou un pair à formuler lui-même une idée sur le dialogue avec l'IA, plutôt que de lui livrer la réponse."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait décrire un dispositif d'auto-évaluation des compétences noèsiologiques destiné aux futurs Maîtres Tuteurs."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'inscription de l'idée dans Respire et dans les manuels du Maître Tuteur signale une intention de capitalisation dans des supports nommés et structurés ; potentielle documentation vivante."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la documentation vivante n'est pas attestée ici. La fiche 7.03 demande une structuration intentionnelle pour un futur lecteur, du versioning, des wikis, des bases de connaissances. La pièce 3 mentionne deux supports nommés (Respire, manuels du Maître Tuteur), ce qui suggère que l'apprenant a déjà mis en place des infrastructures de capitalisation. Mais la pièce ne livre pas la documentation elle-même — elle annonce qu'il faudra y intégrer une idée. La fiche distingue 7.03 de 5.03 : 7.03 exige la structuration et la conscience du destinataire. Ici, le destinataire est suggéré (les lecteurs futurs de Respire et des manuels) mais sans description du geste de structuration. La pièce résiste partiellement : la mention de deux dispositifs nommés avec destinataires implicites pose au moins la conscience qu'une infrastructure documentaire existe et reçoit du contenu.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La référence à « Respire » et aux « manuels du Maître Tuteur » comme destinations d'intégration suppose l'existence préalable de dispositifs documentaires structurés et la conscience d'un futur lecteur, ce qui correspond au cœur de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je m'interroge sur la pièce 1. Elle évoque deux dispositifs nommés sans rien en montrer : on ne sait ni leur structure, ni leur versionnage, ni la nature du contenu déjà capitalisé. C'est l'allusion à une infrastructure plus que l'attestation de son existence en tant que documentation vivante. La fiche met en garde contre « j'ai sauvegardé » ou « j'ai archivé » sans structuration intentionnelle. Ici, on est en amont — l'apprenant n'annonce même pas qu'il a déjà archivé, il dit qu'il faudra le faire. La pièce s'affaiblit fortement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif : la décision d'intégrer est annoncée plus que constatée, et les deux dispositifs sont nommés sans être décrits. L'allusion à leur existence préserve néanmoins l'indice d'une infrastructure documentaire en place."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'une documentation vivante attestée sur cette feuille. Ce qui m'a forcé à reconnaître une trace, c'est la mention même de Respire et des manuels du Maître Tuteur comme destinations existantes — ces dispositifs ne se nomment pas dans le vide, ils supposent une architecture documentaire préalable que l'apprenant alimente. Sous la présomption de sycophantie, la pièce s'est affaiblie : aucune description, aucune attestation de structuration. Ce qui en résulte est un indice plutôt qu'une preuve : la documentation vivante existe probablement en arrière-plan, et cette feuille s'inscrit comme un fragment destiné à y rejoindre d'autres fragments. La preuve directe attend une feuille qui décrit l'architecture elle-même.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce candidate sans la disqualifier ; l'indice subsiste — l'allusion à deux dispositifs nommés suppose une infrastructure documentaire — mais sans attestation directe de sa structuration.",
+        "prescription": "Pour transformer cet indice en preuve, un chemin possible serait, lors d'une prochaine entrée, de décrire la structure de Respire ou des manuels du Maître Tuteur — sections, versions, conscience du futur lecteur — afin que la documentation vivante devienne lisible dans le portfolio lui-même."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au leadership situationnel et à l'orchestration sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait décrire l'alternance entre les moments où il a laissé les quatre IA mener et ceux où il a repris la main."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Projection à dix ans (2035) du métier de « spécialiste en dialogique et collaboration avec les IA » ; potentielle vision stratégique à long terme."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "La décision d'intégrer la noèsiologie dans Respire et dans les manuels du Maître Tuteur relie une réflexion conceptuelle à un futur anticipé pour ces dispositifs ; potentielle articulation entre vision et décision présente."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la vision stratégique n'est pas attestée ici. La fiche 7.05 demande un lien explicite entre choix présent et futur anticipé (« je fais X maintenant parce que dans Y temps… »), des scénarios prospectifs, une architecture surdimensionnée pour l'usage actuel. La pièce 1 projette à 2035 mais la projection sert à fabriquer un objet conceptuel (le référentiel du noèsiologue), pas à fonder une décision présente. La pièce 2 contient « du coup », qui relie la réflexion à une décision d'intégration — c'est un lien causal entre la vision (la noèsiologie comme profil prometteur) et l'action (l'inscrire dans deux dispositifs nommés). C'est ténu mais ce n'est pas rien : la décision d'intégrer maintenant repose sur la conviction que le profil deviendra important. La pièce 2 résiste. La pièce 1 ne résiste pas comme vision liée à une décision présente.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Le « du coup » articule explicitement une projection prospective sur la noèsiologie à une décision présente d'intégration dans Respire et dans les manuels, ce qui correspond au lien vision/décision exigé par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surinterprété le « du coup ». C'est un connecteur logique courant qui peut signaler un raisonnement opportuniste plutôt qu'une vision stratégique articulée. La fiche exige des scénarios prospectifs, une temporisation assumée, une architecture surdimensionnée — éléments absents ici. L'« horizon 2035 » apparaît dans la pièce 1 mais pas dans la pièce 2 ; le lien entre la vision longue et la décision présente reste implicite. La pièce s'affaiblit sans tomber : le mouvement existe mais l'argumentation longue de la vision n'est pas livrée.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : le « du coup » porte un lien causal court entre intuition et décision, sans le déployer en scénario prospectif explicite. L'articulation reste cependant lisible — la décision présente est justifiée par une conviction sur la pertinence future du profil."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'une vision stratégique articulée sur cette feuille. Ce qui m'a forcé à reconnaître une trace, c'est le « du coup » qui relie la réflexion prospective sur la noèsiologie à une décision présente d'intégration dans Respire et dans les manuels du Maître Tuteur. Sous la présomption de sycophantie, la trace s'est affaiblie : le scénario prospectif n'est pas déployé, l'horizon temporel n'est pas explicité dans la décision elle-même. Ce qui en résulte est un indice plutôt qu'une preuve : le geste de relier vision et décision est là, mais sans l'épaisseur argumentaire qui en ferait une vision stratégique formalisée. La feuille porte la signature d'une intuition directionnelle, pas encore d'une prospective articulée.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce candidate sans la disqualifier ; l'indice subsiste — le « du coup » articule vision et décision — sans déployer le scénario prospectif qui en ferait une vision pleinement formalisée.",
+        "prescription": "Pour transformer cette intuition en vision articulée, un chemin possible serait d'écrire en quelques phrases pourquoi, en 2035, le noèsiologue sera devenu indispensable, et en quoi l'intégrer aujourd'hui dans Respire et les manuels prépare ce futur."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'efficacité personnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait décrire ce qu'il a choisi de ne pas faire pour pouvoir consacrer du temps à la consultation des quatre IA."
+      }
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'agilité et à la conduite du changement sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter comment la réflexion sur la noèsiologie a évolué entre les premières formulations et la version actuelle."
+      }
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation d'urgence où il a dû arbitrer sous contrainte temporelle extrême."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 8,
+    "courtCircuits": 5
+  },
+
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle du pilotage et de la transmission est présent en arrière-plan plutôt qu'à l'avant-scène. L'apprenant ne raconte pas un acte pédagogique ni une crise traversée, mais il inscrit clairement sa réflexion dans une infrastructure dépassant l'entrée du jour. Deux dispositifs sont nommés — Respire et les manuels du Maître Tuteur — comme destinations naturelles de l'idée. La projection à 2035 dessine un horizon, et le « du coup » qui clôt la feuille articule cette projection à une décision présente. Ce qui se manifeste ici relève moins du geste de transmission lui-même que de la conscience d'un édifice qu'on alimente — une posture d'auteur qui sait pour qui et pour quand il écrit.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent hors champ sur cette feuille. L'évaluation transformative, le leadership situationnel, l'efficacité personnelle, l'agilité et la gestion de crise n'apparaissent dans aucune trace verbatim, ce qui est cohérent avec le format conceptuel court de l'entrée. La maïeutique est suggérée par le thème de l'« apprendre à apprendre » mais reste posée comme attribut d'un profil tiers, sans acte pédagogique exercé par l'apprenant. La documentation vivante et la vision stratégique apparaissent en germe (deux renvois au cartographe) : la première par l'inscription dans deux dispositifs nommés sans description de leur structure, la seconde par le « du coup » qui articule une intuition prospective à une décision présente sans déployer le scénario qui la fonderait.",
+    "emergencesPole": "Trois observations traversent les compétences examinées. La première : l'apprenant écrit en position d'auteur d'un édifice plus vaste qu'il alimente — Respire, manuels du Maître Tuteur. La feuille est un fragment qui sait où il va. La deuxième : le réflexe de relier intuition et décision passe par des connecteurs économiques (« du coup », « probablement ») qui marquent l'articulation sans la déployer. La troisième : l'horizon temporel est explicite (2035), ce qui distingue ce travail d'une simple réflexion ponctuelle et le rapproche d'une posture prospective installée.",
+    "pistes": [
+      "Pour transformer l'indice de documentation vivante en preuve, un chemin possible serait, lors d'une prochaine entrée, de décrire la structure de Respire ou des manuels du Maître Tuteur — sections, versions, conscience du futur lecteur — afin que l'architecture devienne lisible dans le portfolio lui-même.",
+      "Pour transformer l'intuition prospective en vision articulée, un chemin possible serait d'écrire en quelques phrases pourquoi, en 2035, le noèsiologue sera devenu indispensable, et en quoi l'intégrer aujourd'hui dans Respire et les manuels prépare ce futur.",
+      "Pour ouvrir un dossier maïeutique depuis cette réflexion conceptuelle, un chemin possible serait de raconter un moment où l'apprenant a aidé un élève ou un pair à formuler lui-même une idée sur le dialogue avec l'IA, plutôt que de lui livrer la réponse."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle du pilotage et de la transmission est présent en arrière-plan plutôt qu'à l'avant-scène. L'apprenant ne raconte pas un acte pédagogique ni une crise traversée, mais il inscrit clairement sa réflexion dans une infrastructure dépassant l'entrée du jour. Deux dispositifs sont nommés — Respire et les manuels du Maître Tuteur — comme destinations naturelles de l'idée. La projection à 2035 dessine un horizon, et le « du coup » qui clôt la feuille articule cette projection à une décision présente. Ce qui se manifeste ici relève moins du geste de transmission lui-même que de la conscience d'un édifice qu'on alimente — une posture d'auteur qui sait pour qui et pour quand il écrit.\n\n## Territoires les plus denses\n\nAucun territoire ne s'établit en présence pleine sur cette feuille pour ce pôle. Deux compétences — la documentation vivante et la vision stratégique — apparaissent en germe et appellent un complément lors de prochaines entrées.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent hors champ sur cette feuille. L'évaluation transformative, le leadership situationnel, l'efficacité personnelle, l'agilité et la gestion de crise n'apparaissent dans aucune trace verbatim, ce qui est cohérent avec le format conceptuel court de l'entrée. La maïeutique est suggérée par le thème de l'« apprendre à apprendre » mais reste posée comme attribut d'un profil tiers, sans acte pédagogique exercé par l'apprenant. La documentation vivante et la vision stratégique apparaissent en germe : la première par l'inscription dans deux dispositifs nommés sans description de leur structure, la seconde par le « du coup » qui articule une intuition prospective à une décision présente sans déployer le scénario qui la fonderait.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences examinées. La première : l'apprenant écrit en position d'auteur d'un édifice plus vaste qu'il alimente — Respire, manuels du Maître Tuteur. La feuille est un fragment qui sait où il va. La deuxième : le réflexe de relier intuition et décision passe par des connecteurs économiques (« du coup », « probablement ») qui marquent l'articulation sans la déployer. La troisième : l'horizon temporel est explicite (2035), ce qui distingue ce travail d'une simple réflexion ponctuelle et le rapproche d'une posture prospective installée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour transformer l'indice de documentation vivante en preuve, un chemin possible serait, lors d'une prochaine entrée, de décrire la structure de Respire ou des manuels du Maître Tuteur — sections, versions, conscience du futur lecteur — afin que l'architecture devienne lisible dans le portfolio lui-même.\n- Pour transformer l'intuition prospective en vision articulée, un chemin possible serait d'écrire en quelques phrases pourquoi, en 2035, le noèsiologue sera devenu indispensable, et en quoi l'intégrer aujourd'hui dans Respire et les manuels prépare ce futur.\n- Pour ouvrir un dossier maïeutique depuis cette réflexion conceptuelle, un chemin possible serait de raconter un moment où l'apprenant a aidé un élève ou un pair à formuler lui-même une idée sur le dialogue avec l'IA, plutôt que de lui livrer la réponse."
+  }
+}

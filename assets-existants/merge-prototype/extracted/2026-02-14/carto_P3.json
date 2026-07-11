@@ -1,0 +1,412 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-14",
+      "extraitVerbatim": "RESPIRE est cool, c’est une belle architecture, mais il m’a fallu un temps phénoménal pour arriver, avec l’aide des IA, à assembler toutes ces innovations.",
+      "contexte": "Mention de l’assemblage des innovations dans RESPIRE — acte de création/agrégation rapportée comme résultat d’un long travail.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-14",
+      "extraitVerbatim": "à Chamblandes, après m’être forcé à l’enseigner durant une année, j’avais maintenant vraiment compris pourquoi c’était un mauvais choix et basculé sur Quorum qui est meilleur.",
+      "contexte": "Itération pédagogique opérée après une année d’exécution d’un choix initial — apprentissage explicite puis pivot vers un autre outil.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-14",
+      "extraitVerbatim": "J’ai le feeling que dans quelques mois, l’human-in-the-loop sera le maillon faible du système de cartographie ! Scary…",
+      "contexte": "Identification d’un problème nouveau dans le système RESPIRE — l’obsolescence anticipée du composant humain dans la boucle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-14",
+      "extraitVerbatim": "Je peux enfin libérer mon potentiel créatif et faire quelque chose d’utile pour l’humanité.",
+      "contexte": "Déclaration explicite du registre créatif comme moteur du travail actuel sur RESPIRE.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-14",
+      "extraitVerbatim": "Par curiosité, je viens de demander de l’aide à Claude sur ce pavé en violet que je viens d'écrire.",
+      "contexte": "Expérimentation en temps réel : soumettre son propre texte à l’outil qu’il construit — dogfooding immédiat du dispositif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-14",
+      "extraitVerbatim": "Ce qui me plait le plus c’est la conclusion",
+      "contexte": "Acte de curation explicite dans la lecture de l’output de l’IA — sélection d’un fragment précis comme objet de préférence.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-14",
+      "extraitVerbatim": "Je sens qu’aujourd’hui aussi je ne vais pas travailler. Trop de news importantes sous YouTube. Je dois digérer ça",
+      "contexte": "Verbalisation d’une intuition somatique sur l’état du jour et usage d’un vocabulaire corporel (digérer) pour qualifier un travail cognitif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-02-14",
+      "extraitVerbatim": "Je dois digérer ça et en plus faire les courses, aller jouer aux cartes à Genève avec la soeur de Soledad, et faire mes postulations ORP de la semaine dernière car je n’ai vu pas mal d’offre ou je pourrais postuler et je n’ai pas allouer de temps cette semaine à ça.",
+      "contexte": "Juxtaposition caractéristique de registres (existentiel, quotidien, administratif) dans une même phrase — marqueur de tonalité propre.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Itération pédagogique avec apprentissage explicite entre deux versions : Python d’abord (un an d’exécution forcée), puis Quorum après compréhension de l’inadéquation."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Expérimentation en temps réel d’un prototype non finalisé (le référentiel RESPIRE) en le soumettant à l’IA — geste typique d’itération rapide sur un objet imparfait."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Mention rétrospective du travail d’assemblage des innovations dans RESPIRE — acte créatif passé."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "Déclaration explicite du registre créatif comme moteur du travail actuel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec la présomption d’absence, j’aborde ces pièces en m’attendant à ne trouver que des déclarations de créativité — « j’ai créé », « je suis créatif » — sans la mécanique d’itération que la fiche identifie comme critère. La pièce 4 est exactement cela : une déclaration. La pièce 1 décrit un acte créatif passé sans en montrer la mécanique sur cette feuille. La pièce 2 résiste différemment : elle décrit une boucle complète — exécution forcée d’une version, apprentissage sur la durée, bascule motivée par la compréhension. C’est la structure 1→n de l’itération avec apprentissage explicite entre versions. La pièce 5 résiste aussi : tester son propre référentiel en cours de construction sur un cas d’usage (son propre texte) est un acte de prototypage rapide.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Structure d’itération explicite — une version exécutée, un apprentissage formulé, un pivot motivé vers une autre version." },
+            { "pieceId": 2, "motifResistance": "Dogfooding du dispositif en construction — test d’un prototype sur un cas réel, sans attendre la version finalisée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d’hallucination. Le risque principal est que la pièce 2 raconte une « itération » qui ressemble plutôt à une simple correction d’erreur (je me suis trompé, j’ai changé). La fiche distingue : itérer = choix stratégique de l’imperfection initiale ; corriger = abandonner une erreur. La pièce 2 est ambiguë : l’apprenant ne dit pas qu’il a choisi Python comme prototype imparfait, il dit qu’il s’est « forcé » à l’enseigner avant de comprendre que c’était un mauvais choix. Cela ressemble plus à une correction d’erreur menée sur la durée qu’à de l’itération stratégique. La pièce 5 reste un acte concret d’expérimentation. La pièce 1 est essentiellement performative.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le mouvement-vers est partiel : la pièce décrit l’apprentissage qui suit l’exécution, plus que l’itération choisie. Elle reste retenue parce que la formulation explicite du « pourquoi c’était un mauvais choix » témoigne de l’extraction d’apprentissage entre versions."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L’insuffisance probatoire ne tient pas : l’acte de soumettre un référentiel en construction à un test réel est une trace nette de prototypage rapide, raconté avec sa motivation (« par curiosité »)."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le récit performatif est partiel — l’acte créatif est nommé sans être montré ici ; la pièce reste retenue comme indice corroboratif."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le récit performatif tient entièrement : « libérer mon potentiel créatif » est une déclaration sans acte montré sur cette feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Au départ, j’ai cherché à tenir ces pièces pour des déclarations de créativité sans la mécanique itérative que la fiche identifie. La pièce 4 est tombée — c’est une déclaration. La pièce 1 a résisté faiblement comme indice. La pièce 2 a résisté parce que la boucle « exécution + apprentissage + pivot » est explicitement décrite, même si l’itération paraît davantage corrective qu’étagée. La pièce 5 a résisté nettement parce qu’elle expose un acte de prototypage sur un objet en construction. Ce qui reste dans cette feuille, c’est une créativité opérante dans le registre du test et de l’apprentissage sur la durée, moins une créativité radicale au sens fort (rupture, transgression consciente). La présence du registre itératif est attestée ; le registre radical (0→1, idées qu’aucune IA n’aurait suggérées) demande d’autres pièces.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "La pièce 5 a porté le verdict en exposant un acte de prototypage en temps réel ; la pièce 2 corrobore par la boucle d’itération avec apprentissage explicite ; la pièce 1 ajoute un indice rétrospectif.",
+        "prescription": "Une piste possible : à la prochaine itération sur RESPIRE, raconter brièvement la version provisoire qui n’a pas tenu et ce que sa chute a permis de comprendre — cela rendrait visible la mécanique d’apprentissage entre versions plutôt que seulement le résultat final."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Juxtaposition caractéristique des registres (existentiel, quotidien, administratif) dans une même phrase — marqueur stylistique récurrent qui distingue ce texte d’un output IA générique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec la présomption d’absence, j’aborde cette pièce en m’attendant à ne pas pouvoir attester une singularité depuis une seule feuille — la fiche est claire : la singularité se vérifie par récurrence dans le temps. La pièce 1 contient bien un marqueur stylistique (juxtaposition de registres dans une même phrase, présence de personalia comme « la soeur de Soledad », usage du mot « pavé »), mais une feuille isolée ne suffit pas à établir le pattern. Ce marqueur active la fiche mais n’atteint pas son seuil de validation.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Présence claire de mélanges de registres et de personalia qui distinguent ce passage d’un output IA générique — marqueur ponctuel de signature." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d’hallucination. La pièce 1 active des marqueurs stylistiques mais ne porte pas de preuve de récurrence. Sans accès à d’autres feuilles, je ne peux pas comparer. Le risque est de tenir un échantillon pour un pattern.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L’insuffisance probatoire est réelle pour la singularité au sens fort, qui demande de la récurrence ; la pièce reste retenue comme indice corroboratif d’un signal stylistique présent dans cette feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Au départ, j’ai cherché à tenir cette pièce pour insuffisante à attester une singularité. Elle a résisté faiblement parce que les marqueurs stylistiques (juxtaposition de registres, personalia, vocabulaire propre comme « pavé ») sont effectivement présents dans cette feuille. Sous la présomption de sycophantie, elle s’est affaiblie sans tomber : un seul passage ne peut pas porter un verdict de signature, qui demande la récurrence. Ce qui reste dans cette feuille, c’est l’indice d’un style identifiable dans ses marqueurs ponctuels, en attente d’une lecture croisée du portfolio pour vérifier la récurrence.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "La singularité demande une attestation de récurrence dans le temps ; cette feuille fournit un indice stylistique mais ne peut pas porter à elle seule un verdict de présence pleine.",
+        "prescription": "Une piste possible : la confirmation de la singularité passera par une lecture croisée de plusieurs feuilles ; en attendant, repérer dans une prochaine entrée un tic d’écriture conscient (un mot, une tournure, un mélange de registres) pourrait amorcer la conscience de sa propre signature."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Identification d’un problème nouveau dans le système RESPIRE — l’obsolescence anticipée du composant humain dans la boucle, problème que personne n’avait posé en ces termes avant cette feuille."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Référence à l’assemblage d’innovations dans RESPIRE — l’architecture elle-même crée un champ d’action (la cartographie post-AGI) qui n’existait pas dans les référentiels antérieurs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec la présomption d’absence, j’aborde ces pièces en m’attendant à ne trouver que du cadrage de problèmes existants (1.02) plutôt qu’une création de problème nouveau (3.03). La fiche distingue rigoureusement : 1.02 reformule, 3.03 crée. La pièce 3 est intéressante à cet endroit : « l’human-in-the-loop sera le maillon faible du système de cartographie » est une question que personne n’avait posée — l’apprenant identifie que son propre dispositif contient une vulnérabilité non perçue. Ce n’est pas une reformulation, c’est la mise au jour d’un problème nouveau. La pièce 1 est plus indirecte : RESPIRE comme architecture crée un champ d’action (cartographier les compétences post-AGI) qui n’existait pas, mais cela est rapporté comme acte passé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Pose une question qui n’existait pas — sur la vulnérabilité de son propre dispositif — et qui ouvre un champ d’action (repenser l’équilibre humain-IA dans RESPIRE)." },
+            { "pieceId": 2, "motifResistance": "Référence à un acte de création de champ d’action passé — RESPIRE comme dispositif qui pose des questions inédites." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d’hallucination. Le risque est de confondre une inquiétude avec un design de problème. La pièce 3 est très brève — « scary… » est une réaction émotionnelle, pas nécessairement la formulation d’un problème nouveau au sens fort. Mais la qualification « maillon faible du système » nomme bien un problème structurel : où se trouve la fragilité du dispositif, et que faire ? C’est plus qu’une inquiétude. La pièce 2 reste largement déclarative.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L’insuffisance probatoire est partielle — la pièce est brève et la conséquence (que faire de ce problème ?) n’est pas développée ici. Elle reste retenue parce que la question posée est nette et qu’elle ouvre un champ d’action explicite."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le récit performatif domine — l’acte de création est nommé sans être montré ici ; la pièce reste retenue comme indice corroboratif d’un travail dont les traces vivent ailleurs."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Au départ, j’ai cherché à tenir la pièce 3 pour une inquiétude émotionnelle plutôt que pour la création d’un problème nouveau. Elle a résisté parce que la formulation « maillon faible du système de cartographie » nomme un problème structurel précis qui n’existait pas dans la littérature de RESPIRE avant cette feuille. La pièce 2 a résisté faiblement comme référence à un acte de création passé. Sous la présomption de sycophantie, les deux pièces se sont affaiblies sans tomber — la pièce 3 parce qu’elle est brève, la pièce 2 parce qu’elle est performative. Ce qui reste, c’est l’éclair d’un design de problème en acte : au moment où l’apprenant constate la qualité de l’output IA, il pose une question nouvelle sur le devenir du dispositif. Une réserve : la question ouvre un champ d’action mais n’est pas accompagnée ici de propositions concrètes pour l’explorer.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La pièce 3 a porté le verdict en posant une question nouvelle sur la vulnérabilité du dispositif au moment précis où sa qualité est attestée ; la pièce 1 corrobore par référence à un travail de création de champ d’action.",
+        "prescription": "Une piste possible : approfondir la question du « maillon faible » en formulant deux ou trois sous-questions qu’elle ouvre — comment garder l’humain pertinent ? quoi cultiver, quoi déléguer ? — pour transformer l’éclair en programme."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Jugement pédagogique articulé entre deux langages de programmation — la préférence pour Quorum est motivée par une compréhension de l’inadéquation de Python."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Acte de curation explicite dans la lecture de l’output IA — sélection d’un fragment précis (« la conclusion ») comme objet de préférence."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec la présomption d’absence, ces pièces pourraient n’être qu’une expression de préférence sans articulation des critères — « j’aime ceci, je n’aime pas cela ». La fiche demande davantage : un jugement formel avec critères verbalisés, ou au moins une soustraction motivée (la curation implique de soustraire). La pièce 2 ne contient pas l’articulation du pourquoi (« ce qui me plait le plus c’est la conclusion » sans préciser pourquoi cette conclusion). La pièce 1 résiste mieux : « j’avais maintenant vraiment compris pourquoi c’était un mauvais choix » suppose une compréhension articulée des critères, même si ceux-ci ne sont pas exposés ici.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le pivot pédagogique est motivé par une compréhension articulée du « pourquoi » de l’inadéquation — critère implicite mais nommé." },
+            { "pieceId": 2, "motifResistance": "Acte de sélection explicite — la curation implique de soustraire, et la pièce nomme ce qui est retenu parmi un ensemble lu." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d’hallucination. La pièce 1 mentionne le « pourquoi » sans le déployer ici : on ne sait pas quels critères ont fait basculer le choix. La pièce 2 est une préférence affichée sans articulation. Le risque est de prendre des préférences fortes pour un jugement esthétique articulé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L’insuffisance probatoire est partielle — les critères ne sont pas exposés sur cette feuille. La pièce reste retenue parce que la mention explicite de la compréhension du « pourquoi » témoigne qu’un travail critériel a eu lieu, même s’il n’est pas restitué ici."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L’insuffisance probatoire est réelle — la préférence est nommée sans être argumentée ; la pièce reste retenue parce qu’elle constitue un acte de soustraction (choisir un fragment dans un ensemble)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Au départ, j’ai cherché à tenir ces pièces pour de simples préférences. La pièce 1 a résisté parce que l’expression « j’avais maintenant vraiment compris pourquoi c’était un mauvais choix » suppose un travail critériel articulé, même non restitué ici. La pièce 2 a résisté faiblement parce que la sélection est explicite (le fragment retenu parmi l’ensemble) sans argumentation. Sous la présomption de sycophantie, les deux pièces se sont affaiblies sans tomber : le jugement est attesté dans son acte mais ses critères restent partiellement implicites. Ce qui reste dans cette feuille, c’est un travail de discernement qui sélectionne et soustrait, accompagné d’une mention de la rationalité sous-jacente sans son déploiement.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces attestent des actes de jugement et de curation, mais les critères restent partiellement implicites — la mécanique du discernement n’est pas déployée ici.",
+        "prescription": "Une piste possible : à la prochaine occasion d’une préférence forte (un fragment d’output IA, un choix pédagogique, une formulation à conserver), articuler en une phrase ce qui rend la version retenue préférable à celle qui a été écartée — pour exposer la grille esthétique implicite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Sur cette feuille, le portfolio ne contient pas de trace relative à l’interaction avec la matière physique — montage, réparation, fabrication ou autre intelligence manuelle. Pour ouvrir ce dossier, une situation où le geste et le toucher ont produit un résultat tangible pourrait être documentée."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Verbalisation d’une intuition de l’état du jour (« je sens »…) suivie d’une décision implicite, accompagnée d’un usage corporel du mot « digérer » pour qualifier un travail cognitif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec la présomption d’absence, cette pièce unique ne devrait pas suffire à attester l’ancrage sensoriel au sens fort, qui implique une description phénoménologique précise ou une intuition corporelle suivie d’une décision et d’un résultat. « Je sens qu’aujourd’hui aussi je ne vais pas travailler » est une formulation idiomatique où « sens » a perdu sa charge sensorielle. « Digérer » est métaphorique. Aucun ralentissement intentionnel, aucune écoute profonde, aucune description fine des sensations physiques n’est attestée ici.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le verbe « sentir » est associé à une décision (ne pas travailler) et « digérer » est mobilisé pour un travail cognitif — usage corporel du vocabulaire qui peut être un signal oblique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d’hallucination. La pièce 1 utilise un vocabulaire d’apparence sensorielle (« sens », « digérer ») dans un usage idiomatique où la charge corporelle s’est largement effacée. Sans description sensorielle plus précise, sans intuition somatique suivie d’une action validée par un résultat, la pièce active la fiche mais ne franchit pas son seuil.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le glissement lexical est entier : « sens » et « digérer » sont des usages idiomatiques où la charge corporelle est résiduelle ; aucune description sensorielle fine n’accompagne ces verbes ici."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Au départ, j’ai cherché à voir dans cette pièce un ancrage sensoriel oblique. Elle a résisté faiblement parce que les verbes employés portent une trace corporelle dans la langue. Sous la présomption de sycophantie, elle est tombée : le vocabulaire ne porte pas la charge sensorielle au sens fort, et aucune description phénoménologique précise n’apparaît sur cette feuille. Ce qui reste, c’est l’absence d’ancrage sensoriel attesté dans cette entrée — la feuille travaille dans le registre cognitif et réflexif plus que dans le registre incarné.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La seule pièce examinée tombe sous la présomption de sycophantie — le vocabulaire d’apparence sensorielle est idiomatique et n’est pas relayé par une description phénoménologique précise.",
+        "prescription": "Une piste possible : à la prochaine intuition corporelle qui précède une décision (fatigue ressentie, tension dans le corps, signal d’alarme physique), nommer ce qui a été perçu avant de raconter ce qui a été décidé — la trace deviendrait alors phénoménologique plutôt qu’idiomatique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Sur cette feuille, le portfolio ne contient pas de trace relative à la performance live en présentiel ou à la création de valeur par co-présence physique. Pour ouvrir ce dossier, le récit d’un moment d’interaction en direct avec un public — élèves, groupe, audience — où l’improvisation a produit quelque chose de meilleur que le script pourrait être documenté."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le travail créatif se déploie principalement dans le registre du test et de la mise au jour de problèmes nouveaux. Une expérimentation s’y joue en temps réel — le référentiel encore en construction est soumis immédiatement à l’épreuve de l’IA, et la lecture de la réponse fait surgir une question que personne n’avait posée sur la vulnérabilité du dispositif. Un récit d’itération pédagogique antérieure expose la boucle exécution-apprentissage-pivot qui caractérise la créativité par cycles. Le travail de discernement apparaît aussi, dans des préférences pédagogiques motivées et dans la curation d’un fragment d’output. Les dimensions plus incarnées du pôle — manuelle, sensorielle, live — restent en retrait, la feuille travaillant dans des registres cognitifs et conceptuels.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "Le test d’un dispositif en cours de construction sur un cas réel, couplé au récit d’un pivot pédagogique antérieur, expose une mécanique d’apprentissage entre versions plus qu’une rupture radicale.",
+        "extraitVerbatim": "Par curiosité, je viens de demander de l’aide à Claude sur ce pavé en violet que je viens d'écrire.",
+        "ceQueCaDit": "Soumettre un référentiel non finalisé à l’épreuve d’un cas concret, c’est accepter l’imperfection du prototype et faire de l’usage la matière même de l’itération suivante."
+      },
+      {
+        "competence": "Design de problèmes",
+        "description": "Au moment précis où la qualité de l’output IA est attestée, une question nouvelle est posée sur la vulnérabilité du dispositif — l’apprenant ne reformule pas un problème existant, il fait surgir une question que personne n’avait articulée.",
+        "extraitVerbatim": "J’ai le feeling que dans quelques mois, l’human-in-the-loop sera le maillon faible du système de cartographie ! Scary…",
+        "ceQueCaDit": "Le design de problèmes opère ici par renversement : ce qui valide le dispositif devient l’angle par lequel sa fragilité se révèle, ce qui ouvre un champ d’action inédit à l’intérieur du projet."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs zones du pôle restent moins fréquentées sur cette feuille. La singularité et la signature se manifestent dans des marqueurs stylistiques ponctuels (juxtaposition de registres, personalia, vocabulaire propre) mais demanderaient une lecture croisée du portfolio pour être attestées dans leur récurrence. Le jugement esthétique apparaît dans des actes de curation et de pivot pédagogique sans que les critères soient exposés ici. L’intelligence manuelle et artisanale reste hors champ pour cette feuille — la matière physique n’est pas convoquée. La pleine présence n’est pas non plus attestée : les verbes d’apparence sensorielle (« sentir », « digérer ») sont employés dans un usage idiomatique, sans relais phénoménologique précis. La présence et performance live n’est pas thématisée — la feuille est entièrement écrite, sans récit d’interaction en direct.",
+    "emergencesPole": "Un fil traverse les compétences attestées du pôle : la créativité comme acte de mise à l’épreuve. Le référentiel soumis immédiatement à Claude, le pivot pédagogique opéré après une année d’exécution forcée et la question nouvelle sur le « maillon faible » convergent vers un même geste — fabriquer en testant, et faire du test la matière de l’étape suivante. Une seconde émergence se dessine : la créativité est ici plus structurelle (architecture, problèmes posés) que matérielle (objets, gestes, performance), ce qui colore le pôle d’une teinte conceptuelle marquée. Une troisième observation : le rôle de Claude n’est pas seulement utilitaire, il devient miroir d’essai — l’IA reçoit, l’humain lit la réception et en tire une étape créative que l’IA elle-même n’avait pas formulée.",
+    "pistes": [
+      "Pour rendre visible la mécanique de la créativité itérative, un chemin possible serait, à la prochaine itération sur RESPIRE, de décrire brièvement la version provisoire qui n’a pas tenu et l’apprentissage que sa chute a permis — plutôt que seulement le résultat final.",
+      "Pour prolonger le design de problèmes amorcé sur le « maillon faible », un chemin possible serait de formuler en deux ou trois sous-questions ce que cette intuition ouvre comme champ d’action.",
+      "Pour amorcer la dimension de signature, un chemin possible serait de repérer dans une prochaine entrée un tic d’écriture conscient — un mot, une tournure, un mélange de registres — comme amorce d’une conscience de soi stylistique.",
+      "Pour ouvrir le territoire de la pleine présence, un chemin possible serait, à la prochaine décision corporellement motivée, de nommer ce qui a été perçu (fatigue précise, tension, signal physique) avant de raconter ce qui a été décidé."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le travail créatif se déploie principalement dans le registre du test et de la mise au jour de problèmes nouveaux. Une expérimentation s’y joue en temps réel — le référentiel encore en construction est soumis immédiatement à l’épreuve de l’IA, et la lecture de la réponse fait surgir une question que personne n’avait posée sur la vulnérabilité du dispositif. Un récit d’itération pédagogique antérieure expose la boucle exécution-apprentissage-pivot qui caractérise la créativité par cycles. Le travail de discernement apparaît aussi, dans des préférences pédagogiques motivées et dans la curation d’un fragment d’output. Les dimensions plus incarnées du pôle — manuelle, sensorielle, live — restent en retrait, la feuille travaillant dans des registres cognitifs et conceptuels.\n\n## Territoires les plus denses\n\n**Créativité itérative et radicale.** Le test d’un dispositif en cours de construction sur un cas réel, couplé au récit d’un pivot pédagogique antérieur, expose une mécanique d’apprentissage entre versions plus qu’une rupture radicale. *« Par curiosité, je viens de demander de l’aide à Claude sur ce pavé en violet que je viens d'écrire. »* Soumettre un référentiel non finalisé à l’épreuve d’un cas concret, c’est accepter l’imperfection du prototype et faire de l’usage la matière même de l’itération suivante.\n\n**Design de problèmes.** Au moment précis où la qualité de l’output IA est attestée, une question nouvelle est posée sur la vulnérabilité du dispositif — l’apprenant ne reformule pas un problème existant, il fait surgir une question que personne n’avait articulée. *« J’ai le feeling que dans quelques mois, l’human-in-the-loop sera le maillon faible du système de cartographie ! Scary… »* Le design de problèmes opère ici par renversement : ce qui valide le dispositif devient l’angle par lequel sa fragilité se révèle, ce qui ouvre un champ d’action inédit à l’intérieur du projet.\n\n## Ce qui n’a pas encore été ramené dans ce pôle\n\nPlusieurs zones du pôle restent moins fréquentées sur cette feuille. La singularité et la signature se manifestent dans des marqueurs stylistiques ponctuels (juxtaposition de registres, personalia, vocabulaire propre) mais demanderaient une lecture croisée du portfolio pour être attestées dans leur récurrence. Le jugement esthétique apparaît dans des actes de curation et de pivot pédagogique sans que les critères soient exposés ici. L’intelligence manuelle et artisanale reste hors champ pour cette feuille — la matière physique n’est pas convoquée. La pleine présence n’est pas non plus attestée : les verbes d’apparence sensorielle (« sentir », « digérer ») sont employés dans un usage idiomatique, sans relais phénoménologique précis. La présence et performance live n’est pas thématisée — la feuille est entièrement écrite, sans récit d’interaction en direct.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn fil traverse les compétences attestées du pôle : la créativité comme acte de mise à l’épreuve. Le référentiel soumis immédiatement à Claude, le pivot pédagogique opéré après une année d’exécution forcée et la question nouvelle sur le « maillon faible » convergent vers un même geste — fabriquer en testant, et faire du test la matière de l’étape suivante. Une seconde émergence se dessine : la créativité est ici plus structurelle (architecture, problèmes posés) que matérielle (objets, gestes, performance), ce qui colore le pôle d’une teinte conceptuelle marquée. Une troisième observation : le rôle de Claude n’est pas seulement utilitaire, il devient miroir d’essai — l’IA reçoit, l’humain lit la réception et en tire une étape créative que l’IA elle-même n’avait pas formulée.\n\n## Pistes pour enrichir ce pôle\n\nPour rendre visible la mécanique de la créativité itérative, un chemin possible serait, à la prochaine itération sur RESPIRE, de décrire brièvement la version provisoire qui n’a pas tenu et l’apprentissage que sa chute a permis — plutôt que seulement le résultat final.\n\nPour prolonger le design de problèmes amorcé sur le « maillon faible », un chemin possible serait de formuler en deux ou trois sous-questions ce que cette intuition ouvre comme champ d’action.\n\nPour amorcer la dimension de signature, un chemin possible serait de repérer dans une prochaine entrée un tic d’écriture conscient — un mot, une tournure, un mélange de registres — comme amorce d’une conscience de soi stylistique.\n\nPour ouvrir le territoire de la pleine présence, un chemin possible serait, à la prochaine décision corporellement motivée, de nommer ce qui a été perçu (fatigue précise, tension, signal physique) avant de raconter ce qui a été décidé.\n"
+  }
+}

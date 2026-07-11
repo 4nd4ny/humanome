@@ -1,0 +1,375 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "J'ai appris à lancer le projet en local et à le déployer sur internet. J'ai documenté le processus (ce qui manquait). Maintenant je vais travailler sur un fork Sqilium qui deviendra peut-être un jour le substrat d'EduFolio.",
+      "contexte": "Récit d'apprentissage technique itératif sur un projet en cours. Active 3.01 (itération) et potentiellement 3.05 (intelligence manuelle si infrastructure physique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "qu'est-ce que c'était fun ! Je me suis régalé. Je n'ai pas perdu le plaisir d'être informaticien.",
+      "contexte": "Expression somatique du plaisir technique dans le faire. Active potentiellement 3.06 (présence dans le geste) et 3.02 (signature, plaisir caractéristique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Je n'arrivais plus à me limiter à 16 bureaux virtuels avec Sqilium c'était devenu impossible. J'ai donc basculé en dual screen : le 8k (7680×2160 = 32:9) 57\" avec 16 bureaux (comme avant) et le 4k (3456 × 2234 = 16:10) 16\" du macbook avec 16 bureaux supplémentaires, donc 32 bureaux virtuels à gérer maintenant.",
+      "contexte": "Description sensorielle et matérielle d'un dispositif de travail : taille des écrans, ratios, organisation spatiale. Active 3.05 (intelligence manuelle, matériel) et potentiellement 3.02 (signature à travers un dispositif singulier).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Peut-être qu'il faudrait que j'envisage de basculer en dual screen avec deux écrans ? J'aimais bien le ratio (5120 × 2160 = 21:9) 34\" du LG, mais d'après ce que je vois un 6k (6016 × 3384 = 16:9) 32\" d'Acer pourrait être chouette pour coder, vu qu'il se met en format portrait. Seul bémol, c'est la place. Il coûte 1000 CHF, ça irait, mais à côté du 57\" ça fait un peu serré sur mon bureau actuel et je ne peux pas vraiment pousser les murs…",
+      "contexte": "Veille techno avec attention sensorielle aux ratios, à l'espace physique du bureau, au coût. Active 3.05 (matériel tangible) et 3.04 (jugement esthétique sur le dispositif).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Après, j'ai joué un peu avec l'interface et franchement, il y a beaucoup de travail d'ergonomie à faire… Je suis surpris en mal. Claude va avoir du travail lorsque j'aurais le temps de le piloter sur ce projet.",
+      "contexte": "Jugement esthétique-ergonomique sur l'interface de Sqily, avec déception assumée. Active 3.04 (jugement esthétique et curation, soustraction implicite).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Bref, fin de la petite disgression / pseudo-veille techno, retournons bosser.",
+      "contexte": "Formule récurrente potentielle dans le journal — voix singulière qui se nomme elle-même. Active 3.02 (signature stylistique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "J'ai l'impression d'être un samouraï qui a passé sa vie aux ordres de maîtres et qui n'a jamais pu exercer son art, sauf lorsqu'il est devenu enseignant.",
+      "contexte": "Métaphore personnelle investie pour parler de soi. Active 3.02 (signature, métaphore propre) et marginalement 3.01 (connexion entre domaines éloignés).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Itération sur un projet existant : apprentissage du déploiement, projet de fork Sqilium comme prochaine étape. Trace d'un travail par cycles."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Connexion radicale entre l'informaticien et la figure du samouraï : rapprochement de deux univers éloignés."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la créativité itérative et radicale n'est pas là : la fiche exige des versions successives avec apprentissage explicite, ou une rupture qui transgresse les règles. La pièce 1 décrit un apprentissage technique (apprendre à déployer) plutôt qu'une itération avec feedback-pivot — c'est de l'acquisition de savoir-faire. La pièce 2 (samouraï) connecte deux univers, mais c'est une métaphore narrative, pas une rupture créative qui produit un objet inédit. La présomption d'absence tient pour la pièce 1, moins pour la pièce 2.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La métaphore samouraï/informaticien connecte deux univers radicalement éloignés et organise une lecture neuve du parcours."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La métaphore du samouraï est belle mais elle n'est pas un acte créatif productif au sens de la fiche — elle ne fabrique pas un prototype, ne transgresse pas une règle du jeu. L'attaque (d) — glissement lexical — touche : on voit une connexion entre domaines (marqueur oblique de 3.01 selon la fiche), mais sans qu'elle débouche sur une production radicale. Elle reste dans le registre du storytelling.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La métaphore connecte deux univers mais sans produire d'objet ou de bascule radicale — elle reste dans le registre narratif, plus proche de 3.02 (signature) que de 3.01 (créativité)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la créativité itérative et radicale. La pièce sur l'apprentissage Sqily relève de l'acquisition technique, pas du cycle prototype-pivot. La pièce sur le samouraï a été disqualifiée au temps 2 : la connexion entre univers existe mais ne débouche sur aucune production radicale, elle tient mieux comme trace de signature stylistique. Aucune pièce ne survit avec la portée requise. La présomption d'absence tient.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Les pièces candidates portent de l'apprentissage technique et une métaphore narrative, mais pas le cycle d'itération avec apprentissage explicite ni la rupture créative productive.",
+        "prescription": "Cette feuille montre un travail technique en cours sans cycle d'itération explicite. Pour ouvrir ce dossier, un récit qui détaillerait une version bancale produite vite, le retour qu'elle a généré, et le pivot opéré rendrait visible l'acte itératif."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Formule autodérisive de transition (« disgression / pseudo-veille techno, retournons bosser ») qui marque un style oral, familier, propre à l'apprenant."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Métaphore du samouraï investie pour parler de soi — une figure singulière qui n'appartient pas au vocabulaire managérial standard."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Dispositif personnel de travail (32 bureaux virtuels en dual screen) singulier, qui devient une marque de la pratique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la signature n'est pas là : la fiche exige une empreinte récurrente identifiable, pas un seul effet isolé. La pièce 1 (formule autodérisive) porte un tic d'écriture qui sonne propre — mais isolément, sur une seule feuille, je ne peux pas vérifier la récurrence. La pièce 2 (samouraï) est une métaphore investie — encore, isolément. La pièce 3 (32 bureaux) est un dispositif singulier, là encore vu sur une seule feuille. La fiche autorise le plafond textuel à *Acquis* sur base textuelle quand le portfolio permet la comparaison ; mais ici, le test demanderait l'examen longitudinal. Les trois pièces résistent partiellement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Formule familière et autodérisive caractéristique, écart marqué du registre soutenu attendu d'un texte académique."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Métaphore samouraï qui appartient à un univers de référence personnel, non générique."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Dispositif technique singulier (32 bureaux virtuels) inscrit dans une pratique propre."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. Sur une seule feuille, je ne peux pas affirmer la récurrence ; seules apparaissent des marques de voix singulière. L'attaque (a) — insuffisance probatoire pour la dimension récurrente — touche les trois pièces. Les pièces tiennent comme indices d'une signature en cours de manifestation, sans pouvoir établir le motif récurrent.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La formule porte une voix mais une seule occurrence ne permet pas d'affirmer la récurrence stylistique. Indice d'une signature en place."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La métaphore est forte mais isolée sur cette feuille. Elle tient comme indice d'un univers de référence singulier."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le dispositif 32 bureaux est précis, daté, ancré dans le concret — il témoigne d'une pratique singulière qui ne ressemble à aucun template, et résiste à l'objection d'isolement par sa spécificité."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la signature sur cette feuille en partant du fait que la récurrence stylistique demande un examen longitudinal que je n'ai pas. Trois pièces m'ont forcé à reconnaître quelque chose : une formule autodérisive familière, une métaphore personnelle investie, un dispositif technique singulier. Sous la présomption de sycophantie, les deux premières ont été affaiblies (insuffisance probatoire pour la récurrence), la troisième a tenu — le dispositif des 32 bureaux est trop spécifique pour s'expliquer par un template. Une présence se dessine, portée par la marque d'une voix singulière en acte.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a confirmé le dispositif des 32 bureaux comme trace singulière ; la formule autodérisive et la métaphore samouraï tiennent comme indices d'une voix propre.",
+        "prescription": "Cette feuille porte plusieurs marques d'une voix singulière : un dispositif technique propre, une formule autodérisive, une métaphore investie. Pour prolonger, un travail longitudinal qui repérerait, sur plusieurs feuilles, les motifs récurrents (ratios d'écran, figures historiques, formules de clôture) donnerait à voir la signature dans la durée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au design de problèmes dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a cessé de résoudre un problème donné pour en poser un autre qualitativement différent — pas le reformuler, le créer."
+      }
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Évaluation qualitative de l'ergonomie de l'interface Sqily : « beaucoup de travail d'ergonomie à faire », « surpris en mal ». Jugement formel, non factuel."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Comparaison qualitative entre plusieurs configurations d'écran : ratios, résolutions, format portrait pour le code, encombrement spatial."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le jugement esthétique et la curation ne sont pas là : la fiche exige des critères articulés, parfois intuitifs mais nommés. La pièce 1 énonce un jugement (« surpris en mal ») mais ne nomme pas les critères — c'est un verdict global. La pièce 2 articule plusieurs critères (ratio, résolution, format portrait pour le code, encombrement spatial, coût) avec des arbitrages — c'est plus proche du marqueur central. Le critère de soustraction (le curateur élimine) n'est pas activé dans la pièce 1 mais la pièce 2 procède par élimination implicite (rejet, retenue).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Comparaison multi-critères avec arbitrages explicites : le ratio, le format portrait, l'encombrement physique, le prix."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 2 articule des critères mais on est plus dans le jugement utilitaire d'un outil que dans le jugement esthétique au sens de la fiche (qualité formelle d'un output, ton, cohérence d'ensemble). L'attaque (b) — confusion avec une compétence voisine — touche : on est entre 3.04 et de simples préférences techniques. Mais le critère du format portrait « pour coder » et la mention du ratio préféré (21:9) montrent une sensibilité formelle.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce articule des critères mais ils portent sur l'utilité matérielle plus que sur la qualité formelle d'un produit. Elle tient à la frontière du jugement esthétique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le jugement esthétique et la curation. La pièce sur l'ergonomie Sqily est un verdict sans critères articulés ; elle n'a pas résisté. La pièce sur les écrans a tenu, faiblement : l'apprenant compare des configurations avec arbitrages, mais sur un terrain utilitaire plus qu'esthétique. Une trace se dessine, à la frontière du marqueur central. Renvoi au cartographe.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce sur les écrans (jugement utilitaire plus qu'esthétique) et écarté la pièce sur Sqily (verdict sans critères). Une trace tient à la frontière du marqueur central.",
+        "prescription": "Cette feuille porte un jugement sur Sqily et une comparaison d'écrans, mais sans articulation pleine des critères esthétiques. Une trace de curation pourrait apparaître dans un récit où l'apprenant détaillerait pourquoi une option a été retenue et l'autre éliminée — la soustraction explicite étant au cœur de la compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Description matérielle d'un dispositif de travail : écrans physiques (8k 57\", 4k 16\" du macbook), interaction avec le bureau physique. Possible interaction avec du matériel tangible."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Veille sur du matériel physique : encombrement du bureau, impossibilité de pousser les murs, format portrait du moniteur. Contact avec la matière de l'espace de travail."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'intelligence manuelle et artisanale n'est pas là : la fiche exige une interaction avec la matière physique — verbes d'action concrets, détails sensoriels, résolution par manipulation. La distinction critique de la fiche est précise : « infrastructure » peut être logicielle ou physique, le critère est l'interaction avec du matériel tangible. La pièce 1 parle de bureaux *virtuels* mais sur des écrans physiques — c'est ambigu : l'écran est tangible, mais le geste reste informatique. La pièce 2 mentionne l'encombrement du bureau et l'impossibilité de pousser les murs — contact physique avec l'espace, mais sans manipulation décrite. Les pièces résistent faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Contact physique avec l'espace : encombrement, impossibilité de pousser les murs, ce qui passe ou ne passe pas sur un bureau."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 2 parle d'espace physique mais sans manipulation, sans assemblage, sans réparation. L'apprenant constate des contraintes spatiales, il n'agit pas sur la matière. L'attaque (b) — confusion de compétence — touche : on est sur de la planification d'achat avec contrainte spatiale, pas sur le geste artisanal au sens de la fiche.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce porte sur des contraintes spatiales perçues, pas sur un geste de manipulation, montage ou fabrication. Le marqueur central de la fiche (interaction avec matière par le geste) n'est pas activé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'intelligence manuelle dans cette feuille. Une pièce a tenu au temps 1 (contact avec l'espace physique du bureau) mais a été disqualifiée au temps 2 : il n'y a ni geste, ni manipulation, ni détail sensoriel d'un toucher. La distinction critique de la fiche écarte précisément ce cas : virtualisation et planification d'achat ne sont pas de l'artisanat. La présomption d'absence tient.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Les pièces candidates portent des contraintes spatiales et des configurations virtuelles, sans geste de manipulation ni détail sensoriel du toucher.",
+        "prescription": "Cette feuille mentionne du matériel sans en décrire la manipulation. Pour ouvrir ce dossier, un récit qui détaillerait le geste physique de l'installation d'un écran (câblage, fixation, ajustement) avec ses détails sensoriels ouvrirait l'intelligence manuelle."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Expression d'un état corporel-affectif dans le faire : « fun », « régalé », « plaisir d'être informaticien ». Possible trace de présence dans le geste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'ancrage sensoriel et la pleine présence ne sont pas là : la fiche exige du phénoménologique précis, une attention incarnée, parfois une intuition somatique suivie d'action. La pièce 1 nomme un plaisir sans détail sensoriel — c'est un état général, pas une description fine du corps dans le geste. Aucune description de sensation physique, de ralentissement, d'écoute, ne traverse la feuille. La présomption d'absence tient.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Le plaisir nommé ne porte pas le marqueur de présence incarnée.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'ancrage sensoriel. La seule pièce candidate énonce un plaisir global sans description phénoménologique. Aucune trace d'attention corporelle fine, de ralentissement, d'intuition somatique suivie d'action. La présomption d'absence tient.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "La pièce candidate nomme un plaisir sans description sensorielle fine ni intuition corporelle suivie d'action.",
+        "prescription": "Cette feuille évoque le plaisir technique sans en décrire la dimension corporelle. Pour ouvrir ce dossier, un récit qui détaillerait ce qui se passe physiquement quand le travail prend (rythme, tension, respiration, fatigue) rendrait visible la présence en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment en présentiel où sa présence physique a fait une différence identifiable, avec interaction bidirectionnelle ou improvisation."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille du 19 mars 2026 montre un travail créatif et incarné qui passe surtout par la voix et le dispositif. L'apprenant déploie une formule autodérisive de transition, investit la métaphore du samouraï, et décrit un dispositif technique singulier (32 bureaux virtuels en dual screen) qui porte la marque d'une pratique propre. Le jugement esthétique et ergonomique apparaît sur l'interface Sqily et sur le choix d'écrans, sans articulation pleine des critères. Le geste artisanal et la présence corporelle restent peu décrits — le faire est nommé, le corps qui fait ne l'est pas.",
+    "territoiresDenses": [
+      {
+        "competence": "Singularité & Signature",
+        "description": "Une voix propre se manifeste à travers une formule autodérisive de transition, une métaphore personnelle investie et un dispositif de travail singulier (32 bureaux virtuels).",
+        "extraitVerbatim": "J'ai donc basculé en dual screen : le 8k (7680×2160 = 32:9) 57\" avec 16 bureaux (comme avant) et le 4k (3456 × 2234 = 16:10) 16\" du macbook avec 16 bureaux supplémentaires, donc 32 bureaux virtuels à gérer maintenant.",
+        "ceQueCaDit": "Le travail dans ce pôle montre une marque qui ne se règle pas sur un template — un environnement de travail conçu sur mesure, raconté avec précision."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs registres créatifs et somatiques n'ont pas été ramenés dans cette feuille. La créativité itérative avec cycle explicite, le design de problèmes (créer une question qui n'existait pas), la présence et performance live, n'ont pas trouvé de matière. L'intelligence manuelle au sens du geste sur la matière reste à la frontière : du matériel est mentionné, mais sans la manipulation décrite. L'ancrage sensoriel apparaît en surface par le mot « régalé », sans descente dans la description corporelle. Le jugement esthétique appelle un cartographe — il est posé sur Sqily et les écrans, mais sans articulation des critères qui en feraient une curation.",
+    "emergencesPole": "Une attention au dispositif traverse plusieurs compétences : le bureau, les écrans, les ratios, le format portrait — comme si la pensée passait par la configuration matérielle de l'environnement de travail. Une seconde émergence : l'humour et la métaphore comme manière propre de se dire, plus présents que la description du faire en acte.",
+    "pistes": [
+      "Pour prolonger la signature, un chemin possible serait de relire plusieurs feuilles du portfolio à la recherche des motifs récurrents (figures historiques, formules autodérisives, attention aux ratios d'écran) et de les nommer.",
+      "Pour ouvrir l'intelligence manuelle, un chemin possible serait de raconter la prochaine installation matérielle avec ses détails physiques — câblage, ajustement, ce qui résiste sous la main.",
+      "Pour enrichir le jugement esthétique, un chemin possible serait de détailler, sur un prochain travail sur Sqily, les critères précis qui font qu'un choix d'interface est retenu et un autre éliminé."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille du 19 mars 2026 montre un travail créatif et incarné qui passe surtout par la voix et le dispositif. L'apprenant déploie une formule autodérisive de transition, investit la métaphore du samouraï, et décrit un dispositif technique singulier (32 bureaux virtuels en dual screen) qui porte la marque d'une pratique propre. Le jugement esthétique et ergonomique apparaît sur l'interface Sqily et sur le choix d'écrans, sans articulation pleine des critères. Le geste artisanal et la présence corporelle restent peu décrits — le faire est nommé, le corps qui fait ne l'est pas.\n\n## Territoires les plus denses\n\n**Singularité & Signature** — Une voix propre se manifeste à travers une formule autodérisive de transition, une métaphore personnelle investie et un dispositif de travail singulier (32 bureaux virtuels). « J'ai donc basculé en dual screen : le 8k (7680×2160 = 32:9) 57\" avec 16 bureaux (comme avant) et le 4k (3456 × 2234 = 16:10) 16\" du macbook avec 16 bureaux supplémentaires, donc 32 bureaux virtuels à gérer maintenant. » Le travail dans ce pôle montre une marque qui ne se règle pas sur un template — un environnement de travail conçu sur mesure, raconté avec précision.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres créatifs et somatiques n'ont pas été ramenés dans cette feuille. La créativité itérative avec cycle explicite, le design de problèmes (créer une question qui n'existait pas), la présence et performance live, n'ont pas trouvé de matière. L'intelligence manuelle au sens du geste sur la matière reste à la frontière : du matériel est mentionné, mais sans la manipulation décrite. L'ancrage sensoriel apparaît en surface par le mot « régalé », sans descente dans la description corporelle. Le jugement esthétique appelle un cartographe — il est posé sur Sqily et les écrans, mais sans articulation des critères qui en feraient une curation.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne attention au dispositif traverse plusieurs compétences : le bureau, les écrans, les ratios, le format portrait — comme si la pensée passait par la configuration matérielle de l'environnement de travail. Une seconde émergence : l'humour et la métaphore comme manière propre de se dire, plus présents que la description du faire en acte.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la signature, un chemin possible serait de relire plusieurs feuilles du portfolio à la recherche des motifs récurrents (figures historiques, formules autodérisives, attention aux ratios d'écran) et de les nommer.\n- Pour ouvrir l'intelligence manuelle, un chemin possible serait de raconter la prochaine installation matérielle avec ses détails physiques — câblage, ajustement, ce qui résiste sous la main.\n- Pour enrichir le jugement esthétique, un chemin possible serait de détailler, sur un prochain travail sur Sqily, les critères précis qui font qu'un choix d'interface est retenu et un autre éliminé."
+  }
+}

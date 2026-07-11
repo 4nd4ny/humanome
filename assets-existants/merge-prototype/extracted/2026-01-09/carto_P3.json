@@ -1,0 +1,338 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "j'ai contraint dans le prompt ci-dessus la longueur dans une version précédente en demandant à Claude de rester concis dans les textes produits, mais c'était pratiquement incompréhensible car trop résumé.",
+      "contexte": "Itération sur le prompt par versions successives ; rejet d'une version trop concise au profit d'un compromis de lisibilité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Après avoir trouvé le bon prompt pour générer un chapitre, j'ai lancé la génération des chapitres les uns après les autres.",
+      "contexte": "Convergence par itération vers \"le bon prompt\" avant production en série — geste itératif de prototypage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Je me dis que j'ai eu de la chance que ça arrive : les nouveaux prompts sont encore mieux.",
+      "contexte": "Recadrage rétrospectif d'une interruption en opportunité créative — l'accident a accouché de meilleurs prompts.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "J'ai remplacé jeunes adultes par adolescents pour les niveaux Praticien et Tuteur, et j'ai supprimé cette phrase pour le niveau Grand Maître.",
+      "contexte": "Modulation lexicale différenciée par niveau de public — geste éditorial de calibration du registre.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Évite le remplissage. Évite les redondances. La qualité est dans l'intelligence de la structure narrative et la cohérence que tu construiras au fil des chapitres.",
+      "contexte": "Critère qualité explicite formulé dans le prompt — articulation d'une exigence éditoriale (anti-remplissage, structure narrative, cohérence).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Je vais les imprimer (600 pages) et les relire sur papier pour m'obliger à ne pas prendre mon ordinateur pendant la semaine de vacances.",
+      "contexte": "Choix d'un support physique (papier) pour la phase de relecture — geste matériel qui modifie le rapport au texte.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "l'objectif n'est pas d'écrire un roman de 1200 pages que personne ne lira",
+      "contexte": "Énoncé d'un critère négatif de qualité (anti-volume excessif) qui borne le champ de l'acceptable.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Récit explicite d'une version précédente de prompt qui a échoué (trop résumée), avec apprentissage entre les versions — trace classique d'itération créative."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Convergence vers \"le bon prompt\" après essais successifs — bascule d'un cycle de prototypage à une production en série."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Recadrage rétrospectif d'un accident (interruption) en levier créatif (nouveaux prompts meilleurs) — geste itératif déguisé en chance."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la créativité itérative n'est pas vraiment attestée. Le journal d'apprentissage encourage à raconter des versions successives ; il faut donc être prudent. Si je durcis, je note que les pièces parlent surtout d'ajustements de prompt — c'est de l'itération technique, pas forcément du prototypage assumé qui débouche sur une découverte. La pièce 3 (\"j'ai eu de la chance\") pourrait n'être qu'un récit narratif. Pourtant les pièces 1 et 2 articulent une vraie chaîne version-N-trop-résumée → version-N+1-meilleure → convergence → production en série — c'est la structure typique d'un cycle itératif disciplined.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Récit d'une version antérieure jugée échouée (\"trop résumé\") et de son dépassement — apprentissage explicite entre cycles." },
+            { "pieceId": 2, "motifResistance": "Bascule reconnue d'un cycle de prototypage à une production en série après convergence — geste itératif assumé." },
+            { "pieceId": 3, "motifResistance": "Récit d'un accident accueilli comme producteur de meilleur résultat — l'imperfection vécue débouche sur une découverte (\"les nouveaux prompts sont encore mieux\")." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Toutes les pièces ont résisté ; je dois durcir l'attaque. L'attaque (f) récit performatif tente : les pièces racontent l'itération (\"j'ai trouvé le bon prompt\") plus qu'elles ne la déploient. Mais la pièce 1 va au-delà du récit : elle décrit le contenu du cycle (contrainte de concision → incompréhensibilité → révision). L'attaque (c) biais de medium pèse aussi : le journal d'apprentissage suscite ce type de récit. Pourtant le contenu des pièces ne se réduit pas à la mention — il y a une mécanique d'apprentissage entre versions. La pièce 3 reste la plus fragile : elle pourrait être un simple effet rhétorique.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La pièce ne raconte pas seulement \"j'ai itéré\" : elle nomme le contenu de la version précédente et la raison concrète de son échec, ce qui dépasse le récit performatif." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le mot \"bon prompt\" est tautologique sans la pièce 1 qui en dit le contenu ; isolément la pièce est performative, mais dans l'environnement des autres pièces elle tient." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le \"j'ai eu de la chance\" peut être un effet rhétorique sur-interprété en posture créative ; pourtant il pointe un fait concret (l'interruption a forcé une réécriture des prompts)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces du simple récit de production. Ce qui m'a obligé à m'arrêter, c'est la mécanique précise décrite dans la pièce 1 : une version antérieure jugée échouée, la raison de l'échec articulée, la révision qui en a découlé. Sous la présomption de sycophantie, les pièces 2 et 3 ont perdu de l'épaisseur mais restent dans l'environnement de la pièce 1. Ce qui en résulte : un cycle itératif clairement attesté sur la production des prompts, côté itération disciplinée. La radicalité (0→1) n'est pas attestée — on est dans le 1→n. La présence est établie sur l'axe itératif, avec la réserve explicite que la radicalité reste un territoire non visité dans cette feuille.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé la pièce 1 (cycle itératif avec contenu déployé) et retenu les pièces 2 et 3 comme indices corroboratifs — environnement cohérent d'itération disciplinée.",
+        "prescription": "Pour approfondir l'axe créatif, un chemin possible serait de documenter, en plus du cycle itératif déjà décrit, un moment de rupture où une règle du jeu a été transgressée — par exemple un prompt qui produit quelque chose que l'IA n'aurait pas suggéré toute seule."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et à la signature dans cette feuille. La signature étant par nature une compétence transversale et récurrente, son évaluation gagnerait à se faire sur plusieurs feuilles du portfolio."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "La décision d'imprimer 600 pages déplace le problème de \"comment relire les manuels\" vers \"comment ne pas travailler pendant les vacances\" — possible trace de pose d'un problème différent."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le design de problèmes n'est pas attesté ici. La fiche est explicite : 3.03 = créer un problème qui n'existait pas. Si je durcis, je note que la pièce candidate décrit une décision logistique (impression), pas l'invention d'une question nouvelle qui ouvre un champ inédit. La distinction critique de la fiche pèse fort : c'est 1.02 (reformulation) plutôt que 3.03 (création de problème). Ce qui résiste très faiblement : la décision passe d'un sujet (relecture) à un autre (rapport au travail en vacances), mais sans formuler la question nouvelle elle-même.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La distinction critique de la fiche est explicite : reformuler un problème = 1.02, créer un problème nouveau = 3.03. Ici on est au mieux dans la reformulation.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la décision d'impression un acte de pose d'un problème inédit. Sous la présomption d'absence, la pièce n'a pas tenu : on reste dans la reformulation (du \"comment relire\" vers le \"comment vivre les vacances\"), pas dans l'invention d'une question qui n'existait pas. Ce qui en résulte : pas de présence attestée sur cette feuille. Le design de problèmes pourrait apparaître sur des feuilles où l'apprenant nomme explicitement la question qu'il vient de créer.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : reformulation possible, pas création d'un problème inédit ; la distinction critique de la fiche écarte explicitement ce cas.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où la question elle-même a été inventée — \"personne ne se posait cette question avant que je la formule\" — avec le champ d'action que cette question a ouvert."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Évaluation qualitative d'un texte généré jugé \"pratiquement incompréhensible\" en raison d'un excès de résumé — verdict de forme qui motive une révision."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Énoncé explicite de critères esthétiques dans le prompt (anti-remplissage, anti-redondance, primat de la structure narrative et de la cohérence)."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Critère négatif clair (\"pas un roman de 1200 pages que personne ne lira\") — borne supérieure de qualité posée explicitement."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "Choix éditorial différencié de registre par niveau de public — geste de calibration tonale assumé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le jugement esthétique n'est pas vraiment installé. Si je durcis, je note que les pièces ressemblent à du cahier des charges, pas à un acte de curation au sens fort (sélectionner parmi plusieurs options IA, retoucher structurellement, hiérarchiser). Les critères énoncés dans la pièce 2 (\"évite le remplissage, évite les redondances\") sont assez génériques. La pièce 1 (\"incompréhensible car trop résumé\") est une évaluation, mais pourrait n'être que pragmatique. Pourtant la pièce 3 borne explicitement par le négatif (anti-volume excessif), et la pièce 4 calibre le registre par audience — deux gestes éditoriaux qui dépassent le cahier des charges.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Évaluation de la justesse formelle d'un output (\"incompréhensible\") qui motive un retrait — geste curatoriel par rejet." },
+            { "pieceId": 3, "motifResistance": "Critère qualité négatif explicite (anti-roman-volumineux) qui borne le champ de l'acceptable." },
+            { "pieceId": 4, "motifResistance": "Calibration de registre par audience — choix éditorial assumé qui module la forme selon le public visé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je dois examiner si je n'ai pas chargé ces pièces. L'attaque (a) insuffisance probatoire est ici à considérer : les évaluations sont courtes, sans dépliage du vocabulaire esthétique. Cependant, la pièce 3 est une borne claire (anti-volume), la pièce 4 est un geste différencié sur trois publics, la pièce 1 est un retrait motivé. La fiche dit que la curation implique de la soustraction — ce qui est exactement le geste de la pièce 1 (rejet de la version trop résumée). L'attaque (e) surinterprétation pédagogique pourrait s'appliquer aux pièces 2 et 5 (critères très génériques), mais pas aux autres.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le verdict \"incompréhensible\" est court et sans vocabulaire esthétique articulé, mais il motive un retrait concret — geste de soustraction qui rentre dans la fiche." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le critère \"pas un roman de 1200 pages que personne ne lira\" est court mais pose clairement un seuil esthétique (utilité, lisibilité, retenue) qui borne le champ." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La modulation par audience peut être lue en surinterprétation (un simple ajustement), mais le geste différencié sur trois niveaux suppose un jugement éditorial réel." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces du simple cahier des charges, pas un jugement esthétique au sens fort. Ce qui m'a obligé à m'arrêter, ce sont trois gestes distincts : un retrait motivé d'une version (\"incompréhensible car trop résumé\"), une borne supérieure de volume explicitement posée (\"pas un roman de 1200 pages que personne ne lira\"), et une calibration différenciée du registre par niveau de public. Sous la présomption de sycophantie, les pièces ont perdu un peu d'épaisseur — le vocabulaire esthétique n'est pas déployé en détail — mais elles forment un environnement de jugement cohérent : critères énoncés, retraits effectifs, calibration par audience. La présence est attestée sur le versant articulé du jugement esthétique, avec une réserve sur la finesse du vocabulaire utilisé.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé la pièce 3 (borne supérieure explicite) et retenu les pièces 1 et 4 — un environnement éditorial cohérent porté par des critères énoncés, un retrait motivé et une calibration par audience.",
+        "prescription": "Pour approfondir le jugement esthétique, un chemin possible serait de déplier, à propos d'un chapitre généré, ce qui fait qu'une formulation \"sonne juste\" et une autre \"sonne IA\" — vocabulaire esthétique précis, comparaison de plusieurs versions, et critères articulés pour la sélection finale."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Décision d'imprimer 600 pages pour relire sur papier — geste matériel qui mobilise un support physique tangible, avec mention du poids comme contrainte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'intelligence manuelle n'est pas attestée. La fiche est explicite : il faut une interaction physique avec la matière, des verbes d'action concrets (souder, découper), des détails sensoriels. La pièce candidate parle d'imprimer 600 pages — c'est une action mais elle est essentiellement déléguée à une imprimante, sans description du geste manuel. Le mot \"lourd à transporter\" évoque le poids, ce qui est sensoriel, mais reste très succinct. Si je durcis : aucun récit de manipulation, aucun détail tactile, aucune résolution de problème par le geste.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. L'impression d'un document n'est pas une interaction manuelle au sens de la fiche (artisanat, mécanique, réparation tangible).",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans l'impression papier une trace d'intelligence manuelle, parce que le geste convoque un support physique. Sous la présomption d'absence, la pièce n'a pas tenu : déléguer à une imprimante puis transporter un volume papier ne franchit pas le seuil d'une interaction manuelle au sens de la fiche. Ce qui en résulte : pas de présence attestée sur cette feuille. La compétence pourrait apparaître sur des feuilles décrivant du bricolage, de la cuisine, ou de la maintenance matérielle.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : l'impression n'est pas une interaction manuelle au sens de la fiche.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où un geste manuel (bricolage, réparation, fabrication, cuisine) a résolu un problème ou produit un objet, avec les détails sensoriels du processus."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Décision de relire sur papier pour s'imposer un changement de support et de présence — possible trace d'attention au corps et au rapport physique au texte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'ancrage sensoriel n'est pas attesté. La fiche demande des descriptions phénoménologiques, des sensations nommées avec précision, une intuition corporelle suivie d'action. La pièce candidate mentionne \"plus lourd à transporter\" — un détail sensoriel minimal — et la décision de relire sur papier comme dispositif d'auto-régulation. Si je durcis, je remarque qu'aucune sensation n'est nommée avec finesse, aucun moment de pleine présence n'est raconté, aucune intuition corporelle ne déclenche une décision spécifique.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La mention du poids physique n'est pas un acte de présence incarnée au sens de la fiche.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le choix du papier une trace d'ancrage sensoriel — relire en touchant le papier, sentir le poids, retrouver une présence au texte. Sous la présomption d'absence, la pièce n'a pas tenu : on a un dispositif de discipline numérique, pas un récit de présence incarnée. Ce qui en résulte : pas de présence attestée sur cette feuille. La compétence pourrait apparaître ailleurs si l'apprenant raconte un moment d'attention au corps, une intuition corporelle suivie d'action.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : dispositif de discipline numérique, pas récit de présence incarnée ou de sensation nommée avec précision.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter, à propos de la relecture papier elle-même, ce qui change dans la sensation de lecture — toucher, posture, rapport au texte — entre l'écran et le papier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la co-présence physique a produit quelque chose qu'un échange asynchrone n'aurait pas permis."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 0,
+    "nonEtablies": 5,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée du portfolio, le travail montre un atelier d'artisan du prompt : versions successives, rejet d'une version trop concise, convergence vers un prompt assez bon pour passer en série. La main de l'apprenant ne touche pas la matière au sens classique du terme — elle agit sur le texte, sur la formulation, sur le calibrage du registre selon trois publics. Un critère qualité explicite revient : pas de remplissage, pas de redondance, primat de la structure narrative et de la cohérence. La voix dominante est celle d'un éditeur qui sait ce qu'il refuse et qui dit pourquoi.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative",
+        "description": "Le travail montre un cycle clair de prototypage : version antérieure jugée échouée, identification de la cause (trop résumé donc incompréhensible), version révisée, convergence, puis production en série.",
+        "extraitVerbatim": "j'ai contraint dans le prompt ci-dessus la longueur dans une version précédente en demandant à Claude de rester concis dans les textes produits, mais c'était pratiquement incompréhensible car trop résumé.",
+        "ceQueCaDit": "La mécanique d'apprentissage entre versions est explicitement déployée : ce qui a échoué, pourquoi, et ce qui en a découlé. C'est de l'itération disciplinée, pas un simple récit de production."
+      },
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "Le travail montre des critères articulés (anti-remplissage, anti-redondance, structure narrative), une borne supérieure explicite (\"pas un roman de 1200 pages que personne ne lira\"), et une calibration différenciée du registre selon trois niveaux de public.",
+        "extraitVerbatim": "l'objectif n'est pas d'écrire un roman de 1200 pages que personne ne lira",
+        "ceQueCaDit": "La borne supérieure posée par le négatif est une forme de curation par soustraction — un seuil esthétique assumé qui guide les choix éditoriaux du jour."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs compétences du pôle n'ont pas trouvé de matière dans cette feuille. La singularité et la signature, qui par nature exigent une lecture sur plusieurs entrées du portfolio, n'ont pas été abordées ici. Le design de problèmes reste un territoire non visité : la journée a déplacé des sujets, mais sans inventer de question nouvelle ni nommer un champ d'action inédit. L'intelligence manuelle et l'ancrage sensoriel restent en filigrane, avec une mention rapide du poids et du papier qui ne franchit pas le seuil d'une interaction tangible ou d'une présence incarnée. La performance live n'a pas de matière dans une journée consacrée à la production solitaire.",
+    "emergencesPole": "Deux fils traversent les compétences attestées de ce pôle. D'abord, une économie éditoriale : tout ce qui est produit doit éviter le remplissage, et la borne supérieure (1200 pages) est posée par le négatif, ce qui dit quelque chose d'une retenue assumée face à l'abondance générée. Ensuite, une attention au public dans la formulation elle-même : la modulation par niveau (adolescent, praticien, grand maître) déplace le geste éditorial du \"qu'est-ce que je dis\" vers le \"comment ça sera reçu\".",
+    "pistes": [
+      "Pour approfondir l'axe créatif, un chemin possible serait de documenter, à côté de l'itération disciplinée déjà attestée, un moment de rupture où une règle du jeu a été transgressée — par exemple un prompt qui produit quelque chose que l'IA n'aurait pas suggéré toute seule.",
+      "Pour approfondir le jugement esthétique, un chemin possible serait de déplier, à propos d'un passage généré, le vocabulaire esthétique précis qui distingue \"juste\" de \"sonne IA\" — comparaison de plusieurs versions, critères articulés pour la sélection.",
+      "Pour ouvrir l'ancrage sensoriel, un chemin possible serait de noter, durant la relecture papier des 600 pages, ce qui change dans la sensation même de lire — toucher, posture, rapport au texte — entre l'écran et le papier."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée du portfolio, le travail montre un atelier d'artisan du prompt : versions successives, rejet d'une version trop concise, convergence vers un prompt assez bon pour passer en série. La main de l'apprenant ne touche pas la matière au sens classique du terme — elle agit sur le texte, sur la formulation, sur le calibrage du registre selon trois publics. Un critère qualité explicite revient : pas de remplissage, pas de redondance, primat de la structure narrative et de la cohérence. La voix dominante est celle d'un éditeur qui sait ce qu'il refuse et qui dit pourquoi.\n\n## Territoires les plus denses\n\n### Créativité itérative\n\nLe travail montre un cycle clair de prototypage : version antérieure jugée échouée, identification de la cause (trop résumé donc incompréhensible), version révisée, convergence, puis production en série.\n\n> « j'ai contraint dans le prompt ci-dessus la longueur dans une version précédente en demandant à Claude de rester concis dans les textes produits, mais c'était pratiquement incompréhensible car trop résumé. »\n\nLa mécanique d'apprentissage entre versions est explicitement déployée : ce qui a échoué, pourquoi, et ce qui en a découlé. C'est de l'itération disciplinée, pas un simple récit de production.\n\n### Jugement esthétique et curation\n\nLe travail montre des critères articulés (anti-remplissage, anti-redondance, structure narrative), une borne supérieure explicite (« pas un roman de 1200 pages que personne ne lira »), et une calibration différenciée du registre selon trois niveaux de public.\n\n> « l'objectif n'est pas d'écrire un roman de 1200 pages que personne ne lira »\n\nLa borne supérieure posée par le négatif est une forme de curation par soustraction — un seuil esthétique assumé qui guide les choix éditoriaux du jour.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs compétences du pôle n'ont pas trouvé de matière dans cette feuille. La singularité et la signature, qui par nature exigent une lecture sur plusieurs entrées du portfolio, n'ont pas été abordées ici. Le design de problèmes reste un territoire non visité : la journée a déplacé des sujets, mais sans inventer de question nouvelle ni nommer un champ d'action inédit. L'intelligence manuelle et l'ancrage sensoriel restent en filigrane, avec une mention rapide du poids et du papier qui ne franchit pas le seuil d'une interaction tangible ou d'une présence incarnée. La performance live n'a pas de matière dans une journée consacrée à la production solitaire.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux fils traversent les compétences attestées de ce pôle. D'abord, une économie éditoriale : tout ce qui est produit doit éviter le remplissage, et la borne supérieure (1200 pages) est posée par le négatif, ce qui dit quelque chose d'une retenue assumée face à l'abondance générée. Ensuite, une attention au public dans la formulation elle-même : la modulation par niveau (adolescent, praticien, grand maître) déplace le geste éditorial du « qu'est-ce que je dis » vers le « comment ça sera reçu ».\n\n## Pistes pour enrichir ce pôle\n\n- Pour approfondir l'axe créatif, un chemin possible serait de documenter, à côté de l'itération disciplinée déjà attestée, un moment de rupture où une règle du jeu a été transgressée — par exemple un prompt qui produit quelque chose que l'IA n'aurait pas suggéré toute seule.\n- Pour approfondir le jugement esthétique, un chemin possible serait de déplier, à propos d'un passage généré, le vocabulaire esthétique précis qui distingue « juste » de « sonne IA » — comparaison de plusieurs versions, critères articulés pour la sélection.\n- Pour ouvrir l'ancrage sensoriel, un chemin possible serait de noter, durant la relecture papier des 600 pages, ce qui change dans la sensation même de lire — toucher, posture, rapport au texte — entre l'écran et le papier."
+  }
+}

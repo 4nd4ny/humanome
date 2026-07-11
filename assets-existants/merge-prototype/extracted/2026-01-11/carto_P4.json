@@ -1,0 +1,363 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Je ne me sens bientôt plus légitime d'enseigner l'informatique à l'école.",
+      "contexte": "Constat d'illégitimité professionnelle — possible trace d'autoévaluation sous pression de l'IA, à examiner pour la valeur non-automatisable et le raisonnement éthique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "J'aurais dû développer les cartographies cet été mais je n'étais pas en état.",
+      "contexte": "Reconnaissance rétrospective d'une non-action, possible trace de responsabilité par autocritique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Maintenant je travaille sur l'aspect pédagogique, donc sans aucun codage. Le résultat c'est qu'en 9 mois off je me sens déjà largué…",
+      "contexte": "Constat de décrochage technique nommé — possible reconnaissance du coût d'un choix.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Ma valeur ajoutée est-elle toujours centrée sur mes capacités de développement ? Puis-je redevenir employable dans ce domaine ?",
+      "contexte": "Questionnement direct sur la valeur ajoutée et l'employabilité — possible trace sur la création de valeur non-automatisable.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Si je ne suis plus au top comme avant de devenir enseignant, est-ce que ça vaut vraiment la peine de continuer à apprendre à travailler avec ces outils ? Ne devrais-je pas accepter de laisser tomber et de passer à autre chose, en me concentrant pleinement à la pédagogie assistée par IA ?",
+      "contexte": "Mise en tension de deux directions possibles (maintenir la maîtrise développeur vs se concentrer sur la pédagogie assistée par IA) — possible trace de raisonnement éthique en balancier.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Ne devrais je pas juste attendre la retraite pour reprendre le développement juste pour moi, pour mon plaisir personnel ?",
+      "contexte": "Hypothèse d'un report borné dans le temps avec un critère temporel — possible trace de patience stratégique ou de procrastination.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Peut-être que je changerai d'avis en lisant le manuel du Maître ?",
+      "contexte": "Suspension d'une décision conditionnée à une lecture à venir — possible patience stratégique avec critère de déclenchement, ou tolérance à l'incertitude.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant met en tension deux directions de vie possibles (maintenir la maîtrise développeur vs se concentrer sur la pédagogie assistée par IA) — structure en balancier sans résolution, à examiner pour distinguer dilemme éthique et hésitation existentielle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la conviction que le raisonnement éthique appliqué n'est probablement pas attesté : la fiche est claire — il faut une mise en tension de valeurs légitimes en conflit, avec exploration des conséquences pour différentes parties prenantes. La pièce 5 oppose deux orientations professionnelles (maîtrise développeur vs pédagogie assistée par IA), mais cette opposition ne porte pas sur des valeurs en conflit — elle porte sur une stratégie de positionnement professionnel. Aucune partie prenante n'est convoquée, aucun arbitrage moral n'est rendu visible. La pièce ne résiste pas à la présomption d'absence : c'est un dilemme stratégique, pas éthique.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La présomption d'absence a tenu : la fiche distingue précisément le raisonnement éthique des dilemmes stratégiques, et cette pièce relève du second registre.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si l'opposition entre maintenir la maîtrise développeur et se concentrer sur la pédagogie assistée par IA ne portait pas une trace de raisonnement éthique. Ce qui m'a forcé à m'arrêter, c'est l'absence de valeurs en tension ou de parties prenantes convoquées — la pièce porte un dilemme stratégique. Dans ce pôle, le travail ne montre pas ici de raisonnement éthique appliqué attesté. Ce territoire reste à ouvrir.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce porte un dilemme stratégique de positionnement professionnel, pas une mise en tension de valeurs légitimes en conflit avec exploration des parties prenantes.",
+        "prescription": "Ce territoire pourrait s'ouvrir avec un récit où une décision impliquant plusieurs parties prenantes met en tension des valeurs défendables — où l'arbitrage est explicitement traversé comme inconfort moral, pas seulement comme calcul stratégique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'alignement et au refus éthique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a refusé une suggestion d'IA pour des raisons de conformité aux valeurs humaines."
+      }
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et au long-terme dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un arbitrage concret où l'impact long-terme ou les parties prenantes non-humaines ont pesé sur une décision."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait nommer un résultat concret produit par une façon différente de penser — la sienne ou celle d'un autre."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'apprenant suspend une décision (repenser le plan des manuels) en notant qu'une lecture à venir pourrait la renverser — possible trace de tolérance à l'incertitude, à examiner pour distinguer fonctionnement dans le flou et report sans direction."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la conviction que la décision et tolérance à l'incertitude n'est probablement pas attestée : la fiche est exigeante — il faut nommer l'incertitude, fonctionner malgré le flou, et raconter un acte de tranchage avec ses conséquences. La pièce 7 nomme une réserve sur sa propre proposition mais ne tranche pas, ne fonctionne pas dans le flou (la décision n'est pas prise), n'a pas d'acte décisionnel raconté. La feuille est traversée par un flot de questions sans réponse, ce qui ressemble plus à de la paralysie qu'à une tolérance active. La pièce ne résiste pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La présomption d'absence a tenu : la feuille ne déploie pas le combo nommé par la fiche (nommer le flou, fonctionner dedans, trancher).",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si la suspension de la décision sur les manuels ne portait pas une trace de tolérance à l'incertitude. Ce qui m'a forcé à m'arrêter, c'est l'absence d'acte de tranchage : la pièce porte une attente sans direction décidée. La feuille est traversée par des questions, pas par des paris assumés. Dans ce pôle, le travail ne montre pas ici de décision et tolérance à l'incertitude attestée. Ce territoire reste à ouvrir.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce porte une suspension sans acte de tranchage et sans description d'un fonctionnement dans le flou — la fiche exige le combo des trois éléments.",
+        "prescription": "Ce territoire pourrait s'ouvrir avec un récit où un acte de décision est posé malgré l'incertitude, avec ses conséquences nommées. La voisine 4.09 (patience stratégique) reçoit mieux le matériau de cette feuille, où l'attente est dominante."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant reconnaît rétrospectivement une non-action (« j'aurais dû développer les cartographies cet été ») avec le motif (« je n'étais pas en état ») — possible trace de responsabilité par autocritique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la conviction que la responsabilité, courage et intégrité n'est probablement pas attestée : la fiche distingue l'accountability constructive (« c'est ma responsabilité, et voici ce que je fais maintenant ») de l'auto-flagellation en boucle. La pièce 2 reconnaît une non-action passée mais l'attribue à un empêchement (« je n'étais pas en état »), ce qui peut être lu comme une responsabilisation honnête mais pas comme une action corrective. La fiche signale toutefois explicitement que « j'aurais dû vérifier » compte comme trace oblique de responsabilité par autocritique rétrospective. La pièce résiste faiblement : c'est une reconnaissance, sans l'action corrective qui complèterait le triptyque assumer-oser-rester-cohérent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La fiche signale explicitement « j'aurais dû vérifier » comme trace oblique de responsabilité par autocritique rétrospective — la pièce porte exactement cette forme grammaticale."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je dois examiner si cette reconnaissance rétrospective porte vraiment une charge de responsabilité ou si elle est plutôt une auto-justification (« je n'étais pas en état » comme excuse). L'attaque dominante est ici la confusion de compétence (b) ou le récit performatif (f) : la pièce reconnaît un échec mais le motif (« je n'étais pas en état ») désamorce immédiatement la responsabilité. La fiche exige le combo (1) identifier le problème, (2) reconnaître sa part et le coût, (3) décrire l'action corrective. Le 3 manque. La pièce tombe : c'est une reconnaissance partielle qui s'apparente plus à une explication qu'à une accountability constructive.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La reconnaissance rétrospective est immédiatement assortie d'un motif qui désamorce la responsabilité (« je n'étais pas en état ») et n'est suivie d'aucune action corrective ; le triptyque attendu par la fiche n'est pas complet."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si la reconnaissance d'une non-action passée ne constituait pas une trace de responsabilité. Ce qui m'a forcé à m'arrêter, c'est l'incomplétude du triptyque exigé par la fiche : la pièce identifie un défaut, mais le motif joint désamorce la responsabilité plutôt qu'il ne la porte, et aucune action corrective n'est décrite. Dans ce pôle, le travail ne montre pas ici de responsabilité, courage et intégrité attestée. Ce territoire reste à ouvrir.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce a été disqualifiée au temps 2 : reconnaissance rétrospective accompagnée d'un motif qui désamorce la responsabilité et non suivie d'action corrective.",
+        "prescription": "Ce territoire pourrait s'ouvrir avec un récit où la reconnaissance d'un défaut est prolongée par une action concrète — pas seulement « j'aurais dû » mais « j'aurais dû et voici ce que je fais maintenant ». L'accountability constructive se reconnaît à ce mouvement vers l'avant."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la validation contextuelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a corrigé une IA grâce à un savoir qu'elle ne possédait pas — culturel, émotionnel, situationnel ou technique tacite."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le constat d'illégitimité face à l'évolution rapide de l'IA — possible terrain de la valeur non-automatisable, à examiner pour distinguer pressentiment et articulation."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "La question directe « ma valeur ajoutée est-elle toujours centrée sur mes capacités de développement » — interrogation explicite de la valeur ajoutée humaine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que la création de valeur non-automatisable n'est probablement pas attestée : la fiche est exigeante — il faut une lucidité bidirectionnelle (reconnaître ce que l'IA fait mieux ET identifier ce qui reste irremplaçablement humain), avec une orientation prospective (cultiver pour rester pertinent), pas rétrospective. La pièce 1 et la pièce 2 portent des questions sur la valeur ajoutée, mais ne l'identifient pas. L'apprenant interroge sa pertinence sans nommer ce qui reste structurellement non-automatisable dans sa pratique. La feuille tend même vers le test rétrospectif disqualifiant (« c'était mieux avant ») via le constat de décrochage technique. Les pièces ne résistent pas vraiment : elles posent la question sans la travailler.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La présomption d'absence a tenu : les questions sur la valeur ajoutée sont posées mais aucune articulation prospective n'identifie le non-automatisable.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si les interrogations sur la valeur ajoutée ne portaient pas une trace de création de valeur non-automatisable. Ce qui m'a forcé à m'arrêter, c'est le manque de lucidité bidirectionnelle prospective que la fiche exige : la pièce pose la question, mais ne nomme pas ce qui reste irremplaçable, ne projette pas une cultivation future. Dans ce pôle, le travail ne montre pas ici de création de valeur non-automatisable attestée. Le terrain est en préparation par la question, pas dans son exercice.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces posent la question de la valeur ajoutée sans identifier ce qui reste structurellement non-automatisable ni déployer la lucidité bidirectionnelle prospective que la fiche exige.",
+        "prescription": "Ce territoire pourrait s'ouvrir avec un récit où l'apprenant nomme précisément ce qu'il fait que l'IA ne peut structurellement pas reproduire — présence, relation, intimité professionnelle — et ce qu'il choisit de cultiver pour rester pertinent dans la durée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'apprenant suspend explicitement sa décision sur les manuels avec un critère de déclenchement précis (« en lisant le manuel du Maître ») — possible trace de patience stratégique avec critère de déclenchement nommé."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "L'hypothèse d'attendre la retraite pour reprendre le développement — possible trace de patience stratégique avec horizon temporel borné, à examiner pour distinguer report argumenté et procrastination."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que la patience stratégique n'est probablement pas attestée : la fiche est exigeante — il faut une pression à agir décrite, un raisonnement explicite d'attente, et un moment d'action prévu. Sans le 2, c'est de la procrastination ; sans le 3, c'est de la paralysie. La pièce 1 (« peut-être que je changerai d'avis en lisant le manuel du Maître ») porte exactement le pattern de la fiche : pression à agir (repenser le plan), raisonnement explicite (attendre la lecture du manuel suivant pour ne pas trancher prématurément), critère de déclenchement précis (avoir lu le manuel du Maître). La pièce résiste. La pièce 2 est plus ambiguë : l'horizon « la retraite » est borné dans le temps mais c'est un horizon très long, et le raisonnement explicite manque — c'est plus une concession lasse qu'une stratégie. La pièce 2 résiste plus faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La pièce porte exactement le combo de la fiche : pression à agir (repenser le plan), raisonnement explicite d'attente (la lecture du manuel suivant peut renverser la position), critère de déclenchement nommé (avoir lu le manuel du Maître)."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le report est associé à un horizon temporel précis (la retraite) — c'est plus qu'une procrastination, c'est une projection de plaisir personnel déplacé."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces et dois maintenant me demander si je n'ai pas hallucinée leur portée stratégique. La pièce 1 résiste sans difficulté sous la présomption de sycophantie : la fiche cite explicitement « quand j'aurai lu X » comme exemple de trace oblique. L'attaque insuffisance probatoire (a) tient peu : le pattern est complet, juste compact. La pièce 1 sort confirmée. La pièce 2 est plus exposée : « ne devrais-je pas juste attendre la retraite » est plus une démission lasse qu'une stratégie patiente — il n'y a pas de pression à agir maintenant sur ce projet, ni de raisonnement explicite (« juste » est un signal d'abandon). L'attaque mouvement-vers (g) ou récit performatif (f) tient : c'est une formule de retrait, pas une discipline temporelle. La pièce 2 tombe ; la pièce 1 reste.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le pattern est complet (pression à agir, raisonnement d'attente, critère de déclenchement nommé) et compact mais sans déficience structurelle. La fiche cite explicitement ce type de formulation."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Ne devrais-je pas juste attendre » est une formule de retrait lassée, pas une discipline temporelle argumentée. La pression à agir et le raisonnement d'attente manquent."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à séparer la patience stratégique de la procrastination. Ce qui m'a forcé à reconnaître une trace, c'est la formulation très précise « peut-être que je changerai d'avis en lisant le manuel du Maître » — elle porte exactement le combo attendu par la fiche (pression à agir, raisonnement d'attente, critère de déclenchement nommé). Sous la présomption de sycophantie, cette pièce a tenu sans difficulté. L'autre pièce (« attendre la retraite ») est tombée : c'est une formule de retrait, pas une discipline temporelle. Dans ce pôle, le travail montre ici une discipline du non-tranchage immédiat sur la question des manuels — le moment d'action est conditionné à une information manquante.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Une pièce a survécu sans dommage à la présomption de sycophantie en portant exactement le combo de la fiche (pression à agir, raisonnement d'attente, critère de déclenchement nommé).",
+        "prescription": "Ce dossier gagnerait à être prolongé par un récit du moment où le critère de déclenchement (la lecture du manuel du Maître) sera atteint — ce que cette lecture aura confirmé ou renversé, et comment l'attente aura affiné le jugement. Documenter le passage de la patience à l'action rendrait visible le sens du timing."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 0,
+    "nonEtablies": 8,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, la feuille du 11 janvier porte une trame de questions sur l'orientation professionnelle face à l'évolution rapide de l'IA. La plupart des questions restent ouvertes, parfois en boucle, sans qu'un arbitrage se pose. Au milieu de ce flot, un geste précis se distingue : la suspension délibérée d'une décision sur les manuels, conditionnée à une lecture à venir. Le registre dominant est celui de la délibération inquiète, ponctué d'une discipline temporelle nette sur un point précis.",
+    "territoiresDenses": [
+      {
+        "competence": "Patience stratégique et sens du timing",
+        "description": "Le travail montre une suspension délibérée d'une décision sur la restructuration des manuels, avec un raisonnement explicite d'attente et un critère de déclenchement nommé (avoir lu le manuel du Maître avant de trancher).",
+        "extraitVerbatim": "Peut-être que je changerai d'avis en lisant le manuel du Maître ?",
+        "ceQueCaDit": "Dans ce pôle, le travail montre une discipline du non-tranchage qui ne se confond pas avec l'attente passive : la décision est conditionnée à une information manquante précisément nommée, ce qui transforme l'attente en geste de jugement."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'apparaissent pas dans cette feuille. L'alignement et le refus éthique, la conscience écologique, la valorisation de la neurodiversité et la validation contextuelle restent à ouvrir — la feuille ne raconte aucune interaction concrète avec une production IA ni aucun arbitrage écologique ou inclusif. Le raisonnement éthique appliqué est effleuré par l'opposition entre maintenir la maîtrise développeur et se concentrer sur la pédagogie assistée par IA, mais ce dilemme est stratégique plus qu'éthique — aucune partie prenante n'est convoquée. La création de valeur non-automatisable est en préparation par la question « ma valeur ajoutée est-elle toujours centrée sur mes capacités de développement », sans encore que ce qui reste structurellement non-automatisable soit nommé. La responsabilité, courage et intégrité est effleurée par la reconnaissance d'une non-action passée, mais l'action corrective manque pour compléter le triptyque.",
+    "emergencesPole": "Trois observations traversent ce pôle. D'abord, un contraste interne fort : la feuille hésite sur presque tout, sauf sur un point précis (attendre la lecture du manuel suivant) où la discipline temporelle est nette. Ensuite, une grande quantité de questions tenues ouvertes sans résolution — ce qui pourrait être lu comme paralysie ou comme une tolérance à l'incertitude qui ne se nomme pas encore comme telle. Enfin, une articulation récurrente entre l'IA et l'identité professionnelle qui prépare le terrain de la valeur non-automatisable, sans encore que l'identification du non-automatisable soit faite.",
+    "pistes": [
+      "Pour prolonger la patience stratégique déjà à l'œuvre, un chemin possible serait de documenter le moment où le critère de déclenchement (la lecture du manuel du Maître) sera atteint — ce que cette lecture aura confirmé, ce qu'elle aura renversé, et comment l'attente aura affiné le jugement.",
+      "Pour ouvrir la création de valeur non-automatisable, un chemin possible serait de nommer précisément ce que l'apprenant fait que l'IA ne peut structurellement pas reproduire, et ce qu'il choisit de cultiver pour rester pertinent dans la durée.",
+      "Pour ouvrir la responsabilité, un chemin possible serait de prolonger une reconnaissance rétrospective par une action corrective concrète — pas seulement « j'aurais dû », mais « j'aurais dû et voici ce que je fais à partir de maintenant »."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, la feuille du 11 janvier porte une trame de questions sur l'orientation professionnelle face à l'évolution rapide de l'IA. La plupart des questions restent ouvertes, parfois en boucle, sans qu'un arbitrage se pose. Au milieu de ce flot, un geste précis se distingue : la suspension délibérée d'une décision sur les manuels, conditionnée à une lecture à venir. Le registre dominant est celui de la délibération inquiète, ponctué d'une discipline temporelle nette sur un point précis.\n\n## Territoires les plus denses\n\n**Patience stratégique et sens du timing.** Le travail montre une suspension délibérée d'une décision sur la restructuration des manuels, avec un raisonnement explicite d'attente et un critère de déclenchement nommé (avoir lu le manuel du Maître avant de trancher).\n\n> « Peut-être que je changerai d'avis en lisant le manuel du Maître ? »\n\nDans ce pôle, le travail montre une discipline du non-tranchage qui ne se confond pas avec l'attente passive : la décision est conditionnée à une information manquante précisément nommée, ce qui transforme l'attente en geste de jugement.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'apparaissent pas dans cette feuille. L'alignement et le refus éthique, la conscience écologique, la valorisation de la neurodiversité et la validation contextuelle restent à ouvrir — la feuille ne raconte aucune interaction concrète avec une production IA ni aucun arbitrage écologique ou inclusif. Le raisonnement éthique appliqué est effleuré par l'opposition entre maintenir la maîtrise développeur et se concentrer sur la pédagogie assistée par IA, mais ce dilemme est stratégique plus qu'éthique — aucune partie prenante n'est convoquée. La création de valeur non-automatisable est en préparation par la question « ma valeur ajoutée est-elle toujours centrée sur mes capacités de développement », sans encore que ce qui reste structurellement non-automatisable soit nommé. La responsabilité, courage et intégrité est effleurée par la reconnaissance d'une non-action passée, mais l'action corrective manque pour compléter le triptyque.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, un contraste interne fort : la feuille hésite sur presque tout, sauf sur un point précis (attendre la lecture du manuel suivant) où la discipline temporelle est nette. Ensuite, une grande quantité de questions tenues ouvertes sans résolution — ce qui pourrait être lu comme paralysie ou comme une tolérance à l'incertitude qui ne se nomme pas encore comme telle. Enfin, une articulation récurrente entre l'IA et l'identité professionnelle qui prépare le terrain de la valeur non-automatisable, sans encore que l'identification du non-automatisable soit faite.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la patience stratégique déjà à l'œuvre, un chemin possible serait de documenter le moment où le critère de déclenchement (la lecture du manuel du Maître) sera atteint — ce que cette lecture aura confirmé, ce qu'elle aura renversé, et comment l'attente aura affiné le jugement.\n- Pour ouvrir la création de valeur non-automatisable, un chemin possible serait de nommer précisément ce que l'apprenant fait que l'IA ne peut structurellement pas reproduire, et ce qu'il choisit de cultiver pour rester pertinent dans la durée.\n- Pour ouvrir la responsabilité, un chemin possible serait de prolonger une reconnaissance rétrospective par une action corrective concrète — pas seulement « j'aurais dû », mais « j'aurais dû et voici ce que je fais à partir de maintenant ».\n"
+  }
+}

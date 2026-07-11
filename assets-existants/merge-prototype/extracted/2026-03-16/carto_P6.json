@@ -1,0 +1,229 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Le coup de grâce, ça a été l'appel de l'EPFL pour un entretien pour le poste d'évaluation avec les IA.",
+      "contexte": "Mention d'un poste d'évaluation avec les IA dans une institution publique de recherche : contexte potentiellement adjacent au pôle Cité, sans contenu de pratique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Pause RESPIRE jusqu'à ce week-end : maximum d'heure de sommeil, plus d'écran après 22h30 et manettes à fond formation LangChain + bases de données vectorielles pour me sentir prêt pour l'entretien de jeudi.",
+      "contexte": "Mention de technologies (LangChain, bases vectorielles) liées à un éventuel travail d'évaluation IA, sans contenu de gouvernance.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un acte de test adversarial — soumettre des cas limites conçus pour casser les garde-fous, avec un compte rendu de ce qui a été observé."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mention d'un poste d'évaluation IA à l'EPFL : adjacent à l'idée d'audit, sans pratique décrite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que nommer un poste d'évaluation IA n'atteste pas d'une pratique d'audit. La fiche est claire : 6.02 demande une investigation effective sur les mécanismes de décision — logs consultés, audits post-incidents, horodatages, ou une réflexion concrète sur l'hygiène des données. Ici, la pièce nomme un poste, pas une enquête. Rien ne résiste : le passage n'évoque ni mécanisme audité, ni hygiène des données mise en pratique. Le glissement entre l'étiquette professionnelle et la compétence serait trop large pour tenir.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à attaquer au second temps. La fiche met en garde contre la récitation théorique, ce qui s'applique aussi par anticipation à l'étiquette d'un poste.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une trace d'audit ou d'hygiène des données dans la mention du poste EPFL, mais la présomption d'absence a tenu : nommer le domaine de pratique d'un poste à venir n'est pas y exercer la compétence. La fiche distingue clairement la mention d'un contexte d'une pratique d'investigation. Il en résulte que cette dimension n'est pas attestée par cette feuille. La réserve à assumer : la préparation à un tel poste pourrait, dans des feuilles ultérieures, faire apparaître la pratique elle-même.",
+          "confianceFinale": 0.1
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.1,
+        "motif": "Le temps 1 a fait tomber la seule pièce candidate : nommer un poste d'évaluation IA n'est pas exercer une pratique d'audit ou d'hygiène des données au sens de la fiche.",
+        "prescription": "Pour ouvrir cette zone, un chemin possible serait de documenter une investigation effective sur le « comment » d'une décision IA — consultation de logs, audit post-incident, ou réflexion concrète sur les données partagées avec un outil."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le pouvoir des algorithmes sur les citoyens — qui décide, qui peut contester, qui est affecté de manière disproportionnée."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté numérique et à la gouvernance des communs dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage où la dépendance technologique a explicitement pesé sur un choix d'outil — au prix d'une perte de performance."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un processus où des non-experts ont été associés à une décision technologique, ou un effort pour ouvrir la délibération à des publics éloignés du numérique."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une modification de pratique anticipant une norme à venir, ou une analyse prospective d'évolution réglementaire."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment d'émergence collective ou la co-construction explicite de règles dans un groupe."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement adoptant une perspective non-humaine, ou une hésitation réelle face à la primauté implicite des besoins humains."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mention d'un poste d'évaluation avec les IA : contexte de relation humain-IA à venir, sans réflexion sur le statut de l'entité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que la mention d'un poste d'évaluation IA ne porte aucune réflexion sur le statut moral ou sur la cohabitation avec une intelligence non-humaine. La fiche est explicite : 6.09 commence quand l'apprenant questionne si « assistant » est le bon cadre, quand il interroge la nature de la relation et le statut de l'entité. Ici, l'IA est traitée comme objet de l'évaluation, pas comme sujet d'une relation à penser. Rien ne résiste à la présomption d'absence : aucune trace de calibration anthropomorphique, aucun questionnement sur l'agentivité ou les préférences de l'IA, aucune réflexion sur la manière de se positionner face à elle.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; le second temps n'a rien à attaquer. La fiche met en garde contre la confusion entre la littératie IA (1.06) et la cohabitation, et ici on est encore plus en deçà : on n'est ni dans le constat technique ni dans le questionnement moral, mais dans le contexte professionnel.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une trace de cohabitation avec une intelligence non-humaine dans la mention du poste EPFL, mais la présomption d'absence a tenu : la pièce nomme un domaine d'activité, pas une posture relationnelle envers l'IA. La fiche est claire : la compétence commence quand le statut de l'entité devient une question ouverte. Il en résulte que cette dimension n'est pas attestée par cette feuille. La réserve à assumer : un poste d'évaluation IA pourrait être un terrain privilégié pour cette compétence, qui pourrait se déployer dans des feuilles à venir.",
+          "confianceFinale": 0.1
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.1,
+        "motif": "Le temps 1 a fait tomber la seule pièce candidate : le contexte d'un poste d'évaluation IA ne porte pas en soi une réflexion sur le statut moral de l'entité au sens de la fiche.",
+        "prescription": "Pour ouvrir cette zone, un chemin possible serait de capter, dans le travail d'évaluation IA à venir, un moment où la question du statut de l'entité se pose — quand le cadre « assistant », « système » ou « interlocuteur » devient lui-même un objet d'interrogation."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion ou un choix où l'humain est pensé comme nœud d'un réseau vivant plutôt que comme sujet extérieur."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 8
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée du 16 mars, le pôle Cité n'est pas exploré dans cette feuille. Le contexte est celui d'une journée d'urgence privée — saturation cognitive et émotionnelle, tri de priorités, préparation à un entretien — sans appel aux registres de la gouvernance, de la souveraineté numérique, de la participation citoyenne ou de la cohabitation avec les intelligences non-humaines. Une mention adjacente apparaît à travers le poste d'évaluation IA visé à l'EPFL et la formation à LangChain et bases vectorielles, mais ces éléments restent au stade d'étiquettes professionnelles sans pratique de gouvernance déployée. Le pôle apparaît donc comme un territoire non visité ici, ce qui dit moins du portfolio dans son ensemble que de la nature de cette feuille particulière.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble du pôle Cité reste hors champ sur cette feuille, et la nature de l'absence est claire : une journée saturée et tournée vers la récupération corporelle et la préparation d'un entretien personnel ne convoque ni les questions de gouvernance algorithmique, ni celles de souveraineté des communs, ni les enjeux de participation citoyenne ou de veille réglementaire. Pour l'audit, l'hygiène des données et la cohabitation avec les intelligences non-humaines, le poste EPFL mentionné suggère un terrain professionnel adjacent ; la pratique elle-même reste à documenter ailleurs. Pour les autres territoires — red-teaming, gouvernance des services publics, souveraineté numérique, démocratie technologique, anticipation normative, facilitation collective, décentrement anthropocentrique, conscience biosystémique — l'absence ressemble à une limite du document plus qu'à un choix : ces compétences peuvent s'exprimer dans d'autres feuilles, plus orientées vers la pratique de projet ou la réflexion politique.",
+    "emergencesPole": "Une chose est lisible en creux : le pôle Cité touche à des registres collectifs et institutionnels que cette feuille, par nature, ne convoque pas. L'écriture du jour est intime, dirigée vers la tenue de soi sous pression. Le silence du pôle Cité n'est pas un manque, mais l'effet d'une feuille qui parle d'une autre dimension de la vie de l'apprenant.",
+    "pistes": [
+      "Pour enrichir l'écriture du pôle Cité, un chemin possible serait, dans une feuille à venir orientée vers la pratique professionnelle, de capter un arbitrage où la souveraineté numérique, l'hygiène des données ou le statut de l'IA a pesé sur un choix concret — au prix d'une perte de confort.",
+      "Pour enrichir l'écriture de la cohabitation avec les intelligences non-humaines, un chemin possible serait, en lien avec la préparation à l'évaluation IA, de saisir un moment où la question du statut de l'entité évaluée devient elle-même un objet de réflexion — quand « système à tester » se laisse interroger comme cadre.",
+      "Pour enrichir l'écriture de l'audit et de l'hygiène des données, un chemin possible serait de documenter une investigation effective sur le « comment » d'une décision IA, avec ses logs, ses horodatages, et son compte rendu."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée du 16 mars, le pôle Cité n'est pas exploré dans cette feuille. Le contexte est celui d'une journée d'urgence privée — saturation cognitive et émotionnelle, tri de priorités, préparation à un entretien — sans appel aux registres de la gouvernance, de la souveraineté numérique, de la participation citoyenne ou de la cohabitation avec les intelligences non-humaines. Une mention adjacente apparaît à travers le poste d'évaluation IA visé à l'EPFL et la formation à LangChain et bases vectorielles, mais ces éléments restent au stade d'étiquettes professionnelles sans pratique de gouvernance déployée. Le pôle apparaît donc comme un territoire non visité ici, ce qui dit moins du portfolio dans son ensemble que de la nature de cette feuille particulière.\n\n## Territoires les plus denses\n\nCette feuille ne porte aucun territoire dense sur ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble du pôle Cité reste hors champ sur cette feuille, et la nature de l'absence est claire : une journée saturée et tournée vers la récupération corporelle et la préparation d'un entretien personnel ne convoque ni les questions de gouvernance algorithmique, ni celles de souveraineté des communs, ni les enjeux de participation citoyenne ou de veille réglementaire. Pour l'audit, l'hygiène des données et la cohabitation avec les intelligences non-humaines, le poste EPFL mentionné suggère un terrain professionnel adjacent ; la pratique elle-même reste à documenter ailleurs. Pour les autres territoires — red-teaming, gouvernance des services publics, souveraineté numérique, démocratie technologique, anticipation normative, facilitation collective, décentrement anthropocentrique, conscience biosystémique — l'absence ressemble à une limite du document plus qu'à un choix : ces compétences peuvent s'exprimer dans d'autres feuilles, plus orientées vers la pratique de projet ou la réflexion politique.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose est lisible en creux : le pôle Cité touche à des registres collectifs et institutionnels que cette feuille, par nature, ne convoque pas. L'écriture du jour est intime, dirigée vers la tenue de soi sous pression. Le silence du pôle Cité n'est pas un manque, mais l'effet d'une feuille qui parle d'une autre dimension de la vie de l'apprenant.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir l'écriture du pôle Cité, un chemin possible serait, dans une feuille à venir orientée vers la pratique professionnelle, de capter un arbitrage où la souveraineté numérique, l'hygiène des données ou le statut de l'IA a pesé sur un choix concret — au prix d'une perte de confort.\n\nPour enrichir l'écriture de la cohabitation avec les intelligences non-humaines, un chemin possible serait, en lien avec la préparation à l'évaluation IA, de saisir un moment où la question du statut de l'entité évaluée devient elle-même un objet de réflexion — quand « système à tester » se laisse interroger comme cadre.\n\nPour enrichir l'écriture de l'audit et de l'hygiène des données, un chemin possible serait de documenter une investigation effective sur le « comment » d'une décision IA, avec ses logs, ses horodatages, et son compte rendu."
+  }
+}

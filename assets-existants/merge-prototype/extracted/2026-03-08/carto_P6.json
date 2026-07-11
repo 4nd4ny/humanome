@@ -1,0 +1,240 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**11: DECIDIM** → Discussions référentiels + CSS update + commencer à en parler",
+      "contexte": "Plateforme de participation citoyenne (Decidim) mobilisée pour discuter de référentiels — possible trace de gouvernance ou de communs numériques.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**12: REFERENTIELS** → v7 + Réflexions NotebookLM + publier débâts dans Décidim",
+      "contexte": "Intention de publier des débats dans Decidim — geste prospectif d'ouverture d'une discussion collective.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**04: YAML** → Génération des YAML & Prompts ipsatifs via script Python v2",
+      "contexte": "Mention d'un script Python qui génère des prompts — composant d'un pipeline IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas de test adversarial d'un système IA. Pour ouvrir ce dossier, raconter une fois un essai pour \"casser\" une IA — prompt injection, jailbreak exploratoire, cas limite — documenterait cette compétence."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas d'audit du processus décisionnel d'une IA ni de pratique d'hygiène des données. Pour ouvrir ce dossier, raconter une fois une consultation des logs en parallèle d'un dashboard, ou une décision sur ce qui peut être partagé avec une IA, donnerait une trace."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille n'aborde pas les décisions algorithmiques affectant les citoyens. Pour ouvrir ce dossier, examiner un cas concret de décision automatisée touchant des personnes vulnérables, avec proposition d'un mécanisme de recours, documenterait cette compétence."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le choix d'utiliser Decidim — plateforme libre de démocratie participative — pour discuter de référentiels pourrait signaler une orientation souveraineté/communs numériques."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la compétence n'est pas attestée. La fiche exige un acte de souveraineté : choix technologique justifié, défense de l'autonomie numérique face à l'enclosure, questionnement explicite de qui possède quoi. Sur cette feuille, Decidim est mentionné comme un desktop thématique, sans aucune justification de ce choix : pourquoi Decidim plutôt qu'un Discord, un forum propriétaire, ou un outil interne ? Aucun élément n'articule un raisonnement de souveraineté ; l'outil pourrait être choisi pour des raisons fonctionnelles, par habitude, ou par proximité. Sous présomption d'absence, la pièce tombe — la mention seule de la plateforme ne suffit pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Pas d'examen à conduire au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à voir si le choix de Decidim portait une trace de souveraineté numérique. Le risque évaluateur de ce pôle est précisément la récitation théorique : Decidim est connoté \"commun numérique\" mais la connotation seule ne fait pas la compétence. Sur cette feuille, aucun raisonnement n'est articulé sur le choix de l'outil. Ce qui en résulte, c'est qu'il n'y a pas de trace attestée de cette compétence — la mention reste une étiquette d'outil, pas un acte de souveraineté.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La pièce n'a pas résisté à la présomption d'absence ; la mention de Decidim est une étiquette d'outil sans raisonnement de souveraineté articulé.",
+        "prescription": "Pour ouvrir ce dossier, expliciter une fois pourquoi Decidim plutôt qu'un autre outil — au nom de quelle propriété des données, de quel modèle économique, de quelle gouvernance souhaitée — donnerait au choix sa portée de souveraineté."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à cette compétence sur cette feuille. Pour ouvrir ce dossier, documenter une situation concrète où la compétence visée a été mobilisée serait un premier pas."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne mobilise pas de cadre réglementaire IA. Pour ouvrir ce dossier, anticiper une fois une évolution probable de la réglementation et y aligner une décision présente nommerait la veille normative en acte."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Decidim est un outil dédié à la délibération collective et à la sociocratie — possible orientation vers la gouvernance collective."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "L'intention de \"publier des débats\" dans Decidim suggère un projet de mise en discussion organisée, pas seulement un partage d'information."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la facilitation et la gouvernance collective ne sont pas attestées. La fiche exige soit un récit d'émergence (résultat collectif qui surprend ses créateurs), soit une description de règles co-construites, soit la conception de protocoles de décision. Sur cette feuille, Decidim et \"publier des débats\" sont des intentions d'outil et de geste futur. Aucun collectif n'est nommé, aucune règle de fonctionnement n'est décrite, aucun protocole n'est conçu. Sous présomption d'absence, les pièces tombent : il s'agit d'amorces, pas d'actes de facilitation. Rien ne résiste vraiment.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Pas d'examen à conduire au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir si une intention de gouvernance collective était attestée par autre chose que la mention d'un outil. Le risque évaluateur du pôle — récitation théorique — est exactement ici : Decidim porte une connotation de gouvernance collective, mais la connotation seule ne fait pas la compétence. Ce qui en résulte, c'est qu'il n'y a pas, sur cette feuille seule, de trace attestée de facilitation ou de gouvernance — l'intention est nommée, l'incarnation reste à venir.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence ; les mentions de Decidim sont des intentions sans collectif, sans règles co-construites, sans protocole.",
+        "prescription": "Pour ouvrir ce dossier, décrire au moment de la publication des débats qui en est membre, quelles règles encadrent la délibération, comment les décisions seront prises et modifiables, donnerait au projet sa dimension de gouvernance collective en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne questionne pas la hiérarchie qui place l'humain au sommet. Pour ouvrir ce dossier, raisonner une fois depuis une perspective non-humaine — animale, écosystémique, artificielle — sur un cas concret nommerait le décentrement."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille n'interroge pas le statut moral de l'IA. Pour ouvrir ce dossier, expliciter une fois ce qui fait que la relation avec une IA n'est pas réductible à un usage d'outil documenterait cette compétence."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne se rapporte pas à un réseau écosystémique vivant dont l'humain serait un nœud. Pour ouvrir ce dossier, comparer une fois une architecture humaine à un modèle vivant — non comme décoration mais comme principe de conception — documenterait cette compétence."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 8
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 8 mars 2026 ne déploie pas le pôle cité. Le matériau est une feuille d'inventaire et de reprise de chantiers à dominante technique et organisationnelle. La voix dominante ne s'attarde pas sur les questions de gouvernance, de souveraineté numérique ou de statut des intelligences non-humaines. Une intention apparaît néanmoins, à travers la mention d'une plateforme de démocratie participative et d'une publication de débats à venir, mais cette intention reste à l'état d'item de todo. Sur cette feuille seule, le pôle s'esquisse plutôt qu'il ne se montre.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble du pôle cité reste largement non visité dans cette feuille. Le red-teaming, l'audit et l'hygiène des données, la gouvernance algorithmique des services publics, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique n'y trouvent pas d'occasion pour se déployer. Deux territoires sont effleurés sans s'ouvrir : la souveraineté numérique et la facilitation de gouvernance collective, tous deux portés par la même mention de Decidim, mais la mention reste une étiquette d'outil — aucun raisonnement de souveraineté, aucun collectif nommé, aucune règle co-construite.",
+    "emergencesPole": "Une observation traverse cette feuille : Decidim apparaît comme un point d'appui prévu pour ouvrir une discussion publique autour de référentiels, et cela seul aurait pu suffire à activer plusieurs compétences du pôle. Ce qui manque, sur cette feuille, ce sont les liens — les raisons du choix de Decidim, le collectif visé, le protocole imaginé. Le risque de récitation théorique signalé par le pôle est précisément ce contre quoi la feuille ne se protège pas encore : l'outil est mentionné mais la pratique correspondante n'est pas encore racontée.",
+    "pistes": [
+      "Pour donner à la mention de Decidim sa portée de souveraineté, un chemin possible serait d'expliciter en quelques phrases ce qui distingue ce choix d'une plateforme propriétaire — propriété des données, modèle de gouvernance, modèle économique.",
+      "Pour faire naître une trace de gouvernance collective, un chemin possible serait, au moment de publier les débats, de nommer qui en est membre, quelles règles l'encadrent et comment les décisions y sont prises."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 8 mars 2026 ne déploie pas le pôle cité. Le matériau est une feuille d'inventaire et de reprise de chantiers à dominante technique et organisationnelle. La voix dominante ne s'attarde pas sur les questions de gouvernance, de souveraineté numérique ou de statut des intelligences non-humaines. Une intention apparaît néanmoins, à travers la mention d'une plateforme de démocratie participative et d'une publication de débats à venir, mais cette intention reste à l'état d'item de todo. Sur cette feuille seule, le pôle s'esquisse plutôt qu'il ne se montre.\n\n## Territoires les plus denses\n\nAucune compétence de ce pôle n'atteint sur cette feuille seule une présence pleinement établie ni un renvoi au cartographe. Le pôle reste en territoire non visité.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble du pôle cité reste largement non visité dans cette feuille. Le red-teaming, l'audit et l'hygiène des données, la gouvernance algorithmique des services publics, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique n'y trouvent pas d'occasion pour se déployer. Deux territoires sont effleurés sans s'ouvrir : la souveraineté numérique et la facilitation de gouvernance collective, tous deux portés par la même mention de Decidim, mais la mention reste une étiquette d'outil — aucun raisonnement de souveraineté, aucun collectif nommé, aucune règle co-construite.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse cette feuille : Decidim apparaît comme un point d'appui prévu pour ouvrir une discussion publique autour de référentiels, et cela seul aurait pu suffire à activer plusieurs compétences du pôle. Ce qui manque, sur cette feuille, ce sont les liens — les raisons du choix de Decidim, le collectif visé, le protocole imaginé. Le risque de récitation théorique signalé par le pôle est précisément ce contre quoi la feuille ne se protège pas encore : l'outil est mentionné mais la pratique correspondante n'est pas encore racontée.\n\n## Pistes pour enrichir ce pôle\n\nPour donner à la mention de Decidim sa portée de souveraineté, un chemin possible serait d'expliciter en quelques phrases ce qui distingue ce choix d'une plateforme propriétaire — propriété des données, modèle de gouvernance, modèle économique.\n\nPour faire naître une trace de gouvernance collective, un chemin possible serait, au moment de publier les débats, de nommer qui en est membre, quelles règles l'encadrent et comment les décisions y sont prises."
+  }
+}

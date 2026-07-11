@@ -1,0 +1,454 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Il y a encore un peu de travail, mais voilà la nouvelle structure des parcours de formation pour les Tuteurs Respire (équivalent HEP)",
+      "contexte": "Conception d'une structure de parcours de formation : architecture pédagogique en cours ; touche à 7.01 (architecture maïeutique) et 7.07 (itération).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "C'est donc une des compétences clés à enseigner aux futurs cartographes et médiateurs (le niveau Praticien Tuteurs) et qui devra être incluse dans leur manuel d'auto-formation.",
+      "contexte": "Identification d'une compétence à transmettre, destinée à un manuel d'auto-formation : structuration documentaire pédagogique ; touche à 7.01, 7.03, 7.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "J'ai reproché à Stéphane d'être focalisé sur son journal de bord et donc la description de ce qu'il faisait sans prendre le recul nécessaire pour pouvoir observer ses réflexions profondes, ce qui permet de rendre vraiment visible les compétences uniques qu'il a.",
+      "contexte": "Feedback adressé à un apprenant nommé, ciblant son processus plus que son résultat, visant à rendre visibles ses compétences uniques ; touche à 7.02 (évaluation transformative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "J'ai relu le document de l'âme de Claude qui a été publié hier. C'est la même chose que je dois faire ici : expliciter le pourquoi est plus important que décrire le quoi. Ceci dit, pour le lecteur n'ayant pas consacré sa vie à réfléchir à ces questions, l'un sans l'autre est incompréhensible.",
+      "contexte": "Réflexion sur l'écriture d'un document pour un futur lecteur : conscience explicite du destinataire et de l'articulation pourquoi/quoi ; touche à 7.03 (documentation vivante).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "D'où la nécessité de maîtriser les deux pour devenir Grand Maître et avoir une vision d'ensemble des processus et stratégies permettant d'améliorer l'intelligence.",
+      "contexte": "Affirmation d'un niveau final d'expertise (Grand Maître) au sein d'un parcours structuré, lié à une vision d'ensemble ; touche à 7.05 (vision stratégique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Je vais donc peut-être essayer de crafter un nouveau prompt système pour compléter ou remplacer le protocole CATALYST, lorsque j'aurai un peu plus de temps",
+      "contexte": "Projet d'itération sur un protocole existant et report explicite à 'plus tard, quand j'aurai du temps' ; touche à 7.06 (efficacité personnelle, priorisation) et 7.07 (itération).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Et moi, depuis quelques jours, je fais pareil. C'est un peu normal lorsqu'on est dans le faire, on oublie de prendre des pauses réflexives.",
+      "contexte": "Reconnaissance d'avoir négligé les pauses réflexives 'depuis quelques jours' : indice de surcharge ou de déséquilibre de pilotage personnel ; touche à 7.06.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'une structure de parcours de formation avec niveaux et dualité IA/humain : architecture pédagogique."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Identification d'une compétence à transmettre dans un manuel d'auto-formation : ingénierie pédagogique appliquée à un public spécifique (cartographes, médiateurs)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la maïeutique et la facilitation d'apprentissage ne sont pas attestées : la fiche exige soit une retenue délibérée de celui qui sait, soit une architecture d'environnement d'apprentissage explicite. La pièce 1 résiste : la mention d'une nouvelle structure des parcours de formation pour les Tuteurs Respire et la référence à un artefact qui en formalise la dualité IA/humain témoignent d'une architecture pédagogique en cours, l'un des deux versants de la fiche. La pièce 2 résiste aussi : la mention d'un manuel d'auto-formation pour Praticiens Tuteurs précise l'environnement d'apprentissage.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Conception explicite d'une structure de parcours avec niveaux et dualité, formalisée dans un artefact lié : architecture pédagogique en construction." },
+            { "pieceId": 2, "motifResistance": "Spécification d'un manuel d'auto-formation pour un niveau précis (Praticien Tuteurs) et pour des rôles définis : ingénierie d'environnement d'apprentissage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé ces pièces. La fiche fait coexister deux dimensions : la maïeutique (questionnement) et la facilitation (architecture). Aucune des pièces ne porte un récit de questionnement maïeutique ni de retenue délibérée — toutes deux relèvent du versant 'architecture'. De plus, le texte du jour renvoie à un artefact externe pour le détail de la structure, ce qui affaiblit la trace dans la feuille elle-même.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la description architecturale est dans l'artefact externe, pas dans cette feuille ; la trace reste lisible grâce à la mention de la dualité et des niveaux mais sans déploiement fin."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : le manuel d'auto-formation est annoncé comme devant être produit ; il n'est pas encore là, mais la spécification de son contenu, de son niveau et de son public lui donne le statut d'un plan pédagogique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une architecture pédagogique dans deux pièces qui pourraient se résumer à des renvois externes ou à des intentions. Ce qui m'a forcé à reconnaître une trace, c'est la conjonction des deux : un parcours avec niveaux (Grand Maître, Praticien) et dualité IA/humain, et un manuel d'auto-formation pour des rôles distincts (cartographes, médiateurs). Aucune trace de la dimension maïeutique pure (questionnement, retenue délibérée), mais le versant facilitation est lisible. Pour cette feuille, le travail montre une architecture pédagogique en construction, encore en dehors du journal lui-même.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Deux pièces affaiblies convergent sur l'architecture pédagogique : structure des parcours avec niveaux et dualité, manuel d'auto-formation pour rôles distincts. La dimension maïeutique pure reste hors champ.",
+        "prescription": "Pour rendre la dimension maïeutique plus visible, un chemin possible serait de noter, dans une prochaine feuille, une question concrète posée à un apprenant ou à un pair que la tentation aurait été de remplacer par une réponse — et de raconter ce que cette question a fait advenir. L'architecture déjà esquissée gagnerait sa contrepartie en méthode."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Feedback à Stéphane visant à 'rendre visibles ses compétences uniques' : retour qui cible la progression et le processus plutôt que le résultat."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que l'évaluation transformative n'est pas attestée : la fiche exige un dispositif évaluatif explicite avec critères, une finalité de progression, et idéalement une retenue (question au lieu de correction). La pièce résiste partiellement : le reproche fait à Stéphane est articulé — non pas 'ce n'est pas bien' mais 'tu décris ce que tu fais sans prendre le recul qui rendrait visibles tes compétences uniques' — ce qui est une formulation de feedback ciblé sur le processus, avec une finalité formative implicite (rendre visible des compétences). Mais l'acte raconté reste un reproche, pas une mise en dispositif.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Feedback formulé en ciblant le processus (focalisation sur le faire) et en visant la progression (rendre visibles ses compétences uniques) plutôt que le jugement." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu reproche bienveillant et évaluation transformative. Le verbe utilisé est 'reprocher', registre du jugement, pas du dispositif. Et la fiche est claire : 'il faut que tu améliores' = injonction prescriptive sans pistes. Le passage en question s'apparente plus à une injonction qu'à une question maïeutique-évaluative ou à un dispositif structuré.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Confusion de compétence : le geste raconté est un reproche ciblé qui relève de la communication authentique (2.02) ou de la prescription, sans dispositif évaluatif, sans critères articulés, sans question maïeutique adressée à l'évalué."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une évaluation transformative dans un reproche bienveillant adressé à un pair. La pièce n'a pas tenu sous l'examen : la fiche exige des critères articulés, un dispositif, ou des questions adressées à l'évalué — la pièce relève davantage de la prescription. Pour cette feuille, le travail ne déploie pas le dispositif évaluatif formatif qui caractérise cette compétence. La trace n'est pas établie ici, ce qui n'enlève rien à la possibilité qu'elle apparaisse ailleurs dans le portfolio.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce a été disqualifiée au temps 2 : le reproche, même formulé sur le processus, ne déploie pas le dispositif évaluatif formatif exigé par la fiche.",
+        "prescription": "Pour ouvrir l'évaluation transformative, un chemin possible serait de transformer, lors d'un prochain échange avec un apprenant, le reproche en question adressée à l'évalué — 'qu'est-ce que tu vois quand tu relis ton journal en cherchant le pourquoi et non le quoi ?' — et de noter ce que cette inversion produit."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Conscience explicite d'un destinataire 'qui n'a pas consacré sa vie à ces questions' et de l'articulation pourquoi/quoi nécessaire pour qu'il puisse lire."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Intention de capitaliser une compétence dans un manuel d'auto-formation : production d'un artefact pérenne pour un public futur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la documentation vivante n'est pas attestée : la fiche exige l'intention de pérennisation, la conscience du destinataire et la structuration pour autrui. La pièce 1 résiste : la prise en compte explicite du lecteur non spécialiste et l'articulation pourquoi/quoi correspondent précisément à la conscience du destinataire que la fiche valorise. La pièce 2 résiste : la mention d'un manuel d'auto-formation correspond à un artefact pérenne destiné à transmettre dans le temps.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Conscience explicite du destinataire (le lecteur non spécialiste) et identification de ce qu'il faudrait pour qu'il puisse lire — précisément le critère de la fiche." },
+            { "pieceId": 2, "motifResistance": "Manuel d'auto-formation annoncé comme contenant nécessaire pour transmettre une compétence dans la durée : intention de pérennisation explicite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé ces pièces. La pièce 1 énonce la conscience du destinataire mais ne montre pas la structuration produite dans la feuille elle-même. La pièce 2 annonce un manuel sans le produire. Cependant, la fiche distingue la documentation vivante de la narration réflexive précisément par la conscience du destinataire et l'intention de capitalisation — et les deux pièces les portent explicitement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers partiel : la pièce nomme la conscience du destinataire et l'articulation nécessaire sans encore l'opérer dans le texte du jour ; elle est retenue parce que la fiche valorise précisément ce moment de conscientisation."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : le manuel d'auto-formation est annoncé plutôt que produit ; il est retenu parce que son contenu, son niveau et son public sont précisés, ce qui le rapproche d'un artefact en cours de structuration."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une simple intention plutôt qu'une documentation en construction. Ce qui m'a forcé à reconnaître une trace, c'est la conjonction des deux pièces : la conscience aiguë du destinataire dans la pièce 1, et l'intention de pérennisation incarnée dans le projet de manuel de la pièce 2. Les deux pièces restent affaiblies parce que la feuille du jour ne montre pas l'artefact structuré lui-même ; mais l'intention et la conscience du destinataire sont précisément ce que la fiche distingue de la narration réflexive. Pour cette feuille, le travail montre la matrice mentale d'une documentation vivante, sans en déployer l'artefact dans le texte du jour.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Les deux pièces, affaiblies, convergent : conscience du destinataire articulée et intention de pérennisation portée par le projet de manuel.",
+        "prescription": "Pour faire passer la documentation de l'intention à l'artefact, un chemin possible serait, dans une prochaine feuille, de tester un fragment du futur manuel en deux temps : la version 'pourquoi' et la version 'quoi', avec une note sur l'effet du couplage. La structuration deviendrait alors visible dans son geste."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives au leadership situationnel et à l'orchestration. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a délibérément laissé l'IA mener une tâche, puis repris le contrôle à un déclencheur précis."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Affirmation d'un niveau final (Grand Maître) au sein du parcours, relié à une 'vision d'ensemble des processus et stratégies permettant d'améliorer l'intelligence' : projection vers un horizon de maîtrise long."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Identification anticipée d'une compétence à inclure dans le manuel d'auto-formation : projection vers un futur usage du dispositif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la vision stratégique n'est pas attestée : la fiche exige un lien explicite entre futur anticipé et décision présente. La pièce 1 résiste : la projection vers un état terminal (Grand Maître, vision d'ensemble) sert de motif organisateur du parcours actuel. La pièce 2 résiste : l'inclusion anticipée d'une compétence dans un manuel à venir est une décision présente justifiée par un usage futur du dispositif.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Projection explicite vers un état final qui sert de boussole à la structuration présente du parcours." },
+            { "pieceId": 2, "motifResistance": "Décision présente (inclure cette compétence dans le manuel) justifiée par un usage futur (auto-formation des Praticiens Tuteurs)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé ces pièces. La pièce 1 mentionne un niveau (Grand Maître) sans détailler la trajectoire ni les conditions de franchissement — la projection est nommée plus que développée. La pièce 2 est davantage de la documentation pédagogique anticipée que de la prospective stratégique. La fiche distingue la vision stratégique de la simple temporisation : il faut un lien argumenté entre futur et présent, pas juste un 'plus tard'.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif partiel : la vision est nommée plus que déployée, mais la projection vers un état terminal nommé sert effectivement de motif organisateur du présent."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Confusion de compétence : la pièce active aussi 7.03 (documentation vivante) ; elle est retenue parce que la décision présente d'inclure cette compétence est explicitement reliée à un futur d'auto-formation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un simple horizon temporel plutôt qu'une vision stratégique. Ce qui m'a forcé à reconnaître une trace, c'est que deux pièces relient explicitement une décision présente à un usage futur du dispositif : la structuration des parcours est tendue vers un état terminal (Grand Maître), et l'inclusion de la compétence-clé dans le manuel est tendue vers une utilisation par les Praticiens Tuteurs. Les deux pièces restent affaiblies parce que les conditions de réalisation et la trajectoire ne sont pas détaillées dans la feuille du jour. Pour cette feuille, le travail montre une direction prospective lisible, ancrée dans des projections nommées et reliées au présent.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Les deux pièces, affaiblies, articulent un lien entre projection future et décision présente ; la trajectoire détaillée reste à déployer.",
+        "prescription": "Pour rendre la vision stratégique plus tenue, un chemin possible serait de poser, lors d'une prochaine feuille, le scénario de progression d'un cartographe ou d'un médiateur — par quelle séquence d'expériences passe-t-il pour devenir Praticien puis Grand Maître ? La projection en deviendrait architecturée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Report du projet de prompt système à 'lorsque j'aurai un peu plus de temps' : arbitrage temporel sur le carnet de tâches."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Reconnaissance d'avoir négligé les pauses réflexives 'depuis quelques jours' : indice d'un déséquilibre de pilotage personnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que l'efficacité personnelle n'est pas attestée : la fiche valorise le 'non' stratégique argumenté et la priorisation explicite. La pièce 1 résiste très faiblement : le report 'lorsque j'aurai un peu plus de temps' est exactement le type de formulation que la fiche signale comme étant souvent un défaut de priorisation, pas une priorisation explicite. La pièce 2 résiste autrement : elle est précisément le marqueur listé d'une absence de 7.06 — la submersion par le faire au détriment des pauses réflexives.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Choix d'un report plutôt que d'une exécution immédiate : forme minimale d'arbitrage." },
+            { "pieceId": 2, "motifResistance": "Conscience explicite d'un déséquilibre de pilotage personnel : indice métacognitif sur son propre rapport au temps." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas voulu voir une efficacité personnelle dans ce qui est plutôt son revers. La fiche dit explicitement que '\"je suis occupé\" / \"j'ai beaucoup travaillé\" peuvent être des signes d'absence de 7.06'. Or 'depuis quelques jours, je fais pareil' (être dans le faire) relève exactement de ce signal d'absence. Le report est lui aussi non argumenté.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Faux positif de fiche : la formulation 'lorsque j'aurai un peu plus de temps' tombe dans le cas exact que la distinction critique écarte — report sans critère ni argumentation de priorité."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Confusion de compétence : la pièce active la métacognition (1.04) sur un déséquilibre, mais ne montre pas un acte de pilotage corrigé en conséquence ; la fiche valorise précisément le 'non' stratégique argumenté qui n'est pas posé ici."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un pilotage personnel dans deux pièces qui en portent plutôt l'envers. Les deux pièces sont tombées : le report relève du modèle que la fiche écarte explicitement, et la reconnaissance d'avoir négligé les pauses réflexives relève d'une métacognition sans action corrective. Pour cette feuille, le travail ne déploie pas l'arbitrage explicite, les critères articulés ou le 'non' stratégique qui caractérisent cette compétence. La trace n'est pas établie ici, ce qui n'enlève rien à la possibilité qu'elle apparaisse ailleurs dans le portfolio.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les deux pièces ont été disqualifiées au temps 2 : la première tombe dans le cas que la distinction critique écarte, la seconde relève d'une métacognition sans action corrective déployée.",
+        "prescription": "Pour ouvrir l'efficacité personnelle, un chemin possible serait, à la suite d'une feuille où le déséquilibre faire/réfléchir est reconnu, de poser explicitement la mesure prise — par exemple, programmer une plage réflexive précise dans la semaine — et de noter ce qui change ensuite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "'Il y a encore un peu de travail' : reconnaissance d'une version en cours, indice de pratique itérative."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Projet de compléter ou remplacer un protocole existant (CATALYST) par un nouveau prompt système : ajustement itératif sur un dispositif déjà en place."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que l'agilité et la conduite du changement ne sont pas attestées : la fiche exige une boucle observable générer-relire-tester-ajuster ou des artefacts agiles utilisés activement. La pièce 1 résiste faiblement : 'il y a encore un peu de travail' suppose une itération en cours, sans la décrire. La pièce 2 résiste un peu : remplacer un protocole nommé (CATALYST) suppose un cycle d'itération sur un dispositif, mais le projet reste au conditionnel.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Aveu d'inachèvement qui suppose une itération en cours plutôt qu'un livrable final." },
+            { "pieceId": 2, "motifResistance": "Projet d'amélioration ou de remplacement d'un protocole existant et nommé : amorce de cycle itératif sur un dispositif." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé ces pièces. La pièce 1 dit qu'il reste du travail sans décrire le cycle d'itération. La pièce 2 reste un projet conditionnel sans description d'une boucle générer-relire-tester-ajuster. La fiche signale un risque de 'théâtre agile' lorsque les rituels sont nommés sans la pratique : ici, ce sont les versions et les itérations qui sont supposées sans être décrites.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Insuffisance probatoire : la mention d'un travail inachevé n'expose ni la version actuelle, ni les versions précédentes, ni l'ajustement entre les deux."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Mouvement-vers : le 'peut-être', 'lorsque j'aurai un peu plus de temps' situent l'itération au stade du projet, sans boucle observable."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une pratique agile dans deux pièces qui n'en portent que les premières indices. Les deux pièces sont tombées au second examen : ni la version inachevée ni le projet futur ne déploient la boucle itérative observable que la fiche exige. Pour cette feuille, le travail ne déploie pas l'agilité ou la conduite du changement au sens strict. La trace n'est pas établie ici, ce qui n'enlève rien à la possibilité qu'elle apparaisse ailleurs dans le portfolio.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les deux pièces ont été disqualifiées au temps 2 : ni cycle itératif observable ni conduite du changement ne sont décrits dans la feuille.",
+        "prescription": "Pour ouvrir l'agilité, un chemin possible serait de raconter, lors de la prochaine livraison d'une version inachevée, ce qui s'est joué entre la version précédente et celle-ci : quel feedback reçu, quel ajustement opéré, quelle hypothèse abandonnée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la gestion de crise en temps réel. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident ou une panne gérée sous pression, avec séquence de décisions, timing et erreurs commises."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 0,
+    "nonEtablies": 3,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle se manifeste presque entièrement dans le registre de la conception pédagogique : un parcours en construction, un manuel d'auto-formation à venir, une conscience aiguë du destinataire futur. La trame est celle d'un concepteur qui pense en aval — comment ce qui s'écrit aujourd'hui sera utilisable demain par d'autres rôles précisément nommés. À côté de cette densité de conception, le pilotage personnel apparaît plutôt en creux : un report sans critère et un constat de déséquilibre faire/réfléchir 'depuis quelques jours' ne déploient pas l'arbitrage explicite que la fiche d'efficacité personnelle valorise.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "Conscience explicite du destinataire (le lecteur non spécialiste) et intention de pérennisation via un manuel d'auto-formation destiné aux Praticiens Tuteurs.",
+        "extraitVerbatim": "pour le lecteur n'ayant pas consacré sa vie à réfléchir à ces questions, l'un sans l'autre est incompréhensible",
+        "ceQueCaDit": "Le travail montre une conscience du futur lecteur posée comme contrainte de structuration, plus que comme simple courtoisie d'écriture."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Projection vers un état terminal (Grand Maître, vision d'ensemble) qui sert de boussole à la structuration présente du parcours, et inclusion anticipée d'une compétence-clé dans un manuel à venir.",
+        "extraitVerbatim": "D'où la nécessité de maîtriser les deux pour devenir Grand Maître et avoir une vision d'ensemble des processus et stratégies permettant d'améliorer l'intelligence.",
+        "ceQueCaDit": "Le travail montre une direction prospective qui tend l'organisation actuelle vers un horizon nommé, sans encore en détailler la trajectoire."
+      },
+      {
+        "competence": "Maïeutique et facilitation d'apprentissage",
+        "description": "Conception d'une structure de parcours avec niveaux distincts (Praticien, Grand Maître) et dualité IA/humain : architecture pédagogique en construction.",
+        "extraitVerbatim": "voilà la nouvelle structure des parcours de formation pour les Tuteurs Respire (équivalent HEP)",
+        "ceQueCaDit": "Le travail montre une ingénierie d'environnement d'apprentissage tournée vers la transmission, sans encore en montrer la dimension maïeutique (questionnement, retenue) dans le récit du jour."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à explorer dans cette feuille. L'évaluation transformative n'est pas activée : le feedback fait à un pair relève davantage du reproche bienveillant que d'un dispositif évaluatif avec critères. Le leadership situationnel n'est pas thématisé : pas de récit de bascule consciente entre prendre et lâcher le gouvernail avec une IA. L'agilité et la conduite du changement sont supposées dans l'aveu d'inachèvement, mais sans déployer la boucle itérative observable que la fiche exige. L'efficacité personnelle apparaît en creux, à travers un report sans critère et un constat de déséquilibre sans mesure correctrice. La gestion de crise en temps réel relève d'un autre registre que celui mobilisé dans cette feuille.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle dans cette feuille. La première est une orientation systématique vers la transmission : presque chaque idée présente est aussitôt projetée comme objet à enseigner — la pause réflexive devient compétence à transmettre, la dualité IA/humain devient niveau de maîtrise, l'écriture devient modèle pour un manuel. La seconde est une conscience aiguë du destinataire qui n'est pas spécialiste, posée comme contrainte structurante. La troisième est un léger déséquilibre rapporté entre faire et réfléchir, présent dans le récit sans déployer la décision corrective qui le transformerait en acte de pilotage.",
+    "pistes": [
+      "Pour rendre la dimension maïeutique plus visible, un chemin possible serait de noter, dans une prochaine feuille, une question concrète posée à un apprenant ou à un pair que la tentation aurait été de remplacer par une réponse — et de raconter ce que cette question a fait advenir.",
+      "Pour ouvrir l'évaluation transformative, un chemin possible serait de transformer, lors d'un prochain échange avec un apprenant, le reproche en question adressée à l'évalué, et de noter ce que cette inversion produit.",
+      "Pour faire passer la documentation de l'intention à l'artefact, un chemin possible serait de tester un fragment du futur manuel en deux temps : la version 'pourquoi' et la version 'quoi', avec une note sur l'effet du couplage.",
+      "Pour rendre la vision stratégique plus tenue, un chemin possible serait de poser le scénario de progression d'un cartographe ou d'un médiateur — par quelle séquence d'expériences passe-t-il pour devenir Praticien puis Grand Maître ?",
+      "Pour ouvrir l'efficacité personnelle, un chemin possible serait, à la suite d'une feuille où le déséquilibre faire/réfléchir est reconnu, de poser explicitement la mesure prise — par exemple, programmer une plage réflexive précise dans la semaine — et de noter ce qui change ensuite."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle se manifeste presque entièrement dans le registre de la conception pédagogique : un parcours en construction, un manuel d'auto-formation à venir, une conscience aiguë du destinataire futur. La trame est celle d'un concepteur qui pense en aval — comment ce qui s'écrit aujourd'hui sera utilisable demain par d'autres rôles précisément nommés. À côté de cette densité de conception, le pilotage personnel apparaît plutôt en creux : un report sans critère et un constat de déséquilibre faire/réfléchir « depuis quelques jours » ne déploient pas l'arbitrage explicite que la fiche d'efficacité personnelle valorise.\n\n## Territoires les plus denses\n\n**Documentation vivante.** Conscience explicite du destinataire (le lecteur non spécialiste) et intention de pérennisation via un manuel d'auto-formation destiné aux Praticiens Tuteurs.\n\n> « pour le lecteur n'ayant pas consacré sa vie à réfléchir à ces questions, l'un sans l'autre est incompréhensible »\n\nLe travail montre une conscience du futur lecteur posée comme contrainte de structuration, plus que comme simple courtoisie d'écriture.\n\n**Vision stratégique et prospective.** Projection vers un état terminal (Grand Maître, vision d'ensemble) qui sert de boussole à la structuration présente du parcours, et inclusion anticipée d'une compétence-clé dans un manuel à venir.\n\n> « D'où la nécessité de maîtriser les deux pour devenir Grand Maître et avoir une vision d'ensemble des processus et stratégies permettant d'améliorer l'intelligence. »\n\nLe travail montre une direction prospective qui tend l'organisation actuelle vers un horizon nommé, sans encore en détailler la trajectoire.\n\n**Maïeutique et facilitation d'apprentissage.** Conception d'une structure de parcours avec niveaux distincts (Praticien, Grand Maître) et dualité IA/humain : architecture pédagogique en construction.\n\n> « voilà la nouvelle structure des parcours de formation pour les Tuteurs Respire (équivalent HEP) »\n\nLe travail montre une ingénierie d'environnement d'apprentissage tournée vers la transmission, sans encore en montrer la dimension maïeutique (questionnement, retenue) dans le récit du jour.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à explorer dans cette feuille. L'évaluation transformative n'est pas activée : le feedback fait à un pair relève davantage du reproche bienveillant que d'un dispositif évaluatif avec critères. Le leadership situationnel n'est pas thématisé : pas de récit de bascule consciente entre prendre et lâcher le gouvernail avec une IA. L'agilité et la conduite du changement sont supposées dans l'aveu d'inachèvement, mais sans déployer la boucle itérative observable que la fiche exige. L'efficacité personnelle apparaît en creux, à travers un report sans critère et un constat de déséquilibre sans mesure correctrice. La gestion de crise en temps réel relève d'un autre registre que celui mobilisé dans cette feuille.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle dans cette feuille. La première est une orientation systématique vers la transmission : presque chaque idée présente est aussitôt projetée comme objet à enseigner — la pause réflexive devient compétence à transmettre, la dualité IA/humain devient niveau de maîtrise, l'écriture devient modèle pour un manuel. La seconde est une conscience aiguë du destinataire qui n'est pas spécialiste, posée comme contrainte structurante. La troisième est un léger déséquilibre rapporté entre faire et réfléchir, présent dans le récit sans déployer la décision corrective qui le transformerait en acte de pilotage.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre la dimension maïeutique plus visible, un chemin possible serait de noter, dans une prochaine feuille, une question concrète posée à un apprenant ou à un pair que la tentation aurait été de remplacer par une réponse — et de raconter ce que cette question a fait advenir.\n- Pour ouvrir l'évaluation transformative, un chemin possible serait de transformer, lors d'un prochain échange avec un apprenant, le reproche en question adressée à l'évalué, et de noter ce que cette inversion produit.\n- Pour faire passer la documentation de l'intention à l'artefact, un chemin possible serait de tester un fragment du futur manuel en deux temps : la version « pourquoi » et la version « quoi », avec une note sur l'effet du couplage.\n- Pour rendre la vision stratégique plus tenue, un chemin possible serait de poser le scénario de progression d'un cartographe ou d'un médiateur — par quelle séquence d'expériences passe-t-il pour devenir Praticien puis Grand Maître ?\n- Pour ouvrir l'efficacité personnelle, un chemin possible serait, à la suite d'une feuille où le déséquilibre faire/réfléchir est reconnu, de poser explicitement la mesure prise — par exemple, programmer une plage réflexive précise dans la semaine — et de noter ce qui change ensuite."
+  }
+}

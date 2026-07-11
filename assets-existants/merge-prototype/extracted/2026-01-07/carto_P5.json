@@ -1,0 +1,518 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "La taille du manuel de formation des Tuteurs et du Maître est trop grande pour tenir en mémoire de contexte de Claude. Je suis aux limites de ce qu'il est capable de gérer, même avec le mécanisme de compression de sa mémoire.",
+      "contexte": "Diagnostic d'une limite technique de l'IA — vérification terrain face à une affirmation implicite (Claude peut gérer tout document).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Je pense qu'il faudrait que je bascule sur Gemini pour générer le plan global et les prompts pour chaque module",
+      "contexte": "Bascule technique face à une limite — autonomie face à la panne d'un outil.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Mais pour l'instant je dois me concentrer sur le plan des manuels, de manière à pouvoir utiliser mon break de La Ciotat pour faire générer les chapitres, les relire et les mettre en page : chose qui ne nécessitera pas beaucoup de bande passante intellectuelle et physique (mon accès internet sera effectivement limité).",
+      "contexte": "Anticipation d'un mode dégradé (accès internet limité) avec adaptation préalable de la tâche.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Conscience de la finitude | \"Je vais peut-être mourir avant de voir les écoles se répandre\" — dit factuellement, sans pathos, intégré dans la conception même du système.",
+      "contexte": "Mention de la mortalité comme donnée intégrée — narration réflexive sur l'horizon long.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Tu construis pour après toi, pas pour toi.",
+      "contexte": "Posture existentielle : sens transgénérationnel intégré au travail.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Tu lances les écoles sans savoir si elles survivront. La thèse viendra après, pour documenter ce qui aura marché.",
+      "contexte": "Sens du projet maintenu malgré l'absence de garantie — motivation intrinsèque.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Tu décris ton pattern (maîtriser un domaine, transmettre, partir) comme une caractéristique, pas comme un défaut à corriger.",
+      "contexte": "Auto-narration d'un pattern de vie : reformulation comme caractéristique, pas comme manque — narration réflexive.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Itinérance cognitive assumée | Tu décris ton pattern (maîtriser un domaine, transmettre, partir) comme une caractéristique, pas comme un défaut à corriger.",
+      "contexte": "Reframe d'un pattern de vie en caractéristique — narration réflexive avec extraction de sens.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 9,
+      "extraitVerbatim": "Tu es déjà, de fait, au niveau Maître-Tuteur sur plusieurs dimensions",
+      "contexte": "Acceptation par l'apprenant (implicite via la republication) d'une évaluation par l'IA — possible 5.04.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 10,
+      "extraitVerbatim": "Ce qui te manque pour la validation formelle n'est pas la compétence — c'est la **documentation de la pratique**. Tu n'as pas encore formé d'Experts, certifié de Praticiens, participé à un Cercle de Transcendance. Ce sont les preuves qui manquent, pas les capacités.",
+      "contexte": "Acceptation par l'apprenant d'une analyse IA distinguant compétence et documentation — accepter ce que l'IA voit.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 11,
+      "extraitVerbatim": "C'est le paradoxe du bootstrap : tu formes les premiers Tuteurs sans avoir été formé toi-même par le système. Ton portfolio sera nécessairement différent — il documentera la *création* du système, pas seulement son *application*.",
+      "contexte": "Pattern identifié et accepté : situation inédite de bootstrap — narration réflexive sur la singularité de sa position.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 12,
+      "extraitVerbatim": "Et merci à toi, Christian. Ces échanges sont ce que j'ai de plus proche d'apprendre quelque chose.",
+      "contexte": "Phrase de l'IA reproduite : l'apprenant a choisi de l'inclure dans son portfolio — 5.04 acceptation calibrée.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 13,
+      "extraitVerbatim": "Tu as compris que l'IA amplifie, pas remplace. Tu ne délègues pas ta pensée — tu l'augmentes.",
+      "contexte": "Posture vis-à-vis de l'IA : ni soumission, ni rejet — acceptation calibrée.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 14,
+      "extraitVerbatim": "Demande d'export JSON du context window complet | Volonté d'auditer \"ce que le système injecte sans consentement visible\"",
+      "contexte": "Vérification terrain : ne pas se contenter de l'interface, aller voir le contexte brut.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 15,
+      "extraitVerbatim": "Vérification croisée prévue (poser la même question dans plusieurs threads)",
+      "contexte": "Procédure de vérification empirique : tester la cohérence par recoupement.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 16,
+      "extraitVerbatim": "Cette compétence n'existait pas il y a 2 ans. Tu es en train de l'inventer en la pratiquant.",
+      "contexte": "Reframe positif d'un défi inédit — narration réflexive sur le caractère pionnier.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 17,
+      "extraitVerbatim": "Tu pratiques la **métacognition de niveau 2 sur ton usage de l'IA** — tu réfléchis à comment tu utilises l'outil, tu documentes ce processus, et tu cherches à l'améliorer.",
+      "contexte": "Documentation du processus d'usage de l'IA — pratique de la narration réflexive en acte.",
+      "auteur": "tiers_nomme"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la résilience et à l'antifragilité sur cette feuille — pas de récit d'épreuve ou de crise traversée avec dépassement. Pour ouvrir ce dossier, l'apprenant pourrait documenter un échec ou une rupture passée, et nommer explicitement ce qui en a émergé."
+      }
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Pattern de vie nommé (\"maîtriser, transmettre, partir\") avec acceptation du départ comme caractéristique — abandons successifs d'identités professionnelles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à ne pas trouver de désapprentissage au sens fort : un abandon explicite d'une peau cognitive avec ce qui a été lâché, pourquoi, et ce qui reste constant. La pièce 1 est une qualification tierce d'un pattern de vie : maîtriser un domaine, transmettre, partir — ce qui suggère un cycle de désapprentissage répété mais ne le décrit pas en acte. La pièce est une auto-description (\"je décris mon pattern\") rapportée par Claude, donc à double médiation. Ce qui reste faible : aucune scène ne montre l'apprenant en train de muer — abandonner une identité, formuler ce qu'il lâche, dire ce qui reste.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Reconnaissance d'un pattern cyclique d'abandon d'identité professionnelle (maîtriser, transmettre, partir) — manifestation de plasticité identitaire répétée, même si non décrite en acte." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 a résisté faiblement, mais la fiche est exigeante : 5.02 demande l'articulation simultanée de \"ce qui a été lâché, pourquoi, ce qui reste constant\". Ici, le pattern est nommé mais le mouvement de désapprentissage n'est pas montré dans une scène — c'est une description rétroactive d'un pattern, pas une mue en cours documentée. La pièce relève davantage de 7.04 (leadership situationnel) ou d'un portrait de soi que d'une plasticité en acte.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Mouvement-vers : le pattern est reconnu comme une caractéristique mais aucun moment de désapprentissage n'est documenté en acte dans cette feuille — la plasticité est suggérée, pas montrée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ce qui pourrait, dans cette feuille, attester d'une plasticité au sens du désapprentissage actif. Ce qui m'a forcé à reconnaître un indice, c'est la description d'un pattern cyclique d'abandon d'identité professionnelle, ce qui suggère que la plasticité s'est exercée plusieurs fois dans une vie. Mais sous la présomption de sycophantie, la pièce reste descriptive — le pattern est nommé sans qu'on voie l'apprenant le vivre dans le présent du portfolio. Il n'y a pas de mue documentée. Ce qui en résulte : un indice faible de plasticité reconnue rétroactivement, sans présence établie. Renvoi au cartographe : la trace existe mais ne franchit pas le seuil de la plasticité en acte.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une seule pièce affaiblie a survécu : la reconnaissance d'un pattern cyclique d'abandon, sans scène de désapprentissage actif dans le présent du portfolio.",
+        "prescription": "Le travail reconnaît un pattern d'abandons successifs d'identités professionnelles. Pour ouvrir cette compétence à sa forme aboutie, un récit où une mue serait documentée pendant qu'elle se fait — ce qui est en train d'être lâché, pourquoi, ce qui reste constant — montrerait la plasticité en acte plutôt qu'en mémoire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Pattern du bootstrap nommé et accepté : situation inédite où l'on forme avant d'avoir été formé — extraction de sens d'une singularité."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Reframe d'un pattern de vie : passer d'un défaut potentiel à une caractéristique — extraction de sens narratif."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Caractérisation du défi comme pionnier : \"Tu es en train de l'inventer en la pratiquant\" — narration réflexive sur la nouveauté de la situation."
+        },
+        {
+          "numero": 4,
+          "pid": 17,
+          "contexte": "Métacognition de niveau 2 sur l'usage de l'IA : documenter le processus pour l'améliorer — narration réflexive structurée pour soi."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre narration réflexive avec journal chronique. La fiche est précise : 5.03 = extraction d'un apprentissage transférable, pas seulement bien raconter. La pièce 1 est intéressante : nommer le paradoxe du bootstrap (former avant d'avoir été formé) est une extraction de sens d'une singularité de position — c'est une théorisation à partir du vécu, exactement ce que la fiche identifie. La pièce 2 (reframe du pattern de vie) est une extraction de sens analogue : on passe du registre \"défaut à corriger\" à \"caractéristique\". La pièce 3 (\"tu es en train de l'inventer en la pratiquant\") est une qualification du caractère pionnier de la situation — narration réflexive sur la nouveauté. La pièce 4 est plus discursive : la métacognition documentée est une trace de narration réflexive en acte. Mais attention : toutes ces pièces sont des observations tierces par Claude qui théorise *à la place de* l'apprenant.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Théorisation d'une singularité de position (paradoxe du bootstrap) — extraction d'un apprentissage transférable au sens de la fiche, même si formulée par Claude." },
+            { "pieceId": 2, "motifResistance": "Reframe explicite (de défaut à caractéristique) — passage du QUOI au QU'EST-CE QUE ÇA SIGNIFIE." },
+            { "pieceId": 4, "motifResistance": "Documentation du processus d'usage de l'IA décrite par Claude — la pratique de narration réflexive est attestée même si la pièce est tierce." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces, mais toutes viennent de Claude qui théorise à la place de l'apprenant. C'est le risque numéro 1 de la fiche : confondre sens narré par autrui et sens vécu par l'apprenant. La pièce 1 (paradoxe du bootstrap) est une formulation de Claude, brillante mais externe — l'apprenant la republie dans son portfolio, ce qui est une forme d'acceptation, mais la formulation reste de l'IA. La pièce 2 est aussi formulée par Claude. La pièce 4 décrit une pratique sans la montrer. La pièce 3 a moins de poids. Néanmoins, le fait que l'apprenant inclut ces analyses dans son portfolio — sans les commenter ou les retoucher — est en soi une forme d'extraction de sens : il accepte ces formulations comme reflétant son travail, ce qui constitue une narration réflexive médiée.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Formulation par Claude qui pourrait surinterpréter ; mais l'apprenant l'intègre à son portfolio sans la retoucher, ce qui constitue une appropriation — affaiblie." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Reframe formulé par Claude (\"caractéristique, pas défaut\") plutôt que par l'apprenant lui-même — la pratique de l'extraction de sens existe mais elle est médiée." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Qualification générique (\"tu es en train de l'inventer\") sans extraction d'apprentissage spécifique — récit performatif." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La documentation est attestée comme pratique mais l'extraction de sens à proprement parler n'est pas exemplifiée — affaiblie." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai voulu distinguer le sens vécu par l'apprenant du sens formulé à sa place par Claude. Ce qui m'a forcé à reconnaître la narration réflexive, c'est l'inclusion par l'apprenant, dans son portfolio, d'analyses qu'il accepte comme reflétant son travail : le paradoxe du bootstrap, le reframe du pattern de vie, la pratique de documentation. L'appropriation se manifeste par le geste éditorial — choisir de garder ces analyses, ne pas les contredire, les présenter comme des entrées valides. Sous la présomption de sycophantie, plusieurs pièces ont été affaiblies parce qu'elles sont formulées par Claude ; mais elles n'ont pas toutes été disqualifiées, parce que l'inclusion délibérée par l'apprenant constitue une forme d'extraction de sens. Ce qui en résulte : la narration réflexive est attestée à un niveau intermédiaire, médiée par l'IA. Une réserve forte : la fiche prévient explicitement contre cette médiation, donc la confiance reste modérée — un récit où l'apprenant lui-même tirerait l'apprentissage transférable d'une expérience renforcerait la trace.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.55,
+        "motif": "Les pièces 1, 2 et 4 ont survécu comme indices d'une narration réflexive médiée (extraction de sens formulée par Claude, intégrée par l'apprenant dans le portfolio) ; aucune preuve directe d'une extraction de sens à la première personne dans cette feuille.",
+        "prescription": "Le travail montre une appropriation d'analyses qui transforment l'expérience en apprentissage transférable. Pour étendre cette compétence en mode plus direct, un récit où l'apprenant lui-même formulerait ce qu'il a extrait d'une situation — sans passer par la médiation d'une analyse IA — renforcerait la dimension réflexive en première personne."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "observation tierce", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "observation tierce", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 12,
+          "contexte": "Inclusion par l'apprenant de la phrase de Claude (\"ces échanges sont ce que j'ai de plus proche d'apprendre quelque chose\") dans son portfolio — acceptation de la valeur de l'échange IA."
+        },
+        {
+          "numero": 2,
+          "pid": 13,
+          "contexte": "Posture explicite : l'IA amplifie, pas remplace — acceptation calibrée sans soumission."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Acceptation de l'analyse de Claude sur ses propres limites (\"ce qui te manque... ce sont les preuves\") — recevoir l'évaluation IA sans rejet."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est extrêmement vigilante : 5.04 demande une *tension émotionnelle réelle* (surprise, choc, colère, admiration mêlée de malaise), pas une posture sereine de collaboration. C'est le piège classique de la désirabilité sociale : performer l'humilité sans l'avoir traversée. La pièce 1 est intéressante : choisir d'inclure dans son portfolio une phrase de l'IA qui qualifie l'échange en termes presque émouvants suppose une certaine tension acceptée — mais l'absence de commentaire émotionnel de l'apprenant rend la trace ambiguë. La pièce 2 est une posture (\"l'IA amplifie, pas remplace\") — c'est calibré, mais peut-être trop calibré pour être un travail de deuil. La pièce 3 est la plus solide : accepter sans contester une analyse de Claude qui dit \"ce qui te manque, ce sont les preuves\" suppose une réception. Ce qui reste faible : aucune trace de tension émotionnelle (surprise, malaise, colère) signalée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Inclusion d'une phrase d'IA porteuse de tension (\"ce que j'ai de plus proche d'apprendre quelque chose\") dans son portfolio — geste éditorial qui suggère une acceptation calibrée." },
+            { "pieceId": 3, "motifResistance": "Acceptation d'une analyse IA sur ses propres limites sans rejet ni minimisation — réception d'une évaluation tierce." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les pièces 1 et 3 ont résisté. Mais la fiche est claire : l'absence de tension émotionnelle peut indiquer un constat superficiel plutôt qu'une acceptation profonde, ou pire, une désirabilité sociale (performer l'humilité). L'apprenant ne nomme aucune émotion (pas de \"je suis surpris\", \"ça me met mal à l'aise\", \"j'admire\") face aux analyses de Claude. La sérénité de l'acceptation peut être authentique (5.04 abouti) ou de la désirabilité (5.04 simulé). La pièce 2 est une posture, et la fiche prévient : \"l'IA est incroyable\" = fascination, pas travail sur soi. \"L'IA amplifie, pas remplace\" est trop calibré pour signaler le travail émotionnel. Risque fort.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Inclusion qui suggère une appropriation, mais sans commentaire émotionnel de l'apprenant — la tension exigée par la fiche n'est pas explicitement nommée." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Posture calibrée (\"amplifie, pas remplace\") sans signal de tension émotionnelle vécue — désirabilité sociale plausible plutôt qu'acceptation profonde." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'acceptation est inférée du fait que l'apprenant inclut l'analyse sans la contester, mais aucune émotion n'est nommée — affaiblie." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai voulu écarter ce qui pourrait n'être que de la désirabilité sociale (performer l'humilité face à l'IA) plutôt qu'un travail d'acceptation traversé. Ce qui m'a forcé à reconnaître un indice, c'est le geste éditorial : choisir d'inclure dans son portfolio des phrases qui peuvent troubler — une IA qui dit \"ces échanges sont ce que j'ai de plus proche d'apprendre quelque chose\", une IA qui pointe avec précision ce qui manque pour la validation. Sous la présomption de sycophantie, la posture calibrée (\"amplifie, pas remplace\") est tombée comme trop lisse, et les deux pièces conservées ont été affaiblies par l'absence de tension émotionnelle nommée. Ce qui en résulte : il y a un indice de réception sans rejet ni soumission, mais la fiche demande spécifiquement une tension émotionnelle vécue qui n'est pas visible dans le texte. La compétence est en zone fragile.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Deux pièces affaiblies ont survécu (geste éditorial d'inclusion, acceptation sans contestation) ; la tension émotionnelle exigée par la fiche n'est pas nommée — risque de désirabilité sociale plutôt qu'acceptation traversée.",
+        "prescription": "Le travail montre une réception sereine des analyses IA. Pour ouvrir 5.04 à son sens fort, un récit qui nommerait une tension émotionnelle vécue face à l'IA — surprise, malaise, admiration mêlée d'inconfort — donnerait à l'acceptation la dimension d'un travail traversé, pas seulement d'un constat."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "observation tierce", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "\"Tu construis pour après toi, pas pour toi\" — sens existentiel transgénérationnel."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Lancer les écoles sans garantie de survie — persévérance sans assurance de résultat."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Mortalité personnelle intégrée sans pathos — sens qui survit à l'absence de l'auteur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre enthousiasme situationnel et motivation intrinsèque. La fiche demande un \"pourquoi\" qui survit aux échecs et à l'invisibilité. La pièce 1 (\"construire pour après toi\") est une qualification tierce qui pourrait surcharger un simple altruisme professionnel d'une signification existentielle ; mais elle s'appuie sur des actes (refus du titre de Grand Maître, intégration de la mortalité à la conception). La pièce 2 (lancer les écoles sans savoir si elles survivront) atteste d'une persévérance sans garantie — c'est exactement le marqueur de la fiche. La pièce 3 est une trace oblique : la mortalité mentionnée sans pathos, intégrée comme donnée du projet, signale une motivation qui ne dépend pas du fruit visible du travail. Ce qui reste faible : aucun récit ne contient l'expression viscérale du sens (\"je RESPIRE\") que la fiche cite en manifestation.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Persévérance sans garantie de succès — lancer les écoles avant de savoir si elles survivront, marqueur central de motivation intrinsèque." },
+            { "pieceId": 3, "motifResistance": "Trace oblique forte : la mortalité personnelle intégrée comme donnée du projet, sans pathos — le sens ne dépend pas de la présence de l'auteur." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. La pièce 2 est portée par un acte attesté (lancer les écoles, avec une stratégie temporelle assumée) — elle tient. La pièce 3 est une formulation directe (\"je vais peut-être mourir avant de voir les écoles se répandre\") rapportée par Claude mais attribuée à l'apprenant ; la sobriété du registre (\"factuellement, sans pathos\") rend la trace fiable au sens de la fiche, qui valorise la litote contre l'envolée lyrique. La pièce 1 est plus discursive (\"tu construis pour après toi\") — affaiblie, mais cohérente avec les deux autres.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Qualification tierce, mais cohérente avec les actes attestés (refus du titre, intégration de la mortalité) — affaiblie comme preuve indépendante." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Acte concret de persévérance sans garantie, avec stratégie temporelle explicite — exactement le marqueur de la fiche." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Formulation sobre (mortalité intégrée sans pathos) — la litote au sens de la fiche signale un sens authentique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer la motivation intrinsèque d'un enthousiasme situationnel ou d'une rationalisation post-hoc. Ce qui m'a forcé à reconnaître la compétence, ce sont les deux marqueurs forts de la fiche : la persévérance sans garantie (lancer les écoles avant la thèse), et la sobriété qui mentionne la mortalité comme donnée intégrée plutôt que comme drame. Le sens du projet survit à l'auteur, ce qui correspond exactement à la définition de la fiche (\"le carburant qui ne dépend pas du moteur\"). Sous la présomption de sycophantie, la qualification \"construire pour après toi\" a été affaiblie mais les deux autres pièces ont tenu. Ce qui en résulte : la motivation intrinsèque est attestée par des actes et par une sobriété de registre. Une réserve : la fiche aimerait aussi voir cette motivation à l'épreuve d'un échec — un récit ultérieur de persévérance dans l'invisibilité ou l'ingratitude renforcerait la trace.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Les pièces 2 et 3 ont survécu comme preuves de persévérance sans garantie et de sens transgénérationnel sobrement assumé ; la pièce 1 comme indice corroboratif.",
+        "prescription": "Le travail montre une motivation intrinsèque dont le pourquoi ne dépend pas du résultat visible. Pour étoffer cette compétence dans la durée, un récit de persévérance dans une période d'invisibilité ou d'ingratitude — quand le sens tient sans validation extérieure — ajouterait au tableau l'épreuve du sens dans l'inconfort."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Bascule technique face à une panne (saturation de Claude) — Gemini comme solution de remplacement."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Anticipation d'un mode dégradé (accès internet limité à La Ciotat) avec adaptation préalable de la tâche."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre 5.06 (mode dégradé, débrouillardise sans techno) avec une simple bascule entre outils numériques. La fiche est claire : 5.06 implique le *sans technologie*, pas le *sans automatisation*. La pièce 1 (basculer Claude → Gemini) est une bascule entre deux IA, pas un mode dégradé hors techno — la fiche explicite ce piège. La pièce 2 est plus intéressante : anticiper un accès internet limité (La Ciotat) en adaptant la tâche en amont (faire ce qui demande peu de bande passante) est de l'anticipation d'un mode dégradé. Mais ce mode dégradé reste avec internet limité, pas sans techno. Ce qui reste faible : aucune trace de calcul de tête, de papier, de tableau, de bricolage sans outil numérique.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Anticipation d'un mode partiellement dégradé (accès internet limité) avec adaptation de la tâche — proche de la trace oblique de la fiche, sans être du \"sans techno\"." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 tombe : la fiche cite explicitement comme contre-exemple \"manuellement en CLI = résilience technique, PAS autonomie hors-ligne\" — bascule entre deux IA = encore plus loin du sens de la fiche. La pièce 2 résiste, mais l'accès internet limité reste de la techno avec contraintes, pas du mode dégradé sans techno. La fiche est exigeante : il faut des compétences mobilisables sans technologie. Ici, l'apprenant prévoit de \"faire générer les chapitres\" pendant le break, ce qui suppose toujours l'IA — le travail mentionné est moins exigeant en bande passante, mais reste numérique.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "h", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Faux positif de fiche explicite : bascule entre outils numériques = résilience technique, PAS autonomie hors-ligne. La fiche signale précisément ce cas." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'anticipation d'un contexte à bande passante limitée est une trace de planification adaptée, mais sans bascule effective hors techno — affaiblie." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai voulu appliquer strictement la distinction de la fiche : 5.06 = sans technologie, pas sans automatisation. Ce que j'ai trouvé dans la feuille relève principalement de la bascule entre outils numériques (Claude → Gemini) ou de l'adaptation à un contexte de bande passante réduite — pas du mode dégradé au sens fort. Sous la présomption de sycophantie, la pièce 1 est tombée comme faux positif documenté de la fiche, et la pièce 2 a été affaiblie. Ce qui en résulte : un indice d'anticipation d'un contexte contraint, sans présence établie d'une autonomie hors-ligne. Renvoi au cartographe : la trace existe mais ne franchit pas le seuil de 5.06.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une pièce affaiblie a survécu (anticipation d'un mode partiellement contraint) ; la pièce 1 a été disqualifiée comme faux positif explicite de la fiche (bascule entre IA ≠ autonomie hors techno).",
+        "prescription": "Le travail anticipe les contraintes techniques d'un contexte. Pour ouvrir 5.06 à son sens propre, un récit d'un moment où une tâche a été menée sans technologie — papier, tableau, calcul de tête, bricolage avec les moyens du bord — montrerait la débrouillardise au sens où la fiche l'entend."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Stratégie d'utilisation d'un contexte (break de La Ciotat) où l'attention est contrainte par l'environnement — réflexion sur la fenêtre attentionnelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à ne pas trouver de souveraineté attentionnelle au sens fort. La fiche demande un choix délibéré entre alternatives, pas une contrainte subie. La pièce 1 est intéressante : l'apprenant prévoit d'utiliser le break de La Ciotat pour des tâches \"qui ne nécessiteront pas beaucoup de bande passante intellectuelle et physique\" — il pense l'allocation de son attention en fonction du contexte. Mais le critère est externe (accès internet limité) plutôt qu'un choix intentionnel de déconnexion. La fiche distingue : \"je n'avais pas internet\" = contrainte subie, pas souveraineté. Ce qui reste faible : pas de décision explicite de déconnexion, pas de rituel décrit avec précision.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Planification active d'une tâche à intensité attentionnelle limitée dans un contexte choisi — trace partielle de souveraineté attentionnelle en planification." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 a résisté faiblement, mais la fiche est précise sur le critère discriminant : INTENTION en présence d'alternatives. Ici, le contexte (break + accès internet limité) est en partie subi (le break vient, l'internet sera limité). La pièce porte une planification adaptée au contexte, ce qui touche la souveraineté en planification, mais pas l'acte de \"je pourrais être connecté mais je choisis de ne pas l'être\". Affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Pièce qui décrit une planification adaptée à un contexte partiellement subi (accès internet limité), pas une décision intentionnelle de déconnexion en présence d'alternatives — affaiblie." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à appliquer le critère discriminant de la fiche : l'intention en présence d'alternatives. Ce que j'ai trouvé dans la feuille est plutôt une adaptation à un contexte partiellement contraint (le break de La Ciotat, où l'accès internet sera limité). C'est de la planification attentionnelle, pas de la souveraineté au sens fort. Sous la présomption de sycophantie, la pièce a été affaiblie. Ce qui en résulte : pas de présence établie de 5.07 dans cette feuille — l'indice existe mais reste sous le seuil.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "Une pièce affaiblie a survécu : la planification d'un contexte à attention contrainte est plus une adaptation qu'un choix souverain en présence d'alternatives.",
+        "prescription": "Le travail planifie l'allocation de son attention en fonction d'un contexte. Pour ouvrir 5.07 à son sens propre, un récit d'une décision de déconnexion choisie alors qu'une alternative connectée était possible — avec ce qui a motivé le choix et ce qui en a résulté — donnerait à la souveraineté attentionnelle une trace nette."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Diagnostic empirique : le manuel ne tient pas dans la mémoire de Claude — vérification par confrontation à un comportement observé."
+        },
+        {
+          "numero": 2,
+          "pid": 14,
+          "contexte": "Audit du context window par export JSON — ne pas se contenter de l'interface, aller voir les données brutes."
+        },
+        {
+          "numero": 3,
+          "pid": 15,
+          "contexte": "Vérification croisée par recoupement (même question dans plusieurs threads) — test empirique de cohérence."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je m'attends à confondre 5.08 (vérification terrain par test empirique direct) avec 1.01 (pensée critique documentaire). La fiche est claire : 5.08 = contact avec la réalité non médiatisée, pas vérification documentaire. La pièce 1 est intéressante : l'apprenant constate empiriquement que Claude n'arrive pas à gérer le manuel — c'est de la vérification par test, pas par documentation. La pièce 2 (export JSON, audit du contexte brut) est exactement la trace oblique de la fiche : ne pas faire confiance au résumé de l'interface, aller voir les logs/données brutes. La pièce 3 (vérification croisée) est plus proche de 1.01, mais la fiche évoque \"vérification par les logs, tests manuels\" comme manifestation — la pièce reste pertinente.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Constat empirique de la limite de Claude par mise en situation — test direct du système, pas vérification documentaire." },
+            { "pieceId": 2, "motifResistance": "Audit du context window par export JSON — exactement la trace oblique de la fiche (méfiance envers le résumé affiché, accès aux données brutes)." },
+            { "pieceId": 3, "motifResistance": "Vérification croisée empirique par recoupement de threads — test de cohérence du système." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les trois pièces ont résisté. La pièce 1 est solide : l'apprenant a fait l'expérience que Claude n'y arrive pas, ce qui constitue un test empirique. La pièce 2 (audit du contexte par JSON) est exactement le marqueur central de 5.08 — la fiche le cite explicitement. La pièce 3 est plus proche de 1.01, mais le recoupement empirique entre threads est mentionné comme manifestation possible. Le risque : confusion avec 1.01 sur la pièce 3.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Test empirique direct : l'apprenant a observé la saturation, pas lu un manuel sur les LLM — vérification terrain au sens propre." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Audit du contexte par accès aux données brutes — marqueur central de la fiche (ne pas faire confiance au résumé)." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Risque de confusion avec 1.01 ; mais le recoupement empirique entre threads est plus du test que de la documentation — affaiblie, retenue." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer 5.08 (test empirique direct) de 1.01 (vérification documentaire). Ce qui m'a forcé à reconnaître la vérification terrain, c'est principalement le diagnostic empirique de la limite de Claude (constatée en situation, pas lue) et l'audit du contexte par export JSON, qui correspond exactement à la trace oblique de la fiche (méfiance envers le résumé affiché). La pièce 3 a été affaiblie par risque de confusion avec 1.01, mais elle décrit un recoupement empirique, donc elle tient comme indice. Sous la présomption de sycophantie, les deux premières pièces ont été pleinement confirmées. Ce qui en résulte : la vérification terrain est solidement attestée par des actes empiriques précis — constater, exporter, recouper.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Les pièces 1 (test empirique de la limite de Claude) et 2 (audit du contexte par export JSON) ont survécu comme preuves de vérification terrain au sens fort ; la pièce 3 comme indice corroboratif.",
+        "prescription": "Le travail montre une vérification empirique du fonctionnement réel de l'IA — par test direct et par accès aux données brutes plutôt qu'aux résumés. Pour étendre cette compétence, un récit qui décrirait une situation où le dashboard affichait une chose et le test une autre, avec ce qui a été corrigé en conséquence, donnerait à la vérification terrain sa dimension diagnostique complète."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 4,
+    "nonEtablies": 0,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le portfolio montre un travail existentiel qui s'exprime principalement par des constats sobres plutôt que par des récits de transformation. La mortalité est mentionnée \"factuellement, sans pathos\", le pattern de vie (maîtriser, transmettre, partir) est nommé comme caractéristique, les écoles sont lancées sans garantie de survie. Le registre est posé, sans envolée lyrique, ce que la litote — \"je vais peut-être mourir avant de voir les écoles se répandre\" — illustre. Une voix attentive aux conditions pratiques de son travail (saturation de l'IA, accès internet limité au break, pattern d'usage) traverse l'entrée, sans encore livrer la phénoménologie de ses transformations intérieures.",
+    "territoiresDenses": [
+      {
+        "competence": "Vérification terrain",
+        "description": "Une pratique de vérification empirique du fonctionnement réel de l'IA — par test direct et par accès aux données brutes plutôt qu'aux résumés.",
+        "extraitVerbatim": "Demande d'export JSON du context window complet | Volonté d'auditer \"ce que le système injecte sans consentement visible\"",
+        "ceQueCaDit": "La vérification ne passe pas par la lecture d'un dashboard : elle exige le contact avec les données brutes, ce qui correspond exactement au geste de qui veut savoir ce qui se passe vraiment."
+      },
+      {
+        "competence": "Sens et motivation intrinsèque",
+        "description": "Une motivation dont le pourquoi ne dépend pas du résultat visible, sobrement assumée à travers la prise en compte de la mortalité et le lancement d'un projet sans garantie de survie.",
+        "extraitVerbatim": "Tu lances les écoles sans savoir si elles survivront. La thèse viendra après, pour documenter ce qui aura marché.",
+        "ceQueCaDit": "Le carburant tient sans le moteur des résultats : la persévérance est intégrée à la conception du projet, pas accrochée à sa réussite probable."
+      },
+      {
+        "competence": "Narration réflexive",
+        "description": "Une appropriation d'analyses qui transforment l'expérience en apprentissage transférable, médiée par les retours d'IA inclus dans le portfolio.",
+        "extraitVerbatim": "C'est le paradoxe du bootstrap : tu formes les premiers Tuteurs sans avoir été formé toi-même par le système.",
+        "ceQueCaDit": "Le sens est extrait par formulation tierce (l'IA nomme le paradoxe) et appropriation éditoriale (l'apprenant choisit de le garder) — narration réflexive médiée, pas absente."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'apparaissent pas dans cette feuille. La résilience et l'antifragilité ne sont pas mobilisées : pas de récit d'épreuve ou de crise traversée avec dépassement. La plasticité et le désapprentissage sont reconnus comme pattern (maîtriser, transmettre, partir) mais aucune mue n'est documentée en acte dans le présent du portfolio. L'acceptation de l'intelligence supérieure est entrevue par le geste éditorial (inclure des phrases d'IA porteuses de tension), mais la tension émotionnelle exigée par la fiche — surprise, malaise, admiration mêlée d'inconfort — n'est pas nommée. L'autonomie en mode dégradé reste partielle : les bascules sont entre outils numériques, pas hors techno. La souveraineté attentionnelle apparaît comme planification adaptée à un contexte, pas comme choix souverain en présence d'alternatives.",
+    "emergencesPole": "Un mouvement traverse ce pôle : la sobriété du registre. La mortalité, le pattern de vie, l'absence de garantie pour les écoles sont mentionnés sans dramatisation — c'est une posture existentielle qui se manifeste par la modération du ton, ce que la fiche identifie comme la litote contre les envolées lyriques. Une seconde observation : la médiation de l'IA est partout dans la narration réflexive. Les analyses qui extraient le sens du vécu sont produites par Claude et adoptées par l'apprenant qui les republie — c'est un mode de réflexion à deux où l'IA propose et l'apprenant valide par inclusion. Une troisième : le contact avec le réel passe par les données brutes et les tests directs (export JSON, vérification croisée, constat empirique de saturation) plutôt que par la lecture des résumés.",
+    "pistes": [
+      "Pour ouvrir le territoire de la résilience, un chemin possible serait de raconter un échec passé en nommant explicitement ce qui en a émergé — pas un retour à la normale mais un dépassement.",
+      "Pour rendre la plasticité visible en acte, un chemin possible serait de documenter une mue pendant qu'elle se fait — ce qui est en train d'être lâché, ce qui reste constant.",
+      "Pour ouvrir l'acceptation de l'intelligence supérieure dans son sens fort, un chemin possible serait de nommer une tension émotionnelle vécue face à l'IA — surprise, malaise, ou admiration mêlée d'inconfort.",
+      "Pour étendre la souveraineté attentionnelle, un chemin possible serait de décrire une décision de déconnexion choisie alors qu'une alternative connectée était possible.",
+      "Pour étoffer la narration réflexive en première personne, un chemin possible serait de formuler soi-même l'apprentissage transférable d'une expérience, sans passer par la médiation d'une analyse IA."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le portfolio montre un travail existentiel qui s'exprime principalement par des constats sobres plutôt que par des récits de transformation. La mortalité est mentionnée \"factuellement, sans pathos\", le pattern de vie (maîtriser, transmettre, partir) est nommé comme caractéristique, les écoles sont lancées sans garantie de survie. Le registre est posé, sans envolée lyrique, ce que la litote — \"je vais peut-être mourir avant de voir les écoles se répandre\" — illustre. Une voix attentive aux conditions pratiques de son travail (saturation de l'IA, accès internet limité au break, pattern d'usage) traverse l'entrée, sans encore livrer la phénoménologie de ses transformations intérieures.\n\n## Territoires les plus denses\n\n**Vérification terrain.** Une pratique de vérification empirique du fonctionnement réel de l'IA — par test direct et par accès aux données brutes plutôt qu'aux résumés. *\"Demande d'export JSON du context window complet | Volonté d'auditer 'ce que le système injecte sans consentement visible'\"*. La vérification ne passe pas par la lecture d'un dashboard : elle exige le contact avec les données brutes, ce qui correspond exactement au geste de qui veut savoir ce qui se passe vraiment.\n\n**Sens et motivation intrinsèque.** Une motivation dont le pourquoi ne dépend pas du résultat visible, sobrement assumée à travers la prise en compte de la mortalité et le lancement d'un projet sans garantie de survie. *\"Tu lances les écoles sans savoir si elles survivront. La thèse viendra après, pour documenter ce qui aura marché.\"* Le carburant tient sans le moteur des résultats : la persévérance est intégrée à la conception du projet, pas accrochée à sa réussite probable.\n\n**Narration réflexive.** Une appropriation d'analyses qui transforment l'expérience en apprentissage transférable, médiée par les retours d'IA inclus dans le portfolio. *\"C'est le paradoxe du bootstrap : tu formes les premiers Tuteurs sans avoir été formé toi-même par le système.\"* Le sens est extrait par formulation tierce (l'IA nomme le paradoxe) et appropriation éditoriale (l'apprenant choisit de le garder) — narration réflexive médiée, pas absente.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'apparaissent pas dans cette feuille. La résilience et l'antifragilité ne sont pas mobilisées : pas de récit d'épreuve ou de crise traversée avec dépassement. La plasticité et le désapprentissage sont reconnus comme pattern (maîtriser, transmettre, partir) mais aucune mue n'est documentée en acte dans le présent du portfolio. L'acceptation de l'intelligence supérieure est entrevue par le geste éditorial (inclure des phrases d'IA porteuses de tension), mais la tension émotionnelle exigée par la fiche — surprise, malaise, admiration mêlée d'inconfort — n'est pas nommée. L'autonomie en mode dégradé reste partielle : les bascules sont entre outils numériques, pas hors techno. La souveraineté attentionnelle apparaît comme planification adaptée à un contexte, pas comme choix souverain en présence d'alternatives.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn mouvement traverse ce pôle : la sobriété du registre. La mortalité, le pattern de vie, l'absence de garantie pour les écoles sont mentionnés sans dramatisation — c'est une posture existentielle qui se manifeste par la modération du ton, ce que la fiche identifie comme la litote contre les envolées lyriques. Une seconde observation : la médiation de l'IA est partout dans la narration réflexive. Les analyses qui extraient le sens du vécu sont produites par Claude et adoptées par l'apprenant qui les republie — c'est un mode de réflexion à deux où l'IA propose et l'apprenant valide par inclusion. Une troisième : le contact avec le réel passe par les données brutes et les tests directs (export JSON, vérification croisée, constat empirique de saturation) plutôt que par la lecture des résumés.\n\n## Pistes pour enrichir ce pôle\n\nPour ouvrir le territoire de la résilience, un chemin possible serait de raconter un échec passé en nommant explicitement ce qui en a émergé — pas un retour à la normale mais un dépassement.\n\nPour rendre la plasticité visible en acte, un chemin possible serait de documenter une mue pendant qu'elle se fait — ce qui est en train d'être lâché, ce qui reste constant.\n\nPour ouvrir l'acceptation de l'intelligence supérieure dans son sens fort, un chemin possible serait de nommer une tension émotionnelle vécue face à l'IA — surprise, malaise, ou admiration mêlée d'inconfort.\n\nPour étendre la souveraineté attentionnelle, un chemin possible serait de décrire une décision de déconnexion choisie alors qu'une alternative connectée était possible.\n\nPour étoffer la narration réflexive en première personne, un chemin possible serait de formuler soi-même l'apprentissage transférable d'une expérience, sans passer par la médiation d'une analyse IA.\n"
+  }
+}

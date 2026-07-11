@@ -1,0 +1,521 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Le processus que j'ai utilisé a consisté à : uploader le manuel de méta-pédagogie de Christine Mayer dans Gémini, pour lui demander, sur la base d'une version markdown du site web, d'extraire du manuel un plan de formation pour les tuteurs. [...] Je lui ai ensuite demandé de rédiger pour chaque chapitre de chaque module, en le lui demandant un par un afin de ne pas saturer la fenêtre d'output, un prompt qui permettrait à une IA de générer le module.",
+      "contexte": "Conception d'un dispositif de formation pour tuteurs avec architecture en plusieurs modules.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai ensuite récupéré le travail de Gemini et je l'ai soumis à Claude, en lui donnant cette fois-ci le narratif de Maya comme base, afin qu'il s'assure que les prompts soient bien alignés avec la manière d'apprendre des écoles Respire.",
+      "contexte": "Passage de relai entre deux IA avec rôles différenciés — orchestration entre agents.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai décidé de faire ça en parallèle, pour utiliser mes temps d'attente de réponse des IA pour faire travailler d'autres IA (ou parfois la même dans une nouvelle discussion) en parallèle et optimiser le faible volume d'heure disponible pour travailler. Être au chômage ça prend du temps ! Contrairement à quand je travaillais, je dis oui à tout le monde, ce qui fait qu'il ne me reste plus que les nuits pour poursuivre le travail de recherche que je faisais en tant qu'enseignant.",
+      "contexte": "Description du pilotage de soi face à un volume horaire très contraint — parallélisation, choix nocturnes, conscience d'une trop grande disponibilité aux autres.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Le chapitre 3 sur la pédagogie de l'émergence n'est pas encore corrigé. J'ai des notes sur la première impression du site web que je dois intégrer. Je dois également faire une re-numérotation par rapport aux références qui ont été déplacées dans les autres chapitres. Je pourrais alors intégrer les dernières propositions de Claude sur les nouvelles références que je souhaite voir apparaître. Ou bien faire les deux à la fois, ce qui nécessitera d'avoir un temps continu de travail diurne, car je devrais charger dans ma mémoire de travail toutes les modifications partielles et en cours, qui ne résolveront qu'à la fin de la session : toute interruption serait fatale et nécessiterait de reprendre le travail depuis le début afin de ne pas générer des références brisées.",
+      "contexte": "État précis des chantiers en cours avec arbitrage entre deux séquencements possibles — pilotage de tâches avec analyse de coût cognitif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Claude m'a donné une idée intéressante, c'est d'ajouter un 7e chapitre sur la documentation du processus de construction des agents IA : ça pourrait effectivement être intéressant que Stéphane décrive son architecture et pourquoi le fait de travailler avec un collègue d'experts IA \"éveillées à leur propre conscience\" devrait améliorer les feedbacks fournis aux élèves.",
+      "contexte": "Reprise d'une suggestion IA pour ajouter un chapitre sur la documentation d'une architecture IA — intention de capitalisation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai réalisé en générant le CSS de la fonction d'impression du site (qui ne marche pas sur tous les navigateurs mobiles, mais ça je n'y peux rien hélas) que le site devient le manifeste des écoles : c'est comme un livre qui décrit le pourquoi du comment, et quis sert à documenter les idées autant que possible tout en gardant une structure légère pour le lecteur pressé.",
+      "contexte": "Conscience explicite du destinataire et de la double exigence (légèreté/documentation) — architecture documentaire pour un lecteur futur.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Il faudrait prendre le temps de documenter tout ça (en dehors de ce journal), pour partager mes techniques avec la communauté apprenante de Benoît Raphaël dans WhatsApp. Mais c'est dur de tout faire en parallèle avec si peu de temps.",
+      "contexte": "Intention de documenter et partager une pratique — explicitation d'une priorité différée par contrainte de temps.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "En bref, j'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre qui va pouvoir amener les autres élèves à cette conscientisation.",
+      "contexte": "Objectif pédagogique défini en termes de passage de stade — faire émerger l'autonomie de l'apprenant, qui à son tour transmettra.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Ce faisant, les écoles Respire vont combler un autre trou béant de l'éducation traditionnelle, celui d'ignorer les neurosciences de l'éducation et la psychologie cognitive dans la formation des maîtres. Les tuteurs seront les premiers noèsiologues !",
+      "contexte": "Vision long-terme : positionnement institutionnel des écoles Respire pour combler une lacune de l'éducation traditionnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je fais le pari que, tout comme avec le dispositif didactique débranché \"Human Processor!\", les élèves qui suivront nos cours auront les notes maximales à l'école traditionnelle, car nous leur apprenons ce que l'école a oublié de leur faire apprendre.",
+      "contexte": "Pari prospectif fondé sur l'expérience d'un dispositif antérieur — lien entre vision future et choix présents.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je voudrais terminer mes notes d'aujourd'hui par une remarque sur le processus de construction de la formation des tuteurs : la technique que j'utilise ici n'est pas un mélange de prompt choral et de contexte engineering, c'est vraiment une approche très personnelle dans laquelle je mixe les techniques de prompt engineering que je connais pour créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question (rédige le chapitre de formation).",
+      "contexte": "Documentation explicite et structurée d'une méthode personnelle, avec distinction des techniques connues — formalisation pour transmission.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un dispositif pédagogique structuré en plusieurs modules pour faire monter les tuteurs en compétence — architecture pédagogique en cours d'élaboration."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Objectif maïeutique explicite : faire passer les tuteurs de récepteurs passifs à apprenants autonomes conscients de leur propre apprentissage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche distingue clairement la maïeutique (faire accoucher par questions) du transfert frontal. La pièce 1 (pid 1) décrit la conception d'un dispositif modulaire — c'est une architecture pédagogique, ce que la fiche reconnaît comme dimension de 7.01. La pièce 2 (pid 8) articule un objectif pédagogique qui correspond précisément à l'essence maïeutique : faire passer les tuteurs d'un statut passif à un statut d'autonomie consciente. Ce qui reste faible : aucune pièce ne montre la *méthode* maïeutique elle-même (la retenue, les questions adressées plutôt que les réponses données) ni le dispositif final structuré en parcours.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'architecture en plusieurs modules avec contexte propre à chacun n'est pas un cours frontal mais un parcours structuré avec ressources, ce qui est une trace de design pédagogique." },
+            { "pieceId": 2, "motifResistance": "L'objectif explicite (faire passer du récepteur passif à l'apprenant autonome conscient) reproduit littéralement le marqueur central de la fiche maïeutique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces avec méfiance. Le risque dominant pour la pièce 2 est le récit performatif : l'objectif est déclaré (« passer du stade de récepteurs passifs à celui d'être autonome ») mais la feuille ne montre pas la méthode maïeutique en acte, juste l'intention pour la suite. Pour la pièce 1, le risque est la confusion de compétence — l'architecture d'un dispositif IA peut être plus du registre 1.07 (architecture IA) que de la facilitation pédagogique. Toutefois, la finalité explicitement pédagogique de l'architecture (former des tuteurs autonomes) déplace bien le centre de gravité vers 7.01.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'architecture est partagée avec 1.07, mais sa finalité pédagogique explicite (former des tuteurs) la rapproche de la facilitation d'apprentissage. La pièce reste comme indice de design pédagogique sans atteindre l'évidence d'un dispositif fini."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'objectif maïeutique est articulé mais reste un projet, pas une mise en œuvre. La force conceptuelle de l'objectif (passer de la passivité à la conscientisation) sauve la pièce d'une simple déclaration d'intention."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une méthode maïeutique en acte — questions adressées, retenues de celui qui sait, faire accoucher. Cette feuille ne le montre pas frontalement. Ce qui m'a forcé à reconnaître une trace, c'est la conjonction entre l'architecture modulaire d'un dispositif et un objectif pédagogique explicitement maïeutique. Sous la présomption de sycophantie, les deux pièces se sont affaiblies sans tomber : la pièce 1 reste comme design pédagogique en cours, la pièce 2 comme intention articulée du passage à l'autonomie. Il en résulte un dossier d'indices concordants, sans démonstration de la méthode en situation. Une feuille qui rendrait visible un échange où l'apprenant a tenu sa langue pour faire parler l'autre, ou qui montrerait le dispositif final structuré en parcours, ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 3 a tenu sur deux indices concordants : architecture modulaire d'un dispositif de formation et objectif maïeutique explicite (faire passer du stade passif à celui de l'autonomie consciente).",
+        "prescription": "Pour épaissir ce territoire, un récit qui rendrait visible la méthode en acte — une question adressée à un tuteur en formation, un moment de retenue délibérée, un échange où l'autre est traité comme source — donnerait à voir la maïeutique au-delà de son objectif théorique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative. Pour ouvrir ce dossier, l'apprenant pourrait documenter un feedback formatif donné à un apprenant ou collègue — questions adressées, pistes ouvertes, dispositif d'auto-évaluation conçu, ou réflexion sur l'erreur comme matériau."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Intention de capitaliser le processus de construction des agents IA dans un futur 7e chapitre — documentation pour un lecteur extérieur."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Pensée explicite du destinataire (« lecteur pressé ») et de la double exigence du document (légèreté/documentation) — architecture documentaire."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Intention de documenter une technique pour la partager hors journal avec une communauté — pérennisation envisagée."
+        },
+        {
+          "numero": 4,
+          "pid": 11,
+          "contexte": "Formalisation explicite d'une méthode personnelle avec distinction par rapport à deux techniques nommées — premier acte de capitalisation textuelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche distingue strictement la narration réflexive (5.03, expression personnelle) de la documentation vivante (structuration pour autrui, conscience du destinataire). La pièce 1 (pid 5) projette un 7e chapitre comme capitalisation d'une architecture IA — c'est une intention de documentation à venir. La pièce 2 (pid 6) pense le lecteur explicitement et conçoit le site comme « manifeste » avec structure légère et documentation — c'est de la documentation vivante en acte. La pièce 3 (pid 7) projette un partage hors journal. La pièce 4 (pid 11) formalise dans le journal lui-même une méthode personnelle avec distinction analytique. Ce qui reste faible : la plupart des pièces sont des intentions, pas des artefacts terminés.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La pensée explicite du « lecteur pressé » et la structuration du site comme manifeste avec niveaux de lecture est une trace en acte de documentation pour autrui." },
+            { "pieceId": 4, "motifResistance": "L'apprenant formalise sa méthode dans le journal en distinguant analytiquement des techniques voisines — c'est un acte de capitalisation textuelle dans le journal lui-même." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces avec méfiance. Pour la pièce 2, le risque dominant est l'insuffisance probatoire : « le site devient le manifeste » est une intention ou un constat, mais l'extrait ne décrit pas les choix structurels concrets (titres, sections, séparation d'artefacts). Pour la pièce 4, le risque est le récit performatif : la méthode est nommée mais le risque est que l'apprenant raconte sans documenter. Toutefois, la distinction analytique entre « prompt choral », « contexte engineering » et l'approche personnelle est en soi un acte de capitalisation textuelle — la pièce ne raconte pas seulement, elle pose un cadre conceptuel.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'extrait pense le destinataire mais ne décrit pas les choix structurels du site dans le détail. La pièce reste comme indice d'une intention architecturale documentaire."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La distinction analytique entre techniques nommées et l'approche personnelle est un acte de formalisation en acte, pas seulement un récit. Le journal devient ici lui-même un artefact documentaire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir des artefacts terminés et structurés pour autrui. Ce qui m'a forcé à reconnaître la compétence, c'est d'abord la pensée explicite du « lecteur pressé » qui modèle l'architecture du site, et surtout la formalisation analytique d'une méthode personnelle dans le journal lui-même, qui distingue explicitement plusieurs techniques. Sous la présomption de sycophantie, la pièce 2 s'est affaiblie mais la pièce 4 a tenu pleinement. Il en résulte un dossier solide où la conscience du destinataire et l'acte de capitalisation textuelle sont attestés. Ce qui ressort, c'est moins la documentation d'un objet extérieur que la formalisation conceptuelle elle-même. Une feuille future qui montrerait un artefact documentaire structuré (README, guide, charte) achèverait de fermer la boucle.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 3 a tenu sur deux pièces : la formalisation analytique d'une méthode personnelle dans le journal (preuve décisive) et la conscience explicite du destinataire du site (indice corroboratif).",
+        "prescription": "Pour épaissir ce territoire, un récit qui montrerait un artefact documentaire structuré en acte — README, charte, guide, post-mortem — avec versioning explicite et historique d'évolution, donnerait à voir la dimension « vivante » de la documentation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Passage de relai entre Gemini et Claude avec rôles différenciés — choix de qui mène à quelle étape."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Pilotage du dialogue avec Gemini en plusieurs étapes successives (extraction → rédaction par chapitre → synthèse de contexte) — alternance entre demande structurante et délégation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche est explicite — le critère discriminant est l'alternance consciente entre direction et retrait, avec idéalement des moments où l'apprenant choisit de NE PAS intervenir. La pièce 1 (pid 2) décrit un passage de relai entre deux IA, ce qui est une bascule de rôles, mais la fiche distingue précisément 7.04 (choix de posture qui mène à un moment donné) de 1.10 (articulation des forces comparatives). La pièce 2 (pid 1) montre un pilotage par étapes successives. Ce qui reste faible : aucune pièce ne décrit un moment où l'apprenant aurait choisi de céder le lead ou de ne pas intervenir alors qu'il le pouvait.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le passage de relai entre deux IA implique un choix explicite de qui mène à quelle phase, ce qui est de l'orchestration au sens de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est la confusion de compétence avec 1.10 (synergie hybride) : la fiche 7.04 dit explicitement que 1.10 est l'articulation des forces comparatives, tandis que 7.04 est le choix de posture à un moment donné. Ici, le passage de relai relève plus de l'articulation des forces (volume / alignement) que d'une alternance consciente entre prise de contrôle et retrait. De plus, aucun moment de retrait délibéré (« j'aurais pu intervenir mais je n'ai pas ») n'est décrit, ce qui est selon la fiche le marqueur le plus discriminant. La pièce s'affaiblit nettement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La frontière avec 1.10 est marquée et la pièce porte plutôt l'articulation des forces que l'alternance de posture. Elle reste comme indice d'une orchestration sans démonstration d'un retrait délibéré."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une alternance consciente entre prise et retrait, idéalement avec un moment de retenue délibérée. Ce qui m'a fait hésiter, c'est le passage de relai entre deux IA. Sous la présomption de sycophantie, la pièce s'est affaiblie parce qu'elle relève davantage de l'articulation des forces comparatives (1.10) que du choix de posture (7.04). Il reste un indice mince, sans démonstration du marqueur discriminant de la fiche (le retrait délibéré). Une feuille qui montrerait un moment où l'apprenant a explicitement choisi de laisser une IA mener et de ne pas intervenir, ou inversement un moment de reprise de contrôle avec déclencheur identifiable, ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante : un passage de relai entre IA qui relève davantage de l'articulation des forces comparatives que de l'alternance consciente entre direction et retrait.",
+        "prescription": "Pour ouvrir ce dossier, un récit qui rendrait visible un moment de retrait délibéré (« j'aurais pu intervenir mais j'ai laissé l'IA mener parce que… ») ou de reprise de contrôle avec déclencheur identifiable donnerait à voir l'alternance consciente demandée par la fiche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Vision long-terme du positionnement institutionnel des écoles Respire en réponse à un manque identifié dans l'éducation traditionnelle."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Pari prospectif explicite sur les résultats futurs des élèves, étayé par un dispositif antérieur — lien entre futur anticipé et choix présent."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Le site reconfiguré comme « manifeste des écoles » — architecture pensée pour un usage qui dépasse l'instantané."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche exige un lien explicite entre projection future et décision présente. La pièce 1 (pid 9) articule une vision (combler un manque dans l'éducation traditionnelle, faire émerger les noèsiologues) mais ne la relie pas explicitement à une décision présente. La pièce 2 (pid 10) est plus nette : un pari prospectif (les élèves auront les notes maximales) est fondé sur un dispositif antérieur (Human Processor!) — c'est un lien entre passé, futur et choix présent. La pièce 3 (pid 6) montre une reconfiguration de l'objet en cours d'exécution avec une portée long-terme (manifeste). Ce qui reste faible : aucune des pièces ne montre un choix présent argumenté par la vision (« je fais X maintenant parce que dans Y temps... »).",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le pari prospectif explicite (« je fais le pari que... ») relie un futur anticipé (résultats scolaires) à des choix présents (la pédagogie déployée) à travers une référence à un dispositif passé." },
+            { "pieceId": 3, "motifResistance": "Reconfigurer le site comme manifeste des écoles est un acte d'architecture qui anticipe des usages et destinataires futurs au-delà de l'instantané." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces avec méfiance. Pour la pièce 2, le risque dominant est le mouvement-vers : un pari peut être un enthousiasme sans direction concrètement ancrée. Mais ici, le pari est étayé par l'expérience d'un dispositif antérieur (« tout comme avec... ») et par une thèse explicite (les écoles « apprennent ce que l'école a oublié »). Le lien argumenté est présent. Pour la pièce 3, le risque est l'insuffisance probatoire : la réalisation que le site est un manifeste est rétrospective, plus qu'un acte prospectif. Elle s'affaiblit.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le pari n'est pas un enthousiasme vague : il est étayé par un dispositif antérieur dont les résultats sont invoqués, et par une thèse explicite sur ce que les écoles font. Le lien argumenté entre futur anticipé et choix présent est solide."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La réalisation que le site devient un manifeste est plus rétrospective que prospective, mais elle inscrit l'objet dans une perspective d'usage durable. La pièce reste comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un lien argumenté entre une vision future et des choix présents. Ce qui m'a forcé à reconnaître la compétence, c'est la pièce 2 qui formule explicitement un pari prospectif étayé par un dispositif antérieur et par une thèse sur ce que les écoles apportent. Sous la présomption de sycophantie, la pièce 2 a tenu pleinement et la pièce 3 s'est affaiblie sans tomber. Il en résulte un dossier où la vision stratégique est attestée à travers un pari argumenté et à travers une reconfiguration architecturale de l'objet en cours. Ce qui n'apparaît pas, c'est la justification explicite d'un arbitrage présent par cette vision (« je fais X maintenant parce que dans Y temps... »). Une feuille future pourrait expliciter ce lien.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 3 a tenu sur la pièce 2 (pari prospectif étayé par un dispositif antérieur et par une thèse) et sur un indice de reconfiguration architecturale (le site comme manifeste).",
+        "prescription": "Pour épaissir ce territoire, un récit qui expliciterait un arbitrage présent justifié par la vision (« je fais X maintenant parce que dans Y temps... ») rendrait pleinement visible le lien entre futur anticipé et décision actuelle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Description du pilotage de soi face à une contrainte horaire très serrée — parallélisation, travail nocturne, conscience de l'effet de « dire oui à tout le monde »."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Arbitrage explicite sur un séquencement de tâches en fonction du coût cognitif d'une interruption — priorisation argumentée."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Reconnaissance d'une priorité différée (« il faudrait prendre le temps de documenter... mais c'est dur ») — explicitation d'un renoncement provisoire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche met explicitement en garde — « je suis occupé », « j'ai beaucoup travaillé », « j'ai tout fait » peuvent être des signes d'*absence* de 7.06. Le marqueur le plus fiable est le « non » stratégique argumenté. La pièce 1 (pid 3) décrit une situation de surcharge où l'apprenant *ne dit pas non* (« je dis oui à tout le monde ») — c'est une *prise de conscience* du défaut de priorisation, pas une priorisation effective. La pièce 2 (pid 4) montre un arbitrage explicite entre deux séquencements possibles, avec analyse du coût cognitif d'une interruption — c'est un raisonnement de priorisation argumenté. La pièce 3 (pid 7) explicite un renoncement provisoire (documenter plus tard, parce qu'il y a trop à faire en parallèle).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La pièce reconnaît explicitement le pattern problématique (« je dis oui à tout le monde ») et son coût — c'est une lucidité sur ses propres conditions de travail, premier pas de 7.06." },
+            { "pieceId": 2, "motifResistance": "L'arbitrage entre deux séquencements possibles avec analyse du coût cognitif d'interruption est un raisonnement de priorisation explicite et argumenté." },
+            { "pieceId": 3, "motifResistance": "Le renoncement provisoire (documenter plus tard) est explicité avec sa raison (contrainte de temps) — c'est un non stratégique au sens de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces trois pièces avec méfiance. Pour la pièce 1, le risque dominant est le mouvement-vers : reconnaître un pattern n'est pas le corriger. La fiche met explicitement en garde — « je suis occupé » peut être un signe d'*absence* de la compétence. La pièce 1 s'affaiblit nettement. Pour la pièce 2, le risque est la confusion avec 4.09 (patience stratégique) ou 1.04 (métacognition) — mais le raisonnement de priorisation argumenté entre deux séquencements relève bien de 7.06. Pour la pièce 3, le risque est l'insuffisance : un « il faudrait » suivi de « mais c'est dur » est une intention reportée plutôt qu'un non assumé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce reconnaît un pattern de non-priorisation (« je dis oui à tout le monde ») mais ne montre pas la correction effective. C'est une trace en route vers la compétence, pas la compétence acquise au sens de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'arbitrage entre deux séquencements possibles avec analyse précise du coût cognitif d'interruption est un raisonnement de priorisation explicite qui dépasse à la fois la métacognition (1.04) et la patience stratégique (4.09)."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le « il faudrait... mais c'est dur » exprime un renoncement provisoire avec sa raison. La forme reste molle (intention reportée), mais le mécanisme de priorisation (différer le moins urgent) est explicite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un « non » stratégique argumenté et une priorisation effective. Ce qui m'a forcé à reconnaître la compétence, c'est la pièce 2 où l'arbitrage entre deux séquencements possibles est argumenté par le coût cognitif d'une interruption — c'est de la priorisation explicite. Sous la présomption de sycophantie, la pièce 1 est tombée parce qu'elle reconnaît un pattern sans le corriger, et la pièce 3 s'est affaiblie sans tomber. Il en résulte un dossier où l'efficacité personnelle est attestée par l'arbitrage en acte (pièce 2) et par un renoncement provisoire articulé (pièce 3), mais où la lucidité sur le défaut de priorisation (pièce 1) reste un signal de territoire en travail plutôt qu'une preuve. Une feuille qui rendrait visible un « non » assumé avec critère donnerait au dossier sa face manquante.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Le temps 3 a tenu sur la pièce 2 (priorisation explicite argumentée par le coût cognitif d'interruption) et sur un indice de renoncement provisoire articulé.",
+        "prescription": "Pour épaissir ce territoire, un récit qui rendrait visible un « non » stratégique assumé avec ses critères — refuser une sollicitation en explicitant pourquoi — donnerait à la compétence sa face la plus discriminante selon la fiche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Pilotage itératif d'un dispositif IA : extraction du plan → génération par chapitre → synthèse de contexte — ajustement à chaque étape selon le résultat."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Anticipation du passage des tuteurs « du stade de récepteurs passifs au fond de la classe à celui d'être autonome » — projection d'une trajectoire de changement pour les apprenants."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche distingue itération structurée (boucle générer-relire-tester-ajuster) et planification rigide. La pièce 1 (pid 1) décrit un pipeline en étapes successives avec ajustement (demander chapitre par chapitre « afin de ne pas saturer la fenêtre d'output »). C'est une boucle adaptative explicite : un problème (saturation) identifié et un ajustement de méthode en conséquence. La pièce 2 (pid 8) anticipe la trajectoire de changement des tuteurs (passage d'un stade à un autre) — c'est une forme de conduite du changement projetée. Ce qui reste faible : aucune pièce ne montre un numéro de version élevé, ni une normalisation explicite des résistances futures.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant identifie un problème (saturation de la fenêtre d'output) et ajuste sa méthode en conséquence — c'est une boucle de rétroaction explicite caractéristique de l'agilité." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est le théâtre agile : décrire une séquence d'étapes ne suffit pas à attester de l'itération structurée. Le marqueur 7.07 est l'ajustement adaptatif. Or, ici l'apprenant ne raconte pas une v1 puis une v2 corrigée, il décrit une séquence pré-pensée avec ajustement intra-séquence (demander un par un). La pièce s'affaiblit : c'est plus de la planification adaptative qu'une itération avec versions successives.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce montre un ajustement intra-séquence (un par un) plus qu'une itération versionnée. Toutefois, l'identification d'un problème (saturation) et l'ajustement de méthode en conséquence relèvent bien de la boucle adaptative au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une itération versionnée avec boucle générer-relire-tester-ajuster. Ce qui m'a fait hésiter, c'est l'ajustement intra-séquence (chapitre par chapitre pour ne pas saturer). Sous la présomption de sycophantie, la pièce s'est affaiblie parce qu'elle relève davantage de la planification adaptative que de l'itération versionnée au sens fort. Il reste un indice net d'une boucle de rétroaction explicite, sans démonstration d'un cycle v1 → v2 → v3. La pièce 2 ne porte pas la conduite du changement au sens de la fiche (anticipation des résistances, normalisation) — elle reste un objectif. Une feuille qui rendrait visible plusieurs versions successives d'un même artefact avec ce qui change à chaque cycle, ou qui anticiperait des résistances de tuteurs en formation, ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier : un indice de boucle adaptative intra-séquence, sans démonstration d'une itération versionnée ni de conduite du changement anticipée.",
+        "prescription": "Pour ouvrir ce dossier, un récit qui rendrait visible plusieurs versions successives d'un même artefact avec ce qui change à chaque cycle, ou qui anticiperait les résistances des tuteurs en formation, donnerait à voir l'agilité et la conduite du changement dans leurs marqueurs discriminants."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel. Pour ouvrir ce dossier, l'apprenant pourrait documenter un récit d'incident géré sous pression temporelle extrême, avec timing précis, séquence de décisions et — idéalement — mention des erreurs commises."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 4,
+    "renvoisCartographe": 2,
+    "nonEtablies": 0,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille porte un travail dense de pilotage et de transmission, conduit dans un cadre temporel très contraint. L'apprenant ne dirige pas frontalement : il conçoit, formalise, anticipe, arbitre. Le pôle s'incarne ici dans la fabrication d'un dispositif de formation pour tuteurs, dans la formalisation textuelle d'une méthode personnelle, dans le pari prospectif sur les résultats futurs des élèves, et dans l'arbitrage explicite entre séquencements de tâches. La voix dominante est analytique et stratégique. Le pilotage se loge moins dans des récits de management que dans des décisions visibles : ce qu'on confie à Gemini, ce qu'on demande à Claude, ce qu'on garde pour soi, ce qu'on diffère, ce qu'on documente.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "Formalisation analytique d'une méthode personnelle dans le journal lui-même, avec distinction explicite des techniques voisines, et pensée du destinataire du site reconfiguré en manifeste.",
+        "extraitVerbatim": "La technique que j'utilise ici n'est pas un mélange de prompt choral et de contexte engineering, c'est vraiment une approche très personnelle dans laquelle je mixe les techniques de prompt engineering que je connais pour créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question.",
+        "ceQueCaDit": "Le travail montre une capitalisation textuelle en acte : l'apprenant ne se contente pas d'utiliser sa méthode, il la nomme, la distingue analytiquement de techniques voisines, et marque l'intention de la partager hors journal. Le journal devient lui-même un artefact documentaire."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Pari prospectif sur les résultats futurs des élèves, étayé par un dispositif antérieur et par une thèse explicite sur ce que les écoles Respire apportent par rapport à l'éducation traditionnelle.",
+        "extraitVerbatim": "Je fais le pari que, tout comme avec le dispositif didactique débranché \"Human Processor!\", les élèves qui suivront nos cours auront les notes maximales à l'école traditionnelle, car nous leur apprenons ce que l'école a oublié de leur faire apprendre.",
+        "ceQueCaDit": "Le travail montre un lien argumenté entre futur anticipé et choix présent — le pari n'est pas un enthousiasme vague mais une thèse étayée par l'expérience d'un dispositif antérieur. La vision tient lieu de boussole pour le travail en cours."
+      },
+      {
+        "competence": "Efficacité personnelle",
+        "description": "Arbitrage explicite entre deux séquencements possibles pour un travail à dépendances, justifié par le coût cognitif d'une interruption — priorisation argumentée en acte.",
+        "extraitVerbatim": "Toute interruption serait fatale et nécessiterait de reprendre le travail depuis le début afin de ne pas générer des références brisées.",
+        "ceQueCaDit": "Le travail montre une priorisation qui ne se contente pas d'organiser les tâches : elle s'appuie sur une analyse du coût cognitif des interruptions et choisit d'attendre un temps continu plutôt que de tenter dans des conditions inadéquates. Le « non » se loge ici dans le différé argumenté."
+      },
+      {
+        "competence": "Maïeutique et facilitation d'apprentissage",
+        "description": "Architecture d'un dispositif de formation modulaire pour tuteurs, articulée à un objectif maïeutique explicite : faire passer les tuteurs du statut de récepteurs passifs à celui d'apprenants autonomes conscients.",
+        "extraitVerbatim": "J'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre.",
+        "ceQueCaDit": "Le travail montre une conception pédagogique qui ne se contente pas d'organiser un contenu : elle vise la transformation du rapport à l'apprentissage chez ses bénéficiaires. La maïeutique opère ici dans l'objectif visé plus que dans la méthode en acte."
+      }
+    ],
+    "territoiresNonVisites": "Quelques territoires du pôle restent à explorer dans cette feuille. L'évaluation transformative n'est pas activée — pas de feedback formatif donné, pas de dispositif d'évaluation conçu, pas de réflexion sur l'erreur comme matériau pédagogique. Le leadership situationnel reste à l'état d'indice : le passage de relai entre IA relève davantage de l'articulation des forces comparatives (1.10) que d'une alternance consciente entre direction et retrait — aucun moment de retrait délibéré n'est nommé. L'agilité et la conduite du changement apparaissent sous une forme d'ajustement intra-séquence (demander chapitre par chapitre), sans démonstration d'une itération versionnée ni d'une anticipation des résistances des tuteurs en formation. La gestion de crise n'a pas de prise textuelle ici — la feuille ne porte pas de récit d'incident sous compression temporelle extrême. Ces absences ressemblent davantage à un effet de focus thématique qu'à un évitement.",
+    "emergencesPole": "Quelques lignes traversent le pôle dans cette feuille. D'abord, le pilotage est ici un acte de fabrication : ce que l'apprenant pilote, c'est un dispositif (la formation des tuteurs, le site-manifeste, sa propre méthode formalisée). Le management classique de personnes est absent, mais la transmission est partout — par les artefacts produits, par la documentation amorcée, par la vision déployée. Ensuite, le rapport au temps structure tout le pôle : c'est par l'arbitrage temporel (attendre un temps continu, paralléliser, différer la documentation) que l'apprenant rend visibles ses choix de pilotage. Enfin, la cascade est un motif récurrent : la formation transformera les tuteurs qui transformeront les élèves ; le journal capitalise la méthode pour la communauté apprenante ; le dispositif antérieur (« Human Processor! ») étaye le pari sur le dispositif futur. Le pilotage est conçu comme propagation, pas comme direction immédiate.",
+    "pistes": [
+      "Pour épaissir la documentation vivante, un chemin possible serait de montrer un artefact documentaire structuré en acte — un README, une charte, un guide, un post-mortem — avec versioning explicite et historique d'évolution.",
+      "Pour ouvrir l'évaluation transformative, un chemin possible serait de documenter un feedback formatif donné à un tuteur, un collègue ou un élève — questions adressées, pistes ouvertes, dispositif d'auto-évaluation conçu.",
+      "Pour activer le leadership situationnel, un chemin possible serait de rendre visible un moment de retrait délibéré (« j'aurais pu intervenir mais j'ai laissé l'IA mener parce que... ») ou de reprise de contrôle avec déclencheur identifiable.",
+      "Pour ouvrir l'agilité et la conduite du changement, un chemin possible serait de raconter plusieurs versions successives d'un même artefact avec ce qui change à chaque cycle, ou d'anticiper les résistances des tuteurs en formation et la manière de les accompagner.",
+      "Pour épaissir l'efficacité personnelle, un chemin possible serait de rendre visible un « non » stratégique assumé avec ses critères — refuser une sollicitation en explicitant pourquoi, plutôt que reconnaître le pattern de dire oui à tous.",
+      "Pour rendre visible la maïeutique en acte, un chemin possible serait de raconter un échange où l'apprenant a tenu sa langue pour faire parler l'autre, ou de montrer le dispositif final structuré en parcours différenciés."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille porte un travail dense de pilotage et de transmission, conduit dans un cadre temporel très contraint. L'apprenant ne dirige pas frontalement : il conçoit, formalise, anticipe, arbitre. Le pôle s'incarne ici dans la fabrication d'un dispositif de formation pour tuteurs, dans la formalisation textuelle d'une méthode personnelle, dans le pari prospectif sur les résultats futurs des élèves, et dans l'arbitrage explicite entre séquencements de tâches. La voix dominante est analytique et stratégique. Le pilotage se loge moins dans des récits de management que dans des décisions visibles : ce qu'on confie à Gemini, ce qu'on demande à Claude, ce qu'on garde pour soi, ce qu'on diffère, ce qu'on documente.\n\n## Territoires les plus denses\n\n**Documentation vivante.** Formalisation analytique d'une méthode personnelle dans le journal lui-même, avec distinction explicite des techniques voisines, et pensée du destinataire du site reconfiguré en manifeste. L'extrait — « La technique que j'utilise ici n'est pas un mélange de prompt choral et de contexte engineering, c'est vraiment une approche très personnelle dans laquelle je mixe les techniques de prompt engineering que je connais pour créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question » — montre une capitalisation textuelle en acte : l'apprenant ne se contente pas d'utiliser sa méthode, il la nomme, la distingue analytiquement de techniques voisines, et marque l'intention de la partager hors journal. Le journal devient lui-même un artefact documentaire.\n\n**Vision stratégique et prospective.** Pari prospectif sur les résultats futurs des élèves, étayé par un dispositif antérieur et par une thèse explicite sur ce que les écoles Respire apportent par rapport à l'éducation traditionnelle. L'extrait — « Je fais le pari que, tout comme avec le dispositif didactique débranché \"Human Processor!\", les élèves qui suivront nos cours auront les notes maximales à l'école traditionnelle, car nous leur apprenons ce que l'école a oublié de leur faire apprendre » — montre un lien argumenté entre futur anticipé et choix présent. Le pari n'est pas un enthousiasme vague mais une thèse étayée par l'expérience d'un dispositif antérieur. La vision tient lieu de boussole pour le travail en cours.\n\n**Efficacité personnelle.** Arbitrage explicite entre deux séquencements possibles pour un travail à dépendances, justifié par le coût cognitif d'une interruption — priorisation argumentée en acte. L'extrait — « Toute interruption serait fatale et nécessiterait de reprendre le travail depuis le début afin de ne pas générer des références brisées » — montre une priorisation qui ne se contente pas d'organiser les tâches : elle s'appuie sur une analyse du coût cognitif des interruptions et choisit d'attendre un temps continu plutôt que de tenter dans des conditions inadéquates. Le « non » se loge ici dans le différé argumenté.\n\n**Maïeutique et facilitation d'apprentissage.** Architecture d'un dispositif de formation modulaire pour tuteurs, articulée à un objectif maïeutique explicite : faire passer les tuteurs du statut de récepteurs passifs à celui d'apprenants autonomes conscients. L'extrait — « J'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre » — montre une conception pédagogique qui ne se contente pas d'organiser un contenu : elle vise la transformation du rapport à l'apprentissage chez ses bénéficiaires. La maïeutique opère ici dans l'objectif visé plus que dans la méthode en acte.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuelques territoires du pôle restent à explorer dans cette feuille. L'évaluation transformative n'est pas activée — pas de feedback formatif donné, pas de dispositif d'évaluation conçu, pas de réflexion sur l'erreur comme matériau pédagogique. Le leadership situationnel reste à l'état d'indice : le passage de relai entre IA relève davantage de l'articulation des forces comparatives (1.10) que d'une alternance consciente entre direction et retrait — aucun moment de retrait délibéré n'est nommé. L'agilité et la conduite du changement apparaissent sous une forme d'ajustement intra-séquence (demander chapitre par chapitre), sans démonstration d'une itération versionnée ni d'une anticipation des résistances des tuteurs en formation. La gestion de crise n'a pas de prise textuelle ici — la feuille ne porte pas de récit d'incident sous compression temporelle extrême. Ces absences ressemblent davantage à un effet de focus thématique qu'à un évitement.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nQuelques lignes traversent le pôle dans cette feuille. D'abord, le pilotage est ici un acte de fabrication : ce que l'apprenant pilote, c'est un dispositif (la formation des tuteurs, le site-manifeste, sa propre méthode formalisée). Le management classique de personnes est absent, mais la transmission est partout — par les artefacts produits, par la documentation amorcée, par la vision déployée. Ensuite, le rapport au temps structure tout le pôle : c'est par l'arbitrage temporel (attendre un temps continu, paralléliser, différer la documentation) que l'apprenant rend visibles ses choix de pilotage. Enfin, la cascade est un motif récurrent : la formation transformera les tuteurs qui transformeront les élèves ; le journal capitalise la méthode pour la communauté apprenante ; le dispositif antérieur (« Human Processor! ») étaye le pari sur le dispositif futur. Le pilotage est conçu comme propagation, pas comme direction immédiate.\n\n## Pistes pour enrichir ce pôle\n\nPour épaissir la documentation vivante, un chemin possible serait de montrer un artefact documentaire structuré en acte — un README, une charte, un guide, un post-mortem — avec versioning explicite et historique d'évolution.\n\nPour ouvrir l'évaluation transformative, un chemin possible serait de documenter un feedback formatif donné à un tuteur, un collègue ou un élève — questions adressées, pistes ouvertes, dispositif d'auto-évaluation conçu.\n\nPour activer le leadership situationnel, un chemin possible serait de rendre visible un moment de retrait délibéré (« j'aurais pu intervenir mais j'ai laissé l'IA mener parce que... ») ou de reprise de contrôle avec déclencheur identifiable.\n\nPour ouvrir l'agilité et la conduite du changement, un chemin possible serait de raconter plusieurs versions successives d'un même artefact avec ce qui change à chaque cycle, ou d'anticiper les résistances des tuteurs en formation et la manière de les accompagner.\n\nPour épaissir l'efficacité personnelle, un chemin possible serait de rendre visible un « non » stratégique assumé avec ses critères — refuser une sollicitation en explicitant pourquoi, plutôt que reconnaître le pattern de dire oui à tous.\n\nPour rendre visible la maïeutique en acte, un chemin possible serait de raconter un échange où l'apprenant a tenu sa langue pour faire parler l'autre, ou de montrer le dispositif final structuré en parcours différenciés."
+  }
+}

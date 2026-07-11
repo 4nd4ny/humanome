@@ -1,0 +1,253 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-24",
+      "extraitVerbatim": "Pour la v6, je vais probablement également modifier le processus. Pas parce que le dernier était mauvais, mais parce que ça fait trois semaines (dont une de vacances) et je n'ai plus le processus en tête.",
+      "contexte": "Récit de versions successives v5, v6 — possible activation de 3.01 (créativité itérative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-24",
+      "extraitVerbatim": "je voulais une version imprimée rapidement, ce qui m'a fait sauter des étapes de relecture / corrections importantes dans la v5 - du coup il a halluciné dans quelques chapitres",
+      "contexte": "Itération assumée avec coût explicite : la v5 a été bâclée et l'a su. Possible trace de 3.01 (itération, bâclage qui apprend) et de 3.04 (jugement esthétique a posteriori).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-24",
+      "extraitVerbatim": "La version précédente (v5) était trop théorique, basée sur mes réflexions et lectures faites durant la thèse. Il fallait que je passe par cette étape pour y voir plus clair dans ce qui était vraiment important.",
+      "contexte": "Évaluation qualitative de la version antérieure (« trop théorique ») et apprentissage entre versions. Possible activation de 3.01 et 3.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-24",
+      "extraitVerbatim": "Actuellement il y a 87 Mb pour 369 éléments… Pas certain d'avoir absolument bien numéroté les versions.",
+      "contexte": "Décompte précis du matériau accumulé et reconnaissance d'un défaut de versionnage. Trace possible de 3.01 (itération massive, traces accumulées).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant identifie une v5, une v6, et anticipe une modification du processus entre les deux. Cycle de versions explicite."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "L'apprenant reconnaît avoir sauté des étapes en v5 (« version imprimée rapidement ») et en a tiré une compréhension pour la v6. Trace possible de bâclage assumé qui apprend."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Évaluation de la v5 (« trop théorique ») et apprentissage explicite entre versions (« il fallait que je passe par cette étape pour y voir plus clair »)."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "Trace concrète de la masse de matériau itéré : 87 Mb, 369 éléments, versions non parfaitement numérotées."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La fiche définit 3.01 comme un choix stratégique de l'imperfection — prototype bancal, feedback, pivot — pas comme la simple existence de versions successives. La pièce 1 mentionne v5 et v6 mais le motif de modification est l'oubli, pas un apprentissage entre versions. La pièce 4 dit qu'il y a beaucoup de fichiers mal numérotés — c'est une trace d'activité, pas d'itération créative consciente. Les pièces 2 et 3 résistent mieux : l'apprenant reconnaît explicitement avoir bâclé la v5 (étapes sautées), nomme le défaut (« trop théorique »), et articule un apprentissage entre v5 et v6 (« y voir plus clair dans ce qui était vraiment important »). Le critère « bâclage assumé qui débouche sur une découverte » est précisément la trace oblique citée par la fiche. La pièce 3 résiste, la pièce 2 résiste comme indice.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Bâclage explicite (« version imprimée rapidement », « sauté des étapes ») assumé comme cause d'une apprenance pour la version suivante — trace oblique listée par la fiche." },
+            { "pieceId": 3, "motifResistance": "Évaluation qualitative de la v5 et apprentissage nommé entre versions — la v5 a permis de voir ce qui comptait pour la v6." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces ; je dois maintenant me demander si je n'ai pas chargé un récit de production en série de la qualité d'« itération créative ». Le marqueur que la fiche écarte est « simplement faire des versions » : il faut que l'apprenant ait fait un choix stratégique de l'imperfection. Ici, la v5 n'a pas été imparfaite par choix mais par contrainte temporelle (« je voulais une version imprimée rapidement »). En revanche, l'apprenant assume cette imperfection rétrospectivement et la lit comme productive — c'est précisément le « bâclage assumé qui débouche sur une découverte » de la fiche. La pièce 3 articule ce qui s'apprend : la v5 a clarifié l'intention de la v6. C'est un cycle itératif au sens strict.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'imperfection de v5 n'est pas choisie initialement mais elle est assumée et lue comme féconde après coup ; la pièce penche un peu vers le « mouvement-vers » mais tient comme indice."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'évaluation est précise (« trop théorique »), le mécanisme d'apprentissage est nommé (« passer par cette étape pour y voir plus clair »), et la décision pour v6 en découle. Le cycle itératif au sens fort est attesté."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme une simple succession de versions sans charge itérative. Ce qui m'a forcé à reconnaître autre chose, c'est la conjonction entre l'aveu du bâclage de la v5 (étapes sautées par pression d'impression) et la lecture rétrospective de ce bâclage comme productif (« il fallait que je passe par cette étape pour y voir plus clair »). C'est le marqueur oblique précis de la fiche : la contrainte révèle ce qui comptait vraiment. La pièce sur le versionnage imparfait des fichiers a faibli — c'est de l'activité accumulée, pas une itération consciente. Sur cette feuille, le travail itératif est attesté, sur sa face « 1→n » (améliorer par cycles) ; la face plus radicale (« 0→1 ») n'apparaît pas ici. La trace tient comme présence établie modérée.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "La pièce 3 (apprentissage explicite entre v5 et v6) tient comme indice fort, corroborée par la pièce 2 (bâclage assumé). Le cycle itératif au sens de la fiche est attesté sur sa face améliorative.",
+        "prescription": "Pour prolonger cette dynamique, un récit qui ferait apparaître le coût concret de l'itération — ce qu'il a fallu abandonner entre v5 et v6, ce qui a été conservé — solidifierait la trace. La pratique itérative est en place ; ses choix internes gagneraient à être nommés."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne porte pas, sur sa surface, de marqueurs de Singularité & Signature au sens d'une empreinte stylistique consciente ou nommée. Une réflexion explicite sur ce qui rend reconnaissable un travail particulier ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace de Design de Problèmes — c'est-à-dire de la création d'une question qui n'existait pas. Un récit où l'apprenant aurait formulé un problème inédit (et non reformulé un problème connu) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Évaluation qualitative de la v5 (« trop théorique ») — jugement sur la justesse formelle, pas seulement sur la véracité."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Reconnaissance que la v5 a halluciné dans certains chapitres parce que les étapes de relecture ont été sautées — jugement post-production sur ce qui « sonne faux »."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La fiche définit 3.04 par la curation — sélectionner, hiérarchiser, éditorialiser avec critères articulés — et précise que la curation implique de la soustraction. La pièce 1 dit « trop théorique » : c'est un jugement qualitatif sur la forme du produit, oui, mais très bref, sans critère développé. La pièce 2 dit que la v5 « a halluciné » à cause d'étapes sautées : c'est un constat de défaut, plus proche de 1.01 (véracité) que de 3.04 (justesse formelle). Aucune des deux pièces ne décrit un acte de curation — sélection, hiérarchisation, éditorialisation. L'apprenant juge ses propres versions et décide d'en jeter une partie, mais sans articuler de critères esthétiques. La pièce 1 résiste très faiblement comme évaluation de forme.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Trop théorique » est un jugement sur la forme (registre, équilibre théorie/pratique), pas seulement sur le contenu vrai/faux." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté faiblement ; je l'examine. Le verdict « trop théorique » est une évaluation qualitative, certes, mais elle reste à l'état de jugement résumé, sans articulation des critères ni mention d'un acte de curation (qu'a-t-on enlevé, gardé, hiérarchisé selon quoi ?). L'attaque (a) insuffisance probatoire est pertinente : la pièce est trop courte pour porter 3.04. La fiche est explicite : « j'ai aimé / j'ai pas aimé » sans articulation = état émotionnel, pas jugement esthétique. Ici l'apprenant articule à peine — « trop théorique » est une étiquette plus qu'un critère développé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Trop théorique » résume un jugement sans en exposer les critères ni montrer un acte de curation. La pièce n'atteint pas le seuil de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces évaluations comme du jugement esthétique articulé et je n'ai trouvé que des étiquettes très brèves (« trop théorique »). La fiche demande des critères verbalisés et un acte de curation — sélection, hiérarchisation, soustraction motivée. L'apprenant a manifestement opéré une telle sélection (jeter ses notes, repartir d'un cadrage différent) mais sans articuler les critères esthétiques de son choix sur cette feuille. La pratique du tri est présente ; sa formalisation en jugement esthétique ne l'est pas. Une description d'un choix de ton, de structure, de registre — pourquoi telle option plutôt que telle autre — ouvrirait cette zone.",
+          "confianceFinale": 0.28
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.28,
+        "motif": "Les jugements de forme sont résumés en étiquettes (« trop théorique ») sans critères articulés ni acte de curation décrit ; le seuil de la fiche n'est pas atteint.",
+        "prescription": "Pour ouvrir cette zone, une description d'un choix éditorial précis dans la v6 — pourquoi tel ton, pourquoi telle structure, sur la base de quels critères — donnerait à voir le jugement esthétique en acte. Le tri se fait ; reste à l'exposer."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace d'Intelligence Manuelle. Un récit d'interaction directe avec une matière tangible (montage, réparation, fabrication) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace d'Ancrage Sensoriel. Une description phénoménologique d'une sensation, ou un récit d'intuition corporelle suivie d'action, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille du jour ne contient pas de trace de Présence & Performance Live. Un récit de moment vécu en présentiel où la co-présence physique a fait une différence ouvrirait ce dossier."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 0,
+    "nonEtablies": 1,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle des gestes créatifs se concentre presque entièrement sur l'itération en versions successives d'un même livrable. L'apprenant déploie une v5 perçue rétrospectivement comme trop théorique, en tire une lecture (la production ratée a clarifié l'intention), et engage une v6 avec un processus repensé. Le geste créatif est ici intellectuel et éditorial — pas manuel, pas live, pas sensoriel. Le rapport au matériau accumulé (87 Mb, 369 éléments) signale une activité abondante dont le tri se fait par grandes décisions structurelles, plutôt que par une curation détaillée et articulée.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "L'apprenant assume le bâclage rétrospectif de la v5 et le lit comme producteur d'une clarification pour la v6 — la trace oblique exacte que la fiche pointe.",
+        "extraitVerbatim": "La version précédente (v5) était trop théorique, basée sur mes réflexions et lectures faites durant la thèse. Il fallait que je passe par cette étape pour y voir plus clair dans ce qui était vraiment important.",
+        "ceQueCaDit": "Le travail montre que la version imparfaite est traitée comme une étape légitime d'apprentissage, pas comme un échec à effacer. C'est la face « 1→n » de la créativité itérative — celle qui améliore par cycles assumés."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs zones du pôle restent en attente. La singularité et signature — l'empreinte stylistique récurrente — pourrait se lire dans l'écriture même de cette feuille (digressions parenthétiques, métaphore des 11 bureaux), mais elle n'est pas thématisée par l'apprenant. Le design de problèmes — créer une question qui n'existait pas — n'apparaît pas sous cette forme aujourd'hui (on est plutôt dans le recadrage d'un objectif connu). Le jugement esthétique se résume à des étiquettes (« trop théorique ») sans articulation des critères. Les compétences à composante corporelle ou live — intelligence manuelle, ancrage sensoriel, performance — sont par nature absentes d'une feuille consacrée à un travail conceptuel solitaire. C'est plus un focus de la journée qu'un manque.",
+    "emergencesPole": "Une chose mérite d'être nommée : le matériau accumulé (87 Mb, 369 éléments, versionnage imparfait) signale un rapport à la production qui assume la prolifération avant le tri. Le tri se fait par décisions structurelles fortes (changer le processus, repartir du plan) plutôt que par curation fine. C'est cohérent avec un profil d'itérateur, et cela laisse en suspens la dimension de jugement esthétique articulé.",
+    "pistes": [
+      "Pour épaissir la créativité itérative, un passage qui exposerait ce qui a été précisément abandonné entre v5 et v6 — pas seulement le « tout » mais quelques éléments concrets — donnerait à voir le choix stratégique en acte.",
+      "Pour ouvrir le jugement esthétique, une description d'un choix éditorial précis pour la v6 — pourquoi tel ton, telle structure, en regard de quoi — ferait passer l'évaluation de l'étiquette au critère.",
+      "Pour faire affleurer la signature, un retour réflexif sur ce qui fait que l'apprenant reconnaît son propre travail dans les manuels (ou ne le reconnaît pas) ouvrirait la zone."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle des gestes créatifs se concentre presque entièrement sur l'itération en versions successives d'un même livrable. L'apprenant déploie une v5 perçue rétrospectivement comme trop théorique, en tire une lecture (la production ratée a clarifié l'intention), et engage une v6 avec un processus repensé. Le geste créatif est ici intellectuel et éditorial — pas manuel, pas live, pas sensoriel. Le rapport au matériau accumulé (87 Mb, 369 éléments) signale une activité abondante dont le tri se fait par grandes décisions structurelles, plutôt que par une curation détaillée et articulée.\n\n## Territoires les plus denses\n\n**Créativité itérative et radicale.** L'apprenant assume le bâclage rétrospectif de la v5 et le lit comme producteur d'une clarification pour la v6 — la trace oblique exacte que la fiche pointe. *« La version précédente (v5) était trop théorique, basée sur mes réflexions et lectures faites durant la thèse. Il fallait que je passe par cette étape pour y voir plus clair dans ce qui était vraiment important. »* Le travail montre que la version imparfaite est traitée comme une étape légitime d'apprentissage, pas comme un échec à effacer. C'est la face « 1→n » de la créativité itérative — celle qui améliore par cycles assumés.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs zones du pôle restent en attente. La singularité et signature — l'empreinte stylistique récurrente — pourrait se lire dans l'écriture même de cette feuille (digressions parenthétiques, métaphore des 11 bureaux), mais elle n'est pas thématisée par l'apprenant. Le design de problèmes — créer une question qui n'existait pas — n'apparaît pas sous cette forme aujourd'hui (on est plutôt dans le recadrage d'un objectif connu). Le jugement esthétique se résume à des étiquettes (« trop théorique ») sans articulation des critères. Les compétences à composante corporelle ou live — intelligence manuelle, ancrage sensoriel, performance — sont par nature absentes d'une feuille consacrée à un travail conceptuel solitaire. C'est plus un focus de la journée qu'un manque.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose mérite d'être nommée : le matériau accumulé (87 Mb, 369 éléments, versionnage imparfait) signale un rapport à la production qui assume la prolifération avant le tri. Le tri se fait par décisions structurelles fortes (changer le processus, repartir du plan) plutôt que par curation fine. C'est cohérent avec un profil d'itérateur, et cela laisse en suspens la dimension de jugement esthétique articulé.\n\n## Pistes pour enrichir ce pôle\n\nPour épaissir la créativité itérative, un passage qui exposerait ce qui a été précisément abandonné entre v5 et v6 — pas seulement le « tout » mais quelques éléments concrets — donnerait à voir le choix stratégique en acte.\n\nPour ouvrir le jugement esthétique, une description d'un choix éditorial précis pour la v6 — pourquoi tel ton, telle structure, en regard de quoi — ferait passer l'évaluation de l'étiquette au critère.\n\nPour faire affleurer la signature, un retour réflexif sur ce qui fait que l'apprenant reconnaît son propre travail dans les manuels (ou ne le reconnaît pas) ouvrirait la zone.\n"
+  }
+}

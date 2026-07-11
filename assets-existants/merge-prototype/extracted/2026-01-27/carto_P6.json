@@ -1,0 +1,345 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres. Le rôle de ces derniers étant d'améliorer l'école, de maintenir les référentiels de compétences en lien avec les décisions de la société civile, de modifier les manuels de formation qui déterminent le protocole de réplication des écoles.",
+      "contexte": "Architecture institutionnelle reliant Maîtres, référentiels, manuels et société civile dans un mécanisme de mise à jour.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Ce sera pour plutard (après l'update du site web que j'ai du interrompre à Noël car je n'avais plus accès à mon grand écran) et probablement avant de me plonger dans Decidim, car je vois déjà sur le forum WhatsApp que des parents inquiets commencent à me solliciter pour me demander ce que leur gamin devrait faire comme étude… Ce n'est que le début. Je veux être prêt côté école et cartographies lorsqu'on lancera les débats publics.",
+      "contexte": "Articulation de Decidim (plateforme de démocratie participative) avec les débats publics à venir et la sollicitation citoyenne déjà perceptible.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Je me fiche du look et de la mise en page, car du coup, 6x300 pages ça fait beaucoup de papier : je pense ainsi les conserver en version HTML pour une lecture écran uniquement",
+      "contexte": "Conservation des manuels en HTML — choix de format qui touche à la portabilité et à la disponibilité du commun.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'ai d'ailleurs dû arrêter totalement l'abonnement de ChatGPT pour raison de restriction budgétaire. […] Gemini et Perplexity sont payés à l'année, donc eux sont ok.",
+      "contexte": "Composition d'un panier d'outils IA propriétaires sous contrainte budgétaire, sans mention de souveraineté.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une tentative délibérée de provoquer un comportement aberrant d'une IA pour en éprouver les garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit, l'explicabilité et l'hygiène des données dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une investigation sur la manière dont une IA est arrivée à un résultat, ou une décision concernant les données partagées avec elle."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le contrôle citoyen d'une décision algorithmique qui affecte des populations vulnérables."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Conservation des manuels en HTML — format ouvert, lisible sans outil propriétaire, portable."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Composition d'un panier d'outils IA propriétaires (ChatGPT, Gemini, Perplexity, Claude) avec arbitrages purement budgétaires — absence apparente d'arbitrage souverainiste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La fiche 6.04 demande une motivation explicite par une analyse de dépendance ou des communs. La pièce 1 (HTML) pourrait relever de cette motivation, mais l'apprenant la justifie par la lecture écran et la portabilité, pas par la souveraineté ; le mot « commun » n'apparaît pas. La pièce 2 montre au contraire un panier d'outils propriétaires arbitré par le coût, ce qui éloigne plutôt de 6.04. La présomption d'absence pèse fort. Seule la pièce 1 résiste très faiblement par le choix d'un format ouvert.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le choix du HTML comme format de conservation préserve la portabilité et l'indépendance vis-à-vis d'un éditeur, même si la motivation explicite est l'usage."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en cherchant à invalider. L'attaque dominante est (h) faux positif de fiche : la fiche met en garde précisément contre le piège « j'utilise un format libre par commodité » sans pensée souverainiste. La pièce ne porte aucune analyse de dépendance ni mention des communs. L'attaque tient et la pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le choix du HTML est motivé par la commodité de lecture, pas par une analyse de dépendance ; la fiche disqualifie explicitement ce cas."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à voir si une pensée souverainiste s'y logeait. La pièce sur le HTML a résisté très faiblement par le choix d'un format ouvert ; elle est tombée au temps 2 sous le faux positif que la fiche signale précisément. Ce qui en résulte est une présence non établie pour cette feuille. La trace pointe vers une question plus large : la dépendance aux IA propriétaires (ChatGPT, Gemini, Perplexity, Claude) n'est pas thématisée comme problème de souveraineté.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce du format HTML : la motivation est la commodité, pas l'analyse de dépendance.",
+        "prescription": "Le travail mobilise un panier d'outils IA propriétaires arbitré par le coût. Nommer une fois ce que cette dépendance permet et ce qu'elle empêche — et ce qu'un choix souverain coûterait — ouvrirait franchement cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Projection sur Decidim et les débats publics — préparation d'un dispositif de participation citoyenne aux décisions sur l'école et les cartographies."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Articulation des Maîtres avec les décisions de la société civile dans la maintenance des référentiels — chaîne de légitimation participative."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La fiche 6.05 demande des processus concrets de participation citoyenne, pas seulement la mention d'une plateforme. La pièce 1 mentionne Decidim et les débats publics mais ne décrit pas la facilitation. La pièce 2 articule une chaîne où la société civile décide, mais sans préciser comment cette participation est organisée. Pourtant, la pièce 1 est plus qu'une mention : l'apprenant ordonne sa production présente pour être prêt au moment où la participation s'organisera, ce qui suppose une intention de faciliter et non seulement de subir cette participation. La pièce 2 résiste plus faiblement car la voie de la participation reste implicite.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant prépare école et cartographies en vue du moment où la participation citoyenne s'ouvrira (Decidim, débats publics) — préparation d'un dispositif, pas simple anticipation."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en cherchant à invalider. L'attaque dominante est (f) récit performatif : « je veux être prêt » est une déclaration d'intention, pas un acte de facilitation. La fiche est rigoureuse : 6.05 demande des processus où des non-experts ont été associés à des décisions, ou de la facilitation concrète. Ici, l'action présente est de produire des manuels et des cartographies — pas de faciliter la participation. La pièce tombe ou tient très faiblement comme intention.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La préparation aux débats publics est une orientation déclarée, pas une facilitation concrète de participation citoyenne en acte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à voir si la facilitation participative s'y manifestait. La pièce sur Decidim a résisté faiblement par sa portée intentionnelle, mais elle est tombée au temps 2 : aucune facilitation n'est exercée dans cette feuille. Ce qui en résulte est une présence non établie ici, avec une posture qui pourra se manifester dans des feuilles où la participation sera effectivement organisée. La compétence est en projet, pas en acte.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Le temps 2 a disqualifié la pièce : la préparation aux débats publics reste une intention sans facilitation effective.",
+        "prescription": "Le travail anticipe l'ouverture d'un dispositif participatif. Documenter, lorsque les débats publics commenceront, comment des non-experts ont effectivement été associés à une décision donnera corps à cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et l'anticipation normative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait noter une analyse prospective d'un cadre réglementaire en mouvement et son influence sur des décisions présentes."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un dispositif où les Maîtres co-construisent les référentiels et les manuels en lien avec la société civile — architecture de gouvernance distribuée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. La fiche 6.07 demande des récits où le collectif a produit quelque chose qu'aucun membre n'aurait pu créer seul (émergence) ou des règles co-construites (gouvernance). Ici, l'apprenant décrit une architecture institutionnelle où les Maîtres ont une fonction d'amélioration et de maintenance, mais c'est une conception solo, pas un récit de collectif produisant. La pièce résiste faiblement : elle décrit un dispositif de gouvernance distribuée plus qu'elle ne raconte un acte de facilitation.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le dispositif décrit confère aux Maîtres un rôle d'amélioration et de modification des règles du système — c'est une conception de gouvernance, même si elle est faite par une seule main."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en cherchant à invalider. L'attaque dominante est (g) mouvement-vers : l'apprenant conçoit une architecture de gouvernance, mais ce n'est pas encore une gouvernance pratiquée. La fiche fait une exception pour les artefacts détaillés (chartes, protocoles avec rôles et limites). Ici, le passage donne les rôles (Maîtres, société civile) et leurs fonctions (maintenir, modifier, en lien avec) mais ne formalise pas un protocole. La pièce tient avec une portée modeste comme conception, non comme pratique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'architecture de gouvernance distribuée est esquissée (rôles et fonctions) mais reste à l'état de conception ; le protocole précis n'est pas formalisé dans cette feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à la disqualifier comme vision solitaire. Elle a résisté parce qu'elle décrit explicitement un dispositif de gouvernance où la modification des règles est distribuée à un rôle (les Maîtres) reliant un usage et une autorité (la société civile). Sous présomption de sycophantie, la portée s'est réduite : la conception est posée, mais la facilitation effective n'est pas exercée. Ce qui en résulte est un indice de pensée de gouvernance collective appliqué à la conception du dispositif RESPIRE.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce ; la conception de gouvernance est posée mais sans formalisation détaillée ni pratique effective dans cette feuille.",
+        "prescription": "Le travail esquisse une gouvernance distribuée entre Maîtres et société civile. Détailler une fois les règles précises de cette gouvernance (qui décide quoi, dans quel cas, avec quels recours) rendrait ce dispositif transmissible."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'école est qualifiée d'« intelligente » et de « capable d'apprendre » — attribution à une institution d'une propriété cognitive habituellement réservée aux humains."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. Qualifier une école d'intelligente peut être une métaphore commune (« smart school »), pas un acte de décentrement anthropocentrique. La fiche distingue 6.08 d'autres compétences par la question de la légitimité de la primauté humaine — qui n'est pas du tout posée ici. L'« intelligence » de l'école est précisément constituée par les portfolios humains. La présomption d'absence pèse fort. La pièce résiste très faiblement par son glissement sémantique (attribuer l'apprentissage à une entité non-humaine).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprentissage est attribué à l'école elle-même comme entité, ce qui constitue un glissement de la propriété cognitive de l'individu vers l'institution."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en cherchant à invalider. L'attaque dominante est (d) glissement lexical : le mot « intelligente » appliqué à l'école pourrait n'avoir aucune charge décentrante — c'est une figure usuelle (« smart city »). La fiche met en garde contre la récitation. Ici, l'apprenant ne questionne pas la primauté humaine, il étend simplement le vocabulaire de l'intelligence à une institution. L'attaque tient et la pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'« intelligence » de l'école est une figure usuelle qui n'interroge pas la légitimité de la primauté humaine ; aucun décentrement épistémique n'est exercé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à voir si un décentrement s'y logeait. Elle a résisté très faiblement par son glissement sémantique ; elle est tombée au temps 2 sous le faux positif lexical. Ce qui en résulte est une présence non établie pour cette feuille. Le vocabulaire de l'intelligence collective d'une institution ne touche pas à la question philosophique de la primauté humaine.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce : le glissement lexical (école intelligente) ne porte pas de décentrement épistémique réel.",
+        "prescription": "Le travail étend le vocabulaire de l'intelligence à une institution. Documenter, à propos d'une décision, un moment où la primauté du besoin humain a été interrogée pour de bon ouvrirait franchement cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait noter une réflexion sur le statut moral des entités IA avec lesquelles il travaille, ou sur la manière dont il choisit de les traiter."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et l'interdépendance dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un système vivant a servi de modèle de conception ou où il s'est compris comme nœud d'un réseau vivant."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le pôle de la cité apparaît surtout en arrière-plan d'un travail concret de conception. L'apprenant ordonne sa journée en pensant à un horizon politique (les débats publics, Decidim, les parents qui commencent à solliciter sur WhatsApp), mais sans exercer encore les compétences politiques en acte. Le dispositif RESPIRE qu'il décrit suppose une chaîne de légitimité allant de la société civile aux Maîtres puis aux manuels, ce qui esquisse une gouvernance distribuée. Les autres dimensions du pôle — sécurité, audit, souveraineté numérique, veille réglementaire, décentrement post-anthropocentrique — ne sont pas la matière du jour.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Cette feuille ne porte pas le red-teaming, l'audit, la gouvernance algorithmique, ni la veille réglementaire. La souveraineté numérique apparaît comme question implicite (un panier d'outils IA propriétaires composé par contrainte budgétaire, sans arbitrage souverainiste), mais reste hors-champ comme compétence exercée. Le triptyque post-anthropocentrique (décentrement, cohabitation IA, conscience biosystémique) n'est pas activé : l'« école intelligente » n'interroge pas la primauté humaine, l'IA reste un outil dont le statut n'est pas thématisé. Plusieurs de ces territoires ressemblent à des zones non visitées plutôt qu'à des refus ; ils mériteraient d'être ouverts dans des feuilles où l'orientation de la journée se déplace de la production vers la réflexion politique sur ces enjeux.",
+    "emergencesPole": "Une chose traverse les rares traces politiques de cette feuille : le dispositif RESPIRE est pensé comme un agencement entre instances (société civile, Maîtres, manuels, écoles répliquées) dont la légitimité circule. La politique est conçue en termes d'architecture, pas encore en termes de pratique. Le présent (production, sollicitations parentales, arbitrages budgétaires) est tendu vers un avenir où la dimension politique s'ouvrira pour de bon — au moment où Decidim s'ouvrira et où les débats publics commenceront.",
+    "pistes": [
+      "Pour enrichir la dimension souveraineté numérique, un chemin possible serait de nommer une fois ce que la dépendance aux outils IA propriétaires permet et ce qu'elle empêche, au-delà du calcul budgétaire.",
+      "Pour enrichir la dimension gouvernance collective, un chemin possible serait de détailler les règles de la chaîne RESPIRE — qui peut modifier quoi, dans quel cas, avec quels recours — pour rendre le dispositif transmissible.",
+      "Pour enrichir la dimension participation citoyenne, un chemin possible serait de documenter, lorsque Decidim s'ouvrira, comment des non-experts auront effectivement contribué à une décision."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le pôle de la cité apparaît surtout en arrière-plan d'un travail concret de conception. L'apprenant ordonne sa journée en pensant à un horizon politique (les débats publics, Decidim, les parents qui commencent à solliciter sur WhatsApp), mais sans exercer encore les compétences politiques en acte. Le dispositif RESPIRE qu'il décrit suppose une chaîne de légitimité allant de la société civile aux Maîtres puis aux manuels, ce qui esquisse une gouvernance distribuée. Les autres dimensions du pôle — sécurité, audit, souveraineté numérique, veille réglementaire, décentrement post-anthropocentrique — ne sont pas la matière du jour.\n\n## Territoires les plus denses\n\nCette feuille n'établit pas de présence pleine sur les compétences du pôle ; les traces existantes pointent vers une conception institutionnelle qui esquisse une gouvernance distribuée, sans démonstration suffisamment dense pour figurer ici comme territoire.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille ne porte pas le red-teaming, l'audit, la gouvernance algorithmique, ni la veille réglementaire. La souveraineté numérique apparaît comme question implicite (un panier d'outils IA propriétaires composé par contrainte budgétaire, sans arbitrage souverainiste), mais reste hors-champ comme compétence exercée. Le triptyque post-anthropocentrique (décentrement, cohabitation IA, conscience biosystémique) n'est pas activé : l'« école intelligente » n'interroge pas la primauté humaine, l'IA reste un outil dont le statut n'est pas thématisé. Plusieurs de ces territoires ressemblent à des zones non visitées plutôt qu'à des refus ; ils mériteraient d'être ouverts dans des feuilles où l'orientation de la journée se déplace de la production vers la réflexion politique sur ces enjeux.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse les rares traces politiques de cette feuille : le dispositif RESPIRE est pensé comme un agencement entre instances (société civile, Maîtres, manuels, écoles répliquées) dont la légitimité circule. La politique est conçue en termes d'architecture, pas encore en termes de pratique. Le présent (production, sollicitations parentales, arbitrages budgétaires) est tendu vers un avenir où la dimension politique s'ouvrira pour de bon — au moment où Decidim s'ouvrira et où les débats publics commenceront.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension souveraineté numérique, un chemin possible serait de nommer une fois ce que la dépendance aux outils IA propriétaires permet et ce qu'elle empêche, au-delà du calcul budgétaire.\n- Pour enrichir la dimension gouvernance collective, un chemin possible serait de détailler les règles de la chaîne RESPIRE — qui peut modifier quoi, dans quel cas, avec quels recours — pour rendre le dispositif transmissible.\n- Pour enrichir la dimension participation citoyenne, un chemin possible serait de documenter, lorsque Decidim s'ouvrira, comment des non-experts auront effectivement contribué à une décision.\n"
+  }
+}

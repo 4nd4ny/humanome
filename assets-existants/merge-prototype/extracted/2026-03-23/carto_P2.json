@@ -1,0 +1,397 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Je suis en sous-régime avec la fièvre, mais Claude avance bien sans moi. Pendant que je relis la v2 du roman et j'apporte des petites retouches.",
+      "contexte": "Ouverture nommant un état physique (fièvre, sous-régime) puis basculant sur la délégation à Claude — coexistence d'une émotion/sensation corporelle et d'un état de travail.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Cowork bosse sur Sqilium qui est le futur EduFolio.",
+      "contexte": "Mention d'un agent IA (Cowork) auquel l'apprenant attribue une activité — pourrait être lu comme appartenance d'équipe étendue à l'IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Finir le livre Émergence (j'y suis presque) qui servira à lancer le concept pour le grand public (parents / étudiants) Puis le publier sur Amazon en eBook gratuit Puis imprimer une vingtaine d'exemplaires pour donner aux proches",
+      "contexte": "Plan de diffusion à plusieurs audiences (grand public, parents, étudiants, proches) — pourrait activer la traduction entre mondes et le geste de communauté.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Lancer les discussions sur Decidim et les débat autour du référentiel v7 (Un débat par compétence => 61 débats ?)",
+      "contexte": "Conception d'un dispositif de délibération distribué avec une question rhétorique sur la granularité — pourrait activer gestion des conflits, communauté, influence systémique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Reprendre le site web respire.school en incluant la ludification : — L'Ordre des Éclaireur : Veilleurs, Architectes, Épistémiarques → Maintiennent le référentiel des compétences humaines post AGI sur Décidim — La Confrérie des Noèsiomanciens : Médiateurs, Noèsiologues, Maîtres du Grimoire → Maintiennent le référentiel des fonctions cognitives (le Grimoire) — La Guilde des Technomanciens : Cartographes, Promptologues, Promptagogue → Maintiennent la liste des prompts et fichiers YAML des cartographies",
+      "contexte": "Architecture sociotechnique tripartite avec rôles internes — pourrait activer construction de communauté, gouvernance collective, influence systémique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Finir de rédiger la trilogie : — Votre enfant pense-t-il vraiment ? – L'intelligence à l'épreuve de l'école (livre pratique : pour les parents / explique le besoin d'une nouvelle pédagogie) — Le somnambule, le brillant, l'empêché – Réparer les intelligences en classe (livre politique : pour les profs / explique les lacunes de l'enseignement actuel) — Noèsiologie – Une pédagogie de l'émergence (livre théorique : pour les chercheurs, décrit le couplage noèsis / entendement)",
+      "contexte": "Trois livres adressés à trois publics distincts avec registres et fonctions adaptées (pratique / politique / théorique) — traduction entre mondes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable)",
+      "contexte": "Rôles antagonistes formalisés (véto / avocat du diable) dans une architecture de gouvernance — pourrait activer la gestion des conflits par dispositif.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le passage nomme un état corporel (sous-régime, fièvre) sans en faire le centre — pourrait être une trace de nomination émotionnelle ou somatique discrète."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : l'intelligence émotionnelle exige une nomination précise des émotions, une régulation délibérée, ou la perception fine de l'état d'autrui. Ici, « sous-régime avec la fièvre » est un constat physique brut, sans nomination émotionnelle ni régulation explicite. La fiche est claire : « j'étais crevé » est un constat brut, pas un signal d'intelligence émotionnelle. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à examiner ici.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'intelligence émotionnelle dans cette feuille. La mention de la fièvre est un constat fonctionnel — l'état physique sert à expliquer pourquoi Claude prend le relais, pas à explorer une émotion. Aucune nomination émotionnelle précise, aucune perception d'autrui, aucune régulation délibérée. La compétence n'est pas attestée dans cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été démentie : la mention de la fièvre relève du constat fonctionnel, pas de la nomination émotionnelle.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage où une émotion est nommée et reliée à une décision concrète — la sienne ou celle d'un autre — éclairerait la nomination et la régulation que la fiche désigne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de communication authentique dans cette feuille. Un récit de prise de parole inconfortable ou de feedback difficile assumé ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Le dispositif des 61 débats sur Decidim est conçu comme cadre productif du désaccord — un débat par compétence."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Rôles formalisés d'Aegis (véto) et Daimon (avocat du diable) — protocoles structurés de contradiction au sein du système d'évaluation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la gestion des conflits exige plus que l'organisation théorique d'un débat — il faut une transformation des tensions en intelligence collective, ou des protocoles structurant le désaccord. La pièce 1 propose 61 débats, un par compétence, mais avec un point d'interrogation à la fin — c'est une proposition à concrétiser, pas un conflit géré. La pièce 2 nomme deux rôles antagonistes intégrés à une architecture multi-agents : Aegis qui pose un véto, Daimon qui prend le rôle de l'avocat du diable. La fiche reconnaît explicitement ce marqueur : « protocoles de conflit productif mentionnés (avocat du diable, rôles de contradicteur) » — et signale en exception que la création de protocoles formels (« rôles AVOCAT/CHASSEUR/ABSENT, dispositifs structurés ») peut justifier un haut niveau. La pièce 2 résiste à la présomption d'absence. La pièce 1, en l'état, ressemble plus à un projet de plateforme qu'à une trace de conflit géré.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Aegis (véto) et Daimon (avocat du diable) sont des rôles antagonistes formalisés au sein d'une architecture — protocole structuré de contradiction, exactement le marqueur cité par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a résisté ; ai-je halluciné sa portée ? Aegis et Daimon sont des rôles d'IA, pas de tensions humaines vécues. La fiche envisage la création de protocoles formels comme exception forte — mais l'illustration qu'elle donne (« rôles AVOCAT/CHASSEUR/ABSENT ») concerne des protocoles applicables aussi à des humains. Ici les rôles sont assignés à des agents IA, dans un dispositif d'évaluation. La pièce porte plus une conception architecturale (1.07) qu'un récit de gestion de conflit humain. Mais la fiche permet précisément cette extension : « La compétence ne réside pas dans l'absence de conflit mais dans la capacité à structurer le désaccord pour qu'il produise de la valeur. » Structurer le désaccord par dispositif vaut, même si les rôles sont tenus par des agents.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.07 (architecture multi-agents). La portée 2.03 tient parce qu'il y a création de protocoles formels de contradiction, mais le terrain est artificiel (rôles IA), ce qui modère la confiance pour la dimension relationnelle humaine."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la gestion des conflits soit attestée dans cette feuille. Le projet des 61 débats sur Decidim n'a pas tenu — c'est une proposition à venir, pas un conflit structuré et vécu. Mais la conception d'une architecture où un agent porte le véto et un autre l'avocat du diable a résisté : c'est précisément ce que la fiche désigne comme protocole formel de conflit productif. La portée reste affaiblie par le fait que ces rôles sont tenus par des agents IA dans un dispositif théorique plutôt que dans une situation interhumaine. La trace existe mais elle est structurelle, pas relationnelle.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : la création de protocoles formels de contradiction (Aegis / Daimon) est précisément ce que la fiche pose en exception comme trace textuelle forte.",
+        "prescription": "Pour approfondir cette compétence, un récit de conflit interhumain vécu — où la contradiction d'Aegis ou Daimon aurait son équivalent dans un échange réel — complèterait la trace architecturale par une trace relationnelle. Les 61 débats prévus sur Decidim, une fois lancés, offriront un terrain d'observation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Lancer des discussions sur Decidim est une stratégie d'engagement collectif — concevoir un espace où d'autres prendront la parole peut activer l'influence systémique."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "L'architecture en Ordre / Confrérie / Guilde est conçue pour que d'autres s'engagent par identification à un rôle — design d'environnement d'engagement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : l'influence et la diplomatie exigent une stratégie articulée — préparation, reformulation des objections, adhésion durable — ou, dans sa forme systémique, la conception d'environnements où les gens s'engagent d'eux-mêmes. La pièce 1 propose de lancer des discussions sur Decidim ; la pièce 2 conçoit une architecture de rôles avec trois corporations. La fiche reconnaît explicitement : « Création d'un espace numérique (Discord, forum) conçu pour que d'autres s'auto-organisent = forme d'influence systémique. » Les pièces résistent à la présomption d'absence parce qu'elles décrivent précisément la conception d'environnements d'engagement plutôt que la persuasion individuelle. La pièce 2 résiste plus fortement que la pièce 1 (qui ne fait qu'annoncer le lancement).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le lancement de débats sur Decidim correspond au design d'un espace collaboratif pour faire émerger l'adhésion — manifestation citée par la fiche." },
+            { "pieceId": 2, "motifResistance": "L'architecture tripartite avec rôles identifiants (Veilleurs, Architectes, Cartographes) cherche à susciter l'engagement par identification, forme d'influence systémique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté ; ai-je halluciné leur portée ? La pièce 1 est une intention de lancement sans stratégie déployée — pas de préparation, pas d'identification des résistances, pas de gestion du timing. Elle ressemble plus à un programme qu'à une action diplomatique. La pièce 2 décrit une structure conçue pour engager d'autres par rôle, mais aucune trace d'utilisateurs effectifs adhérant à ce système — c'est un design en attente d'incarnation. Les deux pièces racontent la conception plus que l'effet d'influence.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : intention de lancer les débats sans déploiement effectif ni stratégie articulée — l'apprenant est en route vers l'influence systémique sans avoir franchi le seuil."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif partiel : l'architecture est décrite comme dispositif d'engagement mais sans trace d'engagement effectif. Le design existe, son effet d'influence reste à observer."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'influence et de diplomatie dans cette feuille. Deux pièces résistent : le projet des 61 débats sur Decidim et l'architecture tripartite en corporations. Toutes deux relèvent de la forme systémique de l'influence — concevoir des espaces où d'autres s'engagent — que la fiche cite comme manifestation directe. Les deux pièces sont affaiblies par leur caractère projectif : le dispositif est conçu, pas encore éprouvé. La trace tient mais avec réserve : elle est structurelle, en attente d'incarnation par des participants réels.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "La présomption de sycophantie a affaibli les deux pièces sans les disqualifier, mais l'absence d'effet observable maintient le verdict en zone d'incertitude.",
+        "prescription": "Pour consolider cette compétence, documenter, une fois les débats Decidim lancés et le site respire.school en ligne, les premières adhésions et les ajustements opérés en cours de route — comment l'environnement conçu a effectivement orienté l'engagement, et ce qui a dû être adapté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de collaboration divergente dans cette feuille. Un récit où un désaccord persiste sans bloquer la livraison ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces d'intelligence culturelle dans cette feuille. Un récit d'adaptation à des normes culturelles, organisationnelles ou générationnelles différentes ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de sens politique dans cette feuille. Un passage lisant les dynamiques de pouvoir invisibles d'un système (qui décide, qui bloque, pourquoi) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Trois livres adressés à trois publics distincts (parents / profs / chercheurs) avec registres explicitement différenciés (pratique / politique / théorique) — traduction d'un savoir entre cadres conceptuels."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Le livre Émergence est conçu pour lancer le concept auprès du grand public (parents / étudiants) — transposition d'un savoir spécialisé vers une audience généraliste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la traduction entre mondes exige plus que la déclaration d'audiences distinctes — il faut une transposition qui préserve le sens dans un autre registre, des reformulations successives, ou la bidirectionnalité. La pièce 1 explicite trois registres distincts (pratique / politique / théorique) pour trois publics (parents / profs / chercheurs) avec des intentions différenciées (« explique le besoin », « explique les lacunes », « décrit le couplage »). C'est une articulation explicite de la transposition d'un même fonds conceptuel — noèsiologie, pédagogie de l'émergence — vers trois cadres. La pièce 2 mentionne le grand public sans le travail de transposition. La pièce 1 résiste fortement : elle nomme la dimension du registre et la dimension du destinataire, et les articule par projet.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Trois registres (pratique / politique / théorique) pour trois publics avec intentions distinctes — articulation explicite de la transposition que la fiche désigne (« reformulations successives du même concept pour des audiences différentes »)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 a résisté ; ai-je halluciné sa portée ? La fiche exige le test : « l'expert d'origine reconnaîtrait-il son savoir dans la version traduite ? » Ici, les livres ne sont pas encore écrits — c'est un plan, pas un acte de traduction réalisé. L'attaque du mouvement-vers est tentante : on est en route vers la traduction, pas dans son exercice. Mais la fiche admet la « bidirectionnalité » comme signal fort, et l'articulation projet par projet (avec sous-titres distincts, intentions distinctes, registres distincts) tient comme conception de traduction, même si la livraison reste à venir. La pièce est affaiblie par son caractère projectif mais pas disqualifiée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : la trilogie est annoncée avec ses publics et registres mais reste « à finir » — l'acte de traduction n'est pas encore éprouvé livre par livre. La conception est néanmoins suffisamment articulée pour qualifier d'intention de traduction structurée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la traduction entre mondes soit attestée dans cette feuille. Le plan tripartite — un livre pour les parents, un pour les profs, un pour les chercheurs, avec registres distincts et intentions distinctes — a résisté. La fiche désigne précisément ce type d'articulation comme manifestation. Ce qui modère la confiance : les livres sont « à finir », l'acte de transposition n'est pas encore livré. Mais le geste de conception même articule trois registres pour trois cadres conceptuels — ce qui est en soi un acte de traduction, même s'il reste à exécuter.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La présomption de sycophantie a affaibli la pièce sans la disqualifier : l'articulation de trois registres pour trois publics correspond précisément au marqueur de transposition que la fiche désigne.",
+        "prescription": "Pour approfondir cette compétence, documenter, au moment de la rédaction d'un des trois livres, un passage où le même contenu a été reformulé dans deux registres distincts — montrer concrètement comment l'idée traverse le changement d'audience sans perdre son sens."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Architecture en Ordre / Confrérie / Guilde avec rôles internes nommés — vocabulaire identitaire propre, conception multi-canaux par corporation."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Cowork est nommé comme partenaire travaillant sur Sqilium — extension possible de la communauté aux agents IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la construction de communautés exige le « nous » identitaire chargé d'émotion, des rituels partagés, du vocabulaire propre au groupe, ou un sentiment d'appartenance. La pièce 1 propose une architecture tripartite avec rôles nommés (Veilleurs, Architectes, Épistémiarques, Médiateurs, Noèsiologues, Maîtres du Grimoire, Cartographes, Promptologues, Promptagogue) et un vocabulaire identitaire (Ordre, Confrérie, Guilde). La fiche cite explicitement comme exception : « *Expert* atteignable si l'apprenant décrit une *architecture* communautaire systémique (design d'écosystème multi-canaux avec rôles, rituels, gouvernance). » C'est exactement ce qui est en jeu ici, dans une forme particulièrement aboutie (vocabulaire mythologique, rôles différenciés, missions distinctes par corporation). La pièce 2 est trop allusive — Cowork est nommé sans description de lien identitaire. La pièce 1 résiste fortement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Architecture communautaire systémique avec vocabulaire identitaire mythologique et rôles différenciés par corporation — exactement le cas que la fiche désigne en exception." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 a résisté ; ai-je halluciné sa portée ? Le risque est de prendre une ludification (couches mythologiques décoratives) pour une véritable architecture communautaire. Mais la fiche admet précisément la ludification comme dispositif : ce qui compte est la structuration des rôles, des canaux et des missions. Ici, chaque corporation a un référentiel à maintenir (compétences humaines / fonctions cognitives / prompts), des sous-rôles distincts, et un objet partagé (Decidim, le Grimoire, les cartographies). C'est plus qu'une décoration. L'attaque qui tient partiellement : la communauté n'existe pas encore — c'est une conception en attente d'incarnation. Le portfolio ne montre pas de premier membre. Mais la fiche permet cette exception : c'est l'architecture qui justifie la trace forte, pas l'incarnation observable.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : la communauté est architecturée mais pas encore incarnée. Le seuil de transformation en communauté vivante n'est pas franchi. L'architecture en elle-même reste néanmoins une trace forte selon la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'une construction de communautés dans cette feuille. La conception tripartite — Ordre des Éclaireurs, Confrérie des Noèsiomanciens, Guilde des Technomanciens — a résisté. Chacune porte un référentiel propre, des rôles différenciés, et s'inscrit dans une narration mythologique qui crée un univers identitaire. La fiche autorise explicitement la trace textuelle forte quand l'apprenant décrit une architecture communautaire systémique. Ce qui modère : la communauté n'a pas encore d'incarnation observable. La trace est conceptuelle, en attente de vie effective.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : l'architecture communautaire est aboutie en design mais reste à incarner.",
+        "prescription": "Pour faire vivre cette compétence, documenter, dès l'arrivée des premiers membres dans l'une des corporations, les premiers rituels qui s'installent, le vocabulaire qui circule, les ajustements opérés au cadre initial — la communauté se reconnaît à ce qui dépasse son architecture."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 5,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le travail relationnel s'incarne moins dans des récits d'échange interpersonnel que dans la conception d'espaces où les autres prendront place. Le pôle se manifeste par l'architecture — débats distribués sur Decidim, corporations identitaires sur respire.school, livres adressés à trois publics distincts, agents IA antagonistes intégrés à un système d'évaluation. L'apprenant pense la relation par dispositif plutôt que par récit de rencontre. La fièvre est mentionnée en ouverture sans devenir matière émotionnelle. Ce qui circule, ici, est conçu pour circuler — pas raconté en train de circuler.",
+    "territoiresDenses": [
+      {
+        "competence": "Traduction entre mondes",
+        "description": "La trilogie articule trois registres (pratique / politique / théorique) pour trois publics (parents / profs / chercheurs) avec des intentions différenciées explicitement nommées — c'est une transposition pensée du même fonds noèsiologique vers trois cadres conceptuels.",
+        "extraitVerbatim": "Votre enfant pense-t-il vraiment ? – L'intelligence à l'épreuve de l'école (livre pratique : pour les parents / explique le besoin d'une nouvelle pédagogie) — Le somnambule, le brillant, l'empêché – Réparer les intelligences en classe (livre politique : pour les profs / explique les lacunes de l'enseignement actuel) — Noèsiologie – Une pédagogie de l'émergence (livre théorique : pour les chercheurs, décrit le couplage noèsis / entendement)",
+        "ceQueCaDit": "Le travail sur les destinataires précède l'écriture. La traduction n'est pas une opération de vulgarisation descendante, mais l'attribution d'une fonction propre à chaque livre — expliquer un besoin, expliquer un manque, décrire un mécanisme."
+      },
+      {
+        "competence": "Construction de communautés",
+        "description": "L'architecture tripartite du site respire.school invente un univers identitaire avec rôles nommés par corporation et missions distinctes par référentiel maintenu — c'est un design d'écosystème communautaire systémique.",
+        "extraitVerbatim": "L'Ordre des Éclaireur : Veilleurs, Architectes, Épistémiarques → Maintiennent le référentiel des compétences humaines post AGI sur Décidim — La Confrérie des Noèsiomanciens : Médiateurs, Noèsiologues, Maîtres du Grimoire → Maintiennent le référentiel des fonctions cognitives (le Grimoire) — La Guilde des Technomanciens : Cartographes, Promptologues, Promptagogue → Maintiennent la liste des prompts et fichiers YAML des cartographies",
+        "ceQueCaDit": "La communauté est pensée comme architecture avant d'être pensée comme rencontre. Chaque corporation porte un référentiel propre, ce qui crée des appartenances distinctes plutôt qu'un grand ensemble indifférencié."
+      },
+      {
+        "competence": "Gestion des conflits",
+        "description": "Les rôles d'Aegis (véto) et de Daimon (avocat du diable) au sein de l'architecture multi-agents installent un protocole formel de contradiction productive — la dissidence est intégrée au dispositif plutôt qu'évitée.",
+        "extraitVerbatim": "Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable)",
+        "ceQueCaDit": "Le désaccord est conçu comme fonction nécessaire du système. La friction n'est pas un accident à gérer, mais un rôle attribué."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas traversés dans cette feuille. La communication authentique, la collaboration divergente, l'intelligence culturelle et le sens politique n'y laissent pas de traces. L'intelligence émotionnelle apparaît en surface (la fièvre) sans devenir matière de récit. L'influence et la diplomatie sont esquissées par la conception de plateformes participatives, mais l'effet n'est pas encore observable — les débats sur Decidim restent à lancer, l'architecture en corporations à incarner. Ces zones mériteraient d'être documentées dans des feuilles où la rencontre, l'échange en face-à-face ou la lecture des dynamiques d'un groupe vivant deviennent l'objet du récit.",
+    "emergencesPole": "Deux traversées émergent. La première : le relationnel pensé par dispositif. Là où d'autres pôles racontent des interactions, celui-ci en conçoit les cadres — 61 débats, trois corporations, deux agents antagonistes. La relation est anticipée plutôt que vécue. La deuxième : la différenciation des destinataires comme principe d'architecture. Trois livres pour trois publics, trois corporations pour trois référentiels, plusieurs agents IA pour plusieurs fonctions — l'apprenant pense rarement un public unique, mais des audiences différenciées avec des registres adaptés.",
+    "pistes": [
+      "Pour donner de la chair aux dispositifs conçus, un chemin possible serait de raconter, dès le premier débat Decidim lancé, ce que les voix qui arrivent transforment au cadre initial — ce qui a tenu, ce qui a dû s'adapter.",
+      "Pour ouvrir un territoire émotionnel encore peu visité, un chemin possible serait de relire une journée comme celle-ci en partant non pas des projets mais de l'état physique en arrière-plan — comment la fièvre a coloré les choix, les délégations, les arbitrages.",
+      "Pour matérialiser la traduction entre mondes au-delà du plan, un chemin possible serait de prendre une même page du livre théorique et de la réécrire pour un parent, en notant ce qui se déplace dans le passage."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le travail relationnel s'incarne moins dans des récits d'échange interpersonnel que dans la conception d'espaces où les autres prendront place. Le pôle se manifeste par l'architecture — débats distribués sur Decidim, corporations identitaires sur respire.school, livres adressés à trois publics distincts, agents IA antagonistes intégrés à un système d'évaluation. L'apprenant pense la relation par dispositif plutôt que par récit de rencontre. La fièvre est mentionnée en ouverture sans devenir matière émotionnelle. Ce qui circule, ici, est conçu pour circuler — pas raconté en train de circuler.\n\n## Territoires les plus denses\n\n### Traduction entre mondes\n\nLa trilogie articule trois registres (pratique / politique / théorique) pour trois publics (parents / profs / chercheurs) avec des intentions différenciées explicitement nommées — c'est une transposition pensée du même fonds noèsiologique vers trois cadres conceptuels.\n\n> « Votre enfant pense-t-il vraiment ? – L'intelligence à l'épreuve de l'école (livre pratique : pour les parents / explique le besoin d'une nouvelle pédagogie) — Le somnambule, le brillant, l'empêché – Réparer les intelligences en classe (livre politique : pour les profs / explique les lacunes de l'enseignement actuel) — Noèsiologie – Une pédagogie de l'émergence (livre théorique : pour les chercheurs, décrit le couplage noèsis / entendement) »\n\nLe travail sur les destinataires précède l'écriture. La traduction n'est pas une opération de vulgarisation descendante, mais l'attribution d'une fonction propre à chaque livre — expliquer un besoin, expliquer un manque, décrire un mécanisme.\n\n### Construction de communautés\n\nL'architecture tripartite du site respire.school invente un univers identitaire avec rôles nommés par corporation et missions distinctes par référentiel maintenu — c'est un design d'écosystème communautaire systémique.\n\n> « L'Ordre des Éclaireur : Veilleurs, Architectes, Épistémiarques → Maintiennent le référentiel des compétences humaines post AGI sur Décidim — La Confrérie des Noèsiomanciens : Médiateurs, Noèsiologues, Maîtres du Grimoire → Maintiennent le référentiel des fonctions cognitives (le Grimoire) — La Guilde des Technomanciens : Cartographes, Promptologues, Promptagogue → Maintiennent la liste des prompts et fichiers YAML des cartographies »\n\nLa communauté est pensée comme architecture avant d'être pensée comme rencontre. Chaque corporation porte un référentiel propre, ce qui crée des appartenances distinctes plutôt qu'un grand ensemble indifférencié.\n\n### Gestion des conflits\n\nLes rôles d'Aegis (véto) et de Daimon (avocat du diable) au sein de l'architecture multi-agents installent un protocole formel de contradiction productive — la dissidence est intégrée au dispositif plutôt qu'évitée.\n\n> « Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable) »\n\nLe désaccord est conçu comme fonction nécessaire du système. La friction n'est pas un accident à gérer, mais un rôle attribué.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas traversés dans cette feuille. La communication authentique, la collaboration divergente, l'intelligence culturelle et le sens politique n'y laissent pas de traces. L'intelligence émotionnelle apparaît en surface (la fièvre) sans devenir matière de récit. L'influence et la diplomatie sont esquissées par la conception de plateformes participatives, mais l'effet n'est pas encore observable — les débats sur Decidim restent à lancer, l'architecture en corporations à incarner. Ces zones mériteraient d'être documentées dans des feuilles où la rencontre, l'échange en face-à-face ou la lecture des dynamiques d'un groupe vivant deviennent l'objet du récit.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux traversées émergent. La première : le relationnel pensé par dispositif. Là où d'autres pôles racontent des interactions, celui-ci en conçoit les cadres — 61 débats, trois corporations, deux agents antagonistes. La relation est anticipée plutôt que vécue. La deuxième : la différenciation des destinataires comme principe d'architecture. Trois livres pour trois publics, trois corporations pour trois référentiels, plusieurs agents IA pour plusieurs fonctions — l'apprenant pense rarement un public unique, mais des audiences différenciées avec des registres adaptés.\n\n## Pistes pour enrichir ce pôle\n\n> Pour donner de la chair aux dispositifs conçus, un chemin possible serait de raconter, dès le premier débat Decidim lancé, ce que les voix qui arrivent transforment au cadre initial — ce qui a tenu, ce qui a dû s'adapter.\n\n> Pour ouvrir un territoire émotionnel encore peu visité, un chemin possible serait de relire une journée comme celle-ci en partant non pas des projets mais de l'état physique en arrière-plan — comment la fièvre a coloré les choix, les délégations, les arbitrages.\n\n> Pour matérialiser la traduction entre mondes au-delà du plan, un chemin possible serait de prendre une même page du livre théorique et de la réécrire pour un parent, en notant ce qui se déplace dans le passage."
+  }
+}

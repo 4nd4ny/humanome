@@ -1,0 +1,364 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Est-ce que je postule avec de fortes chances d'obtenir le poste et de ne plus pouvoir avancer sur RESPIRE. Est-ce que je refuse et je perds mes allocations chômage avec le risque qu'on m'impose un poste moins bien d'enseignant en secondaire 2 [...] et que je refuserai aussi d'ailleurs ?",
+      "contexte": "Dilemme posé en structure 'd'un côté / de l'autre' avec exploration des conséquences. Peut activer 4.01 (raisonnement éthique appliqué) ou 4.05 (décision dans le flou).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je préfère être pauvre et finir ce qui est important, que d'avoir un salaire et faire quelque chose qui n'a plus de sens pour moi",
+      "contexte": "Arbitrage explicite entre deux valeurs (sens vs sécurité financière) avec préférence assumée. Peut activer 4.01 (mise en tension de valeurs) ou 4.06 (intégrité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je sais que j'ai trop de respect pour les élèves pour donner des cours de merde, et donc que je n'aurais probablement plus la force d'avancer sur mes projets.",
+      "contexte": "Engagement éthique vis-à-vis des élèves comme contrainte ferme. Peut activer 4.06 (intégrité, cohérence parole/actes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Dans tous les cas, je savais que ce moment allait arriver et ça me fatigue beaucoup d'y penser.",
+      "contexte": "Reconnaissance qu'un choix arrive et qu'il fatigue. Pourrait toucher 4.05 (tolérance à l'incertitude) ou 4.09 (patience stratégique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "L'école de demain à des années d'avances en intégrant noèsiologie et évaluations humanistes au cœur du projet. Je ne veux pas arrêter avant d'avoir lancer le processus, qui, ensuite, n'a plus besoin de moi pour exister.",
+      "contexte": "Engagement long-terme avec un horizon dépassant la situation présente. Peut activer 4.03 (long-terme) ou 4.06 (intégrité dans la durée).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Mais le démarrage nécessite une énergie et une concentration que même en étant au chômage je n'arrive que très difficilement à avoir. Impossible à faire en travaillant à côté.",
+      "contexte": "Tranchage assumé sur l'incompatibilité travail/projet, sous incertitude. Peut activer 4.05 (décision malgré le flou).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le dilemme est posé en structure 'd'un côté / de l'autre' avec les conséquences de chaque branche."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Mise en tension explicite de deux valeurs : sens et sécurité financière, avec préférence assumée."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Tension entre le respect dû aux élèves et la capacité à avancer sur ses projets — deux engagements légitimes en conflit."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que poser un dilemme et trancher selon ses préférences ne suffit pas à attester un raisonnement éthique appliqué au sens de la fiche, qui exige le maintien d'une incertitude morale ou l'interrogation des critères mêmes du jugement. La pièce 1 énumère les conséquences de deux options mais ne formule pas la tension comme dilemme moral — c'est un calcul de conséquences personnelles. La pièce 2 énonce une préférence ferme ('je préfère') sans maintenir d'incertitude — la valeur 'sens' l'emporte d'emblée sur la valeur 'salaire'. La pièce 3 résiste un peu plus : elle nomme une tension entre deux engagements légitimes (le respect dû aux élèves, l'avancement des projets qui visent l'école de demain) qui mettent en cause la qualité due à autrui dans un contexte professionnel.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 3,
+              "motifResistance": "La pièce articule une tension entre deux engagements légitimes (qualité due aux élèves, contribution au projet long) où la valeur professionnelle d'autrui est explicitement en jeu."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 3 a tenu. L'attaque (b) — confusion de compétence — me semble pertinente : la tension décrite est-elle vraiment éthique, ou plutôt pragmatique (je ne peux pas tout faire) ? La fiche exige une mise en tension de *valeurs* au sens moral, avec interrogation possible des critères. Ici, le respect des élèves est posé comme contrainte (je ne donnerai pas de cours de merde) mais sans interrogation du critère ni dilemme moral entretenu — la résolution est immédiate (je n'irai donc pas, ou si j'y vais, je ne pourrai plus avancer). L'attaque touche : la tension est plus une contrainte de cohérence personnelle qu'un raisonnement éthique appliqué.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La tension est articulée mais reste proche d'une contrainte d'intégrité personnelle (4.06) plutôt que d'un dilemme éthique entretenu. Le critère du respect dû aux élèves est posé sans être interrogé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les pièces portaient un raisonnement éthique au sens de la fiche (mise en tension de valeurs, maintien de l'incertitude morale). Les pièces qui énuméraient des options ou affirmaient une préférence ferme sont tombées. La pièce qui articulait le respect dû aux élèves contre la disponibilité pour le projet a tenu, mais affaiblie : la tension existe, mais elle se résout vite en contrainte d'intégrité plutôt qu'en dilemme entretenu. Ce qui en résulte : un indice de raisonnement éthique embarqué dans la décision, sans déploiement comme exercice moral autonome.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce a tenu sous forme affaiblie : la tension éthique existe mais glisse vite vers la contrainte d'intégrité.",
+        "prescription": "Un récit où l'incertitude morale est maintenue plus longtemps — par exemple en interrogeant ce que 'respect des élèves' veut dire précisément, ou en formulant les arguments du choix opposé — donnerait à voir un raisonnement éthique appliqué plus déployé."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'alignement et au refus éthique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un refus posé face à une suggestion IA ou un garde-fou explicitement conçu."
+      }
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique long-terme dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait articuler un arbitrage où l'impact générationnel ou environnemental pèse explicitement."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait relier explicitement un résultat concret à son mode de pensée divergent."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Dilemme avec incertitude sur les conséquences (les ouvertures de postes vont arriver, le risque qu'on impose un poste), à arbitrer sans garantie."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Reconnaissance de l'incertitude qui pèse ('ça me fatigue beaucoup d'y penser') sans paralysie : la délibération continue."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Tranchage assumé : 'impossible à faire en travaillant à côté' — pose une conclusion ferme malgré le flou de la situation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que sentir l'incertitude et énoncer une préférence ne suffit pas à attester 4.05, qui exige la combinaison (1) nommer ce qu'on ne sait pas, (2) décrire comment on a fonctionné malgré le flou, (3) raconter un acte de tranchage avec ses conséquences. La pièce 1 décrit un dilemme avec ses risques sans pourtant nommer ce qui reste fondamentalement inconnu (l'apprenant connaît les options et leurs probabilités selon lui). La pièce 4 reconnaît la fatigue de l'incertitude, mais ne décrit pas comment elle a continué à fonctionner malgré le flou — elle pourrait être paralysante. La pièce 6 résiste mieux : elle pose un tranchage ferme ('impossible à faire en travaillant à côté') qui constitue un acte décisionnel — la conclusion 'donc je ne pourrai pas faire les deux' implique que l'option 'travailler et finir le projet' est écartée, même si la décision finale (postuler ou non) reste en suspens à la fin de la feuille.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 3,
+              "motifResistance": "La formulation 'Impossible à faire en travaillant à côté' opère un tranchage ferme malgré le flou de la situation globale — un sous-décision posée comme acquise."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 3 a tenu. L'attaque (g) — mouvement-vers — me paraît pertinente : la pièce pose une conclusion ferme, mais la décision finale n'est pas tranchée à la fin de la feuille (postule-t-il ou non ?). Le tranchage porte sur une incompatibilité (travail + projet) mais pas sur l'action à poser. Néanmoins, la fiche admet que la facette 'décision' se manifeste dans un acte de tranchage avec ses conséquences — et le sous-arbitrage est ici posé fermement, ce qui ouvre la décision finale. L'attaque touche sans disqualifier.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le tranchage porte sur une incompatibilité plutôt que sur l'action finale à poser. L'apprenant est encore en mouvement vers la décision principale, mais le sous-arbitrage est consolidé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les pièces portaient le triptyque complet (nommer l'incertitude, fonctionner malgré, trancher). Les pièces 1 et 4 sont tombées : la première décrit des options sans nommer l'inconnu, la seconde reconnaît la fatigue de l'incertitude sans décrire un fonctionnement maintenu malgré elle. La pièce 6 a tenu sous forme affaiblie : le tranchage opéré porte sur une incompatibilité (travail + projet) plutôt que sur la décision finale, qui reste suspendue. Ce qui en résulte : un indice de tolérance à l'incertitude avec sous-décision ferme, sans déploiement complet du triptyque tolérance + fonctionnement + tranchage.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce a tenu sous forme affaiblie : le tranchage est partiel, la décision principale restant en suspens à la fin de la feuille.",
+        "prescription": "Un récit qui nommerait explicitement ce qui reste inconnu (par exemple les conditions exactes du poste EPFL ou les délais de l'imposition d'un poste secondaire) et décrirait comment l'apprenant continue à avancer malgré ce flou donnerait à voir la tolérance à l'incertitude plus complètement."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Préférence affichée pour la pauvreté plutôt que pour une activité dépourvue de sens — engagement personnel coûteux."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "'Trop de respect pour les élèves pour donner des cours de merde' — engagement à la qualité comme contrainte ferme."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Maintien d'un engagement long ('je ne veux pas arrêter avant d'avoir lancer le processus') malgré la pression de la situation présente."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que déclarer ses préférences éthiques ne suffit pas à attester 4.06, qui exige la cohérence parole/actes documentée, la responsabilité assumée, ou le courage moral dans l'épreuve. La fiche signale que 'je suis quelqu'un d'honnête' est une auto-déclaration ; l'intégrité s'observe dans les actes. La pièce 1 ('je préfère être pauvre') reste déclarative sur une situation hypothétique — l'apprenant n'a pas encore renoncé au poste. La pièce 3 articule un engagement long avec la formule 'je ne veux pas arrêter avant' ; c'est une déclaration d'intention. La pièce 2 résiste un peu plus : 'trop de respect pour les élèves pour donner des cours de merde' est plus qu'une déclaration — c'est une contrainte de comportement avec une conséquence anticipée concrète (la perte de force pour les projets). L'intégrité est ici raisonnée comme principe d'action, pas seulement énoncée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "L'engagement au respect des élèves est lié à une conséquence concrète anticipée — refus de baisser la qualité même au prix de l'épuisement, ce qui dépasse la déclaration de principe."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a tenu. L'attaque (f) — récit performatif — me semble pertinente : l'apprenant *raconte* son intégrité ('j'ai trop de respect') sans la *montrer* en acte. La fiche signale que la cohérence se vérifie dans les actes décrits, pas dans les valeurs déclarées. Ici, l'engagement à ne pas donner de cours médiocres est anticipé, pas accompli — l'apprenant n'est pas en train d'enseigner. Néanmoins, la fiche admet que le triptyque assumer-oser-rester-cohérent peut se manifester dans la résistance à la pression du groupe ou la cohérence valeurs/actions décrites. Ici, la pression (postuler pour conserver le chômage) est nommée, et la valeur tient face à elle. L'attaque touche mais sans disqualifier complètement.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'engagement à la qualité face aux élèves est anticipé plutôt que montré en acte. Néanmoins, la valeur tient face à une pression réelle (chômage, perspective d'imposition d'un poste), ce qui constitue un indice d'intégrité opérationnelle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'intégrité se manifestait dans des actes plutôt que dans des déclarations. Les pièces qui affirmaient une préférence pour la pauvreté ou un engagement long sont tombées : elles restent au plan déclaratif sur une situation pas encore advenue. La pièce qui articulait le respect dû aux élèves comme contrainte à conséquence concrète a tenu, sous forme affaiblie. Ce qui en résulte : un indice corroboratif d'intégrité opérationnelle — la valeur tient face à une pression réelle, même si l'acte décisif (refuser le poste) n'est pas encore posé à la fin de la feuille.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce a tenu sous forme affaiblie : la valeur tient face à une pression réelle, mais l'acte décisif n'est pas encore documenté dans cette feuille.",
+        "prescription": "Un récit ultérieur qui documenterait l'acte concret (la décision finale prise, ses conséquences acceptées) consoliderait l'intégrité comme trace pleinement attestée plutôt que comme engagement anticipé."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la validation contextuelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une correction d'une production IA fondée sur un savoir contextuel inaccessible à la machine."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la création de valeur non-automatisable dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait articuler ce que sa présence humaine apporte de structurellement non-automatisable."
+      }
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "'Je savais que ce moment allait arriver' — anticipation d'un moment de décision et acceptation de son arrivée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que reconnaître qu'un moment décisif est arrivé ne suffit pas à attester la patience stratégique au sens de la fiche, qui exige le triptyque : pression à agir nommée, raisonnement explicite d'attente, moment d'action prévu ou décrit. La fiche est ferme : 'sans raisonnement d'attente, c'est de la procrastination ; sans moment d'action, c'est de la paralysie'. La pièce 4 reconnaît l'arrivée du moment mais ne formule pas de raisonnement d'attente — au contraire, la décision est en train d'être abordée. C'est une lucidité sur le timing arrivant, pas une discipline d'attente assumée. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la reconnaissance de l'arrivée du moment portait une patience stratégique au sens de la fiche. Elle est tombée : la pièce constate l'arrivée du moment décisif sans qu'aucune attente préalable explicite n'ait été formulée. La compétence reste hors de portée de cette feuille — non absente du parcours global, mais non visible ici sous une forme articulée.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : reconnaître l'arrivée d'un moment n'est pas formuler une attente argumentée.",
+        "prescription": "Un récit où une décision serait explicitement reportée avec critère de déclenchement précis ('je déciderai quand j'aurai eu telle information') ouvrirait une trace plus solide de patience stratégique."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 3,
+    "nonEtablies": 6,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du 6 mars 2026 montre une délibération éthique habitée par des valeurs explicites mises en tension les unes contre les autres. L'apprenant pose la question du sens contre celle de la sécurité financière, l'engagement long contre la pression du présent, le respect dû aux élèves contre la capacité à avancer sur ses projets. Ces tensions ne sont pas seulement énoncées : elles structurent l'arbitrage. Le travail montre aussi une décision en construction sous incertitude — le tranchage sur l'incompatibilité travail/projet est ferme, même si la décision finale (postuler ou non) reste en suspens. La voix dominante est celle d'une intégrité raisonnée : les valeurs tiennent face à la pression concrète (chômage, perspective d'imposition d'un poste), sans encore avoir produit l'acte décisif qui en ferait la preuve.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. L'alignement et le refus éthique face à l'IA, la conscience écologique long-terme, la valorisation de la neurodiversité, la validation contextuelle et la création de valeur non-automatisable ne croisent pas l'arbitrage du jour. C'est cohérent avec une feuille centrée sur un choix de vie. La patience stratégique est effleurée par la reconnaissance que 'le moment allait arriver', sans s'installer en discipline d'attente argumentée. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte des interactions avec l'IA, des choix techniques motivés par leur portée long-terme, ou des moments où il a délibérément attendu.",
+    "emergencesPole": "Trois observations traversent la feuille. D'abord, le sens fonctionne comme critère ultime : la pauvreté est préférée à une activité dépourvue de sens, ce qui structure tout l'arbitrage. Ensuite, l'intégrité opère par anticipation : l'apprenant connaît ses propres limites comportementales ('je n'aurais probablement plus la force d'avancer') et les utilise comme contrainte de décision. Enfin, la décision se construit en deux temps : le sous-arbitrage (incompatibilité travail + projet) est tranché, l'acte final reste en suspens.",
+    "pistes": [
+      "Pour densifier le raisonnement éthique appliqué, un chemin possible serait de prolonger la tension entre valeurs en formulant explicitement les arguments du choix opposé, plutôt que de résoudre rapidement par préférence.",
+      "Pour rendre visible la patience stratégique, un chemin possible serait de nommer le critère de déclenchement précis de la décision finale — par exemple 'je trancherai quand j'aurai eu la réponse de l'EPFL' ou 'avant la date X'.",
+      "Pour consolider l'intégrité comme trace pleinement attestée, un chemin possible serait de documenter dans une feuille ultérieure l'acte décisif posé et ses conséquences vécues."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du 6 mars 2026 montre une délibération éthique habitée par des valeurs explicites mises en tension les unes contre les autres. L'apprenant pose la question du sens contre celle de la sécurité financière, l'engagement long contre la pression du présent, le respect dû aux élèves contre la capacité à avancer sur ses projets. Ces tensions ne sont pas seulement énoncées : elles structurent l'arbitrage. Le travail montre aussi une décision en construction sous incertitude — le tranchage sur l'incompatibilité travail/projet est ferme, même si la décision finale (postuler ou non) reste en suspens. La voix dominante est celle d'une intégrité raisonnée : les valeurs tiennent face à la pression concrète (chômage, perspective d'imposition d'un poste), sans encore avoir produit l'acte décisif qui en ferait la preuve.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'atteint dans cette feuille la solidité d'une présence pleinement établie. Trois traces tiennent en mouvement : un raisonnement éthique appliqué qui glisse rapidement vers la contrainte d'intégrité, une décision sous incertitude où le sous-arbitrage est tranché tandis que l'acte final reste suspendu, et une intégrité opérationnelle où la valeur (sens, respect des élèves) tient face à la pression du présent.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. L'alignement et le refus éthique face à l'IA, la conscience écologique long-terme, la valorisation de la neurodiversité, la validation contextuelle et la création de valeur non-automatisable ne croisent pas l'arbitrage du jour. C'est cohérent avec une feuille centrée sur un choix de vie. La patience stratégique est effleurée par la reconnaissance que 'le moment allait arriver', sans s'installer en discipline d'attente argumentée. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte des interactions avec l'IA, des choix techniques motivés par leur portée long-terme, ou des moments où il a délibérément attendu.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent la feuille. D'abord, le sens fonctionne comme critère ultime : la pauvreté est préférée à une activité dépourvue de sens, ce qui structure tout l'arbitrage. Ensuite, l'intégrité opère par anticipation : l'apprenant connaît ses propres limites comportementales ('je n'aurais probablement plus la force d'avancer') et les utilise comme contrainte de décision. Enfin, la décision se construit en deux temps : le sous-arbitrage (incompatibilité travail + projet) est tranché, l'acte final reste en suspens.\n\n## Pistes pour enrichir ce pôle\n\n- Pour densifier le raisonnement éthique appliqué, un chemin possible serait de prolonger la tension entre valeurs en formulant explicitement les arguments du choix opposé, plutôt que de résoudre rapidement par préférence.\n- Pour rendre visible la patience stratégique, un chemin possible serait de nommer le critère de déclenchement précis de la décision finale — par exemple 'je trancherai quand j'aurai eu la réponse de l'EPFL' ou 'avant la date X'.\n- Pour consolider l'intégrité comme trace pleinement attestée, un chemin possible serait de documenter dans une feuille ultérieure l'acte décisif posé et ses conséquences vécues.\n"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "poleNum": "3",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-22",
+      "extraitVerbatim": "Migration en cours de l'algorithme pour implémenter les évaluations humanistes (nouveau mot : évaluations \"ipsatives\" –  Merci Claude !).",
+      "contexte": "Note unique de la feuille. Le passage évoque une migration d'algorithme vers un nouveau type d'évaluation. Pourrait obliquement toucher à une démarche itérative (réécriture du système, version en cours), sans pour autant déployer un récit créatif.",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant signale une « migration en cours » — un travail de réécriture en train de se faire. Cela pourrait toucher obliquement à la créativité itérative (versions successives, prototype en mouvement)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars de la présomption que la créativité itérative n'est pas attestée : la fiche 3.01 demande des versions successives avec apprentissage explicite entre chaque passage, ou une rupture radicale assumée. La pièce dit « migration en cours » — un mot qui indique un travail en train de se faire, mais sans cycle décrit, sans étape antérieure rappelée, sans apprentissage tiré d'une version précédente. Aucun récit d'imperfection assumée, aucun « v1 → v2 », aucune trace de bâclage productif ou de pivot. La pièce ne résiste pas à la présomption d'absence : le présent continu (« en cours ») ne fait pas itération — il fait chantier. Reste explicitement faible le fait que rien ne décrit ce qui a été tenté avant ni ce que cette nouvelle version corrige.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Si je devais examiner, l'attaque a (insuffisance probatoire) serait dominante : la pièce est trop courte, sans dispositif itératif décrit. L'attaque f (récit performatif) jouerait aussi : « migration en cours » raconte qu'on bouge, sans montrer le mouvement créatif en acte.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la mention d'une migration suffisait à attester une créativité itérative. La présomption d'absence n'a rien laissé passer : le mot « migration » suggère un mouvement, mais le journal ne déploie ni cycle, ni apprentissage entre versions, ni pivot articulé. La compétence demande la trace du « 1 → n » ou du « 0 → 1 », pas la simple mention qu'une refonte est engagée. Une trace plus parlante dirait ce que la version précédente faisait, pourquoi elle ne suffisait plus, et ce que la nouvelle tente différemment. Pour cette feuille, en l'état, la trace ne se constitue pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : « migration en cours » signale un chantier sans déployer le cycle itératif ou la rupture créative au sens de la fiche.",
+        "prescription": "Une note rappelant ce que la version antérieure de l'algorithme produisait et ce que la nouvelle cherche à corriger ouvrirait un dossier sur l'itération créative. Le critère utile : peut-on, à la lecture, voir le saut entre deux versions et ce qu'il a appris à l'apprenant ?"
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et à la signature sur cette feuille. La détection d'une signature stylistique demande la mise en perspective de plusieurs feuilles ; une note plus longue, avec des choix d'écriture identifiables, pourrait nourrir ce dossier."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au design de problèmes sur cette feuille. Une note expliquant pourquoi le sujet de l'évaluation humaniste s'est imposé comme problème à résoudre — et non un autre — pourrait amorcer ce dossier."
+      }
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant qualifie le type d'évaluation visé de « humaniste ». Cela pourrait obliquement toucher au jugement esthétique sur la forme d'une évaluation — un choix qualitatif assumé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars de la présomption que le jugement esthétique et la curation ne sont pas attestés : la fiche 3.04 demande un acte de tri argumenté entre plusieurs propositions, ou une évaluation qualitative articulée (ton, justesse formelle, cohérence). La pièce dit « évaluations humanistes » — un qualificatif fort, mais sans articulation des critères, sans comparaison avec une alternative écartée, sans rejet documenté. La curation implique soustraction ; ici il n'y a qu'une étiquette positive. La pièce ne résiste pas à la présomption d'absence : le mot « humaniste » porte une orientation de valeur, pas un acte de discernement formel. Reste explicitement faible le fait qu'aucun autre type d'évaluation n'est cité comme écarté ni comparé.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Si je devais examiner, l'attaque e (surinterprétation pédagogique) serait dominante : j'aurais chargé le mot « humaniste » d'une intention de curation qu'il ne porte pas en lui-même. L'attaque a (insuffisance probatoire) tiendrait aussi : la pièce est trop courte pour porter un jugement esthétique articulé.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le qualificatif « humaniste » pouvait constituer un acte de curation. La présomption d'absence n'a rien laissé passer : le mot porte une orientation, mais le journal n'explicite ni les critères ni la soustraction qui font la curation. Une trace plus parlante mettrait en regard l'évaluation humaniste et une alternative écartée, en articulant pourquoi l'une convient mieux à un contexte donné. Pour cette feuille, en l'état, la trace ne se constitue pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : l'étiquette « humaniste » porte une orientation de valeur sans déployer les critères, la comparaison ou la soustraction qui caractérisent la curation.",
+        "prescription": "Pour amorcer un dossier sur le jugement esthétique, une note pourrait articuler ce qui distingue concrètement l'évaluation humaniste retenue d'une autre forme écartée, avec quelques critères nommés. L'acte de soustraire — ce qu'on choisit de ne pas faire — y serait plus parlant que l'acte d'étiqueter."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale sur cette feuille. Le mot « algorithme » désigne ici un objet logiciel, pas une interaction avec de la matière tangible."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel et à la pleine présence sur cette feuille. Une note décrivant une sensation corporelle, un moment d'attention dirigée, ou une intuition somatique suivie d'action pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et à la performance live sur cette feuille. Une note décrivant un moment d'interaction physique en temps réel avec un public ou un groupe pourrait ouvrir ce dossier."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 7,
+    "courtCircuits": 5
+  },
+
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle Main reste à distance du geste créatif, manuel et incarné. Une note brève évoque un chantier algorithmique sans déployer de récit d'itération, de matière, de présence corporelle ou de performance. Le qualificatif « humaniste » accolé à l'évaluation laisse entendre un choix qualitatif, et le mot « migration » suggère qu'un travail est en route — mais ni l'un ni l'autre n'ouvrent un terrain narratif suffisant pour soutenir un verdict sur l'une des sept compétences créatives et somatiques. Le travail s'écrit ici en mode notation rapide, sans matière à saisir avec les mains ou à sculpter par cycles.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Sur cette feuille, les territoires les plus incarnés du pôle Main restent inexplorés : l'intelligence manuelle, l'ancrage sensoriel et la performance live n'ont pas de prise textuelle dans une note de cette densité. Le design de problèmes et la singularité stylistique demandent eux aussi une matière plus dense — la signature d'un auteur ne s'éprouve qu'à travers plusieurs textes mis en regard. La créativité itérative et le jugement esthétique sont frôlés par les mots « migration » et « humaniste », sans s'y poser : ce qui se fait n'est pas raconté comme cycle, et ce qui est choisi n'est pas articulé contre une alternative écartée. Ces absences semblent davantage liées à la brièveté de la note qu'à un choix de fond.",
+    "emergencesPole": "Deux mouvements traversent les compétences effleurées : un chantier nommé sans être déplié, et un qualificatif de valeur (humaniste) posé sans être justifié. Ensemble, ils dessinent un travail orienté mais peu mis en scène. Le journal porte ici une étiquette, pas un récit — la matière créative et formelle existe peut-être dans la pratique, mais elle ne passe pas dans le texte ce jour-là.",
+    "pistes": [
+      "Pour prolonger le mot « migration », un chemin possible serait de noter brièvement, à la fin d'une journée, la version qui s'est rapprochée de l'objectif et celle qui a été écartée — un mini-cycle d'itération rendu visible.",
+      "Pour prolonger le qualificatif « humaniste », un chemin possible serait de décrire ce que cette orientation exclut concrètement — par exemple, une mesure agrégée, une note unique, un classement — afin que le choix de forme se lise par sa soustraction.",
+      "Pour prolonger le travail sur l'évaluation, un chemin possible serait d'écrire en deux phrases comment se sent l'apprenant face à une évaluation ipsative, du point de vue de la présence et du corps — ce que l'écran ne capte pas."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle Main reste à distance du geste créatif, manuel et incarné. Une note brève évoque un chantier algorithmique sans déployer de récit d'itération, de matière, de présence corporelle ou de performance. Le qualificatif « humaniste » accolé à l'évaluation laisse entendre un choix qualitatif, et le mot « migration » suggère qu'un travail est en route — mais ni l'un ni l'autre n'ouvrent un terrain narratif suffisant pour soutenir un verdict sur l'une des sept compétences créatives et somatiques. Le travail s'écrit ici en mode notation rapide, sans matière à saisir avec les mains ou à sculpter par cycles.\n\n## Territoires les plus denses\n\nSur cette feuille, aucun territoire dense ne ressort dans ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, les territoires les plus incarnés du pôle Main restent inexplorés : l'intelligence manuelle, l'ancrage sensoriel et la performance live n'ont pas de prise textuelle dans une note de cette densité. Le design de problèmes et la singularité stylistique demandent eux aussi une matière plus dense — la signature d'un auteur ne s'éprouve qu'à travers plusieurs textes mis en regard. La créativité itérative et le jugement esthétique sont frôlés par les mots « migration » et « humaniste », sans s'y poser : ce qui se fait n'est pas raconté comme cycle, et ce qui est choisi n'est pas articulé contre une alternative écartée. Ces absences semblent davantage liées à la brièveté de la note qu'à un choix de fond.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux mouvements traversent les compétences effleurées : un chantier nommé sans être déplié, et un qualificatif de valeur (humaniste) posé sans être justifié. Ensemble, ils dessinent un travail orienté mais peu mis en scène. Le journal porte ici une étiquette, pas un récit — la matière créative et formelle existe peut-être dans la pratique, mais elle ne passe pas dans le texte ce jour-là.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le mot « migration », un chemin possible serait de noter brièvement, à la fin d'une journée, la version qui s'est rapprochée de l'objectif et celle qui a été écartée — un mini-cycle d'itération rendu visible.\n- Pour prolonger le qualificatif « humaniste », un chemin possible serait de décrire ce que cette orientation exclut concrètement — par exemple, une mesure agrégée, une note unique, un classement — afin que le choix de forme se lise par sa soustraction.\n- Pour prolonger le travail sur l'évaluation, un chemin possible serait d'écrire en deux phrases comment se sent l'apprenant face à une évaluation ipsative, du point de vue de la présence et du corps — ce que l'écran ne capte pas.\n"
+  }
+}

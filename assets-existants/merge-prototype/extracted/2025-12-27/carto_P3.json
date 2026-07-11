@@ -1,0 +1,384 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Le processus que j'ai utilisé a consisté à : uploader le manuel de méta-pédagogie de Christine Mayer dans Gémini, pour lui demander, sur la base d'une version markdown du site web, d'extraire du manuel un plan de formation pour les tuteurs. [...] Je lui ai ensuite demandé de rédiger pour chaque chapitre de chaque module, en le lui demandant un par un afin de ne pas saturer la fenêtre d'output, un prompt qui permettrait à une IA de générer le module. Je lui ai enfin demandé en lui partageant l'intégrale du site web, de faire une synthèse des documents pour accompagner chaque prompt par un contexte clair pour une nouvelle conversation.",
+      "contexte": "Description d'un processus itératif en plusieurs étapes pour produire un dispositif de formation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai ensuite récupéré le travail de Gemini et je l'ai soumis à Claude, en lui donnant cette fois-ci le narratif de Maya comme base, afin qu'il s'assure que les prompts soient bien alignés avec la manière d'apprendre des écoles Respire.",
+      "contexte": "Étape éditoriale : sélection d'un alignement spécifique (narratif de Maya) comme critère qualitatif pour filtrer le travail de Gemini.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai réalisé en générant le CSS de la fonction d'impression du site (qui ne marche pas sur tous les navigateurs mobiles, mais ça je n'y peux rien hélas) que le site devient le manifeste des écoles : c'est comme un livre qui décrit le pourquoi du comment, et quis sert à documenter les idées autant que possible tout en gardant une structure légère pour le lecteur pressé.",
+      "contexte": "Réalisation manuelle (génération du CSS d'impression) qui déclenche un recadrage qualitatif et une métaphore (« comme un livre »).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je voudrais terminer mes notes d'aujourd'hui par une remarque sur le processus de construction de la formation des tuteurs : la technique que j'utilise ici n'est pas un mélange de prompt choral et de contexte engineering, c'est vraiment une approche très personnelle dans laquelle je mixe les techniques de prompt engineering que je connais pour créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question (rédige le chapitre de formation).",
+      "contexte": "Revendication explicite d'une approche personnelle distincte des techniques connues — geste de signature méthodologique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "En bref, j'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre qui va pouvoir amener les autres élèves à cette conscientisation.",
+      "contexte": "Formulation d'un problème nouveau : non pas « comment former les tuteurs ? » mais « comment former le contexte qui formera ceux qui formeront ? ».",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Ce faisant, les écoles Respire vont combler un autre trou béant de l'éducation traditionnelle, celui d'ignorer les neurosciences de l'éducation et la psychologie cognitive dans la formation des maîtres. Les tuteurs seront les premiers noèsiologues !",
+      "contexte": "Identification d'un problème qui n'avait pas été formulé (la formation des maîtres ignore les neurosciences) et création d'une catégorie nouvelle (« noèsiologue »).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je fais le pari que, tout comme avec le dispositif didactique débranché \"Human Processor!\", les élèves qui suivront nos cours auront les notes maximales à l'école traditionnelle, car nous leur apprenons ce que l'école a oublié de leur faire apprendre.",
+      "contexte": "Référence à un dispositif didactique antérieur (« Human Processor! ») nommé avec ponctuation expressive — signature pédagogique récurrente.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Être au chômage ça prend du temps ! Contrairement à quand je travaillais, je dis oui à tout le monde, ce qui fait qu'il ne me reste plus que les nuits pour poursuivre le travail de recherche que je faisais en tant qu'enseignant.",
+      "contexte": "Tic d'écriture personnel : remarque incongrue (« le chômage prend du temps ») avec point d'exclamation, signature de ton.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai également fait travailler Gemini et Claude sur la rédaction de prompts pour générer le support de formation en plusieurs modules, pour les tuteurs Respire. Ça fait que je suis sur trois fronts en parallèle, mais comme nous avons les enfants à la maison en ce moment, je n'ai que quelques heures le soir, lorsque tout le monde dort pour avancer.",
+      "contexte": "Récit d'une production faite dans la contrainte temporelle, avec acceptation implicite de l'imperfection itérative.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Itération par étapes successives où chaque output devient l'input de la suivante — pipeline incrémental qui ne cherche pas le parfait du premier coup."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Revendication d'une approche personnelle (« vraiment une approche très personnelle ») qui se démarque des techniques connues — geste de rupture par rapport à un cadre existant."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : l'itération technique d'un pipeline n'est pas nécessairement de la créativité itérative au sens de la fiche. La pièce 1 (pid 1) décrit un enchaînement d'étapes mais sans aucun récit de version ratée, de pivot, ou d'apprentissage tiré d'un échec — c'est une exécution séquentielle plus qu'une itération apprenante. La pièce 2 (pid 4) revendique une approche personnelle, mais la fiche distingue justement la singularité (3.02) de la créativité radicale (3.01). Ce qui pourrait résister : la pièce 2 affirme un écart par rapport à des techniques existantes, ce qui touche à la rupture.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant nomme explicitement deux techniques connues (« prompt choral », « contexte engineering ») et affirme que sa pratique n'est pas leur mélange mais autre chose — c'est un positionnement de rupture par rapport à un cadre établi." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir la pièce 2. Je l'attaque maintenant. Le risque dominant est le récit performatif : l'apprenant raconte qu'il fait différent sans montrer en quoi sa technique produit du qualitativement neuf. La pièce dit « ce n'est pas X ni Y, c'est Z », mais le contenu de Z reste à un niveau général (« mixer les techniques pour créer les bons tokens »). Le test de la fiche est explicite : si l'IA aurait pu suggérer la méthode, ce n'est pas de la radicalité. Le mixage de techniques de prompt engineering pour créer un contexte est une démarche qu'une IA pourrait suggérer. La pièce s'affaiblit nettement.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce déclare une approche personnelle mais n'en exhibe pas la rupture en acte. Elle reste comme indice d'un positionnement de différenciation, sans démontrer une création radicale au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir des cycles d'itération apprenants ou des ruptures radicales. Ce qui m'a fait hésiter, c'est la revendication explicite d'une approche personnelle distincte des techniques connues. Sous la présomption de sycophantie, la pièce s'est affaiblie parce que la rupture est déclarée plutôt que montrée, et que le test de la fiche (« l'IA l'aurait-elle suggéré ? ») n'est pas franchi par ce que cette feuille montre. Il reste un indice d'une posture de différenciation, sans preuve d'itération apprenante ni de rupture radicale en acte. Cette feuille raconte une exécution séquentielle plus qu'un cycle créatif avec versions, retours et pivots visibles. Une feuille future qui raconterait une version ratée, ce qu'elle a appris, et la version d'après, ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier : la posture de différenciation est revendiquée mais la rupture en acte n'est pas démontrée dans cette feuille.",
+        "prescription": "Pour ouvrir ce dossier, un récit qui montrerait une version ratée, ce qu'elle a appris, et la version d'après — ou une transgression consciente d'une règle ayant débouché sur quelque chose d'inattendu — donnerait à voir l'acte créatif en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Revendication explicite d'une « approche très personnelle » qui mixe les techniques connues sans s'identifier à aucune — geste de signature méthodologique."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Référence à un dispositif didactique antérieur (« Human Processor! ») nommé avec ponctuation expressive — élément récurrent d'un univers personnel."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Remarque incongrue (« Être au chômage ça prend du temps ! ») avec ponctuation expressive — tic d'écriture qui colore le texte d'une voix particulière."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche est claire — la singularité est récurrente dans le temps, pas ponctuelle, et le test est qu'on reconnaisse l'auteur sans son nom. Sur une seule feuille, je ne peux pas attester la récurrence — c'est le terrain idéal pour évaluer la singularité, mais une feuille isolée n'autorise qu'à pointer des marqueurs probables. La pièce 1 (pid 4) revendique une voie personnelle. La pièce 2 (pid 7) cite un dispositif au nom particulier (« Human Processor! »). La pièce 3 (pid 8) montre un tic d'écriture (remarque incongrue + point d'exclamation). Ce qui reste faible : aucune pièce ne peut, à elle seule, attester la récurrence dans le temps.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant revendique explicitement une voie qui n'est pas celle des autres, en nommant les autres voies — c'est une conscience de sa propre voix méthodologique." },
+            { "pieceId": 2, "motifResistance": "Le dispositif « Human Processor! » avec point d'exclamation est un objet nommé issu de l'univers propre de l'apprenant, qui suggère un répertoire récurrent." },
+            { "pieceId": 3, "motifResistance": "La remarque « Être au chômage ça prend du temps ! » est un tic d'écriture personnel — incongruité assumée, registre intime dans un texte analytique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces trois pièces avec méfiance. Le risque dominant est l'insuffisance probatoire pour la récurrence : la fiche exige des patterns récurrents dans le temps, et je n'ai qu'une feuille. La pièce 1 reste comme déclaration de différenciation, sans preuve de récurrence. La pièce 2 est un objet nommé mais isolé. La pièce 3 est un trait stylistique tangible — incongruité assumée — mais une seule occurrence ne suffit pas à attester un tic récurrent. Tout ce dossier porte la marque de la singularité possible mais non démontrable sur une feuille isolée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La revendication de voie personnelle est explicite mais ne peut être confrontée à d'autres feuilles ici. Elle reste comme indice de conscience de signature."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le nom du dispositif est singulier mais isolé ; la récurrence du répertoire ne peut pas être validée sur une seule feuille."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le trait stylistique est tangible mais une occurrence ne fait pas un pattern récurrent au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à attester une signature récurrente. Ce qui m'a forcé à reconnaître quelque chose, c'est la conjonction sur une seule feuille de trois marqueurs concordants : revendication d'une voie personnelle, objet nommé d'un univers propre, tic d'écriture incongru. Sous la présomption de sycophantie, ces trois pièces se sont affaiblies parce qu'une seule feuille ne peut pas démontrer la récurrence dans le temps. Il en résulte un dossier d'indices concordants sans preuve décisive : la signature est plausible mais non attestée par cette feuille seule. La cartographie sur plusieurs feuilles serait précisément le terrain où ces indices se valideraient ou se dissoudraient.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli les trois pièces sans en disqualifier aucune : trois indices concordants de signature, sans démonstration possible de récurrence sur une feuille isolée.",
+        "prescription": "Pour épaissir ce territoire, une lecture transversale sur plusieurs feuilles permettrait de confirmer ou d'infirmer les indices repérés ici — tics d'écriture, objets récurrents nommés, voie méthodologique propre — et de transformer ces indices en pattern attesté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Reformulation du problème en méta-problème : ce n'est pas former les tuteurs, c'est former le contexte qui les forme — déplacement du niveau de la question."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Identification d'un problème non posé par l'institution (« trou béant ») et création d'une catégorie professionnelle nouvelle (« noèsiologue »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence et avec la distinction critique de la fiche : 3.03 crée un problème qui n'existait pas, alors que 1.02 reformule un problème existant. La pièce 1 (pid 5) déplace le problème (« je ne forme pas les tuteurs, je forme le contexte qui les forme »), ce qui ressemble à un déplacement de niveau ; mais cela peut être lu comme un cadrage récursif (1.02) plus que comme la création d'un problème inédit. La pièce 2 (pid 6) identifie un trou béant (l'éducation traditionnelle ignore les neurosciences dans la formation des maîtres) et crée une catégorie professionnelle (« les premiers noèsiologues ») — c'est plus net : un problème jusque-là non formulé par l'institution est posé, et un champ d'action nouveau est ouvert par la création d'un nom de métier.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant identifie un problème institutionnel non posé (le déficit de neurosciences dans la formation des maîtres) ET crée un nom de métier nouveau qui ouvre un champ d'action — c'est précisément le geste décrit par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est la confusion de compétence avec 1.02. Mais la fiche est explicite : « créer une question nouvelle qui ouvre un champ d'action inédit ». Le néologisme « noèsiologue » ouvre effectivement un champ d'action — un métier qui n'existe pas encore et qu'on est en train d'inventer. Le risque secondaire est la surinterprétation : ai-je chargé d'innovation conceptuelle ce qui est juste une formule manifeste ? Le néologisme reste, et il est articulé à un diagnostic institutionnel. La pièce tient.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La frontière avec 1.02 et 1.03 est fine : on peut lire le passage comme un cadrage ou comme une synthèse. Mais la création d'une catégorie professionnelle nouvelle (« noèsiologue ») couplée à l'identification d'un problème non posé par l'institution fait basculer la pièce vers 3.03. Elle reste affaiblie par cette frontière, mais retenue."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à n'y voir que du cadrage récursif. Ce qui m'a forcé à reconnaître autre chose, c'est la double opération : identifier un problème institutionnel non posé (le trou béant) et créer une catégorie professionnelle inédite (le noèsiologue) qui ouvre un champ d'action nouveau. Sous la présomption de sycophantie, la pièce s'est affaiblie à cause de la frontière mince avec le cadrage, mais elle a tenu : c'est bien un problème nouvellement formulé, pas seulement reformulé. Il reste une trace réelle mais singulière. Le dossier gagnerait à être étoffé par un récit qui montrerait la genèse de ce problème — quand l'apprenant a réalisé que ce problème n'était pas posé, ce qui l'a fait basculer dans une question qu'il n'aurait pas eue auparavant.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.55,
+        "motif": "Le temps 3 a tenu sur la pièce 2 : création d'une catégorie professionnelle nouvelle articulée à l'identification d'un problème non posé — geste qui dépasse le cadrage et entre dans le design de problèmes.",
+        "prescription": "Pour épaissir ce territoire, un récit qui retracerait la genèse d'un problème nouvellement formulé — le moment où l'apprenant a réalisé qu'une question manquait à un domaine — donnerait à voir le geste d'invention de problèmes en train de se faire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Choix d'un critère qualitatif spécifique (« alignement avec le narratif de Maya ») pour filtrer le travail d'une IA — sélection avec critère articulé."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Recadrage qualitatif d'un objet en cours de fabrication : le site « devient le manifeste », avec attention à la double exigence (légèreté pour lecteur pressé, documentation pour qui veut aller plus loin)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche exige un jugement esthétique articulé avec critère, pas une simple décision. La pièce 1 (pid 2) prend le narratif de Maya comme critère explicite d'évaluation des prompts produits par Gemini — c'est une articulation du critère, pas une intuition vague. La pièce 2 (pid 3) montre la conscience d'un double registre (lecteur pressé / lecteur attentif) qui guide la forme du site. Ce qui reste faible : aucun récit d'écart, de rejet, ou de soustraction explicite. La curation implique de la soustraction selon la fiche, et le récit n'en montre pas.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'alignement avec le narratif de Maya est un critère qualitatif articulé qui guide la sélection — c'est précisément ce que la fiche demande pour 3.04." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est la confusion de compétence : ce passage relève aussi de la synergie (1.10) et de la coordination des IA. La curation suppose un acte de tri qualitatif sur des productions. La pièce dit que Claude « s'assure que les prompts soient bien alignés » avec un narratif — c'est une instruction de curation déléguée à Claude, plus qu'une curation exercée directement par l'apprenant. La pièce s'affaiblit : le geste de curation existe, mais il est confié à un agent secondaire plutôt qu'exercé directement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le critère qualitatif est articulé mais l'acte de tri est délégué à Claude. La pièce reste comme indice d'une conscience curatoriale (savoir quel critère imposer) sans démonstration directe d'un acte de soustraction par l'apprenant lui-même."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un jugement esthétique articulé en acte. Ce qui m'a fait hésiter, c'est l'imposition d'un critère qualitatif spécifique (narratif de Maya) pour évaluer un output IA. Sous la présomption de sycophantie, la pièce s'est affaiblie parce que l'acte de tri est délégué plutôt qu'exercé directement : la curation existe à un niveau méta (décider du critère), pas à un niveau immédiat (écarter un output spécifique en expliquant pourquoi). Il reste un indice d'une conscience curatoriale, sans preuve d'un acte de soustraction situé. Le dossier gagnerait à être étoffé par un récit où l'apprenant raconterait avoir rejeté un output IA précis en articulant son critère — le geste de la curation en train de se faire, pas seulement programmé.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier : un critère curatorial est articulé mais l'acte de tri est délégué à un agent secondaire plutôt qu'exercé directement.",
+        "prescription": "Pour ouvrir ce dossier, un récit où l'apprenant raconterait avoir écarté un output IA précis en articulant pourquoi — ton trop froid, registre inadapté, intuition de fausseté — donnerait à voir le jugement esthétique en acte plutôt que délégué."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale. Pour ouvrir ce dossier, l'apprenant pourrait documenter un récit d'interaction physique avec la matière — montage, réparation, cuisine, bricolage — où la connaissance passe par le geste."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Description sobre du cadre temporel et corporel du travail (nuits, enfants à la maison, fatigue implicite) — ancrage situationnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche demande des passages à tonalité phénoménologique, des sensations physiques nommées, des intuitions corporelles suivies d'action. La pièce 1 (pid 9) ancre le travail dans un cadre temporel et familial mais ne nomme aucune sensation corporelle, aucune perception fine, aucune intuition somatique. La feuille ne porte pas le registre de la présence incarnée — le rapport au corps reste implicite (fatigue suggérée par les heures nocturnes, jamais nommée).",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Je n'ai donc rien à examiner. Le registre phénoménologique demandé par la fiche n'est pas activé dans cette feuille.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un registre phénoménologique — sensations nommées, présence incarnée, intuitions corporelles. Cette feuille ne le porte pas : le rapport au corps reste implicite (la fatigue suggérée par les nuits, jamais nommée comme sensation). L'absence ressemble à un effet de focus : la feuille raconte un travail intellectuel, pas une expérience incarnée. Une feuille qui nommerait une sensation physique avec précision et la suivrait jusqu'à une action ouvrirait ce territoire.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : le registre phénoménologique demandé par la fiche n'est pas activé dans cette feuille.",
+        "prescription": "Le territoire reste à explorer. Un récit qui nommerait une sensation corporelle précise — fatigue, tension, signal d'alarme intérieur — et la suivrait jusqu'à une décision concrète ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment en présentiel où sa présence physique a fait une différence identifiable — interaction avec un public, improvisation face à l'imprévu."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 3,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille porte un travail créatif qui prend la forme d'un dispositif plutôt que d'un geste : c'est dans la conception du processus, dans le nommage d'une catégorie nouvelle, dans l'invention d'une méthode personnelle que se loge l'acte de création. Le registre est cérébral et conceptuel ; le corps et la matière physique ne sont pas thématisés. Les marqueurs récurrents — revendication d'une approche personnelle, néologismes professionnels, ponctuation expressive, dispositifs nommés — suggèrent une voix singulière qu'une lecture transversale pourrait confirmer. Le travail se fait dans la contrainte temporelle (nuits, parallélisme forcé) et porte sans pathos la fatigue de ces conditions.",
+    "territoiresDenses": [
+      {
+        "competence": "Design de problèmes",
+        "description": "Identification d'un problème institutionnel non posé (l'éducation traditionnelle qui ignore les neurosciences dans la formation des maîtres) et création d'une catégorie professionnelle nouvelle qui ouvre un champ d'action inédit.",
+        "extraitVerbatim": "Les écoles Respire vont combler un autre trou béant de l'éducation traditionnelle, celui d'ignorer les neurosciences de l'éducation et la psychologie cognitive dans la formation des maîtres. Les tuteurs seront les premiers noèsiologues !",
+        "ceQueCaDit": "Le geste ne se contente pas de reformuler un problème connu : il pose une question qui n'avait pas été posée par le champ institutionnel et invente un nom de métier pour celui ou celle qui occupera ce champ. C'est précisément la zone où la création porte sur la question, pas sur la réponse."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas activés ici. L'intelligence manuelle et artisanale ne trouve aucun appui textuel — la matière physique est absente du récit, qui se déroule entièrement dans le registre du numérique et du conceptuel. La présence et performance live n'apparaît pas — cette feuille raconte un travail solitaire et asynchrone, sans co-présence physique avec un public. L'ancrage sensoriel reste à l'état implicite (la fatigue des nuits est suggérée par les conditions, jamais nommée comme sensation). La créativité itérative et radicale est revendiquée comme posture mais peu démontrée en acte — aucun récit de version ratée ou de pivot apprenant. Le jugement esthétique apparaît au niveau méta (choisir un critère) mais pas en acte (écarter un output précis en articulant pourquoi). Ces absences ressemblent à un effet de focus thématique : une feuille qui raconte la fabrication conceptuelle d'un dispositif IA n'a pas naturellement de prise sur le corps, la matière, ou la performance directe.",
+    "emergencesPole": "Quelques lignes traversent le pôle. D'abord, la création se loge ici dans la conception plus que dans la fabrication tangible — c'est la méthode, le néologisme, le pipeline qui portent la trace créative, pas un objet matériel ni une performance vécue. Ensuite, la signature de l'apprenant se devine dans des marqueurs discrets — revendication d'une voie personnelle, dispositifs nommés avec ponctuation expressive, remarques incongrues — qui suggèrent une voix récurrente sans pouvoir le démontrer sur une feuille isolée. Enfin, le rapport au temps comme contrainte créative est présent partout : c'est sous pression (nuits, parallélisme) que se fabrique le dispositif, et la feuille montre cette économie du travail morcelé sans la déplorer.",
+    "pistes": [
+      "Pour épaissir le territoire du design de problèmes, un chemin possible serait de retracer la genèse d'un problème nouvellement formulé — le moment précis où l'apprenant a réalisé qu'une question manquait à un domaine et que personne ne se la posait.",
+      "Pour activer la créativité itérative et radicale, un chemin possible serait de raconter une version ratée d'un dispositif, ce qu'elle a appris, et la version d'après — ou une transgression consciente d'une règle ayant débouché sur quelque chose d'inattendu.",
+      "Pour épaissir le jugement esthétique, un chemin possible serait de raconter avoir écarté un output IA précis en articulant les critères du rejet — ton inadapté, registre faux, intuition de creux.",
+      "Pour ouvrir l'ancrage sensoriel, un chemin possible serait de nommer une sensation corporelle précise dans une situation concrète et de la suivre jusqu'à une décision ou une action.",
+      "Pour ouvrir l'intelligence manuelle et la performance live, un chemin possible serait de documenter un moment où la matière physique ou la co-présence avec un public ont produit une intelligence qui ne passerait pas par l'écran — un montage, une réparation, un cours en direct."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille porte un travail créatif qui prend la forme d'un dispositif plutôt que d'un geste : c'est dans la conception du processus, dans le nommage d'une catégorie nouvelle, dans l'invention d'une méthode personnelle que se loge l'acte de création. Le registre est cérébral et conceptuel ; le corps et la matière physique ne sont pas thématisés. Les marqueurs récurrents — revendication d'une approche personnelle, néologismes professionnels, ponctuation expressive, dispositifs nommés — suggèrent une voix singulière qu'une lecture transversale pourrait confirmer. Le travail se fait dans la contrainte temporelle (nuits, parallélisme forcé) et porte sans pathos la fatigue de ces conditions.\n\n## Territoires les plus denses\n\n**Design de problèmes.** Identification d'un problème institutionnel non posé (l'éducation traditionnelle qui ignore les neurosciences dans la formation des maîtres) et création d'une catégorie professionnelle nouvelle qui ouvre un champ d'action inédit. L'extrait — « Les écoles Respire vont combler un autre trou béant de l'éducation traditionnelle, celui d'ignorer les neurosciences de l'éducation et la psychologie cognitive dans la formation des maîtres. Les tuteurs seront les premiers noèsiologues ! » — montre un geste qui ne se contente pas de reformuler un problème connu : il pose une question qui n'avait pas été posée par le champ institutionnel et invente un nom de métier pour celui ou celle qui occupera ce champ. C'est précisément la zone où la création porte sur la question, pas sur la réponse.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas activés ici. L'intelligence manuelle et artisanale ne trouve aucun appui textuel — la matière physique est absente du récit, qui se déroule entièrement dans le registre du numérique et du conceptuel. La présence et performance live n'apparaît pas — cette feuille raconte un travail solitaire et asynchrone, sans co-présence physique avec un public. L'ancrage sensoriel reste à l'état implicite (la fatigue des nuits est suggérée par les conditions, jamais nommée comme sensation). La créativité itérative et radicale est revendiquée comme posture mais peu démontrée en acte — aucun récit de version ratée ou de pivot apprenant. Le jugement esthétique apparaît au niveau méta (choisir un critère) mais pas en acte (écarter un output précis en articulant pourquoi). Ces absences ressemblent à un effet de focus thématique : une feuille qui raconte la fabrication conceptuelle d'un dispositif IA n'a pas naturellement de prise sur le corps, la matière, ou la performance directe.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nQuelques lignes traversent le pôle. D'abord, la création se loge ici dans la conception plus que dans la fabrication tangible — c'est la méthode, le néologisme, le pipeline qui portent la trace créative, pas un objet matériel ni une performance vécue. Ensuite, la signature de l'apprenant se devine dans des marqueurs discrets — revendication d'une voie personnelle, dispositifs nommés avec ponctuation expressive, remarques incongrues — qui suggèrent une voix récurrente sans pouvoir le démontrer sur une feuille isolée. Enfin, le rapport au temps comme contrainte créative est présent partout : c'est sous pression (nuits, parallélisme) que se fabrique le dispositif, et la feuille montre cette économie du travail morcelé sans la déplorer.\n\n## Pistes pour enrichir ce pôle\n\nPour épaissir le territoire du design de problèmes, un chemin possible serait de retracer la genèse d'un problème nouvellement formulé — le moment précis où l'apprenant a réalisé qu'une question manquait à un domaine et que personne ne se la posait.\n\nPour activer la créativité itérative et radicale, un chemin possible serait de raconter une version ratée d'un dispositif, ce qu'elle a appris, et la version d'après — ou une transgression consciente d'une règle ayant débouché sur quelque chose d'inattendu.\n\nPour épaissir le jugement esthétique, un chemin possible serait de raconter avoir écarté un output IA précis en articulant les critères du rejet — ton inadapté, registre faux, intuition de creux.\n\nPour ouvrir l'ancrage sensoriel, un chemin possible serait de nommer une sensation corporelle précise dans une situation concrète et de la suivre jusqu'à une décision ou une action.\n\nPour ouvrir l'intelligence manuelle et la performance live, un chemin possible serait de documenter un moment où la matière physique ou la co-présence avec un public ont produit une intelligence qui ne passerait pas par l'écran — un montage, une réparation, un cours en direct."
+  }
+}

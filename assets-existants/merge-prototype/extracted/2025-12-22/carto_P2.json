@@ -1,0 +1,434 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "C'est super pénible en fait de jouer le jeu de remplir un portfolio quand on a l'impression que ça ne sert à rien. Surtout que je suis seul et pas en petit groupe, pour développer le site en ce moment. Si Stéphane était avec moi dans la pièce, ce serait plus intéressant : nous pourrions activer l'outil de saisie vocale intégré à Google Doc et juste discuter… Le portfolio s'écrirait tout seul !",
+      "contexte": "Verbalisation d'un état affectif (pénibilité, solitude) et imagination d'une situation collaborative avec un partenaire nommé. Active potentiellement 2.01 (nomination d'émotions, sollicitude implicite envers Stéphane), 2.02 (expression authentique d'un inconfort), 2.09 (besoin d'appartenance, désir de petit groupe).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Donc je constate, en le faisant, une difficulté que les élèves de Respire rencontreront tous : le sentiment de surcharge de travail inutile. On vit dans un monde ou il faut courir tout le temps. Prendre le temps de documenter ce que l'on pense sur notre manière d'apprendre, n'est pas naturel. Beaucoup auront tendance à ne pas le faire ou à être trop bref. C'est inévitable, mais pas incompatible !",
+      "contexte": "Projection empathique de sa propre difficulté vers celle des futurs élèves. Active potentiellement 2.01 (empathie anticipatoire envers les usagers), 2.06 (lecture d'un contexte culturel — \"on vit dans un monde où il faut courir\").",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Le site a maintenant 5 niveaux de lecture : 1. Les résumés → Pour tous 2. Les questions / objections → Pour tous 3. Les questions / objections déroulées → Pas pour les élèves mais pour les parents / employeurs 4. Les PDF en téléchargement → Approfondissement pour les enseignants / pédagogues 5. Les notes de marges → Approfondissement pour les enseignants / pédagogues",
+      "contexte": "Conception d'un dispositif documentaire stratifié par public (élèves, parents, employeurs, enseignants, pédagogues). Active potentiellement 2.08 (traduction du même fond pour différents mondes), 2.06 (adaptation à des publics aux cadres distincts).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "J'espère le mettre en ligne avant la fin de l'année, pour ensuite pouvoir lancer les discussions sur Decidim (https://participer.harmonia.education) pour philosopher et co-construire le référentiel que j'ai actuellement juste fait générer sur la base de réflexions perso.",
+      "contexte": "Projection d'un espace numérique participatif (Decidim) pour co-construire le référentiel — geste d'influence systémique par l'aménagement d'un dispositif délibératif. Active potentiellement 2.04 (création d'un environnement où les gens s'engagent), 2.09 (espace participatif comme infrastructure communautaire).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Et éventuellement créer un groupe Discord pour les questions d'organisations pratiques : trouver un tuteur / créer une micro-classe ponctuelle / organiser un rendez-vous IRL dans une ville / proposer des projets d'étude…",
+      "contexte": "Projection d'un espace communautaire opérationnel (Discord) avec des fonctions identifiées : appariement tuteur, micro-classes, rencontres IRL, projets. Active potentiellement 2.09 (architecture communautaire multi-fonctions), 2.04 (influence systémique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Je dois aussi créer une formation pour les tuteurs, dans laquelle je commenterai tout ce qu'il faut savoir pour gérer un groupe d'apprenant et lancer les bons prompts socratiques et les scripts d'analyse pour générer les traces nécessaires pour la cartographie.",
+      "contexte": "Description d'une formation visant à outiller des tuteurs pour qu'ils encadrent des groupes — geste de transmission entre rôles, traduction entre savoir-faire de concepteur et pratique de tuteur. Active potentiellement 2.08 (traduire entre conception et terrain), 2.09 (formation des acteurs d'une communauté).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Nomination de l'état ressenti : \"pénible\", \"seul\", \"plus intéressant\". L'apprenant qualifie sa pénibilité affective et imagine une alternative qui changerait son état."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Projection empathique de la difficulté ressentie vers celle qu'éprouveront les élèves — anticipation d'un état émotionnel d'autrui par analogie avec le sien."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'intelligence émotionnelle n'est pas attestée : la fiche demande nomination précise (colère, gratitude, frustration), perception fine de l'état d'autrui non-verbalisé, gestes concrets de sollicitude. La pièce 1 nomme \"pénible\" et \"seul\" — vocabulaire affectif minimal, sans déploiement, sans régulation décrite. La pièce 2 anticipe une difficulté chez les élèves, ce qui ressemble à une projection plus qu'à une perception fine d'un état émotionnel précis. Ce qui résiste : la pièce 2 dépasse l'analyse intellectuelle et porte une empathie anticipatoire — l'apprenant pose que ses futurs élèves vivront concrètement ce qu'il vit, et il prend cette information au sérieux pour la conception. La pièce 1 reste faible : nommer \"pénible\" est un degré minimal.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Empathie anticipatoire vers des usagers qui n'existent pas encore — l'état affectif personnel devient information pour anticiper celui d'autrui." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce 2 pour l'empathie anticipatoire. Mais peut-être que c'est moins une perception émotionnelle qu'une projection logique : \"je trouve ça pénible, donc ils trouveront ça pénible\". L'attaque la plus juste est (e) surinterprétation pédagogique : j'aurais chargé le passage d'une empathie réelle alors que c'est plutôt un raisonnement par analogie. L'attaque touche mais ne disqualifie pas tout à fait : l'apprenant ne se contente pas de prédire la difficulté, il la nomme avec un vocabulaire émotionnel précis (\"sentiment de surcharge\") et la prend au sérieux pour la conception.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'anticipation procède par analogie plus que par perception fine ; mais la nomination du \"sentiment de surcharge\" et la prise au sérieux conceptuelle confèrent à la pièce une portée émotionnelle réelle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que l'intelligence émotionnelle soit ici en acte, et la présomption d'absence a fait tomber la pièce 1 : nommer \"pénible\" et \"seul\" est minimal. Ce qui m'a forcé à reconnaître quelque chose, c'est l'empathie anticipatoire vers les futurs élèves : leur \"sentiment de surcharge de travail inutile\" est nommé avec précision et pris au sérieux comme contrainte de conception. Sous la présomption de sycophantie, cette pièce s'est affaiblie — c'est une projection par analogie plus qu'une perception fine — sans disqualifier. Il en résulte une présence partielle, plus du côté de l'empathie anticipatoire que de la régulation émotionnelle en acte. La compétence pourrait se déployer le jour où le portfolio raconterait un moment où une émotion d'autrui a été lue dans un échange réel, ou où une régulation délibérée a été conduite par l'apprenant sur lui-même.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce affaiblie a survécu : une empathie anticipatoire vers les futurs élèves, sans observation d'un état émotionnel d'autrui en situation réelle.",
+        "prescription": "Pour approfondir le travail émotionnel amorcé, un chemin possible serait de documenter un moment où une émotion d'autrui — partenaire, premier testeur, contact informel — a été lue dans un échange concret, et ce que cette lecture a changé dans la suite de l'interaction."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Expression brute et assumée d'une vulnérabilité (\"c'est super pénible\", \"je suis seul\") — registre intime à l'intérieur d'un dispositif documentaire formel. Pourrait porter un usage maîtrisé du registre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la communication authentique au sens 2.02 n'est pas attestée : la fiche demande des récits de prises de parole inconfortables, des variations délibérées de registre, du storytelling personnel pour créer du sens, de l'humour comme désamorçage. La pièce 1 montre une expression d'inconfort, mais le portfolio est un dispositif d'écriture pour soi (au moins en surface) — exprimer un inconfort dans un journal personnel n'est pas la même chose qu'oser une parole difficile dans un échange tendu. Le registre intime n'est pas une variation calibrée puisqu'il occupe tout le texte. Ce qui résiste un peu : le \"!\" à la fin de \"le portfolio s'écrirait tout seul !\" porte une ironie légère, et le passage \"penser à voix haute finalement\" assume un registre conversationnel volontaire. Mais c'est mince.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner sous présomption de sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la communication authentique soit ici attestée, et la présomption d'absence a tenu. L'expression d'inconfort dans le portfolio n'est pas une prise de parole adressée à un interlocuteur en situation : c'est un journal qui assume sa fonction de \"penser à voix haute\". La fiche distingue précisément la maîtrise du registre dans un échange relationnel de l'expression brute dans un espace privé. Il en résulte une absence assumée pour cette feuille — qui ne dit rien des autres entrées. La compétence pourrait apparaître le jour où une feuille raconterait un moment d'expression difficile vers un autre — feedback à un partenaire, refus poli, désamorçage d'une tension.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé la pièce : l'expression d'inconfort dans un journal pour soi ne constitue pas la maîtrise calibrée d'un registre vers un autre.",
+        "prescription": "Pour ouvrir un travail de communication, un chemin possible serait de documenter un échange où la manière de dire a été délibérément choisie — registre, timing, dosage — et l'effet observé sur l'interlocuteur."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un désaccord a été structuré, médié ou explicitement laissé non-résolu — la matière du conflit productif."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Conception d'un espace participatif Decidim destiné à la co-construction collective d'un référentiel — geste d'influence par aménagement d'un dispositif délibératif."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Conception d'un Discord avec des fonctions identifiées pour faire émerger des micro-collectifs d'apprenants — espace conçu pour que d'autres s'auto-organisent."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'influence n'est pas attestée : la fiche demande soit une stratégie d'adhésion explicite (sonder résistances, reformuler objections), soit une influence systémique avancée — la conception d'environnements où les gens s'engagent d'eux-mêmes. Les pièces 1 et 2 décrivent deux espaces numériques (Decidim, Discord) destinés à faire participer des futurs usagers. Pas de stratégie d'adhésion individuelle décrite, pas d'analyse de résistances. Ce qui résiste : la fiche cite explicitement \"création d'un espace numérique (Discord, forum) conçu pour que d'autres s'auto-organisent\" comme forme d'influence systémique. Les pièces 1 et 2 correspondent textuellement à ce marqueur. Mais c'est de l'influence en intention, pas encore en acte : aucune adhésion n'est observée puisque rien n'est lancé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant conçoit une plateforme Decidim destinée à la co-construction philosophique d'un référentiel — exactement le pattern d'influence systémique listé par la fiche." },
+            { "pieceId": 2, "motifResistance": "Le Discord est conçu avec des fonctions identifiées pour faire émerger des micro-collectifs auto-organisés — geste d'influence systémique par design d'environnement." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces pour leur correspondance au pattern d'influence systémique. Mais peut-être que je sur-interprète : nommer une plateforme ou un Discord à venir n'est pas concevoir un dispositif d'influence. L'attaque la plus juste est (g) mouvement-vers : l'apprenant est clairement engagé dans une logique d'influence systémique, mais sur cette feuille il l'énonce sans la conduire encore — pas de règles de modération, pas de gouvernance, pas de mécanismes d'adhésion documentés. L'attaque touche les deux pièces, qui restent affaiblies sans être disqualifiées.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le projet Decidim est annoncé mais sa gouvernance, ses règles de participation, le travail concret d'enrôlement restent à venir — c'est une intention d'influence systémique, pas encore son exercice."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le Discord est posé avec ses fonctions (appariement, micro-classes, IRL, projets) mais sans modération imaginée ni dispositifs d'adhésion concrets — design d'environnement en germe."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que l'influence soit ici en acte, et la présomption d'absence a fait tomber l'idée d'une stratégie de persuasion individuelle — rien de tel sur cette feuille. Ce qui m'a forcé à reconnaître quelque chose, c'est la double conception d'environnements numériques (Decidim pour co-construire, Discord pour s'auto-organiser) qui correspond textuellement à ce que la fiche appelle influence systémique par design d'espace. Sous la présomption de sycophantie, les deux pièces se sont affaiblies : ce sont des intentions de dispositif, sans gouvernance ni règles encore décrites. Il en résulte une présence établie côté influence systémique, calibrée prudemment. Le travail montre, dans ce pôle et sur cette feuille, une logique de design d'environnement participatif plus qu'une logique de persuasion. La compétence pourrait se densifier le jour où la gouvernance concrète de ces espaces serait documentée — modération, règles de délibération, rôles initiateurs.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a maintenu deux pièces affaiblies portant chacune un design d'environnement participatif — pattern d'influence systémique listé par la fiche, sans encore la gouvernance détaillée.",
+        "prescription": "Pour approfondir le travail d'influence systémique amorcé, un chemin possible serait de documenter, pour l'un des deux espaces (Decidim ou Discord), les règles de participation, les rôles d'animation et les premiers mécanismes pour faire venir et tenir les participants."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la collaboration divergente. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une collaboration a livré un résultat alors que les visions ou valeurs restaient explicitement en désaccord."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Diagnostic culturel : \"on vit dans un monde où il faut courir tout le temps\" — lecture d'une norme contextuelle qui rend non-naturelle l'activité de documentation réflexive."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Conception d'un site avec 5 niveaux différenciant publics aux cadres culturels distincts (élèves, parents, employeurs, enseignants, pédagogues)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'intelligence culturelle n'est pas attestée : la fiche demande l'analyse explicite de différences de normes entre contextes, ou la modification de son comportement parce que \"les règles étaient différentes\", avec analyse du pourquoi. La pièce 1 fait un diagnostic global (\"un monde où il faut courir\") qui n'est pas l'analyse d'un contexte spécifique. La pièce 2 différencie des publics mais sans nommer les cadres culturels qui les distinguent — c'est plus une stratégie de communication qu'une lecture des normes propres à chaque groupe. La présomption d'absence absorbe les deux pièces sans difficulté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner sous présomption de sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que l'intelligence culturelle soit ici en acte, et la présomption d'absence a tenu. Le diagnostic sur \"un monde où il faut courir\" est une généralité, pas une lecture des normes d'un contexte précis. La stratification du site par publics ne s'accompagne d'aucune analyse des cadres conceptuels propres à chaque groupe — parents, employeurs, enseignants — qui justifierait que tel niveau leur soit destiné plutôt que tel autre. Il en résulte une absence assumée pour cette feuille. La compétence pourrait apparaître le jour où une feuille raconterait une situation où l'apprenant a observé qu'un cadre culturel précis modifiait le sens d'un acte — ou une situation où il a adapté son comportement parce que les règles non-écrites étaient différentes.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé les deux pièces : généralité sur l'époque et stratification de publics sans analyse des cadres culturels qui les différencient.",
+        "prescription": "Pour ouvrir un travail d'intelligence culturelle, un chemin possible serait de documenter un moment où l'apprenant a observé qu'un même acte prenait un sens différent selon le contexte — milieu scolaire vs entreprise, public francophone vs anglophone, génération vs génération."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens politique et à la lecture organisationnelle. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la lecture des dynamiques de pouvoir invisibles a orienté ou bloqué une action."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Conception d'un site qui rend le même fond accessible à cinq publics aux cadres différents — pattern de traduction entre mondes (élève, parent, employeur, enseignant, pédagogue)."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Formation pour les tuteurs : traduire l'expertise du concepteur en savoir-faire opérationnel pour des praticiens — geste de transposition disciplinaire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la traduction entre mondes n'est pas attestée : la fiche demande des analogies structurelles, des reformulations pour audiences différentes, voire de la bidirectionnalité (remonter les besoins non-techniques en langage spécialisé). Sur cette feuille, l'apprenant nomme cinq niveaux de lecture, mais on ne sait pas comment le passage d'un niveau à l'autre se fait, ni en quoi le langage change, ni quel concept précis est traduit. La pièce 2 mentionne une formation à venir, sans aucune indication du travail de transposition. Ce qui résiste : le dispositif des cinq niveaux est en soi un acte de traduction institutionnalisé — la fiche cite explicitement \"création d'un référentiel ou vocabulaire partagé entre deux communautés = acte de traduction institutionnalisé qui passe souvent inaperçu\". L'apprenant n'a pas un seul niveau de lecture, il en a cinq différenciés par public, ce qui est un effort explicite de transposition.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le dispositif à cinq niveaux différenciés par public est un acte de traduction institutionnalisé : le même fond est rendu accessible à des cadres conceptuels distincts." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce 1 parce que les cinq niveaux constituent une traduction institutionnalisée. Mais peut-être que je sur-interprète : nommer des niveaux n'est pas montrer le travail de transposition. L'attaque la plus juste est (a) insuffisance probatoire : on a la structure, on n'a pas le travail textuel de traduction lui-même. L'attaque touche : la pièce dit que l'apprenant veut traduire, pas qu'il a déjà transposé un concept précis pour cinq audiences. Elle ne disqualifie pas tout à fait : la structure stratifiée est en soi un cadre de traduction, pas une simple intention.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "On a la structure (cinq niveaux par public) mais pas le travail concret de transposition d'un concept précis ; la pièce reste un cadre de traduction posé, pas un acte de traduction montré."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la traduction entre mondes soit ici en acte, et la présomption d'absence a fait tomber la pièce sur la formation tuteurs : pure intention. Ce qui m'a forcé à reconnaître quelque chose, c'est la structure à cinq niveaux du site : un même fond rendu accessible à cinq publics distincts est explicitement un acte de traduction institutionnalisé selon la fiche. Sous la présomption de sycophantie, la pièce s'est affaiblie — on a la structure, pas encore le travail textuel de transposition montré. Il en résulte une présence partielle, du côté du cadrage de traduction plutôt que de la traduction effectuée. La compétence pourrait se densifier le jour où le portfolio montrerait, sur un concept précis, comment sa formulation change entre les cinq niveaux — quelles analogies, quels termes choisis, ce qui se perd et ce qui se garde.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une pièce affaiblie a survécu : un dispositif à cinq niveaux de lecture qui pose le cadre d'une traduction institutionnalisée, sans encore montrer le travail textuel de transposition.",
+        "prescription": "Pour approfondir le travail de traduction amorcé, un chemin possible serait de prendre un concept central du projet et de raconter son passage d'un niveau à l'autre — quel mot pour les élèves, quelle analogie pour les parents, quelle formulation pour les pédagogues, et ce qui change à chaque palier."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Expression d'un besoin de petit groupe (\"je suis seul et pas en petit groupe\") et imagination d'un partage avec Stéphane — vocabulaire d'appartenance et désir de collectif."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Projection d'un espace Decidim pour co-construire collectivement le référentiel — geste d'architecture communautaire au niveau philosophique."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Projection d'un Discord avec fonctions identifiées (tuteur, micro-classe, IRL, projets) — architecture communautaire multi-canaux décrite explicitement."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Formation pour tuteurs : geste de transmission qui prépare l'émergence d'animateurs de la communauté future."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la construction de communautés n'est pas attestée : la fiche demande un \"nous\" identitaire chargé d'émotion, des rituels partagés, un vocabulaire propre au groupe — toutes choses qui supposent une communauté existante. Sur cette feuille, aucune communauté n'existe encore : l'apprenant est seul et imagine des espaces à venir. La pièce 1 dit \"je suis seul\", ce qui est plutôt l'inverse de l'appartenance. Ce qui résiste, et fortement : les pièces 2 et 3 décrivent une architecture communautaire multi-canaux (Decidim pour la philosophie, Discord pour l'opérationnel) avec fonctions différenciées — exactement ce que la fiche cite comme \"design d'écosystème multi-canaux\" pouvant justifier le niveau Expert. La pièce 4 ajoute un dispositif de formation des animateurs (tuteurs). Le travail montre une conception communautaire en germe, sans communauté encore vivante.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Decidim posée comme infrastructure de co-construction philosophique — premier canal d'un dispositif communautaire stratifié." },
+            { "pieceId": 3, "motifResistance": "Discord posé avec ses fonctions identifiées (tuteur, micro-classe, IRL, projets) — second canal opérationnel d'une architecture communautaire multi-canaux." },
+            { "pieceId": 4, "motifResistance": "Formation tuteurs : préparation des animateurs futurs de la communauté, geste constitutif d'une infrastructure communautaire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu trois pièces qui décrivent ensemble un dispositif communautaire à plusieurs étages. Mais peut-être que j'ai cédé : annoncer un Discord et une plateforme Decidim n'est pas construire une communauté. L'attaque la plus juste est (g) mouvement-vers : l'apprenant conçoit une architecture, il ne l'a pas mise en service. Pour la pièce 3, j'envisage aussi (a) insuffisance probatoire : la liste des fonctions est posée mais la gouvernance, les rituels, les règles d'appartenance ne sont pas décrits. L'attaque touche les trois pièces, mais ne les disqualifie pas : ce que la fiche appelle \"architecture communautaire\" est précisément un travail de conception, pas la communauté en acte.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Decidim est posée comme intention de plateforme, sans gouvernance ni rituels décrits ; conception en germe d'un canal communautaire."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La liste des fonctions du Discord est posée, mais la gouvernance, les règles d'appartenance et les rituels ne sont pas décrits ; l'architecture multi-canaux est annoncée plus que conçue dans le détail."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La formation tuteurs est annoncée comme contenu à venir ; la préparation des animateurs est intentionnelle, pas encore conçue dans le détail."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la construction de communautés soit ici en acte, et la présomption d'absence a fait tomber la pièce sur la solitude actuelle. Ce qui m'a forcé à reconnaître quelque chose, c'est la triple conception d'une architecture communautaire : Decidim pour le débat philosophique, Discord pour les questions opérationnelles avec fonctions différenciées (tuteur, micro-classe, IRL, projets), et formation des tuteurs comme animateurs. La fiche cite explicitement \"conception d'espaces multi-canaux (réflexion + opérationnel + rencontres physiques) = signal fort d'architecture communautaire\". Sous la présomption de sycophantie, les trois pièces se sont affaiblies : tout est à venir, rien n'est encore en service. Il en résulte une présence établie côté architecture, calibrée prudemment pour la pure intentionnalité du dispositif. Le travail montre une vision communautaire stratifiée. La compétence pourrait se déployer plus pleinement quand les premiers participants seront effectivement présents et que la gouvernance se déploiera dans le concret.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a maintenu trois pièces affaiblies qui décrivent ensemble une architecture communautaire multi-canaux — pattern fort listé par la fiche, sans encore la mise en service.",
+        "prescription": "Pour densifier le travail communautaire amorcé, un chemin possible serait de documenter, pour l'un des canaux (Decidim ou Discord), les premiers rituels, les rôles d'animation, les règles d'appartenance — ce qui rendra l'espace habitable au-delà de sa structure technique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 2,
+    "nonEtablies": 5,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 22 décembre, le travail relationnel se déploie surtout en projection : l'apprenant écrit seul, mais sa pensée tourne autour de dispositifs collectifs à venir — plateforme Decidim, Discord, formation pour des tuteurs encore à recruter, site à plusieurs niveaux pour des publics qui n'ont pas encore lu une ligne. La voix dominante est celle d'un concepteur qui aménage des espaces pour d'autres avant que ces autres n'arrivent. Les marqueurs concrets cités sont la solitude actuelle (\"je suis seul et pas en petit groupe\"), la figure nommée de Stéphane, et l'imagination répétée de configurations à plusieurs (\"discuter\", \"co-construire\", \"micro-classe ponctuelle\", \"rendez-vous IRL\"). Sur ce pôle et cette feuille, le travail montre davantage une logique d'architecture relationnelle qu'une pratique relationnelle en situation.",
+    "territoiresDenses": [
+      {
+        "competence": "Construction de communautés",
+        "description": "Conception d'une architecture multi-canaux : plateforme délibérative pour la philosophie du projet, Discord pour l'opérationnel, formation pour préparer les animateurs.",
+        "extraitVerbatim": "Et éventuellement créer un groupe Discord pour les questions d'organisations pratiques : trouver un tuteur / créer une micro-classe ponctuelle / organiser un rendez-vous IRL dans une ville / proposer des projets d'étude…",
+        "ceQueCaDit": "Le travail montre une vision communautaire stratifiée — un canal pour penser ensemble, un canal pour s'organiser, des animateurs à former — avant même que la communauté n'existe."
+      },
+      {
+        "competence": "Influence et diplomatie",
+        "description": "Conception d'espaces participatifs où d'autres pourront s'engager d'eux-mêmes — Decidim pour la délibération philosophique, Discord pour l'auto-organisation pratique.",
+        "extraitVerbatim": "J'espère le mettre en ligne avant la fin de l'année, pour ensuite pouvoir lancer les discussions sur Decidim [...] pour philosopher et co-construire le référentiel que j'ai actuellement juste fait générer sur la base de réflexions perso.",
+        "ceQueCaDit": "Le travail relève d'une influence systémique par design d'environnement plus que d'une logique de persuasion individuelle — l'apprenant cherche à enrôler en aménageant des lieux de participation."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. La gestion des conflits, la collaboration divergente et le sens politique ne sont pas mentionnés : la feuille parle d'espaces à venir, pas d'interactions tendues vécues. La communication authentique, l'intelligence émotionnelle et l'intelligence culturelle apparaissent en surface (vocabulaire affectif minimal, généralité sur \"un monde qui court\") sans le mouvement qui en ferait des marqueurs centraux — récit d'une prise de parole difficile, lecture fine d'une émotion d'autrui, observation d'une norme culturelle précise. La traduction entre mondes est posée comme cadre (cinq niveaux de lecture) mais pas montrée en acte. Ces territoires gagneraient à être explorés à mesure que les espaces conçus accueilleront leurs premiers participants — c'est dans le frottement des interactions à venir que ces compétences trouveront leur matière.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle sur cette feuille. D'abord, une posture d'architecte relationnel : l'apprenant pense la relation par les espaces qu'il aménage, pas par les rencontres qu'il raconte. Ensuite, une circulation entre solitude présente et collectifs imaginés : la solitude actuelle (\"je suis seul\") est immédiatement déplacée en projection (\"si Stéphane était avec moi\", \"discussions sur Decidim\", \"groupe Discord\") — comme si l'écriture solitaire cherchait sa résolution dans la projection communautaire. Enfin, une stratification systématique des publics : élèves, parents, employeurs, enseignants, pédagogues, tuteurs apparaissent chacun avec un rôle et un niveau de lecture associé, ce qui traduit une sensibilité aux cadres distincts sans encore l'analyse fine de ce que chacun de ces cadres porte de propre.",
+    "pistes": [
+      "Pour ouvrir le travail relationnel au-delà de l'architecture, un chemin possible serait de documenter une interaction concrète — un échange avec Stéphane, un retour d'un premier lecteur du site, une discussion préparatoire — où ce qui se joue entre deux personnes prend le pas sur ce qui se conçoit pour un collectif.",
+      "Pour densifier la traduction entre mondes amorcée, un chemin possible serait de prendre un concept central et de raconter son passage d'un niveau à l'autre — quel mot pour les élèves, quelle analogie pour les parents, quelle formulation pour les pédagogues.",
+      "Pour approfondir le travail d'influence systémique, un chemin possible serait de décrire, pour l'un des deux espaces participatifs envisagés, les règles de modération, les rôles initiateurs et les premiers mécanismes pour faire venir et tenir les participants."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 22 décembre, le travail relationnel se déploie surtout en projection : l'apprenant écrit seul, mais sa pensée tourne autour de dispositifs collectifs à venir — plateforme Decidim, Discord, formation pour des tuteurs encore à recruter, site à plusieurs niveaux pour des publics qui n'ont pas encore lu une ligne. La voix dominante est celle d'un concepteur qui aménage des espaces pour d'autres avant que ces autres n'arrivent. Les marqueurs concrets cités sont la solitude actuelle (\"je suis seul et pas en petit groupe\"), la figure nommée de Stéphane, et l'imagination répétée de configurations à plusieurs (\"discuter\", \"co-construire\", \"micro-classe ponctuelle\", \"rendez-vous IRL\"). Sur ce pôle et cette feuille, le travail montre davantage une logique d'architecture relationnelle qu'une pratique relationnelle en situation.\n\n## Territoires les plus denses\n\n**Construction de communautés** — Conception d'une architecture multi-canaux : plateforme délibérative pour la philosophie du projet, Discord pour l'opérationnel, formation pour préparer les animateurs.\n\n> \"Et éventuellement créer un groupe Discord pour les questions d'organisations pratiques : trouver un tuteur / créer une micro-classe ponctuelle / organiser un rendez-vous IRL dans une ville / proposer des projets d'étude…\"\n\nLe travail montre une vision communautaire stratifiée — un canal pour penser ensemble, un canal pour s'organiser, des animateurs à former — avant même que la communauté n'existe.\n\n**Influence et diplomatie** — Conception d'espaces participatifs où d'autres pourront s'engager d'eux-mêmes : Decidim pour la délibération philosophique, Discord pour l'auto-organisation pratique.\n\n> \"J'espère le mettre en ligne avant la fin de l'année, pour ensuite pouvoir lancer les discussions sur Decidim [...] pour philosopher et co-construire le référentiel que j'ai actuellement juste fait générer sur la base de réflexions perso.\"\n\nLe travail relève d'une influence systémique par design d'environnement plus que d'une logique de persuasion individuelle — l'apprenant cherche à enrôler en aménageant des lieux de participation.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. La gestion des conflits, la collaboration divergente et le sens politique ne sont pas mentionnés : la feuille parle d'espaces à venir, pas d'interactions tendues vécues. La communication authentique, l'intelligence émotionnelle et l'intelligence culturelle apparaissent en surface (vocabulaire affectif minimal, généralité sur \"un monde qui court\") sans le mouvement qui en ferait des marqueurs centraux — récit d'une prise de parole difficile, lecture fine d'une émotion d'autrui, observation d'une norme culturelle précise. La traduction entre mondes est posée comme cadre (cinq niveaux de lecture) mais pas montrée en acte. Ces territoires gagneraient à être explorés à mesure que les espaces conçus accueilleront leurs premiers participants — c'est dans le frottement des interactions à venir que ces compétences trouveront leur matière.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle sur cette feuille. D'abord, une posture d'architecte relationnel : l'apprenant pense la relation par les espaces qu'il aménage, pas par les rencontres qu'il raconte. Ensuite, une circulation entre solitude présente et collectifs imaginés : la solitude actuelle (\"je suis seul\") est immédiatement déplacée en projection (\"si Stéphane était avec moi\", \"discussions sur Decidim\", \"groupe Discord\") — comme si l'écriture solitaire cherchait sa résolution dans la projection communautaire. Enfin, une stratification systématique des publics : élèves, parents, employeurs, enseignants, pédagogues, tuteurs apparaissent chacun avec un rôle et un niveau de lecture associé, ce qui traduit une sensibilité aux cadres distincts sans encore l'analyse fine de ce que chacun de ces cadres porte de propre.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir le travail relationnel au-delà de l'architecture, un chemin possible serait de documenter une interaction concrète — un échange avec Stéphane, un retour d'un premier lecteur du site, une discussion préparatoire — où ce qui se joue entre deux personnes prend le pas sur ce qui se conçoit pour un collectif.\n- Pour densifier la traduction entre mondes amorcée, un chemin possible serait de prendre un concept central et de raconter son passage d'un niveau à l'autre — quel mot pour les élèves, quelle analogie pour les parents, quelle formulation pour les pédagogues.\n- Pour approfondir le travail d'influence systémique, un chemin possible serait de décrire, pour l'un des deux espaces participatifs envisagés, les règles de modération, les rôles initiateurs et les premiers mécanismes pour faire venir et tenir les participants."
+  }
+}

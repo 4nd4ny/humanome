@@ -1,0 +1,2 @@
+D'abord absente fin décembre — le journal pour soi ne suffit pas —, la compétence bascule le 01/01 avec une preuve adressée à un lectorat humain, puis se consolide (02/01, 03/01, 07/01) via feedbacks directs et refus assumés. Suivent des oscillations en janvier où plusieurs renvois signalent une matière présente mais non située. Le palier du 10/02 (4 preuves, confiance 0.82) ancre la variation des registres ; mars la rejoue sur l'humour, la vulnérabilité et le storytelling (17/03, 27/03, 28/03), portant la trajectoire vers une présence établie calibrée.</content>
+</invoke>

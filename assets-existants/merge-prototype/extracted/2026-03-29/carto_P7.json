@@ -1,0 +1,491 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Mais ce qui est magnifique, ce sont les conseils rédigés par l'IA pour permettre aux élèves de progresser dans une logique d'évaluation formative et d'amélioration continue.",
+      "contexte": "Articulation explicite d'une logique formative au service de la progression des élèves ; activation possible de 7.02 (évaluation transformative), 7.01 (facilitation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela. Ce qui est beaucoup plus fort qu'une simple note.",
+      "contexte": "Distinction posée entre notation sommative opaque et évaluation raisonnée transparente ; activation possible de 7.02 (évaluation transformative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Je pense que ce système, sous sa forme actuelle, produit de meilleures évaluations que les notes attribuées aux travaux de maturité du gymnase.",
+      "contexte": "Comparaison normative entre dispositif IA et notation institutionnelle ; activation possible de 7.02 (évaluation transformative), 7.05 (vision).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Le protocole 4 aka le dispositif Aurora Juge, m'a fait réaliser mes biais d'enseignant. J'ai compris pourquoi, connaissant mes élèves, j'avais mis des bonnes notes à certains portfolio qui finalement ne sont pas vraiment réflexifs dans l'absolu.",
+      "contexte": "Reconnaissance d'un biais propre d'évaluation grâce au dispositif IA ; activation possible de 7.02 (évaluation transformative), 7.06 (efficacité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Ce pull request contient 4 portfolios évalués avec Claude Opus 4.6, ainsi que tous les logs produits durant le processus et qui permettent de suivre le raisonnement du jury, ainsi que chaque étape du dispositif d'évaluation.",
+      "contexte": "Livraison documentée du dispositif avec logs préservés à des fins de réexploitation et de transmission ; activation possible de 7.03 (documentation vivante).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Solution hybride : 1 orchestrateur en bash à la racine 'aurora.sh', 21 prompts pour les agents dans le dossier protocole, 1 fichier cache 'index_triage.md' dans le dossier référentiel utilisé par le Greffier, 6 outils en python dans le sous-dossier scripts",
+      "contexte": "Architecture documentée avec séparation des composants par rôle et par dossier ; activation possible de 7.03 (documentation), 7.04 (orchestration des rôles).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Dans une terminal doté de Claude Code, lancer ./aurora.sh\nLe script va analyser tous les portfolios présents dans le dossier portfolios pour lesquels il n'y a pas déjà un fichier rapport.md dans le dossier résultats portant le numéro du portfolio et la date du jour.",
+      "contexte": "Description procédurale d'utilisation à destination d'un autre lecteur — README ou guide opératoire ; activation possible de 7.03 (documentation vivante).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Haiku pourrait faire le travail du Trieur et du Gardien. Opus pourrait faire le travail de l'Accusation, la Défense, les Jurés, le Président. Sonnet pourrait s'occuper de l'Orchestrateur, de la Première impression, du Greffier, de Kairos, du calcul Ipsatif, du Rapporteur et du Contrôle qualité.",
+      "contexte": "Assignation de rôles différenciés à des agents IA selon les capacités ; activation possible de 7.04 (leadership situationnel hybride).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Un parallélisme inter-compétences apporterait un gain significatif de performance, pour lancer tous les tribunaux (un par compétence suspecte) simultanément. L'API Batch permettrait de réduire les coûts et de soumettre les 6 appels des jurés en parallèle.",
+      "contexte": "Vision prospective d'optimisation : ce qui est livré aujourd'hui et ce qui peut évoluer demain ; activation possible de 7.05 (vision), 7.07 (agilité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Je devrais probablement contacter mes ex-collègues de la HEP pour leur proposer de trouver un futur enseignant, dans les étudiants de la volée de l'an prochain, qui serait intéressé de faire son master sur une étude de cas concret.",
+      "contexte": "Plan stratégique à moyen terme reliant un présent (dispositif livré) à un futur anticipé (légitimation académique) ; activation possible de 7.05 (vision stratégique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Ça apporterait une crédibilité institutionnelle à la pertinence des écoles RESPIRE.",
+      "contexte": "Lien argumenté entre action présente (étude HEP) et futur stratégique (légitimation RESPIRE) ; activation possible de 7.05 (vision).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Le protocole Juge fonctionne à merveille. Testé plusieurs fois, avec des modèles forts (Opus) et moyen (Sonnet), les résultats sont consistants. [...] Plusieurs run ont été exécutés durant la phase de développement.",
+      "contexte": "Itérations successives avec validation empirique — cycle générer-tester-ajuster ; activation possible de 7.07 (agilité)."
+    , "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "le niveau méta-cognitif de mes élèves était très très faible. La pertinence du dispositif d'évaluation est d'autant plus facile à accepter que l'on peut suivre les raisonnements dans les logs.",
+      "contexte": "Diagnostic exigeant sur les élèves combiné à un acte de transparence évaluative ; activation possible de 7.02 (évaluation honnête et constructive).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "J'ai pu m'y mettre dans les années 2017, en commençant mes recherches de thèse. L'IA n'a fait que confirmer ce que j'avais identifié comme étant important de faire en classe, et ignoré par le système en cours.",
+      "contexte": "Articulation d'une vision pédagogique de long terme antérieure à l'IA, confirmée a posteriori ; activation possible de 7.05 (vision), 7.01 (architecture pédagogique)."
+    , "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'IA produit des conseils formatifs pour faire progresser les élèves — dispositif pédagogique conçu pour l'autonomie de l'apprenant."
+        },
+        {
+          "numero": 2,
+          "pid": 14,
+          "contexte": "Vision pédagogique articulée (« important de faire en classe ») préfigurant une architecture d'apprentissage humaniste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche distingue maïeutique (questionner sans donner la réponse) et architecture pédagogique. La pièce 1 montre un dispositif qui produit des conseils — c'est plutôt prescriptif que maïeutique au sens strict, mais la fiche admet l'architecture de dispositifs comme manifestation. La pièce 2 articule une vision pédagogique mais sans déployer le dispositif. Ce qui reste explicitement faible : aucune trace de questionnement socratique adressé à autrui dans cette feuille, aucune question reformulée pour faire mouche, aucun récit de retenue délibérée de celui qui sait. La compétence se devine à travers l'existence du dispositif Aurora, mais celui-ci délivre des verdicts et des conseils — pas des questions au sens maïeutique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La logique formative d'amélioration continue est une intention pédagogique architecturée, même si elle n'est pas maïeutique au sens strict." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce résiste. Je la teste. L'évaluation formative IA est-elle vraiment de la facilitation d'apprentissage au sens de 7.01, ou plutôt de la 7.02 ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce active beaucoup plus 7.02 (évaluation transformative) que 7.01 (maïeutique et architecture pédagogique). Aurora évalue, il ne fait pas accoucher l'élève de son savoir par le questionnement socratique. La distinction critique de la fiche est claire : 7.01 = méthode/architecture, 7.02 = acte évaluatif spécifique. Ici, c'est l'acte évaluatif." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la conception du dispositif portait une trace de facilitation d'apprentissage au sens de la fiche. La pièce qui résistait est tombée sous l'attaque de confusion de compétence : Aurora évalue, et l'évaluation formative relève de 7.02. La pièce 14 était trop ténue pour porter seule. Ce qui en résulte, c'est que la compétence n'est pas attestée par cette feuille. La compétence existe peut-être ailleurs dans le portfolio — l'apprenant a été enseignant pendant des années, et les écoles RESPIRE pourraient porter une architecture pédagogique forte. Sur le 29 mars, la maïeutique et la facilitation au sens strict ne se laissent pas lire.",
+          "confianceFinale": 0.28
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.28,
+        "motif": "La pièce résistante (conseils formatifs IA) est tombée sous l'attaque de confusion de compétence : la fiche distingue clairement maïeutique/architecture (7.01) et acte évaluatif (7.02). Le passage atteste 7.02, pas 7.01.",
+        "prescription": "La maïeutique et l'architecture pédagogique au sens fort de la fiche ne se laissent pas lire dans ce passage. Pour ouvrir le dossier, une piste serait de documenter une situation d'enseignement où l'apprenant a choisi de ne pas donner la réponse — la question reformulée, la retenue assumée, le moment où l'élève accouche de son savoir."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conseils formatifs rédigés pour la progression : logique d'évaluation au service de l'amélioration continue, pas du tri."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Distinction explicite entre la note opaque et le verdict raisonné : critère de transformativité posé comme principe."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Reconnaissance d'un biais propre d'évaluation : indulgence par familiarité avec les élèves — diagnostic auto-critique d'une pratique sommative défaillante."
+        },
+        {
+          "numero": 4,
+          "pid": 13,
+          "contexte": "Énoncé exigeant sur les élèves (« niveau métacognitif très très faible ») assumé dans un cadre où la transparence du raisonnement rend la vérité dicible — vérité sans casser la relation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche distingue notation sommative (classer) et évaluation transformative (faire progresser). La pièce 1 articule la finalité formative explicitement. La pièce 2 oppose deux régimes évaluatifs en désignant celui qui est plus fort pour la progression. La pièce 3 met en évidence ce que la notation sommative biaisée a produit (surnotation des connus) et le travail correctif du dispositif. La pièce 4 articule un point central : le dispositif rend dicible la vérité dure parce qu'il l'argumente — la fiche valorise précisément le feedback qui ne sacrifie ni la vérité ni la relation. Ce qui reste explicitement faible : la compétence pourrait être plus directement attestée par un feedback concret écrit pour un élève précis ; ici, on a surtout des principes.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La finalité formative est articulée comme intention de conception, pas comme déclaration générale." },
+            { "pieceId": 2, "motifResistance": "L'opposition verdict raisonné / pouce mouillé est précisément la frontière transformatif/sommatif que la fiche évoque." },
+            { "pieceId": 3, "motifResistance": "Le diagnostic d'une notation biaisée est une critique opérationnelle de la pratique sommative." },
+            { "pieceId": 4, "motifResistance": "La transparence du raisonnement comme condition de la vérité dicible touche le critère exigeant de la fiche : honnêteté sans rupture relationnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces résistent. Je durcis. Ces pièces relèvent-elles de l'évaluation transformative en acte, ou de principes énoncés sur l'évaluation ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'apprenant nomme la finalité formative sans citer un feedback concret. La pièce raconte la conception, pas un acte évaluatif singulier. Mais le dispositif livré atteste que la conception s'incarne." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La distinction verdict raisonné / pouce mouillé n'est pas un slogan : elle nomme une frontière probatoire (montrer pourquoi) qui est précisément ce qui rend une évaluation transformative." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Reconnaître son propre biais d'évaluation par confrontation au dispositif est un acte évaluatif sur sa pratique évaluative — c'est de l'évaluation transformative auto-appliquée." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'énoncé sur le niveau métacognitif est dur ; la transparence du raisonnement (logs) répond au critère de ne pas sacrifier la relation. Mais la pièce raconte le principe plus que la mise en œuvre." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient l'évaluation transformative en acte. Deux ont tenu fermement : la distinction verdict raisonné / pouce mouillé comme frontière probatoire, et la reconnaissance du biais propre d'évaluation qui est de l'évaluation appliquée à sa propre pratique. Deux ont tenu avec affaiblissement parce qu'elles articulent des principes plutôt qu'un acte. Ce qui se dégage, c'est une attestation solide. L'évaluation transformative opère ici à deux niveaux : dans la conception d'un dispositif qui produit des feedbacks formatifs traçables, et dans la révision auto-critique de l'évaluateur que l'apprenant a été. Une réserve : la conception est attestée, la portée sur les élèves reste comportementale (la fiche le signale).",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.82,
+        "motif": "Le temps 2 a confirmé la frontière verdict raisonné / pouce mouillé comme critère transformatif, et la reconnaissance du biais propre comme évaluation auto-appliquée ; les deux autres pièces ont été retenues avec affaiblissement.",
+        "prescription": "L'évaluation transformative opère ici sur deux plans — la conception du dispositif Aurora et l'auto-critique de l'évaluateur qu'a été l'apprenant. Pour étoffer la trace côté acte concret, une piste serait de citer à l'occasion un feedback formatif particulier produit par Aurora, ou rédigé par l'apprenant en classe, et de relire ce qui s'y joue — ce qui est nommé, ce qui ouvre une piste, ce qui ne sacrifie ni la vérité ni la relation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Livraison documentée avec logs préservés intentionnellement pour permettre le suivi du raisonnement — capitalisation pour autrui."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Architecture nommée et structurée par dossier et rôle (orchestrateur, protocole, référentiel, scripts) — conscience de la structuration pour qui reprendra."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Procédure d'utilisation détaillée à destination d'un autre lecteur (« dans un terminal doté de Claude Code, lancer ./aurora.sh ») — format README."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche distingue documentation vivante (intention de pérennisation, conscience du destinataire) et stockage passif (« j'ai archivé »). La pièce 1 livre les logs avec l'intention explicite (« permettent de suivre le raisonnement du jury, ainsi que chaque étape ») — c'est de la capitalisation intentionnelle. La pièce 2 structure l'architecture par dossier et rôle — c'est de la structuration pour un futur lecteur. La pièce 3 donne une procédure d'utilisation pas-à-pas — c'est un guide opératoire. Ce qui reste explicitement faible : aucune trace de versioning explicite (v1, v2…) ni d'historique d'évolution ne se lit ici ; la dimension « vivante » (mise à jour) n'apparaît pas.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'intention de conservation des logs pour suivre le raisonnement est explicite — c'est une trace de capitalisation pour autrui." },
+            { "pieceId": 2, "motifResistance": "La structuration par dossier et par rôle anticipe la reprise par un autre — c'est de la documentation vivante au sens architectural." },
+            { "pieceId": 3, "motifResistance": "La procédure d'utilisation pas-à-pas est précisément du format README ou guide." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces résistent. Je durcis. La livraison de logs est-elle vraiment de la documentation vivante, ou un simple sous-produit technique ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant explicite l'intention (permettre de suivre le raisonnement) ; les logs ne sont pas un sous-produit accidentel mais une livraison délibérée pour le futur lecteur." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active aussi 1.07 (architecture). Mais en tant qu'elle est livrée comme description structurée pour un autre, elle relève bien de la documentation." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La procédure n'est pas raconté, elle est écrite comme guide. Le format est celui du README." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient pleinement la documentation vivante. Deux pièces ont tenu fermement : la livraison délibérée des logs et la procédure d'utilisation au format README. Une a tenu avec affaiblissement. Ce qui se dégage, c'est une attestation solide. La fiche admet l'Expert lorsque les artefacts EUX-MÊMES sont la trace ; le pull request livré contient à la fois le code, les logs, et la procédure d'utilisation — c'est une documentation qui dépasse le récit. Une réserve : la dimension « vivante » (versioning, mises à jour, évolutions traçables) n'apparaît pas dans le passage du 29 mars, mais les artefacts livrés portent cette possibilité.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé la livraison délibérée des logs pour le suivi du raisonnement et la procédure d'utilisation au format README comme actes de documentation vivante ; l'architecture nommée par dossier a été retenue avec affaiblissement.",
+        "prescription": "La documentation vivante opère ici à travers les artefacts livrés — logs, structure de dossiers, procédure d'utilisation. Pour étoffer la dimension « vivante » que la fiche valorise, une piste serait de tenir, dans le pull request lui-même, un court changelog qui dirait ce qui change d'une version à l'autre, ce qui rendrait visible le mouvement du dispositif dans le temps."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Assignation explicite de rôles différenciés à trois modèles IA selon leurs capacités — pilotage hybride humain-IA avec rôles définis."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Treize rôles d'agents distribués dans l'architecture (Trieur, Greffier, Accusation, Défense, Jurés, Président, Orchestrateur, etc.) — hiérarchie de décision distribuée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche est claire : 7.04 demande l'alternance consciente entre direction et retrait, et distingue 7.04 (choix de posture qui mène) de 1.10 (articulation des forces comparatives). Les pièces 1 et 2 attestent une distribution de rôles aux agents IA avec assignation selon leurs forces — c'est précisément la manifestation « assignation de rôles différenciés à des agents IA (superviseur, bâtisseur, exécutant) » que la fiche cite. Ce qui reste explicitement faible : aucun récit de moment où l'apprenant a choisi de NE PAS intervenir — le retrait volontaire que la fiche valorise. Aucune trace de bascule (qui mène à quel moment, quand l'apprenant reprend la main). L'orchestration est conçue statiquement, pas alternée dynamiquement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'assignation Haiku/Opus/Sonnet aux rôles est précisément l'exemple cité par la fiche comme manifestation de 7.04." },
+            { "pieceId": 2, "motifResistance": "La distribution des treize rôles avec hiérarchie de décision est une architecture de leadership distribué." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces résistent. Je durcis. Cette assignation de rôles relève-t-elle de 7.04 (leadership situationnel) ou de 1.07 (architecture) ou de 1.10 (synergie) ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active 1.10 (articulation des forces comparatives Haiku/Opus/Sonnet) et 1.07 (architecture). Pour 7.04, il faudrait un choix de posture qui mène à un moment donné, avec déclencheur. Ici, c'est une assignation stable, pas une bascule. Mais la fiche admet explicitement l'assignation de rôles différenciés comme manifestation." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Treize rôles distribués sont aussi une architecture (1.07). La dimension orchestration consciente (président, supervision) penche vers 7.04, mais l'alternance n'est pas illustrée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient le leadership situationnel au sens fort de la fiche. Deux ont tenu avec affaiblissement : l'assignation de rôles aux agents IA est précisément ce que la fiche cite comme manifestation, mais elle n'est pas accompagnée du marqueur clé — l'alternance consciente entre direction et retrait, le retrait volontaire, la bascule. L'orchestration est conçue statiquement. Ce qui en résulte, c'est une attestation modérée. La fiche admet l'assignation de rôles, donc la compétence est touchée ; mais la facette « alternance » qui la distingue de 1.10 et 1.07 n'est pas attestée. Le renvoi au cartographe correspond — la compétence est suggérée sans être pleinement déployée.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a retenu avec affaiblissement l'assignation de rôles aux agents IA — manifestation citée par la fiche mais sans la facette « alternance consciente entre direction et retrait » qui distingue 7.04 de l'architecture (1.07) et de la synergie (1.10).",
+        "prescription": "L'orchestration des agents IA se lit ici sous sa forme statique (qui fait quoi), sans la facette dynamique (qui mène quand, quand l'humain reprend la main). Pour ouvrir le dossier, une piste serait de raconter un moment où, dans une exécution d'Aurora, l'apprenant a choisi de laisser le jury décider sans intervenir, ou inversement de reprendre la main sur une décision particulière, avec le déclencheur de la bascule."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Plan stratégique à moyen terme (volée HEP de l'an prochain) reliant le présent (dispositif livré) à un futur anticipé (étude de cas)."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Lien argumenté entre l'action HEP envisagée et l'objectif stratégique (crédibilité institutionnelle de RESPIRE)."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Vision prospective d'optimisation technique (parallélisation, API Batch) qui distingue le livré actuel du potentiel futur."
+        },
+        {
+          "numero": 4,
+          "pid": 14,
+          "contexte": "Vision pédagogique antérieure à l'IA (« important de faire en classe, et ignoré par le système ») qui guide aujourd'hui le projet RESPIRE."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche demande le lien explicite entre projection future et décision présente, pas un simple « plus tard ». La pièce 1 articule un horizon (volée HEP de l'an prochain) avec une action conditionnelle (« je devrais probablement »). La pièce 2 articule explicitement le lien stratégique (le master apporterait crédibilité institutionnelle à RESPIRE). La pièce 3 distingue le livré actuel des évolutions prospectives — c'est une vision de ce qui devient possible. La pièce 4 articule une vision pédagogique antérieure qui structure les choix présents. Ce qui reste explicitement faible : la pièce 1 reste au conditionnel ; les autres relèvent davantage de la vision déployée que de la décision présente argumentée par le futur.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le lien argumenté master HEP → crédibilité institutionnelle → légitimité RESPIRE est la forme exacte demandée par la fiche : présent justifié par futur." },
+            { "pieceId": 4, "motifResistance": "Une vision pédagogique antérieure de 13 ans guide aujourd'hui une trajectoire — c'est précisément ce que la fiche valorise." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces résistent. Je durcis. Sont-ce vraiment des visions stratégiques articulées ou des récits rétrospectifs lisses ?",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le lien est explicite et formulé en termes prospectifs : un master HEP rendrait crédible institutionnellement RESPIRE. Ce n'est pas un récit de soi sur soi, c'est un raisonnement présent-futur." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le récit est rétrospectif (la vision a été identifiée en 2017) ; mais elle est articulée comme principe d'orientation des choix présents (Aurora et RESPIRE en sont les héritiers). La pièce raconte la vision plutôt qu'elle ne la déploie en arbitrage présent." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient pleinement la vision stratégique au sens de la fiche. Une pièce a tenu fermement : le lien master HEP → crédibilité → RESPIRE est précisément la forme demandée — un présent (envisager le contact HEP) justifié par un futur (la légitimité institutionnelle). Une autre a tenu avec affaiblissement : la vision pédagogique de 2017 est articulée mais rétrospectivement. Ce qui se dégage, c'est une attestation solide. La vision stratégique opère ici à deux horizons — proche (la prochaine volée HEP) et long (la légitimation institutionnelle de RESPIRE). Une réserve : la dimension « scénarios prospectifs multi-horizons » que la fiche évoque n'apparaît pas — la vision est portée par une trajectoire, pas par une cartographie de futurs possibles.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé le lien explicite master HEP → crédibilité → RESPIRE comme vision stratégique articulée ; la vision pédagogique de 2017 a été retenue avec affaiblissement.",
+        "prescription": "La vision stratégique opère ici dans une trajectoire qui relie chaque étape à un futur anticipé. Pour étoffer la dimension prospective multi-horizons que la fiche valorise, une piste serait de tenir à l'occasion une note qui dessine, en quelques scénarios, ce qu'Aurora et RESPIRE pourraient devenir à trois, cinq, dix ans — selon que la HEP s'engage, selon que les institutions résistent, selon que la technologie évolue."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'efficacité personnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage explicite entre tâches — pourquoi telle priorité a été choisie, qu'est-ce qui a été refusé, à quel moment l'arrêt a été décidé."
+      }
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 12,
+          "contexte": "Cycle de développement avec runs successifs et validation sur plusieurs modèles — itération structurée générer-tester-ajuster."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Identification d'évolutions concrètes à venir (parallélisation, API Batch, allocation modèle-tâche) — ajustement de plan en cours de route articulé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption sévère. La fiche distingue agilité (adaptation structurée avec boucle de rétroaction explicite) et improvisation. La pièce 1 mentionne « plusieurs runs durant la phase de développement » avec validation par congruence inter-modèles — c'est une boucle de rétroaction observable. La pièce 2 articule des évolutions identifiées qui seraient des ajustements futurs. Ce qui reste explicitement faible : la pièce 1 atteste l'existence de cycles d'itération mais ne raconte pas ce qui a changé d'une version à l'autre (pas de v1 → v2 → v3 avec apprentissage explicite). La pièce 2 est plus une vision d'amélioration future qu'un ajustement en cours. La dimension conduite du changement (anticipation des résistances, normalisation, accompagnement humain) n'apparaît pas du tout — le passage parle de pilotage technique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Plusieurs runs durant le développement avec mesure de la congruence constituent une boucle de rétroaction observable." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce résiste. Je la teste. Plusieurs runs constituent-ils vraiment une pratique itérative agile au sens de la fiche, ou simplement de la validation logicielle ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le passage atteste qu'il y a eu des runs successifs avec mesure de cohérence, mais ne raconte pas le contenu de l'apprentissage entre runs — pas de version qui aurait échoué et pivoté. La pièce porte la trace d'une pratique itérative sans en restituer la dynamique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient pleinement l'agilité et la conduite du changement. La pièce 1 a tenu avec affaiblissement : la pratique itérative est attestée mais sans le récit de ce qui a changé entre versions. La pièce 2 est tombée sous la présomption d'absence — une vision d'évolution future n'est pas un ajustement de plan en cours. La dimension conduite du changement est totalement absente. Ce qui en résulte, c'est une attestation faible, à la limite du renvoi au cartographe. La pratique itérative est probablement présente, mais elle ne se déploie pas dans le récit. Une réserve qui dessine un chemin : un récit d'une version d'Aurora qui n'a pas marché, et de ce que cet échec a pivoté, donnerait à la compétence sa pleine attestation.",
+          "confianceFinale": 0.48
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.48,
+        "motif": "Le temps 2 a retenu avec affaiblissement la mention de runs successifs avec mesure de congruence ; la dynamique itérative (ce qui change entre versions, ce qui a échoué et pivoté) n'est pas restituée, et la conduite du changement est absente du passage.",
+        "prescription": "La pratique itérative se laisse lire indirectement par la mention de plusieurs runs, sans que le contenu de l'apprentissage entre versions soit raconté. Pour ouvrir le dossier, une piste serait de relater une version d'Aurora qui n'a pas tenu — ce qui a échoué, ce que l'échec a appris, ce que la version suivante a corrigé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident technique géré sous pression — séquence de décisions, timing, post-mortem — avec mention explicite des erreurs commises (paradoxalement plus fiables que les récits lisses)."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail de la feuille du 29 mars se déploie autour d'un dispositif d'évaluation livré et d'une trajectoire éducative articulée par une vision. La voix dominante alterne entre la livraison technique (code, logs, procédure d'utilisation) et l'articulation pédagogique (logique formative, distinction note sommative / verdict raisonné). Les marqueurs concrets reviennent : pull request avec logs préservés, treize rôles distribués aux agents IA, plan d'alliance avec la HEP pour la volée prochaine, reconnaissance d'un biais d'évaluation propre. Les dimensions plus proprement pilotage humain — efficacité personnelle, gestion de crise, conduite du changement auprès d'apprenants — restent en retrait. Ce qui se laisse lire avec le plus de netteté tient à une évaluation transformative en acte (sur les portfolios des élèves comme sur la propre pratique d'évaluateur) et à une documentation vivante incarnée dans les artefacts livrés.",
+    "territoiresDenses": [
+      {
+        "competence": "Évaluation transformative",
+        "description": "Le dispositif livré produit des feedbacks formatifs, distingue verdict raisonné et notation opaque, et révèle à l'apprenant ses propres biais d'évaluateur.",
+        "extraitVerbatim": "Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela.",
+        "ceQueCaDit": "Le travail manifeste une évaluation qui ne sacrifie ni la vérité (le niveau métacognitif des élèves est jugé très faible) ni la relation (le raisonnement traçable rend la vérité acceptable)."
+      },
+      {
+        "competence": "Documentation vivante",
+        "description": "Les logs sont livrés intentionnellement pour le suivi du raisonnement, la procédure d'utilisation est rédigée pour autrui, la structure par dossier nomme les rôles.",
+        "extraitVerbatim": "tous les logs produits durant le processus et qui permettent de suivre le raisonnement du jury, ainsi que chaque étape du dispositif d'évaluation",
+        "ceQueCaDit": "Le travail montre une capitalisation pour qui reprendra : les artefacts existent au-delà du récit, structurés et accompagnés d'une procédure d'utilisation."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Un lien argumenté est tissé entre l'action présente (envisager le contact HEP) et un futur anticipé (crédibilité institutionnelle pour RESPIRE).",
+        "extraitVerbatim": "Ça apporterait une crédibilité institutionnelle à la pertinence des écoles RESPIRE.",
+        "ceQueCaDit": "Le travail manifeste un raisonnement présent-futur explicite, ancré dans une trajectoire de 25 ans qui structure les choix actuels par une vision pédagogique antérieure."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en attente sur cette feuille. La maïeutique et la facilitation d'apprentissage au sens fort de la fiche (questionnement socratique, retenue délibérée, architecture d'environnements d'autonomie) ne se laissent pas lire — Aurora évalue, il ne fait pas accoucher l'élève par questions. Le leadership situationnel apparaît dans sa dimension statique (treize rôles distribués) sans la dynamique d'alternance qui distinguerait 7.04 de l'architecture multi-agents. L'efficacité personnelle ne reçoit aucune pièce — pas de « non » stratégique, pas d'arbitrage de priorité, pas de gestion du temps explicite. L'agilité se devine indirectement (plusieurs runs avec validation) sans le récit des versions qui auraient échoué et pivoté ; la conduite du changement auprès d'apprenants est totalement absente. La gestion de crise en temps réel n'apparaît pas. Ces absences ressemblent à des choix de focale propres à cette feuille où l'attention se concentre sur la livraison du dispositif et sa portée évaluative.",
+    "emergencesPole": "Trois lignes traversent les compétences attestées du pôle sur cette feuille. La première : un même geste de transparence — l'évaluation transformative montre ses raisons, la documentation vivante livre ses logs, la vision stratégique articule explicitement le lien présent-futur. Ce qui s'oppose, partout, c'est l'opacité du pouce mouillé ou du jugement non motivé. La deuxième : un déplacement du métier d'enseignant — l'apprenant ne raconte plus une classe en présence, mais la conception d'un dispositif qui prendra le relais d'une partie du jugement humain. Le pilotage glisse de la salle de classe vers l'architecture évaluative. La troisième : une trajectoire qui sert de boussole — le détour par la HEP est conçu non pas comme reconnaissance personnelle, mais comme légitimation des écoles RESPIRE, c'est-à-dire de la suite de la vision pédagogique.",
+    "pistes": [
+      "Pour étoffer l'évaluation transformative côté acte concret, un chemin possible serait de citer à l'occasion un feedback formatif particulier produit par Aurora, ou rédigé par l'apprenant en classe, et de relire ce qui s'y joue — ce qui est nommé, ce qui ouvre une piste.",
+      "Pour étoffer la documentation vivante côté dimension « vivante », un chemin possible serait de tenir un court changelog dans le pull request qui dirait ce qui change d'une version à l'autre.",
+      "Pour ouvrir le dossier de la maïeutique et de la facilitation, un chemin possible serait de documenter une situation d'enseignement où l'apprenant a choisi de ne pas donner la réponse — la question reformulée, la retenue assumée.",
+      "Pour préciser la dimension dynamique du leadership situationnel, un chemin possible serait de raconter un moment où, dans une exécution d'Aurora, l'apprenant a choisi de laisser le jury décider sans intervenir, ou de reprendre la main sur une décision particulière.",
+      "Pour étoffer la trace d'agilité, un chemin possible serait de relater une version d'Aurora qui n'a pas tenu — ce qui a échoué, ce que l'échec a appris, ce que la version suivante a corrigé.",
+      "Pour ouvrir le dossier de l'efficacité personnelle, un chemin possible serait de documenter un arbitrage explicite entre tâches — pourquoi telle priorité, qu'est-ce qui a été refusé, à quel moment l'arrêt a été décidé."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail de la feuille du 29 mars se déploie autour d'un dispositif d'évaluation livré et d'une trajectoire éducative articulée par une vision. La voix dominante alterne entre la livraison technique (code, logs, procédure d'utilisation) et l'articulation pédagogique (logique formative, distinction note sommative / verdict raisonné). Les marqueurs concrets reviennent : pull request avec logs préservés, treize rôles distribués aux agents IA, plan d'alliance avec la HEP pour la volée prochaine, reconnaissance d'un biais d'évaluation propre. Les dimensions plus proprement pilotage humain — efficacité personnelle, gestion de crise, conduite du changement auprès d'apprenants — restent en retrait. Ce qui se laisse lire avec le plus de netteté tient à une évaluation transformative en acte (sur les portfolios des élèves comme sur la propre pratique d'évaluateur) et à une documentation vivante incarnée dans les artefacts livrés.\n\n## Territoires les plus denses\n\n**Évaluation transformative.** Le dispositif livré produit des feedbacks formatifs, distingue verdict raisonné et notation opaque, et révèle à l'apprenant ses propres biais d'évaluateur. « Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela. » Le travail manifeste une évaluation qui ne sacrifie ni la vérité (le niveau métacognitif des élèves est jugé très faible) ni la relation (le raisonnement traçable rend la vérité acceptable).\n\n**Documentation vivante.** Les logs sont livrés intentionnellement pour le suivi du raisonnement, la procédure d'utilisation est rédigée pour autrui, la structure par dossier nomme les rôles. « Tous les logs produits durant le processus et qui permettent de suivre le raisonnement du jury, ainsi que chaque étape du dispositif d'évaluation. » Le travail montre une capitalisation pour qui reprendra : les artefacts existent au-delà du récit, structurés et accompagnés d'une procédure d'utilisation.\n\n**Vision stratégique et prospective.** Un lien argumenté est tissé entre l'action présente (envisager le contact HEP) et un futur anticipé (crédibilité institutionnelle pour RESPIRE). « Ça apporterait une crédibilité institutionnelle à la pertinence des écoles RESPIRE. » Le travail manifeste un raisonnement présent-futur explicite, ancré dans une trajectoire de 25 ans qui structure les choix actuels par une vision pédagogique antérieure.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en attente sur cette feuille. La maïeutique et la facilitation d'apprentissage au sens fort de la fiche (questionnement socratique, retenue délibérée, architecture d'environnements d'autonomie) ne se laissent pas lire — Aurora évalue, il ne fait pas accoucher l'élève par questions. Le leadership situationnel apparaît dans sa dimension statique (treize rôles distribués) sans la dynamique d'alternance qui distinguerait 7.04 de l'architecture multi-agents. L'efficacité personnelle ne reçoit aucune pièce — pas de « non » stratégique, pas d'arbitrage de priorité, pas de gestion du temps explicite. L'agilité se devine indirectement (plusieurs runs avec validation) sans le récit des versions qui auraient échoué et pivoté ; la conduite du changement auprès d'apprenants est totalement absente. La gestion de crise en temps réel n'apparaît pas. Ces absences ressemblent à des choix de focale propres à cette feuille où l'attention se concentre sur la livraison du dispositif et sa portée évaluative.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences attestées du pôle sur cette feuille. La première : un même geste de transparence — l'évaluation transformative montre ses raisons, la documentation vivante livre ses logs, la vision stratégique articule explicitement le lien présent-futur. Ce qui s'oppose, partout, c'est l'opacité du pouce mouillé ou du jugement non motivé. La deuxième : un déplacement du métier d'enseignant — l'apprenant ne raconte plus une classe en présence, mais la conception d'un dispositif qui prendra le relais d'une partie du jugement humain. Le pilotage glisse de la salle de classe vers l'architecture évaluative. La troisième : une trajectoire qui sert de boussole — le détour par la HEP est conçu non pas comme reconnaissance personnelle, mais comme légitimation des écoles RESPIRE, c'est-à-dire de la suite de la vision pédagogique.\n\n## Pistes pour enrichir ce pôle\n\nPour étoffer l'évaluation transformative côté acte concret, un chemin possible serait de citer à l'occasion un feedback formatif particulier produit par Aurora, ou rédigé par l'apprenant en classe, et de relire ce qui s'y joue — ce qui est nommé, ce qui ouvre une piste.\n\nPour étoffer la documentation vivante côté dimension « vivante », un chemin possible serait de tenir un court changelog dans le pull request qui dirait ce qui change d'une version à l'autre.\n\nPour ouvrir le dossier de la maïeutique et de la facilitation, un chemin possible serait de documenter une situation d'enseignement où l'apprenant a choisi de ne pas donner la réponse — la question reformulée, la retenue assumée.\n\nPour préciser la dimension dynamique du leadership situationnel, un chemin possible serait de raconter un moment où, dans une exécution d'Aurora, l'apprenant a choisi de laisser le jury décider sans intervenir, ou de reprendre la main sur une décision particulière.\n\nPour étoffer la trace d'agilité, un chemin possible serait de relater une version d'Aurora qui n'a pas tenu — ce qui a échoué, ce que l'échec a appris, ce que la version suivante a corrigé.\n\nPour ouvrir le dossier de l'efficacité personnelle, un chemin possible serait de documenter un arbitrage explicite entre tâches — pourquoi telle priorité, qu'est-ce qui a été refusé, à quel moment l'arrêt a été décidé."
+  }
+}

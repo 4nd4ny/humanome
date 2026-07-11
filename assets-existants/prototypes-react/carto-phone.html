@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie de Compétences - Ère Post-AGI</title>
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            height: 100%;
+            overflow: hidden;
+            background: #eff6ff;
+        }
+
+        #app {
+            background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- ZONE HAUTE : Diagramme --- */
+        #diagram-zone {
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+        }
+
+        #diagram-container {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            max-height: 60vh;
+            max-width: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        @media (orientation: landscape) and (max-width: 1023px) {
+            #diagram-zone {
+                 flex: 1;
+                 max-height: 100%;
+                 min-height: 50vh;
+            }
+            #diagram-container {
+                height: 100%;
+                width: auto;
+                max-height: none;
+            }
+        }
+
+        #diagram {
+            transition: all 0.3s ease;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* --- ZONE BASSE : Information (Scrollable) --- */
+        #info-zone {
+            flex: 1;
+            min-height: 40vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+            overflow-y: auto;
+            padding: 1.5rem;
+            z-index: 20;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #info-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- Styles du Contenu --- */
+
+        .diagram-stats {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.25rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .diagram-stat {
+            font-size: 1.5rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .diagram-stat .stars { letter-spacing: 1px; }
+        .diagram-stat .star-on { color: #facc15; }
+        .diagram-stat .star-off { color: #d1d5db; }
+        .diagram-stat .hours { font-variant-numeric: tabular-nums; }
+
+        #info-details { margin-bottom: 1.5rem; }
+
+        #info-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        #info-description {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* --- STYLES POUR LE FEEDBACK HTML --- */
+        #feedback-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #374151;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+
+        #feedback-content p {
+            margin-bottom: 0.8rem;
+        }
+
+        #feedback-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        #feedback-content strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        #feedback-content em {
+            font-style: italic;
+            color: #4b5563;
+        }
+
+        #feedback-content h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 1.2rem 0 0.6rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        #feedback-content ul {
+            margin: 0.6rem 0 0.8rem 1.2rem;
+            padding: 0;
+        }
+
+        #feedback-content ul li {
+            margin-bottom: 0.4rem;
+            color: #4b5563;
+        }
+
+        #feedback-content blockquote {
+            background: #f8fafc;
+            border-left: 3px solid #8b5cf6;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #4b5563;
+            border-radius: 0 4px 4px 0;
+        }
+
+        #feedback-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+        }
+
+        #feedback-content table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        #feedback-content table tr:last-child td {
+            border-bottom: none;
+        }
+
+        #empty-state { 
+            text-align: center; 
+            padding: 2rem; 
+            color: #9ca3af; 
+            font-style: italic; 
+        }
+
+        /* SVG STYLES */
+        .sector {
+            cursor: pointer;
+            transition: stroke-width 0.2s, stroke 0.2s, opacity 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .sector:hover { stroke: white; stroke-width: 2; opacity: 1 !important; }
+        .sector.dimmed { opacity: 0.8; filter: grayscale(0.5); }
+        .gray-sector { pointer-events: none; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+        #fullscreen-btn {
+            position: fixed;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            z-index: 1000;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: #4b5563;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Loading state */
+        #loading-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #8b5cf6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #error-state {
+            text-align: center;
+            padding: 2rem;
+            color: #dc2626;
+            background: #fef2f2;
+            border-radius: 8px;
+            margin: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button id="fullscreen-btn" title="Plein écran">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </button>
+
+        <div id="diagram-zone">
+            <div id="diagram-container">
+                <div class="diagram-stats">
+                    <div class="diagram-stat" id="stat-level"></div>
+                    <div class="diagram-stat" id="stat-time"></div>
+                </div>
+                <svg id="diagram"></svg>
+            </div>
+        </div>
+
+        <div id="info-zone">
+            <div id="info-container">
+                <div id="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Chargement des compétences...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chargement des données externes -->
+    <script src="competences-data.js"></script>
+
+    <script>
+        // --- CONFIGURATION ---
+        const niveaux = {
+            1: { nom: "Découverte", radiusFactor: 0.2 },
+            2: { nom: "Pratique", radiusFactor: 0.4 },
+            3: { nom: "Maîtrise", radiusFactor: 0.6 },
+            4: { nom: "Expertise", radiusFactor: 0.8 },
+            5: { nom: "Transcendance", radiusFactor: 1.0 }
+        };
+
+        const grayLevels = { 1: "#000000", 2: "#1f2937", 3: "#374151", 4: "#6b7280", 5: "#cbd5e1" };
+
+        const state = {
+            data: null,
+            hoveredSector: null,
+            svgSize: { width: 400, height: 400 },
+            isMobile: false,
+            isLoaded: false
+        };
+
+        // --- GÉNÉRATION DES DONNÉES À PARTIR DU FICHIER EXTERNE ---
+        function generateData() {
+            // Vérifie que les données externes sont disponibles
+            if (typeof domainsData === 'undefined') {
+                console.error('Les données de compétences ne sont pas chargées');
+                return null;
+            }
+
+            const rootNode = {
+                id: "Compétences Humaines",
+                parent: null,
+                children: [],
+                isLeaf: false,
+                niveau: 0,
+                points: 0
+            };
+
+            domainsData.forEach(domain => {
+                const dNode = { 
+                    id: domain.id, 
+                    parent: rootNode, 
+                    color: domain.color, 
+                    children: [], 
+                    isLeaf: false, 
+                    points: 0, 
+                    niveau: 0 
+                };
+                
+                domain.competences.forEach(comp => {
+                    const cNode = {
+                        id: comp.id, 
+                        parent: dNode, 
+                        points: comp.points, 
+                        niveau: comp.niveau,
+                        description: comp.description, 
+                        feedback: comp.feedback, 
+                        color: domain.color, 
+                        children: [], 
+                        isLeaf: true
+                    };
+                    dNode.children.push(cNode);
+                    dNode.points += cNode.points;
+                    dNode.niveau = Math.max(dNode.niveau, cNode.niveau);
+                });
+                
+                rootNode.children.push(dNode);
+                rootNode.points += dNode.points;
+            });
+            
+            return { root: rootNode };
+        }
+
+        function getMaxDepth(node, currentDepth = 0) {
+            if (!node.children || node.children.length === 0) return currentDepth;
+            return Math.max(...node.children.map(child => getMaxDepth(child, currentDepth + 1)));
+        }
+
+        // --- RENDU DU DIAGRAMME ---
+        function renderCircularDiagram() {
+            const svg = document.getElementById('diagram');
+            const size = state.svgSize;
+
+            if (!svg || size.width <= 0 || size.height <= 0) return;
+
+            const centerX = size.width / 2;
+            const centerY = size.height / 2;
+            const maxRadius = Math.min(size.width, size.height) * 0.48;
+            const innerRadius = Math.min(size.width, size.height) * 0.08;
+
+            svg.innerHTML = '';
+            svg.setAttribute('width', size.width);
+            svg.setAttribute('height', size.height);
+
+            svg.addEventListener('click', (e) => {
+                if(e.target === svg) handleInteraction(null);
+            });
+
+            // Dégradé central
+            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+            const centerGradient = document.createElementNS('http://www.w3.org/2000/svg', 'radialGradient');
+            centerGradient.setAttribute('id', 'centerGradient');
+            centerGradient.innerHTML = `<stop offset="70%" stop-color="#fdf2f8" /><stop offset="100%" stop-color="#fdf2f8" />`;
+            defs.appendChild(centerGradient);
+            svg.appendChild(defs);
+
+            if (!state.data) return;
+
+            const rootView = state.data.root;
+            const maxDepth = getMaxDepth(rootView);
+            const ringWidth = (maxRadius - innerRadius) / Math.max(maxDepth, 1);
+
+            // Cercles concentriques
+            for (let i = 0; i <= maxDepth; i++) {
+                const radius = innerRadius + (i * ringWidth);
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', centerX);
+                circle.setAttribute('cy', centerY);
+                circle.setAttribute('r', radius);
+                circle.setAttribute('fill', 'none');
+                circle.setAttribute('stroke', '#000');
+                circle.setAttribute('stroke-width', '0.5');
+                circle.setAttribute('stroke-opacity', '0.1');
+                circle.setAttribute('stroke-dasharray', '2,2');
+                circle.style.pointerEvents = 'none';
+                svg.appendChild(circle);
+            }
+
+            function renderSectors(nodes, startA, endA, depth, pColor) {
+                const curInR = innerRadius + (depth * ringWidth);
+                const curOutR = innerRadius + ((depth + 1) * ringWidth);
+                let curA = startA;
+                const total = nodes.reduce((s, n) => s + n.points, 0);
+
+                nodes.forEach((node) => {
+                    const ang = total > 0 ? ((node.points / total) * (endA - startA)) : 0;
+                    const end = curA + ang;
+                    const nodeColor = node.color || pColor;
+
+                    if (node.isLeaf && node.niveau) {
+                        const rDiff = curOutR - curInR;
+                        // Fonds grisés
+                        for (let l = 1; l <= 5; l++) {
+                            const lIn = curInR + (rDiff * (l===1?0:niveaux[l-1].radiusFactor));
+                            const lOut = curInR + (rDiff * niveaux[l].radiusFactor);
+                            const pD = createSectorPath(centerX, centerY, lIn, lOut, curA, end);
+                            const gp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                            gp.setAttribute('d', pD);
+                            gp.setAttribute('fill', grayLevels[l]);
+                            gp.setAttribute('fill-opacity', '0.4');
+                            gp.classList.add('gray-sector');
+                            svg.appendChild(gp);
+                        }
+
+                        // Secteur actif
+                        const effOutR = curInR + (rDiff * niveaux[node.niveau].radiusFactor);
+                        const pD = createSectorPath(centerX, centerY, curInR, effOutR, curA, end);
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('d', pD);
+                        path.setAttribute('fill', nodeColor);
+                        path.setAttribute('fill-opacity', '1');
+                        path.setAttribute('stroke', '#fff');
+                        path.setAttribute('stroke-width', '0.5');
+                        path.classList.add('sector');
+
+                        if (state.hoveredSector && state.hoveredSector.id !== node.id) {
+                            path.classList.add('dimmed');
+                        }
+
+                        path.addEventListener('mouseenter', () => {
+                            if (!state.isMobile) handleInteraction(node);
+                        });
+                        path.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            handleInteraction(node);
+                        });
+
+                        svg.appendChild(path);
+                    } else {
+                        // Domaines
+                        const pD = createSectorPath(centerX, centerY, curInR, curOutR, curA, end);
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('d', pD);
+                        path.setAttribute('fill', nodeColor);
+                        path.setAttribute('fill-opacity', '0.8');
+                        path.setAttribute('stroke', '#fff');
+                        path.classList.add('sector');
+
+                        if (state.hoveredSector && state.hoveredSector.id !== node.id) path.classList.add('dimmed');
+
+                        path.addEventListener('mouseenter', () => { if(!state.isMobile) handleInteraction(node); });
+                        path.addEventListener('click', (e) => { e.stopPropagation(); handleInteraction(node); });
+                        svg.appendChild(path);
+                    }
+
+                    if (node.children && node.children.length > 0) renderSectors(node.children, curA, end, depth + 1, nodeColor);
+                    curA = end;
+                });
+            }
+
+            renderSectors(rootView.children, -90, 270, 0, null);
+
+            // Centre
+            const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            centerCircle.setAttribute('cx', centerX);
+            centerCircle.setAttribute('cy', centerY);
+            centerCircle.setAttribute('r', innerRadius);
+            centerCircle.setAttribute('fill', 'url(#centerGradient)');
+            centerCircle.setAttribute('stroke', '#ddd');
+            centerCircle.style.cursor = 'pointer';
+            centerCircle.addEventListener('click', (e) => { e.stopPropagation(); handleInteraction(null); });
+            svg.appendChild(centerCircle);
+        }
+
+        function createSectorPath(cx, cy, rIn, rOut, startAngle, endAngle) {
+            const rad = Math.PI / 180;
+            const x1 = cx + rIn * Math.cos(startAngle * rad);
+            const y1 = cy + rIn * Math.sin(startAngle * rad);
+            const x2 = cx + rOut * Math.cos(startAngle * rad);
+            const y2 = cy + rOut * Math.sin(startAngle * rad);
+            const x3 = cx + rOut * Math.cos(endAngle * rad);
+            const y3 = cy + rOut * Math.sin(endAngle * rad);
+            const x4 = cx + rIn * Math.cos(endAngle * rad);
+            const y4 = cy + rIn * Math.sin(endAngle * rad);
+            const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+            return `M ${x1} ${y1} L ${x2} ${y2} A ${rOut} ${rOut} 0 ${largeArc} 1 ${x3} ${y3} L ${x4} ${y4} A ${rIn} ${rIn} 0 ${largeArc} 0 ${x1} ${y1} Z`;
+        }
+
+        // --- INTERFACE UTILISATEUR ---
+        function renderDetailsPanel() {
+            const container = document.getElementById('info-container');
+            const node = state.hoveredSector;
+
+            updateDiagramStats(node);
+
+            // État vide
+            if (!node) {
+                container.innerHTML = `
+                    <div id="empty-state">
+                        <p>Touchez une compétence sur le diagramme pour voir les détails et l'évaluation.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+
+            // Titre et description
+            html += `<div id="info-details">`;
+            const titleColor = (node.color) ? node.color : '#1e293b';
+            html += `<div id="info-title" style="color:${titleColor}">${node.id}</div>`;
+
+            if (node.description) {
+                html += `<div id="info-description">${node.description}</div>`;
+            } else if (!node.isLeaf) {
+                html += `<div id="info-description">Domaine regroupant plusieurs compétences clés. Sélectionnez une compétence spécifique pour plus de détails.</div>`;
+            }
+            html += `</div>`;
+
+            // Feedback avec HTML
+            if (node.feedback) {
+                html += `<div id="feedback-content">${node.feedback}</div>`;
+            }
+
+            container.innerHTML = html;
+            document.getElementById('info-zone').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateDiagramStats(node) {
+            const levelEl = document.getElementById('stat-level');
+            const timeEl = document.getElementById('stat-time');
+
+            if (!node || !node.isLeaf || (node.niveau === 0 && node.points === 0)) {
+                levelEl.innerHTML = '';
+                timeEl.innerHTML = '';
+                return;
+            }
+
+            // Niveau en étoiles
+            if (node.niveau > 0) {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= node.niveau) {
+                        stars += '<span class="star-on">★</span>';
+                    } else {
+                        stars += '<span class="star-off">★</span>';
+                    }
+                }
+                levelEl.innerHTML = `<span class="stars">${stars}</span>`;
+            } else {
+                levelEl.innerHTML = '';
+            }
+
+            // Temps en heures
+            if (node.points > 0) {
+                const hours = Math.round(node.points * 8);
+                timeEl.innerHTML = `<span class="hours">${hours} h</span>`;
+            } else {
+                timeEl.innerHTML = '';
+            }
+        }
+
+        function handleInteraction(sector) {
+            if (state.hoveredSector === sector) return;
+            state.hoveredSector = sector;
+            render();
+        }
+
+        function render() {
+            renderCircularDiagram();
+            renderDetailsPanel();
+        }
+
+        // --- INITIALISATION & RESIZE ---
+        function init() {
+            // Vérifie que les données sont chargées
+            if (typeof domainsData === 'undefined') {
+                document.getElementById('info-container').innerHTML = `
+                    <div id="error-state">
+                        <p><strong>Erreur de chargement</strong></p>
+                        <p>Le fichier de données <code>competences-data.js</code> n'a pas pu être chargé.</p>
+                        <p>Vérifiez que le fichier est présent dans le même répertoire que cette page.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            state.data = generateData();
+            state.isLoaded = true;
+            checkMobile();
+            updateSVGSize();
+            render();
+        }
+
+        function checkMobile() {
+            state.isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 768;
+        }
+
+        function updateSVGSize() {
+            const container = document.getElementById('diagram-container');
+            if (!container) return;
+
+            const rect = container.getBoundingClientRect();
+            const size = Math.min(rect.width, rect.height) - 5;
+
+            if (size > 0) {
+                if (Math.abs(state.svgSize.width - size) > 5) {
+                    state.svgSize = { width: size, height: size };
+                    renderCircularDiagram();
+                }
+            }
+        }
+
+        // Plein écran
+        const fsBtn = document.getElementById('fullscreen-btn');
+        fsBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(e=>{});
+            else document.exitFullscreen();
+        });
+
+        // Resize handler
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                checkMobile();
+                updateSVGSize();
+            }, 150);
+        });
+
+        // Initialisation au chargement
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

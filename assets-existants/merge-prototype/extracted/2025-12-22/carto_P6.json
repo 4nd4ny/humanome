@@ -1,0 +1,347 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Je pense développer une extension invoquant Gémini pour venir taguer les portfolios afin de mettre en évidence les compétences du référentiel dans le texte.",
+      "contexte": "Projet d'extension qui invoque un modèle propriétaire (Gémini) pour traiter automatiquement des portfolios contenant les écrits intimes d'apprenants. Active potentiellement 6.02 (hygiène des données envoyées à un LLM tiers), 6.04 (choix d'un fournisseur propriétaire).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Le site a maintenant 5 niveaux de lecture : 1. Les résumés → Pour tous 2. Les questions / objections → Pour tous 3. Les questions / objections déroulées → Pas pour les élèves mais pour les parents / employeurs 4. Les PDF en téléchargement → Approfondissement pour les enseignants / pédagogues 5. Les notes de marges → Approfondissement pour les enseignants / pédagogues",
+      "contexte": "Architecture documentaire à cinq niveaux stratifiés par public — geste de transparence des intentions à différents niveaux d'expertise. Active potentiellement 6.02 (explicabilité d'une démarche pédagogique), 6.05 (faire participer plusieurs publics au sens du projet).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "J'espère le mettre en ligne avant la fin de l'année, pour ensuite pouvoir lancer les discussions sur Decidim (https://participer.harmonia.education) pour philosopher et co-construire le référentiel que j'ai actuellement juste fait générer sur la base de réflexions perso.",
+      "contexte": "Mise en délibération démocratique d'un référentiel pédagogique sur Decidim — outil libre dédié à la participation citoyenne. Active fortement 6.05 (participation citoyenne et démocratie technologique), 6.07 (gouvernance collective), 6.04 (choix d'un commun numérique libre — Decidim).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Et éventuellement créer un groupe Discord pour les questions d'organisations pratiques : trouver un tuteur / créer une micro-classe ponctuelle / organiser un rendez-vous IRL dans une ville / proposer des projets d'étude…",
+      "contexte": "Choix d'un outil propriétaire (Discord) pour des fonctions opérationnelles, à mettre en regard du choix de Decidim pour la délibération. Active potentiellement 6.04 (tension entre commodité et souveraineté), 6.07 (architecture de gouvernance des micro-collectifs).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Je dois aussi créer une formation pour les tuteurs, dans laquelle je commenterai tout ce qu'il faut savoir pour gérer un groupe d'apprenant et lancer les bons prompts socratiques et les scripts d'analyse pour générer les traces nécessaires pour la cartographie.",
+      "contexte": "Formation pour des tuteurs qui animeront les groupes — distribution de rôles, partage des règles de fonctionnement. Active potentiellement 6.07 (facilitation et co-construction des règles d'un collectif).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a délibérément cherché à provoquer des comportements aberrants d'un modèle — prompt injection, cas limite, jailbreak — pour tester ses garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'extension prévue enverra les contenus des portfolios à Gémini — la question de l'hygiène des données envoyées à un fournisseur tiers se pose, mais elle n'est pas thématisée par l'apprenant."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Architecture à cinq niveaux de lecture — geste d'explicabilité d'un dispositif pédagogique vis-à-vis de différents publics."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'audit, l'explicabilité et l'hygiène des données ne sont pas attestés : la fiche demande une investigation des mécanismes de décision IA (logs, audits post-incident, horodatage) ou une réflexion explicite sur quelles données partager ou retenir. La pièce 1 décrit un projet d'extension Gémini sans aucune mention de l'hygiène des données — alors même que les portfolios sont des écrits intimes d'apprenants potentiels. Cette absence est notable : l'enjeu existe objectivement mais l'apprenant ne le formule pas. La pièce 2 décrit une stratification éditoriale — c'est de la communication différenciée, pas un audit ni une explicabilité au sens où la fiche les pose. La présomption d'absence absorbe les deux pièces : on a une intention technique sans hygiène thématisée, et une architecture documentaire qui n'est pas un audit.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner sous présomption de sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que l'audit, l'explicabilité ou l'hygiène des données soient ici attestés, et la présomption d'absence a tenu. L'idée d'envoyer les portfolios à Gémini est posée sans aucune réflexion sur l'hygiène des données — un silence qui ne peut tenir lieu de compétence. La stratification du site est de la communication différenciée, pas un audit. Il en résulte une absence assumée pour cette feuille. La compétence pourrait apparaître le jour où le portfolio raconterait, par exemple, le travail d'audit fait sur les sorties de Gémini, ou la décision d'anonymiser certains éléments avant envoi, ou le choix d'un fournisseur sur la base d'une analyse de juridiction des données.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé les deux pièces : intention d'envoyer des écrits intimes à un LLM tiers sans hygiène thématisée, architecture documentaire qui n'est pas un audit.",
+        "prescription": "Pour ouvrir un travail d'audit et d'hygiène des données, un chemin possible serait de documenter, sur l'extension Gémini prévue, les questions d'hygiène effectivement traitées — anonymisation, juridiction, conservation — et le travail d'audit qui pourra être fait sur les sorties."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une décision automatisée affectant des populations vulnérables a été questionnée, ou où des mécanismes de recours et d'audit citoyen ont été pensés."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Choix de Decidim — plateforme libre et commune dédiée à la délibération démocratique — pour la co-construction du référentiel."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Choix de Discord — outil propriétaire — pour les fonctions opérationnelles ; à mettre en regard du choix précédent (Decidim) pour évaluer la cohérence souverainiste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la souveraineté numérique et la gouvernance des communs ne sont pas attestées : la fiche est nette — il faut une motivation explicite par une analyse de dépendance ou des communs. Le simple fait d'utiliser un outil libre par commodité ne suffit pas. La pièce 1 mentionne Decidim mais sans expliciter pourquoi cet outil plutôt qu'un autre — l'apprenant ne dit pas \"j'ai choisi Decidim parce que c'est un commun numérique\" ou \"parce que je voulais que les données restent souveraines\". Il décrit ce qu'il va y faire (philosopher, co-construire), pas la raison du choix d'outil. La pièce 2 décrit l'usage de Discord, propriétaire, sans aucune réflexion sur la cohérence souverainiste avec Decidim. La présomption d'absence absorbe les deux pièces : on a deux choix d'outils non justifiés sur le plan de la souveraineté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner sous présomption de sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la souveraineté numérique soit ici thématisée, et la présomption d'absence a tenu. Decidim est convoqué pour sa fonction (délibération participative) plutôt que pour son statut de commun numérique. Le choix concomitant de Discord — propriétaire — ne reçoit aucune justification ni questionnement de cohérence souverainiste. La fiche met explicitement en garde contre l'usage d'outils libres par commodité sans pensée souverainiste. Il en résulte une absence assumée pour cette feuille. La compétence pourrait apparaître le jour où l'apprenant justifierait le choix d'un outil par une analyse explicite de dépendance, de portabilité ou de juridiction des données.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé les deux pièces : choix d'outils décrits sans motivation souverainiste explicite, coexistence non-questionnée de Decidim (libre) et Discord (propriétaire).",
+        "prescription": "Pour ouvrir un travail de souveraineté numérique, un chemin possible serait de justifier explicitement un choix d'outil (Decidim, Discord, Gémini, le site lui-même) par une analyse de dépendance ou des communs, et de nommer la tension lorsque les choix vont dans des directions opposées."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Architecture à cinq niveaux de lecture qui rend le projet accessible à des publics non-experts (élèves, parents, employeurs) — geste d'inclusion participative."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Le référentiel actuel a été \"juste fait générer\" et sera \"co-construit\" sur Decidim — passage explicite d'une production solitaire à une légitimation par la délibération citoyenne. Pattern central de 6.05."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Discord pour les questions d'organisations pratiques — espace participatif opérationnel qui complète la dimension délibérative de Decidim."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la participation citoyenne et la démocratie technologique ne sont pas attestées : la fiche est exigeante — la participation 6.05 transforme l'opinion en décision (à la différence du sondage), elle porte sur la légitimité (pas l'ergonomie) et elle suppose une inclusion de publics éloignés. La pièce 1 est de la communication différenciée (UX), pas de la participation au sens fort. La pièce 3 est un espace opérationnel, plus du domaine de la coordination que de la délibération démocratique. Ce qui résiste fortement : la pièce 2. L'apprenant qualifie son référentiel actuel de \"juste fait générer\" et programme explicitement sa co-construction sur Decidim pour \"philosopher\" — c'est précisément le pattern de la fiche : transformer l'opinion en décision via la délibération, et le faire sur un référentiel pédagogique qui affectera des futurs élèves (impact réel). Ce n'est pas un sondage, ce n'est pas du design UX, c'est une mise en délibération d'un référentiel pour le légitimer.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Mise en délibération démocratique du référentiel sur Decidim pour transformer une production solitaire en construction collective légitimée — pattern central de 6.05 listé par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce 2 pour son alignement direct avec le pattern de la fiche. Mais peut-être que je sur-interprète : annoncer un Decidim n'est pas faciliter une délibération réelle. L'attaque pertinente est (g) mouvement-vers : l'apprenant prévoit la délibération, il ne l'a pas conduite. L'attaque touche : on a l'intention, pas la facilitation effective. Mais la fiche cite explicitement \"de la conviction ('les gens devraient décider') à la facilitation concrète\" comme spectre — l'intention argumentée et opérationnellement préparée (URL de la plateforme, calendrier, objet précis : co-construire le référentiel) se situe au-dessus de la simple conviction. La pièce reste affaiblie sans être disqualifiée.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La délibération est programmée avec son outil (Decidim, URL fournie) et son objet (le référentiel), mais elle n'est pas encore conduite ni facilitée concrètement — on est entre la conviction et la facilitation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la participation citoyenne soit ici attestée, et la présomption d'absence a fait tomber l'architecture à cinq niveaux (qui relève plus de la communication que de la participation) et le Discord (qui est opérationnel plus que délibératif). Ce qui m'a forcé à reconnaître quelque chose, c'est la pièce sur Decidim : la mise en délibération démocratique d'un référentiel pédagogique pour le co-construire collectivement correspond exactement au pattern central de 6.05. Sous la présomption de sycophantie, cette pièce s'est affaiblie : la délibération est programmée, pas encore facilitée. Il en résulte une présence partielle, du côté de la conviction opérationnellement préparée plutôt que de la facilitation conduite. Le travail montre, dans ce pôle et sur cette feuille, une distinction explicite entre ce qu'une IA produit seule et ce qu'un collectif doit reprendre — cœur de la légitimité démocratique sur les choix technologiques. La compétence pourrait se déployer plus pleinement quand la délibération sera effectivement conduite et que ses retours seront repris dans le référentiel.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a maintenu une pièce affaiblie centrale : mise en délibération démocratique d'un référentiel sur Decidim pour transformer une production solitaire en construction collective — pattern central de 6.05.",
+        "prescription": "Pour densifier le travail de participation amorcé, un chemin possible serait de documenter, une fois Decidim lancée, la facilitation concrète de la délibération — invitation des publics éloignés, animation, traitement des contributions — et la transformation effective de la délibération en amendement du référentiel."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision prise en anticipant un cadre réglementaire à venir (AI Act, RGPD éducatif) plutôt qu'en conformité réactive."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Decidim pour philosopher et co-construire le référentiel — espace de gouvernance collective explicite. Pattern fort de 6.07."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Discord pour l'auto-organisation pratique des micro-collectifs (tuteurs, micro-classes, IRL, projets) — distribution de rôles avec fonctions identifiées."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Formation pour les tuteurs : transmission des règles, prompts socratiques et scripts d'analyse — préparation des facilitateurs futurs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la facilitation et la gouvernance collective ne sont pas attestées : la fiche demande soit des récits de collaborations qui ont produit un résultat surprenant (émergence), soit des règles co-construites avec processus décisionnels explicites (gouvernance), soit des artefacts détaillés de gouvernance (chartes, protocoles avec rôles, limites et mécanismes de contrôle). La pièce 1 mentionne Decidim avec l'objectif explicite de \"co-construire\" un référentiel — c'est une intention de gouvernance, mais sans charte ni protocole décrit, ni mécanisme de prise de décision spécifié (vote ? consentement ? sociocratie ?). La pièce 2 énumère des fonctions du Discord sans règles, sans rôles, sans limites. La pièce 3 promet une formation tuteurs mais sans en décrire le contenu de gouvernance. Ce qui résiste, faiblement : la pièce 1, parce que l'objet \"co-construire un référentiel\" est typique d'une démarche de gouvernance collective, même non encore protocolée. La fiche est claire : sans protocole décrit, on est à la conviction, pas à la facilitation Expert.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'objectif explicite de \"philosopher et co-construire\" un référentiel pédagogique sur Decidim porte une intention de gouvernance collective sur l'objet même du projet." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce 1. Mais peut-être que c'est une intention vague : \"co-construire\" peut être un mot creux qui masque l'absence de tout protocole. L'attaque pertinente est (a) insuffisance probatoire : aucun mécanisme décisionnel n'est nommé, aucun rôle d'animation n'est posé, aucune charte n'est mentionnée. La fiche distingue précisément la collaboration simple de la gouvernance qui co-construit les règles. L'attaque touche fortement : on a l'intention, on n'a pas les règles. La pièce reste affaiblie sans être complètement disqualifiée : Decidim est en soi un outil qui structure la délibération (propositions, amendements, vote), et le choix de cet outil porte une intention de gouvernance plus formalisée que le choix d'un simple forum.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Aucun mécanisme décisionnel, aucun rôle d'animation, aucune charte n'est nommé ; mais le choix de Decidim — outil qui structure intrinsèquement la délibération — porte une intention de gouvernance plus formalisée qu'un simple forum."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la facilitation et la gouvernance collective soient ici attestées, et la présomption d'absence a tenu sur la plupart des pièces : aucune charte, aucun protocole, aucun rôle d'animation, aucun mécanisme décisionnel ne sont décrits. Ce qui m'a forcé à reconnaître quelque chose, c'est la pièce sur Decidim : l'apprenant ne se contente pas d'annoncer une collaboration, il choisit un outil qui structure intrinsèquement la délibération démocratique, et il fixe son objet (le référentiel) comme construction collective. Sous la présomption de sycophantie, cette pièce s'est affaiblie : l'intention de gouvernance reste à conduire, sans encore les règles, les rôles, les mécanismes. Il en résulte une présence partielle, du côté de l'intention structurée plutôt que de la gouvernance en exercice. La compétence pourrait se déployer plus pleinement le jour où une charte, un protocole décisionnel ou des rôles d'animation seraient documentés.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce affaiblie a survécu : intention de gouvernance structurée par le choix de Decidim, sans charte, protocole ni rôles d'animation encore décrits.",
+        "prescription": "Pour approfondir le travail de gouvernance collective amorcé, un chemin possible serait de documenter la charte, le protocole décisionnel et les rôles d'animation prévus pour Decidim — par quel mécanisme une proposition devient-elle amendement, qui anime, à quoi se reconnaît un consensus."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la primauté des besoins humains a été questionnée, ou où une perspective non-humaine (animale, écosystémique, artificielle) a été adoptée pour penser un problème."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le statut moral de l'IA — non comme outil maîtrisé, mais comme entité dont la place dans la relation reste une question ouverte."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un système vivant a inspiré la conception d'un dispositif, ou où l'humain a été pensé comme nœud d'un réseau vivant plutôt que comme acteur extérieur."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 22 décembre, le travail politique et civique se manifeste surtout au point de jonction entre projet personnel et collectif à constituer. L'apprenant ne traite pas son référentiel comme une autorité finale et programme explicitement sa mise en délibération sur Decidim pour le co-construire ; il complète ce geste démocratique par un espace Discord pour l'auto-organisation pratique. La voix dominante est celle d'un porteur de projet qui cherche à éviter qu'un référentiel pédagogique produit seul ne s'impose comme tel — il prépare son retour à un collectif. Les marqueurs concrets cités sont Decidim (plateforme de participation), le passage du \"juste fait générer\" à la \"co-construction\", et la stratification du site par publics. Sur ce pôle et cette feuille, le travail montre une intention de gouvernance démocratique du référentiel, plus que les protocoles ou les garde-fous techniques qui en feraient l'exercice.",
+    "territoiresDenses": [
+      {
+        "competence": "Participation citoyenne et démocratie technologique",
+        "description": "Mise en délibération démocratique d'un référentiel pédagogique sur Decidim pour transformer une production solitaire en construction collective.",
+        "extraitVerbatim": "Lancer les discussions sur Decidim (https://participer.harmonia.education) pour philosopher et co-construire le référentiel que j'ai actuellement juste fait générer sur la base de réflexions perso.",
+        "ceQueCaDit": "Le travail montre une distinction explicite entre ce qu'une IA produit seule et ce qu'un collectif doit reprendre — cœur de la légitimité démocratique sur les choix qui structurent un dispositif pédagogique."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. Le red-teaming, la gouvernance algorithmique des services publics, la veille réglementaire et le triptyque post-anthropocentrique (décentrement, cohabitation IA, conscience biosystémique) ressortent comme territoires non visités — la feuille reste sur le terrain de la conduite de projet. L'audit, l'explicabilité et l'hygiène des données apparaissent en creux, par leur absence remarquable : envoyer des écrits intimes de futurs apprenants à un LLM tiers (Gémini) sans thématiser la question des données est un silence qui appelle un travail. La souveraineté numérique est dans la même configuration : Decidim côté délibération, Discord côté opérationnel, sans réflexion sur la cohérence entre commun libre et outil propriétaire. La facilitation et la gouvernance collective sont en germe sur Decidim, sans encore les chartes, protocoles ou rôles d'animation qui en feraient l'exercice.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle sur cette feuille. D'abord, un instinct démocratique cohérent : ne pas laisser un référentiel produit par IA s'auto-imposer, le confier au collectif — cet instinct structure le projet. Ensuite, un écart entre intentions politiques et silences techniques : la délibération démocratique est explicite, mais les questions de données, de souveraineté technologique, de protocoles décisionnels restent en arrière-plan. Enfin, une configuration hybride d'outils (Decidim libre + Discord propriétaire + Gémini propriétaire + site sur mesure) qui n'est pas encore pensée comme tension : la cohérence souverainiste, si elle est cherchée, n'est pas formulée comme telle.",
+    "pistes": [
+      "Pour densifier le travail de participation citoyenne amorcé, un chemin possible serait de documenter, en amont du lancement, la facilitation concrète prévue — invitation des publics éloignés, animation, traitement des contributions et leur transformation en amendements.",
+      "Pour ouvrir un travail d'audit et d'hygiène des données, un chemin possible serait de raconter, sur l'extension Gémini prévue, les questions effectivement traitées — anonymisation, juridiction, conservation — et le travail d'audit envisagé sur les sorties.",
+      "Pour mettre en cohérence le choix des outils, un chemin possible serait de nommer la tension entre Decidim (commun libre) et Discord/Gémini (services propriétaires) et de justifier explicitement chaque choix par une analyse de dépendance ou de besoin fonctionnel."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 22 décembre, le travail politique et civique se manifeste surtout au point de jonction entre projet personnel et collectif à constituer. L'apprenant ne traite pas son référentiel comme une autorité finale et programme explicitement sa mise en délibération sur Decidim pour le co-construire ; il complète ce geste démocratique par un espace Discord pour l'auto-organisation pratique. La voix dominante est celle d'un porteur de projet qui cherche à éviter qu'un référentiel pédagogique produit seul ne s'impose comme tel — il prépare son retour à un collectif. Les marqueurs concrets cités sont Decidim (plateforme de participation), le passage du \"juste fait générer\" à la \"co-construction\", et la stratification du site par publics. Sur ce pôle et cette feuille, le travail montre une intention de gouvernance démocratique du référentiel, plus que les protocoles ou les garde-fous techniques qui en feraient l'exercice.\n\n## Territoires les plus denses\n\n**Participation citoyenne et démocratie technologique** — Mise en délibération démocratique d'un référentiel pédagogique sur Decidim pour transformer une production solitaire en construction collective.\n\n> \"Lancer les discussions sur Decidim (https://participer.harmonia.education) pour philosopher et co-construire le référentiel que j'ai actuellement juste fait générer sur la base de réflexions perso.\"\n\nLe travail montre une distinction explicite entre ce qu'une IA produit seule et ce qu'un collectif doit reprendre — cœur de la légitimité démocratique sur les choix qui structurent un dispositif pédagogique.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. Le red-teaming, la gouvernance algorithmique des services publics, la veille réglementaire et le triptyque post-anthropocentrique (décentrement, cohabitation IA, conscience biosystémique) ressortent comme territoires non visités — la feuille reste sur le terrain de la conduite de projet. L'audit, l'explicabilité et l'hygiène des données apparaissent en creux, par leur absence remarquable : envoyer des écrits intimes de futurs apprenants à un LLM tiers (Gémini) sans thématiser la question des données est un silence qui appelle un travail. La souveraineté numérique est dans la même configuration : Decidim côté délibération, Discord côté opérationnel, sans réflexion sur la cohérence entre commun libre et outil propriétaire. La facilitation et la gouvernance collective sont en germe sur Decidim, sans encore les chartes, protocoles ou rôles d'animation qui en feraient l'exercice.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle sur cette feuille. D'abord, un instinct démocratique cohérent : ne pas laisser un référentiel produit par IA s'auto-imposer, le confier au collectif — cet instinct structure le projet. Ensuite, un écart entre intentions politiques et silences techniques : la délibération démocratique est explicite, mais les questions de données, de souveraineté technologique, de protocoles décisionnels restent en arrière-plan. Enfin, une configuration hybride d'outils (Decidim libre + Discord propriétaire + Gémini propriétaire + site sur mesure) qui n'est pas encore pensée comme tension : la cohérence souverainiste, si elle est cherchée, n'est pas formulée comme telle.\n\n## Pistes pour enrichir ce pôle\n\n- Pour densifier le travail de participation citoyenne amorcé, un chemin possible serait de documenter, en amont du lancement, la facilitation concrète prévue — invitation des publics éloignés, animation, traitement des contributions et leur transformation en amendements.\n- Pour ouvrir un travail d'audit et d'hygiène des données, un chemin possible serait de raconter, sur l'extension Gémini prévue, les questions effectivement traitées — anonymisation, juridiction, conservation — et le travail d'audit envisagé sur les sorties.\n- Pour mettre en cohérence le choix des outils, un chemin possible serait de nommer la tension entre Decidim (commun libre) et Discord/Gémini (services propriétaires) et de justifier explicitement chaque choix par une analyse de dépendance ou de besoin fonctionnel."
+  }
+}

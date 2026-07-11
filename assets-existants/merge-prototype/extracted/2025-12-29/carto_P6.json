@@ -1,0 +1,255 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Je vais maintenant travailler avec Claude pour vérifier sa consistance et son alignement avec nos principes et valeurs.",
+      "contexte": "Vérification d'alignement d'une production IA contre un cadre axiologique du collectif — possible trace de gouvernance interne du travail avec l'IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "J'envisage également de confronter notre pédagogie avec le recueil de valeurs de HEP Vaud et expliciter les différences avec leur référentiel de compétences.",
+      "contexte": "Confrontation projetée d'une pédagogie interne à un cadre institutionnel public — possible territoire de gouvernance ou de veille normative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Etant donné que ça fait un gros corpus de données, je vais utiliser Gemini.",
+      "contexte": "Choix d'outil IA fondé sur une caractéristique technique — possible trace de réflexion sur la souveraineté ou l'écosystème numérique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA sur cette feuille. Raconter une scène où l'IA a été testée par des cas limites pour voir où elle casse ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Vérifier la consistance et l'alignement d'une production IA peut, selon la profondeur du geste, relever de l'audit du processus de décision algorithmique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche est précise : 6.02 vérifie le processus — comment l'IA est-elle arrivée à ce résultat ? — et inclut un volet hygiène des données. Ici, l'apprenant annonce une vérification de consistance et d'alignement, mais aucune investigation des mécanismes de décision n'est décrite : pas de consultation de logs, pas d'audit horodaté, pas d'enquête sur le chemin décisionnel du modèle. Le geste reste celui d'un relecteur de sortie, pas d'un auditeur de processus. Le volet hygiène des données n'apparaît pas non plus — aucune réflexion sur ce qui a été partagé avec le modèle, sur la juridiction, sur la rétention. Présomption d'absence : absorbée.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la vérification d'alignement portait une trace d'audit. Vérifier le contenu d'une sortie et auditer un processus sont deux choses distinctes selon la fiche : la première relève d'une relecture critique, la seconde demande une enquête sur le mécanisme. Sur cette feuille, c'est la première qui est annoncée. La trace pour 6.02 attend une autre scène — un moment où le « comment » de la décision IA est interrogé, pas seulement son « quoi ».",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "L'opération annoncée porte sur le contenu de la sortie IA, pas sur le processus de décision ni sur l'hygiène des données — distinctions clés de la fiche.",
+        "prescription": "Sur les prochaines feuilles, raconter une investigation des mécanismes — comment l'IA est arrivée à telle reformulation, quelles données lui ont été soumises, ce qu'il a fallu retenir ou anonymiser — ferait apparaître l'audit en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics sur cette feuille. Ce territoire s'ouvrirait si une décision algorithmique affectant des populations vulnérables était racontée et analysée."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le choix entre deux outils IA propriétaires (Claude et Gemini) peut, s'il est motivé par une analyse de dépendance ou de souveraineté, relever de cette compétence — ou au contraire être un pur arbitrage de fonctionnalités."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche est tranchante sur les pièges : l'open source par commodité n'est pas une pensée souverainiste, l'auto-hébergement par hobbyisme non plus. Ici, l'apprenant choisit entre deux outils propriétaires en justifiant son choix par la taille du corpus — c'est un arbitrage de capacité technique, sans aucune mention d'analyse de dépendance, de portabilité des données, de juridiction, de communs numériques. Les deux options (Claude et Gemini) sont des produits commerciaux fermés ; choisir l'un plutôt que l'autre selon une caractéristique de performance ne touche pas la souveraineté au sens de la fiche. Présomption d'absence : absorbée sans difficulté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si l'arbitrage entre Claude et Gemini portait une trace de réflexion souverainiste. Le choix s'opère entre deux modèles propriétaires sans question de portabilité, de juridiction des données ou d'alternative libre. La fiche est explicite : la motivation explicite par une analyse de dépendance est le critère. Sur cette feuille, la motivation est la performance attendue sur un gros corpus. La compétence n'a pas de matière ici.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "L'arbitrage Claude/Gemini est motivé par la performance, pas par une analyse de dépendance, de portabilité ou de juridiction des données.",
+        "prescription": "Si la question de la souveraineté se pose un jour dans le travail — où vivent ces 124 pages, qui peut les exploiter, quel serait le coût de migrer ailleurs — la consigner ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique sur cette feuille. Ce territoire s'ouvrirait par le récit d'une consultation citoyenne ou d'un processus de co-construction des règles d'usage de l'IA."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Confronter une pédagogie interne à la charte éthique et au référentiel de compétences d'une haute école publique peut, dans certains cas, relever de la veille normative sur les attentes institutionnelles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche tranche : 6.06 est l'anticipation proactive des cadres réglementaires en mouvement, pas la confrontation à un référentiel existant. Ici, la HEP Vaud n'est pas une instance régulatrice qui impose un cadre légal à la pédagogie de l'apprenant ; c'est un point de comparaison institutionnel choisi. Aucune analyse prospective sur l'évolution réglementaire (AI Act, normes éducation) n'est portée par le passage. La motivation est intellectuelle et axiologique, pas juridique ni normative au sens de la fiche. Présomption d'absence : absorbée.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si la confrontation HEP portait une trace de veille normative. Le geste est plutôt celui d'une mise en regard intellectuelle entre deux cadres pédagogiques — l'un interne, l'autre institutionnel. La fiche réserve 6.06 à l'anticipation des cadres réglementaires en mouvement, ce qui n'est pas ce qui se joue ici. La compétence n'a pas de matière dans cette feuille au sens où la fiche la définit.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "La confrontation à un référentiel institutionnel ne porte pas l'anticipation de cadres réglementaires en mouvement que la fiche désigne comme essence de la compétence.",
+        "prescription": "Si l'AI Act ou les futures normes éducatives entrent un jour en ligne de mire pour orienter le dispositif de formation, raconter cette anticipation et les ajustements préventifs qui en résulteraient ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective sur cette feuille. Ce territoire s'ouvrirait par le récit d'un moment où le collectif a produit quelque chose qu'aucun membre n'aurait fait seul, ou par une description des règles de fonctionnement co-construites."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique sur cette feuille. Une question qui interroge la primauté humaine — sur le travail, le sens, la décision — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines sur cette feuille. Le travail avec Claude et Gemini reste ici fonctionnel ; une réflexion sur le statut moral ou relationnel de ces interlocuteurs ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique sur cette feuille. Ce territoire s'ouvrirait si la pédagogie ou les choix techniques étaient pensés depuis une inscription dans un réseau vivant plus large."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle et pour cette feuille du 29 décembre 2025, la journée porte le travail à l'intérieur d'un écosystème d'outils IA propriétaires choisis pour leurs caractéristiques techniques, et la confrontation projetée à un référentiel institutionnel public (HEP Vaud) reste à l'état d'intention. Les territoires du pôle CITÉ — la sécurité IA, l'audit des processus algorithmiques, la souveraineté numérique, la participation citoyenne, la gouvernance collective et le décentrement post-anthropocentrique — ne trouvent pas d'incarnation dans le texte du jour. La vérification d'alignement du support et la confrontation référentielle touchent ces territoires de loin, comme des promesses, sans porter encore leur substance politique ou normative.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. La sécurité IA, la gouvernance algorithmique des services publics, la participation citoyenne, la facilitation collective et les trois compétences post-anthropocentriques (décentrement, cohabitation avec les intelligences non-humaines, conscience biosystémique) n'ont pas d'écho dans le texte du 29 décembre. L'audit et l'explicabilité, la souveraineté numérique et la veille réglementaire sont en posture de seuil : la situation s'y prête (vérification d'alignement IA, confrontation à un référentiel HEP, choix entre deux modèles propriétaires) mais la fiche disqualifie les formes présentes — l'opération est de l'ordre du contenu et non du processus, du choix de performance et non de la souveraineté, de la comparaison axiologique et non de l'anticipation normative. Ces dimensions attendent une autre scène pour apparaître.",
+    "emergencesPole": "Une chose traverse la feuille : les outils IA sont utilisés intensément, sans que leur dimension politique ne soit thématisée. Claude et Gemini sont mobilisés comme prestataires de service, pas comme acteurs dont le statut, la souveraineté ou la gouvernance des données mériteraient d'être interrogés dans le texte. Une seconde observation : le projet d'article qui ressort de la confrontation Gemini pourrait être le pont entre le travail interne et une mise en débat plus large — une possible ouverture vers la dimension publique de la réflexion pédagogique sur l'IA.",
+    "pistes": [
+      "Pour enrichir la dimension d'audit du travail IA, un chemin possible serait d'ajouter, lors d'une vérification d'alignement, quelques notes sur le « comment » du résultat IA — pas seulement ce qui a été produit, mais comment l'IA y est arrivée et avec quelles données.",
+      "Pour enrichir la dimension de souveraineté numérique, un chemin possible serait d'interroger, à l'occasion d'un choix d'outil, la juridiction des données et la portabilité du travail produit — au cas où il faudrait migrer un jour.",
+      "Pour enrichir la dimension publique du travail, un chemin possible serait, si l'article projeté voit le jour, de noter le passage du débat interne au débat institutionnel — quel public, quelle institution, quelles attentes normatives en jeu."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle et pour cette feuille du 29 décembre 2025, la journée porte le travail à l'intérieur d'un écosystème d'outils IA propriétaires choisis pour leurs caractéristiques techniques, et la confrontation projetée à un référentiel institutionnel public (HEP Vaud) reste à l'état d'intention. Les territoires du pôle CITÉ — la sécurité IA, l'audit des processus algorithmiques, la souveraineté numérique, la participation citoyenne, la gouvernance collective et le décentrement post-anthropocentrique — ne trouvent pas d'incarnation dans le texte du jour. La vérification d'alignement du support et la confrontation référentielle touchent ces territoires de loin, comme des promesses, sans porter encore leur substance politique ou normative.\n\n## Territoires les plus denses\n\nSur cette feuille, aucun territoire du pôle ne ressort avec une densité suffisante pour être nommé comme tel.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. La sécurité IA, la gouvernance algorithmique des services publics, la participation citoyenne, la facilitation collective et les trois compétences post-anthropocentriques (décentrement, cohabitation avec les intelligences non-humaines, conscience biosystémique) n'ont pas d'écho dans le texte du 29 décembre. L'audit et l'explicabilité, la souveraineté numérique et la veille réglementaire sont en posture de seuil : la situation s'y prête (vérification d'alignement IA, confrontation à un référentiel HEP, choix entre deux modèles propriétaires) mais la fiche disqualifie les formes présentes — l'opération est de l'ordre du contenu et non du processus, du choix de performance et non de la souveraineté, de la comparaison axiologique et non de l'anticipation normative. Ces dimensions attendent une autre scène pour apparaître.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse la feuille : les outils IA sont utilisés intensément, sans que leur dimension politique ne soit thématisée. Claude et Gemini sont mobilisés comme prestataires de service, pas comme acteurs dont le statut, la souveraineté ou la gouvernance des données mériteraient d'être interrogés dans le texte. Une seconde observation : le projet d'article qui ressort de la confrontation Gemini pourrait être le pont entre le travail interne et une mise en débat plus large — une possible ouverture vers la dimension publique de la réflexion pédagogique sur l'IA.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension d'audit du travail IA, un chemin possible serait d'ajouter, lors d'une vérification d'alignement, quelques notes sur le « comment » du résultat IA — pas seulement ce qui a été produit, mais comment l'IA y est arrivée et avec quelles données.\n- Pour enrichir la dimension de souveraineté numérique, un chemin possible serait d'interroger, à l'occasion d'un choix d'outil, la juridiction des données et la portabilité du travail produit — au cas où il faudrait migrer un jour.\n- Pour enrichir la dimension publique du travail, un chemin possible serait, si l'article projeté voit le jour, de noter le passage du débat interne au débat institutionnel — quel public, quelle institution, quelles attentes normatives en jeu."
+  }
+}

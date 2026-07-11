@@ -1,0 +1,319 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "J'ai tout lu aujourd'hui. Le début est pas mal. Le milieu est un peu light en profondeur réflexive, mais Claude me dit que c'est nécessaire.",
+      "contexte": "Évaluation contrastée d'un texte coproduit avec acceptation argumentée du verdict de l'IA — touche obliquement 4.02 et 4.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Je n'ai pas du tout l'habitude de lire des romans. Je ne sais pas si c'est bien ou pas. Je vais le proposer au club de lecture de Soledad, voir si quelqu'un peut me faire un feedback.",
+      "contexte": "Reconnaissance d'une zone de non-savoir et dispositif pour la traiter, sans paralysie — touche 4.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "D'un point de vue technique je suis un peu resté sur ma faim, mais l'objectif n'était pas de tout expliquer : juste donner envie, éveiller la curiosité, et ça je pense que ça fonctionne bien.",
+      "contexte": "Auto-évaluation d'un livrable jugé satisfaisant sur son critère initial malgré une frustration personnelle — touche 4.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique.",
+      "contexte": "Acte de refus partiel des choix de l'IA, justifié par un critère humain — touche 4.02 frontalement et 4.07 obliquement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Mais bon : je ne cherche pas à lui faire générer le prix Hugo du meilleur roman de SF : je veux juste parler du projet à la base !",
+      "contexte": "Recadrage de l'intention contre une dérive technique de l'IA — touche obliquement 4.02 (alignement à l'intention humaine).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Donc les corrections seront pour plus tard et je ne pourrai pas proposer le livre au club de lecture lundi après midi. Rien que l'impression des 150 pages en 7 exemples me prendrais la matinée avec mon imprimante à jet d'encre.",
+      "contexte": "Report d'une étape avec critère matériel explicite — touche 4.09 (patience stratégique).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à un raisonnement éthique appliqué. Pour ouvrir ce dossier, l'apprenant pourrait expliciter, lors d'une prochaine diffusion du roman, les tensions de valeurs en jeu (par exemple entre transparence du projet et lisibilité narrative)."
+      }
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant réintroduit des notions que l'IA avait retirées, sur la base d'un critère humain (« plus humain et moins technique ») — c'est un acte de refus sélectif et justifié."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Recadrage contre une dérive de l'IA vers la sophistication littéraire : maintenir l'IA au service de l'intention humaine de transmission du projet."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Acceptation de l'argument de l'IA sur le milieu du texte — montre que le refus ailleurs n'est pas global mais sélectif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à un alignement éthique n'est qu'une préférence d'auteur. La pièce 1 pourrait être une simple décision esthétique de réintégration. La pièce 5 pourrait être une boutade. La pièce 3 pourrait être de la déférence à l'IA. Pourtant : la pièce 1 articule un axe (humain/technique) qui dépasse la préférence d'écriture — l'apprenant reconnaît une dérive de l'IA vers le technique et la corrige. La pièce 5 nomme par contraste ce qu'il refuse à l'IA de produire (un roman de SF abouti) au profit de ce qu'il lui demande (parler du projet) — c'est un acte de gardiennage de l'intention. La pièce 3 contrebalance et montre que le refus est sélectif. Ce qui reste faible : aucune mention explicite de « valeurs », aucune conception de garde-fous systémiques, le vocabulaire reste celui de l'arbitrage personnel.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Acte concret de réintégration de notions retirées par l'IA, sur un critère orienté vers l'humain — c'est la posture d'alignement en acte." },
+            { "pieceId": 2, "motifResistance": "Formulation par contraste de ce qu'on refuse à l'IA de produire au profit de l'intention humaine — gardiennage de l'intention." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. J'examine si je n'ai pas chargé d'alignement éthique ce qui est en réalité une simple préférence d'auteur. La fiche est explicite : refuser TOUT n'est pas du refus éthique. Ici, le refus est sélectif (la pièce 3 montre l'acceptation ailleurs), ce qui correspond bien au critère.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.01 (pensée critique non déférente) et 3.04 (curation). Pour 4.02 strict, il faudrait que le critère « plus humain » soit thématisé comme valeur, pas seulement comme préférence. La pièce tient mais à la frontière."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La phrase est légère, presque blague. Mais elle fonctionne comme un acte de recentrage de l'IA sur l'intention humaine — ce qui est précisément l'alignement, même sans le vocabulaire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant exerçait un gardiennage actif de l'IA sur l'axe des valeurs humaines, ou s'il faisait simplement des choix d'auteur. Deux pièces m'ont forcé à reconnaître quelque chose : la réintégration de notions retirées sur l'axe « humain », et la formulation par contraste qui recentre l'IA sur l'intention du projet. Sous la présomption de sycophantie, les deux pièces sont restées mais affaiblies : le vocabulaire des valeurs n'est pas thématisé, et la frontière avec la simple préférence d'écriture est poreuse. Ce qui en résulte sur cette feuille : une posture d'alignement qui s'exerce dans l'acte d'édition plutôt que dans une théorie articulée — l'apprenant tient l'IA sur la trajectoire de son projet, par retours répétés.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a affaibli les deux pièces sans les disqualifier ; la trace tient à la frontière entre alignement éthique et préférence d'auteur, faute de thématisation explicite des valeurs.",
+        "prescription": "Le travail montre, sur cette feuille, un gardiennage actif de l'IA sur l'axe humain de l'intention. Une piste possible serait, lors d'une prochaine session, de nommer la valeur sous-jacente au critère « humain » qui guide les actes de réintégration — ce qui rendrait visible la grammaire d'alignement qui opère déjà dans la pratique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la conscience écologique. Pour ouvrir ce dossier, l'apprenant pourrait raisonner sur l'empreinte de l'impression papier des 150 pages × 7 exemplaires, ou sur la soutenabilité du dispositif numérique remplacé."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la valorisation de la neurodiversité. Pour ouvrir ce dossier, l'apprenant pourrait articuler en quoi son mode de pensée a permis un angle particulier dans l'écriture du livre."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant nomme une ignorance assumée (« je ne sais pas si c'est bien ou pas ») mais ne suspend pas l'action — il a tout lu, il a relevé des erreurs, il prépare un feedback externe."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Décision implicite que le livrable est suffisant pour son intention initiale, malgré une frustration technique non résolue."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à de la tolérance au flou n'est qu'une normalité de processus. La pièce 1 pourrait être une simple modestie sociale. La pièce 2 pourrait être une rationalisation pour clore un travail imparfait. Pourtant : la pièce 1 nomme un non-savoir (lecture des romans) et continue à fonctionner — l'apprenant ne suspend pas la décision de publication en attendant l'expertise, il pose un dispositif de validation a posteriori. La pièce 2 maintient une position (« ça fonctionne bien ») contre un signal contradictoire interne (« resté sur ma faim »). Ce qui reste faible : aucun acte de tranchage explicite face à une recommandation IA divergente, aucun récit de pari assumé contre l'évidence.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Nommer son ignorance et continuer à livrer en posant un dispositif de calibration externe — c'est la double facette tolérance + décision." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. J'examine si je n'ai pas chargé de tolérance à l'incertitude ce qui est en réalité une procédure normale d'édition.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le combo recommandé par la fiche (nommer l'ignorance + décrire le fonctionnement malgré + acte de tranchage avec conséquences) n'est que partiellement présent. L'apprenant nomme son ignorance et continue, mais l'acte de tranchage et ses conséquences ne sont pas développés. La pièce tient comme indice, pas comme preuve forte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant supportait le flou et tranchait malgré lui. Une pièce m'a forcé à reconnaître quelque chose : la calibration de son ignorance n'a pas paralysé l'action — le texte a été lu en entier, des erreurs ont été relevées, un dispositif de validation est posé. Sous la présomption de sycophantie, la pièce est restée mais affaiblie : la facette « décision » de la compétence (tranchage explicite avec conséquences nommées) n'est pas pleinement développée. Ce qui en résulte sur cette feuille : une trace légère de tolérance au flou en action, qui ressemble à une posture plutôt qu'à un dispositif articulé.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce ; la facette « tolérance » est lisible, la facette « décision/tranchage » manque d'un récit explicite.",
+        "prescription": "Le travail montre, sur cette feuille, une capacité à fonctionner sans certitude sur la qualité du livrable. Une piste possible serait, lors d'une prochaine décision dans un contexte similaire (livrer ou retravailler), de noter le moment du tranchage et ce qu'il a coûté ou rapporté — ce qui rendrait visible la facette décisionnelle qui aujourd'hui se devine."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la responsabilité-courage-intégrité. Pour ouvrir ce dossier, l'apprenant pourrait expliciter ce qu'il assume face à un éventuel rejet du livre par ses lecteurs."
+      }
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant remet du contenu que l'IA avait jugé non nécessaire, parce qu'il possède un savoir contextuel sur ce que le projet doit transmettre que l'IA n'a pas — touche obliquement 4.07."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que ce qui ressemble à de la validation contextuelle est en réalité du gardiennage éthique (4.02). La fiche est explicite : 4.07 identifie un delta de contexte précis entre humain et machine. Ici, l'apprenant agit parce que l'IA a retiré certaines notions, mais il ne nomme pas explicitement ce que l'IA ne pouvait pas savoir — pas de « l'IA ne pouvait pas savoir que... », pas de description du mécanisme par lequel l'IA a manqué un contexte précis. Ce qui reste faible : la pièce dit que l'IA avait fait un choix, et que l'apprenant l'a renversé, mais sans articuler ce qui dans le contexte humain rendait le choix de l'IA inadéquat.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — la distinction critique de la fiche 4.07 désigne précisément ce cas comme relevant plutôt de 4.02. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans cette pièce, je cherchais à voir si l'apprenant identifiait un delta de savoir précis entre lui et l'IA. La pièce raconte un acte de réintégration, mais sans articuler ce que l'IA ne pouvait pas savoir et qui rendait sa décision inadéquate. La trace relève plus du gardiennage éthique (4.02) que de la validation contextuelle au sens strict. Ce qui en résulte sur cette feuille : la compétence existe peut-être en arrière-plan (l'apprenant possède un savoir du projet que l'IA n'a pas), mais elle n'est pas articulée dans le texte.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La distinction critique de la fiche disqualifie la pièce : pas d'articulation explicite du delta de contexte humain/machine.",
+        "prescription": "Le travail montre, sur cette feuille, un acte de réintégration sans nommer ce que l'IA ne pouvait pas savoir. Une piste possible serait, lors d'une prochaine correction d'un output IA, d'expliciter pourquoi le contexte manquant à la machine change la décision — ce qui rendrait visible la validation contextuelle qui opère déjà implicitement."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la création de valeur non-automatisable. Pour ouvrir ce dossier, l'apprenant pourrait articuler ce que sa présence d'auteur apporte au livre que l'IA, prise seule, n'aurait pas pu apporter."
+      }
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Report explicite d'une étape (proposer le livre au club lundi) avec critère matériel (impression de 150 pages × 7 exemplaires) — touche 4.09."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que reporter pour des raisons logistiques n'est pas de la patience stratégique. La fiche est explicite : 4.09 demande (1) une pression à agir, (2) un raisonnement explicite d'attente, (3) un moment d'action prévu. Ici, le report est dû à une contrainte matérielle (l'imprimante personnelle), pas à un choix de timing au sens kairos. Aucune pression à agir n'est nommée — c'est plutôt l'inverse, l'apprenant aurait voulu présenter le livre mais ne peut pas. Le « plus tard » n'est pas borné par un critère de déclenchement. Ce qui reste faible : la pièce est descriptive d'une contrainte, pas d'un choix patient.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — la fiche distingue précisément le report contraint de la patience stratégique. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans cette pièce, je cherchais à voir si l'apprenant attendait stratégiquement un meilleur moment. La pièce raconte un report contraint par la logistique d'impression, pas un choix argumenté de non-action. Aucun raisonnement explicite de timing n'est posé, aucun critère de déclenchement n'est nommé. Ce qui en résulte sur cette feuille : le report n'est pas une patience, c'est une contrainte subie.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce n'a pas résisté à la présomption d'absence : le report est contraint par la logistique, pas choisi par stratégie de timing.",
+        "prescription": "Le travail montre, sur cette feuille, un report imposé par les conditions matérielles. Une piste possible serait, lors d'une prochaine décision de différer une diffusion, de noter si c'est la situation qui n'est pas mûre (4.09) ou seulement le dispositif qui n'est pas prêt — la distinction nourrit la lecture du timing."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 7,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, l'entrée du 15 mars montre un travail de discernement qui s'exerce dans la friction quotidienne avec l'IA plutôt que dans l'arbitrage de grands dilemmes. La voix dominante est celle d'un praticien qui valide ou révoque les suggestions de la machine en fonction d'un cap qu'il porte lui-même. Le registre est sobre, factuel, traversé par une posture de gardien : la machine propose, l'humain dispose, sélectivement. Le micro-fait récurrent : un retour de l'IA sur l'orbite de l'intention initiale du projet. Les autres registres du jugement — éthique des dilemmes ouverts, conscience écologique, neurodiversité, courage assumé — restent à l'écart de cette feuille, dont la matière est avant tout celle d'un dialogue itératif avec un outil.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs registres du jugement restent à l'écart de cette feuille. Le raisonnement éthique sur des dilemmes ouverts, la conscience écologique, la valorisation de la neurodiversité, le triptyque responsabilité-courage-intégrité et la création de valeur non-automatisable n'apparaissent pas — ce qui ressemble à un choix d'angle pour une entrée centrée sur la finition d'un livrable plutôt que sur l'éthique du projet. L'alignement à l'IA laisse une trace réelle mais à la frontière de la simple préférence d'auteur, faute de thématisation explicite des valeurs sous-jacentes. La tolérance à l'incertitude se devine dans la posture (livrer malgré le non-savoir) mais la facette décisionnelle reste implicite. La validation contextuelle et la patience stratégique apparaissent en surface mais ne franchissent pas le seuil que la fiche définit.",
+    "emergencesPole": "Une observation traverse les compétences mobilisées dans ce pôle : le discernement s'exerce ici dans le rapport à l'IA, pas dans le rapport aux personnes ou aux institutions. L'apprenant tient sa machine sur la trajectoire de son projet — il accepte une suggestion, en révoque une autre, recadre une dérive littéraire. C'est un discernement de pilotage. Une seconde observation : aucune des décisions racontées n'est présentée comme coûteuse ou risquée. Le récit reste à hauteur d'arbitrage tranquille, ce qui laisse à l'horizon des feuilles à venir la mise en récit de jugements plus exposés.",
+    "pistes": [
+      "Pour enrichir la trace d'alignement, un chemin possible serait de nommer la valeur sous-jacente au critère « plus humain » qui guide les actes de réintégration des notions retirées par l'IA.",
+      "Pour enrichir la trace de tolérance au flou, un chemin possible serait de raconter le moment du tranchage (livrer plutôt que retravailler) en explicitant ce qui a été pesé et ce qui a été accepté.",
+      "Pour enrichir la trace de validation contextuelle, un chemin possible serait, lors d'une prochaine correction d'un output IA, d'expliciter ce que l'IA ne pouvait pas savoir et qui change la décision."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, l'entrée du 15 mars montre un travail de discernement qui s'exerce dans la friction quotidienne avec l'IA plutôt que dans l'arbitrage de grands dilemmes. La voix dominante est celle d'un praticien qui valide ou révoque les suggestions de la machine en fonction d'un cap qu'il porte lui-même. Le registre est sobre, factuel, traversé par une posture de gardien : la machine propose, l'humain dispose, sélectivement. Le micro-fait récurrent : un retour de l'IA sur l'orbite de l'intention initiale du projet. Les autres registres du jugement — éthique des dilemmes ouverts, conscience écologique, neurodiversité, courage assumé — restent à l'écart de cette feuille, dont la matière est avant tout celle d'un dialogue itératif avec un outil.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'a atteint sur cette feuille le seuil d'une présence établie. L'alignement à l'IA et la tolérance à l'incertitude laissent des traces qui demandent encore à se nommer pour franchir ce seuil. La section qui suit décrit ces traces comme des terrains à approfondir plutôt que comme des sommets atteints.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres du jugement restent à l'écart de cette feuille. Le raisonnement éthique sur des dilemmes ouverts, la conscience écologique, la valorisation de la neurodiversité, le triptyque responsabilité-courage-intégrité et la création de valeur non-automatisable n'apparaissent pas — ce qui ressemble à un choix d'angle pour une entrée centrée sur la finition d'un livrable plutôt que sur l'éthique du projet. L'alignement à l'IA laisse une trace réelle mais à la frontière de la simple préférence d'auteur, faute de thématisation explicite des valeurs sous-jacentes. La tolérance à l'incertitude se devine dans la posture (livrer malgré le non-savoir) mais la facette décisionnelle reste implicite. La validation contextuelle et la patience stratégique apparaissent en surface mais ne franchissent pas le seuil que la fiche définit.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse les compétences mobilisées dans ce pôle : le discernement s'exerce ici dans le rapport à l'IA, pas dans le rapport aux personnes ou aux institutions. L'apprenant tient sa machine sur la trajectoire de son projet — il accepte une suggestion, en révoque une autre, recadre une dérive littéraire. C'est un discernement de pilotage. Une seconde observation : aucune des décisions racontées n'est présentée comme coûteuse ou risquée. Le récit reste à hauteur d'arbitrage tranquille, ce qui laisse à l'horizon des feuilles à venir la mise en récit de jugements plus exposés.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la trace d'alignement, un chemin possible serait de nommer la valeur sous-jacente au critère « plus humain » qui guide les actes de réintégration des notions retirées par l'IA.\n- Pour enrichir la trace de tolérance au flou, un chemin possible serait de raconter le moment du tranchage (livrer plutôt que retravailler) en explicitant ce qui a été pesé et ce qui a été accepté.\n- Pour enrichir la trace de validation contextuelle, un chemin possible serait, lors d'une prochaine correction d'un output IA, d'expliciter ce que l'IA ne pouvait pas savoir et qui change la décision.\n"
+  }
+}

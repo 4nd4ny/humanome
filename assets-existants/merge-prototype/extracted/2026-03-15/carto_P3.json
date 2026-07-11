@@ -1,0 +1,309 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Ce qui m'a motivé à faire le roman en priorité, c'est d'une part que le site web n'est plus du tout à jour, et d'autre part, lorsque je le montre à des jeunes, ils le scrollent sans le lire. Du coup aucun intérêt. Je me dis qu'on ne feuillette pas une histoire. Le format livre est peut être un média plus adapté pour faire comprendre les concepts.",
+      "contexte": "Pivot créatif : sortir du média site web pour réinventer la transmission sous forme romanesque — touche 3.01 (créativité radicale) et 3.03 (design de problèmes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "J'ai tout lu aujourd'hui. Le début est pas mal. Le milieu est un peu light en profondeur réflexive, mais Claude me dit que c'est nécessaire. La fin est sympa. J'ai relevé plein de petites erreurs que je vais modifier à la main ce soir.",
+      "contexte": "Lecture évaluative segment par segment d'un texte produit, avec corrections manuelles ciblées — touche 3.04 (jugement esthétique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Je n'ai pas du tout l'habitude de lire des romans. Je ne sais pas si c'est bien ou pas. Je vais le proposer au club de lecture de Soledad, voir si quelqu'un peut me faire un feedback.",
+      "contexte": "Calibration du propre jugement esthétique par référence à un lectorat externe — touche 3.04 obliquement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "D'un point de vue technique je suis un peu resté sur ma faim, mais l'objectif n'était pas de tout expliquer : juste donner envie, éveiller la curiosité, et ça je pense que ça fonctionne bien.",
+      "contexte": "Évaluation finale orientée par un critère formel articulé (susciter, pas expliquer) — touche 3.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique.",
+      "contexte": "Acte d'édition manuelle pour rééquilibrer un texte selon un critère qualitatif (« plus humain ») — touche 3.04 (curation) et 3.01 (itération).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Rien que l'impression des 150 pages en 7 exemples me prendrais la matinée avec mon imprimante à jet d'encre.",
+      "contexte": "Détail concret d'une opération matérielle envisagée (impression physique avec une imprimante personnelle) — touche obliquement 3.05.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant abandonne un média qui ne fonctionne pas (le site web) pour basculer vers un format radicalement différent (le roman). Trace d'itération de format face à un constat d'inefficacité."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Soirée passée à réintroduire des éléments retirés par l'IA — geste d'itération sur le texte avec correction de cap."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à de la créativité itérative n'est qu'une suite de décisions d'écriture banales. La pièce 1 mentionne un pivot, mais il a probablement eu lieu antérieurement à cette feuille — ici, l'apprenant ne raconte pas l'invention du format romanesque, il en rend compte. La pièce 5 raconte une soirée d'édition, ce qui pourrait être une simple correction d'erreurs plutôt qu'un cycle itératif avec apprentissage. Pourtant : la pièce 5 décrit un mouvement de retour en arrière sur des choix de l'IA, donc une itération avec décision argumentée. La pièce 1 mentionne explicitement le mécanisme (constat d'échec → changement de média), qui est la structure même d'un cycle d'itération. Ce qui reste faible : aucun récit de versions successives explicites, aucune trace d'apprentissage formulé entre passages.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant ne corrige pas des erreurs : il réintroduit du contenu, donc opère un cycle où une version précédente est jugée insuffisante puis modifiée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. J'examine si je n'ai pas chargé d'itération créative ce qui est en réalité une simple décision d'éditeur. Le critère de la fiche : un cycle prototype → feedback → pivot avec apprentissage explicite.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce ne décrit pas le dispositif itératif lui-même : combien de passes, quel apprentissage entre les versions, sur quel critère. Elle nomme l'acte (réintroduire) et l'axe (humain/technique), mais le cycle reste implicite. La trace tient comme indice d'une itération en cours, pas comme preuve d'une pratique itérative articulée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si la créativité itérative s'exerçait dans la feuille ou si elle y était seulement résumée. La pièce 1 a glissé — elle rend compte d'un pivot antérieur sans le mettre en scène. La pièce 5 m'a forcé à reconnaître quelque chose : une soirée d'édition active, où des choix de l'IA sont revus à la lumière d'un critère, est une trace d'itération. Sous la présomption de sycophantie, cette pièce est restée mais affaiblie : le dispositif itératif n'est pas explicité. Ce qui en résulte sur cette feuille : une trace légère d'itération qui ressemble plus à un réglage qu'à un cycle complet 1→n avec apprentissage formulé. La radicalité du format romanesque, elle, est mentionnée mais pas mise en scène ici.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante ; l'itération se devine plus qu'elle ne se montre dans le récit lui-même.",
+        "prescription": "Le travail montre, sur cette feuille, une activité de réglage du texte sans description explicite du cycle d'itération. Une piste possible serait, lors d'une prochaine session d'édition, de noter ce qui dans la version précédente avait paru insuffisant et quel critère a guidé la modification — ce qui rendrait visible l'apprentissage entre les passes."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la singularité de signature. L'analyse de la patte stylistique demanderait une lecture transversale de plusieurs entrées plutôt qu'une seule feuille."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le pivot du site vers le roman peut se lire comme une reformulation du problème (1.02) ou comme un design de problème nouveau si la question elle-même change de nature."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que ce qui ressemble à un design de problème est en fait du cadrage (1.02). La fiche est explicite : le critère discriminant est la création d'une question qui n'existait pas, pas la reformulation d'une question existante. Ici, l'apprenant ne crée pas une question nouvelle — il garde la même question (« comment faire comprendre les concepts du projet ») et change le média de réponse. C'est un recadrage du périmètre, pas l'invention d'un problème inédit. Ce qui reste faible : aucun moment de type « et si le vrai sujet c'était... » suivi d'un pivot vers une question d'une autre nature.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — la distinction critique de la fiche 3.03 disqualifie d'emblée ce qui est en réalité du ressort de 1.02. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans cette pièce, je cherchais à voir si l'apprenant créait une question nouvelle, ou s'il reformulait une question existante. La pièce raconte un changement de média pour mieux servir une intention déjà posée, ce qui correspond précisément au cadrage. La distinction critique de la fiche est explicite et désigne ce cas comme relevant de 1.02. Ce qui en résulte sur cette feuille : aucune trace de design de problèmes au sens strict ; le travail montré est celui d'un cadrage en action.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La distinction critique de la fiche 3.03 désigne précisément ce cas comme relevant de 1.02 ; la pièce n'a pas résisté à la présomption d'absence.",
+        "prescription": "Le travail montre, sur cette feuille, un cadrage de l'intention plus qu'une invention de question. Une piste possible serait, dans une entrée à venir, de noter un moment où la situation n'a pas seulement changé de réponse mais a changé de question — où ce qu'il fallait demander n'avait pas encore été demandé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant évalue le texte segment par segment (début/milieu/fin), avec des qualifications formelles et un acte de soustraction (relever des erreurs à corriger)."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Reconnaissance d'une limite de son propre jugement esthétique (manque d'habitude des romans) avec dispositif de calibration externe."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Articulation d'un critère qualitatif (susciter la curiosité plutôt qu'expliquer) qui guide l'évaluation du résultat."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "Acte de curation active : retirer ce que l'IA avait laissé, ajouter ce qu'elle avait soustrait, sur la base d'un critère formel (« plus humain »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à du jugement esthétique n'est en fait que de la relecture banale. La pièce 1 pourrait n'être qu'une évaluation cursive. La pièce 2 pourrait être de la simple modestie. La pièce 3 pourrait être une déclaration sans application. La pièce 4 pourrait être un caprice d'auteur. Pourtant : la pièce 1 segmente l'évaluation et nomme un critère formel (« profondeur réflexive »), pas seulement « j'aime/j'aime pas ». La pièce 3 articule un critère opérationnel (susciter vs expliquer) contre lequel le résultat est mesuré. La pièce 4 est un acte de soustraction puis de réintégration sur la base d'un axe formel nommé. Ce qui reste faible : le vocabulaire esthétique reste général (« pas mal », « sympa », « humain »), pas de critères techniques d'écriture précis.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Évaluation segmentée avec un critère formel nommé (« profondeur réflexive ») — c'est plus qu'un goût intuitif." },
+            { "pieceId": 3, "motifResistance": "Le critère « susciter, pas expliquer » fonctionne comme une grille d'évaluation appliquée au résultat." },
+            { "pieceId": 4, "motifResistance": "Acte concret de curation : soustraction puis réintégration ciblée sur un axe formel (humain/technique)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. J'examine si je n'ai pas chargé du jugement esthétique articulé ce qui est en réalité du goût ordinaire de relecteur.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'évaluation est brève et le vocabulaire général. La segmentation et le critère de « profondeur réflexive » la sauvent, mais on est loin de la verbalisation critique articulée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le critère est déclaré, mais le récit ne montre pas comment il s'est appliqué à des choix concrets. Le « ça fonctionne bien » reste affirmé plutôt que démontré."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le geste est concret et l'axe formel (humain/technique) est explicite. L'acte de soustraire et de réintégrer pour rééquilibrer un registre est précisément la curation au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant exerçait un jugement esthétique articulé ou s'il se contentait de relire. Trois pièces m'ont forcé à reconnaître quelque chose : une évaluation segmentée avec critère nommé, un critère de finalité (susciter vs expliquer) qui guide la lecture du résultat, et un acte concret de curation sur un axe formel. Sous la présomption de sycophantie, une pièce est sortie confirmée et deux affaiblies sans tomber. Ce qui en résulte sur cette feuille : un jugement esthétique qui s'exerce dans l'acte d'édition plus qu'il ne se théorise — l'apprenant règle un curseur sans nommer une grammaire d'écriture, mais le réglage est lisible et orienté.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé une pièce (l'acte de curation actif sur l'axe humain/technique) et affaibli deux autres sans les disqualifier.",
+        "prescription": "Le travail montre, sur cette feuille, un jugement esthétique qui s'exerce dans l'acte d'édition plus qu'il ne se nomme. Une piste possible serait, lors d'une prochaine relecture, de noter quelques exemples concrets — quelle phrase a été coupée, quelle notion réintégrée, sur quel critère précis — pour rendre visible le vocabulaire de réglage qui guide les choix."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Mention d'une opération matérielle envisagée (imprimer 150 pages en 7 exemplaires avec une imprimante à jet d'encre personnelle) — touche obliquement la matière physique du livre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que mentionner une imprimante n'est pas en soi de l'intelligence manuelle. La pièce ne décrit aucun geste effectivement posé sur la matière : elle anticipe une charge de travail logistique et conclut à un renoncement. Aucun verbe d'action sur la matière (souder, assembler, monter, ajuster), aucun détail sensoriel, aucune résolution par la manipulation directe. Le mot « imprimante à jet d'encre » est descriptif, pas pratique.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — la mention reste descriptive sans geste posé. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans cette pièce, je cherchais à voir si l'apprenant racontait une interaction avec la matière. Il évoque la matérialité du livre (150 pages, 7 exemplaires, imprimante à jet d'encre) mais aucun geste n'est posé — l'opération est anticipée puis abandonnée. La pièce est trop descriptive pour porter trace d'une intelligence manuelle en exercice. Ce qui en résulte sur cette feuille : la matière est mentionnée comme contrainte, pas comme terrain d'exercice.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Le temps 1 a absorbé la pièce : aucun geste sur la matière n'est posé, seulement anticipé puis abandonné.",
+        "prescription": "Le travail montre, sur cette feuille, une matière physique évoquée comme contrainte logistique plutôt que comme terrain d'exercice. Une piste possible serait, lors d'une prochaine production matérielle (impression effective, reliure, atelier), de raconter le geste lui-même et ce qu'il apprend."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à l'ancrage sensoriel. Pour ouvrir ce dossier, l'apprenant pourrait noter les sensations qui ont accompagné la lecture intégrale du roman — fatigue, surprise, ennui, ce que le corps a perçu pendant le passage."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la présence en performance. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment de partage en présentiel du livre (par exemple lors du club de lecture, si la proposition aboutit)."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 5,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, l'entrée du 15 mars montre un travail créatif centré sur le réglage final d'un objet — un roman lu en intégralité, jugé en segments, modifié par retours ciblés. La voix dominante est celle d'un artisan-éditeur qui parcourt sa propre production avec une grille évaluative. Le registre est sobre, ponctué de petites qualifications formelles (« pas mal », « light en profondeur réflexive », « sympa »). Le micro-fait récurrent : l'acte de soustraction et de réintégration, qui structure la soirée d'édition autour d'un axe humain/technique. La dimension somatique et la performance live restent à l'écart de cette feuille, qui est avant tout celle d'un face-à-face entre l'auteur et son texte.",
+    "territoiresDenses": [
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "L'évaluation du texte se fait par segments avec critères formels nommés, et débouche sur des actes concrets de soustraction et de réintégration guidés par un axe humain/technique.",
+        "extraitVerbatim": "Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique.",
+        "ceQueCaDit": "Le jugement esthétique se manifeste dans l'acte d'édition plus que dans la verbalisation — l'apprenant règle un curseur sans nommer une grammaire d'écriture, mais le réglage est lisible et orienté."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs registres créatifs et somatiques restent à l'écart de cette feuille. La singularité de signature ne peut pas être lue à partir d'une entrée isolée : elle demande une lecture transversale. Le design de problèmes au sens strict ne se manifeste pas — l'apprenant reformule un périmètre plutôt qu'il n'invente une question. L'intelligence manuelle évoque la matière (impression, 150 pages, imprimante) mais sans geste posé. L'ancrage sensoriel et la présence en performance ne traversent pas cette entrée, qui est celle d'un travail solitaire face à un texte. La créativité itérative laisse une trace légère qui ressemble plus à un réglage final qu'à un cycle complet d'apprentissage entre versions.",
+    "emergencesPole": "Une observation traverse les compétences mobilisées dans ce pôle : l'acte créatif se joue dans la soustraction et la réintégration plus que dans l'invention première. La radicalité du pivot (passer du site au roman) est mentionnée comme antériorité, alors que l'entrée elle-même met en scène le travail de finition. Une seconde observation : l'IA est constamment présente comme co-éditrice dont les choix sont tantôt acceptés (sur la profondeur du milieu), tantôt révoqués (sur les notions retirées). L'acte créatif s'exerce donc dans le dialogue avec une production déjà existante, pas dans une page blanche.",
+    "pistes": [
+      "Pour enrichir la trace de créativité itérative, un chemin possible serait de noter, lors d'une prochaine session, ce que la version précédente avait laissé filer et quel critère a guidé la modification — ce qui rendrait visible l'apprentissage entre les passes.",
+      "Pour enrichir la trace de jugement esthétique, un chemin possible serait de relever quelques exemples concrets — quelle phrase coupée, quelle notion réintégrée, sur quel critère précis.",
+      "Pour enrichir la trace d'intelligence manuelle, un chemin possible serait, lorsque l'impression aura lieu, de raconter le geste lui-même : papier, encre, pliage, ajustement — la matière comme terrain d'exercice et non comme contrainte logistique."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, l'entrée du 15 mars montre un travail créatif centré sur le réglage final d'un objet — un roman lu en intégralité, jugé en segments, modifié par retours ciblés. La voix dominante est celle d'un artisan-éditeur qui parcourt sa propre production avec une grille évaluative. Le registre est sobre, ponctué de petites qualifications formelles (« pas mal », « light en profondeur réflexive », « sympa »). Le micro-fait récurrent : l'acte de soustraction et de réintégration, qui structure la soirée d'édition autour d'un axe humain/technique. La dimension somatique et la performance live restent à l'écart de cette feuille, qui est avant tout celle d'un face-à-face entre l'auteur et son texte.\n\n## Territoires les plus denses\n\n**Jugement esthétique et curation.** L'évaluation du texte se fait par segments avec critères formels nommés, et débouche sur des actes concrets de soustraction et de réintégration guidés par un axe humain/technique. La phrase qui condense la matière : « Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique. » Le jugement esthétique se manifeste dans l'acte d'édition plus que dans la verbalisation — l'apprenant règle un curseur sans nommer une grammaire d'écriture, mais le réglage est lisible et orienté.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres créatifs et somatiques restent à l'écart de cette feuille. La singularité de signature ne peut pas être lue à partir d'une entrée isolée : elle demande une lecture transversale. Le design de problèmes au sens strict ne se manifeste pas — l'apprenant reformule un périmètre plutôt qu'il n'invente une question. L'intelligence manuelle évoque la matière (impression, 150 pages, imprimante) mais sans geste posé. L'ancrage sensoriel et la présence en performance ne traversent pas cette entrée, qui est celle d'un travail solitaire face à un texte. La créativité itérative laisse une trace légère qui ressemble plus à un réglage final qu'à un cycle complet d'apprentissage entre versions.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse les compétences mobilisées dans ce pôle : l'acte créatif se joue dans la soustraction et la réintégration plus que dans l'invention première. La radicalité du pivot (passer du site au roman) est mentionnée comme antériorité, alors que l'entrée elle-même met en scène le travail de finition. Une seconde observation : l'IA est constamment présente comme co-éditrice dont les choix sont tantôt acceptés (sur la profondeur du milieu), tantôt révoqués (sur les notions retirées). L'acte créatif s'exerce donc dans le dialogue avec une production déjà existante, pas dans une page blanche.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la trace de créativité itérative, un chemin possible serait de noter, lors d'une prochaine session, ce que la version précédente avait laissé filer et quel critère a guidé la modification — ce qui rendrait visible l'apprentissage entre les passes.\n- Pour enrichir la trace de jugement esthétique, un chemin possible serait de relever quelques exemples concrets — quelle phrase coupée, quelle notion réintégrée, sur quel critère précis.\n- Pour enrichir la trace d'intelligence manuelle, un chemin possible serait, lorsque l'impression aura lieu, de raconter le geste lui-même : papier, encre, pliage, ajustement — la matière comme terrain d'exercice et non comme contrainte logistique.\n"
+  }
+}

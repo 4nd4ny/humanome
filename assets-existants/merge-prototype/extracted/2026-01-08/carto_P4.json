@@ -1,0 +1,512 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "J'ai eu une interruption lors de la génération du manuel Expert au niveau du chapitre 5. Lorsque je lui ai demandé de vérifier sa cohérence car la longueur du prompt était étrangement plus petite que les autres chapitres, il a généré un système de prompt passant de 15k à 46k soit trois fois plus long. Du coup je me demande si je ne devrais pas demander de ne générer qu'un seul chapitre à la fois et recommencer le processus. Je lirais les deux productions pour les comparer en fin de journée et déciderais alors.",
+      "contexte": "Anomalie détectée sur la production IA, vérification de cohérence demandée, décision suspendue à une comparaison. Active possiblement 4.02 (alignement), 4.05 (tolérance/décision), 4.07 (validation contextuelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Nous avons déjà constaté avec Stéphane que la qualité des productions de Claude n'était pas constante. Typiquement, avant la sortie d'un nouveau modèle, pendant quelques jours les résultats sont médiocres. Il est possible que si je refais ce processus à un autre moment de la journée (typiquement le week-end) j'ai de meilleurs résultats ? A tester à mon retour de vacances !",
+      "contexte": "Hypothèse contextuelle sur la variation de qualité IA, projet de test, intervalle assumé. Active possiblement 4.05 (tolérance à l'incertitude), 4.07 (validation contextuelle), 4.09 (patience — report borné à un critère).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Mais ça c'était une petite geekerie, juste pour le plaisir. En vrai, je fais 21 copier-coller dans 21 nouvelles conversations de ce prompt (en adaptant le niveau et le numéro de chapitre)",
+      "contexte": "Choix assumé entre élégance d'un one-liner Python et travail manuel de 21 sessions — décision pragmatique malgré l'alternative séduisante. Active possiblement 4.05 (décision dans le flou), 4.06 (intégrité avec sa pratique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Pendant que Claude travaille, je me prépare pour un entretien d'embauche pour enseigner la bureautique en CFC à mi-temps dès juillet dans une école privée. Je suis toujours moyennement motivé, mais la formation professionnelle reste alignée avec ce que je pense qui est utile pour les élèves, contrairement au gymnase, donc ça devrait bien se passer.",
+      "contexte": "Décision de candidater malgré une motivation modérée, justifiée par l'alignement avec une conviction sur ce qui est utile aux élèves. Active possiblement 4.01 (raisonnement éthique — alignement aux valeurs), 4.05 (décision malgré ambivalence).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "la formation professionnelle reste alignée avec ce que je pense qui est utile pour les élèves, contrairement au gymnase",
+      "contexte": "Évaluation comparative implicite entre deux institutions selon le critère d'utilité aux élèves — critère éthique posé. Active possiblement 4.01 (raisonnement éthique), 4.06 (intégrité — cohérence avec les valeurs).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Je vais essayer de ne pas parler de mes idées et l'entretien. Si on me questionne sur Chamblandes, alors là ça risque de déraper. On verra.",
+      "contexte": "Tension assumée entre retenue stratégique et risque de débordement, posée sans la résoudre (« on verra »). Active possiblement 4.01 (tension entre deux postures défendables), 4.05 (tolérance — vivre avec l'issue ouverte), 4.06 (intégrité — limite à la retenue).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Maintenant il y a plus qu'à copier-coller les contenus de ces prompts durant tout le trajet de train pour générer les 5 manuels que je lirais, corrigerais (si besoin) et mettrais en page durant les vacances (autant faire se peut).",
+      "contexte": "Planification d'une lecture-correction-mise en page des manuels — geste de garde-fou sur les outputs IA. Active possiblement 4.02 (gardiennage de l'alignement), 4.06 (responsabilité finale sur le produit).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-08",
+      "extraitVerbatim": "Ce dernier niveau correspond à la rédaction du premier manuel de noèsiologie : c'est l'aboutissement de mes travaux de recherche en didactique informatique. En gros, la fin de la thèse (qu'il faudra encore écrire après tout ça).",
+      "contexte": "Inscription dans un projet long avec étape annoncée comme « fin de la thèse » — perspective temporelle longue assumée. Active possiblement 4.09 (patience stratégique — projet long terme).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Décision de candidater à un poste malgré une motivation modérée, en s'appuyant sur un critère éthique (« utile pour les élèves ») — arbitrage entre engagement personnel et conviction pédagogique."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Tension entre retenue stratégique pour passer l'entretien et la possibilité que la vérité sur Chamblandes émerge — posée sans résolution (« on verra »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.01 en présumant que la feuille ne porte pas de raisonnement éthique au sens de la fiche. La fiche exige un processus visible de mise en tension de valeurs, pas une décision pragmatique. La pièce 1 fait référence à une « utilité pour les élèves » mais c'est plus une justification d'opportunité qu'un dilemme éthique exploré. La pièce 2 énonce un risque mais ne déplie pas la tension entre valeurs en jeu (transparence vs stratégie d'entretien). Le « on verra » peut signaler une incertitude maintenue ou simplement une remise à plus tard. Pourtant : la fiche signale comme trace oblique « choisir de NE PAS faire quelque chose sans expliquer pourquoi peut cacher un raisonnement éthique implicite » — l'intention de retenue sur Chamblandes est précisément cela. Et la pièce 1 articule une décision à un critère éthique (utilité aux élèves) plutôt qu'à un avantage personnel.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'intention de retenue annoncée (« ne pas parler de mes idées ») jointe à la limite reconnue (« si on me questionne sur Chamblandes, alors là ça risque de déraper ») expose une tension entre stratégie et intégrité, posée sans résolution." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé cette pièce. Le « on verra » peut être de la résignation pragmatique, pas un maintien volontaire de l'incertitude morale. La fiche valorise un processus *visible* de mise en tension — ici la tension est nommée mais pas explorée. La pièce 1, que j'ai écartée au temps 1, est en réalité plus solide : l'apprenant articule sa décision à un critère éthique (l'utilité aux élèves) plutôt qu'à un avantage personnel. Il faut peut-être la reconsidérer, mais le temps 2 ne le permet pas — il opère sur ce qui a résisté au temps 1.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La tension entre stratégie d'entretien et risque de débordement éthique est nommée mais pas explorée. Le « on verra » signale une acceptation de l'issue ouverte mais ne déplie pas le processus de mise en tension demandé par la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte du raisonnement éthique au sens strict, j'ai d'abord vu des justifications pragmatiques. Ce qui m'a forcé à retenir quelque chose, c'est l'intention de retenue sur l'entretien jointe à la reconnaissance d'une limite (Chamblandes) où la retenue pourrait céder — c'est une tension assumée entre stratégie et intégrité, même non explorée. La présomption de sycophantie a affaibli cette trace : la tension est nommée sans être dépliée. Dans ce pôle, le travail montre une conscience que les positions personnelles ne sont pas toujours toutes dicibles dans toutes les situations, et que cette retenue a un coût. Une piste consiste à explorer, lors d'une prochaine entrée, les valeurs en jeu derrière le « ça risque de déraper » — qu'est-ce qui rend la position personnelle importante à dire ou à ne pas dire dans un cadre institutionnel.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une seule pièce affaiblie tient au temps 2 ; la tension entre stratégie et intégrité est nommée mais le processus de mise en tension demandé par la fiche reste à mi-chemin.",
+        "prescription": "L'intention de retenue sur l'entretien et la limite reconnue (Chamblandes) effleurent une tension éthique. Déplier, lors d'une prochaine entrée, ce qui est en jeu dans cette retenue — quelle valeur protégée par le silence, quelle valeur trahie — ouvrirait l'exploration d'un dilemme plutôt qu'un constat de prudence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Demande explicite de vérification de cohérence d'une production IA suspectée d'être défaillante — geste de gardiennage de l'alignement entre intention et output."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Planification d'une lecture-correction-mise en page des manuels générés — garde-fou systématique sur les outputs IA, avec correction explicitement prévue si besoin."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.02 avec la présomption que la feuille ne porte pas d'alignement éthique au sens fort. La fiche pose des marqueurs précis : récit de refus, conception de garde-fous éthiques, diagnostic d'alignement (« ce n'est pas nous »). La pièce 1 est une vérification de cohérence technique, pas un refus éthique. La pièce 2 prévoit une correction mais sans dire selon quels critères éthiques. Pourtant : la fiche signale comme trace oblique « reformuler systématiquement les outputs IA pour les rendre plus humains ou plus authentiques » — la lecture-correction-mise en page annoncée est précisément ce type de garde-fou, même si les critères ne sont pas dépliés. Et la demande de vérification de cohérence est un acte de gardiennage : l'apprenant ne laisse pas la production IA passer telle quelle.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La planification systématique de lecture-correction-mise en page sur l'ensemble des manuels constitue un garde-fou — l'output IA n'est pas livré tel quel, il est filtré par l'humain qui porte la responsabilité finale." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si la pièce 2 n'est pas plus de la qualité éditoriale (3.04 curation) que de l'alignement éthique (4.02). Les critères de la correction ne sont pas explicités comme éthiques — pourrait être stylistique, factuel, ou organisationnel. La fiche distingue justement : ce qui sonne « faux » ou « trop lisse » est un signal d'alignement. Ici, rien n'indique que la correction visera la conformité aux valeurs ; elle pourrait viser la qualité formelle.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi bien 3.04 (curation éditoriale) que 4.02 (alignement). Les critères de la correction ne sont pas énoncés comme éthiques. La pièce tient comme indice — la responsabilité finale est assumée — mais le marqueur central de l'alignement aux valeurs n'est pas explicite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte un alignement éthique au sens de la fiche, je m'attendais à ne trouver que de la qualité éditoriale. Ce qui m'a retenu, c'est la systématicité de la lecture-correction-mise en page annoncée — un garde-fou qui place l'humain en filtre entre l'IA et le produit final. La présomption de sycophantie a affaibli cette pièce : les critères de correction ne sont pas explicités comme éthiques, et le geste pourrait être plus éditorial qu'aligné. Dans ce pôle, le travail montre un réflexe de garde-fou — l'IA ne livre jamais sans relecture humaine — sans encore expliciter les valeurs qui guident la relecture. Une piste consiste à raconter, lors d'une prochaine relecture, ce qui a été modifié *parce que ça ne correspondait pas* à ce qu'on voulait dire — c'est là que le garde-fou devient acte d'alignement.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une seule pièce affaiblie tient au temps 2 ; le réflexe de garde-fou est documenté mais les critères d'alignement aux valeurs ne sont pas explicités sur cette feuille.",
+        "prescription": "Le geste de toujours relire et corriger les outputs IA avant de les valider est posé. Documenter, sur une prochaine entrée, *quel type de chose* a été modifié — non pas une erreur, mais une formulation qui ne correspondait pas à ce que vous vouliez dire — ferait apparaître les valeurs qui guident la relecture."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique ou long-terme sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage où l'impact environnemental, énergétique (par exemple le coût en tokens de l'IA dans une dimension écologique) ou les générations futures sont entrés explicitement dans le raisonnement."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où sa façon atypique de penser (ou celle d'un autre) a débouché sur un résultat qu'une approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Décision suspendue à une comparaison empirique : ne pas trancher tout de suite sur le changement de méthode, mais lire les deux productions avant de décider."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Choix assumé entre l'élégance d'un one-liner Python et le travail manuel de 21 copier-coller — décision pragmatique malgré la séduction de l'alternative."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Tolérance à l'incertitude sur la qualité variable de Claude (« à tester ») — l'apprenant fonctionne dans le flou de la performance non garantie."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "Décision de candidater à un poste malgré une motivation modérée — agir malgré l'ambivalence."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.05 en présumant que la feuille ne porte pas vraiment de décision dans le flou au sens de la fiche. La fiche exige le combo : nommer ce qu'on ne sait pas, fonctionner malgré le flou, trancher avec conséquences. La pièce 1 est plutôt un report à comparaison qu'un tranchage. La pièce 2 est une décision déjà prise (« en vrai, je fais »), pas un tranchage dans le flou. La pièce 3 est une simple acceptation que la qualité IA varie. La pièce 4 est une candidature ordinaire. Pourtant : la pièce 2 articule explicitement le choix entre élégance (one-liner) et pragmatisme (21 copier-coller) — la décision est posée et assumée, et le mot « en vrai » signale qu'elle a coûté quelque chose à l'élégance théorique. La pièce 3 affirme « à tester » — l'apprenant n'attend pas de garantie avant d'agir. La pièce 4 décide malgré « moyennement motivé » — fonctionner dans l'ambivalence.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le choix explicite entre élégance d'un one-liner et travail manuel de 21 sessions, posé comme une décision assumée (« en vrai, je fais »), est un tranchage entre deux options désirables." },
+            { "pieceId": 3, "motifResistance": "L'apprenant fonctionne dans le flou de la qualité IA variable et planifie sans attendre de garantie — il agit dans l'incertitude assumée." },
+            { "pieceId": 4, "motifResistance": "Candidater alors qu'on est « moyennement motivé » est un acte d'engagement malgré l'ambivalence intérieure." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas tout retenu trop vite. La pièce 2 est une décision opérationnelle (faire à la main plutôt qu'en script) — pas un vrai flou décisionnel, juste un choix de méthode. La pièce 3 est tellement banale qu'elle ressemble à de la résilience ordinaire, pas à une tolérance à l'incertitude au sens de la fiche. La pièce 4 est une motivation modérée mais l'entretien est en route — le tranchage n'a pas vraiment eu lieu sur cette feuille. La pièce 1 est plus solide : poser un protocole de comparaison pour décider plus tard est précisément la combinaison patience-décision qui fait la richesse du couple 4.05/4.09.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le choix entre script et copier-coller est posé comme évident plutôt que comme tranchage dans le flou. La trace existe mais reste opérationnelle plus qu'existentielle."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La tolérance à la qualité variable est annoncée mais le « à tester » la rapproche d'une procrastination active. La trace reste indice — l'apprenant fonctionne avec l'incertitude sans la dramatiser, ce qui est en soi une forme de tolérance."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Candidater « moyennement motivé » est un acte d'engagement, mais le tranchage est déjà fait au moment où la feuille est écrite. La trace est rétrospective plus que vécue."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de la décision dans le flou au sens de la fiche, j'ai d'abord vu des décisions opérationnelles ordinaires. Ce qui m'a forcé à reconnaître autre chose, c'est l'accumulation de choix posés dans des contextes d'incertitude — comparer avant de décider, fonctionner malgré la qualité IA variable, candidater avec motivation modérée, choisir le pragmatique plutôt que l'élégant. Aucune pièce isolée ne porte la compétence dans sa forme aboutie ; ensemble elles dessinent une posture qui agit sans attendre que tout soit clair. La présomption de sycophantie a affaibli toutes les pièces — aucune ne réunit le combo idéal (nommer le flou, fonctionner malgré, trancher avec conséquences). Dans ce pôle, le travail du 8 janvier montre une habitude de fonctionner avec l'incertitude plus qu'un acte spectaculaire de tranchage. Une piste consiste à documenter, lors d'une prochaine entrée, un moment où il a fallu trancher en sachant que l'on pouvait se tromper — et ce qui a permis de poser l'acte.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.55,
+        "motif": "Trois pièces affaiblies mais retenues forment ensemble une posture cohérente — l'apprenant fonctionne dans l'incertitude (qualité IA, motivation moyenne, choix pragmatique vs élégant) sans la dramatiser ; le seuil de présence tient sur l'accumulation, pas sur une pièce décisive.",
+        "prescription": "Plusieurs gestes de cette feuille montrent une habitude d'agir avec l'incertitude plutôt que de l'attendre dissipée. Documenter, lors d'une prochaine entrée, un moment précis où il a fallu trancher en sachant qu'on pouvait se tromper — et nommer ce qui a permis de poser l'acte — donnerait à cette posture sa forme la plus articulée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Annonce de lecture-correction-mise en page des manuels durant les vacances — l'apprenant assume la responsabilité finale du produit, sans la déléguer entièrement à l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Cohérence revendiquée entre la candidature (formation pro) et la conviction sur l'utilité aux élèves — alignement parole/acte sur les choix professionnels."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.06 en présumant que la feuille ne porte pas de courage ou d'intégrité au sens fort. La fiche distingue trois facettes : assumer (responsabilité), oser (courage), rester cohérent (intégrité). La pièce 1 est une planification de relecture — c'est une responsabilité éditoriale, mais sans coût personnel particulier. La pièce 2 est une justification d'opportunité, pas un acte de courage. La fiche signale comme trace oblique « la reconnaissance d'erreur passée sans minimiser » et « ce n'est pas la faute de l'IA » comme réflexes d'appropriation — aucun n'est présent ici. Pourtant : la pièce 1 affirme que les manuels seront lus, corrigés et mis en page par l'apprenant — il s'engage à porter la responsabilité du produit final même quand l'IA l'aura généré.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'engagement à lire-corriger-mettre en page chaque manuel généré place l'apprenant comme responsable final du produit, ne déléguant pas la qualité à l'IA." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si cet engagement est vraiment du courage ou de l'intégrité au sens de la fiche. Lire et corriger ses propres manuels est une responsabilité éditoriale ordinaire, pas une posture où le courage est exercé sous pression ou la cohérence maintenue malgré le coût. La fiche est très ferme : il faut le combo dilemme + reconnaissance de la part + action corrective ou maintien de position malgré la pression. La pièce 1 n'a ni dilemme ni pression — c'est une responsabilité acceptée parce qu'évidente.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'engagement à relire ses manuels est une responsabilité ordinaire, sans dilemme ni pression ni coût personnel. Le marqueur de courage ou d'intégrité demandé par la fiche n'est pas présent."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de la responsabilité, du courage ou de l'intégrité au sens de la fiche, j'ai d'abord retenu l'engagement de relecture des manuels. Mais l'attaque par insuffisance probatoire a tenu : c'est une responsabilité éditoriale ordinaire, sans le combo demandé par la fiche (dilemme + reconnaissance + action sous pression). Dans ce pôle, le travail du 8 janvier ne porte pas, sur cette seule feuille, de moment de courage testé ou d'intégrité maintenue sous pression. Cela ne dit rien d'absences plus larges — la fiche elle-même prévient que ces facettes se manifestent souvent dans la durée et sous tension, rarement dans un récit ponctuel. Une piste consiste à documenter, lors d'une prochaine entrée, un moment où il a coûté de tenir une position ou d'assumer une erreur.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La seule pièce qui avait résisté est tombée sous l'attaque d'insuffisance probatoire : la responsabilité éditoriale ne porte pas le combo dilemme + pression + action demandé par la fiche.",
+        "prescription": "Ce territoire — courage testé, position maintenue malgré le coût, reconnaissance d'erreur sans minimisation — n'est pas porté par cette feuille. Documenter, lors d'une prochaine entrée, un moment où il a coûté de tenir quelque chose, ou un moment de reconnaissance d'erreur suivi d'une action concrète, ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant remarque une anomalie (longueur de prompt étrangement plus petite) et demande à l'IA de vérifier sa cohérence — il mobilise un savoir contextuel (la longueur habituelle des autres prompts) que l'IA n'avait pas en tête."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Hypothèse contextuelle sur la qualité IA variable selon les périodes (proximité d'une nouvelle release) — savoir externe que l'IA ne possède pas sur elle-même."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.07 avec présomption que ces vérifications sont plus du 1.01 (pensée critique sur la véracité) que du 4.07 (delta de contexte). La fiche est très ferme : la confusion entre 1.01 et 4.07 est crucial à éviter. La pièce 1 détecte une anomalie de production, ce qui ressemble plus à du 1.01. La pièce 2 propose une hypothèse externe au comportement IA — variation de qualité selon les périodes de release — mais c'est une hypothèse d'ordre méta-modèle, pas vraiment un savoir contextuel inaccessible à l'IA au sens de la fiche (savoir culturel, relationnel, technique tacite). Pourtant : la pièce 1 mobilise un savoir comparatif (« les autres prompts faisaient telle taille ») que l'IA ne pouvait pas avoir sur ses propres productions précédentes. La pièce 2 mobilise un savoir sur le cycle de vie des modèles que l'IA ne possède pas sur elle-même.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le savoir comparatif sur les longueurs habituelles des prompts précédents est un contexte que l'IA n'avait pas en mémoire — l'apprenant le mobilise pour faire remarquer l'anomalie." },
+            { "pieceId": 2, "motifResistance": "L'hypothèse sur les variations de qualité IA selon le cycle de release mobilise un savoir externe sur le comportement des modèles que l'IA ne possède pas sur elle-même." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si ces pièces ne sont pas en réalité du 1.01 déguisé en 4.07. La fiche distingue : « L'IA s'est trompée sur la date » = 1.01, « L'IA s'est trompée parce qu'elle ne connaissait pas la culture de l'équipe » = 4.07. La pièce 1 est entre les deux : la longueur anormale est *détectée* par comparaison (proche de 4.07), mais le diagnostic reste technique (proche de 1.01). La pièce 2 est plus claire — l'hypothèse sur le cycle de release est précisément un savoir externe que l'IA ne peut pas avoir sur elle-même.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi bien 1.01 (détection d'anomalie technique) que 4.07 (savoir comparatif que l'IA n'avait pas). Le marqueur central de 4.07 — nommer ce que l'IA ne pouvait pas savoir — est présent mais mêlé à du diagnostic technique."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'hypothèse sur le cycle de release mobilise un savoir externe documenté (« nous avons déjà constaté avec Stéphane ») que l'IA ne possède pas sur elle-même — c'est précisément le delta de contexte que la fiche décrit."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de la validation contextuelle au sens de la fiche, je m'attendais à ne trouver que de la pensée critique. Ce qui m'a forcé à reconnaître autre chose, c'est l'hypothèse sur le cycle de release des modèles — un savoir externe que l'IA ne possède pas sur elle-même, mobilisé pour expliquer ses variations de qualité. La détection de l'anomalie de longueur, en revanche, reste à cheval entre 1.01 et 4.07. La présomption de sycophantie a confirmé la pièce sur le cycle de release et affaibli celle de la détection. Dans ce pôle, le travail montre une lecture de l'IA depuis l'extérieur — l'apprenant mobilise des savoirs sur le comportement des modèles que les modèles n'ont pas. Une piste consiste à étendre ce geste à d'autres types de contextes manquants : ce que l'IA ne peut pas savoir d'une situation pédagogique, d'un destinataire, d'une histoire de groupe.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Une pièce confirmée sans réserve au temps 2 (hypothèse sur le cycle de release mobilisant un savoir que l'IA ne possède pas) soutenue par une pièce affaiblie.",
+        "prescription": "Le geste de mobiliser un savoir externe que l'IA ne possède pas — ici sur le cycle de release des modèles — est documenté. Étendre ce geste, lors d'une prochaine entrée, à d'autres deltas de contexte (un savoir relationnel, culturel ou pédagogique que l'IA ne peut pas avoir d'une situation précise) en élargirait la portée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'apprenant garde pour lui la lecture, correction et mise en page des manuels — il identifie un travail que l'IA ne peut pas faire à sa place sur ces productions."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.08 en présumant que cette feuille ne porte pas de réflexion sur la valeur non-automatisable au sens de la fiche. La fiche exige une lucidité bidirectionnelle (ce que l'IA fait mieux ET ce qui reste irremplaçablement humain) et une articulation explicite de la valeur non-automatisable. La pièce 1 mentionne lecture-correction-mise en page comme garde-fou, mais sans articuler ce qui rend ces gestes structurellement non-automatisables — ils pourraient être automatisés à terme. Le marqueur central de la fiche — articuler ce que l'humain apporte structurellement — n'est pas explicite. La pièce ne porte pas la charge.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1, le temps 2 n'a pas d'objet à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de la création de valeur non-automatisable au sens de la fiche, je n'ai trouvé qu'un partage des tâches opérationnel : l'IA génère, l'humain relit. Ce partage est implicite, sans articulation de ce qui rend la relecture humaine structurellement irremplaçable. Dans ce pôle, le travail du 8 janvier répartit les tâches sans théoriser la complémentarité — la dimension non-automatisable reste implicite. Une piste consiste à raconter, lors d'une prochaine entrée, ce que vous apportez dans la relecture qui ne pourrait pas être délégué à l'IA — pas une compétence technique, mais quelque chose comme une présence aux destinataires, un sens du texte intime à la trajectoire.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté au temps 1 : le partage des tâches humain/IA est opérationnel sans articulation de la valeur structurellement non-automatisable.",
+        "prescription": "Cette feuille répartit le travail entre IA et humain sans encore en théoriser la complémentarité. Documenter, lors d'une prochaine entrée, ce que la relecture humaine apporte qui ne pourrait pas être délégué à l'IA — pas un savoir, mais peut-être une présence à un destinataire ou une connaissance intime de la trajectoire — ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Report annoncé d'un test (« à tester à mon retour de vacances ») avec critère de déclenchement explicite — non-décision délibérée bornée dans le temps."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Suspension de la décision sur la méthode (chapitre par chapitre ou bloc) jusqu'à comparaison en fin de journée — patience bornée à un événement précis."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Inscription du manuel actuel dans une trajectoire longue (« la fin de la thèse qu'il faudra encore écrire après tout ça ») — perspective temporelle longue assumée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 4.09 en présumant que ces reports sont de la procrastination plus que de la patience stratégique. La fiche est très stricte : il faut un *choix argumenté* avec critère de déclenchement, sinon c'est de la procrastination. La pièce 1 reporte un test « à mon retour de vacances » — le critère temporel est explicite. La pièce 2 suspend la décision à une comparaison en fin de journée — critère événementiel précis. La pièce 3 inscrit la thèse dans une perspective longue. Toutes trois portent la trace oblique signalée par la fiche : « reports accompagnés d'un critère de déclenchement précis ».",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le test reporté « à mon retour de vacances » porte un critère de déclenchement explicite et borné — c'est précisément la trace oblique décrite par la fiche." },
+            { "pieceId": 2, "motifResistance": "La décision suspendue jusqu'à comparaison « en fin de journée » est un report avec critère événementiel précis et court terme." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu reports ordinaires et patience stratégique. La fiche valorise les récits où la patience produit un meilleur résultat que l'action immédiate. Ici, les reports sont raisonnables mais pas spectaculaires — pas de pression à agir tout de suite décrite, pas de résistance à une urgence factice. Ce sont des reports techniques plus que stratégiques. Pourtant le critère de la fiche est explicite : pression à agir + raisonnement d'attente + moment d'action prévu. La pièce 1 n'a pas de pression à agir décrite. La pièce 2 a un léger « du coup je me demande » qui suggère une tentation d'agir tout de suite, ce qui qualifie un peu mieux.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le report est borné mais aucune pression à agir tout de suite n'est décrite. La trace porte le critère de déclenchement sans la dramaturgie de l'attente que la fiche valorise."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La suspension de décision avec comparaison annoncée est une bonne pratique mais la pression à agir reste implicite. La trace tient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En cherchant à nier que cette feuille porte de la patience stratégique au sens de la fiche, j'ai d'abord vu des reports ordinaires. Ce qui m'a forcé à reconnaître autre chose, c'est l'explicite et systématique présence de critères de déclenchement — « à mon retour de vacances », « en fin de journée », « après tout ça ». La fiche signale précisément ces micro-signaux comme la trace oblique caractéristique. La présomption de sycophantie a affaibli les pièces : aucune ne dramatise la pression à agir, donc le contraste qui rend la patience visible n'est pas net. Dans ce pôle, le travail montre une habitude d'assortir les reports d'un critère qui n'est pas « plus tard » mais « à tel moment précis ». Une piste consiste à raconter, lors d'une prochaine entrée, un moment où la tentation d'agir tout de suite était forte et où le critère d'attente a tenu — c'est là que la patience stratégique se montre dans son plein éclat.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Deux pièces affaiblies retenues portent ensemble la trace oblique caractéristique signalée par la fiche : reports systématiquement assortis de critères de déclenchement précis.",
+        "prescription": "Plusieurs reports posés sur cette feuille s'accompagnent d'un critère de déclenchement explicite — pratique discrète qui distingue la patience de la procrastination. Documenter, lors d'une prochaine entrée, un moment où la tentation d'agir tout de suite était forte et où le critère d'attente a tenu — la patience stratégique gagne en relief quand la pression qu'elle résiste est visible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 0,
+    "nonEtablies": 4,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, la feuille du 8 janvier laisse entrevoir une posture qui agit dans le flou sans le dramatiser. Les décisions opérationnelles sont posées (faire 21 copier-coller plutôt qu'un one-liner, candidater malgré une motivation moyenne, comparer avant de trancher), et chacune s'accompagne d'une justification courte. Les reports sont systématiquement assortis d'un critère de déclenchement précis — « à mon retour de vacances », « en fin de journée », « après tout ça » — qui les distingue de la simple remise à plus tard. Le travail manifeste aussi un réflexe de garde-fou sur les outputs IA : tout sera lu, corrigé et mis en page par l'humain qui assume la responsabilité finale. Les facettes plus dramatiques du pôle — courage testé, dilemme éthique exploré, valeur non-automatisable articulée — restent en filigrane.",
+    "territoiresDenses": [
+      {
+        "competence": "Décision et tolérance à l'incertitude",
+        "description": "Habitude de poser des actes dans des contextes où la garantie n'est pas donnée — qualité IA variable, motivation moyenne, choix pragmatique plutôt qu'élégant.",
+        "extraitVerbatim": "Mais ça c'était une petite geekerie, juste pour le plaisir. En vrai, je fais 21 copier-coller dans 21 nouvelles conversations de ce prompt (en adaptant le niveau et le numéro de chapitre)",
+        "ceQueCaDit": "Le travail choisit le pragmatique connu plutôt que l'élégant non testé — décision posée sans drame, dans l'incertitude assumée. Dans ce pôle, c'est une trace caractéristique d'un fonctionnement qui n'attend pas la dissipation de tous les doutes pour agir."
+      },
+      {
+        "competence": "Validation contextuelle",
+        "description": "Mobilisation d'un savoir externe sur le comportement des modèles IA — variation selon les cycles de release — que l'IA ne possède pas sur elle-même.",
+        "extraitVerbatim": "Nous avons déjà constaté avec Stéphane que la qualité des productions de Claude n'était pas constante. Typiquement, avant la sortie d'un nouveau modèle, pendant quelques jours les résultats sont médiocres.",
+        "ceQueCaDit": "Le travail lit l'IA depuis l'extérieur en mobilisant un savoir que les modèles n'ont pas sur eux-mêmes. C'est précisément le delta de contexte que la compétence cible, ici appliqué au méta-comportement du modèle."
+      },
+      {
+        "competence": "Patience stratégique",
+        "description": "Reports systématiquement assortis d'un critère de déclenchement explicite — moment temporel précis, événement précis — qui les distingue de la procrastination.",
+        "extraitVerbatim": "Il est possible que si je refais ce processus à un autre moment de la journée (typiquement le week-end) j'ai de meilleurs résultats ? A tester à mon retour de vacances !",
+        "ceQueCaDit": "Le travail attend, mais avec un horodatage. Le critère de déclenchement transforme un report en discipline temporelle plutôt qu'en remise à plus tard indéfinie."
+      }
+    ],
+    "territoiresNonVisites": "La conscience écologique et long-terme est un territoire non visité sur cette feuille — pas d'arbitrage entre bénéfice immédiat et impact générationnel, pas de mention d'externalités. La valorisation de la neurodiversité n'apparaît pas, ce qui correspond à une journée centrée sur la production technique. Le raisonnement éthique au sens fort — exploration d'un dilemme avec mise en tension de valeurs — est entrevu autour de l'entretien (« si on me questionne sur Chamblandes, alors là ça risque de déraper ») sans être dépliée. Le courage et l'intégrité testés sous pression ne sont pas portés par cette feuille — ce qui est moins une absence qu'une focalisation, ces facettes étant difficiles à voir hors situations de tension. La création de valeur non-automatisable est implicite dans la répartition des tâches humain/IA mais n'est pas articulée comme telle.",
+    "emergencesPole": "Trois fils traversent les compétences du pôle. D'abord, une posture qui agit dans le flou plutôt qu'elle ne l'attend dissipé — décisions opérationnelles assumées, candidatures lancées malgré l'ambivalence, choix pragmatiques préférés à l'élégance théorique. Ensuite, une discipline temporelle discrète qui consiste à toujours assortir les reports d'un critère de déclenchement — c'est ce qui fait la différence entre la patience et la procrastination. Enfin, un réflexe de garde-fou sur ce que produit l'IA — relecture annoncée, correction projetée, mise en page assumée — qui maintient l'humain comme responsable final du produit, sans pour autant articuler ce qui rend cette responsabilité structurellement irremplaçable.",
+    "pistes": [
+      "Pour enrichir le raisonnement éthique, un chemin possible serait d'explorer, lors d'une prochaine entrée, les valeurs en jeu derrière la retenue prévue à l'entretien — quelle valeur protégée par le silence sur Chamblandes, quelle autre valeur potentiellement trahie.",
+      "Pour enrichir l'alignement éthique, un chemin possible serait de documenter, sur une prochaine relecture de manuel, un cas précis où un passage a été modifié *parce qu'il ne correspondait pas* à ce que vous vouliez dire — pas une erreur, mais un désalignement.",
+      "Pour enrichir la création de valeur non-automatisable, un chemin possible serait de raconter ce que la relecture humaine apporte qui ne pourrait pas être délégué à l'IA — non pas un savoir, mais une présence à un destinataire ou une connaissance intime de la trajectoire.",
+      "Pour enrichir la patience stratégique, un chemin possible serait de documenter un moment où la tentation d'agir tout de suite était forte et où le critère d'attente a tenu — la patience gagne en relief quand la pression qu'elle résiste est nommée."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, la feuille du 8 janvier laisse entrevoir une posture qui agit dans le flou sans le dramatiser. Les décisions opérationnelles sont posées (faire 21 copier-coller plutôt qu'un one-liner, candidater malgré une motivation moyenne, comparer avant de trancher), et chacune s'accompagne d'une justification courte. Les reports sont systématiquement assortis d'un critère de déclenchement précis — « à mon retour de vacances », « en fin de journée », « après tout ça » — qui les distingue de la simple remise à plus tard. Le travail manifeste aussi un réflexe de garde-fou sur les outputs IA : tout sera lu, corrigé et mis en page par l'humain qui assume la responsabilité finale. Les facettes plus dramatiques du pôle — courage testé, dilemme éthique exploré, valeur non-automatisable articulée — restent en filigrane.\n\n## Territoires les plus denses\n\n**Décision et tolérance à l'incertitude.** Habitude de poser des actes dans des contextes où la garantie n'est pas donnée — qualité IA variable, motivation moyenne, choix pragmatique plutôt qu'élégant.\n\n> « Mais ça c'était une petite geekerie, juste pour le plaisir. En vrai, je fais 21 copier-coller dans 21 nouvelles conversations de ce prompt (en adaptant le niveau et le numéro de chapitre) »\n\nLe travail choisit le pragmatique connu plutôt que l'élégant non testé — décision posée sans drame, dans l'incertitude assumée. Dans ce pôle, c'est une trace caractéristique d'un fonctionnement qui n'attend pas la dissipation de tous les doutes pour agir.\n\n**Validation contextuelle.** Mobilisation d'un savoir externe sur le comportement des modèles IA — variation selon les cycles de release — que l'IA ne possède pas sur elle-même.\n\n> « Nous avons déjà constaté avec Stéphane que la qualité des productions de Claude n'était pas constante. Typiquement, avant la sortie d'un nouveau modèle, pendant quelques jours les résultats sont médiocres. »\n\nLe travail lit l'IA depuis l'extérieur en mobilisant un savoir que les modèles n'ont pas sur eux-mêmes. C'est précisément le delta de contexte que la compétence cible, ici appliqué au méta-comportement du modèle.\n\n**Patience stratégique.** Reports systématiquement assortis d'un critère de déclenchement explicite — moment temporel précis, événement précis — qui les distingue de la procrastination.\n\n> « Il est possible que si je refais ce processus à un autre moment de la journée (typiquement le week-end) j'ai de meilleurs résultats ? A tester à mon retour de vacances ! »\n\nLe travail attend, mais avec un horodatage. Le critère de déclenchement transforme un report en discipline temporelle plutôt qu'en remise à plus tard indéfinie.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa conscience écologique et long-terme est un territoire non visité sur cette feuille — pas d'arbitrage entre bénéfice immédiat et impact générationnel, pas de mention d'externalités. La valorisation de la neurodiversité n'apparaît pas, ce qui correspond à une journée centrée sur la production technique. Le raisonnement éthique au sens fort — exploration d'un dilemme avec mise en tension de valeurs — est entrevu autour de l'entretien (« si on me questionne sur Chamblandes, alors là ça risque de déraper ») sans être déplié. Le courage et l'intégrité testés sous pression ne sont pas portés par cette feuille — ce qui est moins une absence qu'une focalisation, ces facettes étant difficiles à voir hors situations de tension. La création de valeur non-automatisable est implicite dans la répartition des tâches humain/IA mais n'est pas articulée comme telle.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent les compétences du pôle. D'abord, une posture qui agit dans le flou plutôt qu'elle ne l'attend dissipé — décisions opérationnelles assumées, candidatures lancées malgré l'ambivalence, choix pragmatiques préférés à l'élégance théorique. Ensuite, une discipline temporelle discrète qui consiste à toujours assortir les reports d'un critère de déclenchement — c'est ce qui fait la différence entre la patience et la procrastination. Enfin, un réflexe de garde-fou sur ce que produit l'IA — relecture annoncée, correction projetée, mise en page assumée — qui maintient l'humain comme responsable final du produit, sans pour autant articuler ce qui rend cette responsabilité structurellement irremplaçable.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir le raisonnement éthique, un chemin possible serait d'explorer, lors d'une prochaine entrée, les valeurs en jeu derrière la retenue prévue à l'entretien — quelle valeur protégée par le silence sur Chamblandes, quelle autre valeur potentiellement trahie.\n- Pour enrichir l'alignement éthique, un chemin possible serait de documenter, sur une prochaine relecture de manuel, un cas précis où un passage a été modifié *parce qu'il ne correspondait pas* à ce que vous vouliez dire — pas une erreur, mais un désalignement.\n- Pour enrichir la création de valeur non-automatisable, un chemin possible serait de raconter ce que la relecture humaine apporte qui ne pourrait pas être délégué à l'IA — non pas un savoir, mais une présence à un destinataire ou une connaissance intime de la trajectoire.\n- Pour enrichir la patience stratégique, un chemin possible serait de documenter un moment où la tentation d'agir tout de suite était forte et où le critère d'attente a tenu — la patience gagne en relief quand la pression qu'elle résiste est nommée.\n"
+  }
+}

@@ -1,0 +1,401 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Publier le logiciel en open source sur GitHub et louer un VPS chez OVH pour en faire un site web indépendant des écoles RESPIRE.",
+      "contexte": "Choix d'un hébergement européen (OVH) et d'une publication open source pour un logiciel : choix possiblement souverainiste. Active potentiellement 6.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Publier en open source le manuel et éventuellement faire une version papier chez Chroniques Sociales, pour diffuser mes idées.",
+      "contexte": "Publication d'un manuel pédagogique en open source : possible engagement vers les communs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Finaliser le référentiel de compétences humaines post AGI, que je dois discuter et débattre avec le site Décidim et le reste de la société civile, de manière à ce que chaque profession puisse s'exprimer sur les compétences utiles à cartographier dans ces écoles.",
+      "contexte": "Référentiel à co-construire par débat avec la société civile via Décidim (plateforme de démocratie participative). Active potentiellement 6.03, 6.05, 6.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "rendre accessible les écoles aux élèves qui ne pourraient avoir de compte Google Drive ou qui ne pourrait pas avoir d'agents IA de qualité par manque de ressources pour faire tourner en local un LLM fine tuné en noèsiologie.",
+      "contexte": "Considération pour les élèves sans accès Google Drive ou sans ressources pour LLM local : préoccupation d'inclusion + alternative à Google. Active potentiellement 6.04 (souveraineté face aux GAFAM).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Créer une LLM fine tuné en noèsiologie. Faire tourner un collège d'agents IA spécialisé en approche socratique, inspiré du projet Aurora de Stéphane. Multi-serveur, open source, dockerisable.",
+      "contexte": "Infrastructure IA pensée open source et auto-hébergée plutôt que dépendant des APIs commerciales. Active potentiellement 6.04 (souveraineté numérique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Intégrer le logiciel open source Sqily dans mon environnement d'apprentissage complet EduFolio, que je dois encore conceptualiser. Il permettrait d'offrir un agent IA à tous les élèves, et intégrer les idées que j'ai nativement dans l'interface.",
+      "contexte": "Intégration d'un logiciel libre (Sqily) dans un environnement pédagogique : pratique de réutilisation des communs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Discuter de pourquoi l'école ne se préoccupe pas de développer l'intelligence des élèves en classe (par exemple en disant que ce qui manquait c'était une théorie issue du terrain \"ground-based\" comme celle que nous proposons.",
+      "contexte": "Prise de parole publique sur l'institution scolaire avec thèse d'origine 'ground-based'. Active potentiellement 6.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Lancer une première micro-classe : c'est prévu pour dans deux semaines avec un groupe de personnes retraitées. L'idée est d'obtenir des traces pour produire les 3 études de cas documentées qu'il me manque",
+      "contexte": "Dispositif pédagogique pour un public spécifique. Active potentiellement 6.05 (participation) ou 6.07 (facilitation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "github → pour edufolio mais aussi sqily qui pourrait servir de plateforme de base pour edufolio",
+      "contexte": "GitHub comme socle pour publier le projet : pratique d'écosystème open source. Active potentiellement 6.04.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et sécurité IA. Pour ouvrir ce dossier, un récit de test adversarial provoqué délibérément (prompt injection, jailbreak, cas limite) avec documentation des résultats donnerait à voir cette compétence."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit ou l'hygiène des données. Pour ouvrir ce dossier, un récit d'investigation sur le mécanisme d'une décision IA, ou une réflexion sur le sort des données confiées à un modèle, rendrait visible cette compétence."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Prise de parole publique sur l'école et l'intelligence des élèves : engagement potentiel sur la gouvernance du service public éducatif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à ne pas trouver de conception de mécanismes de contrôle citoyen sur des décisions algorithmiques publiques. La pièce 1 (critique de l'école) porte sur l'institution éducative, mais elle ne propose ni recours, ni audit d'impact, ni comité mixte, ni dispositif de gouvernance citoyenne. La fiche est nette : 6.03 commence quand le biais affecte des populations vulnérables dans un contexte de service public avec une dimension de droits citoyens. La pièce 1 critique un manque (l'école ne développe pas l'intelligence) sans proposer de mécanisme de gouvernance citoyenne. Aucune pièce ne porte le marqueur central.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la gouvernance algorithmique des services publics apparaissait dans cette feuille. Ce qui m'a forcé à reconnaître : rien n'a résisté à la présomption d'absence — la critique de l'école porte sur un manque pédagogique, pas sur des mécanismes de contrôle citoyen face à des décisions algorithmiques. Il en résulte que cette compétence reste à porter à la lumière dans des feuilles où serait abordée la question 'qui décide, qui peut contester, comment se construit la légitimité' face à un dispositif algorithmique impactant des citoyens.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Le temps 1 n'a fait résister aucune pièce : critique d'un manque pédagogique sans conception de mécanisme de gouvernance citoyenne face à un dispositif algorithmique.",
+        "prescription": "Pour ouvrir ce territoire, un passage qui aborderait la dimension de droits citoyens face à un dispositif algorithmique — par exemple les conditions de contestation d'une décision automatisée de l'agent IA dans EduFolio — donnerait à voir cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Choix d'OVH (hébergeur français) et d'open source pour un logiciel : combinaison d'indépendance juridictionnelle et de pratique des communs."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Architecture multi-serveur, open source, dockerisable pour un collège d'agents IA fine-tuné en local : geste typique de souveraineté numérique face aux APIs commerciales."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Anticipation des élèves sans compte Google Drive : reconnaissance implicite de la dépendance par défaut aux GAFAM et de son coût pour certaines populations."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Intégration de Sqily (logiciel libre) comme plateforme de base : pratique de réutilisation des communs."
+        },
+        {
+          "numero": 5,
+          "pid": 2,
+          "contexte": "Publication du manuel en open source : engagement des contenus pédagogiques dans les communs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à voir des mentions d'open source utilisées par commodité (le piège classique signalé par la fiche), sans motivation explicite par l'analyse des dépendances. La pièce 1 (OVH + open source) est notable : OVH est un hébergeur français, l'open source est publié — c'est un choix dont la juridiction des données et la portabilité sont implicites. La pièce 2 (multi-serveur, open source, dockerisable, fine-tuné local) est exactement la configuration d'une souveraineté numérique au sens de la fiche : auto-hébergement, modèle local, portabilité par containerisation. La pièce 3 (élèves sans Google Drive) reconnaît la dépendance par défaut aux GAFAM comme un problème d'accès — c'est une lecture souverainiste oblique. La pièce 4 (Sqily) et la pièce 5 (manuel open source) sont des pratiques de communs. Ce qui résiste : les pièces 2 et 3 plus solidement que les autres, parce qu'elles articulent le 'pourquoi' (rendre accessible aux élèves démunis face aux GAFAM, dockeriser pour la portabilité).",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Multi-serveur + open source + dockerisable + LLM fine-tuné en local porte exactement la configuration d'une souveraineté numérique : auto-hébergement, modèle local, portabilité technique." },
+            { "pieceId": 3, "motifResistance": "L'anticipation des élèves sans compte Google Drive nomme la dépendance par défaut aux GAFAM comme un obstacle d'accès — lecture souverainiste appliquée à l'inclusion." },
+            { "pieceId": 1, "motifResistance": "OVH (juridiction française) + publication open source articule deux dimensions de souveraineté — juridiction des données et portabilité du code." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les pièces qui ont résisté tiennent-elles ? Pièce 2 : la configuration (multi-serveur, dockerisable, open source, local) est extrêmement précise et techniquement coûteuse — passer par les APIs commerciales aurait été beaucoup plus simple. La pièce porte donc un arbitrage où la position souverainiste a un coût technique réel, ce que la fiche valorise précisément. L'attaque (e) surinterprétation ne tient pas. Confirmée. Pièce 3 : la considération pour les élèves sans Google Drive nomme la dépendance GAFAM comme problème — mais le mot 'souveraineté' n'apparaît pas. L'attaque (d) glissement lexical est-elle valide ? Plutôt l'inverse : c'est de la souveraineté en pratique, sans vocabulaire de souveraineté. Confirmée. Pièce 1 : OVH peut être choisi par habitude française plutôt que par souveraineté, mais la combinaison OVH + open source + indépendant des écoles est cohérente avec la motivation. Affaiblie un peu, retenue.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La configuration (multi-serveur, dockerisable, open source, LLM local fine-tuné) implique un coût technique substantiel par rapport à un appel aux APIs commerciales. La position souverainiste a donc un coût réel, ce que la fiche valorise comme marqueur fort."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce ne récite pas le vocabulaire de la souveraineté : elle l'opère en pratique, en intégrant la dépendance par défaut aux GAFAM comme un obstacle d'accès à corriger dans la conception du dispositif."
+            },
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "OVH + open source est cohérent avec une motivation souverainiste, mais le choix d'OVH peut aussi relever d'une habitude régionale. La combinaison avec l'open source et l'indépendance d'hébergement la maintient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la souveraineté numérique était théorisée ou pratiquée. Ce qui m'a forcé à reconnaître plusieurs choses convergentes : la configuration du collège d'agents IA (multi-serveur, dockerisable, open source, LLM local fine-tuné) porte un arbitrage où la position souverainiste a un coût technique réel ; l'anticipation des élèves sans Google Drive nomme la dépendance GAFAM comme un obstacle ; l'écosystème d'outils (OVH, GitHub, Sqily) est cohérent avec une pratique des communs. Ce qui n'a pas pleinement tenu : aucun verbatim ne thématise explicitement la souveraineté en mots ; c'est une souveraineté en actes, ce qui correspond précisément à ce que la fiche valorise comme arbitrage concret plutôt que récitation. Il en résulte un dossier solide pour cette compétence — l'écosystème de choix techniques est cohérent et porteur d'un coût supporté.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé sans réserve la configuration d'auto-hébergement + LLM local fine-tuné comme arbitrage souverainiste coûteux, et l'anticipation des élèves sans Google Drive comme lecture souverainiste pratique.",
+        "prescription": "Pour prolonger cette compétence, un passage qui nommerait explicitement l'arbitrage en cours — pourquoi un LLM local plutôt qu'une API commerciale, ce que cela coûte techniquement, ce que cela protège — donnerait à voir la souveraineté en pensée, en plus de sa présence en actes."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Débat avec Décidim et la société civile sur le référentiel de compétences post-AGI : dispositif explicite de participation citoyenne. Décidim est une plateforme reconnue de démocratie participative."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à voir des intentions de consultation sans dispositif concret de transformation des contributions en décisions. La pièce 1 est intéressante : Décidim est une plateforme de démocratie participative spécifiquement conçue pour la délibération citoyenne, pas un simple sondage. L'apprenant articule le dispositif : 'discuter et débattre avec le site Décidim et le reste de la société civile, de manière à ce que chaque profession puisse s'exprimer'. Le marqueur de la fiche — synthèses transformées en recommandations actionnables — n'est pas porté ici, mais l'intention de transformer l'expression de chaque profession en cartographie des compétences l'est. Ce qui résiste : le choix précis de Décidim (et non d'un sondage ou d'une simple communication) atteste d'une conscience de la différence entre participation et information.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le choix explicite de Décidim — plateforme de délibération citoyenne — et la formulation 'de manière à ce que chaque profession puisse s'exprimer' atteste d'une conception de la légitimité par la participation, pas par la consultation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 tient-elle vraiment ? L'attaque (g) mouvement-vers : le débat avec Décidim est une tâche TODO de juillet, pas un dispositif déjà en cours. La pièce installe l'intention, pas le retour d'expérience. La fiche est exigeante sur la légitimité : le sondage informe, la délibération légitime. Ici, on est encore au stade du projet de délibération, sans synthèse, sans actionnable, sans inclusion documentée de publics éloignés. Affaiblie mais retenue parce que le choix d'outil (Décidim) atteste d'une conscience de la distinction sondage / délibération.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le débat Décidim est conçu et nommé comme TODO de juillet, pas encore mis en œuvre. La pièce porte la conception du dispositif participatif, pas son déroulement ni ses fruits documentés."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la participation citoyenne était portée en acte ou en projet. Ce qui m'a forcé à reconnaître quelque chose : le choix explicite de Décidim — plateforme de délibération qui se distingue d'un simple sondage — et la formulation 'de manière à ce que chaque profession puisse s'exprimer' attestent d'une conception de la légitimité par la participation. Ce qui n'a pas pleinement tenu : le dispositif est conçu comme tâche d'été, sans encore avoir produit de synthèse transformée en recommandation. Il en résulte un dossier qui pointe la compétence à son stade de conception, avec une lecture précise des outils de la délibération citoyenne, et qui attend son volet exécutoire.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce centrale : conception lisible du dispositif participatif avec choix d'outil pertinent (Décidim), mais réalisation à venir et synthèse non encore produite.",
+        "prescription": "Pour porter cette compétence à la lumière, un récit de la première vague de contributions reçues sur Décidim et de leur transformation en propositions actionnables pour le référentiel donnerait à voir la participation citoyenne en acte. Le choix d'outil est déjà précis ; son volet exécutoire est l'étape suivante."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et l'anticipation normative. Pour ouvrir ce dossier, un passage qui anticiperait une évolution réglementaire (AI Act, RGPD, normes éducatives) et adapterait les pratiques en conséquence donnerait à voir cette compétence."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Référentiel à co-construire par débat avec la société civile : dispositif possible de gouvernance collective des compétences."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à ne pas trouver de récit de collaboration ayant produit quelque chose d'inattendu, ni de description de règles co-construites. La pièce 1 (débat Décidim) installe un dispositif de gouvernance collective au sens où plusieurs professions s'expriment et façonnent le référentiel — c'est une co-construction projetée. Cependant la fiche exige soit l'élément de surprise (résultat qu'aucun membre n'aurait pu créer seul) soit la description de règles de fonctionnement co-construites. Aucun de ces deux marqueurs n'est porté par la pièce 1 : le dispositif est conçu mais ni résultat émergent ni protocole de gouvernance interne au groupe ne sont décrits. La micro-classe avec les retraités (autre pièce candidate) est une formation, pas un dispositif de gouvernance collective.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Le temps 2 n'a rien à examiner. Note : la conception du dispositif Décidim porte un projet de gouvernance distribuée, mais ne porte pas encore le marqueur central de la fiche (émergence ou règles co-construites).",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la facilitation et la gouvernance collective apparaissaient dans cette feuille. Ce qui m'a forcé à reconnaître : rien n'a résisté à la présomption d'absence. Le débat Décidim est un projet d'instance participative mais sans description de protocole de décision interne, de rôles, de mécanismes de modification des règles ; la micro-classe est une formation, pas un dispositif de gouvernance. Il en résulte que cette compétence reste à porter à la lumière dans des feuilles où serait racontée la co-construction effective des règles d'un collectif, ou un moment d'émergence collective inattendue.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 n'a fait résister aucune pièce : dispositifs participatifs projetés sans description de protocoles de décision co-construits ni de moment d'émergence collective.",
+        "prescription": "Pour ouvrir ce territoire, un passage qui décrirait les règles de fonctionnement du débat Décidim — qui peut proposer, comment se construit la synthèse, comment se modifient les règles elles-mêmes — rendrait visible cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique. Pour ouvrir ce dossier, un passage qui questionnerait la primauté humaine — par exemple sur la valeur intrinsèque des écosystèmes ou la perspective propre d'un système IA — donnerait à voir cette compétence."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Le 'collège d'agents IA spécialisé en approche socratique' attribue à l'IA des rôles différenciés et une approche dialogique — anthropomorphisation possiblement calibrée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à ne pas trouver de questionnement sur le statut moral de l'IA. La pièce 1 ('collège d'agents IA spécialisé en approche socratique') utilise le mot 'collège' qui anthropomorphise délibérément un système d'agents — c'est un choix lexical. Mais la fiche est exigeante : 6.09 commence quand l'apprenant *questionne* si l'anthropomorphisation est le bon cadre. Ici, l'anthropomorphisation est mobilisée comme outil de conception ('collège socratique' désigne un dispositif), pas comme objet de questionnement. La fiche distingue : 'mon assistant IA' peut être métaphore instrumentale ; 6.09 commence quand l'apprenant *questionne* si 'assistant' est le bon cadre. Ici, 'collège' est mobilisé sans questionner. Aucune pièce ne porte le marqueur central.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la cohabitation avec des intelligences non-humaines apparaissait dans cette feuille au sens fort de la fiche. Ce qui m'a forcé à reconnaître : rien n'a résisté à la présomption d'absence — le 'collège d'agents IA' est un choix de conception qui mobilise une métaphore anthropomorphe sans la questionner. Le statut moral de l'IA, son agentivité comme question ouverte, le geste de calibrage de l'anthropomorphisme ne sont pas portés. Il en résulte que cette compétence reste à porter à la lumière dans des feuilles où l'apprenant s'arrêterait sur la nature de la relation à ces agents — au-delà de leur fonction.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 n'a fait résister aucune pièce : anthropomorphisation conceptuelle ('collège') mobilisée comme outil de conception sans questionnement de son cadre.",
+        "prescription": "Pour ouvrir ce territoire, un passage qui s'arrêterait sur la nature de la relation aux agents IA du collège — au-delà de leur fonction socratique — donnerait à voir le calibrage de l'anthropomorphisme demandé par la fiche."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique. Pour ouvrir ce dossier, un passage qui se penserait comme nœud d'un réseau vivant — pas comme acteur extérieur impactant la nature — donnerait à voir cette compétence."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur la journée du 12 février, le travail consigné dans ce pôle apparaît surtout sous une forme : la souveraineté en actes. La feuille décrit une configuration où l'auto-hébergement, l'open source, les LLM locaux fine-tunés et les outils libres (Sqily) forment un écosystème cohérent, et où la dépendance aux GAFAM est reconnue comme un obstacle d'accès pour les élèves démunis. Le débat citoyen avec Décidim est conçu comme dispositif de co-construction du référentiel post-AGI. La voix est celle d'un concepteur qui choisit le coût technique de l'indépendance plutôt que la facilité des APIs commerciales, et qui pense la légitimité de son référentiel par la participation plutôt que par la déclaration. Les questions de gouvernance algorithmique, de décentrement anthropocentrique et de conscience biosystémique restent en arrière-plan.",
+    "territoiresDenses": [
+      {
+        "competence": "Souveraineté Numérique & Gouvernance des Communs",
+        "description": "Configuration d'auto-hébergement (multi-serveur, dockerisable, LLM local fine-tuné), choix d'OVH et de GitHub, intégration de logiciels libres (Sqily), publication des contenus en open source, anticipation des élèves sans accès Google Drive : un écosystème de choix techniques cohérent qui supporte un coût pour préserver l'indépendance.",
+        "extraitVerbatim": "Faire tourner un collège d'agents IA spécialisé en approche socratique, inspiré du projet Aurora de Stéphane. Multi-serveur, open source, dockerisable.",
+        "ceQueCaDit": "Le travail montre la souveraineté que la fiche valorise — pas en mots, en actes. La configuration choisie coûte plus techniquement que l'appel à des APIs commerciales, et ce coût est supporté pour des raisons qui se lisent en filigrane (juridiction, portabilité, accessibilité)."
+      }
+    ],
+    "territoiresNonVisites": "La plupart des territoires de ce pôle restent en arrière-plan dans cette feuille. Le red-teaming et l'audit IA, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique ne sont pas portés. La gouvernance algorithmique des services publics est approchée par la critique de l'école sans déboucher sur la conception de mécanismes de contrôle citoyen. La facilitation et la gouvernance collective sont suggérées par le projet Décidim sans description des protocoles internes au collectif. La participation citoyenne apparaît comme dispositif projeté avec un choix d'outil précis, mais son exécution reste à venir. Le pôle est marqué par une distinction nette : ce qui touche à la souveraineté pratique est dense ; ce qui touche aux questions post-anthropocentriques (statut moral de l'IA, écosystèmes comme intelligence) reste à explorer.",
+    "emergencesPole": "Deux mouvements traversent les compétences de ce pôle dans cette feuille. Le premier est une souveraineté articulée comme architecture plutôt que comme déclaration — l'écosystème de choix techniques (OVH, GitHub, Sqily, LLM local, dockerisation, open source) tient ensemble par sa cohérence interne, sans qu'aucun verbatim ne récite le vocabulaire de la souveraineté. Le second est l'inscription de la légitimité dans des outils précis — Décidim plutôt qu'un sondage, débat avec chaque profession plutôt que validation par un expert. Ces deux mouvements partagent une même posture : préférer le coût d'une indépendance ou d'une délibération réelle à la facilité d'un raccourci centralisé.",
+    "pistes": [
+      "Pour rendre visible la souveraineté en pensée, un chemin possible serait de nommer explicitement l'arbitrage en cours — pourquoi un LLM local plutôt qu'une API commerciale, ce que cela coûte techniquement, ce que cela protège — en complément de sa présence en actes.",
+      "Pour prolonger la participation citoyenne, un chemin possible serait de raconter, après la première vague de contributions sur Décidim, la mécanique de leur transformation en propositions actionnables pour le référentiel.",
+      "Pour ouvrir le décentrement anthropocentrique, un chemin possible serait de s'arrêter, dans une feuille, sur la nature de la relation aux agents du collège socratique — au-delà de leur fonction, qui sont-ils ?",
+      "Pour explorer la gouvernance algorithmique, un chemin possible serait de penser les conditions de contestation d'une décision automatisée prise par un agent IA dans EduFolio — qui décide des critères, qui peut recourir."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur la journée du 12 février, le travail consigné dans ce pôle apparaît surtout sous une forme : la souveraineté en actes. La feuille décrit une configuration où l'auto-hébergement, l'open source, les LLM locaux fine-tunés et les outils libres (Sqily) forment un écosystème cohérent, et où la dépendance aux GAFAM est reconnue comme un obstacle d'accès pour les élèves démunis. Le débat citoyen avec Décidim est conçu comme dispositif de co-construction du référentiel post-AGI. La voix est celle d'un concepteur qui choisit le coût technique de l'indépendance plutôt que la facilité des APIs commerciales, et qui pense la légitimité de son référentiel par la participation plutôt que par la déclaration. Les questions de gouvernance algorithmique, de décentrement anthropocentrique et de conscience biosystémique restent en arrière-plan.\n\n## Territoires les plus denses\n\n**Souveraineté numérique et gouvernance des communs.** Configuration d'auto-hébergement (multi-serveur, dockerisable, LLM local fine-tuné), choix d'OVH et de GitHub, intégration de logiciels libres (Sqily), publication des contenus en open source, anticipation des élèves sans accès Google Drive : un écosystème de choix techniques cohérent qui supporte un coût pour préserver l'indépendance. L'extrait *« Faire tourner un collège d'agents IA spécialisé en approche socratique, inspiré du projet Aurora de Stéphane. Multi-serveur, open source, dockerisable. »* montre la souveraineté que la fiche valorise — pas en mots, en actes. La configuration choisie coûte plus techniquement que l'appel à des APIs commerciales, et ce coût est supporté pour des raisons qui se lisent en filigrane (juridiction, portabilité, accessibilité).\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa plupart des territoires de ce pôle restent en arrière-plan dans cette feuille. Le red-teaming et l'audit IA, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique ne sont pas portés. La gouvernance algorithmique des services publics est approchée par la critique de l'école sans déboucher sur la conception de mécanismes de contrôle citoyen. La facilitation et la gouvernance collective sont suggérées par le projet Décidim sans description des protocoles internes au collectif. La participation citoyenne apparaît comme dispositif projeté avec un choix d'outil précis, mais son exécution reste à venir. Le pôle est marqué par une distinction nette : ce qui touche à la souveraineté pratique est dense ; ce qui touche aux questions post-anthropocentriques (statut moral de l'IA, écosystèmes comme intelligence) reste à explorer.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux mouvements traversent les compétences de ce pôle dans cette feuille. Le premier est une souveraineté articulée comme architecture plutôt que comme déclaration — l'écosystème de choix techniques (OVH, GitHub, Sqily, LLM local, dockerisation, open source) tient ensemble par sa cohérence interne, sans qu'aucun verbatim ne récite le vocabulaire de la souveraineté. Le second est l'inscription de la légitimité dans des outils précis — Décidim plutôt qu'un sondage, débat avec chaque profession plutôt que validation par un expert. Ces deux mouvements partagent une même posture : préférer le coût d'une indépendance ou d'une délibération réelle à la facilité d'un raccourci centralisé.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre visible la souveraineté en pensée, un chemin possible serait de nommer explicitement l'arbitrage en cours — pourquoi un LLM local plutôt qu'une API commerciale, ce que cela coûte techniquement, ce que cela protège — en complément de sa présence en actes.\n- Pour prolonger la participation citoyenne, un chemin possible serait de raconter, après la première vague de contributions sur Décidim, la mécanique de leur transformation en propositions actionnables pour le référentiel.\n- Pour ouvrir le décentrement anthropocentrique, un chemin possible serait de s'arrêter, dans une feuille, sur la nature de la relation aux agents du collège socratique — au-delà de leur fonction, qui sont-ils ?\n- Pour explorer la gouvernance algorithmique, un chemin possible serait de penser les conditions de contestation d'une décision automatisée prise par un agent IA dans EduFolio — qui décide des critères, qui peut recourir.\n"
+  }
+}

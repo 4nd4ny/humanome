@@ -1,0 +1,287 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Mais avant tout, je dois terminer le site qui est devenu une usine à gaz avec ma dernière idée d'intégrer des notes de marge qui réalisent les liens avec le document \"Racines Pédagogiques\".",
+      "contexte": "Récit d'un projet créatif qui s'est densifié au fil des itérations (\"usine à gaz\", \"ma dernière idée\"). Active potentiellement 3.01 (itération créative avec auto-évaluation lucide).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Le site a maintenant 5 niveaux de lecture : 1. Les résumés → Pour tous 2. Les questions / objections → Pour tous 3. Les questions / objections déroulées → Pas pour les élèves mais pour les parents / employeurs 4. Les PDF en téléchargement → Approfondissement pour les enseignants / pédagogues 5. Les notes de marges → Approfondissement pour les enseignants / pédagogues",
+      "contexte": "Conception éditoriale stratifiée : un même fond éclaté en 5 formes-pour-publics-différents. Active potentiellement 3.04 (curation éditoriale avec critères articulés de différenciation), 3.03 (création d'un problème nouveau : comment doter un site de plusieurs niveaux de lecture par public).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Ceci dit, il me faut un portfolio pour pouvoir mettre au points les prompts des agents méta-cognitifs. Je pense développer une extension invoquant Gémini pour venir taguer les portfolios afin de mettre en évidence les compétences du référentiel dans le texte.",
+      "contexte": "Idée d'une extension d'agent méta-cognitif — concept original qui combine portfolio, référentiel, IA et tagging dans une configuration peu standard. Active potentiellement 3.01 (créativité conceptuelle), 3.03 (formulation d'un problème nouveau : comment rendre un référentiel actif dans la lecture d'un portfolio).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Je dois aussi créer une formation pour les tuteurs, dans laquelle je commenterai tout ce qu'il faut savoir pour gérer un groupe d'apprenant et lancer les bons prompts socratiques et les scripts d'analyse pour générer les traces nécessaires pour la cartographie.",
+      "contexte": "Description d'une formation qui articule pédagogie, prompts socratiques et scripts d'analyse. Active potentiellement 3.03 (création d'un dispositif inédit pour outiller des tuteurs en compétences IA).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant qualifie son site d'\"usine à gaz\" du fait de l'ajout itératif de couches successives — auto-évaluation lucide d'un développement par accrétion plutôt que par planification."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "L'idée d'une extension Gémini de tagging compétences — concept créatif qui combine LLM, portfolio et référentiel dans une configuration peu standard."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la créativité itérative ou radicale n'est pas attestée : la fiche demande des récits de versions successives avec apprentissage explicite entre chaque passage, ou une rupture qui transgresse consciemment une règle pour produire du neuf. La pièce 1 mentionne une \"dernière idée\" qui rend le site \"usine à gaz\" — c'est une auto-évaluation, pas un récit d'itération avec apprentissages tracés. La pièce 2 propose une extension Gémini : c'est une idée annoncée, pas encore prototypée, et le test radicalité de la fiche (\"l'IA l'aurait-elle suggéré ?\") laisse ouverte la possibilité que ce soit une idée plutôt convenue dans l'écosystème actuel des extensions IA. Ce qui résiste : la pièce 1 porte une vraie itération en acte — l'apprenant raconte qu'une idée tardive (notes de marge) a transformé un projet déjà avancé, ce qui est exactement le pattern itératif décrit par la fiche, même si l'apprentissage tiré reste implicite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Récit d'une dernière idée qui transforme le projet en cours et le complexifie consciemment — itération en acte, même si l'apprentissage tiré reste implicite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce 1 parce qu'elle décrit une itération en acte. Mais peut-être que c'est moins une itération maîtrisée qu'une dérive du projet : \"usine à gaz\" peut signaler un accrochage, pas une stratégie d'imperfection. L'attaque pertinente est (a) insuffisance probatoire : pas de cycle prototype → feedback → pivot décrit, juste une couche ajoutée. L'attaque touche : on a une accrétion, pas une boucle d'itération avec apprentissage. La pièce reste affaiblie sans être disqualifiée — la conscience que le projet est devenu \"usine à gaz\" porte une auto-évaluation lucide de l'imperfection résultante.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le récit est plus celui d'une couche ajoutée que d'un cycle prototype-feedback-pivot ; mais l'auto-évaluation lucide de l'imperfection résultante (\"usine à gaz\") porte un fragment de conscience itérative."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier qu'une créativité itérative ou radicale soit ici en acte, et la présomption d'absence a fait tomber l'idée de l'extension Gémini : c'est une intention, pas un prototype, et l'idée elle-même n'a pas le degré de transgression que la fiche pose comme critère pour la radicalité. Ce qui m'a forcé à reconnaître quelque chose, c'est la pièce sur les notes de marge : l'apprenant raconte qu'une idée tardive est venue densifier un projet en cours, et il en assume le coût (\"usine à gaz\"). Sous la présomption de sycophantie, cette pièce s'est affaiblie : on a une accrétion plutôt qu'une boucle d'itération formalisée. Il en résulte une présence partielle, du côté de la conscience itérative implicite plutôt que d'une pratique itérative articulée. La compétence pourrait se densifier le jour où le portfolio raconterait un cycle complet — version A, ce qu'elle a révélé, version B, ce qui change.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie a survécu : auto-évaluation lucide d'une accrétion projet (\"usine à gaz\"), sans cycle prototype-feedback-pivot articulé.",
+        "prescription": "Pour densifier le travail itératif amorcé, un chemin possible serait de raconter, sur l'idée des notes de marge ou de l'extension Gémini, le cycle complet — première version, ce qu'elle a fait voir, ajustement, effet observé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et à la signature. Pour ouvrir ce dossier, l'apprenant pourrait documenter ce qui revient d'une production à l'autre — tics d'écriture, métaphores propres, façon d'ancrer ses textes — ou nommer ce qui rend ses textes ou ses productions reconnaissables au-delà du contenu."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant pose une question peu commune : comment faire vivre un même fond pédagogique en cinq niveaux de lecture stratifiés par public — formulation d'un problème de conception nouveau."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "L'apprenant invente une question : comment doter un référentiel d'une couche d'agents IA qui tagueraient automatiquement les portfolios — problème inédit qui n'existait pas avant qu'il ne le pose."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Question implicitement formulée : comment former des tuteurs à conduire des dialogues socratiques et des analyses de traces pour une cartographie de compétences — problème de conception qui n'existait pas comme tel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le design de problèmes n'est pas attesté : la fiche distingue strictement \"reformuler un problème existant\" (qui serait 1.02) de \"créer un problème qui n'existait pas\" (qui est 3.03). Les pièces 1 à 3 décrivent des dispositifs à concevoir, mais l'apprenant ne dit pas explicitement \"je viens de poser une question que personne n'avait posée\". Il décrit plutôt des choses à faire. Ce qui résiste : les trois pièces, prises ensemble, dessinent des problèmes que peu auraient formulés — un site à 5 niveaux de lecture stratifiés par public, une extension de tagging automatique par référentiel, une formation tuteurs pour conduire des dialogues socratiques générateurs de traces. Ce ne sont pas des reformulations de problèmes connus, mais des questions originales (\"comment faire X qui n'existe pas encore comme catégorie\"). Pour 3.03, ce n'est pas le récit qui compte, c'est l'acte de poser la question — et ici l'acte est posé, même implicitement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le problème \"comment faire vivre un même fond en cinq niveaux de lecture stratifiés par public\" est une question peu commune, formulée comme objectif de conception nouveau." },
+            { "pieceId": 2, "motifResistance": "Le problème \"comment équiper un référentiel d'une couche d'agents méta-cognitifs taguant des portfolios\" n'existait pas comme catégorie avant que l'apprenant ne le pose." },
+            { "pieceId": 3, "motifResistance": "Le problème \"comment former des tuteurs à orchestrer prompts socratiques et scripts d'analyse pour générer des traces\" est un problème de design original qui crée une espèce nouvelle de formation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu trois pièces. Mais peut-être que j'ai glissé : poser une question implicite par la description d'un dispositif à venir n'est pas la même chose que formaliser un problème nouveau. L'attaque pertinente pour les trois est (f) récit performatif : l'apprenant dit qu'il va construire des choses, sans nommer l'acte de design de problème comme tel. Pour la pièce 2, l'attaque (b) confusion de compétence pourrait aussi tenir : l'idée d'une extension de tagging IA est moins une question nouvelle qu'une solution technique appliquée à un besoin connu (analyser des productions). Pour la pièce 1, l'idée de niveaux de lecture stratifiés par public est une forme connue en éditorial — pas si nouvelle qu'elle paraît. Pour la pièce 3, la formation est un format établi, même si son contenu est inédit. Au total, les trois pièces s'affaiblissent : ce sont des dispositifs créatifs plus que des questions inédites posées en tant que telles.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Les niveaux de lecture stratifiés par public sont une forme éditoriale connue ; la pièce active mieux 3.04 (curation, hiérarchisation par audience) que 3.03 (création d'un problème qui n'existait pas)."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'extension de tagging automatique est une solution technique plus qu'une question inédite ; cependant, l'articulation entre un référentiel de compétences et un agent IA méta-cognitif esquisse un problème de conception relativement original."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant annonce la formation sans nommer l'acte de design de problème ; mais l'objet de la formation (orchestrer prompts socratiques + scripts d'analyse pour une cartographie) configure une question pédagogique qui n'existait pas comme telle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille atteste d'un design de problèmes, et la présomption d'absence s'est trouvée mise à l'épreuve par trois pièces qui dessinent ensemble des projets aux contours peu standards. Sous la présomption de sycophantie, la pièce sur les niveaux de lecture stratifiés est tombée — c'est plutôt de la curation hiérarchisée (3.04). Les deux autres pièces se sont affaiblies sans disparaître : l'articulation référentiel/agent IA pour tagger des portfolios, et la formation tuteurs orchestrant prompts socratiques et scripts d'analyse, configurent des questions de conception qui n'avaient pas de catégorie préexistante. Il en résulte une présence partielle, calibrée prudemment. Le travail montre, dans ce pôle et sur cette feuille, un mouvement de pensée qui tend à formuler des problèmes nouveaux à la jointure des outils (référentiel, IA, prompts socratiques, traces de portfolio) — sans encore explicitement thématiser cet acte de poser la question. La compétence pourrait se déployer plus pleinement le jour où l'apprenant nommerait explicitement le problème qu'il vient de créer, et ce qu'il rend possible en l'ouvrant.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a maintenu deux pièces affaiblies portant l'articulation référentiel/agent IA et la formation tuteurs comme dispositifs de design — questions inédites posées implicitement.",
+        "prescription": "Pour approfondir le design de problèmes amorcé, un chemin possible serait de nommer explicitement, sur l'un des dispositifs annoncés, le problème qui vient d'être créé — quelle catégorie nouvelle il ouvre, quel champ d'action devient possible parce que la question a été posée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Architecture éditoriale qui différencie cinq formats du même fond selon le public — geste de curation hiérarchisée avec critères articulés (à qui s'adresse quel niveau)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le jugement esthétique et la curation ne sont pas attestés : la fiche demande des choix de forme argumentés (\"j'ai retenu cette option parce que le ton est trop froid pour ce public\"), du rejet articulé d'options techniquement correctes mais qui \"sonnaient faux\", de la soustraction. La pièce 1 décrit cinq niveaux avec leur audience associée — mais l'apprenant ne dit pas pourquoi les notes de marge sont pour les pédagogues et pas pour les élèves, pas plus qu'il ne raconte ce qu'il a retranché. Ce qui résiste : la fiche cite explicitement \"formes architecturales : conception de hiérarchies de contenu différenciées par audience\" comme manifestation. La structure à cinq niveaux est exactement ce pattern. L'apprenant a clairement effectué un travail de hiérarchisation et de différenciation par public, même s'il n'explique pas le critère de chaque arbitrage.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La conception d'une hiérarchie de contenu à cinq niveaux différenciés par audience correspond exactement à la manifestation listée par la fiche comme forme architecturale du jugement esthétique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce 1 pour sa correspondance au pattern d'architecture éditoriale différenciée. Mais peut-être que je sur-interprète : organiser des niveaux par public est une décision logique, pas nécessairement un jugement esthétique. L'attaque pertinente est (a) insuffisance probatoire : l'apprenant ne nomme aucun critère qualitatif (ton, registre, longueur, densité) qui aurait présidé à chaque niveau. L'attaque touche : on a la structure, pas les critères esthétiques explicités. La pièce reste affaiblie sans être disqualifiée — l'effort de conception différenciée est en soi un acte curatorial, même tacite.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant donne la structure mais pas les critères qualitatifs qui ont présidé à chaque niveau ; le travail curatorial est posé sans être verbalisé dans ses choix de forme."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que le jugement esthétique soit ici en acte, et la présomption d'absence a tenu fortement sur l'argumentation des choix de forme : l'apprenant ne dit jamais pourquoi telle audience reçoit tel format. Ce qui m'a forcé à reconnaître quelque chose, c'est la structure même : cinq niveaux différenciés par public, ce qui correspond textuellement à la manifestation \"hiérarchies de contenu différenciées par audience\" citée par la fiche. Sous la présomption de sycophantie, cette pièce s'est affaiblie : on a la structure, pas les critères. Il en résulte une présence partielle, du côté du jugement esthétique architecturalement manifesté plus que verbalement articulé. La compétence pourrait se densifier le jour où l'apprenant nommerait ses critères — quel ton pour les résumés, quelle densité pour les notes de marge, ce qu'il a écarté et pourquoi.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce affaiblie a survécu : architecture éditoriale différenciée par audience qui manifeste un travail curatorial sans verbaliser les critères qualitatifs.",
+        "prescription": "Pour approfondir le travail curatorial amorcé, un chemin possible serait de nommer, pour l'un des cinq niveaux du site, les critères qualitatifs qui le différencient des autres — ton, densité, longueur — et ce qui a été écarté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment d'interaction physique avec la matière — bricolage, montage, réparation, cuisine, infrastructure tangible — avec ses détails sensoriels et ses gestes."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel et à la pleine présence. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où l'attention corporelle ou sensorielle a porté l'information — sensation physique nommée, intuition somatique suivie d'action, ralentissement intentionnel."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et à la performance live. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment de co-présence physique en temps réel — une rencontre, une présentation, un échange en face-à-face — où sa présence a fait une différence identifiable."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 4,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 22 décembre, le travail créatif se déploie au plan de la conception plutôt que de l'artisanat ou de l'incarnation. L'apprenant pense des dispositifs — un site stratifié, une extension de tagging, une formation tuteurs — et compose à la jointure d'outils peu souvent réunis : référentiel de compétences, agents IA, portfolios, dialogues socratiques. La voix dominante est celle d'un concepteur qui formule des questions de design en passant. Les marqueurs concrets sont l'auto-évaluation \"usine à gaz\" du site, les cinq niveaux de lecture par public, et l'idée d'une extension Gémini taguant les compétences. Sur ce pôle et cette feuille, le travail montre une créativité de conception orientée vers des dispositifs hybrides, sans encore le travail itératif articulé ni la présence somatique.",
+    "territoiresDenses": [
+      {
+        "competence": "Design de problèmes",
+        "description": "Formulation implicite de questions de conception à la jointure des outils — agents méta-cognitifs taguant des portfolios, formation à l'orchestration prompts socratiques/scripts d'analyse.",
+        "extraitVerbatim": "Je pense développer une extension invoquant Gémini pour venir taguer les portfolios afin de mettre en évidence les compétences du référentiel dans le texte.",
+        "ceQueCaDit": "Le travail montre une tendance à poser des problèmes qui n'existaient pas comme catégorie — combinaisons inédites entre référentiel, IA, portfolio — sans encore nommer explicitement l'acte de design de problème."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. La singularité et la signature ne s'évaluent pas sur une entrée isolée : il faudrait plusieurs textes pour repérer les patterns récurrents qui constituent une empreinte. L'intelligence manuelle, l'ancrage sensoriel et la présence live ressortent comme territoires non visités — la feuille reste dans le registre de la conception abstraite et de la planification, sans gestes, sans détails corporels, sans co-présence racontée. Ces absences ressemblent davantage à un effet du registre choisi (journal de planification de projet) qu'à un choix de fond ; elles gagneraient à être ouvertes par des récits ancrés dans la matière ou dans des rencontres physiques.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle sur cette feuille. D'abord, une tendance à combiner des outils peu souvent réunis (référentiel + IA + portfolio + Decidim + Discord + formation tuteurs) — la créativité de l'apprenant s'exerce dans le branchement entre univers techniques et pédagogiques distincts. Ensuite, une auto-lucidité sur l'imperfection du résultat (\"usine à gaz\") qui tient lieu de marqueur itératif sans en avoir formalisé le cycle. Enfin, une forte densité conceptuelle au détriment de toute incarnation : aucun geste, aucune sensation, aucun moment de présence corporelle — la pensée créative ici travaille au-dessus de la matière.",
+    "pistes": [
+      "Pour densifier le travail itératif amorcé, un chemin possible serait de raconter, sur l'un des dispositifs annoncés (notes de marge, extension Gémini), un cycle complet — première version, ce qu'elle a fait voir, ajustement, effet observé.",
+      "Pour approfondir le design de problèmes, un chemin possible serait de nommer explicitement, sur l'un des projets, le problème qui vient d'être créé et le champ d'action qu'il ouvre.",
+      "Pour ouvrir les territoires somatiques, un chemin possible serait de documenter un moment d'interaction physique avec la matière — un montage de serveur, une configuration manuelle d'infrastructure, ou tout autre geste où la main est en cause."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 22 décembre, le travail créatif se déploie au plan de la conception plutôt que de l'artisanat ou de l'incarnation. L'apprenant pense des dispositifs — un site stratifié, une extension de tagging, une formation tuteurs — et compose à la jointure d'outils peu souvent réunis : référentiel de compétences, agents IA, portfolios, dialogues socratiques. La voix dominante est celle d'un concepteur qui formule des questions de design en passant. Les marqueurs concrets sont l'auto-évaluation \"usine à gaz\" du site, les cinq niveaux de lecture par public, et l'idée d'une extension Gémini taguant les compétences. Sur ce pôle et cette feuille, le travail montre une créativité de conception orientée vers des dispositifs hybrides, sans encore le travail itératif articulé ni la présence somatique.\n\n## Territoires les plus denses\n\n**Design de problèmes** — Formulation implicite de questions de conception à la jointure des outils : agents méta-cognitifs taguant des portfolios, formation à l'orchestration prompts socratiques/scripts d'analyse.\n\n> \"Je pense développer une extension invoquant Gémini pour venir taguer les portfolios afin de mettre en évidence les compétences du référentiel dans le texte.\"\n\nLe travail montre une tendance à poser des problèmes qui n'existaient pas comme catégorie — combinaisons inédites entre référentiel, IA, portfolio — sans encore nommer explicitement l'acte de design de problème.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. La singularité et la signature ne s'évaluent pas sur une entrée isolée : il faudrait plusieurs textes pour repérer les patterns récurrents qui constituent une empreinte. L'intelligence manuelle, l'ancrage sensoriel et la présence live ressortent comme territoires non visités — la feuille reste dans le registre de la conception abstraite et de la planification, sans gestes, sans détails corporels, sans co-présence racontée. Ces absences ressemblent davantage à un effet du registre choisi (journal de planification de projet) qu'à un choix de fond ; elles gagneraient à être ouvertes par des récits ancrés dans la matière ou dans des rencontres physiques.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle sur cette feuille. D'abord, une tendance à combiner des outils peu souvent réunis (référentiel + IA + portfolio + Decidim + Discord + formation tuteurs) — la créativité de l'apprenant s'exerce dans le branchement entre univers techniques et pédagogiques distincts. Ensuite, une auto-lucidité sur l'imperfection du résultat (\"usine à gaz\") qui tient lieu de marqueur itératif sans en avoir formalisé le cycle. Enfin, une forte densité conceptuelle au détriment de toute incarnation : aucun geste, aucune sensation, aucun moment de présence corporelle — la pensée créative ici travaille au-dessus de la matière.\n\n## Pistes pour enrichir ce pôle\n\n- Pour densifier le travail itératif amorcé, un chemin possible serait de raconter, sur l'un des dispositifs annoncés (notes de marge, extension Gémini), un cycle complet — première version, ce qu'elle a fait voir, ajustement, effet observé.\n- Pour approfondir le design de problèmes, un chemin possible serait de nommer explicitement, sur l'un des projets, le problème qui vient d'être créé et le champ d'action qu'il ouvre.\n- Pour ouvrir les territoires somatiques, un chemin possible serait de documenter un moment d'interaction physique avec la matière — un montage de serveur, une configuration manuelle d'infrastructure, ou tout autre geste où la main est en cause."
+  }
+}

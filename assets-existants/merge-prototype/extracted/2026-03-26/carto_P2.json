@@ -1,0 +1,529 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Cette idée a été traduite en un système de prompt que j'ai envoyé hier soir à Stéphane, puis que j'ai testé chez moi dans la nuit.",
+      "contexte": "Partage opérationnel avec Stéphane d'un dispositif conçu, comme acte de coordination divergente entre deux contributeurs aux approches différentes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Stéphane est content de la démarche qu'il qualifie de transformative pour lui. Peut-être que je lui apporte un processus simple de pensée computationnelle (décomposition du problème en sous problèmes plus simples) et de création (voir les stratégies méta-cognitives enseignées dans le cadre de hp! pour avoir de nouvelles idées - ici l'analogie avec ce que l'on connaît du juge, du greffier, du président et du jury) pour réfléchir sur un problème complexe ?",
+      "contexte": "Réflexion sur ce qui passe entre l'apprenant et un partenaire — auto-observation d'une traduction de savoir entre deux univers (technique/pédagogique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Stéphane m'avait envoyé l'analyse d'Aurora V1 pour le portfolio 119. J'ai trouvé que le 120 et le 108 étaient également intéressants. Mais finalement avec CoWork, le travail est assez rapide et le scaling d'une analyse d'un portfolio à l'analyse des 26 portfolios m'a montré des problèmes dans ma compréhension de l'architecture CoWork que je ne maîtrisais pas hier.",
+      "contexte": "Échange asynchrone autour d'analyses de portfolios partagés ; collaboration entre deux personnes qui travaillent dans des cadres techniques différents.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "J'avais de la fièvre ce jour-là (38 degrés malgré le paracétamol tous les 4h). Ce qui fait que je n'étais pas en mesure de tester l'idée sur ma machine. Je l'ai envoyé à Stéphane qui a généré une V2 d'Aurora sur la base de cette architecture.",
+      "contexte": "Coordination divergente sous contrainte corporelle : l'apprenant transmet l'idée que Stéphane implémente — répartition non symétrique mais productive.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Autant avec Claude Opus 4.6 ce n'est pas un véritable problème, autant avec les versions open source tournant sur très peu de mémoire, c'est un problème central. Or même à l'EPFL ils utilisent Qwen sur leur datacenter, car les données privées des élèves ne peuvent pas être envoyées sur des serveurs en dehors de la Suisse. Ils ont donc le même problème que nous avons avec Aurora, sans les contraintes de CPU apparemment.",
+      "contexte": "Lecture de contexte organisationnel et juridique (EPFL, datacenter en Suisse, données privées) qui module les choix techniques.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "j'ai eu toutes mes lanternes rouges internes qui se sont allumées. Comment peuvent-ils oser évaluer des copies avec un système aussi peu fiable et non déterministe ?",
+      "contexte": "Réaction émotionnelle nommée (lanternes rouges internes) à une situation institutionnelle ; signal somatique-éthique qui déclenche l'action.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Je devrais partir pour aller visiter l'école 42. Je me suis inscrit (la visite est payante, le nombre de places est limité). C'est une activité organisée pour les anciens étudiants alumni de l'EPFL. Mais j'ai passé une mauvaise nuit, je me sens toujours faible (sans fièvre) et j'ai peur de rechuter, ce qui impliquerait potentiellement une annulation de la sortie prévue mardi prochain (IA Meetup autour de l'enseignement) et qui est beaucoup plus importante.",
+      "contexte": "Description de l'état corporel, de l'arbitrage entre deux sorties communautaires, et de la peur de rechuter — communication intime sur l'état émotionnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Il est vrai que depuis que je ne travaille plus, mes sorties se limitent à aller accompagner Leila à l'école, faire les courses et jeter les poubelles. C'est assez limité et je me réjouissais de pouvoir aller poser mes deux questions \"Quelle est votre politique de gestion des IA ?\" suivi de \"Avez-vous modifié vos critères d'évaluation depuis ?\".",
+      "contexte": "Réflexion sur l'isolement social actuel et désir d'aller poser deux questions précises à l'École 42 — communication politique anticipée à des interlocuteurs institutionnels.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "extraitVerbatim": "comme le site web est à la ramasse, complètement dépassé avec tout ce que j'ai fais de nouveau depuis le début de l'année, et que j'ai tous les débats autour du nouveau référentiel v7 générés par Claude mais non publiés sur Décidim, ce n'est vraiment pas super urgent non plus que les gens viennent sur nos sites principaux",
+      "contexte": "Mention d'un dispositif communautaire (Décidim) pour les débats sur le référentiel et de l'écart entre ce qui a été produit et ce qui est publié.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "extraitVerbatim": "ces versions papiers seront destinées à être distribuées aux gens qui voudront bien me faire une retour sur les incohérences restantes ou problèmes de style restant, afin que je puisse uploader une version définitive sur le site et ouvrir la vente du livre au public",
+      "contexte": "Conception d'un dispositif communautaire de relecture par des proches avant publication publique — communauté de lecteurs-correcteurs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "extraitVerbatim": "Un avantage que j'ai sur Stéphane, c'est que je connais les élèves et je reconnais (je me souviens) de leurs portfolios. Donc je sais vraiment les compétences qui se cachent derrière le clavier – mais ceci est une autre histoire (la question est abordée dans le roman d'ailleurs – le rôle du maître dans l'école de demain reste central, mais totalement différent de ce qui est pratiqué aujourd'hui",
+      "contexte": "Distinction d'un savoir tacite et relationnel (connaître les élèves) que l'IA et qu'un partenaire n'ont pas — valeur non-automatisable de la relation pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "extraitVerbatim": "je suis \"au chômage\" pour Soledad et Alicia et Leila (donc plus plongé 19h par jour, comme ces dernières années, dans l'avancement de mes projets)…",
+      "contexte": "Reconnaissance émotionnelle d'un changement de disponibilité familiale, avec guillemets autour de « au chômage » signalant un sens particulier.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "extraitVerbatim": "le rôle du maître dans l'école de demain reste central, mais totalement différent de ce qui est pratiqué aujourd'hui – l'école est donc morte sous sa forme actuelle – l'école de demain mettra la noèsiologie et la valorisation des forces de l'humain au centre de sa pédagogie – c'est la base des idées d'Harmonia, traduites de manière théorique dans la pédagogie de l'émergence, implémentée de manière pratique dans les écoles RESPIRE, documenté de manière romancée dans le roman \"L'Émergence\"",
+      "contexte": "Articulation d'une vision communautaire à plusieurs niveaux (Harmonia, pédagogie de l'émergence, écoles RESPIRE, roman) — construction d'un écosystème.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Métaphore corporelle (« lanternes rouges internes ») pour nommer un signal émotionnel-éthique qui déclenche l'action — perception émotionnelle nommée avec précision."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Description fine de l'état physique (mauvaise nuit, faiblesse sans fièvre, peur de rechuter) couplée à un arbitrage qui en tient compte — régulation émotionnelle en action."
+        },
+        {
+          "numero": 3,
+          "pid": 12,
+          "contexte": "Reconnaissance émotionnelle d'un changement de présence familiale, avec guillemets sur « au chômage » signalant la conscience du décalage entre les mots et le ressenti."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que mentionner un état émotionnel ne suffit pas : 2.01 demande l'émotion comme information et levier d'action, pas seulement comme bruit raconté. La pièce 1 utilise une métaphore propre (« lanternes rouges internes ») qui n'est pas du vocabulaire ambiant et qui sert de déclencheur d'action (réfléchir, résoudre). La pièce 2 montre une boucle complète : signaux corporels nommés → arbitrage entre deux sorties → décision protectrice. La pièce 3 contient l'autodérision sur « au chômage » mais reste un constat. Ce qui reste plus faible : aucune trace de care anticipatoire ni de perception d'autrui non-verbalisée ; l'observation reste centrée sur soi.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Métaphore corporelle inventée (« lanternes rouges internes ») qui transforme le signal émotionnel en déclencheur d'action concrète." },
+            { "pieceId": 2, "motifResistance": "Boucle signal-décision-action complète : état corporel → peur de rechuter → arbitrage sur la sortie la plus importante." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. L'attaque (a) — insuffisance probatoire — pourrait toucher la pièce 1 : « lanternes rouges » est-il vraiment une émotion nommée ou une formule ? Mais le mot « internes » qualifie un signal somatique. L'attaque (g) — mouvement vers — pourrait toucher la pièce 2 : la description de l'état corporel est précise, mais la régulation émotionnelle (au sens de pacifier ou transformer l'émotion) n'est pas explicite — il y a plutôt un arbitrage rationnel.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Métaphore brève mais qui fonctionne comme nomination précise d'un signal émotionnel ; sans déploiement, elle reste indicative." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'arbitrage est rationnel-protecteur plutôt que de la régulation émotionnelle au sens strict ; toutefois la prise en compte explicite de la peur de rechuter qualifie un mouvement de régulation." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui raconterait ses émotions sans en faire un levier. Ce qui m'a forcé à reconnaître la compétence, c'est l'invention d'une métaphore (« lanternes rouges internes ») qui n'est pas standard et qui sert de déclencheur, et la boucle complète signal-arbitrage-décision dans la pièce 2. Sous la présomption de sycophantie, les deux pièces se sont affaiblies — la première par brièveté, la seconde parce que l'arbitrage est plus rationnel qu'émotionnel — mais elles tiennent. Ce qui en résulte : sur ce pôle, le travail montre une perception émotionnelle nommée avec un vocabulaire propre, qui sait transformer un signal en arbitrage concret. La dimension relationnelle (perception d'autrui, sollicitude anticipatoire) reste un territoire non visité dans cette feuille.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Deux pièces affaiblies mais retenues : nomination précise par métaphore corporelle et boucle signal-arbitrage protectrice.",
+        "prescription": "Pour prolonger ce travail de lucidité émotionnelle, un chemin possible serait de noter, lors d'un prochain échange avec un proche ou un collègue, ce qui a été perçu chez l'autre avant qu'il ne le dise — afin d'élargir la perception émotionnelle de soi vers l'autre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 12,
+          "contexte": "Autodérision dosée et signalée par guillemets : « au chômage » suivi d'un parenthèse qui éclaire l'écart entre les mots et le ressenti. Variation de registre."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Formulation explicite des deux questions à poser à l'École 42 — préparation calibrée d'une prise de parole en contexte institutionnel."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Communication intime sur l'état corporel et la peur de rechuter, suivie de la conséquence pour l'agenda — registre vulnérable assumé dans le journal."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que tout journal contient des registres émotionnels qui ne sont pas pour autant de la communication calibrée. La pièce 1 mobilise des guillemets et une parenthèse explicative — c'est une variation de registre consciente. La pièce 2 montre une *préparation* explicite de deux questions précises pour un contexte précis (école 42) — c'est de la communication stratégique. La pièce 3 dévoile la vulnérabilité (faiblesse, peur de rechuter) dans un journal, mais c'est un journal personnel — la communication n'est pas nécessairement adressée. Ce qui reste plus faible : aucune trace de feedback difficile donné, aucun récit de prise de parole inconfortable face à un tiers, pas de silence stratégique explicité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Guillemets et parenthèse autour de « au chômage » signalent une conscience du registre et un humour dosé — calibration consciente." },
+            { "pieceId": 2, "motifResistance": "Préparation explicite de deux questions formulées verbatim pour une prise de parole publique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. L'attaque (a) — insuffisance probatoire — touche la pièce 1 : ce sont des guillemets dans un journal, pas une trace de communication adressée. L'attaque (g) — mouvement vers — touche la pièce 2 : la communication est encore *à venir* (la visite est prévue), pas accomplie ; on a la préparation, pas le geste effectué.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Marqueur typographique d'auto-dérision dosée, mais sans déploiement narratif autour ; signal léger." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La communication est préparée mais pas effectuée ; cependant, la formulation précise et la stratégie de questionnement (politique → conséquence) constituent une trace de calibration." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché des récits de prise de parole inconfortable accomplie, et je n'en ai pas trouvé. Ce qui m'a forcé à reconnaître une trace, c'est la préparation explicite de deux questions politiques pour un contexte institutionnel, et l'autodérision dosée par marqueurs typographiques. Sous la présomption de sycophantie, ces pièces se sont affaiblies parce qu'elles décrivent ou préparent plutôt qu'elles ne montrent une parole adressée et reçue. Ce qui en résulte : sur ce pôle, le travail montre une conscience du registre et de la préparation stratégique du dialogue, sans que des conversations difficiles accomplies ne soient encore documentées dans cette feuille.",
+          "confianceFinale": 0.48
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.48,
+        "motif": "Deux pièces affaiblies mais retenues, sans preuve décisive ; les traces relèvent de la préparation et du marquage de registre plutôt que de la prise de parole accomplie.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de documenter, après la visite à l'École 42 ou lors d'un prochain échange tendu avec un partenaire, ce qui a été dit, comment, et l'effet observé — afin que la communication accomplie devienne traçable au même titre que sa préparation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète illustrant cette compétence."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Stratégie de questionnement institutionnel : « Quelle est votre politique de gestion des IA ? » suivi de « Avez-vous modifié vos critères d'évaluation depuis ? » — séquence pensée pour faire émerger une position."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Mention de Décidim comme dispositif de débats sur le référentiel — création d'un espace numérique où d'autres pourraient s'auto-organiser autour des choix techniques et pédagogiques."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : poser deux questions ne suffit pas à parler d'influence. Mais la fiche mentionne l'influence systémique comme création d'environnements où les gens s'engagent d'eux-mêmes — Décidim correspond à cette description. La pièce 1 est une stratégie diplomatique fine : la deuxième question (« avez-vous modifié vos critères ») met en évidence l'écart entre la politique affichée et l'adaptation effective. C'est un mouvement diplomatique. Ce qui reste plus faible : pas de récit de proposition acceptée, pas de stratégie d'alliance documentée, pas de reformulation des objections de l'autre.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Séquence en deux temps qui crée un écart révélateur entre politique déclarée et pratique effective — diplomatie de questionnement." },
+            { "pieceId": 2, "motifResistance": "Mention d'un dispositif Décidim conçu pour la participation collective, même si peu déployé ici." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. L'attaque (g) — mouvement vers — touche la pièce 1 : l'influence n'est pas accomplie, la visite n'a pas encore eu lieu. L'attaque (a) — insuffisance probatoire — touche la pièce 2 : Décidim est mentionné en passant, sans description de son fonctionnement ni de ce qui y est mis en débat. La pièce 2 tombe.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Préparation d'une diplomatie de questionnement plutôt qu'influence accomplie ; la séquence des deux questions reste une trace stratégique." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Mention trop brève et sans description de la dynamique participative pour porter un verdict sur l'influence systémique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché des récits d'influence accomplie ou de stratégies d'alliance. Sous la présomption d'absence, la pièce sur les questions à l'École 42 a résisté comme stratégie diplomatique de questionnement, et la mention de Décidim a résisté comme infrastructure participative. Sous la présomption de sycophantie, Décidim est tombé par insuffisance probatoire et la préparation des questions est restée comme indice. Ce qui en résulte : sur ce pôle, le travail montre une trace légère de pensée diplomatique préparée — la séquence des deux questions à l'École 42 — sans qu'une influence accomplie ne soit encore documentée.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Une seule pièce retenue, affaiblie : la stratégie diplomatique est préparée mais pas encore accomplie.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de noter, après une prochaine interaction où l'enjeu était de faire avancer une idée, ce qui a été dit, ce qui a été tenu en réserve, comment l'objection a été entendue et reformulée — afin que la stratégie d'influence devienne traçable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Collaboration divergente sous contrainte : l'apprenant transmet son idée à Stéphane, qui produit la V2 d'Aurora — partage du travail sans alignement complet, mais qui livre."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "L'apprenant trouve « également intéressants » des portfolios différents de ceux choisis par Stéphane ; chacun travaille avec son angle propre, le travail avance."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Nommer explicitement ce que l'apprenant a en plus que Stéphane (connaissance des élèves) sans en faire un conflit, et continuer le travail commun — divergence assumée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que travailler avec quelqu'un n'est pas de la collaboration divergente : il faut le « agree to disagree AND deliver ». La pièce 1 montre Stéphane qui produit la V2 sur la base de l'architecture envoyée par l'apprenant — c'est une division du travail, pas nécessairement une divergence. La pièce 2 montre l'apprenant qui choisit d'autres portfolios que ceux que Stéphane avait envoyés — divergence de jugement, mais le travail continue. La pièce 3 explicite une asymétrie de savoir (« un avantage que j'ai sur Stéphane ») et la mentionne sans en faire un conflit. Ce qui reste plus faible : on ne voit pas explicitement nommé « ce sur quoi nous ne sommes pas d'accord » comme dimension consciente.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Choix divergent du périmètre d'analyse, sans confrontation : chacun apporte son angle, le travail avance." },
+            { "pieceId": 3, "motifResistance": "Nommer une asymétrie de savoir entre soi et un partenaire sans en faire un conflit constitue une trace de collaboration divergente." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. L'attaque (b) — confusion — est forte : la pièce 2 ressemble plus à de la coordination simple qu'à une divergence assumée ; la pièce 3 ressemble plus à une simple distinction de compétences qu'à une divergence sur le travail lui-même. La fiche 2.05 est exigeante : il faut que chaque partie conserve sa position divergente.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Pas de désaccord articulé entre l'apprenant et Stéphane sur le choix des portfolios — chacun en a regardé certains, sans qu'aucune position divergente n'ait à être conservée." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'asymétrie nommée (« un avantage que j'ai ») suggère une différence assumée qui ne bloque pas le travail commun, à la frontière de 2.05." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché un « on n'est toujours pas d'accord MAIS on a livré ». Sous la présomption d'absence, deux pièces ont résisté : le choix divergent de portfolios et l'asymétrie nommée. Sous la présomption de sycophantie, le choix divergent est tombé parce qu'il n'y a pas de désaccord explicite à maintenir ; l'asymétrie de savoir a tenu comme trace que la divergence est nommée sans bloquer le travail. Ce qui en résulte : sur ce pôle, le travail montre une trace légère où la différence est nommée et n'empêche pas le livrable — sans qu'un récit de désaccord persistant et productif ne soit encore documenté.",
+          "confianceFinale": 0.40
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.40,
+        "motif": "Une seule pièce affaiblie retenue : l'asymétrie nommée entre soi et un partenaire sans qu'elle bloque le travail.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de noter, lors d'un prochain travail commun avec Stéphane, le point précis où les visions divergent et ce qui a permis au travail d'avancer malgré tout — afin que la divergence productive devienne lisible comme stratégie."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Lecture d'un contexte organisationnel et juridique (EPFL, datacenter en Suisse, données privées) qui contraint les choix techniques — décodage de normes implicites d'un contexte institutionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec doute : décrire que l'EPFL utilise Qwen parce que les données ne peuvent pas sortir de la Suisse est un fait technique, pas nécessairement une lecture d'intelligence culturelle. La fiche dit que l'intelligence culturelle inclut les cultures organisationnelles et que l'identification de biais culturels dans les outils IA est un marqueur particulièrement pertinent. La pièce 1 fait les deux : elle lit la culture organisationnelle (datacenter local en Suisse) et identifie le facteur réglementaire qui rend cette culture intelligible. Ce qui reste plus faible : on n'a qu'une pièce, et l'analyse n'est pas suivie d'une adaptation comportementale documentée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Décodage d'un déterminant culturel-organisationnel (souveraineté des données suisses) qui explique des choix techniques observés — lecture de norme implicite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce. L'attaque (a) — insuffisance probatoire — touche durement : c'est une seule mention, dans une parenthèse, sans déploiement. L'attaque (b) — confusion — la rapproche de 1.06 (littératie IA) ou 6.04 (souveraineté numérique). Mais la pièce ne fait pas que constater le fait technique : elle explique le *pourquoi institutionnel* (« car les données privées des élèves ne peuvent pas être envoyées sur des serveurs en dehors de la Suisse »).",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Pièce brève mais qui articule le déterminant culturel-organisationnel ; sans pièce sœur, elle reste un indice." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché une lecture d'intelligence culturelle. Sous la présomption d'absence, elle a résisté parce qu'elle articule un déterminant institutionnel-culturel (souveraineté des données) qui explique un choix technique. Sous la présomption de sycophantie, la brièveté l'a affaiblie mais ne l'a pas disqualifiée. Ce qui en résulte : sur ce pôle, le travail montre une lecture ponctuelle d'un contexte organisationnel — la contrainte de souveraineté des données suisses qui module les choix techniques — sans qu'une pratique soutenue d'intelligence culturelle ne soit encore documentée.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Une seule pièce, affaiblie par sa brièveté mais retenue pour son articulation du déterminant culturel-organisationnel.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de documenter, lors d'un prochain contact avec une organisation aux normes différentes (l'École 42, l'EPFL, le secteur public), ce que l'apprenant adapte dans sa manière de proposer ou de questionner — afin que la lecture culturelle devienne visible comme pratique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Deux questions politiques préparées pour l'École 42 — la deuxième crée un écart révélateur entre politique affichée et adaptation effective. Lecture des dynamiques organisationnelles."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Réaction (« lanternes rouges internes ») face à l'annonce d'un poste EPFL sur l'évaluation des copies — interpellation institutionnelle qui révèle une lecture du décalage entre intentions et fiabilité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : la fiche 2.07 est exigeante (lecture des dynamiques de pouvoir invisibles, alliances informelles, vrais décideurs vs organigramme). Aucune des pièces ne fait cela. La pièce 1 prépare deux questions, mais c'est plus de la diplomatie que de la lecture des intérêts cachés. La pièce 2 est une réaction normative (« comment osent-ils ») plutôt qu'une lecture de pouvoir. Ce qui reste plus faible : aucune analyse de fenêtre d'opportunité, aucune stratégie de contournement, aucune mention de voies informelles.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La deuxième question (« avez-vous modifié vos critères d'évaluation depuis ? ») cible précisément l'écart entre la politique affichée et la pratique — c'est une lecture stratégique des décalages institutionnels." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce. L'attaque (b) — confusion — touche : c'est de la diplomatie (2.04) plus que de la lecture de pouvoir (2.07). La pièce 2 est une réaction émotionnelle-éthique, pas une analyse de structure de pouvoir. Sur l'ensemble, le pôle politique n'est pas réellement déployé : il n'y a pas de récit où l'apprenant identifie un vrai décideur, une voie informelle, une stratégie de contournement.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce active mieux 2.04 (diplomatie de questionnement) que 2.07 (lecture des dynamiques invisibles) ; aucune analyse de pouvoir caché n'est articulée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché une lecture des dynamiques de pouvoir invisibles. Sous la présomption d'absence, une pièce a résisté comme stratégie de questionnement institutionnel. Sous la présomption de sycophantie, elle est tombée parce qu'elle relève plus de la diplomatie que de l'analyse politique. Ce qui en résulte : sur ce pôle, le travail ne montre pas encore de lecture politique des organisations — l'analyse reste à la frontière de la diplomatie et de la réaction éthique.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "L'unique pièce retenue au temps 1 est tombée sous l'attaque de confusion avec 2.04 ; aucune lecture des dynamiques de pouvoir invisibles n'est articulée.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de documenter, à propos d'un projet déjà avancé ou bloqué, qui décide vraiment, qui bloque et pourquoi, quels alliés ont été identifiés ou non — afin que la lecture organisationnelle devienne un objet d'observation en soi."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Auto-observation explicite d'une traduction de savoir : l'apprenant nomme ce qu'il transmet à Stéphane (pensée computationnelle + stratégies méta-cognitives + analogie juridique) pour un public technique non-pédagogue."
+        },
+        {
+          "numero": 2,
+          "pid": 13,
+          "contexte": "Articulation d'une même idée à quatre niveaux de registre (théorie pédagogique, écoles, roman, idées d'Harmonia) — transposition d'une vision pour des audiences différentes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : transmettre une idée n'est pas traduire entre mondes. La fiche dit : transposer (préserver le sens dans un autre registre) sans simplifier. La pièce 1 montre l'apprenant qui *nomme* ce qu'il transmet à un public technique : « pensée computationnelle », « stratégies méta-cognitives enseignées dans le cadre de hp! », « analogie avec ce que l'on connaît du juge, du greffier ». C'est une articulation de comment une idée passe d'un monde (pédagogie hp!) à un autre (architecture IA). La pièce 2 articule explicitement la même idée à quatre niveaux : théorique (pédagogie de l'émergence), pratique (écoles RESPIRE), romancée (le roman), philosophique (Harmonia). Ce qui reste plus faible : on n'a pas la trace de la traduction reçue (Stéphane qui aurait dit « je n'aurais pas vu ça autrement »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Articulation explicite de ce qui est transmis et du cadre source (hp!) vers un cadre cible (architecture d'évaluation IA) — traduction nommée." },
+            { "pieceId": 2, "motifResistance": "Quatre registres pour la même idée (théorique, pratique, romancée, philosophique) — bidirectionnalité possible entre univers." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. L'attaque (e) — surinterprétation — touche la pièce 2 : énumérer les déclinaisons d'une vision n'est pas forcément traduire — ça peut être une déclaration d'ambition. L'attaque (f) — récit performatif — touche la pièce 1 : l'apprenant dit ce qu'il croit transmettre, mais on n'a pas la trace que la traduction a effectivement fonctionné.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'auto-observation reste hypothétique (« peut-être que je lui apporte ») ; cependant l'articulation des sources et du destinataire constitue une trace de traduction consciente." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'énumération des quatre niveaux est plus une déclaration d'architecture qu'une démonstration de traduction effectuée ; la trace tient sur la conscience du multi-registre." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché des analogies structurelles et une bidirectionnalité de la traduction. Sous la présomption d'absence, deux pièces ont résisté : l'une nomme la traduction de hp! vers l'architecture IA, l'autre énonce quatre registres pour la même idée. Sous la présomption de sycophantie, les deux se sont affaiblies — la première par sa modalité hypothétique, la seconde par son caractère plus déclaratif qu'effectif — mais elles tiennent. Ce qui en résulte : sur ce pôle, le travail montre une conscience de la traduction entre univers (pédagogie / technique / romanesque / théorique), avec la traduction la plus claire pratiquée entre hp! et l'architecture IA.",
+          "confianceFinale": 0.58
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.58,
+        "motif": "Deux pièces affaiblies mais retenues : traduction nommée hp!/architecture IA, et conscience d'une articulation multi-registres.",
+        "prescription": "Pour épaissir cette traduction, un chemin possible serait de noter, après un échange avec un interlocuteur d'un autre univers (technicien EPFL, parent d'élève, autre éducateur), ce qui a été reformulé et ce qui s'est perdu ou s'est ajouté dans la transposition."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Articulation d'un écosystème communautaire (Harmonia, pédagogie de l'émergence, écoles RESPIRE, roman) — vision d'appartenance multi-niveaux."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Conception d'un dispositif communautaire de relecture par 15 lecteurs proches avant publication publique — espace de retour avant ouverture au public."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Mention de Décidim comme espace de débats sur le référentiel — infrastructure communautaire pour le dialogue collectif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : décrire une vision et mentionner des dispositifs ne suffit pas. La fiche dit : la communauté est un espace d'identité, pas un canal de communication, et le critère est la durabilité au-delà du projet. La pièce 1 décrit une vision en plusieurs strates (Harmonia, pédagogie, écoles, roman) — c'est une architecture communautaire systémique. La pièce 2 décrit un dispositif concret (15 exemplaires papier pour relecteurs proches) avec rôle (faire un retour sur les incohérences). La pièce 3 mentionne Décidim. Ce qui reste plus faible : aucun « nous » identitaire chargé d'émotion, aucun récit de rituel partagé, aucune description de vocabulaire propre au groupe.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Vision d'écosystème articulée à plusieurs niveaux (théorique, pratique, narratif) — architecture communautaire systémique." },
+            { "pieceId": 2, "motifResistance": "Dispositif communautaire concret (15 exemplaires papier, retours sollicités) avec rôle attribué aux lecteurs." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. L'attaque (f) — récit performatif — touche la pièce 1 : énumérer Harmonia, pédagogie de l'émergence, écoles RESPIRE est une déclaration de vision, pas la description d'une communauté en train de vivre. L'attaque (g) — mouvement vers — touche la pièce 2 : les 15 exemplaires sont commandés, pas encore distribués, les retours ne sont pas encore arrivés.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Vision déclarée plus que communauté décrite vivante ; tient comme architecture conceptuelle de communauté." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le dispositif est conçu et lancé (commande passée) mais l'usage communautaire n'est pas encore raconté ; trace de design plus que de vie communautaire." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché un « nous » identitaire chargé et des rituels partagés. Sous la présomption d'absence, deux pièces ont résisté : la vision multi-niveaux et le dispositif de relecture. Sous la présomption de sycophantie, les deux se sont affaiblies — la première par son caractère déclaratif, la seconde parce que le dispositif est lancé mais pas encore animé — mais elles tiennent comme traces de design communautaire. Ce qui en résulte : sur ce pôle, le travail montre une pensée architecturale de la communauté (écosystème multi-strates, dispositif de relecture, espace de débat Décidim) — le design d'espaces d'appartenance, sans que la vie communautaire ne soit encore racontée à travers des moments précis.",
+          "confianceFinale": 0.58
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.58,
+        "motif": "Deux pièces affaiblies mais retenues qui montrent une pensée architecturale de la communauté plutôt que la trace vivante d'un collectif.",
+        "prescription": "Pour épaissir cette dimension, un chemin possible serait de raconter, dans un prochain journal, un moment précis où la communauté autour du projet a manifesté sa vie propre (un retour reçu, un débat sur Décidim, un échange entre lecteurs du roman) — afin que l'architecture conçue soit habitée par des voix concrètes."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 4,
+    "nonEtablies": 1,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail s'inscrit dans une journée où le tissu relationnel est ténu mais réel : un partenaire de projet nommé (Stéphane), une famille proche (Soledad, Alicia, Leila), des institutions visées (EPFL, École 42, organisateurs de meetups), des communautés en arrière-plan (écoles RESPIRE, lecteurs du roman, contributeurs Décidim). La voix dominante est celle de quelqu'un qui pense les dispositifs collectifs autant qu'il les vit — la communauté est davantage architecturée que racontée en acte. La feuille porte des signaux corporels nommés avec précision (« lanternes rouges internes », faiblesse sans fièvre, peur de rechuter) qui servent de levier pour des décisions concrètes. La traduction entre univers (hp!, architecture IA, pédagogie, roman) est explicitement formulée comme apport possible à un tiers.",
+    "territoiresDenses": [
+      {
+        "competence": "Traduction entre mondes",
+        "description": "Le travail articule explicitement comment une idée passe d'un cadre conceptuel à un autre, et reconnaît la valeur de ce déplacement pour un destinataire.",
+        "extraitVerbatim": "Peut-être que je lui apporte un processus simple de pensée computationnelle (décomposition du problème en sous problèmes plus simples) et de création (voir les stratégies méta-cognitives enseignées dans le cadre de hp! pour avoir de nouvelles idées - ici l'analogie avec ce que l'on connaît du juge, du greffier, du président et du jury) pour réfléchir sur un problème complexe ?",
+        "ceQueCaDit": "La traduction est rendue consciente : l'apprenant nomme la source pédagogique (hp!) et la cible (un problème complexe d'architecture IA), ce qui distingue l'apport de la simple transmission."
+      },
+      {
+        "competence": "Construction de communautés (par design)",
+        "description": "Le travail conçoit des espaces d'appartenance multi-niveaux (Harmonia, écoles RESPIRE, lecteurs papier du roman, débats Décidim) avant qu'ils ne soient pleinement habités.",
+        "extraitVerbatim": "ces versions papiers seront destinées à être distribuées aux gens qui voudront bien me faire une retour sur les incohérences restantes ou problèmes de style restant, afin que je puisse uploader une version définitive sur le site et ouvrir la vente du livre au public",
+        "ceQueCaDit": "La communauté est pensée comme dispositif (rôle des relecteurs, séquence avant publication) plutôt que comme rencontre — l'architecture relationnelle précède la rencontre elle-même."
+      },
+      {
+        "competence": "Intelligence émotionnelle (sur soi)",
+        "description": "Les signaux corporels et émotionnels sont nommés avec un vocabulaire propre et servent explicitement de levier pour les arbitrages de la journée.",
+        "extraitVerbatim": "J'avais de la fièvre ce jour-là (38 degrés malgré le paracétamol tous les 4h). Ce qui fait que je n'étais pas en mesure de tester l'idée sur ma machine. Je l'ai envoyé à Stéphane qui a généré une V2 d'Aurora sur la base de cette architecture.",
+        "ceQueCaDit": "L'état corporel devient information opérationnelle qui module la division du travail avec un partenaire — la fièvre n'est ni cachée ni dramatisée, elle reconfigure ce qui peut être fait."
+      }
+    ],
+    "territoiresNonVisites": "La gestion des conflits n'apparaît pas dans cette feuille — aucune tension entre personnes ou positions n'est racontée. Le sens politique et la lecture organisationnelle restent à l'état de réaction normative (« comment osent-ils ») plutôt que d'analyse de pouvoir. La collaboration divergente est pratiquée avec Stéphane sans être formulée comme telle : on n'a pas le « on n'est pas d'accord MAIS on a livré ». La communication accomplie face à un tiers (la prise de parole reçue, l'échange tendu) reste un territoire à venir — les deux questions préparées pour l'École 42 sont l'amorce d'un dialogue qui n'a pas encore eu lieu.",
+    "emergencesPole": "Trois traversées : d'abord, la communauté est rarement décrite en train de vivre — elle est pensée comme architecture (écosystème, dispositif, séquence) avant d'être racontée comme rencontre, ce qui suggère une posture de concepteur d'espaces relationnels. Ensuite, le corps revient régulièrement comme déterminant des choix relationnels (fièvre, faiblesse, peur de rechuter, paracétamol) — la disponibilité aux autres est explicitement modulée par l'état physique. Enfin, le tissu relationnel apparaît à plusieurs distances simultanément (Stéphane en collaboration technique, la famille en présence quotidienne, les institutions en cible politique, les lecteurs en futur public) — chaque distance a son régime propre.",
+    "pistes": [
+      "Pour prolonger ce travail de lucidité émotionnelle, un chemin possible serait de noter, lors d'un prochain échange avec un proche ou un collègue, ce qui a été perçu chez l'autre avant qu'il ne le dise — afin d'élargir la perception émotionnelle de soi vers l'autre.",
+      "Pour ouvrir le territoire de la communication accomplie, un chemin possible serait de documenter, après la visite à l'École 42 ou lors d'un prochain échange tendu avec un partenaire, ce qui a été dit, comment, et l'effet observé.",
+      "Pour épaissir la collaboration divergente avec Stéphane, un chemin possible serait de noter le point précis où les visions divergent et ce qui a permis au travail d'avancer malgré tout — afin que la divergence productive devienne lisible comme stratégie.",
+      "Pour faire vivre les communautés conçues, un chemin possible serait de raconter dans un prochain journal un moment précis où la communauté autour du projet a manifesté sa vie propre (un retour reçu, un débat sur Décidim, un échange entre lecteurs)."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail s'inscrit dans une journée où le tissu relationnel est ténu mais réel : un partenaire de projet nommé (Stéphane), une famille proche (Soledad, Alicia, Leila), des institutions visées (EPFL, École 42, organisateurs de meetups), des communautés en arrière-plan (écoles RESPIRE, lecteurs du roman, contributeurs Décidim). La voix dominante est celle de quelqu'un qui pense les dispositifs collectifs autant qu'il les vit — la communauté est davantage architecturée que racontée en acte. La feuille porte des signaux corporels nommés avec précision (« lanternes rouges internes », faiblesse sans fièvre, peur de rechuter) qui servent de levier pour des décisions concrètes. La traduction entre univers (hp!, architecture IA, pédagogie, roman) est explicitement formulée comme apport possible à un tiers.\n\n## Territoires les plus denses\n\n**Traduction entre mondes.** Le travail articule explicitement comment une idée passe d'un cadre conceptuel à un autre, et reconnaît la valeur de ce déplacement pour un destinataire. Extrait : *« Peut-être que je lui apporte un processus simple de pensée computationnelle (décomposition du problème en sous problèmes plus simples) et de création (voir les stratégies méta-cognitives enseignées dans le cadre de hp! pour avoir de nouvelles idées - ici l'analogie avec ce que l'on connaît du juge, du greffier, du président et du jury) pour réfléchir sur un problème complexe ? ».* La traduction est rendue consciente : l'apprenant nomme la source pédagogique (hp!) et la cible (un problème complexe d'architecture IA), ce qui distingue l'apport de la simple transmission.\n\n**Construction de communautés (par design).** Le travail conçoit des espaces d'appartenance multi-niveaux (Harmonia, écoles RESPIRE, lecteurs papier du roman, débats Décidim) avant qu'ils ne soient pleinement habités. Extrait : *« ces versions papiers seront destinées à être distribuées aux gens qui voudront bien me faire une retour sur les incohérences restantes ou problèmes de style restant, afin que je puisse uploader une version définitive sur le site et ouvrir la vente du livre au public ».* La communauté est pensée comme dispositif (rôle des relecteurs, séquence avant publication) plutôt que comme rencontre — l'architecture relationnelle précède la rencontre elle-même.\n\n**Intelligence émotionnelle (sur soi).** Les signaux corporels et émotionnels sont nommés avec un vocabulaire propre et servent explicitement de levier pour les arbitrages de la journée. Extrait : *« J'avais de la fièvre ce jour-là (38 degrés malgré le paracétamol tous les 4h). Ce qui fait que je n'étais pas en mesure de tester l'idée sur ma machine. Je l'ai envoyé à Stéphane qui a généré une V2 d'Aurora sur la base de cette architecture ».* L'état corporel devient information opérationnelle qui module la division du travail avec un partenaire — la fièvre n'est ni cachée ni dramatisée, elle reconfigure ce qui peut être fait.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa gestion des conflits n'apparaît pas dans cette feuille — aucune tension entre personnes ou positions n'est racontée. Le sens politique et la lecture organisationnelle restent à l'état de réaction normative (« comment osent-ils ») plutôt que d'analyse de pouvoir. La collaboration divergente est pratiquée avec Stéphane sans être formulée comme telle : on n'a pas le « on n'est pas d'accord MAIS on a livré ». La communication accomplie face à un tiers (la prise de parole reçue, l'échange tendu) reste un territoire à venir — les deux questions préparées pour l'École 42 sont l'amorce d'un dialogue qui n'a pas encore eu lieu.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois traversées : d'abord, la communauté est rarement décrite en train de vivre — elle est pensée comme architecture (écosystème, dispositif, séquence) avant d'être racontée comme rencontre, ce qui suggère une posture de concepteur d'espaces relationnels. Ensuite, le corps revient régulièrement comme déterminant des choix relationnels (fièvre, faiblesse, peur de rechuter, paracétamol) — la disponibilité aux autres est explicitement modulée par l'état physique. Enfin, le tissu relationnel apparaît à plusieurs distances simultanément (Stéphane en collaboration technique, la famille en présence quotidienne, les institutions en cible politique, les lecteurs en futur public) — chaque distance a son régime propre.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger ce travail de lucidité émotionnelle, un chemin possible serait de noter, lors d'un prochain échange avec un proche ou un collègue, ce qui a été perçu chez l'autre avant qu'il ne le dise — afin d'élargir la perception émotionnelle de soi vers l'autre.\n- Pour ouvrir le territoire de la communication accomplie, un chemin possible serait de documenter, après la visite à l'École 42 ou lors d'un prochain échange tendu avec un partenaire, ce qui a été dit, comment, et l'effet observé.\n- Pour épaissir la collaboration divergente avec Stéphane, un chemin possible serait de noter le point précis où les visions divergent et ce qui a permis au travail d'avancer malgré tout — afin que la divergence productive devienne lisible comme stratégie.\n- Pour faire vivre les communautés conçues, un chemin possible serait de raconter dans un prochain journal un moment précis où la communauté autour du projet a manifesté sa vie propre (un retour reçu, un débat sur Décidim, un échange entre lecteurs).\n"
+  }
+}

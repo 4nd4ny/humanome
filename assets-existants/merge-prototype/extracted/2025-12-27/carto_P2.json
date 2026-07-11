@@ -1,0 +1,496 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Ça fait que je suis sur trois fronts en parallèle, mais comme nous avons les enfants à la maison en ce moment, je n'ai que quelques heures le soir, lorsque tout le monde dort pour avancer.",
+      "contexte": "Mention de la situation familiale comme cadre qui structure le temps de travail — contexte familial nommé sans pathos.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Contrairement à quand je travaillais, je dis oui à tout le monde, ce qui fait qu'il ne me reste plus que les nuits pour poursuivre le travail de recherche que je faisais en tant qu'enseignant.",
+      "contexte": "Auto-observation d'un comportement relationnel (dire oui à tout le monde) et de ses conséquences sur le temps disponible.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Claude m'a donné une idée intéressante, c'est d'ajouter un 7e chapitre sur la documentation du processus de construction des agents IA : ça pourrait effectivement être intéressant que Stéphane décrive son architecture et pourquoi le fait de travailler avec un collègue d'experts IA \"éveillées à leur propre conscience\" devrait améliorer les feedbacks fournis aux élèves.",
+      "contexte": "Anticipation du travail à confier à Stéphane sur la base d'une idée venue d'une IA — gestion d'un collaborateur humain via un dispositif partagé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je pourrais y inclure toutes les références bibliographiques sur le développement intellectuel des élèves, ce qui apporterait à notre école une orientation noèsiologue qui est effectivement sous-jacente à nos visions respectives à Stéphane et à moi, de ce qu'il est important de faire apprendre aux élèves.",
+      "contexte": "Articulation explicite d'une vision partagée avec Stéphane et d'une école comme « notre » école.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai réalisé en générant le CSS de la fonction d'impression du site (qui ne marche pas sur tous les navigateurs mobiles, mais ça je n'y peux rien hélas) que le site devient le manifeste des écoles : c'est comme un livre qui décrit le pourquoi du comment, et quis sert à documenter les idées autant que possible tout en gardant une structure légère pour le lecteur pressé.",
+      "contexte": "Pensée explicite du destinataire (« le lecteur pressé ») et du registre approprié pour le rendre intelligible — geste de traduction.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Il faudrait prendre le temps de documenter tout ça (en dehors de ce journal), pour partager mes techniques avec la communauté apprenante de Benoît Raphaël dans WhatsApp. Mais c'est dur de tout faire en parallèle avec si peu de temps.",
+      "contexte": "Mention d'une communauté apprenante existante (Benoît Raphaël, WhatsApp) à laquelle l'apprenant souhaite contribuer.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "En bref, j'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre qui va pouvoir amener les autres élèves à cette conscientisation.",
+      "contexte": "Traduction d'une méthode didactique en prompt IA — pontage entre deux mondes (pédagogie / ingénierie IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Ce faisant, les écoles Respire vont combler un autre trou béant de l'éducation traditionnelle, celui d'ignorer les neurosciences de l'éducation et la psychologie cognitive dans la formation des maîtres. Les tuteurs seront les premiers noèsiologues !",
+      "contexte": "Diagnostic d'une lacune institutionnelle de l'éducation traditionnelle et positionnement stratégique des écoles Respire en réponse.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail et que je me suis arrêté ici.",
+      "contexte": "Collaboration avec une IA imparfaite : l'apprenant continue à travailler avec malgré ses limites, en arrêtant le pipeline avant que les défauts deviennent coûteux.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Auto-observation d'un comportement relationnel (dire oui à tout le monde) sans nommer l'émotion sous-jacente, mais avec lucidité sur l'effet."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la feuille raconte un travail technique, pas un travail émotionnel. La pièce 1 (pid 2) est la seule qui touche un registre relationnel, en décrivant un changement de comportement (« je dis oui à tout le monde ») et son coût. Cette pièce résiste faiblement : elle nomme un comportement mais pas l'émotion qui le sous-tend (besoin de reconnaissance ? culpabilité ? plaisir social ?). L'analyse reste à la surface comportementale, sans nomination émotionnelle précise ni régulation décrite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant observe un pattern relationnel chez lui-même et en mesure le coût — il y a une trace de lucidité sur sa propre dynamique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir cette pièce. Je l'attaque maintenant pour vérifier que je ne lis pas de l'intelligence émotionnelle là où il n'y a qu'un constat factuel. Le risque dominant est l'insuffisance probatoire : la pièce ne nomme aucune émotion, ne décrit aucune régulation, ne montre aucun care vis-à-vis d'autrui. Elle observe un comportement sans toucher au registre émotionnel proprement dit. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce constate un comportement (dire oui) mais ne nomme aucune émotion, ne décrit aucune régulation et ne touche pas l'autre. Elle reste à un registre purement organisationnel, pas émotionnel."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un journal qui prend pour objet des émotions et des relations. Ce qui m'a forcé à hésiter, c'est l'auto-observation du « dire oui à tout le monde », qui touche bien à une dynamique relationnelle. Sous la présomption de sycophantie, la pièce est tombée parce qu'elle reste à un registre comportemental et organisationnel, sans nommer l'émotion, sans décrire une régulation, sans toucher au care pour autrui. Il en résulte une absence de trace probante pour cette compétence dans cette feuille. La feuille est centrée sur un travail technique et conceptuel ; le registre émotionnel et relationnel n'y est pas activé. Cette absence ressemble à un effet de focus thématique plutôt qu'à un évitement. Une feuille qui raconterait une interaction familiale, une rencontre avec un collègue, ou un moment de tension intérieure permettrait d'ouvrir ce territoire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la seule pièce extraite : un constat comportemental sans nomination émotionnelle ni régulation décrite.",
+        "prescription": "Le territoire reste à explorer. Un récit qui nommerait une émotion ressentie dans une situation concrète — frustration, gratitude, irritation, joie — et décrirait ce qu'elle a informé ou modifié, ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Conscience explicite du destinataire (« le lecteur pressé ») et du registre approprié (structure légère mais documentée) — choix de communication calibrée."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Prise de position assertive avec ton manifeste (« les tuteurs seront les premiers noèsiologues ! ») — registre engagé sans agressivité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la feuille est un journal personnel, pas une situation de communication adressée. La pièce 1 (pid 5) pense le destinataire du site (« le lecteur pressé ») et le registre approprié — c'est une trace de communication calibrée. La pièce 2 (pid 8) prend une position assertive avec ton manifeste. Ce qui reste faible : aucune des pièces ne raconte une prise de parole inconfortable en situation, et la feuille ne contient pas de récit de conversation difficile.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant pense explicitement le destinataire et adapte le dispositif (structure légère pour lecteur pressé, contenu documenté pour qui veut aller plus loin) — c'est une conscience du registre." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir la pièce 1. Je l'attaque pour vérifier que ce n'est pas une simple description fonctionnelle. Le risque dominant est le biais de medium : penser au lecteur d'un site web est un geste éditorial standard, qui n'engage pas nécessairement une communication authentique au sens de la fiche (assertivité, vulnérabilité, conversations difficiles). La pièce s'affaiblit : elle est plus éditoriale que relationnelle. La pièce 2 (pid 8) ressemble à une déclaration enthousiaste sans véritable risque relationnel — risque de récit performatif.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pensée du destinataire est éditoriale plus que relationnelle ; mais le double registre (lecteur pressé / lecteur attentif) reste un acte de calibration communicationnelle qui justifie la retenir comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une communication adressée à autrui dans une situation engageante. Ce qui m'a forcé à reconnaître une trace minime, c'est la pièce qui pense explicitement le destinataire et adapte le registre. Sous la présomption de sycophantie, la pièce s'est affaiblie parce que la conscience du destinataire ici relève d'un travail éditorial sur un site web, plus que d'une communication relationnelle au sens de la fiche. Il reste un indice mince, sans preuve décisive. Cette feuille ne montre pas de prise de parole inconfortable, de feedback donné, de positionnement assertif en situation tendue. L'absence ressemble à un effet de focus : la feuille raconte une nuit de travail solitaire, pas un échange. Une situation où l'apprenant raconterait une conversation où il a dû dire quelque chose de difficile à entendre, ou un échange où il a calibré son registre en temps réel, ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la seule pièce sans la disqualifier : un indice éditorial de calibration du registre, sans preuve d'une communication adressée dans une situation engageante.",
+        "prescription": "Pour ouvrir ce dossier, un récit d'une conversation où l'apprenant a dû choisir ce qu'il partageait et comment — un feedback difficile, une limite posée, un désaccord exprimé — donnerait à voir la communication en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète où une tension a été productivement structurée plutôt que fuie ou écrasée."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Diagnostic d'une lacune de l'éducation traditionnelle et positionnement des écoles Respire en réponse — stratégie discursive de différenciation."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Suggestion d'un futur chapitre où Stéphane documenterait son architecture — anticipation d'un travail à mobiliser chez un collaborateur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche exige une action visant l'adhésion d'autrui, pas une simple prise de position. La pièce 1 (pid 8) est un positionnement manifeste pour un lectorat hypothétique, mais elle ne décrit aucun travail d'adhésion ciblé. La pièce 2 (pid 3) imagine un travail à mobiliser chez Stéphane, mais sans description de la manière de l'amener à ce travail. Ce qui reste faible : aucune trace de préparation tactique, de reformulation d'objections, ou de stratégie d'alliance.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant projette de mobiliser Stéphane sur un chapitre spécifique, ce qui est une amorce de mobilisation, même non développée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est l'insuffisance probatoire : la pièce ne décrit ni la conversation avec Stéphane, ni la stratégie pour le mobiliser, ni les objections anticipées. C'est une projection à voix haute dans un journal, pas un acte d'influence. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce projette une mobilisation future sans aucun élément tactique : pas de stratégie, pas de reformulation d'objections, pas de séquence prévue. Elle ne porte pas une trace d'influence en acte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un travail d'adhésion auprès d'autrui. Ce qui m'a fait hésiter, c'est la projection d'un futur chapitre à confier à Stéphane. Sous la présomption de sycophantie, cette pièce est tombée parce qu'elle reste une idée à voix haute, sans description du dispositif d'influence concret. Il en résulte une absence de trace probante pour cette compétence dans cette feuille. Le territoire de l'influence et de la diplomatie n'est pas activé ici — la feuille est centrée sur la fabrication d'un dispositif, pas sur la mobilisation d'acteurs. Une feuille qui raconterait comment l'apprenant a obtenu l'adhésion d'un collègue, parent ou décideur sur une proposition donnée ouvrirait ce dossier.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Le temps 2 a disqualifié la seule pièce extraite : une projection sans dispositif d'influence concret.",
+        "prescription": "Le territoire reste à explorer. Un récit de mobilisation effective — une proposition portée à un décideur, une objection reformulée, une stratégie d'alliance déployée — donnerait à voir l'influence en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Collaboration avec Gemini malgré ses hallucinations : l'apprenant tolère l'imperfection et compense en arrêtant le pipeline au bon endroit."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la collaboration divergente exige un partenaire avec une vision divergente persistante. La pièce 1 (pid 9) décrit une collaboration avec Gemini malgré son hallucination résiduelle — l'apprenant continue à travailler avec un partenaire imparfait et compense par un arrêt du pipeline. La fiche indique explicitement les collaborations avec IA imparfaites comme manifestation. La pièce résiste. Ce qui pourrait l'affaiblir : la « divergence » avec une IA n'est pas une vision, c'est un défaut technique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant continue à travailler avec Gemini en sachant qu'il hallucine, et met en place une compensation (arrêter avant la rédaction finale). C'est explicitement la trace oblique listée dans la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est la confusion de compétence : travailler avec une IA imparfaite peut relever de la synergie (1.10) plutôt que de la collaboration divergente. La frontière est fine : 2.05 demande qu'on tolère un désaccord ou un défaut persistant qui ne se résout pas. La pièce tient parce que la fiche 2.05 cite explicitement les collaborations avec IA hallucinant et la mise en place de compensations comme manifestation forte de cette compétence. La pièce s'affaiblit néanmoins car le portfolio ne raconte pas un désaccord avec un humain.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La frontière avec 1.10 (synergie) est ténue, mais la fiche 2.05 cite explicitement la collaboration avec IA imparfaites avec compensation comme manifestation. La pièce reste légitime mais sans extension à des partenaires humains divergents."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un désaccord persistant et une production qui avance malgré tout. Ce qui m'a forcé à reconnaître une trace, c'est la collaboration avec Gemini : l'apprenant ne cherche pas à corriger l'hallucination, il l'admet et organise un dispositif pour qu'elle ne contamine pas la suite. Sous la présomption de sycophantie, la pièce s'est affaiblie parce que la divergence avec une IA n'est pas une divergence de vision, mais la fiche reconnaît cette forme oblique. Il reste un dossier limité à la collaboration IA, sans extension à des partenaires humains aux visions divergentes. Une feuille qui raconterait un cas où l'apprenant a continué à livrer avec un collègue ou un partenaire avec qui il restait en désaccord sur le fond ouvrirait ce dossier au registre humain.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.55,
+        "motif": "Le temps 3 a tenu sur la pièce 1 : la trace oblique listée dans la fiche (collaboration avec IA imparfaite et compensation) est attestée concrètement.",
+        "prescription": "Pour étendre ce territoire, un récit où la collaboration divergente s'exerce avec un partenaire humain — une vision incompatible sur un point, un accord pragmatique sur ce qui peut être livré ensemble — donnerait à la compétence sa dimension humaine."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Adaptation du registre du site (manifeste léger pour lecteur pressé, contenu documenté pour qui veut aller plus loin) selon le destinataire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche demande l'adaptation à des contextes radicalement différents, avec analyse du pourquoi. La pièce 1 (pid 5) pense le destinataire et adapte le dispositif, mais sur un même registre (lecteur web). Ce qui reste faible : aucune analyse de norme différente, aucun récit de changement de contexte, aucune identification de biais culturels d'outils IA dans cette feuille.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Je n'ai donc rien à examiner en présomption de sycophantie. La pièce 1 ne touche pas vraiment à l'intelligence culturelle au sens de la fiche (différence de cadres de référence à suspendre) ; elle relève davantage de la traduction (2.08).",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une adaptation à un cadre de référence différent du sien. Cette feuille ne montre pas un tel mouvement : il n'y a ni récit de faux-pas culturel, ni comparaison entre systèmes de normes, ni identification de biais culturels dans les outils IA utilisés. L'absence ressemble à un effet de focus thématique. Une feuille qui raconterait un moment de décodage d'implicites — culturels, organisationnels, générationnels ou disciplinaires — ouvrirait ce territoire.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : la seule pièce extraite relève d'un autre territoire (traduction de registre, pas suspension de cadre culturel).",
+        "prescription": "Le territoire reste à explorer. Un récit de décodage d'implicites — passer d'un milieu professionnel à un autre, lire les biais culturels d'un outil IA, naviguer une norme organisationnelle nouvelle — ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Diagnostic structurel d'une lacune de l'éducation traditionnelle (« trou béant... ignorer les neurosciences de l'éducation »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche demande une lecture des dynamiques de pouvoir invisibles, des résistances institutionnelles, des règles non-écrites. La pièce 1 (pid 8) diagnostique une lacune structurelle de l'éducation traditionnelle (ignorer neurosciences et psychologie cognitive dans la formation des maîtres). C'est une analyse institutionnelle mais sans aucun travail sur les rapports de force, les blocages réels, les fenêtres d'opportunité. Ce qui reste faible : le diagnostic est macro, sans aucun dispositif d'action politique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant identifie une lacune structurelle de l'institution éducative et la rattache à un mode de formation des maîtres — c'est une lecture institutionnelle, même si elle n'engage pas une stratégie politique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est la surinterprétation pédagogique : ai-je chargé un diagnostic général de la portée d'une lecture politique organisationnelle ? Le diagnostic reste à un niveau abstrait : « l'éducation traditionnelle ignore les neurosciences ». Ce n'est pas un identifiant de qui décide, qui bloque, où passent les vraies voies. La pièce tombe : c'est une opinion sur un système, pas une lecture des dynamiques de pouvoir au sein d'un système identifié.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le diagnostic est trop général pour porter une lecture politique organisationnelle au sens de la fiche : il n'identifie pas qui décide, qui bloque, où passent les voies informelles. C'est une critique de système, pas une cartographie de pouvoir."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une lecture des dynamiques de pouvoir invisibles. Ce qui m'a fait hésiter, c'est le diagnostic d'une lacune structurelle. Sous la présomption de sycophantie, la pièce est tombée parce qu'elle reste à un niveau d'opinion macro sans cartographie politique précise. Il en résulte une absence de trace probante pour cette compétence dans cette feuille. Une feuille qui raconterait comment un projet a été bloqué ou débloqué dans une organisation réelle, avec identification des acteurs et des voies de contournement, ouvrirait ce dossier.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la seule pièce extraite : un diagnostic structurel macro sans lecture des dynamiques de pouvoir situées.",
+        "prescription": "Le territoire reste à explorer. Un récit où l'apprenant identifierait des acteurs précis, des voies informelles, ou des résistances structurelles dans une situation vécue ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Traduction d'une méthode didactique en prompt IA — pontage entre pédagogie (méthode pour faire passer les tuteurs d'un statut à un autre) et ingénierie du contexte IA."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Adaptation du site en deux niveaux de lecture (lecteur pressé / lecteur attentif) — traduction d'un contenu manifeste vers deux publics."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Pontage entre référentiel pédagogique (développement intellectuel des élèves) et architecture multi-agents IA — convergence dans la noèsiologie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la traduction exige une transposition qui préserve le sens dans un autre registre, pas une simple reformulation. La pièce 1 (pid 7) articule explicitement une méthode didactique et son incarnation dans un prompt IA — c'est exactement le geste de transposition entre deux cadres conceptuels (pédagogie / ingénierie IA). La pièce 2 (pid 5) pense un objet sur deux registres simultanément. La pièce 3 (pid 4) connecte un corpus pédagogique et une architecture IA. Ce qui reste faible : la pièce 3 est plus de la synthèse que de la traduction.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant transpose une méthode didactique (faire passer les tuteurs d'un statut à un autre) dans un autre cadre conceptuel (prompt IA, tokens, contexte) tout en préservant son sens. C'est exactement le test de la fiche." },
+            { "pieceId": 2, "motifResistance": "La pièce pense deux registres de lecture du même contenu (manifeste léger / documentation dense), ce qui est une bidirectionnalité éditoriale." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces avec méfiance. Le risque dominant pour la pièce 1 est la surinterprétation pédagogique : peut-être que je lis comme « transposition » ce qui est en fait une simple métaphore. La pièce 1 tient parce qu'elle nomme explicitement l'objet transposé (la méthode didactique) et le registre cible (les prompts qui forment le contexte) — la transposition est articulée, pas suggérée. La pièce 2 s'affaiblit parce que les deux registres sont sur le même medium (le web) et ne sont pas vraiment des cadres conceptuels différents.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'apprenant articule explicitement l'objet transposé (méthode didactique) et son incarnation dans un cadre différent (prompts IA, tokens). C'est de la transposition au sens strict de la fiche, pas une métaphore."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les deux registres sont sur le même medium, sans changement de cadre conceptuel ; mais la pensée du double destinataire reste une trace de calibration éditoriale qui justifie la retenir."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une simple reformulation. Ce qui m'a forcé à reconnaître une traduction, c'est la pièce 1 : l'apprenant nomme explicitement un objet pédagogique (la méthode didactique pour faire évoluer les tuteurs) et le transpose dans un cadre conceptuel différent (l'ingénierie de prompt) sans réduire son sens. Sous la présomption de sycophantie, la pièce 2 s'est affaiblie mais reste comme indice de la même attention au destinataire. Il en résulte un dossier où la traduction entre mondes (pédagogie ↔ IA) est attestée concrètement. Ce qui n'apparaît pas dans cette feuille, c'est la bidirectionnalité — la traduction explicite du monde IA vers le monde pédagogique. Une feuille future pourrait documenter ce mouvement inverse.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 3 a tenu sur la pièce 1 : transposition explicite d'une méthode didactique dans un cadre d'ingénierie IA, corroborée par un indice de calibration éditoriale.",
+        "prescription": "Pour épaissir ce territoire, un récit qui traduirait dans l'autre sens — un concept ou un mécanisme IA expliqué dans le langage propre de la pédagogie ou des écoles — donnerait à la traduction sa dimension bidirectionnelle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Référence à « notre école » et « nos visions respectives à Stéphane et à moi » — appartenance identitaire à un collectif de fondateurs."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Mention d'une « communauté apprenante de Benoît Raphaël dans WhatsApp » avec intention de contribuer."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche exige plus qu'un « nous » de circonstance, elle exige un « nous » identitaire chargé d'émotion et idéalement une architecture communautaire. La pièce 1 (pid 4) utilise « notre école » et nomme explicitement la convergence de visions avec Stéphane — c'est un « nous » identitaire situé. La pièce 2 (pid 6) mentionne une communauté apprenante existante à laquelle l'apprenant souhaite contribuer. Ce qui reste faible : aucune description d'architecture communautaire, ni de rituels, ni de vocabulaire propre au groupe — seulement deux mentions situées.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le « notre école » couplé à l'articulation des visions partagées avec Stéphane n'est pas un « nous » de politesse mais un « nous » identitaire qui porte un projet commun." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est l'insuffisance probatoire : un « notre école » entre deux fondateurs est-il suffisant pour parler de construction de communauté, ou est-ce simplement un duo de travail ? La fiche distingue la communauté de la coordination d'équipe par la question : si le projet s'arrête, les gens continuent-ils à se voir ? Cette feuille ne permet pas de répondre. La pièce s'affaiblit.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le « nous » est identitaire mais ne dépasse pas le duo fondateur ; aucune architecture communautaire ni rituel n'est décrit dans la feuille. La pièce reste comme indice d'un collectif naissant, sans démontrer la construction d'une communauté au sens fort."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une architecture communautaire ou un « nous » identitaire chargé. Ce qui m'a fait hésiter, c'est l'usage non-décoratif de « notre école » et la convergence explicite avec Stéphane. Sous la présomption de sycophantie, la pièce s'est affaiblie parce qu'elle ne montre qu'un duo, sans rituel ni architecture. Il reste un indice de la posture (« nous », visions partagées) sans démonstration de construction. Le territoire reste embryonnaire dans cette feuille. Une feuille qui décrirait les espaces ou les rituels par lesquels la communauté autour des écoles Respire prend forme — au-delà du duo fondateur — ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier : un « nous » identitaire de duo, sans architecture communautaire décrite.",
+        "prescription": "Pour épaissir ce territoire, un récit qui décrirait les espaces, les rituels ou les vocabulaires propres par lesquels la communauté autour des écoles Respire prend forme — au-delà du duo fondateur — ouvrirait ce dossier."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 3,
+    "nonEtablies": 3,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille est centrée sur la fabrication d'un dispositif technique et pédagogique, conduite dans la solitude d'un travail nocturne. Le registre relationnel n'y occupe pas le devant de la scène : la voix dominante est analytique, technique, organisationnelle. Les mentions d'autrui sont brèves mais situées — la famille en arrière-plan, Stéphane comme cofondateur, une communauté apprenante à laquelle contribuer, des lecteurs imaginés du site. Ce qui traverse le pôle, c'est un travail de pontage entre des cadres conceptuels distincts : la pédagogie et l'ingénierie IA, le manifeste et la documentation, le pour-soi et le pour-autrui éditorial. La feuille montre un apprenant qui pense ses destinataires sans toujours raconter ses interactions directes.",
+    "territoiresDenses": [
+      {
+        "competence": "Traduction entre mondes",
+        "description": "Transposition d'une méthode didactique dans un cadre d'ingénierie IA, en préservant le sens du concept original.",
+        "extraitVerbatim": "J'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre.",
+        "ceQueCaDit": "Le travail montre une traduction structurelle, pas décorative : l'objet pédagogique (faire évoluer le statut des apprenants) est explicitement transposé dans un cadre d'ingénierie IA, sans réduction de sens. Le pontage entre deux mondes est articulé."
+      },
+      {
+        "competence": "Collaboration divergente",
+        "description": "Travail continué avec une IA aux limites connues, avec compensation organisée au lieu d'attendre une correction.",
+        "extraitVerbatim": "Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail et que je me suis arrêté ici.",
+        "ceQueCaDit": "La collaboration ne cherche pas à résoudre le défaut du partenaire ; elle l'admet, le contourne, et organise un dispositif (arrêt du pipeline au bon endroit) pour qu'il ne devienne pas un blocage. La trace s'exerce ici sur le registre humain-IA, sans extension humaine pour l'instant."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas activés dans cette feuille. La nomination émotionnelle, la régulation interne, le care vis-à-vis d'autrui n'apparaissent pas — la feuille reste sur un registre comportemental et organisationnel. La gestion des conflits, l'influence et la diplomatie, l'intelligence culturelle, la lecture organisationnelle ne sont pas activées non plus : la feuille ne raconte pas d'interaction tendue, pas de mobilisation d'un tiers, pas de navigation institutionnelle située. Ces absences ressemblent davantage à un effet de focus thématique — une nuit de travail solitaire sur un dispositif — qu'à un évitement. La communication adressée et la construction de communauté restent à l'état d'indice : le « nous » identitaire du duo fondateur est là, mais sans architecture communautaire élargie.",
+    "emergencesPole": "Quelques lignes émergent quand même. D'abord, le travail s'inscrit dans un collectif minimal mais identifié — Stéphane comme cofondateur partageant une vision, la communauté Raphaël comme audience potentielle, les tuteurs comme bénéficiaires futurs — ce qui colore le récit d'une orientation vers l'autre, même quand l'autre n'est pas physiquement présent. Ensuite, le travail éditorial sur le site (penser le lecteur pressé) et le travail didactique sur les tuteurs (les amener à la conscientisation) sont du même geste : un soin du destinataire qui prend la forme du dispositif plutôt que de l'interaction directe. Enfin, la collaboration avec une IA imparfaite préfigure peut-être un rapport au collaborateur en général, où la divergence est admise comme condition de travail plutôt que comme obstacle à résoudre.",
+    "pistes": [
+      "Pour ouvrir le territoire émotionnel et relationnel, un chemin possible serait de nommer une émotion ressentie dans une situation concrète — frustration, gratitude, lassitude — et de décrire ce qu'elle a informé ou modifié dans le travail.",
+      "Pour activer la communication authentique, un chemin possible serait de raconter une conversation où l'apprenant a dû choisir ce qu'il partageait et comment — un désaccord exprimé, une limite posée, un feedback difficile.",
+      "Pour étendre la collaboration divergente à l'humain, un chemin possible serait de documenter un travail mené avec un partenaire avec qui le désaccord persiste, en nommant ce sur quoi on reste en désaccord et ce qu'on a quand même livré ensemble.",
+      "Pour ouvrir la lecture organisationnelle, un chemin possible serait de raconter un épisode où un projet a été bloqué ou débloqué dans une institution réelle, avec identification des acteurs et des voies informelles.",
+      "Pour épaissir la construction de communautés, un chemin possible serait de décrire les espaces, les rituels ou les vocabulaires propres par lesquels la communauté autour des écoles Respire commence à prendre forme au-delà du duo fondateur."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille est centrée sur la fabrication d'un dispositif technique et pédagogique, conduite dans la solitude d'un travail nocturne. Le registre relationnel n'y occupe pas le devant de la scène : la voix dominante est analytique, technique, organisationnelle. Les mentions d'autrui sont brèves mais situées — la famille en arrière-plan, Stéphane comme cofondateur, une communauté apprenante à laquelle contribuer, des lecteurs imaginés du site. Ce qui traverse le pôle, c'est un travail de pontage entre des cadres conceptuels distincts : la pédagogie et l'ingénierie IA, le manifeste et la documentation, le pour-soi et le pour-autrui éditorial. La feuille montre un apprenant qui pense ses destinataires sans toujours raconter ses interactions directes.\n\n## Territoires les plus denses\n\n**Traduction entre mondes.** Transposition d'une méthode didactique dans un cadre d'ingénierie IA, en préservant le sens du concept original. L'extrait — « J'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre » — montre une traduction structurelle, pas décorative : l'objet pédagogique est explicitement transposé dans un cadre d'ingénierie IA, sans réduction de sens. Le pontage entre deux mondes est articulé.\n\n**Collaboration divergente.** Travail continué avec une IA aux limites connues, avec compensation organisée au lieu d'attendre une correction. L'extrait — « Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail et que je me suis arrêté ici » — montre une collaboration qui ne cherche pas à résoudre le défaut du partenaire ; elle l'admet, le contourne, et organise un dispositif pour qu'il ne devienne pas un blocage. La trace s'exerce ici sur le registre humain-IA, sans extension humaine pour l'instant.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas activés dans cette feuille. La nomination émotionnelle, la régulation interne, le care vis-à-vis d'autrui n'apparaissent pas — la feuille reste sur un registre comportemental et organisationnel. La gestion des conflits, l'influence et la diplomatie, l'intelligence culturelle, la lecture organisationnelle ne sont pas activées non plus : la feuille ne raconte pas d'interaction tendue, pas de mobilisation d'un tiers, pas de navigation institutionnelle située. Ces absences ressemblent davantage à un effet de focus thématique — une nuit de travail solitaire sur un dispositif — qu'à un évitement. La communication adressée et la construction de communauté restent à l'état d'indice : le « nous » identitaire du duo fondateur est là, mais sans architecture communautaire élargie.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nQuelques lignes émergent quand même. D'abord, le travail s'inscrit dans un collectif minimal mais identifié — Stéphane comme cofondateur partageant une vision, la communauté Raphaël comme audience potentielle, les tuteurs comme bénéficiaires futurs — ce qui colore le récit d'une orientation vers l'autre, même quand l'autre n'est pas physiquement présent. Ensuite, le travail éditorial sur le site (penser le lecteur pressé) et le travail didactique sur les tuteurs (les amener à la conscientisation) sont du même geste : un soin du destinataire qui prend la forme du dispositif plutôt que de l'interaction directe. Enfin, la collaboration avec une IA imparfaite préfigure peut-être un rapport au collaborateur en général, où la divergence est admise comme condition de travail plutôt que comme obstacle à résoudre.\n\n## Pistes pour enrichir ce pôle\n\nPour ouvrir le territoire émotionnel et relationnel, un chemin possible serait de nommer une émotion ressentie dans une situation concrète — frustration, gratitude, lassitude — et de décrire ce qu'elle a informé ou modifié dans le travail.\n\nPour activer la communication authentique, un chemin possible serait de raconter une conversation où l'apprenant a dû choisir ce qu'il partageait et comment — un désaccord exprimé, une limite posée, un feedback difficile.\n\nPour étendre la collaboration divergente à l'humain, un chemin possible serait de documenter un travail mené avec un partenaire avec qui le désaccord persiste, en nommant ce sur quoi on reste en désaccord et ce qu'on a quand même livré ensemble.\n\nPour ouvrir la lecture organisationnelle, un chemin possible serait de raconter un épisode où un projet a été bloqué ou débloqué dans une institution réelle, avec identification des acteurs et des voies informelles.\n\nPour épaissir la construction de communautés, un chemin possible serait de décrire les espaces, les rituels ou les vocabulaires propres par lesquels la communauté autour des écoles Respire commence à prendre forme au-delà du duo fondateur."
+  }
+}

@@ -1,0 +1,443 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Ce qui m'a motivé à faire le roman en priorité, c'est d'une part que le site web n'est plus du tout à jour, et d'autre part, lorsque je le montre à des jeunes, ils le scrollent sans le lire.",
+      "contexte": "Justification d'une priorisation (le roman avant le site) par deux arguments — touche 7.06 et obliquement 7.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "J'ai au moins maintenant quelque chose à partager de compréhensible par tout le monde, pour expliquer le projet.",
+      "contexte": "Visée de transmission du projet pour un public large — touche obliquement 7.01 (architecturer la transmission).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Le début est pas mal. Le milieu est un peu light en profondeur réflexive, mais Claude me dit que c'est nécessaire. La fin est sympa. J'ai relevé plein de petites erreurs que je vais modifier à la main ce soir.",
+      "contexte": "Lecture évaluative segmentée d'un texte produit — touche obliquement 7.02 (évaluation orientée progression de l'objet) et 7.07 (itération).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Je n'ai pas du tout l'habitude de lire des romans. Je ne sais pas si c'est bien ou pas. Je vais le proposer au club de lecture de Soledad, voir si quelqu'un peut me faire un feedback.",
+      "contexte": "Mise en place d'un dispositif de feedback externe pour faire progresser l'objet — touche 7.02 (évaluation transformative) et 7.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "D'un point de vue technique je suis un peu resté sur ma faim, mais l'objectif n'était pas de tout expliquer : juste donner envie, éveiller la curiosité, et ça je pense que ça fonctionne bien.",
+      "contexte": "Évaluation du livrable contre un objectif articulé (susciter, pas expliquer) — touche 7.05 (vision) et 7.06 (priorisation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique.",
+      "contexte": "Reprise du contrôle éditorial sur les choix de l'IA — touche 7.04 (alternance de leadership) et 7.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Mais bon : je ne cherche pas à lui faire générer le prix Hugo du meilleur roman de SF : je veux juste parler du projet à la base ! Donc les corrections seront pour plus tard et je ne pourrai pas proposer le livre au club de lecture lundi après midi.",
+      "contexte": "Renoncement argumenté à une étape (présentation lundi) avec hiérarchisation entre l'intention initiale et la perfection littéraire — touche 7.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Rien que l'impression des 150 pages en 7 exemples me prendrais la matinée avec mon imprimante à jet d'encre.",
+      "contexte": "Estimation chiffrée de la charge logistique qui motive le report — touche 7.06.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le roman est conçu comme un dispositif pédagogique pour transmettre le projet à un public large — touche obliquement l'architecturation d'un environnement d'apprentissage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'écrire un livre pour expliquer un projet n'est pas en soi de la maïeutique ni de la facilitation d'apprentissage. La fiche est explicite : 7.01 demande soit la posture du questionnement socratique (retenue de celui qui sait mais choisit de ne pas dire), soit la conception explicite d'un dispositif pédagogique avec architecture pensée. Ici, l'apprenant veut « expliquer » le projet, pas faire accoucher le lecteur d'un savoir qu'il porterait déjà. Le mot « expliquer » est l'opposé de la maïeutique au sens de la fiche. Aucune retenue n'est décrite, aucune question disséminée n'est citée, aucun parcours différencié n'est mentionné. Ce qui reste faible : la pièce parle d'accessibilité, pas d'autonomie d'apprentissage.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Le faux positif typique « j'ai expliqué » est précisément ce que la fiche disqualifie. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans cette pièce, je cherchais à voir si l'apprenant racontait une posture de retenue ou une architecture pédagogique. Il décrit une visée d'explication, ce que la fiche identifie précisément comme un faux positif. Aucune trace de maïeutique au sens fort sur cette feuille. Ce qui en résulte : l'apprenant pense la transmission comme une mise à disposition d'un objet compréhensible, pas comme une mise en mouvement du lecteur vers son propre savoir.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce n'a pas résisté à la présomption d'absence : la visée « expliquer » est un faux positif documenté de la fiche.",
+        "prescription": "Le travail montre, sur cette feuille, une visée d'explication accessible. Une piste possible serait, lors d'une prochaine séance avec des lecteurs, de noter les questions posées plutôt que les réponses données — la conversation après lecture pourrait porter une trace de maïeutique que l'écriture du livre, par sa nature, ne porte pas."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Évaluation segmentée du texte (début/milieu/fin) avec qualifications nuancées et liste d'erreurs à corriger — touche l'évaluation au service de la progression de l'objet."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Dispositif explicite de mise en place d'un feedback externe (club de lecture) pour faire progresser le texte — touche directement 7.02."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à de l'évaluation transformative est en réalité de la simple relecture d'auteur. La fiche est explicite : 7.02 cible l'acte évaluatif adressé à un *évalué*, dispositif et critères au service de sa progression. Ici, l'évaluation porte sur un texte (pas sur une personne), et l'apprenant s'évalue lui-même comme auteur. La pièce 1 est une auto-évaluation de l'œuvre. La pièce 2 sollicite un feedback externe, ce qui inverse la posture : l'apprenant est l'évalué potentiel, pas l'évaluateur. Aucun critère évaluatif n'est articulé pour autrui, aucun dispositif n'est conçu pour faire progresser quelqu'un d'autre. Ce qui reste faible : la compétence pédagogique 7.02 demande un autre dont on accompagne la progression — ce que la feuille ne raconte pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — la compétence requiert un évalué autre que soi, ce qui manque ici. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant évaluait au service de la progression d'autrui. Les deux pièces racontent un travail d'auto-évaluation puis de sollicitation de feedback — c'est l'inverse de l'évaluation transformative au sens de la fiche. Ce qui en résulte sur cette feuille : aucune trace de 7.02 ; la compétence demande un dispositif tourné vers un évalué autre, ce que cette entrée ne porte pas.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Les pièces n'ont pas résisté à la présomption d'absence : l'évaluation décrite est tournée vers son propre objet ou vers la sollicitation de feedback, pas vers la progression d'autrui.",
+        "prescription": "Le travail montre, sur cette feuille, une posture d'auto-évaluation et de demande de retour. Une piste possible serait, lors d'une prochaine session où l'apprenant accompagnerait un autre (un lecteur en cours, un jeune en présentation du projet), de raconter le dispositif d'évaluation tourné vers lui : quels critères, quelles questions, quel feedback."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la documentation vivante. Le roman lui-même pourrait éventuellement entrer dans ce registre s'il était pensé comme document structuré pour un futur lecteur, mais cette dimension n'est pas thématisée dans la feuille."
+      }
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Reprise du contrôle éditorial sur des choix de l'IA, après les avoir initialement acceptés — touche l'alternance leadership/retrait dans le tandem humain-IA."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Acceptation de l'argument de l'IA sur la profondeur du milieu — moment de retrait volontaire face à un argument."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à du leadership situationnel n'est qu'un usage banal de l'IA. La fiche est explicite : 7.04 demande une *alternance consciente* avec déclencheurs identifiables — l'apprenant doit décrire à la fois des moments où il prend la main et des moments où il la cède. Ici, la pièce 6 décrit une reprise de contrôle (réintégration de notions), et la pièce 3 décrit un moment d'acceptation de l'argument de l'IA. Les deux mouvements coexistent dans la même feuille. Cependant, aucune règle de bascule n'est articulée, aucun déclencheur précis n'est nommé. Ce qui reste faible : l'alternance est présente dans les actes mais pas thématisée comme posture.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant reprend explicitement la main sur des choix qu'il avait laissés à l'IA — geste d'alternance plutôt que de direction permanente." },
+            { "pieceId": 2, "motifResistance": "Acceptation explicite d'un argument de l'IA contre son propre jugement initial — c'est le pendant de la pièce 1 dans l'alternance." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. J'examine si je n'ai pas chargé d'alternance consciente ce qui est en réalité un usage spontané et désordonné.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce raconte une reprise de contrôle (« j'ai passé la soirée à ajouter ») sans articuler le déclencheur précis ni la règle de bascule. C'est une décision située plutôt qu'une posture théorisée. Mais elle s'ancre dans un acte concret, pas dans une déclaration."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'acceptation est mentionnée sans dispositif explicite — pas de critère articulé pour avoir cédé sur ce point. Mais le fait que cette acceptation coexiste avec une révocation ailleurs montre une alternance effective, pas une déférence permanente ni une domination permanente."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant exerçait une alternance consciente avec l'IA. Deux pièces m'ont forcé à reconnaître quelque chose : la même feuille met en scène à la fois une acceptation d'argument et une reprise de contrôle. C'est précisément la structure d'alternance que la fiche désigne. Sous la présomption de sycophantie, les deux pièces sont restées mais affaiblies : aucun déclencheur n'est précisément articulé, l'alternance est jouée plutôt que théorisée. Ce qui en résulte sur cette feuille : une trace d'alternance leadership/retrait en acte, à la lisière entre intuition pratique et posture consciente.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a affaibli les deux pièces sans les disqualifier ; l'alternance est jouée mais non explicitée par des déclencheurs articulés.",
+        "prescription": "Le travail montre, sur cette feuille, une alternance entre acceptation et reprise de contrôle dans le tandem avec l'IA. Une piste possible serait, lors d'une prochaine session, de noter le moment précis où la posture a basculé et le déclencheur qui a fait basculer — ce qui rendrait visible la règle de bascule qui aujourd'hui se devine."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Priorisation du roman sur le site web justifiée par deux arguments — touche obliquement la vision (relier un choix présent à un avenir anticipé : un objet à diffuser dans la durée)."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Évaluation du livrable contre un objectif articulé (susciter, pas expliquer) — touche obliquement la vision si cet objectif s'inscrit dans une direction longue."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à de la vision stratégique n'est qu'une priorisation tactique. La fiche est explicite : 7.05 demande un *lien argumenté* entre futur anticipé et décision présente. Ici, la pièce 1 articule une priorisation par deux constats du présent (le site n'est pas à jour, les jeunes scrollent), pas par une projection sur un futur. La pièce 5 articule un critère de finalité (susciter la curiosité) sans projection temporelle explicite — pas de « dans X temps », pas de scénario prospectif. Ce qui reste faible : la temporalité présente domine, l'horizon long-terme n'est pas thématisé.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — les justifications sont du présent, pas du futur. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant reliait un choix présent à un futur anticipé. Les deux pièces relient des choix à des constats ou à des intentions actuelles, sans projection prospective explicite. Ce qui en résulte sur cette feuille : aucune trace de vision stratégique au sens fort ; la priorisation est tactique, l'évaluation est centrée sur l'effet immédiat sur le lecteur.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces n'ont pas résisté à la présomption d'absence : les justifications sont du présent (constats, intention immédiate), pas du futur anticipé.",
+        "prescription": "Le travail montre, sur cette feuille, une priorisation tactique du présent. Une piste possible serait, lors d'une prochaine décision sur le projet, de relier explicitement le choix à un horizon long-terme — ce que le roman doit avoir produit dans un an, dans cinq ans."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Priorisation argumentée du roman sur le site, avec deux raisons explicitées — touche directement 7.06."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Renoncement argumenté à une étape (présentation lundi) — la pièce contient explicitement le « non » stratégique que la fiche identifie comme marqueur le plus fiable."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Estimation chiffrée de la charge logistique qui motive le report — détail opérationnel qui ancre le « non »."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à de l'efficacité personnelle n'est en fait que de la procrastination déguisée en raisonnement. La fiche est explicite : le marqueur le plus fiable est le « non » stratégique argumenté. Ici, la pièce 1 articule une priorisation par deux raisons (le site obsolète, le comportement des jeunes lecteurs) — c'est un arbitrage explicite entre deux tâches concurrentes. La pièce 7 contient un « non » net (« je ne pourrai pas proposer le livre au club de lecture lundi ») avec raison articulée. La pièce 8 ancre ce « non » dans un détail opérationnel précis (150 pages × 7 exemplaires, imprimante à jet d'encre, une matinée). Ce qui reste faible : la priorisation principale est justifiée par des constats négatifs (le site est obsolète, les jeunes scrollent) plus que par une vision positive.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Priorisation argumentée par deux raisons explicites — c'est exactement la structure d'arbitrage que la fiche désigne." },
+            { "pieceId": 2, "motifResistance": "« Non » stratégique au club de lecture, avec raison articulée — marqueur le plus fiable de la fiche." },
+            { "pieceId": 3, "motifResistance": "Détail opérationnel précis (chiffres, équipement) qui ancre le « non » dans le réel — la fiche identifie ce type de détail comme difficile à inventer." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. J'examine si je n'ai pas chargé du sens d'efficacité personnelle ce qui est en réalité un évitement ou une procrastination déguisée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce justifie le choix de priorité du roman, mais on peut soupçonner que ce choix est aussi celui qui plaisait le plus à l'apprenant. Néanmoins, deux raisons explicites sont articulées, ce qui dépasse l'envie."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "On pourrait y voir un « mouvement vers » plutôt qu'un acte de priorisation accomplie : l'apprenant n'agit pas, il renonce. Mais le « non » est argumenté et borné dans le temps (« plus tard »), pas un évitement vague — c'est la définition même du renoncement stratégique."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce contient un détail opérationnel chiffré (150 pages × 7 exemplaires, matinée d'impression) que la fiche identifie comme indicateur de fiabilité d'un récit de priorisation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant exerçait une priorisation argumentée ou s'il rationalisait une procrastination. Trois pièces m'ont forcé à reconnaître quelque chose : une priorisation entre deux tâches concurrentes avec deux raisons explicites, un « non » stratégique au club de lecture, et un détail opérationnel chiffré qui ancre ce « non » dans le réel. Sous la présomption de sycophantie, deux pièces sont sorties confirmées et une affaiblie. Ce qui en résulte sur cette feuille : un travail d'efficacité personnelle qui s'exerce dans des arbitrages explicites, avec un « non » argumenté qui correspond exactement au marqueur le plus fiable de la fiche.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé deux pièces (le « non » stratégique et le détail opérationnel) et affaibli une troisième sans la disqualifier.",
+        "prescription": "Le travail montre, sur cette feuille, une priorisation argumentée et un renoncement stratégique bornés par des contraintes concrètes. Une piste possible serait, lors d'une prochaine impasse logistique, de noter aussi le coût opportun du « oui » alternatif — ce que dire oui au club de lecture lundi aurait coûté à autre chose, pour rendre encore plus visible la grammaire d'arbitrage."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Lecture intégrale puis identification d'erreurs à corriger — étape d'un cycle générer-relire-tester-ajuster."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Mise en place d'un dispositif de feedback externe pour la prochaine itération — geste d'agilité (intégrer le retour pour ajuster)."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Soirée passée à ajuster le texte sur la base d'un critère (humain/technique) — itération en acte."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Ajustement du plan en cours de route (les corrections reportées, la présentation au club annulée) — capacité à modifier le plan que la fiche identifie comme agilité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à de l'agilité n'est en réalité que du travail d'édition ordinaire. La fiche est explicite : 7.07 demande un cycle observable générer-relire-tester-ajuster avec rétroaction explicite, ET capacité à modifier le plan en cours de route. Ici, la pièce 3 montre la phase relire+identifier-les-corrections. La pièce 4 met en place une boucle de rétroaction externe pour le prochain cycle. La pièce 6 montre la phase ajuster. La pièce 7 montre une modification de plan (corrections reportées, présentation annulée) avec raisons explicites. L'ensemble dessine un cycle d'itération en cours. Ce qui reste faible : aucun numéro de version explicite (v1, v2), aucun vocabulaire agile, aucun artefact de coordination — l'agilité est jouée, pas formalisée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Phase explicite d'évaluation segmentée d'un livrable, qui débouche sur des corrections — cycle relire+ajuster amorcé." },
+            { "pieceId": 2, "motifResistance": "Mise en place d'une boucle de rétroaction externe avec un dispositif identifié (club de lecture) — boucle de feedback explicite." },
+            { "pieceId": 3, "motifResistance": "Phase d'ajustement effectivement exécutée pendant la soirée, sur la base d'un critère explicite — la boucle s'est fermée." },
+            { "pieceId": 4, "motifResistance": "Modification de plan en cours de route avec raisons articulées — c'est exactement le critère discriminant que la fiche pose pour distinguer l'agilité du waterfall." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté. J'examine si je n'ai pas chargé du sens d'agilité ce qui est en réalité un travail d'édition que tout auteur fait. Le risque pointé par la fiche : le « théâtre agile » (adopter les rituels sans la compétence) ou inversement, voir de l'agilité partout où il y a itération.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce raconte la phase « relire » d'un cycle, mais sans articuler le cycle lui-même. Elle tient comme indice d'une pratique itérative, pas comme preuve d'une méthodologie agile articulée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le dispositif de feedback est projeté, pas exécuté (et finalement annulé pour cette semaine). La trace tient comme intention de boucle, pas comme boucle accomplie."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'ajustement n'est pas seulement raconté, il est exécuté dans la soirée — c'est un acte d'itération, pas une déclaration."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La modification du plan est explicite, datée (« lundi après-midi ») et argumentée — c'est précisément le marqueur d'agilité que la fiche distingue du waterfall."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant exerçait une itération structurée avec capacité de modifier son plan. Quatre pièces m'ont forcé à reconnaître quelque chose : un cycle observable relire-ajuster s'exécute dans la feuille, un dispositif de feedback externe est mis en place pour le cycle suivant, et le plan est modifié en cours de route avec raisons articulées. Sous la présomption de sycophantie, deux pièces sont sorties confirmées et deux affaiblies sans tomber. Ce qui en résulte sur cette feuille : une pratique itérative effective qui s'exerce sans le vocabulaire agile mais avec la structure de la fiche. La réserve qui reste : la dimension « conduite du changement » (l'autre versant de la fiche) n'est pas mobilisée — il n'y a pas d'accompagnement de tiers à travers une transition.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé deux pièces (l'ajustement exécuté et la modification de plan argumentée) et affaibli deux autres sans les disqualifier ; le cycle itératif est lisible dans la feuille.",
+        "prescription": "Le travail montre, sur cette feuille, une pratique itérative qui s'exerce sans le vocabulaire agile mais avec sa structure. Une piste possible serait, lors d'une prochaine session, de nommer les passes (v1 de la fin, v2 de la fin) pour rendre visible ce que chaque passage a corrigé — ce qui transformerait l'itération vécue en itération documentée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la gestion de crise en temps réel. La feuille est celle d'une journée calme de finition, sans compression temporelle ni décisions en cascade."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 5,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, l'entrée du 15 mars montre un travail de pilotage qui s'exerce dans la conduite quotidienne d'un projet d'écriture. La voix dominante est celle d'un praticien qui priorise, exécute, évalue et ajuste, le tout en dialogue alterné avec son IA. Le registre est sobre, factuel, traversé par deux fils : une priorisation argumentée (le roman avant le site, le projet avant le prix Hugo, le travail bien fait avant la présentation prématurée) et un cycle d'itération en cours (lire, identifier les erreurs, ajuster, prévoir un feedback externe). Le micro-fait récurrent : des « non » argumentés et bornés par des contraintes concrètes. Les autres registres du pôle — maïeutique, évaluation transformative tournée vers autrui, documentation vivante, vision long-terme, gestion de crise — restent à l'écart de cette feuille, qui est celle d'un pilotage personnel.",
+    "territoiresDenses": [
+      {
+        "competence": "Efficacité personnelle",
+        "description": "La priorisation s'exerce par arbitrages argumentés et par des « non » bornés par des contraintes concrètes (matinée d'impression, intention initiale du projet).",
+        "extraitVerbatim": "Mais bon : je ne cherche pas à lui faire générer le prix Hugo du meilleur roman de SF : je veux juste parler du projet à la base ! Donc les corrections seront pour plus tard et je ne pourrai pas proposer le livre au club de lecture lundi après midi.",
+        "ceQueCaDit": "Le renoncement à la présentation au club de lecture est argumenté par un retour à l'intention initiale et chiffré par la charge logistique. Le « non » stratégique de la fiche est ici porté par deux registres complémentaires."
+      },
+      {
+        "competence": "Agilité et conduite du changement",
+        "description": "Un cycle itératif lire-ajuster-prévoir-le-feedback s'exécute dans la feuille, avec modification de plan en cours de route argumentée.",
+        "extraitVerbatim": "Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique.",
+        "ceQueCaDit": "L'itération s'exerce sans le vocabulaire agile (pas de v1/v2, pas de sprint, pas de rituel nommé) mais avec sa structure : retour sur le livrable, identification d'un écart, ajustement exécuté."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs registres du pilotage restent à l'écart de cette feuille. La maïeutique et l'évaluation transformative supposent un autre dont on accompagne la progression, ce que cette entrée ne porte pas (la feuille est tournée vers le livrable et vers l'auto-évaluation). La documentation vivante n'est pas thématisée — le roman est traité comme livrable, pas encore comme document structuré pour un futur lecteur. La vision stratégique laisse des traces faibles : la priorisation est tactique, justifiée par des constats du présent plus que par une projection long-terme. La gestion de crise n'a pas lieu d'être : la feuille raconte une journée calme. Le leadership situationnel s'exerce mais n'est pas explicité par des règles de bascule articulées.",
+    "emergencesPole": "Une observation traverse les compétences mobilisées dans ce pôle : le pilotage se joue ici dans le rapport à soi et à l'objet, pas dans le rapport à un collectif piloté. L'apprenant priorise son temps, ajuste son texte, négocie avec son IA — mais la dimension d'orchestration d'autres acteurs ne traverse pas la feuille. Une seconde observation : les marqueurs les plus fiables que les fiches identifient (le « non » stratégique argumenté, le détail opérationnel chiffré, la modification de plan articulée) sont tous présents dans cette feuille, ce qui ancre la lecture du pôle dans des traces difficiles à fabriquer rétrospectivement.",
+    "pistes": [
+      "Pour enrichir la trace d'agilité, un chemin possible serait, lors d'une prochaine session, de nommer les passes (v1 de la fin, v2 de la fin) pour rendre visible ce que chaque passage a corrigé.",
+      "Pour enrichir la trace de leadership situationnel, un chemin possible serait, lors d'un prochain dialogue avec l'IA, de noter le déclencheur précis qui a fait basculer d'une posture (laisser faire) à l'autre (reprendre la main).",
+      "Pour ouvrir le registre de la vision stratégique, un chemin possible serait, lors d'une prochaine décision sur le projet, de relier explicitement le choix présent à un horizon long-terme : ce que le roman doit avoir produit dans un an."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, l'entrée du 15 mars montre un travail de pilotage qui s'exerce dans la conduite quotidienne d'un projet d'écriture. La voix dominante est celle d'un praticien qui priorise, exécute, évalue et ajuste, le tout en dialogue alterné avec son IA. Le registre est sobre, factuel, traversé par deux fils : une priorisation argumentée (le roman avant le site, le projet avant le prix Hugo, le travail bien fait avant la présentation prématurée) et un cycle d'itération en cours (lire, identifier les erreurs, ajuster, prévoir un feedback externe). Le micro-fait récurrent : des « non » argumentés et bornés par des contraintes concrètes. Les autres registres du pôle — maïeutique, évaluation transformative tournée vers autrui, documentation vivante, vision long-terme, gestion de crise — restent à l'écart de cette feuille, qui est celle d'un pilotage personnel.\n\n## Territoires les plus denses\n\n**Efficacité personnelle.** La priorisation s'exerce par arbitrages argumentés et par des « non » bornés par des contraintes concrètes (matinée d'impression, intention initiale du projet). La phrase qui condense la matière : « Mais bon : je ne cherche pas à lui faire générer le prix Hugo du meilleur roman de SF : je veux juste parler du projet à la base ! Donc les corrections seront pour plus tard et je ne pourrai pas proposer le livre au club de lecture lundi après midi. » Le renoncement à la présentation au club de lecture est argumenté par un retour à l'intention initiale et chiffré par la charge logistique. Le « non » stratégique de la fiche est ici porté par deux registres complémentaires.\n\n**Agilité et conduite du changement.** Un cycle itératif lire-ajuster-prévoir-le-feedback s'exécute dans la feuille, avec modification de plan en cours de route argumentée. La phrase qui condense la matière : « Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique. » L'itération s'exerce sans le vocabulaire agile (pas de v1/v2, pas de sprint, pas de rituel nommé) mais avec sa structure : retour sur le livrable, identification d'un écart, ajustement exécuté.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres du pilotage restent à l'écart de cette feuille. La maïeutique et l'évaluation transformative supposent un autre dont on accompagne la progression, ce que cette entrée ne porte pas (la feuille est tournée vers le livrable et vers l'auto-évaluation). La documentation vivante n'est pas thématisée — le roman est traité comme livrable, pas encore comme document structuré pour un futur lecteur. La vision stratégique laisse des traces faibles : la priorisation est tactique, justifiée par des constats du présent plus que par une projection long-terme. La gestion de crise n'a pas lieu d'être : la feuille raconte une journée calme. Le leadership situationnel s'exerce mais n'est pas explicité par des règles de bascule articulées.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse les compétences mobilisées dans ce pôle : le pilotage se joue ici dans le rapport à soi et à l'objet, pas dans le rapport à un collectif piloté. L'apprenant priorise son temps, ajuste son texte, négocie avec son IA — mais la dimension d'orchestration d'autres acteurs ne traverse pas la feuille. Une seconde observation : les marqueurs les plus fiables que les fiches identifient (le « non » stratégique argumenté, le détail opérationnel chiffré, la modification de plan articulée) sont tous présents dans cette feuille, ce qui ancre la lecture du pôle dans des traces difficiles à fabriquer rétrospectivement.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la trace d'agilité, un chemin possible serait, lors d'une prochaine session, de nommer les passes (v1 de la fin, v2 de la fin) pour rendre visible ce que chaque passage a corrigé.\n- Pour enrichir la trace de leadership situationnel, un chemin possible serait, lors d'un prochain dialogue avec l'IA, de noter le déclencheur précis qui a fait basculer d'une posture (laisser faire) à l'autre (reprendre la main).\n- Pour ouvrir le registre de la vision stratégique, un chemin possible serait, lors d'une prochaine décision sur le projet, de relier explicitement le choix présent à un horizon long-terme : ce que le roman doit avoir produit dans un an.\n"
+  }
+}

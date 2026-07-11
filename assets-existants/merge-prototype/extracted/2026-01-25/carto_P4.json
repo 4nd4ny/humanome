@@ -1,0 +1,525 @@
+{
+  "poleNum": "4",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Au lieu de générer directement le contenu et les exercices statiques, j'ai demandé à l'IA d'écrire un prompt qui demande à l'IA d'écrire un prompt générique qui demande à l'IA d'écrire des prompts pour la théorie et les exercices que l'apprenant utilisera pour apprendre. C'est un peu capillotracté, mais c'est plus aligné avec la philosophie des écoles RESPIRE que ce que j'avais fais dans la version précédente.",
+      "contexte": "Décision technique justifiée par un alignement avec la philosophie des écoles RESPIRE — l'IA est utilisée d'une manière qui doit servir une valeur (4.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Le manuel de formation ne peut donc pas juste être lu, il doit être re-généré par chaque élève, de manière active.",
+      "contexte": "Posture pédagogique fondée sur une valeur (l'apprentissage actif) qui oriente la conception du dispositif (4.02, 4.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Mais évidemment je vais devoir relire avant de faire la mise en page (même si c'est de nouveau 600 pages à relire) et surtout cette fois-ci tester les prompts générés, car contrairement à la v5 qui était ancienne école, ici c'est l'IA qui va donner la théorie, les exercices et les tests pour savoir si la personne a bien compris.",
+      "contexte": "Engagement explicite à porter la responsabilité finale de ce que l'IA produit, malgré le coût (600 pages à relire) (4.06, 4.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum !",
+      "contexte": "Identification d'un delta de contexte humain/IA : l'apprenant comprend pourquoi le pipeline va échouer alors que l'IA ne le voit pas (4.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas.",
+      "contexte": "Décision posée malgré la fatigue et le flou sur le résultat — passage à l'acte sans garantie (4.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Je vais arrêter pour ce soir et demain je reprends mes prompts (ça ira vite) et je testerai cette fois-ci sur un manuel entier, ce qui me bloquera Claude jusqu'à la semaine prochaine probablement… Ou bien je génère juste un chapitre comme ce soir, je le lis, ce qui va prendre un certain temps, avant de générer le suivant ?",
+      "contexte": "Hésitation explicite entre deux options pour la suite, sans tranchage immédiat — flou tenu (4.05, 4.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "J'ai décidé de perdre du poids car là ça ne va plus. Du coup je vais me ré-imposer de dormir au moins 6h par nuit et idéalement 7h30, au lieu de mes 4h30 habituelles. Ça va beaucoup ralentir ma production, puisque les journées sont prises par Soledad, Alicia, Leila… et l'ORP, mais peut-être que ça m'évitera de finir comme ma sœur…",
+      "contexte": "Arbitrage assumé entre vitesse de production et préservation de la santé, avec un coût concret nommé et une référence familiale chargée (4.01, 4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Au lieu de générer directement le contenu et les exercices statiques, j'ai demandé à l'IA d'écrire un prompt qui demande à l'IA d'écrire un prompt générique qui demande à l'IA d'écrire des prompts pour la théorie et les exercices que l'apprenant utilisera pour apprendre.",
+      "contexte": "Conception d'un dispositif où l'engagement actif de l'élève (re-générer) reste irréductiblement humain dans le pipeline — valeur non-automatisable identifiée (4.08).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Arbitrage entre vitesse de production et santé : deux valeurs légitimes (le projet, la préservation de soi) mises en tension explicite avec un coût nommé."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Hésitation tenue entre deux options de pipeline (manuel entier vs chapitre par chapitre) avec les conséquences différenciées pour Claude et pour le rythme de lecture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Le raisonnement éthique appliqué attend une mise en tension visible de valeurs en conflit, sans résolution prématurée. J'aborde ces pièces en m'attendant à trouver surtout des arbitrages opérationnels. La pièce 1 (« ralentir ma production [...] mais peut-être que ça m'évitera de finir comme ma sœur ») met effectivement en tension deux valeurs (le projet vs la santé), avec un coût explicité (ralentir, journées déjà prises par Soledad/Alicia/Leila/ORP) et un risque familial évoqué — c'est un arbitrage chargé. Mais l'inconfort moral n'est pas exactement maintenu : la décision est déjà prise (« j'ai décidé »), et le risque est suggéré plutôt que déployé. La pièce 2 (hésitation entre deux options de pipeline) est plutôt opérationnelle qu'éthique — les valeurs en jeu (efficacité, qualité, attention au matériau) ne sont pas explicitement morales.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Deux valeurs légitimes mises en tension (production / santé) avec un coût nommé et une référence familiale chargée — le geste éthique est visible même si l'inconfort moral est tenu en arrière-plan." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 pour vérifier que je ne charge pas une décision pratique d'une portée éthique qu'elle n'aurait pas. L'attaque (a) insuffisance probatoire est sérieuse : l'apprenant énonce une décision (« j'ai décidé de perdre du poids ») avec une justification de santé, mais ne déploie pas le processus de mise en tension — la décision est posée, pas explorée. La fiche est claire : « processus visible de mise en tension de valeurs, pas conclusion morale réactive ». Ici, la conclusion est posée et la tension reste implicite. Mais la juxtaposition « ça va beaucoup ralentir ma production [...] mais peut-être que ça m'évitera de finir comme ma sœur » est précisément la trace d'un arbitrage entre deux valeurs, même formulé brièvement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'arbitrage est posé mais la mise en tension reste brève — la décision est déjà prise, et la valeur familiale (« finir comme ma sœur ») est évoquée sans être déployée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'hésitation entre deux options de pipeline est opérationnelle, pas éthique — les valeurs en jeu ne sont pas explicitement morales."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer un arbitrage pratique d'un raisonnement éthique au sens de la fiche. L'hésitation entre options de pipeline a chuté : elle est opérationnelle. L'arbitrage production/santé a tenu, mais affaiblie : la mise en tension est réelle (deux valeurs légitimes, un coût nommé, une figure familiale chargée), mais la décision est posée plutôt qu'explorée — l'inconfort moral n'est pas pleinement maintenu. Ce qui en résulte est un signal léger : une trace existe, sans déploiement. Ce qui resterait à explorer, ce serait précisément ce que la phrase « finir comme ma sœur » porte : qu'est-ce qu'elle anticipe, qu'est-ce qu'elle pèse contre quoi, qu'est-ce que la décision protège vraiment.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie retenue : un arbitrage entre deux valeurs légitimes est posé brièvement, mais la mise en tension n'est pas déployée comme processus.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de prolonger l'arbitrage déjà amorcé (production / santé / responsabilités envers les personnes nommées) en explicitant ce qui est mis dans la balance : ce que la santé protège, ce que la production engage, et comment le rythme choisi tient compte des deux."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Décision technique justifiée par un alignement avec la philosophie pédagogique des écoles RESPIRE — l'IA est mise au service d'une intention déclarée."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Engagement à relire 600 pages et à tester les prompts générés — garde-fou humain explicitement maintenu entre la production IA et la diffusion."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Refus implicite d'un manuel passif (« ne peut pas juste être lu ») — l'apprenant interdit une forme de pédagogie qui ne servirait pas ses valeurs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'alignement éthique attend un gardiennage actif entre ce que l'IA produit et les valeurs humaines, avec refus, garde-fous ou diagnostic d'alignement. J'aborde ces pièces en m'attendant à ne trouver qu'un usage technique sans dimension éthique. La pièce 1 résiste : la décision technique est justifiée par un alignement explicite (« plus aligné avec la philosophie des écoles RESPIRE »), ce qui suppose que la conception de l'IA-pipeline soit subordonnée à une intention de valeur. La pièce 2 résiste également : l'engagement à relire 600 pages et à tester les prompts est précisément le geste de garde-fou — l'IA produit mais l'humain valide. La pièce 3 est plus discutable : refuser un manuel « juste lu » au profit d'un manuel « re-généré » est plus pédagogique qu'éthique au sens strict — c'est un choix de modèle d'apprentissage, pas un refus aligné sur des valeurs explicites.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Décision technique subordonnée à un alignement explicite avec une intention de valeur (« plus aligné avec la philosophie des écoles RESPIRE »)." },
+            { "pieceId": 2, "motifResistance": "Garde-fou humain maintenu malgré le coût (600 pages à relire) — gardiennage actif de ce que l'IA produit avant diffusion." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je n'ai pas pris un raisonnement de qualité pour un raisonnement d'alignement. La pièce 1 articule effectivement la décision à une intention de valeur (philosophie RESPIRE), mais cette philosophie n'est pas déployée comme une valeur morale au sens strict — c'est une orientation pédagogique. L'attaque (b) confusion de compétence est sérieuse : cela pourrait relever davantage du cadrage de l'intention (1.02). Néanmoins, la subordination explicite d'un choix technique à un alignement avec une intention non-technique correspond bien au marqueur central de 4.02. La pièce 2 porte un garde-fou clair : reconnaître que l'IA produit du contenu qui doit être testé avant d'être diffusé à des apprenants. C'est précisément le geste d'alignement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'alignement avec une intention non-technique est attesté, mais la « philosophie des écoles RESPIRE » est une orientation pédagogique plus qu'une valeur morale explicite — la frontière avec le cadrage de l'intention reste fine."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'engagement à relire 600 pages et tester les prompts est un garde-fou concret, posé avec son coût — gardiennage actif au sens de la fiche."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le refus d'un manuel passif relève davantage du choix pédagogique que de l'alignement éthique au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à éviter de prendre toute justification non-technique pour de l'alignement éthique. Une pièce a chuté (le refus du manuel passif, qui est pédagogique plutôt qu'éthique). Une pièce s'est affaiblie (l'alignement avec la philosophie RESPIRE, qui chevauche le cadrage). Une pièce a tenu sans réserve : l'engagement à relire 600 pages et à tester les prompts générés. Ce qui en résulte est une présence attestée modestement, portée par un garde-fou explicite et un indice d'alignement avec une intention non-technique. Ce qui resterait à explorer, ce serait des moments où l'apprenant aurait refusé activement une suggestion ou un output IA en nommant la valeur en jeu, plutôt que d'organiser en amont la validation humaine.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Une trace concrète confirmée (garde-fou humain de relecture et test des prompts générés) et un indice corroboratif (alignement explicite avec une intention non-technique) suffisent à établir la compétence avec une réserve sur le déploiement.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de documenter, lors d'un test de prompt généré, un cas concret où la production IA a dû être refusée ou réorientée en nommant la valeur qui motivait le refus."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à la conscience écologique et au long-terme. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision où l'impact environnemental, intergénérationnel ou non-humain a effectivement pesé sur l'arbitrage."
+      }
+    },
+
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à la valorisation de la neurodiversité. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où une façon atypique de penser (la sienne ou celle d'un pair) a produit un résultat que l'approche standard n'aurait pas atteint."
+      }
+    },
+
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Décision de lancer le processus malgré la fatigue et l'incertitude sur la cohérence du résultat — passage à l'acte assumé."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Hésitation tenue entre deux options pour la suite (manuel entier vs chapitre par chapitre) — capacité à fonctionner dans le flou sans trancher immédiatement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La décision dans le flou attend un combo : nommer ce qu'on ne sait pas, fonctionner malgré le flou, raconter un acte de tranchage avec ses conséquences. J'aborde ces pièces en m'attendant à ne pas trouver les trois éléments. La pièce 1 nomme effectivement l'incertitude (« voir si au moins [...] ça donne un truc cohérent ou pas »), pose l'acte (« je vais quand même lancer »), et la conséquence arrive juste après (le problème de mémoire détecté). C'est exactement le combo. La pièce 2 est différente : elle montre une capacité à tenir une hésitation sans trancher, sans paniquer, avec une formulation calibrée (deux options évoquées, conséquences nommées, pas de tranchage), ce qui ressemble à la dimension tolérance.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Triple combo de la fiche : incertitude nommée (« cohérent ou pas »), acte de tranchage (« je vais quand même lancer »), conséquence racontée (le problème de mémoire détecté immédiatement après)." },
+            { "pieceId": 2, "motifResistance": "Hésitation tenue sans précipitation entre deux options, avec conséquences nommées pour chacune — capacité à fonctionner dans le flou." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je n'ai pas pris des décisions de routine pour des décisions dans le flou. La pièce 1 satisfait bien le critère discriminant : le tranchage est posé alors que le résultat est incertain, et l'apprenant choisit l'acte sur l'attente. L'attaque (a) insuffisance probatoire ne tient pas : il y a bien acte, conséquence et nomination de l'incertitude. La pièce 2 est plus délicate : la fiche signale que tenir une hésitation peut signaler la tolérance, mais la fin de la pièce (« demain je reprends mes prompts ») montre que l'apprenant a tranché pour reporter — c'est plus de la patience stratégique (4.09) que de la décision dans le flou.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le combo complet est attesté : incertitude nommée, acte posé malgré elle, conséquence vécue. La décision dans le flou se déroule en acte, pas en récit."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'hésitation tenue chevauche la patience stratégique (4.09) : la pièce porte une trace de tolérance au flou, mais le tranchage final (« demain je reprends ») relève davantage du report calibré que de la décision dans le flou."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à neutraliser une lecture qui prendrait toute décision pour une décision dans le flou. Une pièce a tenu sans réserve : le lancement du processus malgré l'incertitude, avec le combo complet de la fiche déroulé en quelques lignes. Une pièce s'est affaiblie : l'hésitation entre deux options finit par un report, ce qui la rapproche davantage de la patience stratégique. Ce qui en résulte est une présence attestée par une trace claire de tranchage assumé dans l'incertitude. Ce qui resterait à approfondir, ce serait des situations où la décision aurait engagé plus que le résultat d'une soirée — un tranchage avec des conséquences plus durables ou plus coûteuses.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Une trace concrète confirmée (décision de lancer le pipeline malgré l'incertitude, avec conséquence immédiatement vécue) et un indice corroboratif (capacité à tenir une hésitation sans paniquer).",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de documenter, lors d'une prochaine décision posée dans le flou, ce qui a précisément été ignoré pour pouvoir trancher : quel détail manquant, quelle garantie absente, quelle objection mise de côté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Engagement explicite à porter la responsabilité finale : relire 600 pages et tester les prompts générés avant diffusion, malgré le coût."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Reconnaissance qu'un rythme insoutenable (4h30 de sommeil) doit cesser, avec engagement concret d'un nouveau régime — cohérence parole/acte sur sa propre santé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Le triptyque assumer-oser-rester-cohérent attend une attribution explicite de la responsabilité, un coût personnel décrit, ou un maintien de position malgré la pression. J'aborde ces pièces en m'attendant à ne trouver qu'une organisation pragmatique. La pièce 1 résiste : assumer 600 pages à relire et tester les prompts générés est une déclaration de responsabilité avec coût concret nommé — l'apprenant reconnaît que la production IA ne dispense pas du contrôle humain. La pièce 2 est plus délicate : la décision de dormir plus est une décision personnelle de santé, pas un acte de courage moral au sens de la fiche ; mais elle porte une cohérence parole/acte (reconnaître que 4h30 « ça ne va plus » et agir).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Responsabilité finale assumée avec coût concret (600 pages à relire) — l'humain reste comptable de ce que l'IA produit." },
+            { "pieceId": 2, "motifResistance": "Cohérence parole/acte sur sa propre santé : reconnaître que le rythme actuel n'est pas tenable et engager une modification concrète." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas une planification de la portée d'un acte de courage. La pièce 1 atteste bien le marqueur central : l'apprenant ne délègue pas à l'IA la responsabilité de ce qui sera diffusé aux élèves, et nomme le coût (600 pages à relire). L'attaque (f) récit performatif est tentable — c'est une annonce, pas encore un acte posé — mais le passage est explicite sur l'engagement et son coût. La pièce 2 est plus problématique : la fiche distingue accountability constructive de l'auto-flagellation, et de l'auto-déclaration d'intégrité. Ici, l'apprenant prend une décision personnelle de santé motivée par un risque (« finir comme ma sœur »), ce qui est plutôt un acte de soin de soi qu'un acte de responsabilité au sens de la fiche.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'engagement est annoncé (« je vais devoir relire ») plutôt qu'accompli, mais le coût est nommé concrètement (600 pages) et l'attribution de la responsabilité finale à l'humain est explicite."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La décision relève davantage du soin de soi (4.01 ou wellbeing) que du courage moral au sens de la fiche ; la cohérence parole/acte est attestée mais sur un objet personnel, pas sur une vérité inconfortable adressée à un tiers."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer une annonce d'intention d'un acte de responsabilité ferme. Deux pièces affaiblies ont survécu : l'engagement à relire et tester (qui porte la trace de la responsabilité finale assumée, même si l'acte est annoncé plutôt qu'accompli) et la décision de modifier son rythme (qui porte la cohérence parole/acte mais sur un objet personnel). Ce qui en résulte est un renvoi : la matière existe, mais sans pièce confirmée sans réserve. Ce qui resterait à explorer, ce serait précisément le moment où le test des prompts révélera quelque chose qui pose problème et où la responsabilité s'exercera concrètement, pas seulement comme intention.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Deux pièces affaiblies retenues : l'engagement est annoncé concrètement avec ses coûts, mais l'acte de responsabilité ferme reste à venir dans la suite du projet.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter, lors du test prochain des prompts générés, ce qui aura été identifié comme problématique et la décision de correction qui aura suivi — le moment où l'engagement de relecture devient un acte de responsabilité concrète."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant identifie un delta de contexte : il comprend pourquoi le pipeline va saturer la mémoire de l'IA, alors que l'IA elle-même ne le voit pas avant de l'avoir vécu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La validation contextuelle attend qu'on corrige l'IA en mobilisant un savoir qu'elle ne possède pas, et qu'on identifie pourquoi le contexte manquant change tout. J'aborde la pièce 1 en m'attendant à ce qu'elle ne soit qu'une réaction à une panne. Mais la pièce porte précisément ce que la fiche décrit : l'apprenant identifie que l'IA, sollicitée par un protocole long, ne peut pas tenir toute la matière dans sa fenêtre de contexte — c'est un savoir sur le fonctionnement de l'IA que l'IA elle-même n'utilise pas pour se réguler. Le diagnostic mécanique est posé et la correction est conçue (externaliser dans la mémoire projet, modifier les prompts pour qu'ils aillent lire ailleurs).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification d'un delta de contexte explicite : l'apprenant comprend la limite mémoire de l'IA et la traduit en reconfiguration du pipeline." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je n'ai pas confondu une compréhension technique (littératie IA, 1.06) avec une validation contextuelle au sens de la fiche. La distinction critique est claire : 1.01 détecte une erreur ; 4.07 identifie un delta de contexte. Ici, l'apprenant ne corrige pas une production fausse de l'IA — il anticipe que la production sera insuffisante parce qu'il dispose d'un savoir contextuel (le poids du protocole complet) que l'IA ne peut pas inférer seule. L'attaque (b) confusion avec 1.06 est sérieuse : le savoir mobilisé est technique (fonctionnement de la fenêtre de contexte), pas culturel ou relationnel. La fiche signale néanmoins que la validation contextuelle inclut le savoir technique tacite, ce qui réduit l'attaque.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le delta de contexte est attesté, mais le savoir mobilisé est principalement technique (littératie IA, 1.06) plutôt que culturel ou relationnel ; la pièce porte la trace sans déployer la dimension contextuelle au sens large."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer la simple compréhension technique d'une validation contextuelle au sens fort. La pièce a tenu, affaiblie : elle porte bien un savoir que l'IA ne mobilise pas pour se réguler (le poids du protocole), mais ce savoir reste technique. Ce qui en résulte est un signal léger : la pratique existe mais sur un terrain où elle chevauche fortement la littératie IA. Ce qui resterait à approfondir, ce serait un cas où l'apprenant corrigerait l'IA non sur un fait technique mais sur un contexte culturel, relationnel ou émotionnel — c'est là que la compétence se distinguerait nettement de 1.06.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie retenue : le delta de contexte est identifié mais le savoir mobilisé est principalement technique, ce qui chevauche la littératie IA.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter une situation où l'IA aurait produit quelque chose de techniquement correct mais inadapté à un contexte humain précis (un public, une histoire de relation, une dynamique de l'équipe) — le moment où le savoir contextuel non-technique fait la différence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Conception d'un manuel qui n'existe que par la re-génération active de l'élève — l'engagement actif est identifié comme valeur non-automatisable."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Le pipeline est structuré pour que l'apprentissage proprement dit reste un acte humain (re-générer, comprendre, exercer) — séparation explicite entre ce que l'IA produit et ce que l'humain fait."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La création de valeur non-automatisable attend une lucidité bidirectionnelle (ce que l'IA fait mieux ET ce qui reste irréductiblement humain) avec une articulation tournée vers le futur. J'aborde ces pièces en m'attendant à ne trouver qu'une conception pédagogique. La pièce 1 résiste : « le manuel ne peut pas juste être lu, il doit être re-généré par chaque élève, de manière active » identifie explicitement ce qui reste irréductible — l'engagement actif de l'élève dans la re-génération. La pièce 2 est une variante de la même idée : le pipeline laisse à l'humain (l'élève) un travail qui ne se délègue pas. Mais cette compétence cible la valeur non-automatisable *de l'apprenant lui-même*, pas celle qu'il conçoit pour les autres — l'apprenant désigne ici un irréductible pour les élèves futurs, pas pour son propre travail.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification explicite de ce qui reste irréductiblement humain dans le pipeline pédagogique (la re-génération active par l'élève)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je n'ai pas pris une conception pédagogique pour une identification de valeur non-automatisable au sens de la fiche. La fiche cible la valeur non-automatisable de l'apprenant lui-même (« que vais-je cultiver pour rester pertinent ? »), pas celle qu'il identifie pour autrui. L'attaque (b) confusion de compétence est sérieuse : la pièce 1 relève peut-être davantage de la synergie hybride (1.10) ou du cadrage pédagogique (1.02) que de l'identification de la valeur non-automatisable de l'apprenant. La pièce 2 redouble la pièce 1, donc même problème. Aucune des deux ne parle directement de ce que l'apprenant lui-même garderait comme irremplaçable dans son propre travail.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'identification de l'irréductible est attestée mais elle porte sur le travail de l'apprenant futur (l'élève), pas sur celui de l'apprenant qui écrit — la dimension prospective sur soi est en arrière-plan."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce redouble la pièce 1 sans ajouter une dimension nouvelle ; elle relève davantage de la synergie hybride opérationnelle (1.10)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer une identification de valeur non-automatisable de l'apprenant d'une conception pédagogique qui identifie cet irréductible pour autrui. La pièce 1 a tenu affaiblie : l'irréductible est nommé, mais pour les élèves futurs, pas pour l'apprenant lui-même. La pièce 2 a chuté : elle ne porte pas d'angle nouveau. Ce qui en résulte est un signal léger : l'apprenant pense l'irréductible humain, mais sur autrui plutôt que sur lui-même. Ce qui resterait à explorer, ce serait précisément ce que l'apprenant identifie comme irremplaçable dans *son propre* travail — par exemple, ce qui dans la conception même de ces dispositifs ne pourrait pas être délégué à l'IA.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une pièce affaiblie retenue : l'irréductible humain est identifié pour les élèves futurs, mais pas encore pour le travail propre de l'apprenant.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de nommer, pour le travail propre du concepteur, quels gestes ne se délèguent pas à l'IA et pourquoi — ce que la conception même de ces dispositifs requiert d'humain dans sa forme et son temps."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Hésitation tenue entre deux options pour la suite (manuel entier vs chapitre par chapitre), avec critères de déclenchement esquissés (« demain je reprends mes prompts »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La patience stratégique attend une non-action délibérée avec explication du timing, ou un report borné avec critère de déclenchement explicite. J'aborde la pièce 1 en m'attendant à ce qu'elle ressemble surtout à de la procrastination ou à une simple fatigue de soirée. La pièce porte effectivement un report (« je vais arrêter pour ce soir et demain je reprends »), avec un critère de déclenchement (le lendemain) et une explication du timing (il est tard, l'apprenant est fatigué). La fiche signale qu'un report borné dans le temps avec critère explicite est une trace, mais ici le report est court (à demain) et le contexte est la fatigue plutôt qu'un choix stratégique au sens fort. La pièce ne montre pas une non-action *délibérée malgré la pression*, mais une pause normale en fin de soirée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Report borné dans le temps avec critère de déclenchement esquissé, et hésitation entre deux options posée sans tranchage immédiat — trace minimale de la patience." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je n'ai pas pris une fatigue de soirée pour une patience stratégique. La fiche est claire : sans raisonnement explicite d'attente et sans moment d'action prévu, c'est de la procrastination ou de la paralysie. Ici, l'apprenant est fatigué et reporte au lendemain — ce n'est pas une patience stratégique au sens fort. L'attaque (a) insuffisance probatoire tient assez fermement : le report est court, le motif est physiologique, l'hésitation entre deux options est posée mais pas tranchée explicitement. Cela ressemble plus à un coup de fatigue qu'à un sens du timing.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le report est court (au lendemain), motivé par la fatigue (« il est tard »), et l'hésitation entre options n'est pas tranchée avec un critère stratégique — cela ressemble davantage à une fin de soirée qu'à une patience stratégique au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans le report et l'hésitation tenue, une trace de patience stratégique. La pièce porte une trace minimale, mais sans le triple combo de la fiche (pression à agir, raisonnement explicite d'attente, moment d'action prévu). Le motif principal est la fatigue, le report est très court, et l'hésitation entre options n'est pas tranchée stratégiquement. Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait des situations où un report aurait été choisi malgré la pression à agir, avec un critère de déclenchement précis et un résultat produit par l'attente.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a chuté au temps 2 : le report et l'hésitation tenue relèvent de la fatigue de soirée et de l'indécision opérationnelle, pas d'une patience stratégique au sens de la fiche.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter une situation où une pression à agir aurait été refusée délibérément, avec un raisonnement explicite d'attente et un critère de déclenchement précis — par exemple, « je décide après avoir testé ce prochain chapitre »."
+      },
+      "tracesRetenues": []
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 4,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail du 25 janvier porte un mélange de décisions techniques et de positions de valeur — la décision de subordonner un choix d'architecture IA à un alignement avec la philosophie pédagogique des écoles RESPIRE, l'engagement à relire 600 pages et tester les prompts générés avant diffusion, le tranchage en fin de soirée de lancer le pipeline malgré l'incertitude. À mi-séance, un arbitrage personnel apparaît, plus chargé que le reste : la décision de modifier le rythme de sommeil, avec un coût explicitement pesé (la production qui ralentit, les journées prises par Soledad, Alicia, Leila et l'ORP) et une référence familiale rapide (« peut-être que ça m'évitera de finir comme ma sœur »). Cette pesée éthique se loge dans une parenthèse sans s'y déployer. Les territoires plus larges du pôle (conscience écologique, neurodiversité, patience stratégique au sens fort) restent en dehors de la séance ; les compétences mobilisées le sont surtout dans leur dimension technique-éthique (alignement IA, validation contextuelle, décision dans le flou).",
+    "territoiresDenses": [
+      {
+        "competence": "Alignement & Refus Éthique",
+        "description": "Une décision d'architecture technique est subordonnée à un alignement explicite avec une intention pédagogique non-technique, et un garde-fou humain est maintenu avec son coût concret nommé.",
+        "extraitVerbatim": "je vais devoir relire avant de faire la mise en page (même si c'est de nouveau 600 pages à relire) et surtout cette fois-ci tester les prompts générés, car contrairement à la v5 qui était ancienne école, ici c'est l'IA qui va donner la théorie, les exercices et les tests",
+        "ceQueCaDit": "Le contrôle humain n'est pas annoncé en principe : il est posé avec son coût (600 pages), ce qui distingue le garde-fou réel de la déclaration d'intention."
+      },
+      {
+        "competence": "Décision & Tolérance à l'Incertitude",
+        "description": "Lancement du pipeline malgré la fatigue et l'incertitude sur la cohérence du résultat, avec conséquence vécue immédiatement après.",
+        "extraitVerbatim": "Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas.",
+        "ceQueCaDit": "Le triple combo de la fiche se déroule en quelques lignes — incertitude nommée, acte posé, conséquence rencontrée — ce qui atteste une pratique vécue, pas un récit de pratique."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs régions du pôle restent en dehors de la séance du 25 janvier. La conscience écologique et long-terme n'apparaît nulle part — pas d'externalité non comptabilisée, pas de raisonnement intergénérationnel, pas d'empreinte du numérique nommée. La valorisation de la neurodiversité est absente, sur soi comme sur autrui. La patience stratégique au sens fort (report délibéré sous pression avec critère de déclenchement) n'a pas été attestée : le report en fin de soirée relève de la fatigue. Le raisonnement éthique appliqué se manifeste par un arbitrage entre production et santé qui reste suspendu à une phrase, sans déploiement. La responsabilité et le courage sont annoncés (relire, tester) plutôt qu'accomplis sur cette feuille. La création de valeur non-automatisable est pensée pour autrui (l'élève qui re-génère) plutôt que pour le travail propre du concepteur. Ces silences sont des choix de feuille, pas des absences structurelles.",
+    "emergencesPole": "Trois choses traversent les pièces éthiques de cette séance. D'abord, une éthique qui s'opère par alignement plutôt que par refus frontal : aucun « non » direct n'est posé à l'IA, mais des cadres sont disposés (philosophie RESPIRE, relecture humaine, test des prompts) qui orientent ce que l'IA va produire. Ensuite, un balancier entre décision et report qui se joue dans la même soirée : le tranchage du lancement, puis l'hésitation en fin de séance, puis le report calibré au lendemain. Enfin, une charge éthique personnelle qui apparaît brièvement et se rétracte — la décision sur le sommeil avec la mention familiale, glissée dans une parenthèse, qui pèse plus que sa taille textuelle.",
+    "pistes": [
+      "Pour prolonger l'alignement éthique, un chemin possible serait de documenter, lors d'un test de prompt généré, un cas concret où la production IA a dû être refusée ou réorientée en nommant la valeur qui motivait le refus.",
+      "Pour ouvrir le raisonnement éthique appliqué, un chemin possible serait de prolonger l'arbitrage déjà amorcé entre production et santé en explicitant ce qui est mis dans la balance : ce que la santé protège, ce que la production engage, ce que la phrase « finir comme ma sœur » pèse.",
+      "Pour rendre visible la responsabilité, un chemin possible serait de documenter, lors du test prochain des prompts, le moment où l'engagement de relecture devient un acte de correction concrète face à un problème identifié.",
+      "Pour ouvrir la création de valeur non-automatisable, un chemin possible serait de nommer, pour le travail propre du concepteur, quels gestes ne se délèguent pas à l'IA et pourquoi — pas seulement pour les apprenants futurs.",
+      "Pour distinguer la patience stratégique de la fatigue, un chemin possible serait de documenter une situation où un report aurait été choisi malgré une pression à agir, avec un critère de déclenchement précis : par exemple, « je décide après avoir vu le résultat de tel test »."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail du 25 janvier porte un mélange de décisions techniques et de positions de valeur — la décision de subordonner un choix d'architecture IA à un alignement avec la philosophie pédagogique des écoles RESPIRE, l'engagement à relire 600 pages et tester les prompts générés avant diffusion, le tranchage en fin de soirée de lancer le pipeline malgré l'incertitude. À mi-séance, un arbitrage personnel apparaît, plus chargé que le reste : la décision de modifier le rythme de sommeil, avec un coût explicitement pesé (la production qui ralentit, les journées prises par Soledad, Alicia, Leila et l'ORP) et une référence familiale rapide (« peut-être que ça m'évitera de finir comme ma sœur »). Cette pesée éthique se loge dans une parenthèse sans s'y déployer. Les territoires plus larges du pôle (conscience écologique, neurodiversité, patience stratégique au sens fort) restent en dehors de la séance ; les compétences mobilisées le sont surtout dans leur dimension technique-éthique (alignement IA, validation contextuelle, décision dans le flou).\n\n## Territoires les plus denses\n\n**Alignement & Refus Éthique.** Une décision d'architecture technique est subordonnée à un alignement explicite avec une intention pédagogique non-technique, et un garde-fou humain est maintenu avec son coût concret nommé. *« je vais devoir relire avant de faire la mise en page (même si c'est de nouveau 600 pages à relire) et surtout cette fois-ci tester les prompts générés, car contrairement à la v5 qui était ancienne école, ici c'est l'IA qui va donner la théorie, les exercices et les tests »* — le contrôle humain n'est pas annoncé en principe : il est posé avec son coût (600 pages), ce qui distingue le garde-fou réel de la déclaration d'intention.\n\n**Décision & Tolérance à l'Incertitude.** Lancement du pipeline malgré la fatigue et l'incertitude sur la cohérence du résultat, avec conséquence vécue immédiatement après. *« Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas. »* — le triple combo de la fiche se déroule en quelques lignes — incertitude nommée, acte posé, conséquence rencontrée — ce qui atteste une pratique vécue, pas un récit de pratique.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions du pôle restent en dehors de la séance du 25 janvier. La conscience écologique et long-terme n'apparaît nulle part — pas d'externalité non comptabilisée, pas de raisonnement intergénérationnel, pas d'empreinte du numérique nommée. La valorisation de la neurodiversité est absente, sur soi comme sur autrui. La patience stratégique au sens fort (report délibéré sous pression avec critère de déclenchement) n'a pas été attestée : le report en fin de soirée relève de la fatigue. Le raisonnement éthique appliqué se manifeste par un arbitrage entre production et santé qui reste suspendu à une phrase, sans déploiement. La responsabilité et le courage sont annoncés (relire, tester) plutôt qu'accomplis sur cette feuille. La création de valeur non-automatisable est pensée pour autrui (l'élève qui re-génère) plutôt que pour le travail propre du concepteur. Ces silences sont des choix de feuille, pas des absences structurelles.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les pièces éthiques de cette séance. D'abord, une éthique qui s'opère par alignement plutôt que par refus frontal : aucun « non » direct n'est posé à l'IA, mais des cadres sont disposés (philosophie RESPIRE, relecture humaine, test des prompts) qui orientent ce que l'IA va produire. Ensuite, un balancier entre décision et report qui se joue dans la même soirée : le tranchage du lancement, puis l'hésitation en fin de séance, puis le report calibré au lendemain. Enfin, une charge éthique personnelle qui apparaît brièvement et se rétracte — la décision sur le sommeil avec la mention familiale, glissée dans une parenthèse, qui pèse plus que sa taille textuelle.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger l'alignement éthique, un chemin possible serait de documenter, lors d'un test de prompt généré, un cas concret où la production IA a dû être refusée ou réorientée en nommant la valeur qui motivait le refus.\n- Pour ouvrir le raisonnement éthique appliqué, un chemin possible serait de prolonger l'arbitrage déjà amorcé entre production et santé en explicitant ce qui est mis dans la balance : ce que la santé protège, ce que la production engage, ce que la phrase « finir comme ma sœur » pèse.\n- Pour rendre visible la responsabilité, un chemin possible serait de documenter, lors du test prochain des prompts, le moment où l'engagement de relecture devient un acte de correction concrète face à un problème identifié.\n- Pour ouvrir la création de valeur non-automatisable, un chemin possible serait de nommer, pour le travail propre du concepteur, quels gestes ne se délèguent pas à l'IA et pourquoi — pas seulement pour les apprenants futurs.\n- Pour distinguer la patience stratégique de la fatigue, un chemin possible serait de documenter une situation où un report aurait été choisi malgré une pression à agir, avec un critère de déclenchement précis : par exemple, « je décide après avoir vu le résultat de tel test »."
+  }
+}

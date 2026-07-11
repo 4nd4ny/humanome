@@ -1,0 +1,332 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'ai eu de nouvelles idées ce matin. En résumé : les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres.",
+      "contexte": "Idée nouvelle formulée le matin et synthétisée en une formule (« écoles intelligentes »).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Voici la 4e version du document \"La Dernière des Pédagogies\" qui les présente. J'ai mis à jour les chapitres correspondant des Maîtres.",
+      "contexte": "Quatrième itération explicite d'un document — versions successives traçables.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Je me fiche du look et de la mise en page, car du coup, 6x300 pages ça fait beaucoup de papier : je pense ainsi les conserver en version HTML pour une lecture écran uniquement, ce qui fait sens, vu la quantité de prompts à copier-coller qu'ils contiennent, contrairement aux deux premiers volumes Apprenant et Accompagnateur.",
+      "contexte": "Choix de format motivé par l'usage des manuels plutôt que par l'esthétique ; distinction entre volumes destinés à la lecture humaine et volumes opérationnels.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "La plus grosse pour le moment étant pour le Noèsiologue, ou la partie explicitation des 64 fonctions cognitives avait été réduite grosso-modo aux 6 élémentaires de niveau du I-E-O du médiateur !",
+      "contexte": "Évaluation d'un output IA jugé insuffisant pour le niveau visé — rejet d'une production trop simplifiée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "il faut que je m'entraîne à en faire sur le portfolio de Stéphane et sur le mien, pour mettre au point le processus.",
+      "contexte": "Itération par la pratique avant formalisation du manuel correspondant.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Quatrième version du document « La Dernière des Pédagogies » — itération explicite avec apprentissage entre les passages."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Décision de pratiquer la cartographie sur deux portfolios avant d'écrire le manuel — itération par expérimentation préalable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. Une « 4e version » peut être de la simple révision linéaire (corriger ce qui ne va pas) sans choix stratégique de l'imperfection. La pièce 2 est encore une intention (« il faut que je m'entraîne »). Pourtant, la pièce 1 documente une trajectoire avec mises à jour de chapitres reliés à un changement de conception (la notion d'école intelligente), ce qui est plus qu'une simple correction. La pièce 2 nomme l'expérimentation préalable comme méthode d'élaboration. Les deux résistent partiellement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La v4 n'est pas une correction d'erreurs : elle accompagne un changement conceptuel (école intelligente, rôle des Maîtres) qui propage des mises à jour de chapitres."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant nomme explicitement qu'il faut pratiquer pour mettre au point le processus avant de l'écrire — l'imperfection prototype précède la formalisation."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en cherchant à invalider. L'attaque dominante est (f) récit performatif : « 4e version » et « il faut que je m'entraîne » racontent l'itération sans la montrer en acte ce jour-là. La pièce 1 tient parce qu'on voit la conséquence concrète (mise à jour des chapitres) ; la pièce 2 tombe sous l'attaque car elle reste à l'état d'intention.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le « v4 » est un compteur, mais la mise à jour des chapitres correspondants matérialise un acte itératif réel — affaiblie parce qu'on ne voit pas le contenu de l'itération elle-même."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'intention de s'entraîner avant d'écrire reste une déclaration ; aucune itération n'est exercée dans cette feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à de la simple révision ou à de l'intention. La pièce sur la v4 a tenu parce qu'elle accompagne explicitement un changement de conception et propage des mises à jour reliées. La pièce sur l'expérimentation préalable est tombée parce qu'elle reste à l'état d'intention. Ce qui en résulte est un indice solide d'itération disciplinée dans le travail de fond, sans démonstration de créativité radicale ce jour-là. La trace tient avec une confiance modérée — l'itération est une pratique installée plus qu'un événement de la journée.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a maintenu la pièce de la v4 comme indice d'itération disciplinée, malgré l'affaiblissement de la portée.",
+        "prescription": "Le travail montre une pratique installée de versions successives liée à des changements de conception. Documenter une fois ce qui a changé entre deux versions et pourquoi rendrait visible l'apprentissage propre à chaque itération."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et la signature dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait nommer ce qui revient dans son travail d'une production à l'autre — un tic d'écriture, une façon de structurer, une métaphore récurrente."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Formulation matinale de l'idée d'une école « capable d'apprendre » dont la mémoire est constituée des portfolios des Maîtres — invention d'une question (comment fait-on une école qui apprend ?) plus que résolution d'une demande."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. « J'ai eu de nouvelles idées » est typiquement un récit performatif. La pièce ne décrit pas l'invention d'un problème mais l'arrivée d'une intuition. Pourtant, l'apprenant ne reformule pas un problème existant : il invente une catégorie (« écoles intelligentes ») qui pose une question que personne ne lui avait posée — comment une école pourrait-elle apprendre ? — et lui répond par un dispositif (les portfolios comme mémoire). Cette articulation question-réponse résiste à la présomption d'absence.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant pose une question nouvelle (qu'est-ce qu'une école qui apprend ?) plutôt que de répondre à une question donnée ; il crée un objet conceptuel et le ferme par un dispositif."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce en cherchant à invalider. L'attaque dominante est (h) faux positif de fiche : la distinction critique de la fiche 3.03 dit explicitement de ne pas confondre avec 1.02 — reformuler ≠ créer une question nouvelle. Le test : ici l'apprenant ne reformule rien d'existant, il pose un objet (école intelligente) qui ouvre un champ d'action inédit (architecture pédagogique avec mémoire des Maîtres). L'attaque ne tient pas. L'attaque (e) surinterprétation pédagogique pourrait être tentée — peut-être que l'idée n'est pas si neuve. Mais la fiche précise que le critère est la création d'une question, pas son originalité absolue : la pièce passe le test.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage ne reformule pas un problème existant : il pose la question « comment une école pourrait-elle apprendre ? » et l'incarne dans un dispositif — c'est bien un acte de design de problème, distinct du cadrage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à la ramener à du cadrage ou à une simple intuition. Elle a résisté parce que l'apprenant invente effectivement un objet qui pose une question nouvelle (école apprenante) et lui donne une consistance opératoire (les portfolios comme mémoire institutionnelle). Sous présomption de sycophantie, la pièce a tenu sans réserve sur le critère qui la distingue du cadrage. Ce qui en résulte est un indice solide de design de problème — l'apprenant ne se contente pas de résoudre, il pose une question qui ouvre un champ d'action. La trace tient avec une confiance bonne pour une pièce unique.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé que le passage invente une question (école apprenante) et l'instancie par un dispositif, ce qui est distinct du cadrage de l'intention.",
+        "prescription": "Le travail montre l'invention d'un objet qui ouvre un champ d'action. Documenter une fois le moment précis où l'idée bascule d'une intuition à une question consistante donnerait une lecture plus fine de ce geste créatif."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Rejet d'un output IA jugé insuffisant : 64 fonctions cognitives réduites à 6 — évaluation portant sur l'adéquation du niveau, pas sur la véracité."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Choix éditorial : HTML pour les manuels saturés de prompts (lecture écran), pas de mise en page travaillée — soustraction délibérée d'un soin formel jugé inutile."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La pièce 1 est une critique de contenu, pas nécessairement de forme — peut-être qu'elle relève de la pensée critique (1.01) plus que du jugement esthétique. La pièce 2 est une décision de format motivée par l'usage, pas par le goût. Pourtant, la pièce 1 porte sur l'adéquation du niveau à un public — c'est un critère formel (le niveau du Maître exige les 64 fonctions, pas les 6 élémentaires), donc un jugement sur la justesse, pas sur la véracité. La pièce 2 articule explicitement « je me fiche du look » : c'est une soustraction délibérée de soin formel, qui est en soi une décision de curation.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant juge le contenu inadéquat au niveau visé (Maître vs médiateur), ce qui est un jugement de justesse formelle, distinct d'un jugement de vérité."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le « je me fiche du look » est argumenté par l'usage (prompts à copier-coller, lecture écran), ce qui est une décision de curation par soustraction délibérée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en cherchant à invalider. L'attaque dominante pour la pièce 1 est (b) confusion de compétence : ne s'agit-il pas plutôt de pensée critique ou de cadrage ? Le test discriminant est : porte-t-on sur la vérité ou sur la justesse ? La fiche dit « 64 réduit aux 6 du médiateur » — l'apprenant juge l'inadéquation entre le niveau choisi (Maître) et le contenu livré (niveau médiateur). C'est un jugement de justesse pour un public spécifique, donc esthétique au sens 3.04. Pour la pièce 2, l'attaque (a) insuffisance probatoire : « je me fiche du look » est-il vraiment du jugement esthétique ? Le critère discriminant de la fiche est la soustraction. Ici, on soustrait délibérément la mise en page. La pièce tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le jugement porte sur l'adéquation du niveau au public visé (Maître vs médiateur), donc sur la justesse formelle, pas sur la véracité — il relève bien du jugement esthétique."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La soustraction délibérée du soin de mise en page est argumentée par l'usage (lecture écran, prompts à copier-coller) ; le critère de curation est respecté avec une portée modeste."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à de la pensée critique ou à des décisions logistiques. La pièce sur les 64 vs 6 a tenu parce qu'elle porte un jugement de justesse formelle vis-à-vis du public (Maître), ce qui est précisément 3.04. La pièce sur le HTML a tenu plus faiblement comme acte de curation par soustraction motivée par l'usage. Sous présomption de sycophantie, le cœur (pièce 1) n'a pas été ébranlé. Ce qui en résulte est une présence consistante de jugement esthétique appliqué à des outputs IA, articulé par des critères de niveau et d'usage. Le travail décrit l'évaluation et le tri, pas seulement la production.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé la pièce sur l'inadéquation des 64 vs 6 comme jugement de justesse formelle, distinct de la véracité.",
+        "prescription": "Le travail montre une évaluation des outputs IA portée par des critères de niveau et d'usage. Nommer explicitement les critères (qu'est-ce qui rend une partie « du niveau Maître ») rendrait ces choix encore plus transmissibles."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une interaction physique avec de la matière (réparation, montage, fabrication, infrastructure tangible)."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel et la pleine présence dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait noter un moment où une sensation physique ou une intuition corporelle a orienté une décision."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et la performance live dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment en présentiel où sa présence physique a fait une différence identifiable."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 0,
+    "nonEtablies": 0,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le pôle créatif s'incarne dans le travail de conception et de tri plus que dans la matière physique ou la performance en direct. L'apprenant invente une notion (l'école apprenante), itère sur la quatrième version d'un document de présentation, juge des outputs IA en fonction du niveau de public visé, et tranche des choix de format motivés par l'usage plutôt que par l'esthétique. Le geste créatif passe par l'écran, par l'écriture et par la curation. La matière à l'œuvre ce jour-là est conceptuelle et textuelle.",
+    "territoiresDenses": [
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "Évaluation d'outputs IA selon des critères de justesse formelle (niveau, public visé) et soustraction délibérée de soin de forme pour gagner en utilité.",
+        "extraitVerbatim": "La plus grosse pour le moment étant pour le Noèsiologue, ou la partie explicitation des 64 fonctions cognitives avait été réduite grosso-modo aux 6 élémentaires de niveau du I-E-O du médiateur !",
+        "ceQueCaDit": "L'apprenant lit l'output non pour vérifier s'il est vrai mais pour vérifier s'il est juste — adéquat au niveau Maître plutôt qu'au niveau médiateur. Le jugement porte sur la valeur formelle, sur l'adéquation à un public, sur ce qu'il faut garder ou refuser."
+      },
+      {
+        "competence": "Design de problèmes",
+        "description": "Invention de la notion d'« écoles intelligentes » qui pose une question nouvelle (qu'est-ce qu'une école qui apprend ?) et lui répond par un dispositif (portfolios des Maîtres comme mémoire institutionnelle).",
+        "extraitVerbatim": "les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres.",
+        "ceQueCaDit": "Le geste n'est pas de répondre à une demande mais d'inventer une catégorie qui ouvre un champ d'action. L'objet « école apprenante » n'existait pas comme tel ; il est posé, et c'est à partir de là que la question peut être travaillée."
+      },
+      {
+        "competence": "Créativité itérative",
+        "description": "Quatrième version d'un document de présentation accompagnée de mises à jour des chapitres rattachés à la conception qui évolue.",
+        "extraitVerbatim": "Voici la 4e version du document \"La Dernière des Pédagogies\" qui les présente. J'ai mis à jour les chapitres correspondant des Maîtres.",
+        "ceQueCaDit": "Le compteur « v4 » ne raconte pas la révision d'un texte : il signale qu'une conception évolue, et que les chapitres reliés à cette conception sont propagés. L'itération est ici un mode de pensée installé, pas un événement isolé."
+      }
+    ],
+    "territoiresNonVisites": "Cette feuille ne contient pas de traces d'intelligence manuelle (matière physique manipulée), d'ancrage sensoriel (perception corporelle nommée) ni de performance live (création de valeur par la co-présence). Ces absences ressemblent à un choix de journée plus qu'à une limite : la journée est consacrée à de la production conceptuelle et textuelle, le corps n'y entre que par l'écran et le clavier. La singularité stylistique n'est pas thématisée non plus — pour qu'elle apparaisse, il faudrait comparer cette feuille à d'autres et chercher les patterns qui reviennent.",
+    "emergencesPole": "Le mouvement créatif de cette journée tient ensemble par la curation : inventer une notion, la décliner en chapitres, juger ce qu'une partie d'IA livre comme trop pauvre pour le niveau visé, choisir un format en fonction de l'usage. À chaque étape, on voit l'apprenant ajouter du nouveau et retrancher de ce qui ne sert pas. Deuxième observation : l'itération et le design de problème se renforcent — la quatrième version accompagne précisément la formulation d'une catégorie nouvelle (l'école apprenante), comme si le compteur des versions enregistrait la progression d'une question plutôt que la correction d'un texte.",
+    "pistes": [
+      "Pour enrichir la dimension curation, un chemin possible serait d'expliciter une fois les critères qui font qu'une partie est « du niveau Maître » et pas du niveau médiateur — la grille rendrait ces choix transmissibles à d'autres.",
+      "Pour enrichir la dimension itérative, un chemin possible serait de noter ce qui a changé entre deux versions successives et pourquoi — ce qui rendrait visible l'apprentissage propre à chaque passage.",
+      "Pour enrichir la dimension singularité, un chemin possible serait de relever, sur plusieurs feuilles, les tics d'écriture ou les structures qui reviennent — ce qui ferait apparaître la patte qui imprègne l'ensemble."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le pôle créatif s'incarne dans le travail de conception et de tri plus que dans la matière physique ou la performance en direct. L'apprenant invente une notion (l'école apprenante), itère sur la quatrième version d'un document de présentation, juge des outputs IA en fonction du niveau de public visé, et tranche des choix de format motivés par l'usage plutôt que par l'esthétique. Le geste créatif passe par l'écran, par l'écriture et par la curation. La matière à l'œuvre ce jour-là est conceptuelle et textuelle.\n\n## Territoires les plus denses\n\n### Jugement esthétique et curation\n\nÉvaluation d'outputs IA selon des critères de justesse formelle (niveau, public visé) et soustraction délibérée de soin de forme pour gagner en utilité.\n\n> La plus grosse pour le moment étant pour le Noèsiologue, ou la partie explicitation des 64 fonctions cognitives avait été réduite grosso-modo aux 6 élémentaires de niveau du I-E-O du médiateur !\n\nL'apprenant lit l'output non pour vérifier s'il est vrai mais pour vérifier s'il est juste — adéquat au niveau Maître plutôt qu'au niveau médiateur. Le jugement porte sur la valeur formelle, sur l'adéquation à un public, sur ce qu'il faut garder ou refuser.\n\n### Design de problèmes\n\nInvention de la notion d'« écoles intelligentes » qui pose une question nouvelle (qu'est-ce qu'une école qui apprend ?) et lui répond par un dispositif (portfolios des Maîtres comme mémoire institutionnelle).\n\n> les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres.\n\nLe geste n'est pas de répondre à une demande mais d'inventer une catégorie qui ouvre un champ d'action. L'objet « école apprenante » n'existait pas comme tel ; il est posé, et c'est à partir de là que la question peut être travaillée.\n\n### Créativité itérative\n\nQuatrième version d'un document de présentation accompagnée de mises à jour des chapitres rattachés à la conception qui évolue.\n\n> Voici la 4e version du document \"La Dernière des Pédagogies\" qui les présente. J'ai mis à jour les chapitres correspondant des Maîtres.\n\nLe compteur « v4 » ne raconte pas la révision d'un texte : il signale qu'une conception évolue, et que les chapitres reliés à cette conception sont propagés. L'itération est ici un mode de pensée installé, pas un événement isolé.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille ne contient pas de traces d'intelligence manuelle (matière physique manipulée), d'ancrage sensoriel (perception corporelle nommée) ni de performance live (création de valeur par la co-présence). Ces absences ressemblent à un choix de journée plus qu'à une limite : la journée est consacrée à de la production conceptuelle et textuelle, le corps n'y entre que par l'écran et le clavier. La singularité stylistique n'est pas thématisée non plus — pour qu'elle apparaisse, il faudrait comparer cette feuille à d'autres et chercher les patterns qui reviennent.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nLe mouvement créatif de cette journée tient ensemble par la curation : inventer une notion, la décliner en chapitres, juger ce qu'une partie d'IA livre comme trop pauvre pour le niveau visé, choisir un format en fonction de l'usage. À chaque étape, on voit l'apprenant ajouter du nouveau et retrancher de ce qui ne sert pas. Deuxième observation : l'itération et le design de problème se renforcent — la quatrième version accompagne précisément la formulation d'une catégorie nouvelle (l'école apprenante), comme si le compteur des versions enregistrait la progression d'une question plutôt que la correction d'un texte.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension curation, un chemin possible serait d'expliciter une fois les critères qui font qu'une partie est « du niveau Maître » et pas du niveau médiateur — la grille rendrait ces choix transmissibles à d'autres.\n- Pour enrichir la dimension itérative, un chemin possible serait de noter ce qui a changé entre deux versions successives et pourquoi — ce qui rendrait visible l'apprentissage propre à chaque passage.\n- Pour enrichir la dimension singularité, un chemin possible serait de relever, sur plusieurs feuilles, les tics d'écriture ou les structures qui reviennent — ce qui ferait apparaître la patte qui imprègne l'ensemble.\n"
+  }
+}

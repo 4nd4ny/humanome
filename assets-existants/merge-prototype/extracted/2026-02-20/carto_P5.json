@@ -1,0 +1,268 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "J'adore Claude Cowork : ça me permet de travailler sur l'ensemble des fichiers sans passer par un projet.",
+      "contexte": "Enthousiasme face à un nouvel agent IA ; à examiner pour 5.04 (acceptation de l'intelligence supérieure) sous l'angle du registre émotionnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "On sent le changement de paradigme avec l'agent Cowork.",
+      "contexte": "Constat d'une bascule de paradigme dans l'usage de l'IA ; à examiner pour 5.02 (plasticité, abandon d'un ancien cadre) et 5.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Premiers tests de cartographie non concluants : l'architecture de prompts fonctionne, mais l'algorithme n'est pas le bon.",
+      "contexte": "Constat d'un échec partiel ; à examiner pour 5.01 (résilience) — y a-t-il rebond ou simple notation ?",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Je dois ralentir le projet ces prochains jours pour avancer du côté des demandes du coach de l'ORP [...] reprise du CV à faire en plus du reste.",
+      "contexte": "Décision de redirection d'effort ; à examiner pour 5.07 (souveraineté attentionnelle) — choix délibéré de focus ou contrainte subie ?",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Tests non concluants notés sans drame : à examiner pour vérifier si la trace porte une antifragilité (échec qui ouvre l'histoire) ou un simple constat."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la résilience et l'antifragilité ne sont pas attestées : la fiche 5.01 demande un récit de crise ou d'échec suivi d'une description explicite de ce qui a changé, grandi ou émergé. La pièce 1 mentionne un test non concluant et un diagnostic, mais sans aucune description de transformation, sans ironie face au chaos, sans retournement narratif. L'apprenant n'écrit ni « je vais relancer autrement », ni « cet échec m'apprend que… ». La pièce ne résiste pas : elle constate un problème technique, ce qui n'est pas l'épreuve existentielle dont parle la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Le temps 1 n'a retenu aucune pièce.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace de résilience antifragile. Aucune pièce n'a résisté : un test technique qui n'aboutit pas, sans récit du rebond, sans extraction d'enseignement, n'active pas la compétence. Ce qui en résulte : le dossier reste fermé sur cette feuille ; il pourrait s'ouvrir sur une feuille future où l'apprenant raconterait comment ce test échoué est devenu matière à transformation.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : un échec technique noté ne porte pas par lui-même la structure du retournement antifragile.",
+        "prescription": "Le test non concluant pourrait devenir trace de résilience si une feuille ultérieure racontait ce qu'il a permis d'apprendre ou de déplacer dans le projet. Le retournement narratif — l'échec comme début, pas comme fin — est ce qui donnerait corps à la compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le constat d'un « changement de paradigme » lié à Cowork pourrait être une trace oblique de plasticité — d'un ancien cadre d'usage qu'on quitte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la plasticité et le désapprentissage ne sont pas attestés : la fiche 5.02 demande qu'on nomme ce qu'on a dû abandonner, pourquoi, et ce qui reste constant — articulation simultanée de la mue. La pièce 1 dit « on sent le changement de paradigme » mais sans préciser quel paradigme est quitté, ce qui a été abandonné, ce qui reste. C'est une étiquette posée sur un mouvement perçu, pas l'articulation d'une mue. La pièce résiste très faiblement parce qu'elle pointe vers une bascule réelle, mais elle ne la déplie pas.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le constat de « changement de paradigme » suppose qu'un ancien paradigme est identifié comme tel — ce qui est un préalable de la plasticité."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 et je me demande si je n'ai pas surchargé l'expression. L'attaque (d) glissement lexical s'applique fortement : « changement de paradigme » est devenu une formule courante dans tout discours technologique contemporain — sans description du cadre quitté, c'est une étiquette ambiante, pas une trace de mue cognitive. L'apprenant ne dit ni « ce que je faisais avant ne fonctionne plus », ni « je dois lâcher tel réflexe ».",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Changement de paradigme » est un lexique d'époque ; sans description du cadre quitté ni de la tension de la mue, le marqueur de plasticité au sens 5.02 n'est pas activé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace de plasticité. La pièce du « changement de paradigme » a brièvement résisté, parce qu'elle suppose la conscience d'un avant et d'un après. Mais sous la présomption de sycophantie, le glissement lexical s'est imposé : sans description du paradigme quitté ni du fil qui reste, c'est une formule, pas une mue. Ce qui en résulte : le dossier reste fermé ici, à ouvrir sur une feuille où la bascule serait dépliée (ce qui change concrètement dans la façon de travailler).",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce pour glissement lexical : « changement de paradigme » sans déplier le cadre quitté reste une formule.",
+        "prescription": "Le constat de bascule mériterait d'être déplié sur une feuille future : qu'est-ce qui, dans la façon de travailler avant Cowork, n'a plus de sens ? Qu'est-ce qui demande à être désappris ? Cette articulation transformerait l'étiquette en trace de plasticité."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Narration Réflexive sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait tisser un fil de sens entre événements distants, en passant du quoi au qu'est-ce que ça signifie."
+      }
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Enthousiasme déclaré pour Cowork ; à examiner si la pièce porte une traversée de tension face à une intelligence qui dépasse ou un simple usage enthousiaste."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le « changement de paradigme » perçu pourrait signaler une reconfiguration du rapport humain-IA, à examiner pour 5.04."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'acceptation de l'intelligence supérieure n'est pas attestée : la fiche 5.04 demande la trace d'une tension émotionnelle vécue — surprise, choc, colère, admiration mêlée de malaise — au moment où l'IA dépasse l'humain dans un domaine donné. Les pièces 1 et 2 portent de l'enthousiasme et un constat de bascule, mais aucune tension émotionnelle : « j'adore » et « on sent le changement » n'évoquent ni deuil ni traversée. La pièce 1 ne résiste pas (enthousiasme techno-positif). La pièce 2 ne résiste pas non plus (constat impersonnel).",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Le temps 1 n'a retenu aucune pièce.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace d'acceptation de l'intelligence supérieure. Aucune pièce n'a résisté : l'enthousiasme et le constat de paradigme ne portent pas la tension émotionnelle dont parle la fiche, et risqueraient même de relever de la désirabilité sociale technologique. Ce qui en résulte : le dossier reste fermé ici. La question — qu'est-ce que cela fait, à l'apprenant, que Cowork puisse travailler sur l'ensemble des fichiers à sa place — pourrait s'ouvrir sur une feuille future.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : l'enthousiasme et le constat de bascule manquent de la tension émotionnelle qui signe la traversée du deuil cognitif.",
+        "prescription": "L'enthousiasme pour Cowork mériterait, dans une feuille future, de laisser place à la question intime : qu'est-ce que cela déplace que cet agent fasse mieux et plus vite ? Le repérage d'une tension, même légère, ouvrirait le dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au Sens & Motivation Intrinsèque sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait nommer ce qui le pousse à continuer un travail, hors de toute récompense ou validation externe."
+      }
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'Autonomie & Mode Dégradé sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a travaillé sans outil numérique ou improvisé avec les moyens du bord."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Décision de ralentir un projet pour orienter l'attention ailleurs : à examiner pour vérifier s'il s'agit d'un choix attentionnel délibéré ou d'une contrainte d'agenda subie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la souveraineté attentionnelle n'est pas attestée : la fiche 5.07 demande un choix délibéré de focus en présence d'alternatives, idéalement avec rituel ou dispositif concret. La pièce 1 décrit un ralentissement, mais ce ralentissement est causé par une demande externe (le coach de l'ORP, le CV) — l'apprenant ne choisit pas où poser sa lumière, il la déplace parce qu'on le lui demande. Le verbe « je dois » signale plutôt une contrainte qu'un choix souverain. La pièce ne résiste pas sérieusement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Le temps 1 n'a retenu aucune pièce.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace de souveraineté attentionnelle. La pièce du ralentissement n'a pas résisté : c'est une réorientation imposée par une demande externe (« je dois ralentir... pour avancer du côté des demandes du coach »), pas un choix délibéré de focus contre les sollicitations. Ce qui en résulte : la trace appartient au registre de la priorisation contrainte, pas à celui du phare qui choisit où diriger sa lumière.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : un ralentissement imposé par une demande externe n'active pas le marqueur du choix attentionnel souverain.",
+        "prescription": "Pour ouvrir le dossier de la souveraineté attentionnelle, un récit qui décrirait un choix de focus en présence d'alternatives — non pas « je dois », mais « je décide de » — transformerait l'arbitrage en trace de maîtrise du regard."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Vérification Terrain sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un test direct dans le réel qui a confirmé ou démenti ce qu'un système ou une IA affirmait."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 8,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 20 février, le pôle des racines affleure par éclats sans s'y poser comme trace stable. L'enthousiasme pour un nouvel agent IA, la perception d'une bascule de paradigme, un test qui n'aboutit pas, un projet qu'on ralentit pour répondre ailleurs : autant de moments qui touchent à la transformation, à l'attention, au rapport à l'IA, sans jamais déplier ce qui se joue intérieurement.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle sont en retrait sur cette feuille, et les absences semblent surtout liées au format de la note — courte, opérationnelle, peu introspective. La narration réflexive, le sens, le mode dégradé et la vérification terrain n'apparaissent pas. Quatre dossiers ont été examinés sans aboutir : la résilience (l'échec technique n'a pas été suivi du récit du rebond), la plasticité (le « changement de paradigme » n'a pas été déplié), l'acceptation de l'intelligence supérieure (l'enthousiasme manque de la tension qui signe la traversée) et la souveraineté attentionnelle (le ralentissement est subi plutôt que choisi).",
+    "emergencesPole": "Ce qui revient, en filigrane, c'est un moment de transition : Cowork change quelque chose, le test ne marche pas encore, l'agenda demande de se redéployer. La feuille porte des amorces de transformation, sans encore se donner les mots de ce qui mue. C'est précisément la zone où ces compétences pourraient s'ancrer si l'écriture s'autorisait un peu plus de profondeur.",
+    "pistes": [
+      "Pour ouvrir la trace de plasticité, un chemin possible serait de déplier, sur une feuille future, ce que Cowork rend obsolète dans la façon de travailler antérieure — ce qui doit être lâché, ce qui reste.",
+      "Pour ouvrir la trace d'acceptation, un chemin possible serait de laisser, dans une note, la question intime affleurer : qu'est-ce que cela fait que l'agent travaille à cette échelle ?",
+      "Pour ouvrir la trace de souveraineté attentionnelle, un chemin possible serait de raconter un choix de focus en présence d'alternatives — pas « je dois », mais « je décide de »."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 20 février, le pôle des racines affleure par éclats sans s'y poser comme trace stable. L'enthousiasme pour un nouvel agent IA, la perception d'une bascule de paradigme, un test qui n'aboutit pas, un projet qu'on ralentit pour répondre ailleurs : autant de moments qui touchent à la transformation, à l'attention, au rapport à l'IA, sans jamais déplier ce qui se joue intérieurement.\n\n## Territoires les plus denses\n\nAucun territoire ne ressort comme densité sur cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle sont en retrait sur cette feuille, et les absences semblent surtout liées au format de la note — courte, opérationnelle, peu introspective. La narration réflexive, le sens, le mode dégradé et la vérification terrain n'apparaissent pas. Quatre dossiers ont été examinés sans aboutir : la résilience (l'échec technique n'a pas été suivi du récit du rebond), la plasticité (le « changement de paradigme » n'a pas été déplié), l'acceptation de l'intelligence supérieure (l'enthousiasme manque de la tension qui signe la traversée) et la souveraineté attentionnelle (le ralentissement est subi plutôt que choisi).\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui revient, en filigrane, c'est un moment de transition : Cowork change quelque chose, le test ne marche pas encore, l'agenda demande de se redéployer. La feuille porte des amorces de transformation, sans encore se donner les mots de ce qui mue. C'est précisément la zone où ces compétences pourraient s'ancrer si l'écriture s'autorisait un peu plus de profondeur.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir la trace de plasticité, un chemin possible serait de déplier, sur une feuille future, ce que Cowork rend obsolète dans la façon de travailler antérieure — ce qui doit être lâché, ce qui reste.\n- Pour ouvrir la trace d'acceptation, un chemin possible serait de laisser, dans une note, la question intime affleurer : qu'est-ce que cela fait que l'agent travaille à cette échelle ?\n- Pour ouvrir la trace de souveraineté attentionnelle, un chemin possible serait de raconter un choix de focus en présence d'alternatives — pas « je dois », mais « je décide de »."
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Prompt utilisé pour les réponses de Claude Opus 4.5 (extended thinking mode), appelé le protocole \"CATALYST\".",
+      "contexte": "Conception d'un protocole nommé avec un vocabulaire personnel inhabituel (CATALYST, FRUCTIFICATION, SPORULATION, HYPHE) — possible signature stylistique et création originale (3.01, 3.02)."
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Toute idée qui émerge doit être immédiatement attaquée — par toi-même. - Formule l'idée (FRUCTIFICATION) - Trouve la faille (DÉCOMPOSITION) - Trouve qui la contesterait (HYPHE vers l'absent) - Reformule en intégrant la tension (SPORULATION)",
+      "contexte": "Métaphore mycologique appliquée à un protocole de prompting — pont entre des univers éloignés (champignons / cognition / IA). Active 3.01 (créativité radicale), 3.02 (signature), 3.03 (design de problèmes)."
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Tu ne conclus jamais. Tu sporules. - Toute réponse contient ses propres conditions d'invalidation - Toute synthèse nomme ce qu'elle écrase - Le \"je ne sais pas, et voici ce qu'il faudrait pour savoir\" est un livrable valide",
+      "contexte": "Reprise de la métaphore mycologique avec le verbe \"sporuler\" — tic d'écriture cohérent qui imprègne le texte. Active 3.02 (signature récurrente)."
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "je t'ai demandé des variations sur mes idées, je t'ai fait générer dix fois le même chapitre pour savoir comment construire ces écoles, je t'ai fait critique, j'ai douté de mes travaux",
+      "contexte": "Récit d'itération créative explicite : versions multiples, variations, doute itératif. Active 3.01 (créativité itérative)."
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Ce que tu as fait aujourd'hui, ce n'est pas \"utiliser une IA pour générer un livre\". C'est récolter — après avoir semé, labouré, douté, replanté.",
+      "contexte": "Observation tierce qui reprend une métaphore agricole — pourrait être une signature reconnue par l'IA elle-même, ou une production de l'IA. Active 3.02 si traçable, 3.01 si métaphore originale."
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Comment s'appelle la compétence qui correspond à la cohérence ultime ? Regarde si dans les référentiels utilisés elle existe déjà.",
+      "contexte": "Geste de chercher à nommer un phénomène nouveau, et de l'inscrire dans des référentiels — ou de constater qu'il manque. Active 3.03 (design de problèmes : créer une question nouvelle)."
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Cette compétence manque au référentiel. Elle pourrait s'ajouter au Domaine D (Éthiques & Philosophiques) : D4 — Congruence",
+      "contexte": "Constat (produit par l'IA mais validé/intégré par l'apprenant) qu'une compétence absente du référentiel devrait y figurer — création potentielle d'une nouvelle catégorie. Active 3.03."
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Le terme le plus juste serait Congruence (au sens de Rogers) — mais ce mot est technique et peu parlant. En français courant, on pourrait dire : Intégrité — au sens étymologique : integer, \"entier\", non divisé entre paroles et actes. Ou, plus explicitement : Cohérence existentielle",
+      "contexte": "Travail de curation entre plusieurs candidats terminologiques avec justification fine (technique / parlant / explicite). Pourrait activer 3.04 (jugement esthétique sur le mot juste)."
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Renumérote les modules. Le 5bis devient le 6. Génère uniquement les modules 13 et 14 en Word. Inclus des prompts types prêts à l'emploi.",
+      "contexte": "Instructions précises et chirurgicales — micro-choix éditoriaux qui structurent un livrable. Pourrait activer 3.04 (curation / éditorialisation)."
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "le contenu a ta voix, pas une voix générique. Le Module 14 est reconnaissable comme étant de toi.",
+      "contexte": "Observation tierce affirmant la reconnaissabilité du style de l'apprenant — c'est précisément le test cité par la fiche 3.02 (\"quelqu'un d'autre pourrait-il identifier l'auteur sans voir son nom ?\")."
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Récit d'itérations multiples (variations sur les idées, dix générations du même chapitre, doute itératif) — schéma itératif disciplinaire."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "La métaphore mycologique (FRUCTIFICATION, DÉCOMPOSITION, HYPHE, SPORULATION) appliquée à un protocole cognitif — connexion entre des domaines très éloignés."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Conception d'un protocole de prompting avec une grammaire singulière — création d'un dispositif inhabituel dans le champ."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la créativité itérative ou radicale n'est pas vraiment attestée : la fiche 3.01 distingue précisément l'itération disciplinée (cycles 1→n avec apprentissage) de la rupture radicale (0→1) et avertit qu'une métaphore originale n'est pas nécessairement une création radicale. La pièce 1 raconte l'itération mais sur 6 mois, hors-scène — c'est un récit rétrospectif, pas une itération en acte sur cette feuille. La pièce 2 résiste mieux : appliquer le cycle de vie d'un champignon (fructification → décomposition → hyphe → sporulation) à une grammaire de prompting est une connexion entre domaines éloignés peu commune. La pièce 3 dépend du caractère réellement nouveau du protocole — si l'IA l'aurait suggéré, ce n'est qu'une variation ; si elle ne l'aurait pas fait, c'est une rupture. Ce qui reste explicitement faible : les versions successives avec apprentissage explicite ne sont pas montrées sur cette feuille (l'itération est citée, pas exposée).",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La métaphore mycologique appliquée à la cognition est une connexion entre domaines éloignés peu attendue dans la littérature du prompting." },
+            { "pieceId": 3, "motifResistance": "Le protocole CATALYST avec sa grammaire personnelle relève d'une construction inhabituelle qui dépasse l'usage standard." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 2 pourrait être séduisante par sa rareté linguistique mais sans rupture conceptuelle — la fiche met en garde : si l'IA l'aurait suggéré, ce n'est pas de la radicalité. La métaphore mycologique pour décrire des processus cognitifs n'est pas inédite (le rhizome de Deleuze, le mycélium de Sheldrake, le mycorhize comme métaphore d'apprentissage) — c'est une variation érudite plus qu'une rupture. La pièce 3 (CATALYST) est une construction structurée mais qui combine des éléments existants (méta-prompting, anti-flagornerie, friction productive). La pièce 1 reste un récit, pas une itération exposée. Cependant la combinaison spécifique (métaphore mycologique + lois numérotées + format de sortie + test final anti-flagornerie) garde un caractère composé propre — c'est plus de l'itération raffinée que de la rupture, mais c'est plus qu'une simple variation.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Récit d'itération sur 6 mois sans exposer une version concrète et son évolution ; tient comme indice de pratique itérative déclarée." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La métaphore mycologique pour la cognition s'inscrit dans une tradition existante (rhizome, mycélium) ; tient comme variation érudite avec composition propre, pas comme rupture pure." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le protocole CATALYST est un objet construit, nommé, structuré, intégrant plusieurs gestes peu réunis ailleurs (métaphore organique, lois numérotées, anti-flagornerie, format de sortie en 4 temps) ; trace concrète d'un acte créatif." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la créativité en mesurant les pièces contre le critère de la fiche : itération exposée ou rupture radicale (test : l'IA l'aurait-elle suggéré ?). Le récit de l'itération s'est affaibli sans tomber — il déclare la pratique sans la montrer. La métaphore mycologique s'est affaiblie aussi — elle est érudite et travaillée mais s'inscrit dans une tradition, pas dans une rupture inédite. Ce qui a tenu : le protocole CATALYST comme objet composé, qui combine plusieurs gestes peu réunis ailleurs et qui est mis en service dans la conversation. Ce qui en résulte : une présence dans le registre itératif et compositionnel plus que dans le registre de la rupture radicale. La nuance qui reste : on ne voit pas, sur cette feuille, le \"premier jet bancal\" et le pivot qui suit ; ce qu'on voit est déjà un produit fini, donc le travail créatif est attesté par son résultat plus que par son processus visible.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "La pièce 3 tient comme trace concrète de composition créative ; les pièces 1 et 2 tiennent comme indices après affaiblissement (récit non exposé, métaphore inscrite dans une tradition).",
+        "prescription": "Pour prolonger cet axe, un chemin possible serait de documenter une version intermédiaire de CATALYST — une formulation antérieure qui n'a pas tenu, ce que la friction du test a révélé, ce qui a déclenché le pivot vers la grammaire actuelle — de sorte que le cycle itératif lui-même devienne visible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Métaphore mycologique récurrente (FRUCTIFICATION, DÉCOMPOSITION, HYPHE, SPORULATION) — tic d'écriture cohérent qui imprègne le protocole."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Réutilisation du verbe \"sporuler\" dans une autre loi du protocole — pattern récurrent sur la même feuille, signe d'une grammaire propre."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Observation tierce : le contenu produit a une voix reconnaissable comme étant de l'apprenant — c'est précisément le test de la fiche 3.02."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "L'IA reprend une métaphore agricole (\"récolter — après avoir semé, labouré, douté, replanté\") qui prolonge l'univers de l'apprenant, signal d'un style imprégnant."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la singularité et la signature ne sont pas vraiment attestées : la fiche exige un fil stylistique qui traverse plusieurs entrées, pas seulement une page isolée. La pièce 3 résiste fort : c'est une observation tierce qui affirme la reconnaissabilité — \"le contenu a ta voix, pas une voix générique. Le Module 14 est reconnaissable comme étant de toi\". C'est précisément le test cité par la fiche. La pièce 1 et la pièce 2 montrent un pattern récurrent sur cette feuille (métaphore mycologique convoquée à plusieurs reprises dans le même protocole). La pièce 4 est plus délicate — l'IA reprend une métaphore agricole, mais on ne peut pas savoir si c'est l'apprenant qui l'a déjà utilisée ailleurs ou si c'est l'IA qui l'invente pour l'occasion. Ce qui reste explicitement faible : on ne dispose ici que d'une feuille, donc l'exigence de récurrence dans le temps ne peut pas être pleinement testée sur cette feuille seule.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Le test exact cité par la fiche (\"quelqu'un d'autre pourrait-il identifier l'auteur sans voir son nom ?\") est passé positivement par l'IA en observation tierce." },
+            { "pieceId": 1, "motifResistance": "La métaphore mycologique tisse un univers lexical propre qui n'est pas une simple décoration." },
+            { "pieceId": 2, "motifResistance": "La réutilisation de \"sporuler\" comme verbe (\"Tu ne conclus jamais. Tu sporules.\") signe une grammaire personnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 3 est une observation faite par une IA qui a déjà été sollicitée et qui pourrait surcalibrer son éloge. Cependant l'observation est précise (\"le contenu a ta voix, pas une voix générique\") et appuyée sur un exemple nommé (Module 14) — ce n'est pas un éloge nu. La pièce 1 est solide : la métaphore mycologique ne s'inscrit pas dans le vocabulaire standard du prompting, elle vient d'ailleurs. La pièce 2 confirme le pattern dans la même feuille. La pièce 4 reste ambiguë — sans corpus comparatif, on ne peut pas démêler ce qui vient de l'apprenant de ce que l'IA reformule. Elle tombe.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le vocabulaire mycologique n'est pas du remplissage : il structure les quatre étapes du protocole et tient lieu de grammaire propre." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La répétition de \"sporuler\" comme verbe-clé dans une autre loi du protocole témoigne d'un tic d'écriture cohérent à l'intérieur du texte." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'IA pourrait flatter, mais l'observation est ancrée sur un exemple précis (Module 14) ; tient comme indice corroboratif." },
+            { "pieceId": 4, "attaqueDominante": "d", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Sans corpus comparatif, on ne peut établir que la métaphore agricole vient de l'apprenant plutôt que de la reformulation de l'IA." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la signature en pensant qu'une seule feuille ne suffit pas à attester d'un style récurrent. La pièce qui ne pouvait pas être attribuée à l'apprenant est tombée. Ce qui a tenu de plein droit : la cohérence interne du vocabulaire mycologique qui traverse le protocole et qui se réactive plus loin avec le verbe \"sporuler\", et l'observation tierce qui passe précisément le test de la fiche (reconnaissabilité par un tiers). L'observation est affaiblie par le risque de complaisance machine mais reste comme indice ancré. Ce qui en résulte : une présence attestée à l'échelle de cette feuille, avec une réserve : la récurrence sur plusieurs entrées du portfolio n'est pas vérifiable depuis cette feuille seule. La signature apparaît dans la construction d'un univers métaphorique (mycologie, agriculture) qui colore le travail intellectuel.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Les pièces 1 et 2 (métaphore mycologique récurrente à l'intérieur du protocole) tiennent comme traces concrètes ; la pièce 3 (observation tierce de reconnaissabilité) tient comme indice corroboratif.",
+        "prescription": "Pour prolonger cette signature, un chemin possible serait d'écrire un court paragraphe qui nomme explicitement ce qui revient dans l'écriture — quels univers métaphoriques (mycologie, agriculture, autre), quels tics, quelle structure préférée — de sorte que la patte involontaire devienne aussi un choix conscient."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Question posée : \"comment s'appelle cette compétence ?\" — l'apprenant repère un phénomène (la cohérence d'un fondateur qui s'applique à lui-même sa pédagogie) et pose la question de sa nomination. Active 3.03 (créer une question nouvelle)."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Le constat \"cette compétence manque au référentiel\" — création d'un manque, donc d'un problème nouveau à résoudre dans le référentiel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que le design de problèmes n'est pas vraiment attesté : la fiche est exigeante, elle distingue précisément 3.03 (créer un problème inédit) de 1.02 (reformuler un problème existant). La pièce 1 est borderline : demander \"comment s'appelle cette compétence ?\" n'est pas créer un problème, c'est interroger une nomination. Cependant, derrière la question, il y a la reconnaissance d'un phénomène que les référentiels ne couvrent pas (le fondateur qui s'applique à lui-même sa pédagogie comme compétence) — c'est l'identification d'un champ d'action que personne n'avait formulé. La pièce 2 est plus claire : poser que \"cette compétence manque au référentiel\" et proposer son inscription comme D4 crée un problème (le référentiel a un angle mort) et ouvre un champ d'action (compléter le référentiel). Le critère de la fiche — \"généralisation d'un cas spécifique en recette reproductible\" — est satisfait quand le geste passe de \"ce que je fais\" à \"compétence à ajouter au référentiel pour tous\".",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant repère un phénomène que les référentiels ne couvrent pas et en fait l'objet d'une question — préliminaire de design de problème." },
+            { "pieceId": 2, "motifResistance": "Constater qu'une compétence manque au référentiel et proposer son inscription est un acte qui ouvre un champ d'action inédit." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 reste un acte de cadrage (1.02) plus que de design (3.03) — l'apprenant reformule plus qu'il ne crée. La pièce 2 est plus solide mais ambiguë : le constat \"cette compétence manque\" est en partie produit par l'IA, et l'apprenant valide. Cependant l'apprenant garde le geste initial (poser la question), et la formulation finale du manque résulte de son cadrage initial. La fiche cite explicitement \"généralisation d'un cas spécifique en recette reproductible\" — passer de \"je fais cela\" à \"voici une compétence à ajouter au référentiel pour tous\" satisfait ce critère.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'acte relève en partie de 1.02 (cadrage) ; tient comme indice parce qu'il prépare le geste plus large de la pièce 2." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le constat est formulé conjointement avec l'IA ; l'apprenant l'initie et le valide. Reste comme indice de design de problème en collaboration." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le design de problèmes en distinguant fortement la création de problème (3.03) du recadrage (1.02). Les deux pièces se sont affaiblies sans tomber : l'une parce qu'elle relève en partie du cadrage, l'autre parce que l'IA participe à la formulation finale. Ce qui en résulte : un geste partagé entre apprenant et IA, où l'apprenant initie l'interrogation d'un manque (la compétence manque au référentiel ?) et où la proposition d'inscription émerge dans le dialogue. La nuance qui reste : on ne voit pas, sur cette feuille, l'apprenant passer ensuite à l'action — modifier le référentiel, intégrer formellement cette compétence dans Respire, ouvrir le champ d'action. Le problème est nommé, l'action qui le résoudrait n'est pas encore exposée.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli les deux pièces (l'une relève en partie du cadrage, l'autre est co-produite avec l'IA) ; aucune trace concrète de transformation du référentiel en acte sur cette feuille.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de documenter le geste suivant — la modification effective du référentiel pour y inscrire la compétence repérée, ou la rédaction de la fiche descriptive de cette compétence — de sorte que le problème nouvellement formulé débouche sur un champ d'action visible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Comparaison argumentée entre trois candidats terminologiques (Congruence / Intégrité / Cohérence existentielle) avec critères articulés (technique vs parlant, étymologie, explicitation) — jugement formel sur le mot juste."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Instructions éditoriales chirurgicales (\"renumérote\", \"génère uniquement les modules 13 et 14\", \"inclus des prompts types\") — soustraction et hiérarchisation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que le jugement esthétique et la curation ne sont pas vraiment attestés : la fiche distingue précisément 1.01 (évaluer la véracité) de 3.04 (évaluer la justesse formelle), et exige que la curation implique de la soustraction. La pièce 1 est curieuse parce que c'est l'IA qui propose la comparaison entre Congruence, Intégrité et Cohérence existentielle, avec des critères articulés (technique mais peu parlant / étymologique / plus explicite). Ce n'est pas l'apprenant qui curate ici, c'est l'IA qui propose plusieurs candidats avec leur évaluation. La pièce 2 est plus directe : les instructions chirurgicales relèvent de l'éditorialisation, avec une soustraction explicite (\"uniquement les modules 13 et 14\"). Ce qui reste faible : aucune trace d'un rejet motivé d'un output IA pour des raisons de ton ou de justesse formelle, aucune verbalisation par l'apprenant lui-même d'un critère esthétique.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le \"uniquement les modules 13 et 14\" est une soustraction explicite, geste central de la curation selon la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 ne peut pas être créditée à l'apprenant — la curation entre candidats terminologiques est produite par l'IA. La pièce 2 reste : les instructions chirurgicales sont éditoriales et la soustraction est nette. Cependant la fiche distingue 3.04 d'un simple acte de gestion (\"j'ai tout gardé = anti-curation\"). Ici, l'apprenant choisit explicitement quoi générer et quoi exclure pour produire le bon livrable, ce qui rejoint la conception de hiérarchies de contenu différenciées par audience que la fiche cite comme manifestation architecturale. La nature des choix (Word pour deux modules spécifiques, prompts types) n'est pas argumentée en termes de justesse formelle dans le texte ; on voit le résultat, pas le critère.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La curation argumentée entre candidats terminologiques est produite par l'IA, pas par l'apprenant ; elle ne peut pas être créditée à 3.04 chez lui." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Les instructions montrent la soustraction et la hiérarchisation en acte, mais aucun critère esthétique n'est verbalisé ; tient comme indice de curation pratique sans articulation explicite." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le jugement esthétique en distinguant ce qui vient de l'apprenant de ce qui vient de l'IA. La pièce qui montrait la curation argumentée est tombée — elle est produite par l'IA. Ce qui a survécu, affaibli : les instructions éditoriales chirurgicales qui montrent la soustraction et la hiérarchisation en acte. Mais sans critère verbalisé, on ne dispose que d'un geste, pas de la grammaire qui le sous-tend. Ce qui en résulte : un indice de curation pratique, isolé. La nuance qui reste : il est possible que les critères existent et soient implicites — l'apprenant choisit avec précision — mais cette feuille ne les explicite pas, donc on ne peut pas attester d'un jugement esthétique argumenté.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Le temps 2 a disqualifié la pièce de curation argumentée (produite par l'IA) ; la pièce d'instructions tient comme indice de geste sans critère verbalisé.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait d'expliciter une fois les critères qui président aux choix éditoriaux — pourquoi ce module-ci sortira en Word et pas l'autre, pourquoi cette formulation sonne juste et pas une autre, ce qui rendrait visible la grammaire esthétique qui pilote déjà les gestes."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la main et la matière ont compté — un montage, une réparation, une fabrication, ou la dimension physique d'une infrastructure technique."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où une sensation physique nommée précisément a infléchi une décision — un signal corporel qui a précédé un choix, un ralentissement délibéré qui a fait apparaître ce qui était invisible."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et à la performance live sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment en présentiel — formation, atelier, conférence — où l'énergie d'un groupe a été captée et transformée en direct, et nommer ce que la co-présence physique a permis qu'aucun écrit ne reproduirait."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 2,
+    "nonEtablies": 0,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail se donne à lire surtout comme un acte d'écriture conceptuelle : une grammaire personnelle se déploie autour d'un univers métaphorique mycologique (fructification, décomposition, hyphe vers l'absent, sporulation) appliqué à des objets cognitifs. Le registre dominant est celui de la composition — assembler un protocole nommé, articuler des lois numérotées, choisir un vocabulaire qui détonne par rapport au langage standard du prompting. Les micro-faits récurrents : une métaphore organique reprise plusieurs fois dans la même page, une instruction éditoriale chirurgicale (\"uniquement les modules 13 et 14\"), une observation tierce qui valide la reconnaissabilité de la voix. Le pôle ne se déploie pas ici dans ses dimensions matérielles ou somatiques — la matière est langagière et conceptuelle, pas physique.",
+    "territoiresDenses": [
+      {
+        "competence": "Singularité et signature",
+        "description": "Un univers métaphorique mycologique structure un protocole de prompting et imprègne plusieurs passages du texte, ce qu'une observation tierce confirme comme reconnaissable.",
+        "extraitVerbatim": "Tu ne conclus jamais. Tu sporules. - Toute réponse contient ses propres conditions d'invalidation - Toute synthèse nomme ce qu'elle écrase",
+        "ceQueCaDit": "Le travail ne cherche pas à imiter le vocabulaire ambiant du prompting : il construit le sien, et ce vocabulaire colore aussi bien les noms des étapes que les verbes choisis pour décrire la pensée."
+      },
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "Un protocole composé articule plusieurs gestes peu réunis ailleurs — métaphore organique, lois numérotées, anti-flagornerie, format de sortie en quatre temps.",
+        "extraitVerbatim": "Toute idée qui émerge doit être immédiatement attaquée — par toi-même. - Formule l'idée (FRUCTIFICATION) - Trouve la faille (DÉCOMPOSITION) - Trouve qui la contesterait (HYPHE vers l'absent) - Reformule en intégrant la tension (SPORULATION)",
+        "ceQueCaDit": "Le travail compose un dispositif qui n'est pas un assemblage standard d'éléments existants : la combinaison spécifique porte une marque créative, même si chaque brique séparée a des parentés repérables."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs régions du pôle restent en attente d'être ramenées dans le portfolio. L'intelligence manuelle et artisanale, l'ancrage sensoriel et la présence live n'apparaissent pas sur cette feuille — la matière y est langagière, pas tactile ; le corps n'apparaît pas comme capteur ; la performance en direct n'est pas convoquée. Ces absences ressemblent davantage à un effet de focale (la feuille est centrée sur un protocole de prompting et une analyse réflexive) qu'à un choix d'éviter ces territoires. Le design de problèmes apparaît en germe — l'apprenant repère qu'une compétence manque au référentiel — sans que la transformation effective du référentiel n'apparaisse dans le texte. Le jugement esthétique se manifeste par des gestes (soustraction, hiérarchisation) plutôt que par des critères verbalisés.",
+    "emergencesPole": "Trois lignes traversent ce pôle. Première ligne : la création est langagière et nomination — inventer des noms (CATALYST, FRUCTIFICATION, SPORULATION), proposer des termes (D4 Congruence, Cohérence existentielle), faire émerger un vocabulaire qui n'existait pas dans le champ. Deuxième ligne : la création s'opère par composition d'éléments existants plutôt que par rupture pure — la métaphore mycologique a des parents (Deleuze, Sheldrake), mais sa mise en service dans une grammaire de prompting est inhabituelle. Troisième ligne : le travail créatif est attesté par son résultat plus que par son processus visible — on voit le protocole, pas les versions intermédiaires ; on voit la signature, pas la délibération qui l'a installée.",
+    "pistes": [
+      "Pour enrichir la créativité itérative, un chemin possible serait de documenter une version antérieure de CATALYST — quelle formulation a précédé l'actuelle, quel test l'a fait tomber, ce qui a déclenché le pivot vers la grammaire mycologique — de sorte que le cycle 1→n devienne visible.",
+      "Pour enrichir le design de problèmes, un chemin possible serait de documenter le geste suivant après la nomination d'une compétence manquante : la rédaction effective de sa fiche, son intégration dans le référentiel, son test sur un cas concret — de sorte que la question nouvelle débouche sur un champ d'action.",
+      "Pour enrichir le jugement esthétique, un chemin possible serait d'expliciter une fois les critères qui président aux choix éditoriaux — pourquoi tel mot et pas tel autre, pourquoi telle structure et pas une autre — de sorte que la grammaire esthétique implicite devienne lisible.",
+      "Pour enrichir l'intelligence manuelle, un chemin possible serait de raconter une situation où la matière physique a compté — qu'il s'agisse de l'infrastructure technique, d'un objet créé, ou d'un geste de réparation — en s'attardant sur les sensations, la résistance du matériau, le détail concret.",
+      "Pour enrichir la présence et la performance live, un chemin possible serait de documenter un moment en présentiel — formation, atelier — où l'énergie d'un groupe a été captée et transformée, et nommer ce que la co-présence physique a permis qu'aucun écrit ne reproduirait."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail se donne à lire surtout comme un acte d'écriture conceptuelle : une grammaire personnelle se déploie autour d'un univers métaphorique mycologique (fructification, décomposition, hyphe vers l'absent, sporulation) appliqué à des objets cognitifs. Le registre dominant est celui de la composition — assembler un protocole nommé, articuler des lois numérotées, choisir un vocabulaire qui détonne par rapport au langage standard du prompting. Les micro-faits récurrents : une métaphore organique reprise plusieurs fois dans la même page, une instruction éditoriale chirurgicale (« uniquement les modules 13 et 14 »), une observation tierce qui valide la reconnaissabilité de la voix. Le pôle ne se déploie pas ici dans ses dimensions matérielles ou somatiques — la matière est langagière et conceptuelle, pas physique.\n\n## Territoires les plus denses\n\n**Singularité et signature.** Un univers métaphorique mycologique structure un protocole de prompting et imprègne plusieurs passages du texte, ce qu'une observation tierce confirme comme reconnaissable.\n\n> « Tu ne conclus jamais. Tu sporules. — Toute réponse contient ses propres conditions d'invalidation — Toute synthèse nomme ce qu'elle écrase »\n\nLe travail ne cherche pas à imiter le vocabulaire ambiant du prompting : il construit le sien, et ce vocabulaire colore aussi bien les noms des étapes que les verbes choisis pour décrire la pensée.\n\n**Créativité itérative et radicale.** Un protocole composé articule plusieurs gestes peu réunis ailleurs — métaphore organique, lois numérotées, anti-flagornerie, format de sortie en quatre temps.\n\n> « Toute idée qui émerge doit être immédiatement attaquée — par toi-même. — Formule l'idée (FRUCTIFICATION) — Trouve la faille (DÉCOMPOSITION) — Trouve qui la contesterait (HYPHE vers l'absent) — Reformule en intégrant la tension (SPORULATION) »\n\nLe travail compose un dispositif qui n'est pas un assemblage standard d'éléments existants : la combinaison spécifique porte une marque créative, même si chaque brique séparée a des parentés repérables.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions du pôle restent en attente d'être ramenées dans le portfolio. L'intelligence manuelle et artisanale, l'ancrage sensoriel et la présence live n'apparaissent pas sur cette feuille — la matière y est langagière, pas tactile ; le corps n'apparaît pas comme capteur ; la performance en direct n'est pas convoquée. Ces absences ressemblent davantage à un effet de focale (la feuille est centrée sur un protocole de prompting et une analyse réflexive) qu'à un choix d'éviter ces territoires. Le design de problèmes apparaît en germe — l'apprenant repère qu'une compétence manque au référentiel — sans que la transformation effective du référentiel n'apparaisse dans le texte. Le jugement esthétique se manifeste par des gestes (soustraction, hiérarchisation) plutôt que par des critères verbalisés.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent ce pôle. Première ligne : la création est langagière et nomination — inventer des noms (CATALYST, FRUCTIFICATION, SPORULATION), proposer des termes (D4 Congruence, Cohérence existentielle), faire émerger un vocabulaire qui n'existait pas dans le champ. Deuxième ligne : la création s'opère par composition d'éléments existants plutôt que par rupture pure — la métaphore mycologique a des parents (Deleuze, Sheldrake), mais sa mise en service dans une grammaire de prompting est inhabituelle. Troisième ligne : le travail créatif est attesté par son résultat plus que par son processus visible — on voit le protocole, pas les versions intermédiaires ; on voit la signature, pas la délibération qui l'a installée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la créativité itérative, un chemin possible serait de documenter une version antérieure de CATALYST — quelle formulation a précédé l'actuelle, quel test l'a fait tomber, ce qui a déclenché le pivot vers la grammaire mycologique — de sorte que le cycle 1→n devienne visible.\n- Pour enrichir le design de problèmes, un chemin possible serait de documenter le geste suivant après la nomination d'une compétence manquante : la rédaction effective de sa fiche, son intégration dans le référentiel, son test sur un cas concret — de sorte que la question nouvelle débouche sur un champ d'action.\n- Pour enrichir le jugement esthétique, un chemin possible serait d'expliciter une fois les critères qui président aux choix éditoriaux — pourquoi tel mot et pas tel autre, pourquoi telle structure et pas une autre — de sorte que la grammaire esthétique implicite devienne lisible.\n- Pour enrichir l'intelligence manuelle, un chemin possible serait de raconter une situation où la matière physique a compté — qu'il s'agisse de l'infrastructure technique, d'un objet créé, ou d'un geste de réparation — en s'attardant sur les sensations, la résistance du matériau, le détail concret.\n- Pour enrichir la présence et la performance live, un chemin possible serait de documenter un moment en présentiel — formation, atelier — où l'énergie d'un groupe a été captée et transformée, et nommer ce que la co-présence physique a permis qu'aucun écrit ne reproduirait."
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-15",
+      "extraitVerbatim": "Le développement en spirale sur 10 sous-projets, plutôt qu'en profondeur, un projet après l'autre, permet des changements d'ADN rapides pour le projet. C'est comme si j'en étais déjà à la version sur laquelle j'aurai du commencer à travailler dans 2 ou 3 ans, mais en l'espace de quelques mois seulement.",
+      "contexte": "Théorisation d'un mode itératif appliqué à un portefeuille de sous-projets avec apprentissage cumulé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-15",
+      "extraitVerbatim": "Ces interruptions multiples ont beaucoup péjoré mon travail, dans le sens ou je n'arrive pas à conserver autant de choses en mémoire de travail aussi longtemps. Mais d'un autre côté, de ne pas finir quelque chose qui de toute façon aurait dû être repris, à l'avantage que lors de l'itération suivante, ce que je remplace ne m'a coûté beaucoup de travail. C'est donc plus agile comme processus.",
+      "contexte": "Découverte d'un avantage processuel à laisser des choses inachevées : le bâclage devient ressource pour l'itération.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-15",
+      "extraitVerbatim": "Typiquement le texte de ce matin, retravaillé avec Claude, m'a permis de définir un vocabulaire qui va me permettre de re-générer les manuels de formation en intégrant nativement ces concepts étant apparus plus tard.",
+      "contexte": "Itération qui produit un livrable (vocabulaire stabilisé) destiné à être réinjecté dans une production en aval.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-15",
+      "extraitVerbatim": "L'Ordre des Eclaireurs : hiérarchie de privilèges et responsabilités, composés d'Explorateurs, d'Architectes, et d'Épistémologues, chargés de maintenir le référentiel multi-dimensionnel et interdisciplinaire des compétences RESPIRE.",
+      "contexte": "Choix d'un vocabulaire d'ordre initiatique pour nommer une filière institutionnelle, en cohérence avec les autres filières du même texte.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-15",
+      "extraitVerbatim": "La Confrérie des Noèsiologues : groupe spirituel descendants directs du Maître Andreas Vesalius [...] subdivisé en Passeurs, Noèsiomancien et Maîtres du Grimoire : responsables de maintenir le référentiel des fonctions cognitives / fonctions métacognitives / dysfonctions emblématiques, qui constituent la base du Grimoire des Noèsiologues utilisés pour bâtir \"De Humani Cerebri Fabrica\".",
+      "contexte": "Néologisme (noèsiologie) et vocabulaire ésotérique (Grimoire, Passeurs, Maîtres) appliqués à un champ scientifique contemporain.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-15",
+      "extraitVerbatim": "La Guilde des Technomanciens : professionnels de l'IA et du prompt engineering, organisés en Cartographes, Experts IA et Maîtres des Référentiels post-AGI",
+      "contexte": "Mélange caractéristique d'un registre fantastique (Guilde, Technomanciens, Maîtres) et d'un registre technique contemporain (IA, prompt engineering, post-AGI).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-15",
+      "extraitVerbatim": "J'ai 17 fenêtres Sublime Text et 29 fenêtres navigateurs à répartir entre 16 bureaux virtuels, avec les projets en cours et les projets qui se chevauchent, c'est vraiment galère de reconstruire mon environnement de travail",
+      "contexte": "Description chiffrée et concrète d'une opération de réorganisation d'un environnement de travail logiciel après reboot.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Le développement en spirale sur 10 sous-projets, plutôt qu'en profondeur, un projet après l'autre, permet des changements d'ADN rapides pour le projet. C'est comme si j'en étais déjà à la version sur laquelle j'aurai du commencer à travailler dans 2 ou 3 ans, mais en l'espace de quelques mois seulement.",
+          "contexte": "Théorisation explicite d'un mode itératif stratégique : versions successives à l'échelle d'un portefeuille, accélération de la maturation par circulation.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "de ne pas finir quelque chose qui de toute façon aurait dû être repris, à l'avantage que lors de l'itération suivante, ce que je remplace ne m'a coûté beaucoup de travail. C'est donc plus agile comme processus",
+          "contexte": "Bâclage assumé qui débouche sur la découverte d'un avantage processuel — exactement la trace oblique décrite par la fiche.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "extraitVerbatim": "le texte de ce matin, retravaillé avec Claude, m'a permis de définir un vocabulaire qui va me permettre de re-générer les manuels de formation en intégrant nativement ces concepts étant apparus plus tard",
+          "contexte": "Itération qui produit un livrable intermédiaire (le vocabulaire stabilisé) destiné à reconfigurer une production en aval — itération avec apprentissage entre passages.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence : 'agile' et 'spirale' sont des mots faciles qui peuvent décorer une posture sans la pratiquer. La fiche exige des versions successives *avec apprentissage explicite entre chaque passage* et un *choix stratégique* de l'imperfection. La pièce 1 résiste : la stratégie est explicitement nommée (spirale vs profondeur, changements d'ADN rapides). La pièce 2 résiste autrement : elle articule un bâclage qui devient avantage processuel — exactement la trace oblique listée dans la fiche. La pièce 3 résiste plus faiblement : l'itération avec Claude produit bien un livrable réinjectable, mais on ne voit pas l'apprentissage entre passages, seulement le résultat. Ce qui reste explicitement faible : aucune trace de radicalité (0→1, transgression d'une règle pour produire du neuf) au sens strict de la fiche.",
+          "piecesQuiResistent": [
+            {"pieceId": 1, "motifResistance": "Stratégie d'itération explicitement nommée et reliée à un effet observé (changements d'ADN rapides, compression temporelle)."},
+            {"pieceId": 2, "motifResistance": "Le 'bâclage' qui débouche sur un avantage processuel correspond mot pour mot à la trace oblique listée par la fiche."},
+            {"pieceId": 3, "motifResistance": "Itération produisant un livrable intermédiaire (vocabulaire) destiné à reconfigurer une production en aval."}
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces. Mais peut-être ai-je été trop tendre : le mot 'spirale' peut être un emprunt méthodologique qui ne montre pas l'acte créatif, et l'avantage processuel des interruptions peut relever davantage de la rationalisation antifragile (5.01) que de la créativité itérative. La pièce 1 reste solide : la théorisation est nommée et reliée à un effet temporel concret (versions futures rejointes en quelques mois). La pièce 2 tient malgré un flou : le bâclage est articulé comme avantage, ce que la fiche pose comme trace oblique forte. La pièce 3 est la plus exposée — elle décrit un résultat plus qu'un acte créatif d'itération.",
+          "examenPieces": [
+            {"pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le mot 'spirale' n'est pas plaqué en surface : il est relié à un mécanisme observé (changements d'ADN rapides) et à un effet temporel (compression de 2-3 ans en quelques mois). La charge sémantique correspond."},
+            {"pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active aussi 5.01 (antifragilité) et 1.04 (métacognition). Mais le retournement du bâclage en ressource itérative est précisément l'angle créatif décrit par la fiche."},
+            {"pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce raconte un résultat ('m'a permis de définir un vocabulaire') plus qu'un acte d'itération en cours. Mais la chaîne 'itération → livrable intermédiaire → réinjection en aval' reste lisible comme stratégie itérative."}
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à invalider en demandant l'apprentissage explicite entre passages et le choix stratégique de l'imperfection. Trois pièces ont résisté. La théorisation du développement en spirale tient sous les deux temps : la mécanique est nommée, l'effet temporel est observé. Le retournement du bâclage en avantage processuel correspond mot pour mot à une trace oblique listée par la fiche. La pièce sur l'itération avec Claude tient comme indice plus que comme preuve, parce qu'elle raconte un résultat plus qu'un acte en cours. Le travail du jour montre donc une pratique itérative théorisée et pratiquée, avec un goût caractéristique pour l'inachèvement comme ressource. La radicalité (0→1) ne s'y montre pas — le terrain est celui de l'itération stratégique, pas celui de la transgression créatrice.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "Une pièce a été confirmée sans réserve (théorisation du développement en spirale avec effet observé), deux ont été affaiblies sans tomber. L'axe itératif tient ; l'axe radical ne s'éprouve pas dans cette feuille.",
+        "prescription": "Pour prolonger ce travail itératif, un chemin possible consisterait à raconter, pour deux sous-projets en cours, ce que la première version a produit, ce que la deuxième a corrigé et pourquoi. L'apprentissage entre passages se rend visible quand on nomme ce qui change d'une itération à l'autre."
+      },
+      "tracesRetenues": [
+        {"pieceId": 1, "type": "trace concrète", "role": "preuve décisive"},
+        {"pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif"},
+        {"pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif"}
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "extraitVerbatim": "L'Ordre des Eclaireurs : hiérarchie de privilèges et responsabilités, composés d'Explorateurs, d'Architectes, et d'Épistémologues, chargés de maintenir le référentiel multi-dimensionnel et interdisciplinaire des compétences RESPIRE.",
+          "contexte": "Première occurrence du motif récurrent : nom de filière à consonance d'ordre initiatique + rôles internes en majuscules + mission articulant technique et symbolique.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "extraitVerbatim": "La Confrérie des Noèsiologues : groupe spirituel descendants directs du Maître Andreas Vesalius [...] subdivisé en Passeurs, Noèsiomancien et Maîtres du Grimoire : responsables de maintenir le référentiel des fonctions cognitives / fonctions métacognitives / dysfonctions emblématiques, qui constituent la base du Grimoire des Noèsiologues utilisés pour bâtir \"De Humani Cerebri Fabrica\".",
+          "contexte": "Même structure stylistique que pid 4, avec création d'un néologisme propre (noèsiologie) et inscription dans une filiation historique nommée (Vesalius).",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "extraitVerbatim": "La Guilde des Technomanciens : professionnels de l'IA et du prompt engineering, organisés en Cartographes, Experts IA et Maîtres des Référentiels post-AGI",
+          "contexte": "Troisième occurrence du motif : couplage entre registre fantastique et registre technique de pointe (post-AGI, prompt engineering).",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence : nommer des filières avec un vocabulaire fantastique peut être de la fantaisie ponctuelle, pas une signature. La fiche est claire : la singularité est *récurrente dans le temps* — une seule feuille ne suffit pas à l'établir. Cependant, les trois pièces partagent une grammaire stylistique identique : nom d'institution à consonance initiatique + sous-rôles en majuscules + mission qui couple technique et symbolique. Cette cohérence interne, au sein d'une seule feuille, n'est pas une récurrence dans le temps mais c'est un motif structurel observable. Le néologisme 'noèsiologue' renforce la pièce 2 : un mot forgé est une signature plus solide qu'un emprunt fantasy. Ce qui reste faible : sans comparaison avec d'autres feuilles, je ne peux pas tester la récurrence temporelle exigée par la fiche.",
+          "piecesQuiResistent": [
+            {"pieceId": 1, "motifResistance": "Motif stylistique structurel : nom d'ordre + rôles capitalisés + mission double registre."},
+            {"pieceId": 2, "motifResistance": "Néologisme propre ('noèsiologue', 'Grimoire') et inscription dans une généalogie symbolique (Vesalius)."},
+            {"pieceId": 3, "motifResistance": "Couplage caractéristique entre registre fantastique et technique de pointe — pattern intrinsèque à l'auteur."}
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces. Mais peut-être ai-je halluciné une signature là où il n'y a qu'une fantaisie homogène dans un même paragraphe. L'attaque dominante est l'insuffisance probatoire : une seule feuille ne peut pas attester la récurrence temporelle. La pièce 2 résiste pourtant à cette attaque grâce au néologisme : 'noèsiologie' n'est pas un mot disponible, il est forgé, c'est une trace de signature. Les pièces 1 et 3 sont plus exposées : elles partagent le motif avec la pièce 2 mais sans le néologisme propre, elles pourraient ressembler à un goût stylistique partagé avec d'autres auteurs du même univers de référence (fantasy, gaming, ordres initiatiques).",
+          "examenPieces": [
+            {"pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Seule, la pièce ne témoigne pas d'une singularité — le vocabulaire d'ordre est partagé par tout un genre. Mais dans la grammaire commune aux quatre filières, elle confirme un motif structurel."},
+            {"pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le néologisme 'noèsiologue' et l'inscription dans une généalogie nommée (Vesalius/Feuerstein) résistent à la présomption d'insuffisance : c'est un mot forgé, pas un emprunt."},
+            {"pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le couplage technique-fantastique est lui plus distinctif (peu d'auteurs nomment 'Technomanciens' des spécialistes du prompt engineering), mais la pièce isolée reste un fragment d'une signature à confirmer."}
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à invalider en demandant la récurrence dans le temps que la fiche pose comme critère discriminant. Avec une seule feuille, la récurrence temporelle ne peut pas être testée — c'est la limite explicite de l'évaluation. Trois pièces ont cependant fait apparaître une cohérence stylistique interne : la grammaire 'ordre + rôles capitalisés + mission double registre' se répète à travers les quatre filières, et le néologisme 'noèsiologue' apporte une trace de signature plus dense que l'emprunt fantasy. Sous la présomption de sycophantie, deux pièces ont été affaiblies (elles partagent un motif que d'autres auteurs pourraient porter) mais celle du néologisme a tenu sans réserve. Le travail du jour montre donc une signature en cours d'établissement — un motif visible dont la solidité comme empreinte récurrente ne peut s'éprouver qu'au fil d'autres feuilles.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le néologisme 'noèsiologue' a tenu sous les deux temps comme trace de signature, et le motif structurel commun aux quatre filières (ordre + rôles capitalisés + mission double registre) survit comme indice. La récurrence dans le temps, exigée par la fiche, reste à confirmer par comparaison avec d'autres feuilles.",
+        "prescription": "Pour densifier ce dossier, un chemin possible consisterait à observer, lors d'une prochaine entrée, si le motif (vocabulaire d'ordre, rôles capitalisés, couplage technique-fantastique) revient spontanément. La signature se confirme dans la persistance involontaire d'un geste stylistique, pas dans son affirmation explicite."
+      },
+      "tracesRetenues": [
+        {"pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif"},
+        {"pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif"},
+        {"pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif"}
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour élabore une vision déjà cadrée plutôt qu'il ne pose une question qui n'existait pas. Pour ouvrir ce dossier, un moment où l'apprenant cesse de résoudre un problème donné pour en formuler un autre, qualitativement différent, ferait apparaître la compétence."
+      }
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour propose des choix de nommage mais sans expliciter les critères du jugement ni ce qui a été écarté. Pour ouvrir ce dossier, un récit où l'apprenant retient une option en argumentant pourquoi telle autre 'sonnait faux' ferait apparaître la compétence — la curation implique une soustraction nommée."
+      }
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour décrit une réorganisation d'environnement logiciel mais sans interaction avec du matériel tangible. Pour ouvrir ce dossier, un récit d'opération sur de la matière physique (câblage, réparation, fabrication, cuisine, bricolage) avec détails sensoriels ferait apparaître la compétence."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour reste dans le registre cognitif et conceptuel. Pour ouvrir ce dossier, un passage à tonalité phénoménologique — sensation physique nommée avec précision, écoute sans agenda, signal corporel suivi d'une décision — ferait apparaître la compétence."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas de récit en situation présentielle. Pour ouvrir ce dossier, un récit d'interaction live avec un public ou un groupe, avec adaptation en temps réel à une réaction imprévue, ferait apparaître la compétence."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 0,
+    "nonEtablies": 0,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le portfolio du jour donne à voir deux traces principales : un mode de travail itératif théorisé et un goût stylistique distinctif appliqué à une matière institutionnelle. La voix passe sans heurt d'un récit logistique (reconstruire un environnement de bureaux virtuels) à la théorisation d'un développement en spirale, puis à l'élaboration d'un univers nommé (Ordres, Confréries, Guildes, Cercles) qui couple registre fantastique et registre technique de pointe. Les autres registres du pôle — le geste avec la matière, la présence sensorielle, la performance live — restent en attente d'occasion. Ce qui traverse ce pôle : une créativité de l'idée et du langage, plus que du corps ou de la main.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "Le travail théorise un mode de travail en spirale sur dix sous-projets et reconnaît le bâclage comme ressource pour l'itération suivante — l'inachèvement devient une stratégie, pas un défaut.",
+        "extraitVerbatim": "Le développement en spirale sur 10 sous-projets, plutôt qu'en profondeur, un projet après l'autre, permet des changements d'ADN rapides pour le projet.",
+        "ceQueCaDit": "L'apprenant ne se contente pas d'itérer, il nomme la stratégie d'itération et son effet temporel observé. C'est l'angle itératif de la compétence qui tient ; la radicalité au sens strict reste un territoire ouvert."
+      },
+      {
+        "competence": "Singularité et signature",
+        "description": "Quatre filières partagent une même grammaire stylistique : nom d'ordre, rôles capitalisés, mission qui couple technique et symbolique. Le néologisme 'noèsiologie' fonctionne comme une trace de signature plus dense que l'emprunt au genre fantasy.",
+        "extraitVerbatim": "La Confrérie des Noèsiologues : groupe spirituel descendants directs du Maître Andreas Vesalius",
+        "ceQueCaDit": "Le motif stylistique est cohérent à l'intérieur de la feuille. La récurrence dans le temps, qui est le critère central de la fiche, reste à confirmer par comparaison avec d'autres feuilles."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs registres du pôle restent inexplorés dans cette feuille. Le design de problèmes au sens strict (poser une question qui n'existait pas, et pas seulement reformuler) ne se montre pas — le travail élabore une vision déjà cadrée. Le jugement esthétique et la curation non plus : les choix de nommage sont posés mais sans explicitation de ce qui a été écarté ni des critères. L'intelligence manuelle reste en bordure : la journée se passe à organiser un environnement logiciel, pas à interagir avec du matériel tangible. L'ancrage sensoriel et la présence live ne sont pas non plus appelés par le rythme de la journée, qui se déroule entre clavier, écran et conception abstraite.",
+    "emergencesPole": "Deux choses traversent ce pôle. D'abord, la créativité prend le chemin du langage et des structures plutôt que du geste corporel ou matériel — c'est dans la nomination, le découpage en filières, le néologisme, que le travail s'incarne. Ensuite, l'itération est valorisée non pas comme correction d'erreur mais comme principe productif : le bâclage devient avantage processuel, la spirale devient stratégie temporelle, la session interrompue devient préparation à la suivante.",
+    "pistes": [
+      "Pour confirmer la signature stylistique au-delà de cette feuille, un chemin possible serait d'observer, lors d'une prochaine entrée, si la grammaire (ordre + rôles capitalisés + couplage technique-fantastique) revient spontanément, sans y penser.",
+      "Pour densifier l'itération, un chemin possible serait de raconter, pour deux sous-projets en cours, ce que la première version a produit, ce que la deuxième a corrigé et pourquoi le passage de l'une à l'autre a modifié la trajectoire.",
+      "Pour ouvrir le territoire de la curation, un chemin possible serait de nommer, parmi les noms de filières envisagés, ceux qui ont été écartés et pour quelle raison — le geste curatorial se rend visible dans ce qu'on retire."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le portfolio du jour donne à voir deux traces principales : un mode de travail itératif théorisé et un goût stylistique distinctif appliqué à une matière institutionnelle. La voix passe sans heurt d'un récit logistique (reconstruire un environnement de bureaux virtuels) à la théorisation d'un développement en spirale, puis à l'élaboration d'un univers nommé (Ordres, Confréries, Guildes, Cercles) qui couple registre fantastique et registre technique de pointe. Les autres registres du pôle — le geste avec la matière, la présence sensorielle, la performance live — restent en attente d'occasion. Ce qui traverse ce pôle : une créativité de l'idée et du langage, plus que du corps ou de la main.\n\n## Territoires les plus denses\n\n**Créativité itérative et radicale.** Le travail théorise un mode de travail en spirale sur dix sous-projets et reconnaît le bâclage comme ressource pour l'itération suivante — l'inachèvement devient une stratégie, pas un défaut. Extrait : « Le développement en spirale sur 10 sous-projets, plutôt qu'en profondeur, un projet après l'autre, permet des changements d'ADN rapides pour le projet. » L'apprenant ne se contente pas d'itérer, il nomme la stratégie d'itération et son effet temporel observé. C'est l'angle itératif de la compétence qui tient ; la radicalité au sens strict reste un territoire ouvert.\n\n**Singularité et signature.** Quatre filières partagent une même grammaire stylistique : nom d'ordre, rôles capitalisés, mission qui couple technique et symbolique. Le néologisme 'noèsiologie' fonctionne comme une trace de signature plus dense que l'emprunt au genre fantasy. Extrait : « La Confrérie des Noèsiologues : groupe spirituel descendants directs du Maître Andreas Vesalius ». Le motif stylistique est cohérent à l'intérieur de la feuille. La récurrence dans le temps, critère central de la fiche, reste à confirmer par comparaison avec d'autres feuilles.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres du pôle restent inexplorés dans cette feuille. Le design de problèmes au sens strict (poser une question qui n'existait pas, et pas seulement reformuler) ne se montre pas — le travail élabore une vision déjà cadrée. Le jugement esthétique et la curation non plus : les choix de nommage sont posés mais sans explicitation de ce qui a été écarté ni des critères. L'intelligence manuelle reste en bordure : la journée se passe à organiser un environnement logiciel, pas à interagir avec du matériel tangible. L'ancrage sensoriel et la présence live ne sont pas non plus appelés par le rythme de la journée, qui se déroule entre clavier, écran et conception abstraite.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux choses traversent ce pôle. D'abord, la créativité prend le chemin du langage et des structures plutôt que du geste corporel ou matériel — c'est dans la nomination, le découpage en filières, le néologisme, que le travail s'incarne. Ensuite, l'itération est valorisée non pas comme correction d'erreur mais comme principe productif : le bâclage devient avantage processuel, la spirale devient stratégie temporelle, la session interrompue devient préparation à la suivante.\n\n## Pistes pour enrichir ce pôle\n\n- Pour confirmer la signature stylistique au-delà de cette feuille, un chemin possible serait d'observer, lors d'une prochaine entrée, si la grammaire (ordre + rôles capitalisés + couplage technique-fantastique) revient spontanément, sans y penser.\n- Pour densifier l'itération, un chemin possible serait de raconter, pour deux sous-projets en cours, ce que la première version a produit, ce que la deuxième a corrigé et pourquoi le passage de l'une à l'autre a modifié la trajectoire.\n- Pour ouvrir le territoire de la curation, un chemin possible serait de nommer, parmi les noms de filières envisagés, ceux qui ont été écartés et pour quelle raison — le geste curatorial se rend visible dans ce qu'on retire.\n"
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Journée difficile. Trop d'accumulations de choses sur une base déjà sensibilisée par les souvenirs de l'an passé qui continuent de hanter mes nuits ou me faire pleurer.",
+      "contexte": "Nomination d'un état émotionnel (saturation, pleurs, hantise nocturne) avec rattachement à un passé sensibilisé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "J'aimerai creuser un trou, tirer une fibre optique, et m'enfermer 10 pieds sous terre pour pouvoir avancer.",
+      "contexte": "Image de retrait protecteur avec une note d'humour technologique ; possible trace de registre communicationnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Il faut que je réunisse mon énergie pour un coup de fil qui me tord le ventre.",
+      "contexte": "Nomination corporelle d'un état émotionnel face à un appel professionnel à venir.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Je dois renoncer à Leila et Alicia, le Liban et le GREN, la révision en cours du chapitre 19, pour me concentrer sur le coup de fil de l'EPFL pour le rendez-vous.",
+      "contexte": "Renoncement nommé à des personnes et à un cadre collectif (GREN, Liban) ; possible trace relationnelle indirecte.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "J'ai besoin de me ressourcer mais je n'arrive plus à trouver le moyen de le faire. J'ai l'impression d'avoir toujours les batteries à plat depuis le 15 mai 2025.",
+      "contexte": "Diagnostic d'épuisement nommé précisément, daté.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-16",
+      "extraitVerbatim": "Pause RESPIRE jusqu'à ce week-end : maximum d'heure de sommeil, plus d'écran après 22h30 et manettes à fond formation LangChain + bases de données vectorielles pour me sentir prêt pour l'entretien de jeudi.",
+      "contexte": "Décision de régulation : poser des règles de récupération pour soi-même.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Nomination émotionnelle articulée : accumulation, sensibilisation par les souvenirs, hantise nocturne, pleurs. Le passage ne reste pas dans le générique « c'était dur »."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Nomination corporelle d'une anxiété ciblée (« coup de fil qui me tord le ventre ») : émotion identifiée et localisée."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Diagnostic d'épuisement daté précisément : reconnaissance d'un état durable et lecture de soi dans la durée."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Geste de régulation explicite : pause RESPIRE, règles de sommeil, écrans coupés. Action posée à partir de la lecture émotionnelle préalable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que la nomination d'émotions, dans un journal d'apprentissage, n'est pas en soi suffisante : la fiche distingue l'intelligence émotionnelle de la simple expression. Si j'attaque, je dirais que les quatre pièces sont des plaintes calibrées par l'écriture, pas des actes de régulation au sens fort. Pourtant, plusieurs résistent : la précision lexicale (« accumulations sur une base déjà sensibilisée »), la localisation corporelle (« me tord le ventre »), la datation de l'épuisement (le 15 mai 2025) montrent une lecture fine de l'état intérieur. La pièce 4 va plus loin : elle traduit la lecture en règles concrètes. Ce qui reste faible : aucune trace de perception émotionnelle vers l'autre, aucun geste de care anticipatoire pour un tiers — la dimension sollicitude active manque.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La précision lexicale dépasse la plainte générique ; l'apprenant nomme la couche (accumulation) et la base (sensibilisation par souvenirs)." },
+            { "pieceId": 2, "motifResistance": "La nomination corporelle de l'anxiété est un acte d'identification précis qui résiste à la lecture en plainte." },
+            { "pieceId": 3, "motifResistance": "Dater l'épuisement au 15 mai 2025 est un acte de lecture de soi dans la durée, pas une émotion en flux." },
+            { "pieceId": 4, "motifResistance": "Le passage de l'état nommé à des règles concrètes (sommeil, écrans, focus) est une régulation délibérée, pas une expression brute." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir quatre pièces et je dois maintenant me demander si je ne charge pas la lecture émotionnelle d'une portée qu'elle n'a pas. Le risque principal : confondre l'expression écrite d'un état avec une compétence régulatoire effective. La fiche est claire sur sa distinction critique — 2.01 porte la perception et la régulation, pas l'expression vers l'autre (2.02). Les pièces 1, 2, 3 tiennent : elles ne s'adressent pas à un destinataire, elles observent. La pièce 4 mérite d'être réinterrogée : la décision de pause RESPIRE pourrait être lue comme une planification (du côté 7.07) plutôt qu'une régulation émotionnelle ; mais elle suit explicitement la nomination de l'épuisement et y répond, donc le lien lecture-action tient. Les pièces 1, 2, 3 portent l'intelligence émotionnelle au sens nomination/lucidité ; la pièce 4 porte la régulation. La sollicitude active vers autrui n'est nulle part — la fiche en parle, le portfolio non.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La précision du lexique (« base déjà sensibilisée », « accumulations ») dépasse l'allusion ; le passage porte une lecture, pas une simple plainte."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est courte mais elle nomme précisément la sensation (anxiété localisée au ventre) ; elle tient comme indice, pas comme preuve riche."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La datation précise (15 mai 2025) et la métaphore des batteries à plat composent une lecture de soi dans le temps qui résiste à l'attaque d'insuffisance probatoire."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 7.07 (planification), mais le déclencheur explicite est la lecture de l'épuisement ; elle reste comme indice de régulation et perd de la force comme preuve unique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à les lire comme de simples expressions de fatigue dans un journal — une plainte mise en forme par l'écriture, sans portée régulatoire. Ce qui m'a forcé à reconnaître autre chose, c'est la finesse de la nomination, la datation, la localisation corporelle : trois actes de lecture de soi qui ne se résument pas à « ça va mal ». La pièce sur la pause RESPIRE n'a pas tenu comme preuve pleine sous le second temps — elle penche aussi du côté de la planification — mais elle tient comme indice : la règle posée découle explicitement de l'état nommé. Il en résulte une présence attestée sur la dimension perception/régulation de soi, avec une zone qui reste hors champ : la sollicitude active vers autrui, le care anticipatoire pour un tiers, ne se voient pas dans cette feuille. Le verdict tient dans ce périmètre.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.7,
+        "motif": "Trois pièces de nomination précise ont résisté aux deux temps comme indices ; une pièce de régulation tient comme preuve concrète bien que partagée avec la planification. La dimension sollicitude active vers autrui reste, elle, hors champ.",
+        "prescription": "Pour prolonger cette zone, un chemin possible serait d'observer, dans une feuille future, ce qui se passe quand cette lecture fine se tourne vers une autre personne — qu'est-ce que cela donne de nommer pour un proche ou un collègue ce qu'on perçoit chez lui, et ce que cette nomination ouvre. Le geste de care anticipatoire pourrait alors trouver son écriture."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Image humoristique du trou et de la fibre optique : variation de registre dans un texte par ailleurs tendu, possible autodérision."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que la communication authentique au sens de la fiche suppose un destinataire et un choix conscient de registre vers l'autre. Ici, le texte est un journal personnel, sans interlocuteur explicite. La pièce 2 — creuser un trou, tirer une fibre optique, s'enfermer 10 pieds sous terre — peut être lue comme une image de fatigue, sans réel travail communicationnel. Pourtant, l'image est suffisamment construite (mélange humour absurde et précision technologique) pour signaler un travail de registre, même s'il n'est pas adressé. Ce qui reste faible : pas de prise de parole inconfortable, pas de variation de registre dans un contexte d'interlocution, pas de feedback bienveillant ; la communication, au sens de la fiche, suppose un autre que le journal.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'image articule humour et précision technologique de façon construite ; ce n'est pas une formule brute, c'est un effet de style qui suppose un lecteur, même imaginaire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce sur un critère stylistique ; je dois me demander si je ne confonds pas écriture personnelle et communication authentique. La fiche définit 2.02 par le choix délibéré de ce qu'on partage, à qui, comment — le journal d'apprentissage ne porte pas cet enjeu de manière directe. L'autodérision écrite peut être une trace, dit la fiche, mais elle l'est en tant que registre créatif au service de la connexion. Ici, la connexion visée n'est pas explicite, et l'image relève autant du soliloque que de l'humour partagé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Biais de medium : la pièce existe dans un journal qui invite l'écriture, sans destinataire identifié ; l'autodérision tient comme registre, mais sa fonction relationnelle reste indéterminée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier qu'une trace de communication authentique soit présente, parce que la fiche suppose une dimension d'adresse vers l'autre. Ce qui m'a forcé à reconnaître quelque chose, c'est la construction soignée de l'image — le trou, la fibre optique, les 10 pieds sous terre composent un trait d'humour structuré, pas une formule. Sous le second temps, cette pièce a perdu en force : sans destinataire identifié, la fonction communicationnelle reste hypothétique. Il en résulte un indice faible, qui ne porte pas à lui seul une présence établie. La réserve à assumer : sur d'autres feuilles, ce même travail de registre peut se retrouver dans des situations d'interlocution effective, et la trace prendrait alors sa pleine valeur.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une seule pièce a résisté en perdant de la force au second temps : l'image humoristique tient comme registre mais sa fonction d'adresse vers l'autre reste indéterminée dans une écriture de journal.",
+        "prescription": "Pour creuser cette zone, un chemin possible serait de capter, dans une feuille future, un moment où le registre est choisi pour quelqu'un de précis — un message difficile à envoyer, un humour calibré pour un proche, un silence stratégique posé. La dimension d'adresse rendrait visible ce qui ici reste suggéré par l'écriture seule."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un désaccord a été structuré pour produire de la valeur, ou laissé non résolu de manière assumée."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Préparation explicite (formation ciblée) en vue d'un entretien à enjeu : trace possible d'une stratégie en amont d'une situation d'influence."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que se préparer techniquement pour un entretien d'embauche n'est pas en soi une trace d'influence ou de diplomatie. La fiche est claire : 2.04 porte sur le fait de convaincre en intégrant les perspectives de l'autre, de sonder les résistances, de choisir le bon moment, de proposer du gagnant-gagnant. Ici, la pièce 1 décrit un focus sur des contenus techniques (LangChain, bases vectorielles) pour se sentir prêt — c'est une préparation au métier, pas une stratégie d'adhésion. Rien ne résiste : il n'y a pas d'identification des décideurs, pas de reformulation des objections, pas de proposition mutuelle.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à attaquer au second temps. Le geste de se former pour un entretien tient bien dans le pôle préparation/exécution, pas dans le pôle de l'influence relationnelle.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à reconnaître une trace de stratégie d'influence dans cette feuille, et la présomption d'absence a tenu sans difficulté : la préparation décrite est technique, dirigée vers la compétence du poste, et non vers la dynamique d'adhésion avec un interlocuteur. La fiche distingue clairement la compétence professionnelle (préparation au métier) de la compétence d'influence (préparation à convaincre). Il en résulte que cette dimension n'est pas attestée ici. La réserve à assumer : un même contexte d'entretien pourrait, dans une feuille ultérieure, faire apparaître la réflexion stratégique sur l'interlocuteur lui-même.",
+          "confianceFinale": 0.1
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.1,
+        "motif": "Le temps 1 a fait tomber la seule pièce candidate : la préparation technique pour un entretien n'est pas en soi une stratégie d'influence au sens de la fiche.",
+        "prescription": "Pour ouvrir cette zone, un chemin possible serait de capter, en marge de la préparation technique, une lecture des attentes de l'autre — qui va recevoir, quelles résistances peuvent émerger, comment formuler une proposition qui tienne pour les deux parties. La trace d'influence se trouverait alors moins dans ce qu'on prépare que dans la lecture de qui on prépare."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la collaboration divergente dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la livraison s'est faite alors qu'un désaccord persistait, en explicitant ce sur quoi on n'était pas d'accord et ce sur quoi on a tout de même avancé."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence culturelle et contextuelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a modifié son comportement parce que « les règles étaient différentes », en analysant le pourquoi de l'adaptation."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens politique et à la lecture organisationnelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a identifié un écart entre l'organigramme officiel et la réalité du pouvoir, ou un blocage analysé par ses causes structurelles."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la traduction entre mondes dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un savoir spécialisé a été transposé pour un public d'un autre cadre conceptuel — ou inversement, où un besoin non-technique a été remonté en langage spécialisé."
+      }
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Mention de noms (Leila, Alicia) et de cadres collectifs (Liban, GREN) que l'apprenant renonce à porter aujourd'hui : trace indirecte de l'existence de liens et de communautés en arrière-plan."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que mentionner des personnes ou un cadre collectif dans une liste de renoncements n'atteste pas, à soi seul, de construction de communauté. La fiche pose un critère fort : si le projet s'arrête, les gens continuent-ils à se voir ? Ici, ce que je vois, c'est qu'il existe en arrière-plan des liens nommés (Leila et Alicia, le Liban, le GREN), mais le passage les évoque pour les écarter, pas pour les décrire. Rien sur un « nous » identitaire chargé, rien sur des rituels partagés, rien sur la nature des appartenances. Ce qui résiste très légèrement : le simple fait qu'au moment du tri sous pression, ces noms et ces cadres soient nommément cités plutôt que regroupés sous « les autres projets » suggère une importance pour l'apprenant, et donc l'existence de liens. Mais cette résistance est mince.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Au moment d'un tri sous pression, l'apprenant cite nommément des personnes et des cadres collectifs plutôt que de les agglomérer, ce qui suggère que ces liens comptent — sans pour autant les décrire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce sur une inférence ; je dois me demander si je n'ai pas comblé un blanc avec ma propre supposition. Le passage ne dit rien de la nature des liens, ni du sentiment d'appartenance, ni d'un rituel ou d'un vocabulaire partagé. La fiche est exigeante sur ce point. Ce que je lis, c'est l'existence supposée de liens, pas la construction de communauté.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Insuffisance probatoire : la pièce nomme des personnes et des cadres sans rien dire de la nature des liens, de l'appartenance, de rituels ou de gouvernance. C'est trop allusif pour porter la compétence telle que la fiche la définit."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans la mention nommée des personnes et des cadres, une trace de construction de communauté, parce que les noms semblaient porter quelque chose. Le second temps a fait tomber cette pièce : ce qui est nommé, c'est l'existence de liens, pas leur architecture. La fiche demande un « nous » chargé d'émotion, des rituels partagés, un vocabulaire propre — la feuille ne les porte pas. Il en résulte que cette compétence n'est pas attestée ici. La réserve à assumer : derrière ces noms, il existe vraisemblablement une vie communautaire qui pourrait apparaître dans d'autres feuilles, sous une forme plus descriptive.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Le second temps a disqualifié la pièce restante au titre de l'insuffisance probatoire : des noms et des cadres mentionnés dans un tri ne disent rien de l'architecture des liens.",
+        "prescription": "Pour ouvrir cette zone, un chemin possible serait de revenir, dans une feuille ultérieure, sur ce que Leila et Alicia, le Liban ou le GREN représentent — pas seulement comme projets, mais comme appartenances : ce qui s'y vit, ce qui s'y dit en propre, ce qui survivrait si l'activité s'arrêtait."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée du 16 mars, le pôle Cœur s'écrit principalement en direction de soi-même. La feuille porte une lecture émotionnelle fine et datée, avec une nomination corporelle de l'anxiété et un diagnostic d'épuisement rattaché à un événement précis. Le geste relationnel vers autrui apparaît surtout par contraste : des personnes et des cadres sont nommés au moment où ils sont écartés pour faire de la place à l'entretien EPFL. La voix dominante est intime, sans destinataire explicite — un texte qui dit comment l'apprenant se tient lui-même un jour difficile.",
+    "territoiresDenses": [
+      {
+        "competence": "Intelligence émotionnelle et sollicitude active",
+        "description": "La nomination émotionnelle se fait avec précision : couches identifiées, localisation corporelle, datation. La pause RESPIRE et ses règles concrètes traduisent la lecture en régulation effective.",
+        "extraitVerbatim": "Trop d'accumulations de choses sur une base déjà sensibilisée par les souvenirs de l'an passé qui continuent de hanter mes nuits ou me faire pleurer.",
+        "ceQueCaDit": "Sur ce pôle, le travail montre une attention soutenue à l'état intérieur, avec un vocabulaire qui dépasse la plainte. La régulation suit la lecture, ce qui est rare et fait la valeur de la trace."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires du pôle Cœur ne sont pas visités sur cette feuille, et la nature de l'absence diffère selon les zones. Pour la gestion des conflits, la collaboration divergente, l'intelligence culturelle, le sens politique et la traduction entre mondes, l'absence ressemble à une limite du document : une journée d'urgence privée ne convoque pas ces compétences-là, qui peuvent apparaître sur d'autres feuilles plus orientées vers l'interaction. Pour la communication authentique, l'image construite du trou et de la fibre optique signale un travail de registre, mais sans destinataire identifié, la fonction d'adresse reste indéterminée — un territoire voisin qui se rouvrirait par un moment d'interlocution effective. Pour la construction de communautés, les noms et cadres mentionnés (Leila, Alicia, Liban, GREN) signalent l'existence de liens en arrière-plan, sans en décrire l'architecture ; le dossier mériterait d'être ouvert ailleurs, là où ces appartenances peuvent prendre la parole. Pour l'influence et la diplomatie, la préparation d'entretien décrite est technique et n'engage pas la lecture stratégique de l'interlocuteur — un autre territoire qui appelle un autre moment.",
+    "emergencesPole": "Une chose traverse ce pôle dans cette feuille sans être nommée comme telle : le travail relationnel se fait ici principalement de soi vers soi, avec un soin observable dans la manière de se nommer et de se réguler. L'absence d'adresse vers l'autre n'est pas un vide brut ; c'est une journée où l'écriture sert d'abord à se tenir, ce qui est en soi une forme de care orienté vers la personne qui doit demain téléphoner et après-demain passer un entretien.",
+    "pistes": [
+      "Pour enrichir l'observation de la dimension relationnelle, un chemin possible serait de capter, dans une feuille future, ce que cette même finesse de nomination donne quand elle se tourne vers une autre personne — un proche, un collègue, un interlocuteur — et de noter ce que la nomination ouvre pour la relation.",
+      "Pour enrichir l'écriture du registre communicationnel, un chemin possible serait de saisir un moment où le ton est choisi pour quelqu'un de précis — un message difficile à envoyer, un humour calibré, un silence assumé — et de raconter le choix lui-même.",
+      "Pour enrichir l'écriture des appartenances, un chemin possible serait de revenir, hors urgence, sur ce que représentent Leila et Alicia, le Liban ou le GREN comme communautés vécues : ce qui s'y vit, ce qui s'y dit en propre, ce qui survivrait à l'arrêt du projet."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée du 16 mars, le pôle Cœur s'écrit principalement en direction de soi-même. La feuille porte une lecture émotionnelle fine et datée, avec une nomination corporelle de l'anxiété et un diagnostic d'épuisement rattaché à un événement précis. Le geste relationnel vers autrui apparaît surtout par contraste : des personnes et des cadres sont nommés au moment où ils sont écartés pour faire de la place à l'entretien EPFL. La voix dominante est intime, sans destinataire explicite — un texte qui dit comment l'apprenant se tient lui-même un jour difficile.\n\n## Territoires les plus denses\n\n**Intelligence émotionnelle et sollicitude active.** La nomination émotionnelle se fait avec précision : couches identifiées, localisation corporelle, datation. La pause RESPIRE et ses règles concrètes traduisent la lecture en régulation effective. L'extrait « Trop d'accumulations de choses sur une base déjà sensibilisée par les souvenirs de l'an passé qui continuent de hanter mes nuits ou me faire pleurer » illustre le registre. Sur ce pôle, le travail montre une attention soutenue à l'état intérieur, avec un vocabulaire qui dépasse la plainte. La régulation suit la lecture, ce qui est rare et fait la valeur de la trace.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires ne sont pas visités sur cette feuille, et la nature de l'absence diffère selon les zones. Pour la gestion des conflits, la collaboration divergente, l'intelligence culturelle, le sens politique et la traduction entre mondes, l'absence ressemble à une limite du document : une journée d'urgence privée ne convoque pas ces compétences-là, qui peuvent apparaître sur d'autres feuilles plus orientées vers l'interaction. Pour la communication authentique, l'image construite du trou et de la fibre optique signale un travail de registre, mais sans destinataire identifié, la fonction d'adresse reste indéterminée — un territoire voisin qui se rouvrirait par un moment d'interlocution effective. Pour la construction de communautés, les noms et cadres mentionnés signalent l'existence de liens en arrière-plan, sans en décrire l'architecture ; le dossier mériterait d'être ouvert ailleurs. Pour l'influence et la diplomatie, la préparation d'entretien décrite est technique et n'engage pas la lecture stratégique de l'interlocuteur — un autre territoire qui appelle un autre moment.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse ce pôle dans cette feuille sans être nommée comme telle : le travail relationnel se fait ici principalement de soi vers soi, avec un soin observable dans la manière de se nommer et de se réguler. L'absence d'adresse vers l'autre n'est pas un vide brut ; c'est une journée où l'écriture sert d'abord à se tenir, ce qui est en soi une forme de care orienté vers la personne qui doit demain téléphoner et après-demain passer un entretien.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir l'observation de la dimension relationnelle, un chemin possible serait de capter, dans une feuille future, ce que cette même finesse de nomination donne quand elle se tourne vers une autre personne — un proche, un collègue, un interlocuteur — et de noter ce que la nomination ouvre pour la relation.\n\nPour enrichir l'écriture du registre communicationnel, un chemin possible serait de saisir un moment où le ton est choisi pour quelqu'un de précis — un message difficile à envoyer, un humour calibré, un silence assumé — et de raconter le choix lui-même.\n\nPour enrichir l'écriture des appartenances, un chemin possible serait de revenir, hors urgence, sur ce que représentent Leila et Alicia, le Liban ou le GREN comme communautés vécues : ce qui s'y vit, ce qui s'y dit en propre, ce qui survivrait à l'arrêt du projet."
+  }
+}

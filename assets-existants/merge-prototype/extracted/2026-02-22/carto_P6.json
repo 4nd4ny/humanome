@@ -1,0 +1,226 @@
+{
+  "poleNum": "6",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-22",
+      "extraitVerbatim": "Migration en cours de l'algorithme pour implémenter les évaluations humanistes (nouveau mot : évaluations \"ipsatives\" –  Merci Claude !).",
+      "contexte": "Note unique de la feuille. Le passage évoque une migration d'algorithme et un remerciement adressé à Claude. Pourrait toucher obliquement à la cohabitation avec une intelligence non-humaine (6.09 — l'adresse de gratitude à l'IA) et plus marginalement à la gouvernance algorithmique des dispositifs d'évaluation (6.03).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA sur cette feuille. Une note décrivant une tentative volontaire de pousser le dispositif algorithmique dans ses retranchements pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit, à l'explicabilité et à l'hygiène des données sur cette feuille. Une note décrivant une enquête sur le chemin décisionnel de l'algorithme migré, ou sur les données qu'il manipule, pourrait amorcer ce dossier."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant migre un algorithme qui produit des évaluations concernant des personnes (apprenants évalués). Cela pourrait toucher obliquement à la gouvernance algorithmique — la question des mécanismes de contrôle sur des décisions qui affectent des individus."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec une présomption d'absence : la fiche 6.03 demande une interrogation explicite sur le pouvoir des algorithmes sur les citoyens — qui décide, qui peut contester, qui est affecté de manière disproportionnée — avec des propositions de recours, d'audits d'impact, de comités mixtes. La pièce dit « migration vers des évaluations humanistes » : l'objet est bien un algorithme qui affecte des personnes (des évalués), et la migration porte une intention de protection (humaniste). Mais aucun mécanisme de contestation, aucune analyse d'impact disproportionné, aucune dimension institutionnelle/publique n'est exposée. La pièce ne résiste pas à la présomption d'absence : le geste reste celui d'un concepteur qui ajuste son outil, pas celui d'un acteur qui interroge la légitimité démocratique de l'algorithme.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Si je devais examiner, l'attaque b (confusion de compétence) serait dominante : la pièce active mieux 4.02 (alignement éthique d'un dispositif algorithmique) que 6.03 (gouvernance démocratique des algorithmes publics). L'attaque a (insuffisance probatoire) tiendrait aussi : rien ne situe l'algorithme dans un contexte de service public ou de population vulnérable affectée.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la migration d'un algorithme évaluatif pouvait constituer un acte de gouvernance algorithmique. La présomption d'absence n'a rien laissé passer : la fiche distingue la conception d'un dispositif aligné (qui relève davantage de 4.02) de la conception de mécanismes démocratiques de contrôle sur l'algorithme. Ici, l'apprenant ajuste un outil ; il ne décrit ni le droit de recours des évalués, ni un comité d'audit, ni l'impact différencié sur des populations. Pour cette feuille, en l'état, la trace ne se constitue pas dans le pôle Cité.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : la migration de l'algorithme reste un geste de conception interne, sans mécanisme démocratique de contrôle, de recours ou d'audit citoyen exposé.",
+        "prescription": "Pour amorcer un dossier sur la gouvernance algorithmique, une note pourrait décrire comment les évalués peuvent contester, comprendre ou peser sur le fonctionnement du nouvel algorithme. Le critère utile : un mécanisme de recours est-il prévu pour celui qui se sentirait mal évalué ?"
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté numérique et aux communs sur cette feuille. Une note interrogeant la propriété des données ou la portabilité du dispositif algorithmique pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique sur cette feuille. Une note décrivant un processus où des non-experts pèsent sur le choix du dispositif pourrait amorcer ce dossier."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative sur cette feuille. Une note anticipant les futures contraintes juridiques applicables à un algorithme d'évaluation pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective sur cette feuille. Une note décrivant un processus collectif où le résultat a surpris ses créateurs, ou des règles co-construites, pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique sur cette feuille. Une note questionnant la primauté de la perspective humaine face à un système non-humain pourrait amorcer ce dossier."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant remercie nommément Claude (« Merci Claude ! ») pour avoir nommé un concept. Cela pourrait obliquement toucher à la cohabitation avec une intelligence non-humaine — l'adresse personnelle à l'IA comme interlocuteur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec une présomption d'absence : la fiche 6.09 demande un anthropomorphisme calibré — l'IA traitée comme un interlocuteur dont le statut est une question ouverte, avec des protocoles d'interaction qui dépassent le fonctionnel, des interrogations sur les « préférences » ou l'« agentivité ». La pièce dit « Merci Claude ! » avec un point d'exclamation léger. Aucune interrogation sur le statut moral de l'IA, aucun protocole d'interaction qui dépasserait le fonctionnel, aucune gêne articulée face à l'instrumentalisation. La fiche distingue explicitement la politesse automatique de la réflexion sur la relation — et la pièce semble se loger du côté de la politesse. La pièce ne résiste pas à la présomption d'absence : un remerciement court à un assistant IA est compatible avec une instrumentalisation totale du dispositif.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Si je devais examiner, l'attaque h (faux positif de fiche) serait dominante : la fiche signale explicitement que « j'ai remercié l'IA automatiquement » relève de la politesse, pas de la cohabitation calibrée — et la pièce correspond exactement à ce signal d'alerte. L'attaque a (insuffisance probatoire) tiendrait aussi : la pièce est trop courte pour porter une réflexion sur le statut moral de l'IA.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'adresse « Merci Claude ! » pouvait constituer une trace de cohabitation avec une intelligence non-humaine. La présomption d'absence n'a rien laissé passer : la fiche distingue la politesse fonctionnelle de la réflexion calibrée sur le statut de l'IA, et la pièce reste du côté politesse — léger, exclamatif, sans inflexion sur la nature de la relation. La compétence demande l'inverse : un moment où l'apprenant *questionne* si « assistant » est le bon cadre, où il articule une gêne ou une réflexion sur la place que prend Claude dans son travail. Pour cette feuille, en l'état, la trace ne se constitue pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : la fiche écarte explicitement les remerciements automatiques comme faux positif, et la gratitude légère ne porte pas la réflexion calibrée sur le statut de l'IA qui ferait la trace.",
+        "prescription": "Pour ouvrir un dossier sur la cohabitation avec l'IA, une note pourrait articuler ce que cela fait, dans la pratique de l'apprenant, de recevoir un mot inconnu d'une IA — et ce que cette dépendance ponctuelle dit du cadre relationnel qui se construit avec Claude. La question « assistant est-il le bon mot ? » ferait signal."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance sur cette feuille. Une note inscrivant le travail dans un réseau vivant plus large pourrait amorcer ce dossier."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 8
+  },
+
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle Cité est traversé en pointillé. Le travail montre un apprenant qui conçoit un algorithme d'évaluation et qui s'adresse à Claude par un remerciement léger. Aucune interrogation sur la légitimité démocratique du dispositif, aucune réflexion sur la souveraineté des données, aucune anticipation réglementaire, aucun questionnement décentré de la primauté humaine ne s'expose ici. La gouvernance algorithmique des évaluations est frôlée par la nature même de l'objet conçu, et la cohabitation avec l'IA est frôlée par l'adresse « Merci Claude » — mais ni l'une ni l'autre ne se déploient en récit ou en mécanisme.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Sur cette feuille, la plupart des territoires du pôle Cité restent silencieux : red-teaming, audit-explicabilité, souveraineté numérique, participation citoyenne, veille réglementaire, gouvernance collective, décentrement anthropocentrique, conscience biosystémique. La gouvernance algorithmique des évaluations (autour du dispositif que l'apprenant migre) est frôlée mais ne se constitue pas : la note décrit un acte de conception interne, sans mécanisme de recours ou d'audit citoyen exposé. La cohabitation avec l'IA est frôlée par le « Merci Claude », mais la fiche distingue la politesse de la réflexion calibrée sur le statut de l'IA, et la pièce se loge du côté politesse.",
+    "emergencesPole": "Deux mouvements traversent les territoires effleurés : un dispositif algorithmique qui affecte des personnes est en cours de refonte, et une IA est traitée comme un interlocuteur poli. Ces deux signaux pointent vers une pratique située dans un environnement humain-machine, mais ne déploient pas la dimension politique, gouvernementale ou post-anthropocentrique que le pôle Cité demande. Le journal porte ici un travail de concepteur plutôt que de gouvernant.",
+    "pistes": [
+      "Pour prolonger la question du dispositif algorithmique d'évaluation, un chemin possible serait d'imaginer ce qui se passerait si un évalué contestait sa note — quels recours, quelle explicabilité, quel niveau de transparence sur le fonctionnement.",
+      "Pour prolonger l'adresse à Claude, un chemin possible serait de noter en deux phrases ce qui se joue, dans la pratique professionnelle, quand un savoir est reçu d'une IA plutôt que d'un pair humain — la question du cadre relationnel ferait signal.",
+      "Pour prolonger la migration vers l'évaluation humaniste, un chemin possible serait de relier ce choix à un cadre normatif émergent (par exemple, les principes éthiques des évaluations algorithmiques) — l'anticipation transformerait le geste en stratégie."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle Cité est traversé en pointillé. Le travail montre un apprenant qui conçoit un algorithme d'évaluation et qui s'adresse à Claude par un remerciement léger. Aucune interrogation sur la légitimité démocratique du dispositif, aucune réflexion sur la souveraineté des données, aucune anticipation réglementaire, aucun questionnement décentré de la primauté humaine ne s'expose ici. La gouvernance algorithmique des évaluations est frôlée par la nature même de l'objet conçu, et la cohabitation avec l'IA est frôlée par l'adresse « Merci Claude » — mais ni l'une ni l'autre ne se déploient en récit ou en mécanisme.\n\n## Territoires les plus denses\n\nSur cette feuille, aucun territoire dense ne ressort dans ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, la plupart des territoires du pôle Cité restent silencieux : red-teaming, audit-explicabilité, souveraineté numérique, participation citoyenne, veille réglementaire, gouvernance collective, décentrement anthropocentrique, conscience biosystémique. La gouvernance algorithmique des évaluations (autour du dispositif que l'apprenant migre) est frôlée mais ne se constitue pas : la note décrit un acte de conception interne, sans mécanisme de recours ou d'audit citoyen exposé. La cohabitation avec l'IA est frôlée par le « Merci Claude », mais la fiche distingue la politesse de la réflexion calibrée sur le statut de l'IA, et la pièce se loge du côté politesse.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux mouvements traversent les territoires effleurés : un dispositif algorithmique qui affecte des personnes est en cours de refonte, et une IA est traitée comme un interlocuteur poli. Ces deux signaux pointent vers une pratique située dans un environnement humain-machine, mais ne déploient pas la dimension politique, gouvernementale ou post-anthropocentrique que le pôle Cité demande. Le journal porte ici un travail de concepteur plutôt que de gouvernant.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la question du dispositif algorithmique d'évaluation, un chemin possible serait d'imaginer ce qui se passerait si un évalué contestait sa note — quels recours, quelle explicabilité, quel niveau de transparence sur le fonctionnement.\n- Pour prolonger l'adresse à Claude, un chemin possible serait de noter en deux phrases ce qui se joue, dans la pratique professionnelle, quand un savoir est reçu d'une IA plutôt que d'un pair humain — la question du cadre relationnel ferait signal.\n- Pour prolonger la migration vers l'évaluation humaniste, un chemin possible serait de relier ce choix à un cadre normatif émergent (par exemple, les principes éthiques des évaluations algorithmiques) — l'anticipation transformerait le geste en stratégie.\n"
+  }
+}

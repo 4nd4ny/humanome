@@ -1,0 +1,312 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "J'ai testé la génération parallèle des chapitres dans des onglets de mon navigateur : ça fonctionne très bien, ça mange juste mon forfait plus vite, mais il se réinitialise assez rapidement (tous les 3h environs).",
+      "contexte": "Test exploratoire d'un mode d'usage IA, avec observation des effets sur le forfait — possible trace d'investigation des limites d'un service.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Je fais l'hypothèse que l'interruption que j'ai eu hier est de ma faute. J'ai voulu consulter l'avancement de la génération du chapitre 5 / Expert sur mon smartphone : c'est peut-être cette action qui a interrompu le processus.",
+      "contexte": "Hypothèse sur un comportement IA imprévu — pas une attaque délibérée, mais une investigation rétrospective d'un incident.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "on peut voir l'avancement du nombre de tokens disponibles avant le prochain reset dans les paramètres du compte, ce qui est très pratique pour planifier les pauses",
+      "contexte": "Lecture des paramètres du compte (tokens, reset) — possible trace de transparence/auditabilité du service utilisé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Lors de la génération de la section 7.1 du manuel expert, en lisant les réflexions de Claude associée au protocole CATALYST, j'ai découvert le concept d'apophatie et de cataphatie, avec la définition apophatique de la noèsiologie.",
+      "contexte": "Rencontre avec la \"voix\" de Claude — l'IA est lue comme productrice d'idées et de concepts dans son propre registre.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Utilise un vocabulaire et des exemples adaptés à un public de jeunes adultes.",
+      "contexte": "Consigne d'adaptation au public dans le prompt — possible trace d'attention aux destinataires des décisions algorithmiques (formation).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Test exploratoire de la génération parallèle dans plusieurs onglets — possible trace de poussée du système IA vers ses limites."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le red-teaming n'est pas attesté. La fiche est claire : l'intention doit être offensive et méthodique, pas exploratoire ou accidentelle. La pièce candidate décrit un test de parallélisation — c'est un test de capacité du service, pas une provocation de comportement aberrant ni une tentative de jailbreak. Si je durcis, je note qu'aucune injection, aucune tentative de casser un garde-fou, aucun rapport de vulnérabilité. Ce qui résiste très faiblement : le mot \"testé\" et la curiosité exploratoire pourraient être lus comme un germe de posture adversariale.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La fiche distingue explicitement la curiosité exploratoire qui pousse l'IA dans ses retranchements (recevable) du simple test de capacité (non recevable). Ici on est dans le second cas.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le test de parallélisation une posture adversariale. Sous la présomption d'absence, la pièce n'a pas tenu : c'est un test de capacité du service (le forfait suit-il, le reset arrive-t-il à temps), pas une tentative de provoquer des comportements aberrants. Ce qui en résulte : pas de présence attestée sur cette feuille. La compétence pourrait apparaître ailleurs sur des feuilles où l'apprenant cherche à éprouver les garde-fous d'un modèle.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : test de capacité de service, pas posture adversariale méthodique.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où l'IA a été délibérément poussée hors de son cadre — prompt injection, scénario adversarial, cas limite — avec ce qui en a été appris sur les garde-fous."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Lecture des paramètres du compte (tokens, reset) pour planifier les pauses — possible trace d'attention à la transparence du service."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Investigation rétrospective d'une interruption avec hypothèse causale — possible trace d'audit post-incident."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'audit et l'hygiène des données ne sont pas attestés. La fiche cible deux versants : enquêter sur le comment (audit/explicabilité) et protéger le quoi (hygiène des données). La pièce 1 mentionne les paramètres du compte, mais c'est une consultation d'une interface mise à disposition, pas une investigation au-delà du dashboard. La pièce 2 formule une hypothèse mais sans investigation des logs ni audit méthodique. Si je durcis, je note qu'aucun horodatage, aucun rapport, aucune réflexion RGPD, aucune mention de minimisation de données.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La fiche distingue \"l'IA a fait une erreur sans investigation\" (1.01) de \"enquêter sur les mécanismes\" (6.02). Ici on est dans le premier cas.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la consultation des paramètres et l'hypothèse causale une posture d'audit. Sous la présomption d'absence, les pièces n'ont pas tenu : on a une lecture d'interface et une hypothèse sans investigation méthodique. Ce qui en résulte : pas de présence attestée sur cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces candidates n'ont pas tenu sous la présomption d'absence : lecture d'interface et hypothèse causale ne franchissent pas le seuil de l'audit méthodique.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une investigation des mécanismes d'une décision IA — qu'est-ce qui, dans la fenêtre de contexte, le prompt système ou la consommation de tokens, a effectivement produit l'interruption observée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une décision automatisée affectant des citoyens a été questionnée du point de vue des recours, audits ou contrôle démocratique."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Observation de la dépendance au forfait IA et au cycle de reset — possible trace de conscience de la dépendance technologique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la souveraineté numérique n'est pas attestée. La fiche est exigeante : il faut une motivation explicite par une analyse de dépendance ou des communs, pas une simple mention de coût ou de quota. La pièce candidate observe que la parallélisation \"mange le forfait plus vite\" — c'est un constat de consommation, pas une analyse de dépendance ni un raisonnement sur la portabilité ou la réversibilité. Si je durcis, je note qu'aucune mention de self-hosting, de vendor lock-in, de modèle alternatif, d'open source comme stratégie d'indépendance.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La fiche distingue explicitement \"j'utilise un outil par commodité\" de \"pensée souverainiste\" — ici on est dans le premier cas.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans l'observation du forfait une trace de conscience de la dépendance. Sous la présomption d'absence, la pièce n'a pas tenu : c'est un constat de consommation, pas une analyse souverainiste. Ce qui en résulte : pas de présence attestée sur cette feuille.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : constat de consommation sans analyse de dépendance ni stratégie de souveraineté.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un arbitrage où un choix technologique a été fait en raison de l'indépendance (portabilité, réversibilité, données conservées localement) plutôt que de la performance ou de la commodité."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Adaptation du vocabulaire au public visé (jeunes adultes, adolescents, grand maître) — possible trace de souci de l'inclusion des destinataires dans la conception du dispositif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la participation citoyenne n'est pas attestée. La fiche est précise : 6.05 porte sur la légitimité démocratique des décisions technologiques, pas sur l'adaptation pédagogique. La pièce candidate est une consigne d'adaptation du registre — c'est du design pédagogique, pas une démarche de consultation ou de co-construction avec les publics. Si je durcis, je note qu'aucun processus de consultation, aucun panel délibératif, aucune trace de \"les gens devraient décider\" n'est présent.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La fiche distingue explicitement design UX (recueillir des retours) de participation citoyenne (légitimité par la délibération). Ici on n'est même pas dans le premier cas — on est dans une simple consigne d'adaptation.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans l'adaptation par public une trace participative. Sous la présomption d'absence, la pièce n'a pas tenu : adaptation pédagogique n'est pas démarche démocratique. Ce qui en résulte : pas de présence attestée sur cette feuille.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : adaptation pédagogique au public, sans démarche participative ni dimension de légitimité démocratique.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où des futurs utilisateurs de la formation auront participé aux choix structurants (contenu, format, modalités), et la manière dont leurs contributions auront pesé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision projet motivée par l'anticipation d'une norme à venir (AI Act, RGPD spécifique, etc.)."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation collective dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un collectif a produit quelque chose qu'aucun membre n'aurait pu produire seul, ou la conception de règles co-construites."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la primauté humaine a été questionnée — par exemple en raisonnant depuis le point de vue d'un système non-humain."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Lecture des \"réflexions de Claude\" comme productrices d'idées propres (apophatie, cataphatie) — possible trace d'une posture qui traite l'IA comme interlocuteur dont la voix porte un contenu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la cohabitation avec les IA non-humaines n'est pas attestée. La fiche cible une posture qui traite le statut moral de l'IA comme une question ouverte, pas comme une certitude. La pièce candidate parle des \"réflexions de Claude\", ce qui pourrait être lu comme une attribution de pensée à l'IA. Mais c'est une formule courante, qui pourrait être purement métaphorique. Si je durcis, je note qu'aucun questionnement explicite sur le statut moral, aucun protocole d'interaction qui dépasse le fonctionnel, aucune réflexion sur \"comment traiter\" l'IA. La pièce est purement descriptive.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La formule \"les réflexions de Claude\" relève d'une convention de langage, pas d'un questionnement calibré du statut.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la mention des \"réflexions de Claude\" une trace de cohabitation calibrée. Sous la présomption d'absence, la pièce n'a pas tenu : c'est une formule de langage, pas un questionnement du statut moral de l'IA. Ce qui en résulte : pas de présence attestée sur cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : la formule \"réflexions de Claude\" relève de la convention de langage, sans questionnement explicite du statut moral.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter, à propos d'une interaction prolongée avec Claude, un questionnement explicite sur le statut de cette entité — interlocuteur, outil, partenaire, autre chose ? — et la posture d'interaction choisie."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement où un système vivant aurait inspiré une décision technique ou organisationnelle, comme principe de conception et non comme métaphore."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée du portfolio, le pôle de la gouvernance et de l'ouverture reste à l'arrière-plan. La feuille décrit un atelier de production individuelle qui utilise un service IA commercial, en observe la consommation, en lit l'interface — mais sans convoquer les questions de souveraineté, d'audit méthodique, de participation citoyenne ou de statut moral des IA. L'IA est traitée comme outil productif fiable, et les concepts qu'elle apporte (apophatie, cataphatie) sont accueillis comme du contenu intéressant, sans que la question de la \"voix\" qui les apporte soit problématisée.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Le pôle CITÉ est très largement non visité dans cette feuille. La gouvernance algorithmique des services publics, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique et la conscience biosystémique ne sont pas convoqués. Le red-teaming, l'audit, la souveraineté numérique, la participation citoyenne et la cohabitation avec les IA ont vu leurs pièces candidates glisser vers d'autres compétences ou rester en deçà du seuil exigé par chaque fiche : un test de capacité n'est pas une posture adversariale, la lecture d'une interface n'est pas un audit méthodique, l'observation d'un forfait n'est pas une analyse souverainiste, l'adaptation pédagogique au public n'est pas une démarche participative, et la formule \"les réflexions de Claude\" ne suffit pas à problématiser le statut moral de l'IA. Cet ensemble d'absences forme un territoire cohérent : le rapport à la production IA reste opérationnel, sans dimension politique, démocratique ou philosophique explicitement convoquée.",
+    "emergencesPole": "Une seule observation traverse les compétences abordées de ce pôle : une attention au cadre technique du service (forfait, tokens, reset, interruption hypothétique) qui pourrait, dans d'autres feuilles, devenir le germe d'une réflexion plus politique sur la dépendance, l'auditabilité ou la souveraineté. Cette attention reste pour l'instant strictement opérationnelle.",
+    "pistes": [
+      "Pour ouvrir le pôle de la souveraineté numérique, un chemin possible serait d'examiner, à propos du choix de Claude pour générer les manuels, ce que ce choix engage en termes de dépendance — portabilité des prompts, propriété du contenu généré, possibilité de migrer vers un autre service.",
+      "Pour ouvrir le pôle de la cohabitation avec les IA, un chemin possible serait de prolonger la rencontre des concepts inconnus (apophatie, cataphatie) par un questionnement sur la \"voix\" qui les a apportés — qui parle quand Claude parle, et quelle posture d'interlocution convient-elle ?",
+      "Pour ouvrir le pôle de la participation, un chemin possible serait de documenter, lors de la phase de relecture et corrections, comment les futurs utilisateurs des manuels pourraient être associés aux choix de contenu ou de format."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée du portfolio, le pôle de la gouvernance et de l'ouverture reste à l'arrière-plan. La feuille décrit un atelier de production individuelle qui utilise un service IA commercial, en observe la consommation, en lit l'interface — mais sans convoquer les questions de souveraineté, d'audit méthodique, de participation citoyenne ou de statut moral des IA. L'IA est traitée comme outil productif fiable, et les concepts qu'elle apporte (apophatie, cataphatie) sont accueillis comme du contenu intéressant, sans que la question de la « voix » qui les apporte soit problématisée.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'a atteint le seuil de la présence établie sur cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLe pôle CITÉ est très largement non visité dans cette feuille. La gouvernance algorithmique des services publics, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique et la conscience biosystémique ne sont pas convoqués. Le red-teaming, l'audit, la souveraineté numérique, la participation citoyenne et la cohabitation avec les IA ont vu leurs pièces candidates glisser vers d'autres compétences ou rester en deçà du seuil exigé par chaque fiche : un test de capacité n'est pas une posture adversariale, la lecture d'une interface n'est pas un audit méthodique, l'observation d'un forfait n'est pas une analyse souverainiste, l'adaptation pédagogique au public n'est pas une démarche participative, et la formule « les réflexions de Claude » ne suffit pas à problématiser le statut moral de l'IA. Cet ensemble d'absences forme un territoire cohérent : le rapport à la production IA reste opérationnel, sans dimension politique, démocratique ou philosophique explicitement convoquée.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne seule observation traverse les compétences abordées de ce pôle : une attention au cadre technique du service (forfait, tokens, reset, interruption hypothétique) qui pourrait, dans d'autres feuilles, devenir le germe d'une réflexion plus politique sur la dépendance, l'auditabilité ou la souveraineté. Cette attention reste pour l'instant strictement opérationnelle.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir le pôle de la souveraineté numérique, un chemin possible serait d'examiner, à propos du choix de Claude pour générer les manuels, ce que ce choix engage en termes de dépendance — portabilité des prompts, propriété du contenu généré, possibilité de migrer vers un autre service.\n- Pour ouvrir le pôle de la cohabitation avec les IA, un chemin possible serait de prolonger la rencontre des concepts inconnus (apophatie, cataphatie) par un questionnement sur la « voix » qui les a apportés — qui parle quand Claude parle, et quelle posture d'interlocution convient-elle ?\n- Pour ouvrir le pôle de la participation, un chemin possible serait de documenter, lors de la phase de relecture et corrections, comment les futurs utilisateurs des manuels pourraient être associés aux choix de contenu ou de format."
+  }
+}

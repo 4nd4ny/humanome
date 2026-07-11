@@ -1,0 +1,254 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Grosse lacune dans le manuel du Maître : quel est son public ? A quoi est-ce que la noèsiologie lui sert ? Comment ce qu'on lui enseigne va permettre aux apprenants d'améliorer leurs portfolios réflexifs ?",
+      "contexte": "Interrogation sur la finalité d'un manuel destiné aux Tuteurs et la chaîne d'impact sur les apprenants — possible trace de questionnement sur la légitimité d'un dispositif pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Mais en explicitant que sans une remédiation cognitive, certains tuteurs n'arriveront pas à faire émerger chez des apprenants les compétences réflexives, s'ils ne sont pas eux-mêmes capables de manifester ces compétences.",
+      "contexte": "Identification d'une condition de transmission entre tuteurs et apprenants — possible référence à une chaîne d'influence et à la qualification des intermédiaires d'un dispositif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "J'ai merdé quelque part dans mes prompts : comme s'il avait oublié d'appliquer les principes pédagogiques des écoles, comme s'il avait perdu le fil rouge, au moment de générer les manuels.",
+      "contexte": "Diagnostic d'un défaut dans une génération IA et hypothèse sur ses causes — possible trace d'investigation sur le « comment » de la décision algorithmique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une provocation intentionnelle d'un comportement aberrant d'un système IA, avec sa méthode et ses résultats."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant cherche à comprendre comment la génération IA a abouti à des manuels déficients : qu'a-t-elle « oublié », à quel moment a-t-elle « perdu le fil rouge ». Possible trace d'investigation du mécanisme décisionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'audit et l'explicabilité ne sont pas là — qu'il s'agit plutôt d'un constat d'erreur sans investigation des mécanismes. La pièce résiste un peu : l'apprenant formule des hypothèses sur ce qui a manqué dans la chaîne de génération (les principes pédagogiques, le fil rouge), ce qui correspond formellement à enquêter sur le « comment ». Mais la fiche est exigeante : l'audit demande une consultation de logs, des horodatages, un rapport documentant le chemin décisionnel. Ici, on a des métaphores (oublier, perdre) sans dispositif d'investigation décrit. Aucun log n'est mentionné, aucun horodatage, aucune traçabilité technique. Ce qui ne résiste pas : la trace reste au niveau de l'hypothèse, pas du protocole d'investigation.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a vraiment résisté au temps 1. La présomption d'absence absorbe l'extrait : formuler des hypothèses sur ce que l'IA aurait oublié n'est pas auditer son fonctionnement, c'est diagnostiquer un résultat. La fiche distingue précisément ces deux postures.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme un acte d'audit, et elle n'a pas tenu : l'investigation reste hypothétique et métaphorique, sans dispositif technique de vérification du chemin décisionnel. C'est davantage du diagnostic de prompt (1.08) que de l'audit (6.02). Ce qui en résulte, c'est un territoire qui ne s'ouvre pas dans cette feuille. Une trace claire demanderait un récit où l'apprenant aurait consulté les outputs intermédiaires, comparé des versions, isolé une étape pour comprendre où la dérive s'est produite.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a absorbé la pièce extraite ; aucun dispositif d'investigation technique ni d'hygiène des données n'apparaît.",
+        "prescription": "Ce territoire n'a pas livré de trace claire dans cette feuille. Un chemin possible serait de documenter, lors d'un prochain défaut de génération, le dispositif d'investigation employé pour remonter le chemin décisionnel — étapes vérifiées, outputs intermédiaires comparés, point de bascule isolé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur des mécanismes de contrôle citoyen face à des décisions automatisées affectant des populations vulnérables."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté numérique et aux communs dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un choix technologique motivé par l'indépendance, la portabilité ou la défense d'un commun."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Questions sur le public du manuel, sa finalité et son impact sur les apprenants — possible trace d'interrogation sur la légitimité d'un dispositif vis-à-vis des publics qu'il concerne."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la participation citoyenne et la démocratie technologique ne sont pas là — qu'il s'agit plutôt d'un questionnement classique de cadrage pédagogique. La fiche est sans ambiguïté : 6.05 commence quand des non-experts sont associés à une décision technologique, avec des dispositifs de consultation ou de co-construction. Ici, l'apprenant s'interroge en chambre sur le public et l'utilité du manuel — il ne consulte personne, ne co-construit rien avec les Tuteurs ou les apprenants, ne décrit aucun dispositif participatif. La fiche signale précisément le faux positif : « on a consulté les utilisateurs » peut être du design UX sans dimension démocratique. Ici, on n'a même pas de consultation, juste une auto-interrogation. Ce qui ne résiste pas : aucune trace de participation effective.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a vraiment résisté au temps 1. La présomption d'absence absorbe l'extrait : un auteur qui questionne en chambre la finalité de son propre dispositif n'est pas en train d'organiser la participation des publics concernés.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une trace de démocratie technologique, et elle n'a pas tenu : le questionnement reste interne au concepteur, sans dispositif participatif décrit. Ce qui en résulte, c'est un territoire qui ne s'ouvre pas dans cette feuille. Une trace claire pourrait apparaître si l'apprenant racontait, par exemple, comment des Tuteurs ou des apprenants ont été associés à la décision de ce que le manuel devait contenir.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé la pièce extraite ; le questionnement reste interne au concepteur sans dispositif participatif.",
+        "prescription": "Ce territoire n'a pas livré de trace claire dans cette feuille. Un chemin possible serait de documenter un moment où des Tuteurs ou des apprenants ont effectivement pesé sur une décision portant sur le manuel ou le dispositif — pas seulement un retour utilisateur, mais une décision co-construite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une pratique modifiée par anticipation d'une réglementation à venir, ou une analyse prospective d'une tendance normative."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Articulation de la chaîne tuteurs/apprenants et de la condition pour que la transmission opère — possible esquisse d'une réflexion sur la qualification des rôles dans un dispositif collectif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la facilitation et la gouvernance collective ne sont pas là — qu'il s'agit plutôt d'une remarque pédagogique sur la condition de transmission. La fiche pose un test : un résultat surprenant (émergence) ou des règles co-construites (gouvernance). Ici, ni l'un ni l'autre n'apparaît. L'apprenant pose une condition d'efficacité (les tuteurs doivent eux-mêmes manifester les compétences pour les faire émerger), mais cela relève davantage d'un raisonnement pédagogique sur les prérequis que de la conception d'un dispositif collectif délibérant. Aucun protocole, aucune charte, aucun rôle distribué dans un cadre de gouvernance n'est mentionné. Ce qui ne résiste pas : le passage est une condition causale, pas un dispositif collectif.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La présomption d'absence absorbe l'extrait : nommer une condition de transmission n'est pas concevoir une gouvernance collective.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une trace de gouvernance collective, et elle n'a pas tenu : le passage articule une chaîne causale (tuteurs → apprenants) sans dispositif délibératif ni co-construction. Ce qui en résulte, c'est un territoire qui ne s'ouvre pas dans cette feuille. Une trace claire pourrait apparaître si l'apprenant décrivait, par exemple, un cadre où les Tuteurs co-construisent leurs propres règles, ou un dispositif où l'émergence collective produit quelque chose qu'aucun membre n'aurait pu créer seul.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé la pièce extraite ; aucun dispositif délibératif, aucune règle co-construite ni résultat émergent n'apparaissent.",
+        "prescription": "Ce territoire n'a pas livré de trace claire dans cette feuille. Un chemin possible serait de raconter un moment où un collectif (Tuteurs, équipe, communauté d'apprenants) a co-construit une règle de fonctionnement, ou produit ensemble quelque chose qu'aucun membre seul n'aurait pu produire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment de questionnement sur la primauté humaine — face à un système IA, un animal, un écosystème."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait articuler un questionnement sur le statut moral de l'IA, plutôt que de la traiter comme un outil dont les défauts sont à corriger."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une décision ou une conception inspirée d'un système vivant compris comme intelligence, non comme métaphore."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 3,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille du 13 janvier 2026 se tient entièrement à l'échelle d'un travail individuel sur un dispositif pédagogique. Les questions politiques, démocratiques, écologiques ou interspécifiques du pôle 6 ne sont pas convoquées dans ce passage. Les publics visés (Tuteurs, apprenants, jeunes) apparaissent comme destinataires d'un manuel à concevoir, pas comme acteurs d'une démocratie technologique ou d'une gouvernance collective. L'IA est traitée comme un outil dont les défauts s'attribuent au prompteur, pas comme une entité dont le statut interrogerait. Ce silence du pôle est cohérent avec un texte focalisé sur la fabrication, pas sur la mise en commun.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble des territoires du pôle 6 reste silencieux dans cette feuille. Le red-teaming, la gouvernance algorithmique des services publics, la souveraineté numérique, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les IA et la conscience biosystémique n'apparaissent pas du tout. L'audit et l'explicabilité effleurent la surface à travers le diagnostic des défauts de génération, mais sans dispositif d'investigation technique. La participation citoyenne est suggérée par le questionnement sur le public du manuel, mais reste interne au concepteur, sans dispositif effectif de consultation. La facilitation collective s'esquisse à travers la mention des Tuteurs et apprenants, mais sans co-construction ni émergence. Aucune de ces absences ne ressemble à un refus : ce sont simplement des territoires que cette feuille ne traverse pas.",
+    "emergencesPole": "Une observation traverse ce qui apparaît du pôle dans cette feuille : la chaîne de transmission (auteur → manuel → tuteurs → apprenants) est nommée sans qu'aucun maillon ne soit traité comme un acteur de la décision. Le manuel se conçoit en chambre, et la question de la participation des destinataires à sa conception n'est pas posée. Ce n'est pas un manquement signalé, c'est une caractéristique du texte qui pourrait ouvrir un dossier si elle devenait l'objet d'un questionnement explicite.",
+    "pistes": [
+      "Pour prolonger ce qui est esquissé sur la chaîne tuteurs/apprenants, un chemin possible serait de raconter un moment où ces destinataires ont effectivement pesé sur une décision portant sur le manuel — pour faire passer leur présence du statut de cible à celui de co-acteur.",
+      "Pour prolonger le diagnostic des défauts de génération de l'IA, un chemin possible serait de documenter un dispositif d'investigation du chemin décisionnel — étapes vérifiées, outputs intermédiaires comparés — qui ferait apparaître l'audit comme pratique, pas seulement comme hypothèse."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille du 13 janvier 2026 se tient entièrement à l'échelle d'un travail individuel sur un dispositif pédagogique. Les questions politiques, démocratiques, écologiques ou interspécifiques du pôle 6 ne sont pas convoquées dans ce passage. Les publics visés (Tuteurs, apprenants, jeunes) apparaissent comme destinataires d'un manuel à concevoir, pas comme acteurs d'une démocratie technologique ou d'une gouvernance collective. L'IA est traitée comme un outil dont les défauts s'attribuent au prompteur, pas comme une entité dont le statut interrogerait. Ce silence du pôle est cohérent avec un texte focalisé sur la fabrication, pas sur la mise en commun.\n\n## Territoires les plus denses\n\nAucun territoire du pôle 6 ne s'établit dans cette feuille. L'audit et l'explicabilité effleurent la surface par le diagnostic des défauts de génération, sans dispositif d'investigation technique qui en ferait une pratique attestée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble des territoires du pôle 6 reste silencieux dans cette feuille. Le red-teaming, la gouvernance algorithmique des services publics, la souveraineté numérique, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les IA et la conscience biosystémique n'apparaissent pas du tout. L'audit et l'explicabilité effleurent la surface à travers le diagnostic des défauts de génération, mais sans dispositif d'investigation technique. La participation citoyenne est suggérée par le questionnement sur le public du manuel, mais reste interne au concepteur, sans dispositif effectif de consultation. La facilitation collective s'esquisse à travers la mention des Tuteurs et apprenants, mais sans co-construction ni émergence. Aucune de ces absences ne ressemble à un refus : ce sont simplement des territoires que cette feuille ne traverse pas.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse ce qui apparaît du pôle dans cette feuille : la chaîne de transmission (auteur → manuel → tuteurs → apprenants) est nommée sans qu'aucun maillon ne soit traité comme un acteur de la décision. Le manuel se conçoit en chambre, et la question de la participation des destinataires à sa conception n'est pas posée. Ce n'est pas un manquement signalé, c'est une caractéristique du texte qui pourrait ouvrir un dossier si elle devenait l'objet d'un questionnement explicite.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger ce qui est esquissé sur la chaîne tuteurs/apprenants, un chemin possible serait de raconter un moment où ces destinataires ont effectivement pesé sur une décision portant sur le manuel — pour faire passer leur présence du statut de cible à celui de co-acteur.\n- Pour prolonger le diagnostic des défauts de génération de l'IA, un chemin possible serait de documenter un dispositif d'investigation du chemin décisionnel — étapes vérifiées, outputs intermédiaires comparés — qui ferait apparaître l'audit comme pratique, pas seulement comme hypothèse.\n"
+  }
+}

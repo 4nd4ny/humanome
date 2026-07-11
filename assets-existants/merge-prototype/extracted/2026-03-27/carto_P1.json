@@ -1,0 +1,718 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Claude en panne ce matin, me fait réaliser à quel niveau nous travaillons en ce moment avec Stéphane. [...] Dès lors que Claude est temporairement indisponible, la meilleure des choses à faire c'est aller se balader. Toute tentative de reprendre le travail manuellement serait absurde et contre-productive car nous introduirions des erreurs qu'il faudrait corriger plus tard.",
+      "contexte": "Réflexion sur la complémentarité humain-IA et sur les coûts cachés d'une bascule vers le manuel (synergie, métacognition sur le workflow).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai compris comment fonctionne CoWork et quelles sont les limites et suis donc revenu à Claude Code plus puissant. CoWork m'a permis de me concentrer sur les prompts, sans me soucier de l'implémentation. Avec Claude Code, j'ai ajouté une couche bash + python. Le bash pilote le processus et le python exécute les parties nécessitant un traitement algorithmiques. Le tout invoque les prompts créés avec CoWork et Claude Web.",
+      "contexte": "Description d'une architecture multi-outils avec séparation des rôles (bash pilote / python exécute / prompts orchestrent) — architecture de systèmes IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Le résultat d'évaluation d'un portfolio avec Sonnet est excellent (j'ai choisi celui de Charlotte le no 108). Je n'avais testé qu'avec Opus, mais je vois que Sonnet suffit. C'est une excellente nouvelle pour la scalibilité.",
+      "contexte": "Test comparatif Opus vs Sonnet débouchant sur une décision technique fondée sur le constat — vérification empirique et littératie modèle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Je travaille maintenant à réduire les coûts c'est à dire le nombre de tokens. En effet, ma priorité première était de développer un système qui marche. Maintenant que c'est validé, ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury qui a procédé à l'évaluation de son portfolio.",
+      "contexte": "Recadrage explicite des priorités après validation du prototype — passage d'un objectif (faire marcher) à un autre (minimiser tokens en gardant la traçabilité humaine).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Lorsque j'aurai finalisé le prototype, minimisé la consommation de tokens, et maximiser la parallélisation du traitement, alors je basculerai de la version hybride actuelle bash + python dans Claude Code à une application 100% Python, peut-être en LangChain, peut-être avec une base de données vectorielle pour les exemples et contre-exemples extraits des portfolios, permettant de créer une base d'évaluation commune.",
+      "contexte": "Anticipation d'une architecture cible (Python + LangChain + vector store) avec justification (base commune d'évaluation) — pensée architecturale projetée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai mis « au bol » un historien, un philosophe, un pédagogue, un créatif, un logicien, un anthropologue, afin d'avoir un jury capable de couvrir le spectre le plus complet possible de la diversité des points de vue, mais en me limitant à 6 rôles, j'en ai exclus plein d'autres. De plus, mon choix est fortement biaisé par ma culture personnelle et ce biais va se ressentir dans mes évaluations manuelles, mais aussi, au travers de ce choix de persona, dans les évaluations du système construit.",
+      "contexte": "Autocritique sur le choix des personas du jury IA : reconnaissance du biais culturel personnel transmis à l'architecture, et de l'exclusion par contrainte de cardinalité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "lorsque j'aurai un code Juge qui marche avec des agents aux persona triés sur le volet [...] la balle sera surtout dans le camp de Stéphane qui est en train d'évaluer si des modèles open source fonctionnant une machine locale pourraient, à l'aide de cette architecture de prompts, rivaliser avec une analyse tout simple d'un frontière modèle. Ce qui signifierait que l'on aurait réussi à craquer le dispositif cognitif d'évaluation d'un enseignant virtuel, dans un algorithme de négociations inter agents (le collège d'expert).",
+      "contexte": "Vision systémique : architecture de prompts → modèles locaux → reproduction du dispositif d'évaluation d'un enseignant via négociations inter-agents.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "C'est cool finalement ces poses imposées par les défauts de service d'Anthropic ou les limitations de forfait : ça me permet de mettre au clair mes idées en les formalisant dans le portfolio qui sert à la fois de psy, de moyen indirect d'informer Stéphane sur ce que je fais, et surtout de conserver une trace de l'historique de construction de toute cette architecture dont le but ultime, depuis 2013, est le développement de l'intelligence à l'école.",
+      "contexte": "Recadrage rétrospectif des contraintes (pannes, quotas) en ressources : usage triple du portfolio (réflexif, communicationnel, archivistique) finalisé par une visée longue.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai lu dans la presse qu'ils avaient arrêté Sora et que derrière ils étaient en phase de RLHF d'un nouveau modèle de-la-mort-qui-tue… On va voir ce que ça donne et certainement que je prendrais un abonnement d'un mois lorsqu'il sortira pour le tester, malgré tout, pour ne pas me péjorer moi-même dans ma veille technologique",
+      "contexte": "Mention du RLHF dans une phrase d'usage courant, avec scepticisme implicite sur le hype (« de-la-mort-qui-tue ») — littératie IA en arrière-plan.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Le « modèle de-la-mort-qui-tue » signale une démystification ironique du hype, et la décision de tester quand même relève d'une posture critique calibrée (ni adhésion, ni rejet)."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Reconnaître que son propre choix de personas « au bol » est biaisé culturellement et que ce biais se propage dans le système construit relève d'une autocritique appliquée à sa propre production."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier que cette compétence est attestée ici, je dois écarter les deux pièces. La pièce 1 mentionne un produit OpenAI avec une expression ironique mais ne montre pas un protocole de vérification ni un croisement de sources : c'est un commentaire de presse, pas un acte de doute méthodique. La pièce 2 en revanche pose explicitement que l'apprenant lui-même est biaisé et que ce biais s'inscrit dans l'architecture produite — c'est un retour critique sur sa propre décision, pas sur une source externe. Cette autocritique opérée au moment où la décision est encore en cours résiste à ma présomption d'absence.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant identifie un biais qui s'est glissé dans sa propre architecture et nomme le mécanisme de propagation — c'est un acte critique appliqué à soi en cours d'exécution." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 résiste, mais peut-être que je surinterprète : reconnaître un biais n'est pas la même chose que le corriger, et le passage s'arrête à la nomination. Je dois examiner si cette autocritique est un acte critique en exercice ou simplement un constat de surface.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage nomme le biais (« mon choix est fortement biaisé ») mais ne décrit pas la procédure de correction en acte. Il y a une autocritique réelle, ciblée et située, mais qui reste dans l'ordre de la déclaration étayée, pas du dispositif de vérification déployé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai d'abord cherché à montrer que l'apprenant restait dans le commentaire et ne déployait pas de doute méthodique. La pièce sur OpenAI a effectivement cédé : la formule ironique sur le « modèle de-la-mort-qui-tue » signale une vigilance, pas un protocole. Mais la phrase sur le choix « au bol » des personas du jury a tenu : la critique porte sur sa propre production, en cours, avec identification du mécanisme de propagation du biais. Ce qui reste, c'est un acte d'autocritique située, plus déclaratif que dispositif, mais réel. La nuance assumée : reconnaître le biais ne suffit pas à le corriger, et la prescription pour la suite serait de documenter une procédure de débiaisement du jury.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a écarté la mention OpenAI mais a retenu l'autocritique située sur le choix des personas comme indice corroboratif d'une posture critique appliquée à sa propre production.",
+        "prescription": "Documenter une procédure concrète de débiaisement du jury (élargissement, contre-personas, test d'inversion) transformerait cette autocritique en dispositif vérifiable. Tenir un journal court des moments où l'évaluation manuelle diverge de l'évaluation IA pourrait alimenter ce travail."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Recadrage explicite des priorités : « ma priorité première était… ma nouvelle priorité est de… » avec définition de ce qui est essentiel (les logs convaincant l'apprenant)."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Recadrage de la panne en occasion (« le bon moment pour remplir son portfolio ») et identification du vrai problème (corriger des erreurs introduites manuellement coûte plus cher que la pause)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier le cadrage, je dois traiter ces passages comme de la planification ou de l'opportunisme. La pièce 1 énonce un changement de priorité, mais l'énoncé contient une justification du nouveau problème : « ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu ». Ce « c'est à dire » redéfinit l'objet — ce n'est plus la fonctionnalité, c'est la persuasion de l'apprenant final. La pièce 2 reformule la panne comme une bifurcation rationnelle (manuel = erreurs à corriger plus tard), ce qui pose le bon problème (coût total) plutôt que le problème de surface (l'outil est down).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le pivot de priorité s'accompagne d'une redéfinition de l'essentiel par rapport au destinataire humain final, ce qui modifie la nature de la cible." },
+            { "pieceId": 2, "motifResistance": "Le passage opère un recadrage de la panne en redéfinissant le critère de décision (coût total intégrant les corrections) plutôt qu'en suivant la réaction de surface." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté, mais je dois vérifier qu'elles ne sont pas de la simple planification déguisée. La distinction critique de la fiche 1.02 est claire : cadrage = interroger l'objectif lui-même. La pièce 1 redéfinit bien l'objet (l'essentiel n'est plus la fonctionnalité mais la conviction de l'apprenant) — c'est un cadrage. La pièce 2 redéfinit le critère de décision (coût total vs. réaction immédiate) — c'est aussi un recadrage du problème, pas une planification.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La distinction critique de la fiche oppose cadrage et planification. Ici, l'apprenant ne se contente pas de réordonner des tâches : il redéfinit ce qu'est « l'essentiel » en référence au destinataire humain final — l'objet du travail change de nature."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Je pourrais surinterpréter une décision de bon sens (faire autre chose pendant la panne). Toutefois la justification mobilisée — éviter d'introduire des erreurs qui coûteront plus tard — porte un raisonnement sur le bon problème (coût total) plutôt que sur le symptôme."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à les ramener à de la planification ou de l'opportunisme circonstanciel. Le pivot de priorité a tenu parce qu'il redéfinit l'essentiel par rapport au destinataire final, ce qui change la nature de la cible et pas seulement l'ordre des étapes. Le recadrage de la panne a aussi tenu, avec une réserve : il pourrait s'agir d'une décision de bon sens, mais la justification mobilisée raisonne sur le coût total (erreurs introduites, corrections futures), pas sur le symptôme. Ce qui reste, c'est un fil de cadrage actif sur cette feuille : interroger ce que vise vraiment le système, et interroger ce qu'il faut faire en attendant. La prescription pour la suite serait d'expliciter, à chaque pivot, la formulation du problème avant et après le recadrage.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé le recadrage du critère d'essentiel (pièce 1) et a retenu le recadrage de la panne (pièce 2) comme indice, l'un et l'autre montrant l'interrogation de l'objectif lui-même.",
+        "prescription": "Garder cette pratique consistant à reformuler le problème quand l'exécution révèle un meilleur angle pourrait s'enrichir d'un journal court des « avant/après » de cadrage. Pour ouvrir davantage cette compétence, un chemin possible serait de poser explicitement, en début de cycle de travail, la question « est-ce que je cadre bien ? » avant le démarrage du prochain prototype."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Le portfolio est nommé comme objet à triple fonction (psy, communication indirecte avec Stéphane, archive de l'historique) reliés par une visée commune depuis 2013 — fusion de registres."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Articulation entre l'architecture de prompts, les modèles open source locaux et le « dispositif cognitif d'évaluation d'un enseignant virtuel » comme algorithme de négociations inter-agents — synthèse pluri-niveau."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la synthèse intégrative, je dois traiter ces pièces comme des énumérations ou des juxtapositions, pas comme des insights émergents. La pièce 1 énumère trois fonctions du portfolio, mais l'opération est de fusion : « psy, moyen indirect d'informer Stéphane, trace de l'historique » sont reliés à une visée unique (« le développement de l'intelligence à l'école depuis 2013 »). Cela produit une lecture du portfolio qui n'existait dans aucun usage isolé. La pièce 2 relie une architecture technique (prompts) à une opération cognitive (dispositif d'évaluation d'un enseignant) à un mécanisme (négociations inter-agents) — c'est une formule unificatrice qui dépasse l'empilement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Les trois fonctions du portfolio sont reliées à une finalité unique qui leur donne un sens commun — opération de synthèse plutôt que d'énumération." },
+            { "pieceId": 2, "motifResistance": "L'expression « craquer le dispositif cognitif d'évaluation d'un enseignant virtuel, dans un algorithme de négociations inter agents » fusionne trois registres (technique, cognitif, social) en une formule unifiée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté, mais peut-être que je les charge de plus qu'elles ne portent. La pièce 1 reste près de la déclaration ; l'insight émergent (« psychologie assistée par projet » comme dirait la fiche) n'est pas nommé en propre. La pièce 2 propose une formule forte mais on peut se demander si la synthèse est ici en acte ou simplement énoncée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Je pourrais surinterpréter une énumération ordinaire en y voyant une synthèse. Toutefois le rattachement à une visée commune (« depuis 2013 ») et la coexistence de trois registres hétérogènes (thérapeutique, communicationnel, archivistique) sous un même geste textuel signalent un assemblage qui dit plus que la somme — la trace est faible mais réelle."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La formule unificatrice est posée mais le déploiement de la synthèse (en quoi exactement l'architecture de prompts incarne le dispositif cognitif) reste à venir. La pièce porte une métaphore unificatrice plus qu'un insight pleinement déployé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai d'abord cherché à les réduire à des énumérations ou à des formules creuses. La synthèse triple du portfolio a tenu parce qu'elle relie des registres hétérogènes à une visée unique qui leur donne un sens commun — un insight émergent, pas un empilement. La formule sur le dispositif cognitif d'évaluation comme algorithme de négociations inter-agents a aussi tenu, comme une métaphore unificatrice, même si son déploiement reste à venir. Ce qui reste, c'est une opération de fusion qui traverse la feuille : relier ce qu'on fait à plusieurs niveaux d'analyse simultanément. La nuance assumée : la synthèse est ici en germe, énoncée plus que déployée, et un pas suivant consisterait à montrer en acte comment la formule produit des conséquences pratiques.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "Le temps 2 a retenu les deux pièces comme indices : la synthèse fonctionnelle du portfolio (pièce 1) et la formule unificatrice technique-cognitif-social (pièce 2), affaiblies mais cohérentes.",
+        "prescription": "Pour approfondir ce geste de fusion entre registres, un chemin possible serait de déplier l'une de ces formules en deux ou trois conséquences pratiques : par exemple, en quoi la lecture du portfolio comme « algorithme inter-agents » oriente concrètement les choix d'architecture du jury IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "L'apprenant observe que son choix de personas, fait « au bol », est biaisé par sa propre culture et anticipe la propagation de ce biais dans ses évaluations manuelles ET dans le système — observation sur sa propre cognition."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Méta-fonction du portfolio nommée explicitement (« psy, moyen indirect d'informer Stéphane, trace d'historique ») — réflexion sur la fonction du dispositif réflexif lui-même."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la métacognition, je dois écarter ces pièces comme des bilans ou des introspections de surface. La pièce 1 va plus loin qu'un bilan : l'apprenant identifie un biais de son propre processus de choix (« au bol »), nomme sa source (« ma culture personnelle ») et anticipe sa propagation (« va se ressentir dans mes évaluations manuelles, mais aussi… dans les évaluations du système »). C'est de l'observation sur sa propre manière de décider, pas sur le résultat. La pièce 2 décrit ce que le portfolio fait pour celui qui le tient — c'est une métacognition sur le dispositif réflexif lui-même.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant prend pour objet son propre processus de décision (le choix « au bol ») et trace la propagation du biais à travers ses sorties — c'est l'objet cognitif lui-même qui est observé, pas le résultat." },
+            { "pieceId": 2, "motifResistance": "Nommer le portfolio comme outil à trois fonctions internes (incl. « psy ») relève d'une réflexion sur le rôle qu'il joue dans son propre fonctionnement cognitif." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté, mais je dois vérifier qu'elles ne sont pas des déclarations performatives. La pièce 1 trace concrètement un mécanisme (biais → évaluations manuelles → personas → système) — c'est une cartographie du propre fonctionnement, pas un slogan. La pièce 2 est plus déclarative : nommer trois fonctions du portfolio est métacognitif, mais l'observation ne se prolonge pas en pilotage explicite.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "On pourrait reprocher au passage de rester court, mais il fait l'opération métacognitive en acte : prendre comme objet « mon propre choix » et tracer comment ce choix biaisé contamine les sorties du système. Le mécanisme est nommé, le transfert est explicite."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce nomme la fonction du portfolio (« sert à la fois de psy… ») mais reste près du constat. Elle observe le dispositif réflexif sans le piloter explicitement — métacognition réelle mais à faible amplitude."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à les ramener à des bilans ou des phrases introspectives ordinaires. La pièce sur le biais des personas a tenu sans faiblir parce qu'elle prend pour objet le processus de décision lui-même et trace concrètement la propagation du biais à travers les sorties — c'est une opération sur sa propre cognition en cours. La pièce sur les fonctions du portfolio a tenu, plus modestement : elle nomme le dispositif réflexif et son rôle mais ne va pas jusqu'au pilotage explicite. Ce qui reste, c'est un geste métacognitif réel et situé, particulièrement net sur la question du biais transmis à l'architecture. Une orientation pour la suite serait de prolonger ce geste en formulant des règles personnelles de pilotage (par exemple : ajouter systématiquement un contre-persona à chaque choix initial de jury).",
+          "confianceFinale": 0.74
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.74,
+        "motif": "La pièce 1 a passé le temps 2 sans affaiblissement comme observation explicite du propre processus de décision et de la propagation du biais ; la pièce 2 corrobore comme métacognition sur le dispositif réflexif.",
+        "prescription": "Prolonger ce mouvement d'observation par la formulation de règles personnelles de pilotage donnerait un appui durable à ce travail. Pour enrichir cette pratique, un chemin possible serait de tenir un court journal des décisions « au bol » et de noter, après coup, ce qui aurait été choisi différemment avec une procédure explicite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Identification d'une boucle d'effet : reprendre manuellement → introduire des erreurs → corriger plus tard. Cascade de second ordre qui rend le retour manuel contre-productif."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Propagation d'un biais à travers le système : biais culturel → choix de personas → évaluations IA. Cette chaîne décrit un effet de cascade dans le système construit."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la pensée systémique, je dois écarter ces pièces comme du constat de complexité. La pièce 1 ne se contente pas de dire « c'est compliqué » : elle nomme un mécanisme orienté (retour au manuel → introduction d'erreurs → coût futur de correction) qui justifie la décision présente. C'est plus qu'un constat, c'est l'anticipation d'un effet de cascade. La pièce 2 trace la propagation d'un biais d'une culture personnelle vers les évaluations manuelles puis vers les sorties du système — une chaîne d'effets orientée à plusieurs niveaux.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le passage modélise une chaîne d'effets (retour manuel → erreurs → correction future) qui dépasse le constat et oriente la décision présente." },
+            { "pieceId": 2, "motifResistance": "La propagation est nommée avec sa direction et ses points d'application (« mes évaluations manuelles… mais aussi… dans les évaluations du système »), ce qui correspond au critère « quels liens, dans quelle direction »." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté, mais je dois vérifier qu'il s'agit bien de modélisation et pas d'intuition justifiée. La pièce 1 décrit une chaîne simple à deux étapes — le mécanisme est nommé mais reste linéaire, sans rétroaction. La pièce 2 décrit aussi une cascade orientée mais sans boucle. Aucune n'atteint la boucle de rétroaction de second ordre, ce qui les place dans la modélisation simple plutôt que dans la pensée systémique pleinement déployée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le mécanisme est nommé mais reste à deux temps, sans rétroaction ni point de levier identifié. C'est une cascade simple, pas une boucle modélisée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La cascade décrite touche au biais cognitif (1.04) autant qu'à la pensée systémique. La pièce active mieux la métacognition, mais reste valide pour 1.05 dans son geste de tracer la direction et l'effet."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à les ramener à du constat de complexité ou à de l'intuition. Les deux ont tenu, mais affaiblies : la chaîne d'effets sur la panne reste linéaire à deux temps, sans boucle, et la propagation du biais culturel est à la frontière de la métacognition. Ce qui reste, c'est un geste réel mais en germe : nommer les liens, leur direction et leurs effets sur deux situations, sans encore identifier les boucles de rétroaction ou les points de levier. Une orientation pour la suite serait de prolonger ces chaînes en cherchant les retours (par exemple : quand le système biaisé évalue, est-ce que les résultats renforcent ou contestent le biais initial ?).",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces survivent comme indices : modélisation d'une cascade simple sur la panne et propagation orientée d'un biais, sans encore atteindre la boucle de rétroaction explicite.",
+        "prescription": "Pour prolonger ce geste, un chemin possible serait de chercher, pour chaque cascade identifiée, le retour qu'elle produit (les sorties du système biaisé renforcent-elles ou contestent-elles le biais initial ?), de façon à passer de la chaîne à la boucle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Comparaison empirique Opus vs Sonnet sur un cas réel (portfolio Charlotte n°108) débouchant sur une décision sur la scalabilité — connaissance opératoire des familles de modèles."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Travail sur la réduction du nombre de tokens — vocabulaire technique précis et compréhension du coût mécanique de l'inférence."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Référence au RLHF d'un nouveau modèle, avec scepticisme ironique sur le hype (« de-la-mort-qui-tue ») — mention technique courte mais informée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la littératie IA, je dois écarter ces pièces comme du vocabulaire ambiant sans charge causale. La pièce 1 fait plus : elle compare deux modèles d'une même famille sur un cas concret et tire une conclusion opérationnelle sur la scalabilité — c'est une connaissance fonctionnelle, pas un nom. La pièce 2 mentionne les tokens comme unité de coût avec un effort de réduction, ce qui suppose une compréhension du mécanisme. La pièce 3 nomme le RLHF avec une distance critique, ce qui signale un repère mais ne déploie pas le mécanisme.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La comparaison Opus/Sonnet sur un cas concret avec conclusion scalable montre une littératie opérationnelle, pas du vocabulaire flottant." },
+            { "pieceId": 2, "motifResistance": "Le travail explicite sur la réduction de tokens suppose la compréhension de l'unité de coût mécanique de l'inférence." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté, je dois vérifier si elles montrent vraiment la compréhension causale ou seulement l'usage des bons mots. La pièce 1 conclut sur la scalabilité à partir d'une comparaison empirique, ce qui suppose un modèle mental de coût/qualité par modèle. La pièce 2 nomme le coût en tokens, mais sans expliciter pourquoi ce coût existe (longueur de contexte, génération token-par-token) — c'est du vocabulaire précis mais sa charge causale n'est pas déployée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage rapporte un test (Sonnet sur le portfolio n°108) avec un constat (« excellent ») et une conséquence opératoire (« excellente nouvelle pour la scalabilité »). C'est une connaissance des modèles construite par l'usage."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« Réduire le nombre de tokens » est du vocabulaire précis, mais le passage ne déploie pas la chaîne causale (longueur de contexte, génération par token, coût par modèle). La compréhension est probable mais sous-textuelle, pas déployée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à les ramener à du vocabulaire ambiant. La comparaison Opus/Sonnet a tenu sans faiblir : elle articule un test, un constat et une conséquence opératoire sur la scalabilité — c'est une littératie de la famille de modèles construite par la pratique. Le travail sur la réduction des tokens a tenu plus modestement : le mot est juste, la priorité est claire, mais la chaîne causale (pourquoi les tokens coûtent ce qu'ils coûtent) reste sous-textuelle. Ce qui reste, c'est une connaissance opératoire des modèles vivante, particulièrement nette sur la question scalabilité/qualité. Pour la suite, expliciter les mécanismes (parallélisation, longueur de contexte, garde-fous) prolongerait cette pratique en littératie pleinement déployée.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Le test comparatif Opus/Sonnet avec conséquence opératoire (pièce 1) constitue une preuve d'usage informé des modèles ; la mention des tokens (pièce 2) corrobore comme indice de vocabulaire à charge causale partielle.",
+        "prescription": "Pour prolonger cette littératie, un chemin possible serait de noter, à chaque choix de modèle, le critère retenu (qualité sur cas X, coût par token, latence) et la chaîne causale supposée — ce qui donnerait une base de comparaison reproductible à mesure que la suite de modèles évolue."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Description d'un système à plusieurs composants avec rôles différenciés : bash pilote, python exécute, prompts conçus dans CoWork et Claude Web — architecture multi-couches en exercice."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Projection d'une architecture cible : Python + LangChain + base vectorielle pour exemples/contre-exemples, justifiée par une « base d'évaluation commune »."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Vision du dispositif d'évaluation comme « algorithme de négociations inter agents (le collège d'expert) » — description architecturale d'un système multi-agents."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Choix des personas du jury comme composants d'une architecture multi-agents avec rôles différenciés (historien, philosophe, pédagogue, créatif, logicien, anthropologue)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'architecture, je dois écarter ces pièces comme du récit d'utilisation. La pièce 1 décrit explicitement la séparation des couches (bash/python/prompts) avec leurs rôles — c'est de la conception, pas de l'usage. La pièce 2 projette une architecture cible avec composants nommés (Python, LangChain, base vectorielle) et fonction (base d'évaluation commune) — c'est de la conception projetée. La pièce 3 nomme l'architecture multi-agents comme « algorithme de négociations inter agents » — formule architecturale. La pièce 4 énumère les rôles des personas (jurés différenciés couvrant un spectre) — composants définis.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La séparation des couches (bash pilote / python exécute / prompts orchestrent) avec leurs rôles est une conception architecturale en acte." },
+            { "pieceId": 2, "motifResistance": "L'architecture cible est nommée avec ses composants techniques et sa justification (base commune), ce qui dépasse l'intention." },
+            { "pieceId": 3, "motifResistance": "La formule « algorithme de négociations inter agents » nomme l'architecture du jury comme système multi-agents avec rôles." },
+            { "pieceId": 4, "motifResistance": "Les six personas avec rôles distincts couvrant un spectre sont des composants définis d'un système multi-agents." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté, je dois vérifier qu'elles ne tombent pas sous la confusion avec 1.08 (dialogue avancé) ou ne sont pas du récit performatif. La pièce 1 est nette : la séparation des couches est de la conception technique au sens de 1.07. La pièce 2 est projective, mais nomme les composants et leur fonction. La pièce 3 est plus déclarative — formule architecturale forte mais non déployée. La pièce 4 décrit les rôles, ce qui est architectural, mais sans encore les mécanismes de routing ou de monitoring.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La distinction critique oppose 1.07 (composants + flux) à 1.08 (sophistication du prompt). Ici, l'apprenant ne parle pas du prompt seul mais de la couche qui l'invoque, du flux entre langages, des rôles techniques — c'est bien 1.07."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'architecture cible est projetée (« lorsque j'aurai… »), pas encore réalisée. Mouvement-vers réel mais qui n'incarne pas encore la compétence à son régime cible."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La formule architecturale est forte mais courte. Elle nomme le système multi-agents sans encore décrire les mécanismes (routing, négociation, agrégation des verdicts)."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les six rôles définis pour couvrir un spectre, avec une réflexion sur ce que la limitation à six exclut, constituent une description de composants d'un système multi-agents avec justification."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces quatre pièces, j'ai cherché à les ramener à du récit d'utilisation ou à de l'intention sans architecture. La séparation des couches bash/python/prompts a tenu sans faiblir : c'est une conception technique en acte avec rôles définis. Le choix raisonné des personas du jury a aussi tenu sans faiblir comme description de composants d'un système multi-agents. L'architecture cible projetée et la formule sur le collège d'experts ont tenu plus modestement, l'une comme projection, l'autre comme métaphore architecturale non encore déployée. Ce qui reste, c'est un fil architectural particulièrement dense sur cette feuille : un système hybride en exercice, sa version cible projetée, et le dispositif multi-agents qui le porte. La nuance assumée : les mécanismes de routing et d'agrégation entre agents restent à formaliser.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.82,
+        "motif": "Les pièces 1 et 4 ont passé le temps 2 sans faiblir comme conceptions de composants et de flux ; les pièces 2 et 3 corroborent comme projection cible et formule architecturale.",
+        "prescription": "Pour consolider ce travail architectural, un chemin possible serait de produire un schéma explicite des flux entre composants (qui invoque quoi, dans quel ordre, avec quel format d'échange), et de formaliser le protocole de négociation entre les six personas du jury (vote, agrégation, gestion des désaccords)."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention explicite de la séparation prompts/implémentation (« CoWork m'a permis de me concentrer sur les prompts ») — pratique différenciée du prompt comme objet de travail."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Conception de personas différenciés (historien, philosophe, pédagogue, créatif, logicien, anthropologue) pour un jury — orchestration de rôles dans un dialogue IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la sophistication du dialogue IA, je dois écarter ces pièces. La pièce 1 dit que CoWork a permis de se concentrer sur les prompts, mais ne montre pas la technique de prompting elle-même (chain-of-thought, méta-prompting, etc.) — c'est une posture, pas un acte. La pièce 2 décrit l'orchestration de rôles différenciés, ce qui correspond à la manifestation type de 1.08 (« systèmes de rôles différenciés »).",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'orchestration de six rôles différenciés pour produire un jury IA correspond directement à la manifestation type de la fiche (« rôles différenciés dans un même dialogue »)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce a résisté, je dois vérifier qu'elle ne tombe pas sous la confusion avec 1.07 (architecture). La distinction critique de la fiche dit : 1.07 = conception technique des flux ; 1.08 = sophistication de la formulation et orchestration intentionnelle de rôles dans un même dialogue. La pièce 2 fait les deux à la fois : elle est aussi bien architecture (composants définis) qu'orchestration de rôles. Pour 1.08 spécifiquement, ce qui compte est l'intention de couvrir le spectre des points de vue par la formulation des rôles eux-mêmes.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active à la fois 1.07 et 1.08. La fiche valide les deux attributions (rôles différenciés = manifestation de 1.08). Toutefois, le passage est plus dense en composants qu'en sophistication de formulation, ce qui en fait un indice plus faible pour 1.08 que pour 1.07."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai d'abord cherché à éliminer celle qui se limitait à dire « j'ai travaillé les prompts » sans en montrer la technique. Elle est tombée parce que la posture ne se traduit pas en formulation observable. La conception des six personas du jury a tenu, comme orchestration intentionnelle de rôles différenciés — la manifestation type de la fiche. La nuance assumée : le passage active aussi (et peut-être davantage) la compétence d'architecture (1.07), et la sophistication de formulation reste implicite dans le choix des rôles plutôt qu'explicite dans la technique de prompt. Ce qui reste, c'est un indice corroboratif sur le geste d'orchestration de rôles, plutôt qu'une démonstration de méta-prompting déployée.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce affaiblie subsiste, à la frontière avec l'architecture (1.07). La sophistication de la formulation elle-même n'est pas observée en acte, seule l'orchestration de rôles l'est partiellement.",
+        "prescription": "Pour clarifier ce dossier, un chemin possible serait de documenter une itération de prompt avec ses versions successives et leur effet : par exemple, comment la formulation des rôles du jury influence les verdicts produits. Cette trace ferait apparaître la sophistication de la formulation comme acte, et non plus comme posture."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Formulation du dispositif d'évaluation d'un enseignant virtuel comme « algorithme de négociations inter agents » — transfert de la logique algorithmique au champ de l'évaluation pédagogique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier le transfert hors-informatique, je dois écarter cette pièce. La fiche est explicite : la pensée computationnelle suppose le TRANSFERT — appliquer la logique algorithmique hors de l'informatique. Ici, l'apprenant nomme l'évaluation d'un enseignant virtuel comme un « algorithme de négociations inter agents ». L'évaluation pédagogique est traitée comme un problème algorithmique avec acteurs et règles d'interaction. C'est exactement le pattern de transfert que la fiche décrit.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'évaluation pédagogique, qui n'est pas un champ informatique en soi, est modélisée comme un algorithme avec agents et négociations — transfert qualifié par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté, je dois vérifier qu'elle n'est pas un simple glissement lexical (utiliser « algorithme » comme métaphore creuse). Le passage parle de « dispositif cognitif d'évaluation d'un enseignant virtuel » et de « algorithme de négociations inter agents (le collège d'expert) » — la structure algorithmique est nommée avec ses composants (agents, négociation) et appliquée à un objet non-informatique au sens strict (l'évaluation comme acte cognitif d'un enseignant). C'est plus qu'un mot.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le risque de glissement lexical existe : « algorithme » peut être un mot creux. Toutefois la structure est explicitée (négociations entre agents = collège d'experts) et appliquée à un acte qui appartient au domaine pédagogique, pas au domaine purement informatique. La trace est réelle mais limitée à une formule."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à la ramener à du vocabulaire technique appliqué à un objet déjà technique. Elle a tenu parce que l'objet visé — le dispositif cognitif d'évaluation d'un enseignant — appartient au champ pédagogique et non au champ informatique au sens strict. La modélisation de cet objet comme « algorithme de négociations inter agents » constitue le geste de transfert que la fiche valorise. La nuance assumée : la pièce reste une formule plus qu'un déploiement, et le transfert pourrait être consolidé en montrant comment l'algorithmique éclaire concrètement la pratique évaluative.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La formule « algorithme de négociations inter agents » appliquée au dispositif d'évaluation pédagogique d'un enseignant constitue un indice de transfert hors-informatique, validé par le critère discriminant de la fiche.",
+        "prescription": "Pour approfondir ce geste de transfert, un chemin possible serait de déplier la formule sur un cas concret : décrire l'évaluation d'un portfolio donné comme une exécution algorithmique pas-à-pas, avec entrées, conditions, négociations, sorties. La logique algorithmique gagnerait alors en charge sémantique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Articulation du trade-off : sans Claude, le travail manuel introduirait des erreurs à corriger plus tard ; mieux vaut suspendre. Reconnaissance opératoire de ce que l'IA permet et que l'humain seul ne peut pas faire au même coût."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Conception d'un workflow où l'IA évalue 99% et l'enseignant tranche les 1% (recours étudiant) — répartition explicite des forces avec justification."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Vision où l'humain conçoit l'architecture (prompts triés, persona étudiées) et l'IA exécute le dispositif évaluatif — articulation de rôles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la synergie, je dois écarter ces pièces comme du simple usage. La pièce 1 ne dit pas « j'utilise l'IA » : elle articule un coût (erreurs introduites manuellement, corrections futures) qui justifie pourquoi la suspension est meilleure que la substitution manuelle — la valeur comparative est nommée. La pièce 2 conçoit un workflow où 99% du travail évaluatif est délégué à l'IA et où l'enseignant tranche en cas de recours — la répartition est explicite. La pièce 3 répartit la conception (humain) et l'exécution évaluative (IA) avec justification.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le coût comparatif (manuel = erreurs + correction future) est nommé, ce qui répond au critère « ce qu'on garde et pourquoi »." },
+            { "pieceId": 2, "motifResistance": "La répartition 99/1 entre IA évaluative et enseignant juge en recours est une articulation explicite des forces comparatives." },
+            { "pieceId": 3, "motifResistance": "L'humain conçoit (personas, prompts), l'IA exécute le collège d'experts — la répartition fonctionnelle est explicitée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les trois pièces ont résisté. Je dois vérifier si l'articulation des forces comparatives est en acte ou seulement énoncée. La pièce 1 articule un trade-off opératoire (coût d'erreur vs coût d'attente) — c'est concret. La pièce 2 est plus déclarative sur le ratio 99/1, mais la justification (l'enseignant tranche le recours) reste générale. La pièce 3 nomme la répartition mais sans expliciter pourquoi l'humain est meilleur sur la conception (la fiche demande « pourquoi cette tâche revient à… »).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Je pourrais surinterpréter, mais le passage articule un coût comparatif explicite : le manuel introduit des erreurs qu'il faudrait corriger ensuite. La force de l'IA (cohérence, absence d'erreur sur ce type de tâche) est implicite mais opérationnellement nommée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le ratio 99/1 est posé mais la fiche demande l'articulation explicite de pourquoi. Le rôle de l'enseignant comme juge en recours est nommé, ce qui sauve la pièce, mais sans déploiement des forces comparatives au-delà du cas du litige."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La répartition est claire (humain conçoit, IA exécute le collège) mais le pourquoi de cette répartition n'est pas déployé — pourquoi la conception revient à l'humain n'est pas explicité."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de l'usage ordinaire ou à de la déclaration sans articulation. La pièce sur la panne a tenu sans faiblir : le coût comparatif (erreurs à corriger plus tard) justifie la non-substitution — la valeur comparée est opératoire. Les deux autres ont tenu plus modestement : le ratio 99/1 et la répartition conception/exécution sont posés, mais le pourquoi de chaque rôle reste partiellement implicite. Ce qui reste, c'est un fil synergique dense sur cette feuille : trois moments où la répartition humain/IA est pensée, avec un degré variable d'articulation explicite. La nuance assumée : déplier les forces comparatives compétence par compétence (qu'est-ce que l'humain garde et pourquoi) consoliderait cette pratique.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "La pièce 1 a passé le temps 2 sans faiblir comme articulation opératoire d'un trade-off (coût d'erreur vs suspension) ; les pièces 2 et 3 corroborent comme répartitions explicites bien que partiellement déployées.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait d'expliciter, pour chacun des six rôles du jury IA, ce que l'humain garde et pourquoi — par exemple : qu'est-ce que l'enseignant fait mieux que l'algorithme sur le moment du recours, et qu'est-ce que cela demande comme compétence humaine spécifique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 9,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail montre une pensée qui se construit en marchant à côté de ses outils. La feuille du 27 mars relate une panne technique qui devient l'occasion de formaliser, et chaque incident pratique se transforme en matière à interroger l'architecture du projet, les choix de modèles, la composition d'un jury IA. La voix dominante avance par tranches argumentées (« ma priorité première était… ma nouvelle priorité est… »), avec des autocritiques situées (le choix « au bol » des personas, le biais culturel transmis au système) et des projections d'architecture (la version Python + LangChain à venir). Le registre est opératoire : les concepts apparaissent collés à des décisions concrètes plutôt que comme exercice théorique. Le portfolio est lui-même nommé comme dispositif à triple fonction, et la visée longue (« depuis 2013 ») donne au mouvement une orientation tenue.",
+    "territoiresDenses": [
+      {
+        "competence": "Architecture de systèmes IA",
+        "description": "Conception explicite d'un système hybride en couches avec rôles techniques différenciés, projection d'une architecture cible et formalisation d'un dispositif multi-agents.",
+        "extraitVerbatim": "Avec Claude Code, j'ai ajouté une couche bash + python. Le bash pilote le processus et le python exécute les parties nécessitant un traitement algorithmiques. Le tout invoque les prompts créés avec CoWork et Claude Web.",
+        "ceQueCaDit": "Le travail dépasse l'usage isolé d'un outil et organise des couches qui s'invoquent avec des rôles distincts. La projection vers une architecture cible et la conception du collège d'experts ajoutent une intentionnalité de conception qui inscrit la pratique dans la durée."
+      },
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Recadrages explicites au cours de la même feuille : redéfinition de l'essentiel par rapport au destinataire humain, reformulation de la panne en bifurcation rationnelle.",
+        "extraitVerbatim": "ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury",
+        "ceQueCaDit": "L'objet du travail change de nature : il ne s'agit plus seulement de faire fonctionner le système mais de convaincre l'apprenant final. Cette redéfinition de la cible relève du cadrage, pas de la simple planification."
+      },
+      {
+        "competence": "Littératie IA & data literacy",
+        "description": "Comparaison empirique de modèles d'une même famille avec conséquence opératoire sur la scalabilité ; travail explicite sur le coût en tokens.",
+        "extraitVerbatim": "Le résultat d'évaluation d'un portfolio avec Sonnet est excellent (j'ai choisi celui de Charlotte le no 108). Je n'avais testé qu'avec Opus, mais je vois que Sonnet suffit.",
+        "ceQueCaDit": "Le test concret transforme une connaissance abstraite des modèles en repère opératoire pour la scalabilité du projet. La compréhension des modèles se construit par l'usage informé, pas par le vocabulaire."
+      },
+      {
+        "competence": "Métacognition & humilité épistémique",
+        "description": "Observation explicite du propre processus de décision, avec traçage de la propagation d'un biais culturel à travers les sorties du système construit.",
+        "extraitVerbatim": "mon choix est fortement biaisé par ma culture personnelle et ce biais va se ressentir dans mes évaluations manuelles, mais aussi, au travers de ce choix de persona, dans les évaluations du système construit",
+        "ceQueCaDit": "L'objet de la réflexion est ici le processus de choix lui-même, pas le résultat. La trace est précieuse parce qu'elle tient à la fois sur le geste manuel et sur sa transmission au système."
+      },
+      {
+        "competence": "Synergie & coordination hybride",
+        "description": "Articulation opératoire du trade-off humain/IA dans la décision de suspendre plutôt que substituer ; conception d'un workflow de répartition 99/1 entre IA évaluative et enseignant juge.",
+        "extraitVerbatim": "Toute tentative de reprendre le travail manuellement serait absurde et contre-productive car nous introduirions des erreurs qu'il faudrait corriger plus tard.",
+        "ceQueCaDit": "La décision de ne pas substituer manuellement raisonne sur le coût total et reconnaît implicitement la force comparative de l'IA sur ce type de tâche. La répartition des rôles n'est pas seulement déclarée, elle est articulée par les conséquences."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'apparaissent pas pleinement déployés sur cette feuille. La sophistication de la formulation des prompts elle-même reste à montrer comme acte plutôt que comme posture : la mention « me concentrer sur les prompts » se prolongerait utilement par la trace d'une itération avec ses versions successives et leur effet. La pensée systémique apparaît en germe, dans des cascades à deux temps, sans encore identifier les boucles de rétroaction ou les points de levier — ce qui ressemble plus à une limite du portfolio textuel sur cette feuille qu'à une absence de fond. La pensée critique se déploie sur la propre production de l'apprenant mais peu sur les sources externes, et la pensée computationnelle reste à l'état de formule unifiante qu'un cas concret consoliderait. Ces territoires apparaissent comme des prolongements naturels du travail déjà engagé, pas comme des manques.",
+    "emergencesPole": "Trois observations traversent les compétences de ce pôle sur cette feuille. D'abord, la panne devient un opérateur récurrent : ce qui interrompt le faire devient l'occasion de penser le faire — la même opération apparaît sur le travail technique (suspendre plutôt que régresser au manuel), sur le portfolio (« c'est cool finalement ces poses imposées ») et sur le projet long (la limitation de quota force le tri). Ensuite, la même structure se rejoue à plusieurs niveaux d'analyse : le système construit, le portfolio qui le décrit, et le projet de fond depuis 2013 se reflètent l'un l'autre comme dispositifs cognitifs imbriqués. Enfin, l'autocritique apparaît au moment où une décision est prise, pas après coup : nommer son biais « au bol » au moment même de raconter le choix donne à cette feuille un caractère de pensée en cours.",
+    "pistes": [
+      "Pour prolonger la pensée critique appliquée à la propre production, un chemin possible serait de documenter, à chaque itération du jury IA, un test d'inversion (qu'est-ce qu'un persona opposé aux six choisis produirait sur le même portfolio).",
+      "Pour consolider l'architecture de systèmes IA, un chemin possible serait de produire un schéma explicite des flux entre composants et un protocole de négociation formalisé entre les six personas du jury.",
+      "Pour passer de la cascade à la boucle en pensée systémique, un chemin possible serait de chercher, pour chaque effet identifié, le retour qu'il produit (les sorties du système biaisé renforcent-elles ou contestent-elles le biais initial ?).",
+      "Pour déplier la pensée computationnelle, un chemin possible serait de décrire l'évaluation d'un portfolio donné comme une exécution algorithmique pas-à-pas avec entrées, conditions, négociations, sorties.",
+      "Pour montrer la sophistication du dialogue IA comme acte, un chemin possible serait de garder trace d'une itération de prompt avec ses versions successives et de noter ce que chaque reformulation change dans les verdicts produits."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail montre une pensée qui se construit en marchant à côté de ses outils. La feuille du 27 mars relate une panne technique qui devient l'occasion de formaliser, et chaque incident pratique se transforme en matière à interroger l'architecture du projet, les choix de modèles, la composition d'un jury IA. La voix dominante avance par tranches argumentées (« ma priorité première était… ma nouvelle priorité est… »), avec des autocritiques situées (le choix « au bol » des personas, le biais culturel transmis au système) et des projections d'architecture (la version Python + LangChain à venir). Le registre est opératoire : les concepts apparaissent collés à des décisions concrètes plutôt que comme exercice théorique. Le portfolio est lui-même nommé comme dispositif à triple fonction, et la visée longue (« depuis 2013 ») donne au mouvement une orientation tenue.\n\n## Territoires les plus denses\n\n**Architecture de systèmes IA.** Conception explicite d'un système hybride en couches avec rôles techniques différenciés, projection d'une architecture cible et formalisation d'un dispositif multi-agents. *« Avec Claude Code, j'ai ajouté une couche bash + python. Le bash pilote le processus et le python exécute les parties nécessitant un traitement algorithmiques. Le tout invoque les prompts créés avec CoWork et Claude Web. »* Le travail dépasse l'usage isolé d'un outil et organise des couches qui s'invoquent avec des rôles distincts. La projection vers une architecture cible et la conception du collège d'experts ajoutent une intentionnalité de conception qui inscrit la pratique dans la durée.\n\n**Cadrage de l'intention.** Recadrages explicites au cours de la même feuille : redéfinition de l'essentiel par rapport au destinataire humain, reformulation de la panne en bifurcation rationnelle. *« ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury »* L'objet du travail change de nature : il ne s'agit plus seulement de faire fonctionner le système mais de convaincre l'apprenant final. Cette redéfinition de la cible relève du cadrage, pas de la simple planification.\n\n**Littératie IA & data literacy.** Comparaison empirique de modèles d'une même famille avec conséquence opératoire sur la scalabilité ; travail explicite sur le coût en tokens. *« Le résultat d'évaluation d'un portfolio avec Sonnet est excellent (j'ai choisi celui de Charlotte le no 108). Je n'avais testé qu'avec Opus, mais je vois que Sonnet suffit. »* Le test concret transforme une connaissance abstraite des modèles en repère opératoire pour la scalabilité du projet. La compréhension des modèles se construit par l'usage informé, pas par le vocabulaire.\n\n**Métacognition & humilité épistémique.** Observation explicite du propre processus de décision, avec traçage de la propagation d'un biais culturel à travers les sorties du système construit. *« mon choix est fortement biaisé par ma culture personnelle et ce biais va se ressentir dans mes évaluations manuelles, mais aussi, au travers de ce choix de persona, dans les évaluations du système construit »* L'objet de la réflexion est ici le processus de choix lui-même, pas le résultat. La trace est précieuse parce qu'elle tient à la fois sur le geste manuel et sur sa transmission au système.\n\n**Synergie & coordination hybride.** Articulation opératoire du trade-off humain/IA dans la décision de suspendre plutôt que substituer ; conception d'un workflow de répartition 99/1 entre IA évaluative et enseignant juge. *« Toute tentative de reprendre le travail manuellement serait absurde et contre-productive car nous introduirions des erreurs qu'il faudrait corriger plus tard. »* La décision de ne pas substituer manuellement raisonne sur le coût total et reconnaît implicitement la force comparative de l'IA sur ce type de tâche. La répartition des rôles n'est pas seulement déclarée, elle est articulée par les conséquences.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'apparaissent pas pleinement déployés sur cette feuille. La sophistication de la formulation des prompts elle-même reste à montrer comme acte plutôt que comme posture : la mention « me concentrer sur les prompts » se prolongerait utilement par la trace d'une itération avec ses versions successives et leur effet. La pensée systémique apparaît en germe, dans des cascades à deux temps, sans encore identifier les boucles de rétroaction ou les points de levier — ce qui ressemble plus à une limite du portfolio textuel sur cette feuille qu'à une absence de fond. La pensée critique se déploie sur la propre production de l'apprenant mais peu sur les sources externes, et la pensée computationnelle reste à l'état de formule unifiante qu'un cas concret consoliderait. Ces territoires apparaissent comme des prolongements naturels du travail déjà engagé, pas comme des manques.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences de ce pôle sur cette feuille. D'abord, la panne devient un opérateur récurrent : ce qui interrompt le faire devient l'occasion de penser le faire — la même opération apparaît sur le travail technique (suspendre plutôt que régresser au manuel), sur le portfolio (« c'est cool finalement ces poses imposées ») et sur le projet long (la limitation de quota force le tri). Ensuite, la même structure se rejoue à plusieurs niveaux d'analyse : le système construit, le portfolio qui le décrit, et le projet de fond depuis 2013 se reflètent l'un l'autre comme dispositifs cognitifs imbriqués. Enfin, l'autocritique apparaît au moment où une décision est prise, pas après coup : nommer son biais « au bol » au moment même de raconter le choix donne à cette feuille un caractère de pensée en cours.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la pensée critique appliquée à la propre production, un chemin possible serait de documenter, à chaque itération du jury IA, un test d'inversion (qu'est-ce qu'un persona opposé aux six choisis produirait sur le même portfolio).\n- Pour consolider l'architecture de systèmes IA, un chemin possible serait de produire un schéma explicite des flux entre composants et un protocole de négociation formalisé entre les six personas du jury.\n- Pour passer de la cascade à la boucle en pensée systémique, un chemin possible serait de chercher, pour chaque effet identifié, le retour qu'il produit (les sorties du système biaisé renforcent-elles ou contestent-elles le biais initial ?).\n- Pour déplier la pensée computationnelle, un chemin possible serait de décrire l'évaluation d'un portfolio donné comme une exécution algorithmique pas-à-pas avec entrées, conditions, négociations, sorties.\n- Pour montrer la sophistication du dialogue IA comme acte, un chemin possible serait de garder trace d'une itération de prompt avec ses versions successives et de noter ce que chaque reformulation change dans les verdicts produits."
+  }
+}

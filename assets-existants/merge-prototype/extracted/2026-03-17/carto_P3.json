@@ -1,0 +1,413 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Donc j'ai rapidement terminé ce matin la v2 du roman en laissant la v3 dans un stade facile à reprendre. Les modifications que j'ai apportées au prompt définissant le style d'écriture, inspiré du livre de Akira Mizubayashi (Âme brisée – l'âme du violon en l'occurrence) que Soledad m'a conseillé lorsque je lui ai dit ce que je cherchais, apportent vraiment de l'espace entre les lignes. Le texte \"respire\" maintenant",
+      "contexte": "Itération entre versions (v2, v3) d'un roman avec modification de prompt pour modifier le style — cycle de prototypage assumé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "il y a trois styles pour les trois phases correspondant aux émotions et à l'état d'esprit du protagoniste : 1) au début très verbeux et analytique, caractéristique du vieux prof sûr de lui qui fait du magistral, 2) au milieu grosse déprime quand il réalise qu'il a fait de la merdre toute sa vie, avec des phrases très courtes, souvent non terminées, ce qui permet aussi à se passage noir de ne pas s'étaler sur trop de pages, 3) la renaissance",
+      "contexte": "Choix esthétiques argumentés : trois styles distincts pour trois phases émotionnelles, avec justification fonctionnelle (les phrases courtes empêchent l'étalement).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Pour l'instant les chapitres 8, 11, 12, 13, 19 première partie sont terminés. Le 19 deuxième partie et les chapitres 9, 10, 14, 15, 16, 17, 18, 20, 21 restent à faire.",
+      "contexte": "Itération chapitre par chapitre — granularité du travail créatif explicitée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Dans la démo que j'ai vu, il y a déjà des points d'amélioration évidents : la taille des chunks est fixe ! Alors qu'on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs en lui demandant de reformuler les phrases comme il le ferait pour écrire de la poésie en respectant un certain nombre de pieds.",
+      "contexte": "Connexion radicale entre poésie et architecture RAG — idée inattendue dans le contexte technique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Et comme diraient les Shadoks : \"Plus on pompe, plus il y a à pomper. Et moins on pompe, il y a quand même plus à pomper. Donc ça sert à rien de pomper. Mais comme si on pompe pas c'est encore pire, il vaut mieux pomper pour rien que de pas pomper du tout. Et si par malheur ça marche, c'est qu'on a pas assez pompé.\" La différence c'est que eux pompaient dans le vide :D",
+      "contexte": "Citation absurde des Shadoks intégrée à un texte technico-réflexif — connexion entre univers éloignés (humour rétro et journal d'apprentissage).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "C (Curcio) le développeur, bricoleur, bidouilleur - l'enfant de 11 ans qui économise durant toute une année pour s'acheter un ZX81 avec ses grands parents qui ne comprennent pas ce qu'il fait et pourquoi d'un seul coup il ne veut plus sortir jouer au foot avec les enfants du quartier.",
+      "contexte": "Auto-désignation comme « bricoleur, bidouilleur » avec récit fondateur d'enfance — signature personnelle inscrite dans la durée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Ces trois noms correspondent aux trois phases de ma vie (C:0-17, B:17-47, A:47-57+) et aux trois métiers que j'ai fait en lien avec les trois noms de famille que j'ai portés (ça fait un peu agent secret 😉).",
+      "contexte": "Triade biographie/métier/nom — schéma personnel récurrent dans le portfolio, signature identitaire.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "ça me permet d'avoir un \"palais mental\" assez simple pour pouvoir, même un an plus tard, m'y retrouver rapidement.",
+      "contexte": "Métaphore du « palais mental » appliquée à l'organisation matérielle de son Mac — signature lexicale.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Finalement j'ai peut [être] réussi à démontrer que la deuxième loi de la thermodynamique est erronée ? Vive l'entropie !",
+      "contexte": "Trait d'humour absurde dans un contexte de fatigue et de surcharge — rupture de registre caractéristique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Cycle d'itération entre v2 et v3 du roman, avec modification du prompt de style entre les versions — itération disciplinée."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Connexion radicale entre poésie (nombre de pieds) et embedding RAG — proposition d'amélioration architecturale qui ne ressemble pas à ce qu'une IA suggérerait par défaut."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Insertion d'un long extrait des Shadoks dans un texte technique — connexion absurde entre culture pop des années 70 et journal d'apprentissage IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'il s'agit d'un simple récit d'avancement plutôt que d'une vraie pratique itérative ou radicale. La pièce 1 me résiste : passer de la v2 à la v3 avec modification du prompt entre les deux versions est exactement le cycle de prototypage assumé. La pièce 2 me résiste fortement : la proposition de pré-processer du RAG par reformulation poétique avec contrainte métrique est une connexion entre domaines très éloignés — exactement ce que la fiche décrit comme rupture radicale. La pièce 3 me résiste comme acte créatif déguisé en digression : insérer une longue citation des Shadoks dans un journal d'apprentissage technique est en soi une transgression de registre. Ce qui reste faible : aucune des pièces ne décrit le vertige ou l'inconfort à sortir du cadre.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Cycle v2-v3 explicite avec modification du prompt entre les deux versions." },
+            { "pieceId": 2, "motifResistance": "Connexion entre poésie métrique et embedding vectoriel — l'IA ne l'aurait probablement pas suggéré." },
+            { "pieceId": 3, "motifResistance": "Transgression de registre par insertion d'une citation absurde dans un texte technique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas surchargé un récit d'avancement de prétentions créatives. Sur la pièce 1, l'attaque (a) — insuffisance probatoire — touche : le passage de v2 à v3 est mentionné rapidement, sans détail de ce qui a été appris entre les deux. Sur la pièce 2, l'attaque (g) — mouvement-vers — pourrait toucher : l'idée est posée mais pas implémentée. Mais le test de la fiche (l'IA l'aurait-elle suggéré ?) tient en faveur de la pièce. Sur la pièce 3, l'attaque (e) — surinterprétation — est mince : la citation des Shadoks est manifestement choisie pour son effet de rupture.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le cycle v2-v3 est mentionné rapidement, mais l'apprentissage explicite entre versions (l'inspiration Mizubayashi conseillée par Soledad et son intégration au prompt) est documenté."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'idée n'est pas implémentée, mais la connexion entre poésie métrique et chunking vectoriel relève bien de la rupture radicale au sens de la fiche : c'est une question de mise en commun de domaines, pas d'exécution."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'insertion d'une citation absurde longue dans un journal technique est manifestement une transgression assumée de registre, mobilisée pour son effet de désamorçage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme un simple récit d'avancement avec quelques formules colorées. Le cycle v2-v3 documenté du roman, la connexion radicale poésie/embedding, et l'insertion assumée d'une citation absurde dans un texte technique m'ont forcé à reconnaître autre chose : sur cette journée, la créativité fonctionne sur les deux axes simultanément. Sur l'axe itératif, le roman avance par versions avec apprentissage explicite entre chacune. Sur l'axe radical, la proposition d'amélioration RAG relie des domaines que rien ne destinait à se rencontrer. Ce qui en résulte : la compétence s'exerce comme une habitude croisée d'itération disciplinée et de rapprochement inattendu.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le second temps a confirmé deux pièces (connexion radicale poésie/RAG et transgression de registre Shadoks) et a retenu une pièce affaiblie (cycle v2-v3).",
+        "prescription": "Sur cette journée, le travail montre une créativité qui itère et rapproche. Pour prolonger, un chemin possible serait de documenter une fois prochaine la trajectoire d'une idée radicale (comme le chunking poétique) depuis l'étincelle jusqu'à un mini-test, et de noter ce qui a tenu, ce qui s'est ajusté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Auto-désignation triple « développeur, bricoleur, bidouilleur » + récit fondateur de l'enfant et du ZX81 — signature identitaire récurrente."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Schéma triadique (3 noms / 3 phases / 3 métiers / 3 sessions Mac) avec emoji clin d'œil — signature stylistique : penser et raconter par triades."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Usage du mot « palais mental » pour qualifier l'organisation du Mac — vocabulaire personnel récurrent."
+        },
+        {
+          "numero": 4,
+          "pid": 9,
+          "contexte": "Trait d'humour absurde (« démonter la seconde loi de la thermodynamique ») au milieu d'un texte technique — rupture de registre caractéristique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'il s'agit de tournures ponctuelles plutôt que d'une signature au sens d'un fil stylistique récurrent. Le test de la fiche est : quelqu'un d'autre pourrait-il identifier l'auteur sans voir son nom ? La pièce 1 me résiste : l'auto-désignation triple et le récit fondateur de l'enfant au ZX81 résonnent avec d'autres feuilles du portfolio (où ces motifs réapparaissent). La pièce 2 me résiste : la structuration par triades est récurrente dans la journée même (3 styles du roman, 3 phases du protagoniste, 3 noms, 3 utilisateurs Mac) — c'est un tic structurel observable. La pièce 3 me résiste : « palais mental » est repris à plusieurs endroits du portfolio. La pièce 4 me résiste comme empreinte humoristique reconnaissable.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Auto-désignation et récit fondateur cohérents avec d'autres entrées du portfolio." },
+            { "pieceId": 2, "motifResistance": "Tic structurel des triades répété dans la même journée (roman, identité, Mac)." },
+            { "pieceId": 3, "motifResistance": "Métaphore du palais mental réutilisée à plusieurs endroits du portfolio." },
+            { "pieceId": 4, "motifResistance": "Rupture de registre humoristique-absurde — empreinte stylistique reconnaissable." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas tiré la signature d'une seule journée comme si elle attestait une récurrence. Sur la pièce 1, l'attaque (a) — insuffisance probatoire — est faible : le récit fondateur réapparaît ailleurs dans le portfolio (les sessions C ont été utilisées à Pâques l'an dernier). Sur la pièce 2, l'attaque (e) — surinterprétation — est mince car la triade est observable dans la même feuille. Sur la pièce 3, l'attaque (c) — biais de medium — touche peu : « palais mental » n'est pas un mot ambiant. Sur la pièce 4, l'attaque (a) — insuffisance probatoire — touche : un trait d'humour ne fait pas seul une signature.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Auto-désignation cohérente avec un récit identitaire récurrent (enfance au ZX81, sessions C historisées) — signature personnelle ancrée dans la durée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La triade comme tic structurel apparaît trois fois dans la même feuille (roman, identité, Mac), ce qui atteste la récurrence d'un pattern d'organisation de la pensée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« Palais mental » n'est pas un mot ambiant et est repris dans le portfolio ; sa portée dans cette seule feuille reste cependant brève."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Un seul trait d'humour absurde dans la journée, mais le registre (humour scientifique absurde dans un journal technique) tient comme empreinte stylistique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme des tournures ponctuelles plutôt que comme une signature reconnaissable. L'auto-désignation triple « développeur, bricoleur, bidouilleur » articulée au récit fondateur, le tic structurel des triades répété trois fois dans la même journée, et l'usage du « palais mental » comme métaphore récurrente m'ont forcé à reconnaître autre chose : sur cette journée, l'écriture porte plusieurs marqueurs récurrents qui forment ensemble une empreinte. Quelqu'un qui aurait lu d'autres entrées du portfolio reconnaîtrait probablement l'auteur ici, à la fois par les motifs (triades, ZX81, palais mental) et par le registre (humour absurde dans un texte technique). Ce qui en résulte : la signature s'exerce comme une habitude stylistique installée.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "Le second temps a confirmé deux pièces (auto-désignation cohérente et tic structurel des triades) et a retenu deux pièces affaiblies.",
+        "prescription": "Sur cette journée, le travail porte une empreinte stylistique récurrente — triades, métaphores personnelles, rupture humoristique. Pour prolonger, un chemin possible serait de nommer une fois prochaine ce que l'apprenant choisit délibérément de garder comme marqueur de sa voix, et ce qu'il identifie comme tic involontaire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "À partir d'une démo RAG, identification d'un problème non posé dans la démo (taille fixe des chunks comme handicap structurel) et formulation d'une nouvelle question (comment normaliser sémantiquement les chunks ?)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'il s'agit d'un cadrage de l'intention (1.02) plutôt que d'un design de problème au sens de la fiche (créer une question qui n'existait pas). La pièce résiste partiellement : la démo posait le problème de la similarité vectorielle dans un cadre fixe, et l'apprenant pose une question qualitativement différente — non pas « comment améliorer la similarité » mais « pourquoi accepterait-on des chunks hétérogènes ? ». C'est un déplacement de la question, pas seulement de sa formulation. Ce qui reste faible : la pièce ne formalise pas la démarche en recette reproductible.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant ne se contente pas de reformuler le problème de la démo ; il pose une nouvelle question (la normalisation sémantique) qui ouvre un champ technique différent." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu cadrage (1.02) et design de problème (3.03). La fiche est explicite : 1.02 reformule un problème existant, 3.03 crée un problème qui n'existait pas. L'attaque (b) — confusion de compétence — touche : on pourrait lire la pièce comme une reformulation du problème de la démo plutôt que comme la création d'une question inédite. Mais le saut entre « optimiser la similarité » (problème de la démo) et « normaliser sémantiquement par reformulation poétique » (problème nouveau) reste qualitatif. L'attaque (g) — mouvement-vers — touche aussi : aucun test n'a encore été produit.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La frontière avec 1.02 est fine : l'apprenant reformule la question, mais la nouvelle question (normalisation sémantique par reformulation) ouvre effectivement un champ d'action inédit. La pièce tient avec une confiance réduite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme un cadrage d'intention plutôt que comme un design de problème. La proposition tient sur la frontière : elle déplace la question (de l'optimisation de la similarité vers la normalisation sémantique) plutôt que de simplement reformuler la question existante. Ce qui n'a pas tenu très fortement : la formalisation en démarche reproductible, le test concret, l'inscription dans une pratique récurrente. Ce qui en résulte : sur cette journée, le design de problèmes apparaît sous une forme ponctuelle et frontalière. Une trace réelle subsiste, sans atteindre la pleine maturité de la compétence.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Le second temps a affaibli la seule pièce sans la disqualifier ; la frontière avec 1.02 reste fine et le seuil de présence établie n'est pas franchi.",
+        "prescription": "Sur cette journée, le design de problèmes apparaît à l'état émergent — une question nouvelle s'esquisse à partir d'une démo. Pour ouvrir ce dossier, un chemin possible serait de documenter une fois prochaine un moment où l'apprenant a cessé de résoudre le problème donné pour en formuler explicitement un autre, et ce qui a basculé concrètement dans l'action."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Évaluation qualitative du résultat de l'inspiration Mizubayashi sur le prompt : « apportent vraiment de l'espace entre les lignes. Le texte 'respire' maintenant » — jugement esthétique articulé."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Choix esthétiques différenciés par phase narrative (verbeux/analytique, phrases courtes non terminées, esprit clair) avec justification fonctionnelle — critères verbalisés."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'il s'agit d'auto-évaluations affectives (« j'aime », « ça me plaît ») plutôt que d'un vrai jugement esthétique avec critères articulés. La pièce 1 me résiste : « espace entre les lignes », « le texte respire » sont des descriptions précises d'un effet formel, pas des appréciations affectives — la curation est argumentée. La pièce 2 me résiste plus fortement : faire correspondre trois styles à trois phases avec justification (« les phrases courtes empêchent l'étalement ») est un acte de curation/éditorialisation. Ce qui reste faible : aucun récit de soustraction explicite, aucune mention d'avoir écarté une proposition IA.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Vocabulaire esthétique précis (« espace entre les lignes », « respire ») pour qualifier l'effet d'une modification de prompt." },
+            { "pieceId": 2, "motifResistance": "Choix stylistiques différenciés avec justification fonctionnelle — critères de curation articulés." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas pris une appréciation auto-complaisante pour une curation. Sur la pièce 1, l'attaque (a) — insuffisance probatoire — touche : la qualification est brève, sans comparaison avec ce qui a été écarté. Sur la pièce 2, l'attaque (a) tient également : les trois styles sont décrits, mais sans détail sur les versions rejetées. La curation suppose la soustraction (critère discriminant de la fiche) — or aucune soustraction n'est explicitement documentée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Qualification précise de l'effet (« espace entre les lignes »), mais sans comparaison avec ce qui a été écarté."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Critères articulés pour les trois styles, mais sans documentation explicite de la soustraction (versions rejetées, propositions IA écartées)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme des appréciations affectives plutôt que comme une vraie curation. Le vocabulaire esthétique précis (« espace entre les lignes », « respire ») et la justification fonctionnelle des trois styles ont tenu en partie : ils attestent un jugement esthétique articulé. Ce qui n'a pas tenu fortement : la dimension explicitement soustractive de la curation — qu'est-ce qui a été écarté, et pourquoi ? Sur cette journée, le jugement esthétique se manifeste sous sa face descriptive (qualifier un effet) et sous sa face design (choisir des styles différenciés), moins sous sa face soustractive (rejeter explicitement). Une trace réelle subsiste, à l'état émergent.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le second temps a retenu deux pièces affaiblies — vocabulaire esthétique précis et critères stylistiques articulés — sans atteindre la dimension soustractive de la curation.",
+        "prescription": "Sur cette journée, le travail montre un vocabulaire esthétique précis pour qualifier les effets formels. Pour prolonger, un chemin possible serait de documenter une fois prochaine ce qui a été écarté entre deux versions du roman — la curation devient lisible quand la soustraction est nommée autant que la sélection."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la matière physique (matériel informatique tangible, fabrication, réparation) a été manipulée avec les mains."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel et la pleine présence sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une sensation corporelle nommée a précédé ou orienté une décision concrète."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et la performance live sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment en présentiel où sa présence physique en temps réel a créé une valeur identifiable."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée, le pôle créatif apparaît surtout sous sa face écriture et conception, sans incarnation physique ni performance en direct. La voix dominante alterne entre l'itération disciplinée d'un projet long (le roman avance par chapitres avec versions successives et inspirations littéraires intégrées au prompt) et le rapprochement entre domaines éloignés (poésie métrique pour repenser le chunking RAG, Shadoks pour désamorcer la frustration sur la surcharge de travail). Les marqueurs reviennent : trois styles pour trois phases, trois noms pour trois métiers, palais mental, vocabulaire esthétique précis pour qualifier le « respirer » d'un texte. Le registre est celui d'un atelier d'écriture et de conception où la création s'exerce par cycles, par triades et par sauts analogiques.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative & radicale",
+        "description": "Une créativité qui fonctionne sur deux axes simultanément — l'itération disciplinée d'un projet long et le rapprochement inattendu entre domaines éloignés.",
+        "extraitVerbatim": "on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs en lui demandant de reformuler les phrases comme il le ferait pour écrire de la poésie en respectant un certain nombre de pieds",
+        "ceQueCaDit": "Sur cette journée, la créativité radicale se manifeste comme un réflexe de rapprochement entre univers que rien ne destinait à se rencontrer — la poésie métrique vient repenser une architecture technique."
+      },
+      {
+        "competence": "Singularité & signature",
+        "description": "Une écriture qui porte plusieurs marqueurs récurrents — triades, métaphores personnelles, ruptures humoristiques absurdes — formant ensemble une empreinte reconnaissable.",
+        "extraitVerbatim": "Ces trois noms correspondent aux trois phases de ma vie (C:0-17, B:17-47, A:47-57+) et aux trois métiers que j'ai fait en lien avec les trois noms de famille que j'ai portés (ça fait un peu agent secret 😉)",
+        "ceQueCaDit": "Sur cette journée, la signature s'exerce comme une habitude installée : penser par triades, raconter par récits fondateurs, désamorcer par l'humour absurde."
+      },
+      {
+        "competence": "Jugement esthétique & curation",
+        "description": "Un vocabulaire esthétique précis pour qualifier les effets formels d'un texte ou d'un prompt — « espace entre les lignes », « respire ».",
+        "extraitVerbatim": "Les modifications que j'ai apportées au prompt définissant le style d'écriture […] apportent vraiment de l'espace entre les lignes. Le texte « respire » maintenant",
+        "ceQueCaDit": "Sur cette journée, le travail qualifie ses choix formels avec un vocabulaire technique précis, même si la dimension soustractive (ce qui a été écarté) reste implicite."
+      }
+    ],
+    "territoiresNonVisites": "Sur cette feuille, trois territoires du pôle restent en retrait. L'intelligence manuelle et artisanale, l'ancrage sensoriel et la présence-performance live sont absents — ce qui est cohérent avec une journée largement passée devant l'écran, à écrire et à se former en ligne. Ces absences ressemblent à un choix de la journée plutôt qu'à un manque structurel : le portfolio mentionne par ailleurs un usage de matériel (Mac, MacBook, station Dell envisagée), mais sans récit du geste physique. Le design de problèmes apparaît en frontière avec le cadrage de l'intention — une question nouvelle s'esquisse à partir d'une démo, sans atteindre la maturité d'un déplacement formalisé.",
+    "emergencesPole": "Trois choses traversent ce pôle sur cette journée. D'abord, la triade comme structure créative : trois styles pour le roman, trois phases biographiques, trois utilisateurs Mac, trois noms portés. Le rythme ternaire organise à la fois l'écriture, l'identité et l'environnement de travail. Ensuite, l'analogie comme outil opérant : la poésie pour repenser le RAG, l'entropie pour nommer la boucle de surcharge, le palais mental pour le Mac. La métaphore ne décore pas, elle propose. Enfin, l'écriture comme atelier de conception : le roman, le prompt, le pipeline RAG, l'organisation Mac — tous sont travaillés avec le même geste itératif, versionnage et modification ciblée.",
+    "pistes": [
+      "Pour prolonger la créativité radicale, un chemin possible serait de mener jusqu'au mini-test une connexion entre domaines éloignés — par exemple, prototyper le chunking poétique sur un mini-corpus et documenter ce qui a tenu, ce qui s'est ajusté.",
+      "Pour prolonger la signature, un chemin possible serait de nommer une fois prochaine ce que l'apprenant choisit délibérément de garder comme marqueur de sa voix, et ce qu'il identifie comme tic involontaire à laisser ou à éroder.",
+      "Pour prolonger la curation, un chemin possible serait de documenter, entre deux versions du roman, non seulement ce qui a été ajouté mais aussi ce qui a été écarté — la soustraction nommée fait passer l'éditorialisation au visible.",
+      "Pour ouvrir le territoire du design de problèmes, un chemin possible serait de documenter un moment où l'apprenant a cessé de résoudre le problème donné pour en formuler explicitement un autre, et ce qui a basculé concrètement dans l'action."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée, le pôle créatif apparaît surtout sous sa face écriture et conception, sans incarnation physique ni performance en direct. La voix dominante alterne entre l'itération disciplinée d'un projet long (le roman avance par chapitres avec versions successives et inspirations littéraires intégrées au prompt) et le rapprochement entre domaines éloignés (poésie métrique pour repenser le chunking RAG, Shadoks pour désamorcer la frustration sur la surcharge de travail). Les marqueurs reviennent : trois styles pour trois phases, trois noms pour trois métiers, palais mental, vocabulaire esthétique précis pour qualifier le « respirer » d'un texte. Le registre est celui d'un atelier d'écriture et de conception où la création s'exerce par cycles, par triades et par sauts analogiques.\n\n## Territoires les plus denses\n\n**Créativité itérative & radicale** — Une créativité qui fonctionne sur deux axes simultanément — l'itération disciplinée d'un projet long et le rapprochement inattendu entre domaines éloignés. *« on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs en lui demandant de reformuler les phrases comme il le ferait pour écrire de la poésie en respectant un certain nombre de pieds »*. Sur cette journée, la créativité radicale se manifeste comme un réflexe de rapprochement entre univers que rien ne destinait à se rencontrer — la poésie métrique vient repenser une architecture technique.\n\n**Singularité & signature** — Une écriture qui porte plusieurs marqueurs récurrents — triades, métaphores personnelles, ruptures humoristiques absurdes — formant ensemble une empreinte reconnaissable. *« Ces trois noms correspondent aux trois phases de ma vie (C:0-17, B:17-47, A:47-57+) et aux trois métiers que j'ai fait en lien avec les trois noms de famille que j'ai portés (ça fait un peu agent secret 😉) »*. Sur cette journée, la signature s'exerce comme une habitude installée : penser par triades, raconter par récits fondateurs, désamorcer par l'humour absurde.\n\n**Jugement esthétique & curation** — Un vocabulaire esthétique précis pour qualifier les effets formels d'un texte ou d'un prompt — « espace entre les lignes », « respire ». *« Les modifications que j'ai apportées au prompt définissant le style d'écriture […] apportent vraiment de l'espace entre les lignes. Le texte 'respire' maintenant »*. Sur cette journée, le travail qualifie ses choix formels avec un vocabulaire technique précis, même si la dimension soustractive (ce qui a été écarté) reste implicite.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, trois territoires du pôle restent en retrait. L'intelligence manuelle et artisanale, l'ancrage sensoriel et la présence-performance live sont absents — ce qui est cohérent avec une journée largement passée devant l'écran, à écrire et à se former en ligne. Ces absences ressemblent à un choix de la journée plutôt qu'à un manque structurel : le portfolio mentionne par ailleurs un usage de matériel (Mac, MacBook, station Dell envisagée), mais sans récit du geste physique. Le design de problèmes apparaît en frontière avec le cadrage de l'intention — une question nouvelle s'esquisse à partir d'une démo, sans atteindre la maturité d'un déplacement formalisé.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent ce pôle sur cette journée. D'abord, la triade comme structure créative : trois styles pour le roman, trois phases biographiques, trois utilisateurs Mac, trois noms portés. Le rythme ternaire organise à la fois l'écriture, l'identité et l'environnement de travail. Ensuite, l'analogie comme outil opérant : la poésie pour repenser le RAG, l'entropie pour nommer la boucle de surcharge, le palais mental pour le Mac. La métaphore ne décore pas, elle propose. Enfin, l'écriture comme atelier de conception : le roman, le prompt, le pipeline RAG, l'organisation Mac — tous sont travaillés avec le même geste itératif, versionnage et modification ciblée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la créativité radicale, un chemin possible serait de mener jusqu'au mini-test une connexion entre domaines éloignés — par exemple, prototyper le chunking poétique sur un mini-corpus et documenter ce qui a tenu, ce qui s'est ajusté.\n- Pour prolonger la signature, un chemin possible serait de nommer une fois prochaine ce que l'apprenant choisit délibérément de garder comme marqueur de sa voix, et ce qu'il identifie comme tic involontaire à laisser ou à éroder.\n- Pour prolonger la curation, un chemin possible serait de documenter, entre deux versions du roman, non seulement ce qui a été ajouté mais aussi ce qui a été écarté — la soustraction nommée fait passer l'éditorialisation au visible.\n- Pour ouvrir le territoire du design de problèmes, un chemin possible serait de documenter un moment où l'apprenant a cessé de résoudre le problème donné pour en formuler explicitement un autre, et ce qui a basculé concrètement dans l'action.\n"
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Je constate, au vu du bordel qui s'accumule sur le bureau de mon macbook, que je suis vraiment en train de partir dans tous les sens",
+      "contexte": "Reconnaissance d'un signal matériel (le bureau encombré) de surcharge attentionnelle ; potentiellement 5.07 sous forme oblique de signal somatique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Arg… Je diverge encore. Je retrouve sur un de mes bureaux virtuel un travail en cours que j'avais dû interrompre et qui devient critique maintenant que je conçois les fichiers YAML : c'est le référentiel des compétences RESPIRE.",
+      "contexte": "Reconnaissance en temps réel d'une divergence d'attention, puis raccordement à un travail antérieur ; potentiellement 5.07 ou 5.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Mais je n'ai pas encore testé les 6 versions moi même (je n'ai fait que les simuler). Il faut donc que consolide tout ça, que je ferme quelques onglets, que j'intègre les fichiers markdown ouverts dans les manuels.",
+      "contexte": "Mention de fermeture des onglets dans la liste des actions à poser ; geste opérationnel concret qui pourrait toucher 5.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Si j'avais été un peu plus méticuleux dans mon processus de création, j'aurais pu éviter de faire ce travail deux fois.",
+      "contexte": "Reconnaissance rétrospective d'une lacune méthodologique ; pourrait toucher 5.01 (apprendre du chaos) si elle débouchait sur une transformation, mais ici elle reste un constat.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "La bonne nouvelle, c'est que c'est pas moi qui fait le boulot le plus dur :-D",
+      "contexte": "Chute autodérisoire sur la division humain/IA du travail ; potentiellement 5.04 si elle porte une trace d'acceptation, à examiner.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Hélas je n'avais jamais fait le travail à la main. Je crée les outils (scripts Google) pour pouvoir lancer mettre au point mes prompts.",
+      "contexte": "Aveu d'une lacune (n'avoir jamais fait le travail à la main) et construction d'un dispositif numérique pour combler cette lacune ; potentiel pour 5.06 ou son inverse.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Reconnaissance d'avoir fait le travail deux fois par défaut de méticulosité, suivie d'une humeur globalement persévérante (la suite raconte la consolidation à venir)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la résilience et l'antifragilité ne sont pas attestées. La fiche est précise : il faut un dépassement, pas un retour à la normale. Le pid 4 reconnaît un revers (« j'ai fait le travail deux fois ») mais ne décrit aucune transformation grâce à cette épreuve — pas de « ce qui a changé, grandi ou émergé » de la fiche. La structure narrative typique de l'antifragilité (l'échec qui ouvre l'histoire) n'est pas activée ; ici, l'échec est constaté et le travail continue, sans extraction d'un apprentissage transférable explicite. Ce qui reste explicitement faible : pas d'ironie face au chaos, pas de reframing actif, pas de mention que l'apprenant ressort « au-delà » du point de départ.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber la seule pièce. Un constat rétrospectif sans dépassement ne porte pas la signature de l'antifragilité telle que la fiche la définit.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la résilience et l'antifragilité en m'appuyant sur la distinction critique de la fiche entre endurance et dépassement. La présomption d'absence a tenu seule : la reconnaissance du double travail ne s'accompagne d'aucune description de transformation. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : le ton mesuré et la poursuite du travail malgré le revers évoquent une endurance tranquille — qui n'est pas en elle-même de l'antifragilité, mais qui en est la condition de possibilité.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La présomption d'absence a tenu seule : le revers est constaté sans description de transformation, et la structure narrative du dépassement n'est pas activée.",
+        "prescription": "Une feuille pourrait raconter explicitement ce qu'un échec a fait grandir ou émerger — pas seulement « j'aurais pu éviter », mais « voici ce que ce double travail m'a appris que je n'aurais pas appris autrement ». Une variante consisterait à ramener un revers ancien et à nommer comment il a transformé une manière de faire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la plasticité et au désapprentissage sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait nommer un savoir ou une identité abandonné — non pas un apprentissage qui s'ajoute, mais une peau qu'on a dû quitter."
+      }
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "« Je retrouve sur un de mes bureaux virtuel un travail en cours que j'avais dû interrompre et qui devient critique maintenant que je conçois les fichiers YAML » : connexion explicite entre un travail antérieur (référentiel RESPIRE) et le travail en cours."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "« Si j'avais été un peu plus méticuleux dans mon processus de création, j'aurais pu éviter de faire ce travail deux fois » : extraction d'une leçon sur le processus."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la narration réflexive n'est pas attestée. La fiche distingue précisément le journal de bord descriptif (« cette semaine j'ai fait... ») du tissage de sens. Le pid 2 fait une connexion entre deux travaux distants — un référentiel commencé puis interrompu, devenu critique à cause d'un autre travail en cours — c'est exactement ce que la fiche décrit comme « connexions explicites entre événements distants ». Mais cette connexion est constatée, pas thématisée comme apprentissage. Le pid 4 extrait une leçon (« j'aurais pu éviter de faire ce travail deux fois ») mais celle-ci reste générale (« être plus méticuleux »), elle ne nomme pas un mécanisme spécifique ni un apprentissage transférable au sens fort. Ce qui résiste : la connexion entre RESPIRE et YAML est une forme de tissage. Ce qui reste explicitement faible : pas de marqueur métanarratif explicite (« pourquoi je parle de cela »), pas de théorisation spontanée, pas de fil rouge cohérent qui structurerait le récit au-delà de la chronologie.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La connexion entre un travail antérieur (RESPIRE) et le travail en cours (YAML) — avec articulation de la dépendance — correspond au tissage de fils distants décrit par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu un simple constat de dépendance technique avec une narration réflexive. La fiche est claire : « cette semaine j'ai fait... » est descriptif, pas réflexif. Ici, la connexion entre RESPIRE et YAML pose une dépendance fonctionnelle (« devient critique maintenant que ») mais sans s'élever au-dessus du factuel — l'apprenant ne dit pas « ce que cela signifie », il dit ce qui devient nécessaire. L'attaque (d) de glissement lexical est forte : connexion ≠ tissage de sens. La pièce relève davantage d'une chronique des dépendances que d'une extraction de signification. L'attaque (a) d'insuffisance probatoire est aussi pertinente : sans marqueur métanarratif ni leçon nommée, la trace reste sous le seuil.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La connexion entre RESPIRE et YAML pose une dépendance fonctionnelle dans le travail en cours, mais elle ne s'élève pas au-dessus du factuel : aucun « qu'est-ce que cela signifie » n'est formulé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la narration réflexive parce que la matière dominante est une chronique de la journée. La présomption d'absence a laissé résister la connexion RESPIRE/YAML, mais sous présomption de sycophantie cette pièce est tombée : la fiche distingue précisément la connexion descriptive du tissage de sens, et ici on est du côté de la première. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la matière de cette feuille — la dispersion, le double travail, les bifurcations — se prête particulièrement à un tissage réflexif qui n'est pas encore opéré. L'apprenant raconte, mais ne tisse pas encore.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce qui a résisté à la présomption d'absence est tombée sous la présomption de sycophantie : la connexion entre deux travaux est factuelle, sans extraction de signification.",
+        "prescription": "Une feuille pourrait reprendre le fil de la dispersion racontée ici et formuler ce qu'elle signifie — non pas « ce qui s'est passé », mais « qu'est-ce que cela dit de la manière dont le travail s'agence en ce moment ». Une variante consisterait à ramener un fil rouge thématique qui traverserait plusieurs entrées du portfolio."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "« La bonne nouvelle, c'est que c'est pas moi qui fait le boulot le plus dur :-D » : reconnaissance implicite de la supériorité de l'IA dans une part du travail."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que l'acceptation de l'intelligence supérieure n'est pas attestée. La fiche est précise : le registre émotionnel est l'indicateur clé — surprise, choc, colère ou admiration mêlée de malaise. Ici, l'apprenant pointe que l'IA fait le boulot le plus dur, mais sur le mode de l'humour léger avec émoticône, sans aucune tension émotionnelle. La fiche met explicitement en garde : « L'absence de tension peut indiquer un constat superficiel plutôt qu'une acceptation profonde. » Le piège de la désirabilité sociale (« performer l'humilité ») est exactement ce qui se joue ici : la chute autodérisoire désamorce plutôt que d'ouvrir un travail intérieur. Ce qui reste explicitement faible : aucun aveu émotionnel, aucune métaphore du miroir ou de la maïeutique, aucun récit de tension ego/réalité.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber la seule pièce. L'humour de surface sans tension émotionnelle correspond précisément à ce que la fiche identifie comme un faux positif possible — la performance de l'humilité.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier l'acceptation de l'intelligence supérieure en m'appuyant sur l'exigence de tension émotionnelle qu'impose la fiche. La présomption d'absence a tenu seule : la chute « c'est pas moi qui fait le boulot le plus dur » est une plaisanterie qui désamorce et ne traverse rien. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la phrase reconnaît implicitement que l'IA fait une part du travail que l'apprenant n'aurait pas faite seul — ce qui pourrait être le commencement d'un travail d'acceptation si une autre feuille déposait la tension qui manque ici.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a tenu seule : l'humour de surface sans tension émotionnelle correspond exactement au faux positif décrit par la fiche.",
+        "prescription": "Une feuille pourrait nommer un moment de tension émotionnelle face à une production de l'IA — surprise d'avoir été dépassé, malaise face à une formulation meilleure que la sienne, admiration mêlée d'inconfort. Une variante consisterait à raconter ce qu'il y a derrière la chute humoristique : l'IA fait quelle part exactement, et qu'est-ce que cela change pour l'apprenant."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens et à la motivation intrinsèque sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait formuler ce qui fait tenir l'apprenant dans ce projet de cartographie au-delà de ses résultats immédiats — un pourquoi qui survit à la dispersion."
+      }
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie, au mode dégradé et à la débrouillardise sur cette feuille. Pour ouvrir ce dossier, un récit pourrait documenter un moment de travail sans technologie ou de bricolage avec les moyens du bord — papier, tableau blanc, ressources improvisées."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "« Au vu du bordel qui s'accumule sur le bureau de mon macbook, que je suis vraiment en train de partir dans tous les sens » : reconnaissance d'un signal matériel de surcharge attentionnelle."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "« Arg… Je diverge encore. Je retrouve sur un de mes bureaux virtuel un travail en cours que j'avais dû interrompre » : repérage en temps réel d'une distraction."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "« Il faut donc que [...] je ferme quelques onglets » : projection d'une action concrète de fermeture, geste opérationnel de souveraineté attentionnelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la souveraineté attentionnelle n'est pas attestée. Le critère discriminant de la fiche est précis : c'est l'intention en présence d'alternatives, le « je pourrais être connecté mais je choisis de ne pas l'être ». Le pid 1 est intéressant car il correspond à la trace oblique « reconnaissance de signaux corporels de surcharge » étendue au matériel (bureau encombré comme signal), suivie d'un constat. Le pid 2 saisit en temps réel un mouvement de divergence d'attention, ce qui présuppose une vigilance attentionnelle active. Le pid 3 projette une action concrète (« fermer des onglets ») qui est l'archétype même du geste de souveraineté attentionnelle dans un environnement numérique. Ce qui résiste : la séquence signal-perception-projection d'action est attestée. Ce qui reste explicitement faible : la fiche distingue la souveraineté de la simple gestion technique — fermer des onglets est-il un acte intentionnel face à des alternatives, ou simplement un nettoyage opérationnel ? Et l'action est projetée, pas accomplie.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La reconnaissance du signal matériel comme indicateur d'une dispersion attentionnelle correspond à la trace oblique somatique étendue de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le repérage en temps réel de la divergence d'attention présuppose une vigilance active sur sa propre attention."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "« Fermer quelques onglets » est un geste opérationnel concret de protection du focus dans un environnement numérique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas confondu une description de la dispersion avec sa maîtrise. La fiche est explicite : le critère est l'intention en présence d'alternatives. Or, le récit ici décrit une dispersion subie, pas un focus protégé. La phrase « je pars dans tous les sens » est l'inverse symétrique de la souveraineté attentionnelle : c'est l'attention capturée, pas maîtrisée. Le « Arg… je diverge encore » signe une divergence, pas un arrêt. La fermeture des onglets est projetée comme corrective, après-coup, pas comme rituel préventif. L'attaque (g) de mouvement-vers est juste : l'apprenant est en chemin vers la souveraineté (il voit le problème) mais ne l'exerce pas encore. L'attaque (a) d'insuffisance probatoire vaut aussi : repérer une dispersion ne suffit pas à manifester la souveraineté, qui suppose un acte de maîtrise. Les pièces s'affaiblissent fortement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le signal est perçu mais le geste qui suit n'est pas un acte de souveraineté, c'est un constat de dispersion."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le repérage en temps réel suppose la vigilance attentionnelle mais ne l'exerce pas — l'apprenant voit qu'il diverge sans réussir à ne pas diverger."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La fermeture des onglets est projetée comme nettoyage après-coup d'une dispersion déjà accomplie, pas comme rituel intentionnel de protection du focus."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la souveraineté attentionnelle parce que le récit dominant est celui d'une dispersion subie. Ce qui m'a forcé à reconnaître une trace, c'est l'accumulation des signaux : repérage du bureau encombré comme indicateur, saisie en temps réel de la divergence, projection d'un geste opérationnel de fermeture. Sous présomption de sycophantie, les trois pièces se sont affaiblies : la souveraineté suppose une intention face à des alternatives, alors qu'ici on a une vigilance qui constate la perte du focus sans la prévenir, et un geste correctif annoncé plutôt qu'accompli. Il en résulte un renvoi au cartographe sur cette feuille : la matière attentionnelle est présente sous forme de vigilance, mais le geste de maîtrise est encore à venir. La nuance qui reste : la conscience aiguë de la dispersion est en elle-même la condition de possibilité d'une souveraineté à construire, et c'est exactement le mouvement « vers » que la fiche distingue d'une présence pleine.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Les trois pièces ont résisté à la présomption d'absence puis se sont affaiblies sous la présomption de sycophantie : la vigilance attentionnelle est attestée, l'acte de souveraineté reste à venir.",
+        "prescription": "Une feuille pourrait documenter un acte concret de protection du focus posé avant la dispersion plutôt qu'après — un rituel de fermeture d'onglets avant de commencer, une mise en mode avion, un horaire dédié sans interruptions. Une variante consisterait à raconter un moment où l'apprenant aurait pu céder à un appel d'attention extérieur et a choisi de ne pas le faire."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 3,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "« Je n'ai pas encore testé les 6 versions moi même (je n'ai fait que les simuler) » : distinction explicite entre simuler et tester, conscience que les simulations ne valent pas le test réel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la vérification terrain n'est pas attestée. La fiche distingue précisément « j'ai testé le prompt » (qui relèverait de 1.08) et « j'ai testé si ça marchait vraiment dans le réel » (5.08). Le critère est le contact avec la réalité non médiatisée. Ici, l'apprenant manifeste une conscience aiguë que la simulation n'équivaut pas au test réel — c'est un savoir épistémique sur la valeur du terrain par rapport à l'analyse documentaire. Mais la pièce dit précisément que le test terrain n'a pas encore eu lieu (« je n'ai pas encore testé »). C'est l'aveu d'une absence de vérification terrain plus que sa manifestation. Ce qui résiste néanmoins : la conscience explicite du delta entre simulation et test est en soi un marqueur fort de 5.08 — l'apprenant n'est pas dupe de sa propre simulation. Ce qui reste explicitement faible : aucun acte de vérification terrain accompli, seulement projeté.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La distinction explicite entre simuler et tester correspond exactement à la trace oblique d'une « vérification terrain sans le vocabulaire de la ground truth »."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu la conscience d'un manque de test avec une vérification terrain accomplie. La fiche est claire : 5.08 est une compétence comportementale, et les traces écrites peuvent suggérer l'action — encore faut-il qu'il y en ait. Or ici, c'est précisément l'inverse : l'apprenant nomme l'absence de l'action. C'est un scepticisme déclaratif (« je sais que ce n'est pas suffisant ») plutôt qu'une vérification (action). L'attaque (a) d'insuffisance probatoire tient : sans test accompli, la pièce vaut comme conscience de la nécessité du test, pas comme manifestation de la compétence.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce nomme l'absence du test terrain, pas son accomplissement ; elle relève du scepticisme déclaratif que la fiche distingue de la vérification active."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la vérification terrain en m'appuyant sur la dimension comportementale qu'exige la fiche. Ce qui m'a forcé à reconnaître une trace, c'est la lucidité épistémique de la distinction simulation/test — l'apprenant sait que ses 6 versions n'ont pas encore été éprouvées. Sous présomption de sycophantie, cette pièce est tombée : nommer qu'on n'a pas vérifié n'est pas vérifier. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la conscience de la nécessité du test est en elle-même précieuse, et l'apprenant la pose comme une dette à honorer dans la suite du travail.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La pièce qui a résisté à la présomption d'absence est tombée sous la présomption de sycophantie : la lucidité sur l'absence de test ne vaut pas l'accomplissement du test.",
+        "prescription": "Une feuille pourrait raconter le passage de la simulation au test réel des prompts — qu'est-ce qui a tenu, qu'est-ce qui s'est révélé hallucination de la simulation. Une variante consisterait à documenter un cas où la confiance dans une production IA a été contredite par un test direct."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 7,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle existentiel et d'autonomie se manifeste essentiellement sous le signe de la dispersion subie et de la vigilance sans maîtrise. L'apprenant repère ses propres mouvements d'attention — bureau encombré comme signal, divergence saisie en temps réel, projection de fermer des onglets — mais sans encore exercer la souveraineté qu'il pressent. La feuille ne traverse pas de crise existentielle, ne formule pas de pourquoi, ne ramène pas de mode dégradé hors-ligne. Le rapport à l'IA se résume à une plaisanterie qui désamorce, sans la tension émotionnelle qui ferait acceptation profonde. Ce que la feuille documente, surtout, c'est une lucidité épistémique sur ce qui n'a pas encore été testé, ce qui n'a pas encore été clos, ce qui n'a pas encore été méticuleusement fait — une conscience aiguë des manques opérationnels, qui pourrait préparer le terrain pour les transformations que ce pôle cartographie.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'essentiel du pôle n'a pas encore été ramené sur cette feuille. La résilience et l'antifragilité, la plasticité et le désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure, le sens et la motivation intrinsèque, l'autonomie hors-ligne et la vérification terrain ne reçoivent pas de matière qui franchisse le seuil. Plusieurs de ces absences sont liées au sujet du jour (une journée de fabrication numérique intense, sans crise ni rupture identitaire, sans question de sens posée frontalement). La souveraineté attentionnelle est en travail sous forme frémissante : la vigilance sur sa propre dispersion est attestée, mais l'acte de maîtrise qui ferait franchir le seuil est encore à venir. La vérification terrain est touchée par la lucidité de l'aveu « je n'ai pas encore testé », sans que le test lui-même soit accompli.",
+    "emergencesPole": "Trois fils traversent les compétences existentielles de ce pôle sur cette feuille. D'abord, une lucidité épistémique persistante : l'apprenant sait ce qu'il n'a pas fait — il n'a pas testé, il n'a pas été méticuleux, il n'avait jamais fait le travail à la main — et cette conscience structure le texte autant que les actes posés. Ensuite, une vigilance sans maîtrise : le bureau encombré, l'« Arg… je diverge encore », les onglets à fermer dessinent un terrain où l'attention est observée mais pas encore protégée. Enfin, un rapport à l'IA qui désamorce plutôt qu'il ne traverse — la chute humoristique sur « le boulot le plus dur » contourne la tension que ce pôle, plus que tout autre, demande de regarder en face.",
+    "pistes": [
+      "Pour activer la souveraineté attentionnelle, un chemin possible serait de documenter un rituel de protection du focus posé avant la dispersion — un horaire dédié, une fermeture systématique des onglets en début de session, un mode avion.",
+      "Pour ouvrir l'acceptation de l'intelligence supérieure, un chemin possible serait de raconter un moment de tension émotionnelle face à une production de l'IA — surprise, malaise, admiration mêlée d'inconfort — plutôt que de désamorcer par l'humour.",
+      "Pour activer la narration réflexive, un chemin possible serait de reprendre le fil de la dispersion et de formuler ce qu'elle signifie — ce qu'elle dit de la manière dont le travail s'agence en ce moment.",
+      "Pour ouvrir le sens et la motivation intrinsèque, un chemin possible serait de formuler ce qui fait tenir dans ce projet de cartographie au-delà des résultats immédiats — un pourquoi qui survit à la dispersion observée ici."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle existentiel et d'autonomie se manifeste essentiellement sous le signe de la dispersion subie et de la vigilance sans maîtrise. L'apprenant repère ses propres mouvements d'attention — bureau encombré comme signal, divergence saisie en temps réel, projection de fermer des onglets — mais sans encore exercer la souveraineté qu'il pressent. La feuille ne traverse pas de crise existentielle, ne formule pas de pourquoi, ne ramène pas de mode dégradé hors-ligne. Le rapport à l'IA se résume à une plaisanterie qui désamorce, sans la tension émotionnelle qui ferait acceptation profonde. Ce que la feuille documente, surtout, c'est une lucidité épistémique sur ce qui n'a pas encore été testé, ce qui n'a pas encore été clos, ce qui n'a pas encore été méticuleusement fait — une conscience aiguë des manques opérationnels, qui pourrait préparer le terrain pour les transformations que ce pôle cartographie.\n\n## Territoires les plus denses\n\nAucune compétence n'atteint sur cette feuille le seuil d'une présence établie : le pôle existentiel se manifeste sous forme de vigilance plutôt que de transformation accomplie.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'essentiel du pôle n'a pas encore été ramené sur cette feuille. La résilience et l'antifragilité, la plasticité et le désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure, le sens et la motivation intrinsèque, l'autonomie hors-ligne et la vérification terrain ne reçoivent pas de matière qui franchisse le seuil. Plusieurs de ces absences sont liées au sujet du jour (une journée de fabrication numérique intense, sans crise ni rupture identitaire, sans question de sens posée frontalement). La souveraineté attentionnelle est en travail sous forme frémissante : la vigilance sur sa propre dispersion est attestée, mais l'acte de maîtrise qui ferait franchir le seuil est encore à venir. La vérification terrain est touchée par la lucidité de l'aveu « je n'ai pas encore testé », sans que le test lui-même soit accompli.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent les compétences existentielles de ce pôle sur cette feuille. D'abord, une lucidité épistémique persistante : l'apprenant sait ce qu'il n'a pas fait — il n'a pas testé, il n'a pas été méticuleux, il n'avait jamais fait le travail à la main — et cette conscience structure le texte autant que les actes posés. Ensuite, une vigilance sans maîtrise : le bureau encombré, l'« Arg… je diverge encore », les onglets à fermer dessinent un terrain où l'attention est observée mais pas encore protégée. Enfin, un rapport à l'IA qui désamorce plutôt qu'il ne traverse — la chute humoristique sur « le boulot le plus dur » contourne la tension que ce pôle, plus que tout autre, demande de regarder en face.\n\n## Pistes pour enrichir ce pôle\n\n- Pour activer la souveraineté attentionnelle, un chemin possible serait de documenter un rituel de protection du focus posé avant la dispersion — un horaire dédié, une fermeture systématique des onglets en début de session, un mode avion.\n- Pour ouvrir l'acceptation de l'intelligence supérieure, un chemin possible serait de raconter un moment de tension émotionnelle face à une production de l'IA — surprise, malaise, admiration mêlée d'inconfort — plutôt que de désamorcer par l'humour.\n- Pour activer la narration réflexive, un chemin possible serait de reprendre le fil de la dispersion et de formuler ce qu'elle signifie — ce qu'elle dit de la manière dont le travail s'agence en ce moment.\n- Pour ouvrir le sens et la motivation intrinsèque, un chemin possible serait de formuler ce qui fait tenir dans ce projet de cartographie au-delà des résultats immédiats — un pourquoi qui survit à la dispersion observée ici.\n"
+  }
+}

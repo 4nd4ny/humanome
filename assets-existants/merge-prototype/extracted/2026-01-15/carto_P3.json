@@ -1,0 +1,193 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Je repense à la structure globale des 4 manuels (il ne me reste plus que quelques chapitres du manuel du Maître à lire). Je me dis que j'ai mal réfléchi à l'objectif final de ces manuels. Je pense les régénérer (mais j'ai un peu le flegme aussi de relire les 600 pages) avec la modification suivante :",
+      "contexte": "Reconnaissance d'une version v1 dépassée et perspective d'une régénération v2 — pratique itérative explicite.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Maître : si l'objectif principal de la formation est d'aider à construire de bonnes cartographies des compétences, ce niveau devrait se concentrer sur comment aider les Experts à développer les fonctions et stratégies cognitives utiles à la métacognition. Et du coup alléger la partie motivation et confiance en soi, qui pourrait être déplacé dans un nouveau niveau (dont le nom reste à définir).",
+      "contexte": "Reformulation du périmètre du niveau Maître en partant d'un nouvel objectif — création de problème : un nouveau niveau pédagogique à inventer."
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Évocation d'une régénération des manuels sur la base d'un apprentissage rétrospectif — geste itératif v1 → v2 avec apprentissage explicite (l'objectif final était mal pensé)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'une simple intention de refaire, pas d'une trace itérative. La fiche cible des versions successives avec apprentissage explicite entre chaque passage, et un *choix stratégique* de l'imperfection. La pièce 1 contient bien une logique de re-version (régénérer les manuels) et l'apprentissage explicite qui justifie le pivot (« j'ai mal réfléchi à l'objectif final »). Mais la régénération est annoncée, pas réalisée — c'est une intention de pivot, freinée par le « flegme de relire les 600 pages ». Reste faible : aucune trace de prototype rapide produit ici, aucune connexion radicale entre domaines, l'humour ou la métaphore incongrue manquent.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La logique v1 → v2 est explicitée avec l'apprentissage qui motive le pivot : l'objectif initial était mal cadré, donc la prochaine version sera différente. C'est exactement la structure de l'itération créative." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur la pièce qui a résisté : suis-je en train de surinterpréter ? L'apprenant annonce une régénération mais ne décrit pas un cycle d'itération vécu dans cette feuille — il décrit l'amorce d'une itération à venir. La fiche reconnaît la dimension itérative comme atteignable au niveau acquis sur base textuelle, mais demande des « versions, retours, ajustements traçables ». Ici, le portfolio mentionne implicitement une v1 finie et un projet de v2, ce qui est minimal.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "On voit un apprenant en route vers une nouvelle itération plutôt qu'en train d'itérer. La trace est crédible (v1 lue, v2 projetée avec apprentissage explicite), mais la transformation reste annoncée, freinée par la fatigue assumée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une simple intention de refaire, sans dimension proprement itérative. Le passage tient parce qu'il articule explicitement le pivot (« j'ai mal réfléchi à l'objectif final ») et l'apprentissage qui le motive — c'est la structure d'une itération, même si la v2 n'est pas encore produite. Ce qui reste : une trace minimale d'une boucle v1 → apprentissage → v2 projetée, freinée par la lassitude assumée (« flegme de relire »). La réserve : on est ici dans l'amorce, pas dans la dynamique itérative déployée. Pas de signe de créativité radicale, pas de connexion inattendue entre domaines.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce affaiblie a survécu au temps 2 ; sans nombrePreuves ≥ 1 ni nombreIndices ≥ 2, et avec une confiance sous 0.55, le verdict honnête est le renvoi.",
+        "prescription": "Le geste itératif s'esquisse sur le projet des manuels (v1 lue, v2 projetée avec apprentissage). Une piste serait de documenter, au moment où la régénération sera lancée, un cycle court : que change-t-on, pourquoi, qu'observe-t-on, qu'ajuste-t-on ensuite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et signature dans cette feuille. La détection de cette compétence demande de comparer plusieurs feuilles entre elles pour repérer des récurrences stylistiques."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention d'un nouveau niveau pédagogique « dont le nom reste à définir » — création d'une question nouvelle (que serait ce niveau ?) à partir d'une recomposition de l'existant."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit de reformulation, pas de création de problème. La fiche est très stricte : 3.03 *crée* un problème qui n'existait pas, à distinguer fermement de 1.02 qui reformule. Or, dans cette pièce, l'apprenant ne crée pas un nouveau problème inédit — il déplace un contenu (motivation, confiance en soi) d'un niveau existant vers un autre niveau à inventer. C'est plutôt un cadrage de l'intention (1.02) qui en cascade fait apparaître un nouveau périmètre. La fiche dit explicitement : « j'ai reformulé le problème = 1.02. j'ai créé un nouveau problème = 3.03 ». Reste faible : aucune trace de généralisation d'un cas spécifique en recette reproductible, aucune émergence d'un problème inédit.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une création de problème dans la mention d'un nouveau niveau pédagogique à inventer. La fiche met explicitement en garde contre la confusion 3.03/1.02 : ce qui est ici à l'œuvre est un cadrage récursif qui reconfigure les niveaux existants — un niveau « se vide » d'un contenu, l'autre s'en remplit, et l'ensemble est reconfiguré. La création d'un nouveau périmètre n'est pas la création d'un nouveau problème : c'est la conséquence d'un recadrage. Ce qui en résulte : la compétence n'est pas attestée par cette feuille, sans préjuger d'autres feuilles où une vraie question nouvelle pourrait être posée.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La présomption d'absence n'a pas été renversée : la pièce relève d'un cadrage en cascade (1.02) plutôt que d'une création de problème inédit (3.03), selon la distinction critique de la fiche.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, à l'occasion d'une difficulté ou d'un accident dans le projet, de capturer la question nouvelle qui émerge (« le vrai sujet, c'est… ») et de noter pourquoi cette question n'existait pas avant."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au jugement esthétique et à la curation dans cette feuille. Pour ouvrir ce dossier, un récit d'écart entre plusieurs propositions IA avec critère de tri formulé pourrait être documenté."
+      }
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale dans cette feuille. Pour ouvrir ce dossier, un récit d'interaction avec un matériau physique tangible pourrait être documenté."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel et la pleine présence dans cette feuille. Pour ouvrir ce dossier, un récit de sensation corporelle nommée précisément, suivie d'une action, pourrait être documenté."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live dans cette feuille. Pour ouvrir ce dossier, un récit d'un moment en présentiel où l'interaction a produit quelque chose de non-scriptable pourrait être documenté."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 7,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le pôle MAIN reste largement en retrait. Le texte est un texte de pensée et de projet, pas un texte de geste, de matière, de présence ou de fabrication. On y trouve une seule trace tangible : une logique d'itération qui s'amorce sur les manuels — la v1 a été lue, l'objectif final est jugé mal posé, une v2 est projetée avec un apprentissage explicite — freinée par la fatigue assumée (« j'ai un peu le flegme de relire les 600 pages »). Le reste du pôle (signature, design de problèmes au sens strict, curation, intelligence manuelle, présence sensorielle, performance live) n'est pas activé dans cette journée. Ce pôle se voit donc moins comme un manque que comme un autre angle, simplement non sollicité par le contenu de la feuille.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Cette feuille n'a pas ramené de traces sur la singularité stylistique (qui demanderait une comparaison entre plusieurs feuilles), ni sur le design de problèmes inédits, ni sur le jugement esthétique articulé, ni sur l'intelligence manuelle, ni sur la pleine présence sensorielle, ni sur la performance live. La plupart de ces absences ressemblent à un choix d'angle plutôt qu'à un manque : le journal travaille ici la structure d'un projet pédagogique, pas le geste créatif ou incarné. La créativité itérative s'amorce mais reste suspendue à la régénération à venir.",
+    "emergencesPole": "Un seul motif traverse ce qui est présent : l'itération qui se prépare sans s'engager encore. La logique est posée (v1 → apprentissage → v2), l'énergie pour l'exécuter manque, et la décision de temporisation prend le pas. C'est moins un défaut de créativité qu'une honnêteté sur le coût de la régénération — l'apprenant ne se ment pas sur le fait que relire 600 pages n'enchante pas.",
+    "pistes": [
+      "Pour prolonger le geste itératif, un chemin possible serait, au moment où la régénération sera lancée, de documenter un cycle court — quoi changer, pourquoi, ce qui est observé, ce qui s'ajuste ensuite — plutôt que d'attendre une v2 complète.",
+      "Pour ouvrir le territoire du design de problèmes, un chemin possible serait, à l'occasion d'une difficulté du projet, de noter la question nouvelle qui émerge et ce qui la distingue d'une simple reformulation."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le pôle MAIN reste largement en retrait. Le texte est un texte de pensée et de projet, pas un texte de geste, de matière, de présence ou de fabrication. On y trouve une seule trace tangible : une logique d'itération qui s'amorce sur les manuels — la v1 a été lue, l'objectif final est jugé mal posé, une v2 est projetée avec un apprentissage explicite — freinée par la fatigue assumée (« j'ai un peu le flegme de relire les 600 pages »). Le reste du pôle (signature, design de problèmes au sens strict, curation, intelligence manuelle, présence sensorielle, performance live) n'est pas activé dans cette journée. Ce pôle se voit donc moins comme un manque que comme un autre angle, simplement non sollicité par le contenu de la feuille.\n\n## Territoires les plus denses\n\nLa feuille ne porte pas de présence établie sur ce pôle. Une amorce itérative est repérable autour du projet des manuels, mais reste à l'état d'intention de régénération plutôt que de cycle déployé.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille n'a pas ramené de traces sur la singularité stylistique (qui demanderait une comparaison entre plusieurs feuilles), ni sur le design de problèmes inédits, ni sur le jugement esthétique articulé, ni sur l'intelligence manuelle, ni sur la pleine présence sensorielle, ni sur la performance live. La plupart de ces absences ressemblent à un choix d'angle plutôt qu'à un manque : le journal travaille ici la structure d'un projet pédagogique, pas le geste créatif ou incarné. La créativité itérative s'amorce mais reste suspendue à la régénération à venir.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn seul motif traverse ce qui est présent : l'itération qui se prépare sans s'engager encore. La logique est posée (v1 → apprentissage → v2), l'énergie pour l'exécuter manque, et la décision de temporisation prend le pas. C'est moins un défaut de créativité qu'une honnêteté sur le coût de la régénération — l'apprenant ne se ment pas sur le fait que relire 600 pages n'enchante pas.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le geste itératif, un chemin possible serait, au moment où la régénération sera lancée, de documenter un cycle court — quoi changer, pourquoi, ce qui est observé, ce qui s'ajuste ensuite — plutôt que d'attendre une v2 complète.\n- Pour ouvrir le territoire du design de problèmes, un chemin possible serait, à l'occasion d'une difficulté du projet, de noter la question nouvelle qui émerge et ce qui la distingue d'une simple reformulation.\n"
+  }
+}

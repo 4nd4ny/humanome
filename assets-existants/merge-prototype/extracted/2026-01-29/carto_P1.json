@@ -1,0 +1,672 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Je me suis amusé à analyser le référentiel Européen des e-Compétences ICT-Skills développé par le Comité Européen de Normalisation. J'ai demandé aux IA d'estimer quand est-ce que chacune des tâches serait automatisable.",
+      "contexte": "Acte d'analyse d'un référentiel externe en croisant avec une projection IA — touche à la synthèse, à la littératie IA et à la synergie hybride.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Je réalise qu'avec un prompt je suis capable de générer 50 fichiers de 4 pages chacun, totalisant 500ko en tout. Et en 3 jours j'ai généré 6 manuels de plusieurs centaines de pages chacun. Rien que corriger la structure et la mise en page ça prend un temps fou. Je peux (je vais ?) me faire aider par des scripts, mais personne ne va pouvoir relire à ma place…",
+      "contexte": "Observation quantifiée du déséquilibre génération/relecture — métacognition sur le rapport humain-IA et bottleneck humain irréductible.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "La stratégie consistant à donner moins de directive sur le contenu, et plus de contexte sur le projet et de conseils sur la planification globale, a porté ses fruits.",
+      "contexte": "Évaluation rétrospective d'une stratégie de prompting — articulation du changement de levier (directive→contexte).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Finalement, je développe ma capacité à produire des plans d'études et des modules entiers de formation. Je n'avais jamais fait quelque chose d'aussi énorme, mais la compétence est la même que produire un seul cours : c'est juste qu'il faut multiplier ce travail par 100.",
+      "contexte": "Identification d'un pattern transversal : invariance d'échelle de la compétence — geste de synthèse intégrative et de métacognition.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Le plus difficile, c'est de se construire l'intégralité de la formation en tête, avant de la générer, pour pouvoir la modifier, la restructurer, la rendre logique. Je n'ai pas réussi à le faire du premier coup, car j'étais pris par le temps et j'ai dû brûler des étapes de réflexion et de relecture indispensables.",
+      "contexte": "Métacognition sur le processus de conception — nomme l'objet cognitif (formation en tête) et identifie les ratés du processus.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Ceci dit, si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première. Le processus itératif était donc probablement nécessaire.",
+      "contexte": "Reconnaissance d'une boucle de rétroaction productive entre versions — relecture critique de son propre travail.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Je n'ai pas voulu trop détailler la partie conception du plan de formation : car ça c'était une étape très créative et donc assez désordonnée, avec des conversations croisées entre LLM et des réflexions qui partaient dans tous les sens, mais une fois le plan stabilisé, la génération des manuels est finalement quasiment automatisable.",
+      "contexte": "Distinction explicite entre phase créative non-automatisable et phase d'exécution automatisable — réflexion sur l'architecture du processus humain-IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "j'ai beaucoup de plaisir à documenter mes pensées et mon travail dans ce journal-portfolio. Je pense que ça apporte une sorte d'hygiène intellectuelle. Une discipline qui consiste à dire ce que l'on fait et faire ce que l'on dit.",
+      "contexte": "Métacognition sur la fonction du journal-portfolio comme dispositif cognitif personnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "lorsque le matin je documente ce que je pense faire, après coup je m'éparpille moins entre les sollicitations inévitables et les imprévu, j'arrive à garde le cap et à mobiliser chaque instant \"perdu\" de la journée, pour me remettre instantanément dans le bain de ce que j'avais interrompu.",
+      "contexte": "Description du mécanisme cognitif par lequel l'écriture matinale agit comme ancre attentionnelle — pilotage métacognitif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Je réalise aussi tout ce que j'arrive à faire et que j'ai appris à faire en m'imposant d'utiliser les IA dès la sortie de ChatGPT-3.5 en novembre 2022 et le plus possible, en essayant plein de choses rigolotes au début, et de plus en plus sérieuse avec le temps.",
+      "contexte": "Récit rétrospectif d'une discipline d'usage de l'IA — bilan sur trois ans d'apprentissage par exposition volontaire.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Je n'ai pas renouvelé mon abonnement ChatGPT en janvier, pour la première fois depuis novembre 2022. Il ne m'a jamais vraiment été très utile depuis la sortie de Claude 3, mais je conservais l'abonnement à 20$ pour faire des comparaisons et pour ses capacités multimodales. Maintenant j'ai Gemini, Claude et Perplexity : et avec ce combo je m'en sors assez bien dans tous les cas d'usage pour le moment.",
+      "contexte": "Décision argumentée de désabonnement, fondée sur une comparaison fonctionnelle entre modèles — diagnostic d'écosystème IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-01-29",
+      "extraitVerbatim": "Ça m'apprendra à vouloir aller trop vite ! Ceci dit, si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première.",
+      "contexte": "Auto-correction explicite : reconnaissance d'une faute de cadrage temporel suivie d'une relecture qui rachète la première passe.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 12,
+          "contexte": "Auto-correction en plein élan, suivie d'une relecture critique du premier jet — geste de scepticisme appliqué à son propre travail."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Reconnaissance que la 2e version tient grâce à la traque d'erreurs dans la 1re — vérification active de son propre output."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces en présumant qu'il n'y a pas ici de pensée critique au sens fort — juste un récit de relecture banale qu'un cadre scolaire pourrait produire. La pièce 1 ressemble à une simple exclamation rétrospective (« ça m'apprendra ») qui pourrait n'être qu'une lamentation. La pièce 2, elle, me résiste davantage : l'apprenant identifie explicitement que la qualité de la 2e version provient des erreurs repérées dans la 1re — c'est un acte de vérification calibrée qui transforme la critique en levier. La pièce 1, recouplée avec la pièce 2, montre une auto-correction en temps réel (« vouloir aller trop vite ») reliée à un mécanisme concret de rachat. Ce qui reste faible : aucune métaphore de biais inventée, pas de protocole nommé, pas d'invitation explicite au désaccord — le registre reste sobrement réflexif.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant articule explicitement le mécanisme par lequel la critique de son propre travail produit la version qui tient." },
+            { "pieceId": 1, "motifResistance": "L'auto-correction est nommée comme telle (« ça m'apprendra ») et reliée à un rachat concret par la relecture." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas chargé ces pièces. La pièce 1 prise seule pourrait n'être qu'une expression idiomatique de regret sans portée critique réelle — relisée froidement, elle est très allusive. La pièce 2, en revanche, montre vraiment un mouvement où l'erreur détectée nourrit la version suivante : c'est plus qu'une formule, c'est un constat de mécanisme.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Prise isolément l'exclamation est allusive et sans dispositif, mais elle s'appuie sur la pièce 2 qui lui donne sa charge — elle tient comme indice corroboratif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le mécanisme est explicite : la 2e version doit sa qualité au repérage d'erreurs de la 1re. La pièce porte un dispositif (relecture critique) et un résultat (« tenir la route »)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai d'abord cherché à lire ces pièces comme un simple récit de relecture, banal dans tout journal d'apprentissage. La pièce 1, l'exclamation « ça m'apprendra à vouloir aller trop vite », m'a paru d'abord trop allusive pour porter à elle seule une pratique critique. Mais elle s'articule à la pièce 2, où le mécanisme apparaît en clair : la deuxième version tient parce que les erreurs de la première ont été repérées en relisant. Sous la présomption de sycophantie, la pièce 1 reste fragile prise seule — c'est un éclair sans dispositif. La pièce 2 a tenu : un repérage explicite d'erreurs alimente la version suivante, ce qui sort du registre déclaratif. Le travail montre ici une vigilance calibrée envers son propre output, plutôt qu'envers une source externe ou l'IA. La trace reste sobre, sans métaphore conceptualisante du biais, sans protocole formalisé, ce qui borne la confiance.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La présomption de sycophantie a confirmé une pièce centrale (mécanisme de relecture critique) et affaibli mais retenu un indice corroboratif (auto-correction nommée).",
+        "prescription": "Pour approfondir cette vigilance, un chemin possible serait de nommer explicitement, au moment où une erreur a été repérée, le type de biais ou de raccourci qui l'a produite. Une métaphore personnelle pour ce raccourci (par exemple « le piège de la vitesse ») pourrait rendre la traque réutilisable d'une session à l'autre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Recadrage explicite de la stratégie de prompting : passer de la directive sur le contenu au contexte sur le projet — recadrage de l'angle d'attaque."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Identification rétrospective du bon problème (construire la formation en tête avant de la générer) — cadrage émergent par la contrainte temporelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas vraiment de cadrage ici — juste des ajustements opérationnels qu'on trouve dans tout récit de projet. La pièce 1 décrit un changement de stratégie de prompt, ce qui pourrait n'être qu'un tuning de paramètres, pas un recadrage de l'objectif. Mais elle me résiste : passer de « moins de directive sur le contenu » à « plus de contexte sur le projet » change la nature de ce qu'on demande à l'IA, pas seulement le périmètre. La pièce 2, elle, identifie clairement que le vrai problème n'était pas « générer des manuels » mais « construire l'intégralité de la formation en tête avant de la générer » — c'est un déplacement de l'objectif lui-même. Ce qui reste faible : ce cadrage est rétrospectif, pas préalable, ce qui le rapproche de la trace oblique de la fiche (« recadrage émergent par la contrainte »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le changement décrit n'est pas un ajustement mais un changement de nature de la demande (contexte vs directive)." },
+            { "pieceId": 2, "motifResistance": "L'apprenant distingue explicitement le problème de surface (générer) du vrai problème (se représenter le tout d'abord)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surinterprété. La pièce 1 pourrait être lue comme une simple optimisation de prompt — du 1.08 plutôt que du 1.02. Mais la formulation « donner moins de directive sur le contenu, et plus de contexte sur le projet » désigne bien un déplacement de l'angle d'attaque, pas une sophistication de formulation. La pièce 2 reste solide : elle nomme le vrai problème par contraste avec celui qui avait été initialement adressé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Frontière fine avec 1.08 (dialogue IA avancé), mais le changement porte sur le type d'information qu'on donne au système — donc sur le cadrage de la demande, pas seulement sur sa formulation."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le cadrage est rétrospectif mais nommé avec précision — l'apprenant identifie l'objet du vrai problème (« se construire l'intégralité de la formation en tête »), ce qui dépasse le mouvement-vers."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai d'abord cherché à voir dans ces pièces de simples ajustements opérationnels — un meilleur prompt, une meilleure méthode. La pièce 1 m'a forcé à reconnaître que le déplacement décrit (moins de directive, plus de contexte) change le type d'information donnée à l'IA et non sa quantité, ce qui touche le cadrage. La pièce 2 a tenu sous la présomption de sycophantie : l'apprenant distingue explicitement le problème adressé (générer les manuels) du vrai problème (se représenter la formation entière d'abord). Le cadrage reste majoritairement rétrospectif dans cette feuille — il advient parce que la contrainte temporelle a fait apparaître le mauvais angle initial. C'est exactement la trace oblique notée dans la fiche : « bâcler et en tirer un meilleur cadrage ». Le travail montre ici un déplacement de l'objectif lui-même, pas seulement de son exécution. La confiance reste modérée : un cadrage préalable, posé en amont, n'apparaît pas encore.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La pièce 2 a confirmé un recadrage rétrospectif explicite du vrai problème ; la pièce 1 a tenu comme indice d'un changement d'angle d'attaque dans le travail avec l'IA.",
+        "prescription": "Pour prolonger ce cadrage, un chemin possible serait de noter, au démarrage d'un prochain gros chantier de génération, la question préalable « quel est le vrai problème à résoudre ici ? » avant de formuler le prompt. La trace du cadrage en amont rendrait visible un geste que le portfolio donne aujourd'hui à voir surtout après coup."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Croisement d'un référentiel européen formel avec des estimations IA d'automatisabilité — fusion de deux registres (norme institutionnelle et projection algorithmique)."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Pattern transversal nommé : « la compétence est la même qu'un seul cours, multipliée par 100 » — synthèse qui dégage l'invariant d'échelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de synthèse intégrative ici — juste de la juxtaposition. La pièce 1 (croisement référentiel CEN × IA) pourrait n'être qu'une mise côte-à-côte de deux artefacts, sans insight émergent : aucun verdict, aucune compréhension nouvelle nommée n'apparaît dans le passage. La pièce 2 me résiste davantage : « la compétence est la même que produire un seul cours : c'est juste qu'il faut multiplier ce travail par 100 » formule un invariant d'échelle qui n'existait dans aucun raisonnement antérieur isolé — c'est un saut de niveau. Ce qui reste faible : l'insight de la pièce 2 est très bref, et la pièce 1 ne propose qu'un dispositif, pas un insight tiré du dispositif.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Formulation d'un invariant transversal (compétence identique modulo échelle) qui dépasse l'addition d'observations." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si l'invariant d'échelle est vraiment une synthèse ou une banalité d'expérience. Reformulé : « c'est pareil mais en plus gros » — phrase courte qui pourrait cacher une simple analogie. Cela dit, l'apprenant nomme précisément ce qui change (le volume × 100) et ce qui ne change pas (la nature de la compétence), ce qui est la mécanique propre d'une synthèse intégrative.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'insight est réel mais bref ; il fusionne le « petit » et le « grand » sous une compétence unique, mais sans déploiement métaphorique ou conceptuel développé qui le rendrait pleinement saillant."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme du voisinage de fragments sans fusion. La pièce 1 est tombée sous la présomption d'absence : croiser un référentiel et une estimation IA produit un dispositif intéressant mais n'expose pas, dans le passage extrait, un insight qui dépasse les sources. La pièce 2 a résisté puis tenu sous la sycophantie : l'apprenant formule un invariant d'échelle qui fusionne « produire un cours » et « produire une formation entière » sous une même compétence, ce qui n'existait dans aucune des observations prises isolément. Le travail montre ici un geste de synthèse réel mais bref, qui ne déploie pas encore l'insight en métaphore conceptualisante. La confiance reste mesurée parce qu'une seule pièce porte le verdict, et qu'elle est compacte.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce affaiblie mais retenue (invariant d'échelle nommé), insuffisante pour fonder une présence pleinement établie ; pièce 1 disqualifiée car juxtaposition sans insight émergent visible.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de déployer un peu plus l'invariant identifié — par exemple en notant ce que « multiplier par 100 » change qualitativement dans la tenue mentale du tout, ou en cherchant un autre domaine où le même invariant s'applique. La synthèse intégrative gagne à se prolonger d'un cran au-delà de sa formulation initiale."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Réflexion sur le processus cognitif lui-même (« se construire la formation en tête »), pas sur le résultat — métacognition de premier ordre."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Métacognition sur la fonction du journal-portfolio comme dispositif d'hygiène intellectuelle personnelle."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Description du mécanisme attentionnel par lequel l'écriture matinale ancre le cap au long de la journée."
+        },
+        {
+          "numero": 4,
+          "pid": 2,
+          "contexte": "Calibration honnête d'une limite (« personne ne va pouvoir relire à ma place ») — humilité épistémique sur le bottleneck humain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des bilans rétrospectifs (« j'ai progressé », « le journal aide ») plutôt qu'une métacognition au sens fort. La pièce 2 pourrait être lue comme un éloge convenu du journal — sans dispositif décrit. Elle me résiste pourtant : « hygiène intellectuelle » et « dire ce que l'on fait, faire ce que l'on dit » nomment précisément la fonction cognitive du dispositif, pas son contenu. La pièce 3 va plus loin en décrivant le mécanisme (l'écriture matinale comme ancre attentionnelle). La pièce 1 résiste fortement : « se construire l'intégralité de la formation en tête » prend pour objet le processus cognitif lui-même, pas le produit. La pièce 4 montre une calibration honnête d'une limite irréductible. Ce qui reste faible : aucun tag explicite [META], aucun « je n'arrive pas à me dissocier » du type cité dans la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'objet de la réflexion est explicitement le processus de construction mentale, pas son résultat." },
+            { "pieceId": 2, "motifResistance": "L'apprenant nomme la fonction cognitive du journal (« hygiène intellectuelle ») comme dispositif, pas comme contenu." },
+            { "pieceId": 3, "motifResistance": "Description fine du mécanisme par lequel un acte matinal pilote l'attention sur la durée." },
+            { "pieceId": 4, "motifResistance": "Calibration d'une limite personnelle (relire) que l'IA ne peut pas absorber — humilité épistémique située." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu réflexivité descriptive et métacognition. La pièce 2 frôle l'éloge générique du journal-portfolio. La pièce 1, en revanche, prend vraiment pour objet le processus cognitif (« se construire la formation en tête »), pas un objet externe. La pièce 3 décrit un mécanisme attentionnel précis. La pièce 4 nomme une limite calibrée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'objet du raisonnement est explicitement le processus cognitif de construction mentale ; le passage articule à la fois ce qui est attendu et ce qui a raté (étapes brûlées)."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage déclare la valeur du journal sans documenter une situation précise où elle a opéré ; reste retenue parce qu'il nomme correctement la fonction cognitive."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Mécanisme décrit avec précision : ancrage matinal → garde de cap → mobilisation des instants perdus pour reprendre le fil interrompu."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Calibration claire d'une limite humaine, mais formulée plus comme constat que comme stratégie de pilotage cognitif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme des bilans rétrospectifs convenus sur la valeur du journal et du travail. Plusieurs pièces m'ont forcé à reconnaître autre chose. La pièce 1 prend pour objet le processus cognitif lui-même (« se construire l'intégralité de la formation en tête »), distingue ce qui devait être fait et ce qui a raté, et reste sur le terrain du processus, pas du résultat. La pièce 3 décrit avec précision le mécanisme attentionnel par lequel l'écriture matinale rend possible la reprise instantanée du fil après interruption. La pièce 2 a tenu plus faiblement : elle nomme bien la fonction cognitive du journal mais reste déclarative. La pièce 4 tient comme calibration honnête d'une limite humaine. L'ensemble montre un travail métacognitif réel, ancré dans des mécanismes décrits, et calibré par la reconnaissance des limites. Le territoire reste centré sur le pilotage personnel ; il ne va pas (dans cette feuille) jusqu'à l'observation des limites de la capacité d'observation elle-même.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Deux pièces confirmées au temps 2 (processus de construction mentale, mécanisme attentionnel du journal) ; deux pièces affaiblies mais retenues complètent le faisceau.",
+        "prescription": "Pour prolonger cette métacognition, un chemin possible serait d'observer une fois la métacognition elle-même — par exemple noter quand l'écriture matinale n'ancre plus, et chercher pourquoi. La fiche signale que cette « métacognition sur la métacognition » se manifeste rarement, et que la repérer en acte ouvre un palier supplémentaire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Boucle entre version 1 et version 2 : les erreurs de la 1re alimentent la qualité de la 2e — rétroaction productive nommée explicitement."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Mécanisme d'ancrage attentionnel matinal qui produit, sur la journée, une moindre dispersion — boucle vertueuse entre écriture et concentration."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de pensée systémique ici — juste des observations causales linéaires. La pièce 1 est tentante mais peut n'être qu'un constat de causalité simple (erreur → correction). Pour résister à la présomption, il faudrait que la rétroaction soit nommée comme telle ou que le mécanisme soit décrit dans sa boucle. Or l'apprenant écrit « le processus itératif était donc probablement nécessaire » — il identifie le caractère bouclé du processus, pas seulement une étape. La pièce 2 décrit un cycle : écriture matinale → ancrage attentionnel → mobilisation des instants perdus → reprise du fil → moindre dispersion. C'est une boucle vertueuse non-nommée comme telle mais agissante. Ce qui reste faible : aucun vocabulaire systémique (boucle, levier, cascade), pas de modélisation d'un système multi-éléments.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant reconnaît que le processus itératif (et pas seulement linéaire) était nécessaire — il identifie la nature bouclée du dispositif." },
+            { "pieceId": 2, "motifResistance": "Le passage décrit une chaîne causale qui rebouche sur elle-même (écriture matinale → ancrage → reprise → ancrage)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas projeté une « boucle » là où il n'y a qu'une suite linéaire. La pièce 1 reconnaît bien le caractère itératif, mais cela peut rester très en surface (un projet refait deux fois n'est pas en soi une pensée systémique). La pièce 2 décrit une dynamique attentionnelle qui se renforce — c'est plus proche d'une vraie boucle vertueuse.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« Itératif » est utilisé mais sans modélisation du mécanisme de rétroaction (quelles erreurs typiques nourrissent quelles améliorations) — vocabulaire activé sans charge sémantique pleine."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le cycle est décrit mais sans modélisation explicite — l'apprenant raconte le bénéfice plus qu'il ne nomme la boucle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de simples chaînes causales linéaires, sans pensée systémique. La pièce 1 me résiste parce que l'apprenant nomme le caractère itératif du processus (« le processus itératif était donc probablement nécessaire »), ce qui suppose une compréhension du rebouclage. La pièce 2 me résiste parce qu'elle décrit une dynamique attentionnelle qui s'auto-renforce sur la journée. Sous la présomption de sycophantie, les deux pièces ont été affaiblies : le vocabulaire systémique reste implicite, la modélisation de la boucle reste descriptive. Le travail montre ici une intuition systémique correcte mais non encore conceptualisée. La trace est présente mais sobre.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Deux pièces affaiblies mais retenues, sans preuve décisive modélisant explicitement une boucle ou un point de levier — la pensée systémique est en germe mais peu formalisée dans cette feuille.",
+        "prescription": "Pour ouvrir un peu plus ce dossier, un chemin possible serait, lors d'un prochain processus itératif, de nommer explicitement la boucle : qu'est-ce qui circule de la version N à la version N+1, et qu'est-ce qui en retour calibre la version N suivante ? Mettre la flèche du rebouclage sur papier rendrait la pensée systémique plus saillante."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Diagnostic fonctionnel d'écosystème IA : Claude vs ChatGPT vs Gemini vs Perplexity, justifié par leurs forces relatives — distinction fine entre modèles."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Distinction entre ce qui est automatisable (génération à plan stable) et ce qui ne l'est pas (étape créative et désordonnée) — compréhension causale de la limite IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de littératie IA au sens fort — seulement du vocabulaire d'utilisateur informé. La pièce 1 ressemble d'abord à un comparatif d'abonnements. Elle résiste pourtant : l'apprenant articule pourquoi un combo de trois outils suffit (forces complémentaires, fin de l'utilité multimodale de ChatGPT depuis Claude 3), ce qui suppose une compréhension différentielle des capacités. La pièce 2 résiste aussi : elle distingue ce qui rend une tâche automatisable (plan stable, structure répétable) de ce qui résiste à l'automatisation (créativité, conversations croisées entre LLM, réflexions dispersées) — c'est une compréhension causale, pas une simple constatation. Ce qui reste faible : pas d'hypothèses techniques sur le mécanisme (tokens, fenêtre de contexte, hallucinations) ; le vocabulaire reste fonctionnel.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant articule des forces différentielles entre modèles, pas seulement des préférences." },
+            { "pieceId": 2, "motifResistance": "Distinction causale (et non descriptive) entre ce qui est automatisable et ce qui ne l'est pas." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si la pièce 1 n'est pas du choix de consommateur déguisé en diagnostic. L'apprenant ne nomme aucun mécanisme technique précis (architecture, tailles de contexte, modes de raisonnement). La pièce 2 est plus solide : elle articule une distinction sur la nature des tâches automatisables qui suppose une compréhension de ce que les LLM font bien et mal.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le vocabulaire reste fonctionnel (« comparaisons », « capacités multimodales ») sans mécanisme technique sous-jacent — vocabulaire activé sans charge causale complète. Tient comme indice."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La distinction est explicite et causale : ce qui est désordonné (conversations croisées, réflexions divergentes) reste irréductible à l'IA, ce qui est structuré (plan stabilisé) devient automatisable."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme du vocabulaire d'utilisateur informé sans compréhension technique sous-jacente. La pièce 2 m'a résisté en formulant une distinction causale entre les tâches qui résistent à l'IA (créativité divergente, conversations croisées) et celles qui se laissent automatiser une fois le plan stabilisé — c'est une compréhension fonctionnelle réelle du périmètre d'action des LLM. La pièce 1 a été affaiblie : le diagnostic d'écosystème est correct mais reste fonctionnel, sans mécanisme technique nommé. Le travail montre ici une littératie pragmatique — savoir ce que tel outil fait mieux dans quelle situation — plus que sous-le-capot. La fiche distingue ces deux registres ; le portfolio porte ici clairement le premier.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Pièce 2 confirmée comme compréhension causale de la limite IA ; pièce 1 affaiblie mais retenue comme indice de diagnostic d'écosystème.",
+        "prescription": "Pour prolonger cette littératie, un chemin possible serait de relier une observation comportementale concrète (par exemple une difficulté de tel modèle à tenir un long plan) à un mécanisme nommé (fenêtre de contexte, attention, etc.). La compréhension fonctionnelle gagnerait à descendre d'un cran vers le causal mécanique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Description d'un pipeline en deux phases (conception créative non-automatisable / génération automatisable) avec conversations croisées entre LLM en amont — architecture d'un workflow multi-agents."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas ici de conception architecturale au sens de 1.07 — juste un récit de méthode. La pièce 1 mentionne « des conversations croisées entre LLM » en amont, ce qui pourrait suggérer un dispositif multi-agents, mais aucun rôle n'est différencié (pas de « superviseur », « bâtisseur », « orchestrateur »), aucun flux de données entre IA n'est décrit, aucun mécanisme de routing n'apparaît. La pièce ne dit pas que l'output de l'une alimente l'input de l'autre avec des règles. Elle décrit plutôt une distinction de phases dans le processus humain, dont l'IA est l'instrument. La fiche est claire : un prompt isolé, ou même un dialogue entre LLM sans architecture, n'est pas une architecture. Aucune pièce ne résiste vraiment.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Comme aucune pièce n'a résisté au temps 1, le temps 2 confirme l'absence de matière probante pour cette compétence dans cette feuille.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la mention des « conversations croisées entre LLM » portait une pensée d'architecture. La présomption d'absence a tenu : la feuille ne décrit pas de composants différenciés, pas de flux entre IA, pas de mécanisme de monitoring ou de fallback. Le passage situe l'IA dans un processus humain à deux phases — créative puis exécutive — sans concevoir un système où les IA tiennent des rôles articulés entre eux. La fiche distingue précisément ce type de cas : une architecture suppose qu'un autre pourrait comprendre et maintenir le système. Ce n'est pas le registre de la feuille. Le territoire de la conception multi-agents reste à explorer dans le portfolio textuel.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "Aucune pièce ne résiste à la présomption d'absence — la feuille décrit des phases de processus humain, pas une architecture multi-agents avec rôles différenciés, flux et mécanismes.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de décrire un dispositif où plusieurs sessions IA tiennent des rôles distincts (par exemple : une session « architecte de plan », une session « rédacteur de chapitre », une session « relecteur critique »), en précisant ce qui circule entre elles. La cartographie d'un tel système, même rétrospective, rendrait visible une pensée architecturale."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Identification d'une stratégie de prompting plus efficace (moins de directive sur le contenu, plus de contexte sur le projet) — itération stratégique avec analyse du pourquoi."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Demande adressée aux IA d'estimer l'automatisabilité des tâches du référentiel CEN — formulation d'un prompt fonctionnel sur un objet externe."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de dialogue IA avancé ici — juste de l'usage. La pièce 2 décrit une requête classique (« demander aux IA d'estimer ») sans analyse du prompt ni rôles différenciés — elle ne résiste pas vraiment. La pièce 1 me résiste davantage : l'apprenant analyse pourquoi sa nouvelle stratégie de prompt fonctionne mieux (moins de directive sur le contenu, plus de contexte sur le projet), ce qui correspond à la trace « itérations stratégiques qui analysent pourquoi la reformulation change le résultat » de la fiche. Ce qui reste faible : pas de méta-prompting récursif, pas de rôles contradictoires, pas de techniques nommées (chain-of-thought, few-shot).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant analyse pourquoi sa stratégie de prompting modifiée a porté ses fruits — itération avec lecture de l'effet." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si la pièce 1 n'est pas plus un cadrage de l'objectif (1.02) qu'une sophistication de formulation (1.08). Le passage cible bien la formulation du prompt (« moins de directive », « plus de contexte »), ce qui touche le niveau 1.08 — mais c'est aussi un déplacement d'angle, donc une frontière fine. Le verdict réside dans la part articulée du « pourquoi ça marche ».",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Frontière avec 1.02 (cadrage) : la pièce a été retenue dans les deux compétences. Pour 1.08, elle reste comme indice d'une itération stratégique avec analyse, mais sans technique nommée ni récursivité explicite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire l'usage IA de cette feuille comme du simple recours à l'outil. La pièce 1 m'a forcé à reconnaître une itération stratégique : l'apprenant change la nature de ses instructions, observe que ça marche mieux, et articule pourquoi (le contexte au lieu de la directive). Sous la présomption de sycophantie, la pièce a été affaiblie : il n'y a pas de méta-prompting récursif ni de rôles différenciés, et la frontière avec le cadrage (1.02) est fine. Le travail montre ici une sophistication réelle mais sobre du dialogue avec l'IA, plus orientée vers l'optimisation du contexte que vers l'orchestration multi-rôles. La trace est présente mais ne révèle pas, dans cette feuille, le registre le plus avancé de la fiche.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce affaiblie mais retenue ; la trace existe (itération analysée) mais le registre avancé de la fiche (méta-prompting, rôles différenciés) n'apparaît pas dans cette feuille.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de noter, lors d'une prochaine bascule de stratégie de prompt, à la fois l'avant, l'après et l'hypothèse sur ce qui a changé dans le comportement du modèle. Documenter aussi une situation où l'on assigne deux rôles distincts à des sessions IA pour faire émerger un point de vue contradictoire ouvrirait le palier suivant de la fiche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où une logique de type algorithmique (décomposition, arbre de décision, conditionnelle) a été appliquée à un problème non-informatique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Articulation explicite du déséquilibre génération/relecture : l'IA fait gagner du volume mais le humain ne peut pas être délégué pour relire — trade-off nommé."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Répartition explicite entre ce qui revient à l'humain (conception créative désordonnée, plan en tête) et ce qui revient à l'IA (génération une fois le plan stable)."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Rétrospective sur trois ans d'usage volontaire de l'IA — bilan de pratique mais sans articulation des forces comparatives."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas de synergie hybride théorisée — juste de l'usage et du recours. La pièce 3 tombe rapidement : elle raconte la discipline d'usage sans articuler de répartition humain/IA. La pièce 1 me résiste : « personne ne va pouvoir relire à ma place » nomme précisément ce que l'humain garde et pourquoi, en contraste avec la vitesse de génération que l'IA fournit. La pièce 2 me résiste plus fort encore : elle distingue explicitement l'étape « créative et désordonnée » (où l'IA est un instrument dans une danse humaine non-structurée) de l'étape de génération (où l'IA prend le relais de façon « quasiment automatisable »). C'est exactement le cœur de 1.10 selon la fiche : articuler ce qu'on garde et pourquoi, ce qu'on délègue et pourquoi. Ce qui reste faible : pas d'anticipation de l'évolution des complémentarités à mesure que l'IA progresse.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant articule explicitement la limite irréductible de la délégation (relire) face à la vitesse infinie de génération." },
+            { "pieceId": 2, "motifResistance": "Répartition explicite des deux phases entre humain (conception créative) et IA (exécution une fois le plan stabilisé)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si la pièce 1 n'est pas un simple constat de bottleneck plutôt qu'une articulation des forces comparatives. Elle nomme bien ce que l'humain garde (la relecture) mais ne théorise pas pleinement pourquoi le humain est irremplaçable ici (jugement de pertinence ? responsabilité ?). La pièce 2 est plus solide : elle distingue la nature des deux phases et explique ce qui rend l'une automatisable et l'autre pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le constat est fort mais court ; il nomme la limite sans la théoriser entièrement (pourquoi la relecture humaine est-elle irremplaçable ?). Tient comme indice."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'apprenant articule la nature qualitative des deux phases (créatif désordonné vs structuré automatisable) et désigne le critère qui fait basculer une tâche de l'humain vers l'IA — c'est de la synergie articulée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de simples descriptions d'usage. La pièce 2 m'a résisté avec force : l'apprenant ne se contente pas d'utiliser l'IA, il distingue ce qui rend une tâche automatisable (plan stabilisé, structure répétable) de ce qui résiste à l'automatisation (créativité divergente, conversations croisées entre LLM). C'est une articulation explicite des forces comparatives, ce que la fiche pose comme critère discriminant. La pièce 1 ajoute, en indice, un trade-off nommé : l'IA fait gagner du volume mais ne peut pas absorber la relecture. La pièce 3 a été disqualifiée : elle raconte une discipline d'usage sans articuler les forces respectives. Le travail montre ici une pensée synergique formulée — l'apprenant articule ce qu'il garde et pourquoi. La trace est solide, sans encore inclure une anticipation des évolutions futures de cette répartition.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Pièce 2 confirmée comme articulation explicite des forces comparatives humain/IA ; pièce 1 affaiblie mais retenue comme trade-off nommé.",
+        "prescription": "Pour prolonger cette synergie, un chemin possible serait d'imaginer ce qui pourrait basculer du côté humain vers le côté IA dans les 12-18 prochains mois — quelle part de la « phase créative désordonnée » résisterait encore, et laquelle ne résisterait peut-être plus. La fiche signale que l'anticipation de l'évolution des complémentarités ouvre un palier supplémentaire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 9,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 3,
+    "nonEtablies": 1,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 29 janvier déploie un travail de pensée articulé autour de la production massive de contenus avec l'IA et de ce que cette production renvoie à son auteur. La voix dominante est sobre, retournée vers le processus, attentive à ce qui se passe en amont comme à ce qui résiste en aval. Les passages mêlent journal de bord d'avancement (six manuels, 500ko en quelques jours), réflexions méthodologiques (passer de la directive au contexte), et observations métacognitives (l'écriture matinale comme ancre attentionnelle). Un fil traverse l'ensemble : le travail sur son propre travail — relire, recadrer, mesurer ce qui se laisse déléguer et ce qui ne se laisse pas. L'usage de l'IA est nommé comme une pratique disciplinée, en place depuis trois ans, articulée par contraste entre outils.",
+    "territoiresDenses": [
+      {
+        "competence": "Métacognition & Humilité Épistémique",
+        "description": "Plusieurs passages prennent pour objet le processus cognitif lui-même : se construire la formation en tête avant de la générer, l'écriture matinale comme dispositif attentionnel, la fonction d'hygiène intellectuelle du journal-portfolio.",
+        "extraitVerbatim": "Le plus difficile, c'est de se construire l'intégralité de la formation en tête, avant de la générer, pour pouvoir la modifier, la restructurer, la rendre logique.",
+        "ceQueCaDit": "Le travail s'observe lui-même en distinguant l'objet cognitif (la formation en tête) du résultat (les manuels générés). La métacognition est ancrée dans des mécanismes décrits, pas seulement nommée."
+      },
+      {
+        "competence": "Synergie & Coordination Hybride",
+        "description": "L'apprenant articule explicitement ce qui revient à l'humain (conception créative désordonnée, relecture) et ce qui revient à l'IA (génération une fois le plan stabilisé), avec un critère de bascule clair.",
+        "extraitVerbatim": "une fois le plan stabilisé, la génération des manuels est finalement quasiment automatisable",
+        "ceQueCaDit": "Le rapport humain-IA n'est pas raconté comme un recours mais comme une répartition réfléchie, fondée sur la nature qualitative des phases du travail."
+      },
+      {
+        "competence": "Cadrage de l'Intention",
+        "description": "Deux gestes de recadrage apparaissent : un changement explicite d'angle dans la stratégie de prompting (moins de directive, plus de contexte) et l'identification rétrospective du vrai problème (se représenter le tout d'abord).",
+        "extraitVerbatim": "La stratégie consistant à donner moins de directive sur le contenu, et plus de contexte sur le projet et de conseils sur la planification globale, a porté ses fruits.",
+        "ceQueCaDit": "Le cadrage est ici majoritairement rétrospectif, advenu par la contrainte ; un cadrage préalable, posé en amont, reste à venir."
+      },
+      {
+        "competence": "Littératie IA & Data Literacy",
+        "description": "Le travail distingue causalement ce qui se laisse automatiser (structure répétable) et ce qui résiste (créativité divergente), et diagnostique un écosystème de modèles selon leurs forces différentielles.",
+        "extraitVerbatim": "une fois le plan stabilisé, la génération des manuels est finalement quasiment automatisable",
+        "ceQueCaDit": "La littératie reste fonctionnelle (savoir ce que tel outil fait mieux) ; le registre causal mécanique (tokens, fenêtres de contexte) gagnerait à être visité."
+      },
+      {
+        "competence": "Pensée Critique & Anti-Hallucination",
+        "description": "L'auto-correction (« ça m'apprendra à vouloir aller trop vite ») et le rachat explicite par la relecture de la première version forment un mouvement de scepticisme appliqué à son propre travail.",
+        "extraitVerbatim": "si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première",
+        "ceQueCaDit": "La vigilance se porte ici sur son propre output plus que sur l'IA ; la traque d'erreur est nommée comme mécanisme productif."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas ramenés dans cette feuille. La pensée computationnelle, qui demanderait un transfert explicite de logique algorithmique hors de l'informatique, ne s'y rend pas — c'est probablement une question de feuille plutôt qu'une absence de fond. L'architecture de systèmes IA reste à l'écart : la feuille décrit une distinction de phases dans le travail humain, pas un dispositif où plusieurs IA tiennent des rôles articulés entre elles. La synthèse intégrative apparaît brièvement (l'invariant d'échelle « la compétence est la même multipliée par 100 ») sans se déployer en métaphore ou en concept. La pensée systémique pointe en germe à travers le caractère itératif du processus à deux versions, mais sans modélisation explicite de la boucle.",
+    "emergencesPole": "Trois observations traversent les compétences de ce pôle dans cette feuille. D'abord, le bottleneck humain : l'IA accélère la production, le humain reste le facteur limitant — pour relire, pour tenir le tout en tête, pour décider du cap. Ce bottleneck est nommé sans regret, comme une ligne. Ensuite, le rebouclage : version 1 nourrit version 2, écriture du matin nourrit le cap du jour, erreurs repérées nourrissent la qualité d'après ; le travail ne va pas en ligne droite, il revient sur lui-même. Enfin, l'ancrage : le journal et la documentation préalable sont nommés comme dispositifs qui tiennent le cap quand les sollicitations dispersent. Le fil commun de ces trois observations : ce qui se passe avant de générer compte autant que ce qui est généré.",
+    "pistes": [
+      "Pour enrichir la métacognition, un chemin possible serait d'observer une fois la métacognition elle-même — par exemple noter quand l'écriture matinale n'ancre plus, et chercher pourquoi.",
+      "Pour prolonger la synergie hybride, un chemin possible serait d'imaginer ce qui pourrait basculer du côté humain vers le côté IA dans les 12-18 prochains mois, et ce qui résisterait encore.",
+      "Pour densifier la synthèse intégrative, un chemin possible serait de déployer l'invariant identifié (« la compétence est la même multipliée par 100 ») d'un cran supplémentaire — chercher un autre domaine où le même invariant s'applique.",
+      "Pour ouvrir la pensée systémique, un chemin possible serait, lors d'un prochain processus itératif, de nommer la boucle — qu'est-ce qui circule de la version N à la version N+1, et qu'est-ce qui en retour calibre la version suivante.",
+      "Pour visiter l'architecture de systèmes IA, un chemin possible serait de décrire un dispositif où plusieurs sessions IA tiennent des rôles distincts (architecte, rédacteur, relecteur), en précisant ce qui circule entre elles."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 29 janvier déploie un travail de pensée articulé autour de la production massive de contenus avec l'IA et de ce que cette production renvoie à son auteur. La voix dominante est sobre, retournée vers le processus, attentive à ce qui se passe en amont comme à ce qui résiste en aval. Les passages mêlent journal de bord d'avancement (six manuels, 500ko en quelques jours), réflexions méthodologiques (passer de la directive au contexte), et observations métacognitives (l'écriture matinale comme ancre attentionnelle). Un fil traverse l'ensemble : le travail sur son propre travail — relire, recadrer, mesurer ce qui se laisse déléguer et ce qui ne se laisse pas. L'usage de l'IA est nommé comme une pratique disciplinée, en place depuis trois ans, articulée par contraste entre outils.\n\n## Territoires les plus denses\n\n**Métacognition & Humilité Épistémique.** Plusieurs passages prennent pour objet le processus cognitif lui-même : se construire la formation en tête avant de la générer, l'écriture matinale comme dispositif attentionnel, la fonction d'hygiène intellectuelle du journal-portfolio. Verbatim retenu : « Le plus difficile, c'est de se construire l'intégralité de la formation en tête, avant de la générer, pour pouvoir la modifier, la restructurer, la rendre logique. » Le travail s'observe lui-même en distinguant l'objet cognitif (la formation en tête) du résultat (les manuels générés).\n\n**Synergie & Coordination Hybride.** Le travail articule explicitement ce qui revient à l'humain (conception créative désordonnée, relecture) et ce qui revient à l'IA (génération une fois le plan stabilisé), avec un critère de bascule clair. Verbatim retenu : « une fois le plan stabilisé, la génération des manuels est finalement quasiment automatisable ». Le rapport humain-IA n'est pas raconté comme un recours mais comme une répartition réfléchie.\n\n**Cadrage de l'Intention.** Deux gestes apparaissent : un changement explicite d'angle dans la stratégie de prompting (moins de directive, plus de contexte) et l'identification rétrospective du vrai problème (se représenter le tout d'abord). Verbatim retenu : « La stratégie consistant à donner moins de directive sur le contenu, et plus de contexte sur le projet et de conseils sur la planification globale, a porté ses fruits. » Le cadrage advient ici majoritairement par la contrainte rencontrée.\n\n**Littératie IA & Data Literacy.** Le travail distingue causalement ce qui se laisse automatiser (structure répétable) et ce qui résiste (créativité divergente). Verbatim retenu : « une fois le plan stabilisé, la génération des manuels est finalement quasiment automatisable ». La littératie reste fonctionnelle ; le registre causal mécanique gagnerait à être visité.\n\n**Pensée Critique & Anti-Hallucination.** L'auto-correction et le rachat explicite par la relecture forment un mouvement de scepticisme appliqué à son propre travail. Verbatim retenu : « si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première ». La vigilance se porte ici sur son propre output.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires ne sont pas ramenés dans cette feuille. La pensée computationnelle, qui demanderait un transfert explicite de logique algorithmique hors de l'informatique, ne s'y rend pas — c'est probablement une question de feuille plutôt qu'une absence de fond. L'architecture de systèmes IA reste à l'écart : la feuille décrit une distinction de phases dans le travail humain, pas un dispositif où plusieurs IA tiennent des rôles articulés. La synthèse intégrative apparaît brièvement (l'invariant d'échelle) sans se déployer. La pensée systémique pointe en germe à travers le caractère itératif du processus, mais sans modélisation explicite de la boucle.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences de ce pôle. D'abord, le bottleneck humain : l'IA accélère la production, le humain reste le facteur limitant — pour relire, pour tenir le tout en tête, pour décider du cap. Ce bottleneck est nommé sans regret, comme une ligne. Ensuite, le rebouclage : version 1 nourrit version 2, écriture du matin nourrit le cap du jour ; le travail ne va pas en ligne droite, il revient sur lui-même. Enfin, l'ancrage : le journal et la documentation préalable tiennent le cap quand les sollicitations dispersent. Le fil commun : ce qui se passe avant de générer compte autant que ce qui est généré.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la métacognition, un chemin possible serait d'observer une fois la métacognition elle-même — par exemple noter quand l'écriture matinale n'ancre plus, et chercher pourquoi.\n- Pour prolonger la synergie hybride, un chemin possible serait d'imaginer ce qui pourrait basculer du côté humain vers le côté IA dans les 12-18 prochains mois, et ce qui résisterait encore.\n- Pour densifier la synthèse intégrative, un chemin possible serait de déployer l'invariant identifié (« la compétence est la même multipliée par 100 ») d'un cran supplémentaire — chercher un autre domaine où le même invariant s'applique.\n- Pour ouvrir la pensée systémique, un chemin possible serait, lors d'un prochain processus itératif, de nommer la boucle — qu'est-ce qui circule de la version N à la version N+1, et qu'est-ce qui en retour calibre la version suivante.\n- Pour visiter l'architecture de systèmes IA, un chemin possible serait de décrire un dispositif où plusieurs sessions IA tiennent des rôles distincts (architecte, rédacteur, relecteur), en précisant ce qui circule entre elles."
+  }
+}

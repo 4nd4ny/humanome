@@ -1,0 +1,445 @@
+{
+  "poleNum": "5",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum !",
+      "contexte": "Échec immédiat après le lancement du prompt « ultime », transformé en diagnostic constructif et reconfiguration du pipeline (5.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "En rédigeant tout celà, je réalise que construire cette architecture, ce palais mental, dans lequel j'ai toutes les structures et contenus de toutes les 8 formations (6 tuteurs + 2 apprenants) en lien avec tous les 600 livres des pédagogues que j'ai lu durant la thèse et sur lesquels je m'appuie pour faire ces choix, est finalement assez simple, car c'est ce que j'ai fait toute ma vie en écrivant du code.",
+      "contexte": "Connexion explicite entre la pratique présente (architecture pédagogique) et un passé professionnel long (le code) — extraction de sens en cours d'écriture (5.03, 5.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "(*) J'ai quand même mis un an avant de me décider de m'attaquer à ce bug que personne dans l'équipe ne voulait traiter, qui a nécessité trois semaines de lecture du code de mes collègues et surtout… une intuition géniale ;-) Ça aussi c'est ce qu'on devrait apprendre en classe : comment avoir des intuitions géniales. Car contrairement à ce que l'on pourrait penser, ça n'est jamais possible en travaillant. Bref, je m'égare ! Mais quels beaux souvenirs <3",
+      "contexte": "Souvenir professionnel mobilisé pour théoriser quelque chose de transférable (« comment avoir des intuitions géniales ») — narration réflexive avec marqueur métanarratif (« je m'égare ! ») (5.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "C'est ça la pensée computationnelle : c'est exactement cette aptitude là que l'on devrait enseigner aux élèves. Plus le code en tout cas (car franchement, faire bouger une tortue logo à 15 / 16 ans pour comprendre les boucles, ça n'excite personne).",
+      "contexte": "Théorisation spontanée d'un concept personnel né du vécu — extraction d'un apprentissage transférable au sens fort (5.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas.",
+      "contexte": "Persévérance malgré la fatigue, sans validation externe — moteur intrinsèque visible dans l'acte (5.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "J'ai décidé de perdre du poids car là ça ne va plus. Du coup je vais me ré-imposer de dormir au moins 6h par nuit et idéalement 7h30, au lieu de mes 4h30 habituelles. Ça va beaucoup ralentir ma production, puisque les journées sont prises par Soledad, Alicia, Leila… et l'ORP, mais peut-être que ça m'évitera de finir comme ma sœur…",
+      "contexte": "Décision de modifier le rythme à partir d'un signal corporel (« ça ne va plus ») avec une figure familiale chargée — souveraineté attentionnelle somatique (5.07) et possible transformation interne (5.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Je vais arrêter pour ce soir et demain je reprends mes prompts (ça ira vite) et je testerai cette fois-ci sur un manuel entier, ce qui me bloquera Claude jusqu'à la semaine prochaine probablement…",
+      "contexte": "Décision d'arrêter pour la nuit, projection au lendemain et à la semaine suivante (5.07).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le « prompt ultime » lancé en grande pompe rencontre immédiatement un échec, qui devient le matériau du diagnostic et de la reconfiguration."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'antifragilité attend le dépassement, pas l'endurance — le retournement où l'échec ouvre l'histoire au lieu de la fermer. J'aborde la pièce 1 en m'attendant à ce qu'elle ne soit qu'un débogage ordinaire. Pourtant, la séquence est riche : un prompt présenté comme « ultime » (italique ironique), suivi d'un échec immédiat (« je vois tout de suite un gros problème »), suivi d'un diagnostic mécanique et d'une reconception complète du pipeline. Le ton (l'italique ironique sur « ultime ») suggère que l'apprenant avait pressenti que ce serait peut-être trop ambitieux, et le « gros problème » devient l'occasion d'une bascule architecturale. Mais s'agit-il vraiment d'antifragilité au sens de la fiche ? Le « chaos » ici est modeste : un pipeline qui plante en soirée, pas une crise existentielle. Le dépassement existe (le pipeline est repensé), mais reste à l'échelle technique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Échec immédiat transformé en matière première de reconception — la structure narrative est celle du retournement, où le problème devient l'occasion d'une bascule." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas un débogage de la portée d'un récit d'antifragilité. La fiche est claire : la trace fiable contient une crise ou un échec qui réoriente le récit. Ici, le « gros problème » est un échec technique en soirée, transformé en redesign du pipeline — c'est un retournement à petite échelle, pas un « phénix transformé ». L'attaque (a) insuffisance probatoire est sérieuse : la pièce ressemble plus à de l'itération créative (3.01) qu'à de l'antifragilité au sens fort. L'attaque (b) confusion de compétence est également sérieuse — la même pièce relève déjà de 3.01.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La trace de retournement existe mais à petite échelle ; elle relève davantage de la créativité itérative (3.01) que de l'antifragilité au sens de la fiche, qui suppose une épreuve plus structurante."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer un débogage en soirée d'un récit d'antifragilité au sens de la fiche. La pièce porte bien une structure de retournement (l'échec ouvre la suite), avec un ton ironique cohérent (« prompt ultime » en italique), mais à une échelle qui ne correspond pas à la trace fiable décrite — crise, perte, épreuve structurante. Le « chaos » est ici modeste, et le dépassement reste technique. Ce qui en résulte est un signal léger : la posture antifragile semble familière à l'apprenant (il ne panique pas, il reconfigure), mais la séance ne fournit pas une épreuve à la mesure de la compétence. Ce qui resterait à explorer, ce serait un récit de crise plus profonde où la transformation aurait été identitaire ou existentielle, pas seulement technique.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une seule pièce affaiblie a survécu : la structure de retournement est présente mais l'échelle de l'épreuve reste technique et la pièce chevauche fortement la créativité itérative.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de raconter une épreuve plus structurante — un échec, une perte, une crise — en nommant ce qui a été transformé par cette traversée, et pas seulement ce qui a été réparé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Reconnaissance qu'un rythme insoutenable ne peut plus continuer (« là ça ne va plus ») avec engagement concret d'abandonner les nuits courtes — possible désapprentissage d'un mode de fonctionnement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La plasticité-désapprentissage attend l'abandon explicite d'un modèle antérieur, pas l'ajout de quelque chose. J'aborde la pièce 1 en m'attendant à ce qu'elle ne soit qu'une décision de santé. Pourtant, la formulation « ça ne va plus » et « ré-imposer 7h30 au lieu de 4h30 » indique l'abandon d'un mode de fonctionnement (les nuits courtes) qui était jusqu'ici la norme — c'est un changement de peau opérationnelle, pas un simple ajustement. La fiche signale les métaphores d'enfermement comme traces obliques, et « ça ne va plus » peut signaler un point de bascule. Mais la pièce ne déploie pas la dimension cognitive ou identitaire du désapprentissage : c'est un changement de comportement, pas explicitement un abandon de modèle antérieur.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Abandon explicite d'un mode de fonctionnement (4h30 de sommeil) avec reconnaissance qu'il n'est plus tenable — possible mue opérationnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne prends pas un changement d'habitude pour un désapprentissage cognitif. La fiche distingue 5.02 du changement externe : la mue est une transformation interne du penser ou du sens de soi. Ici, la décision est comportementale — modifier l'horaire de sommeil. L'abandon est réel, mais il porte sur une routine, pas sur une conviction ou un modèle cognitif. L'attaque (b) confusion de compétence est sérieuse : cela peut relever davantage de 5.07 (souveraineté attentionnelle) ou de 4.01 (raisonnement éthique appliqué) que de la plasticité au sens fort. La pièce ne contient pas non plus la tension entre ancien et nouveau qu'exige la trace fiable de la fiche.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le changement porte sur une routine de sommeil (comportemental), pas sur un modèle cognitif ou identitaire abandonné ; la fiche cible une transformation interne du penser ou du sens de soi, pas une modification d'habitude."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans la décision de modifier le sommeil, un possible désapprentissage. La pièce porte l'abandon d'une habitude, mais pas l'abandon d'un modèle cognitif ou identitaire — c'est un changement comportemental, pas une mue au sens de la fiche. Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait des situations où un savoir, une expertise ou une identité professionnelle aurait été activement déconstruit, avec la tension entre l'ancien et le nouveau rendue visible.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a chuté au temps 2 : elle porte un changement de routine, pas un désapprentissage cognitif ou identitaire au sens de la fiche.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter un moment où un savoir ou une identité antérieure (l'ancienne expertise, l'ancien rôle, une conviction longue) a été activement abandonné, avec la tension entre ce qui a été lâché et ce qui reste."
+      },
+      "tracesRetenues": []
+    },
+
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Connexion explicite, en cours d'écriture, entre la pratique présente (architecture pédagogique) et une pratique passée (le code) — extraction d'un sens transversal."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Souvenir d'un bug d'équipe transformé en théorie pédagogique (« comment avoir des intuitions géniales »), avec marqueur métanarratif (« je m'égare ! ») et retour assumé."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Théorisation spontanée d'un concept (la pensée computationnelle redéfinie comme aptitude transversale à enseigner) née du récit en cours."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La narration réflexive attend le passage du QUOI au POURQUOI au QU'EST-CE QUE ÇA SIGNIFIE, avec extraction d'un apprentissage transférable. J'aborde ces pièces en m'attendant à du journal de bord descriptif. La pièce 1 (« En rédigeant tout celà, je réalise que [...] c'est ce que j'ai fait toute ma vie en écrivant du code ») connecte explicitement deux périodes très distantes (l'écriture présente et la carrière passée) et nomme un sens transversal — c'est le marqueur central de la narration réflexive. La pièce 2 (le souvenir du bug + « je m'égare ! » + théorisation pédagogique) est riche : marqueur métanarratif explicite, fil rouge maintenu malgré la digression, et extraction d'une leçon nommée (« comment avoir des intuitions géniales »). La pièce 3 (théorisation de la pensée computationnelle) produit un concept à partir du récit, ce qui correspond précisément au niveau Expert décrit dans la fiche (« théorisation active »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Connexion explicite entre événements distants dans le temps avec extraction d'un sens transversal — passage du QUOI au QU'EST-CE QUE ÇA SIGNIFIE." },
+            { "pieceId": 2, "motifResistance": "Marqueur métanarratif (« je m'égare ! ») + fil rouge maintenu malgré la digression + extraction d'une leçon nommée." },
+            { "pieceId": 3, "motifResistance": "Théorisation spontanée d'un concept à partir du récit — produire du savoir, pas seulement raconter." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces qui résistent toutes : je durcis ma lecture. La pièce 1 est claire — la connexion est nommée, le sens est extrait, le mouvement de pensée est lisible. L'attaque (e) surinterprétation pédagogique est tentable mais ne tient pas : l'apprenant fait lui-même le rapprochement. La pièce 2 contient le marqueur métanarratif exact que la fiche cite comme trace oblique forte (« pourquoi je parle de cela ? ») — ici sous la forme inversée (« je m'égare ! »), qui signale la même lucidité sur la digression. La pièce 3 est plus délicate : la théorisation de la pensée computationnelle est-elle vraiment un acte de narration réflexive, ou plutôt de pensée computationnelle (1.09) elle-même ? La frontière est fine. L'attaque (b) confusion de compétence affaiblit la pièce, sans la disqualifier — la théorisation est née du récit lui-même.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La connexion est explicitement formulée par l'apprenant lui-même au moment de l'écriture (« je réalise que ») — c'est le mouvement réflexif que la fiche décrit, pas une projection."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce contient les marqueurs centraux : digression assumée, retour au fil rouge, extraction d'une leçon transférable. Le marqueur métanarratif (« je m'égare ! ») signale la conscience du niveau narratif."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La théorisation chevauche la pensée computationnelle (1.09), mais elle est née du récit lui-même (« en rédigeant tout celà, je réalise »), ce qui en fait aussi une trace de narration réflexive au niveau le plus avancé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer un journal bien écrit d'une narration réflexive au sens fort. Trois pièces ont tenu — deux sans réserve (la connexion explicite passé/présent et le marqueur métanarratif avec retour au fil rouge), une affaiblie (la théorisation, qui chevauche la pensée computationnelle). Ce qui en résulte est une présence solidement attestée : le journal du 25 janvier ne décrit pas seulement ce qui s'est passé, il extrait du sens en cours d'écriture, produit un concept à partir du récit, et nomme la digression sans s'y perdre. La théorisation active citée par la fiche comme niveau Expert est précisément à l'œuvre. Ce qui resterait à approfondir, ce serait la vérification de la cohérence entre le sens narré ici et les actions documentées ailleurs dans le portfolio — pour s'assurer que le sens vécu et le sens narré sont alignés.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.8,
+        "motif": "Deux pièces confirmées sans réserve (connexion temporelle explicite, marqueur métanarratif avec retour au fil rouge) et une pièce affaiblie retenue (théorisation spontanée) attestent une pratique avancée de la narration réflexive, jusqu'à la théorisation active.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de revenir, dans une prochaine séance, sur les concepts personnels nés en cours d'écriture (la pensée computationnelle re-définie, les intuitions géniales comme objet d'enseignement) en testant s'ils tiennent une fois refroidis. Ce qui résiste au lendemain a souvent plus de portée que ce qui apparaît dans l'élan."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "5.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à l'acceptation de l'intelligence supérieure de l'IA. L'apprenant utilise l'IA comme outil aligné avec son intention, sans que la séance porte la tension émotionnelle (surprise, malaise, admiration mêlée) qui caractérise la traversée du deuil cognitif. Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où l'IA aurait produit quelque chose qui dépasse ce que l'apprenant aurait pu faire seul, avec la réaction émotionnelle qui en a découlé."
+      }
+    },
+
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Persévérance malgré la fatigue, sans validation externe (« Il est tard, mais je vais quand même lancer ») — moteur intrinsèque visible dans l'acte."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Connexion entre la pratique présente et un passé professionnel long, qui suggère un fil de sens transverse — le sens comme reconnaissance d'une continuité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Le sens et la motivation intrinsèque attendent le « pourquoi » qui survit aux échecs et à l'invisibilité, et qui s'incarne dans l'action plutôt que dans les déclarations. J'aborde ces pièces en m'attendant à ne pas trouver de déploiement explicite du sens. La pièce 1 est intéressante : l'apprenant continue à travailler tard, sans validation, sur un projet qu'il pourrait facilement reporter — c'est le sens qui se manifeste par l'acte plutôt que par le mot. La fiche signale précisément cette trace oblique : « apprenant qui continue à travailler dans l'adversité sans jamais expliquer pourquoi ». La pièce 2 connecte le présent à un passé long (toute une vie de code), ce qui suggère un fil de sens qui survit aux changements de domaine. Mais aucune des deux pièces ne déploie le « pourquoi » explicitement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Persévérance tardive sans validation externe — sens qui se manifeste dans l'acte plutôt que dans la déclaration." },
+            { "pieceId": 2, "motifResistance": "Continuité du sens à travers le temps (code → architecture pédagogique) — fil conducteur reconnu en cours d'écriture." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas la simple obstination du poids du sens. La fiche est claire : le test est « l'apprenant resterait-il motivé même si le projet devenait difficile, ingrat ou invisible ? ». La pièce 1 montre l'apprenant continuant tard malgré la fatigue, ce qui est un indice de moteur intrinsèque. L'attaque (a) insuffisance probatoire est sérieuse — une soirée de travail tardif peut être de l'obstination, de la pression de deadline, ou un coup de motivation passager — mais combinée à la pièce 2 (qui montre une continuité de sens sur des années), elle prend plus de poids. La pièce 2 risque (b) confusion de compétence avec 5.03 (narration réflexive) : la connexion temporelle est aussi une trace de narration. Mais la dimension de continuité du sens à travers les changements de domaine est bien 5.05.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Une soirée de travail tardif pourrait être de l'obstination ; la pièce tient comme indice mais ne suffit pas à elle seule à attester un moteur intrinsèque profond."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La continuité du sens chevauche la narration réflexive ; néanmoins, la reconnaissance qu'un même geste cognitif traverse plusieurs décennies de pratique atteste un fil de sens transverse."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer l'obstination ponctuelle d'un moteur intrinsèque profond. Deux pièces affaiblies ont survécu : la persévérance tardive sans validation externe, et la reconnaissance d'une continuité du sens entre le code passé et l'architecture pédagogique présente. Aucune ne déploie le « pourquoi » explicitement, mais ensemble elles attestent un sens incarné dans l'acte plutôt que formulé en discours — ce que la fiche reconnaît comme une trace oblique forte. Ce qui en résulte est un signal modéré : la matière existe, sans la profondeur d'une articulation explicite. Ce qui resterait à approfondir, ce serait une formulation du « pourquoi » qui éclairerait l'arrière-plan — ou une situation où le sens se manifesterait dans une persévérance plus coûteuse encore (sur un projet ingrat, invisible).",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Deux pièces affaiblies retenues qui ensemble attestent un sens qui s'incarne dans l'acte (persévérance tardive sans validation) et dans la continuité temporelle (fil de sens entre code et pédagogie).",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de revenir, dans une prochaine séance moins productive ou moins enthousiaste, sur ce qui maintient l'envie de continuer. Le « pourquoi » qui survit aux jours difficiles est souvent plus fiable que celui qui apparaît dans l'élan."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à l'autonomie hors-ligne et à la débrouillardise. La séance est entièrement numérique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la technologie a fait défaut, ou un moment où le travail s'est fait sur papier, au tableau ou par bricolage avec ressources limitées."
+      }
+    },
+
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Reconnaissance d'un signal corporel de surcharge (« là ça ne va plus ») suivie d'une décision concrète de modifier le rythme (passer de 4h30 à 6-7h30 de sommeil)."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Décision d'arrêter pour ce soir et de reporter la suite au lendemain, avec projection vers la semaine suivante."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La souveraineté attentionnelle attend une intention en présence d'alternatives et une boucle signal-décision-action. J'aborde ces pièces en m'attendant à ne trouver que de la fatigue passive. La pièce 1 résiste : la fiche cite précisément les traces obliques de la souveraineté attentionnelle somatique (« reconnaissance de signaux corporels de surcharge [...] suivie d'une décision d'arrêt »), et c'est exactement ce qui se passe ici — « ça ne va plus » (signal corporel) → « je vais me ré-imposer 6h à 7h30 au lieu de 4h30 » (décision contre la pression à produire) → coût explicité (« ça va beaucoup ralentir ma production »). Le critère discriminant de la fiche est respecté : l'apprenant *pourrait* continuer à dormir 4h30, il *choisit* de ne pas le faire. La pièce 2 est plus modeste : arrêter une soirée de travail à une heure tardive est plus une fatigue qu'une décision attentionnelle au sens fort.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Boucle signal-décision-action complète sur un objet attentionnel (le sommeil) avec coût concret nommé, ce qui correspond précisément à la trace oblique citée dans la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 pour vérifier que je ne charge pas une décision de santé de la portée d'une souveraineté attentionnelle. La fiche est très claire sur le critère discriminant : l'INTENTION en présence d'alternatives. Ici, l'apprenant *pouvait* continuer son rythme (et le faisait depuis longtemps : « 4h30 habituelles »), il choisit explicitement d'en sortir avec un coût (la production ralentie). L'attaque (b) confusion de compétence est tentable — cela relève aussi de 4.01 (raisonnement éthique) ou 4.06 (responsabilité) — mais la dimension proprement attentionnelle est claire : récupérer du temps de sommeil, c'est protéger un espace que le travail mangeait. La pièce 2 tombe sous (a) insuffisance : c'est juste une fin de soirée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce porte la boucle complète (signal, décision, coût), mais l'objet n'est pas directement « l'attention numérique » au sens des outils captant l'attention ; elle relève d'une souveraineté plus large sur son rythme — la fiche reconnaît cette dimension somatique mais avec une réserve."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Arrêter une soirée tardive sans nommer une intention attentionnelle relève de la fatigue, pas d'une souveraineté au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer une décision de santé d'une souveraineté attentionnelle. La pièce 2 (arrêt de soirée) a chuté : elle relève de la fatigue. La pièce 1 a tenu, affaiblie : elle porte la boucle complète signal-décision-action sur le sommeil, avec un coût explicite et un choix contre la pression à produire. La fiche cite précisément ce type de trace oblique somatique. La réserve principale est que l'objet de l'attention n'est pas un dispositif numérique captant, mais le rythme de vie lui-même — ce qui élargit le sens de la compétence mais reste cohérent avec la fiche. Ce qui en résulte est un signal modéré. Ce qui resterait à explorer, ce serait des situations où la souveraineté attentionnelle s'exercerait sur les outils numériques eux-mêmes (déconnexion choisie d'une notification, rituel de travail protégé), pas seulement sur le rythme de production.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce affaiblie mais centrale retenue : la boucle signal-décision-action est complète sur le rythme de vie, avec coût nommé et choix contre la pression à produire — la fiche reconnaît explicitement cette trace oblique somatique.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de documenter, lors d'une prochaine séance, un moment où l'attention aurait été détournée d'un dispositif numérique capteur (notification, alerte, sollicitation IA) pour être posée ailleurs avec intention — la souveraineté attentionnelle sur les outils complèterait la souveraineté sur le rythme."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Lancement du pipeline et constat immédiat d'un problème par observation directe de la sortie — vérification empirique de ce que l'apprenant avait prévu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La vérification terrain attend un contact avec la réalité non médiatisée — test direct, observation physique, expérimentation. J'aborde la pièce 1 en m'attendant à ce qu'elle ne soit qu'un test technique ordinaire. L'apprenant a lancé le pipeline et a constaté immédiatement le problème (« je vois tout de suite un gros problème après avoir généré le premier chapitre ») — c'est bien un test empirique, mais à l'intérieur du système numérique lui-même, pas un contact avec une réalité hors-IA. La fiche est claire sur la distinction : « j'ai testé le prompt » = 1.08, pas 5.08. Ici, on teste le pipeline lui-même, ce qui relève plus de 1.08 ou 3.01 que de 5.08.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a vraiment résisté : le test est entièrement à l'intérieur du système numérique, sans contact avec une réalité non médiatisée. Pas d'examen à conduire.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans le lancement du pipeline suivi du constat d'un problème, une trace de vérification terrain. Mais la distinction critique de la fiche est très nette : tester un prompt ou un pipeline relève de la pensée critique ou de l'itération créative, pas de la vérification terrain au sens du contact avec le réel non médiatisé. Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait des situations où l'apprenant serait allé vérifier quelque chose par observation directe (un endpoint vraiment utilisable, un retour terrain d'un élève, une vérification physique) plutôt que par test interne au système.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : le test du pipeline est interne au système numérique, ce qui ne satisfait pas le critère de la fiche (contact avec une réalité non médiatisée).",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter, lors du test prochain d'un manuel généré, un moment où la production aurait été vérifiée par une rencontre avec un public réel (un élève, un pair-aidant) plutôt que par un test interne au pipeline."
+      },
+      "tracesRetenues": []
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 2
+  },
+
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail du 25 janvier est marqué surtout par une narration réflexive vivante : le journal ne décrit pas seulement ce qui se passe, il extrait du sens en cours d'écriture, produit un concept à partir du récit (la pensée computationnelle redéfinie comme aptitude transversale), et nomme la digression sans s'y perdre (« je m'égare ! »). La connexion explicite entre la pratique présente d'architecture pédagogique et toute une vie de code suggère un fil de sens transverse qui survit aux changements de domaine. À mi-séance apparaît une décision somatique — passer de 4h30 à 6-7h30 de sommeil — avec coût nommé et choix assumé contre la pression à produire, qui porte une trace de souveraineté sur le rythme de vie. Les autres compétences du pôle (acceptation de l'IA, débrouillardise hors-ligne, vérification terrain) restent en dehors du périmètre de cette séance, qui se déploie entièrement à l'intérieur du système numérique.",
+    "territoiresDenses": [
+      {
+        "competence": "Narration Réflexive",
+        "description": "Connexions explicites entre événements distants, marqueurs métanarratifs, retour au fil rouge après digression, théorisation spontanée d'un concept né du récit.",
+        "extraitVerbatim": "En rédigeant tout celà, je réalise que construire cette architecture, ce palais mental [...] est finalement assez simple, car c'est ce que j'ai fait toute ma vie en écrivant du code.",
+        "ceQueCaDit": "L'extraction de sens se produit en temps réel d'écriture, ce qui atteste une pratique narrative qui dépasse le journal de bord descriptif et atteint la théorisation active."
+      },
+      {
+        "competence": "Sens & Motivation Intrinsèque",
+        "description": "Persévérance tardive sans validation externe et reconnaissance d'une continuité du sens à travers les décennies — moteur incarné dans l'acte plus que dans le discours.",
+        "extraitVerbatim": "Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas.",
+        "ceQueCaDit": "Le sens se manifeste par la décision de continuer plutôt que par sa formulation, ce que la fiche reconnaît comme la trace oblique la plus fiable."
+      },
+      {
+        "competence": "Souveraineté Attentionnelle",
+        "description": "Reconnaissance d'un signal corporel de surcharge suivie d'une décision de protéger un espace que le travail mangeait, avec coût explicitement nommé.",
+        "extraitVerbatim": "J'ai décidé de perdre du poids car là ça ne va plus. Du coup je vais me ré-imposer de dormir au moins 6h par nuit et idéalement 7h30, au lieu de mes 4h30 habituelles. Ça va beaucoup ralentir ma production",
+        "ceQueCaDit": "La boucle signal-décision-action est complète, avec un choix explicitement assumé contre la pression à produire — la fiche cite précisément ce type de trace somatique comme marqueur."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs régions du pôle restent en dehors de cette séance. L'acceptation de l'intelligence supérieure de l'IA n'est pas attestée : l'apprenant utilise l'IA comme outil aligné avec son intention, sans porter la tension émotionnelle (surprise, malaise, admiration mêlée) qui caractérise la traversée du deuil cognitif. L'antifragilité au sens fort n'est pas attestée non plus : l'échec rencontré (saturation mémoire) est à une échelle technique, pas existentielle. La plasticité et le désapprentissage portent un changement de routine de sommeil, sans abandon d'un modèle cognitif ou d'une identité antérieure. La débrouillardise hors-ligne est absente : la séance est entièrement numérique. La vérification terrain est absente également : tous les tests se font à l'intérieur du système numérique, sans contact avec un public ou une réalité non médiatisée. Ces silences sont des choix de feuille.",
+    "emergencesPole": "Trois choses traversent les pièces existentielles de cette séance. D'abord, un sens qui s'incarne plutôt qu'il ne se déclare : l'apprenant continue tard, connecte le présent au passé long, théorise en cours d'écriture, mais ne formule pas explicitement de « pourquoi ». Ensuite, une continuité revendiquée à travers les domaines (code → architecture pédagogique → pensée computationnelle à enseigner) qui suggère un fil de sens stable au-dessus des changements de surface. Enfin, un moment de bascule somatique à mi-séance — la décision sur le sommeil avec la mention familiale rapide — qui charge le reste du récit d'une réserve sourde, sans la déployer.",
+    "pistes": [
+      "Pour prolonger la narration réflexive, un chemin possible serait de revenir, lors d'une prochaine séance, sur les concepts personnels nés en cours d'écriture (la pensée computationnelle redéfinie, les intuitions géniales comme objet d'enseignement) en testant s'ils tiennent une fois refroidis.",
+      "Pour rendre visible le sens intrinsèque, un chemin possible serait de revenir, dans une séance moins productive ou plus ingrate, sur ce qui maintient l'envie de continuer — le « pourquoi » qui survit aux jours difficiles est souvent plus fiable que celui qui apparaît dans l'élan.",
+      "Pour prolonger la souveraineté attentionnelle, un chemin possible serait de documenter un moment où l'attention aurait été délibérément détournée d'un dispositif numérique capteur (notification, sollicitation IA), pas seulement protégée sur le rythme de vie.",
+      "Pour ouvrir l'antifragilité au sens fort, un chemin possible serait de raconter une épreuve plus structurante — une perte, une crise, un échec qui aurait nécessité une transformation, pas seulement une réparation technique.",
+      "Pour ouvrir la vérification terrain, un chemin possible serait de documenter, lors du test prochain des prompts générés, une rencontre avec un public réel (un élève, un pair-aidant) plutôt qu'un test interne au pipeline."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail du 25 janvier est marqué surtout par une narration réflexive vivante : le journal ne décrit pas seulement ce qui se passe, il extrait du sens en cours d'écriture, produit un concept à partir du récit (la pensée computationnelle redéfinie comme aptitude transversale), et nomme la digression sans s'y perdre (« je m'égare ! »). La connexion explicite entre la pratique présente d'architecture pédagogique et toute une vie de code suggère un fil de sens transverse qui survit aux changements de domaine. À mi-séance apparaît une décision somatique — passer de 4h30 à 6-7h30 de sommeil — avec coût nommé et choix assumé contre la pression à produire, qui porte une trace de souveraineté sur le rythme de vie. Les autres compétences du pôle (acceptation de l'IA, débrouillardise hors-ligne, vérification terrain) restent en dehors du périmètre de cette séance, qui se déploie entièrement à l'intérieur du système numérique.\n\n## Territoires les plus denses\n\n**Narration Réflexive.** Connexions explicites entre événements distants, marqueurs métanarratifs, retour au fil rouge après digression, théorisation spontanée d'un concept né du récit. *« En rédigeant tout celà, je réalise que construire cette architecture, ce palais mental [...] est finalement assez simple, car c'est ce que j'ai fait toute ma vie en écrivant du code. »* — l'extraction de sens se produit en temps réel d'écriture, ce qui atteste une pratique narrative qui dépasse le journal de bord descriptif et atteint la théorisation active.\n\n**Sens & Motivation Intrinsèque.** Persévérance tardive sans validation externe et reconnaissance d'une continuité du sens à travers les décennies — moteur incarné dans l'acte plus que dans le discours. *« Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas. »* — le sens se manifeste par la décision de continuer plutôt que par sa formulation, ce que la fiche reconnaît comme la trace oblique la plus fiable.\n\n**Souveraineté Attentionnelle.** Reconnaissance d'un signal corporel de surcharge suivie d'une décision de protéger un espace que le travail mangeait, avec coût explicitement nommé. *« J'ai décidé de perdre du poids car là ça ne va plus. Du coup je vais me ré-imposer de dormir au moins 6h par nuit et idéalement 7h30, au lieu de mes 4h30 habituelles. Ça va beaucoup ralentir ma production »* — la boucle signal-décision-action est complète, avec un choix explicitement assumé contre la pression à produire — la fiche cite précisément ce type de trace somatique comme marqueur.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions du pôle restent en dehors de cette séance. L'acceptation de l'intelligence supérieure de l'IA n'est pas attestée : l'apprenant utilise l'IA comme outil aligné avec son intention, sans porter la tension émotionnelle (surprise, malaise, admiration mêlée) qui caractérise la traversée du deuil cognitif. L'antifragilité au sens fort n'est pas attestée non plus : l'échec rencontré (saturation mémoire) est à une échelle technique, pas existentielle. La plasticité et le désapprentissage portent un changement de routine de sommeil, sans abandon d'un modèle cognitif ou d'une identité antérieure. La débrouillardise hors-ligne est absente : la séance est entièrement numérique. La vérification terrain est absente également : tous les tests se font à l'intérieur du système numérique, sans contact avec un public ou une réalité non médiatisée. Ces silences sont des choix de feuille.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les pièces existentielles de cette séance. D'abord, un sens qui s'incarne plutôt qu'il ne se déclare : l'apprenant continue tard, connecte le présent au passé long, théorise en cours d'écriture, mais ne formule pas explicitement de « pourquoi ». Ensuite, une continuité revendiquée à travers les domaines (code → architecture pédagogique → pensée computationnelle à enseigner) qui suggère un fil de sens stable au-dessus des changements de surface. Enfin, un moment de bascule somatique à mi-séance — la décision sur le sommeil avec la mention familiale rapide — qui charge le reste du récit d'une réserve sourde, sans la déployer.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la narration réflexive, un chemin possible serait de revenir, lors d'une prochaine séance, sur les concepts personnels nés en cours d'écriture (la pensée computationnelle redéfinie, les intuitions géniales comme objet d'enseignement) en testant s'ils tiennent une fois refroidis.\n- Pour rendre visible le sens intrinsèque, un chemin possible serait de revenir, dans une séance moins productive ou plus ingrate, sur ce qui maintient l'envie de continuer — le « pourquoi » qui survit aux jours difficiles est souvent plus fiable que celui qui apparaît dans l'élan.\n- Pour prolonger la souveraineté attentionnelle, un chemin possible serait de documenter un moment où l'attention aurait été délibérément détournée d'un dispositif numérique capteur (notification, sollicitation IA), pas seulement protégée sur le rythme de vie.\n- Pour ouvrir l'antifragilité au sens fort, un chemin possible serait de raconter une épreuve plus structurante — une perte, une crise, un échec qui aurait nécessité une transformation, pas seulement une réparation technique.\n- Pour ouvrir la vérification terrain, un chemin possible serait de documenter, lors du test prochain des prompts générés, une rencontre avec un public réel (un élève, un pair-aidant) plutôt qu'un test interne au pipeline."
+  }
+}

@@ -1,0 +1,444 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Avec Claude Code, j'ai ajouté une couche bash + python. Le bash pilote le processus et le python exécute les parties nécessitant un traitement algorithmiques. Le tout invoque les prompts créés avec CoWork et Claude Web. Le code d'hier est opérationnel à un petit détail près que je suis en train de régler.",
+      "contexte": "Récit d'une production itérative : couche ajoutée hier, opérationnelle aujourd'hui à un détail près en cours de réglage — cycle court de prototypage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "ma priorité première était de développer un système qui marche. Maintenant que c'est validé, ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel",
+      "contexte": "Bascule d'un cycle (faire marcher) vers un autre (épurer) — geste de curation par soustraction sur sa propre production.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Le résultat d'évaluation d'un portfolio avec Sonnet est excellent (j'ai choisi celui de Charlotte le no 108). Je n'avais testé qu'avec Opus, mais je vois que Sonnet suffit.",
+      "contexte": "Choix entre deux options techniquement valides, avec critère qualitatif (« excellent », « suffit ») — sélection éditoriale parmi des outputs comparables.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Lorsque j'aurai finalisé le prototype, minimisé la consommation de tokens, et maximiser la parallélisation du traitement, alors je basculerai de la version hybride actuelle bash + python dans Claude Code à une application 100% Python, peut-être en LangChain, peut-être avec une base de données vectorielle pour les exemples et contre-exemples extraits des portfolios, permettant de créer une base d'évaluation commune.",
+      "contexte": "Projection d'une version cible après la version actuelle — itération planifiée entre prototype et application aboutie.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai mis « au bol » un historien, un philosophe, un pédagogue, un créatif, un logicien, un anthropologue, afin d'avoir un jury capable de couvrir le spectre le plus complet possible",
+      "contexte": "Composition assumée comme imparfaite (« au bol »), avec choix de personas singuliers — geste créatif d'invention d'un dispositif d'évaluation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Ce qui signifierait que l'on aurait réussi à craquer le dispositif cognitif d'évaluation d'un enseignant virtuel, dans un algorithme de négociations inter agents (le collège d'expert).",
+      "contexte": "Formulation d'un problème nouveau (le dispositif cognitif d'évaluation comme objet à « craquer ») qui n'existait pas tel quel — invention d'un objet de recherche.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Ce que nous faisons n'est plus humain. Il nous serait impossible (sauf à y consacrer des années) de faire la même chose à l'ancienne.",
+      "contexte": "Formule expressive (« n'est plus humain ») dans un récit technique — bascule de registre, marque stylistique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "C'est cool finalement ces poses imposées par les défauts de service d'Anthropic ou les limitations de forfait : ça me permet de mettre au clair mes idées en les formalisant dans le portfolio qui sert à la fois de psy, de moyen indirect d'informer Stéphane sur ce que je fais, et surtout de conserver une trace de l'historique de construction de toute cette architecture",
+      "contexte": "Recadrage d'une contrainte en occasion productive (« c'est cool finalement ces poses imposées ») — gestion créative de l'imprévu.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "j'avais des factures de folie (jusqu'à 600 CHF / mois) lorsque j'étais enseignant [...] mais au moins, mes 100 élèves pouvaient utiliser Claude 3.5 Opus à l'époque, de manière illimité lorsqu'ils étaient à l'école",
+      "contexte": "Référence à une expérience passée d'enseignant en présence d'élèves — évocation rétrospective d'un cadre de classe avec mise à disposition d'outils.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Récit d'un prototype hybride (bash + python + prompts) opérationnel au lendemain, en cours de réglage final — itération courte avec apprentissage entre les versions."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Pivot délibéré : prototype validé puis bascule sur l'épuration. Cycle « faire marcher → améliorer par soustraction » caractéristique de l'itération disciplinée."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Projection d'un cycle suivant (hybride bash+python → Python pur + LangChain + base vectorielle) — anticipation des prochaines itérations avec ajout fonctionnel."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "Composition « au bol » assumée d'un jury hétérogène — geste créatif assumé comme imparfait, prêt à être révisé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la créativité itérative, je dois lire ces pièces comme du développement linéaire ordinaire. La pièce 1 raconte un code « opérationnel à un petit détail près que je suis en train de régler » — c'est un récit de cycle court mais sans description de l'apprentissage entre les versions. La pièce 2 est plus convaincante : elle nomme deux priorités successives (« faire marcher » puis « épurer ») qui correspondent au pattern itératif explicite. La pièce 3 projette un cycle ultérieur, ce qui suppose une discipline d'itération assumée. La pièce 4 utilise « au bol » — assumer l'imperfection initiale d'un dispositif est une trace oblique listée par la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La séquence explicite « priorité première… nouvelle priorité » trace deux cycles avec apprentissage entre les deux (la validation libère l'épuration)." },
+            { "pieceId": 3, "motifResistance": "La projection d'un cycle ultérieur avec critères de bascule (« lorsque j'aurai finalisé… alors je basculerai ») suppose une pratique d'itération suffisamment intégrée pour être anticipée." },
+            { "pieceId": 4, "motifResistance": "« Au bol » est un assumé d'imperfection initiale, marqueur oblique de la fiche (« bâclage assumé qui débouche sur une découverte »)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier si l'apprentissage entre cycles est visible ou si je projette une discipline qui n'est qu'implicite. La pièce 2 montre l'enchaînement de deux priorités mais la trace de l'apprentissage tiré du premier cycle est implicite (le « ça marche, donc je peux maintenant épurer »). La pièce 3 est de la planification cyclique plus que de l'itération en acte. La pièce 4 est forte : la composition assumée « au bol » suppose une posture d'imperfection productive.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'enchaînement de deux priorités est explicite, et le déclencheur du pivot est nommé (la validation du système marchant). C'est un cycle complet avec apprentissage entre les deux étapes."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La projection « lorsque j'aurai… alors je basculerai » est de la planification cyclique. Elle suppose une expérience de l'itération antérieure, mais l'acte projeté n'est pas encore accompli."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« Au bol » assume l'imperfection mais ne montre pas encore l'itération à partir de ce premier choix (le retour qui aurait modifié la composition). La trace est plus posture qu'action."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à les ramener à du développement ordinaire sans cycle. La pièce sur les deux priorités successives a tenu sans faiblir : la séquence « faire marcher / épurer » est exactement le cycle itératif avec apprentissage que la fiche décrit. La projection de la version Python + LangChain a tenu plus modestement comme planification cyclique, et le « au bol » assumé tient comme posture itérative. Ce qui reste, c'est une pratique d'itération disciplinée visible : produire vite et imparfait pour valider, puis épurer. La nuance assumée : la dimension radicale (rupture, transgression du cadre) n'apparaît pas pleinement ici, et l'itération radiale (1→n) domine sur la rupture (0→1).",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "Le cycle explicite « faire marcher / épurer » (pièce 2) a passé le temps 2 sans faiblir comme itération disciplinée avec apprentissage entre étapes ; la projection cyclique (pièce 3) et la composition « au bol » (pièce 4) corroborent.",
+        "prescription": "Pour prolonger ce travail itératif, un chemin possible serait de noter, à chaque cycle, ce qui a changé entre la version N et N+1 et pourquoi. Cette traçabilité ferait apparaître les apprentissages entre cycles, qui restent ici implicites."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Formule expressive « ce que nous faisons n'est plus humain » dans un récit technique — bascule de registre marquée."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Formule familière « au bol » au milieu d'un récit technique sur le choix des personas — marque de registre personnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la singularité, je dois écarter ces marqueurs comme du flux ordinaire. La fiche exige une signature *récurrente* : un fil stylistique qui traverse plusieurs entrées. Or je ne dispose ici que d'une seule feuille — impossible de constater la récurrence. Les deux pièces relèvent de marqueurs stylistiques ponctuels (un néologisme, une formule familière) qui pourraient être une signature mais pourraient aussi être circonstanciels. La preuve de récurrence manque par construction.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence : la fiche est explicite, la singularité se mesure à la récurrence stylistique entre plusieurs entrées du portfolio. Sur une seule feuille, je ne peux pas observer la récurrence — je ne peux qu'observer des marqueurs isolés. Il n'y a donc rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir si la signature pouvait être attestée sur une feuille unique. La fiche est claire : la singularité se constate dans le temps, par la récurrence d'un style à travers plusieurs entrées. Les marqueurs stylistiques de cette feuille (formules familières, néologismes) pourraient appartenir à une signature plus large, mais cela ne peut pas être établi à partir du seul matériau présent. Le verdict est donc une absence non par défaut de matière mais par défaut de période d'observation. Le territoire reste à explorer en mettant cette feuille en regard d'autres entrées.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La fiche exige une récurrence stylistique observée à travers plusieurs entrées. Sur une feuille isolée, les marqueurs stylistiques ne peuvent pas attester la signature, qui se mesure dans le temps.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de mettre cette feuille en regard d'autres entrées du portfolio et de noter ce qui revient — tics d'écriture, registres préférés, façons d'ancrer une idée — afin de rendre visible la signature qui se construit déjà."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Formulation d'un nouvel objet de recherche : « craquer le dispositif cognitif d'évaluation d'un enseignant virtuel, dans un algorithme de négociations inter agents » — question nouvelle qui n'existait pas formulée ainsi."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Réinterprétation des contraintes (pannes, quotas) comme matière à formaliser dans le portfolio — généralisation d'un usage du portfolio à trois fonctions."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier le design de problèmes, je dois lire ces pièces comme du cadrage (1.02), pas comme la création d'un problème nouveau. La fiche est explicite sur la distinction : 1.02 reformule un problème existant, 3.03 crée un problème qui n'existait pas. La pièce 1 propose « craquer le dispositif cognitif d'évaluation d'un enseignant virtuel » — cette question (algorithmiser le geste évaluatif d'un enseignant) n'est pas une reformulation d'un problème antérieur, c'est l'invention d'un objet de recherche. La pièce 2 généralise un usage : ce qui était une contrainte (pause forcée) devient trois fonctions du portfolio — c'est de la généralisation d'un cas en recette, marqueur de la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Poser comme objet à « craquer » le dispositif cognitif d'évaluation d'un enseignant via négociations inter-agents est une création de question, pas une reformulation d'une question existante." },
+            { "pieceId": 2, "motifResistance": "Le passage de « pannes/limites » à « trois fonctions du portfolio » généralise un cas en recette — marqueur de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier qu'elles ne sont pas mieux activées par 1.02 (cadrage). La pièce 1 ne reformule pas un problème existant : « comment évaluer un portfolio » serait le problème existant ; « craquer le dispositif cognitif d'un enseignant virtuel via négociations inter-agents » est un objet nouveau qui ouvre un champ. La pièce 2 est plus modeste : la généralisation est posée mais courte, et la « recette » qu'elle produit n'est pas formalisée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La distinction critique de la fiche oppose 1.02 (reformuler) et 3.03 (créer). Ici, l'objet « algorithme de négociations inter-agents comme dispositif cognitif d'un enseignant virtuel » n'est pas une reformulation, c'est une nouvelle question qui ouvre un programme de recherche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La généralisation est posée (panne → portfolio aux trois fonctions) mais reste courte. Elle n'est pas formalisée en recette reproductible — c'est une généralisation en germe."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à les ramener à du cadrage de l'intention (1.02). La pièce sur le « dispositif cognitif d'évaluation à craquer » a tenu sans faiblir parce qu'elle ne reformule pas un problème existant mais en pose un nouveau, dont l'objet est créé par la formulation même. La pièce sur les trois fonctions du portfolio a tenu plus modestement comme généralisation en germe. Ce qui reste, c'est un acte d'invention de question — formuler comme objet de recherche ce que personne n'avait posé ainsi. La nuance assumée : la question nouvelle est ouverte mais son programme de recherche reste à dérouler, et la généralisation des trois fonctions du portfolio gagnerait à être formalisée.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "La formulation comme objet à « craquer » du dispositif cognitif d'évaluation (pièce 1) a passé le temps 2 sans faiblir, en se distinguant clairement du cadrage par la création de question ; la généralisation des trois fonctions du portfolio (pièce 2) corrobore.",
+        "prescription": "Pour prolonger ce geste de création de questions, un chemin possible serait de formaliser la nouvelle question en programme — quelles sous-questions ouvre-t-elle, quels critères permettraient de dire qu'on l'a « craquée », et qu'est-ce qui changerait dans le champ pédagogique si elle l'était."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Décision de « supprimer tout ce qui peut l'être pour ne conserver que l'essentiel » avec critère articulé (les logs convaincants) — geste de curation par soustraction explicite."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Choix entre Opus et Sonnet avec verdict qualitatif (« excellent », « suffit ») — sélection entre options techniques avec critère articulé sur la scalabilité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier le jugement esthétique et la curation, je dois lire ces pièces autrement. La fiche pose un critère discriminant fort : la curation implique de la soustraction. La pièce 1 nomme exactement cela : « supprimer tout ce qui peut l'être pour ne conserver que l'essentiel ». Le critère est articulé (l'essentiel = logs convaincants). C'est l'opération centrale de la fiche. La pièce 2 sélectionne entre deux options techniques avec un critère qualitatif posé (« Sonnet suffit ») — c'est de la curation entre outputs comparables.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Supprimer tout ce qui peut l'être pour ne conserver que l'essentiel » est l'opération centrale de la fiche (curation = soustraction) avec critère articulé." },
+            { "pieceId": 2, "motifResistance": "La sélection Sonnet vs Opus avec verdict articulé est une curation entre options comparables." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier qu'elles relèvent bien du jugement esthétique (qualité formelle) et pas de l'efficacité technique seule. La pièce 1 articule un critère qui dépasse l'efficacité pure : les logs doivent « convaincre l'apprenant » — c'est un critère de justesse adressée au destinataire, proche du jugement esthétique. La pièce 2 est plus à la frontière : « suffit » est un jugement d'efficacité (qualité du résultat d'évaluation) plus que de forme, ce qui la rapproche de 1.06 (littératie IA) autant que de 3.04.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce articule l'opération de soustraction (« supprimer tout ce qui peut l'être ») et son critère (« convaincre l'apprenant »). Le geste est complet et nommé."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le choix Sonnet sur Opus active aussi 1.06 (connaissance des modèles). Pour 3.04, le verdict qualitatif (« excellent », « suffit ») reste superficiel — pas de critères de justesse formelle déployés."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à les ramener à de l'optimisation technique sans dimension qualitative. La pièce sur l'épuration a tenu sans faiblir parce qu'elle articule à la fois l'opération de soustraction et son critère orienté destinataire — c'est exactement la curation au sens de la fiche. La pièce sur le choix de modèle a tenu plus faiblement, à la frontière avec la littératie IA. Ce qui reste, c'est un acte de curation visible et explicite sur le projet en cours : décider ce qu'on garde et pourquoi, en fonction du destinataire final. La nuance assumée : le critère « convaincre l'apprenant » est nommé sans encore être déployé en règles concrètes de curation.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "L'opération de soustraction avec critère articulé (pièce 1) a passé le temps 2 sans faiblir comme curation au sens central de la fiche ; le choix Sonnet vs Opus corrobore comme sélection entre options comparables.",
+        "prescription": "Pour prolonger cette pratique de curation, un chemin possible serait de formaliser les règles de tri appliquées aux logs : qu'est-ce qu'un log que l'on garde, qu'est-ce qu'un log que l'on supprime, et quel test décide entre les deux."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mention d'une couche bash + python ajoutée à Claude Code — infrastructure logicielle plutôt que matérielle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'intelligence manuelle, je dois écarter cette pièce. La fiche distingue explicitement infrastructure logicielle (abstraction) et infrastructure physique (matière). « Bash + python ajoutés à Claude Code » est purement logiciel — aucun matériel tangible n'est manipulé, aucun verbe de geste physique, aucune sensation. La pièce ne survit pas à la présomption d'absence : la distinction critique de la fiche s'applique directement et exclut ce cas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai testé si l'ajout d'une couche bash + python pouvait être lu comme un acte d'intelligence manuelle. La fiche est explicite : ce type d'« infrastructure » est logiciel, et la distinction critique exclut précisément cet usage du mot. La feuille ne contient aucune description d'interaction avec de la matière physique, aucun verbe de geste, aucune sensation sensorielle. Le territoire est non visité sur cette feuille — ce qui ne préjuge en rien des autres entrées du portfolio.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La seule pièce extraite décrit une infrastructure logicielle, ce que la distinction critique de la fiche exclut explicitement de l'intelligence manuelle.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de documenter un moment où la main et la matière entrent dans le projet : aménagement d'un poste de travail, manipulation d'un serveur physique, fabrication d'un objet, ou autre geste manuel relié à la pratique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Reconnaissance d'une bonne occasion (« le bon moment pour remplir son portfolio ») et d'une autre (« aller se balader ») — décisions situées dans l'instant en réponse à une contrainte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'ancrage sensoriel et la pleine présence, je dois écarter cette pièce. La fiche demande des descriptions phénoménologiques, des sensations nommées avec précision, de l'intuition corporelle. La pièce mentionne « aller se balader » comme bonne réponse à la panne, mais sans description sensorielle ni récit de présence incarnée. Aucune sensation physique nommée, aucun ralentissement intentionnel décrit, aucune alternance présence/distraction. La pièce ne survit pas — c'est une décision pragmatique, pas un ancrage sensoriel.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai testé si la mention de la balade en cas de panne pouvait porter une trace d'ancrage sensoriel. La fiche est exigeante : il faut une description phénoménologique, une sensation nommée, une intuition corporelle suivie d'action. Rien de tel ici — la balade est mentionnée comme alternative pragmatique au travail manuel contre-productif, sans description du corps en présence. Le territoire est non visité sur cette feuille, ce qui peut tenir au registre choisi (technique et réflexif) plutôt qu'à une absence de fond.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune description phénoménologique, aucune sensation corporelle nommée, aucune intuition somatique en acte sur cette feuille à dominante technique et réflexive.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait d'inclure dans une entrée future quelques lignes sur le corps au moment d'une décision : ce qui se passe physiquement quand le système tourne enfin, quand un cycle se boucle, ou pendant une balade comme celle évoquée le 27 mars."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Évocation rétrospective de l'enseignement à 100 élèves avec mise à disposition d'outils — mention d'un cadre live passé, sans récit d'un moment précis de performance."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la présence en performance live, je dois lire cette pièce comme une simple mention de poste passé. C'est exactement ce qu'elle est : la phrase « lorsque j'étais enseignant […], mes 100 élèves pouvaient utiliser Claude 3.5 Opus à l'époque » évoque un cadre de travail (l'école, la classe) mais ne raconte aucun moment de présence en direct, aucune interaction bidirectionnelle, aucune improvisation face à l'imprévu. La pièce tombe.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à voir si la mention rétrospective de l'enseignement à 100 élèves pouvait porter une trace de performance live. La fiche est claire : il faut un récit de moment précis où la présence physique a fait une différence, une interaction bidirectionnelle, ou une improvisation face à l'imprévu. La mention est ici contextuelle (justifier une dépense passée en outils) et ne raconte aucun moment vécu en direct. Le territoire est non visité sur cette feuille, et la compétence pourrait apparaître sur des entrées qui évoquent directement des situations de classe ou de présentation.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La mention de l'enseignement à 100 élèves est rétrospective et contextuelle, sans récit d'un moment précis d'interaction live ou d'improvisation face à l'imprévu.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de raconter, dans une entrée future, un moment précis face à un groupe (élèves, collègues, jury) où l'imprévu a été accueilli comme matière à transformer, plutôt qu'évité."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 0,
+    "nonEtablies": 4,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail montre une fabrique cognitive en action : produire vite, tester, valider, puis épurer. La feuille du 27 mars relate un prototype hybride opérationnel à un détail près en cours de réglage, un pivot explicite d'une priorité à l'autre une fois la première atteinte, et la formulation d'une question de recherche nouvelle (« craquer le dispositif cognitif d'évaluation d'un enseignant virtuel »). La voix dominante est celle d'un faire qui s'organise par cycles courts, avec des choix éditoriaux articulés (« supprimer tout ce qui peut l'être pour ne conserver que l'essentiel »). Les compétences à composante somatique ou physique restent en arrière-plan sur cette feuille : la matière manipulée est ici essentiellement logicielle, et les moments de présence corporelle ou de performance face à un public n'apparaissent pas. Le registre est celui d'un artisan numérique en train d'affiner sa boîte à outils.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative",
+        "description": "Cycle court explicite avec pivot d'une priorité (faire marcher) à une autre (épurer) une fois la première atteinte, et projection des cycles ultérieurs.",
+        "extraitVerbatim": "ma priorité première était de développer un système qui marche. Maintenant que c'est validé, ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel",
+        "ceQueCaDit": "La discipline itérative est en acte : valider d'abord, optimiser ensuite. Le pivot s'appuie sur ce qui a été appris dans le premier cycle, et la projection vers une version cible inscrit la pratique dans la durée."
+      },
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "Opération de curation par soustraction avec critère articulé orienté vers le destinataire final (les logs qui convainquent l'apprenant).",
+        "extraitVerbatim": "ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury",
+        "ceQueCaDit": "L'acte de curation est nommé avec son critère (rendre les décisions intelligibles pour le destinataire). C'est la soustraction qui crée la valeur, pas l'accumulation."
+      },
+      {
+        "competence": "Design de problèmes",
+        "description": "Formulation d'un nouvel objet de recherche : algorithmer le geste cognitif d'évaluation d'un enseignant via négociations inter-agents.",
+        "extraitVerbatim": "on aurait réussi à craquer le dispositif cognitif d'évaluation d'un enseignant virtuel, dans un algorithme de négociations inter agents (le collège d'expert)",
+        "ceQueCaDit": "La question est créée par sa formulation même : elle ne reformule pas un problème antérieur, elle pose un objet de recherche nouveau qui ouvre un programme. C'est le geste de design de problèmes au sens strict de la fiche."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à l'écart sur cette feuille. La singularité ne peut pas être attestée à partir d'une seule entrée, car la fiche demande une récurrence stylistique observable dans le temps — les marqueurs personnels présents (« au bol », « modèle de-la-mort-qui-tue », « ce que nous faisons n'est plus humain ») mériteront d'être lus en regard d'autres feuilles pour voir si une signature se dessine. L'intelligence manuelle reste hors champ : la matière manipulée est logicielle, et la distinction critique de la fiche exclut explicitement ce cas — territoire qui demande des récits où la main et le matériel tangible entrent dans le projet. L'ancrage sensoriel et la performance live sont également absents du registre choisi pour cette feuille : « aller se balader » est mentionné mais pas décrit comme expérience corporelle, et l'enseignement à 100 élèves est évoqué rétrospectivement sans moment précis de présence en direct. Ces silences semblent tenir au registre technique et réflexif de la feuille, plus qu'à une absence de fond.",
+    "emergencesPole": "Trois observations traversent les compétences de ce pôle. D'abord, le geste créatif passe par l'épuration plus que par l'ajout : la pièce centrale de la feuille (« supprimer tout ce qui peut l'être ») irrigue à la fois l'itération, la curation et l'orientation vers le destinataire — la valeur naît de ce qui est retiré. Ensuite, la création de questions précède la création de solutions : la formule sur le « dispositif cognitif d'évaluation à craquer » et la composition des personas « au bol » signalent un travail en amont de la résolution, là où l'on décide ce que l'on cherche. Enfin, les compétences somatiques du pôle restent à explorer : l'écriture de cette feuille s'organise depuis la tête plus que depuis le corps, et le territoire incarné du pôle attend d'autres entrées pour s'y déployer.",
+    "pistes": [
+      "Pour rendre visible la dimension itérative comme apprentissage entre cycles, un chemin possible serait de noter, à chaque bascule de priorité (comme celle du 27 mars), ce qui a changé entre la version précédente et la suivante, et ce que cette transformation a appris.",
+      "Pour observer une éventuelle signature dans la durée, un chemin possible serait de mettre cette feuille en regard de trois ou quatre autres et de noter ce qui revient — tics, registres, formules personnelles, façons de structurer un raisonnement.",
+      "Pour formaliser la curation, un chemin possible serait d'écrire les règles de tri appliquées aux logs : qu'est-ce qu'un log que l'on garde, qu'est-ce qu'un log que l'on supprime, et quel test décide entre les deux.",
+      "Pour ouvrir le territoire de l'intelligence manuelle, un chemin possible serait de documenter un moment où la matière physique entre dans le projet (aménagement de poste, manipulation d'un serveur, fabrication d'un objet).",
+      "Pour ouvrir le territoire de l'ancrage sensoriel et de la performance live, un chemin possible serait d'ajouter quelques lignes corporelles dans une entrée future, sur ce qui se passe physiquement au moment où un cycle se boucle, ou de relater un moment précis face à un groupe."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail montre une fabrique cognitive en action : produire vite, tester, valider, puis épurer. La feuille du 27 mars relate un prototype hybride opérationnel à un détail près en cours de réglage, un pivot explicite d'une priorité à l'autre une fois la première atteinte, et la formulation d'une question de recherche nouvelle (« craquer le dispositif cognitif d'évaluation d'un enseignant virtuel »). La voix dominante est celle d'un faire qui s'organise par cycles courts, avec des choix éditoriaux articulés (« supprimer tout ce qui peut l'être pour ne conserver que l'essentiel »). Les compétences à composante somatique ou physique restent en arrière-plan sur cette feuille : la matière manipulée est ici essentiellement logicielle, et les moments de présence corporelle ou de performance face à un public n'apparaissent pas. Le registre est celui d'un artisan numérique en train d'affiner sa boîte à outils.\n\n## Territoires les plus denses\n\n**Créativité itérative.** Cycle court explicite avec pivot d'une priorité (faire marcher) à une autre (épurer) une fois la première atteinte, et projection des cycles ultérieurs. *« ma priorité première était de développer un système qui marche. Maintenant que c'est validé, ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel »* La discipline itérative est en acte : valider d'abord, optimiser ensuite. Le pivot s'appuie sur ce qui a été appris dans le premier cycle, et la projection vers une version cible inscrit la pratique dans la durée.\n\n**Jugement esthétique et curation.** Opération de curation par soustraction avec critère articulé orienté vers le destinataire final (les logs qui convainquent l'apprenant). *« ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury »* L'acte de curation est nommé avec son critère (rendre les décisions intelligibles pour le destinataire). C'est la soustraction qui crée la valeur, pas l'accumulation.\n\n**Design de problèmes.** Formulation d'un nouvel objet de recherche : algorithmer le geste cognitif d'évaluation d'un enseignant via négociations inter-agents. *« on aurait réussi à craquer le dispositif cognitif d'évaluation d'un enseignant virtuel, dans un algorithme de négociations inter agents (le collège d'expert) »* La question est créée par sa formulation même : elle ne reformule pas un problème antérieur, elle pose un objet de recherche nouveau qui ouvre un programme. C'est le geste de design de problèmes au sens strict de la fiche.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à l'écart sur cette feuille. La singularité ne peut pas être attestée à partir d'une seule entrée, car la fiche demande une récurrence stylistique observable dans le temps — les marqueurs personnels présents (« au bol », « modèle de-la-mort-qui-tue », « ce que nous faisons n'est plus humain ») mériteront d'être lus en regard d'autres feuilles pour voir si une signature se dessine. L'intelligence manuelle reste hors champ : la matière manipulée est logicielle, et la distinction critique de la fiche exclut explicitement ce cas — territoire qui demande des récits où la main et le matériel tangible entrent dans le projet. L'ancrage sensoriel et la performance live sont également absents du registre choisi pour cette feuille : « aller se balader » est mentionné mais pas décrit comme expérience corporelle, et l'enseignement à 100 élèves est évoqué rétrospectivement sans moment précis de présence en direct. Ces silences semblent tenir au registre technique et réflexif de la feuille, plus qu'à une absence de fond.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences de ce pôle. D'abord, le geste créatif passe par l'épuration plus que par l'ajout : la pièce centrale de la feuille (« supprimer tout ce qui peut l'être ») irrigue à la fois l'itération, la curation et l'orientation vers le destinataire — la valeur naît de ce qui est retiré. Ensuite, la création de questions précède la création de solutions : la formule sur le « dispositif cognitif d'évaluation à craquer » et la composition des personas « au bol » signalent un travail en amont de la résolution, là où l'on décide ce que l'on cherche. Enfin, les compétences somatiques du pôle restent à explorer : l'écriture de cette feuille s'organise depuis la tête plus que depuis le corps, et le territoire incarné du pôle attend d'autres entrées pour s'y déployer.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre visible la dimension itérative comme apprentissage entre cycles, un chemin possible serait de noter, à chaque bascule de priorité (comme celle du 27 mars), ce qui a changé entre la version précédente et la suivante, et ce que cette transformation a appris.\n- Pour observer une éventuelle signature dans la durée, un chemin possible serait de mettre cette feuille en regard de trois ou quatre autres et de noter ce qui revient — tics, registres, formules personnelles, façons de structurer un raisonnement.\n- Pour formaliser la curation, un chemin possible serait d'écrire les règles de tri appliquées aux logs : qu'est-ce qu'un log que l'on garde, qu'est-ce qu'un log que l'on supprime, et quel test décide entre les deux.\n- Pour ouvrir le territoire de l'intelligence manuelle, un chemin possible serait de documenter un moment où la matière physique entre dans le projet (aménagement de poste, manipulation d'un serveur, fabrication d'un objet).\n- Pour ouvrir le territoire de l'ancrage sensoriel et de la performance live, un chemin possible serait d'ajouter quelques lignes corporelles dans une entrée future, sur ce qui se passe physiquement au moment où un cycle se boucle, ou de relater un moment précis face à un groupe."
+  }
+}

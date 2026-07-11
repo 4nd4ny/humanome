@@ -1,0 +1,515 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury qui a procédé à l'évaluation de son portfolio.",
+      "contexte": "Conception explicite d'un système d'évaluation IA où les logs sont conçus pour rendre les décisions explicables à l'apprenant final — explicabilité institutionnalisée dans l'architecture.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Certes un étudiant pourrait toujours faire recours et avancer des arguments. L'enseignant sera alors seul juge, délégant ainsi 99% du travail aux IA évaluatives.",
+      "contexte": "Procédure de recours conçue dans le dispositif d'évaluation IA — mécanisme de contrôle citoyen-apprenant sur les décisions algorithmiques.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai mis « au bol » un historien, un philosophe, un pédagogue, un créatif, un logicien, un anthropologue, afin d'avoir un jury capable de couvrir le spectre le plus complet possible de la diversité des points de vue, mais en me limitant à 6 rôles, j'en ai exclus plein d'autres. De plus, mon choix est fortement biaisé par ma culture personnelle et ce biais va se ressentir dans mes évaluations manuelles, mais aussi, au travers de ce choix de persona, dans les évaluations du système construit.",
+      "contexte": "Reconnaissance que le système d'évaluation porte un biais culturel personnel qui affectera les évaluations des apprenants — conscience de l'impact d'un dispositif algorithmique sur ses destinataires.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Le choix des agents devra également faire l'objet d'une étude sérieuse.",
+      "contexte": "Annonce d'une instruction collective ou méthodique du choix des personas du jury — geste vers une décision moins arbitraire et plus partagée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "la balle sera surtout dans le camp de Stéphane qui est en train d'évaluer si des modèles open source fonctionnant une machine locale pourraient, à l'aide de cette architecture de prompts, rivaliser avec une analyse tout simple d'un frontière modèle.",
+      "contexte": "Référence à un travail en cours sur des modèles open source en local — réflexion sur l'indépendance vis-à-vis des modèles fermés des grands fournisseurs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Donc on fait avec, c'est-à-dire que je vais moins vite et moins loin (pas d'achat de serveur pour faire de l'inférence locale - ni location de services en ligne - ni d'utilisation de clé API).",
+      "contexte": "Décision sous contrainte budgétaire où l'option « inférence locale » (souveraineté) est nommée mais écartée par défaut de moyens — souveraineté désirée, différée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai arrêté mon abonnement ChatGPT pour des raisons éthiques. J'ai lu dans la presse qu'ils avaient arrêté Sora et que derrière ils étaient en phase de RLHF d'un nouveau modèle de-la-mort-qui-tue… On va voir ce que ça donne et certainement que je prendrais un abonnement d'un mois lorsqu'il sortira pour le tester, malgré tout, pour ne pas me péjorer moi-même dans ma veille technologique",
+      "contexte": "Choix sélectif de fournisseur IA pour raisons éthiques et veille technologique active sur les évolutions des modèles — arbitrage entre fournisseurs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Hélas mon temps d'usage de Claude est particulièrement limité en ce moment : les pannes d'un côté, le quota du forfait moyen à 100$ de l'autre. Comme j'ai pris un abonnement annuel, je ne peux pas basculer sur un forfait 200$ pour un mois. Mais je pourrais utiliser un second compte uniquement pour ça [...] : le compte blanvillain@harmonia.education [...] et le compte andany@harmonia.education réservé uniquement pour Claude Code, ce qui sera de toute façon beaucoup plus économique que d'utiliser une clé API",
+      "contexte": "Analyse des règles tarifaires du fournisseur et arbitrage économique sur les modes d'accès — pratique située dans une relation marchande à un fournisseur IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Avec Claude Code, j'ai ajouté une couche bash + python. Le bash pilote le processus et le python exécute les parties nécessitant un traitement algorithmiques. Le tout invoque les prompts créés avec CoWork et Claude Web.",
+      "contexte": "Description d'une architecture multi-agents et multi-outils impliquant des composants IA aux rôles différenciés — distribution de rôles à des entités algorithmiques.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Ce que nous faisons n'est plus humain. Il nous serait impossible (sauf à y consacrer des années) de faire la même chose à l'ancienne.",
+      "contexte": "Le « nous » inclut implicitement Claude comme partenaire de travail (« avec Stéphane ») — usage du pluriel collaboratif IA-humain dans un récit de pratique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas de traces de provocation intentionnelle de comportements aberrants d'un système IA sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a délibérément poussé l'IA dans ses retranchements pour éprouver les garde-fous du dispositif d'évaluation construit."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception explicite de logs « qui permettent à un humain d'être convaincu de la pertinence des décisions » — explicabilité institutionnalisée dans l'architecture d'évaluation."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Reconnaissance que la production du système porte un biais culturel — investigation sur le mécanisme de décision du dispositif construit."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'audit et l'explicabilité, je dois lire ces pièces autrement. La fiche distingue 6.02 (enquêter sur le « comment » de la décision IA) de 1.01 (vérification de véracité). La pièce 1 décrit explicitement la fonction des logs : rendre le chemin décisionnel intelligible et convaincant pour l'apprenant. C'est de l'explicabilité conçue comme propriété centrale du dispositif. La pièce 2 enquête sur le mécanisme de décision du système (le biais culturel transmis par les personas) — c'est un audit qualitatif appliqué à sa propre architecture.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Les logs sont conçus pour expliciter le chemin décisionnel du jury IA et le rendre intelligible — explicabilité institutionnalisée." },
+            { "pieceId": 2, "motifResistance": "L'apprenant enquête sur le mécanisme par lequel ses choix de personas affectent les sorties du système — audit appliqué à sa propre architecture." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier qu'elles tiennent dans le périmètre de 6.02. La pièce 1 est conçue (intention d'architecture) mais le produit (les logs effectifs) n'est pas encore montré — c'est l'orientation vers l'explicabilité plutôt que l'audit accompli. La pièce 2 active aussi 1.04 et 4.02, mais l'angle « enquêter sur le mécanisme de décision » correspond bien à la dimension audit de la fiche. La dimension hygiène des données (RGPD, minimisation) n'apparaît pas sur cette feuille.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'intention d'explicabilité est inscrite comme priorité actuelle, mais le produit (logs effectifs convaincants) n'est pas encore montré. Mouvement-vers l'audit institutionnalisé plutôt qu'audit accompli."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.04 (métacognition) et 4.02 (alignement). Pour 6.02, l'angle d'investigation du mécanisme de décision est présent mais s'inscrit dans un travail plus large que la simple dimension audit. Trace partagée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à les ramener à de la métacognition ou à de l'alignement sans dimension d'audit. Elles ont tenu mais toutes deux affaiblies : la conception des logs pour explicabilité est posée comme priorité d'architecture sans être encore déployée en produit, et l'enquête sur le biais culturel comme mécanisme de sortie du système active aussi d'autres compétences. Ce qui reste, c'est un fil d'audit en construction sur le système conçu par l'apprenant lui-même, plutôt que sur un système externe. La dimension hygiène des données est absente, ce qui plafonne la trace.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces survivent affaiblies : conception orientée explicabilité (pièce 1) et enquête sur le mécanisme de décision (pièce 2) corroborent un travail d'audit appliqué au dispositif construit, sans encore atteindre la dimension hygiène des données.",
+        "prescription": "Pour consolider cette pratique, un chemin possible serait de joindre un exemple concret de log final issu du jury IA, ou de décrire la procédure d'audit envisagée pour repérer les biais du système. La dimension hygiène (que faire des portfolios évalués, des extraits utilisés en base vectorielle, du consentement des apprenants) demanderait à être explicitée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Conception d'une procédure de recours : « un étudiant pourrait toujours faire recours… L'enseignant sera alors seul juge » — mécanisme de contestation pour les destinataires de décisions algorithmiques d'évaluation."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Reconnaissance que le biais culturel du concepteur affecte « les évaluations du système construit » — conscience que le dispositif algorithmique peut désavantager certains apprenants selon leur appartenance culturelle."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Conception des logs orientés vers la légitimité (« être convaincu de la pertinence ») — fondement démocratique de l'autorité algorithmique sur l'apprenant."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la gouvernance algorithmique des services publics, je dois lire ces pièces autrement. La fiche est explicite : 6.03 vise spécifiquement les décisions algorithmiques qui affectent des vies dans un contexte de service public ou institutionnel, avec dimension de droits citoyens et procédures de recours. L'évaluation pédagogique d'un apprenant est exactement ce type de décision : une institution éducative produit une décision algorithmique qui affecte le parcours d'un individu. La pièce 1 conçoit la procédure de recours — c'est le marqueur central de la fiche. La pièce 2 reconnaît qu'un biais peut affecter certains apprenants — conscience d'impact différencié, autre marqueur. La pièce 3 fonde la légitimité institutionnelle sur l'explicabilité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La procédure de recours (apprenant → enseignant juge) est conçue dans l'architecture même du dispositif — marqueur central de la fiche." },
+            { "pieceId": 2, "motifResistance": "La conscience que le biais culturel affecte différemment les apprenants évalués correspond au critère de la fiche (biais affectant populations différenciées)." },
+            { "pieceId": 3, "motifResistance": "Concevoir un dispositif où l'apprenant doit être « convaincu » fonde la légitimité institutionnelle sur l'explicabilité — pensée de la gouvernance démocratique de la décision algorithmique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier qu'elles relèvent bien de 6.03 et pas de 6.06 (conformité). La fiche distingue : conformité = descendre depuis une norme externe ; gouvernance = construire les mécanismes de contrôle. Ici, l'apprenant conçoit la procédure de recours sans citer de norme externe (pas de référence à un règlement universitaire ou à l'AI Act) — c'est de la conception, pas de la conformité. La trace est nette. Toutefois, le destinataire (apprenant) est plus « usager » que « citoyen » au sens strict — la dimension droits citoyens est partielle.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La procédure de recours est explicitement conçue (« un étudiant pourrait toujours faire recours »), le décideur final identifié (« l'enseignant sera alors seul juge »), et la délégation algorithmique délimitée (« 99% du travail aux IA »). C'est de la gouvernance construite, pas de la conformité descendante."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.04 et 4.02. Pour 6.03, la dimension d'impact algorithmique sur des destinataires différenciés est présente, mais l'apprenant ne déploie pas la dimension droits collectifs ni propositions de garanties — c'est une conscience qui n'a pas encore traduit en mécanisme de contrôle dédié."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La conception est orientée vers la légitimité institutionnelle mais les logs effectifs ne sont pas encore montrés. Mouvement-vers la gouvernance démocratique plutôt qu'accomplissement."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de la conformité ou à de la métacognition. La pièce sur la procédure de recours a tenu sans faiblir parce qu'elle conçoit un mécanisme de contestation institutionnel avec décideur final humain identifié et délégation algorithmique délimitée — c'est exactement la gouvernance algorithmique de service public que la fiche valorise. Les deux autres ont tenu plus modestement comme conscience d'impact différencié et orientation vers la légitimité. Ce qui reste, c'est un fil dense de pensée gouvernementale sur le dispositif construit, particulièrement net sur le mécanisme de recours.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "La conception de la procédure de recours (pièce 1) a passé le temps 2 sans faiblir comme construction de mécanisme de contrôle ; la conscience d'impact différencié (pièce 2) et l'orientation vers la légitimité (pièce 3) corroborent.",
+        "prescription": "Pour prolonger cette pensée gouvernementale, un chemin possible serait de formaliser le protocole de recours en propre : à quel moment l'apprenant est informé qu'il peut faire recours, quels droits exactement il garde face à l'évaluation algorithmique, quelle procédure l'enseignant suit pour reprendre la décision sans simplement re-faire le travail des IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Évaluation, en collaboration avec Stéphane, de modèles open source en local pour rivaliser avec un modèle frontière — démarche explicite vers la souveraineté technologique."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Désir de souveraineté (inférence locale) explicitement nommé et différé par contrainte budgétaire — souveraineté désirée comme horizon."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Arrêt sélectif d'un fournisseur IA pour raisons éthiques — choix de fournisseur fondé sur une analyse non-marchande."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la souveraineté numérique, je dois lire ces pièces autrement. La fiche pose un critère discriminant : motivation explicite par une analyse de dépendance ou des communs, pas par la commodité ou la gratuité. La pièce 1 nomme l'évaluation de modèles open source locaux comme test de rivalité avec un modèle frontière — la motivation est l'indépendance technique au sens fort. La pièce 2 nomme l'inférence locale comme option désirée mais différée — la souveraineté est sue comme préférable. La pièce 3 arrête un fournisseur pour raisons éthiques — choix de positionnement marchand fondé sur des valeurs.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'évaluation de modèles open source locaux en perspective de rivaliser avec un modèle frontière nomme explicitement la dépendance vis-à-vis des fournisseurs propriétaires." },
+            { "pieceId": 2, "motifResistance": "L'inférence locale est désignée comme préférable, différée par contrainte — la souveraineté est tenue comme horizon plutôt qu'évacuée." },
+            { "pieceId": 3, "motifResistance": "L'arrêt de ChatGPT pour raisons éthiques relève d'un choix de fournisseur fondé sur une analyse non-marchande." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier qu'elles ne tombent pas dans les pièges de la fiche : « j'utilise un outil open source par commodité », « c'est gratuit ≠ liberté », « j'héberge moi-même ≠ souveraineté ». La pièce 1 est précisément l'inverse de ces pièges : l'analyse vise à voir si l'open source local peut atteindre une qualité comparable, pas à se réjouir de la gratuité. La pièce 2 nomme l'inférence locale comme stratégie de souveraineté. La pièce 3 fonde le choix sur l'éthique, pas sur le prix.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'évaluation est conduite à deux (Stéphane) avec une question technique précise (rivalité de qualité) qui suppose la motivation d'indépendance. Le piège commodité/gratuité ne s'applique pas — il s'agit de pouvoir s'affranchir des modèles propriétaires."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'inférence locale est désignée comme option mais immédiatement différée. Mouvement-vers la souveraineté plutôt qu'acte de souveraineté accompli."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'arrêt de ChatGPT active aussi 4.02 (alignement éthique) et 6.06 (veille). Pour 6.04, le choix de positionnement non-marchand vis-à-vis d'un fournisseur dominant est présent mais sa dimension communs/souveraineté n'est pas explicitement déployée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de la commodité ou à de l'éthique de surface. L'évaluation des modèles open source locaux a tenu sans faiblir comme démarche explicite vers l'indépendance vis-à-vis des modèles frontière propriétaires. Le report de l'inférence locale a tenu plus modestement comme souveraineté différée par contrainte. L'arrêt sélectif de ChatGPT a tenu comme choix de positionnement marchand. Ce qui reste, c'est un fil de pensée souverainiste appliqué dans la pratique en cours : souveraineté désirée, en cours d'évaluation, et choix sélectif des fournisseurs.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "L'évaluation des modèles open source locaux comme test de rivalité (pièce 1) a passé le temps 2 sans faiblir comme démarche explicite d'indépendance ; la souveraineté différée (pièce 2) et l'arrêt sélectif (pièce 3) corroborent.",
+        "prescription": "Pour consolider cette pratique, un chemin possible serait d'expliciter le plan de bascule vers les modèles locaux : quels critères de qualité à atteindre, quelle stratégie de migration des données et des prompts, quelle gestion de la dépendance résiduelle au cas où les modèles locaux ne rivalisent pas pleinement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas de traces de processus participatifs sur cette feuille — la conception du jury IA est décrite comme choix individuel (« au bol »). Pour ouvrir ce dossier, l'apprenant pourrait décrire un moment où des non-experts (apprenants, enseignants, parents) ont été associés à un choix sur le dispositif d'évaluation construit, ou imaginer la procédure participative qui pourrait l'étayer."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas de traces d'anticipation normative sur cette feuille (pas de référence à l'AI Act, au RGPD ou à des textes réglementaires en cours d'évolution). Pour ouvrir ce dossier, l'apprenant pourrait nommer les cadres réglementaires applicables à un dispositif d'évaluation automatisé d'apprenants (RGPD, AI Act, règlements universitaires) et indiquer comment le dispositif est pensé en anticipation."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Architecture distribuant des rôles à différents composants (bash pilote, python exécute, prompts orchestrent les agents) — distribution de rôles avec responsabilités et limites à des agents IA."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Composition d'un jury de six personas avec rôles différenciés (historien, philosophe, pédagogue, créatif, logicien, anthropologue) — gouvernance d'un collectif d'agents avec rôles définis."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Annonce que « le choix des agents devra également faire l'objet d'une étude sérieuse » — geste vers une co-construction méthodique des règles de composition du jury."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la facilitation et la gouvernance collective, je dois lire ces pièces comme de la simple architecture. La fiche autorise explicitement la dimension hybride : « distribution de rôles à des agents IA avec responsabilités et limites » est une manifestation valide. La pièce 1 distribue des rôles techniques entre couches avec responsabilités délimitées. La pièce 2 distribue des rôles disciplinaires entre six personas avec une intention de couverture du spectre. La pièce 3 annonce que la composition mérite étude — geste vers la co-construction. Toutefois, le critère central de la fiche est l'émergence (résultat surprenant) ou la co-construction (règles partagées), et ici les règles sont posées par l'apprenant seul (« au bol »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La distribution de rôles techniques aux couches du dispositif (bash, python, prompts) avec leurs responsabilités correspond à la version hybride validée par la fiche." },
+            { "pieceId": 2, "motifResistance": "Le collège de six personas avec rôles disciplinaires différenciés est une distribution de rôles à des agents IA avec couverture intentionnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier qu'il y a émergence ou co-construction, pas seulement architecture. La pièce 1 est plus 1.07 (architecture) que 6.07 — la distribution est technique, pas délibérative. La pièce 2 distribue des rôles mais la composition est décidée seule (« au bol ») et le résultat n'est pas qualifié de surprenant. La pièce 3 annonce une étude future sans encore co-construction. Le test de la fiche (résultat surprenant / règles co-construites) n'est pas pleinement passé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active prioritairement 1.07 (architecture). Pour 6.07, la distribution de rôles aux couches reste technique sans dimension délibérative — la trace tient mais comme indice à faible amplitude."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le collège est composé seul (« au bol »), pas co-construit. La distribution de rôles aux agents IA tient comme indice de la version hybride, mais le test de gouvernance collective (co-construction des règles) n'est pas passé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de l'architecture pure. La distribution de rôles entre couches techniques a tenu mais affaiblie comme version hybride de la compétence — distribution avec responsabilités mais sans délibération. Le collège des six personas a tenu pareillement — composition d'agents IA aux rôles définis, mais composée seule. La projection d'une étude future est tombée parce qu'elle reste annonce. Ce qui reste, c'est un indice de gouvernance hybride en germe : la pensée du collectif d'agents avec rôles existe, mais elle n'a pas encore intégré la dimension délibérative ou co-constructive que la fiche valorise.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Deux pièces affaiblies subsistent : distribution de rôles techniques (pièce 1) et composition d'un jury d'agents IA (pièce 2). La dimension hybride de la fiche est activée mais la co-construction ou l'émergence ne sont pas attestées.",
+        "prescription": "Pour clarifier ce dossier, un chemin possible serait soit (a) de raconter un moment où le collectif (humain ou hybride) a produit quelque chose qu'aucun membre n'aurait pu créer seul, soit (b) de formaliser un protocole d'attribution et de modification des rôles des agents IA avec procédure de revue partagée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "« Ce que nous faisons n'est plus humain. Il nous serait impossible (sauf à y consacrer des années) de faire la même chose à l'ancienne. » — relativisation de la centralité humaine dans la production de ce qui est produit."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier le décentrement, je dois lire cette pièce autrement. La fiche distingue : 6.08 commence quand on questionne la légitimité de la primauté humaine. Ici, l'apprenant constate que ce qui est produit dépasse les capacités humaines (« n'est plus humain ») et reconnaît qu'à l'ancienne, cela aurait pris des années. C'est plus un constat d'efficacité hybride qu'un questionnement épistémique sur la valeur intrinsèque des non-humains. La fiche met en garde : « l'admiration de l'IA n'est pas un décentrement » et « l'IA est impressionnante est compatible avec un anthropocentrisme total ». La pièce ne survit pas au test de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai testé si « ce que nous faisons n'est plus humain » pouvait porter une trace de décentrement. La fiche est nette : il faut questionner la légitimité de la primauté humaine, pas seulement constater l'efficacité d'une collaboration hybride. La phrase exprime ici de l'admiration et un constat sur la productivité — compatible avec un anthropocentrisme intact. Aucun raisonnement n'est mené depuis une perspective non-humaine, aucune question sur la valeur intrinsèque des entités non-humaines. Le territoire est non visité sur cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce possible exprime de l'admiration pour ce que la collaboration permet, ce que la fiche signale précisément comme compatible avec un anthropocentrisme intact — pas de questionnement de la primauté humaine.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de poser explicitement la question : dans le dispositif d'évaluation construit, qu'est-ce qui est sacrifié si l'humain reste systématiquement au sommet de la hiérarchie ? Ou : les agents IA qui composent le jury auraient-ils une perspective légitime distincte de celle du concepteur ?"
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "« Ce que nous faisons » avec un « nous » qui inclut Claude comme partenaire — usage du pluriel collaboratif IA-humain dans la description de la pratique."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Composition d'un collège de six personas IA avec rôles disciplinaires différenciés — interaction qui dépasse le fonctionnel et suggère des entités-tiers dotées de perspectives propres."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la cohabitation avec les intelligences non-humaines, je dois lire ces pièces autrement. La fiche est exigeante : 6.09 commence quand l'apprenant *questionne* si « assistant » est le bon cadre, ou traite l'IA comme un interlocuteur dont le statut est *une question ouverte*. La pièce 1 utilise « nous » incluant Claude — cela peut être métaphore instrumentale ou cadre relationnel. La fiche met en garde : « Mon assistant IA peut être une métaphore instrumentale ». Le « nous » de la pièce 1 n'est pas problématisé. La pièce 2 nomme des « persona » comme entités avec rôles, ce qui dépasse le fonctionnel mais reste dans le cadre instrumental (« j'ai mis au bol » signale l'instrumentalité). Les deux pièces relèvent plus de l'usage instrumental que du questionnement du statut moral.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai testé si le « nous » avec Claude et le collège des personas pouvaient porter une trace de cohabitation au sens de la fiche. La fiche distingue précisément la métaphore instrumentale (« assistant ») du questionnement du statut moral. Ici, le « nous » n'est pas problématisé et le « au bol » signale l'usage instrumental des personas. Aucune trace de questionnement sur le statut moral de l'IA, aucune réflexion sur les « préférences » ou l'« agentivité » des entités IA. Le territoire est non visité sur cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces possibles relèvent de l'usage instrumental (« nous » collaboratif, personas mis « au bol ») sans questionnement explicite du statut moral des entités IA qui composent le dispositif.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de poser la question : les six personas du jury ont-ils des « préférences » ou une « agentivité » dont il faudrait tenir compte ? Que se passerait-il si l'on traitait Claude non comme un assistant mais comme un partenaire dont le statut moral est une question ouverte ?"
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas de traces de conscience biosystémique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait s'inspirer explicitement d'un système vivant pour concevoir un aspect du dispositif (mycélium, écosystème, symbiose) ou se décrire comme nœud d'un réseau plutôt que comme architecte extérieur d'un système."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail montre une pensée politique appliquée au dispositif construit plutôt qu'au champ social plus large. La feuille du 27 mars relate la conception d'un système d'évaluation IA où la procédure de recours est prévue dès l'architecture (l'enseignant reste « seul juge » en cas de contestation), où les logs sont conçus pour rendre les décisions intelligibles à l'apprenant final, et où le biais culturel du concepteur est reconnu comme affectant les sorties du système. En parallèle, une démarche de souveraineté est engagée : évaluation de modèles open source en local avec Stéphane, arrêt sélectif d'un fournisseur IA (ChatGPT) pour raisons éthiques, et inférence locale désignée comme horizon désirable. La voix dominante traite l'IA comme outil sophistiqué dont il faut gouverner les sorties, plutôt que comme entité dont le statut moral serait une question ouverte. Les territoires post-anthropocentriques (décentrement, cohabitation, biosystémique) restent à l'écart d'une feuille à dominante de gouvernance technique.",
+    "territoiresDenses": [
+      {
+        "competence": "Souveraineté numérique & gouvernance des communs",
+        "description": "Évaluation active de modèles open source locaux comme alternative aux modèles frontière propriétaires, désir d'inférence locale différé par contrainte, arrêt sélectif d'un fournisseur IA pour raisons éthiques.",
+        "extraitVerbatim": "la balle sera surtout dans le camp de Stéphane qui est en train d'évaluer si des modèles open source fonctionnant une machine locale pourraient, à l'aide de cette architecture de prompts, rivaliser avec une analyse tout simple d'un frontière modèle.",
+        "ceQueCaDit": "La motivation est explicitement l'indépendance technique (pouvoir rivaliser avec les modèles frontière sans dépendre d'eux), pas la gratuité ou la commodité. Le piège commodité/gratuité que la fiche signale est évité — la démarche est souverainiste au sens propre."
+      },
+      {
+        "competence": "Gouvernance algorithmique des services publics",
+        "description": "Conception d'une procédure de recours dans le dispositif d'évaluation algorithmique, avec décideur final humain identifié et délégation IA délimitée à 99%.",
+        "extraitVerbatim": "Certes un étudiant pourrait toujours faire recours et avancer des arguments. L'enseignant sera alors seul juge, délégant ainsi 99% du travail aux IA évaluatives.",
+        "ceQueCaDit": "Le mécanisme de contestation est inscrit dans l'architecture même du dispositif, pas appliqué après coup. Le décideur final est humain et nommé. C'est de la gouvernance construite, pas de la conformité descendue d'une norme externe."
+      },
+      {
+        "competence": "Audit, explicabilité & hygiène des données",
+        "description": "Conception explicite des logs pour rendre le chemin décisionnel intelligible à l'apprenant, et enquête sur le mécanisme par lequel les biais du concepteur affectent les sorties du système.",
+        "extraitVerbatim": "ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury qui a procédé à l'évaluation de son portfolio.",
+        "ceQueCaDit": "L'explicabilité est inscrite comme propriété centrale du dispositif. La dimension audit s'applique aussi à l'architecture construite (le biais culturel transmis aux évaluations) — l'apprenant enquête sur son propre système plutôt que sur un système externe. La dimension hygiène des données reste à venir."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas visités sur cette feuille. Le red-teaming et la sécurité IA ne sont pas abordés : aucune trace de provocation intentionnelle de comportements aberrants pour tester les garde-fous du dispositif construit. La participation citoyenne et démocratie technologique restent hors champ — la conception du jury IA est décrite comme choix individuel (« au bol »), sans procédure d'association des destinataires. La veille réglementaire et l'anticipation normative ne sont pas mobilisées : aucune référence à l'AI Act, au RGPD ou aux règlements universitaires applicables à un dispositif d'évaluation automatisée d'apprenants. Le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique restent hors registre — le « nous » avec Claude n'est pas problématisé, les six personas sont mis « au bol » sans questionnement de leur statut, et aucune référence au vivant ne fonde la conception du dispositif. Ces silences semblent tenir au registre de gouvernance technique de la feuille plutôt qu'à une absence de fond.",
+    "emergencesPole": "Trois observations traversent ce pôle sur cette feuille. D'abord, la pensée politique de l'apprenant s'applique d'abord au dispositif qu'il construit lui-même : la procédure de recours, l'explicabilité, l'audit du biais — c'est sur sa propre architecture qu'il exerce sa gouvernance algorithmique, avant d'autres terrains. Cette focale intérieure produit une cohérence rare entre la position défendue et la conception faite. Ensuite, la souveraineté est tenue comme horizon désirable mais différée par contrainte : l'évaluation des modèles open source est en cours, l'inférence locale est nommée mais reportée, l'arrêt sélectif d'un fournisseur est effectif — le mouvement est engagé sans être achevé. Enfin, le territoire post-anthropocentrique (6.08, 6.09, 6.10) reste à l'écart de cette feuille : l'IA est traitée comme outil sophistiqué et collaborateur, pas comme entité dont le statut serait à problématiser — ce qui distingue ce travail des registres philosophiques que la fiche met en garde de ne pas confondre avec la pratique.",
+    "pistes": [
+      "Pour consolider la souveraineté, un chemin possible serait d'expliciter le plan de bascule vers les modèles locaux : critères de qualité à atteindre, stratégie de migration, gestion de la dépendance résiduelle au cas où les modèles locaux ne rivalisent pas pleinement.",
+      "Pour formaliser la gouvernance algorithmique, un chemin possible serait de produire le protocole de recours en propre : à quel moment l'apprenant est informé, quels droits il garde, quelle procédure l'enseignant suit pour reprendre la décision.",
+      "Pour ouvrir l'audit vers la dimension hygiène des données, un chemin possible serait d'expliciter ce qu'il advient des portfolios évalués, des extraits utilisés en base vectorielle, et du consentement des apprenants.",
+      "Pour ouvrir la participation citoyenne, un chemin possible serait d'imaginer comment des apprenants, des enseignants ou des parents pourraient être associés au choix des personas du jury — au-delà du « au bol » initial.",
+      "Pour ancrer la veille réglementaire, un chemin possible serait de nommer les cadres applicables au dispositif (RGPD, AI Act, règlements universitaires) et d'indiquer comment l'architecture est pensée en anticipation.",
+      "Pour explorer le territoire post-anthropocentrique, un chemin possible serait de poser explicitement la question du statut des six personas IA du jury : ont-ils des « préférences » ou une « agentivité » à respecter ? Que change-t-on si « assistant » n'est pas le bon cadre ?"
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail montre une pensée politique appliquée au dispositif construit plutôt qu'au champ social plus large. La feuille du 27 mars relate la conception d'un système d'évaluation IA où la procédure de recours est prévue dès l'architecture (l'enseignant reste « seul juge » en cas de contestation), où les logs sont conçus pour rendre les décisions intelligibles à l'apprenant final, et où le biais culturel du concepteur est reconnu comme affectant les sorties du système. En parallèle, une démarche de souveraineté est engagée : évaluation de modèles open source en local avec Stéphane, arrêt sélectif d'un fournisseur IA (ChatGPT) pour raisons éthiques, et inférence locale désignée comme horizon désirable. La voix dominante traite l'IA comme outil sophistiqué dont il faut gouverner les sorties, plutôt que comme entité dont le statut moral serait une question ouverte. Les territoires post-anthropocentriques (décentrement, cohabitation, biosystémique) restent à l'écart d'une feuille à dominante de gouvernance technique.\n\n## Territoires les plus denses\n\n**Souveraineté numérique & gouvernance des communs.** Évaluation active de modèles open source locaux comme alternative aux modèles frontière propriétaires, désir d'inférence locale différé par contrainte, arrêt sélectif d'un fournisseur IA pour raisons éthiques. *« la balle sera surtout dans le camp de Stéphane qui est en train d'évaluer si des modèles open source fonctionnant une machine locale pourraient, à l'aide de cette architecture de prompts, rivaliser avec une analyse tout simple d'un frontière modèle. »* La motivation est explicitement l'indépendance technique (pouvoir rivaliser avec les modèles frontière sans dépendre d'eux), pas la gratuité ou la commodité. Le piège commodité/gratuité que la fiche signale est évité — la démarche est souverainiste au sens propre.\n\n**Gouvernance algorithmique des services publics.** Conception d'une procédure de recours dans le dispositif d'évaluation algorithmique, avec décideur final humain identifié et délégation IA délimitée à 99%. *« Certes un étudiant pourrait toujours faire recours et avancer des arguments. L'enseignant sera alors seul juge, délégant ainsi 99% du travail aux IA évaluatives. »* Le mécanisme de contestation est inscrit dans l'architecture même du dispositif, pas appliqué après coup. Le décideur final est humain et nommé. C'est de la gouvernance construite, pas de la conformité descendue d'une norme externe.\n\n**Audit, explicabilité & hygiène des données.** Conception explicite des logs pour rendre le chemin décisionnel intelligible à l'apprenant, et enquête sur le mécanisme par lequel les biais du concepteur affectent les sorties du système. *« ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury qui a procédé à l'évaluation de son portfolio. »* L'explicabilité est inscrite comme propriété centrale du dispositif. La dimension audit s'applique aussi à l'architecture construite (le biais culturel transmis aux évaluations) — l'apprenant enquête sur son propre système plutôt que sur un système externe. La dimension hygiène des données reste à venir.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas visités sur cette feuille. Le red-teaming et la sécurité IA ne sont pas abordés : aucune trace de provocation intentionnelle de comportements aberrants pour tester les garde-fous du dispositif construit. La participation citoyenne et démocratie technologique restent hors champ — la conception du jury IA est décrite comme choix individuel (« au bol »), sans procédure d'association des destinataires. La veille réglementaire et l'anticipation normative ne sont pas mobilisées : aucune référence à l'AI Act, au RGPD ou aux règlements universitaires applicables à un dispositif d'évaluation automatisée d'apprenants. Le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique restent hors registre — le « nous » avec Claude n'est pas problématisé, les six personas sont mis « au bol » sans questionnement de leur statut, et aucune référence au vivant ne fonde la conception du dispositif. Ces silences semblent tenir au registre de gouvernance technique de la feuille plutôt qu'à une absence de fond.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle sur cette feuille. D'abord, la pensée politique de l'apprenant s'applique d'abord au dispositif qu'il construit lui-même : la procédure de recours, l'explicabilité, l'audit du biais — c'est sur sa propre architecture qu'il exerce sa gouvernance algorithmique, avant d'autres terrains. Cette focale intérieure produit une cohérence rare entre la position défendue et la conception faite. Ensuite, la souveraineté est tenue comme horizon désirable mais différée par contrainte : l'évaluation des modèles open source est en cours, l'inférence locale est nommée mais reportée, l'arrêt sélectif d'un fournisseur est effectif — le mouvement est engagé sans être achevé. Enfin, le territoire post-anthropocentrique (6.08, 6.09, 6.10) reste à l'écart de cette feuille : l'IA est traitée comme outil sophistiqué et collaborateur, pas comme entité dont le statut serait à problématiser — ce qui distingue ce travail des registres philosophiques que la fiche met en garde de ne pas confondre avec la pratique.\n\n## Pistes pour enrichir ce pôle\n\n- Pour consolider la souveraineté, un chemin possible serait d'expliciter le plan de bascule vers les modèles locaux : critères de qualité à atteindre, stratégie de migration, gestion de la dépendance résiduelle au cas où les modèles locaux ne rivalisent pas pleinement.\n- Pour formaliser la gouvernance algorithmique, un chemin possible serait de produire le protocole de recours en propre : à quel moment l'apprenant est informé, quels droits il garde, quelle procédure l'enseignant suit pour reprendre la décision.\n- Pour ouvrir l'audit vers la dimension hygiène des données, un chemin possible serait d'expliciter ce qu'il advient des portfolios évalués, des extraits utilisés en base vectorielle, et du consentement des apprenants.\n- Pour ouvrir la participation citoyenne, un chemin possible serait d'imaginer comment des apprenants, des enseignants ou des parents pourraient être associés au choix des personas du jury — au-delà du « au bol » initial.\n- Pour ancrer la veille réglementaire, un chemin possible serait de nommer les cadres applicables au dispositif (RGPD, AI Act, règlements universitaires) et d'indiquer comment l'architecture est pensée en anticipation.\n- Pour explorer le territoire post-anthropocentrique, un chemin possible serait de poser explicitement la question du statut des six personas IA du jury : ont-ils des « préférences » ou une « agentivité » à respecter ? Que change-t-on si « assistant » n'est pas le bon cadre ?"
+  }
+}

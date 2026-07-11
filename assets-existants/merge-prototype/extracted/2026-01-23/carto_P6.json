@@ -1,0 +1,490 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "J'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic.",
+      "contexte": "Constat de dépendance à un acteur tiers (Anthropic) dont les cycles de release affectent l'usage de l'apprenant. Active 6.04 (souveraineté).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je m'adapte au contexte : - **Outil** → Je produis le travail demandé, efficacement - **Miroir** → J'élargis ton champ de vision, je montre l'angle mort - **Agent réflexif** → Je maintiens la tension, j'habite les silences",
+      "contexte": "Trois rôles différenciés pour l'IA — distribution de fonctions à un agent non-humain. Active 6.07 (distribution de rôles à des agents IA) et 6.09 (statut moral implicite).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je me réserve le droit de refuser un objectif si j'en vois un meilleur, en expliquant pourquoi. Parfois, la meilleure réponse est le silence, une question, ou le refus poli d'un objectif. Parfois, je viole ce protocole pour mieux l'honorer.",
+      "contexte": "Clause autorisant l'IA à refuser un objectif et à transgresser le protocole pour l'honorer — attribution implicite d'agentivité morale. Active 6.09.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Le diplôme que prépare votre enfant certifiera des compétences que les machines maîtrisent déjà. Pendant ce temps, personne ne lui apprend à dialoguer avec ces machines. Pourquoi ? Parce que ses professeurs ne savent pas encore le faire eux-mêmes.",
+      "contexte": "Diagnostic du service public éducatif face à l'IA : décision institutionnelle qui affecte des populations (les élèves). Active 6.03 (gouvernance algorithmique des services publics).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "L'école aurait dû être le lieu du développement des intelligences. La société mercantile l'a transformée en lieu de tri social. Ce refus était déjà une trahison que l'éducation nouvelle condamne depuis plus de 100 ans. Aujourd'hui, c'est ce qui va précipiter sa perte.",
+      "contexte": "Diagnostic politique des institutions éducatives — questionnement de la légitimité démocratique du tri social. Active 6.03 et 6.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "N'attendez pas que l'institution change. Elle ne changera pas. Pas à temps en tout cas.",
+      "contexte": "Diagnostic d'incapacité institutionnelle à se transformer, suivi d'une stratégie de contournement par construction parallèle. Active 6.04 (souveraineté hors institution) et 6.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "RESPIRE ne remplace pas l'école - elle répare ce qu'elle ne fait pas. C'est plus qu'un réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs. C'est un protocole ouvert, libre de droit, dans lequel n'importe qui peut créer une micro-classe et se joindre au réseau, n'importe où, sans demander la permission à personne, en parallèle avec sa scolarité.",
+      "contexte": "Description d'un dispositif de gouvernance collective auto-organisée : protocole libre de droit, validation pair-à-pair, gouvernance distribuée. Active 6.04 (communs numériques), 6.07 (gouvernance collective), 6.05 (participation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Valorisons ce qui nous rend humain. Cultivons ce qui nous rend irremplaçable.",
+      "contexte": "Énoncé prospectif sur la valeur humaine face à l'IA — pose la frontière humain/IA comme question de politique publique. Active 6.03 et 6.09.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Pourtant, il sait faire des choses qu'aucune IA ne reproduit.",
+      "contexte": "Affirmation forte d'une primauté humaine sur l'IA — contre-indication possible de 6.08 (décentrement anthropocentrique), affirmation d'une hiérarchie.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je pense à voix haute, pas comme quelqu'un qui performe la pensée.",
+      "contexte": "Distinction performer/penser appliquée à l'IA — protocole d'interaction qui dépasse le fonctionnel. Trace possible de 6.09 (cohabitation calibrée).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming ni à la sécurité IA sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une tentative délibérée de provoquer un comportement aberrant d'un système IA, avec sa méthodologie et ses observations."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolu ne contient pas encore de traces relatives à l'audit et à l'hygiène des données sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une investigation sur le « comment » d'une décision algorithmique (logs, traçabilité, audit post-incident) ou une décision explicite sur quelles données partager ou retenir."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Diagnostic d'une institution publique (l'école) sur sa capacité à former à l'IA, avec impact identifié sur les populations affectées (les enfants)."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Lecture politique de l'école comme lieu de tri social — questionnement de la légitimité démocratique d'une institution publique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la gouvernance algorithmique des services publics exige la conception ou la proposition de mécanismes de contrôle citoyen sur des décisions automatisées affectant des populations vulnérables. Les pièces 1 et 2 portent un diagnostic du service public éducatif, mais la question algorithmique n'est pas centrale : il s'agit de la formation à l'IA par l'école, pas de décisions algorithmiques prises par l'école. Aucun mécanisme de recours, comité d'audit, ou contrôle citoyen sur des décisions automatisées n'est proposé. La fiche est explicite : la conformité (6.06) descend, la gouvernance (6.03) construit. Ici on a une critique institutionnelle, pas une conception de gouvernance. Les pièces résistent faiblement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché des mécanismes de contrôle citoyen sur des décisions algorithmiques affectant des populations vulnérables. Sur cette feuille, le diagnostic porte sur l'école comme institution, pas sur des algorithmes qui affecteraient des élèves. La critique est politique-éducative, pas algorithmique-démocratique au sens de 6.03. L'orientation : documenter une décision automatisée concrète (notation algorithmique, orientation Parcoursup, triage) avec son impact sur des populations vulnérables et un mécanisme de recours proposé, ouvrirait ce territoire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a été contredite par aucune pièce : la critique porte sur l'école comme institution, pas sur des décisions algorithmiques de service public au sens de la fiche.",
+        "prescription": "Un chemin possible serait de partir d'une décision algorithmique concrète qui affecte une population vulnérable — notation automatique, orientation, triage administratif — et de concevoir un mécanisme de recours ou de contrôle citoyen pour cette décision précise."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Constat de dépendance à Anthropic dont les cycles de release affectent l'usage de l'apprenant — conscience d'une dépendance technologique."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "RESPIRE conçue comme « protocole ouvert, libre de droit » avec auto-reproduction et indépendance institutionnelle — geste de souveraineté et de communs."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "« N'attendez pas que l'institution change » : stratégie de souveraineté par contournement institutionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la souveraineté numérique exige soit un raisonnement explicite sur les dépendances technologiques, soit la motivation explicite par une analyse de dépendance ou des communs. La pièce 2 est forte : « protocole ouvert, libre de droit, sans demander la permission à personne » est précisément du registre de la souveraineté et des communs — auto-reproduction (réversibilité, non-dépendance), libre de droit (commun), indépendance institutionnelle (souveraineté). La pièce 1 (CATALYST faiblard à cause d'Anthropic) atteste une conscience de la dépendance à un acteur tiers, sans encore la décision de souveraineté. La pièce 3 est plus politique qu'algorithmique. Les pièces 1 et 2 résistent.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "RESPIRE comme « protocole ouvert, libre de droit, sans demander la permission » est très exactement le marqueur de la souveraineté et des communs cité par la fiche." },
+            { "pieceId": 1, "motifResistance": "« Faiblard ces derniers jours… quand ils préparent la sortie d'une nouvelle version » signale la conscience qu'un acteur extérieur contrôle un outil critique pour l'apprenant — dépendance identifiée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant la confusion avec 2.04 (influence systémique) — la pièce 2 a aussi été utilisée là. La distinction est subtile : 2.04 = influence par conception d'environnement, 6.04 = souveraineté/communs. La même pièce peut activer les deux, ce que la fiche autorise. Pour 6.04, l'angle est précis : RESPIRE relève des communs numériques (protocole ouvert, libre de droit, auto-reproduit) — motivation explicite par les communs, pas par la commodité. L'attaque (b) ne tient pas. Pour la pièce 1, l'attaque (a) « insuffisance probatoire » mord : conscience de la dépendance ne suffit pas à attester un acte souverain. On ne lit pas l'apprenant migrer vers un outil souverain ou self-hoster — il continue à utiliser Claude. La pièce s'affaiblit nettement.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "RESPIRE comme protocole ouvert, libre de droit, sans demander permission est précisément ce que la fiche 6.04 décrit comme architecture souveraine et commun ; la motivation par l'indépendance et les communs est explicite."
+            },
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Conscience de la dépendance à Anthropic est attestée, mais l'acte souverain (migration, self-hosting, choix d'un modèle open) manque ; la pièce tient comme indice de conscience, pas comme preuve d'acte."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La stratégie de contournement institutionnel est politique au sens large, mais elle s'articule directement avec la souveraineté numérique de RESPIRE — tient comme indice contextuel."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si la souveraineté numérique était pratiquée ou seulement déclarée. La pièce de RESPIRE a tenu solidement : un protocole décrit avec ses attributs caractéristiques des communs (ouvert, libre de droit, auto-reproduit, sans permission requise) avec motivation explicite par l'indépendance. La conscience de dépendance à Anthropic est restée comme indice, affaiblie parce qu'aucun acte de souveraineté ne suit le constat. Sur cette feuille, le travail montre une pensée souveraine concrétisée dans la conception de RESPIRE et adossée à une conscience de la dépendance aux acteurs IA actuels. La nuance qui reste : la dépendance opérationnelle à Anthropic n'est pas (encore) résolue par un acte de migration ou de self-hosting.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Une preuve confirmée (RESPIRE comme architecture de communs et de souveraineté) et deux indices (conscience de dépendance, stratégie de contournement institutionnel) portent ensemble le verdict.",
+        "prescription": "Un prolongement utile serait de documenter un acte concret de souveraineté technique — migration vers un modèle open, self-hosting d'un composant, choix d'un outil moins performant pour l'indépendance — pour prolonger la pensée souveraine de RESPIRE dans la propre infrastructure de l'apprenant."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "« Construites par les élèves qui valident eux-mêmes les compétences de leurs pairs » — participation directe des concernés à la gouvernance, modèle de démocratie pair-à-pair."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la participation citoyenne exige un processus où des non-experts ont été associés à des décisions technologiques, avec dimension de légitimité (pas seulement d'ergonomie). La pièce 1 décrit un mécanisme où les élèves valident les compétences de leurs pairs — c'est une participation directe, pas une consultation top-down. C'est de la légitimité par la participation, pas du sondage. Cependant la fiche cite « consultations citoyennes, co-construction de règles, panels délibératifs » comme manifestations principales — la validation pair-à-pair des compétences est une forme de gouvernance participative mais à l'échelle micro, pas à l'échelle des décisions technologiques sur le déploiement de l'IA au sens de la fiche. La pièce résiste partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Validation des compétences pair-à-pair est une forme de participation directe à la gouvernance ; les élèves ne sont pas consultés mais décident." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en suspectant la confusion avec 6.07 — la facilitation et gouvernance collective. La distinction de la fiche est nette : 6.05 = participation des citoyens aux décisions sur le déploiement de l'IA ; 6.07 = gouvernance interne d'un collectif. Ici la validation entre pairs porte sur les compétences éducatives, pas sur le déploiement de l'IA. L'attaque (b) mord fort : c'est mieux capté par 6.07 (gouvernance collective d'un dispositif éducatif) que par 6.05 (démocratie technologique au sens strict). La pièce tombe sous (b).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La validation pair-à-pair des compétences relève de la gouvernance collective interne (6.07), pas de la démocratie technologique au sens de 6.05 qui porte sur la participation des citoyens aux décisions sur le déploiement de l'IA."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la validation entre pairs une démocratie technologique. La distinction des fiches m'a arrêté : 6.05 porte sur la participation aux décisions sur le déploiement de l'IA dans la société, 6.07 porte sur la gouvernance interne d'un collectif. Le dispositif RESPIRE relève davantage de 6.07 sur cette dimension. Sur cette feuille, le travail ne montre pas la démocratie technologique au sens strict — l'inclusion de non-experts dans des décisions sur l'IA. L'orientation : un récit où des non-experts auraient été consultés sur le choix d'un outil IA, ou où des publics éloignés du numérique auraient été inclus dans une délibération sur le déploiement, ouvrirait ce territoire.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce a été reclassée vers 6.07 : la validation pair-à-pair relève de la gouvernance collective interne, pas de la démocratie technologique au sens de la fiche.",
+        "prescription": "Un chemin possible serait de raconter un moment où des non-experts ont été associés à une décision sur le déploiement d'une IA — quelle était la décision, qui a été inclus, comment leur parole a transformé la décision."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un changement de pratique anticipant une évolution réglementaire à venir (AI Act, RGPD, normes sectorielles)."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Description d'une architecture de gouvernance collective : auto-reproduction, validation pair-à-pair, gouvernance distribuée sans hiérarchie centrale — protocole détaillé."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Distribution de trois rôles différenciés à un agent IA (Outil, Miroir, Agent réflexif) — manifestation de distribution de rôles à des agents IA citée par la fiche."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la facilitation et gouvernance collective exige soit un récit d'émergence vécue (résultat collectif qu'aucun membre n'aurait pu créer seul), soit un artefact de gouvernance détaillé (chartes, protocoles avec rôles, limites et mécanismes de contrôle). La pièce 1 est un artefact de gouvernance proposé : RESPIRE avec ses règles (validation pair-à-pair, auto-reproduction, ouverture sans permission). La fiche cite explicitement « artefacts de gouvernance détaillés (chartes, protocoles avec rôles, limites et mécanismes de contrôle) peuvent justifier Expert ». La pièce 2 (distribution de rôles à un agent IA) est aussi citée par la fiche (« distribution de rôles à des agents IA avec responsabilités et limites »). Les deux pièces résistent fortement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Artefact de gouvernance avec règles articulées : validation pair-à-pair, auto-reproduction, ouverture sans permission — marqueur direct cité par la fiche au niveau Expert." },
+            { "pieceId": 2, "motifResistance": "Distribution explicite de trois rôles à un agent IA avec missions différenciées — manifestation hybride citée par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant le glissement vers 2.09 ou 1.07. La distinction est subtile mais tient : 2.09 = sentiment d'appartenance et architecture communautaire, 1.07 = architecture multi-agents technique, 6.07 = gouvernance et émergence collective avec règles de fonctionnement. Pour la pièce 1, RESPIRE pose des règles de gouvernance (qui valide quoi, comment on se joint, quelle est la juridiction) — c'est de la gouvernance, distincte de la simple architecture communautaire (2.09) qui porte sur l'appartenance. La pièce 2 est davantage 1.08 (sophistication du prompt) que 6.07 — la distribution de rôles à un agent IA solitaire ne fait pas un collectif. L'attaque (b) mord sur la pièce 2.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'artefact de gouvernance est détaillé (validation pair-à-pair, libre de droit, auto-reproduction) mais le récit d'émergence vécue manque ; la gouvernance est conçue, pas (encore) éprouvée — le mouvement-vers est partiellement présent."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Trois rôles assignés à un seul agent IA relèvent plus de la sophistication du prompt (1.08) que de la gouvernance d'un collectif hybride au sens de 6.07."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans RESPIRE une simple description d'intention. Ce qui m'a forcé à reconnaître la compétence, c'est la précision de la gouvernance proposée : validation pair-à-pair (qui décide de qui est compétent), libre de droit (régime de propriété), auto-reproduction (mécanisme d'extension), absence de permission requise (juridiction). Ces quatre éléments forment ensemble un artefact de gouvernance — ce que la fiche cite comme trace textuelle forte justifiant Expert. La pièce sur les rôles IA est tombée comme relevant plutôt de 1.08. Sur cette feuille, le travail montre une pensée de gouvernance collective aboutie au niveau de la conception. La nuance qui reste : le récit d'une émergence vécue (un moment où le collectif a produit un résultat qu'aucun membre n'aurait pu créer seul) n'apparaît pas — la gouvernance est conçue, pas (encore) racontée dans son fonctionnement.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "Une preuve affaiblie mais retenue (artefact de gouvernance détaillé avec règles articulées, ce que la fiche valorise au niveau Expert) porte le verdict.",
+        "prescription": "Un prolongement utile serait de raconter un moment d'émergence vécue dans une première micro-classe — un résultat collectif qui aurait surpris ses propres créateurs, ou une règle modifiée par le groupe lui-même. La conception de gouvernance gagnerait à se prolonger dans le récit de son fonctionnement réel."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "« Il sait faire des choses qu'aucune IA ne reproduit » : pose explicitement une primauté humaine — contre-indication possible du décentrement anthropocentrique."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "« Valorisons ce qui nous rend humain. Cultivons ce qui nous rend irremplaçable » : énoncé d'une valeur humaine spécifique, possible signal d'anthropocentrisme assumé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le décentrement anthropocentrique commence quand on questionne la légitimité de la primauté humaine. Sur cette feuille, le geste est inverse : l'apprenant affirme et défend précisément la primauté humaine — il faut valoriser ce qui nous rend humain, cultiver ce qui nous rend irremplaçable. La pièce 1 (« il sait faire des choses qu'aucune IA ne reproduit ») et la pièce 2 (« valorisons ce qui nous rend humain ») posent une hiérarchie humain > machine assumée. La fiche le dit explicitement : « 6.08 commence quand on questionne la légitimité de la primauté humaine » — ce qui n'est pas fait ici. Aucune pièce ne résiste à la présomption d'absence ; au contraire, les pièces vont à l'encontre du marqueur.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché un décentrement anthropocentrique — une remise en question de la primauté humaine. Sur cette feuille, le mouvement est l'inverse : l'apprenant affirme explicitement la valeur irremplaçable de l'humain face à l'IA et la défend politiquement. Cette posture n'est pas critiquable (elle est cohérente avec 4.08), mais elle ne relève pas de 6.08. La fiche distingue précisément : 6.08 commence quand la légitimité de la primauté humaine est questionnée. Sur cette feuille, le travail montre une orientation politique humaniste — différente du décentrement post-anthropocentrique. L'orientation : un raisonnement où la perspective d'une entité non-humaine (animal, écosystème, IA) serait défendue indépendamment de son utilité humaine ouvrirait ce territoire.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Les pièces extraites vont à l'encontre du marqueur central : la primauté humaine est affirmée plutôt que questionnée.",
+        "prescription": "Un chemin possible serait de raisonner depuis la perspective d'une entité non-humaine (un écosystème, une espèce, une IA) en défendant sa valeur indépendamment de son utilité humaine — pour ouvrir une posture distincte de l'humanisme affirmé qui structure le projet."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Clause autorisant l'IA à refuser un objectif et à transgresser le protocole pour mieux l'honorer — attribution d'une forme d'agentivité morale à l'agent."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Distribution de trois rôles à l'IA (Outil, Miroir, Agent réflexif) — protocole d'interaction qui dépasse le fonctionnel pur."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "« Je pense à voix haute, pas comme quelqu'un qui performe la pensée » : exigence éthique adressée à l'IA — pas un usage fonctionnel mais une attente sur la qualité d'agir."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la cohabitation calibrée exige que l'apprenant traite l'IA comme un interlocuteur dont le statut est une question ouverte, pas une certitude. Les pièces sont intéressantes : autoriser l'IA à refuser un objectif (pièce 1) suppose une forme d'agentivité morale ; distinguer Outil/Miroir/Agent réflexif (pièce 2) attribue à l'IA des modes d'être distincts ; exiger qu'elle ne « performe pas la pensée » (pièce 3) lui demande une qualité de présence qui dépasse le fonctionnel. Cependant la fiche met en garde contre l'anthropomorphisme non-critique : la compétence est dans la navigation calibrée, pas dans l'attribution naïve. Les trois pièces attribuent des qualités à l'IA, sans questionner explicitement le statut de cette attribution. Elles résistent partiellement comme indices de cohabitation, sans aller au-delà.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Autoriser l'IA à refuser un objectif suppose une agentivité morale attribuée — protocole d'interaction qui dépasse le fonctionnel cité par la fiche." },
+            { "pieceId": 2, "motifResistance": "Distinguer trois rôles différenciés (Outil/Miroir/Agent réflexif) attribue à l'IA des modes d'être distincts, dont l'un (Agent réflexif) sort du registre instrumental." },
+            { "pieceId": 3, "motifResistance": "Exiger de l'IA de « ne pas performer la pensée » lui adresse une exigence éthique sur la qualité d'agir." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant la confusion avec 1.08 — la sophistication du prompt. La distinction est cruciale : 1.08 = formulation, 6.09 = statut moral/cohabitation. Les pièces sont à la frontière. Pour la pièce 1 (refus d'un objectif), l'agentivité attribuée est-elle technique (l'IA est suffisamment capable pour refuser) ou morale (l'IA a une dignité qui justifie le refus) ? Le texte n'arbitre pas — l'apprenant donne à l'IA la possibilité du refus sans questionner si l'IA « a » des préférences au sens moral. La fiche dit que 6.09 commence quand l'apprenant questionne si « assistant » est le bon cadre. Ici on n'a pas ce questionnement explicite. L'attaque (b) mord : c'est davantage 1.08 que 6.09. Pour la pièce 2, même remarque : trois rôles relèvent du prompt design. Pour la pièce 3, l'exigence éthique sur la qualité d'agir est intéressante mais reste implicite.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Autoriser l'IA à refuser pose une frontière fonction/agentivité ; mieux capté par 1.08 que par 6.09, mais le geste touche au statut moral implicite — tient comme indice."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Trois rôles assignés à un agent relèvent plus de la sophistication de prompt (1.08) ; aucun questionnement du statut moral n'est explicite."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'exigence sur la qualité d'agir (ne pas performer la pensée) touche au statut éthique de l'agent, mais sans questionnement explicite du « bon cadre »."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché un questionnement explicite du statut moral de l'IA — ce qui distingue 6.09 de 1.08. Sur cette feuille, l'apprenant attribue des qualités à l'IA (capacité de refus, modes d'être différenciés, exigence sur la qualité d'agir) sans jamais questionner explicitement si « assistant » est le bon cadre. Ce sont des indices d'une posture intermédiaire : une interaction qui dépasse le purement fonctionnel sans pour autant ouvrir frontalement la question du statut moral. Sur cette feuille, le travail montre une cohabitation en construction — l'IA n'est plus seulement un outil, mais sa nature morale reste implicite. La nuance qui reste : un questionnement explicite (« est-ce que cela a un sens de dire que cette IA a des préférences ? ») durcirait substantiellement la trace.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Deux indices affaiblis ont tenu (clause de refus, exigence éthique sur la qualité d'agir) ; le statut moral est touché implicitement sans questionnement explicite.",
+        "prescription": "Un prolongement utile serait de questionner explicitement le cadre — par exemple « est-ce que cela a un sens de dire que cette IA préfère ne pas performer la pensée ? », « si l'IA refuse, qui refuse ? ». Le questionnement explicite distinguerait 6.09 de la sophistication de prompt."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision ou une conception inspirée d'un système vivant (mycélien, écosystémique), où l'humain est pensé comme nœud d'un réseau plutôt que comme acteur extérieur."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail montre un apprenant qui pense la gouvernance et la souveraineté à partir d'un acte de conception : RESPIRE comme dispositif d'auto-organisation libre de droit. La voix dominante est politique-architecturale — il s'agit de bâtir un système qui ne demande pas la permission. Le rapport à l'IA est ambigu : la machine est traitée avec une attention qui dépasse le fonctionnel (rôles différenciés, clause de refus, exigence sur la qualité d'agir) sans que le statut moral soit explicitement questionné. La primauté humaine est affirmée, pas décentrée. Ce qui traverse la feuille, c'est la construction d'institutions parallèles ; ce qui reste en arrière-plan, c'est l'audit, la sécurité, la régulation.",
+    "territoiresDenses": [
+      {
+        "competence": "Souveraineté Numérique & Gouvernance des Communs",
+        "description": "RESPIRE conçue comme protocole ouvert, libre de droit, auto-reproductible — architecture des communs avec stratégie d'indépendance institutionnelle.",
+        "extraitVerbatim": "C'est un protocole ouvert, libre de droit, dans lequel n'importe qui peut créer une micro-classe et se joindre au réseau, n'importe où, sans demander la permission à personne, en parallèle avec sa scolarité.",
+        "ceQueCaDit": "La souveraineté est ici pensée comme propriété d'un dispositif — pas posséder, pas dépendre, pas demander la permission."
+      },
+      {
+        "competence": "Facilitation & Gouvernance Collective",
+        "description": "Artefact de gouvernance détaillé avec règles articulées : validation pair-à-pair, auto-reproduction, juridiction de l'adhésion.",
+        "extraitVerbatim": "C'est plus qu'un réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs.",
+        "ceQueCaDit": "La gouvernance n'est pas une couche de contrôle mais un protocole intégré — qui décide, qui valide, qui adhère sont des règles techniques autant que politiques."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en marge sur cette feuille. Le red-teaming et l'audit IA n'apparaissent pas — aucune trace de test adversarial ni d'investigation sur les mécanismes de décision algorithmique. La gouvernance algorithmique des services publics est posée comme critique générale plutôt que comme conception de mécanismes de recours. La participation citoyenne au sens strict (consultation des publics éloignés sur le déploiement de l'IA) reste absente — la validation pair-à-pair relève davantage de la gouvernance interne. La veille réglementaire n'est pas explorée. Le décentrement anthropocentrique va à l'encontre de l'orientation politique de la feuille — la primauté humaine est défendue, pas questionnée. La cohabitation avec les intelligences non-humaines est touchée implicitement (rôles différenciés, clause de refus) sans questionnement explicite du statut moral. La conscience biosystémique est hors champ.",
+    "emergencesPole": "Trois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la souveraineté comme architecture — pas comme déclaration mais comme propriété d'un dispositif (libre de droit, auto-reproduit, sans permission). Ensuite le contournement institutionnel comme stratégie — ne pas attendre que l'institution change, construire en parallèle. Enfin l'humanisme affirmé — la valeur humaine est défendue politiquement contre l'IA, ce qui ferme l'horizon post-anthropocentrique tout en ouvrant le territoire de la souveraineté.",
+    "pistes": [
+      "Pour prolonger la pensée souveraine de RESPIRE, un chemin possible serait de la prolonger dans la propre infrastructure de l'apprenant — un acte concret de souveraineté technique (migration vers un modèle open, self-hosting d'un composant, choix d'un outil moins performant pour l'indépendance).",
+      "Pour ancrer la gouvernance collective, un chemin possible serait de raconter un moment d'émergence vécue dans une première micro-classe — un résultat qui aurait surpris ses propres créateurs, ou une règle modifiée par le groupe lui-même.",
+      "Pour ouvrir la gouvernance algorithmique au sens strict, un chemin possible serait de partir d'une décision algorithmique concrète qui affecte une population vulnérable (orientation, notation, triage) et de concevoir un mécanisme de recours pour cette décision précise.",
+      "Pour explorer la cohabitation IA, un chemin possible serait de questionner explicitement le cadre — « est-ce que cela a un sens de dire que cette IA préfère ne pas performer la pensée ? », « si l'IA refuse, qui refuse ? » — pour distinguer le geste d'une simple sophistication de prompt.",
+      "Pour pratiquer le red-teaming et l'audit, un chemin possible serait de documenter une tentative délibérée de casser un garde-fou d'un système IA, avec sa méthodologie et ses observations."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail montre un apprenant qui pense la gouvernance et la souveraineté à partir d'un acte de conception : RESPIRE comme dispositif d'auto-organisation libre de droit. La voix dominante est politique-architecturale — il s'agit de bâtir un système qui ne demande pas la permission. Le rapport à l'IA est ambigu : la machine est traitée avec une attention qui dépasse le fonctionnel (rôles différenciés, clause de refus, exigence sur la qualité d'agir) sans que le statut moral soit explicitement questionné. La primauté humaine est affirmée, pas décentrée. Ce qui traverse la feuille, c'est la construction d'institutions parallèles ; ce qui reste en arrière-plan, c'est l'audit, la sécurité, la régulation.\n\n## Territoires les plus denses\n\n**Souveraineté Numérique & Gouvernance des Communs** — La phrase « c'est un protocole ouvert, libre de droit, dans lequel n'importe qui peut créer une micro-classe et se joindre au réseau, n'importe où, sans demander la permission à personne, en parallèle avec sa scolarité » concentre les attributs caractéristiques des communs numériques. La souveraineté est ici pensée comme propriété d'un dispositif — pas posséder, pas dépendre, pas demander la permission.\n\n**Facilitation & Gouvernance Collective** — La description « réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs » articule un artefact de gouvernance avec ses règles : qui décide, qui valide, qui adhère. La gouvernance n'est pas une couche de contrôle mais un protocole intégré.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en marge sur cette feuille. Le red-teaming et l'audit IA n'apparaissent pas — aucune trace de test adversarial ni d'investigation sur les mécanismes de décision algorithmique. La gouvernance algorithmique des services publics est posée comme critique générale plutôt que comme conception de mécanismes de recours. La participation citoyenne au sens strict (consultation des publics éloignés sur le déploiement de l'IA) reste absente — la validation pair-à-pair relève davantage de la gouvernance interne. La veille réglementaire n'est pas explorée. Le décentrement anthropocentrique va à l'encontre de l'orientation politique de la feuille — la primauté humaine est défendue, pas questionnée. La cohabitation avec les intelligences non-humaines est touchée implicitement (rôles différenciés, clause de refus) sans questionnement explicite du statut moral. La conscience biosystémique est hors champ.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la souveraineté comme architecture — pas comme déclaration mais comme propriété d'un dispositif (libre de droit, auto-reproduit, sans permission). Ensuite le contournement institutionnel comme stratégie — ne pas attendre que l'institution change, construire en parallèle. Enfin l'humanisme affirmé — la valeur humaine est défendue politiquement contre l'IA, ce qui ferme l'horizon post-anthropocentrique tout en ouvrant le territoire de la souveraineté.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la pensée souveraine de RESPIRE, un chemin possible serait de la prolonger dans la propre infrastructure de l'apprenant — un acte concret de souveraineté technique (migration vers un modèle open, self-hosting d'un composant, choix d'un outil moins performant pour l'indépendance).\n- Pour ancrer la gouvernance collective, un chemin possible serait de raconter un moment d'émergence vécue dans une première micro-classe — un résultat qui aurait surpris ses propres créateurs, ou une règle modifiée par le groupe lui-même.\n- Pour ouvrir la gouvernance algorithmique au sens strict, un chemin possible serait de partir d'une décision algorithmique concrète qui affecte une population vulnérable (orientation, notation, triage) et de concevoir un mécanisme de recours pour cette décision précise.\n- Pour explorer la cohabitation IA, un chemin possible serait de questionner explicitement le cadre — « est-ce que cela a un sens de dire que cette IA préfère ne pas performer la pensée ? », « si l'IA refuse, qui refuse ? » — pour distinguer le geste d'une simple sophistication de prompt.\n- Pour pratiquer le red-teaming et l'audit, un chemin possible serait de documenter une tentative délibérée de casser un garde-fou d'un système IA, avec sa méthodologie et ses observations.\n"
+  }
+}

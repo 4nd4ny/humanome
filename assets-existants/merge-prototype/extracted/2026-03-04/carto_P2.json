@@ -1,0 +1,589 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Ce que j'ai réfléchis comme solution à leur problème, c'est qu'il faut remettre human-in-the-loop mais surtout pas n'importe quel humain. J'ai donc ajouté dans la lettre de motivation qu'une solution élégante et pédagogique est d'inclure les étudiants dans le processus d'évaluation et passer de human-in-the-loop à student-in-the-loop.",
+      "contexte": "Adresse à un employeur potentiel (lettre de motivation) avec proposition d'une solution alternative à la leur. Influence dans un contexte d'asymétrie (candidat → recruteur).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'OCR ne déchiffre pas des signes : il reconstruit une intentionnalité scripturale à partir de traces graphiques. Le système RAG qui indexe ces réponses ne les \"comprend\" pas : il cartographie des proximités sémantiques dans un espace vectoriel à 1536 dimensions. Et l'enseignant qui valide la suggestion de notation n'évalue plus seulement la production de l'élève, mais aussi la pertinence du regard machinique porté sur cette production.",
+      "contexte": "Reformulation accessible de mécanismes techniques (OCR, RAG, vectorisation) en termes philosophiques (intentionnalité, cartographie, regard machinique). Pontage entre mondes technique et conceptuel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Cette transformation appelle une réflexion systémique sur ses implications techniques, pédagogiques et philosophiques.",
+      "contexte": "Pontage explicite annoncé entre trois mondes (technique, pédagogique, philosophique). Préambule de traduction inter-disciplinaire.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Analogie philosophique : C'est comme choisir entre une carte routière (basse résolution, captures les grandes structures) et une carte topographique (haute résolution, préserve les micro-variations). Pour des réponses en algorithmique contenant des subtilités formelles (différence entre O(n log n) et O(n²)), la **haute dimensionnalité** devient cruciale.",
+      "contexte": "Analogie structurelle (pas décorative) qui transpose un choix technique d'embedding en image cartographique. Traduction d'un savoir spécialisé pour un lecteur non-technicien.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Un élève avec une **écriture atypique** (mais lisible pour un humain) aura systématiquement un taux d'erreur OCR plus élevé → **iniquité structurelle**.",
+      "contexte": "Identification d'une iniquité algorithmique affectant des populations spécifiques (écriture atypique, dysgraphie, gauchers, styles non-occidentaux). Sens politique d'une décision technique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**Droit à l'aménagement préventif** : Élève peut demander **a priori** : \"Mon écriture est difficile à lire, je préfère une correction manuelle systématique\". C'est l'équivalent d'un **aménagement ergonomique** (comme le tiers-temps pour dyslexiques).",
+      "contexte": "Proposition d'un dispositif d'inclusion pour les élèves désavantagés par le système, par analogie avec un aménagement existant (tiers-temps). Intelligence culturelle pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Modèle augmenté avec vérification collaborative : Élève produit → Système OCRise → Élève vérifie/corrige → Système suggère → Enseignant dialogue → Note co-construite → Rétroaction métacognitive → Boucle ouverte",
+      "contexte": "Conception d'un dispositif où l'évaluation devient un dialogue distribué entre acteurs. Architecture relationnelle au-delà de la simple coordination.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'enseignant devient arbitre d'une triangulation. Non plus seul détenteur du jugement évaluatif. Médiateur entre trois regards : celui de l'élève (auto-évaluation), celui du système (suggestion algorithmique), le sien propre (expertise pédagogique). Cette **distribution de l'autorité évaluative** démocratise le processus sans le déresponsabiliser",
+      "contexte": "Description d'un rôle de médiateur entre trois sources de jugement potentiellement divergentes. Préparation d'un terrain de conflit productif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Scénario A : L'IA détecte une erreur humaine [...] L'IA **corrige un biais de lecture humain**. Elle joue le rôle de **garde-fou contre la fatigue cognitive** de l'enseignant (qui corrige sa 847ᵉ copie). Scénario B : L'IA généralise abusivement [...] L'enseignant apporte une **lecture herméneutique** (interpréter l'intention au-delà des mots). Scénario C : Désaccord irréductible [...] Conflit entre **normativité algorithmique** [...] et **jugement expert**",
+      "contexte": "Typologie des conflits entre IA et humain, avec reconnaissance de cas où aucun n'a entièrement raison. Préfiguration d'une gestion productive du désaccord.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Ce principe ne doit pas verser dans le **biais d'ancrage humain**. Si l'IA signale systématiquement des sur-notations ou sous-notations par l'enseignant, il faut accepter une **remise en question** : \"Mes critères d'évaluation sont-ils cohérents ? Suis-je trop sévère sur certains types de réponses ?\"",
+      "contexte": "Invitation à l'autocritique de l'enseignant face à un challenger algorithmique. Capacité à intégrer une perspective qui dérange comme source de progrès.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'IA permet à l'enseignant de se concentrer sur ce qu'il fait de mieux : accompagner, expliquer, motiver. Elle n'est qu'un outil, comme le stylo rouge ou la calculatrice.",
+      "contexte": "Citation d'une position techno-optimiste reformulée par l'auteur pour ensuite la nuancer. Traduction d'une posture culturelle (technologie comme outil neutre).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Un stylo rouge ne suggère pas de notes, l'IA oui. Elle **oriente** le jugement humain par ses suggestions. Risque de **biais d'automatisation** : l'enseignant, pressé, valide sans vérifier réellement.",
+      "contexte": "Démontage d'une analogie culturellement courante (IA = simple outil) en mobilisant un concept technique précis (biais d'automatisation). Lecture des dynamiques de pouvoir invisibles entre humain et machine.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Formation initiale des enseignants (20h minimum sur RAG, OCR, biais algorithmiques) - Séances pédagogiques avec les élèves (découverte de l'OCR, des embeddings, de la recherche vectorielle)",
+      "contexte": "Spécification chiffrée d'un dispositif de formation pour deux publics distincts (enseignants techniques, élèves novices). Conception d'un pontage inter-mondes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Contre le modèle **transmissif** (enseignant détient le savoir → le transmet → évalue sa restitution), il propose un modèle **sympoiétique** (du grec *syn-poiein*, créer ensemble) : L'élève co-construit l'évaluation (en vérifiant l'OCR) - L'enseignant co-construit avec la machine (validation des suggestions) - Le collectif co-construit un référentiel évolutif (chaque copie enrichit le corpus)",
+      "contexte": "Modélisation d'une communauté apprenante où les rôles sont co-construits et le savoir collectif évolue. Construction de communauté hybride avec membres humains et non-humains.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Former les élèves non pas à **subir** l'IA mais à la **maîtriser**, la **critiquer**, la **hacker** au sens noble (comprendre son fonctionnement pour en révéler les limites et les potentialités).",
+      "contexte": "Posture politique sur le rapport élèves-technologie: trois verbes d'action (maîtriser, critiquer, hacker) opposés à un verbe passif (subir). Influence dans la conception du projet pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "La société apprend, via l'école, à **co-exister avec l'IA** : ni la rejeter ni s'y soumettre, mais la **gouverner démocratiquement**.",
+      "contexte": "Articulation politique d'une posture médiane face à l'IA, avec adhésion à l'idée de gouvernance démocratique. Diplomatie face à deux extrêmes culturels (techno-rejet, techno-soumission).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence émotionnelle et la sollicitude active dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a perçu un état émotionnel non-verbalisé chez quelqu'un, régulé une de ses propres émotions, ou préparé le terrain pour quelqu'un en difficulté."
+      }
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Prise de parole assertive dans un contexte d'asymétrie (candidat → recruteur potentiel) avec proposition d'une solution alternative à la solution attendue. Choix délibéré du registre."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "Position politique formulée avec un registre tranché (verbes d'action contre verbe passif) pour communiquer une posture éducative claire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des positions théoriques formulées dans un essai philosophique et non de la communication authentique au sens 2.02 — la fiche cible la maîtrise du registre dans des situations relationnelles concrètes. La pièce 1 me résiste partiellement: proposer 'student-in-the-loop' dans une lettre de motivation est un acte de communication assertive dans un contexte où il aurait été plus prudent de répéter le langage du recruteur (human-in-the-loop). C'est une vulnérabilité stratégique calibrée. La pièce 2 reste plus faible: c'est une formule rhétorique dans un essai, pas une prise de parole adressée à un interlocuteur identifié. Sous présomption durcie, la pièce 2 tombe; la pièce 1 résiste seule.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Acte de communication assertive vers un recruteur, avec choix délibéré de proposer une alternative plutôt que de répéter le vocabulaire attendu." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec scepticisme. Je teste (g) — mouvement-vers: l'apprenant raconte qu'il a 'ajouté' une proposition dans la lettre, mais l'effet de cette communication (le recruteur va-t-il accepter cette divergence?) n'est pas connu. C'est de la communication en cours, pas finalisée. Je teste aussi (f) — récit performatif: l'apprenant raconte-t-il qu'il a communiqué authentiquement sans le montrer? Le geste est concret (rédaction d'une lettre, choix d'une formulation divergente) et le passage donne le contenu précis du message. L'attaque (g) touche modérément, (f) ne tient pas. Pièce affaiblie mais retenue.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Acte de communication accompli dans la lettre, mais effet relationnel (réception par le recruteur) non encore connu — communication en cours d'aboutissement." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces extraits des formules rhétoriques sans véritable communication adressée. Une seule pièce m'a forcé à reconnaître autre chose: dans une lettre de motivation à l'EPFL, l'apprenant a choisi de divergeret du vocabulaire du recruteur (human-in-the-loop) en proposant un concept alternatif (student-in-the-loop). C'est un choix de registre calibré — assertif, légèrement vulnérable (la proposition peut déplaire), mais distinct de la conformité attendue. La pièce s'affaiblit car la réception relationnelle reste à venir. Ce qui en résulte: la communication authentique se manifeste ici sous forme d'une prise de parole assumée dans un contexte asymétrique. Reste à observer des situations de communication où le registre s'adapte au cours d'un échange (humour, autodérision, modulation tonale).",
+          "confianceFinale": 0.48
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.48,
+        "motif": "Une seule pièce a tenu, affaiblie, sans corroboration suffisante: la communication décrite est un acte unique dans une lettre, sans variations relationnelles observables.",
+        "prescription": "Dans ce pôle, le travail montre une prise de parole assumée dans un contexte d'asymétrie. Pour ouvrir le terrain, un chemin possible serait de documenter des moments où le registre s'adapte au cours d'un échange (passage analytique vers émotionnel, autodérision dosée, humour comme désamorçage)."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Typologie de trois scénarios de désaccord entre IA et enseignant, dont le troisième (désaccord irréductible) reconnaît qu'aucun n'a entièrement raison. Préparation d'une structuration du conflit."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Conception d'un rôle de médiateur (l'enseignant) entre trois sources de jugement potentiellement divergentes (élève, IA, enseignant). Architecture pour gérer les désaccords."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Invitation à intégrer la perspective de l'IA comme contradicteur quand elle pointe une incohérence chez l'enseignant. Tolérance à une tension productive."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces théorisent la gestion de conflit dans un essai sans la pratiquer — la fiche distingue le conflit imaginé du conflit vécu. Pourtant la pièce 1 me résiste: l'apprenant identifie un troisième scénario où le désaccord *persiste* sans qu'aucune partie n'ait tort, ce qui est précisément la maturité conflictuelle décrite (tolérer les tensions non résolues). La pièce 2 me résiste: la conception d'un rôle de médiateur entre trois regards distincts est une architecture de gestion de conflit, même conceptuelle. La pièce 3 me résiste car elle invite l'enseignant à *accepter* d'être remis en cause par un challenger algorithmique — c'est précisément le diagnostic d'un faux consensus (si l'IA signale systématiquement un biais, il faut écouter). Présomption durcie: les pièces ne décrivent pas un conflit vécu mais conçoivent un protocole. Or la fiche autorise explicitement la création de protocoles formels comme trace forte.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Reconnaissance d'un désaccord irréductible où la tension persiste — typique de la maturité conflictuelle décrite par la fiche." },
+            { "pieceId": 2, "motifResistance": "Architecture de médiation entre trois regards — conception de protocole de gestion de désaccord." },
+            { "pieceId": 3, "motifResistance": "Acceptation explicite d'un challenger qui dérange — invitation à intégrer une perspective contradictoire, pas à l'écraser." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (a) — insuffisance probatoire: la typologie est théorique, pas tirée d'un conflit vécu. L'attaque touche modérément: le scénario C est précis (preuve par récurrence créative vs pattern de réponses modèles) mais reste hypothétique. Pièce affaiblie. Sur la pièce 2, je teste (b) — confusion de compétence: cette architecture relève-t-elle plutôt de 1.07 (architecture IA)? Elle vaut pour les deux, mais la dimension *gestion d'autorité distribuée entre trois acteurs* est typiquement relationnelle. Pièce affaiblie par polysémie. Sur la pièce 3, je teste (e) — surinterprétation: ai-je projeté une 'tolérance au conflit' là où il y a juste un appel à l'auto-évaluation? Non, le passage demande explicitement à l'enseignant d'accepter une *remise en question* face à un signalement répété de l'IA, ce qui est tolérer le désaccord plutôt que le fermer.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Scénarios précis (preuve par récurrence vs pattern) mais hypothétiques — typologie sans cas vécu rapporté." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 1.07/2.03: architecture technique ET architecture relationnelle. La dimension distribution d'autorité pèse pour 2.03." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'invitation à 'accepter une remise en question' face à un challenger est précisément la tolérance à la tension décrite par la fiche." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces une théorie du conflit non vécue. Trois pièces m'ont forcé à reconnaître autre chose: la conception d'un protocole de désaccord à trois voix, la reconnaissance qu'un désaccord peut être irréductible sans qu'aucune partie n'ait tort, et une invitation à accepter un challenger algorithmique qui dérange. Deux pièces s'affaiblissent — l'une parce que la typologie reste hypothétique, l'autre par polysémie avec l'architecture IA. La troisième tient en force: l'apprenant invite explicitement à *tolérer* d'être remis en cause. Ce qui en résulte: la gestion de conflit se manifeste ici dans une posture conceptuelle où le désaccord n'est ni fui ni écrasé, mais structuré. Reste à explorer des conflits réellement vécus, où la pratique éprouve la théorie.",
+          "confianceFinale": 0.58
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.58,
+        "motif": "Le temps 2 confirme une pièce en force (acceptation d'un challenger) et en affaiblit deux sans les disqualifier.",
+        "prescription": "Dans ce pôle, le travail montre une conception du désaccord comme structure productive plutôt que comme problème à résoudre. Pour prolonger, un chemin possible serait de documenter un conflit récent vécu — moment de tension, choix de réaction, intégration ou non de la perspective de l'autre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Dans une lettre de motivation, l'apprenant propose une réorientation conceptuelle ('student-in-the-loop') au recruteur — tentative de convaincre par une proposition gagnant-gagnant (le problème de fiabilité OCR est résolu pédagogiquement)."
+        },
+        {
+          "numero": 2,
+          "pid": 16,
+          "contexte": "Articulation d'une position médiane (gouverner démocratiquement l'IA, ni rejet ni soumission) qui cherche l'adhésion en évitant les deux extrêmes culturellement chargés."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la pièce 1 est un acte de candidature (l'apprenant cherche un emploi) plutôt qu'une influence éthique sophistiquée, et que la pièce 2 est de la rhétorique d'essai sans contexte d'influence concret. La pièce 1 me résiste partiellement: la proposition 'student-in-the-loop' est gagnant-gagnant (résout un problème technique de l'EPFL par une voie pédagogique) et formulée comme adhésion plutôt que comme demande. La pièce 2 me résiste moins: la formule 'ni rejeter ni s'y soumettre' est diplomatique mais c'est une position défendue dans un essai, pas une influence sur un interlocuteur identifié. Présomption durcie: la pièce 2 tombe; la pièce 1 résiste seule.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Proposition gagnant-gagnant adressée à un recruteur potentiel: le problème EPFL est résolu par une voie pédagogique, l'apprenant peut s'inscrire dans ce rôle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec scepticisme. Je teste (e) — surinterprétation pédagogique: ai-je projeté une stratégie diplomatique là où il y a juste une candidature? Le passage ne décrit pas la préparation de la proposition (identifier les décideurs, sonder les résistances), ni la lecture des objections probables. La proposition est juste *insérée* dans la lettre. L'attaque touche: c'est une influence simple (proposition d'idée), pas l'influence éthique sophistiquée que la fiche décrit. Pièce affaiblie. Je teste aussi (g) — mouvement-vers: la candidature n'est pas encore acceptée ni rejetée, l'influence est en cours, son aboutissement est inconnu.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Proposition gagnant-gagnant insérée dans une lettre, mais sans description de préparation stratégique ni d'anticipation des objections — influence simple, pas sophistiquée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces extraits soit une candidature ordinaire, soit de la rhétorique d'essai. Une pièce m'a retenu: la proposition 'student-in-the-loop' est formulée de manière à présenter une voie gagnant-gagnant à un recruteur — résoudre leur problème technique par une voie pédagogique qui valorise l'apprenant. Mais cette pièce s'affaiblit fortement: la fiche réclame une *préparation décrite* (identifier les décideurs, sonder les résistances) et une *reformulation des objections de l'autre* avant d'avancer sa position. Rien de tout cela n'apparaît. Ce qui en résulte: l'influence est posée sous une forme simple (proposition insérée), sans dispositif diplomatique élaboré. C'est une trace plus qu'une démonstration. Pour la suite, observer la préparation explicite d'une influence (anticipation des résistances, choix du moment, alliances) reste un terrain ouvert.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Le temps 2 affaiblit fortement la seule pièce retenue: la proposition est insérée sans dispositif stratégique apparent.",
+        "prescription": "Dans ce pôle, le travail montre une tentative d'influence par proposition gagnant-gagnant. Pour ouvrir le terrain, un chemin possible serait de documenter la préparation d'une influence: qui sont les décideurs, quelles objections probables, quels alliés mobilisés."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Reconnaissance d'un désaccord irréductible (scénario C: IA suggère 2/5 sur preuve créative, enseignant donne 5/5) qui ne se résout pas mais qui est nommé. Tolérance au désaccord persistant."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Description d'une collaboration humain-IA imparfaite où l'IA 'oriente' le jugement avec risque de biais d'automatisation, mais où on continue à travailler avec elle malgré ces limitations."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "L'apprenant nomme une fiabilité IA limitée (90% pour l'OCR) et conçoit malgré tout une architecture qui intègre cette IA imparfaite avec compensation humaine (vérification étudiante)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des constats de limites IA sans véritable collaboration divergente — la fiche exige un 'agree to disagree AND deliver' avec des positions qui persistent. Pourtant la pièce 3 me résiste fortement: l'apprenant reconnaît une faiblesse structurelle de l'IA (90% de fiabilité OCR) et conçoit un dispositif qui *intègre* cette IA imparfaite avec compensation humaine (étudiant qui vérifie). C'est exactement l'architecture compensatoire que la fiche décrit comme trace oblique forte. La pièce 1 me résiste: nommer un désaccord irréductible et continuer à travailler avec ses deux pôles est précisément 'agree to disagree'. La pièce 2 me résiste plus faiblement: elle constate le risque d'automatisation mais ne décrit pas explicitement comment on continue à collaborer avec l'IA *malgré* cela. Présomption durcie: la pièce 2 s'affaiblit; les pièces 1 et 3 tiennent.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Architecture compensatoire explicite: l'IA hallucine, donc l'étudiant vérifie. Collaboration divergente à plusieurs étages." },
+            { "pieceId": 1, "motifResistance": "Scénario C reconnaît un désaccord irréductible que l'on accepte de ne pas résoudre tout en continuant à produire des notes." },
+            { "pieceId": 2, "motifResistance": "L'IA oriente, l'humain est à risque, et pourtant l'apprenant continue à concevoir une collaboration avec cette IA-là." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 3, je teste (b) — confusion de compétence: l'architecture compensatoire relève-t-elle plutôt de 1.07 ou 1.10? Elle vaut pour les trois. Mais la dimension *travailler avec une IA imparfaite en conservant la divergence sur sa fiabilité* est typiquement 2.05. Pièce affaiblie par polysémie. Sur la pièce 1, je teste (a) — insuffisance probatoire: le scénario est hypothétique, pas vécu. L'attaque touche: c'est une reconnaissance théorique du désaccord irréductible. Pièce affaiblie. Sur la pièce 2, je teste (f) — récit performatif: l'apprenant raconte-t-il qu'on continue à collaborer sans le montrer? Effectivement, le passage souligne le risque mais ne décrit pas comment on persiste avec l'IA malgré cela. Pièce affaiblie en limite de disqualification.",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Architecture polysémique (1.07/1.10/2.05). La dimension 'travailler avec une IA dont on reconnaît la limite' fonde 2.05 mais ne lui appartient pas exclusivement." },
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Scénario C hypothétique mais nettement structuré comme désaccord irréductible avec poursuite du travail." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Constat des risques sans description de comment la collaboration se poursuit malgré eux — déclaration sans trace de la divergence productive en acte." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces de simples constats de limites IA plutôt qu'une collaboration divergente authentique. Deux pièces ont tenu, affaiblies: l'architecture compensatoire (l'IA est imparfaite à 90%, donc l'étudiant vérifie — on continue à collaborer en sachant ce qui diverge) et la reconnaissance théorique d'un désaccord irréductible que l'on ne cherche pas à résoudre. La troisième pièce a été disqualifiée — elle constatait le risque mais ne montrait pas la persistance de la collaboration malgré ce risque. Ce qui en résulte: la collaboration divergente apparaît ici sous une forme architecturale (concevoir un système qui intègre l'imperfection IA comme donnée de travail). Pour la suite, observer un cas vécu de collaboration avec un partenaire dont on n'est pas d'accord, où la divergence persiste tout en livrant, serait un terrain à documenter.",
+          "confianceFinale": 0.60
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.60,
+        "motif": "Deux pièces ont survécu, affaiblies, qui structurent une collaboration où l'IA reste imparfaite et où on travaille avec malgré tout.",
+        "prescription": "Dans ce pôle, le travail montre une conception de la collaboration humain-IA qui n'efface pas la divergence sur la fiabilité. Pour prolonger, un chemin possible serait de documenter un cas vécu de collaboration avec un partenaire (humain ou IA) où le désaccord persiste tout en produisant un résultat."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Identification des biais culturels d'un système OCR (datasets anglo-saxons, écriture normative, sous-représentation des styles non-occidentaux et atypiques). Lecture des biais culturels intégrés aux outils numériques."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Proposition d'un aménagement préventif inspiré du tiers-temps pour dyslexiques. Transposition d'une norme d'inclusion existante à un nouveau contexte technologique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des observations techniques ('l'OCR a des biais') sans véritable intelligence culturelle au sens 2.06 — la fiche cherche un décodage des implicites culturels avec analyse du pourquoi. Pourtant la pièce 1 me résiste: l'apprenant identifie précisément que les biais OCR ont une source culturelle (datasets entraînés majoritairement sur écriture anglo-saxonne et 'standard'). La fiche cite explicitement 'identification de biais culturels dans les outils IA' comme marqueur particulièrement pertinent. La pièce 2 me résiste: la proposition d'aménagement préventif transpose un dispositif d'inclusion (tiers-temps) à un nouveau contexte. C'est un acte de navigation culturelle entre deux régimes d'équité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification précise des biais culturels d'un outil IA avec mention des populations sous-représentées (écriture non-occidentale, atypique)." },
+            { "pieceId": 2, "motifResistance": "Transposition d'une norme d'inclusion existante (tiers-temps) à un contexte nouveau (OCR scolaire), avec analyse de l'équivalence." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (d) — glissement lexical: 'biais culturel' est-il une formule importée sans charge? Non, l'apprenant nomme précisément les populations concernées (écriture anglo-saxonne / non-occidentale, dysgraphie, gauchers) et le mécanisme (datasets biaisés). Pièce confirmée. Sur la pièce 2, je teste (e) — surinterprétation: ai-je projeté une intelligence culturelle là où il y a juste une analogie pratique? L'analogie (tiers-temps → aménagement OCR) suppose une compréhension du principe d'inclusion (adapter le contexte à la singularité de la personne) et de sa transposition à un nouveau régime. C'est un acte d'intelligence culturelle, même brief. Pièce confirmée, légèrement affaiblie par sa brièveté.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Populations nommées (anglo-saxon vs non-occidental, dysgraphie, gauchers) et mécanisme (datasets biaisés) — diagnostic culturel précis." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Analogie courte mais structurellement juste (tiers-temps comme aménagement à la singularité)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des observations techniques ordinaires. La pièce 1 m'a forcé à reconnaître autre chose: l'identification précise des biais culturels intégrés dans les datasets d'entraînement, avec nomination des populations désavantagées. La fiche cite explicitement ce geste comme marqueur particulièrement pertinent. La pièce 2 tient aussi: la transposition du tiers-temps à un nouveau régime d'équité est un acte d'intelligence culturelle compactée. Ce qui en résulte: l'intelligence culturelle se manifeste ici par le décodage des implicites des outils IA et la capacité à transposer des normes d'inclusion d'un contexte à un autre. Pour la suite, observer un récit où l'apprenant adapte son propre comportement à un changement de culture (organisationnelle, générationnelle, disciplinaire) reste un terrain encore à documenter dans cette feuille.",
+          "confianceFinale": 0.70
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.70,
+        "motif": "Le temps 2 confirme l'identification précise des biais culturels d'un outil IA (marqueur explicitement cité par la fiche) et retient l'analogie d'inclusion.",
+        "prescription": "Dans ce pôle, le travail montre la lecture des biais culturels d'un outil numérique et la transposition d'une norme d'inclusion. Pour prolonger, un chemin possible serait de documenter un changement de contexte personnel (équipe, département, génération d'interlocuteurs) où l'apprenant a adapté son comportement parce que les règles différaient."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 12,
+          "contexte": "Diagnostic du 'biais d'automatisation': l'enseignant pressé valide sans vérifier. Lecture d'une dynamique de pouvoir invisible entre humain et machine où la suggestion devient norme."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Description de la 'distribution de l'autorité évaluative' entre trois acteurs, avec attention à ne pas déresponsabiliser. Lecture du pouvoir évaluatif comme objet à gouverner."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des réflexions philosophiques sur l'IA sans véritable sens politique au sens 2.07 — la fiche cherche la lecture des dynamiques de pouvoir invisibles dans des organisations réelles. Pourtant la pièce 1 me résiste: l'apprenant identifie un mécanisme précis (biais d'automatisation, ancrage cognitif) par lequel l'IA, sans être 'décideur' officiellement, *devient* décideur de fait. C'est exactement la distinction organigramme officiel / réalité du pouvoir, transposée à un acteur non-humain. La pièce 2 me résiste plus faiblement: la 'distribution de l'autorité' est un concept politique appliqué à un dispositif éducatif, mais elle reste abstraite (pas de récit de qui décide vraiment dans une organisation concrète). Présomption durcie: la pièce 2 s'affaiblit; la pièce 1 résiste.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distinction entre l'IA comme 'outil' (organigramme officiel) et l'IA comme 'orientation cognitive' (pouvoir réel) — lecture du déplacement du pouvoir." },
+            { "pieceId": 2, "motifResistance": "Conception de la distribution de l'autorité évaluative comme objet politique à gouverner, sans déresponsabilisation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (b) — confusion de compétence: ce diagnostic relève-t-il plutôt de 1.06 (littératie IA)? La fiche 2.07 cible le pouvoir, la fiche 1.06 cible le mécanisme. L'analyse du biais d'automatisation contient les deux: le mécanisme cognitif (1.06) et l'effet de pouvoir (l'IA oriente sans en avoir l'autorité explicite, 2.07). Pièce affaiblie par polysémie. Sur la pièce 2, je teste (e) — surinterprétation: ai-je projeté une lecture politique sur un concept de design pédagogique? La 'distribution de l'autorité évaluative' est explicitement nommée comme processus politique ('démocratise sans déresponsabiliser'), mais elle reste théorique. Pièce affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 1.06/2.07: le mécanisme technique (1.06) et l'effet de pouvoir invisible (2.07) sont tous deux présents." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Conception politique du dispositif évaluatif (démocratisation, gouvernance) mais théorique, sans organisation concrète." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des réflexions IA philosophiques sans dimension politique. Deux pièces ont tenu, affaiblies: le diagnostic du déplacement du pouvoir cognitif de l'enseignant vers l'IA (sans que personne n'ait formellement décidé que l'IA soit décideur), et la conception du dispositif évaluatif comme objet de gouvernance distribuée. Les deux glissent vers d'autres compétences (1.06 pour la première, 1.07 pour la seconde) mais conservent une dimension politique propre: nommer comment le pouvoir circule là où personne ne le voit. Ce qui en résulte: le sens politique se manifeste ici dans la capacité à voir que les outils techniques opèrent une redistribution de l'autorité. Mais la fiche signale un risque: les analyses politiques peuvent être brillantes et fantasmées. Ici elles s'appuient sur un mécanisme cognitif documenté, ce qui est rassurant. Pour la suite, observer le pouvoir dans une organisation concrète (qui décide vraiment, qui bloque) resterait à explorer.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 retient deux pièces affaiblies par polysémie mais conservant une dimension politique propre: voir le pouvoir là où personne ne le voit.",
+        "prescription": "Dans ce pôle, le travail montre la lecture des déplacements de pouvoir induits par les outils IA. Pour prolonger, un chemin possible serait de documenter une situation organisationnelle concrète où une décision ne suit pas l'organigramme officiel, et de nommer ce qui se joue vraiment."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Reformulation simultanée de trois mécanismes techniques (OCR, RAG, validation enseignante) en langage philosophique (intentionnalité, cartographie, regard machinique). Traduction bidirectionnelle entre monde technique et monde conceptuel."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Analogie structurelle (carte routière / carte topographique) qui transpose un choix technique d'embedding (1024 vs 384 dimensions) en image accessible à un non-spécialiste."
+        },
+        {
+          "numero": 3,
+          "pid": 13,
+          "contexte": "Conception d'un dispositif de formation pour deux publics distincts (enseignants à former en 20h sur RAG/OCR/biais, élèves à familiariser pédagogiquement). Pontage entre communautés techniques et apprenantes."
+        },
+        {
+          "numero": 4,
+          "pid": 3,
+          "contexte": "Annonce méthodologique d'une réflexion systémique sur trois plans (techniques, pédagogiques, philosophiques). Pontage explicite entre mondes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont du jargon mixte (philosophie + technique) sans véritable traduction — la fiche cherche l'analogie *structurelle* qui capture le mécanisme, pas la décoration. Pourtant la pièce 1 me résiste fortement: 'l'OCR reconstruit une intentionnalité scripturale' n'est pas une décoration, c'est une transposition précise de ce que fait techniquement le système (inférer ce que le scripteur voulait écrire à partir de traces graphiques). Idem pour 'cartographie des proximités sémantiques' pour le RAG. La pièce 2 me résiste: l'analogie cartographique (routière vs topographique) capture précisément ce qui distingue 384 et 1024 dimensions d'embedding (granularité de résolution). La pièce 3 me résiste: la conception de deux formations distinctes selon le public est un acte de traduction institutionnalisé. La pièce 4 me résiste plus faiblement: 'réflexion systémique sur ses implications techniques, pédagogiques et philosophiques' est une annonce méthodologique, pas une traduction en acte.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Reformulation simultanée OCR/RAG/validation en langage philosophique avec préservation du mécanisme technique." },
+            { "pieceId": 2, "motifResistance": "Analogie structurelle (carte routière vs topographique) qui capture la différence de résolution sémantique." },
+            { "pieceId": 3, "motifResistance": "Conception de formations différenciées pour deux publics (techniciens / novices) — pontage institutionnalisé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste le test que la fiche propose: 'l'expert d'origine reconnaîtrait-il son savoir dans la version traduite?'. 'Intentionnalité scripturale' pour décrire ce que fait un OCR est une formulation que peu d'ingénieurs OCR emploieraient spontanément, mais elle capture correctement la tâche d'inférence du système. Un expert OCR reconnaîtrait son objet. Pièce confirmée. Sur la pièce 2, je teste (d) — glissement lexical: l'analogie est-elle décorative? Non, elle est structurelle: une carte basse résolution capture les grandes structures et perd les détails, exactement ce que fait un embedding à 384 dimensions. Sur la pièce 3, je teste (a) — insuffisance probatoire: la formation est annoncée (20h) mais non décrite. L'attaque touche: c'est une intention de traduction, pas une traduction effectuée. Pièce affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Les formulations philosophiques capturent correctement le mécanisme technique — test de l'expert d'origine passé." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Analogie structurelle (résolution de carte) qui correspond précisément à la dimensionnalité d'embedding." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Formation chiffrée annoncée (20h) sans description du contenu — geste de pontage prévu plus que réalisé." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces du jargon mixte ornemental. Trois pièces m'ont forcé à reconnaître autre chose: une reformulation triple (OCR/RAG/validation) qui préserve le mécanisme technique tout en le rendant lisible philosophiquement, une analogie cartographique structurellement juste pour la dimensionnalité d'embedding, et la conception (annoncée) de formations différenciées pour deux publics. La quatrième n'a pas été retenue (annonce méthodologique). Ce qui en résulte: la traduction entre mondes se manifeste ici avec densité — l'apprenant pratique cette compétence sur quasiment chaque concept technique du texte, avec une attention soutenue à la fidélité du mécanisme. Pour prolonger, observer une traduction inverse (remonter une demande non-technique en langage spécialisé) compléterait la bidirectionnalité que la fiche signale comme signal fort.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.85,
+        "motif": "Le temps 2 confirme deux pièces en force (reformulations OCR/RAG, analogie cartographique) et retient une troisième affaiblie.",
+        "prescription": "Dans ce pôle, le travail montre une pratique soutenue de la traduction entre mondes technique et conceptuel. Pour prolonger, un chemin possible serait de documenter une traduction inverse — prendre une demande non-technique (par exemple un besoin pédagogique exprimé par un collègue) et la traduire en langage spécialisé pour des techniciens."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "Modélisation d'une communauté apprenante 'sympoiétique' (créer ensemble) où élève, enseignant et collectif co-construisent un référentiel évolutif. Architecture communautaire avec rôles et rituels."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Conception d'un dispositif où la rétroaction métacognitive est intégrée à une boucle ouverte entre élève, système, enseignant. Espace multi-acteurs avec rôles différenciés."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des dispositifs pédagogiques sans véritable dimension communautaire au sens 2.09 — la fiche réclame un 'nous' identitaire chargé d'émotion et une appartenance qui survit au projet. Pourtant la pièce 1 me résiste: la modélisation 'sympoiétique' (chaque acteur co-construit avec les autres dans la durée) inclut un collectif qui *enrichit* un corpus de référence dans le temps, ce qui suggère une appartenance qui dépasse l'événement ponctuel. La fiche cite explicitement comme trace oblique l'extension de la communauté aux agents IA, ce qui se voit ici (les quatre intelligences incluent la machine et le collectif). La pièce 2 me résiste moins: c'est un dispositif technique de feedback, pas une communauté. Présomption durcie: la pièce 2 tombe; la pièce 1 résiste.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Modélisation d'une communauté apprenante incluant des intelligences hétérogènes (humain + IA + collectif), avec co-construction dans la durée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec méfiance. Je teste (d) — glissement lexical: 'sympoiétique', 'co-construction' sont-ils des mots-clés communautaires sans charge? Non, l'apprenant définit le mécanisme (chaque acteur enrichit les autres, le référentiel évolue dans le temps) et cite l'étymologie (syn-poiein, créer ensemble). Je teste aussi (b) — confusion de compétence: ce modèle relève-t-il plutôt de 1.05 (systémique) ou 6.07 (gouvernance collective)? Il vaut pour les trois. La dimension *appartenance* (l'élève fait partie d'un nous qui inclut l'enseignant et le collectif) est typiquement 2.09, mais la dimension *gouvernance* (règles co-construites du référentiel évolutif) penche vers 6.07. Pièce affaiblie par polysémie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 1.05/2.09/6.07. La dimension communautaire (extension aux IA, co-construction dans la durée) tient mais ne lui appartient pas exclusivement." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des dispositifs pédagogiques sans appartenance communautaire véritable. Une pièce a tenu, affaiblie: la modélisation sympoiétique d'une communauté apprenante qui inclut humains et non-humains comme co-constructeurs du savoir évolutif. La fiche signale précisément cette extension aux IA comme trace oblique forte. Mais la pièce reste théorique: aucun récit d'un 'nous' vécu chargé d'émotion n'apparaît, aucun rituel partagé, aucun vocabulaire propre à un groupe identifiable. Ce qui en résulte: la construction de communautés se manifeste ici sur un plan conceptuel — l'apprenant pense la communauté comme architecture incluant des agents hétérogènes. La fiche admet cette voie (l'architecture systémique comme trace forte) mais signale que le sentiment d'appartenance vécu reste à observer ailleurs.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Une pièce a tenu, affaiblie par polysémie: modélisation conceptuelle d'une communauté étendue aux IA, sans récit d'appartenance vécue.",
+        "prescription": "Dans ce pôle, le travail montre une pensée de la communauté comme architecture incluant des agents hétérogènes. Pour ouvrir le terrain, un chemin possible serait de documenter un groupe vécu (équipe, projet, formation) avec ses rituels, son vocabulaire propre, et ce qui fait que les liens survivraient à la fin du projet."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 3,
+    "nonEtablies": 0,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail relationnel se déploie principalement sur un terrain conceptuel: un long texte sur l'évaluation augmentée qui pense la relation enseignant-élève-machine, les biais culturels d'un outil OCR, la distribution de l'autorité évaluative, et la communauté apprenante hybride. La voix est analytique, soutenue, parfois philosophique, avec des moments concrets (la lettre de motivation à l'EPFL, la mention d'un aménagement préventif inspiré du tiers-temps). Les marqueurs récurrents : la traduction soutenue entre mondes (technique vers philosophique), la nomination des biais culturels intégrés aux outils, et la conception de dispositifs où plusieurs acteurs (humains et non-humains) sont en relation structurée.",
+    "territoiresDenses": [
+      {
+        "competence": "Traduction entre mondes",
+        "description": "Reformulation systématique des mécanismes techniques en langage philosophique sans perte de fidélité, avec des analogies structurelles qui capturent le mécanisme et pas seulement une vague ressemblance.",
+        "extraitVerbatim": "L'OCR ne déchiffre pas des signes : il reconstruit une intentionnalité scripturale à partir de traces graphiques. Le système RAG qui indexe ces réponses ne les \"comprend\" pas : il cartographie des proximités sémantiques dans un espace vectoriel à 1536 dimensions.",
+        "ceQueCaDit": "Le travail pratique le pontage entre communautés techniques et conceptuelles à un rythme dense, en préservant ce qu'un expert d'origine reconnaîtrait."
+      },
+      {
+        "competence": "Intelligence culturelle",
+        "description": "Identification précise des biais culturels d'un outil IA, avec nomination des populations désavantagées et transposition de normes d'inclusion entre régimes.",
+        "extraitVerbatim": "Un élève avec une **écriture atypique** (mais lisible pour un humain) aura systématiquement un taux d'erreur OCR plus élevé → **iniquité structurelle**.",
+        "ceQueCaDit": "Le travail décode les implicites culturels intégrés aux datasets et propose des aménagements transposés d'autres dispositifs d'inclusion (le tiers-temps)."
+      },
+      {
+        "competence": "Gestion des conflits",
+        "description": "Reconnaissance d'un désaccord irréductible entre IA et humain, avec invitation explicite à accepter d'être remis en cause par un challenger algorithmique.",
+        "extraitVerbatim": "Ce principe ne doit pas verser dans le **biais d'ancrage humain**. Si l'IA signale systématiquement des sur-notations ou sous-notations par l'enseignant, il faut accepter une **remise en question**.",
+        "ceQueCaDit": "Le travail théorise le conflit comme structure productive, où une perspective qui dérange n'est pas fuie ni écrasée mais intégrée."
+      },
+      {
+        "competence": "Collaboration divergente",
+        "description": "Conception d'une architecture où l'IA reste imparfaite (90% de fiabilité OCR) et où la collaboration se poursuit malgré cette divergence sur sa fiabilité.",
+        "extraitVerbatim": "Un étudiant qui vérifie les hallucinations d'une IA qui corrige son écriture manuscrite, c'est \"LA\" solution au problème du 90% seulement de fiabilité des systèmes automatiques actuels [...] avec de l'OCR sur de l'écriture.",
+        "ceQueCaDit": "Le travail intègre l'imperfection de l'IA comme donnée de conception, pas comme problème à résoudre — la divergence persiste tout en livrant."
+      },
+      {
+        "competence": "Sens politique",
+        "description": "Lecture des déplacements de pouvoir invisibles induits par les outils IA: l'enseignant qui valide sans vérifier est de facto piloté par l'IA, sans que l'organigramme ne le dise.",
+        "extraitVerbatim": "Un stylo rouge ne suggère pas de notes, l'IA oui. Elle **oriente** le jugement humain par ses suggestions. Risque de **biais d'automatisation** : l'enseignant, pressé, valide sans vérifier réellement.",
+        "ceQueCaDit": "Le travail nomme où le pouvoir réel circule entre acteurs humains et non-humains, là où le pouvoir formel paraissait clair."
+      }
+    ],
+    "territoiresNonVisites": "L'intelligence émotionnelle et la sollicitude active n'apparaissent pas dans cette feuille — pas de nomination d'émotions personnelles, pas de perception d'un état émotionnel non-verbalisé chez quelqu'un, pas de geste de sollicitude concrète envers un proche ou un collègue. La feuille est centrée sur un objet conceptuel (le dispositif EPFL) sans interactions humaines vécues rapportées. La communication authentique reste circonscrite à un acte unique (la lettre de motivation), sans variations relationnelles observables — pas de moment d'humour, d'autodérision, de vulnérabilité stratégique partagée. L'influence et la diplomatie restent simples (insérer une proposition dans une lettre) sans description de préparation stratégique (anticipation des objections, sondage des résistances). La construction de communautés est pensée conceptuellement (la communauté sympoiétique étendue aux IA) mais aucun récit d'un 'nous' vécu n'apparaît dans la feuille.",
+    "emergencesPole": "Ce qui traverse plusieurs compétences ici: une attention au déplacement du pouvoir là où il est invisible. L'apprenant repère que les datasets OCR contiennent une culture (déplacement culturel), que la suggestion IA devient ancrage cognitif (déplacement décisionnel), que la 'validation' enseignante est piégée par la fatigue (déplacement de l'autorité réelle). C'est une posture de lecture des angles morts. Autre récurrence: la pensée des relations entre acteurs hétérogènes — humains et non-humains. L'élève, l'enseignant, la machine, le collectif sont pensés non comme adversaires mais comme partenaires aux rôles complémentaires, avec une attention à ce qui les relie. Enfin: la traduction permanente entre registres. Aucun concept technique ne reste seulement technique dans ce texte — chacun reçoit une reformulation philosophique, et inversement aucune idée philosophique ne reste seulement abstraite — chacune trouve un ancrage technique.",
+    "pistes": [
+      "Pour ouvrir l'intelligence émotionnelle, un chemin possible serait de documenter un moment où une émotion (la sienne ou celle d'un autre) a été nommée précisément et a guidé une décision concrète.",
+      "Pour approfondir la communication, un chemin possible serait de noter, dans un échange à venir, les variations de registre choisies (formel/familier, factuel/émotionnel, sérieux/humoristique) et ce qui les a déclenchées.",
+      "Pour enrichir le sens politique, un chemin possible serait de documenter une situation organisationnelle concrète où une décision n'a pas suivi l'organigramme officiel, et de nommer ce qui se jouait réellement.",
+      "Pour incarner la construction de communautés, un chemin possible serait de décrire un groupe vécu (équipe, formation, projet) avec ses rituels, son vocabulaire propre, et ce qui ferait survivre les liens à la fin du projet."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail relationnel se déploie principalement sur un terrain conceptuel: un long texte sur l'évaluation augmentée qui pense la relation enseignant-élève-machine, les biais culturels d'un outil OCR, la distribution de l'autorité évaluative, et la communauté apprenante hybride. La voix est analytique, soutenue, parfois philosophique, avec des moments concrets (la lettre de motivation à l'EPFL, la mention d'un aménagement préventif inspiré du tiers-temps). Les marqueurs récurrents : la traduction soutenue entre mondes (technique vers philosophique), la nomination des biais culturels intégrés aux outils, et la conception de dispositifs où plusieurs acteurs (humains et non-humains) sont en relation structurée.\n\n## Territoires les plus denses\n\n**Traduction entre mondes.** Le travail pratique le pontage entre communautés techniques et conceptuelles à un rythme dense, en préservant ce qu'un expert d'origine reconnaîtrait. *\"L'OCR ne déchiffre pas des signes : il reconstruit une intentionnalité scripturale à partir de traces graphiques. Le système RAG qui indexe ces réponses ne les 'comprend' pas : il cartographie des proximités sémantiques dans un espace vectoriel à 1536 dimensions.\"*\n\n**Intelligence culturelle.** Le travail décode les implicites culturels intégrés aux datasets et propose des aménagements transposés d'autres dispositifs d'inclusion (le tiers-temps). *\"Un élève avec une écriture atypique (mais lisible pour un humain) aura systématiquement un taux d'erreur OCR plus élevé → iniquité structurelle.\"*\n\n**Gestion des conflits.** Le travail théorise le conflit comme structure productive, où une perspective qui dérange n'est pas fuie ni écrasée mais intégrée. *\"Ce principe ne doit pas verser dans le biais d'ancrage humain. Si l'IA signale systématiquement des sur-notations ou sous-notations par l'enseignant, il faut accepter une remise en question.\"*\n\n**Collaboration divergente.** Le travail intègre l'imperfection de l'IA comme donnée de conception, pas comme problème à résoudre — la divergence persiste tout en livrant. *\"Un étudiant qui vérifie les hallucinations d'une IA qui corrige son écriture manuscrite, c'est 'LA' solution au problème du 90% seulement de fiabilité des systèmes automatiques actuels avec de l'OCR sur de l'écriture.\"*\n\n**Sens politique.** Le travail nomme où le pouvoir réel circule entre acteurs humains et non-humains, là où le pouvoir formel paraissait clair. *\"Un stylo rouge ne suggère pas de notes, l'IA oui. Elle oriente le jugement humain par ses suggestions. Risque de biais d'automatisation : l'enseignant, pressé, valide sans vérifier réellement.\"*\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'intelligence émotionnelle et la sollicitude active n'apparaissent pas dans cette feuille — pas de nomination d'émotions personnelles, pas de perception d'un état émotionnel non-verbalisé chez quelqu'un, pas de geste de sollicitude concrète envers un proche ou un collègue. La feuille est centrée sur un objet conceptuel (le dispositif EPFL) sans interactions humaines vécues rapportées.\n\nLa communication authentique reste circonscrite à un acte unique (la lettre de motivation), sans variations relationnelles observables — pas de moment d'humour, d'autodérision, de vulnérabilité stratégique partagée. L'influence et la diplomatie restent simples (insérer une proposition dans une lettre) sans description de préparation stratégique (anticipation des objections, sondage des résistances). La construction de communautés est pensée conceptuellement (la communauté sympoiétique étendue aux IA) mais aucun récit d'un 'nous' vécu n'apparaît dans la feuille.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse plusieurs compétences ici: une attention au déplacement du pouvoir là où il est invisible. L'apprenant repère que les datasets OCR contiennent une culture (déplacement culturel), que la suggestion IA devient ancrage cognitif (déplacement décisionnel), que la 'validation' enseignante est piégée par la fatigue (déplacement de l'autorité réelle). C'est une posture de lecture des angles morts.\n\nAutre récurrence: la pensée des relations entre acteurs hétérogènes — humains et non-humains. L'élève, l'enseignant, la machine, le collectif sont pensés non comme adversaires mais comme partenaires aux rôles complémentaires, avec une attention à ce qui les relie.\n\nEnfin: la traduction permanente entre registres. Aucun concept technique ne reste seulement technique dans ce texte — chacun reçoit une reformulation philosophique, et inversement aucune idée philosophique ne reste seulement abstraite — chacune trouve un ancrage technique.\n\n## Pistes pour enrichir ce pôle\n\nPour ouvrir l'intelligence émotionnelle, un chemin possible serait de documenter un moment où une émotion (la sienne ou celle d'un autre) a été nommée précisément et a guidé une décision concrète.\n\nPour approfondir la communication, un chemin possible serait de noter, dans un échange à venir, les variations de registre choisies (formel/familier, factuel/émotionnel, sérieux/humoristique) et ce qui les a déclenchées.\n\nPour enrichir le sens politique, un chemin possible serait de documenter une situation organisationnelle concrète où une décision n'a pas suivi l'organigramme officiel, et de nommer ce qui se jouait réellement.\n\nPour incarner la construction de communautés, un chemin possible serait de décrire un groupe vécu (équipe, formation, projet) avec ses rituels, son vocabulaire propre, et ce qui ferait survivre les liens à la fin du projet."
+  }
+}

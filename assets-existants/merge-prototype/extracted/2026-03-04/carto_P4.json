@@ -1,0 +1,526 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**Critique constructive** : Cette approche, héritée du behaviorisme évaluatif, **occulte les apprentissages transversaux** et la capacité de l'élève à tisser des liens conceptuels.",
+      "contexte": "Critique éthique-pédagogique d'un choix technique (segmentation par question) qui révèle ses présupposés idéologiques (behaviorisme). Questionnement des présupposés d'une optimisation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Définition formelle : Un système d'évaluation est **équitable** si et seulement si : ∀ élèves i,j : P(erreur_système | élève_i) = P(erreur_système | élève_j). C'est-à-dire : la probabilité qu'un élève subisse une erreur du système (OCR, suggestion de note erronée) doit être **indépendante de ses caractéristiques intrinsèques** (écriture, origine, niveau).",
+      "contexte": "Formalisation d'un critère éthique (équité) avec définition mathématique. Tension de valeurs entre performance et justice.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Un élève avec une **écriture atypique** (mais lisible pour un humain) aura systématiquement un taux d'erreur OCR plus élevé → **iniquité structurelle**.",
+      "contexte": "Identification d'une iniquité algorithmique et nomination du problème. Conscience que le système peut produire des injustices structurelles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**Droit à l'aménagement préventif** : Élève peut demander **a priori** : \"Mon écriture est difficile à lire, je préfère une correction manuelle systématique\". C'est l'équivalent d'un **aménagement ergonomique** (comme le tiers-temps pour dyslexiques).",
+      "contexte": "Proposition de garde-fou éthique préventif inspiré d'un aménagement existant. Conception d'un dispositif de protection des plus exposés."
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Garde-fous éthiques : 1. **Principe de réversibilité** : À tout moment, le système peut être \"éteint\" et on revient à une correction 100% manuelle sans perte de données ni de capacité d'évaluation. 2. **Principe de transparence** [...] 3. **Principe de contestabilité** [...] 4. **Principe de non-discrimination** [...] 5. **Principe de formation** [...]",
+      "contexte": "Conception structurée de cinq garde-fous éthiques pour le déploiement IA. Acte d'alignement éthique au sens fort de la fiche.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "**L'augmentation ne doit jamais devenir substitution**.",
+      "contexte": "Énoncé d'un principe fondamental éthique (la limite à ne pas franchir). Posture de gardien de l'alignement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'enseignant utilisant ce système a une **responsabilité accrue**, pas diminuée. Il doit : 1. Comprendre comment le système fonctionne (transparence algorithmique) 2. Auditer régulièrement ses suggestions (détection des biais) 3. Assumer pleinement la validation finale (non-délégation de l'autorité) 4. Former les élèves à la critique de ces outils",
+      "contexte": "Articulation d'une responsabilité augmentée plutôt que diminuée par l'IA. Position éthique défendue face à deux contre-positions explicites.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "C'est la position que je défends. L'enseignant devient **architecte d'un écosystème évaluatif hybride**, où humain et machine se contrôlent mutuellement. C'est exigeant intellectuellement et éthiquement, mais c'est le prix de l'**augmentation responsable**.",
+      "contexte": "Prise de position personnelle assumée dans un débat à trois voix. Courage moral d'une position défendue malgré la complexité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Position 1 : Délégation = démission (critique radicale) [...] Position 2 : Délégation = augmentation (défense techno-optimiste) [...] Position 3 : Responsabilité augmentée (synthèse critique)",
+      "contexte": "Structure dialectique de trois positions en tension explicite, sans résolution prématurée. Tension de valeurs maintenue.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Même si je ne décroche pas ce poste, vu mes lacunes dans le domaine technique (RAG + LangChain + Bases vectorielle), ça m'a aidé à créer un CV orienté \"Prompt Engineering\" et donné des idées sur les orientations à suivre pour mon auto-formation",
+      "contexte": "Reconnaissance honnête de ses limites techniques + décision dans le flou (postuler malgré les lacunes, transformer un échec anticipé en opportunité). Tolérance à l'incertitude.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "C'est ce que j'ai décrit comme le risque d'**ancrage algorithmique** : la suggestion de l'IA devient **point de départ cognitif** plutôt que **seconde opinion**.",
+      "contexte": "Diagnostic d'un biais d'alignement et nomination du risque. Vigilance face à un désalignement subtil de l'IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'IA manque de **compréhension contextuelle**. L'enseignant apporte une **lecture herméneutique** (interpréter l'intention au-delà des mots).",
+      "contexte": "Identification du delta de savoir contextuel entre IA et humain. Validation contextuelle au sens 4.07."
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'IA permet à l'enseignant de se concentrer sur ce qu'il fait de mieux : accompagner, expliquer, motiver. Elle n'est qu'un outil, comme le stylo rouge ou la calculatrice.",
+      "contexte": "Citation reformulée d'une position techno-optimiste — ce que l'IA ne sait pas faire (accompagner, expliquer, motiver) est nommé. Création de valeur non-automatisable.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Je me réjouis de la dernière séance de cette mesure Lab4Tech ce vendredi, histoire de pouvoir reprendre les projets en cours. Je pense en avoir plus de 10 maintenant, je n'arrive même plus à me souvenir de la liste des projets interrompus. Ce sera l'occasion de remettre les priorités à plats !",
+      "contexte": "Décision reportée (mise à plat des priorités à un moment précis: vendredi). Possible patience stratégique avec critère de déclenchement.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Structure dialectique de trois positions éthiques (démission, augmentation techno-optimiste, responsabilité augmentée) explicitement nommées et explorées. Mise en tension de valeurs sans résolution prématurée."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Questionnement éthique des présupposés d'un choix technique: la segmentation par question 'occulte les apprentissages transversaux'. Interrogation des critères du jugement."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Mise en tension entre performance (taux d'erreur OCR acceptable) et équité (indépendance vis-à-vis des caractéristiques intrinsèques). Arbitrage explicite de valeurs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont du raisonnement théorique sur des dilemmes éthiques sans véritable appropriation — la fiche cherche un *processus visible de mise en tension de valeurs* dans un cas appliqué, pas l'énumération scolaire de positions. Pourtant la pièce 1 me résiste fortement: l'apprenant énonce trois positions, *défend la dernière comme la sienne* après avoir donné la pleine force aux deux autres (la critique radicale et le techno-optimisme), avec arguments structurés en faveur et en défaveur. C'est précisément la structure 'd'un côté... de l'autre... ce que je défends' qu'attend la fiche. La pièce 2 me résiste: critiquer un choix technique en nommant son présupposé idéologique (behaviorisme évaluatif) est précisément interroger les critères mêmes du jugement. La pièce 3 me résiste: formaliser un critère d'équité et reconnaître qu'il entre en tension avec la performance est un arbitrage de valeurs explicite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Structure dialectique à trois positions avec position personnelle assumée après exploration sérieuse des contre-positions." },
+            { "pieceId": 2, "motifResistance": "Critique nommant le présupposé idéologique d'un choix technique — interrogation des critères du jugement." },
+            { "pieceId": 3, "motifResistance": "Formalisation d'un critère éthique (équité) explicitement en tension avec la performance technique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec scepticisme. Sur la pièce 1, je teste (e) — surinterprétation: la structure à trois positions est-elle une rhétorique d'essai sans véritable inconfort? Le passage va loin dans la défense de la position 1 ('un enseignant qui laisse une IA suggérer des notes abdique son rôle') avant de la réfuter, ce qui suggère un engagement avec la position adverse. Pièce confirmée. Sur la pièce 2, je teste (b) — confusion de compétence: cette critique relève-t-elle plutôt de 1.01 (pensée critique)? Elle vaut pour les deux mais la dimension *présupposé idéologique* (behaviorisme) est éthique, pas seulement véridique. Pièce affaiblie par polysémie. Sur la pièce 3, je teste (d) — glissement lexical: la formule mathématique d'équité est-elle du vocabulaire savant sans charge? Non, elle articule précisément la définition de l'équité algorithmique standard en éthique IA (P(erreur|catégorie) constante). Pièce confirmée.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Engagement réel avec la position adverse (donnée en force avant d'être réfutée) — pas une rhétorique creuse." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 1.01/4.01: la critique technique recouvre une critique éthique de présupposé. Tient pour 4.01 sans lui appartenir exclusivement." },
+            { "pieceId": 3, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La formule articule une définition technique précise de l'équité algorithmique avec sa conséquence éthique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces une énumération scolaire de positions sans appropriation. Trois pièces ont tenu, dont une affaiblie: une structure dialectique à trois positions avec engagement réel avec les contre-positions, une critique des présupposés idéologiques d'un choix technique, et la formalisation d'un critère éthique en tension avec la performance. Ce qui en résulte: le raisonnement éthique se manifeste ici sous une forme structurée et dialectique, où les positions adverses reçoivent leur pleine force avant d'être discutées. Mais il y a une réserve: tous ces dilemmes restent au plan théorique. La fiche signale qu'un raisonnement éthique mature s'éprouve dans des arbitrages où il y a un coût pour l'apprenant lui-même. Pour la suite, observer un dilemme moral vécu personnellement (où la position défendue avait un prix) compléterait la trace.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 confirme deux pièces en force (structure dialectique avec engagement adverse, formalisation d'un critère d'équité) et en retient une affaiblie par polysémie.",
+        "prescription": "Dans ce pôle, le travail montre une structure dialectique où les positions adverses reçoivent leur pleine force avant d'être discutées. Pour prolonger, un chemin possible serait de documenter un dilemme moral vécu personnellement, où la position défendue a eu un coût concret."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Conception structurée de cinq garde-fous éthiques (réversibilité, transparence, contestabilité, non-discrimination, formation). Conception de systèmes de contrôle au sens 4.02 fort."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Énoncé d'un principe fondamental ('L'augmentation ne doit jamais devenir substitution'). Posture explicite de gardiennage."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Diagnostic d'un risque d'alignement subtil (l'IA oriente sans en avoir l'autorité explicite). Vigilance face au désalignement."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Articulation des devoirs de l'enseignant face à l'IA (comprendre, auditer, valider, former). Conception de garde-fous éthiques opérationnels."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des principes éthiques généraux sans véritable acte d'alignement vécu — la fiche cherche des récits de refus concret, de garde-fous mis en place, d'inconfort face à un output désaligné. Pourtant la pièce 1 me résiste fortement: cinq garde-fous nommés avec mécanismes précis (la formation est chiffrée à 20h, la transparence détaille qui peut consulter quoi). C'est précisément la 'conception documentée de garde-fous éthiques systémiques' que la fiche cite comme trace pouvant justifier Expert. La pièce 4 me résiste: quatre devoirs concrets et opérationnels qui transforment un principe en pratique. La pièce 2 me résiste plus faiblement: c'est un principe énoncé, pas un dispositif. La pièce 3 me résiste: nommer 'ancrage algorithmique' est diagnostiquer un désalignement subtil, exactement ce que la fiche attend.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Cinq garde-fous nommés avec mécanismes précis — conception documentée de système de contrôle." },
+            { "pieceId": 4, "motifResistance": "Quatre devoirs opérationnels transformant le principe en pratique." },
+            { "pieceId": 3, "motifResistance": "Diagnostic nommé d'un désalignement subtil (ancrage algorithmique) — vigilance face à un output désaligné." },
+            { "pieceId": 2, "motifResistance": "Principe fondamental énoncé comme limite à ne pas franchir — posture explicite de gardiennage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (a) — insuffisance probatoire: les cinq garde-fous sont-ils mis en place dans un système réel ou seulement listés? La fiche admet que la 'conception documentée' suffit, mais ici le système EPFL n'est pas le système de l'apprenant — il en conçoit les garde-fous *avant* d'avoir le poste. L'attaque touche modérément: c'est une conception prospective, pas un déploiement vérifié. Pièce affaiblie. Sur la pièce 4, je teste (f) — récit performatif: ces devoirs sont-ils énumérés sans être pratiqués? Effectivement, l'apprenant ne décrit pas avoir pratiqué ces audits ou formé des élèves. L'attaque touche. Pièce affaiblie. Sur la pièce 3, je teste (d) — glissement lexical: 'ancrage algorithmique' est-il du vocabulaire sans charge? Non, c'est une création conceptuelle précise (suggestion → point de départ vs seconde opinion). Pièce confirmée. Sur la pièce 2, je teste (a) — insuffisance probatoire: le principe est très court, sans dispositif. L'attaque touche. Pièce affaiblie en limite de disqualification.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Conception prospective documentée mais non déployée dans un système réel par l'apprenant." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Devoirs énumérés sans récit de pratique — déclaration de programme plus que trace d'exercice." },
+            { "pieceId": 3, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Création conceptuelle précise (suggestion → point de départ) — diagnostic nommé, pas vocabulaire vide." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Principe court sans dispositif accompagnant, mais qui structure les autres pièces." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des principes éthiques sans véritable acte d'alignement. Quatre pièces ont tenu, dont trois affaiblies: cinq garde-fous structurés (conception prospective), quatre devoirs opérationnels, un principe fondamental court, et le diagnostic conceptuel d'un désalignement subtil (ancrage algorithmique) qui tient en force. Ce qui en résulte: le gardiennage éthique se manifeste ici sur deux plans — la conception systémique d'un dispositif de contrôle (garde-fous, devoirs) et le diagnostic conceptuel d'un risque d'alignement nouveau. Le second plan tient en force; le premier est solide mais reste prospectif (ce n'est pas son système qu'il déploie). Pour la suite, observer un refus concret face à une suggestion IA désalignée, ou la mise en place réelle d'un garde-fou dans son propre travail, renforcerait la trace.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.72,
+        "motif": "Le temps 2 confirme une pièce en force (diagnostic conceptuel d'ancrage algorithmique) et en retient trois affaiblies (conception prospective de garde-fous).",
+        "prescription": "Dans ce pôle, le travail montre la conception structurée de garde-fous éthiques et le diagnostic conceptuel de risques d'alignement subtils. Pour prolonger, un chemin possible serait de documenter un acte de refus concret face à une suggestion IA désalignée dans son propre travail, avec les valeurs explicites mobilisées."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et long-terme dans cette feuille — pas d'arbitrage explicite entre bénéfice immédiat et impact environnemental, pas de mention de l'empreinte du numérique ou des générations futures. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision où l'impact long-terme a modifié concrètement le raisonnement."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un mode de pensée différent (le sien ou celui d'un autre) a produit un résultat que l'approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Reconnaissance honnête des lacunes techniques (RAG, LangChain, bases vectorielles) avec décision de postuler quand même et de transformer l'incertitude du résultat en levier d'auto-formation. Décision dans le flou."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce est une candidature ordinaire et non une décision dans le flou au sens 4.05 — la fiche cherche des récits où l'apprenant a tranché malgré l'incertitude documentée. Pourtant la pièce me résiste: l'apprenant *nomme* explicitement les zones où il manque de savoir technique (RAG + LangChain + bases vectorielles), *postule malgré* ces lacunes, et *transforme* l'incertitude du résultat ('même si je ne décroche pas') en opportunité formative. Ce sont les trois éléments du combo le plus fiable selon la fiche: nommer l'incertitude, fonctionner malgré elle, agir avec assomption des conséquences.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Trois éléments présents: lacunes nommées, postulation malgré elles, transformation de l'issue incertaine en opportunité formative." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec scepticisme. Je teste (g) — mouvement-vers: l'apprenant raconte avoir postulé mais n'a pas encore le résultat; il est en route vers la décision dont l'effet n'est pas connu. L'attaque touche modérément: l'acte de postuler EST la décision, et elle est posée; l'effet est l'objet de l'incertitude tolérée. Pièce confirmée. Je teste aussi (a) — insuffisance probatoire: une seule pièce, brève. C'est limité, mais la pièce contient les trois marqueurs réclamés par la fiche, donc la concision n'est pas un défaut. Pièce affaiblie par cette monade probatoire mais retenue.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Une seule pièce mais qui contient les trois marqueurs (nommer / fonctionner malgré / agir avec conséquences assumées) que la fiche signale comme combo le plus fiable." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette pièce une candidature ordinaire. Le passage me résiste: l'apprenant ne se contente pas de postuler, il nomme explicitement ce qu'il ne sait pas (trois domaines techniques précis), assume de candidater malgré cela, et transforme l'incertitude du résultat en levier d'orientation. C'est la structure 'tolérer + trancher' que la fiche décrit. La pièce s'affaiblit par sa concision (un seul acte rapporté) mais tient. Ce qui en résulte: la décision dans le flou se manifeste ici sous une forme courte mais complète. Pour la suite, observer d'autres décisions prises avec information incomplète, ou la persistance face à des éléments contradictoires, étofferait la trace.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.55,
+        "motif": "Une pièce confirmée affaiblie par sa concision, mais qui contient les trois marqueurs du combo le plus fiable selon la fiche.",
+        "prescription": "Dans ce pôle, le travail montre une décision posée avec assomption explicite de l'incertitude du résultat. Pour prolonger, un chemin possible serait de documenter d'autres moments où une action a été engagée sans garantie d'issue — paris assumés, persistance malgré l'absence de validation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Prise de position personnelle assumée ('C'est la position que je défends') après exploration des contre-positions. Courage de tenir une position défendable mais coûteuse intellectuellement."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Reconnaissance explicite de ses lacunes (RAG, LangChain, bases vectorielles) sans minimiser — accountability sur ses propres limites."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Articulation d'une responsabilité 'accrue' face à l'IA (comprendre, auditer, valider, former). Position éthique exigeante défendue contre des positions plus confortables."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des positions intellectuelles dans un essai sans véritable courage moral éprouvé — la fiche cherche le maintien d'une position impopulaire, une vérité inconfortable dite, une cohérence sous pression. La pièce 1 me résiste partiellement: 'C'est la position que je défends' assume publiquement une position parmi trois explicitement formulées. Le coût de cette position est nommé ('c'est exigeant intellectuellement et éthiquement'). La pièce 2 me résiste: nommer trois lacunes techniques précises (RAG, LangChain, bases vectorielles) plutôt que de masquer ou de minimiser est une trace d'accountability sur soi-même. La pièce 3 me résiste plus faiblement: 'responsabilité accrue' est une posture défendue mais théorique. Présomption durcie: la pièce 3 s'affaiblit; les pièces 1 et 2 résistent.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Prise de position publique assumée avec coût intellectuel nommé." },
+            { "pieceId": 2, "motifResistance": "Nomination précise et non minimisée de ses propres lacunes — accountability sur soi." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (f) — récit performatif: l'apprenant raconte-t-il qu'il défend une position sans la défendre vraiment? La position est articulée avec arguments précis (quatre devoirs pour l'enseignant), confrontée à deux contre-positions données en force, et publiquement assumée dans un texte qu'il va peut-être envoyer à l'EPFL. L'attaque ne tient pas — c'est un acte de prise de position, pas un récit. Pièce confirmée. Sur la pièce 2, je teste (h) — faux positif de fiche: la fiche met en garde contre l'auto-flagellation. Ici l'apprenant *ne* s'auto-flagelle pas: il nomme ses lacunes pour les transformer en orientation d'auto-formation, ce qui est l'accountability constructive que la fiche valorise. Pièce confirmée.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Position assumée avec arguments précis face à deux contre-positions données en force — acte, pas récit." },
+            { "pieceId": 2, "attaqueDominante": "h", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Reconnaissance qui débouche sur une action (orientation d'auto-formation) — accountability constructive." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des positions intellectuelles sans courage vécu. Deux pièces ont tenu, confirmées: la prise de position publique sur une question morale complexe avec arguments précis face à des contre-positions données en force, et la reconnaissance non minimisée de ses propres lacunes débouchant sur une orientation d'apprentissage. La fiche signale qu'une accountability mature dit 'c'est ma responsabilité, et voici ce que je fais maintenant' — c'est précisément ce qu'on lit ici. Ce qui en résulte: la responsabilité et le courage se manifestent ici sous deux formes: dans la position prise sur un dilemme éthique avec coût intellectuel nommé, et dans la reconnaissance honnête de ses lacunes orientée vers l'action. Pour la suite, observer un maintien de position face à une pression sociale concrète (pas seulement intellectuelle) renforcerait la trace.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.68,
+        "motif": "Le temps 2 confirme deux pièces en force (prise de position publique argumentée, reconnaissance non minimisée des lacunes orientée vers l'action).",
+        "prescription": "Dans ce pôle, le travail montre une accountability constructive (nommer la lacune, la transformer en action) et une prise de position publique sur un dilemme. Pour prolonger, un chemin possible serait de documenter un moment où une position a été maintenue face à une pression sociale concrète."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 12,
+          "contexte": "Identification précise du delta de savoir contextuel entre IA et humain: l'IA manque de 'compréhension contextuelle', l'humain apporte une 'lecture herméneutique'. Mécanisme du delta nommé."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Diagnostic d'un type d'erreur IA spécifique (ancrage algorithmique) qui n'est pas une hallucination factuelle mais un effet de contexte (la suggestion oriente alors qu'elle devrait corroborer)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des observations générales sur les limites IA sans la précision contextuelle au sens 4.07 — la fiche distingue précisément l'erreur factuelle (1.01) du delta de contexte (4.07). La pièce 1 me résiste: 'lecture herméneutique' nomme précisément ce que l'enseignant apporte que l'IA ne peut pas avoir (interpréter l'intention au-delà des mots), c'est exactement le delta de savoir contextuel décrit. La pièce 2 me résiste plus faiblement: 'ancrage algorithmique' est un diagnostic de désalignement plutôt que de delta contextuel. Présomption durcie: la pièce 2 s'affaiblit; la pièce 1 résiste.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification précise du delta contextuel (lecture herméneutique = interpréter l'intention au-delà des mots) que l'IA ne peut pas porter." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec scepticisme. Je teste (e) — surinterprétation: ai-je projeté une validation contextuelle là où il y a juste une opposition générale IA/humain? Le passage cite un scénario précis (un élève qui détaille avant de conclure 'rapide', l'enseignant lit le contexte que l'IA ne peut pas voir) — c'est précisément l'identification d'un cas où le contexte manquant change tout. Pièce confirmée. Je teste aussi (b) — confusion de compétence: ne s'agit-il pas plutôt de 4.08 (création de valeur non-automatisable)? La fiche distingue: 4.08 cible ce que l'humain cultive comme valeur économique propre; 4.07 cible la correction d'erreur IA par savoir contextuel manquant. Ici l'apprenant *corrige* une suggestion IA par un savoir contextuel, c'est 4.07.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Scénario précis (élève qui détaille avant de conclure) où l'enseignant corrige l'IA par lecture du contexte manquant — exactement le delta 4.07." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces des observations générales sur les limites IA. Une pièce a tenu en force: l'identification du delta de savoir contextuel précis (lecture herméneutique = interpréter l'intention au-delà des mots) dans un scénario concret où l'IA se trompe non par hallucination mais par contexte manquant. La seconde pièce ne tient pas — l'ancrage algorithmique est un désalignement, pas un delta contextuel. Ce qui en résulte: la validation contextuelle se manifeste ici par la capacité à nommer précisément ce que l'humain sait que l'IA ne peut pas savoir, dans un cas spécifique. Pour la suite, observer un récit personnel où l'apprenant a effectivement corrigé l'IA en mobilisant son savoir contextuel propre — pas seulement théorisé sur cette correction — renforcerait la trace.",
+          "confianceFinale": 0.58
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.58,
+        "motif": "Le temps 2 confirme une pièce en force (identification précise du delta contextuel dans un scénario concret).",
+        "prescription": "Dans ce pôle, le travail montre l'identification précise de ce que l'humain sait que l'IA ne peut pas savoir. Pour prolonger, un chemin possible serait de documenter un cas personnel où l'apprenant a corrigé une suggestion IA en mobilisant explicitement un savoir contextuel (culturel, émotionnel, situationnel) inaccessible à la machine."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Identification de ce que l'humain fait mieux que l'IA: 'accompagner, expliquer, motiver'. Lucidité bidirectionnelle (l'IA décharge le mécanique, l'humain garde le relationnel)."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Nomination de la 'lecture herméneutique' comme apport humain irréductible — interpréter l'intention au-delà des mots. Valeur que l'IA ne peut pas structurellement reproduire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des constats de limites IA sans la lucidité bidirectionnelle au sens 4.08 — la fiche distingue les limitations temporaires des limites structurelles, et exige la dimension prospective (que cultiver pour rester pertinent?). La pièce 1 me résiste: l'apprenant nomme trois fonctions ('accompagner, expliquer, motiver') comme valeur humaine, dans un texte qui reconnaît par ailleurs largement ce que l'IA fait mieux — c'est la lucidité bidirectionnelle. La pièce 2 me résiste partiellement: 'lecture herméneutique' nomme un apport humain mais l'argument repose sur une limite IA *actuelle* (manque de contexte) qui pourrait évoluer. Présomption durcie: la pièce 2 s'affaiblit; la pièce 1 résiste.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Trois fonctions humaines nommées ('accompagner, expliquer, motiver') dans un texte qui par ailleurs reconnaît ce que l'IA fait mieux — lucidité bidirectionnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec méfiance. Je teste (g) — mouvement-vers: l'apprenant nomme une valeur humaine mais cultive-t-il cette valeur, l'oriente-t-il prospectivement? La fiche réclame le test prospectif ('que vais-je cultiver pour rester pertinent?'). La pièce ne contient pas explicitement cette dimension prospective personnelle. L'attaque touche. Pièce affaiblie. Je teste aussi (b) — confusion de compétence: ne s'agit-il pas plutôt de 1.10 (synergie)? La frontière est fine: 1.10 articule les forces comparatives en général, 4.08 cible la valeur économique non-automatisable de l'humain. Ici on a plus de 1.10 que de 4.08 stricto sensu. Pièce affaiblie en limite.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Lucidité bidirectionnelle présente, mais sans dimension prospective explicite (que cultive l'apprenant pour rester pertinent?)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces une véritable identification de valeur non-automatisable au sens 4.08. Une pièce a tenu, affaiblie: la nomination de trois fonctions humaines ('accompagner, expliquer, motiver') dans un texte qui reconnaît largement ce que l'IA fait mieux. Mais la fiche exige une dimension prospective ('que vais-je cultiver?') qui manque ici — l'apprenant nomme la valeur en général, pas ce qu'il va cultiver personnellement pour rester pertinent. Ce qui en résulte: la création de valeur non-automatisable est suggérée par cette feuille sous une forme conceptuelle (identifier les fonctions irremplaçables), sans dimension prospective personnelle. Pour la suite, observer un acte personnel d'investissement dans une valeur non-automatisable particulière — quelque chose que l'apprenant choisit de cultiver chez lui — ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.40
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.40,
+        "motif": "Une seule pièce affaiblie, sans la dimension prospective personnelle réclamée par la fiche.",
+        "prescription": "Dans ce pôle, le travail montre l'identification conceptuelle des fonctions humaines irremplaçables. Pour ouvrir le terrain, un chemin possible serait de nommer ce que l'apprenant choisit personnellement de cultiver chez lui — une valeur précise, des situations où la pratiquer, des indices que cela progresse."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "Report d'une action (mise à plat des priorités) à un moment précis (vendredi, fin du Lab4Tech) avec critère de déclenchement explicite. Possible patience stratégique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce est de la simple temporisation logistique et non de la patience stratégique au sens 4.09 — la fiche exige (1) une pression à agir, (2) un raisonnement explicite d'attente, (3) un moment d'action prévu. La pièce me résiste partiellement: l'apprenant *prévoit* une action (mise à plat des priorités) à un moment précis (vendredi) parce que c'est la fin d'une mesure (Lab4Tech) qui libère du temps. C'est un critère de déclenchement (la fin du Lab4Tech) plus qu'une attente argumentée face à une pression. Le marqueur 'ce sera l'occasion' rapproche du registre patient stratégique, mais la pression à agir maintenant n'est pas explicitement nommée. Présomption durcie: la pièce s'affaiblit fortement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Report avec critère de déclenchement précis (fin du Lab4Tech vendredi) plutôt que report indéfini — micro-signal de patience structurée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec méfiance. Je teste (a) — insuffisance probatoire: une seule pièce, courte, sans description de la pression à agir maintenant ni du raisonnement explicite d'attente. La fiche dit clairement: sans le raisonnement explicite d'attente, c'est de la procrastination. Ici l'apprenant ne dit pas 'je pourrais le faire maintenant mais je choisis d'attendre vendredi parce que...'. Il constate qu'il a 10+ projets interrompus et prévoit la mise à plat à un moment qui sera disponible. L'attaque tient fortement. Pièce disqualifiée.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Pas de pression à agir maintenant décrite, pas de raisonnement explicite d'attente — c'est de la temporisation logistique, pas une patience stratégique au sens de la fiche." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette pièce une trace de patience stratégique. Sous la présomption de sycophantie, la pièce s'est effondrée: la fiche est exigeante (pression / raisonnement explicite / moment d'action) et seul le troisième élément est clair ici. Le passage décrit plutôt une attente logistique liée à une contrainte externe (la mesure Lab4Tech qui occupe le temps). Ce qui en résulte: cette feuille ne porte pas de trace probante de patience stratégique au sens fort de la fiche. Pour la suite, observer un report assumé *face à une pression d'agir maintenant*, avec raisonnement explicite sur le moment opportun, ouvrirait ce dossier.",
+          "confianceFinale": 0.20
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.20,
+        "motif": "La seule pièce a été disqualifiée: temporisation logistique sans les trois marqueurs (pression, raisonnement, moment) que la fiche réclame.",
+        "prescription": "Dans ce pôle, le terrain de la patience stratégique reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait de documenter un moment où une pression d'agir maintenant a été délibérément refusée avec raisonnement argumenté sur le moment opportun à venir."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 1,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail éthique et décisionnel s'incarne principalement dans un long texte philosophique qui structure plusieurs débats moraux liés au déploiement d'un système IA d'évaluation. La voix est dialectique: les positions adverses reçoivent leur pleine force avant que l'apprenant ne défende la sienne. Cinq garde-fous éthiques sont conçus (réversibilité, transparence, contestabilité, non-discrimination, formation), un concept est forgé pour nommer un biais nouveau (ancrage algorithmique), un critère d'équité algorithmique est formalisé. À côté du texte, deux gestes plus brefs ancrent le pôle dans le vécu: la candidature à l'EPFL malgré des lacunes techniques nommées, et la position publique assumée sur la responsabilité augmentée.",
+    "territoiresDenses": [
+      {
+        "competence": "Raisonnement éthique appliqué",
+        "description": "Structure dialectique à plusieurs voix où chaque position reçoit sa pleine force avant la prise de position personnelle. Mise en tension de valeurs formalisée (équité vs performance, augmentation vs substitution).",
+        "extraitVerbatim": "Position 1 : Délégation = démission (critique radicale) [...] Position 2 : Délégation = augmentation (défense techno-optimiste) [...] Position 3 : Responsabilité augmentée (synthèse critique)",
+        "ceQueCaDit": "Le travail explore les dilemmes en donnant aux positions adverses leur pleine force, ce qui rend la position défendue crédible et révisable."
+      },
+      {
+        "competence": "Alignement & refus éthique",
+        "description": "Conception structurée de garde-fous éthiques avec mécanismes précis et diagnostic conceptuel d'un désalignement subtil (ancrage algorithmique).",
+        "extraitVerbatim": "C'est ce que j'ai décrit comme le risque d'**ancrage algorithmique** : la suggestion de l'IA devient **point de départ cognitif** plutôt que **seconde opinion**.",
+        "ceQueCaDit": "Le travail nomme un risque de désalignement que le vocabulaire ambiant ne couvre pas et propose une architecture de cinq principes pour le prévenir."
+      },
+      {
+        "competence": "Responsabilité, courage & intégrité",
+        "description": "Prise de position publique sur un dilemme moral avec coût intellectuel nommé, et reconnaissance non minimisée de ses propres lacunes orientée vers l'action.",
+        "extraitVerbatim": "Même si je ne décroche pas ce poste, vu mes lacunes dans le domaine technique (RAG + LangChain + Bases vectorielle), ça m'a aidé à créer un CV orienté \"Prompt Engineering\" et donné des idées sur les orientations à suivre pour mon auto-formation",
+        "ceQueCaDit": "Le travail montre une accountability constructive: la lacune n'est ni masquée ni ruminée, elle devient orientation d'apprentissage."
+      },
+      {
+        "competence": "Décision & tolérance à l'incertitude",
+        "description": "Action engagée avec assomption explicite des trois éléments du combo le plus fiable (lacunes nommées, postulation malgré elles, transformation de l'issue incertaine en opportunité).",
+        "extraitVerbatim": "Même si je ne décroche pas ce poste [...] ça m'a aidé à créer un CV orienté \"Prompt Engineering\" et donné des idées sur les orientations à suivre pour mon auto-formation",
+        "ceQueCaDit": "Le travail montre une capacité à fonctionner dans le flou en transformant le résultat incertain en levier formatif."
+      },
+      {
+        "competence": "Validation contextuelle",
+        "description": "Identification précise de ce que l'humain sait que l'IA ne peut pas savoir dans un scénario concret (lecture herméneutique = interpréter l'intention au-delà des mots).",
+        "extraitVerbatim": "L'IA manque de **compréhension contextuelle**. L'enseignant apporte une **lecture herméneutique** (interpréter l'intention au-delà des mots).",
+        "ceQueCaDit": "Le travail distingue l'erreur factuelle de l'erreur contextuelle et nomme précisément le delta de savoir que l'IA ne peut pas porter."
+      }
+    ],
+    "territoiresNonVisites": "La conscience écologique et long-terme n'apparaît pas dans cette feuille — l'arbitrage entre bénéfice immédiat et impact environnemental, la mention de l'empreinte carbone d'une infrastructure RAG ou des datasets d'entraînement, les générations futures ne sont pas évoqués, ce qui surprend dans un texte par ailleurs très conscient des impacts éthiques. La valorisation de la neurodiversité reste fermée: aucun récit d'un mode de pensée différent (le sien ou celui d'un autre) mobilisé comme ressource. La patience stratégique reste en bordure: une mention de report logistique (la mise à plat à venir vendredi) mais sans la pression à agir maintenant ni le raisonnement explicite d'attente que la fiche réclame. La création de valeur non-automatisable est suggérée conceptuellement (identifier les fonctions humaines irremplaçables) sans dimension prospective personnelle — c'est un renvoi au cartographe.",
+    "emergencesPole": "Ce qui traverse plusieurs compétences dans cette feuille: une posture où l'éthique se construit comme architecture plus que comme sentiment. Au lieu d'exprimer un malaise ou une indignation morale, le travail conçoit des dispositifs (cinq garde-fous, quatre devoirs, un critère mathématique d'équité, un aménagement préventif). C'est l'éthique pensée comme système, avec mécanismes vérifiables. Autre récurrence: l'assomption assumée du coût de la position défendue. La position 3 ('responsabilité augmentée') est explicitement nommée comme 'exigeante intellectuellement et éthiquement', les lacunes techniques sont reconnues sans masquage, et la candidature est posée malgré une probabilité d'échec assumée. La position de l'apprenant n'évite pas le coût. Enfin: une attention soutenue à la fragilité des plus exposés — le 'droit à l'aménagement préventif' inspiré du tiers-temps, l'identification de l'iniquité structurelle face à l'OCR pour les écritures atypiques, l'inclusion de l'élève comme premier vérificateur. L'éthique pensée a une orientation vers les marges du dispositif.",
+    "pistes": [
+      "Pour incarner les garde-fous conçus, un chemin possible serait de prendre l'un des cinq principes (par exemple la transparence) et de le mettre en œuvre dans un projet personnel — quelle information sur le fonctionnement de mes outils IA je rends accessible et à qui.",
+      "Pour ouvrir la conscience écologique, un chemin possible serait de documenter l'empreinte d'un usage IA personnel (volume de tokens, consommation des modèles utilisés) et de noter si cette information modifie un choix.",
+      "Pour entrer dans la patience stratégique, un chemin possible serait de documenter un moment où une pression d'agir maintenant a été refusée avec raisonnement explicite sur ce qui rend le moment futur plus juste.",
+      "Pour incarner la création de valeur non-automatisable, un chemin possible serait de nommer ce que l'apprenant choisit de cultiver chez lui — une valeur précise, les situations où la pratiquer, les indices de progression."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail éthique et décisionnel s'incarne principalement dans un long texte philosophique qui structure plusieurs débats moraux liés au déploiement d'un système IA d'évaluation. La voix est dialectique: les positions adverses reçoivent leur pleine force avant que l'apprenant ne défende la sienne. Cinq garde-fous éthiques sont conçus (réversibilité, transparence, contestabilité, non-discrimination, formation), un concept est forgé pour nommer un biais nouveau (ancrage algorithmique), un critère d'équité algorithmique est formalisé. À côté du texte, deux gestes plus brefs ancrent le pôle dans le vécu: la candidature à l'EPFL malgré des lacunes techniques nommées, et la position publique assumée sur la responsabilité augmentée.\n\n## Territoires les plus denses\n\n**Raisonnement éthique appliqué.** Le travail explore les dilemmes en donnant aux positions adverses leur pleine force, ce qui rend la position défendue crédible et révisable. *\"Position 1 : Délégation = démission (critique radicale) [...] Position 2 : Délégation = augmentation (défense techno-optimiste) [...] Position 3 : Responsabilité augmentée (synthèse critique).\"*\n\n**Alignement & refus éthique.** Le travail nomme un risque de désalignement que le vocabulaire ambiant ne couvre pas et propose une architecture de cinq principes pour le prévenir. *\"C'est ce que j'ai décrit comme le risque d'ancrage algorithmique : la suggestion de l'IA devient point de départ cognitif plutôt que seconde opinion.\"*\n\n**Responsabilité, courage & intégrité.** Le travail montre une accountability constructive: la lacune n'est ni masquée ni ruminée, elle devient orientation d'apprentissage. *\"Même si je ne décroche pas ce poste, vu mes lacunes dans le domaine technique (RAG + LangChain + Bases vectorielle), ça m'a aidé à créer un CV orienté 'Prompt Engineering' et donné des idées sur les orientations à suivre pour mon auto-formation.\"*\n\n**Décision & tolérance à l'incertitude.** Le travail montre une capacité à fonctionner dans le flou en transformant le résultat incertain en levier formatif. La structure 'tolérer + trancher' que la fiche décrit comme combo le plus fiable apparaît ici sous forme condensée: lacunes nommées, postulation malgré elles, transformation de l'issue incertaine en orientation.\n\n**Validation contextuelle.** Le travail distingue l'erreur factuelle de l'erreur contextuelle et nomme précisément le delta de savoir que l'IA ne peut pas porter. *\"L'IA manque de compréhension contextuelle. L'enseignant apporte une lecture herméneutique (interpréter l'intention au-delà des mots).\"*\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa conscience écologique et long-terme n'apparaît pas dans cette feuille — l'arbitrage entre bénéfice immédiat et impact environnemental, la mention de l'empreinte carbone d'une infrastructure RAG ou des datasets d'entraînement, les générations futures ne sont pas évoqués, ce qui surprend dans un texte par ailleurs très conscient des impacts éthiques.\n\nLa valorisation de la neurodiversité reste fermée: aucun récit d'un mode de pensée différent (le sien ou celui d'un autre) mobilisé comme ressource. La patience stratégique reste en bordure: une mention de report logistique (la mise à plat à venir vendredi) mais sans la pression à agir maintenant ni le raisonnement explicite d'attente que la fiche réclame. La création de valeur non-automatisable est suggérée conceptuellement (identifier les fonctions humaines irremplaçables) sans dimension prospective personnelle — c'est un renvoi au cartographe.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse plusieurs compétences dans cette feuille: une posture où l'éthique se construit comme architecture plus que comme sentiment. Au lieu d'exprimer un malaise ou une indignation morale, le travail conçoit des dispositifs (cinq garde-fous, quatre devoirs, un critère mathématique d'équité, un aménagement préventif). C'est l'éthique pensée comme système, avec mécanismes vérifiables.\n\nAutre récurrence: l'assomption assumée du coût de la position défendue. La position 3 ('responsabilité augmentée') est explicitement nommée comme 'exigeante intellectuellement et éthiquement', les lacunes techniques sont reconnues sans masquage, et la candidature est posée malgré une probabilité d'échec assumée. La position de l'apprenant n'évite pas le coût.\n\nEnfin: une attention soutenue à la fragilité des plus exposés — le 'droit à l'aménagement préventif' inspiré du tiers-temps, l'identification de l'iniquité structurelle face à l'OCR pour les écritures atypiques, l'inclusion de l'élève comme premier vérificateur. L'éthique pensée a une orientation vers les marges du dispositif.\n\n## Pistes pour enrichir ce pôle\n\nPour incarner les garde-fous conçus, un chemin possible serait de prendre l'un des cinq principes (par exemple la transparence) et de le mettre en œuvre dans un projet personnel — quelle information sur le fonctionnement de mes outils IA je rends accessible et à qui.\n\nPour ouvrir la conscience écologique, un chemin possible serait de documenter l'empreinte d'un usage IA personnel (volume de tokens, consommation des modèles utilisés) et de noter si cette information modifie un choix.\n\nPour entrer dans la patience stratégique, un chemin possible serait de documenter un moment où une pression d'agir maintenant a été refusée avec raisonnement explicite sur ce qui rend le moment futur plus juste.\n\nPour incarner la création de valeur non-automatisable, un chemin possible serait de nommer ce que l'apprenant choisit de cultiver chez lui — une valeur précise, les situations où la pratiquer, les indices de progression."
+  }
+}

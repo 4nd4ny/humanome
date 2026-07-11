@@ -1,0 +1,496 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Grosse lacune dans le manuel du Maître : quel est son public ? A quoi est-ce que la noèsiologie lui sert ? Comment ce qu'on lui enseigne va permettre aux apprenants d'améliorer leurs portfolios réflexifs ? L'idée n'est pas de faire de la théorie pour le plaisir : il faut structurer le manuel autour du sens de ce que l'on enseigne aux Tuteurs !",
+      "contexte": "Diagnostic d'un défaut de cadrage dans un manuel produit ; reformulation de l'objectif autour du public et de la finalité — active 1.02 (cadrage de l'intention).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "J'ai merdé quelque part dans mes prompts : comme s'il avait oublié d'appliquer les principes pédagogiques des écoles, comme s'il avait perdu le fil rouge, au moment de générer les manuels.",
+      "contexte": "Hypothèse causale sur un échec de génération IA, attribuée à la qualité des prompts — active 1.06 (littératie IA) et 1.08 (dialogue IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Le niveau Maître est ni plus ni moins un manuel pour apprendre aux jeunes la métacognition en leur expliquant comment faire pour devenir plus intelligents afin qu'ils puissent atteindre leur seuil de développement intellectuel maximum.",
+      "contexte": "Reformulation synthétique de la finalité du manuel ; converge plusieurs réflexions antérieures en une définition unifiée — peut activer 1.03 (synthèse) et 1.02 (cadrage).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Pour l'instant j'ai beaucoup apprécié les 4 manuels, mais je vois que le processus de génération des textes que j'ai construit a de grosses lacunes.",
+      "contexte": "Évaluation critique de son propre dispositif de production — peut activer 1.01 (pensée critique) et 1.04 (métacognition sur le processus).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "La difficulté c'est que lorsque je prompte, généralement toute ma disponibilité est consacrée à la lecture des productions et à la rédaction du prompt suivant, plus qu'à la documentation de ce que je fais. Il faudrait que je me ralentisse. Or quand je crée, je n'arrive pas à me dissocier : ça coupe mon flow.",
+      "contexte": "Observation précise du fonctionnement cognitif en situation de création, conflit entre faire et documenter — active 1.04 (métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Mais en explicitant que sans une remédiation cognitive, certains tuteurs n'arriveront pas à faire émerger chez des apprenants les compétences réflexives, s'ils ne sont pas eux-mêmes capables de manifester ces compétences.",
+      "contexte": "Identification d'une boucle de transmission : la compétence des tuteurs conditionne l'émergence chez les apprenants — peut activer 1.05 (pensée systémique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Après mes phases créatives, je passe déjà pas mal de temps à ranger ce que j'ai fait (une bonne dizaine d'heures) pour m'y retrouver. Documenter de manière rétrospective multiplierait ce temps par deux ou trois probablement.",
+      "contexte": "Estimation chiffrée d'un coût de processus, raisonnement quasi-algorithmique sur la charge de documentation — peut activer 1.04 et marginalement 1.09.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant tempère son appréciation initiale (« j'ai beaucoup apprécié ») par un constat critique sur les lacunes du dispositif qu'il a lui-même conçu — autocritique en plein élan."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Mise en doute du manuel produit par une série de questions calibrées sur son utilité et sa structure — doute méthodique appliqué à sa propre production."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la pensée critique n'est pas vraiment là — qu'il s'agit plutôt d'un agacement ou d'un constat de défaut, pas d'un doute méthodique. La pièce 1 ressemble effectivement à un simple bilan mitigé : « j'ai apprécié... mais ». Or le « mais » porte un examen précis du processus, pas seulement du produit, et il vient sans qu'aucune sollicitation extérieure ne l'exige. La pièce 2 est plus exigeante : elle décline trois questions structurantes (public, utilité, mécanisme) qui sont des critères de jugement, pas des plaintes. Ce qui résiste, c'est l'interrogation appliquée à sa propre production au moment où elle vient d'être appréciée — pas après coup, dans la même phrase.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'enthousiasme et la critique cohabitent dans la même phrase, ce qui correspond à l'autocritique en plein élan définie comme signal fort de la fiche." },
+            { "pieceId": 2, "motifResistance": "Les trois questions ouvrent un cadre de vérification du manuel par ses propres conditions de validité, pas par une autorité externe." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. Mais peut-être que je confonds doute méthodique et insatisfaction ordinaire — un créateur déçu n'est pas nécessairement un sceptique calibré. La pièce 1 peut être lue comme un récit performatif (« je vois que… a de grosses lacunes ») sans dispositif de vérification décrit. La pièce 2, en revanche, déploie un protocole implicite : trois questions opérationnelles qui peuvent être réutilisées sur d'autres manuels. Je dois affaiblir la première et confirmer la seconde.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce raconte la critique (« je vois que »), elle ne montre pas le geste de vérification. Elle reste indicielle parce qu'elle pose le constat dans la même séquence que l'appréciation, ce qui dépasse le bilan mou."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'insuffisance probatoire ne tient pas : la pièce porte trois questions précises qui agissent comme critères de vérification, et qui sont articulées dans un même mouvement de remise en question."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme une humeur de créateur insatisfait, pas comme un acte critique. La première pièce a effectivement glissé : elle énonce le verdict plus qu'elle ne montre la procédure. Mais la deuxième a tenu : trois questions structurantes (public, finalité, mécanisme de transmission) émergent dans le même geste, et elles forment un protocole minimal de vérification d'un manuel. Ce qui en résulte, c'est une trace de doute méthodique appliqué à sa propre production au moment de la formuler — pas après coup. La pratique se voit dans le geste de soumettre le manuel à ses propres conditions de validité plutôt qu'à une approbation extérieure. La nuance qui reste : cette pratique se voit sur un produit précis, sans dispositif explicite généralisé.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "Le temps 2 a affaibli une pièce sans la disqualifier et a confirmé l'autre ; la combinaison des deux porte la présence avec réserves.",
+        "prescription": "Le travail montre un doute méthodique en acte sur des productions concrètes. Un prolongement possible consisterait à expliciter par écrit le protocole de questions employé sur le manuel du Maître, pour pouvoir le réutiliser sur d'autres productions. Cela rendrait visible l'outil critique qui agit déjà dans la pratique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant identifie que la lacune n'est pas dans le contenu mais dans la non-définition du public et de la finalité — recadrage de l'objectif lui-même."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Reformulation explicite du sens du manuel (« ni plus ni moins un manuel pour apprendre la métacognition »), qui transforme la nature de ce que vise le projet."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le cadrage n'est pas là — qu'il s'agit plutôt d'une planification de tâches ou d'un ajustement d'exécution. La pièce 1 me résiste pourtant : elle déplace la question du « comment écrire le manuel ? » vers le « pour qui et à quoi sert ? ». Ce déplacement transforme la nature même de ce qui est cherché, ce qui correspond exactement à la définition de la fiche. La pièce 2 reformule la finalité du manuel en une définition condensée, ce qui peut être une synthèse plutôt qu'un cadrage. Je dois examiner si elle pose vraiment l'objectif ou si elle le résume après coup. Ce qui reste explicitement faible : aucune des deux pièces ne montre un questionnement préalable — le cadrage se fait en cours de route.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Les trois questions reposent l'objectif du manuel à un niveau plus profond que son périmètre — c'est un recadrage en acte." },
+            { "pieceId": 2, "motifResistance": "La phrase « ni plus ni moins » pose un objectif transformé : non plus produire un manuel théorique, mais transmettre la métacognition à des jeunes." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir les deux pièces. Mais peut-être que je suis en train de prêter au texte une intentionnalité de cadrage alors qu'il s'agit d'un simple constat de défaut suivi d'un résumé. La pièce 1 peut être lue comme un cadrage émergent par la contrainte (« j'ai bâclé une tâche et j'en tire un meilleur cadrage »), trace oblique explicitement reconnue dans la fiche. La pièce 2 est plus ambiguë : elle peut être une synthèse 1.03 plutôt qu'un cadrage 1.02.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'insuffisance probatoire ne tient pas : la pièce nomme explicitement la lacune comme étant un défaut de cadrage du sens et propose de restructurer le manuel autour de ce sens."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Confusion possible avec 1.03 (synthèse) : la pièce peut être une définition synthétique plutôt qu'un acte de cadrage. Mais elle pose un objectif transformé, donc reste indicielle pour 1.02."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de la simple planification ou comme un résumé après coup. Le recadrage par les trois questions a tenu : il ne porte pas sur le périmètre du manuel mais sur sa raison d'être, et il vient au moment où l'apprenant s'aperçoit que l'exécution avait raté l'angle initial — c'est exactement la trace oblique « avoir bâclé une tâche et en tirer un meilleur cadrage » que la fiche signale. La deuxième pièce a glissé sur la frontière 1.02/1.03 : elle synthétise autant qu'elle cadre, je la maintiens comme indice mais avec réserve. Ce qui en résulte, c'est une trace concrète de recadrage émergent par la contrainte, posée dans le même mouvement que l'identification du problème.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 1 a tenu sur la pièce 1 comme recadrage émergent par la contrainte, le temps 2 a confirmé sans réserve majeure.",
+        "prescription": "Le travail montre une capacité à reposer l'objectif quand l'exécution révèle un mauvais angle. Un prolongement possible consisterait à formuler les trois questions employées sur le manuel comme un test de cadrage applicable à d'autres productions du système. Ce protocole rendu explicite pourrait court-circuiter certains des défauts identifiés rétrospectivement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Définition condensée du manuel qui fusionne plusieurs réflexions antérieures (métacognition, jeunes, seuil de développement) en une formule unifiée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la synthèse intégrative n'est pas là — qu'il s'agit plutôt d'une formule rhétorique ou d'un résumé d'un projet déjà connu. La pièce condense en une phrase trois éléments (métacognition, jeunes, seuil de développement intellectuel) qui n'étaient pas explicitement reliés dans le passage. Mais je n'ai pas accès aux feuilles antérieures pour vérifier si cette formulation émerge réellement ou si elle reproduit une formule récurrente. Ce qui reste explicitement faible : un seul passage, sans dispositif de croisement de sources visible, sans pattern transversal nommé. La pièce résiste mollement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La formule « ni plus ni moins » pose un insight unifiant qui dépasse la liste des composants." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté est unique et minimale. La fiche pose que compilation, résumé et accumulation ne sont pas des synthèses ; le critère est l'insight émergent. Je ne peux pas vérifier dans ce seul passage si l'insight est réellement émergent ou s'il reproduit une définition déjà posée ailleurs. L'attaque dominante est ici la confusion de compétence : la pièce active mieux 1.02 (cadrage) que 1.03.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce active prioritairement le cadrage (définir ce que vise le manuel) plutôt que la synthèse intégrative (fusion de sources disparates en un insight nouveau). Aucun croisement de sources de natures différentes n'est visible dans ce passage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une synthèse, et le temps 2 a montré qu'elle se rangeait plus naturellement du côté du cadrage. La phrase unifiante existe, mais elle ne croise pas des sources de natures différentes ni ne produit un insight transversal nommé ; elle reformule la finalité d'un projet. Le verdict de présence établie n'est pas tenable sur cette seule feuille. Ce qui en résulte, c'est un territoire à observer sur une fenêtre temporelle plus large : la synthèse intégrative pourrait apparaître si l'on suit l'évolution de cette définition à travers plusieurs feuilles, mais pas dans ce passage isolé.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a été disqualifiée au temps 2 pour confusion avec une compétence voisine (1.02).",
+        "prescription": "Ce territoire n'a pas encore livré de trace claire dans cette feuille. Un chemin possible serait de documenter, lors d'un prochain moment de bascule, comment plusieurs lectures ou conversations distinctes ont convergé vers une formulation que personne n'avait posée seule. Ce serait nommer la synthèse en train de se faire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Description très précise du fonctionnement cognitif en situation de création : conflit entre lire/prompter et documenter, observation que la dissociation casse le flow."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Observation rétrospective des lacunes de son propre processus de génération — métacognition sur la conception du dispositif."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Estimation chiffrée du coût en heures de la documentation rétrospective comparée au rangement déjà effectué — observation quantifiée de ses propres routines."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la métacognition n'est pas là — qu'il s'agit plutôt d'un bilan personnel ou d'une plainte sur la fatigue. La pièce 1 me résiste immédiatement : « je n'arrive pas à me dissocier : ça coupe mon flow » est un vocabulaire précis sur le processus cognitif lui-même, pas sur le contenu de la pensée. C'est exactement la formulation de manifestation listée dans la fiche. La pièce 2 est plus ambiguë : observer un défaut du dispositif peut être de la pensée critique 1.01 plutôt que de la métacognition. La pièce 3 quantifie un coût de routine, ce qui est une observation de procédure mais pas nécessairement de cognition. Ce qui reste faible : la pièce 1 porte tout le poids ; les deux autres glissent vers 1.01 ou vers une simple gestion du temps.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La phrase nomme un mécanisme cognitif (la dissociation) et son effet (couper le flow), ce qui est la signature de l'observation de soi en train de penser." },
+            { "pieceId": 3, "motifResistance": "L'estimation chiffrée du coût documentaire montre une connaissance précise de ses propres routines de rangement, ce qui est une observation de procédure cognitive." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Pour la pièce 1, je dois vérifier si « je n'arrive pas à me dissocier » est de la métacognition réelle ou un simple constat d'impossibilité émotionnelle. La fiche pose justement cet exemple comme manifestation type, donc l'attaque ne tient pas. Pour la pièce 3, je dois examiner si quantifier les heures de rangement est observer son processus ou simplement gérer son temps — la frontière est fine. L'attaque dominante ici est la confusion de compétence avec 7.07 (planification).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'insuffisance probatoire ne tient pas : la phrase porte un vocabulaire précis sur le processus cognitif (dissociation, flow), exactement ce que la fiche identifie comme manifestation typique."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Confusion possible avec une compétence de planification : quantifier le temps de rangement peut relever de la gestion du temps. Mais le passage l'utilise pour évaluer la viabilité d'une nouvelle pratique cognitive (documenter rétrospectivement), donc reste indiciel pour 1.04."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de la fatigue ou de la gestion du temps. La pièce centrale a tenu sans réserve : la formulation « je n'arrive pas à me dissocier : ça coupe mon flow » est une observation de soi en train de penser, avec un vocabulaire précis sur le processus. La pièce sur les heures de rangement s'est affaiblie : elle reste indicielle parce qu'elle estime un coût cognitif, mais elle pourrait aussi se ranger côté gestion du temps. Ce qui en résulte, c'est une trace solide de métacognition appliquée à la création — pas sur le contenu créé, mais sur les conditions cognitives qui rendent possible ou difficile la création. La nuance qui reste : cette métacognition se voit en situation de tension (le créateur qui ne peut pas se ralentir), elle se voit moins comme pilotage délibéré.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 1 a fait résister la pièce centrale, le temps 2 l'a confirmée comme manifestation type listée dans la fiche.",
+        "prescription": "Le travail montre une observation très précise des conditions cognitives qui rendent possible ou difficile l'acte de création. Un prolongement possible consisterait à documenter quelques moments où la dissociation se laisse approcher — quels signaux, quels seuils, quels passages entre flow et observation. Cette cartographie interne pourrait nourrir l'écriture du manuel du Maître lui-même."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Identification d'une condition de transmission : la compétence réflexive des tuteurs conditionne l'émergence chez les apprenants — formulation d'une chaîne causale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la pensée systémique n'est pas là — qu'il s'agit plutôt d'une remarque de bon sens pédagogique. La pièce pose pourtant une condition causale précise (la compétence des tuteurs conditionne ce qu'ils peuvent faire émerger), ce qui est plus qu'un constat de complexité. Mais ce n'est pas une boucle de rétroaction nommée, ni un point de levier identifié, ni un effet de cascade modélisé. La fiche est exigeante : « nommer quels liens, dans quelle direction, avec quels effets ». La pièce nomme un lien mais pas vraiment d'effet de cascade. Elle résiste mollement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La pièce pose une chaîne conditionnelle de transmission de compétence, ce qui est plus qu'un simple constat de complexité." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La seule pièce qui a résisté pose une condition simple, pas une boucle. La fiche exige une modélisation, pas une chaîne linéaire. L'attaque dominante est l'insuffisance probatoire : un seul lien causal posé ne modélise pas un système.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le lien posé est unidirectionnel (compétence tuteur → compétence apprenant), il manque la rétroaction ou l'effet de cascade que la fiche pose comme critère. La pièce reste un indice mais pas une preuve."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme un truisme pédagogique. Elle a tenu un peu, en posant une condition causale précise, mais elle n'a pas franchi le seuil d'une vraie modélisation systémique — il n'y a pas de boucle, pas d'effet de second ordre, pas de point de levier identifié comme tel. Ce qui en résulte, c'est un mouvement de pensée qui s'approche de la systémique sans la franchir : l'intuition que la transmission dépend d'un état du transmetteur. Le verdict tient à un renvoi au cartographe — la matière est suggérée, pas encore modélisée.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier ; un seul indice avec une chaîne causale unidirectionnelle ne suffit pas à porter une présence établie.",
+        "prescription": "Une intuition de chaîne causale apparaît dans cette feuille sur la transmission de la métacognition. Un chemin possible serait de prolonger ce raisonnement en explicitant la boucle complète : ce que le tuteur transmet, ce que l'apprenant lui renvoie, comment l'un nourrit l'autre. Cela rendrait visible le système qui est ici esquissé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Hypothèse causale sur l'échec de génération de l'IA : oubli des principes pédagogiques, perte du fil rouge — diagnostic du comportement du modèle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la littératie IA n'est pas là — qu'il s'agit plutôt d'une frustration anthropomorphisante (« comme s'il avait oublié »). La pièce 1 emploie le verbe « oublier » et l'image de la « perte du fil rouge », qui sont des métaphores cognitives sans mécanisme technique nommé. La fiche est explicite : la compréhension causale du pourquoi l'IA échoue est le critère. Ici on a des images, pas un mécanisme (fenêtre de contexte, compactage, distribution). La pièce résiste très faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'attribution de l'échec à la qualité des prompts (« j'ai merdé quelque part dans mes prompts ») montre une compréhension que le comportement de l'IA dépend de l'input fourni." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce pose la cause de l'échec du côté du prompteur, ce qui est un acquis non trivial. Mais elle ne décrit aucun mécanisme du modèle (tokens, mémoire, distribution). L'attaque dominante est le glissement lexical : les mots « oublié », « fil rouge » sont des images, pas une compréhension technique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le vocabulaire utilisé pour expliquer l'échec (oubli, fil rouge perdu) reste métaphorique sans charge sémantique technique. La fiche distingue précisément la métaphore anecdotique de la compréhension causale du mécanisme."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme de la littératie IA, et elle a glissé : reconnaître que l'échec vient du prompt est un pas réel, mais il ne s'accompagne pas d'une compréhension du mécanisme (fenêtre de contexte, compactage, biais de distribution). Ce qui en résulte, c'est l'attribution correcte de la responsabilité au prompteur, ce qui appartient plutôt à 1.08 (dialogue avancé). Le territoire de la littératie IA technique reste à explorer dans cette feuille — il n'est pas exclu, simplement non encore documenté.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a été disqualifiée au temps 2 pour glissement lexical : métaphores cognitives sans mécanisme technique nommé.",
+        "prescription": "Ce territoire n'a pas encore livré de trace claire dans cette feuille. Un chemin possible serait de documenter, lors d'un prochain incident IA, l'hypothèse technique formulée (fenêtre saturée, mauvaise priorité d'instruction, dérive de contexte) pour saisir le mécanisme et pas seulement l'effet."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'architecture de systèmes IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète où plusieurs IA et humains interagissent avec des rôles définis et des flux explicités."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Diagnostic d'un échec de la génération attribué à une faille dans les prompts — debugging de contexte IA dans le récit d'une frustration."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le dialogue IA avancé n'est pas là — qu'il s'agit plutôt d'un constat d'échec sans technique nommée. La pièce attribue clairement l'échec au prompt et formule des hypothèses sur ce qui a été omis (« comme s'il avait oublié d'appliquer les principes pédagogiques »). C'est un diagnostic de contexte IA, listé comme manifestation de la fiche. Mais elle n'identifie pas précisément quelle partie du prompt a failli, ni ne propose de reformulation. Elle résiste partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le diagnostic explicite « j'ai merdé quelque part dans mes prompts » est exactement la posture du debugging de contexte IA mentionnée dans la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté est un diagnostic, pas une itération stratégique ni un méta-prompting. Elle pose le constat sans déployer la sophistication décrite dans la fiche. L'attaque dominante est le récit performatif : la pièce raconte qu'il y a un problème de prompt, sans montrer l'analyse précise du mécanisme.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce raconte le diagnostic plus qu'elle ne le déploie. Elle reste indicielle parce qu'elle attribue correctement la cause et identifie une catégorie d'omission (les principes pédagogiques), ce qui est plus qu'une plainte vague."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une simple frustration, et elle a tenu un peu : le diagnostic du prompt comme cause de l'échec est une forme de debugging de contexte IA, et l'identification d'une catégorie d'omission (les principes pédagogiques) montre que la lecture du problème n'est pas une plainte vague. Ce qui en résulte, c'est un indice de dialogue IA avancé en mode diagnostic, mais sans déploiement de techniques nommées ni d'itération visible dans cette feuille. La nuance qui reste : la pièce est seule et minimale, le verdict ne peut pas porter la présence établie.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier ; un seul indice ne porte pas la présence établie.",
+        "prescription": "Le travail montre une posture de diagnostic du prompt comme source de l'échec. Un chemin possible serait de documenter, sur un prochain cycle, l'itération qui a permis de corriger le tir : quelle reformulation, pourquoi celle-là, quel effet observé. Cela rendrait visible le geste qui ici reste implicite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une logique algorithmique (décomposition, structure conditionnelle, debugging) a été appliquée à un problème non-informatique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synergie humain-IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait articuler explicitement, sur une tâche concrète, ce qu'il garde et ce qu'il confie à l'IA, et pourquoi cette répartition tient."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 2,
+    "nonEtablies": 2,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille montre un travail de pensée serré, conduit pendant des vacances, autour d'un manuel pédagogique en cours de production. La voix dominante revient sur ses propres productions sans complaisance, formule des hypothèses sur ce qui a mal fonctionné, et nomme avec précision les conditions cognitives qui rendent possible ou difficile l'acte de création. Les marqueurs concrets reviennent autour du flow, de la dissociation, de la documentation rétrospective et du coût en heures qu'elle représente. Les questions précèdent souvent les réponses : « quel est son public ? À quoi est-ce que la noèsiologie lui sert ? Comment ce qu'on lui enseigne va permettre… ? ». La pensée se laisse voir en train de se faire, dans une feuille courte mais dense.",
+    "territoiresDenses": [
+      {
+        "competence": "Métacognition et humilité épistémique",
+        "description": "Observation précise des conditions cognitives qui rendent possible ou difficile la création, avec un vocabulaire ajusté au processus lui-même.",
+        "extraitVerbatim": "lorsque je prompte, généralement toute ma disponibilité est consacrée à la lecture des productions et à la rédaction du prompt suivant, plus qu'à la documentation de ce que je fais. Il faudrait que je me ralentisse. Or quand je crée, je n'arrive pas à me dissocier : ça coupe mon flow.",
+        "ceQueCaDit": "La pratique se voit ici en situation de tension entre faire et observer le faire — l'apprenant nomme un mécanisme cognitif, pas un état d'âme. C'est la trace la plus solide du pôle dans cette feuille."
+      },
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Reposer la question du sens d'une production avant celle de sa forme, dans le même geste que l'identification d'un défaut.",
+        "extraitVerbatim": "Grosse lacune dans le manuel du Maître : quel est son public ? A quoi est-ce que la noèsiologie lui sert ? Comment ce qu'on lui enseigne va permettre aux apprenants d'améliorer leurs portfolios réflexifs ?",
+        "ceQueCaDit": "Le recadrage émerge ici par la contrainte : c'est en regardant le manuel produit que la question de son public et de sa finalité s'impose comme la vraie question. Cela transforme la nature même de ce qui est cherché."
+      },
+      {
+        "competence": "Pensée critique et anti-hallucination",
+        "description": "Doute méthodique appliqué à sa propre production dans le moment même où elle est appréciée, sans sollicitation extérieure.",
+        "extraitVerbatim": "Pour l'instant j'ai beaucoup apprécié les 4 manuels, mais je vois que le processus de génération des textes que j'ai construit a de grosses lacunes.",
+        "ceQueCaDit": "L'enthousiasme et la critique cohabitent dans la même phrase. C'est la signature de l'autocritique en plein élan : le doute n'attend pas la fin pour s'exercer."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires du pôle restent silencieux dans cette feuille, ce qui n'a rien d'étrange pour un récit court et focalisé sur une seule production. L'architecture de systèmes IA, la pensée computationnelle hors-code et la synergie humain-IA n'apparaissent pas — la feuille parle d'un produit (le manuel) et de son processus, pas d'un système. La littératie IA technique est suggérée par l'attribution de l'échec aux prompts, mais sans qu'un mécanisme du modèle soit nommé : c'est un territoire à observer. La synthèse intégrative, à l'inverse, traverse peut-être plusieurs feuilles et mériterait une lecture sur une fenêtre plus large que ce passage isolé. La pensée systémique a esquissé une chaîne causale (la compétence des tuteurs conditionne ce qu'ils transmettent) qui pourrait se prolonger en boucle complète.",
+    "emergencesPole": "Trois observations traversent les compétences attestées de cette feuille. La première, c'est que le geste critique se fait dans le même mouvement que l'appréciation — pas après, dans une phase distincte. La deuxième, c'est que le rapport au manuel produit est lui-même un objet de réflexion : ce n'est pas seulement le contenu qui est interrogé, mais aussi le dispositif qui l'a fait naître. La troisième, c'est que l'apprenant nomme avec une précision rare les conditions matérielles et cognitives de sa propre création — nuits courtes, charges familiales, flow, dissociation, heures de rangement — ce qui ancre la métacognition dans le réel.",
+    "pistes": [
+      "Pour prolonger le travail sur le cadrage du sens, un chemin possible serait de formuler les trois questions employées sur le manuel du Maître comme un test réutilisable sur les autres productions du système.",
+      "Pour prolonger la réflexion sur les conditions de la création, un chemin possible serait de documenter quelques moments où la dissociation se laisse approcher — quels signaux annoncent qu'elle deviendrait possible, où sont les seuils.",
+      "Pour prolonger l'intuition de chaîne causale sur la transmission de la métacognition, un chemin possible serait d'expliciter la boucle complète : ce que le tuteur transmet, ce que l'apprenant renvoie, comment l'un nourrit l'autre.",
+      "Pour prolonger le diagnostic des échecs de génération, un chemin possible serait de noter, lors d'un prochain incident, l'hypothèse technique formulée sur le mécanisme du modèle, pas seulement sur l'effet observé."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille montre un travail de pensée serré, conduit pendant des vacances, autour d'un manuel pédagogique en cours de production. La voix dominante revient sur ses propres productions sans complaisance, formule des hypothèses sur ce qui a mal fonctionné, et nomme avec précision les conditions cognitives qui rendent possible ou difficile l'acte de création. Les marqueurs concrets reviennent autour du flow, de la dissociation, de la documentation rétrospective et du coût en heures qu'elle représente. Les questions précèdent souvent les réponses : « quel est son public ? À quoi est-ce que la noèsiologie lui sert ? Comment ce qu'on lui enseigne va permettre… ? ». La pensée se laisse voir en train de se faire, dans une feuille courte mais dense.\n\n## Territoires les plus denses\n\n**Métacognition et humilité épistémique.** Observation précise des conditions cognitives qui rendent possible ou difficile la création, avec un vocabulaire ajusté au processus lui-même.\n\n> « lorsque je prompte, généralement toute ma disponibilité est consacrée à la lecture des productions et à la rédaction du prompt suivant, plus qu'à la documentation de ce que je fais. Il faudrait que je me ralentisse. Or quand je crée, je n'arrive pas à me dissocier : ça coupe mon flow. »\n\nLa pratique se voit ici en situation de tension entre faire et observer le faire — l'apprenant nomme un mécanisme cognitif, pas un état d'âme. C'est la trace la plus solide du pôle dans cette feuille.\n\n**Cadrage de l'intention.** Reposer la question du sens d'une production avant celle de sa forme, dans le même geste que l'identification d'un défaut.\n\n> « Grosse lacune dans le manuel du Maître : quel est son public ? A quoi est-ce que la noèsiologie lui sert ? Comment ce qu'on lui enseigne va permettre aux apprenants d'améliorer leurs portfolios réflexifs ? »\n\nLe recadrage émerge ici par la contrainte : c'est en regardant le manuel produit que la question de son public et de sa finalité s'impose comme la vraie question. Cela transforme la nature même de ce qui est cherché.\n\n**Pensée critique et anti-hallucination.** Doute méthodique appliqué à sa propre production dans le moment même où elle est appréciée, sans sollicitation extérieure.\n\n> « Pour l'instant j'ai beaucoup apprécié les 4 manuels, mais je vois que le processus de génération des textes que j'ai construit a de grosses lacunes. »\n\nL'enthousiasme et la critique cohabitent dans la même phrase. C'est la signature de l'autocritique en plein élan : le doute n'attend pas la fin pour s'exercer.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires du pôle restent silencieux dans cette feuille, ce qui n'a rien d'étrange pour un récit court et focalisé sur une seule production. L'architecture de systèmes IA, la pensée computationnelle hors-code et la synergie humain-IA n'apparaissent pas — la feuille parle d'un produit (le manuel) et de son processus, pas d'un système. La littératie IA technique est suggérée par l'attribution de l'échec aux prompts, mais sans qu'un mécanisme du modèle soit nommé : c'est un territoire à observer. La synthèse intégrative, à l'inverse, traverse peut-être plusieurs feuilles et mériterait une lecture sur une fenêtre plus large que ce passage isolé. La pensée systémique a esquissé une chaîne causale (la compétence des tuteurs conditionne ce qu'ils transmettent) qui pourrait se prolonger en boucle complète.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences attestées de cette feuille. La première, c'est que le geste critique se fait dans le même mouvement que l'appréciation — pas après, dans une phase distincte. La deuxième, c'est que le rapport au manuel produit est lui-même un objet de réflexion : ce n'est pas seulement le contenu qui est interrogé, mais aussi le dispositif qui l'a fait naître. La troisième, c'est que l'apprenant nomme avec une précision rare les conditions matérielles et cognitives de sa propre création — nuits courtes, charges familiales, flow, dissociation, heures de rangement — ce qui ancre la métacognition dans le réel.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le travail sur le cadrage du sens, un chemin possible serait de formuler les trois questions employées sur le manuel du Maître comme un test réutilisable sur les autres productions du système.\n- Pour prolonger la réflexion sur les conditions de la création, un chemin possible serait de documenter quelques moments où la dissociation se laisse approcher — quels signaux annoncent qu'elle deviendrait possible, où sont les seuils.\n- Pour prolonger l'intuition de chaîne causale sur la transmission de la métacognition, un chemin possible serait d'expliciter la boucle complète : ce que le tuteur transmet, ce que l'apprenant renvoie, comment l'un nourrit l'autre.\n- Pour prolonger le diagnostic des échecs de génération, un chemin possible serait de noter, lors d'un prochain incident, l'hypothèse technique formulée sur le mécanisme du modèle, pas seulement sur l'effet observé.\n"
+  }
+}

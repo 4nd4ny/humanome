@@ -1,0 +1,198 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "Hélas, avoir l'idée de la bonne interface de jeu à construire, ça elle n'y arrive pas encore.",
+      "contexte": "Le « Hélas » introduit une nuance émotionnelle sobre — pourrait toucher à 5.04 (acceptation de l'IA) ou à 5.01 (résilience) si une tension est traversée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "C'est certainement une erreur d'engineering que j'ai fait : j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire l'interface.",
+      "contexte": "Autocritique de méthode — pourrait toucher à 5.02 (désapprentissage) si l'apprenant abandonne une manière de faire ancienne, ou à 5.01 si l'erreur ouvre l'histoire.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant rencontre un obstacle (l'IA ne parvient pas à produire l'idée juste) et en tire une leçon de méthode (« j'aurai dû lui demander de réfléchir au sens avant ») — structure possible d'un échec qui ouvre l'histoire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche est explicite : 5.01 cible le *dépassement* — l'apprenant ne revient pas au même point, il revient au-delà. Ici, l'apprenant identifie une erreur de méthode et formule rétrospectivement ce qu'il aurait dû faire. Il n'y a ni récit de crise, ni description de ce qui a changé/grandi/émergé grâce à l'épreuve, ni structure du retournement où l'échec ouvre l'histoire. Le passage est trop court et trop opérationnel pour porter une antifragilité. La fiche distingue « j'ai survécu » (endurance) de « j'en suis sorti plus fort » (antifragilité) ; ici, on est plutôt sur « j'ai identifié ce que j'aurais dû faire », qui est un constat opérationnel, pas un dépassement. La pièce ne résiste pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'autocritique de méthode pouvait porter une résilience antifragile. Sous la présomption d'absence, la pièce n'a pas tenu : la fiche exige la structure du retournement où l'échec ouvre l'histoire, et le passage ressemble à un constat opérationnel sans dimension de dépassement. Ce qui en résulte n'est pas un jugement sur la résilience de l'apprenant — cette feuille raconte une difficulté précise sans la transformer en récit de croissance.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a porté : la fiche exige le retournement où l'échec ouvre l'histoire et un dépassement nommé, ce que cette feuille ne contient pas.",
+        "prescription": "Cette feuille raconte une difficulté ponctuelle. Pour rejoindre l'antifragilité au sens de la fiche, un récit où une crise ou un échec significatif a produit quelque chose de neuf — pas seulement une leçon de méthode — viendrait porter cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la plasticité et au désapprentissage. Pour ouvrir ce dossier, l'apprenant pourrait documenter l'abandon d'une manière de faire, d'un savoir ou d'un rôle qu'il a dû lâcher."
+      }
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la narration réflexive — passage du quoi au pourquoi au qu'est-ce que ça signifie. La feuille reste sur le terrain opérationnel sans extraire de sens transférable."
+      }
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le « Hélas » introduit une nuance affective face à une limite de l'IA — possible micro-trace de tension émotionnelle face à un dépassement cognitif partiel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche est exigeante : 5.04 cible le *deuil* de la supériorité cognitive, vécu émotionnellement (surprise, choc, colère, admiration mêlée de malaise). Ici, le « Hélas » est ténu et porte sur ce que l'IA *ne fait pas* (avoir la bonne idée), pas sur ce qu'elle fait *mieux que l'apprenant*. Or 5.04 est précisément la trace de l'aveu « l'IA fait mieux que MOI ». La fiche distingue explicitement : « 'l'IA est capable de...' = constat technique impersonnel (1.06) ; 'l'IA fait mieux que MOI' = vécu personnel (5.04) ». Ici, l'apprenant ne se compare pas à l'IA, il observe ses limites. Et le test fiable de la fiche est la présence de tension émotionnelle ; un « Hélas » seul ne suffit pas. La pièce ne résiste pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le « Hélas » et la rapidité de production de l'IA pouvaient porter une acceptation de l'intelligence supérieure. Sous la présomption d'absence, la pièce n'a pas tenu : le passage parle de ce que l'IA ne fait pas, pas de ce qu'elle fait mieux que l'apprenant. Le critère discriminant de la fiche (« mieux que MOI ») n'est pas atteint, et la tension émotionnelle est trop ténue. Ce qui en résulte est un constat sobre : cette feuille raconte une limite de l'outil, pas un travail sur soi face à un dépassement.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a porté : le critère discriminant de la fiche (« l'IA fait mieux que moi », vécu émotionnel avec tension) n'est pas atteint — la feuille parle d'une limite de l'IA, pas d'un dépassement vécu.",
+        "prescription": "Cette feuille observe ce que l'IA ne fait pas encore. Pour rejoindre l'acceptation de l'intelligence supérieure, un passage où l'apprenant nomme avec sa charge émotionnelle ce que l'IA fait *mieux que lui* — avec la tension que cela génère — viendrait porter cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens et à la motivation intrinsèque. Pour ouvrir ce dossier, l'apprenant pourrait documenter le « pourquoi » qui le fait persévérer dans l'inconfort ou l'invisibilité."
+      }
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie en mode dégradé. La feuille raconte au contraire une dépendance assumée à l'outil IA."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté attentionnelle. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision explicite de déconnexion ou un rituel de protection de l'attention."
+      }
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la vérification terrain — contact avec la réalité non médiatisée. La feuille reste dans le travail avec l'outil, sans test direct dans le réel."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 8,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille raconte un travail technique avec l'IA, sans incursion dans la transformation intérieure ni dans la résistance face à l'outil. Le ton reste sobre, opérationnel ; les seules nuances affectives sont un « Hélas » discret et une autocritique de méthode. Il n'y a pas de récit de crise, pas de désapprentissage nommé, pas de tension émotionnelle face à l'IA, pas de moment de déconnexion ni de retour au réel par la main. Le pôle racines n'est pas exploré dans cette feuille.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'intégralité du pôle reste largement non visitée dans cette feuille. La résilience antifragile, le désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure, le sens, l'autonomie en mode dégradé, la souveraineté attentionnelle et la vérification terrain ne trouvent aucun écho dans le récit. La feuille décrit une session de travail technique avec l'IA, ce qui est cohérent avec son sujet et ne représente probablement pas un évitement, mais une focale très étroite. À noter que la feuille raconte au contraire une dépendance assumée à l'outil — l'autonomie hors-IA n'est ni recherchée ni exercée dans ce moment du récit.",
+    "emergencesPole": "Une seule chose émerge dans ce pôle : la sobriété affective. L'apprenant ne dramatise pas la difficulté rencontrée, ne théâtralise pas sa frustration, ne fait pas du moment un récit de transformation. La feuille reste à hauteur d'observation, presque journal de bord technique. Cette retenue n'est ni une trace de résilience ni d'évitement — elle est simplement la tonalité de ce moment du portfolio.",
+    "pistes": [
+      "Pour ramener la dimension intérieure dans le portfolio, un chemin possible serait de documenter, à côté d'un récit technique comme celui-ci, ce que cette difficulté a remué — frustration, doute, fierté — et ce que l'apprenant en a fait.",
+      "Pour ouvrir la souveraineté attentionnelle ou l'autonomie en mode dégradé, un chemin possible serait de raconter une session de travail délibérément sans IA — pourquoi, comment, et ce que cela a produit."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille raconte un travail technique avec l'IA, sans incursion dans la transformation intérieure ni dans la résistance face à l'outil. Le ton reste sobre, opérationnel ; les seules nuances affectives sont un « Hélas » discret et une autocritique de méthode. Il n'y a pas de récit de crise, pas de désapprentissage nommé, pas de tension émotionnelle face à l'IA, pas de moment de déconnexion ni de retour au réel par la main. Le pôle racines n'est pas exploré dans cette feuille.\n\n## Territoires les plus denses\n\nAucun territoire dense ne ressort de cette feuille pour ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'intégralité du pôle reste largement non visitée dans cette feuille. La résilience antifragile, le désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure, le sens, l'autonomie en mode dégradé, la souveraineté attentionnelle et la vérification terrain ne trouvent aucun écho dans le récit. La feuille décrit une session de travail technique avec l'IA, ce qui est cohérent avec son sujet et ne représente probablement pas un évitement, mais une focale très étroite. À noter que la feuille raconte au contraire une dépendance assumée à l'outil — l'autonomie hors-IA n'est ni recherchée ni exercée dans ce moment du récit.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne seule chose émerge dans ce pôle : la sobriété affective. L'apprenant ne dramatise pas la difficulté rencontrée, ne théâtralise pas sa frustration, ne fait pas du moment un récit de transformation. La feuille reste à hauteur d'observation, presque journal de bord technique. Cette retenue n'est ni une trace de résilience ni d'évitement — elle est simplement la tonalité de ce moment du portfolio.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ramener la dimension intérieure dans le portfolio, un chemin possible serait de documenter, à côté d'un récit technique comme celui-ci, ce que cette difficulté a remué — frustration, doute, fierté — et ce que l'apprenant en a fait.\n- Pour ouvrir la souveraineté attentionnelle ou l'autonomie en mode dégradé, un chemin possible serait de raconter une session de travail délibérément sans IA — pourquoi, comment, et ce que cela a produit."
+  }
+}

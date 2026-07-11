@@ -1,0 +1,614 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "cette première tentative n'allait pas du tout. Le rendu est très joli, très pro, mais le processus est top-down : l'IA rédige et l'humain copie-colle. Le prompt n'inclut pas de boucle de rétroaction humaine, bref c'est tout l'inverse d'une évaluation humaniste. Le cartographe est considéré comme un presse bouton, pas comme un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée. Elle pourrait cependant être utile pour une auto-évaluation",
+      "contexte": "Critique d'un dispositif d'évaluation et reformulation du rôle du cartographe. Active potentiellement 2.08 (traduction entre monde technique et monde clinique) et 2.04 (conception d'un dispositif qui ne soit pas top-down).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "J'ai donc complètement repris le prompt de cartographie pour le transformer en un processus constructif plus pertinent. J'ai expliqué à Claude les travaux de Mireille Cifali et de Claudine Blanchard-Laville, pour qu'il s'en inspire dans la conception du prompt.",
+      "contexte": "Acte de traduction entre un savoir clinique (Cifali, Blanchard-Laville) et un dispositif technique (prompt IA). Active 2.08 (traduction entre mondes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je pars un peu dans tous les sens à cause des pauses \"obligatoire\" du chômeur. Mis à part ma femme qui a bien compris ce que je suis en train de faire, les autres me collent un stéréotype (chômeur = plein de temps de libre) qui ne correspond absolument pas à ma réalité.",
+      "contexte": "Frustration nommée, distinction entre une personne qui comprend (femme) et un groupe qui colle un stéréotype. Active potentiellement 2.01 (nomination émotionnelle), 2.07 (lecture des perceptions sociales différenciées).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je ne vis pas dans le même monde que les autres – car l'école n'a pas réussi à me formater : j'ai gardé curiosité et esprit critique – donc c'est normal qu'il y ait des dissonances.",
+      "contexte": "Constat d'un écart de cadre avec l'environnement social. Active potentiellement 2.06 (conscience des cadres normatifs différents) ou 2.01 (régulation de la dissonance sociale).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "j'étais en effet (et je suis toujours) incapable de suivre un ordre, une règle, une directive, si je ne l'ai pas comprise et qu'elle ne fait pas sens pour moi avec les informations dont je dispose.",
+      "contexte": "Trait relationnel : refus d'exécution sans sens partagé. Active potentiellement 2.04 (refus d'une compliance superficielle) ou 2.07 (lecture des injonctions).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "je lui ai parlé \"sans filtre\" ce qui donne un résultat pas forcément politiquement correct, mais qui correspond à 100% à ce que je pense",
+      "contexte": "Conscience explicite d'un registre de communication choisi (sans filtre) et de son écart avec la norme du politiquement correct. Active 2.02 (variation et conscience du registre).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "C'est super pénible en fait de jouer le jeu de remplir un portfolio quand on a l'impression que ça ne sert à rien.",
+      "contexte": "Expression directe d'une frustration vis-à-vis du dispositif que l'apprenant lui-même conçoit. Active 2.01 (nomination d'émotion) et 2.02 (assertivité de la critique du dispositif).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je continue également ma veille technologique quotidienne (je devrais dire constante depuis que je ne travaille plus) et je publie mes découvertes dans plusieurs canaux différents : le groupe Discord de Respire pour ce qui concerne spécifiquement l'avenir de l'école, les deux communautés WhatsApp pour ce qui concerne l'IA.",
+      "contexte": "Description d'un dispositif multi-canaux où l'apprenant adresse différentes communautés selon les sujets. Active 2.09 (construction/architecture de communautés multi-canaux) et 2.08 (adaptation du registre selon les publics).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Aujourd'hui j'ai écouté une vidéo hallucinante concernant la France. L'éducation est réellement catastrophique là bas… Les écoles RESPIRE pourront apporter une solution à la France.",
+      "contexte": "Mention d'un contexte national différent (France) avec jugement sur son système éducatif. Touche très obliquement 2.06 (comparaison entre contextes nationaux).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres.",
+      "contexte": "Conception d'une école comme communauté apprenante dont la mémoire est constituée par ses membres. Active 2.09 (architecture communautaire systémique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je ne me serais pas permis de faire une si longue pause pour pouvoir être 100% avec mes enfants, si j'étais encore enseignant.",
+      "contexte": "Mention du temps consacré aux enfants, valorisation explicite de la disponibilité familiale. Active très obliquement 2.01 (care familial nommé).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Nomination directe d'une frustration (« super pénible ») vis-à-vis du dispositif que l'apprenant conçoit lui-même."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Frustration sociale nommée, avec distinction d'une personne qui comprend (la femme) au sein d'un groupe qui ne comprend pas."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Mention oblique du care familial : valorisation du temps avec les enfants comme bénéfice du chômage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que des mentions ponctuelles d'émotion ou de famille ne suffisent pas pour attester d'une intelligence émotionnelle au sens fort. La pièce 1 résiste un peu : « super pénible » est une nomination précise et appliquée à un objet précis (remplir un portfolio dont on doute de l'utilité). La pièce 2 résiste partiellement : la frustration sociale est nommée et la lucidité différencie sa femme des autres, ce qui dépasse l'expression brute. La pièce 3 reste très oblique : valoriser du temps avec les enfants ne montre pas un care actif vers autrui mais une appréciation personnelle.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Nomination émotionnelle précise et appliquée à un objet identifié."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Lucidité différenciée sur les perceptions d'autrui (femme vs autres)."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces deux pièces de signification émotionnelle alors qu'elles relèvent d'une expression ordinaire. La pièce 1, testée par (a) insuffisance probatoire : la phrase est brève et ne montre pas de régulation émotionnelle. C'est de l'expression, pas de l'intelligence émotionnelle au sens du « émotion-information-levier ». Affaiblie. La pièce 2, testée par (e) surinterprétation : ai-je lu une lucidité différenciée là où il y a juste un constat ? L'extrait dit explicitement « ma femme qui a bien compris [...] les autres me collent un stéréotype » — la distinction est marquée. Elle tient comme indice.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Nomination présente mais pas de régulation ni de levier d'action. Indice corroboratif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La distinction est marquée explicitement dans le texte, mais reste un constat sans description de comment l'apprenant compose avec cet écart."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'intelligence émotionnelle en lisant ces pièces comme de l'expression ordinaire. Deux pièces ont tenu, affaiblies. La nomination existe (« super pénible », « les autres me collent un stéréotype ») mais ce qui manque dans cette feuille, c'est la régulation explicite, le care vers autrui en acte, ou l'usage de l'émotion comme levier dans une décision. Dans cette feuille, la compétence se montre comme expression lucide d'états internes face à un environnement social mal accordé, plutôt que comme intelligence émotionnelle déployée. Un renvoi au cartographe est plus juste qu'une présence établie ou qu'une absence.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Les indices retenus portent une nomination émotionnelle, mais pas de trace de régulation ou de care actif vers autrui dans cette feuille.",
+        "prescription": "Pour creuser cette compétence, un chemin possible serait de documenter une situation où l'émotion identifiée a effectivement infléchi une décision ou une interaction — quelle frustration a conduit à quel geste vers qui, et avec quel effet observé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Conscience explicite d'un registre de communication choisi (sans filtre) et de son écart avec une norme (politiquement correct)."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Assertivité critique : exprimer ouvertement son inconfort vis-à-vis d'un dispositif qu'on conçoit soi-même."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Critique articulée et claire d'un rendu pourtant séduisant, adressée à un lecteur supposé (du portfolio)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'écrire dans un journal n'est pas en soi de la communication authentique : il manque l'autre, le contexte, le risque. La pièce 1 résiste : reconnaître explicitement le registre choisi (« sans filtre ») et anticiper qu'il puisse être perçu comme « pas politiquement correct » signe une maîtrise consciente du registre. La pièce 2 résiste : exprimer une frustration vis-à-vis d'un dispositif qu'on conçoit demande une assertivité spécifique. La pièce 3 résiste : la critique est nette mais non agressive, ce qui dépasse la simple défoulement. Ce qui reste faible : l'absence d'interaction conversationnelle directe dans cette feuille.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Conscience explicite du registre choisi et de son écart à la norme."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Assertivité dirigée vers le dispositif que l'apprenant conçoit lui-même."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Critique nette et calibrée d'un rendu agréable."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de communication authentique alors qu'elles relèvent du monologue. La pièce 1, testée par (c) biais de medium : un journal n'est pas une communication interpersonnelle. Mais l'apprenant nomme explicitement qu'il a parlé « sans filtre » à un agent IA et anticipe la réception : c'est une réflexion sur la communication, pas seulement de l'expression. Tenue. La pièce 2, testée par (c) : exprimer sa frustration dans son propre journal n'engage pas un autre. Affaiblie. La pièce 3, testée par (f) récit performatif : la critique peut être lue comme « voilà ma capacité de critique » plutôt que comme acte. Mais elle est suivie d'une refonte effective du prompt, donc l'acte suit. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'apprenant parle d'une interaction effective (avec Claude) et anticipe la réception d'un texte qu'il rend public."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Frustration nommée dans un journal sans interlocuteur direct. Reste un indice de registre assertif."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Critique suivie d'un acte (refonte du prompt, 5 versions ensuite), donc pas performative."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la communication authentique en lisant ces pièces comme du monologue introspectif. Deux pièces ont tenu : la conscience d'un registre « sans filtre » assumée avec anticipation de la réception, et la critique nette suivie d'un acte de refonte. La troisième pièce s'est affaiblie sans tomber. Dans cette feuille, la communication authentique se manifeste surtout comme conscience explicite du registre et comme assertivité critique adressée — y compris vers ses propres dispositifs. La présence tient avec une confiance modérée.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.68,
+        "motif": "Deux pièces ont passé le temps 2 : la conscience explicite du registre « sans filtre » et la critique nette qui débouche sur un acte de refonte.",
+        "prescription": "Pour approfondir, un chemin possible serait de documenter une situation où le registre a été calibré pour un interlocuteur spécifique (et pas seulement choisi pour soi), avec une trace de la réception observée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète où un désaccord a été structuré, médiatisé ou délibérément laissé non-résolu."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Refus d'un dispositif top-down et formulation d'un autre dispositif qui solliciterait l'adhésion (auto-évaluation par l'apprenant). Touche obliquement la conception d'environnements favorisant l'engagement."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Trait personnel : refus d'exécution sans sens partagé. Touche obliquement la résistance à la compliance superficielle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'aucune trace d'influence ou de diplomatie n'apparaît dans cette feuille — l'apprenant travaille seul sur un dispositif. La pièce 1 résiste partiellement : repenser un dispositif d'évaluation pour qu'il soit utile à un apprenant en auto-évaluation est un acte de design favorisant l'engagement, ce qui peut relever de l'influence systémique. La pièce 2 résiste très peu : c'est une auto-description identitaire, pas une stratégie d'influence vers autrui. Ce qui reste explicitement faible : aucune préparation décrite vers un interlocuteur précis, aucune reformulation d'objections d'autrui, aucune alliance stratégique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Reconception d'un dispositif pour qu'il sollicite l'engagement de l'utilisateur, plutôt qu'une réponse passive."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé la pièce 1 d'une dimension d'influence systémique qu'elle ne porte pas vraiment. Testée par (e) surinterprétation : repenser un outil d'auto-évaluation n'est pas en soi de l'influence — ça peut être de la conception pédagogique pure. La fiche du pôle reconnaît néanmoins comme manifestation oblique la « création d'un espace où d'autres s'auto-organisent ». Ici, le dispositif vise à mettre l'apprenant en posture active, ce qui est cohérent. Mais l'extrait seul ne dit rien d'un public à convaincre. Affaiblie fortement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Reconcevoir un dispositif d'évaluation est de la conception pédagogique ; le passage par l'influence (au sens d'adhésion d'autrui) demande au minimum la mention d'un destinataire ou d'un effet d'adhésion visé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'influence en m'attendant à ce qu'aucun interlocuteur visé n'apparaisse. La pièce 1 a tenu au temps 1 mais est tombée au temps 2 : reconcevoir un dispositif ne fait pas en soi de l'influence, faute d'un destinataire identifié et d'un effet d'adhésion visé. Dans cette feuille, la compétence ne se laisse pas attester. Cela ne dit rien du portfolio dans son ensemble, mais sur cette journée précise, le travail décrit reste interne à un atelier de conception, sans engagement vers d'autres acteurs à convaincre.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce résistante est tombée au temps 2 : pas de destinataire ni d'effet d'adhésion visé identifié dans cette feuille.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où l'apprenant a préparé une proposition pour un interlocuteur précis — quelles résistances anticipées, quelles concessions consenties, quels résultats observés."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Reconnaissance des hallucinations IA et continuation du travail avec compensation par croisement. Touche la collaboration divergente avec une IA imparfaite (cf. fiche)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la collaboration divergente exige qu'on travaille avec quelqu'un dont on continue à ne pas partager la position. Avec une IA, c'est ténu. La pièce résiste un peu : la fiche identifie explicitement les collaborations avec IA imparfaites comme manifestation possible. L'apprenant continue d'utiliser Gemini en sachant qu'il hallucine, avec des compensations implicites (vérifier ailleurs). Mais l'extrait ne décrit pas explicitement la compensation, juste la limite acceptée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Trace oblique de la fiche : tolérance à l'imperfection d'un partenaire (IA) avec continuation du travail."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé la pièce d'une dimension collaborative qu'elle ne porte pas. Testée par (b) confusion avec 1.06 littératie IA : la même pièce porte une compréhension causale (fenêtre de contexte) plus qu'une stratégie de collaboration divergente. Le « on n'est toujours pas d'accord » n'a aucune symétrie ici — l'IA n'a pas de position propre, l'apprenant accepte juste ses limites. C'est plus de l'usage pragmatique que de la collaboration divergente au sens fort. Pièce disqualifiée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce relève plus de la littératie IA (1.06) et de l'usage pragmatique que d'une collaboration divergente au sens strict (deux positions divergentes qui persistent)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la collaboration divergente en m'attendant à ne pas voir de partenaire humain avec qui on persiste à être en désaccord. La pièce qui résistait au temps 1 (collaboration avec une IA imparfaite) est tombée au temps 2 : elle relève plutôt de la littératie IA et de l'usage pragmatique, sans la symétrie de positions divergentes que la fiche exige. Dans cette feuille, la compétence ne se laisse pas attester. Le silence textuel suggère que ce territoire est peu visité dans ce qui a été documenté ce jour-là.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce extraite a été disqualifiée au temps 2 pour confusion avec la littératie IA.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où une collaboration humaine a continué malgré un désaccord persistant — qu'est-ce qui a été cédé, qu'est-ce qui a été préservé, qu'est-ce qui a été livré quand même."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Constat d'un écart de cadre avec l'environnement social, attribué à une trajectoire (école qui n'a pas formaté). Touche la conscience des cadres normatifs."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Comparaison France / Suisse (implicite) sur l'éducation. Touche la conscience des contextes nationaux."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'un constat de différence n'est pas une compétence d'adaptation. La pièce 1 résiste un peu : l'apprenant nomme un écart de cadre et l'attribue à une trajectoire éducative, ce qui dépasse le constat. Mais il n'y a pas de description d'adaptation comportementale. La pièce 2 ne résiste presque pas : c'est un jugement rapide sur un autre pays, pas une analyse comparative des normes.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Reconnaissance d'un écart de cadre avec son environnement, attribué à une histoire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé la pièce 1 d'intelligence culturelle alors qu'elle relève d'un sentiment d'inadéquation. Testée par (b) confusion avec 1.04 métacognition : la pièce parle plus de soi (« j'ai gardé curiosité et esprit critique ») que d'un effort d'adaptation à un cadre culturel d'autrui. La fiche exige « suspendre son propre cadre pour naviguer celui de l'autre » — ici, l'apprenant constate son propre cadre, sans description d'effort de suspension. Disqualifiée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce affirme une singularité personnelle plutôt qu'un effort de décodage d'un cadre étranger."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'intelligence culturelle en m'attendant à n'y voir que des constats personnels. La pièce 1 a tenu au temps 1 mais est tombée au temps 2 : elle parle d'un cadre propre qu'on conserve, pas d'un cadre étranger qu'on s'efforce de comprendre. La pièce 2 n'avait pas résisté au temps 1. Dans cette feuille, la compétence ne se laisse pas attester. Le travail décrit reste centré sur la conception d'un dispositif, sans navigation interculturelle documentée.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce résistante au temps 1 est tombée au temps 2 : elle affirme un cadre propre plutôt que de suspendre un cadre pour naviguer celui d'autrui.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment d'adaptation à un cadre différent — culture organisationnelle, génération, discipline — où l'apprenant a délibérément modifié son comportement en analysant le pourquoi."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Lecture différenciée des perceptions sociales : la femme comprend, les autres collent un stéréotype. Touche la lecture des dynamiques sociales."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'une frustration sociale n'est pas une lecture politique. La pièce résiste légèrement : l'apprenant identifie un stéréotype actif (chômeur = temps libre) et nomme qu'il en est l'objet, ce qui dépasse la simple frustration. Mais cela ne touche pas aux dynamiques de pouvoir organisationnelles que la fiche définit. La fiche concerne « qui décide vraiment », « pourquoi les bonnes idées n'avancent pas » : pas l'attribution de stéréotypes sociaux.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 est vide.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le sens politique en m'attendant à n'y voir aucune trace organisationnelle. La pièce qui aurait pu fonctionner (perception sociale de l'apprenant chômeur) n'a pas tenu au temps 1 : elle relève du stéréotype social, pas de la lecture des dynamiques de pouvoir au sein d'une organisation. Dans cette feuille, le travail est solitaire et la trace politique est absente. Le territoire reste non visité.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté au temps 1 : la frustration sociale extraite ne relève pas des dynamiques organisationnelles que la fiche définit.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où la trajectoire d'une idée dans une institution a été analysée — qui a soutenu, qui a freiné, quels canaux informels ont été utilisés."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant traduit un savoir clinique (Cifali, Blanchard-Laville) pour qu'il infuse un dispositif technique (prompt IA)."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Adaptation explicite du contenu selon le canal (Discord Respire pour l'école, WhatsApp pour l'IA). Touche l'adaptation du registre selon les audiences."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Reformulation du rôle du cartographe avec la métaphore archéologue, qui rend lisible un dispositif clinique dans un langage que des concepteurs de prompts peuvent recevoir."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que mentionner des auteurs ou publier sur plusieurs canaux ne fait pas une traduction. La pièce 1 résiste : l'apprenant ne se contente pas de citer Cifali et Blanchard-Laville, il les mobilise pour reconfigurer un prompt IA — c'est un acte de traduction d'un cadre clinique vers un dispositif technique. La pièce 2 résiste partiellement : adapter le canal selon l'audience est de l'adaptation, mais la simple mention ne dit pas si le contenu est transposé. La pièce 3 résiste : la métaphore archéologique transpose un imaginaire clinique (l'écoute, le dépouillement) vers un imaginaire ingénieurique (la conception d'un prompt), ce qui est de la traduction structurelle.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Mobilisation de cadres cliniques pour reconfigurer un dispositif technique."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Architecture multi-canaux avec adaptation déclarée par sujet."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Métaphore qui transpose un imaginaire clinique vers un imaginaire ingénieurique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces de traduction alors qu'elles relèvent d'inspiration ou de communication routinière. La pièce 1, testée par (e) surinterprétation : ai-je halluciné la traduction là où il y a juste une référence ? L'extrait dit « pour qu'il s'en inspire dans la conception du prompt » — c'est explicitement un transfert opérationnel d'un cadre vers un autre. Tenue. La pièce 2, testée par (a) : l'extrait ne montre pas le contenu publié ni la transposition réelle. Affaiblie. La pièce 3, testée par (e) : la métaphore archéologique est-elle structurelle (capture le mécanisme) ou décorative ? Elle organise le recadrage entier du dispositif, donc structurelle. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Mobilisation opérationnelle, pas décorative : les auteurs informent la conception du prompt."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'extrait nomme l'architecture multi-canaux mais ne montre pas le travail de transposition concret. Indice corroboratif."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La métaphore organise le recadrage du dispositif : structurelle, pas décorative."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la traduction entre mondes en lisant ces pièces comme des références savantes ou des communications routinières. Deux pièces ont tenu solidement : la mobilisation effective d'un cadre clinique pour informer un dispositif technique, et la métaphore archéologique qui rend lisible un imaginaire clinique dans un langage de concepteurs de prompts. La troisième pièce est restée comme indice. Dans cette feuille, la traduction se manifeste avec une densité réelle : l'apprenant fait passer du sens entre un univers (la clinique pédagogique d'inspiration psychanalytique) et un autre (l'ingénierie des prompts), ce qui est exactement le critère de la fiche. La présence tient.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Deux pièces confirmées au temps 2 : la mobilisation opérationnelle d'un cadre clinique vers un dispositif technique, et la métaphore archéologique comme transposition structurelle.",
+        "prescription": "Pour approfondir, un chemin possible serait d'expliciter le test de réciprocité de la traduction : les chercheurs en sciences cliniques reconnaîtraient-ils leur travail dans le dispositif de cartographie, et les ingénieurs reconnaîtraient-ils leur métier dans la métaphore archéologique ?"
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Architecture multi-canaux : Discord pour Respire, deux WhatsApp pour l'IA, avec adaptation des contenus. La fiche identifie explicitement l'architecture multi-canaux comme signal fort."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Vision communautaire d'une école dont la mémoire est constituée des portfolios des Maîtres. Touche la conception d'un espace d'identité collective qui survit au projet."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que partager des liens et théoriser une école n'est pas de la construction de communauté. La fiche exige du « nous identitaire chargé d'émotion », des rituels partagés, ou une architecture multi-canaux explicite. La pièce 1 résiste : l'apprenant nomme une architecture (Discord, deux WhatsApp) avec différenciation des contenus selon les communautés — c'est précisément ce que la fiche identifie comme signal fort. La pièce 2 résiste partiellement : la phrase pose une architecture communautaire de l'école comme système apprenant, mais ne montre pas le « nous » identitaire vivant.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Architecture multi-canaux nommée avec différenciation des publics."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Vision architecturale d'une communauté apprenante dont la mémoire est constituée par ses membres."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai halluciné la construction de communauté alors qu'il s'agit d'utilisation d'outils. La pièce 1, testée par (a) insuffisance probatoire : l'extrait nomme trois canaux mais ne décrit pas les rituels, le vocabulaire propre, ou la durabilité. Reste cependant que la fiche identifie l'architecture multi-canaux comme signal fort en soi. Affaiblie mais retenue. La pièce 2, testée par (g) mouvement-vers : la vision communautaire de l'école est projetée, pas encore vivante. La fiche exige cependant que la conception d'une architecture soit reconnue. Tenue partiellement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Architecture nommée mais rituels et vocabulaire identitaire non décrits dans cette feuille. La fiche identifie pourtant l'architecture multi-canaux comme signal en soi."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Vision projective d'une communauté apprenante, plus que communauté vivante. Reste un indice d'architecture."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la construction de communautés en m'attendant à n'y voir que de l'usage d'outils. Deux pièces ont tenu, affaiblies. L'architecture multi-canaux est nommée explicitement, ce que la fiche identifie comme un signal fort d'architecture communautaire — même si les rituels et le vocabulaire identitaire ne sont pas déployés dans cette feuille. La vision communautaire de l'école comme système apprenant reste projective mais cohérente avec une pensée architecturale. Dans cette feuille, la compétence se montre comme conception architecturale plutôt que comme communauté vivante. Un verdict de présence tient, avec une réserve sur la durabilité non observable ici.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Deux pièces affaiblies tiennent comme indices, dont une architecture multi-canaux explicite que la fiche identifie comme signal fort.",
+        "prescription": "Pour approfondir, un chemin possible serait de documenter le « nous » de chaque canal : qui s'y reconnaît, quelles habitudes émergent, qu'est-ce qui se dit en interne qui ne se dirait pas ailleurs."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 4,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail de cette feuille se déploie principalement dans deux registres relationnels : l'expression assumée d'un registre singulier (la voix « sans filtre », la critique nette des dispositifs), et la mobilisation de ressources venues d'un autre monde (les cliniciens de l'éducation) pour reconfigurer un objet technique. Le travail décrit est largement solitaire, ce qui rend silencieuses plusieurs dimensions du pôle. Les marqueurs concrets cités tournent autour de la communication assertive, de l'usage des cadres théoriques comme leviers, et de l'architecture multi-canaux entre Discord et WhatsApp. La voix dominante combine introspection journalière et conception, sans interlocuteur direct visible.",
+    "territoiresDenses": [
+      {
+        "competence": "Traduction entre mondes",
+        "description": "L'apprenant transpose un cadre clinique (Cifali, Blanchard-Laville) vers un dispositif technique (prompt de cartographie) et mobilise une métaphore archéologique qui rend lisible cet imaginaire clinique dans un langage de conception de prompts.",
+        "extraitVerbatim": "J'ai expliqué à Claude les travaux de Mireille Cifali et de Claudine Blanchard-Laville, pour qu'il s'en inspire dans la conception du prompt.",
+        "ceQueCaDit": "Le travail fait passer du sens entre deux univers professionnels distincts, en mode opérationnel et pas décoratif."
+      },
+      {
+        "competence": "Communication authentique",
+        "description": "La conscience explicite d'un registre choisi (la voix « sans filtre »), avec anticipation de la réception, et la critique nette d'un rendu pourtant agréable qui débouche sur un acte de refonte.",
+        "extraitVerbatim": "je lui ai parlé \"sans filtre\" ce qui donne un résultat pas forcément politiquement correct, mais qui correspond à 100% à ce que je pense",
+        "ceQueCaDit": "Le travail montre une maîtrise du registre plutôt qu'une absence de filtre — l'apprenant choisit ce qu'il dit, comment, et anticipe l'effet."
+      },
+      {
+        "competence": "Construction de communautés",
+        "description": "L'architecture multi-canaux nommée (Discord pour Respire, deux WhatsApp pour l'IA) avec différenciation des contenus par communauté, et la vision d'une école dont la mémoire est constituée par les portfolios de ses membres.",
+        "extraitVerbatim": "je publie mes découvertes dans plusieurs canaux différents : le groupe Discord de Respire pour ce qui concerne spécifiquement l'avenir de l'école, les deux communautés WhatsApp pour ce qui concerne l'IA",
+        "ceQueCaDit": "L'architecture est conçue avec une intentionnalité claire ; ce qui reste invisible dans cette feuille, c'est ce qui se passe à l'intérieur de chaque canal."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas visités dans cette feuille. La gestion des conflits n'apparaît pas du tout — aucun désaccord rapporté, structuré ou laissé non-résolu. L'influence et la diplomatie ne se manifestent pas : le travail décrit est une conception solitaire d'un dispositif, sans interlocuteur à convaincre identifié, sans préparation stratégique pour une proposition. La collaboration divergente avec des humains aux visions incompatibles n'est pas documentée. L'intelligence culturelle et contextuelle ne se déploie pas : la mention d'un écart de cadre avec « les autres » affirme un cadre propre plutôt qu'un effort de décodage d'un cadre étranger. Le sens politique et la lecture organisationnelle restent muets — l'institution chômage est mentionnée mais sans analyse des dynamiques de pouvoir qui la traversent. L'intelligence émotionnelle reçoit une expression nominative (« super pénible »), mais sans trace de régulation ou de care actif vers autrui, ce qui place ce territoire en renvoi au cartographe plutôt qu'en territoire visité.",
+    "emergencesPole": "Une première ligne traverse le pôle : le travail décrit est largement solo, et les compétences relationnelles qui exigent un autre identifié restent en retrait. Quand l'autre apparaît, c'est par l'intermédiaire de cadres (Cifali, Blanchard-Laville), de canaux (Discord, WhatsApp) ou d'images (le cartographe-archéologue) — pas par une interaction directe documentée dans cette feuille. Une deuxième ligne traverse : ce qui circule dans ce pôle aujourd'hui est de l'ordre de la transposition — entre cadres théoriques et dispositifs techniques, entre soi et publics segmentés, entre imaginaires professionnels. Une troisième ligne, plus discrète : la voix assume sa singularité (« je ne vis pas dans le même monde », « sans filtre ») d'une manière qui pourrait, en creux, expliquer pourquoi les compétences d'adaptation et de diplomatie sont silencieuses ce jour-là.",
+    "pistes": [
+      "Pour enrichir l'intelligence émotionnelle, un chemin possible serait de documenter un moment où l'émotion identifiée a infléchi une décision relationnelle — quelle frustration a conduit à quel geste vers qui.",
+      "Pour enrichir la construction de communautés, un chemin possible serait de décrire ce qui se passe à l'intérieur de chaque canal multi-publics : quels mots, quels rythmes, quels rituels émergent, et ce que les membres y retrouvent qu'ils ne trouveraient pas ailleurs.",
+      "Pour enrichir l'influence et la diplomatie, un chemin possible serait de documenter une situation où une proposition a été préparée pour un interlocuteur ou un groupe précis — quelles résistances anticipées, quelles concessions consenties, quel effet observé.",
+      "Pour enrichir le sens politique, un chemin possible serait de documenter le parcours d'une idée RESPIRE dans une institution réelle : qui a soutenu, qui a freiné, quels canaux informels ont été utilisés."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail de cette feuille se déploie principalement dans deux registres relationnels : l'expression assumée d'un registre singulier (la voix « sans filtre », la critique nette des dispositifs), et la mobilisation de ressources venues d'un autre monde (les cliniciens de l'éducation) pour reconfigurer un objet technique. Le travail décrit est largement solitaire, ce qui rend silencieuses plusieurs dimensions du pôle. Les marqueurs concrets cités tournent autour de la communication assertive, de l'usage des cadres théoriques comme leviers, et de l'architecture multi-canaux entre Discord et WhatsApp. La voix dominante combine introspection journalière et conception, sans interlocuteur direct visible.\n\n## Territoires les plus denses\n\n**Traduction entre mondes.** L'apprenant transpose un cadre clinique (Cifali, Blanchard-Laville) vers un dispositif technique et mobilise une métaphore archéologique qui rend lisible cet imaginaire clinique dans un langage de conception de prompts. *« J'ai expliqué à Claude les travaux de Mireille Cifali et de Claudine Blanchard-Laville, pour qu'il s'en inspire dans la conception du prompt ».* Le travail fait passer du sens entre deux univers professionnels distincts, en mode opérationnel et pas décoratif.\n\n**Communication authentique.** La conscience explicite d'un registre choisi (la voix « sans filtre »), avec anticipation de la réception, et la critique nette d'un rendu pourtant agréable qui débouche sur un acte de refonte. *« je lui ai parlé \"sans filtre\" ce qui donne un résultat pas forcément politiquement correct, mais qui correspond à 100% à ce que je pense ».* Le travail montre une maîtrise du registre plutôt qu'une absence de filtre — l'apprenant choisit ce qu'il dit, comment, et anticipe l'effet.\n\n**Construction de communautés.** L'architecture multi-canaux nommée (Discord pour Respire, deux WhatsApp pour l'IA) avec différenciation des contenus par communauté, et la vision d'une école dont la mémoire est constituée par les portfolios de ses membres. *« je publie mes découvertes dans plusieurs canaux différents : le groupe Discord de Respire pour ce qui concerne spécifiquement l'avenir de l'école, les deux communautés WhatsApp pour ce qui concerne l'IA ».* L'architecture est conçue avec une intentionnalité claire ; ce qui reste invisible dans cette feuille, c'est ce qui se passe à l'intérieur de chaque canal.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas visités dans cette feuille. La gestion des conflits n'apparaît pas du tout — aucun désaccord rapporté, structuré ou laissé non-résolu. L'influence et la diplomatie ne se manifestent pas : le travail décrit est une conception solitaire d'un dispositif, sans interlocuteur à convaincre identifié, sans préparation stratégique pour une proposition. La collaboration divergente avec des humains aux visions incompatibles n'est pas documentée. L'intelligence culturelle et contextuelle ne se déploie pas : la mention d'un écart de cadre avec « les autres » affirme un cadre propre plutôt qu'un effort de décodage d'un cadre étranger. Le sens politique et la lecture organisationnelle restent muets — l'institution chômage est mentionnée mais sans analyse des dynamiques de pouvoir qui la traversent. L'intelligence émotionnelle reçoit une expression nominative (« super pénible »), mais sans trace de régulation ou de care actif vers autrui, ce qui place ce territoire en renvoi au cartographe plutôt qu'en territoire visité.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne première ligne traverse le pôle : le travail décrit est largement solo, et les compétences relationnelles qui exigent un autre identifié restent en retrait. Quand l'autre apparaît, c'est par l'intermédiaire de cadres (Cifali, Blanchard-Laville), de canaux (Discord, WhatsApp) ou d'images (le cartographe-archéologue) — pas par une interaction directe documentée dans cette feuille. Une deuxième ligne traverse : ce qui circule dans ce pôle aujourd'hui est de l'ordre de la transposition — entre cadres théoriques et dispositifs techniques, entre soi et publics segmentés, entre imaginaires professionnels. Une troisième ligne, plus discrète : la voix assume sa singularité (« je ne vis pas dans le même monde », « sans filtre ») d'une manière qui pourrait, en creux, expliquer pourquoi les compétences d'adaptation et de diplomatie sont silencieuses ce jour-là.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir l'intelligence émotionnelle, un chemin possible serait de documenter un moment où l'émotion identifiée a infléchi une décision relationnelle — quelle frustration a conduit à quel geste vers qui.\n- Pour enrichir la construction de communautés, un chemin possible serait de décrire ce qui se passe à l'intérieur de chaque canal multi-publics : quels mots, quels rythmes, quels rituels émergent, et ce que les membres y retrouvent qu'ils ne trouveraient pas ailleurs.\n- Pour enrichir l'influence et la diplomatie, un chemin possible serait de documenter une situation où une proposition a été préparée pour un interlocuteur ou un groupe précis — quelles résistances anticipées, quelles concessions consenties, quel effet observé.\n- Pour enrichir le sens politique, un chemin possible serait de documenter le parcours d'une idée RESPIRE dans une institution réelle : qui a soutenu, qui a freiné, quels canaux informels ont été utilisés."
+  }
+}

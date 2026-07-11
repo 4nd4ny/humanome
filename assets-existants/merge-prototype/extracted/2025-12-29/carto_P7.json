@@ -1,0 +1,366 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "J'ai généré le support de formation complet des tuteurs. Il ne reste plus qu'à le relire et à homogénéiser sa mise en forme (les styles sont différents d'un doc à l'autre) pour vérifier que tout est ok. Le problème, c'est qu'il fait 124 pages !",
+      "contexte": "Production complète d'un support de formation destiné à des tuteurs — geste pédagogique d'architecture d'un dispositif d'apprentissage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Sa durée sera de 17 semaines à raison de 2h par week-end et par semaine en moyenne – voir détail dans le syllabus",
+      "contexte": "Dimensionnement explicite du parcours de formation : durée, rythme, charge hebdomadaire — geste de planification pédagogique long-terme.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Je vais maintenant travailler avec Claude pour vérifier sa consistance et son alignement avec nos principes et valeurs.",
+      "contexte": "Étape de vérification interne intégrée au workflow de production — possible trace d'itération structurée ou de pilotage du processus.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "J'envisage également de confronter notre pédagogie avec le recueil de valeurs de HEP Vaud et expliciter les différences avec leur référentiel de compétences.",
+      "contexte": "Étape supplémentaire prévue après la production initiale — itération vers une mise à l'épreuve externe du dispositif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Voici un premier résultat avec lequel je suis parfaitement d'accord, puis un second qui pourrait servir de base pour un article, tellement il résume bien les choses.",
+      "contexte": "Reconnaissance d'un matériau exploitable pour une production publique à venir — projection sur une suite documentaire ou éditoriale.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La production d'un support de formation complet pour des tuteurs est, par construction, un acte d'architecture pédagogique — l'environnement dans lequel l'apprentissage des futurs tuteurs se produira."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le dimensionnement temporel (17 semaines, 2h/week-end, syllabus dédié) précise l'architecture du parcours d'apprentissage et son rythme."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche distingue deux dimensions : la méthode maïeutique (questionner pour faire accoucher) et l'architecture pédagogique (concevoir l'environnement). La dimension maïeutique n'apparaît pas dans la feuille : aucune scène de questionnement adressé à un apprenant, aucune retenue racontée, aucune reformulation d'une question. La dimension architecturale, en revanche, est en jeu : produire un support pour tuteurs en 17 semaines avec un rythme de 2h hebdomadaires est une décision de design pédagogique. Mais la fiche prévient qu'« j'ai expliqué » ou « j'ai enseigné » peuvent être de la transmission frontale, pas de la facilitation. Ici, l'apprenant dit avoir « généré le support » avec l'IA — on ne sait pas si l'architecture pédagogique sous-jacente repose sur la mise en situation, sur la frontale, sur la maïeutique, ou sur autre chose. Les pièces sont à la frontière : il y a clairement une architecture, mais sa philosophie pédagogique n'est pas exposée. Je durcis la présomption : sans indication sur l'intention pédagogique du dispositif, le seul fait de produire un volume de matériel ne suffit pas à attester de facilitation d'apprentissage au sens de la fiche. Les deux pièces tombent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Le dimensionnement précis (17 semaines, rythme hebdomadaire, syllabus dédié) porte une intention de structuration d'un parcours d'apprentissage, ce qui résiste à la présomption d'absence pure : il y a au minimum une architecture temporelle, pas seulement un document jeté en vrac."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a résisté de justesse. Je l'examine maintenant. L'attaque qui me semble dominante est l'insuffisance probatoire : le dimensionnement temporel est mentionné mais sa rationalité pédagogique n'est pas exposée — pourquoi 17 semaines, pourquoi 2h/week-end, comment ce rythme sert-il l'apprentissage des tuteurs ? Sans cette articulation, la pièce porte un fait de planification, pas une intention de facilitation. La pièce reste comme indice d'architecture, mais sans la couche philosophique qu'exige la fiche pour qu'il s'agisse de maïeutique ou de facilitation au sens propre. Elle est affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le dimensionnement temporel est cité mais sa rationalité pédagogique — pourquoi ce rythme, en quoi facilite-t-il l'apprentissage — n'est pas exposée. La pièce reste comme indice d'architecture sans porter la dimension de facilitation au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la production du support tuteur et son dimensionnement portaient une trace de facilitation d'apprentissage. Ce que la feuille livre est l'existence d'une architecture pédagogique — il y a bien un parcours dessiné, avec un volume, un rythme, un syllabus, et l'intention de former des tuteurs sur 17 semaines. Ce que la feuille ne livre pas, c'est la philosophie pédagogique qui sous-tend cette architecture : maïeutique ? mise en situation ? frontale ? La fiche est claire sur le fait que 7.01 demande la retenue délibérée de celui qui sait, ou la conception intentionnelle d'un environnement d'apprentissage autonome. Sur cette feuille, l'architecture existe en tant que fait, mais son intention pédagogique reste implicite. Le travail est là — un dispositif de 124 pages sur 17 semaines n'est pas rien — mais sa nature, au sens de la fiche, attend d'être explicitée pour passer du fait à la trace.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce affaiblie mais retenue témoigne d'une architecture temporelle d'apprentissage sans que la philosophie pédagogique sous-jacente — maïeutique, autonomie, mise en situation — soit exposée.",
+        "prescription": "Sur les prochaines feuilles, dire quelques mots sur l'intention pédagogique du support : qu'est-ce qui est laissé aux tuteurs à découvrir par eux-mêmes, qu'est-ce qui leur est transmis frontalement, quels dispositifs de questionnement sont prévus. Cette explicitation ferait passer l'architecture du fait à la trace."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative sur cette feuille. Décrire les dispositifs d'évaluation prévus pour les tuteurs — comment leur progression sera-t-elle observée et nourrie — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le support de 124 pages, dont la mise en forme doit être homogénéisée et la consistance vérifiée, est un artefact documentaire structuré avec intention claire de transmission."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "La référence à un syllabus dédié, séparé du support de formation, témoigne d'une division intentionnelle entre artefacts — geste qui touche à l'architecture de la documentation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche est précise : la documentation vivante implique une intention de pérennisation et une conscience du destinataire futur. Ici, deux artefacts sont mentionnés : le support de formation et le syllabus, séparés intentionnellement. Le geste d'homogénéisation des styles « pour vérifier que tout est ok » suggère une attention au destinataire — un support cohérent se lit mieux. Toutefois, la fiche distingue cette compétence de l'archivage passif et demande la structuration intentionnelle. Aucun versioning n'est mentionné, aucun changelog, aucune anticipation explicite des futurs lecteurs autre que la finalité formative globale. La présomption d'absence pèse, mais elle bute sur un fait : il y a bien deux artefacts produits, structurés, distincts, avec une intention de transmission inscrite dans leur finalité même (former des tuteurs sur 17 semaines). Les pièces résistent partiellement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le support produit est explicitement structuré (mise en forme à homogénéiser) avec une finalité de transmission longue (17 semaines de formation) — il porte les marqueurs minimaux d'un artefact pensé pour son lecteur."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La séparation intentionnelle entre support et syllabus (« voir détail dans le syllabus ») témoigne d'une architecture documentaire à plusieurs artefacts, pas d'une accumulation indistincte."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je les examine maintenant en me demandant si j'ai halluciné leur portée. Pour la pièce 1, l'attaque dominante est l'insuffisance probatoire : le souci de cohérence stylistique est nommé mais aucun détail n'est donné sur la structuration interne (sections, navigation, anticipation du futur lecteur). Pour la pièce 2, l'attaque dominante est aussi l'insuffisance probatoire : la mention « voir détail dans le syllabus » signale une séparation, mais on ne sait pas comment le syllabus est structuré, ni s'il est conçu pour évoluer (caractère « vivant » exigé par la fiche). Les deux pièces survivent comme indices d'attention à la structuration, mais sans atteindre la densité documentaire que la fiche associe à un Acquis ou à un Expert.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le souci de cohérence et l'existence d'un support volumineux structuré indiquent une attention à la transmission ; mais la fiche demande une structuration intentionnelle plus détaillée (sections, anticipation du destinataire) qui n'est pas exposée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La séparation des artefacts est mentionnée mais leur architecture (rôles respectifs, articulation, mise à jour) n'est pas développée dans la feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la production du support et du syllabus portait une trace de documentation vivante au sens de la fiche. Les deux artefacts existent, sont structurés, sont distincts et sont destinés à durer 17 semaines de formation — ce qui suppose qu'ils ont été pensés pour leurs lecteurs futurs. Sous la présomption d'absence durcie, deux pièces résistent comme indices d'une attention à la structuration pour autrui. Sous la présomption de sycophantie, elles tiennent mais affaiblies : la fiche demande davantage que la simple existence d'artefacts — elle demande l'intention explicite de pérennisation, la structuration consciente, la dimension vivante (versioning, mise à jour). Sur cette feuille, ces dimensions sont implicites dans la pratique mais peu thématisées dans le texte. Le territoire est ouvert, la pratique est là, sa formulation reste à venir.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Deux pièces affaiblies mais retenues témoignent d'une pratique documentaire structurée (support + syllabus distincts, souci d'homogénéisation), sans que l'intention explicite de pérennisation et la dimension vivante (versioning, mise à jour) ne soient déposées dans le texte.",
+        "prescription": "Lors d'une prochaine mise à jour du support ou du syllabus, noter ce qui a changé entre versions, pourquoi, et comment le document anticipe les questions des futurs tuteurs ferait apparaître la dimension vivante de la documentation."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Confier à Claude une étape de vérification, en gardant la décision finale, peut relever d'une posture de leadership situationnel — choisir quand laisser l'IA mener et quand reprendre la main."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche est tranchante : ce qui distingue 7.04, c'est l'alternance délibérée — l'apprenant décrit aussi des moments où il a cédé le lead ou choisi de ne pas intervenir. Ici, l'apprenant dit « je vais maintenant travailler avec Claude pour vérifier ». C'est une délégation contextuelle, mais aucun déclencheur de bascule n'est nommé : pourquoi Claude maintenant ? À quel moment l'apprenant compte-t-il reprendre la main ? Quels critères feront que la vérification est terminée ? La fiche prévient explicitement : « j'ai délégué » sans critères de bascule = délégation standard, pas leadership situationnel. La présomption d'absence absorbe la pièce.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la délégation à Claude portait une trace de leadership situationnel. La fiche demande l'alternance délibérée avec déclencheurs identifiables, et un récit qui rend visible le choix de quand mener et de quand suivre. Sur cette feuille, la délégation est mentionnée comme étape de workflow, sans la couche de raisonnement sur la posture. La trace pourra apparaître si une feuille à venir raconte un moment où l'apprenant a explicitement repris la main face à Claude, et le critère qui a déclenché cette bascule.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "La délégation à Claude est posée comme étape de workflow sans déclencheur de bascule identifiable ; la fiche réserve 7.04 à l'alternance délibérée avec critères explicites.",
+        "prescription": "Lors d'une prochaine collaboration avec Claude, noter le moment où l'apprenant a choisi de reprendre la main — quel signal, quelle décision, et pourquoi à ce moment précis — ferait apparaître le leadership situationnel en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Un parcours de formation étalé sur 17 semaines, avec un rythme hebdomadaire précis et un syllabus dédié, suppose une projection sur un horizon temporel structuré."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Identifier un résultat Gemini comme « base pour un article » suppose une anticipation d'un travail futur de publication — possible trace de vision prospective sur la dissémination du dispositif pédagogique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche est exigeante : 7.05 demande un *lien argumenté* entre futur anticipé et décision présente, pas un simple « plus tard » ou « prochaine étape ». La pièce 1 énonce un dimensionnement temporel (17 semaines), mais ce dimensionnement n'est pas justifié par une projection future explicite — il est posé comme fait, pas comme conséquence d'une vision argumentée. La pièce 2 mentionne un article potentiel, mais sans articulation entre cette anticipation et les décisions présentes : pour quel public, pour quel objectif stratégique, en lien avec quelle hypothèse sur l'évolution du dispositif ? Aucune scénarisation prospective n'est exposée. Les deux pièces tombent : il y a des projections, mais pas le lien argumenté que la fiche désigne comme critère.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le dimensionnement long du parcours et l'idée d'article portaient une trace de vision stratégique. Les projections existent — il y a un horizon de 17 semaines pour la formation et un horizon de publication potentiel pour l'article. Mais la fiche demande davantage : un lien argumenté entre futur et présent, qui rendrait lisible pourquoi telle décision est prise maintenant à cause de tel futur anticipé. Sur cette feuille, les décisions sont posées et les horizons mentionnés, mais le raisonnement qui relie les deux n'est pas exposé. La trace pourra apparaître quand l'apprenant articulera explicitement pourquoi un dispositif de 17 semaines, ou pourquoi un article maintenant, en lien avec ce qu'il anticipe.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "Les horizons temporels (17 semaines, article potentiel) sont mentionnés sans le lien argumenté entre futur anticipé et décision présente que la fiche exige.",
+        "prescription": "Sur les prochaines feuilles, expliciter ce qui dans l'avenir anticipé motive les choix d'aujourd'hui — pourquoi ce format, ce rythme, ce public — ferait apparaître la vision stratégique en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'efficacité personnelle sur cette feuille. Décrire un renoncement stratégique — un « non » argumenté, une mise en pause d'une tâche au profit d'une autre — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le geste d'homogénéisation et de relecture après production initiale est une boucle d'ajustement — possible itération structurée au sens agile."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Confier la vérification à Claude après la génération est une étape supplémentaire dans une boucle générer-relire-tester-ajuster."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Prévoir une confrontation avec un référentiel externe est une itération de second niveau, qui pourrait conduire à des ajustements du dispositif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche est claire : l'agilité se distingue par la *boucle de rétroaction explicite* et la capacité à *modifier le plan*. Les trois pièces décrivent des étapes successives du workflow : génération, relecture/homogénéisation, vérification avec Claude, confrontation HEP, possible article. C'est une séquence d'opérations. Mais une séquence d'étapes prévues n'est pas une boucle d'itération au sens agile : aucune des étapes ne décrit un ajustement du plan en cours de route avec raisons explicitées, aucun numéro de version n'est mentionné, aucun artefact de coordination agile n'apparaît. La fiche prévient explicitement contre le « théâtre agile » : adopter les rituels formels sans la pratique. Ici, on n'a même pas les rituels — on a une planification séquentielle, type waterfall, ce que la fiche distingue explicitement de l'agilité. Présomption d'absence : absorbée.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la séquence d'opérations (génération, vérification Claude, confrontation HEP, article) portait une trace d'itération structurée. La fiche réserve l'agilité à la capacité de modifier le plan en cours de route — ce que la feuille ne montre pas. On y voit plutôt un déroulé linéaire d'étapes prévues, sans rétroaction explicite, sans version, sans ajustement raconté. La compétence telle qu'elle est définie n'a pas de matière ici.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "La séquence d'étapes décrite est linéaire (waterfall) et non itérative ; aucun ajustement du plan, aucune version, aucune boucle de rétroaction explicite n'apparaît.",
+        "prescription": "Si la confrontation HEP révèle une dimension à retravailler dans le support, raconter ce moment d'ajustement — la version qui change, la raison du changement — ferait apparaître l'itération structurée en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Ce territoire s'ouvrirait par le récit d'un incident géré dans l'urgence — détails temporels, décisions en cascade, post-mortem éventuel."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 6,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle et pour cette feuille du 29 décembre 2025, le travail est centralement pédagogique : produire un support de formation pour des tuteurs, dimensionné sur 17 semaines à raison de 2h par week-end, avec un syllabus dédié. La journée porte donc, au sens large, le geste de transmettre — concevoir un dispositif, structurer des artefacts documentaires, planifier la suite avec vérification interne (Claude) et confrontation externe (HEP). Ce qui se dépose dans le texte est d'abord l'existence d'une architecture pédagogique et documentaire ; ce qui reste implicite, c'est la philosophie pédagogique qui la sous-tend, les choix de posture face à l'IA, la rationalité prospective qui relie l'avenir aux décisions présentes, et les boucles d'itération éventuelles. Le pilotage du travail apparaît tranquille, séquencé, sans crise ni rupture, dans une journée tournée vers la finalisation.",
+    "territoiresDenses": [
+      {
+        "competence": "facilitation d'apprentissage",
+        "description": "Le travail montre une architecture de parcours de formation — 17 semaines, 2h/week-end, syllabus dédié — qui inscrit l'apprentissage des tuteurs dans une temporalité structurée. La trace tient comme indice, en attente d'explicitation pédagogique.",
+        "extraitVerbatim": "Sa durée sera de 17 semaines à raison de 2h par week-end et par semaine en moyenne – voir détail dans le syllabus",
+        "ceQueCaDit": "Sur cette feuille, le travail pédagogique investit la dimension temporelle et architecturale du parcours de formation. La philosophie d'apprentissage qui guide cette architecture reste à dire."
+      },
+      {
+        "competence": "documentation structurée pour la transmission",
+        "description": "Deux artefacts distincts existent (support et syllabus), une attention est portée à la cohérence stylistique du support, et le travail vise une transmission étalée sur plusieurs mois. La trace tient comme indice, en attente d'explicitation de la dimension vivante.",
+        "extraitVerbatim": "Il ne reste plus qu'à le relire et à homogénéiser sa mise en forme (les styles sont différents d'un doc à l'autre) pour vérifier que tout est ok.",
+        "ceQueCaDit": "Sur cette feuille, le travail documentaire porte un souci de cohérence pour le lecteur. L'intention de pérennisation et le caractère évolutif du document attendent d'être explicités."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. L'évaluation transformative, l'efficacité personnelle et la gestion de crise n'ont pas d'incarnation dans le texte du 29 décembre — ce qui paraît tenir au caractère opérationnel de la journée. Le leadership situationnel, la vision stratégique et l'agilité affleurent par des situations qui s'y prêtent — délégation à Claude, horizon de 17 semaines et projet d'article, séquence d'étapes prévues — mais leurs critères discriminants ne sont pas portés par le texte : pas de déclencheur de bascule explicité, pas de lien argumenté entre futur et présent, pas de boucle d'itération avec ajustement. Ces dimensions attendent une autre scène, ou une explicitation, pour passer du fait à la trace.",
+    "emergencesPole": "Une chose traverse la feuille : le pilotage prend ici la forme d'une planification séquentielle — produire, relire, homogénéiser, vérifier avec Claude, confronter à la HEP, peut-être écrire un article. Chaque étape est annoncée comme allant de soi, sans rétroaction explicite ni ajustement raconté. C'est un workflow ordonné, presque waterfall, qui correspond à une journée de finalisation. Une seconde observation : le travail est richement adossé à plusieurs artefacts (support, syllabus, conversations Claude, sorties Gemini, projet d'article) et à plusieurs interlocuteurs (Claude, Gemini, futurs tuteurs, référentiel HEP, lectorat d'article potentiel) — l'écosystème pédagogique est dense, mais sa cartographie n'est pas thématisée dans la feuille.",
+    "pistes": [
+      "Pour enrichir la dimension pédagogique du dispositif, un chemin possible serait de dire quelques mots, sur une prochaine feuille, sur la philosophie d'apprentissage qui sous-tend le support — ce qui est laissé aux tuteurs à découvrir, ce qui leur est transmis, quels dispositifs de questionnement sont prévus.",
+      "Pour enrichir la dimension de vision stratégique, un chemin possible serait d'expliciter, lors d'une décision pédagogique (rythme, format, public), le futur anticipé qui motive ce choix présent.",
+      "Pour enrichir la dimension agile, un chemin possible serait, quand un ajustement du dispositif aura lieu — par exemple suite à la confrontation HEP —, de noter la version qui change, ce qui a déclenché le changement, et ce qui reste stable."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle et pour cette feuille du 29 décembre 2025, le travail est centralement pédagogique : produire un support de formation pour des tuteurs, dimensionné sur 17 semaines à raison de 2h par week-end, avec un syllabus dédié. La journée porte donc, au sens large, le geste de transmettre — concevoir un dispositif, structurer des artefacts documentaires, planifier la suite avec vérification interne (Claude) et confrontation externe (HEP). Ce qui se dépose dans le texte est d'abord l'existence d'une architecture pédagogique et documentaire ; ce qui reste implicite, c'est la philosophie pédagogique qui la sous-tend, les choix de posture face à l'IA, la rationalité prospective qui relie l'avenir aux décisions présentes, et les boucles d'itération éventuelles. Le pilotage du travail apparaît tranquille, séquencé, sans crise ni rupture, dans une journée tournée vers la finalisation.\n\n## Territoires les plus denses\n\n### Facilitation d'apprentissage\n\nLe travail montre une architecture de parcours de formation — 17 semaines, 2h/week-end, syllabus dédié — qui inscrit l'apprentissage des tuteurs dans une temporalité structurée. La trace tient comme indice, en attente d'explicitation pédagogique.\n\n> « Sa durée sera de 17 semaines à raison de 2h par week-end et par semaine en moyenne – voir détail dans le syllabus »\n\nSur cette feuille, le travail pédagogique investit la dimension temporelle et architecturale du parcours de formation. La philosophie d'apprentissage qui guide cette architecture reste à dire.\n\n### Documentation structurée pour la transmission\n\nDeux artefacts distincts existent (support et syllabus), une attention est portée à la cohérence stylistique du support, et le travail vise une transmission étalée sur plusieurs mois. La trace tient comme indice, en attente d'explicitation de la dimension vivante.\n\n> « Il ne reste plus qu'à le relire et à homogénéiser sa mise en forme (les styles sont différents d'un doc à l'autre) pour vérifier que tout est ok. »\n\nSur cette feuille, le travail documentaire porte un souci de cohérence pour le lecteur. L'intention de pérennisation et le caractère évolutif du document attendent d'être explicités.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. L'évaluation transformative, l'efficacité personnelle et la gestion de crise n'ont pas d'incarnation dans le texte du 29 décembre — ce qui paraît tenir au caractère opérationnel de la journée. Le leadership situationnel, la vision stratégique et l'agilité affleurent par des situations qui s'y prêtent — délégation à Claude, horizon de 17 semaines et projet d'article, séquence d'étapes prévues — mais leurs critères discriminants ne sont pas portés par le texte : pas de déclencheur de bascule explicité, pas de lien argumenté entre futur et présent, pas de boucle d'itération avec ajustement. Ces dimensions attendent une autre scène, ou une explicitation, pour passer du fait à la trace.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse la feuille : le pilotage prend ici la forme d'une planification séquentielle — produire, relire, homogénéiser, vérifier avec Claude, confronter à la HEP, peut-être écrire un article. Chaque étape est annoncée comme allant de soi, sans rétroaction explicite ni ajustement raconté. C'est un workflow ordonné, presque waterfall, qui correspond à une journée de finalisation. Une seconde observation : le travail est richement adossé à plusieurs artefacts (support, syllabus, conversations Claude, sorties Gemini, projet d'article) et à plusieurs interlocuteurs (Claude, Gemini, futurs tuteurs, référentiel HEP, lectorat d'article potentiel) — l'écosystème pédagogique est dense, mais sa cartographie n'est pas thématisée dans la feuille.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension pédagogique du dispositif, un chemin possible serait de dire quelques mots, sur une prochaine feuille, sur la philosophie d'apprentissage qui sous-tend le support — ce qui est laissé aux tuteurs à découvrir, ce qui leur est transmis, quels dispositifs de questionnement sont prévus.\n- Pour enrichir la dimension de vision stratégique, un chemin possible serait d'expliciter, lors d'une décision pédagogique (rythme, format, public), le futur anticipé qui motive ce choix présent.\n- Pour enrichir la dimension agile, un chemin possible serait, quand un ajustement du dispositif aura lieu — par exemple suite à la confrontation HEP —, de noter la version qui change, ce qui a déclenché le changement, et ce qui reste stable."
+  }
+}

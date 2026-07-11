@@ -1,0 +1,434 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "J'aurais dû développer les cartographies cet été mais je n'étais pas en état.",
+      "contexte": "Reconnaissance rétrospective d'une planification non tenue — possible terrain pour efficacité personnelle ou agilité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Maintenant je travaille sur l'aspect pédagogique, donc sans aucun codage.",
+      "contexte": "Définition du périmètre actuel de travail — possible trace d'efficacité personnelle par renoncement assumé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Qu'est ce que ça sera quand j'aurai fini de lancer les écoles Respire !",
+      "contexte": "Projection d'un projet à long terme (lancer les écoles Respire) — possible trace de vision stratégique à condition que le lien à l'action présente soit explicite.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "J'avance la lecture du manuel Expert et des réflexions vis à vis des manques de concepts importants me questionnent. Il y a des notions qui devraient être présentes, des niveaux d'intervention qui ne sont pas clairs (Apprenants/Praticien/Pairs Experts) et qu'il faudra formaliser avec des sous sections claire.",
+      "contexte": "Lecture critique d'un manuel pédagogique avec identification de manques structurels et de niveaux d'intervention à clarifier — possible trace de maïeutique (architecture pédagogique) ou de documentation vivante.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Ce manuel est moins bien construit que le précédent. Je vais probablement devoir repenser le plan et devoir régénérer les 4 manuels pour dispatcher les outils théoriques entre les niveaux plutôt que de tout concentrer chez le Maître.",
+      "contexte": "Décision de régénération coordonnée de 4 manuels — possible trace d'agilité (itération structurée avec ajustement de plan) ou de documentation vivante (architecture multi-documents).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Ce n'est pas simple de trouver le bon équilibre. Peut-être que je changerai d'avis en lisant le manuel du Maître ?",
+      "contexte": "Réserve sur sa propre décision conditionnée à une lecture à venir — possible trace d'agilité (modifier le plan en cours de route avec raison explicite)."
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant identifie l'absence de clarté sur trois niveaux d'intervention (Apprenants, Praticien, Pairs Experts) à formaliser — possible amorce d'architecture pédagogique différenciée par audience."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "La proposition de dispatcher les outils théoriques entre les niveaux plutôt que de tout concentrer chez le Maître relève de la conception d'un dispositif d'apprentissage multi-niveaux."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que la maïeutique et facilitation n'est probablement pas attestée : la fiche distingue la posture maïeutique (questions adressées à l'autre, retenue délibérée) de l'architecture pédagogique (dispositifs conçus avec intention). Les pièces 1 et 2 ne portent aucune posture maïeutique (pas de questions adressées à des apprenants, pas de retenue de réponse) ; elles portent en revanche une architecture pédagogique en cours de conception — niveaux d'intervention différenciés, distribution des outils théoriques entre niveaux. La fiche reconnaît explicitement le « design pédagogique » comme dimension où Expert est atteignable. La pièce 2 résiste mieux que la pièce 1 : elle pose explicitement une décision architecturale (dispatch vs concentration). La pièce 1 est plus une identification de manque qu'un acte de conception.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce porte une décision architecturale précise (dispatcher les outils théoriques entre niveaux plutôt que de concentrer chez le Maître) qui relève du design pédagogique reconnu par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce et dois examiner si je n'en hallucine pas la portée maïeutique. L'attaque dominante est l'insuffisance probatoire (a) : la pièce annonce une intention de refonte architecturale mais ne montre pas le dispositif dans son fonctionnement. Cela dit, la fiche est claire — l'architecture est reconnue dès lors que le design est intentionnel. Ici, la pièce porte le principe architectural (différenciation par niveau d'intervention) et la décision (dispatcher plutôt que concentrer), même si l'exécution est à venir. La pièce tient affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce annonce le principe architectural (dispatch entre niveaux Apprenants/Praticien/Pairs Experts) sans déployer le dispositif lui-même. Elle tient parce que le design pédagogique intentionnel est reconnu par la fiche, mais avec une articulation encore en projet."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à séparer la posture maïeutique (qui n'apparaît pas) de l'architecture pédagogique. Ce qui m'a forcé à reconnaître une trace, c'est la décision de différencier les outils théoriques entre niveaux d'intervention — c'est un acte de design pédagogique au sens où la fiche le reconnaît. Sous la présomption de sycophantie, la pièce a tenu affaiblie : le principe est posé, l'exécution est à venir. Dans ce pôle, le travail montre une amorce d'architecture pédagogique différenciée — la dimension maïeutique-questionnement n'apparaît pas dans cette feuille, mais la dimension architecturale s'affirme.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce a survécu affaiblie au temps 2 : décision architecturale de différenciation par niveau d'intervention, reconnue par la fiche comme dimension de design pédagogique.",
+        "prescription": "Ce dossier gagnerait à être prolongé par le récit du dispositif lui-même une fois conçu — comment chaque niveau (Apprenants, Praticien, Pairs Experts) reçoit ses outils théoriques propres, et selon quel principe pédagogique. La dimension maïeutique pourrait s'ouvrir par un récit de questions adressées plutôt que de réponses transmises."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un acte évaluatif où le retour adressé à un évalué nomme ce qui fonctionne et ouvre des pistes concrètes de progression."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant note des manques structurels dans un manuel et la nécessité de formaliser avec des sous-sections claires — possible trace d'attention à la structuration pour le futur lecteur."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Décision de régénérer 4 manuels en redistribuant le contenu — possible trace d'architecture documentaire multi-pièces avec intention de capitalisation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que la documentation vivante n'est probablement pas attestée : la fiche est claire — il faut une attention délibérée à la structuration pour autrui, une conscience du destinataire, une intention de pérennisation. Les pièces 1 et 2 portent une attention à la structuration (sous-sections, dispatch entre 4 manuels) avec une distinction critique nette entre 5.03 (journal pour soi) et 7.03 (documentation pour autrui). Ces manuels sont par nature destinés à des lecteurs (Apprenants, Praticien, Pairs Experts) — la conscience du destinataire est intégrée dès la conception. La pièce 1 résiste : « formaliser avec des sous sections claire » porte explicitement la structuration pour autrui. La pièce 2 résiste : la régénération coordonnée de 4 manuels avec redistribution est un acte de capitalisation architecturé.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La mention explicite de formaliser avec des sous-sections claires porte la structuration intentionnelle pour le futur lecteur que la fiche cible."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La régénération coordonnée de 4 manuels avec redistribution des outils théoriques est un acte de capitalisation architecturé multi-documents."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces et dois examiner si je n'ai pas confondu documentation vivante et simple production de contenu pédagogique. L'attaque dominante pour la pièce 1 est l'insuffisance probatoire (a) : la pièce nomme la formalisation comme intention, sans montrer la structuration en acte dans cette feuille. La pièce tient affaiblie. Pour la pièce 2, l'attaque dominante est le mouvement-vers (g) : la décision est annoncée au futur, l'acte de régénération n'est pas accompli. Mais la fiche reconnaît les manuels en tant qu'artefacts comme traces fortes, et l'apprenant en est manifestement à sa version Expert (« manuel Expert ») — un cycle de versions est implicite. Sous la pression de l'attaque (g), la pièce tient affaiblie : le principe est porté, l'exécution est à venir, mais l'historique implicite de versions soutient la trace.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce nomme la formalisation par sous-sections comme intention sans montrer la structuration en acte dans la feuille — la trace est portée par l'annonce, pas par l'exécution visible ici."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La régénération est annoncée au futur. L'existence du « manuel Expert » mentionné suggère toutefois un historique de versions et une pratique de capitalisation en cours, ce qui maintient la pièce comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à séparer la simple lecture d'un manuel d'un acte de documentation vivante. Ce qui m'a forcé à reconnaître une trace, c'est la conjonction d'une attention à la structuration pour des lecteurs différenciés (sous-sections claires, niveaux d'intervention) et d'un projet de redistribution coordonnée sur 4 manuels — la dimension architecturale et destinataire est nette. Sous la présomption de sycophantie, les pièces sont restées affaiblies : les actes annoncés ne sont pas encore exécutés dans la feuille, mais l'historique implicite de versions (manuel Expert, manuel précédent, manuel du Maître à venir) soutient la pratique de capitalisation. Dans ce pôle, le travail montre une documentation vivante en cours, avec conscience explicite du destinataire et architecture multi-documents.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Deux pièces ont tenu affaiblies au temps 2 : intention de structuration pour audiences différenciées et projet de régénération coordonnée multi-documents, soutenus par l'historique implicite de versions.",
+        "prescription": "Ce dossier gagnerait à être prolongé par un récit du dispositif documentaire une fois la régénération effectuée — versioning explicite, journal des évolutions, et trace de ce qui a été conservé ou écarté entre versions. Documenter le processus de transformation des manuels affermirait la dimension « vivante » de la documentation."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au leadership situationnel dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a délibérément choisi de prendre le lead ou de le céder, à l'IA ou à un humain, avec critère de bascule nommé."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant projette un horizon (« quand j'aurai fini de lancer les écoles Respire ») — possible trace de vision stratégique, à examiner pour distinguer projection passive et lien à l'action présente."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "L'apprenant nomme son choix actuel de périmètre (« je travaille sur l'aspect pédagogique, donc sans aucun codage ») — possible trace de décision présente articulée à une direction stratégique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que la vision stratégique n'est probablement pas attestée : la fiche est exigeante — il faut un lien explicite entre projection future et décision présente, pas simplement un horizon mentionné. La pièce 1 mentionne un horizon (lancer les écoles Respire) mais l'évoque dans le contexte d'une amplification anticipée de la difficulté, pas dans une justification de choix présent. La pièce 2 nomme le choix actuel (travail sur l'aspect pédagogique sans codage) mais sans articuler ce choix à une vision future explicite. Le lien entre projection et action présente, central pour la fiche, n'est pas clairement porté. La pièce 1 ne résiste pas vraiment. La pièce 2 résiste très faiblement : il y a un choix d'orientation (pédagogique plutôt que codage), mais sans justification par une direction long-terme nommée.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La présomption d'absence a tenu : les horizons et choix sont mentionnés mais le lien explicite entre eux n'est pas porté dans le texte de la feuille.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si les mentions du projet Respire et du choix pédagogique ne portaient pas une trace de vision stratégique. Ce qui m'a forcé à m'arrêter, c'est l'exigence de la fiche : il faut un lien argumenté entre futur anticipé et décision présente. Les pièces séparent ces deux moments sans les articuler. Dans ce pôle, le travail ne montre pas ici de vision stratégique attestée — la matière est présente (un projet long, un choix d'orientation) mais le lien qui ferait la compétence n'est pas tissé dans cette feuille.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "Les pièces portent un horizon (Respire) et un choix d'orientation (pédagogie) sans articuler explicitement le lien argumenté entre futur anticipé et décision présente que la fiche cible.",
+        "prescription": "Ce territoire pourrait s'ouvrir avec un récit où le choix présent (travailler sur l'aspect pédagogique sans codage) est explicitement justifié par la projection sur l'horizon (lancer les écoles Respire) — où le « je fais X maintenant parce que dans Y temps... » est verbalisé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant nomme son périmètre actuel (« je travaille sur l'aspect pédagogique, donc sans aucun codage ») — possible trace de renoncement stratégique avec arbitrage assumé."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "La reconnaissance « j'aurais dû développer les cartographies cet été mais je n'étais pas en état » — possible reconnaissance d'une limite d'énergie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que l'efficacité personnelle n'est probablement pas attestée : la fiche est exigeante — il faut une décision explicite de ne pas faire avec raisons articulées, un arbitrage de priorisation argumenté, un « non » stratégique. La pièce 1 nomme un renoncement (le codage) au profit d'une priorité (l'aspect pédagogique), avec un connecteur logique (« donc »). C'est exactement le pattern du « non » stratégique argumenté que la fiche signale comme marqueur le plus fiable. La pièce 2 reconnaît une limite d'énergie passée (« je n'étais pas en état »), ce que la fiche cite comme manifestation (« limites d'énergie reconnues »). Les deux pièces résistent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La pièce porte un renoncement nommé (le codage) lié à une priorité (le pédagogique) par un connecteur logique — c'est exactement le pattern du « non » stratégique argumenté."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce reconnaît une limite d'énergie passée, ce que la fiche cite comme manifestation."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces et dois examiner si je n'ai pas hallucinée leur portée. La pièce 1 est-elle un vrai « non » stratégique, ou une description factuelle du périmètre actuel imposé par les circonstances ? L'attaque dominante est ici la confusion de compétence (b) ou récit performatif (f) : la pièce décrit la situation, mais l'apprenant n'a peut-être pas activement choisi de ne pas coder — peut-être qu'il en éprouve la frustration tout au long de cette feuille. La fiche signale que « décrire ce qu'on refuse » est probant, mais ici le « refus » du codage est plus subi que choisi, comme le suggère le reste de la feuille (« je me sens largué »). La pièce tombe : c'est plus un état qu'un arbitrage. Pour la pièce 2, la reconnaissance d'avoir été « pas en état » est une explication rétrospective d'une non-action, pas une discipline de respect des limites en action. L'attaque (f) tient : c'est plus un récit que la pratique d'un filtre énergétique. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le « donc sans aucun codage » décrit un périmètre actuel qui n'est pas vraiment choisi : le reste de la feuille (« je me sens largué », « je ne suis plus légitime ») révèle que cette absence de codage est plus subie que stratégiquement décidée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La reconnaissance « je n'étais pas en état » est une explication rétrospective d'une non-action passée, pas la pratique active d'un filtre énergétique ou d'un arbitrage de priorisation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si le renoncement au codage ne portait pas un « non » stratégique. Ce qui m'a forcé à m'arrêter, c'est le ton de la feuille elle-même : l'absence de codage n'est pas vécue comme une stratégie mais comme un décrochage. La reconnaissance d'avoir été « pas en état » l'été dernier n'est pas non plus la pratique d'un filtre, c'est une explication a posteriori. Dans ce pôle, le travail ne montre pas ici d'efficacité personnelle attestée au sens du « non » stratégique. Ce territoire pourrait s'ouvrir avec un récit où un refus est explicitement choisi et porté.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les pièces ont été disqualifiées au temps 2 : ce qui ressemblait à un renoncement stratégique est plutôt vécu comme un décrochage subi, et la reconnaissance des limites est rétrospective sans pratique active.",
+        "prescription": "Ce territoire pourrait s'ouvrir avec un récit où un refus est explicitement formulé et porté — un « non » assumé avec ses raisons, une mise en pause volontaire avec son critère de reprise, ou une découverte de technique personnelle qui améliore le travail."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant annonce une régénération des 4 manuels avec ajustement du plan en cours de route — possible trace d'agilité (modifier le plan en cours de route avec raison explicitée)."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "La réserve « peut-être que je changerai d'avis en lisant le manuel du Maître » — possible trace d'agilité (boucle de rétroaction explicite avant ajustement)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que l'agilité et conduite du changement n'est probablement pas attestée : la fiche est claire — il faut une boucle de rétroaction explicite, des ajustements de plan en cours de route avec raisons, ou des versions successives traçables. La pièce 1 porte exactement l'ajustement de plan en cours de route : l'apprenant constate que le manuel Expert est moins bien construit (déclencheur), et propose un ajustement du plan (régénérer les 4 manuels) avec raison explicitée (dispatch des outils théoriques entre niveaux). La pièce 2 ajoute une boucle de rétroaction explicite : avant d'agir, lire le manuel suivant pour valider ou invalider l'hypothèse de refonte. C'est le cycle générer-relire-tester-ajuster que la fiche cible. Les deux pièces résistent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La pièce porte un ajustement de plan en cours de route (régénération des 4 manuels) avec raison explicitée (dispatch entre niveaux), ce que la fiche cible explicitement."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce porte une boucle de rétroaction explicite avant ajustement (lire le manuel suivant avant de décider la refonte) — exactement le cycle relire-tester de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces et dois examiner si je n'ai pas confondu agilité méthodique et simple hésitation. L'attaque dominante pour la pièce 1 est le mouvement-vers (g) : la régénération est annoncée au futur, l'itération n'est pas encore accomplie. Cependant, la fiche reconnaît la pratique itérative ancrée même non thématisée (« v6, v7 sans commentaire »), et l'existence du manuel Expert mentionné suggère une histoire de versions déjà en cours. La pièce tient affaiblie. Pour la pièce 2, l'attaque dominante est l'insuffisance probatoire (a) : la boucle de rétroaction est annoncée en une phrase. Mais la fiche signale précisément ce type de micro-rétroaction comme trace valide. La pièce tient affaiblie. La dimension « conduite du changement » (anticiper les résistances, normaliser) n'est pas portée dans cette feuille.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'ajustement de plan est annoncé au futur. L'historique implicite (manuel Expert mentionné, manuel précédent évoqué) soutient cependant la pratique itérative ancrée que la fiche reconnaît."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La boucle de rétroaction est portée en une phrase, mais elle correspond précisément au cycle « relire avant ajuster » que la fiche cible."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à séparer une agilité méthodique d'une simple hésitation. Ce qui m'a forcé à reconnaître une trace, c'est le pattern complet porté par les deux pièces : un déclencheur (manuel moins bien construit), un ajustement de plan avec raison (dispatcher entre niveaux), et une boucle de rétroaction explicite avant action (lire le manuel suivant). Sous la présomption de sycophantie, les pièces ont tenu affaiblies — l'exécution n'est pas dans la feuille, mais le pattern méthodique est porté. Dans ce pôle, le travail montre une pratique itérative active où le plan se modifie sur la base d'une rétroaction structurée. La dimension conduite du changement reste à ouvrir séparément.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Deux pièces ont tenu affaiblies au temps 2, portant ensemble le pattern complet de l'ajustement de plan en cours de route avec boucle de rétroaction explicite avant action.",
+        "prescription": "Ce dossier gagnerait à être prolongé par le récit de la régénération effectuée — ce qui a changé entre la version critiquée et la version régénérée, ce que la lecture du manuel du Maître aura confirmé ou renversé. La dimension conduite du changement pourrait s'ouvrir par un récit d'accompagnement humain d'une transition vécue par d'autres."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un incident géré dans l'urgence, avec détails temporels précis et mention des erreurs commises."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 0,
+    "nonEtablies": 5,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, la feuille du 11 janvier porte une activité de pilotage discrète mais structurée — la conception d'un dispositif pédagogique multi-manuels traversée par une lecture critique, un projet d'ajustement et une boucle de rétroaction. L'apprenant n'est pas en posture maïeutique face à des apprenants ici, mais en posture d'architecte d'un environnement d'apprentissage à venir. Le registre est méthodique sans être thématisé comme tel : l'agilité s'exerce, la documentation se conçoit, sans vocabulaire managérial.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "Le travail montre une attention à la structuration pour des audiences différenciées (Apprenants, Praticien, Pairs Experts), avec une architecture multi-documents (4 manuels coordonnés) et un historique implicite de versions (manuel Expert, manuel précédent évoqué, manuel du Maître à venir).",
+        "extraitVerbatim": "Il y a des notions qui devraient être présentes, des niveaux d'intervention qui ne sont pas clairs (Apprenants/Praticien/Pairs Experts) et qu'il faudra formaliser avec des sous sections claire.",
+        "ceQueCaDit": "Dans ce pôle, le travail rend visible une capitalisation en cours avec conscience explicite du destinataire — la structuration n'est pas une décoration, elle porte l'intention pédagogique."
+      },
+      {
+        "competence": "Agilité et conduite du changement",
+        "description": "Le travail porte un pattern d'ajustement de plan en cours de route (régénérer les 4 manuels) avec une raison explicitée (dispatcher les outils théoriques entre niveaux) et une boucle de rétroaction préalable (lire le manuel suivant avant de décider).",
+        "extraitVerbatim": "Je vais probablement devoir repenser le plan et devoir régénérer les 4 manuels pour dispatcher les outils théoriques entre les niveaux plutôt que de tout concentrer chez le Maître.",
+        "ceQueCaDit": "L'agilité est ancrée comme pratique : un déclencheur, un ajustement argumenté, une vérification avant action. Le plan n'est pas rigide, et sa modification est traçable."
+      },
+      {
+        "competence": "Maïeutique et facilitation",
+        "description": "Le travail montre l'amorce d'une architecture pédagogique différenciée — la décision de distribuer les outils théoriques entre niveaux d'intervention plutôt que de tout concentrer chez le Maître relève du design pédagogique au sens où la compétence le reconnaît.",
+        "extraitVerbatim": "Régénérer les 4 manuels pour dispatcher les outils théoriques entre les niveaux plutôt que de tout concentrer chez le Maître.",
+        "ceQueCaDit": "L'architecture est posée comme intention différenciée par audience — c'est une dimension de la facilitation qui se conçoit avant de se déployer."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'apparaissent pas dans cette feuille. L'évaluation transformative, le leadership situationnel et la gestion de crise en temps réel restent à ouvrir — la feuille ne raconte aucun acte évaluatif adressé à un apprenant, aucune alternance de posture avec un autre (humain ou IA), aucun incident géré dans l'urgence. La vision stratégique est effleurée par la mention du projet Respire et du choix d'orientation pédagogique, mais le lien argumenté entre projection future et décision présente n'est pas tissé. L'efficacité personnelle est effleurée par le renoncement au codage, mais ce renoncement se lit plus comme un décrochage subi que comme un « non » stratégique assumé. La dimension maïeutique-questionnement (par opposition à l'architecture) reste à ouvrir avec un récit de questions adressées plutôt que de réponses transmises.",
+    "emergencesPole": "Trois observations traversent ce pôle. D'abord, la dimension de pilotage est portée par les actes plutôt que par le vocabulaire : l'apprenant ne dit pas « j'ajuste ma stratégie », il ajuste ; il ne dit pas « je documente », il structure. La pratique est ancrée. Ensuite, la conception de cette feuille articule trois compétences solidaires (maïeutique-architecture, documentation vivante, agilité) autour d'un même objet — les manuels — ce qui dessine une cohérence méthodique. Enfin, la dimension humaine du pilotage (évaluation, leadership, conduite du changement avec d'autres) reste pour l'instant dans l'ombre — l'apprenant pilote son propre travail, pas encore explicitement celui d'un collectif.",
+    "pistes": [
+      "Pour prolonger la documentation vivante, un chemin possible serait d'expliciter le versioning entre manuels (v1, v2, v6...) et l'historique des évolutions — ce qui a été gardé, écarté, transformé entre versions.",
+      "Pour prolonger l'agilité, un chemin possible serait de raconter la régénération une fois effectuée — déclencheur, ajustement, observation du résultat, prochain cycle.",
+      "Pour ouvrir la dimension maïeutique-questionnement, un chemin possible serait de raconter un moment où une question adressée à un apprenant a fait mouche, sans donner la réponse soi-même.",
+      "Pour ouvrir la vision stratégique, un chemin possible serait d'articuler explicitement le « je fais X maintenant (le pédagogique) parce que dans Y temps (lancer les écoles Respire)... » — le lien argumenté entre direction et action présente."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, la feuille du 11 janvier porte une activité de pilotage discrète mais structurée — la conception d'un dispositif pédagogique multi-manuels traversée par une lecture critique, un projet d'ajustement et une boucle de rétroaction. L'apprenant n'est pas en posture maïeutique face à des apprenants ici, mais en posture d'architecte d'un environnement d'apprentissage à venir. Le registre est méthodique sans être thématisé comme tel : l'agilité s'exerce, la documentation se conçoit, sans vocabulaire managérial.\n\n## Territoires les plus denses\n\n**Documentation vivante.** Le travail montre une attention à la structuration pour des audiences différenciées (Apprenants, Praticien, Pairs Experts), avec une architecture multi-documents (4 manuels coordonnés) et un historique implicite de versions (manuel Expert, manuel précédent évoqué, manuel du Maître à venir).\n\n> « Il y a des notions qui devraient être présentes, des niveaux d'intervention qui ne sont pas clairs (Apprenants/Praticien/Pairs Experts) et qu'il faudra formaliser avec des sous sections claire. »\n\nDans ce pôle, le travail rend visible une capitalisation en cours avec conscience explicite du destinataire — la structuration n'est pas une décoration, elle porte l'intention pédagogique.\n\n**Agilité et conduite du changement.** Le travail porte un pattern d'ajustement de plan en cours de route (régénérer les 4 manuels) avec une raison explicitée (dispatcher les outils théoriques entre niveaux) et une boucle de rétroaction préalable (lire le manuel suivant avant de décider).\n\n> « Je vais probablement devoir repenser le plan et devoir régénérer les 4 manuels pour dispatcher les outils théoriques entre les niveaux plutôt que de tout concentrer chez le Maître. »\n\nL'agilité est ancrée comme pratique : un déclencheur, un ajustement argumenté, une vérification avant action. Le plan n'est pas rigide, et sa modification est traçable.\n\n**Maïeutique et facilitation.** Le travail montre l'amorce d'une architecture pédagogique différenciée — la décision de distribuer les outils théoriques entre niveaux d'intervention plutôt que de tout concentrer chez le Maître relève du design pédagogique au sens où la compétence le reconnaît.\n\n> « Régénérer les 4 manuels pour dispatcher les outils théoriques entre les niveaux plutôt que de tout concentrer chez le Maître. »\n\nL'architecture est posée comme intention différenciée par audience — c'est une dimension de la facilitation qui se conçoit avant de se déployer.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'apparaissent pas dans cette feuille. L'évaluation transformative, le leadership situationnel et la gestion de crise en temps réel restent à ouvrir — la feuille ne raconte aucun acte évaluatif adressé à un apprenant, aucune alternance de posture avec un autre (humain ou IA), aucun incident géré dans l'urgence. La vision stratégique est effleurée par la mention du projet Respire et du choix d'orientation pédagogique, mais le lien argumenté entre projection future et décision présente n'est pas tissé. L'efficacité personnelle est effleurée par le renoncement au codage, mais ce renoncement se lit plus comme un décrochage subi que comme un « non » stratégique assumé. La dimension maïeutique-questionnement (par opposition à l'architecture) reste à ouvrir avec un récit de questions adressées plutôt que de réponses transmises.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, la dimension de pilotage est portée par les actes plutôt que par le vocabulaire : l'apprenant ne dit pas « j'ajuste ma stratégie », il ajuste ; il ne dit pas « je documente », il structure. La pratique est ancrée. Ensuite, la conception de cette feuille articule trois compétences solidaires (maïeutique-architecture, documentation vivante, agilité) autour d'un même objet — les manuels — ce qui dessine une cohérence méthodique. Enfin, la dimension humaine du pilotage (évaluation, leadership, conduite du changement avec d'autres) reste pour l'instant dans l'ombre — l'apprenant pilote son propre travail, pas encore explicitement celui d'un collectif.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la documentation vivante, un chemin possible serait d'expliciter le versioning entre manuels (v1, v2, v6...) et l'historique des évolutions — ce qui a été gardé, écarté, transformé entre versions.\n- Pour prolonger l'agilité, un chemin possible serait de raconter la régénération une fois effectuée — déclencheur, ajustement, observation du résultat, prochain cycle.\n- Pour ouvrir la dimension maïeutique-questionnement, un chemin possible serait de raconter un moment où une question adressée à un apprenant a fait mouche, sans donner la réponse soi-même.\n- Pour ouvrir la vision stratégique, un chemin possible serait d'articuler explicitement le « je fais X maintenant (le pédagogique) parce que dans Y temps (lancer les écoles Respire)... » — le lien argumenté entre direction et action présente.\n"
+  }
+}

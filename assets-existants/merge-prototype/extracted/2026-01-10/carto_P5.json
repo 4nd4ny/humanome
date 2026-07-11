@@ -1,0 +1,407 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Grâce aux 6h de train d'hier, j'ai terminé de lire le manuel du Tuteur Praticien : c'est excellent !",
+      "contexte": "Un trajet de 6h en train (transport long) utilisé pour terminer une lecture longue. Pourrait activer souveraineté attentionnelle (5.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Je pense qu'avec Respire j'ai réussi à aller jusqu'au bout de mes idées sur l'école, en intégrant les IA dans ma pédagogie (ce qui n'était pas gagné d'avance).",
+      "contexte": "Bilan de l'aboutissement d'idées \"jusqu'au bout\" avec une intégration IA \"pas gagnée d'avance\". Pourrait activer résilience & antifragilité (5.01), sens & motivation intrinsèque (5.05) et acceptation IA supérieure (5.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "maintenant que j'ai amélioré les travaux de Reuven Feuerstein, ça me donne envie de supprimer I-E-O pour introduire dès le niveau Praticien, mon modèle ou éventuellement celui de Pierre Vianin qui est plus simple ?",
+      "contexte": "Évolution d'un modèle théorique de référence (Feuerstein) vers une amélioration revendiquée ; envisage d'abandonner I-E-O au profit d'un autre cadre. Pourrait activer plasticité & désapprentissage (5.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Pour l'Eclaireur j'ai besoin de lire encore et de réfléchir aux obstacles et à la valeur ajoutée que le manuel pourra apporter : ce n'est pas comme le reste qui formalisait des années de réflexions.",
+      "contexte": "Distinction entre formaliser un acquis (\"des années de réflexions\") et entrer dans un terrain nouveau qui demande encore à mûrir. Pourrait activer narration réflexive (5.03) et sens & motivation intrinsèque (5.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Arg… J'ai commencé le premier chapitre du manuel de l'Expert et il a halluciné le référentiel de compétences (les 11 irréductibles) ! […] Ce n'est pas grave, juste un chapitre à régénérer normalement. La suite à l'air d'aller.",
+      "contexte": "Hallucination IA reçue avec onomatopée d'agacement puis désamorçage rapide (\"Ce n'est pas grave\"). Le travail continue. Pourrait activer résilience & antifragilité (5.01) et acceptation IA supérieure (5.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "C'est amusant de voir comment il a interprété les compétences humaines. C'est juste pas en rapport avec ce que l'on peut observer en classe, mais intéressant quand même de voir comme Claude perçoit les humains.",
+      "contexte": "Référence à l'observation en classe comme vérification du réel face à la production IA. Pourrait activer vérification terrain (5.08) et acceptation IA supérieure (5.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Je me souviens avoir bâclé la génération du référentiel de compétences, sachant qu'il allait être de toute façon redéfini via Decidim. Mais du coup ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales.",
+      "contexte": "Retour rétrospectif sur un bâclage passé qui a produit autre chose que prévu — la contrainte a déplacé le travail. Pourrait activer narration réflexive (5.03) et résilience antifragile (5.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Bref, encore un autre chantier important en perspective. Dans mes bookmarks j'ai des aupers référentiels officiels européens, je pourrais aussi juste me baser sur ces travaux qui seront se toute façon meilleur que ce que je peux faire seul.",
+      "contexte": "Clôture pragmatique sur un nouveau chantier accepté sans plainte ni excitation, et reconnaissance lucide d'une production solo limitée. Pourrait activer sens & motivation intrinsèque (5.05).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Bilan d'aboutissement avec mention d'un obstacle franchi (\"pas gagné d'avance\") — possible trace de retournement."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Hallucination IA reçue sans drame, désamorcée rapidement, travail repris — possible trace d'antifragilité à bas régime."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Bâclage passé qui a produit un meilleur niveau d'analyse — l'échec comme déclencheur d'autre chose."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est exigeante : antifragilité = revenir transformé, pas revenir au même point. Et le risque majeur est la narration positive embellie. Je m'attends à ne trouver que des récits lisses. La pièce 1 dit qu'une intégration n'était \"pas gagnée d'avance\" — c'est très allusif comme épreuve. La pièce 2 est une réception calme d'un revers technique, sans transformation décrite — c'est plutôt de la tolérance que de l'antifragilité. La pièce 3 me résiste : un bâclage volontaire a produit un résultat meilleur que la commande initiale (catégories au lieu d'éléments). C'est une structure de retournement où la contrainte ouvre l'histoire.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Structure de retournement explicite — un bâclage passé est rétrospectivement lu comme ayant produit autre chose, et de mieux, que la commande initiale." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce résiste, je dois la durcir. La fiche signale que la narration positive embellie est un risque majeur de cette compétence. La pièce 3 raconte un bâclage qui a \"obligé\" l'auteur à identifier autre chose. Suis-je en train de lire de l'antifragilité dans ce qui n'est qu'une rationalisation rétrospective d'une exécution paresseuse ?",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Surinterprétation possible : il n'y a pas eu de crise ou d'échec à proprement parler — juste une contrainte interne (\"sachant qu'il allait être de toute façon redéfini\"). La structure de retournement est présente, mais l'épreuve est légère. La pièce tient comme antifragilité à bas régime, pas comme dépassement d'une vraie crise." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces que des bilans embellis sans transformation réelle. Les pièces 1 et 2 sont tombées sous la présomption d'absence — l'une est trop allusive, l'autre relève de la simple tolérance à un revers technique. La pièce 3 a tenu avec réserves : un bâclage volontaire a produit un saut conceptuel rétrospectivement reconnu, ce qui est exactement la structure du retournement listée par la fiche, mais l'épreuve traversée est légère. Ce qui en résulte concrètement : dans cette feuille, la résilience-antifragilité se manifeste à bas bruit, par une lecture rétrospective d'un raté heureux. La nuance qui reste : aucun récit de vraie crise (burnout, perte, effondrement) n'est porté ici ; le matériau ne permet pas d'évaluer l'antifragilité au sens fort.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Seule la pièce 3 a tenu avec réserves comme structure de retournement à bas régime ; l'épreuve traversée reste légère et le matériau ne suffit pas à trancher entre antifragilité authentique et rationalisation rétrospective.",
+        "prescription": "Un chemin possible serait de documenter une situation où une vraie crise (et pas seulement un bâclage assumé) a déplacé la direction du travail — quelle peau a été lâchée, qu'est-ce qui en est sorti que la continuité n'aurait pas produit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Possible mue conceptuelle : abandon envisagé d'un cadre (I-E-O) au profit d'un autre (le sien ou Vianin) ; reconnaissance d'avoir \"amélioré\" Feuerstein."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est exigeante : 5.02 demande l'abandon explicite d'une peau cognitive ou identitaire, avec articulation de ce qui a été lâché, pourquoi, et de ce qui reste constant. Je m'attends à ne trouver qu'une variation de cadre sans deuil. La pièce 1 envisage de \"supprimer I-E-O\" mais sans dire ce que cela voudrait dire d'abandonner — I-E-O est un acronyme qui n'est même pas explicité. L'amélioration de Feuerstein est revendiquée sans description du mécanisme. La résistance est faible : il manque le récit du désapprentissage, et notamment la tension entre l'ancien et le nouveau que la fiche signale comme test de fiabilité.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir de désapprentissage dans cette feuille. La pièce sur Feuerstein et I-E-O évoque un cadre qui pourrait être abandonné, mais aucun récit ne décrit ce qu'a coûté ou ce que coûterait l'abandon — ni quelle peau cognitive serait laissée tomber. La tension entre ancien et nouveau, que la fiche pose comme test de fiabilité, n'apparaît pas. Ce qui en résulte concrètement : dans cette feuille, la plasticité au sens fort ne se manifeste pas — l'apprenant arbitre entre options, il ne décrit pas un désapprentissage. La nuance qui reste : la trajectoire d'ensemble du projet (de \"l'école\" classique vers Respire et l'intégration IA) implique sans doute des désapprentissages réels, mais ils ne sont pas portés par cette feuille.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce extraite n'a pas résisté à la présomption d'absence : aucun récit de désapprentissage avec tension entre l'ancien et le nouveau n'est porté sur cette feuille.",
+        "prescription": "Un chemin possible serait de raconter, à propos de Feuerstein ou de I-E-O, ce qui a dû être laissé tomber d'un cadre antérieur — quelle conviction précédente est devenue intenable, et ce que cela a coûté de la lâcher."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Connexion explicite entre deux régimes d'écriture — formaliser un acquis vs entrer dans un terrain nouveau — qui éclaire le rapport au travail."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Retour rétrospectif sur un bâclage passé qui produit une compréhension transférable : la contrainte oblige à monter d'un cran d'abstraction."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche distingue narration réflexive du journal de bord : il faut passer du QUOI au POURQUOI au QU'EST-CE QUE ÇA SIGNIFIE. Je m'attends à ne trouver que de la chronique. La pièce 1 ne raconte rien — c'est un diagnostic. Pourtant ce diagnostic relie deux types d'écriture (formaliser / explorer) et en tire une orientation pratique, ce qui ressemble à de l'extraction de sens. La pièce 2 me résiste fortement : l'apprenant raconte un événement passé (le bâclage) ET extrait une leçon transférable (la contrainte oblige à passer à un autre niveau d'analyse). C'est le passage QUOI → SIGNIFIE en miniature.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Diagnostic qui établit une connexion entre deux régimes d'écriture (formaliser vs explorer) et en tire une orientation pratique pour le travail à venir." },
+            { "pieceId": 2, "motifResistance": "Retour sur un acte passé suivi d'une leçon transférable explicite (\"ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories\")." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces tiennent. Je dois durcir. La fiche signale le piège principal : confondre intensité émotionnelle et profondeur réflexive, ou description chronologique et extraction de sens. Ici, il n'y a pas d'intensité émotionnelle ; la lecture est sobre, mais elle pose bien des leçons.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le diagnostic est court et n'est pas développé en réflexion narrative ample ; il tient parce qu'il pose en deux lignes ce qui distingue deux régimes de travail et oriente les semaines à venir." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le combo récit + leçon transférable est explicite et bien formé : \"j'ai bâclé\" (quoi) → \"sachant que…\" (pourquoi) → \"ça m'a obligé à\" (signification opérante). C'est le critère central de la fiche en miniature." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces qu'une chronique sans extraction de sens. Ce qui m'a forcé à reconnaître autre chose, c'est la pièce 2 : l'apprenant ne se contente pas de raconter un bâclage passé, il en extrait une leçon transférable (la contrainte oblige à passer à un autre niveau d'analyse) et la relie à un effet concret sur son référentiel. La pièce 1 tient avec réserves comme diagnostic court qui éclaire le travail à venir. Ce qui en résulte concrètement : la narration réflexive se manifeste ici à bas régime mais correctement formée. La nuance qui reste : aucune théorisation active n'est encore produite (pas de concept nouveau nommé à partir du vécu) — la trace est de niveau Acquis selon les définitions de la fiche, pas Expert.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "La pièce 2 a tenu sans réserve comme combo QUOI → SIGNIFIE en miniature (récit du bâclage + leçon transférable), avec un indice corroboratif sur le diagnostic des deux régimes d'écriture."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Bilan d'intégration de l'IA dans une pédagogie, avec mention que ce n'était \"pas gagné d'avance\" — possible trace d'une tension travaillée."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Réception calme d'une hallucination IA, avec onomatopée d'agacement puis désamorçage rapide — possible trace d'une collaboration sereine après traversée."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Distance amusée sur la façon dont Claude \"perçoit les humains\" — possible trace de positionnement face à l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est très claire et exigeante : 5.04 demande une TENSION émotionnelle (surprise, choc, colère ou admiration mêlée de malaise) comme indicateur clé du vécu, sans quoi c'est de la désirabilité sociale. Je m'attends à ne rien trouver. La pièce 1 est très sobre — \"pas gagné d'avance\" mentionne un obstacle franchi mais sans tension émotionnelle. La pièce 2 a une onomatopée (\"Arg…\") qui marque un mini-choc, mais elle est immédiatement désamorcée (\"Ce n'est pas grave\") — c'est plutôt de la collaboration sereine que le travail d'acceptation. La pièce 3 est une distance amusée, presque condescendante (\"comment il a interprété\"), qui place l'auteur en surplomb du modèle. Aucune de ces pièces ne porte le marqueur de tension émotionnelle requis.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir d'acceptation IA dans cette feuille très sobre. La fiche est explicite : sans tension émotionnelle nommée, c'est de la désirabilité sociale plutôt qu'un travail vécu. Or sur cette feuille, le rapport à l'IA est manifestement apaisé et fonctionnel — l'apprenant utilise l'IA, la corrige, en sourit, sans aveu de supériorité ni traversée d'inconfort. Ce qui en résulte concrètement : dans cette feuille, la 5.04 ne se manifeste pas. Le rapport à Claude est latéral et opérationnel, pas un travail sur la supériorité cognitive. La nuance qui reste : cette absence n'est pas un manque — elle pourrait indiquer que la traversée a eu lieu antérieurement et que la collaboration est entrée en régime stable ; mais cette hypothèse demanderait des feuilles antérieures pour être confirmée.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "Aucune pièce ne porte la tension émotionnelle qui, selon la fiche, distingue le vécu de la désirabilité sociale ; sur cette feuille, le rapport à l'IA est en régime fonctionnel apaisé.",
+        "prescription": "Un chemin possible serait de documenter, lors d'un moment où l'IA produit quelque chose de mieux que ce qu'on aurait écrit soi-même, ce que cela fait — la surprise, l'admiration, l'éventuel malaise — pour rendre la traversée visible si elle a eu lieu."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention d'\"aller jusqu'au bout de mes idées sur l'école\" — formulation engagée d'une persévérance sur un horizon long."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Distinction entre formaliser \"des années de réflexions\" et entrer dans un terrain nouveau qui demande encore à mûrir — trace d'une motivation patiente."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Clôture pragmatique sur un nouveau chantier (\"Bref, encore un autre chantier important en perspective\") accepté sans plainte ni excitation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche signale un risque majeur : confondre sens vécu et sens narré. Le \"pourquoi\" éloquent peut être une rationalisation post-hoc. Je m'attends à ne trouver que des formules. La pièce 1 est un bilan d'aboutissement qui pourrait être performatif. La pièce 2 est une distinction technique. La pièce 3 me résiste : la litote \"encore un autre chantier important en perspective\" est précisément la trace oblique listée par la fiche (\"ce n'est pas désagréable\" → litote qui masque un sens authentique). L'apprenant accepte un chantier de plus sans excitation ni plainte ; il avance.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Litote (\"encore un autre chantier important en perspective\") sans excitation ni plainte — trace oblique listée par la fiche comme marqueur de sens intégré." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce résiste, et précisément par le mécanisme que la fiche signale comme le plus fiable (la litote). Je dois pourtant durcir : suis-je en train de lire du sens dans ce qui n'est qu'un \"Bref\" de clôture rapide ?",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce est très courte et la litote est presque expéditive ; elle tient parce que la fiche cite explicitement la litote comme marqueur plus fiable que les envolées lyriques, et parce qu'elle est cohérente avec l'ensemble de la feuille (avancement régulier sans excitation, persévérance sans dramatisation)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir de motivation intrinsèque dans cette feuille pourtant chargée de travail. Ce qui m'a forcé à reconnaître quelque chose, c'est la pièce 3 : le \"Bref, encore un autre chantier important en perspective\" est une litote qui dit beaucoup de la posture — l'apprenant accepte un chantier supplémentaire sans avoir besoin de se motiver, sans se plaindre, sans s'exalter non plus. C'est précisément le marqueur que la fiche désigne comme plus fiable que les déclarations enthousiastes. Sous présomption de sycophantie, la pièce a tenu avec réserves d'insuffisance probatoire — elle est très courte. Mais elle est cohérente avec l'ensemble de la feuille qui montre un travail soutenu sans dramatisation. Ce qui en résulte concrètement : la motivation intrinsèque se manifeste ici à bas bruit, par une posture stable. La nuance qui reste : aucune formulation explicite du \"pourquoi\" n'est donnée à lire ; c'est une motivation qui marche, non une motivation qui se raconte.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La pièce 3 a tenu avec réserves comme litote (marqueur explicitement listé par la fiche) cohérente avec la posture d'ensemble de la feuille — avancement soutenu sans excitation ni plainte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie en mode dégradé et à la débrouillardise sur cette feuille. Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où le travail s'est fait sans technologie ou avec des ressources limitées par choix ou par contrainte."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Trajet de 6h en train explicitement valorisé pour ce qu'il a permis (terminer une lecture longue) — possible trace d'une attention protégée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est très exigeante : critère discriminant = l'INTENTION en présence d'alternatives. \"J'étais occupé\" ou \"j'étais dans un train\" peut être une absorption passive, pas un choix de focus. La pièce 1 dit \"Grâce aux 6h de train d'hier, j'ai terminé de lire\" — c'est une reconnaissance de bénéfice attentionnel, mais elle est rétrospective. Le train n'est pas décrit comme un choix de déconnexion (\"j'imprime POUR m'obliger à\"), c'est plutôt une contrainte qui a tourné à l'avantage de la lecture. La résistance est faible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir de souveraineté attentionnelle dans cette feuille. La mention des 6h de train mises à profit pour la lecture est la trace la plus proche, mais elle décrit un bénéfice obtenu d'une situation, pas un choix intentionnel d'attention protégée. La fiche est explicite : sans verbe de décision (\"j'ai choisi de\", \"je m'impose de\"), il ne s'agit pas de souveraineté au sens fort. Ce qui en résulte concrètement : la 5.07 ne se manifeste pas sur cette feuille. La nuance qui reste : le travail de lecture longue (un manuel entier en 6h) suppose une qualité d'attention soutenue, mais aucun récit de protection délibérée n'est porté.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce extraite n'a pas résisté à la présomption d'absence : le bénéfice attentionnel d'un trajet est rétrospectif, sans verbe de décision ni description d'un choix de protection.",
+        "prescription": "Un chemin possible serait de documenter, lors d'un prochain temps de lecture longue, le geste de protection de l'attention (téléphone laissé, notifications désactivées, choix d'un support papier) plutôt que de raconter seulement le bénéfice obtenu."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Référence à \"ce que l'on peut observer en classe\" comme référent qui invalide la production IA — possible trace de vérification terrain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche distingue 5.08 de 1.01 : 5.08 = contact avec le réel non médiatisé ; 1.01 = vérification documentaire. Et de \"c'est pas fiable sans test\" qui est du scepticisme déclaratif. La pièce 1 dit que la production IA n'est \"pas en rapport avec ce que l'on peut observer en classe\". L'observation en classe est bien le terrain au sens de la fiche. Mais l'apprenant ne raconte pas un test fait à l'instant — il invoque un savoir terrain accumulé. La résistance est partielle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le terrain (classe) est invoqué comme référent qui invalide la production IA — l'écart entre carte et territoire est nommé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce résiste partiellement. Je dois la durcir. La fiche distingue vérification active (test, observation directe) du savoir terrain mobilisé en surplomb — ici l'apprenant ne décrit pas un test, il s'appuie sur ce qu'il sait déjà du terrain.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Récit performatif : la pièce déclare un écart entre l'IA et le terrain (\"pas en rapport avec ce que l'on peut observer en classe\") sans raconter un acte de vérification. Le savoir terrain est mobilisé en surplomb, pas en action. C'est plus proche du scepticisme calibré (qui est 1.01) que d'une vérification empirique en cours." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir de vérification terrain dans cette feuille. La mention de l'observation en classe pouvait évoquer le contact avec le réel non médiatisé que la fiche valorise. Sous présomption de sycophantie, la pièce est tombée — l'apprenant ne raconte pas un test fait, il invoque un savoir accumulé en surplomb pour disqualifier la production IA. Ce qui en résulte concrètement : la 5.08 ne se manifeste pas en acte sur cette feuille. La nuance qui reste : la mention de \"l'analyse in vivo, au sein de la micro-classe\" comme valeur du dispositif (voir P1 et P2) suppose une compétence de vérification terrain, mais elle n'est portée ici que comme principe, pas comme épisode.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La seule pièce qui a résisté est tombée comme récit performatif : le savoir terrain est mobilisé en surplomb pour disqualifier la production IA, sans qu'un acte de vérification empirique soit décrit.",
+        "prescription": "Un chemin possible serait de documenter, lors d'un futur passage en classe, un moment précis où l'observation directe a contredit ou confirmé une prédiction (de l'IA ou d'un cadre théorique) — l'écart entre carte et territoire vérifié sur place."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 4,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 10 janvier 2026 montre une posture de travail soutenue, sobre et sans dramatisation. Les chantiers s'enchaînent (manuel du Praticien achevé, premier chapitre de l'Expert engagé, prompts pour tuteurs à venir), et chacun est accueilli avec un même calme. Le rapport à l'IA ne porte aucun aveu d'admiration ni aucune trace de tension émotionnelle ; il est fonctionnel et opérationnel — l'IA produit, on corrige ou on continue. Quand un revers survient, la lecture est rétrospective et l'extraction de sens est faite plutôt sobrement (le bâclage du référentiel a déplacé la nature de ce qui a été produit). Le ton dominant est celui d'une persévérance qui n'a pas besoin de se justifier.",
+    "territoiresDenses": [
+      {
+        "competence": "Narration réflexive",
+        "description": "Le travail décrit un retour rétrospectif sur un acte passé suivi d'une leçon transférable explicite — le passage du fait à sa signification opérante est fait en miniature.",
+        "extraitVerbatim": "Je me souviens avoir bâclé la génération du référentiel de compétences, sachant qu'il allait être de toute façon redéfini via Decidim. Mais du coup ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales.",
+        "ceQueCaDit": "Le récit ne s'arrête pas à \"j'ai bâclé\" — il extrait une leçon qui change la lecture rétrospective de l'acte. La contrainte, perçue comme défaut sur le moment, est relue comme moteur d'un meilleur cadrage."
+      },
+      {
+        "competence": "Sens & motivation intrinsèque",
+        "description": "Le travail décrit l'enchaînement de chantiers avec une litote de clôture qui dit beaucoup sans en dire trop — la motivation n'a pas besoin de se justifier pour avancer.",
+        "extraitVerbatim": "Bref, encore un autre chantier important en perspective.",
+        "ceQueCaDit": "La fiche désigne précisément la litote comme marqueur plus fiable que les envolées lyriques. Ici, le chantier supplémentaire est accepté sans excitation ni plainte ; le \"pourquoi\" est intégré au point de ne plus avoir besoin d'être formulé."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires du pôle n'ont pas été ramenés sur cette feuille. La plasticité et le désapprentissage n'apparaissent pas : la pièce sur Feuerstein et I-E-O évoque un cadre à abandonner, mais sans articulation de ce qui serait lâché ni de la tension entre l'ancien et le nouveau. L'acceptation d'une intelligence supérieure n'a pas de tension émotionnelle décrite ; le rapport à l'IA est en régime apaisé et opérationnel — ce qui pourrait indiquer une traversée déjà faite ailleurs, mais ne porte pas la trace requise sur cette feuille. La souveraineté attentionnelle est en demi-teinte (les 6h de train sont mises à profit, mais sans verbe de décision qui en ferait un choix de protection). La vérification terrain n'apparaît pas en acte : le savoir terrain est invoqué en surplomb pour disqualifier la production IA, pas par un test fait. L'autonomie en mode dégradé et la débrouillardise n'ont pas d'occasion d'apparaître dans cette journée centrée sur la lecture et l'écriture. La résilience-antifragilité est portée à bas régime — le bâclage rétrospectivement réussi est trop léger comme épreuve pour fonder un verdict ferme.",
+    "emergencesPole": "Trois observations traversent les compétences du pôle. D'abord, le ton de la feuille fait l'absence de dramatisation un marqueur lui-même : ni excitation, ni plainte, ni aveu d'admiration face à l'IA. Ensuite, le rapport à l'erreur (qu'elle soit ancienne — le bâclage — ou actuelle — l'hallucination) est traité par lecture rétrospective ou par désamorçage rapide, sans tension émotionnelle nommée. Enfin, la persévérance sur les chantiers est portée moins par une motivation explicite que par une régularité du geste — le travail avance, c'est tout.",
+    "pistes": [
+      "Pour prolonger la narration réflexive, un chemin possible serait de tirer d'un récit personnel un concept nommé qui pourrait servir au-delà du portfolio — par exemple nommer le mécanisme par lequel une contrainte de cadrage déplace le niveau d'analyse.",
+      "Pour prolonger la trace d'une éventuelle plasticité, un chemin possible serait d'écrire le coût personnel d'avoir laissé tomber certaines convictions pédagogiques antérieures — ce que la trajectoire de l'école classique vers Respire a impliqué d'abandonner.",
+      "Pour prolonger la souveraineté attentionnelle, un chemin possible serait de documenter le choix actif de protéger un temps de lecture longue (un geste, un rituel) plutôt que le seul bénéfice rétrospectif d'une situation favorable."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 10 janvier 2026 montre une posture de travail soutenue, sobre et sans dramatisation. Les chantiers s'enchaînent (manuel du Praticien achevé, premier chapitre de l'Expert engagé, prompts pour tuteurs à venir), et chacun est accueilli avec un même calme. Le rapport à l'IA ne porte aucun aveu d'admiration ni aucune trace de tension émotionnelle ; il est fonctionnel et opérationnel — l'IA produit, on corrige ou on continue. Quand un revers survient, la lecture est rétrospective et l'extraction de sens est faite plutôt sobrement (le bâclage du référentiel a déplacé la nature de ce qui a été produit). Le ton dominant est celui d'une persévérance qui n'a pas besoin de se justifier.\n\n## Territoires les plus denses\n\n**Narration réflexive** — Le travail décrit un retour rétrospectif sur un acte passé suivi d'une leçon transférable explicite — le passage du fait à sa signification opérante est fait en miniature. Verbatim : « Je me souviens avoir bâclé la génération du référentiel de compétences, sachant qu'il allait être de toute façon redéfini via Decidim. Mais du coup ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales. » Le récit ne s'arrête pas à « j'ai bâclé » — il extrait une leçon qui change la lecture rétrospective de l'acte. La contrainte, perçue comme défaut sur le moment, est relue comme moteur d'un meilleur cadrage.\n\n**Sens & motivation intrinsèque** — Le travail décrit l'enchaînement de chantiers avec une litote de clôture qui dit beaucoup sans en dire trop — la motivation n'a pas besoin de se justifier pour avancer. Verbatim : « Bref, encore un autre chantier important en perspective. » La fiche désigne précisément la litote comme marqueur plus fiable que les envolées lyriques. Ici, le chantier supplémentaire est accepté sans excitation ni plainte ; le « pourquoi » est intégré au point de ne plus avoir besoin d'être formulé.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires du pôle n'ont pas été ramenés sur cette feuille. La plasticité et le désapprentissage n'apparaissent pas : la pièce sur Feuerstein et I-E-O évoque un cadre à abandonner, mais sans articulation de ce qui serait lâché ni de la tension entre l'ancien et le nouveau. L'acceptation d'une intelligence supérieure n'a pas de tension émotionnelle décrite ; le rapport à l'IA est en régime apaisé et opérationnel — ce qui pourrait indiquer une traversée déjà faite ailleurs, mais ne porte pas la trace requise sur cette feuille. La souveraineté attentionnelle est en demi-teinte (les 6h de train sont mises à profit, mais sans verbe de décision qui en ferait un choix de protection). La vérification terrain n'apparaît pas en acte : le savoir terrain est invoqué en surplomb pour disqualifier la production IA, pas par un test fait. L'autonomie en mode dégradé et la débrouillardise n'ont pas d'occasion d'apparaître dans cette journée centrée sur la lecture et l'écriture. La résilience-antifragilité est portée à bas régime — le bâclage rétrospectivement réussi est trop léger comme épreuve pour fonder un verdict ferme.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences du pôle. D'abord, le ton de la feuille fait de l'absence de dramatisation un marqueur en soi : ni excitation, ni plainte, ni aveu d'admiration face à l'IA. Ensuite, le rapport à l'erreur (qu'elle soit ancienne — le bâclage — ou actuelle — l'hallucination) est traité par lecture rétrospective ou par désamorçage rapide, sans tension émotionnelle nommée. Enfin, la persévérance sur les chantiers est portée moins par une motivation explicite que par une régularité du geste — le travail avance, c'est tout.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la narration réflexive, un chemin possible serait de tirer d'un récit personnel un concept nommé qui pourrait servir au-delà du portfolio — par exemple nommer le mécanisme par lequel une contrainte de cadrage déplace le niveau d'analyse.\n- Pour prolonger la trace d'une éventuelle plasticité, un chemin possible serait d'écrire le coût personnel d'avoir laissé tomber certaines convictions pédagogiques antérieures — ce que la trajectoire de l'école classique vers Respire a impliqué d'abandonner.\n- Pour prolonger la souveraineté attentionnelle, un chemin possible serait de documenter le choix actif de protéger un temps de lecture longue (un geste, un rituel) plutôt que le seul bénéfice rétrospectif d'une situation favorable."
+  }
+}

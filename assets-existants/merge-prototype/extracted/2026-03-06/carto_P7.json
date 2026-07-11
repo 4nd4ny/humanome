@@ -1,0 +1,315 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Le poste de l'EPFL a pour avantage qu'il va me nourrir intellectuellement pendant au moins une année. Je vais rencontrer des gens intelligents. Ce que je vais y apprendre va contribuer à l'amélioration d'EduFolio ou de la partie IA de Sqily.",
+      "contexte": "Justification d'un choix présent par une projection sur l'avenir (nourriture intellectuelle, contribution aux projets). Peut activer 7.05 (vision stratégique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Faire 1h15 de route pour commencer à 7h30 le matin, ça implique une routine de levé à 5h du matin toute la semaine avec un retour vers 18h30 pour un dodo vers 22h30 si je ne veux pas m'épuiser de nouveau. Donc 4h de temps de libre par jour pour tout faire (préparation des cours et veille technologique).",
+      "contexte": "Calcul de gestion du temps personnel avec arbitrage entre activités. Peut activer 7.06 (efficacité personnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je sais que j'ai trop de respect pour les élèves pour donner des cours de merde, et donc que je n'aurais probablement plus la force d'avancer sur mes projets.",
+      "contexte": "Engagement à la qualité pédagogique anticipé comme contrainte. Peut toucher 7.01 (facilitation d'apprentissage) ou 7.06 (priorisation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "L'école de demain à des années d'avances en intégrant noèsiologie et évaluations humanistes au cœur du projet. Je ne veux pas arrêter avant d'avoir lancer le processus, qui, ensuite, n'a plus besoin de moi pour exister.",
+      "contexte": "Vision long-terme d'un projet pédagogique distinctif. Peut activer 7.05 (vision stratégique) et toucher 7.02 (évaluation transformative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Mais le démarrage nécessite une énergie et une concentration que même en étant au chômage je n'arrive que très difficilement à avoir. Impossible à faire en travaillant à côté.",
+      "contexte": "Refus argumenté d'une option qui empêcherait le démarrage du projet — geste de priorisation explicite. Peut activer 7.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je préfère être pauvre et finir ce qui est important, que d'avoir un salaire et faire quelque chose qui n'a plus de sens pour moi",
+      "contexte": "Arbitrage de priorisation entre sens et sécurité financière. Active 7.06.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant articule un seuil de qualité pédagogique ('respect pour les élèves') comme contrainte de sa pratique — peut toucher la facilitation d'apprentissage à la marge."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption qu'énoncer un respect pour les élèves ne suffit pas à attester la maïeutique ou la facilitation au sens de la fiche, qui exige soit un questionnement socratique adressé à autrui, soit une architecture pédagogique conçue avec intention. La pièce 3 affirme une posture (ne pas donner de cours médiocres) mais ne décrit ni questionnement maïeutique, ni dispositif d'apprentissage, ni retenue de celui qui sait mais choisit de ne pas dire. C'est un engagement éthique à la qualité, pas un acte pédagogique. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le respect dû aux élèves portait une trace de maïeutique ou de facilitation. Il est tombé : la pièce énonce un engagement à la qualité sans décrire de geste pédagogique précis (question posée, dispositif conçu, retenue tenue). La compétence reste hors de portée de cette feuille — non absente du parcours global, mais non visible ici.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : un engagement à la qualité n'est pas un acte de maïeutique ou de facilitation.",
+        "prescription": "Un récit qui raconterait une question précise adressée à un élève pour le faire accoucher de son savoir, ou un dispositif pédagogique conçu avec intention, donnerait à voir la facilitation d'apprentissage en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Mention 'd'évaluations humanistes au cœur du projet' — l'évaluation transformative est nommée comme composante du projet d'école de demain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que citer 'évaluations humanistes' comme ingrédient d'un projet ne suffit pas à attester l'évaluation transformative au sens de la fiche, qui exige un acte évaluatif concret au service de la progression — dispositif, critères articulés, feedback nommé. La pièce 4 mentionne le concept comme étiquette d'un projet, sans description d'un acte évaluatif réel. C'est une déclaration programmatique, pas un récit d'évaluation accomplie. La fiche signale clairement que la trace fiable se manifeste dans des dispositifs inventés ou des feedbacks spécifiques. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la mention 'évaluations humanistes' portait une trace d'évaluation transformative en acte. Elle est tombée : citer un concept comme composante d'un projet ne décrit pas l'acte évaluatif qui en serait la mise en œuvre. La compétence reste hors de portée de cette feuille — non absente du parcours global, mais non visible ici sous une forme attestée.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : citer 'évaluations humanistes' ne décrit pas un acte évaluatif transformateur.",
+        "prescription": "Un récit qui décrirait un dispositif d'évaluation concret — critères, questions adressées à l'évalué, feedback formulé — donnerait à voir l'évaluation transformative en acte plutôt que comme intention programmatique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la documentation vivante dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait décrire une structuration intentionnelle d'un savoir pour un destinataire futur."
+      }
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au leadership situationnel dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment d'alternance délibérée entre prise de contrôle et retrait."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Justification du choix EPFL par sa contribution future à EduFolio et Sqily — lien explicite entre décision présente et projection long-terme."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Vision long-terme du projet d'école de demain comme processus qui survivra à son initiateur — projection sur plusieurs horizons."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que parler d'un projet long ne suffit pas à attester la vision stratégique au sens de la fiche, qui exige un lien argumenté entre futur anticipé et décision présente. La pièce 1 articule explicitement ce lien : l'EPFL est choisie parce qu'elle nourrira intellectuellement et contribuera à l'amélioration d'EduFolio ou de la partie IA de Sqily. C'est un raisonnement où la décision présente est justifiée par une projection sur un horizon nommé (une année, deux projets cibles). La pièce 4 énonce un horizon plus long ('école de demain', processus auto-suffisant à terme), ce qui pourrait porter la vision prospective, mais sans articulation aussi nette du lien décision/futur. La pièce 1 résiste, la pièce 4 moins clairement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La pièce articule explicitement le lien entre une décision présente (l'EPFL) et une contribution future identifiable à deux projets nommés (EduFolio, Sqily) — exactement le geste demandé par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 a tenu. L'attaque (a) — insuffisance probatoire — me semble pertinente : le lien est articulé, mais reste assez générique ('nourrir intellectuellement', 'contribuer à l'amélioration') sans scénarios prospectifs détaillés ni anticipation de ruptures technologiques. L'attaque (g) — mouvement-vers — pourrait aussi s'appliquer : l'apprenant n'a pas encore choisi entre EPFL et CFPT à la fin de la feuille, donc la vision stratégique reste à l'état de plaidoyer pour une option. Néanmoins, le geste central est présent : lier explicitement choix présent et futur projeté. La pièce reste affaiblie mais retenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le lien décision/futur est articulé mais reste à un niveau général (nourriture intellectuelle, contribution à des projets) sans scénarios prospectifs détaillés ni anticipation de ruptures."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les pièces portaient une vision stratégique au sens de la fiche, où une décision présente est explicitement reliée à un futur anticipé. La pièce sur l'école de demain est tombée car le lien décision/futur n'y est pas serré (elle énonce un horizon sans articuler quel choix présent il commande). La pièce sur l'EPFL a tenu, sous forme affaiblie : le lien est articulé (choisir l'EPFL pour nourrir EduFolio et Sqily) mais reste à un niveau général, sans scénarios prospectifs ni anticipation de ruptures précises. Ce qui en résulte : un indice de vision stratégique en mouvement, où l'apprenant relie ses choix à un horizon nommé, sans déployer encore la prospective conditionnelle multi-domaines que la fiche associe aux formes plus abouties.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une pièce a tenu sous forme affaiblie : le lien décision/futur est articulé mais reste général, sans scénarios prospectifs détaillés.",
+        "prescription": "Un récit qui dérouleraient des scénarios alternatifs (si l'EPFL alors X et Y se passeront ; si l'EPFL n'est pas prise alors W et Z) et qui anticiperait des ruptures technologiques précises pour EduFolio et Sqily donnerait à voir la vision stratégique sous une forme plus déployée."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Calcul détaillé de la gestion du temps si le poste CFPT est repris (lever 5h, dodo 22h30, 4h pour tout faire) — arbitrage de ressources personnelles."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Refus argumenté d'une option ('impossible à faire en travaillant à côté') par une analyse explicite d'incompatibilité — 'non' stratégique."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Arbitrage de priorisation entre sens (projet) et sécurité financière (salaire) avec préférence affichée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption qu'énumérer ses contraintes ou affirmer une préférence ne suffit pas à attester l'efficacité personnelle au sens de la fiche, qui exige des arbitrages argumentés, des limites d'énergie reconnues, et surtout — la fiche est ferme sur ce point — le 'non stratégique argumenté'. La pièce 1 énumère un emploi du temps mais reste descriptive, sans articulation explicite d'un refus ou d'une priorisation. La pièce 3 affirme une préférence ('je préfère être pauvre') sans en faire un arbitrage de gestion des ressources — c'est plus un positionnement éthique qu'un acte de priorisation efficient. La pièce 2 résiste mieux : 'impossible à faire en travaillant à côté' est un refus argumenté qui s'appuie sur l'analyse précise des conditions cognitives (énergie, concentration, démarrage difficile même au chômage). C'est exactement le marqueur que la fiche signale comme le plus fiable : 'décrire ce qu'on refuse est plus probant que décrire ce qu'on accomplit'.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Le refus articulé 'impossible à faire en travaillant à côté' est argumenté par une analyse des conditions cognitives — exactement le 'non stratégique' que la fiche signale comme marqueur le plus fiable."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a tenu. L'attaque (g) — mouvement-vers — me semble pertinente : le refus est articulé, mais la décision finale (postuler ou non) n'est pas posée. L'apprenant raisonne sur l'incompatibilité plutôt que de poser l'acte de refus du poste. Néanmoins, la fiche admet que le 'non stratégique' est manifeste dans le raisonnement de priorisation, pas seulement dans l'acte. Le raisonnement est ici complet : conditions cognitives nommées, incompatibilité observée, conclusion 'impossible' tirée. L'attaque touche mais sans disqualifier.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'argumentation du refus est articulée, mais l'acte de refus (renoncer concrètement au poste) reste suspendu dans cette feuille. Le 'non stratégique' est en construction plutôt qu'accompli."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les pièces portaient une efficacité personnelle au sens de la fiche, avec arbitrage argumenté et 'non stratégique'. La pièce sur l'emploi du temps est tombée (descriptive, pas d'arbitrage explicite). La pièce sur la préférence pour la pauvreté est tombée (positionnement éthique plutôt qu'arbitrage de gestion). La pièce 'impossible à faire en travaillant à côté' a tenu, sous forme affaiblie : le raisonnement de priorisation est complet, mais l'acte décisif n'est pas encore posé. Ce qui en résulte : un indice corroboratif de 'non stratégique' en construction, où l'apprenant articule pourquoi une option doit être écartée sans encore l'avoir écartée formellement.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce a tenu sous forme affaiblie : le 'non stratégique' est argumenté mais l'acte de refus reste en suspens.",
+        "prescription": "Un récit ultérieur qui documenterait l'acte décisif (le refus formel du poste, ou la priorisation effective des heures de la semaine) consoliderait l'efficacité personnelle comme trace pleinement attestée."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'agilité et la conduite du changement dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un travail en versions successives avec ajustement explicite du plan."
+      }
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un incident géré sous pression avec séquence de décisions."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 6,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du 6 mars 2026 montre un pilotage centré sur les ressources personnelles plutôt que sur la transmission ou la coordination d'un collectif. L'apprenant articule un lien entre une décision présente (postuler à l'EPFL) et un futur projeté (nourrir EduFolio et Sqily), et il déploie un raisonnement de priorisation détaillé pour expliquer pourquoi une option ('travailler à côté') rendrait le projet impossible. Le travail tient ensemble un calcul concret des heures disponibles, une argumentation explicite du refus implicite, et une vision long-terme du projet d'école de demain. La voix dominante est celle d'un pilote qui regarde sa propre énergie comme une ressource limitée et la projette sur les options disponibles.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. La maïeutique et la facilitation d'apprentissage, l'évaluation transformative en acte, la documentation vivante, le leadership situationnel, l'agilité méthodique et la gestion de crise ne croisent pas l'arbitrage du jour. C'est cohérent avec une feuille centrée sur une décision personnelle plutôt que sur une situation d'enseignement ou de pilotage d'équipe. Les territoires de la vision stratégique et de l'efficacité personnelle sont effleurés sans s'installer en présences pleinement établies. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte des situations pédagogiques en acte ou des moments de coordination d'un collectif.",
+    "emergencesPole": "Deux observations traversent la feuille. D'abord, la ressource personnelle (temps, énergie, concentration) est traitée comme un budget à allouer avec parcimonie — l'arbitrage présent est lu à travers les heures disponibles et la capacité au démarrage. Ensuite, le futur est convoqué pour justifier le présent : l'EPFL pour nourrir les projets, l'école de demain comme horizon que les choix présents servent ou compromettent.",
+    "pistes": [
+      "Pour déployer la vision stratégique, un chemin possible serait de formuler explicitement des scénarios alternatifs (si X, alors Y et Z se passeront ; si X n'arrive pas, alors W) avec leurs implications opérationnelles pour EduFolio et Sqily.",
+      "Pour consolider l'efficacité personnelle comme trace pleinement attestée, un chemin possible serait de documenter dans une feuille ultérieure l'acte décisif (le refus formel du poste, ou la mise en place d'un rituel hebdomadaire de priorisation)."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du 6 mars 2026 montre un pilotage centré sur les ressources personnelles plutôt que sur la transmission ou la coordination d'un collectif. L'apprenant articule un lien entre une décision présente (postuler à l'EPFL) et un futur projeté (nourrir EduFolio et Sqily), et il déploie un raisonnement de priorisation détaillé pour expliquer pourquoi une option ('travailler à côté') rendrait le projet impossible. Le travail tient ensemble un calcul concret des heures disponibles, une argumentation explicite du refus implicite, et une vision long-terme du projet d'école de demain. La voix dominante est celle d'un pilote qui regarde sa propre énergie comme une ressource limitée et la projette sur les options disponibles.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'atteint dans cette feuille la solidité d'une présence pleinement établie. Deux traces tiennent en mouvement : une vision stratégique qui lie une décision présente à un futur projeté sans déployer encore les scénarios prospectifs détaillés ; une efficacité personnelle qui articule un 'non stratégique' argumenté sans l'acte de refus formellement posé.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. La maïeutique et la facilitation d'apprentissage, l'évaluation transformative en acte, la documentation vivante, le leadership situationnel, l'agilité méthodique et la gestion de crise ne croisent pas l'arbitrage du jour. C'est cohérent avec une feuille centrée sur une décision personnelle plutôt que sur une situation d'enseignement ou de pilotage d'équipe. Les territoires de la vision stratégique et de l'efficacité personnelle sont effleurés sans s'installer en présences pleinement établies. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte des situations pédagogiques en acte ou des moments de coordination d'un collectif.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux observations traversent la feuille. D'abord, la ressource personnelle (temps, énergie, concentration) est traitée comme un budget à allouer avec parcimonie — l'arbitrage présent est lu à travers les heures disponibles et la capacité au démarrage. Ensuite, le futur est convoqué pour justifier le présent : l'EPFL pour nourrir les projets, l'école de demain comme horizon que les choix présents servent ou compromettent.\n\n## Pistes pour enrichir ce pôle\n\n- Pour déployer la vision stratégique, un chemin possible serait de formuler explicitement des scénarios alternatifs (si X, alors Y et Z se passeront ; si X n'arrive pas, alors W) avec leurs implications opérationnelles pour EduFolio et Sqily.\n- Pour consolider l'efficacité personnelle comme trace pleinement attestée, un chemin possible serait de documenter dans une feuille ultérieure l'acte décisif (le refus formel du poste, ou la mise en place d'un rituel hebdomadaire de priorisation).\n"
+  }
+}

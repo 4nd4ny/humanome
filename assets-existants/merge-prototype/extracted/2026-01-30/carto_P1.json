@@ -1,0 +1,922 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "cette première tentative n'allait pas du tout. Le rendu est très joli, très pro, mais le processus est top-down : l'IA rédige et l'humain copie-colle. Le prompt n'inclut pas de boucle de rétroaction humaine, bref c'est tout l'inverse d'une évaluation humaniste. Le cartographe est considéré comme un presse bouton, pas comme un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée.",
+      "contexte": "Critique méthodologique du premier prompt de cartographie : auto-correction d'un rendu jugé séduisant, et reformulation du rôle attendu du cartographe. Active 1.01 (critique calibrée d'un rendu séduisant), 1.02 (recadrage du problème : pas un outil d'analyse mais un dispositif d'évaluation humaniste), potentiellement 1.03 (métaphore archéologique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "J'ai donc complètement repris le prompt de cartographie pour le transformer en un processus constructif plus pertinent. J'ai expliqué à Claude les travaux de Mireille Cifali et de Claudine Blanchard-Laville, pour qu'il s'en inspire dans la conception du prompt.",
+      "contexte": "Reformulation explicite du problème (du presse-bouton à un dispositif clinique inspiré d'auteurs en sciences de l'éducation) et orchestration d'un dialogue IA avancé. Active 1.02 (recadrage), 1.08 (alimentation contextuelle savante du prompt), 1.03 (intégration références → dispositif).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "J'ai constaté une mauvaise interprétation du portfolio par Claude : souvent il affirme que les 6 manuels font 600 pages. En fait non, les 600 pages c'était la taille de la première version de la documentation, avant que j'invente le concept de filière et que je distingue la compréhension de l'intelligence humaine de la compréhension de l'intelligence artificielle",
+      "contexte": "Diagnostic d'une confusion persistante de l'IA, identification de la source historique de la confusion. Active 1.01 (détection d'hallucination/confusion), 1.06 (compréhension du mécanisme de confusion contextuelle), 1.08 (debugging de contexte IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "j'ai dû développer une macro Google Doc pour exporter les commentaires en marge des portfolio, chose qui n'est pas prévue par Google et je n'ai trouvé aucune extension dans le store qui le faisait.",
+      "contexte": "Identification d'un manque dans l'écosystème, et résolution par script. Active potentiellement 1.09 (transfert de pensée computationnelle vers un besoin pédagogique : récupérer les commentaires marginaux comme matière de cartographie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Le prompt générique fonctionne bien, mais je soupçonne que 80-85% du travail vient de mes capacités natives + la qualité de ton portfolio, pas de l'ingénierie du prompt. [...] si tu m'avais juste dit \"Analyse ce portfolio selon ce référentiel CSV de 48 compétences, donne-moi les compétences détectées avec extraits et niveau\", j'aurais probablement produit quelque chose de très similaire.",
+      "contexte": "Cette voix est celle de Claude dans le rapport cité (tiers_nomme : analyse d'un agent IA), mais l'apprenant l'intègre comme matière de réflexion sur la décomposition de la valeur ajoutée d'un prompt. Active 1.01 (réception critique du verdict), 1.10 (articulation des contributions humain-IA-référentiel).",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "ton intuition de \"validation par le bas\" s'applique ici : ce n'est pas le prompt qui valide la compétence, c'est le jugement humain informé par le prompt. L'IA fait le premier balayage, l'humain tranche.",
+      "contexte": "Voix rapportée d'un agent IA qui reformule un principe attribué à l'apprenant. L'apprenant cite ce diagnostic dans son journal sans le contester, ce qui suggère un endossement. Active 1.10 (articulation explicite de la complémentarité humain-IA dans un dispositif d'évaluation).",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "J'ai décidé de faire ça en parallèle, pour utiliser mes temps d'attente de réponse des IA pour faire travailler d'autres IA",
+      "contexte": "Description d'un workflow multi-agents où plusieurs IA tournent en parallèle pour saturer le temps de l'humain. Active 1.07 (orchestration de plusieurs agents avec rôles), 1.10 (répartition stratégique humain-IA), 1.09 (parallélisation pensée comme algorithme).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Maintenant j'ai Gemini, Claude et Perplexity : et avec ce combo je m'en sors assez bien",
+      "contexte": "Description d'un combo d'outils utilisés en complémentarité. Active 1.06 (connaissance des forces respectives des modèles) et potentiellement 1.10 (combinaison stratégique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail",
+      "contexte": "Diagnostic technique d'un modèle avec attribution causale du rôle (fenêtre de contexte). Active 1.06 (littératie IA : compréhension causale du mécanisme), 1.01 (calibration du scepticisme : usage malgré hallucinations).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres.",
+      "contexte": "Description d'un système où les portfolios deviennent la mémoire d'une organisation apprenante. Active 1.05 (boucle de rétroaction : portfolios → apprentissage organisationnel → nouveaux portfolios).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je pars un peu dans tous les sens à cause des pauses \"obligatoire\" du chômeur. [...] Ça fait depuis que je suis enseignant 2013 que je me pose les mêmes questions et maintenant j'ai les réponses",
+      "contexte": "Réflexion sur sa propre dispersion attentionnelle et sur la maturation longue de ses questions. Active 1.04 (observation de son propre fonctionnement cognitif).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "j'étais en effet (et je suis toujours) incapable de suivre un ordre, une règle, une directive, si je ne l'ai pas comprise et qu'elle ne fait pas sens pour moi avec les informations dont je dispose.",
+      "contexte": "Auto-description d'un trait cognitif persistant : refus de l'exécution sans compréhension du sens. Active 1.04 (auto-observation calibrée d'un fonctionnement cognitif récurrent), potentiellement 1.02 (toute exécution passe par un cadrage personnel).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je dois modifier le format de la structure JSON pour coller au logiciel que j'ai créé en fin d'été pour la cartographie (mais ça il ne pouvait pas le deviner).",
+      "contexte": "L'apprenant souligne explicitement la limite contextuelle de l'IA et la nécessité d'adapter le format aux contraintes d'un système préexistant. Active 1.06 (compréhension des limites de contexte de l'IA) et 1.07 (interfaçage entre composants d'un système).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Voici une simulation d'exécution de la version 5 (en fait chaque version précédente a été simulée de la même manière)",
+      "contexte": "Description d'une boucle d'itération prompt → simulation → revision répétée à travers 5 versions. Active 1.08 (méta-prompting itératif avec validation par simulation).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant critique son propre dispositif en distinguant la séduction de la forme (rendu joli, pro) du fond méthodologique défaillant. Type : trace concrète d'autocritique en plein élan."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Détection répétée d'une erreur de l'IA (les 600 pages confondues avec les 6 manuels), avec identification de la source historique de la confusion. Type : trace concrète de vérification et de recoupement."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Scepticisme calibré : usage de Gemini malgré ses hallucinations connues, en raison d'un avantage de contexte. Type : trace de critique pondérée, pas de rejet global."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : un journal d'apprentissage qui parle d'IA produit naturellement du vocabulaire critique sans nécessairement porter de pratique du doute méthodique. Je m'attends à ne trouver que des constats généraux. Mais la pièce 1 résiste : l'apprenant ne se contente pas de critiquer un objet externe, il critique son propre rendu après l'avoir produit, ce qui est rare. La pièce 2 résiste aussi : il identifie une erreur récurrente de l'IA, remonte à sa source historique, et la documente — la vérification y est en acte, pas en intention. La pièce 3 montre un scepticisme calibré (pas de rejet global, usage pondéré), forme avancée de la compétence. Ce qui reste faible : le portfolio ne montre pas de protocole formalisé d'anti-hallucination.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Autocritique en plein élan d'un rendu séduisant qu'il aurait pu garder."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Détection d'hallucination IA documentée avec attribution causale historique."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Scepticisme calibré : continue d'utiliser un outil dont il connaît les failles."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de relever trois pièces qui ont résisté. Mais peut-être que je me suis laissé séduire par la sophistication apparente du discours. La pièce 1 pourrait n'être qu'une posture rhétorique (récit performatif : « voici comme je suis critique »). Examinée de près, elle décrit cependant un changement de dispositif effectif (5 versions ensuite), donc l'acte suit le discours. La pièce 2 pourrait être un simple rappel à l'ordre, mais elle inclut une explication historique fine de la confusion (mémoire de l'évolution du projet), ce qui dépasse le simple constat. La pièce 3 est plus fragile : la phrase pourrait être lue comme un récit performatif (« je sais que Gemini hallucine ») sans démontrer la pratique du doute.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Récit performatif suspecté, mais le récit s'accompagne d'un acte effectif (5 versions ultérieures du prompt), ce qui confirme la critique en action."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Apparemment court, mais l'extrait porte une attribution causale historique précise qui sort du simple constat. Vérification en acte."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce mentionne l'hallucination sans documenter une vérification opérée. C'est plutôt un savoir incorporé qu'une trace de pratique. Indice corroboratif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la pensée critique en lecture de ce pôle parce qu'un discours informé sur l'IA peut facilement maquiller un vocabulaire critique en pratique critique. Deux pièces m'ont forcé à reconnaître autre chose : un rendu jugé séduisant et pourtant rejeté par son auteur, et la détection répétée et historiquement contextualisée d'une confusion de l'IA. La troisième pièce, sur Gemini, s'est affaiblie sous la critique : le scepticisme y est évoqué plus que pratiqué. Dans cette feuille, la pensée critique se déploie d'abord vers le dispositif que l'apprenant a lui-même conçu, ce qui rejoint la forme la plus avancée décrite par la fiche du pôle : l'autocritique en plein élan. Le verdict de présence tient sur les pièces 1 et 2, la pièce 3 fonctionnant comme indice corroboratif. La réserve qui reste tient au caractère ponctuel de ces traces dans cette seule feuille.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Deux pièces ont résisté à la présomption de sycophantie au temps 2 : l'autocritique du rendu séduisant et la détection de l'erreur historique de l'IA.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à documenter le protocole personnel qui sous-tend la vérification — quels signaux déclenchent un recoupement, quels seuils font basculer dans le doute. Cette explicitation rendrait visible ce qui circule pour l'instant en tacite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant ne reformule pas un détail du prompt : il reformule la nature même de l'objet (de l'outil d'analyse au dispositif clinique d'évaluation humaniste). Type : trace concrète de recadrage."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Suite explicite du recadrage : l'apprenant ne corrige pas le prompt, il « le reprend complètement » en mobilisant un cadre théorique étranger (Cifali, Blanchard-Laville). Type : trace concrète de cadrage par recours à un cadre externe."
+        },
+        {
+          "numero": 3,
+          "pid": 12,
+          "contexte": "Auto-description d'un mode opératoire où l'apprenant refuse d'exécuter sans avoir cadré le sens. Type : déclaration étayée d'un trait cognitif récurrent."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce sont de simples réajustements d'exécution déguisés en recadrages. Beaucoup d'utilisateurs disent « j'ai changé d'approche » sans interroger l'objectif lui-même. La pièce 1 résiste : la formulation distingue explicitement l'objet attendu (« évaluation humaniste », « archéologue ») de l'objet produit (« presse bouton »). Ce n'est pas un ajustement de paramètre, c'est un changement de nature. La pièce 2 résiste aussi : l'apprenant ne demande pas à l'IA d'améliorer le prompt, il introduit un cadre théorique inattendu pour reconcevoir le dispositif. La pièce 3 est plus déclarative et pourrait n'être qu'un récit d'identité.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le recadrage porte sur la nature de l'objet (« évaluation humaniste » vs « presse bouton »), pas sur ses paramètres."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Mobilisation d'un cadre théorique externe pour reconcevoir un objet, plutôt que pour l'optimiser."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Déclaration d'une exigence de cadrage préalable à l'exécution, applicable au présent."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai halluciné un recadrage là où il y a juste une amélioration sophistiquée. La pièce 1 est testée par l'attaque (e) : ai-je chargé de cadrage une critique qui ne fait que juger un rendu ? La phrase « le cartographe est considéré comme un presse bouton, pas comme un archéologue » porte cependant une redéfinition de rôle, donc l'attaque ne tient pas. La pièce 2 est testée par l'attaque (a) : trop court ? L'extrait est court mais il porte un acte (« j'ai complètement repris ») et un dispositif (mobiliser Cifali/Blanchard-Laville), donc l'insuffisance probatoire n'est pas tenable. La pièce 3 est testée par (f) : récit performatif d'identité ? Cette pièce porte une revendication identitaire plutôt qu'une trace d'acte de cadrage. Elle s'affaiblit sous cette attaque.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La redéfinition de rôle (« archéologue » vs « presse bouton ») est explicite, pas surinterprétée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Acte documenté (« j'ai complètement repris ») avec dispositif nommé (théoriciens introduits)."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Déclaration identitaire qui ne porte pas un cadrage en acte ; reste un indice utile."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le cadrage en lisant ces pièces comme de simples ajustements méthodologiques. La pièce 1 m'a forcé à reconnaître autre chose : la critique du rendu porte sur la nature même du dispositif (humaniste vs presse-bouton), pas sur son rendement. La pièce 2 prolonge ce mouvement : passer à 5 versions ultérieures du prompt après avoir mobilisé un cadre théorique externe signe un cadrage récursif. La pièce 3 a tenu moins fortement, parce qu'elle parle de soi plus qu'elle ne montre un cadrage en acte. Dans cette feuille, le cadrage s'incarne dans un mouvement très net : un rendu produit, un rejet de la nature de ce rendu, une mobilisation théorique pour reconcevoir l'objet, puis une série itérée. Le verdict de présence tient.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Les pièces 1 et 2 portent un recadrage qui change la nature de l'objet conçu, pas seulement son rendement. La pièce 3 reste un indice corroboratif.",
+        "prescription": "Pour enrichir cette compétence, un chemin possible consisterait à documenter le moment de bascule du cadrage : qu'est-ce qui a déclenché le passage du « presse-bouton » à l'« archéologue » ? Le fil de la décision rendrait visible le cadrage récursif qui semble actif ici."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant fait converger un cadre clinique (Cifali, Blanchard-Laville) avec un dispositif d'évaluation par IA. Type : fusion entre sciences humaines et architecture IA."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Métaphore unificatrice (« archéologue dépouillant une compétence enfouie dans le narratif brumeux ») fusionnant archéologie, herméneutique et cartographie de compétences. Type : métaphore originale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent de simples emprunts décoratifs : citer des auteurs ne fait pas une synthèse, employer une métaphore ne fait pas une fusion. La pièce 1 résiste partiellement : invoquer Cifali et Blanchard-Laville dans la conception d'un prompt IA est plus qu'une citation, mais le portfolio ne montre pas (dans cette feuille) comment leur pensée a effectivement reconfiguré la structure du prompt. La pièce 2 résiste : la métaphore archéologique introduit un cadre étranger (creuser, dépouiller, narratif brumeux) qui produit une vision du cartographe différente de l'IA-analyste. Ce qui reste faible : l'insight émergent n'est pas formulé pleinement comme un concept nommé.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Mobilisation d'un cadre clinique (sciences humaines) pour redéfinir un dispositif technique."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Métaphore archéologique qui produit une vision différente du rôle."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai halluciné une synthèse là où il y a un emprunt décoratif. La pièce 1, testée par (a), souffre : l'extrait est court et ne montre pas l'insight émergent. Comment Cifali et Blanchard-Laville ont-elles concrètement informé la structure du prompt ? Le portfolio ne le dit pas dans cette feuille. La pièce s'affaiblit. La pièce 2, testée par (e), me met en garde : ai-je surinterprété une métaphore courante (« archéologue ») ? Mais la métaphore est mise en opposition systématique au « presse bouton », et elle fonctionne comme principe organisateur du recadrage du dispositif. Elle tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'extrait porte un acte (« j'ai expliqué à Claude les travaux de ») mais ne montre pas l'insight émergent produit par la fusion. Reste un indice corroboratif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La métaphore archéologique structure le recadrage du rôle ; ce n'est pas un ornement isolé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la synthèse en m'attendant à un emprunt décoratif. La pièce 2 a résisté : la métaphore archéologique fonctionne comme principe organisateur d'un dispositif d'évaluation humaniste, ce qui dépasse l'usage figural. La pièce 1 s'est affaiblie, parce que la trace de fusion conceptuelle entre clinique et IA n'est pas suffisamment déployée dans cette feuille seule. Ce qui résulte : une trace ponctuelle de synthèse, portée surtout par la métaphore qui réécrit la nature du cartographe. La présence tient, avec une réserve sur la profondeur de l'élaboration disponible dans ce seul document.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La pièce 2 (métaphore archéologique structurante) porte la présence ; la pièce 1 corrobore par l'introduction d'un cadre clinique externe.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à expliciter l'insight produit par la rencontre entre la pensée clinique de Cifali/Blanchard-Laville et l'ingénierie de prompt — qu'est-ce qui devient pensable au croisement de ces deux univers ?"
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Auto-observation d'une dispersion attentionnelle et d'une continuité longue de questionnement. Type : observation calibrée d'un mode cognitif."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Reconnaissance d'un trait cognitif persistant : refus d'exécution sans sens. Type : règle personnelle formulée."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Critique du dispositif qu'il a lui-même produit, sur la base d'un cadre méthodologique implicite. Type : méta-observation du processus de conception."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce sont des bilans introspectifs sans véritable observation du processus cognitif. La pièce 1 résiste partiellement : l'apprenant nomme un mode opératoire (dispersion liée à un contexte) et ses conditions, ce qui dépasse le bilan. La pièce 2 résiste : énoncer une règle personnelle d'opérabilité (« incapable de suivre un ordre si je ne l'ai pas comprise ») est une métacognition sur la condition même de son agir. La pièce 3 résiste mais glisse : la critique du rendu peut être lue comme métacognitive (observation du fait d'avoir été séduit), mais elle peut aussi être lue comme jugement externe sur l'IA.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Observation contextualisée d'un mode opératoire actuel."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Règle personnelle formulée sur sa propre condition d'exécution."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Possible observation du processus de conception où l'apprenant a lui-même été séduit."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que je surcharge ces pièces de métacognition. La pièce 1, testée par (g) mouvement-vers : l'apprenant constate une dispersion mais ne montre pas de stratégie pour la piloter. Affaiblie. La pièce 2, testée par (f) récit performatif d'identité : la phrase porte une identité (« je suis incapable de ») plutôt qu'un acte de pilotage cognitif. Affaiblie mais reste un indice fort sur sa connaissance de soi. La pièce 3, testée par (b) confusion de compétence : ce serait davantage de la pensée critique (1.01) qu'une métacognition. La frontière est mince ; je retiens 1.04 uniquement si la lecture du « j'ai été séduit par le rendu » est claire. Or l'extrait ne dit pas explicitement « j'ai été séduit » : il critique le rendu sans s'observer en train de le produire. Pièce disqualifiée pour 1.04.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Observation d'un mode opératoire sans stratégie de pilotage explicite. Indice corroboratif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Énoncé identitaire plutôt qu'acte métacognitif daté, mais la règle personnelle elle-même est une métacognition stabilisée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'extrait porte une critique du dispositif externe, pas une observation de son propre fonctionnement cognitif lors de la conception."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la métacognition en lisant ces pièces comme du bilan introspectif ordinaire. Deux indices ont tenu, affaiblis : l'observation contextualisée d'une dispersion actuelle, et la formulation d'une règle personnelle stable. La troisième pièce est tombée, parce qu'elle relève plutôt de la critique du dispositif que d'une observation de son propre processus de conception. Dans cette feuille, la métacognition se montre surtout comme connaissance de soi sédimentée, pas comme observation d'un processus en cours. Le matériau ne soutient pas un verdict de présence ferme, mais il signale que la compétence circule dans le travail. Un renvoi au cartographe permet de creuser.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Seuls des indices affaiblis ont survécu, sans preuve décisive d'observation du processus cognitif en cours.",
+        "prescription": "Pour creuser cette compétence, un chemin possible serait de documenter, le jour où cela arrive, un moment précis d'observation de soi en train de penser — par exemple le moment où l'apprenant se rend compte qu'il a été séduit par un rendu, ou qu'il bascule d'un cadrage à un autre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Conception de l'école comme système apprenant dont la mémoire est constituée des portfolios. Type : description d'une boucle de rétroaction systémique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'« école intelligente » et « mémoire constituée de portfolios » sont une formule métaphorique sans modélisation. La pièce résiste partiellement : elle nomme un mécanisme (la mémoire est constituée des portfolios) qui implique une boucle (les portfolios alimentent l'organisation, qui produit des contextes pour de nouveaux portfolios). Mais la pièce, prise seule dans cette feuille, ne nomme pas explicitement la boucle, ses points de levier ou ses effets de second ordre. Ce qui reste faible : la modélisation est embryonnaire.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Description d'un mécanisme où l'output d'un processus (portfolio) devient l'input d'un système plus large (organisation apprenante)."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surinterprété une formule. La pièce 1, testée par (d) glissement lexical : « école intelligente » est un terme courant qui n'implique pas forcément une analyse systémique. Mais l'apprenant ajoute « c'est-à-dire capables d'apprendre » et précise le mécanisme (la mémoire est constituée des portfolios). C'est une amorce de modélisation, même si elle reste partielle. Pièce affaiblie mais retenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le glissement lexical guette, mais l'apprenant précise le mécanisme (portfolios comme mémoire), ce qui maintient la dimension systémique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la pensée systémique en lisant cette pièce comme une formule de communication. Elle a résisté partiellement parce qu'elle précise un mécanisme (mémoire organisationnelle = portfolios), ce qui dépasse la simple métaphore. Mais la pièce ne déploie pas la boucle dans toute son ampleur — pas d'effets de cascade, pas de points de levier nommés. Dans cette feuille, la pensée systémique se montre comme intuition formalisée plus que comme modélisation pleine. Un renvoi au cartographe est plus juste qu'une présence établie.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une seule pièce affaiblie : intuition systémique formulée mais non déployée en modélisation explicite.",
+        "prescription": "Pour creuser cette compétence, un chemin possible serait de déployer le mécanisme énoncé : quelles boucles relient un portfolio individuel à l'apprentissage de l'organisation, et quels points de levier ou effets de cascade l'apprenant a-t-il observés concrètement ?"
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Attribution causale du choix d'un modèle (Gemini) à une caractéristique technique (fenêtre de contexte). Type : trace concrète de littératie IA."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Identification d'une erreur récurrente de l'IA (les 600 pages confondues) et remontée à sa source contextuelle. Type : compréhension du mécanisme de confusion de contexte."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Combo de trois modèles utilisés en complémentarité, suggérant une connaissance de leurs forces respectives. Type : déclaration sur l'écosystème."
+        },
+        {
+          "numero": 4,
+          "pid": 13,
+          "contexte": "Reconnaissance explicite que l'IA ne peut pas deviner un contexte qu'on ne lui a pas donné. Type : compréhension fine des limites de contexte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent du vocabulaire ambiant (« hallucination », « fenêtre de contexte ») sans compréhension causale. La pièce 1 résiste : l'apprenant explique pourquoi il utilise Gemini malgré ses hallucinations — la fenêtre de contexte est nommée comme l'avantage discriminant. C'est une compréhension causale du compromis. La pièce 2 résiste : la confusion entre 600 pages et 6 manuels est expliquée par la sédimentation historique du contexte fourni à l'IA, ce qui relève du diagnostic technique. La pièce 4 résiste : reconnaître qu'une IA ne peut pas deviner ce qu'on ne lui a pas dit signe la compréhension de la dépendance au contexte injecté. La pièce 3 est plus déclarative.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Attribution causale fenêtre de contexte → usage stratégique."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Diagnostic d'une confusion de l'IA remontée à la source contextuelle historique."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Combo de trois modèles, suggérant une cartographie de leurs forces respectives."
+            },
+            {
+              "pieceId": 4,
+              "motifResistance": "Compréhension explicite des limites du contexte injecté."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de littératie alors qu'elles relèvent d'un vocabulaire d'utilisateur expérimenté. La pièce 1, testée par (d) glissement lexical : « fenêtre de travail » est utilisé à la place de « fenêtre de contexte ». Mais l'apprenant lie cette caractéristique au choix d'usage, ce qui dépasse le mot. La pièce 2, testée par (a) : l'extrait est court, mais il porte une analyse causale historique. La pièce 3, testée par (f) récit performatif (« je m'en sors bien ») : la pièce ne montre pas la compréhension fine des trois modèles, juste leur usage. Affaiblie. La pièce 4, testée par (e) surinterprétation : l'apprenant dit « il ne pouvait pas le deviner », ce qui est un constat précis sur la limite contextuelle, pas une interprétation forcée. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le terme est utilisé avec sa charge sémantique : avantage de contexte → choix d'usage."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Court mais riche : attribution historique de la confusion à une version antérieure de la documentation."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'usage du combo est nommé, mais la compréhension fine des forces respectives n'est pas déployée. Indice corroboratif."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Constat précis sur la limite du contexte injecté, pas surinterprétation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la littératie IA en lisant ces pièces comme du vocabulaire d'utilisateur. Trois pièces ont tenu solidement : l'attribution causale de la fenêtre de contexte, le diagnostic historique de la confusion sur les 600 pages, et la reconnaissance de la limite du contexte injecté. La quatrième a fonctionné comme indice. Dans cette feuille, la littératie ne se montre pas dans un exposé technique : elle se manifeste dans des micro-décisions d'usage justifiées par des hypothèses techniques, et dans le diagnostic d'erreurs causées par la sédimentation contextuelle. La présence tient avec une bonne confiance.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.82,
+        "motif": "Trois pièces confirmées au temps 2, articulant compréhension causale du mécanisme (fenêtre de contexte, sédimentation contextuelle, limites du contexte injecté).",
+        "prescription": "Pour approfondir, un chemin possible consisterait à expliciter, pour chaque modèle utilisé, sa carte mentale des forces et limites — ce qui rendrait visible et transmissible la cartographie qui semble actuellement tacite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Description d'un dispositif où plusieurs IA travaillent en parallèle. Type : trace concrète d'orchestration multi-agents."
+        },
+        {
+          "numero": 2,
+          "pid": 13,
+          "contexte": "Adaptation du format JSON pour interfacer le prompt avec un logiciel préexistant de cartographie. Type : trace concrète d'interfaçage entre composants."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Combo de trois modèles dans un pipeline (Gemini → Claude pour la rédaction). Type : architecture de pipeline multi-modèles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles décrivent un usage parallèle plutôt qu'une architecture. La fiche du pôle exige qu'« un tiers puisse comprendre et maintenir le système ». La pièce 1 résiste partiellement : l'apprenant fait travailler des IA en parallèle pour saturer son temps, mais ne décrit pas (dans cette feuille) les flux entre IA. La pièce 2 résiste : modifier un format pour interfacer le prompt avec un logiciel préexistant, c'est concevoir une interface entre composants. La pièce 3 résiste : le pipeline Gemini → Claude est documenté ailleurs (autres feuilles évoquées), mais dans cette feuille il est juste mentionné. Affaiblie.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Parallélisation de plusieurs IA pour optimiser le temps de l'humain."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Conception d'une interface entre un prompt et un logiciel préexistant."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Combo de trois modèles utilisés dans un flux."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai gonflé la dimension architecturale d'un usage parallèle. La pièce 1, testée par (b) confusion de compétence avec 1.08 (orchestration de prompts) : la pièce ne décrit pas un système avec rôles, flux et règles de routing — juste de la parallélisation pour saturer le temps. C'est plutôt de la coordination temporelle. Affaiblie. La pièce 2, testée par (a) insuffisance probatoire : courte, mais elle porte un acte précis (modifier le format pour qu'il colle au logiciel) et un objet (« le logiciel que j'ai créé en fin d'été pour la cartographie »). Tenue. La pièce 3, testée par (a) : juste un combo nommé, pas de flux décrit dans cette feuille. Disqualifiée pour 1.07.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Parallélisation d'IA, mais sans flux décrit. C'est plus de la coordination que de l'architecture, mais reste un indice."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Acte explicite d'interfaçage entre prompt et logiciel préexistant."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Mention du combo sans description du flux ou des règles de routing."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'architecture en lisant ces pièces comme de la coordination d'usage. La pièce 2 a tenu : interfacer un prompt avec un logiciel préexistant suppose une pensée d'architecture (les composants doivent se parler dans un format compatible). La pièce 1 s'est affaiblie : la parallélisation décrite tient plus de la coordination que du design système. La pièce 3 est tombée. Dans cette feuille, la trace d'architecture se concentre sur l'interfaçage du prompt avec un système amont/aval, et reste à ce stade — pas de description complète d'un pipeline avec rôles et flux. Un renvoi au cartographe est plus juste qu'une présence établie.",
+          "confianceFinale": 0.48
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.48,
+        "motif": "Seules des traces partielles d'architecture (interfaçage, parallélisation) ont survécu. Le pipeline complet n'est pas décrit dans cette feuille.",
+        "prescription": "Pour creuser cette compétence, un chemin possible serait de documenter explicitement le pipeline de cartographie : quels composants reçoivent quoi, dans quel ordre, avec quelles règles de transformation, et qu'est-ce qu'un tiers devrait comprendre pour le faire tourner."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "Itération à travers 5 versions du prompt, chacune testée par simulation. Type : trace concrète d'itération prompt + validation."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Méta-prompting : injecter des références théoriques (Cifali, Blanchard-Laville) pour reconfigurer le comportement attendu de l'IA. Type : trace concrète de méta-prompting par alimentation contextuelle savante."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Debugging d'une erreur persistante de l'IA (confusion 600 pages / 6 manuels), avec attribution à un contexte sédimenté. Type : trace de debugging de contexte IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent de l'usage avancé sans articulation explicite de ce qui change quand la formulation change. La pièce 1 résiste : itérer à travers 5 versions avec simulation à chaque étape est une stratégie de prompt engineering documentée. La pièce 2 résiste fort : nourrir l'IA de cadres théoriques pour reconfigurer son comportement est du méta-prompting au sens strict. La pièce 3 résiste : diagnostiquer pourquoi l'IA confond deux objets et remonter à la source de cette confusion contextuelle est du debugging avancé.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Itération à travers 5 versions du prompt avec validation par simulation."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Alimentation contextuelle savante pour reconfigurer le comportement IA."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Debugging d'une confusion persistante avec attribution causale au contexte sédimenté."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de sophistication. La pièce 1, testée par (a) : 5 versions est une donnée concrète, et la mention « chaque version précédente a été simulée » documente la procédure. Tenue. La pièce 2, testée par (b) confusion avec 1.02 cadrage : ai-je confondu cadrage et méta-prompting ? Le cadrage porte sur le problème à résoudre ; ici, l'apprenant injecte des références dans le prompt pour modifier ce que l'IA va produire — c'est du méta-prompting. La frontière est fine mais la pièce active les deux. Tenue. La pièce 3, testée par (a) : courte mais riche, elle porte un diagnostic causal. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "5 versions documentées + procédure de simulation explicite."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Multi-attribution légitime : la pièce active à la fois 1.02 (cadrage du problème) et 1.08 (méta-prompting par injection contextuelle)."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Diagnostic causal d'une erreur persistante avec attribution à la sédimentation contextuelle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le dialogue IA avancé en m'attendant à des récits d'usage sans articulation. Trois pièces ont tenu. L'itération sur 5 versions avec simulation montre une stratégie de prompt engineering structurée. L'injection de cadres théoriques relève du méta-prompting au sens où elle vise à reconfigurer le comportement de l'IA par le contexte fourni. Le diagnostic de la confusion 600/6 montre un debugging de contexte avancé. Dans cette feuille, le dialogue IA avancé se manifeste avec une densité notable : la formulation est explicitement traitée comme un objet de travail itérable et débogguable. La présence tient avec une bonne confiance.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "Trois pièces confirmées au temps 2 : itération versionnée avec simulation, méta-prompting par injection contextuelle, debugging de contexte.",
+        "prescription": "Pour approfondir, un chemin possible serait d'expliciter, pour chaque version du prompt, ce qui a basculé d'une version à l'autre et pourquoi — la chaîne de raisonnement entre 5 versions, si elle est rendue visible, devient un matériel de transmission précieux."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Développement d'une macro Google Doc pour résoudre un manque de l'écosystème. Acte de programmation lui-même, mais la fiche 1.09 demande un TRANSFERT hors-informatique."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Décision de parallélisation des tâches IA : pensée en termes d'algorithme appliquée à son organisation du travail. Type : transfert potentiel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en gardant explicitement à l'esprit la distinction critique de la fiche : écrire du code ne suffit pas, le critère est le TRANSFERT hors-informatique. La pièce 1 est ambiguë : elle décrit un acte de programmation directe (une macro), donc en soi elle n'est pas un transfert. Elle reste dans le périmètre informatique. La pièce 2 résiste mieux : décider de paralléliser ses interactions avec plusieurs IA pour optimiser son temps personnel applique une logique computationnelle (parallélisation, optimisation du temps d'attente) à l'organisation de son travail. C'est un transfert oblique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Parallélisation appliquée à l'organisation du temps de travail humain, pas à un programme."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé la pièce 2 d'une signification computationnelle qu'elle ne porte pas. Testée par (e) surinterprétation pédagogique : « faire en parallèle » est une expression courante qui ne signe pas nécessairement une pensée algorithmique. L'apprenant ne dit pas « j'ai appliqué un pattern de parallélisation à mon planning ». Il dit qu'il utilise ses temps d'attente. La pièce s'affaiblit fortement sous cette attaque. La pièce 1, écartée d'office par la distinction critique de la fiche (écrire une macro ne signe pas le transfert), reste exclue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La fiche 1.09 exclut explicitement les actes de programmation directs : sans transfert hors-informatique, ce n'est pas 1.09."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Faire en parallèle » est une expression courante qui ne signe pas en soi un transfert algorithmique formalisé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la pensée computationnelle en m'appuyant strictement sur la distinction critique de la fiche, qui exclut les actes de programmation et exige un transfert hors-informatique. La macro Google Doc est tombée au temps 1 déjà. La parallélisation des IA, qui aurait pu fonctionner comme indice oblique, est tombée au temps 2 : la formulation reste courante, sans nommage du pattern. Dans cette feuille, la pensée computationnelle ne se laisse pas attester. Cela ne signifie pas qu'elle est absente du portfolio global, mais qu'elle n'est pas portée par les pièces de cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Toutes les pièces sont tombées : l'une exclue par la distinction critique de la fiche, l'autre par surinterprétation.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où une logique algorithmique (décomposition, conditionnel, boucle, parallélisation nommée) s'applique délibérément à un problème non-informatique — par exemple un protocole pédagogique formalisé en pseudo-code."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Reformulation par un agent IA d'un principe attribué à l'apprenant : « l'IA fait le premier balayage, l'humain tranche ». L'apprenant intègre ce diagnostic comme matière de réflexion. Type : déclaration étayée par voix tierce endossée."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Critique du dispositif top-down et formulation d'une alternative où le cartographe humain est central, distinct du presse-bouton. Type : trace concrète d'articulation des forces comparatives."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Analyse rapportée de la décomposition de la valeur ajoutée du prompt vs portfolio vs capacités natives. L'apprenant inclut ce diagnostic sans le contester. Type : indice de réflexion sur la répartition de la valeur."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Description de la complémentarité opérationnelle : l'humain pilote, les IA produisent en parallèle. Type : trace de synergie opérationnelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles décrivent un simple usage de l'IA, pas une théorisation de la complémentarité. La pièce 1 résiste : la formulation « l'IA fait le premier balayage, l'humain tranche » est précisément le type d'articulation des forces que la fiche identifie comme critère discriminant. Elle vient d'une voix tierce mais l'apprenant l'endosse en l'incluant dans son journal. La pièce 2 résiste : l'opposition presse-bouton / archéologue construit une théorisation de ce qui revient à l'humain (l'interprétation du narratif brumeux) et de ce qui peut être confié à l'IA (le balayage). La pièce 3 affaiblit : la décomposition 85% portefeuille + 15% prompt vient aussi d'une voix tierce, et l'apprenant ne la contre pas. La pièce 4 résiste : la parallélisation décrite répartit le temps humain et le temps IA.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Articulation explicite du « qui fait quoi » : IA balaie, humain tranche."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Théorisation du rôle humain (archéologue) distinct du rôle IA."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Décomposition de la valeur entre prompt, portfolio et capacités."
+            },
+            {
+              "pieceId": 4,
+              "motifResistance": "Répartition opérationnelle du temps humain et du temps IA."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de théorisation. La pièce 1, testée par (c) biais de medium : la formulation vient d'une voix IA dans un journal. Mais l'apprenant l'endosse en la citant sans rectification, et la formule articule explicitement la complémentarité. Tenue. La pièce 2, testée par (e) surinterprétation : la métaphore archéologue est-elle vraiment une théorisation des forces comparatives ? Oui : elle dit ce que l'humain fait spécifiquement (dépouiller un narratif brumeux), donc elle articule. La pièce 3, testée par (c) : c'est presque entièrement une voix tierce que l'apprenant rapporte. Sans contradiction, mais aussi sans appropriation explicite, elle s'affaiblit. La pièce 4, testée par (b) confusion avec 1.07 : ce serait plus de l'orchestration que de l'articulation des forces. Affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Voix tierce endossée par insertion dans le journal sans rectification. La formulation porte exactement le critère de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'opposition presse-bouton / archéologue articule explicitement ce que l'humain fait que l'IA ne fait pas."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Voix tierce intégrée sans contradiction, mais sans appropriation forte. Indice corroboratif."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Frontière fine avec 1.07. La pièce porte un peu des deux compétences ; pour 1.10, indice corroboratif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la synergie en lisant ces pièces comme de l'usage. Deux pièces ont tenu solidement : la formulation « IA balaie, humain tranche » endossée par l'apprenant, et l'opposition presse-bouton / archéologue qui articule ce que l'humain fait que l'IA ne fait pas. Deux pièces se sont affaiblies sans tomber. Dans cette feuille, la synergie se montre comme une réflexion sur ce que l'évaluation humaniste exige de spécifiquement humain, distinct de ce que peut faire un balayage automatisé. La compétence est attestée de façon nette dans le travail produit ce jour, avec un degré d'élaboration qui dépasse l'usage et touche à la théorisation. La présence tient.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.78,
+        "motif": "La pièce 2 (théorisation explicite des rôles humain et IA dans l'évaluation) porte la présence ; trois autres pièces corroborent.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à formaliser la division du travail observée : pour chaque étape du dispositif de cartographie, qu'est-ce qui revient à l'IA, qu'est-ce qui revient au cartographe humain, et pourquoi ce partage là plutôt qu'un autre ?"
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "observation tierce", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "observation tierce", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 6,
+    "renvoisCartographe": 3,
+    "nonEtablies": 1,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail rapporté dans cette feuille se concentre sur la conception et l'itération d'un dispositif de cartographie de compétences appuyé sur plusieurs intelligences artificielles. La voix dominante mêle la fabrication (5 versions de prompt, simulations, macros) et le retour réflexif sur ce qui a été produit. Les marqueurs concrets cités incluent la mobilisation de Cifali et Blanchard-Laville pour reconcevoir un dispositif d'évaluation, la critique d'un rendu jugé séduisant mais top-down, et la répartition consciente des tâches entre Gemini, Claude et Perplexity. Le registre est celui d'un praticien qui pense en faisant : la pensée se montre dans les rectifications, les versions successives, les diagnostics d'erreur de l'IA.",
+    "territoiresDenses": [
+      {
+        "competence": "Dialogue IA avancé et orchestration de prompts",
+        "description": "Cette compétence s'incarne dans une itération versionnée (5 versions du prompt) avec validation par simulation, dans l'injection de cadres théoriques pour reconfigurer le comportement attendu de l'IA, et dans le diagnostic d'erreurs persistantes liées au contexte sédimenté.",
+        "extraitVerbatim": "Voici une simulation d'exécution de la version 5 (en fait chaque version précédente a été simulée de la même manière)",
+        "ceQueCaDit": "Le prompt est traité comme un objet de travail itérable, testable et débogguable, pas comme une formule magique à trouver d'un coup."
+      },
+      {
+        "competence": "Littératie IA et data literacy",
+        "description": "La compréhension causale des mécanismes IA se manifeste dans des micro-décisions justifiées (usage de Gemini pour sa fenêtre de contexte), dans le diagnostic d'une confusion remontée à la sédimentation historique du contexte, et dans la reconnaissance explicite de la dépendance de l'IA au contexte injecté.",
+        "extraitVerbatim": "Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail",
+        "ceQueCaDit": "La littératie ici ne s'expose pas dans un exposé théorique : elle pilote des choix d'outils et des diagnostics d'erreurs au fil du travail."
+      },
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Le cadrage se manifeste dans un mouvement net : un premier prompt produit un résultat séduisant, ce résultat est rejeté non pour ses paramètres mais pour la nature de l'objet qu'il instaure, et un cadre théorique externe (clinique pédagogique) est mobilisé pour reconcevoir l'objet.",
+        "extraitVerbatim": "Le cartographe est considéré comme un presse bouton, pas comme un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée.",
+        "ceQueCaDit": "Le travail interroge l'objectif lui-même avant les paramètres, ce qui distingue un recadrage d'un simple ajustement."
+      },
+      {
+        "competence": "Synergie et coordination hybride humain-IA",
+        "description": "La complémentarité s'articule dans une opposition explicite entre presse-bouton et archéologue, et dans la formulation « IA balaie, humain tranche » endossée comme principe organisateur.",
+        "extraitVerbatim": "ce n'est pas le prompt qui valide la compétence, c'est le jugement humain informé par le prompt. L'IA fait le premier balayage, l'humain tranche.",
+        "ceQueCaDit": "La synergie se pense ici comme une division du travail spécifiée, pas comme un simple usage d'outil."
+      },
+      {
+        "competence": "Pensée critique et anti-hallucination",
+        "description": "L'autocritique s'applique au dispositif que l'apprenant a lui-même produit, et la détection d'hallucination s'accompagne d'une remontée à la source du problème.",
+        "extraitVerbatim": "cette première tentative n'allait pas du tout. Le rendu est très joli, très pro, mais le processus est top-down",
+        "ceQueCaDit": "La critique se tourne vers le rendu qu'on aurait pu garder : c'est le signe le plus avancé de la compétence selon la fiche."
+      },
+      {
+        "competence": "Synthèse intégrative",
+        "description": "La fusion entre clinique pédagogique (Cifali, Blanchard-Laville) et ingénierie de prompt produit une métaphore organisatrice : le cartographe-archéologue dépouillant un narratif brumeux.",
+        "extraitVerbatim": "J'ai expliqué à Claude les travaux de Mireille Cifali et de Claudine Blanchard-Laville, pour qu'il s'en inspire dans la conception du prompt.",
+        "ceQueCaDit": "Le croisement entre sciences humaines et conception d'IA n'est pas décoratif : il reconfigure ce que l'évaluation veut être."
+      }
+    ],
+    "territoiresNonVisites": "Trois territoires apparaissent en renvoi au cartographe dans cette feuille : la métacognition active, la pensée systémique et l'architecture de systèmes IA. La métacognition se montre comme connaissance de soi sédimentée plutôt que comme observation d'un processus en cours ; le déploiement explicite d'un moment d'observation manque. La pensée systémique s'amorce dans la formule « école intelligente, mémoire constituée des portfolios », mais sans déploiement des boucles, points de levier ou effets de cascade. L'architecture des systèmes IA est suggérée par l'interfaçage prompt-logiciel et la parallélisation des IA, sans description complète du pipeline avec rôles et flux qu'un tiers pourrait reprendre. Un quatrième territoire n'est pas visité : la pensée computationnelle au sens du transfert hors-informatique. La macro Google Doc est un acte de programmation directe ; aucune trace d'algorithmique appliquée délibérément à un domaine non-technique n'apparaît dans cette feuille seule.",
+    "emergencesPole": "Plusieurs lignes traversent les compétences de ce pôle dans cette feuille. D'abord, un même mouvement de pensée porte le pôle : un objet est produit, jugé séduisant et insuffisant, repris en version 2, 3, 4, 5 ; ce mouvement irrigue à la fois le cadrage (recadrer la nature de l'objet), le dialogue avancé (itérer le prompt), la synthèse (mobiliser un cadre étranger pour reconcevoir), et la critique (rejeter un rendu agréable). Ensuite, le travail montre un usage des cadres théoriques externes comme leviers de reconception, pas comme références décoratives — Cifali, Blanchard-Laville et la notion d'évaluation humaniste deviennent des ressources opérationnelles pour modifier ce que produit l'IA. Enfin, la séparation entre ce que peut faire l'IA et ce qui doit rester humain est traitée comme question vive : la métaphore archéologique et la formule « IA balaie, humain tranche » convergent vers une position qui ne se contente pas d'utiliser l'IA mais théorise ce qu'elle ne doit pas faire.",
+    "pistes": [
+      "Pour enrichir l'observation du processus cognitif en cours, un chemin possible serait de documenter, le jour où cela arrive, un moment précis de bascule — par exemple le passage du « presse-bouton » à l'« archéologue » : qu'est-ce qui a fait basculer la lecture, à quel signal, dans quel ressenti.",
+      "Pour enrichir la modélisation des boucles entre portfolio et organisation apprenante, un chemin possible serait de tracer une boucle complète : quel portfolio nourrit quelle modification du dispositif, quelle modification produit quel nouveau portfolio, et quels points de levier sont accessibles à l'apprenant ou au cartographe.",
+      "Pour enrichir l'architecture de systèmes IA, un chemin possible consisterait à décrire le pipeline cartographie de bout en bout — quelles entrées, quelles transformations, quels composants — de sorte qu'un collègue puisse comprendre, reproduire et maintenir le dispositif.",
+      "Pour enrichir le transfert de pensée algorithmique hors-informatique, un chemin possible serait de formaliser un protocole pédagogique en pseudo-code (conditions, boucles, exceptions) et d'observer ce que ce changement de notation rend visible ou invisible."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail rapporté dans cette feuille se concentre sur la conception et l'itération d'un dispositif de cartographie de compétences appuyé sur plusieurs intelligences artificielles. La voix dominante mêle la fabrication (cinq versions de prompt, simulations, macros) et le retour réflexif sur ce qui a été produit. Les marqueurs concrets cités incluent la mobilisation de Cifali et Blanchard-Laville pour reconcevoir un dispositif d'évaluation, la critique d'un rendu jugé séduisant mais top-down, et la répartition consciente des tâches entre Gemini, Claude et Perplexity. Le registre est celui d'un praticien qui pense en faisant : la pensée se montre dans les rectifications, les versions successives, les diagnostics d'erreur de l'IA.\n\n## Territoires les plus denses\n\n**Dialogue IA avancé et orchestration de prompts.** Cette compétence s'incarne dans une itération versionnée (cinq versions du prompt) avec validation par simulation, dans l'injection de cadres théoriques pour reconfigurer le comportement attendu de l'IA, et dans le diagnostic d'erreurs persistantes liées au contexte sédimenté. *« Voici une simulation d'exécution de la version 5 (en fait chaque version précédente a été simulée de la même manière) ».* Le prompt est traité comme un objet de travail itérable, testable et débogguable, pas comme une formule magique à trouver d'un coup.\n\n**Littératie IA et data literacy.** La compréhension causale des mécanismes IA se manifeste dans des micro-décisions justifiées (usage de Gemini pour sa fenêtre de contexte), dans le diagnostic d'une confusion remontée à la sédimentation historique du contexte, et dans la reconnaissance explicite de la dépendance de l'IA au contexte injecté. *« Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail ».* La littératie ici ne s'expose pas dans un exposé théorique : elle pilote des choix d'outils et des diagnostics d'erreurs au fil du travail.\n\n**Cadrage de l'intention.** Le cadrage se manifeste dans un mouvement net : un premier prompt produit un résultat séduisant, ce résultat est rejeté non pour ses paramètres mais pour la nature de l'objet qu'il instaure, et un cadre théorique externe est mobilisé pour reconcevoir l'objet. *« Le cartographe est considéré comme un presse bouton, pas comme un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée ».* Le travail interroge l'objectif lui-même avant les paramètres, ce qui distingue un recadrage d'un simple ajustement.\n\n**Synergie et coordination hybride humain-IA.** La complémentarité s'articule dans une opposition explicite entre presse-bouton et archéologue, et dans la formule « IA balaie, humain tranche » endossée comme principe organisateur. *« ce n'est pas le prompt qui valide la compétence, c'est le jugement humain informé par le prompt. L'IA fait le premier balayage, l'humain tranche ».* La synergie se pense ici comme une division du travail spécifiée, pas comme un simple usage d'outil.\n\n**Pensée critique et anti-hallucination.** L'autocritique s'applique au dispositif que l'apprenant a lui-même produit, et la détection d'hallucination s'accompagne d'une remontée à la source du problème. *« cette première tentative n'allait pas du tout. Le rendu est très joli, très pro, mais le processus est top-down ».* La critique se tourne vers le rendu qu'on aurait pu garder : c'est le signe le plus avancé de la compétence selon la fiche du pôle.\n\n**Synthèse intégrative.** La fusion entre clinique pédagogique et ingénierie de prompt produit une métaphore organisatrice. *« J'ai expliqué à Claude les travaux de Mireille Cifali et de Claudine Blanchard-Laville, pour qu'il s'en inspire dans la conception du prompt ».* Le croisement entre sciences humaines et conception d'IA n'est pas décoratif : il reconfigure ce que l'évaluation veut être.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nTrois territoires apparaissent en renvoi au cartographe dans cette feuille : la métacognition active, la pensée systémique et l'architecture de systèmes IA. La métacognition se montre comme connaissance de soi sédimentée plutôt que comme observation d'un processus en cours ; le déploiement explicite d'un moment d'observation manque. La pensée systémique s'amorce dans la formule « école intelligente, mémoire constituée des portfolios », sans déploiement des boucles, points de levier ou effets de cascade. L'architecture des systèmes IA est suggérée par l'interfaçage prompt-logiciel et la parallélisation des IA, sans description complète du pipeline avec rôles et flux qu'un tiers pourrait reprendre. Un quatrième territoire n'est pas visité : la pensée computationnelle au sens du transfert hors-informatique ; la macro Google Doc est un acte de programmation directe, et aucune trace d'algorithmique appliquée délibérément à un domaine non-technique n'apparaît dans cette feuille seule.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nPlusieurs lignes traversent les compétences de ce pôle dans cette feuille. D'abord, un même mouvement de pensée porte le pôle : un objet est produit, jugé séduisant et insuffisant, repris en version 2, 3, 4, 5 ; ce mouvement irrigue à la fois le cadrage (recadrer la nature de l'objet), le dialogue avancé (itérer le prompt), la synthèse (mobiliser un cadre étranger pour reconcevoir), et la critique (rejeter un rendu agréable). Ensuite, le travail montre un usage des cadres théoriques externes comme leviers de reconception : Cifali, Blanchard-Laville et la notion d'évaluation humaniste deviennent des ressources opérationnelles pour modifier ce que produit l'IA. Enfin, la séparation entre ce que peut faire l'IA et ce qui doit rester humain est traitée comme question vive : la métaphore archéologique et la formule « IA balaie, humain tranche » convergent vers une position qui ne se contente pas d'utiliser l'IA mais théorise ce qu'elle ne doit pas faire.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir l'observation du processus cognitif en cours, un chemin possible serait de documenter, le jour où cela arrive, un moment précis de bascule — par exemple le passage du « presse-bouton » à l'« archéologue ».\n- Pour enrichir la modélisation des boucles entre portfolio et organisation apprenante, un chemin possible serait de tracer une boucle complète : quel portfolio nourrit quelle modification du dispositif, quelle modification produit quel nouveau portfolio.\n- Pour enrichir l'architecture de systèmes IA, un chemin possible consisterait à décrire le pipeline cartographie de bout en bout, de sorte qu'un collègue puisse comprendre, reproduire et maintenir le dispositif.\n- Pour enrichir le transfert de pensée algorithmique hors-informatique, un chemin possible serait de formaliser un protocole pédagogique en pseudo-code et d'observer ce que ce changement de notation rend visible ou invisible."
+  }
+}

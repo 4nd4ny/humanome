@@ -1,0 +1,376 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Le dernier chapitre peut être réduit à la section 5.1 (la 5.2 n'est que du \"bruit\") mais dans l'ensemble ça colle bien avec ce que je voulais.",
+      "contexte": "Geste de coupe éditoriale précis sur un chapitre avec critère qualitatif (\"bruit\"). Pourrait activer jugement esthétique & curation (3.04) et signature (3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Les 4 manuels forment un ensemble cohérent avec ce que je voulais faire dans mes classes : c'est de la noèsiologie appliquée et pas de la masturbation intellectuelle.",
+      "contexte": "Formule à signature marquée — vocabulaire savant (\"noèsiologie\") accolé à un registre cru — qui pose un critère qualitatif. Pourrait activer singularité (3.02), jugement esthétique (3.04) et créativité radicale (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "maintenant que j'ai amélioré les travaux de Reuven Feuerstein, ça me donne envie de supprimer I-E-O pour introduire dès le niveau Praticien, mon modèle ou éventuellement celui de Pierre Vianin qui est plus simple ?",
+      "contexte": "Mention d'une amélioration revendiquée sur les travaux d'un auteur de référence, avec arbitrage entre son propre modèle et celui d'un autre. Pourrait activer créativité itérative et radicale (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Je pense qu'avec Respire j'ai réussi à aller jusqu'au bout de mes idées sur l'école, en intégrant les IA dans ma pédagogie (ce qui n'était pas gagné d'avance).",
+      "contexte": "Bilan d'une production qui pousse \"jusqu'au bout\" une vision sur l'école, avec une intégration risquée. Pourrait activer créativité radicale (3.01) et signature (3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "L'unité des cartographies sera le nombre d'occurrence, quelque soit la durée de la tâche ou sa complexité pour le moment. On verra s'il faudra pondérer ça lorsqu'on aura les premières classes.",
+      "contexte": "Décision de design pour un dispositif de cartographie. Pourrait activer design de problèmes (3.03) ou créativité itérative (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Arg… J'ai commencé le premier chapitre du manuel de l'Expert et il a halluciné le référentiel de compétences (les 11 irréductibles) !",
+      "contexte": "Onomatopée d'agacement (\"Arg…\") suivie d'un constat technique — trait stylistique récurrent possible. Pourrait activer signature (3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "C'est amusant de voir comment il a interprété les compétences humaines. C'est juste pas en rapport avec ce que l'on peut observer en classe, mais intéressant quand même de voir comme Claude perçoit les humains.",
+      "contexte": "Distance amusée et personnification (\"comme Claude perçoit les humains\") — trace de ton et de signature. Pourrait activer singularité (3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Je me souviens avoir bâclé la génération du référentiel de compétences, sachant qu'il allait être de toute façon redéfini via Decidim. Mais du coup ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales.",
+      "contexte": "Bâclage volontaire ayant produit un meilleur niveau d'analyse — exactement la trace oblique listée par 3.03 (design de problèmes par contrainte). Pourrait activer design de problèmes (3.03) et créativité itérative (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "je crois que je devrais en imposer quelques unes quand même, plus concrètes, pour au moins les utiliser comme exemple dans la documentation en disant que l'on explique le principe mais qu'il faut ensuite adapter bien évidemment aux référentiels vivants co-construits avec la société civile.",
+      "contexte": "Posture éditoriale : choisir et hiérarchiser ce qu'on transmet (le principe + des exemples concrets). Pourrait activer jugement esthétique & curation (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Bref, encore un autre chantier important en perspective.",
+      "contexte": "Marqueur stylistique récurrent (\"Bref…\") qui clôt et synthétise — trait possible de signature. Pourrait activer singularité (3.02).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Revendication d'une amélioration des travaux de Feuerstein avec arbitrage entre son propre modèle et celui de Vianin — possible trace d'une rupture créative."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Bilan d'avoir \"poussé jusqu'au bout\" une vision en intégrant l'IA, ce qui \"n'était pas gagné d'avance\" — récit d'un risque créatif assumé."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Bâclage volontaire qui débouche sur une découverte (catégories plutôt qu'éléments) — trace oblique listée par 3.01 (itération par bâclage)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est exigeante : itérer demande des versions successives avec apprentissage explicite entre chaque, et la radicalité demande une transgression que l'IA n'aurait pas suggérée. Je m'attends à ne trouver que des bilans rétrospectifs sans dispositif itératif visible. La pièce 1 affirme une amélioration de Feuerstein, c'est très déclaratif. La pièce 2 est un bilan global. La pièce 3 me résiste fortement parce qu'elle correspond très exactement à la trace oblique listée par la fiche : \"en faisant vite, j'ai vu un truc que je n'aurais pas vu autrement\" — l'apprenant n'écrit pas qu'il a itéré, il raconte un bâclage qui a forcé un saut conceptuel.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Bâclage volontaire débouchant sur un saut conceptuel (catégories au lieu d'éléments) — trace oblique citée par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce tient et il faut la mettre à l'épreuve. La fiche distingue 3.01 de 1.02 (cadrage) : l'un est créatif, l'autre est de mise au point. Le bâclage qui a produit les catégories ressemble plus à du recadrage qu'à de la création de neuf — la frontière est fine.",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Confusion possible avec 1.02 : la trace décrit un recadrage par contrainte plus qu'une rupture créative pure. Elle tient parce que la fiche 3.01 inclut explicitement cette trace dans ses obliques, mais la portée créative reste limitée — c'est plus de l'itération heureuse que de la radicalité." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces que des bilans déclaratifs sur la créativité. Les pièces 1 et 2 sont tombées dès le temps 1 — elles affirment sans montrer. La pièce 3 a tenu avec réserves : le bâclage qui produit des catégories au lieu d'éléments est exactement la trace oblique listée par la fiche, mais la portée reste celle d'une itération heureuse, pas d'une rupture radicale. Ce qui en résulte concrètement : dans cette feuille, la créativité itérative se manifeste discrètement, par une découverte issue d'une exécution provisoire. La revendication d'amélioration de Feuerstein reste à l'état d'annonce dans ce passage. La nuance qui reste : la radicalité au sens fort (transgression que l'IA n'aurait pas suggérée) ne se montre pas ici.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Seule la pièce 3 a tenu avec réserves comme trace oblique d'itération par bâclage ; les déclarations sur Feuerstein et sur Respire restent affirmatives sans dispositif itératif visible.",
+        "prescription": "Un chemin possible serait de documenter la nature de l'amélioration apportée aux travaux de Feuerstein — quel pas a été ajouté ou retiré, en quoi le résultat n'aurait pas pu être suggéré par une IA. Une version successive d'un manuel comparée à la précédente, avec ce qui a bougé entre les deux, ferait aussi pièce."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Formule à signature marquée mêlant vocabulaire savant et registre cru (\"noèsiologie appliquée\" / \"masturbation intellectuelle\") — trace de ton récurrent."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Onomatopée \"Arg…\" qui ouvre un paragraphe technique — trace stylistique d'incarnation de l'auteur dans le texte."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Distance amusée et personnification (\"comme Claude perçoit les humains\") — trace de ton."
+        },
+        {
+          "numero": 4,
+          "pid": 10,
+          "contexte": "Marqueur stylistique \"Bref\" qui clôt et synthétise — trace possible de signature."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est précise : la singularité est un fil stylistique qui traverse PLUSIEURS entrées, pas un trait ponctuel. Sur une feuille unique, le test du \"quelqu'un d'autre pourrait-il identifier l'auteur\" est délicat. Je m'attends à ne pouvoir établir aucune récurrence. Pourtant, à l'intérieur même de cette feuille, plusieurs marqueurs cohérents apparaissent : le mélange de registre (\"noèsiologie\" / \"masturbation intellectuelle\"), les onomatopées (\"Arg…\"), les coupures de synthèse (\"Bref\"), la personnification de l'IA. Le ton est reconnaissable — vif, légèrement provocateur, autodidacte qui s'autorise des formules. Ce qui reste faible : je ne peux pas confirmer la récurrence inter-feuilles à partir d'une seule feuille.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Mélange de registre vif et tranché qui imprime un ton très repérable dans une seule phrase." },
+            { "pieceId": 2, "motifResistance": "Onomatopée d'incarnation (\"Arg…\") qui place le corps de l'auteur dans le texte technique." },
+            { "pieceId": 4, "motifResistance": "Marqueur de clôture (\"Bref\") qui dit le geste de synthèse plus que ne le décrit." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Plusieurs pièces tiennent et je dois les mettre à l'épreuve. La singularité demande de la récurrence dans le temps, or je n'ai qu'une feuille. Suis-je en train d'halluciner un fil stylistique à partir d'un échantillon trop petit ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Une seule occurrence d'un mélange de registre ne fait pas une signature ; mais la formule est précisément du type que la fiche cite comme trace oblique forte." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Une onomatopée ne suffit pas à établir un tic d'écriture cohérent — pour cela il faudrait la voir revenir. Elle tient comme indice d'un ton vivant." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Surinterprétation pédagogique : la \"personnification\" de Claude est très légère et largement attendue dans un journal contemporain sur l'IA. Pas de trace singulière forte." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Un \"Bref\" isolé ne suffit pas ; mais il fonctionne comme marqueur d'écriture rapide assumée, cohérent avec les autres traces." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas trouver de signature sur une feuille unique. Ce qui m'a forcé à reconnaître quelque chose, c'est la cohérence interne du ton : mélange de registre, onomatopées, coupures de synthèse, traces d'un auteur qui écrit comme il parle et assume des formules personnelles. Sous présomption de sycophantie, plusieurs pièces ont survécu en étant affaiblies — aucune ne fonde à elle seule la récurrence inter-feuilles que demande la fiche, mais ensemble elles dessinent un ton très repérable sur ce moment. Ce qui en résulte concrètement : la singularité se manifeste ici à l'intérieur d'une seule feuille, avec un faisceau de traits convergents (mélange de registre, onomatopée d'incarnation, marqueur de clôture rapide). La nuance qui reste : la confirmation de la récurrence demanderait une lecture multi-feuilles que cette analyse seule ne permet pas.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.55,
+        "motif": "Trois pièces ont tenu avec réserves comme faisceau convergent de ton à l'intérieur d'une seule feuille ; la confirmation de la récurrence inter-feuilles que demande la fiche n'est pas atteignable depuis ce seul matériel.",
+        "prescription": "Un chemin possible serait de relire le portfolio sur plusieurs feuilles pour repérer ce qui revient (formules, marqueurs de clôture, onomatopées) et donner un nom à ce ton — ce qui permettrait d'en faire un choix conscient plutôt qu'une habitude."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Choix d'une unité de mesure pour le dispositif de cartographie (occurrence sans pondération) — décision qui ouvre une question méthodologique nouvelle pour le terrain."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Bâclage volontaire qui a forcé l'identification d'un niveau d'analyse plus général (catégories au lieu d'éléments) — trace oblique listée par la fiche."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est très exigeante et distingue 3.03 de 1.02 : 1.02 reformule un problème existant, 3.03 crée un problème qui n'existait pas. Je m'attends à ne trouver que du recadrage. La pièce 1 (unité de cartographie) ressemble plus à une décision méthodologique qu'à la création d'un problème. La pièce 2 est plus intéressante : l'apprenant raconte avoir bâclé un référentiel et que cela l'a obligé à passer de \"compétences élémentaires\" à \"catégories de compétences plus générales\". C'est précisément la trace oblique listée par la fiche : \"bâclage volontaire qui fait émerger un problème de niveau supérieur\". Le problème de niveau supérieur ici, c'est : comment penser des catégories irréductibles plutôt que des éléments ? Cette question n'existait pas dans la commande initiale.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Bâclage volontaire qui a fait émerger une question nouvelle (penser en catégories plutôt qu'en éléments), trace oblique citée explicitement par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce résiste, je dois la mettre à l'épreuve. L'attaque dominante est la confusion avec 1.02 (cadrage), qui est le faux positif le plus probable signalé par la fiche elle-même.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Frontière fine avec 1.02 : la pièce décrit aussi un recadrage de problème. Elle tient pour 3.03 parce que l'apprenant raconte explicitement que le résultat est une question nouvelle — \"des catégories de compétences plus générales\" — qui n'était pas la commande de départ ; le problème de design (comment penser le référentiel par catégories) émerge à ce moment." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces que du recadrage classique. Ce qui m'a forcé à reconnaître autre chose, c'est que l'apprenant raconte une bifurcation conceptuelle : la contrainte (\"de toute façon redéfini via Decidim\") a transformé la nature de ce qu'il cherchait — non pas répondre mieux à la question \"quelles sont les compétences ?\", mais ouvrir la question \"quelles sont les catégories ?\". Sous présomption de sycophantie, la pièce a tenu avec réserves : la frontière avec 1.02 reste fine, mais le déplacement de niveau (élémentaire → général) est précisément ce que la fiche 3.03 décrit. Ce qui en résulte concrètement : dans cette feuille, le design de problèmes se manifeste comme conséquence rétrospective d'une exécution provisoire — l'apprenant n'a pas créé le problème délibérément, mais il a reconnu, après coup, qu'un problème nouveau avait émergé. La nuance qui reste : aucune formalisation de la démarche n'est encore donnée.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La pièce 2 a tenu avec réserves comme trace oblique citée par la fiche : un bâclage volontaire ayant fait émerger une question nouvelle de niveau supérieur."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Geste de coupe éditoriale précis : réduction d'un chapitre à une section, avec critère qualitatif (\"bruit\")."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Distinction qualitative tranchée entre \"noèsiologie appliquée\" et \"masturbation intellectuelle\" — critère d'évaluation des productions."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Choix éditorial pour la documentation : poser un principe via des exemples concrets, signaler l'adaptation à venir — geste de hiérarchisation de contenu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche pose un critère central : la curation implique de la soustraction. Je m'attends à ne trouver que des appréciations \"j'ai aimé\" sans argumentaire. La pièce 1 me résiste tout de suite : l'apprenant dit \"peut être réduit à la section 5.1 (la 5.2 n'est que du bruit)\". C'est exactement de la soustraction articulée par un critère (\"bruit\"). La pièce 2 me résiste aussi : la formule sépare le bon du moins bon dans une production intellectuelle avec un critère qualitatif. La pièce 3 est plus faible — elle décrit une hiérarchisation à venir, pas un acte de tri en cours.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Acte de soustraction (\"réduit à la section 5.1\") avec critère (\"bruit\") — définition de 3.04 en miniature." },
+            { "pieceId": 2, "motifResistance": "Critère qualitatif tranché qui distingue dans une production intellectuelle ce qui tient de ce qui n'a pas de valeur." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces tiennent. Je dois les durcir. La pièce 1 pourrait être une appréciation personnelle, pas un jugement esthétique au sens fort. La pièce 2 pourrait être une formule rhétorique plus qu'un critère articulé.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le critère \"bruit\" est court mais il fonctionne en acte : il opère une coupe sur un objet concret (la section 5.2), avec une décision claire. C'est de la curation en miniature, pas une appréciation diffuse." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La formule pourrait être performative ; elle tient parce qu'elle pose une opposition opérante (appliqué/spéculatif) qui guide les choix d'écriture du corpus." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces que du goût personnel non articulé. Ce qui m'a forcé à reconnaître autre chose, c'est la pièce 1 : \"peut être réduit à la section 5.1 (la 5.2 n'est que du bruit)\" est très exactement la définition de la curation — soustraction articulée par un critère. La pièce 2 tient avec une réserve performative mais elle pose un critère opérant pour le corpus entier. Ce qui en résulte concrètement : dans cette feuille, le jugement esthétique se manifeste comme tri éditorial en acte (couper la 5.2) et comme critère d'identité de production (\"appliqué pas spéculatif\"). La nuance qui reste : aucun vocabulaire esthétique précis n'est mobilisé — \"bruit\" et \"masturbation intellectuelle\" sont des disqualifications plus que des critères positifs articulés.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "La pièce 1 (coupe d'une section nommée \"bruit\") a tenu sans réserve comme acte de curation en miniature, avec un indice corroboratif sur le critère d'identité de production."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale sur cette feuille. Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où le rapport à la matière physique (réparation, montage, geste artisanal) a tenu une place dans le travail."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Onomatopée \"Arg…\" — trace d'une réaction corporelle nommée en début de paragraphe."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est claire : la pleine présence est l'attention incarnée comme mode d'être au travail, avec descriptions phénoménologiques détaillées. Une onomatopée n'est pas une description phénoménologique — c'est une trace d'humeur, mais sans ralentissement intentionnel, sans qualité de présence décrite, sans alternance consciente présence/distraction. La fiche elle-même note qu'\"être crevé\" est un constat brut, pas un signal de 3.06. La pièce ne résiste pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir d'ancrage sensoriel dans cette feuille très cérébrale (lecture, réflexion, décision). La seule trace de corporalité dans le texte est une onomatopée d'agacement, qui n'atteint pas le seuil d'une attention incarnée articulée. Ce qui en résulte concrètement : sur cette feuille, l'ancrage sensoriel et la pleine présence ne se manifestent pas. Le travail décrit se passe presque entièrement dans la tête, sur des objets textuels et conceptuels. La nuance qui reste : la mention discrète d'un voyage de \"6h de train\" laisse un cadre matériel sans qu'il devienne objet d'attention.",
+          "confianceFinale": 0.12
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.12,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence — une onomatopée d'humeur n'atteint pas le seuil d'une attention incarnée décrite.",
+        "prescription": "Un chemin possible serait de documenter, lors d'un long trajet ou d'un moment de pause, ce que l'attention au corps a apporté au travail intellectuel — par exemple une intuition somatique qui a précédé une décision."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live sur cette feuille. Pour ouvrir ce dossier, un chemin possible serait de documenter un moment en présentiel (classe, conférence, atelier) où l'interaction directe avec un groupe a produit quelque chose que le préenregistré n'aurait pas pu produire."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 2,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 10 janvier 2026 est un journal de relecture et de décision éditoriale : les manuels viennent d'être achevés, leur cohérence est appréciée, certains passages sont écartés. Le travail décrit relève surtout de la posture du créateur-réviseur — celui qui regarde sa propre production et choisit ce qui tient. Le ton de l'écriture porte un certain nombre de traits convergents (mélange de registre, onomatopée d'incarnation, marqueur de clôture rapide) qui dessinent une signature lisible dans le moment, sans qu'on puisse en confirmer la récurrence inter-feuilles depuis ce seul matériel. La feuille ne parle pas du corps, pas de la matière, pas du présentiel — le geste créatif y est entièrement textuel et conceptuel.",
+    "territoiresDenses": [
+      {
+        "competence": "Jugement esthétique & curation",
+        "description": "Le travail décrit un acte de soustraction articulé sur une production : un chapitre est réduit à une section, le reste est qualifié de \"bruit\". Un critère qualitatif tranché distingue ce qui vaut d'être écrit de ce qui ne vaut pas.",
+        "extraitVerbatim": "Le dernier chapitre peut être réduit à la section 5.1 (la 5.2 n'est que du \"bruit\") mais dans l'ensemble ça colle bien avec ce que je voulais.",
+        "ceQueCaDit": "La curation s'exerce ici en miniature, sur un objet concret et avec une décision claire. Le geste de couper précède la justification, et la justification reste brève — c'est un jugement en acte, plus rapide que théorisé."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires du pôle n'ont pas été ramenés sur cette feuille. L'intelligence manuelle et artisanale n'a pas d'occasion d'apparaître dans une journée consacrée à la lecture et à l'écriture. La présence et performance live ne sont pas non plus mobilisées, la feuille étant entièrement écrite en solo. L'ancrage sensoriel se réduit à une onomatopée d'humeur (\"Arg…\") sans description incarnée. La créativité radicale et le design de problèmes apparaissent en filigrane — par un bâclage volontaire qui a produit un saut conceptuel — mais le matériel disponible ne permet pas de trancher entre rupture créative et recadrage par contrainte. La singularité dessine un faisceau de traits cohérents à l'intérieur de la feuille ; la confirmation de la récurrence demanderait une lecture multi-feuilles.",
+    "emergencesPole": "Deux observations traversent les compétences du pôle. D'abord, le geste créatif sur cette feuille est principalement éditorial et révisionnel — c'est-à-dire qu'il porte sur des productions déjà faites (couper, valider la cohérence, choisir d'imposer ou de laisser ouvert), plus que sur l'invention de neuf en direct. Ensuite, le ton du journal lui-même est créatif : le mélange entre vocabulaire savant (\"noèsiologie\") et registre cru (\"masturbation intellectuelle\"), les onomatopées, les \"Bref\" de clôture, dessinent une voix qui ne ressemble pas à un texte généré.",
+    "pistes": [
+      "Pour prolonger la curation, un chemin possible serait de nommer le critère positif (et pas seulement le critère de rejet) qui rend un texte \"appliqué\" plutôt que \"spéculatif\" — quels signaux concrets fait-on apparaître pour qu'un lecteur le reconnaisse.",
+      "Pour prolonger la dimension créative-radicale, un chemin possible serait de documenter précisément ce qui a été ajouté ou retiré aux travaux de Feuerstein, en quoi le résultat n'aurait pas pu être produit par une IA seule, et ce que cette amélioration ouvre comme question nouvelle pour le terrain.",
+      "Pour prolonger l'attention à la signature, un chemin possible serait de relire plusieurs feuilles d'affilée pour repérer ce qui revient (formules, onomatopées, marqueurs de clôture) et choisir consciemment ce qu'on garde, ce qu'on accentue, ce qu'on lisse."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 10 janvier 2026 est un journal de relecture et de décision éditoriale : les manuels viennent d'être achevés, leur cohérence est appréciée, certains passages sont écartés. Le travail décrit relève surtout de la posture du créateur-réviseur — celui qui regarde sa propre production et choisit ce qui tient. Le ton de l'écriture porte un certain nombre de traits convergents (mélange de registre, onomatopée d'incarnation, marqueur de clôture rapide) qui dessinent une signature lisible dans le moment, sans qu'on puisse en confirmer la récurrence inter-feuilles depuis ce seul matériel. La feuille ne parle pas du corps, pas de la matière, pas du présentiel — le geste créatif y est entièrement textuel et conceptuel.\n\n## Territoires les plus denses\n\n**Jugement esthétique & curation** — Le travail décrit un acte de soustraction articulé sur une production : un chapitre est réduit à une section, le reste est qualifié de « bruit ». Un critère qualitatif tranché distingue ce qui vaut d'être écrit de ce qui ne vaut pas. Verbatim : « Le dernier chapitre peut être réduit à la section 5.1 (la 5.2 n'est que du \"bruit\") mais dans l'ensemble ça colle bien avec ce que je voulais. » La curation s'exerce ici en miniature, sur un objet concret et avec une décision claire. Le geste de couper précède la justification, et la justification reste brève — c'est un jugement en acte, plus rapide que théorisé.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires du pôle n'ont pas été ramenés sur cette feuille. L'intelligence manuelle et artisanale n'a pas d'occasion d'apparaître dans une journée consacrée à la lecture et à l'écriture. La présence et performance live ne sont pas non plus mobilisées, la feuille étant entièrement écrite en solo. L'ancrage sensoriel se réduit à une onomatopée d'humeur (« Arg… ») sans description incarnée. La créativité radicale et le design de problèmes apparaissent en filigrane — par un bâclage volontaire qui a produit un saut conceptuel — mais le matériel disponible ne permet pas de trancher entre rupture créative et recadrage par contrainte. La singularité dessine un faisceau de traits cohérents à l'intérieur de la feuille ; la confirmation de la récurrence demanderait une lecture multi-feuilles.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux observations traversent les compétences du pôle. D'abord, le geste créatif sur cette feuille est principalement éditorial et révisionnel — c'est-à-dire qu'il porte sur des productions déjà faites (couper, valider la cohérence, choisir d'imposer ou de laisser ouvert), plus que sur l'invention de neuf en direct. Ensuite, le ton du journal lui-même est créatif : le mélange entre vocabulaire savant (« noèsiologie ») et registre cru (« masturbation intellectuelle »), les onomatopées, les « Bref » de clôture, dessinent une voix qui ne ressemble pas à un texte généré.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la curation, un chemin possible serait de nommer le critère positif (et pas seulement le critère de rejet) qui rend un texte « appliqué » plutôt que « spéculatif » — quels signaux concrets fait-on apparaître pour qu'un lecteur le reconnaisse.\n- Pour prolonger la dimension créative-radicale, un chemin possible serait de documenter précisément ce qui a été ajouté ou retiré aux travaux de Feuerstein, en quoi le résultat n'aurait pas pu être produit par une IA seule, et ce que cette amélioration ouvre comme question nouvelle pour le terrain.\n- Pour prolonger l'attention à la signature, un chemin possible serait de relire plusieurs feuilles d'affilée pour repérer ce qui revient (formules, onomatopées, marqueurs de clôture) et choisir consciemment ce qu'on garde, ce qu'on accentue, ce qu'on lisse."
+  }
+}

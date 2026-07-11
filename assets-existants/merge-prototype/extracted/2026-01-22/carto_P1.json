@@ -1,0 +1,678 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Ce qui me plaît beaucoup, c'est la dualité intelligence humaine / intelligence artificielle. Ce qui n'est pas explicite ici, c'est que l'un aide à mieux comprendre l'autre. D'où la nécessité de maîtriser les deux pour devenir Grand Maître et avoir une vision d'ensemble des processus et stratégies permettant d'améliorer l'intelligence.",
+      "contexte": "Articulation de la complémentarité humain/IA comme principe structurant du parcours de formation des Tuteurs Respire ; touche à la synergie hybride (1.10) et à la littératie IA (1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Petite correction dans l'artefact Claude parle des 42 fonctions cognitives de Feuerstein, mais en fait ce sont mes travaux de thèse qui ont compilé non pas 42 (ça c'est la version publiée) mais [64 fonctions cognitives utiles pour apprendre]",
+      "contexte": "Correction d'une affirmation produite par l'IA en s'appuyant sur sa propre source d'autorité ; relève de la pensée critique anti-hallucination (1.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "J'ai reproché à Stéphane d'être focalisé sur son journal de bord et donc la description de ce qu'il faisait sans prendre le recul nécessaire pour pouvoir observer ses réflexions profondes, ce qui permet de rendre vraiment visible les compétences uniques qu'il a. Et moi, depuis quelques jours, je fais pareil. C'est un peu normal lorsqu'on est dans le faire, on oublie de prendre des pauses réflexives.",
+      "contexte": "Transfert métacognitif : reproche fait à un pair retourné sur soi-même ; cas paradigmatique de 1.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "C'est donc une des compétences clés à enseigner aux futurs cartographes et médiateurs (le niveau Praticien Tuteurs) et qui devra être incluse dans leur manuel d'auto-formation.",
+      "contexte": "Élévation de l'observation introspective au rang de compétence enseignable, intégrée dans une architecture de formation ; touche à 1.04 et à 1.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "J'ai relu le document de l'âme de Claude qui a été publié hier. C'est la même chose que je dois faire ici : expliciter le pourquoi est plus important que décrire le quoi. Ceci dit, pour le lecteur n'ayant pas consacré sa vie à réfléchir à ces questions, l'un sans l'autre est incompréhensible.",
+      "contexte": "Recadrage du problème d'écriture : passer du quoi au pourquoi ; et synthèse entre deux nécessités (le pourquoi explicatif et le quoi concret) ; touche à 1.02 et 1.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Lorsque j'ai travaillé dans les années 1995 sur l'architecture G-Blaster qui a donné naissance en 2011 à la méta heuristique \"The Friends Algorithm\" publiée en mémoire de Master EPFL, j'avais cette intuition profonde que la guilde des spécialistes d'un domaine était plus forte que l'individu.",
+      "contexte": "Récit d'une architecture computationnelle de longue date qui théorise la force du collectif sur l'individu ; touche à 1.09 (pensée computationnelle transférée) et 1.07 (architecture).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "C'est une intuition que j'ai eu en 1992 lorsque Friha Lamia m'a présenté les prémisses de ce qui allait donner plus tard naissance à l'ACO avec les algorithmes génétiques. Ce qui me manque, c'est donc le groupe et les aléas qui sont générés par les consciences humaines en synergie.",
+      "contexte": "Identification du levier manquant dans un système (le groupe, les aléas humains) en filiation avec une généalogie algorithmique ; touche à 1.05 (systémique) et 1.10 (synergie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Je vais donc peut-être essayer de crafter un nouveau prompt système pour compléter ou remplacer le protocole CATALYST, lorsque j'aurai un peu plus de temps, pour m'aider à challenger mes idées et les enrichir, afin de tenter de recréer une forme d'intelligence collective en synergie humain / IA.",
+      "contexte": "Projet de prompt système conçu pour challenger ses propres idées ; touche à 1.08 (dialogue IA avancé, méta-prompting), 1.07 (architecture) et 1.01 (anti-hallucination par mise en débat).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Correction factuelle d'une affirmation de l'IA en mobilisant une source de référence personnelle (ses travaux de thèse) : acte de vérification ponctuel."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Projet d'un prompt système destiné à challenger ses propres idées : doute méthodique étendu à soi via un dispositif IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces en présumant que la pensée critique anti-hallucination n'est pas vraiment attestée. La pièce 1 pourrait n'être qu'une rectification factuelle ordinaire ; la pièce 2 pourrait n'être qu'une intention non réalisée. Pourtant, la pièce 1 me résiste : la correction porte précisément sur une hallucination de l'IA (un chiffre énoncé comme vrai alors qu'il provient d'une version publique simplifiée), et l'apprenant remonte à la source primaire qu'il connaît mieux que l'IA. La pièce 2 résiste plus faiblement : elle nomme un dispositif futur dont la fonction explicite est de challenger ses propres idées, ce qui correspond à la forme la plus avancée du doute méthodique appliqué à soi.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Correction effective d'une hallucination IA en s'appuyant sur une source primaire mieux maîtrisée que la production de l'IA." },
+            { "pieceId": 2, "motifResistance": "Projet de dispositif explicitement conçu pour mettre ses propres idées à l'épreuve, donc auto-critique outillée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis maintenant ces deux pièces en me demandant si je n'ai pas halluciné leur portée. La pièce 1 est une vraie trace concrète : la rectification est posée et tient. La pièce 2 me semble plus fragile à l'examen — elle dit ce qu'elle voudrait faire, pas ce qu'elle a fait, et la formulation 'peut-être', 'lorsque j'aurai un peu plus de temps' la déplace clairement du côté de l'intention.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La correction est brève et porte sur un seul chiffre ; elle reste cependant vérifiable, datée et liée à une source identifiée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le 'je vais donc peut-être essayer' et 'lorsque j'aurai un peu plus de temps' positionnent la pièce comme mouvement-vers, pas comme exercice attesté de la compétence."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la pensée critique soit ici attestée. La correction du chiffre des fonctions cognitives m'a forcé à reconnaître une trace : un acte effectif de détection d'hallucination, appuyé sur une source mieux maîtrisée que ne l'était l'IA. Le projet de prompt système n'a pas tenu sous l'examen de sycophantie — il décrit une intention plutôt qu'une pratique. Ce qui reste donc, dans cette feuille, c'est un geste ponctuel de rectification factuelle, calibré et adressé à une production d'IA. La trace existe sans être centrale. Pour cette feuille, le travail montre un réflexe de vérification opérationnel, sans encore les protocoles personnels articulés que la compétence appelle dans ses formes les plus avancées.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.5,
+        "motif": "Une seule pièce a survécu, affaiblie par sa brièveté ; la trace existe sans être centrale dans cette feuille.",
+        "prescription": "Pour approfondir la pensée critique appliquée aux productions de l'IA, un chemin possible serait de documenter le protocole concret utilisé pour repérer et rectifier l'erreur — quel indice a déclenché la vérification, quelle source a été convoquée, pourquoi celle-ci plutôt qu'une autre. Cette explicitation rendrait visible le geste de calibration qui reste pour l'instant en arrière-plan du récit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Recadrage explicite du problème d'écriture : ce n'est pas décrire le quoi qu'il s'agit de faire, mais expliciter le pourquoi."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que le cadrage de l'intention n'est pas réellement à l'œuvre. À première vue, l'apprenant cite un texte récent et applique un principe lu ailleurs — ce serait un emprunt, pas un cadrage. Pourtant, la pièce me résiste : l'apprenant identifie en cours de route que sa propre écriture est mal cadrée (description du quoi au lieu d'explicitation du pourquoi), puis ouvre immédiatement une seconde tension — pour le lecteur non spécialiste, l'un sans l'autre est incompréhensible. Ce double mouvement est un acte de cadrage en deux temps, pas une simple application d'une règle externe.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant identifie un mauvais angle dans son propre travail puis le reformule, en intégrant la contrainte du lecteur — deux gestes de cadrage emboîtés." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé cette pièce. L'apprenant pourrait simplement répéter une formule séduisante (expliciter le pourquoi plutôt que le quoi) sans véritable bascule de problème. Mais le mouvement qui suit — la conscience qu'expliquer seulement le pourquoi laisse le lecteur sans prise — sort de l'emprunt et trahit un cadrage situé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le vocabulaire 'pourquoi/quoi' pourrait être un glissement lexical, mais l'apprenant en module aussitôt la portée pour son lectorat, ce qui dépasse l'emprunt et incarne un cadrage actif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un emprunt rhétorique plutôt qu'un cadrage. Ce qui m'a forcé à reconnaître une trace, c'est la double opération : poser que le pourquoi prime, puis aussitôt redéfinir le problème en y réintégrant la contrainte du lecteur. La pièce a tenu sous l'examen de glissement lexical. Pour cette feuille, le travail montre un cadrage en deux temps appliqué à sa propre écriture, situé et adressé. La trace est unique dans cette feuille, ce qui appelle à la prudence sur la généralisation.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.65,
+        "motif": "Le deuxième temps adversarial a confirmé la pièce : le mouvement de recadrage intègre la contrainte du lecteur, ce qui dépasse l'emprunt lexical.",
+        "prescription": "Pour prolonger ce geste de cadrage, un chemin possible serait de noter, lors d'un prochain projet d'écriture, la question initiale telle qu'elle s'est posée puis la question reformulée après quelques jours de travail. La comparaison rendrait lisible la bascule de problème qui, ici, apparaît dans le récit sans être explicitement nommée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Croisement entre l'architecture G-Blaster (1995), The Friends Algorithm (2011) et le projet actuel de formation : assemblage diachronique d'idées."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Rapprochement entre l'ACO/algorithmes génétiques (1992) et le projet actuel d'intelligence collective humain/IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces en présumant qu'il s'agit de souvenirs juxtaposés, pas d'une synthèse productrice d'insight. Le risque est réel : un récit historique aligne des dates sans nécessairement faire émerger une compréhension nouvelle. La pièce 1 résiste cependant : l'apprenant ne fait pas que se souvenir, il identifie une intuition stable (la guilde plus forte que l'individu) qui traverse trente ans de travaux et éclaire son projet actuel. La pièce 2 résiste également : elle nomme ce qui manque (le groupe, les aléas humains) en faisant dialoguer une généalogie algorithmique et une situation présente.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification d'un fil conducteur conceptuel — la guilde plus forte que l'individu — qui unifie des travaux séparés par des décennies." },
+            { "pieceId": 2, "motifResistance": "Le rapprochement entre ACO et travail actuel produit un diagnostic du manquant (les aléas humains) qui n'existait dans aucun des éléments isolés." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu rappel autobiographique et synthèse. La pièce 1 pourrait n'être qu'une mise en récit d'une continuité déjà perçue ailleurs, sans véritable insight émergent. La pièce 2, en revanche, produit un diagnostic — ce qui manque, c'est le groupe et les aléas — qui dit plus que la somme des deux références.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le récit pourrait être performatif (raconter une continuité plutôt que la construire), mais l'intuition explicitement nommée a une portée conceptuelle qui dépasse la chronologie."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce produit un insight ponctuel et identifiable — le manquant nommé — qui n'apparaît dans aucune des deux références isolées."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir ici une succession de souvenirs sans transformation. Ce qui m'a forcé à reconnaître une synthèse, c'est l'émergence d'un diagnostic précis — il manque le groupe et les aléas humains — issu du croisement entre une généalogie algorithmique ancienne et un projet présent. La première pièce a été affaiblie sous l'examen de récit performatif sans tomber. La seconde a tenu pleinement. Pour cette feuille, le travail montre une synthèse productive : trois moments de pensée espacés de plusieurs décennies se rassemblent pour faire apparaître ce qui manque au dispositif actuel. La trace est solide mais reste à confirmer hors du registre rétrospectif.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "La pièce 2 a confirmé la compétence en faisant émerger un insight — le manquant nommé — absent des sources isolées ; la pièce 1 vient en corroboration.",
+        "prescription": "Pour explorer encore cette compétence, un chemin possible serait de poser explicitement, sur une page séparée, le triangle G-Blaster / Friends Algorithm / projet Respire avec, pour chaque sommet, la phrase qui dit ce que l'autre sommet a apporté à la compréhension. La fusion deviendrait visible dans son geste, et non plus seulement dans son résultat."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Reproche fait à Stéphane (manquer de recul réflexif) immédiatement retourné sur soi : transfert métacognitif explicite."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Élévation de la pause réflexive au rang de compétence à enseigner aux futurs cartographes : conceptualisation de la métacognition."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Méta-réflexion sur le geste d'écriture : observer sa propre tendance à décrire le quoi plutôt que le pourquoi."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que ce ne sont que des constats d'auto-amélioration, pas de la métacognition au sens strict. La pièce 3 pourrait n'être qu'une résolution d'écriture ; la pièce 2 pourrait n'être qu'une intention pédagogique. La pièce 1, en revanche, résiste fortement : c'est un cas d'école de transfert métacognitif, marqueur listé explicitement dans la fiche comme signal puissant — reprocher à un pair un travers puis s'apercevoir qu'on fait pareil. La pièce 2 résiste plus modestement : nommer une compétence à enseigner suppose d'avoir préalablement identifié son objet, ici la pause réflexive. La pièce 3 résiste aussi : elle observe son propre geste d'écriture en cours et le redéfinit, ce qui dépasse le bilan.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Transfert métacognitif explicite : le travers reproché à autrui est aussitôt reconnu chez soi, exactement la trace oblique listée par la fiche." },
+            { "pieceId": 2, "motifResistance": "La pause réflexive est conceptualisée comme compétence transmissible, ce qui suppose une observation préalable de sa propre absence ou présence chez soi." },
+            { "pieceId": 3, "motifResistance": "Observation en temps réel de sa propre stratégie d'écriture, avec décision corrective sur le processus lui-même." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande maintenant si je n'ai pas halluciné la portée de ces pièces. La pièce 1 pourrait être un retournement spectaculaire mais court — l'apprenant nomme le travers chez l'autre, le voit chez lui, mais ne déploie pas l'observation. La pièce 2 pourrait être une déclaration d'intention pédagogique sans véritable retour sur soi. La pièce 3 pourrait confondre métacognition et amélioration stylistique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'attaque d'insuffisance probatoire ne tient pas : le passage est explicite, daté ('depuis quelques jours'), et nomme précisément le travers transféré."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'élévation au rang de compétence à enseigner est un mouvement-vers la conceptualisation plutôt qu'une métacognition pleinement déployée ici, mais elle prolonge directement la pièce 1."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le glissement entre observation de soi-écrivant et résolution stylistique est mince ; la pièce reste cependant en prise sur le processus cognitif, pas seulement sur le résultat."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir des bilans plutôt qu'une observation de soi-pensant. Ce qui m'a forcé à reconnaître une métacognition active, c'est avant tout le transfert depuis le reproche fait à Stéphane vers la reconnaissance de la même tendance chez soi — un cas presque modèle de la trace oblique décrite dans la fiche. Les deux autres pièces sont sorties affaiblies de l'examen sans tomber : l'une porte la conceptualisation pédagogique de la pause réflexive, l'autre observe en temps réel une stratégie d'écriture. Pour cette feuille, le travail montre une métacognition lisible, ancrée dans un geste de retournement, et qui commence à se prolonger en intention de transmission. La trace est solide pour la feuille du jour.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.8,
+        "motif": "Le transfert métacognitif de la pièce 1 a tenu pleinement ; les deux autres pièces, affaiblies, restent cohérentes avec le geste central.",
+        "prescription": "Pour prolonger cette observation de soi-pensant, un chemin possible serait de tenir, sur quelques jours, une ligne séparée par feuille intitulée 'ce que je n'arrive pas à voir pendant que je fais', distincte de la description des actions. Le pattern qui apparaîtra sur la durée rendrait visible la dynamique propre à cette pause réflexive que l'apprenant cherche déjà à transmettre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Articulation 'l'un aide à mieux comprendre l'autre' entre intelligence humaine et IA : amorce d'une boucle entre deux systèmes."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Identification d'un manquant — le groupe et les aléas — comme levier non encore intégré dans son dispositif IA actuel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la pensée systémique n'est pas attestée, parce que la fiche est exigeante : il faut nommer quels liens, dans quelle direction, avec quels effets. La pièce 1 résiste partiellement : 'l'un aide à mieux comprendre l'autre' suggère une boucle bidirectionnelle entre humain et IA, sans en détailler le mécanisme. La pièce 2 résiste mieux : elle identifie un point de levier manquant dans un dispositif (les aléas humains en synergie) et nomme ce que son introduction changerait — une forme d'intelligence collective.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Amorce d'une boucle bidirectionnelle entre deux types d'intelligences, énoncée comme principe structurant et non comme constat de connexion vague." },
+            { "pieceId": 2, "motifResistance": "Identification précise d'un point de levier manquant (groupe, aléas humains) et de l'effet attendu (intelligence collective en synergie)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surinterprété la pièce 1 en y lisant une modélisation alors qu'il s'agit d'un slogan. Et si la pièce 2 ne nomme pas plutôt un manque émotionnel (le groupe) qu'un mécanisme systémique. Mais la pièce 2 articule bien un effet — recréer une forme d'intelligence collective — à partir d'un levier identifié, ce qui dépasse le constat.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La formulation reste de l'ordre du principe énoncé sans description du mécanisme : on ne sait pas comment l'un aide à comprendre l'autre, ni quels effets de cascade en découlent."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce nomme un levier et un effet, mais sans détailler le mécanisme — l'analyse systémique reste à l'état d'esquisse."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir des constats là où il pourrait y avoir des modélisations. La pièce 1 n'a pas tenu : elle énonce un principe sans préciser le mécanisme. La pièce 2 a résisté en partie, parce qu'elle identifie un point de levier et l'effet attendu, ce qui est exactement le critère discriminant de la fiche. Pour cette feuille, le travail montre l'amorce d'une analyse systémique — penser en termes de leviers manquants — sans encore déployer la modélisation des effets en cascade. La trace existe sous forme d'esquisse, ce qui appelle à un verdict mesuré.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Seule la pièce 2 a survécu, affaiblie ; l'analyse systémique reste à l'état de levier nommé sans modélisation des effets en cascade.",
+        "prescription": "Pour rendre cette amorce systémique plus tenue, un chemin possible serait d'écrire, à propos de l'absence des aléas humains, le scénario en quelques étapes : par quel mécanisme l'introduction d'un groupe humain modifierait la trajectoire d'une session IA, quelle boucle s'ouvrirait, quel effet de second ordre apparaîtrait. La modélisation rendrait lisible ce que l'intuition saisit déjà."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Identification d'une production erronée de l'IA et explicitation que la source publiée ne dit pas la même chose que la source primaire : compréhension du décalage entre données d'entraînement et savoir source."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la littératie IA n'est pas attestée : une simple correction factuelle ne suffit pas à montrer une compréhension causale du pourquoi l'IA échoue. La pièce résiste cependant légèrement : l'apprenant comprend implicitement que l'IA a probablement appris la version publique (42) sans accéder à la version interne (64), ce qui est un raisonnement causal sur la provenance des données du modèle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification implicite d'un mécanisme — l'IA reproduit la version publiée parce qu'elle n'a pas accès aux sources primaires non publiées." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé cette pièce d'une intention qu'elle ne porte pas vraiment. L'apprenant rectifie un chiffre sans expliciter le mécanisme par lequel l'IA s'est trompée. La causalité du 'pourquoi' n'est pas posée — elle est seulement présupposable.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Surinterprétation pédagogique : la pièce rectifie le chiffre sans expliquer le mécanisme d'apprentissage du modèle ; le raisonnement causal est de mon fait, pas du texte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une littératie IA dans une simple correction. La pièce n'a pas tenu sous l'examen de surinterprétation : le texte rectifie sans expliciter pourquoi l'IA s'est trompée, et c'est précisément cette explicitation que la fiche exige. Pour cette feuille, le travail ne déploie pas le diagnostic mécaniste qui caractérise cette compétence. La trace n'est pas établie ici, ce qui n'enlève rien à la possibilité qu'elle apparaisse ailleurs dans le portfolio.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce a été disqualifiée au temps 2 : la correction factuelle n'expose pas le mécanisme par lequel l'IA s'est trompée.",
+        "prescription": "Pour ouvrir la littératie IA sur cette feuille-là, un chemin possible serait d'ajouter, lors d'une prochaine rectification d'une production de l'IA, une phrase qui dit pourquoi l'IA s'est probablement trompée : quelle donnée d'entraînement elle a vue, laquelle elle n'a pas vue, pourquoi cette asymétrie était prévisible."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Référence à une nouvelle structure des parcours de formation pour les Tuteurs Respire avec rôles différenciés et niveaux (Grand Maître) : architecture organisationnelle hybride."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Mention de l'architecture G-Blaster et de la méta-heuristique Friends Algorithm comme antécédents architecturaux d'un système multi-agents."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Projet de prompt système destiné à compléter ou remplacer le protocole CATALYST : conception d'un composant dans un système plus large."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que l'architecture de systèmes IA n'est pas attestée : il faut, selon la fiche, qu'un autre puisse comprendre et maintenir le système, ce qui exige des descriptions de composants, connexions et rôles. La pièce 1 résiste : elle renvoie à un artefact externe qui formalise un parcours avec rôles (Grand Maître, Praticien, Tuteur) et une dualité IA/humain, ce qui est une description architecturale. La pièce 2 résiste : l'apprenant nomme une architecture passée (G-Blaster) et son extension (Friends Algorithm), avec liens vers documents techniques. La pièce 3 résiste plus faiblement : c'est un projet de composant (un prompt système) dans un système existant (CATALYST), mais sans description fine du flux.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Référence explicite à un artefact externe formalisant un parcours avec rôles, niveaux et dualité IA/humain." },
+            { "pieceId": 2, "motifResistance": "Convocation d'une architecture nommée et documentée, dont l'apprenant assume la paternité et la filiation." },
+            { "pieceId": 3, "motifResistance": "Projet d'un composant prompt-système conçu pour s'articuler à un protocole existant (CATALYST)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si l'architecture est vraiment décrite dans cette feuille, ou seulement référencée. La pièce 1 renvoie à un artefact externe, mais le texte du jour n'en décrit ni les composants ni les flux. La pièce 2 cite une architecture mais ne la déploie pas. La pièce 3 reste au stade du projet.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La description architecturale est dans l'artefact lié, pas dans cette feuille ; la mention de niveaux et de dualité IA/humain reste un indice d'une pensée architecturale active."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le récit fait davantage référence à une architecture qu'il ne la déploie ici, mais l'apprenant en assume la paternité technique et la filiation conceptuelle."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le 'je vais peut-être essayer' positionne la pièce comme intention, pas comme conception déployée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir des références plutôt que des architectures déployées. Ce qui m'a forcé à reconnaître une trace, c'est la conjonction de deux pièces affaiblies : un artefact externe formalisé sur la structure des parcours, et la convocation explicite d'une architecture computationnelle dont l'apprenant assume la paternité. Le projet CATALYST n'a pas tenu, restant trop intentionnel. Pour cette feuille, le travail montre une pensée architecturale présente en arrière-plan, accompagnée de références à des dispositifs déjà conçus, mais sans déploiement fin des composants et flux dans le texte du jour lui-même.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Deux pièces affaiblies mais convergentes : une référence à un artefact externe architectural et la convocation d'une généalogie d'architectures dont l'apprenant assume la paternité.",
+        "prescription": "Pour rendre cette architecture lisible dans le journal lui-même, un chemin possible serait de consacrer un paragraphe au schéma des rôles du nouveau dispositif — qui produit quoi, qui supervise qui, quels flux passent par où — sans renvoyer à l'artefact externe. La description en propres mots ferait apparaître les hypothèses architecturales que la référence externe laisse implicites."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Projet d'un nouveau prompt système conçu pour challenger ses idées, en référence explicite à un protocole nommé (CATALYST) : méta-prompting orienté contradiction."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que le dialogue IA avancé n'est pas attesté : un projet de prompt n'est pas un prompt. La pièce résiste cependant : elle nomme un protocole existant (CATALYST), formule une intention claire (challenger ses idées via l'IA), et inscrit le projet dans une généalogie de prompts orchestrés. C'est un indice de sophistication réflexive sur la formulation, même sans dispositif déployé ici.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Conscience explicite que le prompt peut être instrumenté pour mettre en débat ses propres idées, avec référence à un protocole nommé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas halluciné la portée. L'apprenant nomme un projet ('crafter un nouveau prompt système') sans en montrer la structure. Aucun prompt n'est ici écrit, aucune itération n'est analysée. Le geste reste au stade du projet.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : l'apprenant projette un dispositif sans le décrire, mais la fonction de challenge des idées est articulée et inscrit dans une lignée nommée (CATALYST)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un projet flou plutôt qu'un dialogue IA avancé. Ce qui m'a forcé à reconnaître une trace, c'est la conscience explicite que le prompt système peut servir à challenger ses propres idées, ainsi que la référence à un protocole déjà nommé. La pièce ne tient cependant qu'affaiblie : aucun dispositif n'est déployé dans cette feuille. Pour cette feuille, le travail montre une intention située de méta-prompting, pas son exercice attesté. La trace mérite un verdict mesuré.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une seule pièce affaiblie : le dispositif est projeté et nommé en référence à un protocole existant, sans être déployé dans cette feuille.",
+        "prescription": "Pour faire passer le projet à l'attestation, un chemin possible serait de rédiger, le jour où ce nouveau prompt sera tenté, une trace en deux temps : la formulation initiale du prompt, puis une note sur ce que sa première utilisation a produit comme déplacement. La compétence se rendrait visible dans le passage entre intention et expérimentation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Récit d'une méta-heuristique algorithmique (Friends Algorithm) appliquée à une question non purement informatique : la guilde des spécialistes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la pensée computationnelle n'est pas attestée dans cette feuille, parce que la fiche exige un transfert hors de l'informatique. La pièce résiste : l'apprenant raconte une méta-heuristique (Friends Algorithm) qui formalise une intuition socio-cognitive (la guilde plus forte que l'individu) — c'est précisément un transfert, en sens inverse, entre un domaine social et une structure algorithmique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La méta-heuristique nommée n'est pas un algorithme purement technique : elle encode une intuition sur le collectif humain, ce qui correspond au critère de transfert." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu paternité d'un algorithme et transfert computationnel actuel. La pièce parle d'un travail ancien — la pensée computationnelle a-t-elle été mobilisée dans cette feuille du jour, ou seulement remémorée ? La fiche demande un transfert exercé, pas un transfert raconté.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif partiel : l'apprenant raconte avoir produit un transfert plutôt qu'il ne le rejoue ici ; le récit reste cependant adossé à des productions vérifiables et liées."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une remémoration plutôt qu'un transfert exercé. Ce qui m'a forcé à reconnaître une trace, c'est que la méta-heuristique citée formalise une intuition non-technique (le collectif humain plus fort que l'individu) en structure algorithmique — exactement le critère discriminant de la fiche. La pièce reste affaiblie parce qu'elle s'appuie sur un travail passé plutôt que sur un transfert rejoué dans la feuille du jour. Pour cette feuille, le travail montre une lignée computationnelle revendiquée et mobilisée pour éclairer un projet présent, sans déployer ici-même un nouveau transfert.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La pièce, affaiblie sous l'examen de récit performatif, atteste d'une filiation computationnelle invoquée plutôt que d'un transfert rejoué dans la feuille.",
+        "prescription": "Pour donner à voir un transfert computationnel actuel, un chemin possible serait d'écrire, à propos d'une situation non technique récente, le pseudo-code ou l'arbre de décision qui en représenterait la logique — par exemple le routage entre intuition et vérification, ou la condition d'arrêt d'une pause réflexive."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Articulation de la dualité IA/humain comme fondement d'un parcours de formation, avec l'idée que l'un éclaire l'autre."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Identification de ce que l'IA ne procure pas (groupe, aléas humains) comme manque structurel à pallier par la synergie."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Projet d'un prompt système pensé pour recréer une forme d'intelligence collective humain/IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la synergie n'est pas attestée : il faut, selon la fiche, articuler explicitement ce qu'on garde et pourquoi l'humain le fait mieux, ou pourquoi cette tâche revient à l'IA. La pièce 1 résiste : la dualité n'est pas seulement nommée, elle est posée comme condition de la 'vision d'ensemble' à atteindre. La pièce 2 résiste fortement : elle nomme précisément ce qui manque côté IA (aléas humains en synergie), ce qui est le pivot de la trace oblique listée dans la fiche ('ce que l'IA ne peut pas voir'). La pièce 3 résiste plus faiblement : c'est un projet, mais sa finalité — recréer une intelligence collective hybride — articule la complémentarité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La dualité IA/humain est posée comme principe structurant de l'apprentissage, pas comme simple usage." },
+            { "pieceId": 2, "motifResistance": "Identification précise de ce que l'IA ne porte pas (aléas, conscience collective humaine), exactement la trace oblique listée." },
+            { "pieceId": 3, "motifResistance": "Projet d'un dispositif où la finalité même est de recréer une synergie humain/IA." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas halluciné la portée. La pièce 1 pourrait être un slogan de programme. La pièce 3 est un projet, donc une intention. La pièce 2, en revanche, fait précisément ce que la fiche demande : elle articule les forces comparatives en pointant ce qui manque au côté IA et ce que seule la conscience humaine en synergie apporte.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif partiel : la dualité est nommée comme principe sans détailler la répartition, mais l'idée de complémentarité comme condition de la 'vision d'ensemble' dépasse le simple slogan."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'identification du manquant côté IA (groupe, aléas humains) et de ce que la conscience humaine apporte à la synergie est précisément le geste discriminant exigé par la fiche."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : le dispositif n'est pas déployé, mais sa finalité — recréer une synergie humain/IA — articule explicitement la complémentarité."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un usage plutôt qu'une synergie articulée. Ce qui m'a forcé à reconnaître une trace solide, c'est la pièce 2 : nommer précisément ce que l'IA ne procure pas — le groupe, les aléas humains en synergie — et le poser comme un manque à pallier, c'est exactement la trace oblique listée dans la fiche. Les deux autres pièces, affaiblies, restent cohérentes avec le geste central. Pour cette feuille, le travail montre une articulation explicite des forces comparatives, ancrée dans un récit historique et tournée vers un projet hybride. La trace est solide.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.8,
+        "motif": "La pièce 2 a tenu pleinement : elle articule ce que l'IA ne porte pas et ce que seule la conscience humaine en synergie apporte ; les pièces 1 et 3 corroborent.",
+        "prescription": "Pour prolonger cette articulation, un chemin possible serait de tenir, sur quelques sessions de travail avec l'IA, un tableau à deux colonnes 'ce que l'IA a fait mieux / ce que l'humain a fait mieux' avec, en troisième colonne, l'effet observé de la complémentarité. Le tableau rendrait visible, dans la durée, la dynamique de répartition que la feuille esquisse déjà avec netteté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 4,
+    "nonEtablies": 1,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle se manifeste comme un mouvement d'aller-retour entre un projet de dispositif (le parcours de formation des Tuteurs Respire) et l'histoire des architectures qui le rendent pensable. Le travail se déploie dans un registre où la dualité intelligence humaine / intelligence artificielle ne se contente pas d'être nommée : elle structure la manière dont l'apprenant écrit, corrige, conçoit et se reprend. On reconnaît, dans la même feuille, un geste de transfert métacognitif explicite (le travers reproché à autrui aussitôt retourné sur soi) et une généalogie computationnelle invoquée pour éclairer un manque dans le présent.",
+    "territoiresDenses": [
+      {
+        "competence": "Métacognition & humilité épistémique",
+        "description": "Observation du processus cognitif lui-même, notamment via un transfert depuis le reproche fait à un pair vers la reconnaissance du même travers chez soi.",
+        "extraitVerbatim": "J'ai reproché à Stéphane d'être focalisé sur son journal de bord et donc la description de ce qu'il faisait sans prendre le recul nécessaire pour pouvoir observer ses réflexions profondes [...] Et moi, depuis quelques jours, je fais pareil.",
+        "ceQueCaDit": "Le travail montre une métacognition active, ancrée dans un retournement lisible et qui se prolonge en intention de transmission (la pause réflexive comme compétence à enseigner aux futurs cartographes)."
+      },
+      {
+        "competence": "Synergie & coordination hybride",
+        "description": "Articulation explicite de la complémentarité humain/IA, en nommant ce que la conscience humaine en synergie apporte que l'IA seule ne procure pas.",
+        "extraitVerbatim": "Ce qui me manque, c'est donc le groupe et les aléas qui sont générés par les consciences humaines en synergie.",
+        "ceQueCaDit": "Le travail montre une pensée des forces comparatives — pas un usage de l'IA, mais une réflexion sur ce qui revient à chaque côté de la coopération."
+      },
+      {
+        "competence": "Synthèse intégrative",
+        "description": "Croisement entre une généalogie algorithmique personnelle (1992, 1995, 2011) et un projet présent, faisant émerger un diagnostic — ce qui manque — absent des sources isolées.",
+        "extraitVerbatim": "C'est une intuition que j'ai eu en 1992 lorsque Friha Lamia m'a présenté les prémisses de ce qui allait donner plus tard naissance à l'ACO avec les algorithmes génétiques.",
+        "ceQueCaDit": "Le travail montre une synthèse productive : trois moments espacés de plusieurs décennies se rassemblent pour faire apparaître ce qui manque au dispositif actuel."
+      },
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Recadrage en deux temps du problème d'écriture : d'abord poser que le pourquoi prime, puis réintégrer la contrainte du lecteur non spécialiste.",
+        "extraitVerbatim": "C'est la même chose que je dois faire ici : expliciter le pourquoi est plus important que décrire le quoi. Ceci dit, pour le lecteur n'ayant pas consacré sa vie à réfléchir à ces questions, l'un sans l'autre est incompréhensible.",
+        "ceQueCaDit": "Le travail montre un cadrage situé : la question initiale est aussitôt redéfinie pour intégrer le destinataire, ce qui dépasse l'emprunt rhétorique."
+      },
+      {
+        "competence": "Architecture de systèmes IA",
+        "description": "Pensée architecturale présente en arrière-plan, adossée à un artefact externe de structuration des parcours et à une généalogie de dispositifs nommés et liés.",
+        "extraitVerbatim": "voilà la nouvelle structure des parcours de formation pour les Tuteurs Respire (équivalent HEP)",
+        "ceQueCaDit": "Le travail montre une pensée architecturale tournée vers l'organisation des rôles et des niveaux, sans encore en déployer les composants et les flux dans le journal lui-même."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à explorer dans cette feuille, sans que leur absence ne signale autre chose qu'un choix d'angle pour ce jour-là. La littératie IA, telle que la fiche la définit, demande l'explicitation du mécanisme par lequel l'IA échoue ; la correction du chiffre des fonctions cognitives reste, ici, du côté du résultat. La pensée systémique apparaît en amorce — un levier manquant nommé — sans encore déployer les effets en cascade. La pensée critique anti-hallucination existe sous la forme d'une rectification ponctuelle et d'une intention de mise en débat. Le dialogue IA avancé est projeté plutôt qu'exercé, en référence à un protocole nommé (CATALYST) dont le successeur reste à crafter.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle dans cette feuille. La première est une habitude de la généalogie : presque chaque idée présente est rattachée à une autre, plus ancienne, datée, parfois liée à un document. La deuxième est l'usage constant de l'IA comme miroir et comme outil de pensée — un acteur dont la production est corrigée, dont les manques sont nommés, dont les dispositifs sont conçus pour faire mieux que ce qu'ils font. La troisième est un mouvement de transmission qui imprègne le récit : ce que l'apprenant observe chez lui devient aussitôt matière à enseigner — la pause réflexive, l'architecture des parcours, la synergie humain/IA.",
+    "pistes": [
+      "Pour rendre la métacognition encore plus lisible, un chemin possible serait de tenir une ligne séparée 'ce que je n'arrive pas à voir pendant que je fais' distincte de la description des actions, sur plusieurs jours consécutifs.",
+      "Pour donner à voir la pensée systémique au-delà de l'amorce, un chemin possible serait de modéliser explicitement le scénario d'introduction des aléas humains dans le dispositif IA — quelle boucle, quel effet de second ordre, quelle bascule.",
+      "Pour faire passer le dialogue IA avancé de l'intention à l'attestation, un chemin possible serait de rédiger, le jour où le successeur de CATALYST sera tenté, une note en deux temps : la formulation initiale du prompt, puis ce que sa première utilisation a produit comme déplacement.",
+      "Pour rendre l'architecture lisible dans le journal lui-même, un chemin possible serait de consacrer un paragraphe au schéma des rôles du nouveau dispositif — qui produit quoi, qui supervise qui, quels flux passent par où — sans renvoyer à l'artefact externe.",
+      "Pour ouvrir la littératie IA sur une prochaine rectification, un chemin possible serait d'ajouter une phrase qui dit pourquoi l'IA s'est probablement trompée : quelle donnée d'entraînement elle a vue, laquelle elle n'a pas vue, pourquoi cette asymétrie était prévisible."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle se manifeste comme un mouvement d'aller-retour entre un projet de dispositif (le parcours de formation des Tuteurs Respire) et l'histoire des architectures qui le rendent pensable. Le travail se déploie dans un registre où la dualité intelligence humaine / intelligence artificielle ne se contente pas d'être nommée : elle structure la manière dont l'apprenant écrit, corrige, conçoit et se reprend. On reconnaît, dans la même feuille, un geste de transfert métacognitif explicite — le travers reproché à autrui aussitôt retourné sur soi — et une généalogie computationnelle invoquée pour éclairer un manque dans le présent.\n\n## Territoires les plus denses\n\n**Métacognition & humilité épistémique.** Observation du processus cognitif lui-même, notamment via un transfert depuis le reproche fait à un pair vers la reconnaissance du même travers chez soi.\n\n> « J'ai reproché à Stéphane d'être focalisé sur son journal de bord et donc la description de ce qu'il faisait sans prendre le recul nécessaire pour pouvoir observer ses réflexions profondes [...] Et moi, depuis quelques jours, je fais pareil. »\n\nLe travail montre une métacognition active, ancrée dans un retournement lisible et qui se prolonge en intention de transmission — la pause réflexive comme compétence à enseigner aux futurs cartographes.\n\n**Synergie & coordination hybride.** Articulation explicite de la complémentarité humain/IA, en nommant ce que la conscience humaine en synergie apporte que l'IA seule ne procure pas.\n\n> « Ce qui me manque, c'est donc le groupe et les aléas qui sont générés par les consciences humaines en synergie. »\n\nLe travail montre une pensée des forces comparatives — pas un usage de l'IA, mais une réflexion sur ce qui revient à chaque côté de la coopération.\n\n**Synthèse intégrative.** Croisement entre une généalogie algorithmique personnelle (1992, 1995, 2011) et un projet présent, faisant émerger un diagnostic — ce qui manque — absent des sources isolées.\n\n> « C'est une intuition que j'ai eu en 1992 lorsque Friha Lamia m'a présenté les prémisses de ce qui allait donner plus tard naissance à l'ACO avec les algorithmes génétiques. »\n\nLe travail montre une synthèse productive : trois moments espacés de plusieurs décennies se rassemblent pour faire apparaître ce qui manque au dispositif actuel.\n\n**Cadrage de l'intention.** Recadrage en deux temps du problème d'écriture : d'abord poser que le pourquoi prime, puis réintégrer la contrainte du lecteur non spécialiste.\n\n> « C'est la même chose que je dois faire ici : expliciter le pourquoi est plus important que décrire le quoi. Ceci dit, pour le lecteur n'ayant pas consacré sa vie à réfléchir à ces questions, l'un sans l'autre est incompréhensible. »\n\nLe travail montre un cadrage situé : la question initiale est aussitôt redéfinie pour intégrer le destinataire, ce qui dépasse l'emprunt rhétorique.\n\n**Architecture de systèmes IA.** Pensée architecturale présente en arrière-plan, adossée à un artefact externe de structuration des parcours et à une généalogie de dispositifs nommés et liés.\n\n> « voilà la nouvelle structure des parcours de formation pour les Tuteurs Respire (équivalent HEP) »\n\nLe travail montre une pensée architecturale tournée vers l'organisation des rôles et des niveaux, sans encore en déployer les composants et les flux dans le journal lui-même.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à explorer dans cette feuille, sans que leur absence ne signale autre chose qu'un choix d'angle pour ce jour-là. La littératie IA, telle que la fiche la définit, demande l'explicitation du mécanisme par lequel l'IA échoue ; la correction du chiffre des fonctions cognitives reste, ici, du côté du résultat. La pensée systémique apparaît en amorce — un levier manquant nommé — sans encore déployer les effets en cascade. La pensée critique anti-hallucination existe sous la forme d'une rectification ponctuelle et d'une intention de mise en débat. Le dialogue IA avancé est projeté plutôt qu'exercé, en référence à un protocole nommé dont le successeur reste à crafter.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle dans cette feuille. La première est une habitude de la généalogie : presque chaque idée présente est rattachée à une autre, plus ancienne, datée, parfois liée à un document. La deuxième est l'usage constant de l'IA comme miroir et comme outil de pensée — un acteur dont la production est corrigée, dont les manques sont nommés, dont les dispositifs sont conçus pour faire mieux que ce qu'ils font. La troisième est un mouvement de transmission qui imprègne le récit : ce que l'apprenant observe chez lui devient aussitôt matière à enseigner — la pause réflexive, l'architecture des parcours, la synergie humain/IA.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre la métacognition encore plus lisible, un chemin possible serait de tenir une ligne séparée « ce que je n'arrive pas à voir pendant que je fais » distincte de la description des actions, sur plusieurs jours consécutifs.\n- Pour donner à voir la pensée systémique au-delà de l'amorce, un chemin possible serait de modéliser explicitement le scénario d'introduction des aléas humains dans le dispositif IA — quelle boucle, quel effet de second ordre, quelle bascule.\n- Pour faire passer le dialogue IA avancé de l'intention à l'attestation, un chemin possible serait de rédiger, le jour où le successeur du protocole actuel sera tenté, une note en deux temps : la formulation initiale du prompt, puis ce que sa première utilisation a produit comme déplacement.\n- Pour rendre l'architecture lisible dans le journal lui-même, un chemin possible serait de consacrer un paragraphe au schéma des rôles du nouveau dispositif — qui produit quoi, qui supervise qui, quels flux passent par où — sans renvoyer à l'artefact externe.\n- Pour ouvrir la littératie IA sur une prochaine rectification, un chemin possible serait d'ajouter une phrase qui dit pourquoi l'IA s'est probablement trompée : quelle donnée d'entraînement elle a vue, laquelle elle n'a pas vue, pourquoi cette asymétrie était prévisible."
+  }
+}

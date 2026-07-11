@@ -1,0 +1,494 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Nouvelle idée ce matin pour le prompt d'aide à la cartographie des compétences. J'ai généré une v6 que je dois maintenant relire et tester. Elle se base sur des fichiers YAML et un script Python pour générer les prompts. Il manque des exemples concrets dans les fichiers de paramétrages pour pouvoir les donner aux premiers cartographes comme base de départ.",
+      "contexte": "Conception d'un dispositif pédagogique pour les premiers cartographes ; idée d'exemples concrets en base de départ ; potentiellement 7.01 (architecture pédagogique) et 7.03 (intention de transmission)."
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Je constate, au vu du bordel qui s'accumule sur le bureau de mon macbook, que je suis vraiment en train de partir dans tous les sens : je n'ai pas terminé de revoir les références du site web [...], j'ai enchaîné avec la génération des manuels de manière précipitée avant le départ à La Ciotat ou j'ai lu tout ce que j'avais généré, puis j'ai identifié les manques, eu de nouvelles idées sympa, puis j'ai regénéré toute le parcours de formation selon mes nouvelles idées.",
+      "contexte": "Auto-observation de la dispersion : énumération concrète d'une dispersion entre plusieurs chantiers ; potentiellement 7.06 (efficacité personnelle) sous forme d'inverse révélateur."
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Je n'ai pas pris le temps de revoir la mise en page et de relire, que déjà je comble les lacunes. J'ajoute les chapitres de bootstrap, mais je ne fini pas la fusion des chapitres. Je met en page un des 6 manuels et je ne traite pas les autres car je vois les manques.",
+      "contexte": "Description fine d'un pattern de non-clôture : marqueur d'absence de priorisation, donc potentiellement 7.06 en creux."
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Hélas je n'avais jamais fait le travail à la main. Je crée les outils (scripts Google) pour pouvoir lancer mettre au point mes prompts. 6 versions et je commence à avoir un truc bien pour pouvoir générer pour la deuxième fois le chapitre de formation des Cartographes. Mais je n'ai pas encore testé les 6 versions moi même (je n'ai fait que les simuler).",
+      "contexte": "Travail en versions successives (v1 à v6) avec cycle générer-relire-tester-ajuster : potentiellement 7.07 (agilité)."
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Arg… Je diverge encore. Je retrouve sur un de mes bureaux virtuel un travail en cours que j'avais dû interrompre et qui devient critique maintenant que je conçois les fichiers YAML : c'est le référentiel des compétences RESPIRE. Je suis passé de 400 compétences à 48, mais relisant ce qui a été supprimé, j'ai demandé à Claude de réfléchir comment en ré-intégrer certaines. Je ne voulais pas faire trop long. La nouvelle version a été stabilisée à 60 compétences.",
+      "contexte": "Reprise d'un travail antérieur devenu critique, ajustement du plan en cours de route avec stabilisation à 60 compétences : potentiellement 7.07 (ajustement de plan)."
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Mais je n'ai pas encore testé les 6 versions moi même (je n'ai fait que les simuler). Il faut donc que consolide tout ça, que je ferme quelques onglets, que j'intègre les fichiers markdown ouverts dans les manuels.",
+      "contexte": "Liste d'actions à mener pour consolider : forme rudimentaire de priorisation et de planification de la suite, potentiellement 7.06."
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Si j'avais été un peu plus méticuleux dans mon processus de création, j'aurais pu éviter de faire ce travail deux fois.",
+      "contexte": "Constat sur le processus de création (méticulosité manquante) : potentiel pour 7.06 (méta-leçon sur le pilotage personnel)."
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Je vais tenter d'en faire générer quelques-uns sur la base de nos deux portfolios.",
+      "contexte": "Mention d'une délégation à l'IA d'une partie du travail (générer des exemples à partir des portfolios) : potentiellement 7.04 (leadership situationnel)."
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un dispositif d'apprentissage pour les premiers cartographes : prompt + YAML + exemples comme base de départ — forme potentielle d'architecture pédagogique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la maïeutique et la facilitation d'apprentissage ne sont pas attestées. La fiche distingue deux dimensions : la méthode (questionner pour faire accoucher) et l'architecture (concevoir l'environnement). Ici, l'apprenant conçoit clairement un dispositif d'apprentissage — un prompt accompagné d'exemples concrets pour aider les premiers cartographes à entrer dans la pratique. Cela touche la dimension architecturale. Mais la fiche est exigeante : il faut une attention à la mise en situation plutôt qu'à l'instruction frontale, et idéalement la conscience du destinataire comme source de savoir. Or, le prompt en question est un outil qui produit des évaluations — il n'apprend pas aux cartographes à cartographier, il fait le travail à leur place. Ce qui résiste néanmoins : la pensée explicite aux destinataires (cartographes débutants) et au besoin d'exemples concrets pour démarrer. Ce qui reste explicitement faible : aucun questionnement maïeutique, aucune retenue délibérée, aucune mise en situation où le cartographe construirait son savoir.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La pensée explicite aux destinataires et au besoin d'une base de départ qui leur permette de pratiquer touche la dimension architecturale de la facilitation."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas habillé une bonne intention pédagogique du nom de facilitation. La fiche distingue précisément la facilitation d'apprentissage (architecturer un environnement où l'autre apprend) de la fourniture d'un outil prêt-à-l'emploi. Ici, le prompt fait le travail d'évaluation lui-même ; les exemples sont des sorties prêtes à consommer, pas des dispositifs pédagogiques. La fiche met précisément en garde contre 'j'ai expliqué' (transmission descendante) et 'j'ai aidé' (faire à la place). L'attaque (d) de glissement lexical est nette : architecturer un outil ≠ architecturer un environnement d'apprentissage. L'attaque (g) de mouvement-vers est juste : il y a une intention pédagogique en germe (donner des exemples pour démarrer), mais sans mise en situation.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Concevoir un outil qui produit une évaluation pour le cartographe n'est pas concevoir un environnement où le cartographe apprend à évaluer ; le dispositif ici fait, plutôt qu'il ne fait apprendre."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la maïeutique et la facilitation d'apprentissage en m'appuyant sur la distinction critique de la fiche entre faire et faire apprendre. La présomption d'absence a laissé résister la pensée aux destinataires, mais sous présomption de sycophantie cette pièce est tombée : le dispositif fabriqué fait le travail d'évaluation, il ne pose pas les conditions de l'apprentissage. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la pensée d'un manuel de formation des cartographes existe en arrière-plan (mentionnée en passant), et c'est ce travail-là qui pourrait porter la facilitation, si une feuille ultérieure le décrit comme une architecture pédagogique.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce qui a résisté à la présomption d'absence est tombée sous la présomption de sycophantie : un outil qui produit l'évaluation ne fait pas apprendre à évaluer.",
+        "prescription": "Une feuille pourrait décrire comment le manuel de formation des cartographes est construit comme architecture pédagogique — quelle mise en situation, quel questionnement, quelle retenue. Une variante consisterait à raconter un échange où l'apprenant a choisi de poser une question plutôt que de donner la réponse."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Travail sur un prompt qui produira des évaluations transformatives sur des portfolios : conception d'un dispositif évaluatif (la pièce parle de la fabrication, pas d'un acte évaluatif posé)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que l'évaluation transformative n'est pas attestée. La fiche est précise : il faut un feedback honnête et constructif, des questions adressées à un évalué, un dispositif qui nomme ce qui fonctionne ET ouvre des pistes concrètes. Ici, l'apprenant fabrique l'outil qui produira ce type d'évaluation, mais aucun acte évaluatif n'est posé sur cette feuille — ni grille critériée appliquée à une production, ni feedback formulé à quelqu'un. La pièce parle du méta-niveau (concevoir l'outil d'évaluation) sans descendre au niveau de l'acte évaluatif. Ce qui reste explicitement faible : aucune trace d'un feedback réel donné à un évalué, aucune utilisation de l'erreur comme matériau pédagogique racontée comme telle.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber la seule pièce. Concevoir un dispositif d'évaluation futur n'est pas évaluer ; l'attaque (d) de glissement lexical absorberait sans difficulté la pièce si elle avait été retenue.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier l'évaluation transformative parce que tout le travail est au méta-niveau de la fabrication du dispositif évaluatif, sans qu'un acte évaluatif soit posé. La présomption d'absence a tenu seule. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la conception elle-même — un prompt qui devrait produire des évaluations qui ne sont ni des verdicts ni des compliments vides — manifeste implicitement une intention transformative, qui mériterait d'être articulée explicitement dans une feuille décrivant les critères du dispositif.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La présomption d'absence a tenu seule : aucun acte évaluatif n'est posé sur la feuille, seule la fabrication du dispositif futur est racontée.",
+        "prescription": "Une feuille pourrait poser un acte évaluatif concret — un feedback adressé à une production, un retour structuré sur un travail — et décrire les critères articulés qui le guident. Une variante consisterait à raconter le moment où l'apprenant a choisi de poser une question plutôt que de noter."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception de fichiers YAML de paramétrage et de scripts Python pour générer les prompts : artefacts structurés destinés à être réutilisés par autrui."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Versionnage explicite (v6) et création d'outils pour mettre au point les prompts : forme de capitalisation outillée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la documentation vivante n'est pas attestée. La fiche est exigeante : il faut une attention délibérée à la structuration de l'information pour autrui, une conscience du destinataire, une intention de pérennisation. La fiche mentionne explicitement le versioning (v1, v2...) comme manifestation, et c'est précisément ce qui est présent ici (v6). La conception de fichiers YAML de paramétrage est aussi un acte de capitalisation : séparer ce qui est paramètre de ce qui est mécanique, c'est rendre l'outil reprenable. Ce qui résiste : le versioning est explicite, la séparation paramètre/mécanique est posée, l'intention de transmettre aux cartographes (avec exemples de départ) est nommée. Ce qui reste explicitement faible : on n'a pas, sur cette feuille, de description d'un README, d'un changelog, d'une structuration explicite de la doc — les artefacts décrits sont surtout fonctionnels, leur dimension documentaire reste implicite.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La séparation paramètre/mécanique via YAML rend l'outil reprenable et structuré pour un futur usage, ce qui est une trace de capitalisation."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le versioning explicite v6 correspond exactement à une manifestation listée par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas confondu un système technique avec de la documentation vivante. La fiche distingue précisément l'acte technique (« j'ai sauvegardé », « j'ai archivé ») de la structuration intentionnelle pour autrui. Ici, le versioning v6 est mentionné en passant, sans description du changelog ni de l'historique d'évolution. Les YAML sont des fichiers de configuration plus que de la documentation au sens où la fiche l'entend (titres, sections, choix de ce qui reste/ce qui est déplacé). L'attaque (d) de glissement lexical est défendable : versionner du code n'est pas documenter, structurer un YAML n'est pas écrire pour un futur lecteur. L'attaque (a) d'insuffisance probatoire vaut aussi : il faudrait voir les artefacts eux-mêmes pour juger de leur qualité documentaire, et la feuille ne les décrit pas. Les pièces s'affaiblissent fortement sans tomber complètement, car l'intention de transmission aux cartographes est explicite.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La séparation paramètre/mécanique structure l'outil mais le verbatim ne décrit pas une structuration documentaire (titres, sections, README) ; la trace est plutôt technique que documentaire."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le versioning v6 est attesté mais sans description du changelog ; la trace correspond à une pratique d'itération plus qu'à une capitalisation documentaire au sens fort."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la documentation vivante en m'appuyant sur la distinction critique de la fiche entre acte technique et structuration intentionnelle pour autrui. Ce qui m'a forcé à reconnaître des traces, c'est le versioning explicite (v6) — manifestation directe listée par la fiche — et la séparation paramètre/mécanique via YAML qui rend l'outil reprenable. Sous présomption de sycophantie, les deux pièces se sont affaiblies : versionner et structurer un fichier technique ne sont pas en soi documenter. Il en résulte un renvoi au cartographe sur cette feuille : la pratique outille la transmission sans la formaliser comme documentation. La nuance qui reste : l'intention de fournir des exemples concrets aux premiers cartographes — donc d'écrire pour un futur lecteur — est explicite, et c'est exactement le germe d'une documentation vivante en gestation.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Les deux pièces ont résisté à la présomption d'absence puis se sont affaiblies sous la présomption de sycophantie : la pratique technique outille la transmission sans qu'une structuration documentaire pour autrui soit explicitement décrite.",
+        "prescription": "Une feuille pourrait décrire le README, le changelog ou la structure documentaire qui accompagne le système de prompts — quelle organisation pour quel futur lecteur. Une variante consisterait à expliciter, dans une note jointe au YAML, comment un autre cartographe doit le lire et le modifier."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "« Je vais tenter d'en faire générer quelques-uns sur la base de nos deux portfolios » : délégation explicite à l'IA d'une partie du travail de génération d'exemples."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Demande à Claude de réfléchir comment réintégrer certaines compétences supprimées : forme de répartition du travail entre humain et IA dans le cycle de décision."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que le leadership situationnel n'est pas attesté. La fiche est exigeante : il faut une alternance délibérée entre direction et retrait, des choix explicites de laisser l'IA mener puis de reprendre, avec déclencheur identifiable. Ici, le pid 8 décrit une délégation simple (faire générer des exemples par l'IA), sans critère de bascule explicite ni description du moment où l'apprenant reprendra la main. Le pid 5 est plus riche : il décrit un moment où l'apprenant cède le lead à Claude (lui demander de réfléchir à la réintégration) puis reprend la décision (« la nouvelle version a été stabilisée à 60 compétences »). C'est exactement le mouvement d'alternance que la fiche décrit. Ce qui résiste : la dimension de bascule entre direction et retrait est attestée pour la pièce 2. Ce qui reste explicitement faible : aucune assignation différenciée de rôles à plusieurs agents IA, aucune architecture de leadership distribué explicitée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La séquence (déléguer à Claude la réflexion sur la réintégration → reprendre la décision finale sur 60 compétences) manifeste l'alternance délibérée entre direction et retrait décrite par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu une simple consultation d'IA avec une orchestration. La fiche distingue précisément la délégation simple (« j'ai laissé l'IA faire X ») du leadership situationnel (avec critères de bascule). Ici, la séquence est attestée : céder le lead pour la réflexion, reprendre la main pour la décision. Mais le critère de bascule reste implicite — l'apprenant ne dit pas « j'ai laissé Claude réfléchir parce que..., puis j'ai repris parce que... ». L'attaque (g) de mouvement-vers est juste : la pratique est là, sa théorisation l'est moins. L'attaque (f) de récit performatif est moins forte : ce n'est pas l'apprenant qui se déclare leader, c'est la séquence des actes qui le montre. La pièce résiste avec affaiblissement.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'alternance direction-retrait est attestée mais le critère de bascule reste implicite : l'apprenant pratique le leadership situationnel sans le thématiser comme posture."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier le leadership situationnel parce que le récit est globalement celui d'un apprenant en pilotage solitaire. Ce qui m'a forcé à reconnaître une trace, c'est la séquence précise sur le référentiel : céder le lead à Claude pour la réflexion sur la réintégration, puis reprendre la main pour la décision finale (60 compétences). C'est exactement le mouvement d'alternance que la fiche décrit. Sous présomption de sycophantie, la pièce s'est affaiblie sans tomber : la pratique est là, le critère de bascule reste implicite. Il en résulte un renvoi au cartographe sur cette feuille : la posture est attestée mais sa théorisation n'est pas explicite. La nuance qui reste : la phrase finale (« c'est pas moi qui fait le boulot le plus dur ») pointe une conscience diffuse de la répartition humain-IA qui pourrait, dans une feuille ultérieure, se structurer comme conception de leadership distribué.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La pièce a résisté à la présomption d'absence et s'est affaiblie sous la présomption de sycophantie : l'alternance direction-retrait est attestée, le critère de bascule reste implicite.",
+        "prescription": "Une feuille pourrait expliciter, sur un cas précis, pourquoi l'apprenant a choisi de céder le lead à l'IA à ce moment-là et qu'est-ce qui a déclenché la reprise. Une variante consisterait à décrire l'assignation différenciée de rôles à plusieurs agents IA dans la conception du dispositif."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un dispositif (prompts, YAML, exemples) en vue d'un usage futur par les premiers cartographes : projection vers un horizon où le dispositif sera transmis."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la vision stratégique et la prospective ne sont pas attestées. La fiche est précise : il faut un lien explicite entre projection future et décision présente, un « je fais X maintenant parce que dans Y temps... ». Ici, l'apprenant conçoit pour les futurs cartographes, mais le verbatim ne déploie pas l'argumentation du futur anticipé — il dit « il manque des exemples concrets pour les donner aux premiers cartographes comme base de départ ». C'est une projection immédiate (la prochaine étape), pas une vision long-terme avec scénarios multi-horizons. Ce qui reste explicitement faible : aucune anticipation de rupture technologique, aucun scénario conditionnel, aucun horizon temporel articulé.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber la seule pièce. Penser à la prochaine étape n'est pas avoir une vision prospective.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la vision stratégique parce que le récit est dominé par l'urgence du faire et non par l'articulation d'un horizon long-terme. La présomption d'absence a tenu seule : la projection vers les premiers cartographes est de court terme. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : l'existence même d'un projet de cartographie des compétences à l'ère de l'IA suppose une vision plus large qu'on devine en arrière-plan, mais qui n'est pas formulée sur cette feuille.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La présomption d'absence a tenu seule : la projection vers les premiers cartographes est immédiate, sans articulation d'un horizon long-terme.",
+        "prescription": "Une feuille pourrait articuler à quel horizon le projet de cartographie est pensé — quel futur anticipé justifie la conception d'aujourd'hui, quelle rupture technologique est attendue, quel scénario alternatif est envisagé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Auto-observation explicite de la dispersion : énumération concrète des chantiers commencés et non clos."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Description fine du pattern de non-clôture : combler les lacunes sans finir la fusion, mettre en page un manuel et bifurquer."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Constat rétrospectif sur le défaut de méticulosité comme cause du double travail."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Liste de ce qui doit être fait pour consolider : forme rudimentaire de priorisation et de planification."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que l'efficacité personnelle n'est pas attestée. La fiche est précise : le marqueur le plus fiable est le « non » stratégique argumenté ; « je suis occupé » / « j'ai beaucoup travaillé » sont des signes d'absence de 7.06. Or, ici, le récit dominant est exactement celui-là : la dispersion, le travail dans tous les sens, la non-clôture. Ce sont des inverses de l'efficacité personnelle, pas ses manifestations. Le pid 7 (« j'aurais pu éviter de faire ce travail deux fois ») est une méta-leçon rétrospective sur la conduite du travail, ce qui correspond à la trace oblique de la fiche sur la « formalisation de techniques personnelles » — mais en mode négatif (constat de ce qui aurait dû être, pas de ce qui a été fait). Le pid 6 est une liste d'actions à faire — mais sans priorisation argumentée ni renoncement assumé. Ce qui résiste sur le mode du constat : l'apprenant nomme ses dérives, ce qui pourrait préparer un futur travail d'efficacité personnelle. Ce qui reste explicitement faible : aucun refus posé, aucune décision de ne pas faire, aucun arbitrage de priorisation argumenté.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 3,
+              "motifResistance": "Le constat rétrospectif sur la méticulosité manquante peut être lu comme une amorce de formalisation d'une règle personnelle."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas habillé un regret du nom d'efficacité personnelle. La fiche est explicite : la formalisation de techniques personnelles est une manifestation, mais elle suppose que la technique soit *posée*, pas seulement regrettée. Ici, l'apprenant dit ce qui aurait pu être évité, mais ne formule pas la règle qui empêcherait que cela se reproduise. C'est un constat post-hoc qui ne se mue pas en protocole. L'attaque (h) de faux positif tient solidement : la fiche dit que « je suis occupé / j'ai beaucoup travaillé » sont des signes d'absence ; ici, on a quelque chose de proche — l'auto-observation de la dispersion qui ne débouche pas sur un acte d'efficacité. L'attaque (g) de mouvement-vers est aussi pertinente : la lucidité sur ce qui manque est un pas vers, pas une présence.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La leçon rétrospective n'est pas formulée comme règle personnelle ou comme technique réutilisable ; la pièce reste un constat sans protocole, ce qui correspond davantage à un mouvement vers 7.06 qu'à sa manifestation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier l'efficacité personnelle en m'appuyant sur le faux positif typique que décrit la fiche : « j'ai beaucoup travaillé » et la submersion. Le récit dominant ici est précisément celui de la dispersion subie. La présomption d'absence a laissé résister le constat rétrospectif sur la méticulosité, mais sous présomption de sycophantie cette pièce est tombée : un regret n'est pas une règle. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la qualité de l'auto-observation est en elle-même remarquable — l'apprenant voit avec finesse ce qui dysfonctionne dans son pilotage, ce qui pourrait être la condition de possibilité d'une efficacité personnelle à venir. L'absence sur cette feuille est ainsi une absence éclairée plutôt qu'une absence aveugle.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La pièce qui a résisté à la présomption d'absence est tombée sous la présomption de sycophantie : le récit dominant est celui de la dispersion subie, qui correspond au faux positif typique de la fiche.",
+        "prescription": "Une feuille pourrait formuler une règle personnelle issue du pattern observé — par exemple un seuil de clôture avant de bifurquer, un rituel de fin de session, un « non » posé à une bifurcation tentante. Une variante consisterait à décrire un arbitrage de priorisation explicite avec ce qui a été délibérément abandonné."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Travail en versions successives (v1 à v6) avec cycle générer-relire-tester-ajuster explicité, et conscience de l'étape de test à venir."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Ajustement de plan en cours de route : ramener un travail antérieur (RESPIRE) devenu critique, stabiliser le référentiel à 60 compétences après allers-retours."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Mise en place d'un dispositif outillé (scripts Python, YAML) pour soutenir le cycle d'itération sur les prompts."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que l'agilité et la conduite du changement ne sont pas attestées. La fiche est précise : il faut un travail en versions successives (v1, v2, v6) avec cycle observable générer-relire-tester-ajuster, des artefacts de coordination utilisés activement, des ajustements de plan en cours de route avec raisons explicitées. Le pid 4 mentionne explicitement v6 et nomme les étapes (générer / relire / tester / simuler) — c'est précisément la trace oblique de la fiche (« numéro de version élevé sans commentaire méthodologique »). Le pid 5 raconte un ajustement de plan en cours de route (RESPIRE devenu critique → travail dessus → stabilisation à 60). Le pid 1 décrit la mise en place du dispositif outillé (scripts Google, fichiers YAML) qui soutient l'itération. Ce qui résiste : trois pièces qui activent ensemble les marqueurs principaux de la dimension agile. Ce qui reste explicitement faible : la dimension conduite du changement (anticipation des résistances, normalisation, accompagnement humain des transitions) est absente — la feuille travaille sur un dispositif, pas sur des personnes en transition.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le versionnage v6 avec cycle générer-relire-tester explicite correspond exactement à la manifestation principale listée par la fiche."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'ajustement de plan en cours de route avec ramener le référentiel RESPIRE devenu critique correspond à l'« ajustement de plan avec raisons explicitées » de la fiche."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "L'outillage dédié pour soutenir le cycle d'itération (scripts Google, YAML) correspond à la mise en place d'artefacts de coordination utilisés activement."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas confondu une succession de tentatives avec une agilité méthodique. La fiche met en garde contre le « théâtre agile » (rituels formels sans adaptation réelle). Ici, l'apprenant ne mentionne ni daily ni sprint, et c'est plutôt un point en faveur — pas de récitation managériale. Le cycle est attesté concrètement (v6, simulations avant test), l'ajustement de plan est documenté (référentiel ramené, taille stabilisée), l'outillage de soutien existe (YAML, scripts). L'attaque (g) de mouvement-vers vaut d'être posée : l'agilité est-elle théorisée comme méthode, ou pratiquée sans la nommer ? Ici, on a la pratique sans la nomination — ce qui n'est pas un défaut au sens de la fiche, qui valorise la trace oblique. L'attaque (a) d'insuffisance probatoire pourrait être posée sur le caractère « structuré » de l'adaptation : les ajustements sont décrits mais le « pourquoi cette adaptation et pas une autre » reste implicite. Les pièces tiennent globalement, avec une affaiblissement léger.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le versioning v6 et le cycle simulation/test sont décrits concrètement, pas déclarés ; il n'y a pas de théâtre agile mais une pratique itérative attestée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'ajustement (ramener RESPIRE, stabiliser à 60) est posé mais le critère de l'ajustement (« pourquoi 60 et pas 70 ») reste implicite ; la structure de l'adaptation pourrait être plus explicite."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La fabrication d'outils (scripts Google) pour soutenir l'itération est un acte concret de coordination, pas une déclaration ; l'outillage existe et est utilisé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier l'agilité méthodologique en présumant que les versions multiples étaient peut-être une succession désordonnée de tentatives. Ce qui m'a forcé à reconnaître une trace, c'est l'accumulation de plusieurs marqueurs principaux de la fiche : versioning v6 explicite avec cycle nommé (générer/relire/tester/simuler), ajustement de plan en cours de route avec ramener un travail antérieur, outillage dédié pour soutenir l'itération. Sous présomption de sycophantie, la pièce sur l'ajustement de plan s'est affaiblie (le critère reste implicite), mais les deux autres ont tenu fermement. Il en résulte une présence établie sur la dimension agile de cette compétence. La nuance qui reste : la dimension « conduite du changement » (accompagnement des transitions humaines, anticipation des résistances) n'est pas activée ici — la feuille travaille sur un dispositif, pas sur des personnes. C'est donc une présence partielle, sur la dimension méthodologique seule.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Deux pièces ont tenu sous la présomption de sycophantie : le versioning v6 avec cycle nommé et l'outillage dédié pour soutenir l'itération attestent une pratique itérative structurée.",
+        "prescription": "La dimension conduite du changement humain (anticipation des résistances, normalisation, accompagnement des transitions) reste hors champ sur cette feuille. Une feuille pourrait l'ouvrir en racontant un moment où un changement a été conduit sur des personnes — anticipation, normalisation, ressources de transition créées."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 3,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Pour ouvrir ce dossier, un récit pourrait documenter un incident géré dans l'urgence — séquence temporelle précise, décisions en cascade, erreurs incluses."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 6,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle du pilotage se déploie surtout sur sa dimension méthodologique d'itération outillée — versionnage en six passes d'un prompt, fichiers YAML de paramétrage, scripts dédiés, ajustement du plan en cours de route avec ramener un travail antérieur devenu critique. La pratique agile est attestée comme pratique, pas comme théâtre managérial : aucun mot de daily ou de sprint, des actes plutôt que des rituels nommés. Sur l'autre versant du pôle, le récit raconte au contraire une dispersion attentionnelle qui révèle l'absence d'une pratique d'efficacité personnelle aboutie : l'apprenant voit avec finesse la non-clôture, le travail dans tous les sens, le double travail, sans encore poser le « non » stratégique qui ferait pilotage. La transmission existe en germe — versionnage des prompts, intention de fournir des exemples aux cartographes — sans atteindre la structuration documentaire qui ferait franchir le seuil de la documentation vivante.",
+    "territoiresDenses": [
+      {
+        "competence": "Agilité et conduite du changement (dimension méthodologique)",
+        "description": "Plusieurs pièces activent les marqueurs principaux de la dimension agile : versionnage explicite (v6) avec cycle nommé générer-relire-tester-simuler, ajustement de plan en cours de route (référentiel RESPIRE ramené et stabilisé à 60 compétences), outillage dédié (scripts Google, fichiers YAML) pour soutenir l'itération elle-même.",
+        "extraitVerbatim": "Je crée les outils (scripts Google) pour pouvoir lancer mettre au point mes prompts. 6 versions et je commence à avoir un truc bien.",
+        "ceQueCaDit": "Le travail manifeste une agilité pratique et concrète, sans récitation du vocabulaire Scrum — l'itération est outillée, le plan s'ajuste, les versions s'enchaînent avec conscience du cycle. La dimension conduite du changement humain reste hors champ."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. La maïeutique et la facilitation d'apprentissage, l'évaluation transformative, la vision stratégique et la gestion de crise en temps réel ne reçoivent pas de matière qui franchisse le seuil. La maïeutique et l'évaluation transformative apparaissent en germe — un dispositif d'évaluation est conçu, des exemples sont projetés pour les cartographes — mais le travail reste au méta-niveau de la fabrication d'outils, sans qu'un acte évaluatif ou un questionnement maïeutique soit posé sur cette feuille. La documentation vivante est en travail sous forme frémissante : versioning et structuration YAML attestés, mais sans formalisation documentaire au sens d'un README ou d'un changelog. Le leadership situationnel apparaît dans la séquence céder-le-lead-puis-reprendre avec Claude, sans que le critère de bascule soit explicité. L'efficacité personnelle est en absence éclairée : l'apprenant voit avec acuité ce qui dysfonctionne dans son pilotage, sans encore poser la règle qui le corrigerait.",
+    "emergencesPole": "Trois fils traversent les compétences du pilotage sur cette feuille. D'abord, une asymétrie entre le pilotage des outils et le pilotage de soi : l'apprenant gère son dispositif technique avec une agilité méthodique attestée, et son propre rythme de travail avec une dispersion lucidement constatée — comme si le savoir agile s'appliquait à l'objet mais pas au sujet. Ensuite, une intention de transmission qui reste au méta-niveau : on fabrique l'outil qui produira des évaluations, on fabrique les exemples pour démarrer, on ne pose pas l'acte évaluatif ni le geste maïeutique lui-même. Enfin, une circulation entre faire et observer-le-faire qui ne débouche pas encore sur des règles personnelles formalisées — l'auto-observation est aiguë, la transformation en protocole reste à venir.",
+    "pistes": [
+      "Pour enrichir la documentation vivante, un chemin possible serait de décrire le README, le changelog ou la structure documentaire qui accompagne le système de prompts — quelle organisation pour quel futur lecteur.",
+      "Pour activer la maïeutique, un chemin possible serait de décrire un manuel de formation des cartographes comme architecture pédagogique — quelle mise en situation, quel questionnement, quelle retenue plutôt qu'instruction frontale.",
+      "Pour ouvrir l'efficacité personnelle, un chemin possible serait de formuler une règle personnelle issue du pattern de dispersion observé — un seuil de clôture, un rituel de fin de session, un « non » stratégique argumenté.",
+      "Pour expliciter le leadership situationnel, un chemin possible serait de raconter, sur le cas du référentiel ramené à 60 compétences, pourquoi le lead a été cédé à Claude à ce moment et qu'est-ce qui a déclenché la reprise."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle du pilotage se déploie surtout sur sa dimension méthodologique d'itération outillée — versionnage en six passes d'un prompt, fichiers YAML de paramétrage, scripts dédiés, ajustement du plan en cours de route avec ramener un travail antérieur devenu critique. La pratique agile est attestée comme pratique, pas comme théâtre managérial : aucun mot de daily ou de sprint, des actes plutôt que des rituels nommés. Sur l'autre versant du pôle, le récit raconte au contraire une dispersion attentionnelle qui révèle l'absence d'une pratique d'efficacité personnelle aboutie : l'apprenant voit avec finesse la non-clôture, le travail dans tous les sens, le double travail, sans encore poser le « non » stratégique qui ferait pilotage. La transmission existe en germe — versionnage des prompts, intention de fournir des exemples aux cartographes — sans atteindre la structuration documentaire qui ferait franchir le seuil de la documentation vivante.\n\n## Territoires les plus denses\n\n**Agilité et conduite du changement (dimension méthodologique).** Plusieurs pièces activent les marqueurs principaux de la dimension agile : versionnage explicite (v6) avec cycle nommé générer-relire-tester-simuler, ajustement de plan en cours de route (référentiel RESPIRE ramené et stabilisé à 60 compétences), outillage dédié (scripts Google, fichiers YAML) pour soutenir l'itération elle-même. Extrait : « Je crée les outils (scripts Google) pour pouvoir lancer mettre au point mes prompts. 6 versions et je commence à avoir un truc bien. » Le travail manifeste une agilité pratique et concrète, sans récitation du vocabulaire Scrum — l'itération est outillée, le plan s'ajuste, les versions s'enchaînent avec conscience du cycle. La dimension conduite du changement humain reste hors champ.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. La maïeutique et la facilitation d'apprentissage, l'évaluation transformative, la vision stratégique et la gestion de crise en temps réel ne reçoivent pas de matière qui franchisse le seuil. La maïeutique et l'évaluation transformative apparaissent en germe — un dispositif d'évaluation est conçu, des exemples sont projetés pour les cartographes — mais le travail reste au méta-niveau de la fabrication d'outils, sans qu'un acte évaluatif ou un questionnement maïeutique soit posé sur cette feuille. La documentation vivante est en travail sous forme frémissante : versioning et structuration YAML attestés, mais sans formalisation documentaire au sens d'un README ou d'un changelog. Le leadership situationnel apparaît dans la séquence céder-le-lead-puis-reprendre avec Claude, sans que le critère de bascule soit explicité. L'efficacité personnelle est en absence éclairée : l'apprenant voit avec acuité ce qui dysfonctionne dans son pilotage, sans encore poser la règle qui le corrigerait.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent les compétences du pilotage sur cette feuille. D'abord, une asymétrie entre le pilotage des outils et le pilotage de soi : l'apprenant gère son dispositif technique avec une agilité méthodique attestée, et son propre rythme de travail avec une dispersion lucidement constatée — comme si le savoir agile s'appliquait à l'objet mais pas au sujet. Ensuite, une intention de transmission qui reste au méta-niveau : on fabrique l'outil qui produira des évaluations, on fabrique les exemples pour démarrer, on ne pose pas l'acte évaluatif ni le geste maïeutique lui-même. Enfin, une circulation entre faire et observer-le-faire qui ne débouche pas encore sur des règles personnelles formalisées — l'auto-observation est aiguë, la transformation en protocole reste à venir.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la documentation vivante, un chemin possible serait de décrire le README, le changelog ou la structure documentaire qui accompagne le système de prompts — quelle organisation pour quel futur lecteur.\n- Pour activer la maïeutique, un chemin possible serait de décrire un manuel de formation des cartographes comme architecture pédagogique — quelle mise en situation, quel questionnement, quelle retenue plutôt qu'instruction frontale.\n- Pour ouvrir l'efficacité personnelle, un chemin possible serait de formuler une règle personnelle issue du pattern de dispersion observé — un seuil de clôture, un rituel de fin de session, un « non » stratégique argumenté.\n- Pour expliciter le leadership situationnel, un chemin possible serait de raconter, sur le cas du référentiel ramené à 60 compétences, pourquoi le lead a été cédé à Claude à ce moment et qu'est-ce qui a déclenché la reprise.\n"
+  }
+}

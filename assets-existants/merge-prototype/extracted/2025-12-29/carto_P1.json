@@ -1,0 +1,317 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "J'ai généré le support de formation complet des tuteurs. Il ne reste plus qu'à le relire et à homogénéiser sa mise en forme (les styles sont différents d'un doc à l'autre) pour vérifier que tout est ok. Le problème, c'est qu'il fait 124 pages !",
+      "contexte": "Acte de production d'un support pédagogique avec constat d'un problème opérationnel (volume + hétérogénéité de styles).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Sa durée sera de 17 semaines à raison de 2h par week-end et par semaine en moyenne – voir détail dans le syllabus",
+      "contexte": "Description du dimensionnement temporel du dispositif de formation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Je vais maintenant travailler avec Claude pour vérifier sa consistance et son alignement avec nos principes et valeurs.",
+      "contexte": "Décision d'utiliser une IA pour une tâche de vérification de cohérence interne et d'alignement axiologique du support.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "J'envisage également de confronter notre pédagogie avec le recueil de valeurs de HEP Vaud et expliciter les différences avec leur référentiel de compétences. Etant donné que ça fait un gros corpus de données, je vais utiliser Gemini.",
+      "contexte": "Choix d'un outil IA différent (Gemini) motivé par une caractéristique technique perçue (gros corpus), pour une tâche de confrontation pédagogique externe.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Voici un premier résultat avec lequel je suis parfaitement d'accord, puis un second qui pourrait servir de base pour un article, tellement il résume bien les choses.",
+      "contexte": "Évaluation des sorties IA — accord exprimé et appréciation de la qualité synthétique d'un second résultat.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant délègue à Claude la vérification de consistance et d'alignement du support — geste de contrôle externe qui peut relever du doute méthodique appliqué à sa propre production."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Acceptation d'une sortie IA (« parfaitement d'accord ») et qualification d'une seconde — la pièce active la question du calibrage de la confiance accordée à l'IA, marqueur central de 1.01."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la compétence n'est pas attestée. La pièce 1 décrit une action (« travailler avec Claude pour vérifier ») sans expliciter de protocole de doute, sans détection d'hallucination, sans recoupement de sources, sans métaphore conceptualisante : c'est une intention de vérification, pas une scène de scepticisme calibré en acte. La pièce 2 va dans le sens inverse du marqueur central : « je suis parfaitement d'accord » est un accord plat avec la sortie IA, sans trace de mise à l'épreuve, sans tension critique perceptible. Le second résultat est qualifié de très bon (« tellement il résume bien les choses ») sans qu'aucun mécanisme de vérification ne soit nommé. La présomption d'absence absorbe ces deux pièces sans difficulté — aucune ne montre le doute méthodique en action.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a donc rien à passer au crible de la présomption de sycophantie. La présomption d'absence a tenu sans qu'aucune attaque ne soit nécessaire.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille, j'ai cherché à voir si le travail avec Claude et l'évaluation des sorties Gemini portaient une trace de scepticisme calibré. Les deux pièces décrivent une délégation et une réception de sorties IA, mais aucune ne montre le geste qui fait la compétence : ni protocole de vérification nommé, ni détection d'hallucination, ni croisement entre sources. L'accord exprimé avec le résultat Gemini est posé sans dispositif critique apparent. Sur cette feuille-ci, la matière relative au doute méthodique appliqué à l'IA reste implicite. Il reste possible que le travail de vérification ait eu lieu mais n'ait pas été raconté ici : la trace, pour le moment, manque.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "Aucune pièce n'a résisté au temps 1 ; les délégations à Claude et Gemini sont décrites sans dispositif de vérification ni accord critique calibré.",
+        "prescription": "Sur les prochaines feuilles, raconter une scène où une sortie IA a été mise à l'épreuve — un point où l'accord a été retenu, où un recoupement avec une autre source a tranché — donnerait du grain à cette dimension. Décrire le geste, pas seulement la décision de l'effectuer."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au cadrage de l'intention sur cette feuille. Pour ouvrir ce dossier, documenter une situation où la question posée a été retravaillée avant l'exécution serait précieux."
+      }
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Confronter sa propre pédagogie à un référentiel externe (HEP Vaud) et expliciter les différences peut, si l'opération produit un insight intégrateur, relever de la synthèse intégrative."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La pièce annonce une intention : « expliciter les différences » entre la pédagogie interne et le référentiel HEP. C'est un projet de comparaison, pas un acte de synthèse qui aurait déjà produit un tout disant plus que la somme des parties. Le mot « expliciter les différences » oriente vers la distinction, pas vers la fusion intégrative. Aucun insight émergent n'est encore nommé dans le passage. La présomption d'absence l'absorbe sans frein : c'est un projet, pas une trace de synthèse en acte.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la confrontation prévue avec le référentiel HEP portait déjà un acte de synthèse intégrative. Sur cette feuille, le passage annonce l'intention de comparer mais n'expose pas encore d'insight émergent qui aurait fusionné les deux univers. La sortie Gemini est mentionnée comme « base pour un article » sans que le contenu de l'insight soit articulé dans la feuille elle-même. La synthèse, si elle a eu lieu côté IA, n'a pas été appropriée et reformulée par l'apprenant dans cette page. Le matériau ressort plutôt comme un déclencheur potentiel qu'une trace de synthèse achevée.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "La pièce annonce une comparaison à venir sans produire d'insight intégrateur dans la feuille elle-même.",
+        "prescription": "Pour ouvrir ce territoire, raconter le moment où la confrontation HEP / pédagogie interne a produit une compréhension nouvelle — une formule, une métaphore unificatrice — donnerait à voir la fusion plutôt que le projet de comparaison."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la métacognition et à l'humilité épistémique sur cette feuille. Pour ouvrir ce dossier, raconter une observation de ses propres processus de travail — pas le contenu, le processus — ouvrirait la voie."
+      }
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée systémique sur cette feuille. Décrire une boucle de rétroaction observée dans la conception du dispositif de formation ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Le choix de Gemini est motivé par la taille du corpus à traiter — décision technique fondée sur une caractéristique du modèle, qui peut signaler une compréhension causale du fonctionnement de l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La pièce dit : « Etant donné que ça fait un gros corpus de données, je vais utiliser Gemini ». La phrase porte un choix d'outil motivé par la taille du corpus — donc une compréhension implicite que les modèles ne se valent pas sur la fenêtre de contexte. Mais le mécanisme n'est jamais nommé (« fenêtre de contexte », « tokens », « gestion mémoire ») et la justification reste à la surface : gros corpus → Gemini. Aucune hypothèse technique n'est formulée pour expliquer un comportement observé, aucune distinction fine entre types d'échecs IA. La fiche est claire : « réutiliser un mot ambiant ne suffit pas, il faut la compréhension causale du pourquoi ». Ici, on n'a même pas le mot ambiant : on a un choix opérationnel sans explicitation causale. La présomption d'absence l'absorbe.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le choix outillé entre Claude et Gemini portait une trace de littératie IA. Le choix existe, et il est motivé par un critère pertinent — la taille du corpus. Mais la fiche de la compétence demande davantage : une articulation du mécanisme sous-jacent, une hypothèse technique nommée, une distinction causale. Sur cette feuille, le passage donne le choix sans le raisonnement technique qui le sous-tend. Il est possible que ce raisonnement existe dans la tête de l'apprenant, mais la trace écrite ne le porte pas. La matière relève pour l'instant de l'usage informé sans diagnostic explicite — donc en deçà du seuil fixé par la fiche.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "Le choix de Gemini sur critère de taille de corpus reste opérationnel sans explicitation causale du mécanisme sous-jacent.",
+        "prescription": "Sur les prochaines pages, expliciter le pourquoi technique des choix d'outils — fenêtre de contexte, gestion de la mémoire, type de tâche — ferait apparaître le diagnostic derrière la décision."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'architecture de systèmes IA sur cette feuille. Décrire un workflow où les sorties d'un modèle alimentent l'entrée d'un autre, avec leurs rôles et règles de routage, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Travailler avec Claude pour vérifier consistance et alignement peut, si l'orchestration du dialogue est sophistiquée, relever du dialogue IA avancé."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Le choix différencié de modèles (Claude pour la vérification interne, Gemini pour la confrontation à un gros corpus externe) peut signaler une intentionnalité dans l'usage de l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La pièce 1 dit seulement « travailler avec Claude pour vérifier sa consistance » — aucune technique de prompting nommée, aucune itération stratégique racontée, aucun méta-prompting. La pièce 2 décrit un choix entre deux outils, mais le choix porte sur le modèle, pas sur la formulation du prompt ni l'orchestration de rôles différenciés. La fiche est explicite : 1.08 = sophistication de la formulation, conscience de l'effet du prompt, orchestration intentionnelle de rôles. Aucun de ces marqueurs n'apparaît. La présomption d'absence absorbe les deux pièces.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si l'usage répété et différencié de plusieurs IA portait une trace de dialogue avancé. Sur cette feuille, on voit des décisions d'usage — choisir tel outil pour telle tâche — mais pas la matière qui fait la compétence : la formulation comme outil de pensée, l'itération analysée, le rôle différencié. Les liens partagés vers les conversations sont mentionnés mais leur contenu n'est pas appropriéen prose : on ne voit pas le geste de prompt depuis la feuille. La trace, telle que la fiche la définit, n'est pas portée par ce qui est écrit.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "L'usage de Claude et Gemini est décidé et exécuté, mais la formulation, l'itération et l'orchestration des rôles ne sont pas explicitées dans le récit.",
+        "prescription": "Raconter une boucle de prompt — la première tentative, ce qui a coincé, la reformulation, et pourquoi elle a changé la réponse — ferait apparaître le dialogue avancé en acte plutôt que la simple décision d'usage."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle transférée hors informatique sur cette feuille. Raconter une décomposition algorithmique appliquée à un problème non technique ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Choisir Gemini pour une tâche large et Claude pour une vérification de consistance peut être lu comme une répartition implicite des tâches selon les forces comparatives des outils."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La pièce répartit deux tâches sur deux modèles. C'est une décision opérationnelle. La fiche est tranchante : « J'ai utilisé l'IA » n'est pas de la synergie ; le critère est l'articulation explicite des forces comparatives et la stratégie de répartition. Ici, l'apprenant choisit Gemini parce que « ça fait un gros corpus », ce qui touche une caractéristique technique, mais ne dit rien de ce que l'humain garde pour lui, ni de ce que Claude fait mieux que Gemini sur la première tâche, ni du raisonnement sur la complémentarité humain-IA. Le passage parle d'une répartition outil-à-outil, pas humain-à-IA. La présomption d'absence absorbe la pièce.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la répartition Claude / Gemini portait une réflexion sur la synergie humain-IA. La réflexion porte plutôt sur la répartition entre deux IA, en fonction d'un critère technique ponctuel. Ce que l'humain garde — l'évaluation finale, l'accord ou le désaccord, la décision d'usage — apparaît en filigrane (« je suis parfaitement d'accord ») mais n'est pas thématisé comme un acte irremplaçable. La fiche demande l'articulation explicite des forces comparatives ; sur cette feuille, elle reste implicite. La matière de la synergie pourrait être là en germe, mais le texte n'en fait pas le sujet.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "La répartition entre outils est décidée, mais l'articulation des forces comparatives humain-IA n'est pas thématisée dans le récit.",
+        "prescription": "Nommer ce que l'humain garde dans ce dispositif — la décision finale, l'arbitrage axiologique, la qualification d'une sortie comme « base pour un article » — donnerait à voir la complémentarité plutôt que la simple division du travail entre modèles."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle et pour cette feuille du 29 décembre 2025, le portfolio montre une journée centrée sur la production d'un dispositif pédagogique d'envergure — un support de formation de tuteurs de 124 pages, étalé sur 17 semaines — avec l'IA comme partenaire opérationnel multiple. Le travail mobilise Claude pour une vérification interne de consistance et d'alignement axiologique, puis Gemini pour confronter la pédagogie à des référentiels externes (charte éthique et référentiel de compétences de la HEP Vaud). Les décisions d'outillage sont prises, les sorties IA sont consultées et qualifiées (« parfaitement d'accord », « tellement il résume bien les choses »), et un projet d'article émerge de la confrontation. Sur cette feuille, l'usage de l'IA apparaît surtout comme un geste opérationnel orienté résultat — la matière conceptuelle qui ferait apparaître le pôle Tête dans ses dimensions critiques, métacognitives ou systémiques reste en arrière-plan du récit.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. Le cadrage de l'intention, la métacognition, la pensée systémique, l'architecture de systèmes IA et la pensée computationnelle n'ont pas trouvé d'écho dans ce qui est écrit ce jour-là : le journal raconte des actes et des décisions, pas la réflexion sur le processus ou la modélisation des boucles à l'œuvre dans la conception du dispositif. La pensée critique, la littératie IA, le dialogue avancé et la synergie humain-IA apparaissent en surface — l'apprenant utilise les outils avec discernement — mais sans que la couche de raisonnement explicite, qui fait la compétence selon le référentiel, soit déposée dans le texte. Ce sont moins des absences que des dimensions implicites du travail : la décision de choisir Gemini pour un gros corpus, par exemple, suppose une compréhension qui n'est pas écrite. Ces dimensions mériteraient d'être explorées dans la prose des prochaines feuilles.",
+    "emergencesPole": "Une chose traverse l'ensemble de la feuille : l'apprenant ne fait pas seulement avec l'IA, il la convoque en fonction d'un usage spécifique. Claude pour la vérification interne, Gemini pour la confrontation à un grand corpus externe. Cette intuition opérationnelle, encore non thématisée, est le fil qui pourrait, mis en mots, ouvrir plusieurs des compétences du pôle. Une seconde observation : la temporalité de la feuille est celle d'une production qui se termine et appelle un travail d'homogénéisation et de validation — le moment idéal pour expliciter ce qui, dans le geste, relève du diagnostic ou de la complémentarité.",
+    "pistes": [
+      "Pour enrichir la dimension critique du travail avec l'IA, un chemin possible serait de raconter, sur une prochaine feuille, un moment où une sortie de Claude ou Gemini a été retravaillée — ce qui a coincé, ce qui a été corrigé, pourquoi.",
+      "Pour enrichir l'usage informé des outils, un chemin possible serait d'expliciter, lors d'un choix entre modèles, le mécanisme technique qui motive le choix (fenêtre de contexte, type de raisonnement attendu, gestion de la mémoire).",
+      "Pour enrichir la réflexion sur la complémentarité, un chemin possible serait de nommer, dans le récit, ce que l'humain garde irréductiblement — par exemple l'arbitrage final sur l'alignement axiologique du support de formation."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle et pour cette feuille du 29 décembre 2025, le portfolio montre une journée centrée sur la production d'un dispositif pédagogique d'envergure — un support de formation de tuteurs de 124 pages, étalé sur 17 semaines — avec l'IA comme partenaire opérationnel multiple. Le travail mobilise Claude pour une vérification interne de consistance et d'alignement axiologique, puis Gemini pour confronter la pédagogie à des référentiels externes (charte éthique et référentiel de compétences de la HEP Vaud). Les décisions d'outillage sont prises, les sorties IA sont consultées et qualifiées (« parfaitement d'accord », « tellement il résume bien les choses »), et un projet d'article émerge de la confrontation. Sur cette feuille, l'usage de l'IA apparaît surtout comme un geste opérationnel orienté résultat — la matière conceptuelle qui ferait apparaître le pôle Tête dans ses dimensions critiques, métacognitives ou systémiques reste en arrière-plan du récit.\n\n## Territoires les plus denses\n\nSur cette feuille, aucun territoire du pôle ne ressort avec une densité suffisante pour être nommé comme tel. Le travail est intense, mais sa couche réflexive — celle qui fait la matière du pôle Tête — n'a pas encore été déposée dans le texte.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. Le cadrage de l'intention, la métacognition, la pensée systémique, l'architecture de systèmes IA et la pensée computationnelle n'ont pas trouvé d'écho dans ce qui est écrit ce jour-là : le journal raconte des actes et des décisions, pas la réflexion sur le processus ou la modélisation des boucles à l'œuvre dans la conception du dispositif. La pensée critique, la littératie IA, le dialogue avancé et la synergie humain-IA apparaissent en surface — l'apprenant utilise les outils avec discernement — mais sans que la couche de raisonnement explicite, qui fait la compétence selon le référentiel, soit déposée dans le texte. Ce sont moins des absences que des dimensions implicites du travail : la décision de choisir Gemini pour un gros corpus, par exemple, suppose une compréhension qui n'est pas écrite. Ces dimensions mériteraient d'être explorées dans la prose des prochaines feuilles.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse l'ensemble de la feuille : l'apprenant ne fait pas seulement avec l'IA, il la convoque en fonction d'un usage spécifique. Claude pour la vérification interne, Gemini pour la confrontation à un grand corpus externe. Cette intuition opérationnelle, encore non thématisée, est le fil qui pourrait, mis en mots, ouvrir plusieurs des compétences du pôle. Une seconde observation : la temporalité de la feuille est celle d'une production qui se termine et appelle un travail d'homogénéisation et de validation — le moment idéal pour expliciter ce qui, dans le geste, relève du diagnostic ou de la complémentarité.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension critique du travail avec l'IA, un chemin possible serait de raconter, sur une prochaine feuille, un moment où une sortie de Claude ou Gemini a été retravaillée — ce qui a coincé, ce qui a été corrigé, pourquoi.\n- Pour enrichir l'usage informé des outils, un chemin possible serait d'expliciter, lors d'un choix entre modèles, le mécanisme technique qui motive le choix (fenêtre de contexte, type de raisonnement attendu, gestion de la mémoire).\n- Pour enrichir la réflexion sur la complémentarité, un chemin possible serait de nommer, dans le récit, ce que l'humain garde irréductiblement — par exemple l'arbitrage final sur l'alignement axiologique du support de formation."
+  }
+}

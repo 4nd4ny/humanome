@@ -1,0 +1,623 @@
+{
+  "poleNum": "7",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Structure générique du manuel : * clarifier le cadre global du manuel dans l'ensemble des formations RESPIRE * liens avec le référentiel de compétences humaines post-AGI * liens avec les autres modules de la filière * croisements et apports possibles entre les deux filières * découpage du manuel en parties, chapitres, sections (éventuellement sous-sections) avec saut de page entre chaque parties et chapitres * en fin de manuel : plan du manuel avec résumés des parties et chapitres * en fin de manuel : lexique des concepts abordés * en fin de manuel : bibliographie des principaux auteurs invoqués dans le manuel",
+      "contexte": "Spécification structurée d'un format de manuel — artefact de documentation conçu pour être réutilisable par tous les manuels (7.03, 7.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Structure générique d'un chapitre : * titre et ancrage * objectifs d'apprentissage * valeur ajoutée pour le futur employeur * compétences visées pour sa cartographie * éléments du référentiel de compétences à faire ressortir dans son portfolio * situation de départ : question, problème, petite histoire * apports théoriques : une section par idée majeure / concept, avec le prompt associé pour demander un tutorat assisté par IA * exercices théoriques : à résoudre à l'aide d'une IA socratique, avec le prompt associé pour l'exercice (apprentissage guidé) * activité : assistance dans une situation réelle similaire avec un pair aidant * activité : application sur une situation vécue similaire avec un pair aidant * activité : confirmation d'apprentissage sur une situation vécue similaire en autonomie documentée * quiz d'évaluation, avec le prompt associé pour demander à une IA de poser les question * encadré : à retenir / astuce / attention",
+      "contexte": "Architecture pédagogique détaillée d'un chapitre : maïeutique (IA socratique), évaluation transformative (quiz), différenciation pair-aidant/autonomie, capitalisation par encadrés (7.01, 7.02, 7.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "A partir de là, il m'a proposé trois prompts : un pour la structure de chaque manuel, un pour la structure de chaque chapitre, un pour les annexes. Je lui ai également demandé un prompt explicitant comment s'articulent ces méta-prompts pour générer les manuels. Voici [l'ensemble des 4 prompts utilisés pour générer la v6](https://drive.google.com/drive/folders/1X1Bb0Yy_01ihP9hZ07l55rc74SN_xgej?usp=sharing) des manuels de formation.",
+      "contexte": "Mention d'un versioning explicite (v6), partage des artefacts via Drive, lien public — documentation vivante avec conscience d'un futur lecteur (7.03, 7.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Au lieu de générer directement le contenu et les exercices statiques, j'ai demandé à l'IA d'écrire un prompt qui demande à l'IA d'écrire un prompt générique qui demande à l'IA d'écrire des prompts pour la théorie et les exercices que l'apprenant utilisera pour apprendre. C'est un peu capillotracté, mais c'est plus aligné avec la philosophie des écoles RESPIRE que ce que j'avais fais dans la version précédente. Le manuel de formation ne peut donc pas juste être lu, il doit être re-généré par chaque élève, de manière active.",
+      "contexte": "Architecture pédagogique qui conçoit un environnement où l'apprentissage se produit de manière autonome et active — maïeutique au niveau du dispositif (7.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Mais évidemment je vais devoir relire avant de faire la mise en page (même si c'est de nouveau 600 pages à relire) et surtout cette fois-ci tester les prompts générés, car contrairement à la v5 qui était ancienne école, ici c'est l'IA qui va donner la théorie, les exercices et les tests pour savoir si la personne a bien compris.",
+      "contexte": "Versions successives explicitement comparées (v5 vs v6), avec justification d'un changement de méthode — itération structurée à l'échelle d'un programme (7.07, 7.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum ! Par exemple, une conversation par module de formation. [...] Du coup il faut modifier les 4 prompts de génération, pour imposer ce découpage et forcer les prompts d'aller lire les informations dans la mémoire du projet plutôt que dans l'historique de la conversation.",
+      "contexte": "Boucle agile génération-test-diagnostic-ajustement en quelques minutes ; le plan est modifié en cours de route, avec raison explicitée (7.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "J'ai décidé de perdre du poids car là ça ne va plus. Du coup je vais me ré-imposer de dormir au moins 6h par nuit et idéalement 7h30, au lieu de mes 4h30 habituelles. Ça va beaucoup ralentir ma production, puisque les journées sont prises par Soledad, Alicia, Leila… et l'ORP, mais peut-être que ça m'évitera de finir comme ma sœur…",
+      "contexte": "Renoncement stratégique assumé : choisir de produire moins pour préserver une ressource (sommeil) avec raison articulée (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Je vais arrêter pour ce soir et demain je reprends mes prompts (ça ira vite) et je testerai cette fois-ci sur un manuel entier, ce qui me bloquera Claude jusqu'à la semaine prochaine probablement…",
+      "contexte": "Décision d'arrêter pour ce soir, projection à demain et à la semaine suivante avec implications pour les ressources (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Ça y est, je viens d'envoyer mon prompt *ultime* pour la génération automatique de toute la formation : \"run prompt-protocole.md\" !",
+      "contexte": "Délégation à l'IA d'une exécution longue par un prompt orchestrateur unique — choix de céder le lead pour une phase, avec retour de supervision dès qu'un problème apparaît (7.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas.",
+      "contexte": "Décision de lancer un test de petite taille avant l'engagement complet, malgré la fatigue — pilotage prudent dans l'incertitude (7.05, 7.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "J'en ai donc profité pour introduire dans des encarts quelques tips de prompt engineering tout au long de la formation, histoire de faire d'une pierre quatre coups : 1. apprendre un sujet à choix [...] ; 2. apprendre à apprendre en prenant conscience de sa matière d'apprendre et en développant la méta-cognition lors de la rédaction du portfolio réflexif d'apprentissage ; 3. valoriser en réalisant tout celà les compétences utiles à l'ères des IA ; 4. apprendre tout en lisant le manuel quelques techniques de prompt engineering.",
+      "contexte": "Conception pédagogique stratifiée : un même dispositif (les encarts) sert quatre objectifs d'apprentissage articulés — maïeutique et stratégie pédagogique (7.01, 7.05).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Architecture pédagogique détaillée d'un chapitre, avec IA socratique, situations vécues, pair-aidant, autonomie documentée — environnement d'apprentissage multi-niveaux conçu pour faire travailler l'élève."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Le manuel comme dispositif d'apprentissage actif (re-génération par l'élève) plutôt que comme contenu à recevoir — maïeutique au niveau du dispositif lui-même."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Conception stratifiée d'un dispositif (les encarts) qui fait travailler quatre objectifs simultanément, dont l'apprendre à apprendre — facilitation pensée comme architecture cognitive."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La maïeutique et la facilitation attendent la retenue de celui qui sait, l'art du questionnement, et l'architecture d'environnements où l'apprentissage se produit. J'aborde ces pièces en m'attendant à ne trouver que de la planification pédagogique standard. La pièce 1 résiste fortement : la structure de chapitre décrit explicitement « apports théoriques avec le prompt associé pour demander un tutorat assisté par IA » et « exercices théoriques à résoudre à l'aide d'une IA socratique » — le mot « socratique » est posé sciemment, et l'architecture organise une progression assistance → application → autonomie qui correspond précisément à la conception d'un environnement maïeutique. La pièce 2 va plus loin : le dispositif lui-même (manuel re-généré) est conçu pour faire travailler activement plutôt que pour transmettre — c'est de la facilitation au sens fort. La pièce 3 stratifie quatre objectifs sur un même dispositif éditorial, dont explicitement « apprendre à apprendre en prenant conscience de sa manière d'apprendre ».",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'architecture organise une progression assistée-appliquée-autonome avec mention explicite d'une IA socratique — design pédagogique aligné sur la fiche." },
+            { "pieceId": 2, "motifResistance": "Le dispositif lui-même est conçu pour faire travailler l'élève par re-génération, pas pour transmettre du contenu — facilitation au niveau du dispositif." },
+            { "pieceId": 3, "motifResistance": "Stratification de quatre objectifs d'apprentissage dont la métacognition explicite — architecture pédagogique multi-niveaux." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces qui résistent toutes : je durcis. La pièce 1 contient le mot « socratique » et organise une progression assistance → autonomie, qui est précisément la définition de la fiche — l'attaque (d) glissement lexical ne tient pas, le vocabulaire est mobilisé avec sa charge. La pièce 2 pourrait être attaquée en (b) confusion avec 1.02 (cadrage) ou 3.03 (design de problème), mais la dimension proprement de facilitation pédagogique tient (faire produire à l'autre plutôt que produire pour lui). La pièce 3 articule explicitement la métacognition comme objectif pédagogique pour les futurs apprenants, ce qui est exactement la posture maïeutique au niveau du dispositif. La fiche est claire : la facilitation est l'*architecture* du « faire accoucher de son propre savoir », et c'est ce que l'apprenant conçoit ici.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le mot « socratique » est posé avec sa charge — l'IA y est conçue comme questionneuse, et la progression organisée est exactement celle d'un environnement maïeutique."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce chevauche le cadrage de l'intention (1.02) et le design de problème (3.03), mais la finalité proprement pédagogique (faire travailler l'élève par re-génération) la rattache solidement à 7.01."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'apprenant nomme lui-même la métacognition comme objectif et l'articule à un dispositif (les encarts) — c'est une conception architecturale explicite, pas une projection de ma part."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai durci ma lecture pour éviter de prendre toute planification pédagogique pour de la maïeutique. Trois pièces ont tenu — deux sans réserve (l'architecture socratique de la structure de chapitre, et la conception multi-niveaux des encarts avec objectif métacognitif) et une affaiblie (le manuel re-généré, qui chevauche d'autres compétences mais reste fondamentalement pédagogique). Ce qui résulte est une présence solidement attestée sur la dimension architecture, qui est précisément la dimension la mieux observable textuellement selon la fiche (artefacts traçables justifiant Expert). La posture maïeutique au sens étroit (questions citées verbatim, retenue racontée en situation) est moins visible — la séance n'est pas un récit d'interaction directe avec des élèves, mais une conception en amont. Ce qui resterait à approfondir, ce serait précisément cette dimension : raconter, lors d'un usage du dispositif par un apprenant, ce que la posture maïeutique exige de retenue en temps réel.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.8,
+        "motif": "Deux pièces confirmées (architecture socratique de la structure de chapitre, conception stratifiée des encarts avec objectif métacognitif) et une pièce affaiblie retenue (manuel re-généré) attestent une pratique mature de la facilitation au niveau du design pédagogique.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de raconter, lors d'une prochaine séance où le dispositif sera testé avec un apprenant ou un pair-aidant, ce que la posture maïeutique exige de retenue en temps réel — quand poser une question plutôt que donner la réponse, et comment reformuler quand la première question ne fait pas mouche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Inclusion explicite d'un « quiz d'évaluation, avec le prompt associé pour demander à une IA de poser les questions » dans la structure générique du chapitre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'évaluation transformative attend un acte évaluatif spécifique qui vise la progression plutôt que le verdict, avec critères articulés et finalité formative. J'aborde la pièce 1 en m'attendant à n'y trouver qu'une mention de quiz sans déploiement. La pièce mentionne effectivement le quiz comme une étape de la structure générique du chapitre, et signale qu'il est associé à un prompt qui demande à une IA de poser les questions — ce qui est plus original que le quiz statique. Mais la pièce ne déploie pas la dimension transformative : pas de mention de critères, pas de feedback nominatif et constructif, pas d'usage formatif de l'erreur, pas de distinction entre sommatif et formatif. Le quiz est juste là, à sa place dans la structure.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Mention d'un quiz dynamique (généré par IA) plutôt que statique, ce qui suggère une intention au-delà du sommatif standard." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas une mention de quiz d'une portée transformative qu'elle n'a pas. L'attaque (a) insuffisance probatoire est forte : le mot « évaluation » apparaît mais sans déploiement (pas de critères, pas de feedback, pas d'utilisation de l'erreur comme matériau). La fiche est explicite : « Il faut que tu améliores » sans pistes ne suffit pas, « Bravo, continue ! » ne suffit pas. Ici, on a juste « quiz d'évaluation, avec le prompt associé » — pas même une articulation de la finalité formative.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce ne déploie pas la dimension transformative : pas de critères articulés, pas de feedback formatif, pas d'usage explicite de l'erreur comme matériau pédagogique. Le quiz IA reste un dispositif standard sans intention formative explicitée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans la mention d'un quiz IA, une trace d'évaluation transformative. Mais la pièce reste à l'état de mention dans une structure générique, sans déploiement de la dimension qui ferait toute la différence selon la fiche (critères, feedback formatif, usage de l'erreur, finalité progressive plutôt que sommative). Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait précisément la conception détaillée de ce quiz IA : quels critères, quel type de feedback, comment l'erreur est traitée comme information pour la suite plutôt que comme verdict.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce a chuté au temps 2 : la mention de quiz dans la structure générique ne déploie pas la dimension transformative au sens de la fiche.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de détailler la conception du quiz IA : quels critères, quel type de feedback formulé à l'apprenant, comment l'erreur est traitée comme information sur la suite à proposer — pas comme verdict."
+      },
+      "tracesRetenues": []
+    },
+
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Spécification structurée d'un format de manuel (8 éléments : cadrage, liens, croisements, découpage, plan synthétique, lexique, bibliographie) — artefact destiné à être réutilisé sur tous les manuels."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Spécification structurée d'un format de chapitre (titre, objectifs, valeur ajoutée, compétences visées, situation de départ, apports, exercices, activités, quiz, encadrés) — artefact pour le futur utilisateur."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Versioning explicite (v6), partage public des quatre prompts via Drive avec lien hypertexte dans le journal — conscience d'un futur lecteur du portfolio."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La documentation vivante attend une structuration intentionnelle avec conscience du destinataire, du versioning explicite, et une capitalisation qui survit à son auteur. J'aborde ces pièces en m'attendant à ne trouver que des spécifications techniques. La pièce 1 et la pièce 2 sont chacune des artefacts en eux-mêmes : des structures génériques destinées à servir de gabarit pour produire tous les manuels et tous les chapitres — c'est exactement l'intention de capitalisation que la fiche décrit. La pièce 3 ajoute le versioning explicite (v6), le partage par lien Drive et l'archivage des quatre prompts comme matériel transmissible. Trois pièces qui résistent solidement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Structure générique de manuel pensée comme gabarit réutilisable — artefact de documentation au sens fort." },
+            { "pieceId": 2, "motifResistance": "Structure générique de chapitre encore plus détaillée — artefact pédagogique pensé pour servir tous les futurs manuels." },
+            { "pieceId": 3, "motifResistance": "Versioning explicite (v6), partage public des prompts, lien hypertexte intégré au journal — conscience pleine du futur lecteur." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je n'ai pas confondu de la planification structurée avec de la documentation vivante au sens de la fiche. La fiche est explicite sur la distinction critique avec 5.03 : la documentation vivante porte une structuration et une conscience du destinataire. Ici, la pièce 1 et la pièce 2 ne sont pas des notes pour soi — ce sont des spécifications conçues pour qu'un autre acteur (humain ou IA) puisse produire à partir d'elles. La pièce 3 porte le versioning (v6 signale une histoire) et le partage public (lien Drive accessible) — les deux marqueurs centraux de la fiche. Aucune attaque ne tient sérieusement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La structure générique est explicitement pensée pour servir de gabarit aux 6 manuels — la conscience du destinataire et l'intention de pérennisation sont attestées."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La structure de chapitre est détaillée à 13 éléments distincts, chacun nommé pour qu'un utilisateur futur (concepteur ou IA) puisse la décliner — c'est de l'artefact documentaire au sens fort."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "c",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le versioning v6, le partage public via lien Drive et l'intégration du lien dans le journal montrent une pratique documentaire qui dépasse le journal personnel — l'apprenant rend ses artefacts consultables et numérotables."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer une planification interne d'une documentation vivante au sens de la fiche. Trois pièces ont tenu sans réserve : deux structures génériques (manuel et chapitre) conçues comme gabarits réutilisables, et un versioning explicite avec partage public. La conscience du destinataire est attestée à plusieurs niveaux — destinataire intra-pipeline (l'IA qui génère), destinataire pédagogique (l'apprenant qui re-génère), destinataire externe (le lecteur du Drive). Cette compétence atteint, selon les critères de la fiche (« forte observabilité — les artefacts EUX-MÊMES sont la trace »), un niveau Expert dans cette feuille. Ce qui resterait à approfondir, ce serait la dimension proprement « vivante » — la mise à jour régulière de ces gabarits au fil des versions, qui est plus difficile à observer dans un texte statique.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "Trois pièces confirmées sans réserve attestent une pratique mature de la documentation vivante : deux gabarits structurés explicitement pensés pour être réutilisés, et un versioning avec partage public.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de documenter, dans une prochaine séance, ce qui change entre la v5 et la v6 sur les gabarits eux-mêmes : un journal de version sur les structures génériques rendrait visible la dimension proprement « vivante » de la documentation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Délégation à l'IA d'une exécution longue (« run prompt-protocole.md »), avec retour de supervision dès qu'un problème apparaît."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Distribution de rôles différenciés entre quatre prompts (structure manuel, structure chapitre, annexes, articulation) — agents IA aux rôles définis."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Le leadership situationnel attend l'alternance délibérée entre direction et retrait, avec des moments où l'apprenant choisit explicitement de laisser l'IA mener puis de reprendre. J'aborde ces pièces en m'attendant à n'y trouver que de la délégation standard. La pièce 1 décrit un moment précis où l'apprenant cède le lead à l'IA (le prompt orchestrateur prend le relais), suivi très vite d'une reprise de supervision dès que le problème de mémoire est détecté — c'est exactement l'alternance que la fiche décrit. La pièce 2 distribue des rôles à quatre prompts comme à quatre agents (structure manuel, structure chapitre, annexes, articulation), ce qui correspond précisément aux marqueurs de la fiche (« assignation de rôles différenciés à des agents IA »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Délégation explicite suivie d'une reprise de supervision dès qu'un problème apparaît — alternance entre laisser mener et reprendre." },
+            { "pieceId": 2, "motifResistance": "Distribution de rôles différenciés entre quatre prompts, qui correspond précisément au marqueur de la fiche sur les agents IA." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne confonds pas la délégation standard avec le leadership situationnel. La pièce 1 est intéressante : la délégation (« run prompt-protocole.md ») est suivie d'un retour de supervision immédiat — c'est l'alternance que la fiche signale comme critère discriminant. L'attaque (a) insuffisance probatoire est tentable car la pièce est courte, mais elle est confirmée par la séquence narrative (lancement → diagnostic → reconfiguration). La pièce 2 distribue les rôles, mais ne décrit pas explicitement qui mène et qui suit dans l'exécution — c'est plus de l'architecture (1.07) que du leadership situationnel au sens strict. L'attaque (b) confusion de compétence affaiblit la pièce 2.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'alternance lead-IA / lead-humain est concrètement attestée : l'apprenant délègue le lancement, puis reprend la supervision dès qu'un problème apparaît — c'est l'alternance que la fiche décrit."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La distribution de rôles est attestée, mais elle relève davantage de l'architecture de système (1.07) que du leadership situationnel au sens d'une alternance de postures sur des moments précis."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer la délégation standard du leadership situationnel au sens fort. La pièce 1 a tenu sans réserve : la séquence « j'envoie le prompt ultime » → « je vois tout de suite un gros problème » → reconfiguration montre exactement l'alternance entre laisser mener et reprendre. La pièce 2 s'est affaiblie : elle chevauche fortement l'architecture. Ce qui en résulte est une présence attestée modestement, portée par une trace de bascule explicite. Ce qui resterait à approfondir, ce serait précisément ce qui se passera lorsque l'apprenant aura à choisir quand reprendre la main pendant le test du manuel entier — les critères de bascule, les déclencheurs explicites de retrait ou de prise de contrôle.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Une trace concrète confirmée (bascule lead-IA puis reprise de supervision sur un signal) et un indice corroboratif (distribution de rôles entre quatre prompts) attestent un leadership situationnel naissant.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de documenter, lors du prochain test du pipeline, les critères explicites de bascule : à quel signal l'apprenant choisira de reprendre la main, à quel autre il choisira de laisser l'IA continuer — pour rendre visible l'alternance comme méthode."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Justification du passage v5 → v6 par une direction de fond (« ici c'est l'IA qui va donner la théorie, les exercices et les tests ») — choix présent relié à une transformation plus large du modèle pédagogique."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Conception stratifiée des encarts pour servir quatre objectifs d'apprentissage simultanément — anticipation des usages futurs du manuel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La vision stratégique attend un lien explicite entre projection future et décision présente. J'aborde ces pièces en m'attendant à ne trouver que de la planification opérationnelle. La pièce 1 porte effectivement un lien explicite : la v5 statique est abandonnée au profit de la v6 générative parce qu'« ici c'est l'IA qui va donner la théorie » — la décision présente (architecture v6) est reliée à une transformation anticipée du rôle de l'IA dans l'apprentissage. Mais ce lien reste à l'échelle de la version actuelle, pas d'un horizon long. La pièce 2 articule un dispositif (les encarts) à plusieurs apprentissages futurs (compétences IA-friendly, prompt engineering, métacognition), ce qui est une forme d'anticipation, mais reste à l'intérieur du même produit.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Justification de la conception présente (v6) par un futur anticipé (un modèle pédagogique où l'IA mène l'apprentissage) — lien explicite vision/décision." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas une simple modification de méthode d'une portée prospective. La fiche distingue la vision stratégique de la simple temporisation : il faut un lien argumenté entre futur anticipé et décision présente. La pièce 1 porte ce lien — la décision d'une architecture récursive de prompts est justifiée par une anticipation du rôle de l'IA dans l'apprentissage des élèves. L'attaque (b) confusion avec 1.02 (cadrage) ou 3.01 (créativité itérative) est sérieuse. La pièce 2 porte un empilement d'objectifs sur un même dispositif, mais sans projection temporelle au-delà du produit lui-même.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le lien vision/décision est posé (v6 est conçue pour un avenir où l'IA mène l'apprentissage), mais l'horizon prospectif reste court et la pièce chevauche fortement le cadrage et la créativité itérative."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'empilement de quatre objectifs sur un même dispositif relève plus de l'économie cognitive (synthèse 1.03 ou facilitation 7.01) que de la vision stratégique au sens d'un horizon long anticipé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer une amélioration de méthode d'une vision stratégique au sens fort. La pièce 2 a chuté : l'empilement d'objectifs ne porte pas de projection long terme. La pièce 1 a tenu, affaiblie : elle porte un lien vision/décision (architecture récursive ↔ anticipation d'un rôle nouveau de l'IA), mais l'horizon reste à l'échelle de la version actuelle. Ce qui en résulte est un signal léger : la vision stratégique est en germe, sans déploiement d'horizons multiples ni d'anticipation de ruptures plus larges. Ce qui resterait à explorer, ce serait des passages où l'apprenant relie le projet présent à des horizons plus lointains — par exemple, ce qu'il anticipe pour la diffusion, la maintenance, l'évolution des manuels au fil des progrès de l'IA.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie retenue : le lien vision/décision est posé entre v6 et un futur où l'IA mène l'apprentissage, mais l'horizon prospectif reste court et la dimension chevauche d'autres compétences.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter ce qui est anticipé au-delà du test prochain : comment ces manuels évolueront-ils dans deux ans, dans cinq ans, à mesure que les IA progresseront ? Le lien entre les décisions d'architecture présentes et ces horizons rendrait visible la dimension stratégique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Renoncement explicite à la productivité maximale au profit du sommeil, avec articulation du coût (« ça va beaucoup ralentir ma production ») et de la raison (santé, charge des journées prises par Soledad, Alicia, Leila et l'ORP)."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Décision d'arrêter pour ce soir avec projection sur le lendemain et la semaine suivante (« ce qui me bloquera Claude jusqu'à la semaine prochaine probablement ») — gestion des ressources Claude."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Choix d'un test minimal (premier chapitre) plutôt qu'un test complet, malgré l'heure tardive — arbitrage opérationnel sur l'engagement de ressources."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'efficacité personnelle attend des décisions de ne pas faire avec raisons articulées, le « non » stratégique étant le marqueur le plus fiable. J'aborde ces pièces en m'attendant à ne trouver que de la fatigue. La pièce 1 est exactement le marqueur central de la fiche : un renoncement (4h30 → 6-7h30 de sommeil) avec coût concret nommé (« ça va beaucoup ralentir ma production ») et raison articulée (santé + journées déjà chargées). C'est le « non » stratégique au productivisme. La pièce 2 porte une décision d'arrêt avec projection (« ce qui me bloquera Claude jusqu'à la semaine prochaine »), ce qui est une gestion de ressources explicite. La pièce 3 est un arbitrage d'engagement (petit test plutôt que grand test).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Renoncement à la productivité maximale avec coût nommé et raison articulée — le « non » stratégique au sens de la fiche." },
+            { "pieceId": 2, "motifResistance": "Décision d'arrêt avec projection sur les ressources (Claude bloqué jusqu'à la semaine prochaine) — gestion explicite des ressources." },
+            { "pieceId": 3, "motifResistance": "Arbitrage d'engagement entre test minimal et test complet — priorisation contextuelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas des décisions de routine d'une portée stratégique. La pièce 1 satisfait exactement le critère discriminant de la fiche : un renoncement argumenté qui rend visible le raisonnement de priorisation. L'attaque (b) confusion avec 4.06 ou 5.07 est tentable, mais la dimension proprement de gestion de ses ressources personnelles (temps, énergie) tient bien — la fiche reconnaît ces chevauchements. La pièce 2 est plus faible : « j'arrête pour ce soir » peut être de la fatigue ; la projection sur Claude bloqué jusqu'à la semaine prochaine atteste une conscience des ressources mais ne déploie pas la dimension de filtre d'utilité. La pièce 3 est intéressante : choisir un test minimal pour engager moins de ressources est un arbitrage opérationnel concret.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le renoncement est articulé avec coût et raison — c'est le marqueur le plus fiable selon la fiche. Le chevauchement avec d'autres compétences est admis par la fiche elle-même."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La décision d'arrêt est posée et la projection sur les ressources Claude est explicite, mais la dimension de filtre stratégique reste implicite."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le choix d'un test minimal relève autant de la créativité itérative (3.01) que de l'efficacité personnelle ; l'arbitrage est explicite mais la dimension de gestion de ses ressources reste implicite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer une fatigue ordinaire d'une efficacité personnelle au sens de la fiche. Une pièce a tenu sans réserve : le renoncement au productivisme avec coût nommé et raison articulée, qui correspond précisément au marqueur le plus fiable de la fiche (« le 'non' stratégique argumenté »). Deux pièces se sont affaiblies : la décision d'arrêt et le choix du test minimal portent des arbitrages mais sans déploiement explicite du filtre stratégique. Ce qui en résulte est une présence solidement attestée, portée par une trace centrale de renoncement réfléchi. Ce qui resterait à approfondir, ce serait des cas où un « non » serait posé à une sollicitation extérieure (un projet, une demande), pas seulement à la pression interne du travail.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Une pièce confirmée sans réserve (renoncement au productivisme avec coût et raison) et deux pièces affaiblies retenues (arrêt avec projection, test minimal) attestent une pratique structurée de la gestion de soi.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de documenter, lors d'une prochaine sollicitation extérieure (une demande, une opportunité, un projet additionnel), le « non » posé et ses raisons. Le « non » externe rendrait visible une compétence déjà à l'œuvre dans le « non » interne au productivisme."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Versions successives explicitement comparées (v5 ancienne école / v6 générative), avec abandon d'un modèle et adoption d'un autre — pratique itérative à grande échelle."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Cycle complet itération-test-diagnostic-ajustement en quelques minutes : un chapitre généré, problème de mémoire détecté, modification des quatre prompts décidée."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Numéro de version élevé (v6) sans commentaire méthodologique explicite — pratique itérative ancrée dans la durée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'agilité attend une boucle de rétroaction explicite avec adaptation structurée. J'aborde ces pièces en m'attendant à ne trouver que de la planification standard. La pièce 1 porte des versions successives nommées (v5, v6) avec abandon explicite d'un modèle au profit d'un autre — itération à grande échelle. La pièce 2 montre la boucle agile en acte sur un cycle court (génération → diagnostic → ajustement). La pièce 3 mentionne la v6 comme un état de fait dans le portfolio public, ce que la fiche cite précisément comme trace oblique (« numéro de version élevé sans commentaire méthodologique = pratique itérative ancrée »). Trois pièces solides.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Versions successives avec abandon explicite (v5 → v6) — itération à l'échelle du programme entier." },
+            { "pieceId": 2, "motifResistance": "Cycle agile complet en quelques minutes : test → diagnostic → ajustement de plan avec raison explicitée." },
+            { "pieceId": 3, "motifResistance": "Numéro de version élevé (v6) cité sans commentaire méthodologique — trace oblique citée dans la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces qui résistent : je durcis. La pièce 1 est forte — le passage v5 → v6 n'est pas un simple changement, c'est un abandon argumenté avec adoption d'un autre modèle. La pièce 2 satisfait exactement le critère de la fiche : « ajustements de plan en cours de route avec raisons explicitées ». La pièce 3 chevauche la pièce 1 mais ajoute une dimension : le « v6 » apparaît comme un état de fait, ce qui suggère une chronologie d'itérations préalables. L'attaque (b) confusion avec 3.01 (créativité itérative) est tentable, mais la fiche distingue : 3.01 est créatif, 7.07 est de pilotage avec dimension d'accompagnement humain. Ici, la dimension proprement de pilotage est attestée (modifier le plan, décider d'arrêter, projeter sur la semaine).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage v5 → v6 est un abandon argumenté avec adoption d'un autre modèle — pratique itérative à grande échelle qui dépasse la créativité ponctuelle."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le cycle test → diagnostic → ajustement avec raison explicite est précisément la boucle agile que la fiche décrit."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La mention du « v6 » est brève, mais elle correspond à une trace oblique citée par la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai durci ma lecture pour distinguer la créativité itérative (3.01) de l'agilité de pilotage (7.07). Trois pièces ont tenu — deux sans réserve (passage v5/v6 et cycle court de test-diagnostic-ajustement) et une affaiblie (mention du v6 comme état de fait). La dimension de pilotage est attestée : pas seulement créer des versions, mais piloter leur succession, ajuster le plan en cours de route, projeter sur la suite. La dimension proprement de conduite du changement (accompagnement humain, normalisation des résistances) reste en revanche en arrière-plan — pas d'élèves accompagnés ici, pas d'équipe en transition. Ce qui en résulte est une présence solidement attestée sur la dimension itération, plus discrète sur la dimension accompagnement.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.8,
+        "motif": "Deux pièces confirmées sans réserve (passage v5 → v6 argumenté, cycle agile complet en quelques minutes) et une pièce affaiblie retenue (mention du v6 comme état de fait) attestent une pratique mature de l'itération structurée.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de documenter, lors du déploiement futur des manuels auprès des apprenants, comment les résistances éventuelles sont accueillies et normalisées — la dimension d'accompagnement humain complèterait la dimension d'itération déjà solidement à l'œuvre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "7.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Détection immédiate d'un problème de mémoire après le lancement, avec décision rapide en cascade de modifier les quatre prompts."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La gestion de crise en temps réel attend une compression temporelle radicale (minutes, pas jours), un triage sous pression, des décisions en cascade. J'aborde la pièce 1 en m'attendant à ce qu'elle ne soit qu'un débogage ordinaire. La pièce décrit effectivement une détection rapide (« tout de suite »), un diagnostic et une décision (« il faut modifier les 4 prompts ») — mais l'urgence n'est ni vitale ni en cascade au sens de la fiche. Il n'y a pas de pression extrême (l'apprenant peut tranquillement reporter au lendemain), pas de communication de crise, pas de mode dégradé proactif, pas de post-mortem structuré. La fiche est explicite : le stress ordinaire (deadline, débogage tardif) n'est pas une crise.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté : le débogage en soirée ne satisfait pas les critères de la fiche (imprévu, urgence vitale, décisions rapides en cascade sous pression). Pas d'examen à conduire.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans le diagnostic rapide d'un problème de pipeline, une trace de gestion de crise. Mais la fiche est explicite : la crise se distingue par l'imprévu, l'urgence vitale et les décisions rapides en cascade. Ici, l'apprenant a tout son temps pour reconfigurer (il peut arrêter, reprendre demain, prendre la semaine), il n'y a pas de cascade temporelle compressée. Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait des situations où l'apprenant aurait été soumis à une pression vitale (un crash en production, un service public en panne, un événement imprévu nécessitant une cascade de décisions en minutes).",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : le débogage en soirée ne satisfait pas les critères de compression temporelle radicale et d'urgence vitale qui caractérisent la gestion de crise.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter une situation passée ou présente où une pression vitale aurait nécessité des décisions en cascade sous contrainte temporelle extrême (crash, panne critique, incident imprévu), avec les détails opérationnels qui font la trace fiable selon la fiche."
+      },
+      "tracesRetenues": []
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 0
+  },
+
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail du 25 janvier déploie largement la dimension transmettre-piloter — c'est sans doute le pôle où la séance laisse le plus de traces solides. L'apprenant conçoit deux gabarits structurés (un pour le manuel, un pour le chapitre) qui sont en eux-mêmes des artefacts de documentation vivante ; il pense l'architecture pédagogique avec une intention maïeutique explicite (IA socratique, progression assistance-application-autonomie, encarts métacognitifs) ; il pilote la transition v5 → v6 avec un cycle agile complet déroulé en quelques minutes (test → diagnostic → ajustement) ; il pose un « non » stratégique au productivisme avec coût concret nommé et raison articulée. Une bascule de leadership entre humain et IA se joue dans la même soirée — le « prompt ultime » envoyé, puis le retour de supervision dès le premier problème détecté. La dimension visionnaire reste à l'échelle du projet, l'évaluation transformative reste à l'état de mention, et la gestion de crise au sens fort est en dehors du périmètre. Voix dominante : un concepteur qui pilote en plusieurs registres simultanés sans jamais sortir du registre architectural.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation Vivante",
+        "description": "Deux gabarits structurés (manuel et chapitre) conçus comme réutilisables, versioning explicite (v6), partage public des quatre prompts via Drive — conscience pleine du futur lecteur.",
+        "extraitVerbatim": "Voici [l'ensemble des 4 prompts utilisés pour générer la v6](https://drive.google.com/drive/folders/1X1Bb0Yy_01ihP9hZ07l55rc74SN_xgej?usp=sharing) des manuels de formation.",
+        "ceQueCaDit": "Les artefacts eux-mêmes sont la trace : structures génériques, numéro de version, lien Drive intégré au journal — la documentation est conçue pour servir, pas pour archiver."
+      },
+      {
+        "competence": "Maïeutique & Facilitation d'Apprentissage",
+        "description": "Architecture pédagogique multi-niveaux avec IA socratique, progression assistance-application-autonomie, encarts conçus pour faire travailler quatre objectifs simultanément dont la métacognition.",
+        "extraitVerbatim": "exercices théoriques : à résoudre à l'aide d'une IA socratique, avec le prompt associé pour l'exercice (apprentissage guidé)",
+        "ceQueCaDit": "La facilitation est pensée au niveau du dispositif lui-même — l'environnement est conçu pour que l'élève accouche de son propre savoir, ce qui correspond précisément à la dimension la mieux observable textuellement selon la fiche."
+      },
+      {
+        "competence": "Agilité & Conduite du Changement",
+        "description": "Versions successives explicitement comparées (v5 → v6) avec abandon argumenté d'un modèle, et cycle agile complet déroulé en quelques minutes (test minimal → diagnostic → ajustement des quatre prompts).",
+        "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. [...] Du coup il faut modifier les 4 prompts de génération, pour imposer ce découpage et forcer les prompts d'aller lire les informations dans la mémoire du projet plutôt que dans l'historique de la conversation.",
+        "ceQueCaDit": "L'itération n'est pas racontée après-coup : elle se déroule dans le journal lui-même, avec ajustement de plan en cours de route et raison explicitée — boucle agile en acte."
+      },
+      {
+        "competence": "Efficacité Personnelle",
+        "description": "Renoncement explicite au productivisme (passer de 4h30 à 6-7h30 de sommeil) avec coût concret nommé (« ça va beaucoup ralentir ma production ») et raison articulée.",
+        "extraitVerbatim": "J'ai décidé de perdre du poids car là ça ne va plus. Du coup je vais me ré-imposer de dormir au moins 6h par nuit et idéalement 7h30, au lieu de mes 4h30 habituelles. Ça va beaucoup ralentir ma production",
+        "ceQueCaDit": "Le « non » stratégique avec raison articulée est le marqueur le plus fiable selon la fiche — décrire ce qu'on refuse est plus probant que décrire ce qu'on accomplit."
+      },
+      {
+        "competence": "Leadership Situationnel & Orchestration",
+        "description": "Bascule explicite entre lead-IA (envoi du prompt orchestrateur unique) et lead-humain (reprise de supervision dès le premier problème), avec distribution de rôles entre quatre prompts.",
+        "extraitVerbatim": "Ça y est, je viens d'envoyer mon prompt *ultime* pour la génération automatique de toute la formation : \"run prompt-protocole.md\" !",
+        "ceQueCaDit": "L'alternance entre céder le lead et reprendre la main se joue dans la même soirée, avec le déclencheur explicite (un problème détecté) qui motive la reprise."
+      }
+    ],
+    "territoiresNonVisites": "Quelques régions du pôle restent à l'arrière-plan. L'évaluation transformative est mentionnée — un quiz IA dans la structure de chapitre — mais sans déploiement de la dimension qui ferait la différence (critères articulés, feedback formatif, usage de l'erreur comme matériau pédagogique). La vision stratégique est en germe (lien v5 → v6 avec anticipation du rôle de l'IA), mais reste à l'échelle de la version actuelle sans horizons multiples. La gestion de crise au sens fort est complètement en dehors de la séance — le débogage en soirée ne satisfait pas les critères de pression vitale et de cascade temporelle compressée. Ces silences correspondent à la nature de la séance : une conception en amont, pas une mise en situation devant des élèves, pas une crise en production.",
+    "emergencesPole": "Trois choses traversent les pièces de pilotage de cette séance. D'abord, une économie d'architecture qui se déploie à plusieurs échelles simultanément — un gabarit pour le manuel, un gabarit pour le chapitre, quatre prompts qui se répartissent les rôles, des encarts qui font travailler quatre objectifs. Ensuite, une bascule constante entre lead-humain et lead-IA, qui se joue plusieurs fois dans la soirée (concevoir → déléguer → reprendre → reconfigurer → déléguer à nouveau prévu pour demain). Enfin, un balancier entre l'élan productif et un renoncement assumé : la séance se termine par un « non » au rythme insoutenable qui colore le reste rétrospectivement.",
+    "pistes": [
+      "Pour prolonger la documentation vivante, un chemin possible serait de documenter ce qui change entre la v5 et la v6 sur les gabarits eux-mêmes — un journal de version sur les structures génériques rendrait visible la dimension proprement « vivante ».",
+      "Pour rendre visible la maïeutique en situation, un chemin possible serait de raconter, lors d'une prochaine séance où le dispositif sera testé avec un apprenant ou un pair-aidant, ce que la posture exige de retenue en temps réel.",
+      "Pour ouvrir l'évaluation transformative, un chemin possible serait de détailler la conception du quiz IA : quels critères, quel type de feedback formulé à l'apprenant, comment l'erreur est traitée comme information sur la suite à proposer.",
+      "Pour ouvrir la vision stratégique au-delà du projet immédiat, un chemin possible serait de documenter ce qui est anticipé pour la diffusion, la maintenance et l'évolution des manuels à mesure que les IA progresseront.",
+      "Pour prolonger le leadership situationnel, un chemin possible serait de documenter, lors du prochain test du pipeline, les critères explicites de bascule : à quel signal reprendre la main, à quel autre laisser l'IA continuer."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail du 25 janvier déploie largement la dimension transmettre-piloter — c'est sans doute le pôle où la séance laisse le plus de traces solides. L'apprenant conçoit deux gabarits structurés (un pour le manuel, un pour le chapitre) qui sont en eux-mêmes des artefacts de documentation vivante ; il pense l'architecture pédagogique avec une intention maïeutique explicite (IA socratique, progression assistance-application-autonomie, encarts métacognitifs) ; il pilote la transition v5 → v6 avec un cycle agile complet déroulé en quelques minutes (test → diagnostic → ajustement) ; il pose un « non » stratégique au productivisme avec coût concret nommé et raison articulée. Une bascule de leadership entre humain et IA se joue dans la même soirée — le « prompt ultime » envoyé, puis le retour de supervision dès le premier problème détecté. La dimension visionnaire reste à l'échelle du projet, l'évaluation transformative reste à l'état de mention, et la gestion de crise au sens fort est en dehors du périmètre. Voix dominante : un concepteur qui pilote en plusieurs registres simultanés sans jamais sortir du registre architectural.\n\n## Territoires les plus denses\n\n**Documentation Vivante.** Deux gabarits structurés (manuel et chapitre) conçus comme réutilisables, versioning explicite (v6), partage public des quatre prompts via Drive — conscience pleine du futur lecteur. *« Voici [l'ensemble des 4 prompts utilisés pour générer la v6](https://drive.google.com/drive/folders/1X1Bb0Yy_01ihP9hZ07l55rc74SN_xgej?usp=sharing) des manuels de formation. »* — les artefacts eux-mêmes sont la trace : structures génériques, numéro de version, lien Drive intégré au journal — la documentation est conçue pour servir, pas pour archiver.\n\n**Maïeutique & Facilitation d'Apprentissage.** Architecture pédagogique multi-niveaux avec IA socratique, progression assistance-application-autonomie, encarts conçus pour faire travailler quatre objectifs simultanément dont la métacognition. *« exercices théoriques : à résoudre à l'aide d'une IA socratique, avec le prompt associé pour l'exercice (apprentissage guidé) »* — la facilitation est pensée au niveau du dispositif lui-même — l'environnement est conçu pour que l'élève accouche de son propre savoir, ce qui correspond précisément à la dimension la mieux observable textuellement selon la fiche.\n\n**Agilité & Conduite du Changement.** Versions successives explicitement comparées (v5 → v6) avec abandon argumenté d'un modèle, et cycle agile complet déroulé en quelques minutes (test minimal → diagnostic → ajustement des quatre prompts). *« Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. [...] Du coup il faut modifier les 4 prompts de génération, pour imposer ce découpage et forcer les prompts d'aller lire les informations dans la mémoire du projet plutôt que dans l'historique de la conversation. »* — l'itération n'est pas racontée après-coup : elle se déroule dans le journal lui-même, avec ajustement de plan en cours de route et raison explicitée — boucle agile en acte.\n\n**Efficacité Personnelle.** Renoncement explicite au productivisme (passer de 4h30 à 6-7h30 de sommeil) avec coût concret nommé (« ça va beaucoup ralentir ma production ») et raison articulée. *« J'ai décidé de perdre du poids car là ça ne va plus. Du coup je vais me ré-imposer de dormir au moins 6h par nuit et idéalement 7h30, au lieu de mes 4h30 habituelles. Ça va beaucoup ralentir ma production »* — le « non » stratégique avec raison articulée est le marqueur le plus fiable selon la fiche — décrire ce qu'on refuse est plus probant que décrire ce qu'on accomplit.\n\n**Leadership Situationnel & Orchestration.** Bascule explicite entre lead-IA (envoi du prompt orchestrateur unique) et lead-humain (reprise de supervision dès le premier problème), avec distribution de rôles entre quatre prompts. *« Ça y est, je viens d'envoyer mon prompt *ultime* pour la génération automatique de toute la formation : \"run prompt-protocole.md\" ! »* — l'alternance entre céder le lead et reprendre la main se joue dans la même soirée, avec le déclencheur explicite (un problème détecté) qui motive la reprise.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuelques régions du pôle restent à l'arrière-plan. L'évaluation transformative est mentionnée — un quiz IA dans la structure de chapitre — mais sans déploiement de la dimension qui ferait la différence (critères articulés, feedback formatif, usage de l'erreur comme matériau pédagogique). La vision stratégique est en germe (lien v5 → v6 avec anticipation du rôle de l'IA), mais reste à l'échelle de la version actuelle sans horizons multiples. La gestion de crise au sens fort est complètement en dehors de la séance — le débogage en soirée ne satisfait pas les critères de pression vitale et de cascade temporelle compressée. Ces silences correspondent à la nature de la séance : une conception en amont, pas une mise en situation devant des élèves, pas une crise en production.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les pièces de pilotage de cette séance. D'abord, une économie d'architecture qui se déploie à plusieurs échelles simultanément — un gabarit pour le manuel, un gabarit pour le chapitre, quatre prompts qui se répartissent les rôles, des encarts qui font travailler quatre objectifs. Ensuite, une bascule constante entre lead-humain et lead-IA, qui se joue plusieurs fois dans la soirée (concevoir → déléguer → reprendre → reconfigurer → déléguer à nouveau prévu pour demain). Enfin, un balancier entre l'élan productif et un renoncement assumé : la séance se termine par un « non » au rythme insoutenable qui colore le reste rétrospectivement.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la documentation vivante, un chemin possible serait de documenter ce qui change entre la v5 et la v6 sur les gabarits eux-mêmes — un journal de version sur les structures génériques rendrait visible la dimension proprement « vivante ».\n- Pour rendre visible la maïeutique en situation, un chemin possible serait de raconter, lors d'une prochaine séance où le dispositif sera testé avec un apprenant ou un pair-aidant, ce que la posture exige de retenue en temps réel.\n- Pour ouvrir l'évaluation transformative, un chemin possible serait de détailler la conception du quiz IA : quels critères, quel type de feedback formulé à l'apprenant, comment l'erreur est traitée comme information sur la suite à proposer.\n- Pour ouvrir la vision stratégique au-delà du projet immédiat, un chemin possible serait de documenter ce qui est anticipé pour la diffusion, la maintenance et l'évolution des manuels à mesure que les IA progresseront.\n- Pour prolonger le leadership situationnel, un chemin possible serait de documenter, lors du prochain test du pipeline, les critères explicites de bascule : à quel signal reprendre la main, à quel autre laisser l'IA continuer."
+  }
+}

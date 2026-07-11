@@ -1,0 +1,420 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Restructuration des niveaux de formation pour les tuteurs. La liste a été conçue en fonction de la valeur ajoutée que le niveau apporte à l'élève (niveau 1, 2 et 3), à un futur employeur (niveau 3 et 4), à l'école (niveau 4, 5 et 6).",
+      "contexte": "Ouverture qui annonce une « restructuration » et pose les critères de design d'un parcours de formation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "NIVEAU 1-2 : TUTEURS PRATICIENS ├── Cartographe (données, RH) └── Médiateur (métacognition, déblocage) [Ordre libre entre les deux]",
+      "contexte": "Représentation schématique structurée du premier palier d'un parcours pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le second niveau serait celui du \"Médiateur\" au sens de Feuerstein. Son rôle : aider les apprenants ayant des difficultés à activer leur métacognition pour documenter leur portfolio de manière pertinente.",
+      "contexte": "Définition d'un rôle pédagogique d'accompagnement de la métacognition, ancré dans Feuerstein, donc dans une tradition maïeutique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le troisième niveau serait celui du \"Noèsiologue\". Son rôle : expliquer aux cartographes et aux médiateurs les outils intellectuels pour réussir à bien faire leur travail au sein des écoles Respire, en se basant sur les neurosciences de l'éducation, la psychologie cognitive, la théorie de la créativité, les théories de la motivation.",
+      "contexte": "Rôle de transmission de savoirs académiques aux praticiens — fonction pédagogique de second niveau.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le cinquième niveau serait celui du \"Maître\". Son rôle : former les \"Cartographes\", les \"Médiateurs\", les \"Noèsiologues\", les \"Experts IA\" et les \"Maîtres\" eux-même (bootstrap du système). Les \"Maîtres\" élisent les \"Grand Maîtres\".",
+      "contexte": "Le Maître est défini par son acte de formation — fonction pédagogique transversale qui forme l'ensemble du dispositif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le sixième niveau des \"Grand Maîtres\" ont pour rôle d'améliorer les écoles \"Respire\" et les processus de formation des apprenants et des tuteurs, quelques soient leurs niveaux.",
+      "contexte": "Niveau méta dédié à l'amélioration continue du système de formation — fonction de pilotage stratégique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Pour chacun de ces 6 niveaux de tutorats et d'expertise, un panel de compétences distinct est travaillé et sera documenté dans les portfolios pour être rendus visibles dans leurs cartographies.",
+      "contexte": "Articulation explicite entre niveaux, compétences travaillées, portfolios documentés et cartographies — dispositif d'évaluation transformative et de documentation vivante.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Ces niveaux ne sont pas hiérarchiques : un \"Accompagnant\" pourrait choisir d'apprendre à devenir \"Médiateur\" avant d'apprendre à devenir \"Cartographe\". Par contre, il faut avoir été \"Médiateur\" et \"Cartographe\" pour devenir \"Noèsiologue\" ou pour devenir \"Expert IA\". Il faut avoir été \"Noèsiologue\" et \"Expert IA\" pour devenir \"Maître\".",
+      "contexte": "Règles de progression différenciée entre rôles, qui dessinent un parcours de formation avec prérequis articulés.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Ce découpage permet de donner du sens à chaque niveau, d'expliciter les compétences à acquérir et qui seront travaillées. Puis de bien faire comprendre que pour un recruteur, il n'est pas nécessaire de devenir \"Maître\". Ce découpage permettra également d'avoir des manuels plus courts : ça structure la formation et les écoles.",
+      "contexte": "Justification finale qui mentionne explicitement la production de manuels plus courts — anticipation d'artefacts de documentation pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-21",
+      "extraitVerbatim": "Le quatrième niveau serait celui de \"L'expert IA\". Son rôle : aider tous les apprenants de tous les niveaux, à mieux utiliser les IA, en proposant d'améliorer les prompts socratiques, en testant des prompts pour analyser les portfolios, en cherchant à mettre en évidence des indicateurs pour voir les compétences définies par la société civile sur notre plateforme Decidim.",
+      "contexte": "Mention explicite de prompts « socratiques » qui révèle la méthode pédagogique sous-jacente du dispositif.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "La référence à Feuerstein cadre la pratique du Médiateur dans une tradition maïeutique explicite — aider à « activer la métacognition » plutôt que transmettre frontalement."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "La mention de « prompts socratiques » nomme directement la méthode interrogative qui caractérise 7.01."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "L'ensemble du dispositif est conçu comme une architecture pédagogique différenciée selon le bénéficiaire — facilitation au sens « architecturer un environnement d'apprentissage »."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune maïeutique ni facilitation au sens 7.01 n'est attestée ici, alors les mentions de Feuerstein et des prompts socratiques sont des emprunts de vocabulaire pédagogique, et le dispositif n'est qu'une organisation administrative de niveaux. La fiche est exigeante : la maïeutique exige la retenue délibérée de celui qui sait, l'adressage à l'autre comme source. La pièce 1 invoque Feuerstein mais ne raconte aucun acte maïeutique vécu de l'apprenant — la médiation est attribuée à un rôle futur (le Médiateur), pas exercée ici. La pièce 2 nomme les prompts socratiques mais comme objet d'amélioration par l'Expert IA, pas comme pratique de l'apprenant. La pièce 3 décrit une architecture pédagogique à plusieurs niveaux, ce qui correspond au versant facilitation de la fiche (concevoir des environnements où l'apprentissage se produit) — et là, le geste est effectivement en train d'être posé sur cette feuille. Le risque sur la pièce 3 est précisément la « pratique en cours de conception » plutôt que la « pratique attestée », mais la facilitation au sens architectural est un acte de conception, et c'est ce qui se passe dans la feuille.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 3,
+              "motifResistance": "La conception d'une architecture pédagogique différenciée avec rôles, prérequis et finalités est exactement ce que la fiche désigne comme facilitation au sens architectural — l'apprenant ne raconte pas une maïeutique vécue, il en conçoit l'environnement."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois tester si je n'ai pas confondu la conception d'une organisation administrative avec une véritable architecture pédagogique. Le risque dominant est le glissement lexical : « niveaux de formation » est un terme générique de l'organisation des cursus, et toute école découpe ses publics en paliers. Pourtant, l'architecture proposée porte des marqueurs spécifiquement pédagogiques : chaque rôle est défini par une finalité d'apprentissage (« aider les apprenants à produire des données utiles », « activer leur métacognition », « expliquer les outils intellectuels »), les prérequis sont articulés à des compétences acquises, et la dimension « bootstrap du système » fait du dispositif un environnement auto-formateur. La pièce reste, affaiblie : la facilitation est en cours de conception, pas encore en cours d'usage par des apprenants.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le vocabulaire « niveaux de formation » est générique, mais chaque rôle est défini par sa finalité d'apprentissage et ses prérequis cognitifs, ce qui porte une charge pédagogique effective au-delà du simple découpage administratif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir cette feuille comme la conception d'une organisation administrative de niveaux, sans charge pédagogique propre. Une pièce a résisté : l'architecture est conçue avec des rôles définis par leurs finalités d'apprentissage (produire des données, activer la métacognition, expliquer les outils intellectuels), des prérequis articulés à des compétences acquises, et un mécanisme de bootstrap qui fait du dispositif un environnement auto-formateur. Sous la présomption de sycophantie, la pièce a été affaiblie parce que la facilitation est en cours de conception et n'a pas encore d'usagers. La maïeutique proprement dite (questionner pour faire accoucher) n'est ni racontée ni exercée sur cette feuille — elle est attribuée à des rôles futurs (Médiateur au sens de Feuerstein, prompts socratiques améliorés par l'Expert IA). Sur cette feuille, le travail montre le versant architectural de 7.01 sans en activer le versant pratique.",
+          "confianceFinale": 0.52
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.52,
+        "motif": "Le temps 2 a retenu une pièce affaiblie : la conception d'une architecture pédagogique différenciée avec rôles, finalités d'apprentissage et prérequis correspond au versant facilitation de 7.01, sans que le versant maïeutique proprement dit soit activé.",
+        "prescription": "Le geste de facilitation architecturale est posé dans le dispositif ; un chemin possible serait de documenter, lors d'une prochaine étape, un exemple précis d'interaction maïeutique vécue avec un apprenant ou un pair — une question retenue plutôt qu'une réponse donnée — pour faire travailler ensemble les deux versants de la compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'articulation « compétences travaillées, documentées dans les portfolios, rendues visibles dans les cartographies » dessine un dispositif d'évaluation orienté progression, non sommatif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune évaluation transformative au sens 7.02 n'est attestée ici, alors la mention « documentées dans les portfolios pour être rendues visibles dans leurs cartographies » est une description neutre d'un dispositif d'évaluation, sans dimension formative explicite. La fiche distingue précisément l'évaluation sommative (trier, juger) de l'évaluation transformative (faire progresser). La pièce 1 décrit une chaîne portfolio → cartographie qui pourrait être lue comme un dispositif sommatif (rendre visible ce qui est acquis) ou transformatif (rendre visible pour progresser). L'apprenant ne précise pas la finalité formative, ne mentionne aucun critère explicite, aucune grille, aucun retour aux apprenants. Aucune réflexion sur le statut de l'erreur, aucun feedback formulé. La fiche est exigeante sur la dimension « critères articulés » qui distingue 7.02 du simple système de notation. La pièce ne porte pas le marqueur central.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, il n'y a pas d'examen critique à mener au temps 2. La fiche écarte explicitement les dispositifs d'évaluation dont la finalité formative n'est pas argumentée.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si la chaîne portfolio + cartographie pouvait attester une évaluation transformative. Le dispositif est posé sans que sa finalité formative soit articulée, sans critères explicites, sans réflexion sur le retour fait aux apprenants. Sur cette feuille, le travail décrit un système de visibilité des compétences sans déployer ce qui en ferait un dispositif d'évaluation au service de la progression.",
+          "confianceFinale": 0.28
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.28,
+        "motif": "Le temps 1 a fait tomber la pièce : la chaîne portfolio + cartographie est décrite comme dispositif de visibilité, sans articulation explicite de la finalité formative ni des critères qui en feraient une évaluation transformative.",
+        "prescription": "Le geste d'évaluation transformative pourrait s'ouvrir à partir de la chaîne déjà conçue ; un chemin possible serait de documenter, pour un exemple précis de cartographie d'apprenant, le type de retour qui lui est donné, les pistes ouvertes par ce retour, et la manière dont l'erreur ou l'absence sont traitées comme matériau de progression."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "La mention « documentés dans les portfolios pour être rendus visibles dans leurs cartographies » articule documentation et capitalisation des compétences au sein du dispositif."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "L'apprenant anticipe explicitement la production de « manuels plus courts » comme effet du découpage — conscience de la documentation à venir et de son lecteur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune documentation vivante au sens 7.03 n'est attestée ici, alors les mentions de portfolios et de manuels ne sont que des dépendances administratives d'un dispositif de formation, sans intention de pérennisation ni conscience du destinataire. La fiche est précise : 7.03 exige une intention de pérennisation, une conscience du destinataire, et une distinction nette avec 5.03 (qui est une expression personnelle). La pièce 1 mentionne les portfolios comme support de visibilité, mais ne décrit aucune structuration intentionnelle, aucun choix de séparation des artefacts. La pièce 2, en revanche, est plus précise : « avoir des manuels plus courts : ça structure la formation et les écoles » — l'apprenant anticipe une forme documentaire (le manuel) en fonction d'un effet recherché (plus court, donc plus utilisable par un lecteur). C'est un acte de conscience documentaire orienté vers un lecteur futur (les tuteurs en formation), ce qui correspond au marqueur central de 7.03.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "L'anticipation de « manuels plus courts » formule explicitement un effet de la structure du dispositif sur la forme documentaire à venir, avec un lecteur implicite (le tuteur en formation) — c'est une conscience documentaire orientée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois tester si je n'ai pas surchargé une phrase de justification. Le risque dominant est l'insuffisance probatoire : « manuels plus courts » est une mention rapide, en fin de paragraphe, qui ne décrit aucun manuel précis, aucune structuration concrète, aucune anticipation détaillée du destinataire. La pièce nomme une intention documentaire sans la déployer. L'attaque touche : la pièce reste comme indice d'une intention, mais elle n'est pas un artefact de documentation vivante ni une description de pratique de capitalisation.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La mention « manuels plus courts » est brève, sans description du manuel précis ni de sa structuration ; elle énonce une intention documentaire sans la déployer comme pratique de capitalisation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir les mentions de portfolios et de manuels comme des dépendances administratives sans charge documentaire propre. Une pièce a résisté : l'anticipation explicite de « manuels plus courts » comme effet du découpage articule la structure pédagogique à une forme documentaire visée, avec un lecteur implicite. Sous la présomption de sycophantie, la pièce a été affaiblie parce que l'intention reste à l'état de mention brève, sans manuel précis ni structuration décrite. Sur cette feuille, le travail montre une conscience documentaire orientée vers le destinataire, sans que le geste de capitalisation soit déployé en pratique.",
+          "confianceFinale": 0.42
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.42,
+        "motif": "Le temps 2 a retenu une pièce affaiblie : l'anticipation des manuels plus courts manifeste une conscience documentaire orientée vers le lecteur, mais reste à l'état de mention sans déploiement.",
+        "prescription": "Le geste de documentation vivante est latent dans l'anticipation des manuels ; un chemin possible serait de documenter, pour l'un des rôles du dispositif, un premier squelette de manuel avec sa structure, ses sections, et le destinataire imaginé — en notant les choix de ce qui reste dans le document principal et ce qui en sort."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au leadership situationnel et à l'orchestration sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a délibérément choisi de céder ou de reprendre la main dans une collaboration humain-IA, avec son critère de bascule."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant pose une architecture à six niveaux dont la conception est orientée vers la production future de cartographies de compétences à l'ère des AGI."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Le rôle de Grand Maître est défini par l'amélioration continue des écoles — fonction prospective explicite dans l'architecture du dispositif."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "La justification finale articule le découpage présent à plusieurs effets visés (sens, lisibilité recruteur, manuels plus courts) qui sont autant d'anticipations d'usages futurs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune vision stratégique au sens 7.05 n'est attestée ici, alors la conception du dispositif n'est qu'un travail technique sur une structure, sans lien explicite entre futur anticipé et décision présente. La fiche est précise : 7.05 exige le *lien explicite* entre projection future et choix présent. La pièce 1 conçoit un dispositif à six niveaux orienté vers des cartographies « utiles à l'ère des AGI » — l'horizon prospectif est explicitement posé comme contexte de la conception. La pièce 2 institue une fonction (Grand Maître) dédiée à l'amélioration future du système, ce qui correspond à la trace oblique « architecture surdimensionnée pour l'usage actuel » (un dispositif à six niveaux et une fonction de méta-amélioration pour une école Respire dont la taille effective n'est pas mentionnée). La pièce 3 articule la décision présente (le découpage) à plusieurs effets visés (lisibilité, manuels, structuration) qui sont des anticipations d'usage. Les trois pièces résistent : elles articulent explicitement futur visé et décision présente.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'horizon « ère des AGI » est explicitement posé comme contexte de la conception, et le dispositif est dimensionné en fonction de cet horizon."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La fonction de Grand Maître institue une capacité d'amélioration future du système — architecture pensée pour son évolution."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Le découpage présent est justifié par les usages futurs qu'il rend possibles (manuels plus courts, lisibilité pour le recruteur), ce qui constitue le lien argumenté entre futur anticipé et décision présente."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté ; je dois tester si je n'ai pas surinterprété la simple existence d'une architecture à plusieurs niveaux comme une vision stratégique. Pour la pièce 1, le risque dominant est le récit performatif : nommer « ère des AGI » ne prouve pas qu'une analyse prospective des AGI a réellement guidé les choix précis du dispositif. L'horizon est posé mais la chaîne de conséquences entre l'horizon et chaque niveau du dispositif n'est pas déployée. La pièce 2 est touchée par la même attaque : la fonction de Grand Maître nomme l'amélioration future sans décrire comment elle s'opérera, ce qui pourrait être un placeholder organisationnel. La pièce 3 est plus solide : les trois effets visés (sens, lisibilité recruteur, manuels plus courts) sont articulés au découpage précis qui les rend possibles, et le lien futur-présent est explicitement formulé. Les trois pièces tiennent, mais les pièces 1 et 2 sont affaiblies tandis que la pièce 3 résiste mieux.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'horizon « ère des AGI » est nommé comme contexte mais la chaîne de conséquences entre l'horizon et chaque niveau du dispositif n'est pas déployée — l'horizon prospectif est posé sans être mobilisé en détail."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La fonction de Grand Maître est instituée comme amélioration future sans description du mécanisme par lequel cette amélioration s'opérera — l'architecture évolutive est annoncée mais non spécifiée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les trois effets visés (sens, lisibilité recruteur, manuels plus courts) sont articulés précisément au découpage qui les rend possibles, et le lien futur-présent est explicitement formulé — ce n'est pas un récit performatif mais une chaîne argumentée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette feuille comme un travail technique sur une structure, sans lien explicite entre futur et présent. Trois pièces m'ont forcé à reconnaître autre chose : l'horizon « ère des AGI » posé comme contexte de la conception, une fonction de Grand Maître dédiée à l'amélioration future du système, et une justification finale qui articule le découpage présent à plusieurs usages futurs visés. Sous la présomption de sycophantie, les pièces 1 et 2 ont été affaiblies parce que l'horizon est posé sans que la chaîne de conséquences soit déployée en détail. La pièce 3 a résisté pleinement : les trois effets visés sont articulés précisément au découpage qui les rend possibles. Sur cette feuille, le travail montre une vision stratégique en acte, surtout dans la justification finale qui relie chaque trait du dispositif à un usage futur précis.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "Le temps 2 a retenu la pièce 3 sans affaiblissement (chaîne argumentée entre découpage présent et usages futurs visés) et deux pièces affaiblies mais retenues (horizon AGI et fonction Grand Maître posés sans déploiement détaillé).",
+        "prescription": "Le geste de vision stratégique est attesté dans l'articulation présent-futur de la justification ; un chemin possible serait de prolonger en explicitant, pour l'un des niveaux ou pour la fonction Grand Maître, la chaîne de conséquences entre l'horizon « ère des AGI » et les choix de design précis qui en découlent, à plusieurs échelles temporelles."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'efficacité personnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision explicite de non-faire avec sa raison articulée, ou un arbitrage de priorisation entre tâches concurrentes."
+      }
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le mot « restructuration » indique explicitement une révision d'une version antérieure du dispositif — itération sur un objet préexistant."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "La fonction de Grand Maître est dédiée à l'amélioration continue des écoles et des processus de formation — institutionnalisation de la conduite du changement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je pose qu'aucune agilité ni conduite du changement au sens 7.07 n'est attestée ici, alors « restructuration » est une étiquette sans description de la boucle générer-relire-tester-ajuster, et la fonction de Grand Maître est un placeholder institutionnel sans pratique d'accompagnement. La fiche est précise : 7.07 exige une boucle de rétroaction explicite et/ou une normalisation des résistances. La pièce 1 nomme une restructuration mais ne décrit aucun cycle itératif (pas de v1, v2 explicite, pas de retours qui auraient déclenché la révision, pas de critère de bascule). La pièce 2 institue une fonction d'amélioration mais ne décrit aucune anticipation de résistances, aucune ressource de transition, aucune mise en pratique de conduite du changement. Les pièces ne portent pas le marqueur central de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, il n'y a pas d'examen critique à mener au temps 2. La fiche écarte explicitement les pratiques où l'itération n'est pas accompagnée de boucle de rétroaction explicite.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si « restructuration » et la fonction de Grand Maître pouvaient attester une pratique d'agilité ou de conduite du changement. La feuille pose des marqueurs (révision, fonction d'amélioration) sans déployer la boucle de rétroaction explicite ni la pratique d'accompagnement des transitions. Sur cette feuille, le travail nomme une dynamique évolutive sans en raconter le geste précis.",
+          "confianceFinale": 0.24
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.24,
+        "motif": "Le temps 1 a fait tomber les pièces : la révision et la fonction d'amélioration sont nommées sans boucle de rétroaction explicite ni pratique de conduite du changement décrite.",
+        "prescription": "Le territoire de l'agilité pourrait se rendre visible en documentant, pour la prochaine restructuration, la séquence d'événements (retours reçus, hypothèses testées, ajustements faits) qui a mené à la nouvelle version, et les résistances anticipées chez les futurs apprenants du dispositif."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous compression temporelle, avec la séquence précise des décisions et leurs erreurs assumées."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle de la transmission et du pilotage est le plus densément habité de tous. Le travail produit une architecture pédagogique différenciée à six niveaux, dont chaque rôle est défini par sa finalité d'apprentissage et ses prérequis cognitifs, avec des références explicites à des traditions pédagogiques (Feuerstein, méthode socratique) et un horizon prospectif (ère des AGI) qui guide l'ensemble. La justification finale articule précisément le découpage présent à plusieurs usages futurs visés. Cette densité reste cependant celle du concepteur qui pose le dispositif, pas du praticien qui le fait vivre : la maïeutique proprement dite n'est pas exercée mais conçue, l'évaluation transformative est ébauchée sans articulation formative explicite, la documentation est anticipée sans encore prendre forme. Le travail montre un pilotage stratégique en acte, particulièrement dans le lien argumenté entre la structure choisie et ses effets visés.",
+    "territoiresDenses": [
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Le découpage présent est articulé à plusieurs usages futurs visés (sens, lisibilité pour le recruteur, manuels plus courts) avec un horizon explicitement posé (« ère des AGI ») et une fonction dédiée à l'amélioration future du système (Grand Maîtres).",
+        "extraitVerbatim": "Ce découpage permet de donner du sens à chaque niveau, d'expliciter les compétences à acquérir et qui seront travaillées. Puis de bien faire comprendre que pour un recruteur, il n'est pas nécessaire de devenir \"Maître\". Ce découpage permettra également d'avoir des manuels plus courts : ça structure la formation et les écoles.",
+        "ceQueCaDit": "Sur cette feuille, le travail montre une vision stratégique qui relie chaque trait du dispositif à un usage futur précis, ce qui dépasse la simple temporisation pour entrer dans le pilotage par anticipation."
+      },
+      {
+        "competence": "Maïeutique et facilitation d'apprentissage",
+        "description": "L'architecture pédagogique différencie six rôles définis chacun par leur finalité d'apprentissage, leurs prérequis, et leurs références théoriques (Feuerstein, prompts socratiques), ce qui dessine un environnement de formation conçu plutôt qu'une simple organisation.",
+        "extraitVerbatim": "Le second niveau serait celui du \"Médiateur\" au sens de Feuerstein. Son rôle : aider les apprenants ayant des difficultés à activer leur métacognition pour documenter leur portfolio de manière pertinente.",
+        "ceQueCaDit": "Sur cette feuille, le travail montre le versant architectural de la facilitation : concevoir l'environnement où l'apprentissage se produit, sans encore activer le versant maïeutique en pratique."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à explorer à partir du matériau présent. L'évaluation transformative est ébauchée par la chaîne portfolio + cartographie, mais sa finalité formative et ses critères ne sont pas articulés. La documentation vivante est anticipée par la mention des manuels plus courts, sans qu'un artefact concret soit déployé. L'agilité et la conduite du changement sont latentes dans le mot « restructuration » et la fonction de Grand Maître, mais aucune boucle de rétroaction ni accompagnement des résistances n'est décrit. Le leadership situationnel humain-IA, l'efficacité personnelle et la gestion de crise sont absents — ce qui ressemble à un effet de cadrage de la feuille, dont l'objet est la conception d'un parcours plutôt que la pratique de pilotage vécue.",
+    "emergencesPole": "Trois fils traversent les zones actives. D'abord, l'attention au lecteur futur : recruteur (qui n'a pas besoin du sommet), tuteur en formation (qui lira des manuels plus courts), apprenant (qui produira son portfolio). Ensuite, l'auto-référence du dispositif : il forme ses propres formateurs, documente sa propre amélioration, génère ses propres cartographies. Enfin, l'articulation entre rigueur structurelle et finalité d'apprentissage : chaque rôle est défini à la fois par sa place dans le graphe et par ce qu'il fait pour faire apprendre. Cette triple articulation est le signe d'un pilotage pédagogique réfléchi, sans qu'il soit revendiqué comme tel.",
+    "pistes": [
+      "Pour faire travailler ensemble les deux versants de la facilitation, un chemin possible serait de documenter, lors d'une prochaine étape, un exemple précis d'interaction maïeutique vécue avec un apprenant ou un pair — une question retenue plutôt qu'une réponse donnée.",
+      "Pour rendre visible la finalité formative de la chaîne portfolio + cartographie, un chemin possible serait de documenter, pour un exemple précis de cartographie d'apprenant, le type de retour qui lui est donné et les pistes ouvertes par ce retour.",
+      "Pour matérialiser la documentation anticipée, un chemin possible serait de commencer un premier squelette de manuel pour l'un des rôles, avec sa structure, ses sections, et le destinataire imaginé — en notant ce qui reste dans le manuel principal et ce qui en sort.",
+      "Pour faire apparaître la boucle de rétroaction de la restructuration, un chemin possible serait de documenter, pour la prochaine itération du dispositif, la séquence d'événements qui a mené à la révision, et les résistances anticipées chez les futurs apprenants."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle de la transmission et du pilotage est le plus densément habité de tous. Le travail produit une architecture pédagogique différenciée à six niveaux, dont chaque rôle est défini par sa finalité d'apprentissage et ses prérequis cognitifs, avec des références explicites à des traditions pédagogiques (Feuerstein, méthode socratique) et un horizon prospectif (ère des AGI) qui guide l'ensemble. La justification finale articule précisément le découpage présent à plusieurs usages futurs visés. Cette densité reste cependant celle du concepteur qui pose le dispositif, pas du praticien qui le fait vivre : la maïeutique proprement dite n'est pas exercée mais conçue, l'évaluation transformative est ébauchée sans articulation formative explicite, la documentation est anticipée sans encore prendre forme. Le travail montre un pilotage stratégique en acte, particulièrement dans le lien argumenté entre la structure choisie et ses effets visés.\n\n## Territoires les plus denses\n\n**Vision stratégique et prospective.** Le découpage présent est articulé à plusieurs usages futurs visés (sens, lisibilité pour le recruteur, manuels plus courts) avec un horizon explicitement posé (« ère des AGI ») et une fonction dédiée à l'amélioration future du système (Grand Maîtres). Citation : « Ce découpage permet de donner du sens à chaque niveau, d'expliciter les compétences à acquérir et qui seront travaillées. Puis de bien faire comprendre que pour un recruteur, il n'est pas nécessaire de devenir \"Maître\". Ce découpage permettra également d'avoir des manuels plus courts : ça structure la formation et les écoles. » Sur cette feuille, le travail montre une vision stratégique qui relie chaque trait du dispositif à un usage futur précis, ce qui dépasse la simple temporisation pour entrer dans le pilotage par anticipation.\n\n**Maïeutique et facilitation d'apprentissage.** L'architecture pédagogique différencie six rôles définis chacun par leur finalité d'apprentissage, leurs prérequis, et leurs références théoriques (Feuerstein, prompts socratiques), ce qui dessine un environnement de formation conçu plutôt qu'une simple organisation. Citation : « Le second niveau serait celui du \"Médiateur\" au sens de Feuerstein. Son rôle : aider les apprenants ayant des difficultés à activer leur métacognition pour documenter leur portfolio de manière pertinente. » Sur cette feuille, le travail montre le versant architectural de la facilitation : concevoir l'environnement où l'apprentissage se produit, sans encore activer le versant maïeutique en pratique.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à explorer à partir du matériau présent. L'évaluation transformative est ébauchée par la chaîne portfolio + cartographie, mais sa finalité formative et ses critères ne sont pas articulés. La documentation vivante est anticipée par la mention des manuels plus courts, sans qu'un artefact concret soit déployé. L'agilité et la conduite du changement sont latentes dans le mot « restructuration » et la fonction de Grand Maître, mais aucune boucle de rétroaction ni accompagnement des résistances n'est décrit. Le leadership situationnel humain-IA, l'efficacité personnelle et la gestion de crise sont absents — ce qui ressemble à un effet de cadrage de la feuille, dont l'objet est la conception d'un parcours plutôt que la pratique de pilotage vécue.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent les zones actives. D'abord, l'attention au lecteur futur : recruteur (qui n'a pas besoin du sommet), tuteur en formation (qui lira des manuels plus courts), apprenant (qui produira son portfolio). Ensuite, l'auto-référence du dispositif : il forme ses propres formateurs, documente sa propre amélioration, génère ses propres cartographies. Enfin, l'articulation entre rigueur structurelle et finalité d'apprentissage : chaque rôle est défini à la fois par sa place dans le graphe et par ce qu'il fait pour faire apprendre. Cette triple articulation est le signe d'un pilotage pédagogique réfléchi, sans qu'il soit revendiqué comme tel.\n\n## Pistes pour enrichir ce pôle\n\n- Pour faire travailler ensemble les deux versants de la facilitation, un chemin possible serait de documenter, lors d'une prochaine étape, un exemple précis d'interaction maïeutique vécue avec un apprenant ou un pair — une question retenue plutôt qu'une réponse donnée.\n- Pour rendre visible la finalité formative de la chaîne portfolio + cartographie, un chemin possible serait de documenter, pour un exemple précis de cartographie d'apprenant, le type de retour qui lui est donné et les pistes ouvertes par ce retour.\n- Pour matérialiser la documentation anticipée, un chemin possible serait de commencer un premier squelette de manuel pour l'un des rôles, avec sa structure, ses sections, et le destinataire imaginé — en notant ce qui reste dans le manuel principal et ce qui en sort.\n- Pour faire apparaître la boucle de rétroaction de la restructuration, un chemin possible serait de documenter, pour la prochaine itération du dispositif, la séquence d'événements qui a mené à la révision, et les résistances anticipées chez les futurs apprenants."
+  }
+}

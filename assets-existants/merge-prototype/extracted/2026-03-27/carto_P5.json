@@ -1,0 +1,551 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Claude en panne ce matin, me fait réaliser à quel niveau nous travaillons en ce moment avec Stéphane. C'est juste incroyable. Ce que nous faisons n'est plus humain. Il nous serait impossible (sauf à y consacrer des années) de faire la même chose à l'ancienne.",
+      "contexte": "Réaction émotionnelle marquée à une panne — admiration mêlée d'étonnement (« je suis littéralement sur le cul » dans l'esprit) face à ce que la collaboration avec l'IA permet et que l'humain seul ne pourrait pas faire.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Dès lors que Claude est temporairement indisponible, la meilleure des choses à faire c'est aller se balader. Toute tentative de reprendre le travail manuellement serait absurde et contre-productive car nous introduirions des erreurs qu'il faudrait corriger plus tard. C'est donc le bon moment pour remplir son portfolio !",
+      "contexte": "Réponse organisée à une panne : substitution par une autre activité productive (balade, portfolio) plutôt que reprise manuelle — résilience qui transforme l'interruption en occasion.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "C'est cool finalement ces poses imposées par les défauts de service d'Anthropic ou les limitations de forfait : ça me permet de mettre au clair mes idées en les formalisant dans le portfolio qui sert à la fois de psy, de moyen indirect d'informer Stéphane sur ce que je fais, et surtout de conserver une trace de l'historique de construction de toute cette architecture",
+      "contexte": "Recadrage explicite des contraintes (pannes, quotas) en ressources productives (« c'est cool finalement ») — antifragilité avec retournement assumé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "le but ultime, depuis 2013, est le développement de l'intelligence à l'école.",
+      "contexte": "Visée tenue depuis 2013 — fil conducteur sur un horizon de plus de douze ans, source de continuité dans un contexte technique en évolution rapide.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "j'avais des factures de folie (jusqu'à 600 CHF / mois) lorsque j'étais enseignant - et ce sans participation de l'école, ni reconnaissance institutionnelle puisque c'était plutôt l'inverse - mais au moins, mes 100 élèves pouvaient utiliser Claude 3.5 Opus à l'époque, de manière illimité lorsqu'ils étaient à l'école. Aujourd'hui, mon budget « recherche » alloué par l'ORP, basé sur le salaire d'un stagiaire travaillant à temps partiel, est devenu ridicule pour que je puisse avancer correctement sur ce projet. Donc on fait avec",
+      "contexte": "Continuité d'engagement entre l'identité passée (enseignant qui paie de sa poche) et l'identité présente (chercheur sous-financé qui « fait avec ») — persévérance sans validation externe alignée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai compris comment fonctionne CoWork et quelles sont les limites et suis donc revenu à Claude Code plus puissant. CoWork m'a permis de me concentrer sur les prompts, sans me soucier de l'implémentation. Avec Claude Code, j'ai ajouté une couche bash + python.",
+      "contexte": "Récit d'un retour à un outil après usage d'un autre, avec mention des limites comprises — abandon d'une option pour une autre, fluidité d'adaptation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Hélas mon temps d'usage de Claude est particulièrement limité en ce moment : les pannes d'un côté, le quota du forfait moyen à 100$ de l'autre. Comme j'ai pris un abonnement annuel, je ne peux pas basculer sur un forfait 200$ pour un mois. Mais je pourrais utiliser un second compte uniquement pour ça [...] : le compte blanvillain@harmonia.education pour la mémoire des conversations [...] et le compte andany@harmonia.education réservé uniquement pour Claude Code, ce qui sera de toute façon beaucoup plus économique que d'utiliser une clé API",
+      "contexte": "Réponse à une limitation : contournement par deux comptes différenciés selon usage — bricolage organisationnel avec ressources existantes (système D).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Le résultat d'évaluation d'un portfolio avec Sonnet est excellent (j'ai choisi celui de Charlotte le no 108). Je n'avais testé qu'avec Opus, mais je vois que Sonnet suffit.",
+      "contexte": "Test empirique direct sur un cas concret (portfolio n°108) plutôt qu'acceptation des recommandations théoriques de la documentation — vérification par expérience.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Le code d'hier est opérationnel à un petit détail près que je suis en train de régler. Maintenant je travaille à appliquer ce code à un portfolio d'un autre apprenant : Patrick.",
+      "contexte": "Démarche de validation par application à des cas réels d'apprenants nommés (Charlotte, Patrick) plutôt qu'à des données de test abstraites — contact avec le terrain.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Donc on fait avec, c'est-à-dire que je vais moins vite et moins loin (pas d'achat de serveur pour faire de l'inférence locale - ni location de services en ligne - ni d'utilisation de clé API).",
+      "contexte": "Acceptation lucide d'un périmètre réduit par contrainte de moyens, sans victimisation — « on fait avec ».",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "mon choix est fortement biaisé par ma culture personnelle et ce biais va se ressentir dans mes évaluations manuelles, mais aussi, au travers de ce choix de persona, dans les évaluations du système construit.",
+      "contexte": "Mise en cause de ses propres évaluations passées et présentes — désapprentissage en cours d'une certitude implicite sur sa propre neutralité d'évaluateur.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Retournement explicite de la contrainte en ressource : « c'est cool finalement ces poses imposées » avec énumération des bénéfices (clarification des idées, communication, archivage) — pattern de la fiche."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Réponse à la panne par déplacement productif (balade, portfolio) plutôt que par fonctionnement dégradé subi — l'interruption ouvre une autre activité utile."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Acceptation lucide du périmètre réduit (« on fait avec »), sans plainte ni paralysie, en maintenant l'action."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'antifragilité, je dois lire ces pièces comme de la simple endurance ou de la rationalisation défensive. La pièce 1 est le pattern le plus net : la contrainte est nommée comme contrainte (panne, quota) ET réinscrite comme ressource avec une énumération concrète de ce qu'elle permet (psy, communication, archivage). Le « c'est cool finalement » avec énumération des bénéfices dépasse l'endurance — c'est un retournement actif. La pièce 2 substitue à la panne une activité productive (balade, portfolio) avec justification, ce qui correspond aussi au retournement. La pièce 3 est plus à la frontière : « on fait avec » peut être de l'endurance résignée ou de l'acceptation active.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« C'est cool finalement » suivi d'une énumération concrète des bénéfices que la contrainte produit est exactement le retournement antifragile de la fiche." },
+            { "pieceId": 2, "motifResistance": "La substitution productive (balade, portfolio) avec justification (« le bon moment pour remplir son portfolio ») trace une transformation de l'interruption en occasion." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier qu'il y a bien dépassement, pas seulement retour à l'état antérieur. La pièce 1 décrit ce que la contrainte produit que l'absence de contrainte ne produirait pas (« mettre au clair mes idées en les formalisant ») — c'est un dépassement, pas un retour. La pièce 2 fait davantage substitution productive que dépassement net. La fiche met aussi en garde contre la narration positive embellie ; ici, le ton (« c'est cool finalement ») a une légèreté ironique qui correspond aux marqueurs obliques validés par la fiche (« en grande pompe par un crash majeur »).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le retournement n'est pas une rationalisation lisse : il nomme la contrainte comme contrainte (« défauts de service ») ET énumère ce qu'elle produit en propre. Le ton ironique léger est exactement le marqueur oblique validé par la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La substitution productive est claire mais le dépassement (revenir au-delà) est moins net : la pièce trace plutôt un fonctionnement adapté à la panne qu'une transformation enrichie par l'épreuve. Trace réelle mais d'amplitude inférieure à la pièce 1."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à les ramener à de l'endurance ou à de la rationalisation défensive. Le retournement « c'est cool finalement » avec énumération concrète des bénéfices a tenu sans faiblir parce qu'il combine nomination de la contrainte, transformation en ressource et ton ironique qui est exactement le marqueur oblique de la fiche. La substitution productive (balade, portfolio) a tenu plus modestement. L'acceptation du périmètre réduit (« on fait avec ») a tenu à la marge mais reste plus proche de l'endurance lucide que du dépassement. Ce qui reste, c'est une trace nette d'antifragilité, particulièrement sur la pièce centrale, avec un ton qui distingue le retournement réel de la narration embellie.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Le retournement ironique « c'est cool finalement » avec énumération des bénéfices (pièce 1) a passé le temps 2 sans faiblir comme retournement antifragile au sens de la fiche ; la substitution productive (pièce 2) corrobore.",
+        "prescription": "Pour prolonger ce mouvement antifragile, un chemin possible serait de garder trace, sur un cycle plus long, de ce qui aurait été perdu si la contrainte n'avait pas eu lieu — ce que la panne, le quota ou le budget ont produit que l'absence de contrainte n'aurait pas produit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Mise en cause de la neutralité supposée de ses propres évaluations passées et présentes (« mes évaluations manuelles ») — révision d'une certitude implicite sur sa position d'évaluateur."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Retour à Claude Code après compréhension des limites de CoWork — abandon d'un outil pour un autre, fluidité d'adaptation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la plasticité et le désapprentissage, je dois lire ces pièces autrement. La fiche distingue précisément 5.02 (transformation interne, abandon d'un modèle antérieur) de 1.04 (observation de ses processus) et de l'apprentissage additif. La pièce 1 mentionne un biais culturel qui affecte « mes évaluations manuelles » — cela suppose une révision implicite : ce que je croyais neutre est en réalité biaisé. Cependant la pièce reste près du constat ; elle nomme le biais sans décrire l'abandon de la position d'« évaluateur neutre ». La pièce 2 décrit un retour à un outil après usage d'un autre — c'est de l'apprentissage additif (compréhension des limites), pas du désapprentissage. La pièce 2 tombe.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Reconnaître que ses propres évaluations manuelles sont biaisées suppose l'abandon d'une certitude implicite (« j'évaluais objectivement ») — désapprentissage en germe." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Je dois vérifier qu'elle relève bien de 5.02 et pas de 1.04 ou 4.02. La fiche distingue : 5.02 implique l'abandon, 1.04 l'observation. Ici, l'apprenant constate son biais sans encore décrire l'abandon d'une position antérieure ni la tension entre l'ancien et le nouveau. La trace est plus du côté de la métacognition que du désapprentissage, mais l'objet (la confiance dans sa propre objectivité évaluative) est bien un modèle implicite remis en cause.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active prioritairement 1.04 (métacognition) et 2.06 (intelligence culturelle). Pour 5.02, l'abandon d'une position implicite (l'évaluateur neutre) est en germe mais pas déployé — la pièce constate plus qu'elle ne transforme."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à voir si la plasticité et le désapprentissage étaient en acte. La pièce sur le retour à Claude Code est tombée : c'est de l'adaptation d'outils, pas de l'abandon d'un modèle antérieur — la fiche distingue précisément ce cas. La pièce sur le biais culturel a tenu mais affaiblie : reconnaître son propre biais est plus de la métacognition que du désapprentissage tant que l'abandon de la position antérieure n'est pas décrit. Ce qui reste, c'est un indice de désapprentissage en germe sur la position d'évaluateur, sans la tension entre l'ancien et le nouveau que la fiche valorise comme trace fiable.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.35,
+        "motif": "La seule pièce qui résiste affaiblie est plus directement activée par 1.04 et 2.06 ; le désapprentissage au sens de la fiche (abandon d'un modèle antérieur, tension entre l'ancien et le nouveau) n'est pas en acte sur cette feuille.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de décrire un moment précis où une certitude antérieure (sur son métier, sur ce qu'évaluer veut dire, sur la place de l'enseignant face à l'IA) a dû être abandonnée, avec la tension entre l'ancienne position et la nouvelle."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Marqueur métanarratif : nommer le portfolio comme « psy » + « moyen indirect d'informer » + « trace d'historique » — observation explicite de la construction de sens en temps réel."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Connexion entre le projet actuel (jury IA) et la visée « depuis 2013 » — fil conducteur extrait au-delà de la chronologie de la feuille."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Connexion explicite entre le passé d'enseignant (factures, élèves) et le présent de chercheur (budget ORP) — extraction d'un parallèle entre époques."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la narration réflexive, je dois lire ces pièces comme du journal de bord descriptif. La pièce 1 nomme explicitement les trois fonctions du portfolio — c'est un marqueur métanarratif (la fiche valide « pourquoi je parle de cela ? » comme signal fort). La pièce 2 connecte un projet en cours à une visée tenue depuis 2013 — c'est l'extraction d'un fil conducteur au-delà du présent. La pièce 3 met en parallèle deux périodes (enseignant / chercheur) avec un même fil (investir dans l'accès des élèves à l'IA malgré la non-reconnaissance) — c'est la signification, pas la chronique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'auteur observe sa propre construction de sens en temps réel (nommer les fonctions de l'écriture pendant qu'il écrit) — marqueur métanarratif validé par la fiche." },
+            { "pieceId": 2, "motifResistance": "La connexion entre le projet actuel et 2013 est une extraction de fil conducteur qui dépasse la chronologie." },
+            { "pieceId": 3, "motifResistance": "Le parallèle enseignant / chercheur, joint par le même motif (investir sans reconnaissance institutionnelle), trace une signification structurelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier qu'elles passent du QUOI au POURQUOI au QU'EST-CE QUE ÇA SIGNIFIE. La pièce 1 nomme les fonctions de l'écriture mais sans aller jusqu'au sens profond (pourquoi écrire est important au-delà de ces trois usages). La pièce 2 connecte au projet long mais le « que veut dire ce parcours » reste implicite. La pièce 3 trace un parallèle mais n'extrait pas explicitement la leçon (« ce qui revient à travers ces deux périodes, c'est… »).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le triple usage de l'écriture nommé en cours d'écriture est un marqueur métanarratif explicite — la fiche valide précisément ce type de signal."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La connexion au fil de 2013 est posée mais le sens extrait reste implicite (que veut dire avoir cette même visée sur treize ans ?). La trace tient comme indice."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le parallèle est implicite (les deux situations sont juxtaposées sans formulation explicite du fil). La signification est suggérée mais pas nommée — trace en germe."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à du journal descriptif ou à de la chronologie. La pièce métanarrative sur les fonctions du portfolio a tenu sans faiblir comme observation de la construction de sens en temps réel. Les deux autres ont tenu plus modestement : les connexions au fil de 2013 et le parallèle enseignant/chercheur tracent des fils conducteurs mais sans extraire explicitement la leçon transférable. Ce qui reste, c'est une pratique réflexive active, particulièrement nette sur le marqueur métanarratif, avec des fils conducteurs en germe qui appellent leur formulation. La nuance assumée : passer du parallèle implicite à la leçon explicite (« ce qui revient, c'est… ») amplifierait cette pratique.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.72,
+        "motif": "Le marqueur métanarratif explicite (pièce 1) a passé le temps 2 sans faiblir comme observation de la construction de sens en temps réel ; les connexions au fil long (pièce 2) et au passé d'enseignant (pièce 3) corroborent.",
+        "prescription": "Pour amplifier cette pratique, un chemin possible serait d'extraire explicitement la leçon des parallèles tracés : ce qui revient entre l'enseignant qui payait ses factures et le chercheur sous-financé d'aujourd'hui dit quelque chose sur la posture de l'apprenant — dire quoi, en propres mots."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Réaction émotionnelle marquée (« c'est juste incroyable », « ce que nous faisons n'est plus humain ») face à ce que la collaboration avec l'IA permet — admiration mêlée d'étonnement."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Reconnaissance que le travail manuel introduirait des erreurs à corriger — formulation indirecte d'une supériorité opérationnelle de l'IA sur l'humain sur ce type de tâche."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'acceptation de l'intelligence supérieure, je dois lire ces pièces comme de la fascination techno-enthousiaste ou comme du constat technique impersonnel. La fiche distingue : 1.06 est le constat impersonnel (« l'IA est capable de… »), 5.04 est le vécu personnel (« l'IA fait mieux que MOI ») avec tension émotionnelle. La pièce 1 contient bien un registre émotionnel (« c'est juste incroyable ») et un vécu (« ce que nous faisons » au « nous » qui inclut l'apprenant). La fiche valide la métaphore de la maïeutique et la formule « littéralement sur le cul » comme marqueurs ; ici on a une formule équivalente (« n'est plus humain »). La tension émotionnelle est présente. La pièce 2 est plus indirecte : nommer que l'humain seul introduirait des erreurs est une reconnaissance opérationnelle, pas un vécu de supériorité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Vécu personnel (« nous »), registre émotionnel (« incroyable »), formule forte (« plus humain ») — la tension émotionnelle requise par la fiche est présente." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Je dois vérifier qu'il y a bien tension émotionnelle (test fiable de la fiche) et pas désirabilité sociale. La formule « ce que nous faisons n'est plus humain » porte un mélange d'admiration et de vertige — pas seulement de l'enthousiasme. Le « nous » plutôt que « l'IA » signale que l'apprenant est dans l'expérience plutôt qu'en spectateur. Cependant, la pièce ne décrit pas l'aveu explicite d'une infériorité personnelle (le marqueur central de la fiche) ni l'articulation sereine de ce que l'humain apporte de spécifique — c'est une admiration collective plutôt qu'un travail de deuil individuel.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'expression collective (« nous ») et la dimension d'admiration peuvent diluer le vécu personnel. La fiche demande l'aveu personnel de la supériorité IA ; ici, le vécu est partagé et l'inflexion va plutôt vers la synergie (1.10) que vers le deuil. Trace réelle mais d'amplitude inférieure au marqueur central de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à la ramener à de la fascination ou de la synergie sans dimension personnelle. Elle a tenu mais affaiblie : la tension émotionnelle est bien présente (« incroyable », « n'est plus humain ») et l'apprenant est dans l'expérience, pas en spectateur — mais le « nous » dilue la dimension personnelle, et l'aveu explicite d'une infériorité individuelle n'est pas posé. La pièce sur les erreurs introduites manuellement est tombée : c'est une reconnaissance opérationnelle, pas un vécu de supériorité. Ce qui reste, c'est un indice d'acceptation en germe, à la frontière avec la synergie, plus collectif que personnel.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie subsiste : tension émotionnelle réelle face à ce que l'IA permet, mais formulation collective (« nous ») et inflexion plutôt vers la synergie que vers le deuil de la supériorité personnelle.",
+        "prescription": "Pour clarifier ce dossier, un chemin possible serait de raconter un moment précis où l'IA a fait mieux que l'apprenant sur quelque chose qu'il pensait maîtriser personnellement, avec la surprise ou le malaise vécus alors, et ce qui reste de l'apport spécifique humain dans la situation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Visée tenue depuis 2013 (« le développement de l'intelligence à l'école ») — pourquoi qui précède le projet et persiste sur treize ans."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Persévérance sous coût personnel élevé (600 CHF/mois) et sans reconnaissance institutionnelle (« plutôt l'inverse ») — sens qui survit à l'absence de validation externe."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "« On fait avec, c'est-à-dire que je vais moins vite et moins loin » — fonctionnement maintenu malgré l'inconfort matériel, sans abandon."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier le sens et la motivation intrinsèque, je dois lire ces pièces autrement. La fiche pose un test fort : l'apprenant resterait-il motivé même si le projet devenait difficile, ingrat ou invisible ? La pièce 1 nomme une visée tenue depuis 2013 — treize ans, c'est exactement la résistance dans le temps qui distingue le sens du simple enthousiasme. La pièce 2 atteste un acte (factures personnelles élevées sans soutien) qui correspond précisément au test : continuer sans reconnaissance institutionnelle (« plutôt l'inverse »). La pièce 3 décrit la continuation aujourd'hui sous contrainte (« on fait avec », « moins vite et moins loin ») — sens qui survit à l'inconfort matériel.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Une visée tenue sur treize ans précède le projet actuel et lui survivrait — le « pourquoi » survit aux changements de contexte." },
+            { "pieceId": 2, "motifResistance": "Maintien de l'engagement malgré l'absence de validation institutionnelle (« plutôt l'inverse ») et le coût personnel élevé — combinaison qui valide le test de la fiche." },
+            { "pieceId": 3, "motifResistance": "Continuation sous contrainte sans abandon, formulée sobrement (« on fait avec ») — la sobriété et la persévérance sans plainte sont les marqueurs obliques fiables que la fiche valorise." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier qu'il n'y a pas de rationalisation post-hoc. La fiche pose un test important : la cohérence entre le sens déclaré et les actions décrites. Ici, la déclaration (visée depuis 2013) est corroborée par les actions (factures personnelles, persévérance actuelle malgré budget « ridicule »). La cohérence parole-acte est attestée. Le ton de la pièce 3 (« on fait avec ») est sobre et factuel, ce qui correspond aux traces obliques (« litote ») validées par la fiche comme plus fiables que les grandes déclarations.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La visée « depuis 2013 » est posée mais le déploiement de son contenu (qu'est-ce qu'est précisément « le développement de l'intelligence à l'école » pour cet apprenant) reste implicite. La continuité temporelle est attestée, sa charge personnelle l'est moins."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les actes (factures personnelles, absence de soutien institutionnel) corroborent matériellement la persévérance déclarée — le test de cohérence parole-acte est passé."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La sobriété (« on fait avec ») est un marqueur oblique validé par la fiche, et la continuation sans plainte sous contrainte est la manifestation type du sens qui n'a plus besoin d'être déclamé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de la rationalisation post-hoc ou à de l'enthousiasme situationnel. La pièce sur les factures personnelles a tenu sans faiblir parce que les actes matériels corroborent la déclaration — c'est exactement la cohérence parole-acte que la fiche demande. La pièce sur « on fait avec » a tenu sans faiblir comme litote sobre, marqueur oblique fiable. La pièce sur 2013 a tenu plus modestement, posée mais pas déployée. Ce qui reste, c'est un fil de sens particulièrement net sur cette feuille, attesté par des actes (passés et présents) et exprimé sobrement plutôt que lyriquement.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Les pièces 2 (factures personnelles, persévérance sans soutien) et 3 (« on fait avec ») ont passé le temps 2 sans faiblir comme cohérence parole-acte et litote sobre — marqueurs fiables de la fiche ; la visée depuis 2013 (pièce 1) corrobore.",
+        "prescription": "Pour prolonger ce fil, un chemin possible serait de raconter, dans une entrée future, un moment où le projet était spécialement difficile ou invisible et où le sens a pourtant maintenu l'action — ce qui s'est joué intérieurement à ce moment-là."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Réponse à la panne d'IA : balade et portfolio plutôt que reprise manuelle — substitution d'activité, mais sans bascule vers une compétence hors-numérique."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Bricolage organisationnel : deux comptes différenciés selon usage pour contourner les limites de forfait — système D avec ressources existantes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'autonomie en mode dégradé, je dois confronter ces pièces à la distinction critique de la fiche : 5.06 implique le *sans technologie*, pas le *sans automatisation*. La pièce 1 répond à la panne d'IA par une balade et un portfolio rédigé sur le même écosystème — pas de bascule vers une compétence hors-numérique. La pièce 2 est un bricolage d'organisation des comptes Anthropic — système D, mais entièrement dans le numérique. Aucune des deux ne décrit une compétence mobilisable sans technologie. La distinction critique exclut précisément ces cas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai testé si la réponse à la panne et le bricolage à deux comptes pouvaient relever de l'autonomie en mode dégradé. La fiche est claire : il faut une compétence mobilisable sans technologie ou avec ressources radicalement limitées. La balade est une substitution d'activité (et pas une production maintenue), et le bricolage à deux comptes reste dans l'écosystème Anthropic. La distinction critique de la fiche exclut explicitement ces cas. Le territoire est non visité sur cette feuille — ce qui peut tenir au type d'activité décrite (développement de code IA) plutôt qu'à une absence de fond.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces possibles relèvent toutes du *sans automatisation* dans un écosystème numérique, ce que la distinction critique de la fiche exclut précisément du *sans technologie* qu'elle vise.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de décrire un moment où le projet a continué sur papier, au tableau blanc, ou avec des ressources radicalement limitées — un calcul fait de tête, une procédure établie sans aucun outil numérique, ou un protocole de continuité en cas d'effondrement plus profond du dispositif."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Décision explicite de ne pas se forcer à travailler manuellement pendant la panne (« la meilleure des choses à faire c'est aller se balader ») — choix délibéré de ne pas être absorbé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la souveraineté attentionnelle, je dois lire cette pièce autrement. Le critère discriminant de la fiche est l'intention en présence d'alternatives : « je pourrais être connecté mais je choisis de ne pas l'être ». Ici, la situation est plus complexe : Claude est en panne, donc l'apprenant n'a pas le choix sur cet outil. Ce qu'il choisit, c'est de ne pas se rabattre sur le travail manuel et de basculer vers la balade. La décision est délibérée (« la meilleure des choses à faire ») et orientée par une raison stratégique (éviter les erreurs futures). Mais ce n'est pas un choix de souveraineté face à un environnement algorithmique qui capture — c'est une réponse à une absence d'outil. La trace est faible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai testé si la décision de se balader pendant la panne pouvait porter une trace de souveraineté attentionnelle. La fiche est exigeante : le critère discriminant est l'intention en présence d'alternatives (je pourrais être connecté mais je choisis de ne pas l'être). Ici, l'outil principal est de toute façon indisponible et la décision répond à une contrainte plus qu'elle ne dispute une captation algorithmique. Pas de mention de rituel de travail profond, pas d'outil désinstallé, pas de décision face à une sollicitation captante. Le territoire est non visité sur cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce extraite n'oppose pas le choix à une captation algorithmique mais répond à une absence d'outil — la souveraineté attentionnelle au sens de la fiche (intention en présence d'alternatives sollicitantes) n'est pas en acte.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de décrire un rituel de travail profond, un outil désinstallé, ou un choix de support physique fait *contre* une sollicitation numérique active (notifications, suggestions algorithmiques, urgence factice)."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Test direct sur un cas concret (portfolio n°108 de Charlotte) plutôt qu'évaluation par les caractéristiques annoncées des modèles — vérification empirique."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Application du code à des portfolios réels d'apprenants nommés (Charlotte, Patrick) — contact avec le terrain plutôt qu'avec des données de test abstraites."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la vérification terrain, je dois lire ces pièces autrement. La fiche distingue 5.08 (contact avec la réalité non médiatisée) de 1.01 (vérification documentaire). Tester Sonnet sur un cas réel plutôt que se fier à la documentation officielle relève bien de l'expérimentation directe — mais ce test reste à l'intérieur du système IA (l'output du modèle est lui-même médiatisé par le modèle). C'est une zone grise : le portfolio évalué est un texte réel produit par une personne nommée, pas une donnée de benchmark, ce qui rapproche de la 5.08. Mais l'évaluation se fait via l'IA, pas par un test physique au sens strict de la fiche (« tester les endpoints via l'interface utilisateur »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le test concret sur un portfolio réel (cas n°108) plutôt que sur les annonces de la documentation est une vérification empirique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Je dois vérifier qu'elle est bien dans le périmètre de la fiche, qui demande un contact avec la réalité non médiatisée. Tester un modèle d'IA reste de l'expérimentation, mais le contenu testé (un portfolio d'apprenant réel) n'est pas une simulation — c'est le terrain. La trace tient mais comme indice, pas comme preuve décisive : la fiche valorise plus nettement « j'ai vérifié sur place / par test direct dans le réel », ce qui est différent de tester un modèle avec des données réelles.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.06 (littératie IA) avec le test comparatif Sonnet/Opus. Pour 5.08, le contact avec un cas réel (portfolio n°108) plutôt qu'avec un benchmark est ce qui sauve la pièce, mais le test passe par l'IA — vérification empirique sans être contact physique strict."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à voir si elles relevaient bien de la vérification terrain au sens strict. La pièce sur l'application à Patrick est tombée parce qu'elle annonce un travail à venir sans décrire encore le test produit. La pièce sur le test du n°108 a tenu mais affaiblie : c'est une vérification empirique réelle, mais le terrain est ici un texte d'apprenant évalué par l'IA, pas un endpoint testé en utilisateur réel comme la fiche le valorise. Ce qui reste, c'est un indice de vérification terrain en germe — préférence pour les cas réels plutôt que pour les benchmarks abstraits.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce affaiblie subsiste : test sur un cas réel (portfolio n°108) plutôt que sur un benchmark, mais le test reste à l'intérieur du système IA, sans contact physique direct au sens strict de la fiche.",
+        "prescription": "Pour clarifier ce dossier, un chemin possible serait de décrire un moment où la vérification a pris le pas sur la documentation : test du dispositif comme apprenant final, observation du résultat avec un enseignant, ou contrôle terrain d'une affirmation produite par l'IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 2,
+    "nonEtablies": 3,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail montre une racine qui tient sans pathos. La feuille du 27 mars relate une panne d'outil retournée en occasion de formaliser (« c'est cool finalement ces poses imposées »), une continuité d'engagement entre l'enseignant qui payait ses outils 600 CHF/mois pour 100 élèves et le chercheur sous-financé d'aujourd'hui qui « fait avec », et une visée tenue depuis 2013 — treize ans de fil conducteur. La voix dominante est sobre : ce qui pourrait être lyrique est dit en litote (« on fait avec »), ce qui pourrait être plainte est dit ironiquement (« c'est cool finalement »), ce qui pourrait être déclamation est dit factuellement (« le développement de l'intelligence à l'école »). Le sens semble assez intégré pour ne plus avoir besoin de se proclamer. Les compétences plus comportementales du pôle (mode dégradé, souveraineté attentionnelle, vérification terrain stricte) restent en arrière-plan sur une feuille à dominante intellectuelle et technique.",
+    "territoiresDenses": [
+      {
+        "competence": "Sens & motivation intrinsèque",
+        "description": "Cohérence parole-acte attestée par les factures personnelles élevées sans reconnaissance institutionnelle, continuation aujourd'hui sous contrainte budgétaire, visée tenue depuis 2013 — sens sobre, attesté par les actes plus que par les déclamations.",
+        "extraitVerbatim": "j'avais des factures de folie (jusqu'à 600 CHF / mois) lorsque j'étais enseignant - et ce sans participation de l'école, ni reconnaissance institutionnelle [...] mais au moins, mes 100 élèves pouvaient utiliser Claude 3.5 Opus à l'époque, de manière illimité",
+        "ceQueCaDit": "Le sens se vérifie dans la continuité entre la déclaration et les actes — investissement personnel passé sans soutien externe, poursuite actuelle malgré budget « ridicule ». La sobriété (« on fait avec ») et la litote sont les marqueurs les plus fiables de la fiche."
+      },
+      {
+        "competence": "Résilience & antifragilité",
+        "description": "Retournement explicite des contraintes (pannes, quotas) en ressources productives, avec ton ironique caractéristique des marqueurs obliques valides.",
+        "extraitVerbatim": "C'est cool finalement ces poses imposées par les défauts de service d'Anthropic ou les limitations de forfait : ça me permet de mettre au clair mes idées",
+        "ceQueCaDit": "La contrainte est nommée comme contrainte (« défauts de service », « limitations ») ET réinscrite comme ressource avec énumération concrète des bénéfices produits. Ce n'est pas une rationalisation lisse mais un retournement actif avec ton léger."
+      },
+      {
+        "competence": "Narration réflexive",
+        "description": "Marqueur métanarratif explicite (nommer les trois fonctions du portfolio en cours d'écriture), connexions au fil long (depuis 2013) et au passé d'enseignant — extraction de signification au-delà de la chronique.",
+        "extraitVerbatim": "[le portfolio] sert à la fois de psy, de moyen indirect d'informer Stéphane sur ce que je fais, et surtout de conserver une trace de l'historique de construction de toute cette architecture dont le but ultime, depuis 2013, est le développement de l'intelligence à l'école.",
+        "ceQueCaDit": "L'auteur observe sa propre construction de sens en temps réel — la phrase fait à la fois ce qu'elle décrit. La connexion au fil de 2013 prolonge cette opération en extraction d'un fil conducteur qui dépasse l'événement immédiat."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à l'écart sur cette feuille. La plasticité et le désapprentissage ne sont pas pleinement en acte : la reconnaissance du biais culturel touche à un modèle implicite remis en cause, mais l'abandon d'une position antérieure avec tension entre l'ancien et le nouveau n'est pas décrit — territoire à ouvrir par un récit de virage interne plus net. L'acceptation de l'intelligence supérieure apparaît en germe (« ce que nous faisons n'est plus humain ») mais sous forme collective et admirative plus que sous forme de deuil personnel d'une supériorité cognitive. L'autonomie en mode dégradé reste hors champ : les bricolages décrits sont organisationnels (deux comptes Anthropic) et les pauses substituent une activité numérique à une autre, sans bascule vers le hors-technologie. La souveraineté attentionnelle ne se déploie pas non plus : la décision de se balader répond à une panne plutôt qu'elle ne dispute une captation algorithmique. La vérification terrain stricte se montre en germe (test sur cas réel n°108) sans atteindre le contact non médiatisé que la fiche valorise.",
+    "emergencesPole": "Trois observations traversent ce pôle. D'abord, la racine est sobre : ce qui pourrait être lyrique (le sens depuis 2013, la satisfaction des poses imposées, l'admiration pour ce que la collaboration permet) passe par la litote, l'ironie ou le factuel. La fiche valide précisément cette forme de trace comme plus fiable que les grandes envolées. Ensuite, la continuité prime sur la rupture : l'enseignant qui payait 600 CHF et le chercheur qui « fait avec » sont la même personne sous deux configurations matérielles, et la visée tenue depuis 2013 inscrit le projet dans un temps long qui le précède et lui survivra. La transformation interne (au sens de 5.02) est moins visible que la persévérance. Enfin, les compétences comportementales du pôle (mode dégradé, souveraineté, vérification terrain) restent en arrière-plan d'une feuille à dominante intellectuelle — la racine se dit ici par l'écriture plus que par les gestes hors-numériques.",
+    "pistes": [
+      "Pour rendre visible la plasticité, un chemin possible serait de décrire un moment précis où une certitude antérieure (sur son métier, sur ce qu'évaluer veut dire, sur la place de l'enseignant face à l'IA) a dû être abandonnée, avec la tension entre l'ancienne position et la nouvelle.",
+      "Pour approfondir l'acceptation de l'intelligence supérieure, un chemin possible serait de raconter un moment précis où l'IA a fait mieux que l'apprenant sur quelque chose qu'il pensait maîtriser personnellement, avec la surprise ou le malaise vécus alors.",
+      "Pour ouvrir le mode dégradé, un chemin possible serait de décrire un moment où le projet a continué sur papier, au tableau blanc, ou avec des ressources radicalement limitées — un protocole de continuité en cas d'effondrement plus profond du dispositif numérique.",
+      "Pour ouvrir la souveraineté attentionnelle, un chemin possible serait de décrire un rituel de travail profond, un outil désinstallé, ou un choix de support physique fait contre une sollicitation numérique active.",
+      "Pour clarifier la vérification terrain, un chemin possible serait de décrire un moment où la vérification a pris le pas sur la documentation : test du dispositif comme apprenant final, observation du résultat avec un enseignant, ou contrôle physique d'une affirmation produite par l'IA."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail montre une racine qui tient sans pathos. La feuille du 27 mars relate une panne d'outil retournée en occasion de formaliser (« c'est cool finalement ces poses imposées »), une continuité d'engagement entre l'enseignant qui payait ses outils 600 CHF/mois pour 100 élèves et le chercheur sous-financé d'aujourd'hui qui « fait avec », et une visée tenue depuis 2013 — treize ans de fil conducteur. La voix dominante est sobre : ce qui pourrait être lyrique est dit en litote (« on fait avec »), ce qui pourrait être plainte est dit ironiquement (« c'est cool finalement »), ce qui pourrait être déclamation est dit factuellement (« le développement de l'intelligence à l'école »). Le sens semble assez intégré pour ne plus avoir besoin de se proclamer. Les compétences plus comportementales du pôle (mode dégradé, souveraineté attentionnelle, vérification terrain stricte) restent en arrière-plan sur une feuille à dominante intellectuelle et technique.\n\n## Territoires les plus denses\n\n**Sens & motivation intrinsèque.** Cohérence parole-acte attestée par les factures personnelles élevées sans reconnaissance institutionnelle, continuation aujourd'hui sous contrainte budgétaire, visée tenue depuis 2013 — sens sobre, attesté par les actes plus que par les déclamations. *« j'avais des factures de folie (jusqu'à 600 CHF / mois) lorsque j'étais enseignant - et ce sans participation de l'école, ni reconnaissance institutionnelle […] mais au moins, mes 100 élèves pouvaient utiliser Claude 3.5 Opus à l'époque, de manière illimité »* Le sens se vérifie dans la continuité entre la déclaration et les actes — investissement personnel passé sans soutien externe, poursuite actuelle malgré budget « ridicule ». La sobriété (« on fait avec ») et la litote sont les marqueurs les plus fiables de la fiche.\n\n**Résilience & antifragilité.** Retournement explicite des contraintes (pannes, quotas) en ressources productives, avec ton ironique caractéristique des marqueurs obliques valides. *« C'est cool finalement ces poses imposées par les défauts de service d'Anthropic ou les limitations de forfait : ça me permet de mettre au clair mes idées »* La contrainte est nommée comme contrainte (« défauts de service », « limitations ») ET réinscrite comme ressource avec énumération concrète des bénéfices produits. Ce n'est pas une rationalisation lisse mais un retournement actif avec ton léger.\n\n**Narration réflexive.** Marqueur métanarratif explicite (nommer les trois fonctions du portfolio en cours d'écriture), connexions au fil long (depuis 2013) et au passé d'enseignant — extraction de signification au-delà de la chronique. *« [le portfolio] sert à la fois de psy, de moyen indirect d'informer Stéphane sur ce que je fais, et surtout de conserver une trace de l'historique de construction de toute cette architecture dont le but ultime, depuis 2013, est le développement de l'intelligence à l'école. »* L'auteur observe sa propre construction de sens en temps réel — la phrase fait à la fois ce qu'elle décrit. La connexion au fil de 2013 prolonge cette opération en extraction d'un fil conducteur qui dépasse l'événement immédiat.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à l'écart sur cette feuille. La plasticité et le désapprentissage ne sont pas pleinement en acte : la reconnaissance du biais culturel touche à un modèle implicite remis en cause, mais l'abandon d'une position antérieure avec tension entre l'ancien et le nouveau n'est pas décrit — territoire à ouvrir par un récit de virage interne plus net. L'acceptation de l'intelligence supérieure apparaît en germe (« ce que nous faisons n'est plus humain ») mais sous forme collective et admirative plus que sous forme de deuil personnel d'une supériorité cognitive. L'autonomie en mode dégradé reste hors champ : les bricolages décrits sont organisationnels (deux comptes Anthropic) et les pauses substituent une activité numérique à une autre, sans bascule vers le hors-technologie. La souveraineté attentionnelle ne se déploie pas non plus : la décision de se balader répond à une panne plutôt qu'elle ne dispute une captation algorithmique. La vérification terrain stricte se montre en germe (test sur cas réel n°108) sans atteindre le contact non médiatisé que la fiche valorise.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, la racine est sobre : ce qui pourrait être lyrique (le sens depuis 2013, la satisfaction des poses imposées, l'admiration pour ce que la collaboration permet) passe par la litote, l'ironie ou le factuel. La fiche valide précisément cette forme de trace comme plus fiable que les grandes envolées. Ensuite, la continuité prime sur la rupture : l'enseignant qui payait 600 CHF et le chercheur qui « fait avec » sont la même personne sous deux configurations matérielles, et la visée tenue depuis 2013 inscrit le projet dans un temps long qui le précède et lui survivra. La transformation interne (au sens de 5.02) est moins visible que la persévérance. Enfin, les compétences comportementales du pôle (mode dégradé, souveraineté, vérification terrain) restent en arrière-plan d'une feuille à dominante intellectuelle — la racine se dit ici par l'écriture plus que par les gestes hors-numériques.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre visible la plasticité, un chemin possible serait de décrire un moment précis où une certitude antérieure (sur son métier, sur ce qu'évaluer veut dire, sur la place de l'enseignant face à l'IA) a dû être abandonnée, avec la tension entre l'ancienne position et la nouvelle.\n- Pour approfondir l'acceptation de l'intelligence supérieure, un chemin possible serait de raconter un moment précis où l'IA a fait mieux que l'apprenant sur quelque chose qu'il pensait maîtriser personnellement, avec la surprise ou le malaise vécus alors.\n- Pour ouvrir le mode dégradé, un chemin possible serait de décrire un moment où le projet a continué sur papier, au tableau blanc, ou avec des ressources radicalement limitées — un protocole de continuité en cas d'effondrement plus profond du dispositif numérique.\n- Pour ouvrir la souveraineté attentionnelle, un chemin possible serait de décrire un rituel de travail profond, un outil désinstallé, ou un choix de support physique fait contre une sollicitation numérique active.\n- Pour clarifier la vérification terrain, un chemin possible serait de décrire un moment où la vérification a pris le pas sur la documentation : test du dispositif comme apprenant final, observation du résultat avec un enseignant, ou contrôle physique d'une affirmation produite par l'IA."
+  }
+}

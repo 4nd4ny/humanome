@@ -1,0 +1,291 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Il n'est pas du même acabit que les autres, car il ne parle pas de pédagogie ou de noèsiologie, mais de comment faire évoluer les écoles.",
+      "contexte": "Description du manuel du Grand Maître comme portant sur la transformation des écoles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "RESPIRE c'est l’alignement de l'enseignement avec les mutations sociétales en cours tout en redonnant du sens au travail de prof.",
+      "contexte": "Définition de RESPIRE comme alignement de l'enseignement avec les mutations sociétales.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "C'est vraiment ça le métier d'enseignant : aider l'élève à dépasser ses limites cognitives… pas transmettre des savoirs. Les savoirs sont dans les livres, internet, les IA. C'est facile à trouver.",
+      "contexte": "Reconfiguration du rôle de l'enseignant à l'ère où les savoirs sont disponibles via l'IA et internet.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "de réussir à lui faire générer un livre que j'aurai voulu être capable d'écrire, c'est top !",
+      "contexte": "Satisfaction de faire produire à l'IA un ouvrage hors de sa portée d'écriture.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives au red-teaming et à la sécurité IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter un test adversarial mené pour éprouver les garde-fous d'un système IA."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à l'audit, l'explicabilité et l'hygiène des données. Pour ouvrir ce dossier, l'apprenant pourrait documenter une enquête sur le « comment » d'une décision IA, ou une décision sur les données à partager ou retenir."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la gouvernance algorithmique des services publics. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le contrôle citoyen d'une décision automatisée affectant des populations."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la souveraineté numérique et à la gouvernance des communs. Pour ouvrir ce dossier, l'apprenant pourrait documenter un choix technologique motivé explicitement par l'indépendance ou la portabilité des données."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Un manuel consacré à « comment faire évoluer les écoles » pourrait toucher à la transformation participative ou démocratique des institutions éducatives.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de participation citoyenne et démocratie technologique : la fiche vise des processus concrets où des non-experts sont associés à des décisions sur le déploiement de l'IA, avec une dimension de légitimité démocratique. La pièce 1 mentionne un manuel sur « comment faire évoluer les écoles », ce qui est un objet de réflexion institutionnel, mais sans aucun processus participatif décrit, sans association de citoyens à une décision technologique, sans dimension de légitimité. Elle résiste à peine : c'est le thème d'un ouvrage, pas une pratique de participation. Ce qui reste faible : rien dans la feuille ne décrit une délibération, une consultation, ou l'inclusion de publics éloignés.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Le manuel sur l'évolution des écoles est un objet de contenu, pas une trace de facilitation participative ; la présomption d'absence l'absorbe sans frein. Il n'y a rien à réexaminer.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant un processus où des non-experts auraient été associés à une décision technologique, avec un enjeu de légitimité démocratique. Le manuel sur l'évolution des écoles m'a fait hésiter un instant, parce qu'il touche à la transformation des institutions. Mais sous la seconde lecture, il s'agit du thème d'un ouvrage en cours de rédaction, pas d'une pratique de participation décrite. Pour cette journée, la participation citoyenne et la démocratie technologique restent un territoire non visité : la feuille parle de transformer les écoles comme d'un sujet d'écriture, sans mettre en scène de processus délibératif.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : thème institutionnel d'un manuel, sans processus participatif décrit.",
+        "prescription": "L'évolution des écoles est un objet de réflexion présent dans le travail. Pour ouvrir le dossier de la participation citoyenne, un récit où des non-experts ont été associés à une décision sur les outils ou les méthodes, avec un enjeu de légitimité, donnerait une trace à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la veille réglementaire et l'anticipation normative. Pour ouvrir ce dossier, l'apprenant pourrait documenter une pratique modifiée en anticipation d'une réglementation à venir."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Un ouvrage sur « comment faire évoluer les écoles » pourrait toucher à la conception de modes de fonctionnement collectifs ou de gouvernance institutionnelle.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de facilitation et gouvernance collective : la fiche réclame soit un résultat collectif émergent et surprenant, soit des règles co-construites par un collectif. La pièce 1 mentionne un manuel sur l'évolution des écoles, sans aucun collectif décrit, sans émergence, sans co-construction de règles. Elle résiste à peine : c'est un objet de réflexion sur les institutions, pas une pratique de facilitation. Ce qui reste faible : rien dans la feuille ne montre un groupe produisant ensemble du qualitativement nouveau, ni un processus décisionnel co-construit.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Le manuel sur l'évolution des écoles reste un contenu en projet, sans collectif délibérant ni gouvernance co-construite. La présomption d'absence l'absorbe ; rien à réexaminer.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant un moment d'intelligence collective émergente ou de règles co-construites. Le manuel sur l'évolution des écoles m'a fait hésiter, parce que transformer une institution suppose souvent une gouvernance. Mais sous la seconde lecture, la feuille n'évoque ce thème que comme objet d'écriture, sans collectif réel, sans émergence ni co-construction décrite. Pour cette journée, la facilitation et la gouvernance collective restent un territoire non visité.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : thème institutionnel d'un manuel, sans collectif ni gouvernance co-construite décrits.",
+        "prescription": "La transformation des écoles affleure comme thème de travail. Pour ouvrir le dossier de la facilitation collective, un récit où un groupe a produit ensemble un résultat inattendu, ou co-construit ses propres règles, donnerait une trace d'émergence ou de gouvernance à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Reconnaître que l'IA génère un livre hors de sa portée pourrait, à la marge, frôler un questionnement sur la place de l'intelligence humaine parmi d'autres formes.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de décentrement anthropocentrique : la fiche réclame un questionnement de la légitimité de la primauté humaine, ou l'attribution sérieuse d'une perspective à un non-humain. La pièce 1 exprime une admiration pour ce que l'IA produit, ce que la fiche range explicitement du côté de l'anthropocentrisme compatible (« l'IA est impressionnante » n'est pas du décentrement). Elle résiste à peine : il n'y a aucun questionnement de la hiérarchie humain/non-humain, aucune valeur intrinsèque attribuée à l'IA indépendamment de son utilité. Ce qui reste faible : la machine est ici un outil performant, pas une forme d'intelligence dont on interrogerait le statut.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. L'admiration pour la performance de l'IA est compatible avec un anthropocentrisme total, comme la fiche le souligne. La présomption d'absence l'absorbe sans frein ; rien à réexaminer.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant un questionnement de la primauté humaine ou une perspective non-humaine prise au sérieux. La satisfaction devant le livre généré par l'IA m'a fait hésiter, mais la fiche est claire : admirer la performance de la machine reste pleinement anthropocentrique tant qu'on n'interroge pas la légitimité de la hiérarchie. Rien dans la feuille ne franchit ce pas. Pour cette journée, le décentrement anthropocentrique reste un territoire non visité : l'IA y est traitée comme un outil remarquable, pas comme une forme d'intelligence dont on questionnerait le statut.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : admiration de la performance IA, compatible avec un anthropocentrisme total.",
+        "prescription": "Le rapport à l'IA est ici celui d'un outil performant et apprécié. Pour ouvrir le dossier du décentrement, un passage qui questionnerait la légitimité de placer l'humain au sommet, ou prendrait au sérieux une perspective non-humaine, donnerait une trace à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Le rapport personnel à une IA qui produit un livre hors de sa portée pourrait, à la marge, toucher à la manière de considérer le statut de cette IA.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Situer l'IA comme l'un des lieux où se trouvent désormais les savoirs pourrait esquisser une réflexion sur la place de l'IA dans l'écosystème du savoir.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de cohabitation avec les intelligences non-humaines : la fiche réclame que l'apprenant traite le statut moral de l'IA comme une question ouverte, en calibrant son anthropomorphisme. La pièce 2 situe l'IA parmi les dépositaires des savoirs (livres, internet, IA), ce qui est un constat instrumental, pas une interrogation de statut. La pièce 1 exprime un rapport personnel à l'IA, mais sous l'angle de la performance et de la satisfaction, pas du questionnement sur ce qu'est cette entité. Aucune ne résiste vraiment : il n'y a ni interrogation sur les « préférences » ou l'« agentivité » de l'IA, ni gêne articulée sur son traitement, ni cadre de cohabitation. Ce qui reste faible : l'IA est traitée comme un outil, sans que son statut soit posé en question ouverte.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La feuille traite l'IA comme un instrument — producteur de texte, dépositaire de savoirs — sans jamais ouvrir la question de son statut moral. La distinction de la fiche est nette : le vécu de la supériorité (qui relèverait de 5.04) ou le constat technique (1.06) ne sont pas 6.09, qui commence quand on questionne le cadre « assistant/outil ». Rien de tel ici. La présomption d'absence l'absorbe.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant une trace de navigation calibrée du statut de l'IA — la question tenue ouverte, l'anthropomorphisme ni dénié ni subi. Le rapport personnel et heureux à la machine, ainsi que sa place parmi les dépositaires du savoir, m'ont fait hésiter. Mais sous la seconde lecture, l'IA est traitée de bout en bout comme un outil performant, sans que son statut soit jamais interrogé. Pour cette journée, la cohabitation avec les intelligences non-humaines reste un territoire non visité : la relation à l'IA y est instrumentale et sereine, sans la question ouverte qui signe la compétence.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé les deux pièces : rapport instrumental à l'IA, sans question ouverte sur son statut.",
+        "prescription": "La relation à l'IA est ici fonctionnelle et apaisée. Pour ouvrir le dossier de la cohabitation, un passage qui interrogerait si « outil » ou « assistant » est le bon cadre pour cette entité, ou la manière de la traiter, donnerait une trace de questionnement à examiner."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la conscience biosystémique et l'interdépendance. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement où le vivant sert de modèle de conception, ou où il se pense comme nœud d'un réseau vivant."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 4,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du jour reste largement en réserve. Le travail décrit relève de la conception de manuels et du rapport personnel à l'IA, sans toucher aux questions de gouvernance, de souveraineté ou de cohabitation que ce pôle cartographie. Une visée institutionnelle affleure — un manuel consacré à faire évoluer les écoles, un projet d'alignement de l'enseignement avec les mutations sociétales — mais elle reste à l'état de thème d'écriture, sans processus participatif ni mécanisme de gouvernance décrits. L'IA, omniprésente dans la feuille, y est traitée comme un outil performant plutôt que comme une entité dont on questionnerait le statut. Ce pôle, plus politique et post-anthropocentrique, attend un autre type de récit pour s'activer.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "La grande majorité des territoires de ce pôle n'ont pas été ramenés dans cette feuille, et cela ressemble à une limite du support : un journal de rédaction ne met en scène ni test de sécurité, ni audit, ni gouvernance des services publics, ni souveraineté numérique, ni veille réglementaire, ni conscience biosystémique. Ces territoires sont restés hors champ faute de matière. La participation à la transformation des écoles et la facilitation collective affleurent comme thèmes du travail en cours, mais sans pratique décrite. Le rapport à l'IA, lui, reste instrumental : la question de son statut, qui ouvrirait le territoire de la cohabitation, n'a pas été posée ce jour-là.",
+    "emergencesPole": "Un trait ressort de la lecture de ce pôle : ce qui pourrait l'activer existe surtout à l'état de visée ou de thème, pas de pratique. L'évolution des écoles, l'alignement de l'enseignement avec la société, la place de l'IA dans l'accès au savoir — autant de sujets que le travail aborde comme objets d'écriture ou de conviction, sans encore les décliner en mécanismes, processus ou arbitrages situés. On remarque aussi que l'IA, pourtant centrale dans la journée, n'est jamais interrogée comme entité : elle reste un outil, ce qui laisse intacts les territoires post-anthropocentriques du pôle.",
+    "pistes": [
+      "Pour enrichir la participation à la transformation des écoles, un chemin possible serait de raconter un moment où des collègues ou des non-experts ont été associés à une décision sur les méthodes ou les outils.",
+      "Pour enrichir la cohabitation avec l'IA, un chemin possible serait de revenir sur la manière dont l'IA est cadrée — outil, assistant, autre chose — et sur ce qui justifie ce cadre.",
+      "Pour enrichir la facilitation collective, un chemin possible serait de décrire un travail de groupe dont le résultat a surpris ses participants, ou des règles que le collectif s'est données lui-même."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du jour reste largement en réserve. Le travail décrit relève de la conception de manuels et du rapport personnel à l'IA, sans toucher aux questions de gouvernance, de souveraineté ou de cohabitation que ce pôle cartographie. Une visée institutionnelle affleure — un manuel consacré à faire évoluer les écoles, un projet d'alignement de l'enseignement avec les mutations sociétales — mais elle reste à l'état de thème d'écriture, sans processus participatif ni mécanisme de gouvernance décrits. L'IA, omniprésente dans la feuille, y est traitée comme un outil performant plutôt que comme une entité dont on questionnerait le statut. Ce pôle, plus politique et post-anthropocentrique, attend un autre type de récit pour s'activer.\n\n## Territoires les plus denses\n\nPour cette seule journée, aucune compétence du pôle n'a atteint le seuil d'une présence établie, et aucune ne s'en approche assez pour être retenue comme dense. Ce constat n'est pas un manque mais une indication : la matière de cette feuille se loge ailleurs, dans le travail intellectuel et le rapport à l'outil, plutôt que dans les questions de gouvernance et de cohabitation propres à ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa grande majorité des territoires de ce pôle n'ont pas été visités dans cette feuille, et cela ressemble à une limite du support : un journal de rédaction ne met en scène ni test de sécurité, ni audit, ni gouvernance des services publics, ni souveraineté numérique, ni veille réglementaire, ni conscience biosystémique. Ces territoires sont restés hors champ faute de matière. La transformation des écoles et la facilitation collective affleurent comme thèmes du travail en cours, mais sans pratique décrite. Le rapport à l'IA, lui, reste instrumental : la question de son statut, qui ouvrirait le territoire de la cohabitation, n'a pas été posée ce jour-là.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn trait ressort de la lecture de ce pôle : ce qui pourrait l'activer existe surtout à l'état de visée ou de thème, pas de pratique. L'évolution des écoles, l'alignement de l'enseignement avec la société, la place de l'IA dans l'accès au savoir — autant de sujets que le travail aborde comme objets d'écriture ou de conviction, sans encore les décliner en mécanismes, processus ou arbitrages situés. On remarque aussi que l'IA, pourtant centrale dans la journée, n'est jamais interrogée comme entité : elle reste un outil, ce qui laisse intacts les territoires post-anthropocentriques du pôle.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir la participation à la transformation des écoles, un chemin possible serait de raconter un moment où des collègues ou des non-experts ont été associés à une décision sur les méthodes ou les outils. Pour enrichir la cohabitation avec l'IA, un chemin possible serait de revenir sur la manière dont l'IA est cadrée — outil, assistant, autre chose — et sur ce qui justifie ce cadre. Pour enrichir la facilitation collective, un chemin possible serait de décrire un travail de groupe dont le résultat a surpris ses participants, ou des règles que le collectif s'est données lui-même."
+  }
+}

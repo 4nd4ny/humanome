@@ -1,0 +1,334 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Voilà, j'ai la page d'accueil qui permettra le routage vers tout le reste.",
+      "contexte": "Marqueur de satisfaction discrète — 'Voilà' qui marque une étape franchie. Active potentiellement 5.05 (sens) très faiblement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "En rouge, c'est ce que je ferais en priorité (donc pas dans l'ordre), car c'est important pour moi et ça me fait plaisir.",
+      "contexte": "Énonciation explicite d'un critère de plaisir/importance personnel pour orienter le travail. Active potentiellement 5.05 (sens intrinsèque) ou 5.07 (souveraineté).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Je sais qu'on a un compte Trello pour ça avec Stéphane, mais je préfère juste écrire sur mon tableau surtout que nous n'avons pas besoin de nous synchroniser au niveau des micro-tâches.",
+      "contexte": "Préférence pour un support personnel (tableau physique probable) plutôt qu'un outil numérique partagé. Active potentiellement 5.06 (mode dégradé / hors-ligne) ou 5.07 (souveraineté attentionnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Rédiger les 2400 pages des manuels, étant donné que j'ai modifié pas mal de chose depuis leur écriture initiale, je dois les relire et les mettre à jour (la structure, les chapitres, le lexique et la bibliographie). Je travaille actuellement à repenser le plan des 9 manuels, mais je me suis interrompu pour reprendre les concepts de la noèsiolgie et les approfondir dans le présent projet.",
+      "contexte": "Mention que les concepts ont 'pas mal' changé et nécessitent une relecture-mise-à-jour : trace d'évolution intérieure du corpus pensé. Active potentiellement 5.02 (plasticité, désapprentissage).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "Finaliser l'écriture la deuxième version du livre qui explique les racines philosophiques de la noèsiologie et le couplement noèse - entendement. La première version faisait 200 pages.",
+      "contexte": "Mention d'une deuxième version du livre, qui présuppose une distance prise avec la première version. Active potentiellement 5.02 (plasticité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "C'est un gros travail, que j'ai reporté à plus tard pour le moment, car je dois stabiliser les fondations des écoles RESPIRE avant d'implémenter la solution logicielle pour rendre accessible les écoles aux élèves qui ne pourraient avoir de compte Google Drive ou qui ne pourrait pas avoir d'agents IA de qualité par manque de ressources pour faire tourner en local un LLM fine tuné en noèsiologie.",
+      "contexte": "Persévérance dans un projet de longue haleine avec hiérarchisation des priorités. Active potentiellement 5.05 (sens long-terme).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-12",
+      "extraitVerbatim": "J'en ai profité pour faire un récap des choses en cours.",
+      "contexte": "Geste d'auto-organisation, prise de recul sur la suite du travail.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la résilience et l'antifragilité. Pour ouvrir ce dossier, un récit où une crise ou un échec aurait été suivi d'une description explicite de ce qui en a émergé donnerait à voir cette compétence."
+      }
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant nomme que 'pas mal' de choses ont changé depuis l'écriture initiale des 2400 pages, ce qui présuppose une révision des positions antérieures."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Deuxième version d'un livre de 200 pages : la première version est implicitement à reprendre, ce qui pourrait signaler un abandon partiel de ce qui a été écrit."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à ne pas trouver d'abandon explicite d'un savoir antérieur. La pièce 1 mentionne 'j'ai modifié pas mal de chose depuis leur écriture initiale' — c'est une modification, mais elle est constatée sans en nommer le coût ni la nature de l'abandon. La pièce 2 (deuxième version du livre) présuppose une obsolescence partielle de la première mais ne la nomme pas comme telle. La fiche est très exigeante — elle demande l'articulation simultanée de 'ce qui a été lâché', 'pourquoi', et 'ce qui reste constant'. Aucune pièce ne porte ce triplet. Ni 'ce que je savais est devenu faux', ni 'je ne suis plus le même qu'avant', ni la tension entre l'ancien et le nouveau. La modification des manuels est nommée comme objet de relecture, pas comme désapprentissage existentiel.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la plasticité ou le désapprentissage apparaissaient dans cette feuille. Ce qui m'a forcé à reconnaître : rien n'a résisté à la présomption d'absence — la modification des manuels et la deuxième version du livre attestent d'évolutions, mais sans la nomination du coût, sans la tension entre l'ancien et le nouveau, sans le triplet demandé par la fiche. Il en résulte que cette compétence reste à porter à la lumière dans des feuilles où serait raconté un savoir ou une posture qui a dû être abandonné, avec la tension du moment où l'apprenant a reconnu que sa version antérieure n'était plus tenable.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 n'a fait résister aucune pièce : modifications constatées de corpus écrits, sans articulation du triplet 'ce qui a été lâché / pourquoi / ce qui reste constant' demandé par la fiche.",
+        "prescription": "Pour ouvrir ce territoire, un passage qui nommerait ce qui, dans les 200 pages de la première version du livre ou dans les 2400 pages des manuels initiaux, a dû être abandonné — et pourquoi — donnerait à voir cette compétence. La tension entre la version d'avant et celle qui s'écrit aujourd'hui est précisément la matière de 5.02."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la narration réflexive. Pour ouvrir ce dossier, un passage qui prendrait du recul sur ce qui s'est passé pour en extraire un apprentissage transférable rendrait visible cette compétence — passer du QUOI au POURQUOI au QU'EST-CE QUE ÇA SIGNIFIE."
+      }
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'acceptation de l'intelligence supérieure de l'IA au sens vécu. Pour ouvrir ce dossier, un passage qui porterait une tension émotionnelle (surprise, malaise, admiration) face à ce que l'IA fait mieux donnerait à voir cette compétence — la fiche pointe le registre émotionnel comme indicateur clé."
+      }
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Critère mixte 'important pour moi ET me fait plaisir' pour prioriser : trace possible d'un moteur intrinsèque articulé."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Persévérance dans un projet de très longue haleine (calendrier mensuel jusqu'à septembre, livre, manuels de 2400 pages, micro-classes) sans garantie de succès externe."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à ne pas trouver de 'pourquoi' viscéral ou de philosophie explicite du sens. La pièce 1 ('important pour moi ET me fait plaisir') est une formulation simple, presque banale — pas une envolée lyrique mais une articulation sobre du critère de plaisir comme moteur. La fiche identifie précisément la litote comme trace fiable du sens authentique. La pièce 2 (persévérance) est intéressante : l'apprenant déroule un calendrier de février à septembre avec des chantiers énormes (2400 pages, livre v2, fine-tuning d'un LLM, micro-classes, débats publics) sans à aucun moment thématiser la question du 'pourquoi je fais ça' — ce qui peut être un sens tellement intégré qu'il n'a plus besoin d'être formulé, comme le signale la fiche. Ce qui résiste : pièce 1 plus que pièce 2 (la persévérance sans thématisation est trop large pour valider seule).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "'C'est important pour moi et ça me fait plaisir' articule sobrement le critère de plaisir comme moteur de priorité — la fiche identifie la litote comme trace fiable du sens authentique, plus que les grandes envolées." },
+            { "pieceId": 2, "motifResistance": "Le déroulement d'un calendrier de février à septembre avec des chantiers énormes (2400 pages, livre v2, fine-tuning, débats, micro-classes) sans thématiser à aucun moment la question 'pourquoi je fais ça' peut signaler un sens tellement intégré qu'il n'a plus besoin d'être formulé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces tiennent-elles ? Pièce 1 : 'important + plaisir' est une articulation modeste mais explicite d'un critère intrinsèque ('important pour moi'). L'attaque (a) tient un peu — c'est court et sans précision sur la nature du plaisir. Affaiblie mais retenue. Pièce 2 : la persévérance silencieuse est une trace oblique, mais elle est très large — n'importe quelle todo-list dense pourrait être lue ainsi. L'attaque (e) surinterprétation est sérieuse : peut-être que je projette un sens intégré là où il y a simplement un agenda chargé. La pièce porte le mouvement plus que la compétence acquise. Affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'articulation du critère 'important pour moi ET plaisir' est explicite mais courte. Le 'pourquoi' est nommé sans être déplié — c'est précisément la litote que la fiche valorise comme trace fiable."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La persévérance sans thématisation du sens peut signaler un sens intégré ou simplement un agenda chargé. La pièce reste comme indice d'un moteur tenace plutôt que comme preuve d'un sens articulé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le sens et la motivation intrinsèque apparaissaient dans cette feuille. Ce qui m'a forcé à reconnaître deux choses convergentes : un critère explicite mais sobre ('important pour moi et ça me fait plaisir') qui articule un moteur personnel, et un déroulé de chantiers à long terme (jusqu'à septembre) sans aucune thématisation du 'pourquoi je fais tout ça' — ce qui correspond à la trace oblique du sens intégré qui n'a plus besoin d'être formulé. Ce qui n'a pas pleinement tenu : la formulation reste courte, et la persévérance silencieuse est par nature ambiguë. Il en résulte un dossier qui pointe la compétence sans la déployer dans toute son ampleur — la trace est de l'ordre de l'indice corroboratif, pas de la preuve décisive.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a retenu les deux pièces comme indices corroboratifs : l'articulation 'important pour moi et plaisir' porte la litote que la fiche valorise, et la persévérance silencieuse sur un horizon de huit mois soutient l'indice.",
+        "prescription": "Pour prolonger cette compétence, un passage qui répondrait, ne serait-ce qu'en une phrase, à la question 'qu'est-ce qui fait que je continue, même quand c'est ingrat ?', donnerait à voir le moteur derrière le calendrier. La litote actuelle ('important pour moi et plaisir') pourrait gagner à se déployer dans des moments difficiles plutôt que dans la priorisation seule."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Choix d'écrire sur 'mon tableau' plutôt que sur Trello : support possiblement physique (tableau blanc / mural), choix qui se fait à côté du numérique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à ne pas trouver de récit de panne technique, de procédure de récupération, ni de description précise d'un mode dégradé. La pièce 1 ('mon tableau' à la place de Trello) ouvre la possibilité d'un support physique, mais le mot 'tableau' est ambigu — il peut désigner un tableau blanc / mural / liège, ou un tableur, ou un tableau Trello personnel. Le contexte ('je préfère juste écrire') suggère un support simple, mais sans certitude. La fiche est nette : 5.06 implique le 'sans technologie', pas le 'sans automatisation'. Si 'mon tableau' est un Notion personnel, ce n'est pas 5.06. Si c'est un tableau mural, c'est un signal mineur. Aucun récit de panne, aucune procédure de récupération, aucun horodatage. Ce qui résiste très faiblement : la mention du tableau peut être une trace oblique de support physique, comme la fiche le signale ('travaillé au tableau blanc... sans en faire un discours').",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le 'mon tableau' opposé à Trello peut signaler un support physique (tableau mural / blanc) sans que l'apprenant en fasse un discours — la fiche identifie cette trace oblique comme marqueur de mode dégradé naturel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 tient-elle vraiment ? L'attaque (a) insuffisance probatoire : le mot 'tableau' est trop ambigu pour fonder un verdict. Trello s'appelle un 'tableau' lui-même ; un Notion personnel aussi ; un tableur Excel aussi. Sans précision contextuelle (post-it, marqueur, tableau blanc), je ne peux pas affirmer que le support est non-numérique. La fiche distingue clairement le 'sans automatisation' du 'sans technologie' — la pièce ne tranche pas. Disqualifiée par insuffisance.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le mot 'tableau' est trop ambigu pour fonder un verdict de mode dégradé : il peut désigner un support physique ou un outil numérique simple. Sans précision contextuelle, la pièce ne porte pas le marqueur central."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'autonomie et le mode dégradé apparaissaient dans cette feuille. Ce qui m'a forcé à reconnaître un faible mouvement : le choix d'un 'tableau' personnel à la place de Trello peut indiquer une préférence pour un support simple. Ce qui n'a pas tenu : l'ambiguïté du mot 'tableau' rend la lecture indécidable, et la fiche est claire sur la nécessité d'un support sans technologie. Il en résulte que cette compétence reste à porter à la lumière dans des feuilles où serait raconté un mode de travail explicitement hors-numérique, ou une panne gérée avec un récit précis d'actions concrètes.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la seule pièce résistante : ambiguïté du mot 'tableau', qui peut désigner un support physique ou un outil numérique.",
+        "prescription": "Pour ouvrir ce territoire, un passage qui décrirait précisément le support (tableau mural, papier, post-it) et son usage hors-ligne — ou un récit de panne technique gérée avec procédure de récupération — donnerait à voir cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Choix explicite ('je préfère') de ne pas utiliser un outil partagé (Trello) — décision attentionnelle articulée."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Priorisation par couleur basée sur 'important pour moi et plaisir' — choix explicite d'où poser son attention en priorité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Avec présomption d'absence, je m'attends à ne pas trouver de décision explicite de déconnexion ou de protection attentionnelle. La pièce 1 ('je préfère') articule un choix entre deux supports, mais la fiche est exigeante — le critère discriminant est 'l'INTENTION en présence d'alternatives'. Ici, l'apprenant pourrait utiliser Trello (l'alternative existe : 'on a un compte Trello'), mais il choisit son tableau. C'est le combo : alternative présente, choix explicite, motivation de la décision ('nous n'avons pas besoin de nous synchroniser au niveau des micro-tâches'). La pièce 2 (priorisation par 'plaisir') articule un choix d'où poser son attention. Ce qui résiste : la pièce 1 porte la structure exacte de la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le 'je préfère juste écrire sur mon tableau' face à l'existence d'un Trello partagé porte le combo de la fiche : alternative présente, choix explicite, motivation argumentée — souveraineté attentionnelle face à la prolifération d'outils." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 tient-elle vraiment ? L'attaque (b) confusion de compétence : 'je préfère mon tableau parce que pas besoin de synchroniser' peut être une simple préférence ergonomique, pas une décision attentionnelle. La fiche identifie 5.07 face à 'un environnement algorithmique conçu pour capturer l'attention'. Trello ne capte pas l'attention au sens des réseaux sociaux ou des notifications. La pièce porte une préférence d'outil sans tension attentionnelle nommée. L'attaque tient assez fortement. Affaiblie sérieusement mais pas disqualifiée — la structure 'alternative + choix + motivation' est présente, ce qui reste un indice de fonctionnement non-subi.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le choix d'un support de travail face à un outil partagé est plus une préférence ergonomique que la souveraineté attentionnelle face à un environnement de capture. Toutefois, la structure (alternative + choix + motivation) tient comme indice d'un fonctionnement non-subi."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la souveraineté attentionnelle apparaissait dans cette feuille. Ce qui m'a forcé à reconnaître un faible mouvement : la structure de décision face à une alternative existante (Trello existe, l'apprenant choisit son tableau pour des raisons articulées). Ce qui n'a pas pleinement tenu : la fiche cible la souveraineté face à un environnement algorithmique de capture, et l'arbitrage Trello/tableau ne porte pas cette tension. Il en résulte une trace mince — la structure formelle de la décision attentionnelle est là, sa charge propre (résister à la capture) ne l'est pas. La compétence reste à porter à la lumière dans des feuilles où serait racontée une protection délibérée du focus profond.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante : structure de choix face à alternative présente, mais sans la tension attentionnelle propre à la fiche (environnement de capture).",
+        "prescription": "Pour porter cette compétence à la lumière, un passage qui décrirait une décision délibérée de protection du focus profond — déconnexion volontaire, rituel de travail concentré, paramètres modifiés pour limiter les sollicitations — donnerait à voir la souveraineté attentionnelle au sens de la fiche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la vérification terrain. Pour ouvrir ce dossier, un récit où une affirmation IA ou un état de système annoncé par un dashboard aurait été testé par contact direct avec le réel donnerait à voir cette compétence. La micro-classe avec les retraités prévue pour mars offrira probablement un terrain de vérification."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur la journée du 12 février, le travail consigné dans ce pôle reste essentiellement en sous-texte. La feuille déroule un calendrier mensuel sur huit mois avec des chantiers d'une ampleur considérable — 2400 pages de manuels, livre version 2, fine-tuning d'un LLM, micro-classes, débats publics — sans à aucun moment expliciter le 'pourquoi' qui porte cette persévérance. Ce silence-là peut être une trace : un moteur si intégré qu'il n'a plus besoin d'être nommé. La voix est celle de quelqu'un qui avance sans dramatiser, qui articule modestement ce qui lui fait plaisir, qui préfère son propre tableau à un outil partagé, et qui laisse les questions d'identité ou de transformation intérieure en arrière-plan.",
+    "territoiresDenses": [
+      {
+        "competence": "Sens & Motivation Intrinsèque",
+        "description": "Articulation sobre du critère 'important pour moi et plaisir' pour orienter la priorité, doublée d'une persévérance silencieuse sur un horizon de huit mois sans thématisation du sens.",
+        "extraitVerbatim": "En rouge, c'est ce que je ferais en priorité (donc pas dans l'ordre), car c'est important pour moi et ça me fait plaisir.",
+        "ceQueCaDit": "Le travail montre la litote que la fiche valorise — un moteur nommé sans grande envolée, et un agenda dense qui se déroule sans avoir à se justifier. Le 'pourquoi' apparaît sous une forme discrète qui ressemble plus à un fait acquis qu'à une question ouverte."
+      }
+    ],
+    "territoiresNonVisites": "La plupart des territoires de ce pôle restent en arrière-plan dans cette feuille. La résilience et l'antifragilité — récits d'épreuves traversées avec leur dépassement — n'apparaissent pas ; la feuille ne raconte ni crise, ni échec, ni passage difficile. La plasticité et le désapprentissage sont à la lisière : la deuxième version du livre et la mise à jour des 2400 pages présupposent que des choses ont changé, mais sans articuler ce qui a été lâché ni la tension entre l'ancien et le nouveau. La narration réflexive au sens fort, l'acceptation de l'intelligence supérieure de l'IA dans son registre émotionnel, l'autonomie en mode dégradé et la vérification terrain ne sont pas portés par cette feuille — qui est une feuille de chantier orientée vers l'avant plutôt que vers le retour réflexif. La souveraineté attentionnelle apparaît sous une forme partielle (préférer son tableau à Trello) sans atteindre la charge propre de la fiche (résister à la capture algorithmique).",
+    "emergencesPole": "Deux mouvements traversent les compétences de ce pôle dans cette feuille. Le premier est le silence sur le 'pourquoi' — la feuille ne thématise jamais le sens, ce qui peut être un sens intégré ou une absence d'écho intérieur. Le second est un mouvement constant d'auto-organisation : la todo-list, le récap des choses en cours, le critère personnel de priorité dessinent un cadre où l'apprenant prend sur lui de structurer son travail. Cet auto-cadrage est probablement la fondation tacite sur laquelle reposent les autres compétences du pôle, qui restent à expliciter.",
+    "pistes": [
+      "Pour prolonger le sens intrinsèque, un chemin possible serait de répondre, ne serait-ce qu'en une phrase, à la question 'qu'est-ce qui fait que je continue, même quand c'est ingrat ?' — pour que la litote actuelle puisse se déployer dans les moments difficiles.",
+      "Pour ouvrir la plasticité, un chemin possible serait de nommer ce qui, dans les 200 pages de la première version du livre ou dans les manuels initiaux, a dû être abandonné pour que la deuxième version puisse s'écrire — et ce qui reste constant.",
+      "Pour rendre visible la narration réflexive, un chemin possible serait de relire une feuille passée et d'en extraire un apprentissage transférable que la chronologie n'avait pas encore livré.",
+      "Pour explorer la souveraineté attentionnelle, un chemin possible serait de décrire un rituel de travail concentré protégé — comment, quand, pourquoi — au-delà de la simple préférence d'outil."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur la journée du 12 février, le travail consigné dans ce pôle reste essentiellement en sous-texte. La feuille déroule un calendrier mensuel sur huit mois avec des chantiers d'une ampleur considérable — 2400 pages de manuels, livre version 2, fine-tuning d'un LLM, micro-classes, débats publics — sans à aucun moment expliciter le 'pourquoi' qui porte cette persévérance. Ce silence-là peut être une trace : un moteur si intégré qu'il n'a plus besoin d'être nommé. La voix est celle de quelqu'un qui avance sans dramatiser, qui articule modestement ce qui lui fait plaisir, qui préfère son propre tableau à un outil partagé, et qui laisse les questions d'identité ou de transformation intérieure en arrière-plan.\n\n## Territoires les plus denses\n\n**Sens et motivation intrinsèque.** Articulation sobre du critère 'important pour moi et plaisir' pour orienter la priorité, doublée d'une persévérance silencieuse sur un horizon de huit mois sans thématisation du sens. L'extrait *« En rouge, c'est ce que je ferais en priorité (donc pas dans l'ordre), car c'est important pour moi et ça me fait plaisir. »* montre la litote que la fiche valorise — un moteur nommé sans grande envolée, et un agenda dense qui se déroule sans avoir à se justifier. Le 'pourquoi' apparaît sous une forme discrète qui ressemble plus à un fait acquis qu'à une question ouverte.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa plupart des territoires de ce pôle restent en arrière-plan dans cette feuille. La résilience et l'antifragilité — récits d'épreuves traversées avec leur dépassement — n'apparaissent pas ; la feuille ne raconte ni crise, ni échec, ni passage difficile. La plasticité et le désapprentissage sont à la lisière : la deuxième version du livre et la mise à jour des 2400 pages présupposent que des choses ont changé, mais sans articuler ce qui a été lâché ni la tension entre l'ancien et le nouveau. La narration réflexive au sens fort, l'acceptation de l'intelligence supérieure de l'IA dans son registre émotionnel, l'autonomie en mode dégradé et la vérification terrain ne sont pas portés par cette feuille — qui est une feuille de chantier orientée vers l'avant plutôt que vers le retour réflexif. La souveraineté attentionnelle apparaît sous une forme partielle (préférer son tableau à Trello) sans atteindre la charge propre de la fiche (résister à la capture algorithmique).\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux mouvements traversent les compétences de ce pôle dans cette feuille. Le premier est le silence sur le 'pourquoi' — la feuille ne thématise jamais le sens, ce qui peut être un sens intégré ou une absence d'écho intérieur. Le second est un mouvement constant d'auto-organisation : la todo-list, le récap des choses en cours, le critère personnel de priorité dessinent un cadre où l'apprenant prend sur lui de structurer son travail. Cet auto-cadrage est probablement la fondation tacite sur laquelle reposent les autres compétences du pôle, qui restent à expliciter.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le sens intrinsèque, un chemin possible serait de répondre, ne serait-ce qu'en une phrase, à la question 'qu'est-ce qui fait que je continue, même quand c'est ingrat ?' — pour que la litote actuelle puisse se déployer dans les moments difficiles.\n- Pour ouvrir la plasticité, un chemin possible serait de nommer ce qui, dans les 200 pages de la première version du livre ou dans les manuels initiaux, a dû être abandonné pour que la deuxième version puisse s'écrire — et ce qui reste constant.\n- Pour rendre visible la narration réflexive, un chemin possible serait de relire une feuille passée et d'en extraire un apprentissage transférable que la chronologie n'avait pas encore livré.\n- Pour explorer la souveraineté attentionnelle, un chemin possible serait de décrire un rituel de travail concentré protégé — comment, quand, pourquoi — au-delà de la simple préférence d'outil.\n"
+  }
+}

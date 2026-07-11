@@ -1,0 +1,816 @@
+{
+  "poleNum": "4",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-04",
+      "extraitVerbatim": "Ce qui est important c'est le côté flagorneur des IA : je lui explique dans mon prompt que j'ai du mal à expliquer ce qui fait la différence entre RESPIRE et les autres écoles alternatives qui ont tenté de modifier le paysage pédagogie, il scanne les fichiers du projet et me pond ce texte. Alors oui, ça me fait très plaisir de lire ça, mais est-ce qu'il est vraiment objectif ? C'est ce que j'ai essayé de creuser par la suite en lui demandant de prendre le rôle d'un directeur d'école aigris qui ne comprend rien à ce qui est en train de changer dans la société de demain.",
+      "contexte": "Diagnostic d'alignement (« côté flagorneur ») + dispositif de garde-fou (contre-rôle adversarial) (4.02, 4.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir.",
+      "contexte": "Refus éthique articulé contre une tentation d'optimisation IA — gardiennage actif de l'alignement (4.02, 4.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Mais surtout j'avais peur de vendre mon âme au diable et que les belles idées et valeurs que je mets dans ces écoles soient détournées pour du profit.",
+      "contexte": "Refus argumenté d'un capital risque par alignement valeurs / projet — raisonnement éthique en arbitrage (4.01, 4.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "D'où la stratégie actuelle qui est de tout donner en libre pour lancer les écoles maintenant (après ce sera trop tard : il y aura d'autres alternatives).",
+      "contexte": "Décision dans le flou avec direction claire (gratuité comme stratégie d'occupation de terrain) (4.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "J'ai vraiment envie de le faire, mais je vais me forcer à ne pas le faire. Pourquoi ? Parce que c'est le bon moyen pour me remettre un petit peu à niveau en informatique ce qui ne me sert à rien. Parce que c'est de nombreuses heures passées sur le hardware et le système, ce qui ralenti la création de RESPIRE.",
+      "contexte": "Refus argumenté d'une tentation (rebooter le serveur) — patience stratégique avec critère explicite (4.09, 4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "J'ai préparé le prompt pour générer ce nouveau livre. J'attendrai jeudi prochain pour le faire générer, afin de ne pas épuiser mon quota hebdomadaire de tokens et de me retrouver bloqué par rapport aux autres projets plus critiques",
+      "contexte": "Report borné dans le temps avec critère de déclenchement (jeudi, quota tokens) — patience stratégique attestée (4.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Comme c'est le coeur de tout le reste, je vais devoir refaire une itération complète : noèsiologie / livre / manuels / prompts d'analyse / site web. Ce qui est génial c'est que comme rien n'est terminé, je n'ai pas l'impression de défaire ce que j'ai déjà fait.",
+      "contexte": "Décision assumée d'un grand pivot — capacité à fonctionner dans le flou multi-projets (4.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "C'est la première fois depuis que j'utilise les intelligences artificielles ou je me sens jaloux, ou j'envisage de m'approprier leurs travaux sans le dire, publier en mon nom sans mentionner que ce n'est pas mon travail, que ce sont ces idées. C'est fou ! Je n'ai jamais ressenti un tel vertige.",
+      "contexte": "Tension éthique nommée (tentation d'appropriation des productions IA) sans esquive (4.01, 4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-02-05",
+      "extraitVerbatim": "J'ai trouvé beau cette idée que j'ai construit le système (et l'école !) dans lequel j'aurai pu m'épanouir. Comme si RESPIRE c'était la suite logique de toute mon existence : l'artefact qui valide ma différence autistique THQI et qui permet mon épanouissement. RESPIRE est ce que ma manière de penser produit naturellement.",
+      "contexte": "Valorisation explicite d'une différence cognitive (autistique THQI) reliée à un résultat (RESPIRE comme production naturelle) — neurodiversité comme ressource (4.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "J'arrive à faire tourner 5 instances parallèles de Claude en local sur mon disque dur. J'arrive à assumer mon THAD en faisant travailler Perplexity + ChatGPT + Gemini + Claude en parallèle pour avancer sur les différentes dimensions de mon projet, pendant que moi j'écoute des podcasts en lisant leurs productions ou en rangeant les fichiers générés sur mon disque dur.",
+      "contexte": "Articulation explicite entre un trait neurologique (THAD) et un mode de travail qui l'orchestre comme ressource — assumer + adapter (4.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Plus tard, lorsque je faisais les courses, j'étais toujours immergé dans mon monde, en discussions intérieures multiples. J'ai horreur d'interrompre ces états de flow, car ils se font de plus en plus rares depuis que j'ai dépassé la quarantaine.",
+      "contexte": "Reconnaissance d'un mode cognitif personnel (flow par discussions intérieures multiples) — auto-perception sans honte.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-02-05",
+      "extraitVerbatim": "Est-ce que c'est normal de douter autant de moi avec toutes les « preuves » et la reconnaissance que les élèves m'apportent ?",
+      "contexte": "Reconnaissance d'un doute persistant — humilité et accountability sur soi (4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "le résultat de cette analyse automatique, me fait dire que ça pourrait être intégré dans EduFolio / ou via un script Google Doc et Gemini en attendant EduFolio. [...] Le rôle du cartographe serait de consulter la cartographie produite, de lire des extraits au hasard, et de confirmer certains points en les documentant dans le portfolio => pour enrichir la cartographie avec sa vision humaine.",
+      "contexte": "Conception d'un garde-fou éthique systémique (rôle humain dans la boucle pour préserver l'alignement) (4.02, 4.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "J'ai terminé. Le protocole est interactif et en accord avec les évaluations humanistes. Je l'intègre dans la documentation du cartographe.",
+      "contexte": "Achèvement d'un protocole conçu pour préserver une dimension humaniste — alignement par design (4.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "Ce que j'ai appris en générant la première partie du livre ce matin, c'est que je gérais très mal la fenêtre de contexte et que je devais basculer sur Claude Code et Visual Studio pour écrire les fichiers MarkDown et fournir les sources dans un répertoire de mon disque dur plutôt que dans l'interface des projets de Claude. Chaque prompt me faisait compresser la conversation => signe de grosse perte de qualité.",
+      "contexte": "Validation contextuelle : identifier le mécanisme d'erreur de l'IA (compression de contexte) + correction par changement d'outillage (4.07, 4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Cette partie est terminée : manuel + annexe avec prompt complet + référentiel 60 compétences + 60 fichiers YAML + 60 prompts générés par script Python sur la base des fichiers YAML. Je dois encore relire une fois demain matin (là il est trop tard pour un relecture fiable).",
+      "contexte": "Auto-discipline (« là il est trop tard pour une relecture fiable ») — patience stratégique sur la qualité (4.09, 4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "il est fort probable que l'ORP m'impose un poste d'enseignant dès le moi d'août, même si je ne peux plus enseigner comme avant, je risque d'être obligé d'accepter. Je dois donc lancer les écoles avant ça.",
+      "contexte": "Décision sous contrainte temporelle externe — tranchage assumé dans un flou organisationnel (4.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 18,
+      "feuille": "2026-02-05",
+      "extraitVerbatim": "RESPIRE est ce que ma manière de penser produit naturellement. Comme un musicien compose de la musique. La musique exprime mon talent. Mais d'après Claude, si RESPIRE échoue, si personne n'écoute ma musique, mon talent de révéler les choses invisibles chez les élèves, existe quand même. C'est à demi rassurant !",
+      "contexte": "Articulation d'une valeur non-automatisable (« révéler les choses invisibles chez les élèves ») avec lucidité sur le risque d'échec — création de valeur incarnée (4.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 19,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir.",
+      "contexte": "Identification de ce que l'IA ne peut pas voir comme valeur irréductiblement humaine — création de valeur non-automatisable articulée (4.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 20,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Effectivement Leila a raison, nous allons très bientôt tous avoir bien plus de temps pour jouer avec elle… sauf ses parents qui sont tous les deux dans les soins et l'humain.",
+      "contexte": "Lecture sociétale long-terme : ce que l'IA va déplacer, ce qui reste irréductible (soins, humain) (4.08, 4.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 21,
+      "feuille": "2026-02-03",
+      "extraitVerbatim": "L'émergence d'une intelligence collective, c'est quand même un changement de paradigme majeur. Même si ce n'est « que » une démo temporaire entre geeks, c'est un glimpse dans un futur dystopique ou nous serions relégués au second plan.",
+      "contexte": "Prospective long-terme sur le rôle de l'humain face à l'émergence IA (4.03 candidate, 4.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 22,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Je me sens maintenant dépassé dans absolument tous mes domaines d'expertise (*) sauf pour le rôle de grand-père ! (*) codage depuis 2023-24, enseignement depuis 2024-25 et recherche depuis 2025-26",
+      "contexte": "Reconnaissance d'un sentiment d'être dépassé + identification d'une valeur restante (grand-père) — accountability sur soi sans esquive (4.06, 4.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 23,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "Ce matin, j'ai demandé à Opus 4.6 de transformer les trois articles écrits hier [...] en trois chapitres pour l'écriture de la thèse. Puis après réflexion, vu que juste le premier article fait déjà plus de 80 pages, nous avons décidé de ne pas les publier dans une revue / colloque et de laisser la validation institutionnelle et la thèse pour plus tard.",
+      "contexte": "Décision de report (revue/colloque/thèse) avec horizon (« pour plus tard ») et pivot vers un livre — patience stratégique attestée (4.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 24,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Mais hélas, je n'ai pas le temps de devenir riche : l'ORP est un obstacle trop important.",
+      "contexte": "Renoncement assumé d'une opportunité (devenir riche) pour préserver la priorité — arbitrage de valeurs (4.01, 4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 25,
+      "feuille": "2026-02-04",
+      "extraitVerbatim": "Alors oui, ça me fait très plaisir de lire ça, mais est-ce qu'il est vraiment objectif ?",
+      "contexte": "Mise en doute du plaisir narcissique apporté par l'IA — refus de céder à la flagornerie (4.02, 4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 26,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Ça m'a quand même fait mal à mon égo et m'a un peu déprimé. J'ai pris l'après-midi et la soirée de vacances pour réfléchir à ce que j'allais faire maintenant avec tout ça.",
+      "contexte": "Reconnaissance d'un coup à l'égo suivi d'un acte délibéré (pause, réflexion) — responsabilité émotionnelle assumée (4.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 27,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Hier ma petite fille qui sort comme ça à table, out of the blue : « Je me réjouis que les robots arrivent ». Soledad lui demande pourquoi. Elle nous répond : « Car comme ça il vont faire tout le travail des grands et vous aurez plus de temps pour jouer avec moi ».",
+      "contexte": "Captation d'une parole intergénérationnelle qui ouvre une question long-terme (le temps libéré par les IA pour les humains) (4.03 candidate).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Tension explicite entre deux positions défendables — accepter le capital risque (assurer la retraite) ou refuser (préserver les valeurs) — avec arbitrage assumé."
+        },
+        {
+          "numero": 2,
+          "pid": 24,
+          "contexte": "Renoncement à une voie possible (devenir riche) pour préserver une priorité — arbitrage de valeurs explicite."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Tension morale nommée : tentation d'appropriation des productions IA, sans esquive ni résolution prématurée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le raisonnement éthique appliqué au sens fort (mise en tension de valeurs, exploration des conséquences pour différentes parties prenantes, incertitude maintenue) n'est pas attesté — beaucoup de portfolios contiennent des sentences morales sans processus. Le pid 3 résiste : deux positions défendables sont en tension (assurer la retraite vs préserver les valeurs), avec un choix argumenté. Le pid 24 résiste : un renoncement explicite à une voie possible pour préserver la priorité. Le pid 8 résiste : la tension morale est nommée (« vertige », « jamais ressenti »), formulée comme problème sans esquive.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Tension réelle entre deux valeurs légitimes (sécurité financière, intégrité du projet) avec arbitrage assumé." },
+            { "pieceId": 2, "motifResistance": "Renoncement explicite assorti d'une raison structurelle (l'ORP comme obstacle)." },
+            { "pieceId": 3, "motifResistance": "Tension éthique nommée sans recours à des sentences — la difficulté est maintenue." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d'avoir surinvesti. Le pid 3 tient sous (a) : la tension est nommée et l'arbitrage est lié à une valeur explicite (« vendre mon âme »). Le pid 24 tient sous (a) — court mais le renoncement est articulé. Le pid 8 risque (e) : la pièce nomme une tentation sans déployer le travail de mise en tension qui suivrait ; affaibli, retenu comme indice.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Tension entre deux valeurs légitimes nommée, arbitrage assumé avec coût explicite." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Renoncement articulé à une opportunité valorisée (richesse) par adhésion à une autre priorité (lancer les écoles)." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La tentation est nommée et inquiète l'apprenant, mais l'apprenant ne déploie pas un arbitrage complet — la pièce installe la tension plus qu'elle ne la résout." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des sentences morales sans processus. Deux pièces s'imposent : l'arbitrage explicite entre sécurité financière et intégrité du projet (refus du capital risque), et le renoncement à devenir riche pour préserver la priorité. Les deux mettent en tension des valeurs légitimes et nomment le coût. Sous la présomption de sycophantie, la nomination du vertige éthique face à l'IA est restée comme indice convergent — elle ouvre une tension réelle que la suite immédiate ne déploie pas. Ce qui résulte est un raisonnement éthique attesté principalement dans les choix stratégiques d'engagement (à quoi consacrer son temps, comment se positionner), avec une honnêteté sur le coût d'un refus.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé deux pièces où la mise en tension de valeurs débouche sur un arbitrage assumé.",
+        "prescription": "Le travail montre des arbitrages éthiques qui pèsent deux valeurs et acceptent le coût d'un choix. Un chemin possible serait de documenter aussi un cas où l'inconfort moral est maintenu plus longtemps sans tranchage, pour explorer ce que l'incertitude éthique elle-même produit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Diagnostic d'alignement (« côté flagorneur ») + dispositif de garde-fou (contre-rôle adversarial) — marqueur central de la fiche."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Refus articulé d'une optimisation IA (« supprimer l'humain dans la boucle ») — pivot de la fiche."
+        },
+        {
+          "numero": 3,
+          "pid": 13,
+          "contexte": "Conception d'un garde-fou systémique : rôle du cartographe humain pour confirmer/enrichir la cartographie IA."
+        },
+        {
+          "numero": 4,
+          "pid": 14,
+          "contexte": "Achèvement d'un protocole humaniste intégré à la documentation du cartographe — alignement par design."
+        },
+        {
+          "numero": 5,
+          "pid": 25,
+          "contexte": "Mise en doute du plaisir narcissique procuré par l'IA — refus de céder à la flagornerie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'alignement éthique au sens fort (garde-fous, refus argumenté, conception de systèmes de contrôle) n'est pas attesté — beaucoup de portfolios contiennent un inconfort vague face à l'IA. Le pid 1 résiste très fort : le diagnostic (« côté flagorneur ») est suivi d'un dispositif correctif explicite (contre-rôle adversarial). Le pid 2 résiste : refus articulé de la tentation d'optimisation. Le pid 13 résiste comme conception d'un garde-fou systémique. Le pid 14 résiste comme acte de conception aligné (« en accord avec les évaluations humanistes »). Le pid 25 résiste plus faiblement — c'est une vigilance ponctuelle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Diagnostic d'alignement et dispositif correctif — combo central de la fiche." },
+            { "pieceId": 2, "motifResistance": "Refus explicite d'une optimisation IA pour préserver l'humain." },
+            { "pieceId": 3, "motifResistance": "Conception d'un garde-fou systémique — l'exception de la fiche pour Expert." },
+            { "pieceId": 4, "motifResistance": "Protocole humaniste effectivement intégré à la documentation." },
+            { "pieceId": 5, "motifResistance": "Vigilance critique en acte sur sa propre satisfaction face à l'IA flatteuse." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 1 tient sous (b) — la pièce porte aussi 1.01 et 1.08 (dialogue avancé), mais le contre-rôle vise précisément à corriger un défaut d'alignement (la flagornerie comme problème de conformité aux valeurs). Le pid 2 tient sous (e) : la formulation est presque slogan, mais elle s'inscrit dans le protocole décrit en pid 13-14. Le pid 13 et le pid 14 tiennent sous (b) : ils sont co-actifs avec 1.07 mais l'intention humaniste les ancre dans 4.02. Le pid 25 tient sous (a) — bref mais articulé.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le diagnostic « flagornerie » est précisément un diagnostic d'alignement (l'IA ne reflète pas les valeurs réelles, elle confirme l'apprenant) ; la pièce porte 4.02 même si elle active d'autres compétences." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le « piège à éviter » s'inscrit dans un protocole effectivement décrit — pas un slogan isolé." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Garde-fou systémique avec rôle humain explicite — exception Expert de la fiche." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Achèvement effectif mais peu détaillé sur les mécanismes d'alignement précis du protocole." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Vigilance ponctuelle articulée mais brève — indice convergent." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages un inconfort vague face à l'IA. Trois pièces s'imposent : le diagnostic de flagornerie avec dispositif correctif, le refus articulé contre la suppression de l'humain dans la boucle, et la conception d'un garde-fou systémique (le rôle du cartographe). Toutes correspondent aux marqueurs centraux de la fiche, et la conception du garde-fou correspond à l'exception Expert. Sous la présomption de sycophantie, l'achèvement du protocole humaniste et la mise en doute du plaisir face à l'IA flatteuse sont restés comme indices convergents. Ce qui résulte est un travail où le gardiennage de l'alignement IA n'est pas un slogan — il est attesté par des dispositifs concrets (contre-rôle, rôle humain, protocole).",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.85,
+        "motif": "Le temps 2 a confirmé trois pièces portant les marqueurs centraux de la fiche, dont une conception de garde-fou systémique.",
+        "prescription": "Le travail montre un gardiennage actif de l'alignement IA, attesté par des dispositifs concrets. Un chemin possible serait de tester ce garde-fou dans la durée — observer ce qui s'use, ce qui doit être renforcé, et documenter les ajustements faits au protocole."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 20,
+          "contexte": "Lecture long-terme du déplacement par l'IA des activités humaines : « ce qui reste » (les soins, l'humain) — distinction entre ce qui est automatisable et ce qui n'a pas vocation à l'être."
+        },
+        {
+          "numero": 2,
+          "pid": 21,
+          "contexte": "Prospective sur l'émergence d'intelligences collectives et leur impact sur le rôle des humains — lecture systémique à horizon long."
+        },
+        {
+          "numero": 3,
+          "pid": 27,
+          "contexte": "Parole d'enfant captée comme ouverture d'un horizon générationnel — qu'est-ce que les robots vont permettre aux humains de faire ?"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la conscience écologique et long-terme au sens fort de la fiche (parties prenantes non-humaines, générations futures, arbitrages concrets bénéfice immédiat / impact long-terme) n'est pas attestée — la fiche avertit explicitement contre les signaux de surface socialement valorisés. La feuille ne porte pas de discours écologique explicite, mais elle porte plusieurs ouvertures à un long-terme socio-technique. Le pid 20 résiste : il ouvre une lecture du déplacement long-terme. Le pid 21 résiste comme prospective. Le pid 27 résiste très faiblement — il transporte une parole d'enfant qui ouvre l'horizon générationnel sans en faire l'objet d'un arbitrage.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification de ce qui résiste long-terme à l'automatisation (soins, humain) — pensée long-terme appliquée au travail humain." },
+            { "pieceId": 2, "motifResistance": "Prospective systémique long-terme avec parties prenantes nouvelles (intelligences collectives)." },
+            { "pieceId": 3, "motifResistance": "Ouverture intergénérationnelle relayée (« vous aurez plus de temps pour jouer avec moi »)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption sévère (la fiche avertit contre les signaux de surface). Le pid 20 risque (b) : il porte mieux 4.08 (création de valeur non-automatisable) que 4.03 (écologie/long-terme avec arbitrage concret). La fiche distingue 4.03 de la vision stratégique 7.05 par l'intégration de parties prenantes non-humaines ou générations futures — ici, les générations futures sont évoquées mais en termes de temps de jeu, pas d'écosystème ou d'arbitrage. Le pid 21 risque (b) — c'est de la prospective IA, pas un arbitrage long-terme intégrant des externalités. Le pid 27 risque (g) — la parole est rapportée, l'apprenant ne s'en sert pas pour un arbitrage.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce porte la création de valeur non-automatisable (4.08) plutôt que la conscience écologique avec arbitrage long-terme/court-terme — les soins ne sont pas posés comme externalité d'un autre choix." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Prospective socio-technique sans arbitrage concret intégrant écologie ou générations futures — porte mieux 1.05 (pensée systémique) ou 4.08." },
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La parole intergénérationnelle est rapportée sans qu'aucun arbitrage long-terme/court-terme n'en découle." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages une conscience écologique et long-terme au sens strict de la fiche, qui exige un arbitrage concret entre bénéfice immédiat et impact long-terme, ou l'intégration d'externalités non comptabilisées. La feuille porte plusieurs ouvertures prospectives socio-techniques, mais aucune ne fait basculer un arbitrage concret au profit du long-terme ni n'intègre de parties prenantes non-humaines ou générations futures comme critère. Les pièces candidates portent mieux d'autres compétences (4.08, 1.05). Ce qui résulte est un territoire que cette feuille ne porte pas — non pas qu'il soit absent du parcours, mais cette feuille n'en a pas la trace au sens strict que la fiche exige, qui se méfie justement des signaux de surface.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a écarté les trois pièces candidates, qui portent d'autres compétences (création de valeur non-automatisable, pensée systémique) sans rencontrer le critère strict de la fiche.",
+        "prescription": "Le portfolio porte des prospectives socio-techniques mais pas d'arbitrage explicite intégrant écosystèmes ou générations futures. Un chemin possible serait de documenter une décision où un bénéfice immédiat a été pesé contre un impact long-terme ou une externalité non comptabilisée — même hors champ écologique, dans la durée d'un projet par exemple."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Lien explicite entre la différence cognitive (autistique THQI) et un résultat (RESPIRE comme production naturelle) — valorisation de la neurodiversité avec attribution causale."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Articulation d'un trait neurologique (THAD) avec un mode de travail qui l'orchestre comme ressource (5 instances IA en parallèle)."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Reconnaissance d'un mode de pensée personnel (discussions intérieures multiples, hyper-focus) — auto-perception sans honte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la valorisation de la neurodiversité au sens fort (lien explicite entre mode de pensée différent et résultat concret, transformer un déficit en avantage) n'est pas attestée — beaucoup de portfolios mentionnent une particularité cognitive sans articulation. Le pid 9 résiste fortement : il établit explicitement le lien « parce que je pense autrement, RESPIRE est ce que ma manière de penser produit naturellement ». Le pid 10 résiste : il fait du THAD une ressource orchestrée par un dispositif (multi-IA). Le pid 11 résiste plus faiblement : reconnaissance d'un mode sans lien explicite à un résultat.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Lien explicite mode de pensée → résultat — exactement le marqueur central de la fiche." },
+            { "pieceId": 2, "motifResistance": "Trait neurologique nommé (THAD) et mode de travail conçu pour l'orchestrer comme ressource." },
+            { "pieceId": 3, "motifResistance": "Auto-perception sans honte d'un mode cognitif personnel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 9 tient sous (e) — la formulation est explicite (« parce que je pense autrement »), elle ne demande pas d'interprétation. Le pid 10 tient sous (a) — le dispositif multi-IA est décrit comme moyen d'« assumer » le THAD. Le pid 11 risque (b) — porte aussi 1.04 (métacognition) ; la valorisation neurodivergente n'est pas explicite ; affaibli.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le lien causal « différence autistique THQI → RESPIRE produit naturellement » correspond exactement à la distinction critique de la fiche (PARCE QUE, pas ET)." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le THAD est nommé comme trait à « assumer » et le dispositif multi-IA est le moyen orchestré — pas une plainte, une orchestration." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Reconnaissance positive du mode flow par discussions intérieures mais sans lien causal explicite à un résultat — indice convergent." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages une simple auto-description d'une particularité. Deux pièces s'imposent : l'attribution causale explicite de RESPIRE à la différence autistique THQI (« parce que je pense autrement »), et l'orchestration du THAD comme ressource via un dispositif multi-IA. Toutes deux portent la distinction critique de la fiche (PARCE QUE, pas ET). Sous la présomption de sycophantie, la reconnaissance du flow personnel est restée comme indice. Ce qui résulte est une valorisation de la neurodiversité attestée au niveau personnel par lien explicite mode-de-pensée → résultat. Une réserve : l'inclusion cognitive d'autrui (adapter des méthodes pour un profil atypique différent du sien) n'est pas visible dans cette feuille.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé deux pièces établissant le lien causal explicite entre mode de pensée différent et résultat — distinction critique de la fiche.",
+        "prescription": "Le travail montre une valorisation personnelle solide de la neurodiversité. Un chemin possible serait de documenter aussi un moment où l'apprenant a adapté un dispositif (manuel, protocole, espace) pour un profil cognitif différent du sien, pour ouvrir la dimension collective de cette compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Décision stratégique de tout donner en libre malgré l'incertitude — direction claire dans un horizon flou."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Décision d'engager une itération complète sur un système d'objets non finis — fonctionner dans le flou multi-projets."
+        },
+        {
+          "numero": 3,
+          "pid": 17,
+          "contexte": "Décision « je dois donc lancer les écoles avant ça » sous contrainte d'incertitude (probabilité ORP) — tranchage assumé."
+        },
+        {
+          "numero": 4,
+          "pid": 26,
+          "contexte": "Pause délibérée après un choc, suivi d'une décision sur la suite — fonctionner malgré le flou émotionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la décision sous incertitude au sens fort (combo : nommer l'inconnu + fonctionner malgré + acte de tranchage avec conséquences) n'est pas attestée. Le pid 4 résiste : direction claire (gratuité) dans un flou marché. Le pid 7 résiste : décision d'itérer un système entier alors même que les versions ne sont pas stables. Le pid 17 résiste : tranchage explicite sous contrainte temporelle (ORP). Le pid 26 résiste : retour au travail après un coup affectif. La fiche exige le combo des trois éléments — il faut vérifier qu'au moins une pièce les réunit.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Direction (gratuité) dans un flou clair (futurs concurrents, timing institutionnel)." },
+            { "pieceId": 2, "motifResistance": "Décision de relancer un système d'objets non finis." },
+            { "pieceId": 3, "motifResistance": "Tranchage temporel explicite (« je dois lancer avant ça »)." },
+            { "pieceId": 4, "motifResistance": "Action délibérée après un choc affectif — fonctionner dans le flou existentiel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 4 tient sous (a) : il y a une décision (gratuité), un flou nommé (« d'autres alternatives »), un acte (donner en libre). Le pid 7 tient sous (g) — la décision d'itérer est prise, mais on ne sait pas si elle est encore en mouvement-vers ; tenu mais affaibli. Le pid 17 tient sous (a) : combo des trois éléments réuni (inconnu nommé : possible imposition ORP ; fonctionner : continuer le travail ; tranchage : « je dois lancer avant »). Le pid 26 risque (b) — la pause et le retour relèvent plus de la responsabilité émotionnelle (4.06) que de la décision dans l'incertitude.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Combo : inconnu nommé (« il y aura d'autres alternatives »), fonctionnement (lancer maintenant), tranchage (gratuité)." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Combo complet : probabilité explicite, fonctionnement, tranchage temporel — exactement la signature de la fiche." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Décision de relance d'itération mais le tranchage et ses conséquences ne sont pas encore visibles — mouvement-vers." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pause après le choc affectif porte mieux 4.06 (responsabilité, courage) que 4.05 — pas un acte de tranchage dans l'incertitude au sens fort." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des décisions qui ne réuniraient pas le combo exigé par la fiche. Deux pièces s'imposent : la décision stratégique de gratuité dans un flou de marché émergent, et le tranchage temporel sous contrainte ORP. Toutes deux réunissent les trois éléments du combo — inconnu nommé, fonctionnement, tranchage. La décision d'itérer le système entier est restée comme indice — elle est en mouvement-vers. La pause après le choc affectif a basculé vers la responsabilité (4.06). Ce qui résulte est une capacité de décision attestée dans des contextes où l'inconnu est nommé et où le tranchage produit une direction tenue.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé deux pièces réunissant le combo exigé par la fiche : inconnu nommé, fonctionnement, tranchage.",
+        "prescription": "Le travail montre une capacité de décision attestée dans le flou stratégique. Un chemin possible serait de documenter aussi un moment où l'IA elle-même hésitait ou divergeait, et où l'humain a tranché en assumant le pari — pour mettre en lumière la facette « décider contre la recommandation IA » du combo."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 22,
+          "contexte": "Reconnaissance « je me sens dépassé dans absolument tous mes domaines d'expertise » + identification de ce qui reste (grand-père) — accountability sans esquive."
+        },
+        {
+          "numero": 2,
+          "pid": 26,
+          "contexte": "Reconnaissance d'un coup à l'égo + acte délibéré (pause, réflexion) + nouvelle idée — responsabilité émotionnelle assumée avec suite."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Auto-discipline (« là il est trop tard pour une relecture fiable ») — accountability sur la qualité avec maintien de l'exigence."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Reconnaissance du doute persistant malgré la reconnaissance — accountability sur sa propre psychologie."
+        },
+        {
+          "numero": 5,
+          "pid": 5,
+          "contexte": "Refus assumé d'une tentation (rebooter le serveur) au profit de la priorité — intégrité entre valeurs et actes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la responsabilité-courage-intégrité au sens fort (combo : dilemme + reconnaissance avec coût + action corrective) n'est pas attestée — beaucoup de portfolios contiennent des « c'est ma faute » sans suite. Le pid 22 résiste : reconnaissance d'un dépassement complet sans esquive, identification d'une zone qui résiste. Le pid 26 résiste fortement : choc → pause → nouvelle idée testée. Le pid 16 résiste : auto-discipline qui refuse une relecture peu fiable. Le pid 5 résiste : « je vais me forcer à ne pas le faire » est exactement le maintien d'une cohérence valeurs-actes contre la tentation. Le pid 12 résiste comme reconnaissance d'un doute permanent.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Reconnaissance honnête d'un dépassement sans s'effondrer — accountability constructive." },
+            { "pieceId": 2, "motifResistance": "Cycle complet choc-pause-action — accountability suivie." },
+            { "pieceId": 3, "motifResistance": "Auto-discipline qui maintient l'exigence (pas de relecture peu fiable)." },
+            { "pieceId": 4, "motifResistance": "Reconnaissance d'une vulnérabilité psychologique sans esquive." },
+            { "pieceId": 5, "motifResistance": "Cohérence valeurs-actes contre la tentation, avec raisons articulées." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 22 tient sous (a) : la fiche exige reconnaissance + coût + suite ; ici, le coût est nommé (dépassé partout), la suite est implicite (la zone restante). Le pid 26 tient sous (a) : combo complet. Le pid 5 tient sous (e) — « je vais me forcer » avec raisons articulées correspond au maintien d'intégrité. Le pid 16 tient sous (a) — bref mais auto-disciplinaire. Le pid 12 risque (f) — c'est une question rhétorique adressée à Claude, pas une accountability suivie d'action ; affaibli.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Reconnaissance honnête sans auto-flagellation, identification de ce qui reste — accountability constructive au sens de la fiche." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Cycle complet choc → pause → action — combo exigé par la fiche." },
+            { "pieceId": 5, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "« Je vais me forcer à ne pas le faire » + raisons articulées = maintien de cohérence valeurs-actes, marqueur de la fiche." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Auto-discipline brève mais articulée — indice convergent." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Reconnaissance du doute formulée comme question à Claude — sincère mais sans suite d'action documentée dans ce passage." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des « c'est ma faute » sans suite. Trois pièces s'imposent : la reconnaissance du dépassement avec identification de ce qui reste, le cycle complet choc-pause-action après le travail de Claude qui dépasse l'apprenant, et le refus assumé de la tentation du serveur avec raisons articulées. Toutes trois portent le combo exigé par la fiche : reconnaissance du coût, intégrité dans les actes. Sous la présomption de sycophantie, l'auto-discipline sur la relecture et la reconnaissance du doute sont restées comme indices convergents. Ce qui résulte est une responsabilité assumée qui ne tombe pas dans l'auto-flagellation, où la reconnaissance d'une vulnérabilité s'accompagne presque toujours d'un acte ou d'une zone tenue.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé trois pièces portant le combo reconnaissance-coût-action exigé par la fiche.",
+        "prescription": "Le travail montre une responsabilité assumée qui s'accompagne d'actes ou de zones tenues. Un chemin possible serait de documenter aussi un cas où le courage a coûté dans une relation humaine — une vérité inconfortable dite, une position maintenue contre la pression d'un groupe — pour ancrer la facette interpersonnelle de cette compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 15,
+          "contexte": "Identification du mécanisme d'erreur IA (compression de conversation à cause de la fenêtre de contexte) + décision de changer d'outillage — validation contextuelle technique."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "L'IA flagorneuse n'a pas le contexte (objectivité) — l'apprenant identifie ce qu'elle ne peut pas savoir et met en place une compensation."
+        },
+        {
+          "numero": 3,
+          "pid": 19,
+          "contexte": "« Intégrer ce que l'IA ne peut pas voir » — formulation directe du delta de contexte humain/machine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la validation contextuelle au sens strict (delta de savoir humain/machine identifié + mécanisme expliqué + correction) n'est pas attestée. Le pid 15 résiste : mécanisme nommé (compression de fenêtre de contexte), conséquence (perte de qualité), correction (basculement d'outil). Le pid 1 résiste : l'IA flatte parce qu'elle n'a pas un savoir extérieur de calibrage ; le contre-rôle est la compensation. Le pid 19 résiste : « ce que l'IA ne peut pas voir » est exactement le marqueur central. La fiche met en garde contre la confusion avec 1.01 — il faudra vérifier que c'est bien un delta de contexte, pas une erreur factuelle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Mécanisme d'erreur IA nommé (compression de contexte) + correction par changement d'outil — validation contextuelle technique." },
+            { "pieceId": 2, "motifResistance": "Identification d'un manque de contexte de calibrage (objectivité) + dispositif compensatoire (contre-rôle)." },
+            { "pieceId": 3, "motifResistance": "Formulation directe du delta humain/machine — pivot oblique de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 15 tient sous (b) — il porte aussi 1.06 (littératie IA), mais le critère central de 4.07 est le delta de contexte avec correction conséquente, ce qui est exactement le cas. Le pid 1 tient sous (b) — porte 4.02 aussi, mais l'identification du manque de contexte de calibrage et la compensation sont du 4.07. Le pid 19 tient sous (e) — la formulation est brève mais elle nomme exactement le pivot de la fiche.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le mécanisme de compression est expliqué et la correction est conséquente — exactement le combo du marqueur central de 4.07 (delta + mécanisme + correction)." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'IA n'a pas le contexte (sortir de la flatterie nécessite un savoir extérieur de calibrage) ; le contre-rôle est la compensation par savoir humain." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "« Ce que l'IA ne peut pas voir » est le pivot oblique direct de la fiche pour 4.07/4.08 — formulé sans interprétation forcée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à confondre validation contextuelle (4.07) avec pensée critique (1.01) ou alignement (4.02). Trois pièces s'imposent : le diagnostic du mécanisme de compression de contexte avec correction d'outillage, l'identification du manque de calibrage extérieur de l'IA avec compensation par contre-rôle, et la formulation directe « ce que l'IA ne peut pas voir ». Toutes trois portent le marqueur central : delta de contexte identifié, mécanisme expliqué, correction conséquente. Ce qui résulte est une validation contextuelle attestée dans plusieurs registres — technique (fenêtre de contexte), épistémique (calibrage d'objectivité), et général (ce que l'IA ne peut structurellement pas voir).",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "Le temps 2 a confirmé trois pièces portant les marqueurs centraux de la fiche : delta de contexte + mécanisme + correction.",
+        "prescription": "Le travail montre une validation contextuelle attestée dans plusieurs registres. Un chemin possible serait de documenter aussi un cas où l'IA s'est trompée à cause d'un savoir relationnel inaccessible (par exemple sur un destinataire en deuil, sur la culture d'un milieu spécifique) — pour ancrer la facette non-technique de cette compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 19,
+          "contexte": "« Intégrer ce que l'IA ne peut pas voir » — identification d'une valeur structurellement non-automatisable."
+        },
+        {
+          "numero": 2,
+          "pid": 18,
+          "contexte": "Articulation d'un talent (« révéler les choses invisibles chez les élèves ») nommé comme valeur non-automatisable persistante."
+        },
+        {
+          "numero": 3,
+          "pid": 20,
+          "contexte": "Identification de ce qui reste irréductiblement humain (« soins et l'humain ») face à l'arrivée des robots."
+        },
+        {
+          "numero": 4,
+          "pid": 22,
+          "contexte": "Reconnaissance que tous les domaines d'expertise sont dépassés sauf le rôle de grand-père — lucidité bidirectionnelle sur ce qui reste."
+        },
+        {
+          "numero": 5,
+          "pid": 2,
+          "contexte": "Refus de supprimer l'humain dans la boucle — protection active d'une valeur non-automatisable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la création de valeur non-automatisable au sens fort (lucidité bidirectionnelle, identification de ce qui est structurellement non-automatisable, dimension prospective) n'est pas attestée — beaucoup de portfolios contiennent « l'humain est irremplaçable » sans articulation. Le pid 19 résiste fortement : c'est le pivot de la fiche (« ce que l'IA ne peut pas voir »). Le pid 18 résiste : un talent particulier est nommé et reconnu comme persistant. Le pid 20 résiste : identification précise (« soins », « humain ») de ce qui reste. Le pid 22 résiste : la reconnaissance d'être dépassé partout permet de poser ce qui ne l'est pas. Le pid 2 résiste comme acte de protection.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Pivot direct de la fiche : ce que l'IA ne peut structurellement pas voir." },
+            { "pieceId": 2, "motifResistance": "Talent particulier nommé comme valeur résistante." },
+            { "pieceId": 3, "motifResistance": "Identification précise de ce qui reste (soins, humain)." },
+            { "pieceId": 4, "motifResistance": "Lucidité bidirectionnelle — dépassement reconnu + zone qui résiste." },
+            { "pieceId": 5, "motifResistance": "Acte de protection d'une valeur non-automatisable." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 19 tient sous (e) — la formulation est directe et débouche sur un dispositif. Le pid 22 tient sous (a) — la lucidité bidirectionnelle est exemplaire (dépassé partout SAUF grand-père). Le pid 18 risque (e) — « révéler les choses invisibles chez les élèves » est une valeur articulée mais dont l'évaluation marché reste à corroborer ; tenu mais affaibli. Le pid 20 risque (g) — c'est une lecture prospective brève ; tenu mais affaibli. Le pid 2 risque (b) — la pièce porte aussi 4.02, mais l'acte de protection vise précisément à préserver une valeur non-automatisable.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le pivot de la fiche est posé sans ambiguïté ; il s'inscrit dans un protocole effectif." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Lucidité bidirectionnelle parfaite : domaines dépassés nommés + zone résistante identifiée — exactement la fiche." },
+            { "pieceId": 5, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'acte de protection vise structurellement la valeur humaine non-automatisable, ce qui distingue 4.02 (alignement de valeurs) et 4.08 (préservation de la valeur non-automatisable elle-même)." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Valeur articulée (révéler l'invisible chez les élèves) mais sa traduction économique reste à corroborer dans la durée." },
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Lecture prospective brève ; tenue comme indice convergent." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages un « l'humain est irremplaçable » sans articulation. Trois pièces s'imposent : « ce que l'IA ne peut pas voir » comme pivot direct, la lucidité bidirectionnelle parfaite (dépassé partout sauf grand-père), et l'acte de protection contre la suppression de l'humain dans la boucle. Toutes correspondent au marqueur central de la fiche, et notamment au test prospectif (regarder vers l'avenir, pas vers le passé). Le talent de révéler l'invisible et la lecture des soins comme zone résistante sont restés comme indices convergents. Ce qui résulte est une articulation explicite de la valeur non-automatisable, dans plusieurs registres : philosophique (« ce que l'IA ne peut pas voir »), personnel (le talent reconnu), familial (grand-père), structurel (les soins, l'humain).",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.85,
+        "motif": "Le temps 2 a confirmé trois pièces portant le marqueur central et le test prospectif de la fiche.",
+        "prescription": "Le travail montre une articulation claire de la valeur non-automatisable, dans plusieurs registres. Un chemin possible serait de relier explicitement cette articulation à sa dimension économique — quel modèle d'échange permet à cette valeur d'être reconnue comme telle dans le marché que les écoles vont rencontrer."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Report borné dans le temps (« j'attendrai jeudi prochain ») avec critère explicite (quota tokens, projets plus critiques) — exactement le combo de la fiche."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Refus délibéré d'agir (« je vais me forcer à ne pas le faire ») avec raisons articulées — non-action stratégique."
+        },
+        {
+          "numero": 3,
+          "pid": 23,
+          "contexte": "Report de la publication en revue/colloque/thèse (« laisser la validation institutionnelle et la thèse pour plus tard ») avec pivot vers un livre — patience stratégique."
+        },
+        {
+          "numero": 4,
+          "pid": 16,
+          "contexte": "Refus de relire le soir tard (« là il est trop tard pour une relecture fiable ») — micro-patience stratégique sur la qualité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la patience stratégique au sens fort (non-action délibérée avec raisonnement explicite ET moment d'action prévu) n'est pas attestée — beaucoup de portfolios contiennent des reports sans critère. Le pid 6 résiste très fort : combo parfait (jeudi prochain + critère tokens + projets plus critiques). Le pid 5 résiste : refus délibéré avec trois raisons articulées. Le pid 23 résiste : report avec horizon (« pour plus tard ») et pivot alternatif. Le pid 16 résiste comme micro-patience.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Combo parfait : pression à agir (générer le livre) + raison d'attente (quota) + moment d'action (jeudi)." },
+            { "pieceId": 2, "motifResistance": "Refus délibéré avec trois raisons explicitement articulées." },
+            { "pieceId": 3, "motifResistance": "Report avec horizon et pivot alternatif tenu." },
+            { "pieceId": 4, "motifResistance": "Auto-discipline sur la qualité avec critère temporel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 1 tient sous (a) : combo des trois éléments réuni. Le pid 2 tient sous (a) : trois raisons articulées. Le pid 3 risque (g) — « pour plus tard » est large, le moment d'action n'est pas borné ; affaibli. Le pid 4 tient sous (a) — bref mais le report (« demain matin ») est précis.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Combo des trois éléments parfait : pression, raison d'attente, moment d'action — signature exacte de la fiche." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Trois raisons articulées contre l'envie immédiate — non-action stratégique pleinement assumée." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Auto-discipline avec critère temporel précis (« demain matin »)." },
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Horizon « pour plus tard » plus diffus mais le pivot vers le livre signe le report comme stratégique, pas comme abandon." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des procrastinations déguisées. Trois pièces s'imposent : l'attente bornée du jeudi pour générer le livre (combo parfait), le refus délibéré du serveur avec trois raisons articulées, et le refus de relire trop tard. Toutes portent le critère décisif de la fiche : critère de déclenchement ou raison d'attente explicite. Le report institutionnel (revue/colloque/thèse) est resté comme indice — l'horizon est plus diffus mais le pivot l'ancre comme stratégique. Ce qui résulte est une patience stratégique attestée à plusieurs échelles, du micro-quotidien (relecture) au macro-stratégique (publication institutionnelle).",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.85,
+        "motif": "Le temps 2 a confirmé trois pièces portant le combo critère-pression-action exigé par la fiche, à plusieurs échelles temporelles.",
+        "prescription": "Le travail montre une patience stratégique articulée par critères, du quotidien au stratégique. Un chemin possible serait de documenter dans la durée le résultat d'un de ces reports — par exemple ce que la décision d'« attendre jeudi » a permis ou empêché — pour ancrer la compétence dans une trace longitudinale."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 9,
+    "presencesEtablies": 8,
+    "renvoisCartographe": 0,
+    "nonEtablies": 1,
+    "courtCircuits": 0
+  },
+
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail montre un discernement qui s'exerce d'abord dans la relation à l'IA — diagnostic de flagornerie, refus de supprimer l'humain dans la boucle, conception de garde-fous humanistes — et qui s'étend à des arbitrages stratégiques portés par des valeurs explicites. Les décisions difficiles sont nommées, leur coût est reconnu, leur pivot est tenu. La patience stratégique s'articule par critères (jeudi prochain, quota tokens, trop tard pour relire). La neurodiversité est revendiquée comme cause d'un résultat (RESPIRE comme production naturelle d'une manière de penser autistique THQI), et un dispositif de travail orchestre le THAD comme ressource. La conscience écologique au sens strict du référentiel reste en germe, tandis que la création de valeur non-automatisable s'articule clairement, dans plusieurs registres.",
+    "territoiresDenses": [
+      {
+        "competence": "Alignement et refus éthique",
+        "description": "Le gardiennage de l'alignement IA est attesté par des dispositifs concrets — diagnostic de flagornerie + contre-rôle adversarial, refus articulé contre la suppression de l'humain, conception d'un protocole humaniste pour la cartographie.",
+        "extraitVerbatim": "C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir.",
+        "ceQueCaDit": "Sur ce pôle, le refus n'est pas une posture — il est attesté par un dispositif effectivement intégré à la documentation."
+      },
+      {
+        "competence": "Création de valeur non-automatisable",
+        "description": "La valeur irréductiblement humaine est articulée dans plusieurs registres : philosophique (ce que l'IA ne peut pas voir), personnel (révéler l'invisible chez les élèves), familial (grand-père), structurel (soins, humain).",
+        "extraitVerbatim": "Je me sens maintenant dépassé dans absolument tous mes domaines d'expertise (*) sauf pour le rôle de grand-père !",
+        "ceQueCaDit": "Dans ce pôle, la lucidité bidirectionnelle est attestée : ce que l'IA dépasse est reconnu, et la zone qui résiste est nommée."
+      },
+      {
+        "competence": "Patience stratégique et sens du timing",
+        "description": "Les reports sont bornés par critère ou par moment de déclenchement — jeudi prochain, demain matin, après les écoles, contre la tentation immédiate.",
+        "extraitVerbatim": "J'attendrai jeudi prochain pour le faire générer, afin de ne pas épuiser mon quota hebdomadaire de tokens et de me retrouver bloqué par rapport aux autres projets plus critiques",
+        "ceQueCaDit": "Sur ce pôle, la non-action est argumentée et bornée — elle se distingue de la procrastination par un critère de déclenchement."
+      },
+      {
+        "competence": "Validation contextuelle",
+        "description": "Le delta de contexte humain/machine est nommé avec mécanisme et correction — compression de fenêtre de contexte, calibrage d'objectivité, ce que l'IA ne peut pas voir.",
+        "extraitVerbatim": "Chaque prompt me faisait compresser la conversation => signe de grosse perte de qualité.",
+        "ceQueCaDit": "Dans ce pôle, le diagnostic d'erreur IA ne s'arrête pas au constat — il identifie pourquoi le contexte manquant change tout, et débouche sur une correction."
+      },
+      {
+        "competence": "Responsabilité, courage et intégrité",
+        "description": "La reconnaissance d'une vulnérabilité ou d'un dépassement s'accompagne presque toujours d'un acte — pause après choc, refus argumenté contre une tentation, identification de ce qui reste.",
+        "extraitVerbatim": "Ça m'a quand même fait mal à mon égo et m'a un peu déprimé. J'ai pris l'après-midi et la soirée de vacances pour réfléchir à ce que j'allais faire maintenant avec tout ça.",
+        "ceQueCaDit": "Sur ce pôle, l'accountability est constructive — elle nomme le coût et continue le travail."
+      }
+    ],
+    "territoiresNonVisites": "Quelques territoires apparaissent peu dans cette feuille. La conscience écologique et long-terme au sens strict du référentiel n'est pas attestée ici — la fiche exige un arbitrage concret intégrant des externalités non comptabilisées ou des parties prenantes non-humaines, et les pièces candidates portent en réalité d'autres compétences (création de valeur non-automatisable, pensée systémique). Le raisonnement éthique appliqué se voit dans des arbitrages stratégiques mais pourrait gagner à maintenir plus longuement l'inconfort moral sans tranchage. La dimension collective de la valorisation de la neurodiversité (adapter méthodes ou espaces pour des profils différents du sien) est en germe — les futures écoles RESPIRE la portent comme intention mais elle ne se laisse pas attester en acte dans cette feuille. Enfin, la facette interpersonnelle du courage (vérité inconfortable dite à un pair, position maintenue contre la pression d'un groupe) reste plus discrète que l'accountability sur soi.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle. D'abord, une figure centrale revient comme pivot — « ce que l'IA ne peut pas voir » — et structure à la fois l'alignement, la validation contextuelle et la création de valeur non-automatisable : la même formule sert à juger l'IA, à corriger l'IA et à articuler ce qui ne se laisse pas remplacer par elle. Ensuite, une discipline temporelle où la patience stratégique et la décision dans le flou se complètent — savoir attendre jeudi pour le livre, savoir lancer maintenant les écoles. Enfin, une accountability qui n'est jamais auto-flagellante : la reconnaissance d'un dépassement, d'un échec ou d'une vulnérabilité s'accompagne presque toujours d'une zone tenue ou d'un acte qui suit.",
+    "pistes": [
+      "Pour ouvrir le territoire écologique au sens strict, un chemin possible serait de documenter une décision concrète où un bénéfice immédiat a été pesé contre un impact long-terme ou une externalité non comptabilisée — par exemple dans la conception d'une école ou d'un dispositif d'évaluation.",
+      "Pour prolonger le raisonnement éthique appliqué, un chemin possible serait de documenter un cas où l'inconfort moral est maintenu plus longtemps sans tranchage, pour explorer ce que l'incertitude éthique elle-même produit.",
+      "Pour ancrer la dimension collective de la valorisation de la neurodiversité, un chemin possible serait de documenter un moment où l'apprenant a adapté un dispositif (manuel, protocole, espace) pour un profil cognitif différent du sien.",
+      "Pour ouvrir la facette interpersonnelle du courage, un chemin possible serait de documenter un cas où une vérité inconfortable a été dite à un pair ou une position a été maintenue contre la pression d'un groupe.",
+      "Pour ancrer la patience stratégique dans la durée, un chemin possible serait de revenir, après coup, sur un report (par exemple « attendre jeudi pour le livre ») pour noter ce que la patience a effectivement produit ou empêché."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail montre un discernement qui s'exerce d'abord dans la relation à l'IA — diagnostic de flagornerie, refus de supprimer l'humain dans la boucle, conception de garde-fous humanistes — et qui s'étend à des arbitrages stratégiques portés par des valeurs explicites. Les décisions difficiles sont nommées, leur coût est reconnu, leur pivot est tenu. La patience stratégique s'articule par critères (jeudi prochain, quota tokens, trop tard pour relire). La neurodiversité est revendiquée comme cause d'un résultat (RESPIRE comme production naturelle d'une manière de penser autistique THQI), et un dispositif de travail orchestre le THAD comme ressource. La conscience écologique au sens strict du référentiel reste en germe, tandis que la création de valeur non-automatisable s'articule clairement, dans plusieurs registres.\n\n## Territoires les plus denses\n\n**Alignement et refus éthique.** Le gardiennage de l'alignement IA est attesté par des dispositifs concrets — diagnostic de flagornerie + contre-rôle adversarial, refus articulé contre la suppression de l'humain, conception d'un protocole humaniste pour la cartographie. *« C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir. »* Sur ce pôle, le refus n'est pas une posture — il est attesté par un dispositif effectivement intégré à la documentation.\n\n**Création de valeur non-automatisable.** La valeur irréductiblement humaine est articulée dans plusieurs registres : philosophique (ce que l'IA ne peut pas voir), personnel (révéler l'invisible chez les élèves), familial (grand-père), structurel (soins, humain). *« Je me sens maintenant dépassé dans absolument tous mes domaines d'expertise (*) sauf pour le rôle de grand-père ! »* Dans ce pôle, la lucidité bidirectionnelle est attestée : ce que l'IA dépasse est reconnu, et la zone qui résiste est nommée.\n\n**Patience stratégique et sens du timing.** Les reports sont bornés par critère ou par moment de déclenchement — jeudi prochain, demain matin, après les écoles, contre la tentation immédiate. *« J'attendrai jeudi prochain pour le faire générer, afin de ne pas épuiser mon quota hebdomadaire de tokens et de me retrouver bloqué par rapport aux autres projets plus critiques »* Sur ce pôle, la non-action est argumentée et bornée — elle se distingue de la procrastination par un critère de déclenchement.\n\n**Validation contextuelle.** Le delta de contexte humain/machine est nommé avec mécanisme et correction — compression de fenêtre de contexte, calibrage d'objectivité, ce que l'IA ne peut pas voir. *« Chaque prompt me faisait compresser la conversation => signe de grosse perte de qualité. »* Dans ce pôle, le diagnostic d'erreur IA ne s'arrête pas au constat — il identifie pourquoi le contexte manquant change tout, et débouche sur une correction.\n\n**Responsabilité, courage et intégrité.** La reconnaissance d'une vulnérabilité ou d'un dépassement s'accompagne presque toujours d'un acte — pause après choc, refus argumenté contre une tentation, identification de ce qui reste. *« Ça m'a quand même fait mal à mon égo et m'a un peu déprimé. J'ai pris l'après-midi et la soirée de vacances pour réfléchir à ce que j'allais faire maintenant avec tout ça. »* Sur ce pôle, l'accountability est constructive — elle nomme le coût et continue le travail.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuelques territoires apparaissent peu dans cette feuille. La conscience écologique et long-terme au sens strict du référentiel n'est pas attestée ici — la fiche exige un arbitrage concret intégrant des externalités non comptabilisées ou des parties prenantes non-humaines, et les pièces candidates portent en réalité d'autres compétences. Le raisonnement éthique appliqué se voit dans des arbitrages stratégiques mais pourrait gagner à maintenir plus longuement l'inconfort moral sans tranchage. La dimension collective de la valorisation de la neurodiversité — adapter méthodes ou espaces pour des profils différents du sien — est en germe : les futures écoles RESPIRE la portent comme intention mais elle ne se laisse pas attester en acte dans cette feuille. Enfin, la facette interpersonnelle du courage (vérité inconfortable dite à un pair, position maintenue contre la pression d'un groupe) reste plus discrète que l'accountability sur soi.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle. D'abord, une figure centrale revient comme pivot — « ce que l'IA ne peut pas voir » — et structure à la fois l'alignement, la validation contextuelle et la création de valeur non-automatisable : la même formule sert à juger l'IA, à corriger l'IA et à articuler ce qui ne se laisse pas remplacer par elle. Ensuite, une discipline temporelle où la patience stratégique et la décision dans le flou se complètent — savoir attendre jeudi pour le livre, savoir lancer maintenant les écoles. Enfin, une accountability qui n'est jamais auto-flagellante : la reconnaissance d'un dépassement, d'un échec ou d'une vulnérabilité s'accompagne presque toujours d'une zone tenue ou d'un acte qui suit.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir le territoire écologique au sens strict, un chemin possible serait de documenter une décision concrète où un bénéfice immédiat a été pesé contre un impact long-terme ou une externalité non comptabilisée — par exemple dans la conception d'une école ou d'un dispositif d'évaluation.\n- Pour prolonger le raisonnement éthique appliqué, un chemin possible serait de documenter un cas où l'inconfort moral est maintenu plus longtemps sans tranchage, pour explorer ce que l'incertitude éthique elle-même produit.\n- Pour ancrer la dimension collective de la valorisation de la neurodiversité, un chemin possible serait de documenter un moment où l'apprenant a adapté un dispositif (manuel, protocole, espace) pour un profil cognitif différent du sien.\n- Pour ouvrir la facette interpersonnelle du courage, un chemin possible serait de documenter un cas où une vérité inconfortable a été dite à un pair ou une position a été maintenue contre la pression d'un groupe.\n- Pour ancrer la patience stratégique dans la durée, un chemin possible serait de revenir, après coup, sur un report (par exemple « attendre jeudi pour le livre ») pour noter ce que la patience a effectivement produit ou empêché."
+  }
+}

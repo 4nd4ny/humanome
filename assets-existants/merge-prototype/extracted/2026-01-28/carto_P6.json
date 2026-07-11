@@ -1,0 +1,282 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Ça m'a conduit à définir le référentiel des compétences à valider pour passer au niveau supérieur.",
+      "contexte": "L'apprenant définit un référentiel — possible trace de co-construction de règles pour un dispositif d'apprentissage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Et à mettre à jour la doc de l'Apprenant et de l'Accompagnant en conséquence.",
+      "contexte": "L'apprenant met à jour les documents associés à deux rôles d'un dispositif — possible trace de gouvernance documentaire d'un cadre partagé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Oups : Claude a oublié de documenter le bootstrap. Aucun souci : je lui demande d'ajouter les chapitres manquants dans les manuels + copier-coller et c'est réglé !",
+      "contexte": "L'apprenant interagit avec une IA dans une posture où la machine est traitée comme partenaire à qui on s'adresse — possible trace de cohabitation.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une tentative délibérée de provoquer un comportement aberrant pour éprouver des garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit ou à l'hygiène des données dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une investigation sur le mécanisme de décision d'un outil ou un choix de protection des données."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le contrôle citoyen d'une décision algorithmique affectant des populations vulnérables."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté numérique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un choix d'outil motivé par l'indépendance ou la portabilité, ou une contribution à un commun numérique."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un processus où des non-experts ont été associés à une décision technologique."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une modification de ses pratiques en anticipation d'une réglementation à venir."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La définition d'un référentiel de compétences à valider pose des règles partagées du dispositif — possible amorce de gouvernance."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "La mise à jour conjointe des documents Apprenant/Accompagnant maintient un cadre de gouvernance bipartite — possible trace d'architecture de règles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 6.07 avec présomption d'absence : la facilitation et la gouvernance collective supposent un collectif qui produit du qualitativement nouveau (émergence) et co-construit ses règles. La fiche met en garde contre la collaboration simple sans émergence ni gouvernance, et contre le « chef qui décide ». Ici l'apprenant définit *seul* un référentiel et met à jour *seul* les documents — c'est de la mise en règle, mais par un acteur unique, sans collectif délibérant ni résultat émergent. Aucun « nous » co-décideur. Les pièces résistent faiblement parce que la fiche permet une exception : les artefacts de gouvernance détaillés (chartes, protocoles avec rôles) sont une trace textuelle forte ; un référentiel + des documents Apprenant/Accompagnant *peut* en être l'amorce.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le référentiel est l'amorce d'un artefact de gouvernance — un cadre qui pose les règles de passage de niveau."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le doublet Apprenant/Accompagnant suggère une distribution de rôles avec responsabilités potentiellement différenciées."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ces pièces atteignent vraiment le seuil de la gouvernance collective. L'attaque dominante est l'insuffisance probatoire : la fiche est explicite — le test est l'émergence (résultat surprenant) ou la co-construction (règles co-décidées). Ici, il n'y a ni résultat surprenant émergeant d'un collectif, ni co-construction visible : l'apprenant définit le référentiel, l'apprenant met à jour la doc — c'est une mise en règle unilatérale dans un dispositif individuel ou en train d'être conçu. La pièce 2 s'affaiblit fortement, la pièce 1 aussi.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le référentiel est une amorce d'artefact de gouvernance, mais on n'en voit ni la genèse collective, ni la co-construction des règles, ni le mécanisme de décision partagée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Mettre à jour deux documents ne suffit pas à attester une gouvernance collective ; il manque la dimension délibérative ou de règles co-construites par plusieurs acteurs."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de gouvernance collective en doutant que la rédaction unilatérale d'un référentiel et la mise à jour de documents suffisent. Les deux pièces ont brièvement résisté parce que la fiche valorise les artefacts de gouvernance comme trace textuelle forte. Sous présomption de sycophantie, la pièce 2 tombe, et la pièce 1 s'affaiblit : le référentiel est en train d'être *défini* par l'apprenant, mais sans collectif délibérant ni règles co-construites visibles dans le texte. Ce qui reste, c'est un apprenant qui construit l'infrastructure d'un dispositif susceptible d'accueillir une gouvernance, sans que cette gouvernance soit encore en acte. La pratique est en amont, la trace probante reste à venir.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier la pièce 1 : amorce d'artefact de gouvernance, sans collectif délibérant.",
+        "prescription": "Pour consolider ce territoire, raconter comment le référentiel pourra accueillir ou intégrer la voix des Apprenants et Accompagnants — quels mécanismes de co-construction ou de révision — transformerait l'amorce d'infrastructure en gouvernance en acte."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement qui questionne la primauté automatique du point de vue humain."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant s'adresse à Claude avec une sérénité et une familiarité (« Aucun souci : je lui demande ») qui pose une forme de relation — possible trace, à examiner avec prudence."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 6.09 avec présomption d'absence : la cohabitation avec les intelligences non-humaines suppose un questionnement du statut moral de l'IA, une calibration de l'anthropomorphisme, des protocoles d'interaction qui dépassent le fonctionnel. Ici l'apprenant parle de Claude comme on parle d'un assistant fonctionnel : « je lui demande d'ajouter les chapitres » — c'est exactement le cadre instrumental que la fiche identifie comme NON-marqueur de 6.09. Aucune réflexion sur le statut de l'IA, aucun protocole d'interaction réfléchi, aucune gêne articulée sur la nature de la relation. La pièce résiste très faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'usage du pronom personnel « lui » plutôt que d'un terme neutre attribue à l'IA une forme d'agentivité, ce qui pourrait être un signal très faible."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ce « lui » atteste vraiment un décentrement ou une cohabitation calibrée. La fiche prévient explicitement : « Mon assistant IA peut être une métaphore instrumentale — 6.09 commence quand l'apprenant questionne si assistant est le bon cadre. » Ici l'apprenant ne questionne rien : il adresse une instruction à Claude, point. L'attaque dominante est le faux positif de fiche : « lui » est une convention de langue courante quand on parle à un chatbot, pas une marque de statut moral attribué. La pièce ne tient pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La fiche identifie ce cas précisément comme un faux positif : « lui » dans un cadre instrumental n'est pas un acte de cohabitation calibrée tant que le statut de l'IA n'est pas questionné."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de cohabitation avec les intelligences non-humaines en doutant qu'une formulation courante avec « lui » suffise. La pièce a brièvement résisté parce que tout pronom personnel attribue une trace d'agentivité. Mais la fiche elle-même identifie ce cas comme faux positif : le cadre est instrumental, sans questionnement du statut. Le territoire de la cohabitation au sens fort reste à documenter dans cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption de sycophantie a porté le verdict : faux positif de fiche — usage instrumental du pronom personnel sans questionnement du statut.",
+        "prescription": "Pour ouvrir ce territoire, raconter un moment d'hésitation sur la manière de traiter Claude — pourquoi le remercier ou non, qu'est-ce que cela suppose de son statut — donnerait à la cohabitation sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement où le vivant est mobilisé comme système intelligent dont on fait partie, pas comme environnement à préserver."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 9,
+    "courtCircuits": 8
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail de cette feuille montre un apprenant en activité de mise en règle d'un dispositif — définir un référentiel, maintenir des documents associés à deux rôles. La voix dominante reste opératoire et brève. Le pôle CITÉ — gouverner et s'ouvrir — ne se déploie pas en discours sur les communs, la souveraineté ou les écosystèmes ; il se signale plutôt en sourdine, par les artefacts d'un dispositif en construction. Aucune position politique, aucune posture post-anthropocentrique, aucune analyse de pouvoir algorithmique n'apparaissent. Ce qui passe ici, dans le registre de la Cité, c'est moins la pensée politique que la mise en place d'une infrastructure de règles pour un dispositif d'apprentissage.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Ce pôle est très largement non visité dans cette feuille. Le red-teaming, l'audit, la gouvernance des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, le décentrement anthropocentrique et la conscience biosystémique n'ont aucune trace ici — ce qui ressemble très clairement à une caractéristique du jour : une journée de finalisation de manuels avec une IA ne convoque pas spontanément le registre politique ou post-anthropocentrique. La cohabitation avec les IA est effleurée par le pronom « lui » qui n'atteste rien tant qu'il reste instrumental. Un dossier reste ouvert en renvoi : la facilitation et la gouvernance collective, par l'amorce d'artefact qu'est le référentiel — sans collectif délibérant encore visible.",
+    "emergencesPole": "Trois observations traversent ce pôle dans cette feuille. D'abord, l'apprenant construit l'infrastructure d'un dispositif — référentiel, doc Apprenant, doc Accompagnant — sans encore en raconter la dimension collective ou délibérative ; les rôles existent comme cadres, pas encore comme places dans une délibération. Ensuite, le rapport à l'IA est purement fonctionnel dans cette feuille — Claude est un partenaire de production, sans aucune mise en question de son statut. Enfin, les dimensions politiques et post-anthropocentriques sont entièrement absentes — le format technique du jour les laisse de côté.",
+    "pistes": [
+      "Pour enrichir le territoire de la gouvernance collective, un chemin possible serait de raconter comment le référentiel pourra accueillir ou intégrer la voix des Apprenants et Accompagnants — par quels mécanismes de co-construction ou de révision.",
+      "Pour enrichir le territoire de la cohabitation avec l'IA, un chemin possible serait de noter un moment d'hésitation sur la manière de traiter Claude — comment lui parler, faut-il le remercier, qu'est-ce que cela suppose de son statut.",
+      "Pour enrichir le territoire de la souveraineté numérique, un chemin possible serait de noter, lors d'une prochaine entrée, un choix d'outil motivé par l'indépendance ou la portabilité.",
+      "Pour enrichir le territoire du décentrement anthropocentrique, un chemin possible serait de documenter un moment où le point de vue de l'IA, du vivant ou d'une autre forme d'intelligence a influencé un raisonnement."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail de cette feuille montre un apprenant en activité de mise en règle d'un dispositif — définir un référentiel, maintenir des documents associés à deux rôles. La voix dominante reste opératoire et brève. Le pôle CITÉ — gouverner et s'ouvrir — ne se déploie pas en discours sur les communs, la souveraineté ou les écosystèmes ; il se signale plutôt en sourdine, par les artefacts d'un dispositif en construction. Aucune position politique, aucune posture post-anthropocentrique, aucune analyse de pouvoir algorithmique n'apparaissent. Ce qui passe ici, dans le registre de la Cité, c'est moins la pensée politique que la mise en place d'une infrastructure de règles pour un dispositif d'apprentissage.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'atteint dans cette feuille seule le seuil de la présence pleinement établie. Un dossier reste ouvert en renvoi au cartographe : la facilitation et la gouvernance collective. La création d'un référentiel et la maintenance des documents Apprenant/Accompagnant constituent l'amorce d'une infrastructure de gouvernance — un cadre qui pose les règles d'un dispositif d'apprentissage avec une distribution de rôles. Ce qui retient ce dossier au seuil, c'est l'absence, dans le texte du jour, d'un collectif délibérant ou de règles co-construites : l'apprenant définit seul ce qui pourrait devenir une gouvernance, et la trace d'une véritable co-construction reste à venir.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCe pôle est très largement non visité dans cette feuille. Le red-teaming, l'audit, la gouvernance des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, le décentrement anthropocentrique et la conscience biosystémique n'ont aucune trace ici — ce qui ressemble très clairement à une caractéristique du jour : une journée de finalisation de manuels avec une IA ne convoque pas spontanément le registre politique ou post-anthropocentrique. La cohabitation avec les IA est effleurée par le pronom « lui » qui n'atteste rien tant qu'il reste instrumental.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, l'apprenant construit l'infrastructure d'un dispositif — référentiel, doc Apprenant, doc Accompagnant — sans encore en raconter la dimension collective ou délibérative ; les rôles existent comme cadres, pas encore comme places dans une délibération. Ensuite, le rapport à l'IA est purement fonctionnel dans cette feuille — Claude est un partenaire de production, sans aucune mise en question de son statut. Enfin, les dimensions politiques et post-anthropocentriques sont entièrement absentes — le format technique du jour les laisse de côté.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir le territoire de la gouvernance collective, un chemin possible serait de raconter comment le référentiel pourra accueillir ou intégrer la voix des Apprenants et Accompagnants — par quels mécanismes de co-construction ou de révision. Pour enrichir le territoire de la cohabitation avec l'IA, un chemin possible serait de noter un moment d'hésitation sur la manière de traiter Claude — comment lui parler, faut-il le remercier, qu'est-ce que cela suppose de son statut. Pour enrichir le territoire de la souveraineté numérique, un chemin possible serait de noter, lors d'une prochaine entrée, un choix d'outil motivé par l'indépendance ou la portabilité. Pour enrichir le territoire du décentrement anthropocentrique, un chemin possible serait de documenter un moment où le point de vue de l'IA, du vivant ou d'une autre forme d'intelligence a influencé un raisonnement."
+  }
+}

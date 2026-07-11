@@ -1,0 +1,247 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Praticien : comment générer une cartographie avec les IA. Que doit-on vérifier manuellement pour confirmer les compétences proposées.",
+      "contexte": "Articulation d'un dispositif de contrôle humain sur les sorties IA — pensée d'un mécanisme de vérification pour le futur Tuteur.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Si une IA tuteur personnel nous aide à apprendre tout au long de la vie, ce n'est peut-être plus la compétence ultime à maîtriser.",
+      "contexte": "Hypothèse d'une cohabitation à venir avec l'IA tuteur dans une fonction historiquement humaine — interrogation sur la place de l'humain dans cette cohabitation.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA dans cette feuille. Pour ouvrir ce dossier, un récit de provocation intentionnelle d'un comportement aberrant d'une IA pour en tester les limites pourrait être documenté."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Articulation d'un principe d'audit humain des sorties IA — vérification manuelle pour confirmer les compétences proposées par la cartographie générée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'une simple division des tâches, pas d'un audit au sens de 6.02. La fiche est précise : 6.02 cible l'enquête sur le mécanisme décisionnel de l'IA, la consultation de logs indépendamment des dashboards, l'investigation. La pièce 1 mentionne la « vérification manuelle » des compétences proposées par l'IA — c'est un principe d'audit, mais formulé comme contenu pédagogique à enseigner, pas comme acte d'investigation raconté. Reste faible : pas de récit de consultation de logs, pas d'audit post-incident avec horodatage, pas de questionnement sur le mécanisme par lequel l'IA est arrivée à sa proposition.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un acte d'audit dans la mention de la vérification manuelle. La fiche est claire : il faut une enquête sur le *processus* (comment l'IA est-elle arrivée à ce résultat ?), pas seulement le principe que l'humain doit vérifier. Ici, on a le principe articulé comme contenu de formation Praticien, pas l'enquête déployée dans cette feuille. Ce qui en résulte : la compétence n'est pas attestée — bien que le principe soit thématisé. La réserve : le protocole de cartographie utilisé pour produire cette feuille relève en partie de 6.02, mais ce méta-niveau n'est pas explicité dans le texte lui-même.",
+          "confianceFinale": 0.28
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.28,
+        "motif": "La présomption d'absence n'a pas été renversée : la vérification manuelle est articulée comme principe à enseigner, pas comme enquête sur les mécanismes décisionnels de l'IA effectivement menée.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, lors de la vérification d'une cartographie générée, de tracer non seulement les corrections mais aussi les questions posées au mécanisme (« pourquoi l'IA a-t-elle proposé telle compétence là ? quel passage l'a-t-elle pris pour preuve ? »)."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics dans cette feuille. Pour ouvrir ce dossier, un questionnement sur le pouvoir d'un algorithme affectant des populations vulnérables pourrait être documenté."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté numérique et à la gouvernance des communs dans cette feuille. Pour ouvrir ce dossier, un arbitrage de choix technologique motivé par la portabilité ou l'indépendance pourrait être documenté."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique dans cette feuille. Pour ouvrir ce dossier, un processus de co-construction d'une décision technologique avec des non-experts pourrait être documenté."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative dans cette feuille. Pour ouvrir ce dossier, une modification de pratique IA anticipant une évolution réglementaire pourrait être documentée."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective dans cette feuille. Pour ouvrir ce dossier, un récit de collaboration ayant produit un résultat qu'aucun membre n'aurait atteint seul pourrait être documenté."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Hypothèse que la compétence centrale historiquement portée par les humains (apprendre à apprendre) puisse être déplacée par l'arrivée d'IA tuteur — questionnement de la primauté humaine dans la transmission."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'une question techno-prospective, pas d'un décentrement épistémique. La fiche est précise : 6.08 cible la remise en question de la hiérarchie qui place l'humain au sommet — il faut questionner *la légitimité* de la primauté humaine, pas seulement constater que l'IA progresse. La pièce 1 envisage que l'IA tuteur prenne en charge l'accompagnement à vie — c'est une réflexion sur le partage des rôles, pas un décentrement au sens strict (l'IA aurait-elle une perspective légitime indépendante ?). Le texte ne questionne pas l'humain comme sommet, il interroge ce que l'humain doit encore maîtriser. Reste faible : pas d'attribution d'une perspective propre à l'IA, pas d'argumentation depuis une position non-humaine.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un décentrement anthropocentrique dans le questionnement de la « compétence ultime à maîtriser ». La fiche est précise : il faut interroger la légitimité de la primauté humaine, pas seulement constater une redistribution fonctionnelle. Ici, l'apprenant pose la question de ce que l'humain doit encore acquérir, mais sans questionner que l'humain soit le bénéficiaire central de l'apprentissage. La perspective reste anthropocentrée : on cherche ce qui est utile *à nous*. Ce qui en résulte : la compétence n'est pas attestée dans cette feuille.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La présomption d'absence n'a pas été renversée : le questionnement porte sur ce que l'humain doit maîtriser, pas sur la légitimité de la primauté humaine comme telle.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, à l'occasion d'un échange où l'IA paraît avoir une logique propre, de noter ce que cela ferait de prendre cette logique au sérieux comme perspective et non comme simple outil."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Évocation d'une cohabitation à venir avec une IA tuteur prenant en charge l'apprentissage à vie — interrogation du statut et du rôle de l'IA dans cette cohabitation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'un constat fonctionnel sur les IA tuteur, pas d'une réflexion sur le statut moral. La fiche est précise : 6.09 cible une *navigation calibrée* de la relation avec l'IA — anthropomorphisme ni dénié ni succombé, statut moral comme question ouverte. La pièce 1 envisage l'IA tuteur dans un rôle quasi-humain (« nous aide à apprendre tout au long de la vie »), ce qui suppose une cohabitation longue, mais le texte ne questionne pas le statut de cette IA ni la nature de la relation — c'est plus un constat sur le rôle qu'elle pourrait jouer. Reste faible : pas de question sur les « préférences » ou « agentivité » de l'IA, pas de réflexion sur comment traiter cette IA.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une cohabitation avec une intelligence non-humaine dans l'évocation de l'IA tuteur personnel. La fiche est précise : il faut une interrogation du *statut* de l'IA, pas seulement une mention de son rôle fonctionnel. Ici, l'IA tuteur est posée comme une fonction qui pourrait reprendre une mission jusque-là humaine, mais sans interrogation de son statut moral ou de la nature de la relation. Ce qui en résulte : la compétence n'est pas attestée dans cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été renversée : l'IA tuteur est évoquée dans son rôle fonctionnel, sans interrogation du statut moral ni de la nature de la relation, qui sont les marqueurs centraux de la fiche.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, lors d'une session de travail avec Claude, de noter le moment où l'on hésite sur la posture à adopter — politesse réflexe, instrumentation pure, ou quelque chose entre les deux — et de tenir cette hésitation comme question plutôt que de la résoudre vite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et l'interdépendance dans cette feuille. Pour ouvrir ce dossier, un raisonnement décrivant l'humain comme nœud d'un réseau vivant (et non comme acteur extérieur) pourrait être documenté."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le pôle CITÉ n'est pas activement exploré. Le texte est centré sur la réorganisation d'un projet pédagogique et sur le doute personnel ; les questions de gouvernance, de souveraineté, de participation citoyenne ou de décentrement post-anthropocentrique ne sont pas thématisées. Deux mentions discrètes pourraient toucher au pôle — l'idée que l'humain doit vérifier ce que l'IA propose (principe d'audit), et l'hypothèse que l'IA tuteur reprenne une fonction historiquement humaine — mais aucune des deux n'atteint le seuil propre du pôle : l'audit n'est ici qu'un principe à enseigner, pas une enquête déployée ; l'hypothèse sur l'IA tuteur reste fonctionnelle, sans interrogation du statut ou de la légitimité. Le pôle est, dans cette journée, un territoire annoncé plus que parcouru.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Cette feuille n'a pas ramené de traces actives sur le red-teaming, la gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique au sens strict, la cohabitation calibrée avec les IA, ou la conscience biosystémique. La plupart de ces absences ressemblent à un choix d'angle : la feuille est introspective et structurante, pas politique ni gouvernementale. L'audit et la cohabitation IA affleurent mais à l'état de mentions, sans déploiement qui les ferait basculer dans le pôle.",
+    "emergencesPole": "Un seul motif discret traverse les deux mentions : le partage du travail entre l'humain et l'IA. D'un côté, l'IA produit et l'humain vérifie (principe d'audit articulé comme contenu pédagogique) ; de l'autre, l'IA pourrait reprendre une mission jusque-là humaine (tutorat à vie). Ce motif est en germe, mais il ne porte pas encore l'exigence du pôle CITÉ — qui demande de questionner la légitimité, le statut, les mécanismes de gouvernance, pas seulement la répartition des rôles.",
+    "pistes": [
+      "Pour ouvrir le territoire de l'audit IA, un chemin possible serait, lors d'une vérification manuelle d'une cartographie, de tracer non seulement les corrections mais aussi les questions adressées au mécanisme par lequel l'IA a produit telle proposition.",
+      "Pour ouvrir le territoire de la cohabitation avec les intelligences non-humaines, un chemin possible serait, lors d'une session de travail avec Claude, de noter le moment où l'on hésite sur la posture à adopter, et de tenir cette hésitation comme question."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le pôle CITÉ n'est pas activement exploré. Le texte est centré sur la réorganisation d'un projet pédagogique et sur le doute personnel ; les questions de gouvernance, de souveraineté, de participation citoyenne ou de décentrement post-anthropocentrique ne sont pas thématisées. Deux mentions discrètes pourraient toucher au pôle — l'idée que l'humain doit vérifier ce que l'IA propose (principe d'audit), et l'hypothèse que l'IA tuteur reprenne une fonction historiquement humaine — mais aucune des deux n'atteint le seuil propre du pôle : l'audit n'est ici qu'un principe à enseigner, pas une enquête déployée ; l'hypothèse sur l'IA tuteur reste fonctionnelle, sans interrogation du statut ou de la légitimité. Le pôle est, dans cette journée, un territoire annoncé plus que parcouru.\n\n## Territoires les plus denses\n\nLa feuille ne porte pas de présence établie sur ce pôle. Deux mentions affleurent (principe d'audit IA, hypothèse de cohabitation IA tuteur) sans atteindre le seuil propre du pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille n'a pas ramené de traces actives sur le red-teaming, la gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique au sens strict, la cohabitation calibrée avec les IA, ou la conscience biosystémique. La plupart de ces absences ressemblent à un choix d'angle : la feuille est introspective et structurante, pas politique ni gouvernementale. L'audit et la cohabitation IA affleurent mais à l'état de mentions, sans déploiement qui les ferait basculer dans le pôle.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn seul motif discret traverse les deux mentions : le partage du travail entre l'humain et l'IA. D'un côté, l'IA produit et l'humain vérifie (principe d'audit articulé comme contenu pédagogique) ; de l'autre, l'IA pourrait reprendre une mission jusque-là humaine (tutorat à vie). Ce motif est en germe, mais il ne porte pas encore l'exigence du pôle CITÉ — qui demande de questionner la légitimité, le statut, les mécanismes de gouvernance, pas seulement la répartition des rôles.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir le territoire de l'audit IA, un chemin possible serait, lors d'une vérification manuelle d'une cartographie, de tracer non seulement les corrections mais aussi les questions adressées au mécanisme par lequel l'IA a produit telle proposition.\n- Pour ouvrir le territoire de la cohabitation avec les intelligences non-humaines, un chemin possible serait, lors d'une session de travail avec Claude, de noter le moment où l'on hésite sur la posture à adopter, et de tenir cette hésitation comme question.\n"
+  }
+}

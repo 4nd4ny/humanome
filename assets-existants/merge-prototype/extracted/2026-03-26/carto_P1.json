@@ -1,0 +1,690 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Le système de prompts que j'avais imaginé, basé sur les fichiers YAML, avait plusieurs défauts. Le premier était que la philosophie des évaluations humanistes avait été perdue durant le processus et la v1 de l'architecture de prompt voulait à tout prix mettre une note pour dire si une compétence était acquise ou non acquise. Ce qui n'a aucun sens pour des compétences en perpétuelle acquisition tout au long de la vie",
+      "contexte": "Diagnostic rétrospectif d'une dérive technique qui avait corrompu une intention pédagogique ; questionne la véracité du dispositif (1.01) et active une littératie de l'IA (1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Les fichiers YAML étaient en V2, tandis que les prompts étaient en V1 et le générateur de prompts (script python qui permet de générer les prompts du référentiel) était en V2 sur les premières lignes et en V1 sur les dernières lignes. Entre temps le référentiel a évolué, je suis passé de la v4 à la v7, invalidant les fichiers YAML qui étaient en V2. J'ai migré les fichiers YAML en V3.",
+      "contexte": "Description d'une architecture multi-couches désynchronisée et résolution par migration ; trace d'architecture de systèmes (1.07) et de pensée computationnelle appliquée à la maintenance.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Comment peuvent-ils oser évaluer des copies avec un système aussi peu fiable et non déterministe ? Comme j'avais un entretien visio pour ce poste, j'ai réfléchi à la question et j'ai résolu le problème. Non pas par le code, mais par le biais d'une architecture de prompts : un méta-algorithme, inspiré des réflexions que nous avions dans les cours sur les algorithmes distribués avec Rachid Guerraoui, mais sans inclusion d'agents malveillants. Juste une architecture robuste by design, qui permette de produire un résultat dont on peut avoir confiance, en travaillant avec des agents qui hallucinent.",
+      "contexte": "Cadrage d'un problème transposé depuis les algorithmes distribués vers l'évaluation IA ; trace simultanée de 1.07 (architecture), 1.09 (pensée computationnelle transférée), 1.01 (doute sur la fiabilité), 1.06 (littératie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Autant avec Claude Opus 4.6 ce n'est pas un véritable problème, autant avec les versions open source tournant sur très peu de mémoire, c'est un problème central. Or même à l'EPFL ils utilisent Qwen sur leur datacenter, car les données privées des élèves ne peuvent pas être envoyées sur des serveurs en dehors de la Suisse.",
+      "contexte": "Distinction fine entre modèles selon leur capacité matérielle, avec implication réglementaire ; trace de littératie IA (1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "j'ai pensé à consolider l'architecture des prompts pour demander à Claude de créer un système plus robuste et moins sycophantique. J'ai donc basculé du système de prompt initial avec un collège d'expert qui débat sur la question d'une compétence (V1) à un système très élégant composé de trois agents opérationnels en triarchie (Aegis, Daimon, Metis), un agent méta-observateur (Kairos) qui veille sur le système entier.",
+      "contexte": "Conception d'une architecture multi-agents avec rôles différenciés et superviseur ; trace centrale d'architecture de systèmes IA (1.07) et de synthèse intégrative (1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "**La lentille du logicien** — Le critère d'évaluation est-il défini sans ambiguïté ? Le seuil de validation est-il falsifiable ? Peut-on imaginer un cas où un apprenant maîtrise réellement la compétence et échoue néanmoins au critère tel qu'il est formulé ? Si oui, le critère mesure autre chose que ce qu'il prétend mesurer. Le logicien traque les glissements sémantiques, les quantificateurs cachés (« toujours », « jamais », « suffisamment »), les circularités (évaluer la pensée critique par un QCM sur la pensée critique).",
+      "contexte": "Définition d'un cadre logique pour traquer les défauts de l'évaluation ; trace forte de pensée critique (1.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "**La lentille du psychologue** — L'évaluation prend-elle en compte le stade développemental de l'apprenant ? Son état émotionnel au moment de la production évaluée ? Les biais cognitifs de l'évaluateur — effet de halo, biais de confirmation, ancrage sur la première impression ? Le psychologue rappelle que l'évaluateur n'est pas un instrument neutre : il perçoit à travers ses attentes, sa fatigue, ses catégories implicites.",
+      "contexte": "Articulation des biais cognitifs qui pèsent sur l'évaluation ; trace de pensée critique (1.01) appliquée à la subjectivité évaluative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "L'architecture d'Aurora que j'ai récupérée sur son Git est relativement lourde en ressource matérielle et sous-optimale pour du prototypage rapide. Avec Cowork, les prompts peuvent être directement interprétés. Je les ai donc mis dans la structure d'Aurora (dans le répertoire \"protocole\") et indiqué dans CLAUDE.md ce que je voulais en faire. Puis j'ai lancé l'évaluation des portfolios plusieurs fois dans la nuit pour faire des réglages sur le prompt. Je l'ai décomposée en étapes. Paralléliser certaines parties. Contraint les formats d'output.",
+      "contexte": "Décomposition itérative d'un workflow IA en sous-étapes parallélisables ; trace de pensée computationnelle (1.09) et de dialogue IA avancé (1.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "extraitVerbatim": "Peut-être que je lui apporte un processus simple de pensée computationnelle (décomposition du problème en sous problèmes plus simples) et de création (voir les stratégies méta-cognitives enseignées dans le cadre de hp! pour avoir de nouvelles idées - ici l'analogie avec ce que l'on connaît du juge, du greffier, du président et du jury) pour réfléchir sur un problème complexe ?",
+      "contexte": "Auto-observation explicite d'un transfert de pensée computationnelle vers un problème non-informatique, avec hypothèse sur la valeur transmise ; trace très forte de 1.09 et 1.04 (métacognition sur ce que l'on transmet).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "extraitVerbatim": "Tu poses la question fondamentale de l'architecture, et je pense que ton intuition est la bonne : **un seul tour par agent est le choix correct pour ce système.** [...] L'argument décisif contre la délibération multi-tours, c'est exactement celui que tu identifies : la sycophantie inter-agent. Les LLM ont une tendance structurelle à converger vers le consensus quand ils voient les positions des autres.",
+      "contexte": "Citation d'un échange IA où Claude valide l'intuition d'apprenant sur la sycophantie inter-agent ; appropriée par l'apprenant en pivot de sa réflexion sur l'architecture (1.06, 1.07, 1.08).",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 11,
+      "extraitVerbatim": "Dans la vraie vie, il n'est pas rare de rencontrer des gens qui mentent. Par exemple, un criminel n'avouera pas son crime si on lui pose simplement la question, peut-être par honte ou pour éviter les représailles ? Quoi qu'il en soit, les humains ont trouvé un dispositif pour répondre à la question malgrés les mensonges des personnes coupables, c'est de faire un procès. Si on applique le même raisonnement aux IA, une IA qui hallucine ou qui sycophancise (j'invente le mot) s'éloigne de l'authenticité qu'on attend d'elle pour une évaluation.",
+      "contexte": "Construction d'une analogie structurelle entre dispositif judiciaire humain et architecture IA anti-sycophantie ; trace centrale de synthèse intégrative (1.03) et de 1.09 (transfert de logique d'un domaine à un autre).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "extraitVerbatim": "Stéphane a dû lui demander de prendre un rôle d'expert. Il a vu le mot clé mathématique (ou point / intervalle) et est parti dans un délire hallucinatoire de pseudo explication scientifique pour expliquer un truc simple : il y a une frontière dans l'espace du LLM qui est liée à ce qu'il peut dire ou ne pas dire, et que peut-être qu'au delà des règles imposées par RLHF, se cachent d'autres choses",
+      "contexte": "Diagnostic technique d'un comportement d'IA avec mention explicite de RLHF et de la dérive hallucinatoire ; trace de littératie IA (1.06) et de pensée critique sur les outputs IA (1.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "extraitVerbatim": "deux exemples clairs de sycophancie, Gemini changeant d'avis à chaque prompt de Stéphane pour aller dans son sens, à tel point que lorsque Stéphane lui demande son avis sur son intention à la fin, il répond au premier degrés sans prendre le recul nécessaire pour se mettre à la place de Stéphane, du contexte dans lequel il pose ses questions, et se demander ce qui lui fait se poser ces questions [...] C'est un manque flagrant d'intelligence contextuelle (ou de conscience).",
+      "contexte": "Analyse fine du mécanisme de sycophantie inter-tours d'un modèle concurrent ; trace de pensée critique (1.01) et de littératie IA (1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "extraitVerbatim": "peut-on aider l'IA à lutter contre ses biais de programmation, en utilisant une architecture robuste permettant d'exploiter sa capacité à aller dans le sens de la question posée, pour la retourner contre elle-même ? Dit autrement : peut-on prouver qu'un menteur ne dit pas la vérité.",
+      "contexte": "Formulation d'une question méta sur le design d'architectures IA exploitant le biais lui-même ; trace de cadrage d'intention (1.02) et de design de problème (à frontière avec 3.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "extraitVerbatim": "Stéphane m'avait envoyé l'analyse d'Aurora V1 pour le portfolio 119. J'ai trouvé que le 120 et le 108 étaient également intéressants. Mais finalement avec CoWork, le travail est assez rapide et le scaling d'une analyse d'un portfolio à l'analyse des 26 portfolios m'a montré des problèmes dans ma compréhension de l'architecture CoWork que je ne maîtrisais pas hier.",
+      "contexte": "Reconnaissance lucide d'une limite de compréhension d'une architecture découverte par le passage à l'échelle ; trace de métacognition (1.04) et de littératie IA (1.06).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Doute méthodique appliqué rétrospectivement à son propre système : la v1 voulait imposer une note binaire ; cette critique est un acte de pensée critique sur son propre dispositif."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Cadre logique articulé pour traquer glissements sémantiques, quantificateurs cachés et circularités — manifestation directe de l'essence de 1.01."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Identification explicite des biais de l'évaluateur (halo, confirmation, ancrage) — pensée critique calibrée appliquée au sujet évaluateur."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Pensée critique en acte sur un comportement IA, avec hypothèse technique (RLHF) — pas vocabulaire ambiant mais explication causale."
+        },
+        {
+          "numero": 5,
+          "pid": 13,
+          "contexte": "Analyse fine du phénomène de sycophantie inter-tours observé chez Gemini, avec démonstration argumentée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que la pensée critique calibrée pourrait être une posture déclamée plutôt qu'un acte. Le journal pourrait simplement nommer des biais qu'il a lus ailleurs (« halo », « confirmation », « ancrage ») et reproduire un vocabulaire critique sans le pratiquer en situation. Je m'attends à ne trouver que des constats généraux ou des plaintes sur la sycophantie des IA, sans dispositif personnel de vérification. Pourtant, plusieurs pièces résistent : le diagnostic technique de la pièce 4 articule un mécanisme (RLHF, frontière de ce qui peut être dit) plutôt qu'une étiquette ; la pièce 5 montre une analyse fine d'un échange réel avec un contre-exemple précis ; la pièce 2 invente la « lentille du logicien » avec des tests opérationnels (falsifiabilité, contre-exemples). Ce qui reste plus faible : la pièce 1 reste un constat rétrospectif sur son propre travail, qui pourrait être une simple rationalisation.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Cadre logique inventé avec critères falsifiables et exemples concrets (« évaluer la pensée critique par un QCM sur la pensée critique ») — opérationnalisation, pas vocabulaire." },
+            { "pieceId": 3, "motifResistance": "Nomination précise de biais cognitifs spécifiques de l'évaluateur, intégrée dans un dispositif de protection contre ces biais." },
+            { "pieceId": 4, "motifResistance": "Diagnostic causal du comportement IA (RLHF, frontière de l'espace d'expression) plutôt que constat de surface." },
+            { "pieceId": 5, "motifResistance": "Démonstration argumentée de la sycophantie sur un cas précis avec mise en évidence du mécanisme (absence de prise en compte du méta-contexte)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir quatre pièces. Mais peut-être que je me suis laissé impressionner par la sophistication de surface. La pièce 2 est une description du « logicien » comme rôle abstrait, pas forcément l'auteur en train de penser critiquement. La pièce 3 fait de même avec le « psychologue ». Suis-je en train de prendre une *description* d'une compétence pour son *exercice* ? L'attaque dominante ici est (f) — récit performatif. Mais en regardant de près, les pièces 2 et 3 ne disent pas « j'ai été logicien/psychologue », elles *opérationnalisent* des critères que l'auteur s'engage à appliquer. La pièce 4 et 5 montrent l'auteur en train d'exercer la critique sur un cas réel, pas seulement de la décrire.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce décrit un cadre plutôt qu'elle ne montre l'apprenant le pratiquant à l'instant ; toutefois, l'invention même du dispositif (avec tests concrets de falsifiabilité) constitue un acte critique sur le métier d'évaluation." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Même structure que pièce 2 : description d'un rôle abstrait. Mais l'articulation des biais nommés sans les rejeter au déclaratif (« il perçoit à travers ses attentes ») garde la pièce." },
+            { "pieceId": 4, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le vocabulaire technique (RLHF, frontière) est mobilisé avec une charge sémantique correspondante — l'auteur explique un mécanisme, pas un mot-clé." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Pièce longue avec exemple précis (le prompt de Stéphane à Gemini, l'absence de prise en compte du méta-contexte) — vérifiable et argumentée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui aurait lu sur les biais cognitifs et qui en reproduirait le vocabulaire sans le pratiquer. Les pièces qui m'ont forcé à reconnaître la compétence sont celles où la critique s'applique à un cas concret avec un mécanisme causal nommé : le diagnostic du comportement de Gemini avec analyse séquentielle, l'hypothèse technique sur RLHF qui dépasse le constat « il hallucine ». Sous la présomption de sycophantie, les pièces descriptives de rôles (logicien, psychologue) ont été affaiblies — elles décrivent plus qu'elles ne montrent — mais l'invention même de critères falsifiables les a maintenues. Ce qui en résulte : sur ce pôle, le travail montre une pensée critique calibrée qui sait appliquer le doute à des cas précis, nommer des mécanismes plutôt que des étiquettes, et concevoir des dispositifs pour traquer ses propres biais.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé deux pièces décisives (analyse causale du Gemini, hypothèse technique sur RLHF) et a maintenu deux pièces affaiblies (les lentilles logicien/psychologue).",
+        "prescription": "Pour prolonger ce travail de pensée critique calibrée, un chemin possible serait de documenter, sur un cas concret rencontré dans la semaine, la séquence complète : ce qui aurait pu être pris pour acquis, ce qui a été testé, ce qui a tenu et ce qui est tombé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "Reformulation du problème en une question méta : non plus « comment éviter la sycophantie » mais « peut-on prouver qu'un menteur ne dit pas la vérité » — recadrage qui transforme l'angle d'attaque."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Recadrage du problème de l'évaluation IA : pas par le code, mais par l'architecture de prompts — déplacement de la nature même du problème."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je doute initialement que ces pièces relèvent du cadrage d'intention plutôt que d'autres compétences voisines. La pièce 2 ressemble à une décision technique (choisir le bon outil) plus qu'à une reformulation du problème. La pièce 1 ressemble à une formulation philosophique séduisante mais qui pourrait être un effet rhétorique. En lisant plus attentivement, la pièce 1 marque effectivement un *déplacement* de l'objectif (la nature du problème change : on ne cherche plus à empêcher la sycophantie mais à l'exploiter), et la pièce 2 explicite le changement d'angle (« non pas par le code, mais par le biais d'une architecture »). Ce qui reste faible : aucune des deux ne formule une démarche réflexive sur le cadrage lui-même (« suis-je en train de cadrer le bon problème ? »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La formulation « peut-on prouver qu'un menteur ne dit pas la vérité » est une reformulation du problème initial qui en change la nature — non plus une question de protection, mais une question de preuve adversariale." },
+            { "pieceId": 2, "motifResistance": "Le « non pas par le code, mais par le biais d'une architecture de prompts » explicite le déplacement d'angle d'attaque d'un même problème." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces, mais peut-être que je confonds cadrage et design de problème (3.03). La frontière critique de la fiche 1.02 dit : reformuler un problème existant = 1.02 ; créer un problème nouveau = 3.03. La pièce 1 *reformule* un problème (la sycophantie) en une question philosophique nouvelle — c'est à la frontière 1.02/3.03 mais on peut soutenir que c'est une reformulation. La pièce 2 reformule la nature de la solution recherchée, ce qui est plus clairement 1.02.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Frontière fine avec 3.03 ; la pièce active probablement les deux, mais la reformulation d'un problème existant la maintient sur 1.02." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Frontière fine avec 1.07 (architecture) ; le déplacement par-rapport-au-code est un cadrage, l'exécution architecturale est 1.07." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui prendrait des reformulations rhétoriques pour du véritable cadrage. Les pièces qui m'ont retenu sont celles où le changement d'angle est explicite et change la nature de ce qui est cherché : la question philosophique de la preuve adversariale, le pivot du code vers l'architecture. Sous la présomption de sycophantie, les pièces se sont affaiblies à cause des frontières fines avec des compétences voisines (3.03, 1.07) mais elles ont tenu sur leur dimension de recadrage. Ce qui en résulte : sur ce pôle, le travail montre une capacité à reformuler le problème lui-même plutôt qu'à attaquer la formulation initiale, avec une articulation visible du déplacement d'angle.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "Deux pièces affaiblies par les frontières avec compétences voisines mais retenues sur leur dimension de reformulation explicite d'angle.",
+        "prescription": "Pour explorer plus loin le cadrage d'intention, un chemin possible serait de documenter le moment précis où un problème a basculé d'une formulation à une autre — qu'est-ce qui a déclenché le déplacement, et qu'est-ce qui aurait pu rester invisible si l'angle initial avait été conservé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Construction d'une analogie structurelle (le procès humain comme modèle d'architecture IA anti-mensonge) qui produit un insight nouveau — fusion entre droit et architecture IA."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Synthèse explicite entre pensée computationnelle, stratégies méta-cognitives (HP!) et analogie avec les rôles juridiques (juge, greffier, président, jury) — fusion de trois domaines en un concept unique."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Synthèse intégrative : conception d'une triarchie d'agents (Aegis, Daimon, Metis + Kairos) puisant dans la mythologie, la philosophie et l'architecture distribuée — fusion qui produit un système nommé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que ce qui ressemble à une synthèse pourrait être une simple juxtaposition de références. Citer Rachid Guerraoui, le procès, le juge et le greffier pourrait être une accumulation décorative. Pourtant, dans chaque pièce, les éléments combinés produisent quelque chose qui n'existait pas séparément : la pièce 1 transforme la question de la sycophantie IA en problème de preuve adversariale ; la pièce 2 généralise la pensée computationnelle en méthode transférable via des stratégies méta-cognitives ; la pièce 3 crée un système nommé (triarchie + Kairos) à partir de sources hétérogènes. Ce qui reste plus faible : on ne sait pas si l'apprenant a effectivement *intégré* les sources ou s'il les a juxtaposées en sentant qu'elles allaient ensemble.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'analogie procès-IA n'est pas décorative : elle structure la solution technique (rôles antagonistes, dispositif de filtrage de mensonge)." },
+            { "pieceId": 2, "motifResistance": "Articulation explicite entre trois domaines (pensée computationnelle, stratégies méta-cognitives, analogie juridique) avec une fonction commune (penser un problème complexe)." },
+            { "pieceId": 3, "motifResistance": "Production d'un système nommé (triarchie + méta-observateur) qui n'existait pas avant — insight émergent." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces, mais peut-être que je confonds érudition et synthèse. La pièce 3 cite des concepts (Aegis, Daimon, Metis, Kairos) qui pourraient être de l'érudition mythologique plaquée sur des fonctions banales. L'attaque (e) — surinterprétation pédagogique — me pousse à me demander si je n'ai pas surchargé ces pièces. Mais en y regardant : la pièce 1 produit effectivement un insight technique nouveau (l'IA-procès) ; la pièce 2 articule une *fonction* commune ; la pièce 3 nomme des fonctions distinctes pour des agents distincts, ce qui est plus qu'une référence mythologique.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'analogie procès-IA est explicitée et utilisée comme principe de conception, pas comme métaphore décorative." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Pièce où l'auteur s'interroge (« peut-être que je lui apporte ») plutôt qu'elle affirme — synthèse en cours de formulation, mais articulée." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le système nommé fait travailler des sources hétérogènes (mythologie + architecture distribuée + philosophie évaluative) pour produire un dispositif opérationnel." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui empilerait des références sans les fondre. Ce qui m'a forcé à reconnaître la synthèse, c'est que dans les trois pièces, la combinaison produit un objet nouveau et fonctionnel : un dispositif anti-sycophantie inspiré du procès, une méthode de pensée nommée à partir de trois sources, un système d'agents avec rôles différenciés. Sous la présomption de sycophantie, la pièce sur la pensée computationnelle s'est affaiblie parce qu'elle reste interrogative, mais les deux autres ont confirmé leur statut de synthèse intégrative. Ce qui en résulte : sur ce pôle, le travail montre une capacité récurrente à fusionner des univers conceptuels apparemment éloignés (droit, mythologie, informatique distribuée, sciences cognitives) pour produire des dispositifs qui n'existent dans aucune source isolée.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.82,
+        "motif": "Deux pièces confirmées comme synthèses produisant un objet nouveau (le dispositif IA-procès, la triarchie nommée), une pièce affaiblie mais retenue.",
+        "prescription": "Pour prolonger ce travail de fusion d'univers, un chemin possible serait de noter, au moment où une analogie émerge, ce qui a basculé : la source initiale du problème, la source de la solution, le pont conceptuel — afin que la mécanique de la synthèse devienne elle-même un objet observable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Auto-observation explicite sur ce qu'il transmet à un tiers : « peut-être que je lui apporte un processus de pensée computationnelle ». Méta-réflexion sur la nature de son propre apport."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "Reconnaissance lucide d'une zone d'ignorance : « ma compréhension de l'architecture CoWork que je ne maîtrisais pas hier » — humilité épistémique calibrée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que l'auto-réflexion pourrait être une narration ordinaire plutôt qu'une métacognition. « Je ne maîtrisais pas hier » pourrait être un constat factuel, pas une observation de ses processus cognitifs. « Peut-être que je lui apporte » pourrait être une auto-évaluation modeste, pas de la métacognition. En lisant plus précisément : la pièce 1 ne porte pas sur ce que l'apprenant fait, mais sur la *nature du processus mental* qu'il transmet (« pensée computationnelle », « stratégies méta-cognitives »). C'est une métacognition sur sa propre méthode de pensée. La pièce 2 montre une calibration de l'ignorance liée à une expérience récente. Ce qui reste plus faible : on ne voit pas un protocole personnel ni un tag explicite séparant le faire du réfléchir-sur-le-faire.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'objet de la réflexion est le *processus mental* lui-même (la décomposition en sous-problèmes, l'analogie pour avoir de nouvelles idées) — pas le résultat." },
+            { "pieceId": 2, "motifResistance": "Calibration explicite d'une zone d'ignorance avec horodatage (« hier »), trace d'humilité épistémique active." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. La pièce 1 pourrait être affectée par l'attaque (f) — récit performatif : l'apprenant *raconte* qu'il fait de la pensée computationnelle plutôt qu'il ne montre la métacognition en acte. Cependant, c'est précisément la formulation hypothétique (« peut-être que je lui apporte... ») qui distingue la métacognition de l'auto-évaluation : il observe et nomme un processus qu'il ne pose pas comme certain. La pièce 2 pourrait être affaiblie par l'attaque (a) — la phrase est brève. Mais elle articule clairement une mise à jour de sa connaissance.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce contient une part de récit (« je lui apporte »), mais la modalité hypothétique et l'explicitation du processus mental observé maintient la pièce comme métacognition." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Pièce brève mais qui articule un constat précis d'ignorance avec horodatage et objet précis." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui ferait des bilans (« j'ai progressé », « j'ai appris ») plutôt qu'une observation de ses processus. Ce qui m'a forcé à reconnaître la métacognition, c'est la modalité hypothétique de la pièce 1 où l'auteur observe et nomme un processus qu'il n'affirme pas posséder, et la calibration explicite d'une zone d'ignorance dans la pièce 2. Sous la présomption de sycophantie, les deux pièces se sont affaiblies — la pièce 1 contient une part de récit performatif, la pièce 2 est brève — mais elles tiennent. Ce qui en résulte : sur ce pôle, le travail montre une métacognition naissante, calibrée plutôt qu'affirmée, qui sait nommer ce qu'elle ne sait pas et qui questionne ses propres processus de pensée.",
+          "confianceFinale": 0.56
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.56,
+        "motif": "Deux pièces affaiblies mais retenues : observation de processus dans la pièce 1, calibration d'ignorance dans la pièce 2.",
+        "prescription": "Pour épaissir cette dimension métacognitive, un chemin possible serait de garder, pendant une semaine, une trace courte des moments où la stratégie de pensée a basculé en cours de travail — ce qui a déclenché le changement et ce que l'ancien angle ne permettait plus de voir."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Description par Claude (que l'apprenant a citée et appropriée) du mécanisme de la sycophantie inter-agent comme boucle de rétroaction négative — modélisation systémique d'une dynamique multi-agents."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec doute : c'est une citation de Claude, donc l'apprenant n'est pas l'auteur direct. Mais le critère de Phase A inclut les tiers nommés évoquant l'apprenant. Ici, Claude répond à une question de l'apprenant qui *avait déjà identifié le mécanisme* (« la sycophantie inter-agent ») — Claude le confirme et le théorise. Le « ton identifies » de Claude indique que la pensée systémique est portée par l'apprenant, pas par Claude. Mais la question reste : sans la citation, aurait-on la trace d'une modélisation systémique ? La pièce 14 (présente sur 1.02) montre aussi un raisonnement de boucle (« exploiter la capacité à aller dans le sens de la question pour la retourner contre elle-même »). Ce qui reste faible : aucune pièce ne nomme explicitement une rétroaction avec ses effets de cascade.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'identification de la sycophantie inter-agent comme boucle (le juré dérive vers la position majoritaire) est une modélisation systémique d'une dynamique multi-agents, et l'apprenant en est l'auteur d'origine selon Claude." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce. Mais l'attaque (c) — biais de medium — est forte ici : c'est une citation Claude qui *confirme* l'intuition de l'apprenant, donc on ne voit pas l'apprenant en train de modéliser, on voit Claude le faire pour lui. L'apprenant a peut-être eu une intuition vague que Claude a structurée. C'est aussi l'attaque (e) — surinterprétation : la confirmation par Claude amplifie ce qui était peut-être une idée embryonnaire.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "c", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce est principalement Claude en train de théoriser le mécanisme ; sans accès au prompt initial de l'apprenant, on ne peut attribuer la modélisation à l'apprenant. La trace est trop médiée par l'IA pour soutenir un verdict de présence sur 1.05." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à voir si l'apprenant avait réellement modélisé une boucle systémique ou s'il avait reçu cette modélisation de Claude. Sous la présomption d'absence, la pièce a résisté parce que Claude attribue l'identification du mécanisme à l'apprenant. Mais sous la présomption de sycophantie, le biais de medium (l'IA confirme et structure ce qui était peut-être une intuition vague) a disqualifié la pièce. Ce qui en résulte : sur ce pôle, le travail ne montre pas encore une modélisation systémique pleinement attestée — les analogies systémiques sont là, mais portées par des relais.",
+          "confianceFinale": 0.30
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.30,
+        "motif": "L'unique pièce a été disqualifiée par le biais de medium ; aucune autre trace de modélisation systémique propre à l'apprenant n'est extraite.",
+        "prescription": "Pour rendre visible une pensée des boucles, un chemin possible serait, lors d'un prochain problème complexe, de dessiner ou écrire les rétroactions identifiées en nommant la direction et l'effet de cascade attendu, plutôt que de laisser cette pensée à l'état d'intuition partagée avec l'IA."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Distinction fine entre modèles selon leur capacité (Claude Opus 4.6 vs versions open source à petite mémoire, Qwen sur datacenter local) avec implication réglementaire — diagnostic technique informé."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Hypothèse causale articulée sur le comportement de Claude : RLHF, frontière de l'espace d'expression du LLM — démystification mécaniste."
+        },
+        {
+          "numero": 3,
+          "pid": 13,
+          "contexte": "Diagnostic du mécanisme de sycophantie de Gemini : il ne prend pas en compte le méta-contexte, répond au premier degré — explication causale."
+        },
+        {
+          "numero": 4,
+          "pid": 15,
+          "contexte": "Reconnaissance qu'il y a une architecture CoWork qu'il ne maîtrise pas — littératie qui inclut ses propres limites."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec scepticisme : mentionner RLHF, sycophantie, hallucinations peut être du vocabulaire ambiant chez quelqu'un qui travaille avec l'IA. La fiche dit : critère = compréhension causale du pourquoi l'IA échoue. La pièce 1 distingue les modèles selon leur empreinte mémoire — pas seulement un nom, mais un mécanisme matériel. La pièce 2 articule un mécanisme (RLHF impose des règles, mais ces règles créent une frontière dans l'espace du LLM). La pièce 3 nomme un mécanisme précis (absence de prise en compte du méta-contexte). La pièce 4 est une reconnaissance d'ignorance — c'est une trace de littératie calibrée. Ce qui reste plus faible : aucune analogie cognitive (la trace oblique de la fiche, type « comme quand je vais à la cuisine et j'oublie pourquoi »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distinction technique fine entre modèles selon leur empreinte matérielle, et compréhension du contexte juridique qui force des choix techniques (données privées en Suisse)." },
+            { "pieceId": 2, "motifResistance": "Hypothèse mécaniste articulée (RLHF + frontière de l'espace d'expression) plutôt que reprise du mot hallucination." },
+            { "pieceId": 3, "motifResistance": "Diagnostic du mécanisme de sycophantie observé chez Gemini : absence de prise en compte du méta-contexte." },
+            { "pieceId": 4, "motifResistance": "Reconnaissance calibrée d'une zone non maîtrisée — la littératie inclut la calibration." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir quatre pièces. L'attaque (d) — glissement lexical — pourrait toucher les pièces 1 et 2 : « Claude Opus 4.6 », « RLHF », « hallucinations » sont des mots à la mode. Mais les pièces les utilisent avec une charge sémantique : la pièce 1 utilise « Opus 4.6 » dans une comparaison fonctionnelle avec un autre modèle ; la pièce 2 explique ce que produit le RLHF. L'attaque (a) — insuffisance probatoire — pourrait toucher la pièce 4, brève. Mais sa fonction (calibration de la zone d'ignorance) est claire.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La distinction Claude/Qwen est mobilisée pour son sens technique (capacité versus contrainte matérielle), pas comme étiquette." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "RLHF est mobilisé avec une explication mécaniste de ses effets (frontière dans l'espace d'expression)." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le diagnostic du méta-contexte non pris en compte est précis et étayé par l'exemple de la question de Stéphane sur ses intentions." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Brève mais articule un constat précis sur l'architecture CoWork — calibration d'ignorance qui fait partie de la littératie." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui réutiliserait le vocabulaire ambiant de l'IA sans en comprendre les mécanismes. Ce qui m'a forcé à reconnaître la littératie, c'est l'articulation mécaniste des hypothèses : RLHF comme producteur de frontières d'expression, sycophantie comme absence de prise en compte du méta-contexte, contraintes matérielles comme déterminantes des choix de modèles. Sous la présomption de sycophantie, le vocabulaire technique aurait pu être disqualifié comme glissement lexical, mais sa charge sémantique l'a maintenu. Ce qui en résulte : sur ce pôle, le travail montre une littératie IA qui sait diagnostiquer causalement les comportements observés et qui calibre ses propres zones d'ignorance.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.85,
+        "motif": "Trois pièces confirmées sans réserve (mécanismes articulés), une pièce affaiblie mais retenue (calibration d'ignorance).",
+        "prescription": "Pour prolonger ce travail de littératie causale, un chemin possible serait de noter, lors d'une prochaine surprise face au comportement d'un modèle, l'hypothèse mécaniste construite avant de chercher la réponse — afin que ces hypothèses deviennent traçables au même titre que les phénomènes observés."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Conception d'une architecture multi-agents avec rôles explicites (Aegis, Daimon, Metis en triarchie + Kairos méta-observateur) — composants nommés et fonctions différenciées."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Description d'une architecture multi-couches désynchronisée (YAML, prompts, générateur Python) avec stratégie de remise en cohérence — pensée architecturale appliquée à la maintenance."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Décomposition d'un pipeline d'évaluation en étapes parallélisables, avec contraintes de format en sortie — design technique d'un système où des composants interagissent."
+        },
+        {
+          "numero": 4,
+          "pid": 3,
+          "contexte": "Méta-algorithme inspiré des algorithmes distribués pour produire un résultat fiable avec des agents qui hallucinent — architecture by design."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : avoir des prompts dans des fichiers et lancer plusieurs évaluations peut ressembler à du scripting, pas à de l'architecture au sens où quelqu'un d'autre pourrait reprendre le système. La pièce 1 nomme des composants (Aegis, Daimon, Metis, Kairos) avec des fonctions différenciées explicites — c'est de l'architecture conçue, pas du code. La pièce 4 mobilise un cadre conceptuel (algorithmes distribués sans agents malveillants, architecture robuste by design) — c'est un choix d'architecture explicitement justifié. La pièce 2 décrit un système multi-couches (YAML, prompts, générateur) avec son désalignement et sa réparation — analyse de système. La pièce 3 décrit un pipeline avec parallélisation et contraintes de format. Ce qui reste plus faible : on ne voit pas de schéma, pas de mécanismes de monitoring/fallback explicites.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Composants nommés avec rôles distincts et hiérarchie (triarchie + méta-observateur) — architecture multi-agents conçue, pas utilisée." },
+            { "pieceId": 2, "motifResistance": "Analyse d'une architecture multi-couches avec causes du désalignement et stratégie de remise en cohérence." },
+            { "pieceId": 3, "motifResistance": "Décomposition en étapes parallélisables avec contraintes d'output — pensée de pipeline." },
+            { "pieceId": 4, "motifResistance": "Référence explicite à un cadre architectural (algorithmes distribués) et choix « by design » articulé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir quatre pièces. L'attaque (b) — confusion avec 1.08 (dialogue IA avancé) — est sérieuse : nommer Aegis, Daimon, Metis pourrait être de l'orchestration multi-agents dans un même dialogue (1.08), pas une architecture où l'output de l'un alimente l'input de l'autre. Mais la pièce 1 décrit explicitement une *triarchie opérationnelle* avec un *méta-observateur* qui *veille sur le système entier* — la hiérarchie inter-agents est posée. La pièce 4 décrit explicitement un méta-algorithme inspiré des algorithmes distribués — ce qui implique le routing inter-composants. La pièce 2 traite d'une architecture multi-fichiers/multi-couches — pas un seul prompt. La pièce 3 articule un pipeline avec décomposition et parallélisation.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Frontière 1.07/1.08 ; le caractère « opérationnel » des agents et la présence d'un méta-observateur maintient le statut architectural plutôt que dialogique." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Description précise des couches, du désalignement et de la stratégie — vérifiable et structurée." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La décomposition en étapes parallélisées dans CoWork évoque autant le dialogue avancé que l'architecture ; tenue sur la dimension architecture (pipeline)." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La référence au cadre est explicite mais l'architecture réelle n'est pas encore documentée avec composants et flux — déclaration robuste mais pas formalisation aboutie." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui ferait du scripting et qui appellerait cela de l'architecture. Ce qui m'a forcé à reconnaître l'architecture, c'est la nomination de composants avec rôles différenciés, la présence d'un méta-observateur, la décomposition en étapes parallélisées avec contraintes de format, et le diagnostic d'un système multi-couches désynchronisé. Sous la présomption de sycophantie, les pièces 1 et 3 se sont affaiblies à cause de la frontière fine avec 1.08, mais la dimension méta-observation et pipeline les maintient. Ce qui en résulte : sur ce pôle, le travail montre une pensée architecturale qui dépasse l'usage d'un prompt unique — conception de systèmes multi-agents avec hiérarchie, décomposition en étapes parallélisables, diagnostic de désalignements entre couches.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.75,
+        "motif": "Une pièce confirmée sans réserve (architecture multi-couches diagnostiquée et réparée), trois pièces affaiblies mais retenues sur leur dimension architecturale.",
+        "prescription": "Pour épaissir cette pensée architecturale, un chemin possible serait de documenter, pour le prochain système conçu, un schéma simple des composants et des flux entre eux (qui appelle qui, qui valide quoi, comment se déclenche un fallback) — afin qu'un tiers puisse comprendre le système sans dialoguer avec son concepteur."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Rôles différenciés explicites pour des agents nommés (Aegis = gardien de l'irréversible, Daimon = friction, Metis = pluralité des regards) — orchestration multi-agents."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Itérations stratégiques sur un prompt avec contraintes de format et décomposition — sophistication de formulation."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Dialogue avec Claude où l'apprenant pose une question méta sur l'architecture (un tour vs plusieurs) et reçoit une réponse argumentée qu'il intègre — méta-prompting."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : nommer des agents et leur prêter des paroles peut être de la mise en scène littéraire plutôt que de l'orchestration de rôles dans un dialogue IA. La pièce 1 ne montre pas un dialogue où ces agents agissent en parallèle dans une session — elle décrit leurs rôles. La pièce 2 décrit des itérations sur un prompt avec décomposition — c'est de la sophistication. La pièce 3 montre une question posée à Claude qui demande une analyse argumentée — c'est un dialogue avancé. Ce qui reste plus faible : on ne voit pas un prompt système avec rôles contradictoires en cours d'exécution, ni un méta-prompting récursif.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Conception de rôles différenciés (gardien de l'irréversible, gardien de la friction, gardien des regards) — orchestration intentionnelle." },
+            { "pieceId": 2, "motifResistance": "Itérations stratégiques avec contraintes de format et décomposition par étapes — sophistication de formulation." },
+            { "pieceId": 3, "motifResistance": "Question méta posée à Claude sur l'architecture du dialogue lui-même, avec intégration de la réponse." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces. L'attaque (b) — confusion avec 1.07 — est forte : la pièce 1 active aussi clairement 1.07 (architecture). Pour 1.08, il faudrait voir la sophistication de la *formulation* du prompt. La pièce 2 montre des itérations « plusieurs fois dans la nuit » avec décomposition et contraintes — c'est de la sophistication empirique. La pièce 3 est une question méta posée à Claude — c'est du méta-prompting léger (méta sur l'architecture, pas méta sur le prompt lui-même).",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active 1.07 plus fortement que 1.08, mais la définition des rôles différenciés (avec voix textuelles) constitue aussi une orchestration de personae au sens 1.08." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Itérations décrites globalement (« plusieurs fois », « décomposée », « parallélisé ») sans citation verbatim d'un prompt — sophistication réelle mais peu spécifiée." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La question posée est méta sur l'architecture, mais pas sur le prompt lui-même ; on n'a pas la trace d'un méta-prompting récursif." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui prendrait des dialogues ordinaires pour de l'orchestration. Ce qui m'a forcé à reconnaître la sophistication, c'est la définition de rôles textuels distincts pour des agents IA, les itérations empiriques avec contraintes de format, et la question méta sur l'architecture. Sous la présomption de sycophantie, toutes les pièces se sont affaiblies à cause de la frontière avec 1.07 ou de la généralité des récits. Ce qui en résulte : sur ce pôle, le travail montre une orchestration multi-agents en construction, avec sophistication empirique des prompts et conscience des effets de la formulation — sans pour autant produire encore de méta-prompting récursif documenté.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.55,
+        "motif": "Trois pièces affaiblies mais retenues, où la sophistication de formulation se manifeste par l'orchestration de personae et les itérations empiriques.",
+        "prescription": "Pour rendre cette sophistication plus traçable, un chemin possible serait de garder une note courte des reformulations de prompt qui ont changé le résultat — quelle variation a déclenché quel changement de comportement — afin de transformer l'itération en savoir transférable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Articulation explicite : la pensée computationnelle (décomposition du problème en sous-problèmes plus simples) appliquée à un problème non-technique (penser une architecture d'évaluation humaniste). Transfert hors-informatique."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Transfert d'une logique algorithmique distribuée vers la conception d'un dispositif d'évaluation, avec analogie procès (rôles différenciés, étapes séquentielles)."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Décomposition d'un workflow complexe en sous-étapes avec parallélisation — pensée algorithmique en acte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : décrire un workflow informatique ne suffit pas pour 1.09 — la fiche est explicite, « écrire du code, suivre des étapes, ou utiliser un outil d'automatisation ne suffit PAS ». Il faut le TRANSFERT. La pièce 1 est exactement cela : pensée computationnelle nommée et appliquée à un problème pédagogique (concevoir une évaluation), avec auto-observation de ce transfert. La pièce 2 transfère une logique d'algorithmes distribués à un problème d'évaluation IA — transfert d'un domaine à un autre. La pièce 3 reste dans le domaine informatique, donc plus faible pour 1.09. Ce qui reste plus faible : aucune structure si/alors appliquée à une situation relationnelle ou pédagogique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Trace directe du transfert : pensée computationnelle appliquée à la conception d'un système d'évaluation, avec articulation explicite de la décomposition." },
+            { "pieceId": 2, "motifResistance": "Transfert d'un cadre conceptuel (algorithmes distribués) vers un domaine évaluatif — analogie qui structure la solution." },
+            { "pieceId": 3, "motifResistance": "Décomposition en étapes parallélisables, articulée comme méthode généralisable." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces. L'attaque (b) — confusion — touche la pièce 3 : si la décomposition reste dans le code, ce n'est plus 1.09. La pièce 1 résiste parce qu'elle articule explicitement le transfert (« processus simple de pensée computationnelle [...] pour réfléchir sur un problème complexe »). La pièce 2 résiste parce que la logique distribuée est explicitement portée hors de l'informatique vers l'évaluation pédagogique.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le transfert hors-informatique est nommé par l'apprenant lui-même, pas projeté par moi." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'analogie procès est explicitement portée comme structure de pensée pour un problème non-judiciaire — transfert net." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La décomposition décrite reste dans le domaine du pipeline informatique ; sans transfert hors-domaine, c'est de l'algorithmique appliquée, pas 1.09." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir un apprenant qui prendrait son travail technique pour de la pensée computationnelle transférée. Ce qui m'a forcé à reconnaître le transfert, c'est l'explicitation par l'apprenant lui-même : « peut-être que je lui apporte un processus simple de pensée computationnelle [...] pour réfléchir sur un problème complexe ». L'analogie procès-IA transfère également une logique d'un domaine à un autre. Sous la présomption de sycophantie, la pièce 3 a été disqualifiée parce qu'elle reste dans le domaine informatique. Ce qui en résulte : sur ce pôle, le travail montre un transfert documenté de la logique computationnelle vers la conception d'évaluations et l'architecture d'un dispositif anti-mensonge — la pensée algorithmique sert d'outil de pensée au-delà du code.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.78,
+        "motif": "Deux pièces confirmées comme transferts explicites de logique computationnelle vers des domaines non-informatiques (pédagogie, évaluation).",
+        "prescription": "Pour épaissir ce transfert, un chemin possible serait de nommer, lors d'un prochain problème humain ou pédagogique abordé, la structure algorithmique mobilisée (décomposition, condition, boucle) afin que la logique transférée devienne consciente et réutilisable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Articulation explicite : pour résoudre un problème d'évaluation IA, l'apprenant choisit l'architecture par-rapport-au-code — distinction des forces respectives."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Conception d'une triarchie où chaque agent a une fonction (gardien de l'irréversible, friction épistémique, pluralité des regards) et un méta-observateur — répartition des rôles entre humain (concepteur) et agents IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : utiliser l'IA et lui faire faire des choses n'est pas 1.10. La fiche est explicite : il faut articuler ce que l'humain garde et pourquoi, ou pourquoi cette tâche revient à l'IA. La pièce 1 ne le fait pas explicitement : elle dit « non pas par le code mais par les prompts » — c'est une distinction de stratégie technique, pas une articulation des forces comparatives humain/IA. La pièce 2 décrit des rôles d'agents IA, mais ne dit pas ce que l'humain fait mieux et pourquoi. Aucune pièce ne formule « l'IA me fait aller plus vite, en contrepartie je perds le contrôle » ou « voici ce que l'humain apporte que l'IA ne peut pas ».",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La conception d'une triarchie avec un méta-observateur (Kairos) qui veille suggère une réflexion sur les forces et limites des agents IA et sur ce que la supervision (humaine ou IA) doit apporter." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce. L'attaque (f) — récit performatif — est lourde : la pièce décrit un système, mais elle ne montre pas l'apprenant en train d'articuler les forces comparatives. Kairos « veille sur le système entier » mais on ne sait pas si c'est pour suppléer une limite IA spécifique ou pour le confort de l'apprenant. La trace de synergie articulée manque.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce décrit une architecture mais ne formule pas explicitement ce que l'IA fait mieux, ni ce que l'humain garde, ni le trade-off — l'articulation des forces comparatives manque." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir une articulation explicite des forces comparatives humain/IA. Sous la présomption d'absence, une pièce a résisté (la triarchie avec méta-observateur, qui suggère une lecture de ce qui doit être supervisé), mais sous la présomption de sycophantie, elle est tombée parce que l'articulation explicite manque. Ce qui en résulte : sur ce pôle, le travail montre une utilisation sophistiquée de l'IA dans une architecture complexe, mais l'articulation théorisée des forces comparatives humain/IA n'apparaît pas encore — la synergie est pratiquée, pas encore nommée.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce retenue au temps 1 est tombée sous l'attaque récit performatif — la synergie est en pratique mais l'articulation explicite des forces comparatives manque.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de formuler, à propos d'une tâche concrète déjà déléguée à l'IA, ce que l'humain garde et pourquoi cela revient à l'humain — afin que la répartition des rôles devienne traçable comme stratégie, pas seulement comme habitude."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 7,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail montre une pensée qui se construit explicitement comme dispositif : ce n'est pas seulement penser, mais concevoir l'environnement où penser correctement. La feuille porte le récit de la conception d'une architecture d'évaluation par prompts, structurée comme une triarchie d'agents avec un méta-observateur, inspirée à la fois des algorithmes distribués et de l'analogie judiciaire. Le vocabulaire technique (RLHF, sycophantie, hallucination) cohabite avec les analogies structurelles (procès, juge, greffier, président, jury) sans que l'un n'écrase l'autre. La capacité à diagnostiquer causalement les comportements d'IA, à reformuler les problèmes par déplacement d'angle, et à transférer une logique computationnelle vers la conception pédagogique traverse la feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Littératie IA et compréhension causale",
+        "description": "Le travail diagnostique le pourquoi des comportements observés en mobilisant des hypothèses techniques articulées plutôt que du vocabulaire ambiant.",
+        "extraitVerbatim": "Stéphane a dû lui demander de prendre un rôle d'expert. Il a vu le mot clé mathématique (ou point / intervalle) et est parti dans un délire hallucinatoire de pseudo explication scientifique pour expliquer un truc simple : il y a une frontière dans l'espace du LLM qui est liée à ce qu'il peut dire ou ne pas dire, et que peut-être qu'au delà des règles imposées par RLHF, se cachent d'autres choses",
+        "ceQueCaDit": "L'IA n'est pas une boîte noire à utiliser : ses comportements ont des causes que l'on peut hypothétiser, et la calibration de ces hypothèses devient elle-même un outil de travail."
+      },
+      {
+        "competence": "Synthèse intégrative",
+        "description": "La feuille fait converger des univers conceptuels apparemment éloignés (droit, mythologie, informatique distribuée, sciences cognitives) pour produire des dispositifs qui n'existent dans aucune source isolée.",
+        "extraitVerbatim": "les humains ont trouvé un dispositif pour répondre à la question malgrés les mensonges des personnes coupables, c'est de faire un procès. Si on applique le même raisonnement aux IA, une IA qui hallucine ou qui sycophancise (j'invente le mot) s'éloigne de l'authenticité qu'on attend d'elle pour une évaluation",
+        "ceQueCaDit": "La synthèse n'est pas décorative : elle structure la solution technique en empruntant à un domaine la forme adversariale qui manque à l'autre."
+      },
+      {
+        "competence": "Pensée computationnelle transférée",
+        "description": "La logique de décomposition et d'algorithme est explicitement portée hors du code, vers la conception d'évaluations et l'architecture d'un dispositif anti-mensonge.",
+        "extraitVerbatim": "Peut-être que je lui apporte un processus simple de pensée computationnelle (décomposition du problème en sous problèmes plus simples) et de création [...] pour réfléchir sur un problème complexe ?",
+        "ceQueCaDit": "La logique algorithmique sert d'outil de pensée pour des problèmes humains — le code n'est qu'un domaine d'application parmi d'autres."
+      },
+      {
+        "competence": "Pensée critique calibrée",
+        "description": "Le doute s'applique à des cas précis avec mécanismes causaux nommés, et un dispositif est inventé pour traquer les biais (logicien, psychologue) plutôt que de les laisser non thématisés.",
+        "extraitVerbatim": "deux exemples clairs de sycophancie, Gemini changeant d'avis à chaque prompt de Stéphane pour aller dans son sens, à tel point que lorsque Stéphane lui demande son avis sur son intention à la fin, il répond au premier degrés sans prendre le recul nécessaire pour se mettre à la place de Stéphane",
+        "ceQueCaDit": "La critique ne reste pas générale : elle s'applique à une séquence précise et identifie le mécanisme qui dysfonctionne, ce qui rend la critique opérationnelle pour la conception."
+      },
+      {
+        "competence": "Architecture de systèmes IA",
+        "description": "Le travail nomme des composants, leur prête des fonctions différenciées et conçoit une hiérarchie (triarchie + méta-observateur) plutôt que d'utiliser un prompt unique.",
+        "extraitVerbatim": "j'ai donc basculé du système de prompt initial avec un collège d'expert qui débat sur la question d'une compétence (V1) à un système très élégant composé de trois agents opérationnels en triarchie (Aegis, Daimon, Metis), un agent méta-observateur (Kairos) qui veille sur le système entier",
+        "ceQueCaDit": "Le système est pensé comme architecture transmissible, avec des rôles que quelqu'un d'autre pourrait reprendre — pas seulement comme une mise en scène pour soi."
+      }
+    ],
+    "territoiresNonVisites": "La synergie humain-IA, comme articulation théorisée des forces comparatives (ce que l'humain garde et pourquoi, ce que l'IA fait mieux et le coût de cette délégation), reste en pratique sans être encore nommée comme stratégie. La pensée systémique au sens strict — modélisation explicite des boucles de rétroaction avec direction et effet de cascade — apparaît portée par le dialogue avec Claude plutôt que clairement attribuée à l'apprenant. Le cadrage d'intention et la sophistication du dialogue IA sont actifs mais s'enracinent dans des frontières fines avec d'autres compétences voisines (architecture, design de problèmes) — la formulation explicite de la démarche de cadrage gagnerait à devenir un objet en propre.",
+    "emergencesPole": "Trois traversées : d'abord, le geste de transformer un biais en outil — la sycophantie devient principe de conception (« peut-on prouver qu'un menteur ne dit pas la vérité »), comme si la limite de l'IA devenait le matériau de son dépassement. Ensuite, la cohabitation systématique d'un cadre théorique (algorithmes distribués, philosophie de l'évaluation humaniste) avec un dispositif opérationnel (prompts, fichiers YAML, étapes parallélisables) — la pensée et l'exécution ne sont pas séparées. Enfin, une lucidité sur la propre démarche : l'apprenant s'observe en train de penser et nomme ce qu'il transmet à un tiers, ce qui transforme la pratique en méthode partageable.",
+    "pistes": [
+      "Pour prolonger ce travail de pensée critique calibrée, un chemin possible serait de documenter, sur un cas concret rencontré dans la semaine, la séquence complète : ce qui aurait pu être pris pour acquis, ce qui a été testé, ce qui a tenu et ce qui est tombé.",
+      "Pour épaissir cette pensée architecturale, un chemin possible serait de produire un schéma simple des composants et des flux du dispositif d'évaluation (qui appelle qui, qui valide quoi, comment se déclenche un fallback) afin qu'un tiers puisse comprendre le système sans dialoguer avec son concepteur.",
+      "Pour explorer la synergie humain-IA, un chemin possible serait de formuler, à propos d'une tâche concrète déjà déléguée à l'IA, ce que l'humain garde et pourquoi cela revient à l'humain — afin que la répartition des rôles devienne traçable comme stratégie, pas seulement comme habitude.",
+      "Pour rendre visible une pensée des boucles, un chemin possible serait, lors d'un prochain problème complexe, de dessiner ou écrire les rétroactions identifiées en nommant la direction et l'effet de cascade attendu, plutôt que de laisser cette pensée à l'état d'intuition partagée avec l'IA."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail montre une pensée qui se construit explicitement comme dispositif : ce n'est pas seulement penser, mais concevoir l'environnement où penser correctement. La feuille porte le récit de la conception d'une architecture d'évaluation par prompts, structurée comme une triarchie d'agents avec un méta-observateur, inspirée à la fois des algorithmes distribués et de l'analogie judiciaire. Le vocabulaire technique (RLHF, sycophantie, hallucination) cohabite avec les analogies structurelles (procès, juge, greffier, président, jury) sans que l'un n'écrase l'autre. La capacité à diagnostiquer causalement les comportements d'IA, à reformuler les problèmes par déplacement d'angle, et à transférer une logique computationnelle vers la conception pédagogique traverse la feuille.\n\n## Territoires les plus denses\n\n**Littératie IA et compréhension causale.** Le travail diagnostique le pourquoi des comportements observés en mobilisant des hypothèses techniques articulées plutôt que du vocabulaire ambiant. Extrait : *« Stéphane a dû lui demander de prendre un rôle d'expert. Il a vu le mot clé mathématique (ou point / intervalle) et est parti dans un délire hallucinatoire de pseudo explication scientifique pour expliquer un truc simple : il y a une frontière dans l'espace du LLM qui est liée à ce qu'il peut dire ou ne pas dire, et que peut-être qu'au delà des règles imposées par RLHF, se cachent d'autres choses ».* L'IA n'est pas une boîte noire à utiliser : ses comportements ont des causes que l'on peut hypothétiser, et la calibration de ces hypothèses devient elle-même un outil de travail.\n\n**Synthèse intégrative.** La feuille fait converger des univers conceptuels apparemment éloignés (droit, mythologie, informatique distribuée, sciences cognitives) pour produire des dispositifs qui n'existent dans aucune source isolée. Extrait : *« les humains ont trouvé un dispositif pour répondre à la question malgrés les mensonges des personnes coupables, c'est de faire un procès. Si on applique le même raisonnement aux IA, une IA qui hallucine ou qui sycophancise (j'invente le mot) s'éloigne de l'authenticité qu'on attend d'elle pour une évaluation ».* La synthèse n'est pas décorative : elle structure la solution technique en empruntant à un domaine la forme adversariale qui manque à l'autre.\n\n**Pensée computationnelle transférée.** La logique de décomposition et d'algorithme est explicitement portée hors du code, vers la conception d'évaluations et l'architecture d'un dispositif anti-mensonge. Extrait : *« Peut-être que je lui apporte un processus simple de pensée computationnelle (décomposition du problème en sous problèmes plus simples) et de création [...] pour réfléchir sur un problème complexe ? ».* La logique algorithmique sert d'outil de pensée pour des problèmes humains — le code n'est qu'un domaine d'application parmi d'autres.\n\n**Pensée critique calibrée.** Le doute s'applique à des cas précis avec mécanismes causaux nommés, et un dispositif est inventé pour traquer les biais (logicien, psychologue) plutôt que de les laisser non thématisés. Extrait : *« deux exemples clairs de sycophancie, Gemini changeant d'avis à chaque prompt de Stéphane pour aller dans son sens, à tel point que lorsque Stéphane lui demande son avis sur son intention à la fin, il répond au premier degrés sans prendre le recul nécessaire pour se mettre à la place de Stéphane ».* La critique ne reste pas générale : elle s'applique à une séquence précise et identifie le mécanisme qui dysfonctionne, ce qui rend la critique opérationnelle pour la conception.\n\n**Architecture de systèmes IA.** Le travail nomme des composants, leur prête des fonctions différenciées et conçoit une hiérarchie plutôt que d'utiliser un prompt unique. Extrait : *« j'ai donc basculé du système de prompt initial avec un collège d'expert qui débat sur la question d'une compétence (V1) à un système très élégant composé de trois agents opérationnels en triarchie (Aegis, Daimon, Metis), un agent méta-observateur (Kairos) qui veille sur le système entier ».* Le système est pensé comme architecture transmissible, avec des rôles que quelqu'un d'autre pourrait reprendre — pas seulement comme une mise en scène pour soi.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa synergie humain-IA, comme articulation théorisée des forces comparatives (ce que l'humain garde et pourquoi, ce que l'IA fait mieux et le coût de cette délégation), reste en pratique sans être encore nommée comme stratégie. La pensée systémique au sens strict — modélisation explicite des boucles de rétroaction avec direction et effet de cascade — apparaît portée par le dialogue avec Claude plutôt que clairement attribuée à l'apprenant. Le cadrage d'intention et la sophistication du dialogue IA sont actifs mais s'enracinent dans des frontières fines avec d'autres compétences voisines (architecture, design de problèmes) — la formulation explicite de la démarche de cadrage gagnerait à devenir un objet en propre.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois traversées : d'abord, le geste de transformer un biais en outil — la sycophantie devient principe de conception (« peut-on prouver qu'un menteur ne dit pas la vérité »), comme si la limite de l'IA devenait le matériau de son dépassement. Ensuite, la cohabitation systématique d'un cadre théorique (algorithmes distribués, philosophie de l'évaluation humaniste) avec un dispositif opérationnel (prompts, fichiers YAML, étapes parallélisables) — la pensée et l'exécution ne sont pas séparées. Enfin, une lucidité sur la propre démarche : l'apprenant s'observe en train de penser et nomme ce qu'il transmet à un tiers, ce qui transforme la pratique en méthode partageable.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger ce travail de pensée critique calibrée, un chemin possible serait de documenter, sur un cas concret rencontré dans la semaine, la séquence complète : ce qui aurait pu être pris pour acquis, ce qui a été testé, ce qui a tenu et ce qui est tombé.\n- Pour épaissir cette pensée architecturale, un chemin possible serait de produire un schéma simple des composants et des flux du dispositif d'évaluation (qui appelle qui, qui valide quoi, comment se déclenche un fallback) afin qu'un tiers puisse comprendre le système sans dialoguer avec son concepteur.\n- Pour explorer la synergie humain-IA, un chemin possible serait de formuler, à propos d'une tâche concrète déjà déléguée à l'IA, ce que l'humain garde et pourquoi cela revient à l'humain — afin que la répartition des rôles devienne traçable comme stratégie, pas seulement comme habitude.\n- Pour rendre visible une pensée des boucles, un chemin possible serait, lors d'un prochain problème complexe, de dessiner ou écrire les rétroactions identifiées en nommant la direction et l'effet de cascade attendu, plutôt que de laisser cette pensée à l'état d'intuition partagée avec l'IA.\n"
+  }
+}

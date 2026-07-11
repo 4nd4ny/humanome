@@ -1,0 +1,553 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Vu le nombre de chapitres dans un manuel, je pense faire un découpage par parties pour la génération des manuels => 36 discussions pour l'ensemble des manuels. C'est gérable. Le plan initial n'en comprenait que 34, mais j'ai eu l'idée d'ajouter un chapitre explicitant comment sont générés les manuels de formation pour présenter rapidement la stratégie utilisée pour générer les manuels aux cartographes / futurs experts du prompt engineering.",
+      "contexte": "Itération du plan (34→36) en cours d'exécution avec ajustement structurel pour rendre intelligible la méthode aux futurs cartographes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Il manque encore une explication du business plan des écoles.",
+      "contexte": "Identification d'un manque dans le manuel — diagnostic d'une zone à compléter.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Il manque également un tutoriel explicite qui dit ce que le cartographe produit et comment le produire. En l'occurrence un fichier JSON, des prompts d'analyse, comment utiliser cartoviewer.tsx pour afficher la cartographie… Beaucoup de non dits qu'il faut encore que je spécifie pour conclure ce manuel.",
+      "contexte": "Identification précise des composants documentaires manquants pour qu'un futur cartographe puisse reproduire le travail.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Je vais inclure tout ça dans une PARTIE 6 du manuel de Cartographe ou bien je garde le business plan sous \"silence\" ici, dans mon portfolio public ?",
+      "contexte": "Décision d'architecture documentaire : inclure ou non un contenu dans le manuel destiné aux futurs lecteurs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Je vais introduire ces réflexions dans la partie 6 du manuel du médiateur, pour équilibrer l'ensemble des 3 manuels. J'ai également inclus un ancien texte pour avoir un peu plus de substance.",
+      "contexte": "Décision éditoriale finale avec critère d'équilibre entre manuels, et réutilisation d'un texte antérieur archivé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "J'ai besoin d'une pause réflexive pour repenser à mes valeurs et aux priorités qui en découlent.",
+      "contexte": "Décision d'interrompre la production pour priorisation — pause stratégique."
+,
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Mais, le temps de lancement des écoles, vu que nous n'avons pas de fondation pour nous supporter financièrement, la partie Google Workspace ne sera pas obligatoire, le moteur de recherche ne sera pas proposé et RESPIRE ne se positionne pas comme tiers de confiance. Ceci est musique d'avenir, puisqu'il faut que les écoles fonctionnent, que la pompe soit amorcée, pour que le business plan puisse s'exécuter.",
+      "contexte": "Justification d'une décision présente (architecture transitoire) par une vision long-terme (architecture cible une fois la pompe amorcée).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Dit autrement, si quelqu'un investit assez d'argent dans le système, nous pourrions le transformer en startup. Il n'y a plus qu'à trouver un commercial !",
+      "contexte": "Scénario prospectif conditionnel (école communautaire vs startup) maintenu ouvert.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "extraitVerbatim": "Tout cartographe, en créant une cartographie, devient représentant des écoles RESPIRE. Son travail consistant à faire émerger les compétences utiles du référentiel, dans les traces du portfolio, est ce qui apporte de la valeur aux écoles.",
+      "contexte": "Définition d'un rôle institutionnel destiné à des futurs lecteurs du manuel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "extraitVerbatim": "j'ai eu l'idée d'ajouter un chapitre explicitant comment sont générés les manuels de formation pour présenter rapidement la stratégie utilisée pour générer les manuels aux cartographes / futurs experts du prompt engineering.",
+      "contexte": "Ajout d'une couche méta-pédagogique destinée à transmettre la méthode aux futurs apprenants.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Ajout d'un chapitre méta-pédagogique pour transmettre la méthode de génération des manuels aux futurs cartographes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici ni maïeutique (questionnement socratique) ni véritable architecture pédagogique. La pièce 1 décrit l'ajout d'un chapitre destiné à expliquer la stratégie de génération — c'est une transmission descendante (donner l'explication) plutôt qu'une mise en situation où le futur cartographe découvre par lui-même. La fiche distingue : 'j'ai expliqué' est descendant ; la maïeutique est interrogative. Ici, le geste reste explicatif.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. La fiche est précise : la maïeutique réclame la retenue de celui qui sait + l'adressage à l'autre comme source. L'ajout d'un chapitre explicatif est explicitement la transmission descendante que la fiche distingue de la maïeutique.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une trace de questionnement socratique ou d'architecture pédagogique conçue avec retenue. La pièce extraite décrit une transmission descendante — un chapitre explicatif. La présomption d'absence absorbe la pièce sans frein. Ce qui reste : pas de trace de maïeutique sur cette feuille — le geste pédagogique présent est de l'ordre de l'explication structurée, pas de la maïeutique au sens de la fiche.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : le geste pédagogique présent relève de l'explication descendante, pas de la maïeutique interrogative.",
+        "prescription": "Sur cette feuille, le geste de transmission est explicatif. Pour ouvrir le dossier de la maïeutique, un chemin possible serait de concevoir, à un endroit du manuel, une situation où le futur cartographe est invité à découvrir par lui-même plutôt qu'à recevoir l'explication."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative au sens d'un retour qui ne sacrifie ni la vérité ni la relation. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a donné un feedback à quelqu'un (cartographe, apprenant) en visant explicitement sa progression."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Identification d'un manque documentaire — exigence de complétude vis-à-vis du futur lecteur."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Inventaire précis des composants à documenter (JSON, prompts d'analyse, cartoviewer.tsx) pour qu'un cartographe puisse reproduire le travail."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Décision d'architecture documentaire : où placer le business plan dans la structure du manuel."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "Réutilisation explicite d'un ancien texte 'pour avoir un peu plus de substance' — archivage actif et redéploiement."
+        },
+        {
+          "numero": 5,
+          "pid": 10,
+          "contexte": "Ajout d'un chapitre dédié à expliquer la méthode de génération pour les futurs cartographes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il s'agit ici d'un journal de conception ordinaire, pas de documentation vivante au sens fort. Les cinq pièces dessinent pourtant un mouvement précis : identification de manques (pièces 2 et 3), décision d'architecture (pièce 4), réutilisation d'un texte antérieur (pièce 5), ajout d'une couche méta-pédagogique pour les futurs lecteurs (pièce 10). C'est précisément ce que la fiche décrit : 'attention délibérée à la structuration de l'information pour autrui', 'archivage intentionnel de traces brutes avec intention explicite de réexploitation', 'anticipation de futurs lecteurs'. Plusieurs marqueurs centraux résistent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'identification du manque ('il manque encore une explication') exprime une exigence de complétude au service d'un lecteur futur."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'inventaire précis des composants (JSON, prompts, cartoviewer.tsx) est destiné à rendre le travail reproductible — conscience explicite du destinataire."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "La décision sur le placement du business plan dans la structure du manuel relève précisément du choix architectural cité par la fiche."
+            },
+            {
+              "pieceId": 4,
+              "motifResistance": "La réutilisation explicite d'un 'ancien texte' archivé est l'archivage intentionnel cité par la fiche."
+            },
+            {
+              "pieceId": 5,
+              "motifResistance": "L'ajout d'un chapitre méta-pédagogique anticipe explicitement les futurs cartographes comme lecteurs."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Cinq pièces ont résisté ; je dois durcir l'examen. L'attaque (b) confusion de compétence est sérieuse : plusieurs de ces gestes relèvent aussi de 7.07 (agilité éditoriale, ajustement de plan). La distinction critique avec 5.03 est précisée par la fiche : 5.03 = expression personnelle avec extraction de sens pour soi, 7.03 = documentation structurée avec intention de capitalisation pour autrui. Ici, le destinataire (cartographes, médiateurs, employeurs) est explicitement identifié, ce qui pousse vers 7.03. L'attaque (a) insuffisance probatoire pourrait peser sur la pièce 4 (un seul mot 'équilibrer') et la pièce 1 (identification d'un manque sans détail). Mais les pièces 2 et 5 sont robustes : inventaire précis + couche méta-pédagogique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'identification du manque est trop laconique pour porter à elle seule, mais elle s'inscrit dans une série de gestes architecturaux cohérents."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'inventaire précis (JSON, prompts, cartoviewer.tsx) destiné à rendre le travail reproductible par autrui correspond exactement au marqueur central de 7.03 — pas de confusion possible avec une autre compétence."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La décision d'architecture documentaire pourrait aussi se lire en 4.01 (dilemme éthique), mais elle porte explicitement sur la structure du manuel comme artefact destiné à autrui."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La mention explicite de la réutilisation d'un 'ancien texte' archivé pour augmenter la substance d'un manuel correspond précisément à l'archivage intentionnel + réexploitation cité par la fiche."
+            },
+            {
+              "pieceId": 5,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'ajout d'une couche méta-pédagogique pour 'les cartographes / futurs experts du prompt engineering' anticipe explicitement le destinataire — marqueur central de 7.03."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme un simple journal de conception. Ce qui m'a forcé à reconnaître une trace forte de documentation vivante, c'est la convergence de cinq éléments : identification de manques au regard du lecteur futur, inventaire précis des composants à transmettre, décisions d'architecture documentaire, archivage intentionnel et réexploitation, anticipation explicite des destinataires. La présomption de sycophantie a affaibli deux pièces sur cinq mais confirmé les trois autres. Ce qui reste : une trace nette de documentation pensée pour autrui, dans une forme avancée — l'artefact (manuel) est conçu avec conscience du destinataire (cartographe, médiateur, futur expert) et des conditions de reproductibilité.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.8,
+        "motif": "Les pièces 2, 4 et 5 ont survécu sans affaiblissement : inventaire précis pour reproductibilité, archivage intentionnel + réexploitation, et anticipation explicite des destinataires constituent ensemble un faisceau dense de marqueurs centraux.",
+        "prescription": "Le travail montre ici une documentation pensée pour autrui à plusieurs échelles — composants techniques, architecture du manuel, méta-pédagogie pour les futurs cartographes. Pour prolonger cette compétence, un chemin possible serait de tester la documentation auprès d'un premier lecteur réel et de noter ce qui s'est préservé ou perdu dans la transmission."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 4,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 5,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au leadership situationnel — alternance consciente entre prendre et lâcher le gouvernail. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a délibérément laissé l'IA ou un collaborateur mener, puis repris le contrôle à un instant précis avec un déclencheur identifiable."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Justification d'une décision présente (architecture transitoire) par une vision long-terme (architecture cible une fois l'amorçage réalisé)."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Scénario prospectif conditionnel : 'si quelqu'un investit assez, alors transformation en startup'."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Architecture pédagogique anticipant des 'futurs experts du prompt engineering' qui n'existent pas encore."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici qu'une description de contraintes présentes, pas une véritable vision stratégique. La pièce 7, cependant, lie explicitement une décision présente (mode dégradé) à un futur conditionnel ('pour que le business plan puisse s'exécuter') — c'est exactement le marqueur central de la fiche : 'lien explicite entre projection future et décision présente'. La pièce 8 propose un scénario conditionnel ('si X, alors Y'), autre marqueur de la fiche. La pièce 10 anticipe des destinataires qui n'existent pas encore.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le lien entre l'architecture transitoire présente et l'architecture cible future ('musique d'avenir') correspond au marqueur central de la fiche — décision présente argumentée par une vision long-terme."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La formulation conditionnelle 'si quelqu'un investit assez, alors le système devient une startup' est un scénario prospectif explicite."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "L'architecture pédagogique anticipe explicitement des destinataires qui n'existent pas encore ('futurs experts du prompt engineering')."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté ; je dois me demander si je n'ai pas chargé une description pragmatique d'une portée stratégique. L'attaque (a) insuffisance probatoire pèse sur la pièce 2 : la formulation 'il n'y a plus qu'à trouver un commercial !' est humoristique et le scénario reste très allusif. L'attaque (f) récit performatif pourrait s'appliquer à la pièce 1 : le lien présent-futur est énoncé mais la vision long-terme n'est pas pleinement déployée. La pièce 7 reste néanmoins solide : elle articule un mécanisme précis (architecture transitoire → amorçage → architecture cible).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le lien décision-vision est précisément argumenté : 'pas de fondation' → 'mode dégradé temporaire' → 'pompe amorcée' → 'business plan complet'. Ce n'est pas un récit performatif mais un raisonnement structuré."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le scénario conditionnel existe mais reste très succinct et tonalité humoristique ; il marque néanmoins une bifurcation possible reconnue."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'anticipation de destinataires futurs est explicite mais flotte entre vision stratégique et documentation pour autrui (7.03)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme de simples descriptions de contraintes. Ce qui m'a forcé à reconnaître une trace de vision stratégique, c'est la pièce 7 : l'apprenant articule précisément le lien entre une décision présente (mode dégradé) et un futur anticipé (business plan complet une fois la pompe amorcée), avec un mécanisme de bascule identifié. La présomption de sycophantie a affaibli deux pièces sur trois mais confirmé la pièce centrale. Ce qui reste : une trace solide de vision prospective avec lien argumenté entre futur et présent, dans une forme conditionnelle (l'amorçage n'est pas garanti, la bifurcation startup reste ouverte) qui correspond aux 'scénarios prospectifs à plusieurs horizons temporels' de la fiche.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "La pièce 1 a survécu sans affaiblissement : le lien entre architecture transitoire et architecture cible est précisément argumenté avec mécanisme de bascule identifié, ce qui correspond au marqueur central de la fiche.",
+        "prescription": "Le travail montre ici une vision prospective avec lien argumenté entre futur et présent. Pour prolonger cette compétence, un chemin possible serait d'expliciter les signaux qui indiqueront que 'la pompe est amorcée' — afin de transformer une vision conditionnelle en stratégie déclenchable."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Découpage en 36 discussions justifié comme 'gérable' — choix opérationnel argumenté."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Décision explicite d'interrompre la production pour une 'pause réflexive'."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas d'efficacité personnelle au sens fort — pas de refus argumenté, pas de filtre d'utilité explicite. La pièce 1 mentionne 'c'est gérable' ce qui est une évaluation de charge, marqueur faible. La pièce 6 décrit une pause réflexive, ce qui correspond au marqueur cité par la fiche ('mise en pause volontaire du travail principal pour gérer une [...] identifiée'). La fiche est cependant exigeante : 'le marqueur le plus fiable est le non stratégique argumenté' — ce qui n'apparaît pas ici.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La mise en pause volontaire du travail technique pour traiter une priorité interne (les valeurs) correspond au marqueur de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois me demander si la pause réflexive est une véritable trace d'efficacité personnelle. L'attaque (b) confusion de compétence est sérieuse : la pièce relève plus de 1.04 (métacognition) ou de 4.01 (raisonnement éthique) que de 7.06 (efficacité personnelle). La fiche 7.06 cible la priorisation argumentée et le 'non stratégique'. Ici, la pause n'est pas argumentée comme une décision de priorisation (versus quoi d'autre ?) mais comme un besoin réflexif.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pause réflexive est un acte métacognitif/éthique (1.04 ou 4.01), pas une décision de priorisation argumentée au sens de 7.06."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une trace de pilotage de ses propres ressources. La pause réflexive de la pièce 6 m'a forcé à reconnaître quelque chose, mais l'analyse adversariale a montré qu'elle relève d'une autre compétence. La présomption de sycophantie a disqualifié la pièce. Ce qui reste : pas de trace solide de 7.06 dans cette feuille — pas de refus argumenté, pas de filtre d'utilité explicite, pas de priorisation décrite.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce porteuse a été disqualifiée comme relevant d'une autre compétence (métacognition ou raisonnement éthique).",
+        "prescription": "Sur cette feuille, le pilotage des ressources personnelles n'est pas thématisé comme tel. Pour ouvrir ce dossier, un chemin possible serait de documenter un 'non' stratégique argumenté — une situation où une option attractive a été déclinée avec une raison explicite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Ajustement du plan en cours d'exécution (34→36) avec raison explicite (ajout d'un chapitre méta-pédagogique)."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Question éditoriale ouverte dans le journal — délibération en cours d'écriture sur la structure du manuel."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Décision éditoriale finale ('je vais introduire') après délibération, avec critère d'équilibre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas d'agilité au sens fort — pas de cycle générer-tester-ajuster documenté. Les trois pièces dessinent toutefois un cycle : plan initial (34) → idée en cours (ajouter un chapitre) → ajustement (36), suivi d'une délibération éditoriale (pièce 4) menant à une décision (pièce 5). C'est une boucle d'itération en miniature, sur une feuille. La fiche reconnaît : 'travail en versions successives avec cycle observable générer-relire-tester-ajuster'.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'ajustement du plan en cours d'exécution avec raison explicite correspond au marqueur central de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La délibération éditoriale tenue en cours d'écriture montre l'ajustement du plan en temps réel."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "La décision éditoriale finale clôt la boucle ouverte par la pièce 4 — cycle délibération-décision."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté ; je dois me demander si je n'ai pas vu un cycle agile là où il n'y a qu'une suite de décisions ordinaires. L'attaque (a) insuffisance probatoire pèse : pas de version numérotée explicite (v1, v2...), pas d'artefact de coordination agile, pas de boucle de rétroaction nommée. La fiche cite cependant les 'numéros de version élevé sans commentaire méthodologique' comme trace oblique — ici, le passage 34→36 fonctionne comme un ajustement de version. L'attaque (c) biais de medium pourrait s'appliquer : un journal de conception montre nécessairement des ajustements, ce qui ne suffit pas à attester d'une agilité méthodique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'ajustement 34→36 est un ajustement de plan, mais sa formulation 'j'ai eu l'idée' inscrit le mouvement comme génératif, ce qui dépasse le simple constat."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La délibération éditoriale est tenue à l'écrit mais succincte ; elle montre l'ouverture d'une boucle sans la déployer."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La décision finale ('je vais introduire ces réflexions dans la partie 6 du manuel du médiateur, pour équilibrer') clôt une boucle observable d'itération avec critère explicite (équilibre)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme de simples décisions séquentielles. Ce qui m'a forcé à reconnaître une trace d'agilité, c'est la cohérence des trois pièces : ouverture d'une boucle (idée d'ajouter un chapitre), délibération en cours (où placer le contenu), décision argumentée (équilibre des trois manuels). La présomption de sycophantie a affaibli les deux premières pièces mais confirmé la troisième. Ce qui reste : une trace nette d'itération structurée à l'échelle d'une session d'écriture, avec critère de décision explicite. La nuance qui demeure : la dimension 'conduite du changement' (accompagnement humain des transitions) n'est pas attestée — seul le versant itératif l'est.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "La pièce 3 a survécu sans affaiblissement : la décision éditoriale avec critère explicite clôt une boucle d'itération observable à l'échelle de la session.",
+        "prescription": "Le travail montre ici une itération structurée à l'échelle d'une session d'écriture (ouverture, délibération, décision). Pour prolonger cette compétence, un chemin possible serait de documenter les boucles plus longues — comment une version du manuel se transforme en la suivante, et quelles boucles de rétroaction y contribuent."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 3,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous pression temporelle (panne, crash, urgence) avec ses détails opérationnels précis."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 0,
+    "nonEtablies": 6,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pilotage opère essentiellement comme architecture documentaire et comme tissage entre présent et futur. L'apprenant identifie les manques de son manuel (business plan, tutoriel technique), décide où placer chaque contenu, réutilise des textes anciens pour 'avoir plus de substance' et ajoute une couche méta-pédagogique destinée aux futurs cartographes. Parallèlement, les décisions présentes (architecture transitoire, mode dégradé) sont systématiquement reliées à un futur conditionnel (pompe amorcée, business plan exécuté). La voix dominante est celle d'un concepteur qui se sait précédé d'un lecteur — chaque choix structurel anticipe sa réception. Ce qui ressort, c'est moins un pilotage d'équipe ou de crise qu'une construction patiente d'un artefact destiné à survivre à son auteur.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "Le manuel en cours est conçu avec une conscience explicite des destinataires futurs (cartographes, médiateurs, experts du prompt engineering), des composants à transmettre (JSON, prompts, cartoviewer.tsx) et des modalités d'archivage (réutilisation d'un ancien texte 'pour avoir plus de substance').",
+        "extraitVerbatim": "Il manque également un tutoriel explicite qui dit ce que le cartographe produit et comment le produire. En l'occurrence un fichier JSON, des prompts d'analyse, comment utiliser cartoviewer.tsx pour afficher la cartographie… Beaucoup de non dits qu'il faut encore que je spécifie pour conclure ce manuel.",
+        "ceQueCaDit": "L'inventaire précis des composants nécessaires à la reproductibilité par autrui constitue un marqueur central de la fiche : 'attention délibérée à la structuration de l'information pour autrui'."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Les décisions présentes sont reliées à un futur anticipé par un mécanisme de bascule précis — l'architecture transitoire vise l'amorçage qui rendra l'architecture cible possible.",
+        "extraitVerbatim": "Mais, le temps de lancement des écoles, vu que nous n'avons pas de fondation pour nous supporter financièrement, la partie Google Workspace ne sera pas obligatoire, le moteur de recherche ne sera pas proposé et RESPIRE ne se positionne pas comme tiers de confiance. Ceci est musique d'avenir, puisqu'il faut que les écoles fonctionnent, que la pompe soit amorcée, pour que le business plan puisse s'exécuter.",
+        "ceQueCaDit": "Le lien entre décision présente et futur anticipé est précisément argumenté avec un mécanisme de bascule identifié — ce que la fiche cite comme marqueur central."
+      },
+      {
+        "competence": "Agilité et conduite du changement",
+        "description": "À l'échelle de la session d'écriture, une boucle d'itération s'observe : ouverture d'une question, délibération en cours, décision argumentée avec critère explicite.",
+        "extraitVerbatim": "Je vais introduire ces réflexions dans la partie 6 du manuel du médiateur, pour équilibrer l'ensemble des 3 manuels. J'ai également inclus un ancien texte pour avoir un peu plus de substance.",
+        "ceQueCaDit": "La décision argumentée par un critère (équilibre des trois manuels) clôt une boucle d'itération observable et témoigne d'une adaptation méthodique du plan en cours d'exécution."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent silencieux sur cette feuille. La maïeutique au sens du questionnement socratique n'apparaît pas — le geste pédagogique présent est de l'ordre de l'explication structurée. L'évaluation transformative, le leadership situationnel (alternance entre prendre et lâcher le gouvernail), la gestion de crise en temps réel ne sont pas mobilisés. L'efficacité personnelle au sens du 'non stratégique argumenté' n'est pas non plus thématisée — la pause réflexive observée relève d'autres registres (métacognition, éthique). La conduite du changement au sens de l'accompagnement humain des transitions n'apparaît qu'en germe : ce sont les futurs lecteurs qui sont anticipés, pas les transitions vécues qu'ils auront à traverser.",
+    "emergencesPole": "Ce qui traverse cette feuille, c'est un pilotage qui s'opère à travers l'artefact textuel — le manuel rédigé est l'objet du pilotage, et le pilotage produit le manuel. Une seconde émergence : la temporalité longue habite chaque décision présente — l'apprenant ne pilote pas seulement le travail du jour, il inscrit ce travail dans une trajectoire (architecture transitoire → cible, futurs cartographes, business plan différé). Enfin, le pilotage se distingue ici du management classique : il opère par conception d'environnements et d'artefacts plus que par direction d'équipe.",
+    "pistes": [
+      "Pour prolonger la documentation vivante, un chemin possible serait de tester le manuel auprès d'un premier lecteur réel et de noter ce qui s'est préservé ou perdu dans la transmission.",
+      "Pour solidifier la vision stratégique, un chemin possible serait d'expliciter les signaux qui indiqueront que 'la pompe est amorcée' — afin de transformer une vision conditionnelle en stratégie déclenchable.",
+      "Pour ouvrir le dossier de la maïeutique, un chemin possible serait de concevoir, à un endroit du manuel, une situation où le futur cartographe est invité à découvrir par lui-même plutôt qu'à recevoir l'explication."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pilotage opère essentiellement comme architecture documentaire et comme tissage entre présent et futur. L'apprenant identifie les manques de son manuel (business plan, tutoriel technique), décide où placer chaque contenu, réutilise des textes anciens pour 'avoir plus de substance' et ajoute une couche méta-pédagogique destinée aux futurs cartographes. Parallèlement, les décisions présentes (architecture transitoire, mode dégradé) sont systématiquement reliées à un futur conditionnel (pompe amorcée, business plan exécuté). La voix dominante est celle d'un concepteur qui se sait précédé d'un lecteur — chaque choix structurel anticipe sa réception. Ce qui ressort, c'est moins un pilotage d'équipe ou de crise qu'une construction patiente d'un artefact destiné à survivre à son auteur.\n\n## Territoires les plus denses\n\n**Documentation vivante.** Le manuel en cours est conçu avec une conscience explicite des destinataires futurs (cartographes, médiateurs, experts du prompt engineering), des composants à transmettre et des modalités d'archivage. « Il manque également un tutoriel explicite qui dit ce que le cartographe produit et comment le produire. En l'occurrence un fichier JSON, des prompts d'analyse, comment utiliser cartoviewer.tsx pour afficher la cartographie… Beaucoup de non dits qu'il faut encore que je spécifie pour conclure ce manuel. » L'inventaire précis des composants nécessaires à la reproductibilité par autrui constitue un marqueur central de la fiche.\n\n**Vision stratégique et prospective.** Les décisions présentes sont reliées à un futur anticipé par un mécanisme de bascule précis. « Mais, le temps de lancement des écoles, vu que nous n'avons pas de fondation pour nous supporter financièrement, la partie Google Workspace ne sera pas obligatoire, le moteur de recherche ne sera pas proposé et RESPIRE ne se positionne pas comme tiers de confiance. Ceci est musique d'avenir, puisqu'il faut que les écoles fonctionnent, que la pompe soit amorcée, pour que le business plan puisse s'exécuter. » Le lien entre décision présente et futur anticipé est précisément argumenté.\n\n**Agilité et conduite du changement.** À l'échelle de la session d'écriture, une boucle d'itération s'observe : ouverture d'une question, délibération en cours, décision argumentée avec critère explicite. « Je vais introduire ces réflexions dans la partie 6 du manuel du médiateur, pour équilibrer l'ensemble des 3 manuels. J'ai également inclus un ancien texte pour avoir un peu plus de substance. » La décision argumentée par un critère clôt une boucle d'itération observable.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent silencieux sur cette feuille. La maïeutique au sens du questionnement socratique n'apparaît pas — le geste pédagogique présent est de l'ordre de l'explication structurée. L'évaluation transformative, le leadership situationnel, la gestion de crise en temps réel ne sont pas mobilisés. L'efficacité personnelle au sens du 'non stratégique argumenté' n'est pas non plus thématisée. La conduite du changement au sens de l'accompagnement humain des transitions n'apparaît qu'en germe : ce sont les futurs lecteurs qui sont anticipés, pas les transitions vécues qu'ils auront à traverser.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse cette feuille, c'est un pilotage qui s'opère à travers l'artefact textuel — le manuel rédigé est l'objet du pilotage, et le pilotage produit le manuel. Une seconde émergence : la temporalité longue habite chaque décision présente — l'apprenant ne pilote pas seulement le travail du jour, il inscrit ce travail dans une trajectoire. Enfin, le pilotage se distingue ici du management classique : il opère par conception d'environnements et d'artefacts plus que par direction d'équipe.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la documentation vivante, un chemin possible serait de tester le manuel auprès d'un premier lecteur réel et de noter ce qui s'est préservé ou perdu dans la transmission.\n- Pour solidifier la vision stratégique, un chemin possible serait d'expliciter les signaux qui indiqueront que 'la pompe est amorcée' — afin de transformer une vision conditionnelle en stratégie déclenchable.\n- Pour ouvrir le dossier de la maïeutique, un chemin possible serait de concevoir, à un endroit du manuel, une situation où le futur cartographe est invité à découvrir par lui-même plutôt qu'à recevoir l'explication.\n"
+  }
+}

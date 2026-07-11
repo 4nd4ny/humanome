@@ -1,0 +1,700 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Même si je ne décroche pas ce poste, vu mes lacunes dans le domaine technique (RAG + LangChain + Bases vectorielle), ça m'a aidé à créer un CV orienté \"Prompt Engineering\" et donné des idées sur les orientations à suivre pour mon auto-formation, dans le cadre de compétences utiles à acquérir pour créer un système de cartographie des compétences semi-automatique.",
+      "contexte": "Reformulation d'un échec probable en levier de cadrage de carrière et d'auto-formation. Activement: cadrage de l'intention, métacognition, littératie IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Ce que j'ai réfléchis comme solution à leur problème, c'est qu'il faut remettre human-in-the-loop mais surtout pas n'importe quel humain. J'ai donc ajouté dans la lettre de motivation qu'une solution élégante et pédagogique est d'inclure les étudiants dans le processus d'évaluation et passer de human-in-the-loop à student-in-the-loop.",
+      "contexte": "Recadrage radical d'un problème industriel: passage de 'qui valide l'IA?' à 'qui apprend en validant l'IA?'. Activement: cadrage de l'intention, design de problèmes (transversal P3), pensée systémique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Un étudiant qui vérifie les hallucinations d'une IA qui corrige son écriture manuscrite, c'est \"LA\" solution au problème du 90% seulement de fiabilité des systèmes automatiques actuels (Mistral, Gemini 3.1, Gpt 5.2, Sonnet 4.6) avec de l'OCR sur de l'écriture.",
+      "contexte": "Articulation d'une limite technique précise (90% fiabilité OCR) reliée à une solution architecturale humaine. Active littératie IA, pensée critique, synthèse intégrative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'OCR ne déchiffre pas des signes : il reconstruit une intentionnalité scripturale à partir de traces graphiques. Le système RAG qui indexe ces réponses ne les \"comprend\" pas : il cartographie des proximités sémantiques dans un espace vectoriel à 1536 dimensions.",
+      "contexte": "Démystification mécanique fine de l'IA: ce que fait techniquement l'OCR, ce que fait techniquement le RAG. Active littératie IA (compréhension causale du fonctionnement).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Il constitue une **médiation épistémique** qui reconfigure le triangle pédagogique classique (enseignant-savoir-apprenant) en un **tétraèdre augmenté** incluant l'artefact computationnel comme quatrième pôle actif.",
+      "contexte": "Métaphore unificatrice originale qui fusionne pédagogie, philosophie et architecture IA. Active synthèse intégrative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "En transformant du langage naturel en vecteurs, nous opérons une **perte sémantique irréversible**. La phrase \"La complexité est O(n²) car deux boucles imbriquées parcourent n éléments\" devient un point dans ℝ¹⁰²⁴. Cette réduction préserve-t-elle l'essence du raisonnement ? Partiellement. Elle capture la **proximité thématique** [...] mais efface la **structure argumentative**.",
+      "contexte": "Analyse causale fine d'une limite technique du RAG: pourquoi vectoriser dégrade la structure argumentative. Active littératie IA (compréhension du mécanisme d'échec).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "# Embedding hiérarchique multi-niveaux\nembeddings = {\n    'question': embed_local(question_text),          # Similarité fine\n    'section': embed_meso(section_thematique),       # Cohérence thématique\n    'copie': embed_global(copie_complete),           # Style cognitif global\n    'meta': embed_meta(traces_correction_eleve)      # Dimension métacognitive\n}",
+      "contexte": "Proposition technique d'architecture multi-niveaux pour un système RAG d'évaluation. Active architecture de systèmes IA, pensée computationnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Modèle augmenté avec vérification collaborative :\nÉlève produit → Système OCRise → Élève vérifie/corrige → \n→ Système suggère → Enseignant dialogue → Note co-construite → \n→ Rétroaction métacognitive → Boucle ouverte",
+      "contexte": "Conception d'un pipeline multi-acteurs avec rôles définis et flux entre composants humains et IA. Active architecture de systèmes IA, pensée systémique (boucle ouverte).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'élève devient premier correcteur de sa trace numérique. Il confronte son *intentio scribendi* (ce qu'il voulait écrire) avec l'*interpretatio machinae* (ce que la machine a lu). Cette confrontation est un **acte métacognitif pur** : \"Ai-je été clair ? Mon écriture est-elle lisible ? Ma formulation est-elle ambiguë ?\"",
+      "contexte": "Théorisation d'un acte métacognitif induit par le dispositif IA. Active métacognition (à propos de l'élève, déguisée en design pédagogique) et synergie hybride.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Mais il échouera à évaluer :\n- La **créativité démonstrative** (preuve originale mais juste)\n- La **densité argumentative** (raisonnement elliptique mais valide)\n- Les **intuitions non formalisées** (réponse juste mais mal exprimée)",
+      "contexte": "Anticipation précise des échecs structurels du système IA. Active littératie IA, synergie hybride (ce que l'IA ne peut pas faire).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "L'IA ne \"remplace\" pas le jugement humain, elle le **décharge de ses aspects mécaniques** (lecture, structuration, comparaison) pour libérer du temps sur les aspects **qualitatifs** (feedback personnalisé, discussion avec élèves en difficulté)",
+      "contexte": "Articulation explicite des forces comparatives humain-IA. Active synergie hybride (1.10) au sens strict.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Cette critique repose sur un **mythe de la pureté du jugement humain**. En réalité : L'enseignant qui corrige 1000 copies subit fatigue, biais d'ordre (les premières copies mieux corrigées que les dernières), effets de halo (bonne écriture → sur-notation)",
+      "contexte": "Démystification critique d'une position défendable (la pureté du jugement humain). Active pensée critique appliquée à un argument culturellement valorisé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "C'est ce que j'ai décrit comme le risque d'**ancrage algorithmique** : la suggestion de l'IA devient **point de départ cognitif** plutôt que **seconde opinion**.",
+      "contexte": "Invention d'un concept nommé pour décrire un biais cognitif induit par l'IA. Active pensée critique (nommer un biais), littératie IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Le système peut détecter ces sauts: distances = [cosine_distance(reponse[t], reponse[t+1]) for t in range(len(reponses)-1)]; if max(distances) > seuil_discontinuite: alerte_insight(\"Élève X : saut qualitatif détecté entre examen 3 et 4\")",
+      "contexte": "Code algorithmique appliqué à un phénomène d'apprentissage non-technique (le déclic cognitif). Active pensée computationnelle (transfert hors-info), architecture IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Synergie : Aucun de ces quatre pôles ne peut être supprimé sans effondrement du système. Sans élève : pas de production à évaluer. Sans enseignant : pas de validation éthique et pédagogique. Sans machine : retour à l'impossibilité de traiter 1000 copies avec feedback riche. Sans collectif : pas de référentiel pour situer chaque réponse.",
+      "contexte": "Modélisation systémique avec test de suppression de chaque nœud. Active pensée systémique, synergie hybride.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "C'est un système symbiotique, au sens biologique : chaque agent augmente les capacités des autres : L'élève augmente la machine (en signalant erreurs OCR, il contribue à un futur dataset de fine-tuning) - La machine augmente l'enseignant (lui fait gagner du temps, détecte patterns qu'il n'aurait pas vus) - L'enseignant augmente le collectif (en validant/corrigeant suggestions, il enrichit le corpus de référence) - Le collectif augmente l'élève (via feedback comparatif).",
+      "contexte": "Description de boucles de rétroaction vertueuses entre quatre intelligences hétérogènes. Active pensée systémique (boucles), synergie hybride (forces comparatives articulées).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Je me souviens de cette sensation que tous les projets étaient interconnectés, et que l'assemblage du tout ne pouvait se faire que simultanément. Ce qui d'un côté fait sens et d'un autre est absolument effrayant : car il n'aurait jamais été envisageable de travailler de cette manière avant l'arrivée des LLM.",
+      "contexte": "Métacognition sur sa propre architecture de pensée projet, et conscience que les LLM ont changé ses possibles cognitifs. Active métacognition, littératie IA, synergie hybride.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 18,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Je pense en avoir plus de 10 maintenant, je n'arrive même plus à me souvenir de la liste des projets interrompus. Ce sera l'occasion de remettre les priorités à plats !",
+      "contexte": "Reconnaissance d'une saturation cognitive (oubli) et décision de re-cadrage par mise à plat. Active métacognition, efficacité personnelle (P7).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 12,
+          "contexte": "Démystification d'un argument culturellement légitime (la pureté du jugement humain) en mobilisant des biais documentés (fatigue, halo, ordre). C'est une pièce où le scepticisme actif s'applique à une position que l'apprenant ne partage pas."
+        },
+        {
+          "numero": 2,
+          "pid": 13,
+          "contexte": "Invention d'un concept nommé — 'ancrage algorithmique' — pour qualifier un biais qui n'est pas dans le vocabulaire ambiant. La fiche identifie l'invention de métaphores pour nommer un biais comme trace oblique forte."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Articulation précise de ce que la vectorisation préserve et de ce qu'elle efface, posée comme question critique ('cette réduction préserve-t-elle l'essence?'). Forme de scepticisme calibré appliqué à une technique qu'il défend par ailleurs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la 'pensée critique' au sens 1.01 demande davantage qu'une simple analyse argumentée — il faut un doute méthodique en action, calibré, idéalement appliqué à ses propres idées. La feuille porte un texte philosophique long qui pourrait n'être qu'une démonstration éloquente sans véritable mouvement critique. Pourtant la pièce 2 (l'invention d''ancrage algorithmique') me force à reconnaître un acte de nomination conceptuelle d'un biais — exactement la trace oblique que la fiche décrit. La pièce 1 me résiste aussi: l'apprenant ne se contente pas de défendre l'IA, il démonte un contre-argument culturellement attendu en mobilisant des biais précis. La pièce 3 reste plus ambivalente: la question 'préserve-t-elle l'essence?' est articulée mais pourrait être rhétorique. Ce qui reste faible: le doute appliqué aux propres idées de l'apprenant au moment où il les formule (forme la plus avancée) n'est pas clairement présent.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'invention d'un concept nommé pour un biais cognitif spécifique à l'IA est précisément la trace oblique identifiée par la fiche." },
+            { "pieceId": 1, "motifResistance": "La démystification mobilise des mécanismes concrets (fatigue, biais d'ordre, halo) — c'est de la pensée critique structurée, pas une opinion." },
+            { "pieceId": 3, "motifResistance": "La formulation est une question authentique avec réponse nuancée ('Partiellement'), pas une rhétorique fermée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces trois pièces avec méfiance envers ma propre lecture. Sur la pièce 2 ('ancrage algorithmique'), je teste l'attaque (d) — glissement lexical: l'apprenant utilise-t-il un mot savant sans charge sémantique? Non — il définit précisément le mécanisme (suggestion qui devient point de départ cognitif), c'est bien un acte de conceptualisation. Sur la pièce 1, je teste (e) — surinterprétation pédagogique: ai-je chargé cette démystification d'une intention critique qu'elle ne porte pas? Le passage mobilise effectivement des biais cognitifs documentés et conclut contre une position défendable, l'attaque ne tient pas. Sur la pièce 3, je teste (f) — récit performatif: l'apprenant raconte-t-il qu'il doute sans réellement douter? Le 'partiellement' nuance authentiquement, la pièce est affaiblie mais retenue car elle reste un acte critique en contexte de défense globale du système.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le concept 'ancrage algorithmique' est défini par son mécanisme (suggestion → point de départ vs seconde opinion). C'est une conceptualisation, pas du vocabulaire activé sans charge." },
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Les biais mobilisés (fatigue, halo, biais d'ordre) sont des références cognitives documentées, pas projetées sur le texte." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce reste articulée mais s'inscrit dans une défense globale du système RAG: le doute appliqué est partiel, plus rhétorique que méthodique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à nier qu'un texte philosophique long et défensif puisse manifester une pensée critique authentique au sens de la fiche. Deux pièces m'ont forcé à reconnaître autre chose: l'invention d'un concept nommé pour un biais cognitif spécifique à l'IA, et la démystification structurée d'un argument que l'apprenant pourrait avoir intérêt à laisser intact. La troisième pièce s'est affaiblie sous la présomption de sycophantie — elle reste un acte critique mais inscrit dans une posture globalement défensive. Ce qui en résulte: la pensée critique se manifeste dans ce texte par la capacité à nommer ce qui ne va pas dans son propre dispositif et dans les contre-arguments. Reste à explorer: le doute appliqué aux idées au moment où elles se forment, signal le plus avancé de la fiche, n'est pas clairement visible ici.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 confirme deux pièces (invention conceptuelle 'ancrage algorithmique', démystification structurée du mythe de la pureté humaine) et en affaiblit une.",
+        "prescription": "Dans ce pôle, le travail montre un acte de nomination d'un biais propre à l'IA. Pour approfondir, un chemin possible serait de tourner cette même posture critique vers les concepts produits dans le présent texte (médiation épistémique, tétraèdre, sympoièse) au moment où ils émergent."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Cadrage rétrospectif: l'objectif initial 'décrocher le poste' est requalifié en 'créer un CV orienté Prompt Engineering' et 'définir des orientations d'auto-formation'. L'objectif lui-même est transformé."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Recadrage radical: le problème n'est plus 'comment automatiser la correction?' mais 'qui doit valider l'IA?' avec réponse non triviale (l'étudiant). La nature de ce qu'on cherche change."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont du pivotement opportuniste ('comme je n'aurai pas le poste, je vais transformer ça en opportunité') plutôt qu'un véritable cadrage qui interroge l'objectif. La pièce 1 pourrait être une rationalisation post-hoc. Pourtant la pièce 2 me résiste: la transformation 'human-in-the-loop' → 'student-in-the-loop' n'est pas un changement de périmètre, c'est un changement de la nature même de qui doit faire quoi dans le système. La pièce 1 me résiste aussi modérément: l'apprenant nomme explicitement deux objectifs nouveaux et reliés à un troisième (créer un système de cartographie semi-automatique), c'est une articulation rétrospective construite. Ce qui reste explicitement faible: pas de cadrage récursif ('est-ce que je cadre bien?'), pas d'interrogation préalable avant l'action.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le passage de 'human-in-the-loop' à 'student-in-the-loop' transforme la nature de l'objet recherché, pas seulement son périmètre." },
+            { "pieceId": 1, "motifResistance": "L'apprenant transforme une candidature qu'il anticipe perdante en levier d'auto-formation et de projet personnel, c'est un recadrage actif." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces avec scepticisme renforcé. Sur la pièce 2, je teste l'attaque (b) — confusion de compétence: ne s'agit-il pas plutôt de design de problèmes (3.03) puisque l'apprenant *crée* un problème nouveau ('comment intégrer l'étudiant?') plutôt que de reformuler un problème existant? L'attaque est sérieuse: la frontière 1.02/3.03 est précisément définie dans la fiche. Cependant, le problème initial existe (l'EPFL veut valider l'IA via human-in-the-loop), et l'apprenant *reformule* ce problème en changeant qui est l'humain — c'est bien 1.02. Sur la pièce 1, je teste (g) — mouvement-vers: l'apprenant n'a pas encore obtenu le poste ni structuré son auto-formation, le cadrage est seulement annoncé. L'attaque touche mais ne disqualifie pas: le recadrage textuel est bien réalisé même si ses effets restent à venir.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Frontière 1.02/3.03 délicate. Le problème EPFL préexiste, donc c'est un recadrage (1.02) plus qu'une création (3.03), mais la frontière est fine et la pièce vaut aussi pour 3.03." },
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le cadrage est articulé textuellement mais ses conséquences pratiques (auto-formation effective, CV envoyé) restent en projet." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces un opportunisme rétrospectif et une confusion avec le design de problèmes. Deux éléments m'ont retenu: le passage 'human-in-the-loop' → 'student-in-the-loop' qui transforme la nature de l'objet, et la requalification d'une candidature anticipée perdante en levier formatif. Les deux pièces s'affaiblissent légèrement — l'une frôle la compétence voisine 3.03, l'autre reste en projet. Mais elles tiennent: ce sont bien des actes de cadrage où l'objectif lui-même bouge. Ce qui en résulte: le cadrage de l'intention apparaît ici sous sa forme rétrospective (transformer un échec anticipé en orientation) et sous sa forme stratégique (changer qui doit faire quoi dans un système). Pour la suite, le cadrage récursif — questionner sa propre manière de cadrer — reste un territoire ouvert.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.62,
+        "motif": "Le temps 2 affaiblit les deux pièces mais aucune ne tombe; deux actes de cadrage tiennent, l'un rétrospectif, l'autre stratégique.",
+        "prescription": "Dans ce pôle, le travail montre la capacité à transformer un objectif initial en plusieurs objectifs reliés. Pour ouvrir le terrain, un chemin possible serait de noter à voix haute le moment où la nature du problème bouge, plutôt que de le constater rétrospectivement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Métaphore unificatrice originale (tétraèdre augmenté) qui fusionne pédagogie, géométrie et architecture IA. Insight émergent qui n'existe dans aucune source isolée."
+        },
+        {
+          "numero": 2,
+          "pid": 16,
+          "contexte": "Synthèse des quatre intelligences (élève, enseignant, machine, collectif) en système symbiotique où chacune augmente les autres. Croisement biologie/IA/pédagogie."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Synthèse 'human-in-the-loop' (ingénierie) + pédagogie active = student-in-the-loop, concept inédit produit par croisement de domaines."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ce texte philosophique long est de la compilation érudite plus que de la synthèse au sens strict — du collage de références (Simondon, Einstein, biomimétisme, RAG, embeddings) sans véritable insight émergent. Cette présomption est forte parce que le risque de récitation littéraire est élevé dans ce registre. Pourtant la pièce 1 me résiste: la métaphore du tétraèdre n'est pas dans les sources, c'est une construction pour nommer l'effet d'un quatrième pôle actif. La pièce 3 me résiste aussi: 'student-in-the-loop' est un mot-valise produit par croisement de deux univers (ingénierie IA et pédagogie active) qui n'existait pas avant cette feuille. La pièce 2 reste plus ambivalente: la métaphore symbiotique est forte mais s'inscrit dans une tradition (autopoiesis, Margulis) que l'apprenant pourrait citer plutôt qu'inventer.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le 'tétraèdre augmenté' fusionne géométrie et triangle pédagogique pour nommer un effet spécifique — pas dans les sources connues." },
+            { "pieceId": 3, "motifResistance": "Le néologisme 'student-in-the-loop' produit un concept actionnable qui n'existait dans aucune source isolée." },
+            { "pieceId": 2, "motifResistance": "La structure 'chacun augmente les autres' avec quatre boucles précises produit un insight systémique au-delà des composants." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces avec scepticisme. Sur la pièce 1 (tétraèdre), je teste (d) — glissement lexical: l'apprenant emprunte-t-il un mot savant à la géométrie sans charge sémantique? Non — il définit explicitement ce que le quatrième pôle apporte (médiation épistémique). Sur la pièce 3 (student-in-the-loop), je teste (b) — confusion de compétence: ne serait-ce pas plutôt 3.03 (design de problème) ou 3.01 (créativité radicale)? Le concept est un acte de synthèse (assemblage de deux traditions: HIL d'ingénierie + pédagogie active) avant d'être un problème nouveau, donc 1.03 tient. Sur la pièce 2 (symbiose), je teste (h) — faux positif de fiche: 'compilation et accumulation ne sont pas des synthèses'. Le passage liste quatre augmentations dans un ordre structuré mais l'insight émergent (les quatre forment un tout supérieur) tient.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le tétraèdre est défini par ce qu'il ajoute (médiation épistémique du 4e pôle), pas seulement importé comme image." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le néologisme est avant tout un acte de croisement de deux traditions; le problème qu'il pose est dérivé de cette synthèse." },
+            { "pieceId": 2, "attaqueDominante": "h", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La structure énumérative pourrait évoquer la compilation, mais les quatre boucles tissées ensemble produisent un insight systémique (symbiose distribué) absent de chaque ligne isolée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ce texte philosophique une érudition de surface plutôt qu'une synthèse au sens strict. Trois éléments m'ont forcé à reconnaître autre chose: une métaphore unificatrice originale (tétraèdre augmenté), un néologisme conceptuel (student-in-the-loop) produit par croisement de deux univers, et une structuration symbiotique tissant quatre boucles entre intelligences hétérogènes. La pièce 2 s'affaiblit légèrement (structure énumérative), les deux autres tiennent en force. Ce qui en résulte: la synthèse intégrative se manifeste ici par des actes de nomination qui n'existaient pas avant l'écriture du texte — production conceptuelle, pas compilation. Reste à voir si ces concepts seront réutilisés et stabilisés, ou s'ils resteront circonscrits à cette feuille.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 2 confirme deux pièces (tétraèdre, student-in-the-loop) en force et en affaiblit une (symbiose) sans la disqualifier.",
+        "prescription": "Dans ce pôle, le travail montre la production de concepts qui n'existaient avant l'écriture (tétraèdre augmenté, student-in-the-loop). Pour prolonger cette dynamique, un chemin possible serait de rejouer ces concepts sur d'autres situations pour observer leur portée hors du domaine où ils sont nés."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Reconnaissance explicite de ses lacunes techniques (RAG, LangChain, bases vectorielles) avec décision stratégique d'auto-formation. Calibration de ses zones d'ignorance."
+        },
+        {
+          "numero": 2,
+          "pid": 17,
+          "contexte": "Observation rétrospective sur sa propre manière de penser projets ('sensation que tous les projets étaient interconnectés'), avec conscience que les LLM ont changé sa cognition. Métacognition sur la transformation de ses processus."
+        },
+        {
+          "numero": 3,
+          "pid": 18,
+          "contexte": "Reconnaissance d'une saturation cognitive ('je n'arrive même plus à me souvenir') comme déclencheur d'une décision de mise à plat. Observation d'un état cognitif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que les mentions de lacunes et d'oublis sont des bilans descriptifs ('j'ai progressé', 'j'ai oublié') plutôt que de la métacognition au sens strict — la fiche est explicite: l'objet de la réflexion doit être *le processus cognitif lui-même*. La pièce 1 me résiste partiellement: l'identification précise des trois domaines manquants (RAG, LangChain, bases vectorielles) est plus qu'un bilan, c'est une calibration de zones d'ignorance. La pièce 2 me résiste plus fort: 'sensation que tous les projets étaient interconnectés' + 'il n'aurait jamais été envisageable de travailler de cette manière avant l'arrivée des LLM' = observation de sa propre manière de penser et conscience que cette manière a changé. C'est typiquement de la métacognition (réfléchir sur la manière dont on réfléchit). La pièce 3 reste plus faible: l'oubli est un état cognitif mais 'je n'arrive plus à me souvenir' est plus un constat qu'une observation de processus.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'apprenant observe sa propre manière de gérer simultanément des projets multiples et nomme le changement induit par les LLM — métacognition sur ses processus." },
+            { "pieceId": 1, "motifResistance": "L'identification précise des zones d'ignorance (trois domaines techniques nommés) est une calibration, pas un bilan." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 2, je teste (f) — récit performatif: l'apprenant raconte-t-il qu'il pense différemment sans le montrer? Le détail est précis (10+ projets interconnectés à assembler simultanément), c'est une observation de structure cognitive, pas une déclaration. Sur la pièce 1, je teste (g) — mouvement-vers: l'apprenant nomme ses lacunes mais l'auto-formation n'est pas commencée; il est en route vers la compétence, pas dans son exercice. L'attaque touche: la calibration est posée mais la métacognition active sur la stratégie d'apprentissage reste à venir. La pièce s'affaiblit mais reste car nommer les zones d'ignorance avec précision est en soi un acte métacognitif.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le détail (10+ projets, simultanéité, comparaison avant/après LLM) montre une observation incarnée de ses processus, pas une simple narration." },
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Calibration des zones d'ignorance bien posée, mais la mise en pratique reste annoncée plus que vécue dans la feuille." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à réduire ces traces à des bilans ('j'ai progressé', 'j'ai oublié'). Deux pièces m'ont forcé à reconnaître autre chose: l'observation que ses processus de pensée projet ont changé avec les LLM (avec comparaison avant/après et incarnation dans des détails concrets), et la calibration précise de zones d'ignorance techniques. La seconde s'affaiblit légèrement — l'apprenant nomme ce qu'il ne sait pas mais la conséquence (auto-formation) reste annoncée. La première tient en force: c'est une métacognition sur la structure même de sa cognition projet, avec conscience que cette structure est conditionnée par un outil. Pour la suite, observer la métacognition au moment où elle se fait — pas seulement après coup — reste un territoire ouvert.",
+          "confianceFinale": 0.70
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.70,
+        "motif": "Le temps 2 confirme une pièce en force (observation de ses processus de pensée projet) et en affaiblit une (calibration des lacunes).",
+        "prescription": "Dans ce pôle, le travail montre la conscience que les outils transforment la cognition (avant/après LLM). Pour ouvrir, un chemin possible serait de noter quand un projet 'interconnecté' produit une décision spécifique, plutôt que de décrire seulement la sensation d'interconnexion."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Conception d'un pipeline en boucle ouverte avec rétroactions explicites entre acteurs (élève vérifie → système suggère → enseignant dialogue → rétroaction). Boucles de feedback structurelles."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "Modélisation systémique avec test de robustesse (suppression de chaque nœud → effondrement). Identification des dépendances structurelles entre quatre intelligences."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Description explicite de quatre boucles vertueuses inter-agents (élève↔machine, machine↔enseignant, enseignant↔collectif, collectif↔élève). Modélisation et non simple constat."
+        },
+        {
+          "numero": 4,
+          "pid": 17,
+          "contexte": "Reconnaissance que 'l'assemblage du tout ne pouvait se faire que simultanément' — perception systémique des interdépendances de projet, avec effet émergent (LLM les rend pensables)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des descriptions complexes ('tout est lié', 'il y a plein d'acteurs') sans véritable modélisation au sens 1.05 — la fiche est claire: il faut nommer *quels* liens, dans *quelle* direction, avec *quels* effets. Pourtant la pièce 3 me résiste fortement: les quatre boucles sont nommées dans leurs deux sens (l'élève augmente la machine *via signalement OCR* contribuant à un *dataset de fine-tuning*; la machine augmente l'enseignant *via gain de temps et détection de patterns*; etc.). C'est précisément la modélisation que la fiche exige. La pièce 2 me résiste aussi: le test de suppression de chaque nœud est une technique systémique classique pour identifier les leviers structurels. La pièce 1 reste plus standard (description d'un pipeline) mais les flèches récursives ('boucle ouverte') et la rétroaction métacognitive activent bien la pensée systémique. La pièce 4 reste plus faible: 'sensation' d'interconnexion + 'simultané' est plus phénoménologique que modélisant.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Quatre boucles nommées avec mécanisme précis dans chaque sens — modélisation, pas constat." },
+            { "pieceId": 2, "motifResistance": "Test de suppression nœud par nœud avec conséquence systémique anticipée — méthode systémique classique." },
+            { "pieceId": 1, "motifResistance": "Le pipeline contient des rétroactions explicites et une 'boucle ouverte', pas une chaîne linéaire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 3, je teste (h) — faux positif de fiche: la fiche met en garde contre 'tout est lié'. Or les quatre liens sont précisés avec mécanisme et direction, l'attaque ne tient pas. Sur la pièce 2, je teste (d) — glissement lexical: 'symbiotique', 'effondrement du système' sont-ils du vocabulaire sans substance? La structure (test de suppression de chaque nœud) est opérationnelle, l'attaque ne tient pas. Sur la pièce 1, je teste (b) — confusion de compétence: ce pipeline relève-t-il plutôt de 1.07 (architecture)? La frontière existe mais la dimension boucle (avec rétroaction métacognitive) est typiquement systémique. La pièce est affaiblie car elle vaut aussi pour 1.07.",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "h", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Les quatre boucles spécifient mécanisme et direction, ce n'est pas du 'tout est lié'." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le test de suppression nœud-par-nœud est une démarche systémique, pas une métaphore lexicale." },
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Frontière 1.05/1.07: le pipeline relève des deux mais la dimension boucle ouverte/rétroaction métacognitive penche vers 1.05." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ce texte des descriptions de complexité plutôt qu'une modélisation systémique. Trois pièces m'ont forcé à reconnaître autre chose: quatre boucles nommées avec mécanisme et direction dans chaque sens, un test de robustesse par suppression de nœuds, et un pipeline en boucle ouverte avec rétroaction explicite. La quatrième pièce (sensation d'interconnexion) reste plus phénoménologique et n'a pas été retenue dans le tribunal. Ce qui en résulte: la pensée systémique se manifeste ici dans la production de modèles opérationnels (qui agit sur quoi, dans quel sens, avec quelle conséquence si supprimé) — pas seulement dans la reconnaissance que des éléments interagissent. Pour la suite, observer une optimisation locale qui dégrade le système global serait un terrain encore peu exploré dans cette feuille.",
+          "confianceFinale": 0.80
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 0,
+        "confiance": 0.80,
+        "motif": "Le temps 2 confirme deux pièces en force (quatre boucles, test de suppression) et en affaiblit une (pipeline) sans la disqualifier.",
+        "prescription": "Dans ce pôle, le travail montre des modèles à boucles explicites avec mécanismes nommés. Pour prolonger, un chemin possible serait d'identifier un cas où une optimisation locale (par exemple, accélérer l'OCR) dégrade un effet systémique attendu (par exemple, la métacognition de l'élève)."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Démystification mécanique de l'OCR ('reconstruit une intentionnalité scripturale à partir de traces graphiques') et du RAG ('cartographie des proximités sémantiques dans un espace vectoriel à 1536 dimensions'). Compréhension causale du fonctionnement."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Analyse fine d'une limite structurelle des embeddings: la vectorisation préserve la proximité thématique mais efface la structure argumentative. Explication causale du pourquoi l'IA échoue."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Citation chiffrée précise de la fiabilité OCR (90%) sur l'écriture manuscrite, avec liste des modèles actuels (Mistral, Gemini 3.1, GPT 5.2, Sonnet 4.6). Démystification du hype technique."
+        },
+        {
+          "numero": 4,
+          "pid": 10,
+          "contexte": "Anticipation des échecs structurels de l'IA (créativité démonstrative, densité argumentative, intuitions non formalisées). Prédiction proactive des comportements du modèle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces utilisent du vocabulaire IA (embedding, RAG, OCR, vectorisation) sans véritable compréhension causale — la fiche signale précisément ce risque: 'réutiliser le mot hallucination sans expliquer le mécanisme n'est pas de la littératie'. Pourtant la pièce 1 me résiste fortement: elle distingue ce que l'OCR fait *réellement* (reconstruction d'intentionnalité scripturale) de ce qu'on imagine qu'il fait, et même chose pour le RAG. La pièce 2 me résiste: 'préserve la proximité thématique mais efface la structure argumentative' est une explication causale d'une limite. La pièce 4 me résiste: l'apprenant prédit ce que l'IA ne pourra pas évaluer (créativité démonstrative, densité argumentative) avec un raisonnement causal sur pourquoi. La pièce 3 reste plus faible — la mention 90% est de la donnée, et la liste de modèles relève plus du nom-dropping que de la compréhension mécanique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distinction nette entre apparence (lire, comprendre) et mécanisme réel (reconstruction, cartographie de proximités) — compréhension causale." },
+            { "pieceId": 2, "motifResistance": "Explication de pourquoi la vectorisation échoue à préserver la structure argumentative — mécanisme nommé." },
+            { "pieceId": 4, "motifResistance": "Prédiction proactive des échecs structurels avec raisonnement causal sur le pourquoi." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec scepticisme. Sur la pièce 1, je teste (d) — glissement lexical: 'intentionnalité scripturale', 'espace vectoriel à 1536 dimensions' sont-ils du vocabulaire sans substance? Le second est techniquement précis (la dimension réelle de plusieurs modèles d'embedding); le premier est philosophique mais correctement appliqué (l'OCR doit inférer l'intention du scripteur). Pièce confirmée. Sur la pièce 2, je teste (e) — surinterprétation: ai-je projeté une compréhension causale là où il y a juste une opposition rhétorique? Non, le mécanisme est bien décrit: 1024 dimensions capturent la similarité de surface, pas l'ordre argumentatif. Sur la pièce 4, je teste (f) — récit performatif: l'apprenant raconte-t-il une prédiction sans l'argumenter? Les trois échecs sont justifiés implicitement par les limites du système (similarité ≠ jugement, pattern matching ≠ reconnaissance d'originalité). Pièce affaiblie car le raisonnement causal est implicite, mais elle tient.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Les dimensions techniques (1536, espaces vectoriels) sont précises et le concept d'intentionnalité scripturale est correctement appliqué à la tâche OCR." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le mécanisme de la perte sémantique est explicité (similarité ≠ structure argumentative)." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Les trois échecs anticipés sont justes mais le raisonnement causal sur le pourquoi reste implicite." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ce texte du vocabulaire IA importé sans compréhension. Trois pièces m'ont forcé à reconnaître autre chose: une démystification mécanique fine de l'OCR et du RAG (avec distinction apparence/mécanisme), une explication causale précise des limites des embeddings, et une prédiction argumentée d'échecs structurels. La pièce sur les chiffres de fiabilité reste plus faible et n'a pas été retenue. Ce qui en résulte: la littératie IA se manifeste ici par la capacité à expliquer *pourquoi* l'IA échoue dans certains contextes, en s'appuyant sur les mécanismes techniques sous-jacents (vectorisation, dimensionnalité, pattern matching). C'est précisément ce que la fiche distingue de la simple récitation lexicale. Pour prolonger, observer un comportement IA inattendu en formulant des hypothèses techniques testables serait un autre territoire.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "Le temps 2 confirme deux pièces en force (démystification OCR/RAG, mécanisme de perte sémantique) et en affaiblit une (anticipation d'échecs) sans la disqualifier.",
+        "prescription": "Dans ce pôle, le travail montre la capacité à expliquer pourquoi l'IA échoue dans certains contextes (vectorisation, pattern matching). Pour prolonger, un chemin possible serait de formuler des hypothèses techniques avant de tester un comportement IA, et d'observer ce que la prédiction révèle des limites du modèle interne."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Spécification technique d'une architecture d'embedding hiérarchique multi-niveaux (question/section/copie/meta) avec rôles différenciés. Conception, pas utilisation."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Description d'un pipeline avec composants (OCR, RAG, élève, enseignant) et flux (où l'output de l'un alimente l'input de l'autre). Architecture d'un système hybride documentée."
+        },
+        {
+          "numero": 3,
+          "pid": 14,
+          "contexte": "Spécification d'un module de détection de saut qualitatif intégré à un pipeline de suivi longitudinal. Composant nommé avec déclencheur et action."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des bouts de pseudo-code utilisateur (lecteur de la stack technique RAG/embedding) plutôt qu'une architecture au sens 1.07 — la fiche exige qu'un tiers puisse comprendre et maintenir le système. Pourtant la pièce 1 me résiste: l'architecture multi-niveaux (question/section/copie/meta) précise les rôles de chaque niveau (similarité fine, cohérence thématique, style cognitif global, métacognition). C'est de la conception, pas de l'utilisation. La pièce 2 me résiste: le pipeline détaille les composants et le flux entre eux (élève → OCR → élève (vérification) → suggestion → enseignant → note → rétroaction). La pièce 3 me résiste moins: c'est un script court qui pourrait être un usage routinier de cosine_distance, mais le seuil de discontinuité et l'alerte construite forment un module d'architecture monitoring.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Hiérarchie de quatre niveaux d'embedding avec rôle pédagogique nommé pour chacun — conception, pas usage." },
+            { "pieceId": 2, "motifResistance": "Pipeline multi-acteurs avec ordre des appels et où l'output d'un acteur alimente l'input d'un autre." },
+            { "pieceId": 3, "motifResistance": "Module de détection avec seuil paramétré et alerte routée vers une action pédagogique — composant identifiable." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (a) — insuffisance probatoire: le bout de code est-il trop court, sans dispositif, non vérifiable? Quatre niveaux annoncés mais les fonctions sous-jacentes (embed_local, embed_meso, embed_global, embed_meta) sont pseudo-code, non implémentées. L'attaque touche: c'est une *esquisse* architecturale, pas une architecture maintenue. Pièce affaiblie. Sur la pièce 2, je teste (b) — confusion de compétence: ce pipeline relève-t-il plutôt de 1.05 (systémique) ou 1.10 (synergie)? Il vaut pour les trois, mais la description en termes de composants/connexions/rôles est typiquement 1.07. Pièce affaiblie car polysémique. Sur la pièce 3, je teste (a) — insuffisance: le module est court, non testé. L'attaque tient: c'est une idée d'architecture, pas une architecture vérifiable. Pièce affaiblie mais retenue car elle illustre une pratique de pensée architecturale.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Esquisse architecturale précise dans ses niveaux et rôles, mais sans implémentation maintenable par un tiers." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Pipeline polysémique (1.05/1.07/1.10). La description en composants/flux/rôles tient pour 1.07 mais ne lui appartient pas exclusivement." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Module bref mais identifiable (seuil, alerte, action) — illustration de pensée architecturale plus que système maintenu." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces extraits du pseudo-code décoratif plutôt qu'une architecture véritable. Trois pièces m'ont forcé à reconnaître autre chose: une hiérarchie multi-niveaux d'embedding avec rôles différenciés, un pipeline multi-acteurs avec flux entre composants, et un module de détection avec seuil paramétré. Toutes les trois s'affaiblissent au second temps — ce sont des esquisses architecturales, pas des architectures éprouvées et maintenues par un tiers. Mais elles tiennent: le mode de pensée est architectural, même si les objets restent au stade conceptuel. Ce qui en résulte: l'architecture de systèmes IA apparaît dans ce texte sous une forme prospective (concevoir mentalement un système à plusieurs niveaux qui n'est pas encore construit). Pour prolonger, observer comment ces composants se comportent à l'implémentation, ou les ajuster en confrontation avec des contraintes réelles, serait un terrain encore ouvert.",
+          "confianceFinale": 0.58
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.58,
+        "motif": "Le temps 2 affaiblit les trois pièces mais aucune ne tombe: les esquisses architecturales sont consistantes en mode de pensée, faibles en éprouvé.",
+        "prescription": "Dans ce pôle, le travail montre une pensée architecturale qui esquisse des composants, flux et rôles. Pour prolonger, un chemin possible serait de prendre une de ces esquisses (par exemple le pipeline élève-OCR-enseignant) et de la confronter à une implémentation minimale, pour voir où le modèle conceptuel résiste ou plie."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au dialogue IA avancé et à l'orchestration multi-agents dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète où la formulation d'un prompt a été itérée stratégiquement, ou où plusieurs rôles différenciés ont été orchestrés dans un même échange."
+      }
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 14,
+          "contexte": "Application d'une logique algorithmique (cosine_distance, seuil de discontinuité) à un phénomène d'apprentissage humain (le saut qualitatif cognitif). Transfert hors-info au sens strict."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Décomposition structurée d'un processus pédagogique en étapes séquentielles avec rétroaction. Application de la logique de flow à un acte non technique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que les bouts de code dans cette feuille sont des illustrations techniques (pseudo-code RAG) et non un véritable transfert de la logique computationnelle hors de l'informatique — la fiche est explicite: 'écrire du code, suivre des étapes, ou utiliser un outil d'automatisation ne suffit PAS'. La pièce 1 me résiste: le calcul de distance cosinus est appliqué à un phénomène d'apprentissage (le déclic cognitif modélisé comme transition de phase), c'est précisément le transfert de la fiche. La pièce 2 reste plus standard: décrire un pipeline pédagogique en étapes séquentielles peut être de la modélisation, mais ce n'est pas explicitement de la logique conditionnelle ou de l'arbre de décision appliqué à du non-technique. Présomption durcie: la pièce 2 tombe; seule la pièce 1 résiste vraiment.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Algorithme (cosine_distance + seuil) explicitement transféré à un phénomène cognitif humain (saut qualitatif d'apprentissage)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec scepticisme. Je teste (b) — confusion de compétence: ce transfert relève-t-il plutôt de 1.05 (systémique avec phase transitions) ou de 1.06 (littératie IA)? La fiche 1.09 exige explicitement le transfert *hors* de l'informatique. Or l'apprenant prend un outil computationnel (cosine_distance) et le projette sur un phénomène cognitif/pédagogique (l'apprentissage humain). C'est précisément ce que la fiche réclame. Pièce confirmée. Je teste aussi (e) — surinterprétation: ai-je vu un transfert là où il y a juste un usage technique pour traiter des données pédagogiques? Non, le concept même (saut qualitatif = transition de phase = discontinuité vectorielle) est une analogie computationnelle structurante appliquée à un phénomène cognitif.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le calcul algorithmique est appliqué à un phénomène cognitif (déclic d'apprentissage), avec analogie structurante (transition de phase). Transfert hors-informatique au sens strict." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces extraits du pseudo-code utilitaire plutôt qu'un transfert au sens 1.09. Une pièce m'a forcé à reconnaître autre chose: l'application d'une logique algorithmique (distance cosinus + seuil de discontinuité + alerte) à un phénomène humain (le déclic d'apprentissage modélisé comme transition de phase). Le seconde pièce, celle du pipeline pédagogique, n'a pas tenu sous la présomption d'absence — c'est une description séquentielle, pas un transfert de logique conditionnelle. Ce qui en résulte: la pensée computationnelle se manifeste ici dans un acte précis — projeter un calcul d'espace vectoriel sur un phénomène cognitif. Pour prolonger, observer où cette logique algorithmique pourrait s'appliquer à d'autres dimensions non techniques (relations, décisions de carrière, gestion de projet) serait un terrain potentiel.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.65,
+        "motif": "Le temps 2 confirme la pièce 1 en force comme transfert algorithmique vers un phénomène cognitif; la pièce 2 n'a pas résisté au temps 1.",
+        "prescription": "Dans ce pôle, le travail montre l'application d'un outil algorithmique à un phénomène d'apprentissage humain. Pour prolonger, un chemin possible serait d'identifier où une structure conditionnelle (si... alors... sinon) pourrait éclairer une décision non technique, comme un arbitrage de carrière ou une dynamique relationnelle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Articulation explicite des forces comparatives: l'IA décharge le mécanique (lecture, structuration, comparaison), l'humain garde le qualitatif (feedback personnalisé, discussion). Synergie au sens strict de la fiche."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Anticipation des limites structurelles de l'IA (créativité démonstrative, densité argumentative, intuitions non formalisées) qui restent du domaine humain. Lucidité bidirectionnelle."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Description des quatre intelligences avec rôle spécifique de chacune et raison pour laquelle aucune n'est substituable. Articulation systémique des complémentarités."
+        },
+        {
+          "numero": 4,
+          "pid": 2,
+          "contexte": "Conception d'un workflow hybride où l'étudiant occupe un rôle qu'aucun autre acteur ne peut occuper (vérifier l'OCR de sa propre écriture). Répartition stratégique des rôles dans le système."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces décrivent une utilisation collaborative humain-IA ('on travaille ensemble') plutôt que la synergie au sens strict — la fiche exige une articulation explicite des forces comparatives ('ce que l'IA fait de mieux et pourquoi'). Pourtant la pièce 1 me résiste fortement: l'apprenant dit littéralement que l'IA décharge le mécanique pour libérer l'humain sur le qualitatif, avec exemples concrets. C'est l'articulation que la fiche réclame. La pièce 3 me résiste aussi: les quatre intelligences sont caractérisées (singulière/incarnée pour l'élève, experte/empathique pour l'enseignant, computationnelle/scalable pour la machine, émergente/statistique pour le collectif) — articulation explicite des forces. La pièce 2 me résiste plus mollement: les limites de l'IA sont nommées mais le 'ce que l'humain fait mieux et pourquoi' n'est pas explicitement repris. La pièce 4 me résiste car le 'student-in-the-loop' n'est pas une simple délégation, c'est l'identification d'un rôle (vérifier sa propre trace numérique) que ni l'enseignant ni la machine ne peuvent occuper aussi bien.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Articulation directe: ce que l'IA fait mieux (mécanique), ce que l'humain garde (qualitatif), avec exemples concrets." },
+            { "pieceId": 3, "motifResistance": "Quatre intelligences caractérisées par leur force spécifique avec raison de non-substitution." },
+            { "pieceId": 4, "motifResistance": "Identification d'un rôle stratégique pour l'étudiant fondé sur sa singularité (c'est sa propre trace)." },
+            { "pieceId": 2, "motifResistance": "Liste des échecs structurels de l'IA avec implicite que l'humain garde ces domaines." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (e) — surinterprétation: ai-je projeté une synergie là où il y a juste un discours d'optimisation? Non, l'apprenant nomme explicitement le mécanisme (déchargement) et l'effet (libération de temps qualitatif). Sur la pièce 3, je teste (b) — confusion de compétence: relève-t-elle plutôt de 1.05 (systémique)? Elle vaut pour les deux mais la dimension forces comparatives articulées est typiquement 1.10. Sur la pièce 4, je teste (b) également: relève-t-elle plutôt de 1.02 (cadrage)? Elle vaut pour les deux mais la dimension répartition des rôles humain-IA est typiquement 1.10. Sur la pièce 2, je teste (f) — récit performatif: 'l'IA échouera à évaluer X' est-il une déclaration ou un acte synergique? L'attaque touche: c'est une liste sans articulation explicite du rôle humain en miroir. Pièce affaiblie.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Mécanisme (déchargement du mécanique) et effet (libération du qualitatif) explicitement nommés avec exemples." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Les forces de chacune sont articulées et leur non-substitution justifiée, ce qui dépasse la simple modélisation systémique." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Polysémie 1.02/1.10. La dimension répartition de rôles fonde 1.10, mais le geste premier est de cadrage." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Liste des échecs IA précieuse mais sans articulation explicite du miroir humain — synergie implicite." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ce texte une simple utilisation collaborative de l'IA plutôt qu'une synergie articulée. Quatre pièces m'ont forcé à reconnaître autre chose: l'articulation directe du déchargement mécanique vs qualitatif, la caractérisation des quatre intelligences avec leur non-substituabilité, la conception d'un rôle stratégique pour l'étudiant fondé sur sa singularité (c'est sa trace), et l'anticipation des échecs structurels de l'IA. Les deux dernières s'affaiblissent — l'une par polysémie 1.02/1.10, l'autre par manque de miroir humain explicite. Les deux premières tiennent en force. Ce qui en résulte: la synergie hybride se manifeste ici par la production d'un modèle où humain et IA ne sont pas en concurrence mais en répartition argumentée — chacun fait ce qu'il fait mieux, et l'on sait pourquoi. Pour prolonger, observer ce modèle à l'épreuve d'un cas qui résiste (un domaine où la frontière humain-IA n'est pas claire) reste un terrain ouvert.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.82,
+        "motif": "Le temps 2 confirme deux pièces en force (déchargement mécanique/qualitatif, caractérisation des quatre intelligences) et en affaiblit deux sans les disqualifier.",
+        "prescription": "Dans ce pôle, le travail montre une articulation explicite des forces comparatives humain-IA et la conception d'un rôle stratégique pour chaque acteur. Pour prolonger, un chemin possible serait d'identifier un cas où la frontière entre ce que l'IA fait et ce que l'humain fait se brouille, pour voir comment le modèle de répartition tient à l'épreuve d'un cas limite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 9,
+    "presencesEtablies": 9,
+    "renvoisCartographe": 0,
+    "nonEtablies": 0,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail intellectuel se déploie en couches imbriquées: une candidature professionnelle requalifiée en orientation d'auto-formation, puis un long texte philosophique sur l'évaluation augmentée qui mobilise simultanément la technique (RAG, embeddings, OCR), la pédagogie (correction dialogique, métacognition de l'élève) et l'éthique (responsabilité, équité, gouvernance). La voix dominante mêle précision technique et registre philosophique, avec une tendance à nommer ce qui se passe en inventant des concepts (tétraèdre augmenté, student-in-the-loop, ancrage algorithmique, médiation épistémique). Les marqueurs récurrents : la modélisation à boucles, la distinction entre apparence et mécanisme réel, et l'articulation des forces comparatives humain-IA.",
+    "territoiresDenses": [
+      {
+        "competence": "Littératie IA",
+        "description": "Compréhension causale fine des mécanismes IA (OCR, embeddings, RAG) avec capacité à expliquer pourquoi le système échoue dans certains cas — pas seulement à constater son échec.",
+        "extraitVerbatim": "L'OCR ne déchiffre pas des signes : il reconstruit une intentionnalité scripturale à partir de traces graphiques. Le système RAG qui indexe ces réponses ne les \"comprend\" pas : il cartographie des proximités sémantiques dans un espace vectoriel à 1536 dimensions.",
+        "ceQueCaDit": "Le travail distingue ce que l'IA semble faire de ce qu'elle fait réellement, et tire de cette distinction des prédictions sur les domaines où elle restera faillible."
+      },
+      {
+        "competence": "Synergie & coordination hybride",
+        "description": "Articulation explicite de qui fait quoi de mieux entre humain et IA, avec conception de rôles stratégiques fondés sur ce que chacun ne peut pas être remplacé à faire.",
+        "extraitVerbatim": "L'IA ne \"remplace\" pas le jugement humain, elle le **décharge de ses aspects mécaniques** (lecture, structuration, comparaison) pour libérer du temps sur les aspects **qualitatifs** (feedback personnalisé, discussion avec élèves en difficulté)",
+        "ceQueCaDit": "La synergie est pensée comme répartition argumentée — non pas l'IA contre l'humain, mais une orchestration où chacun occupe ce que l'autre ne peut pas occuper aussi bien."
+      },
+      {
+        "competence": "Pensée systémique",
+        "description": "Modélisation à boucles avec mécanismes nommés et tests de robustesse (suppression de nœuds, anticipation de cascades).",
+        "extraitVerbatim": "Aucun de ces quatre pôles ne peut être supprimé sans effondrement du système. Sans élève : pas de production à évaluer. Sans enseignant : pas de validation éthique et pédagogique. Sans machine : retour à l'impossibilité de traiter 1000 copies avec feedback riche. Sans collectif : pas de référentiel pour situer chaque réponse.",
+        "ceQueCaDit": "Le travail produit des modèles qui précisent quels liens, dans quelle direction, avec quels effets — pas une affirmation que tout est connecté."
+      },
+      {
+        "competence": "Synthèse intégrative",
+        "description": "Production de concepts nouveaux par croisement de domaines éloignés (pédagogie + géométrie, ingénierie IA + pédagogie active, biologie + systèmes computationnels).",
+        "extraitVerbatim": "Il constitue une **médiation épistémique** qui reconfigure le triangle pédagogique classique (enseignant-savoir-apprenant) en un **tétraèdre augmenté** incluant l'artefact computationnel comme quatrième pôle actif.",
+        "ceQueCaDit": "Le texte produit des néologismes opérationnels (tétraèdre augmenté, student-in-the-loop) qui n'existaient dans aucune source isolée."
+      },
+      {
+        "competence": "Pensée critique",
+        "description": "Démystification d'arguments défendables et invention de concepts nommés pour qualifier des biais propres à l'IA.",
+        "extraitVerbatim": "C'est ce que j'ai décrit comme le risque d'**ancrage algorithmique** : la suggestion de l'IA devient **point de départ cognitif** plutôt que **seconde opinion**.",
+        "ceQueCaDit": "Le travail nomme un biais que le vocabulaire ambiant ne couvre pas, et démonte un contre-argument culturellement attendu (la pureté du jugement humain) en mobilisant des biais cognitifs documentés."
+      }
+    ],
+    "territoiresNonVisites": "Le dialogue IA avancé et l'orchestration multi-agents au sens strict — techniques de prompting nommées, itérations stratégiques, debugging de contexte — n'apparaissent pas dans cette feuille, qui se concentre sur la conception du système plus que sur les interactions concrètes avec un assistant. La pensée computationnelle, bien que présente sous forme d'un transfert (algorithme appliqué à un phénomène cognitif), reste circonscrite à un seul exemple — d'autres terrains de transfert (relations, décisions de vie, dynamiques de groupe) ne sont pas explorés. Le cadrage récursif (questionner sa propre manière de cadrer) reste en bordure: les actes de cadrage sont là, mais l'observation de soi en train de cadrer n'est pas thématisée. La métacognition s'observe sur des transformations de processus (avant/après LLM) mais moins sur des micro-décisions au moment où elles se prennent.",
+    "emergencesPole": "Ce qui traverse plusieurs compétences dans cette feuille: une posture où l'on nomme avant de décrire. L'apprenant invente des concepts (tétraèdre augmenté, student-in-the-loop, ancrage algorithmique, médiation épistémique) à un rythme rare, et chaque concept devient ensuite un point d'appui pour la suite du raisonnement. Autre récurrence: la pensée à boucles. Là où un texte standard décrirait des chaînes (A produit B qui produit C), le travail décrit des cycles (A nourrit B qui nourrit C qui rétroagit sur A). Cela se voit dans la synergie hybride, dans la pensée systémique, mais aussi dans la métacognition (les projets s'interconnectent et le LLM rétroagit sur la façon de penser projet). Enfin, la distinction obsessionnelle entre ce qui semble être et ce qui est mécaniquement: l'OCR ne lit pas, le RAG ne comprend pas, l'enseignant qui corrige 1000 copies n'est pas pur — chaque acteur est démystifié dans son fonctionnement réel.",
+    "pistes": [
+      "Pour prolonger l'invention conceptuelle, un chemin possible serait de rejouer un des concepts produits ici (par exemple 'ancrage algorithmique' ou 'student-in-the-loop') dans un contexte radicalement différent, pour voir ce qui résiste et ce qui plie.",
+      "Pour ouvrir le cadrage récursif, un chemin possible serait de noter, au moment où un cadrage se fait, la question 'est-ce que je cadre bien ce problème?' avant de produire la réponse.",
+      "Pour approfondir le transfert de logique computationnelle, un chemin possible serait d'identifier une décision non technique (carrière, relation, gestion d'énergie) et d'y appliquer délibérément une structure conditionnelle ou un arbre de décision.",
+      "Pour incarner les esquisses architecturales, un chemin possible serait de prendre un des modules conçus (le pipeline élève-OCR-enseignant par exemple) et de l'implémenter sur un mini-cas, pour observer où le modèle conceptuel résiste à la mise à l'épreuve."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail intellectuel se déploie en couches imbriquées: une candidature professionnelle requalifiée en orientation d'auto-formation, puis un long texte philosophique sur l'évaluation augmentée qui mobilise simultanément la technique (RAG, embeddings, OCR), la pédagogie (correction dialogique, métacognition de l'élève) et l'éthique (responsabilité, équité, gouvernance). La voix dominante mêle précision technique et registre philosophique, avec une tendance à nommer ce qui se passe en inventant des concepts (tétraèdre augmenté, student-in-the-loop, ancrage algorithmique, médiation épistémique). Les marqueurs récurrents : la modélisation à boucles, la distinction entre apparence et mécanisme réel, et l'articulation des forces comparatives humain-IA.\n\n## Territoires les plus denses\n\n**Littératie IA.** Le travail distingue ce que l'IA semble faire de ce qu'elle fait réellement, et tire de cette distinction des prédictions sur les domaines où elle restera faillible. *\"L'OCR ne déchiffre pas des signes : il reconstruit une intentionnalité scripturale à partir de traces graphiques. Le système RAG qui indexe ces réponses ne les 'comprend' pas : il cartographie des proximités sémantiques dans un espace vectoriel à 1536 dimensions.\"*\n\n**Synergie & coordination hybride.** La synergie est pensée comme répartition argumentée — non pas l'IA contre l'humain, mais une orchestration où chacun occupe ce que l'autre ne peut pas occuper aussi bien. *\"L'IA ne 'remplace' pas le jugement humain, elle le décharge de ses aspects mécaniques (lecture, structuration, comparaison) pour libérer du temps sur les aspects qualitatifs (feedback personnalisé, discussion avec élèves en difficulté).\"*\n\n**Pensée systémique.** Le travail produit des modèles qui précisent quels liens, dans quelle direction, avec quels effets — pas une affirmation que tout est connecté. *\"Aucun de ces quatre pôles ne peut être supprimé sans effondrement du système. Sans élève : pas de production à évaluer. Sans enseignant : pas de validation éthique et pédagogique. Sans machine : retour à l'impossibilité de traiter 1000 copies avec feedback riche. Sans collectif : pas de référentiel pour situer chaque réponse.\"*\n\n**Synthèse intégrative.** Le texte produit des néologismes opérationnels (tétraèdre augmenté, student-in-the-loop) qui n'existaient dans aucune source isolée. *\"Il constitue une médiation épistémique qui reconfigure le triangle pédagogique classique (enseignant-savoir-apprenant) en un tétraèdre augmenté incluant l'artefact computationnel comme quatrième pôle actif.\"*\n\n**Pensée critique.** Le travail nomme un biais que le vocabulaire ambiant ne couvre pas, et démonte un contre-argument culturellement attendu (la pureté du jugement humain) en mobilisant des biais cognitifs documentés. *\"C'est ce que j'ai décrit comme le risque d'ancrage algorithmique : la suggestion de l'IA devient point de départ cognitif plutôt que seconde opinion.\"*\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLe dialogue IA avancé et l'orchestration multi-agents au sens strict — techniques de prompting nommées, itérations stratégiques, debugging de contexte — n'apparaissent pas dans cette feuille, qui se concentre sur la conception du système plus que sur les interactions concrètes avec un assistant. La pensée computationnelle, bien que présente sous forme d'un transfert (algorithme appliqué à un phénomène cognitif), reste circonscrite à un seul exemple — d'autres terrains de transfert (relations, décisions de vie, dynamiques de groupe) ne sont pas explorés. Le cadrage récursif (questionner sa propre manière de cadrer) reste en bordure: les actes de cadrage sont là, mais l'observation de soi en train de cadrer n'est pas thématisée. La métacognition s'observe sur des transformations de processus (avant/après LLM) mais moins sur des micro-décisions au moment où elles se prennent.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse plusieurs compétences dans cette feuille: une posture où l'on nomme avant de décrire. L'apprenant invente des concepts (tétraèdre augmenté, student-in-the-loop, ancrage algorithmique, médiation épistémique) à un rythme rare, et chaque concept devient ensuite un point d'appui pour la suite du raisonnement.\n\nAutre récurrence: la pensée à boucles. Là où un texte standard décrirait des chaînes (A produit B qui produit C), le travail décrit des cycles (A nourrit B qui nourrit C qui rétroagit sur A). Cela se voit dans la synergie hybride, dans la pensée systémique, mais aussi dans la métacognition (les projets s'interconnectent et le LLM rétroagit sur la façon de penser projet).\n\nEnfin, la distinction obsessionnelle entre ce qui semble être et ce qui est mécaniquement: l'OCR ne lit pas, le RAG ne comprend pas, l'enseignant qui corrige 1000 copies n'est pas pur — chaque acteur est démystifié dans son fonctionnement réel.\n\n## Pistes pour enrichir ce pôle\n\nPour prolonger l'invention conceptuelle, un chemin possible serait de rejouer un des concepts produits ici (par exemple 'ancrage algorithmique' ou 'student-in-the-loop') dans un contexte radicalement différent, pour voir ce qui résiste et ce qui plie.\n\nPour ouvrir le cadrage récursif, un chemin possible serait de noter, au moment où un cadrage se fait, la question 'est-ce que je cadre bien ce problème?' avant de produire la réponse.\n\nPour approfondir le transfert de logique computationnelle, un chemin possible serait d'identifier une décision non technique (carrière, relation, gestion d'énergie) et d'y appliquer délibérément une structure conditionnelle ou un arbre de décision.\n\nPour incarner les esquisses architecturales, un chemin possible serait de prendre un des modules conçus (le pipeline élève-OCR-enseignant par exemple) et de l'implémenter sur un mini-cas, pour observer où le modèle conceptuel résiste à la mise à l'épreuve."
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "C'est plus lourd à transporter mais c'est surtout plus social de voir quelqu'un relire son livre que quelqu'un qui bosse tout le temps et toutes les nuits sur son ordi.",
+      "contexte": "Anticipation de l'effet social du support de relecture (papier vs ordinateur) sur l'image perçue par l'entourage durant les vacances ; arbitrage entre poids physique et registre relationnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-09",
+      "extraitVerbatim": "Je vais les imprimer (600 pages) et les relire sur papier pour m'obliger à ne pas prendre mon ordinateur pendant la semaine de vacances.",
+      "contexte": "Décision de mise en place d'une contrainte matérielle pour modifier son propre comportement (présence à l'autre, pas devant l'écran) durant un temps partagé en vacances.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Anticipation de la perception sociale de son comportement par l'entourage (\"voir quelqu'un qui bosse tout le temps\") — possible trace d'une lecture de l'effet émotionnel de sa propre présence sur les autres."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Geste de régulation préventive de soi (s'imposer l'impossibilité technique de travailler) qui prend en compte l'environnement relationnel des vacances."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'intelligence émotionnelle n'est pas vraiment attestée dans cette feuille. La journée parle de prompts, de chapitres, de tokens — pas d'émotions nommées, pas de sollicitude active envers une personne identifiée. Les pièces 1 et 2 parlent de l'effet social d'un comportement, ce qui pourrait n'être qu'une rationalisation ergonomique. Si je durcis : aucune émotion n'est nommée (ni la sienne, ni celle des proches), aucun \"je voyais qu'il était fatigué\", aucun geste de care explicitement adressé. Ce qui résiste très faiblement : l'anticipation de l'effet sur l'entourage suppose une lecture, même implicite, d'un état relationnel.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant pose explicitement un regard imaginaire des proches sur sa propre posture (\"voir quelqu'un qui bosse\"), ce qui suppose une lecture, même minimale, de la lecture émotionnelle de l'autre." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je dois examiner si j'ai chargé la pièce 1. L'attaque (e) surinterprétation pédagogique tient assez bien : l'apprenant exprime une intuition sociale (\"c'est plus social\"), pas une perception émotionnelle de quelqu'un en particulier. Aucune émotion n'est nommée, aucun proche identifié. Ce qui résiste vraiment dans la fiche, c'est \"perception de l'état émotionnel d'autrui non-verbalisé\" ou \"care anticipatoire\" — la pièce 1 ressemble plus à une convention sociale qu'à une perception fine.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Aucune émotion n'est nommée, aucune personne identifiée ; ce qui ressemble à un care anticipatoire est en réalité une intuition de convention sociale sans lecture émotionnelle déployée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans l'arbitrage papier/ordinateur une trace de care anticipatoire envers les proches durant les vacances. Sous la présomption d'absence, je notais déjà l'absence d'émotion nommée et de personne identifiée. Sous la présomption de sycophantie, la pièce a perdu son épaisseur : on reste dans une intuition sociale générale, sans lecture émotionnelle déployée. Ce qui en résulte : pas de présence attestée sur cette feuille. L'intelligence émotionnelle reste un territoire non visité dans la journée du 9 janvier, ce qui ne préjuge rien des autres feuilles.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce 1 : intuition de convention sociale plutôt que lecture émotionnelle ; la pièce 2 ne portait déjà rien d'émotionnel.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de nommer une émotion précise vécue dans une situation concrète — la sienne ou celle perçue chez un proche — et le geste qui en a découlé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la communication authentique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une prise de parole inconfortable, un feedback donné ou reçu, ou un choix de registre conscient dans un échange."
+      }
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un désaccord vécu, sa structuration et ce qui en a été retiré."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'influence et la diplomatie dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une adhésion a été cherchée, et la stratégie qui l'a sous-tendue."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la collaboration divergente dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où le travail a continué malgré un désaccord persistant non résolu."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence culturelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une adaptation à un cadre culturel ou organisationnel différent, avec l'analyse du pourquoi."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens politique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une lecture des dynamiques invisibles d'une organisation et la stratégie qui en a découlé."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Adaptation explicite du même prompt à trois publics différents (jeunes adultes / adolescents / Grand Maître) — possible trace de transposition entre cadres conceptuels, pas une simple simplification."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la traduction entre mondes n'est pas vraiment là. La feuille ne décrit pas un acte de pontage entre groupes qui ne se comprenaient pas, ni une analogie structurelle qui capture un mécanisme. Si je durcis, je note que la pièce candidate (modulation de vocabulaire par niveau) est mentionnée brièvement, sans dépliage de ce qui change dans le contenu lui-même, pas seulement dans les mots. Ce qui résiste très faiblement : l'adaptation par niveau (Praticien, Tuteur, Grand Maître) suppose un travail de transposition réel, même non décrit en détail.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je n'ai retenu aucune pièce au temps 1. La présomption d'absence tient : la mention brève de la modulation lexicale ne porte pas le marqueur central de la fiche (analogie structurelle, bidirectionnalité, transposition qui préserve le sens dans un autre registre).",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la modulation par niveau de public une trace de traduction entre mondes. Sous la présomption d'absence, la pièce n'a pas tenu : on a un ajustement lexical raisonné, pas une transposition documentée d'un savoir vers un autre cadre conceptuel. Ce qui en résulte : pas de présence attestée sur cette feuille. La compétence pourrait apparaître ailleurs dans le portfolio si une analogie structurelle ou un acte de pontage entre groupes est déployé.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce candidate n'a pas tenu sous la présomption d'absence : modulation lexicale par niveau, sans dépliage d'une transposition entre cadres conceptuels.",
+        "prescription": "Pour approfondir la traduction entre mondes, un chemin possible serait de documenter, pour un même concept présenté à plusieurs niveaux, ce qui change dans la structure conceptuelle et non seulement dans le vocabulaire — par exemple à quoi ressemble \"apophatie\" pour un adolescent, un praticien et un grand maître."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la construction de communautés dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un \"nous\" identitaire, un rituel partagé ou la conception d'un espace d'appartenance."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 9,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Cette journée du portfolio se déploie presque entièrement dans un atelier de travail solitaire : prompts, chapitres, génération en parallèle, planification d'impression. Les autres figures n'apparaissent qu'en filigrane, dans la projection d'un regard imaginaire des proches sur la posture de quelqu'un \"qui bosse tout le temps et toutes les nuits sur son ordi\". Le pôle relationnel reste à l'arrière-plan de cette feuille, sans pour autant disparaître complètement : la décision d'imprimer 600 pages a une dimension relationnelle assumée, mais celle-ci s'exprime par dispositif matériel plutôt que par lecture émotionnelle déployée.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Sur cette journée, le pôle relationnel est très largement non visité dans le texte. L'intelligence émotionnelle, la communication, la gestion des conflits, l'influence, la collaboration divergente, l'intelligence culturelle, le sens politique et la construction de communautés n'apparaissent pas comme objets de la réflexion du jour. Cette absence ressemble à un choix de focale : la feuille est consacrée à un atelier de production individuelle, et la dimension relationnelle, quand elle affleure, le fait par anticipation d'un effet social sur l'entourage, pas par récit d'une interaction. La traduction entre mondes, présente sous la forme d'une modulation lexicale par niveau de public, n'a pas franchi le seuil d'une transposition entre cadres conceptuels.",
+    "emergencesPole": "Une seule observation traverse cette feuille pour le pôle relationnel : la lecture sociale qui sous-tend la décision d'imprimer. Le geste matériel (lourd à transporter, mais socialement plus présentable) suppose une lecture, même implicite, de l'effet d'une posture professionnelle prolongée sur les proches en vacances. Cette lecture reste générique et n'identifie ni émotion ni personne particulière, ce qui la maintient en deçà du seuil d'une compétence relationnelle attestée.",
+    "pistes": [
+      "Pour donner consistance au pôle relationnel dans le portfolio, un chemin possible serait de documenter, à propos d'un échange concret avec un proche ou un collègue durant la production des manuels, une émotion nommée précisément et le geste qu'elle a provoqué.",
+      "Pour approfondir la traduction entre publics, un chemin possible serait de déplier — sur un même concept du manuel — ce qui change vraiment dans la structure de pensée entre adolescent, praticien et grand maître, et pas seulement dans le choix des mots.",
+      "Pour ouvrir le pôle communautaire, un chemin possible serait de noter, lorsque le projet de formation rencontre d'autres personnes (testeurs, relecteurs, futurs apprenants), comment un \"nous\" s'esquisse ou ne s'esquisse pas."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette journée du portfolio se déploie presque entièrement dans un atelier de travail solitaire : prompts, chapitres, génération en parallèle, planification d'impression. Les autres figures n'apparaissent qu'en filigrane, dans la projection d'un regard imaginaire des proches sur la posture de quelqu'un « qui bosse tout le temps et toutes les nuits sur son ordi ». Le pôle relationnel reste à l'arrière-plan de cette feuille, sans pour autant disparaître complètement : la décision d'imprimer 600 pages a une dimension relationnelle assumée, mais celle-ci s'exprime par dispositif matériel plutôt que par lecture émotionnelle déployée.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'a atteint le seuil de la présence établie sur cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette journée, le pôle relationnel est très largement non visité dans le texte. L'intelligence émotionnelle, la communication, la gestion des conflits, l'influence, la collaboration divergente, l'intelligence culturelle, le sens politique et la construction de communautés n'apparaissent pas comme objets de la réflexion du jour. Cette absence ressemble à un choix de focale : la feuille est consacrée à un atelier de production individuelle, et la dimension relationnelle, quand elle affleure, le fait par anticipation d'un effet social sur l'entourage, pas par récit d'une interaction. La traduction entre mondes, présente sous la forme d'une modulation lexicale par niveau de public, n'a pas franchi le seuil d'une transposition entre cadres conceptuels.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne seule observation traverse cette feuille pour le pôle relationnel : la lecture sociale qui sous-tend la décision d'imprimer. Le geste matériel (lourd à transporter, mais socialement plus présentable) suppose une lecture, même implicite, de l'effet d'une posture professionnelle prolongée sur les proches en vacances. Cette lecture reste générique et n'identifie ni émotion ni personne particulière, ce qui la maintient en deçà du seuil d'une compétence relationnelle attestée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour donner consistance au pôle relationnel dans le portfolio, un chemin possible serait de documenter, à propos d'un échange concret avec un proche ou un collègue durant la production des manuels, une émotion nommée précisément et le geste qu'elle a provoqué.\n- Pour approfondir la traduction entre publics, un chemin possible serait de déplier — sur un même concept du manuel — ce qui change vraiment dans la structure de pensée entre adolescent, praticien et grand maître, et pas seulement dans le choix des mots.\n- Pour ouvrir le pôle communautaire, un chemin possible serait de noter, lorsque le projet de formation rencontre d'autres personnes (testeurs, relecteurs, futurs apprenants), comment un « nous » s'esquisse ou ne s'esquisse pas."
+  }
+}

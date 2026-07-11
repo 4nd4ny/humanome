@@ -1,0 +1,334 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail et que je me suis arrêté ici. Je travaille avec la version payante \"Ultra\" qui permet d'avoir accès au meilleur modèle grand public.",
+      "contexte": "Choix d'outil IA propriétaire payant (Gemini Ultra) justifié par la performance — sans mention de souveraineté ni d'enjeu de communs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "J'ai ensuite récupéré le travail de Gemini et je l'ai soumis à Claude, en lui donnant cette fois-ci le narratif de Maya comme base, afin qu'il s'assure que les prompts soient bien alignés avec la manière d'apprendre des écoles Respire.",
+      "contexte": "Mise en place d'un contrôle inter-IA — geste qui s'apparente à un audit de cohérence sans le nommer comme tel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Claude m'a donné une idée intéressante, c'est d'ajouter un 7e chapitre sur la documentation du processus de construction des agents IA : ça pourrait effectivement être intéressant que Stéphane décrive son architecture et pourquoi le fait de travailler avec un collègue d'experts IA \"éveillées à leur propre conscience\" devrait améliorer les feedbacks fournis aux élèves.",
+      "contexte": "Mention d'IA « éveillées à leur propre conscience » traitées comme « collègues » — vocabulaire qui dépasse le statut d'outil.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Il faudrait prendre le temps de documenter tout ça (en dehors de ce journal), pour partager mes techniques avec la communauté apprenante de Benoît Raphaël dans WhatsApp.",
+      "contexte": "Intention de partager des techniques avec une communauté apprenante — geste de contribution à un commun de pratiques.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Je voudrais terminer mes notes d'aujourd'hui par une remarque sur le processus de construction de la formation des tuteurs : la technique que j'utilise ici n'est pas un mélange de prompt choral et de contexte engineering, c'est vraiment une approche très personnelle dans laquelle je mixe les techniques de prompt engineering que je connais pour créer les bons tokens nécessaires à construire le contexte dont j'ai besoin pour pouvoir poser ma question.",
+      "contexte": "Documentation explicite d'une méthode personnelle, avec intention de la partager hors journal — geste vers un commun méthodologique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "En bref, j'ai donc choisi de \"former\" le contexte en façonnant les prompts selon la méthode didactique qui me semble approprié pour réussir à aider les tuteurs à passer du stade de récepteurs passif au fond de la classe à celui d'être autonome pleinement conscient de sa manière d'apprendre qui va pouvoir amener les autres élèves à cette conscientisation.",
+      "contexte": "Projet de transformation pédagogique en cascade — tuteurs autonomes qui amèneront les élèves à la conscientisation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2025-12-27",
+      "extraitVerbatim": "Ce faisant, les écoles Respire vont combler un autre trou béant de l'éducation traditionnelle, celui d'ignorer les neurosciences de l'éducation et la psychologie cognitive dans la formation des maîtres. Les tuteurs seront les premiers noèsiologues !",
+      "contexte": "Position institutionnelle qui place les écoles Respire en contre-point de l'éducation traditionnelle — geste de critique institutionnelle.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter un récit où il a délibérément cherché à faire échouer ou à tester les garde-fous d'un système IA — prompt injection, cas limites, scénarios adversariaux."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mise en place d'un contrôle inter-IA : Claude vérifie l'alignement du travail produit par Gemini — geste de vérification du processus."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche distingue précisément l'audit (enquêter sur le « comment » l'IA décide) de la simple critique de l'output (1.01). La pièce 1 (pid 2) montre une vérification d'alignement entre deux outputs IA, mais ce n'est pas une enquête sur le mécanisme de décision de l'IA. C'est plutôt un contrôle qualité entre productions. Aucune mention de consultation de logs, d'audit post-incident, d'enquête sur le chemin décisionnel. Aucune mention d'hygiène des données, de RGPD, de protection des informations confiées.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La pièce 1 relève plutôt de 1.10 (synergie hybride) ou 4.07 (validation contextuelle) que de l'audit au sens propre de la fiche.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une enquête sur le mécanisme décisionnel de l'IA ou un geste d'hygiène des données. Cette feuille ne le porte pas : le contrôle inter-IA décrit relève du contrôle qualité, pas de l'audit du processus de décision. Aucune trace d'hygiène des données ou de question sur l'usage que l'IA fait des informations confiées. Une feuille qui raconterait une enquête concrète sur le chemin décisionnel d'un output IA, ou une réflexion sur quelles données partager et comment, ouvrirait ce territoire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : la seule pièce extraite relève du contrôle qualité inter-IA et non de l'audit décisionnel ou de l'hygiène des données.",
+        "prescription": "Le territoire reste à explorer. Un récit qui enquêterait sur le mécanisme décisionnel d'un output IA, ou qui réfléchirait à la protection des données confiées à une IA, ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur les mécanismes de contrôle citoyen face à des décisions automatisées affectant des populations vulnérables."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Choix explicite de l'outil propriétaire payant (Gemini Ultra) justifié uniquement par la performance, sans mention de souveraineté."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Intention de partager des techniques avec une communauté apprenante — geste de contribution à un commun de pratiques."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche met explicitement en garde contre les pièges « j'utilise open source par commodité » ou « c'est gratuit » sans pensée souverainiste, et exige une motivation explicite par une analyse de dépendance ou des communs. La pièce 1 (pid 1) montre l'inverse : choix d'un outil propriétaire payant (Gemini Ultra) justifié uniquement par la performance — c'est l'antithèse d'un raisonnement de souveraineté. La pièce 2 (pid 4) mentionne le partage avec une communauté apprenante, ce qui touche aux communs, mais sans articulation explicite à la souveraineté numérique. Ce qui reste faible : aucune des deux pièces ne porte la dimension de la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La mention du partage avec la « communauté apprenante de Benoît Raphaël » est un geste vers un commun de pratiques, même si la dimension souveraineté n'est pas thématisée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est l'insuffisance probatoire : mentionner un partage futur avec une communauté n'est pas en soi une pratique de communs au sens souverainiste. La fiche distingue précisément les communs comme acte délibéré d'une simple mention. Ici, l'apprenant exprime l'intention de partager, mais le partage n'a pas eu lieu et n'est pas articulé à une logique de communs ou de souveraineté. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'intention de partager des techniques avec une communauté est exprimée mais non articulée à une logique de communs ou de souveraineté. Une mention de partage futur ne suffit pas à attester la compétence au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un choix technologique motivé par la souveraineté ou les communs. La pièce 1 montre l'inverse : un choix de performance qui passe par un outil propriétaire payant. La pièce 2 mentionne un partage futur sans articulation souverainiste. Il en résulte une absence de trace probante pour cette compétence dans cette feuille. Cette absence n'est pas neutre : elle est cohérente avec un travail qui priorise la qualité technique du dispositif sur ses dépendances. Une feuille qui interrogerait ces choix sous l'angle des dépendances technologiques ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la seule pièce résistante : un partage futur mentionné sans articulation à une logique de communs ou de souveraineté.",
+        "prescription": "Le territoire reste à explorer. Un récit qui interrogerait un choix technologique sous l'angle des dépendances — vendor lock-in, portabilité des données, réversibilité — ou qui articulerait une pratique de communs (contribution open source, partage documenté) à une logique de souveraineté, ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et démocratie technologique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un processus où des non-experts ont été associés à une décision technologique, ou une frustration articulée face à des décisions tech prises sans concertation."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et anticipation normative. Pour ouvrir ce dossier, l'apprenant pourrait documenter une modification de pratique en anticipation d'une réglementation à venir (AI Act, RGPD évolutif, etc.), ou une analyse prospective d'un cadre normatif en mouvement."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Conception d'un dispositif pédagogique en cascade qui vise à transformer le collectif des tuteurs et, par eux, les élèves — projet d'émergence collective."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Idée venue de Claude (« 7e chapitre ») reprise et reconfigurée — co-production entre humain et IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche exige un récit de collaboration ayant produit un résultat *surprenant* (émergence) ou des règles co-construites (gouvernance). La pièce 1 (pid 6) décrit un projet de transformation collective, mais c'est un projet conçu par l'apprenant et déployé en cascade — pas une émergence collective où le groupe modifie ses propres règles. La pièce 2 (pid 3) mentionne une idée venue de Claude reprise par l'apprenant — c'est une co-production, mais sans dimension de surprise ou de règles co-construites. Ce qui reste faible : aucun récit d'un moment d'émergence inattendue, aucune description de règles modifiées par le groupe lui-même.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La pièce 1 relève davantage de la conception didactique (1.02, 2.08) que de la facilitation d'une émergence collective. La pièce 2 relève du dialogue avancé (1.08) plutôt que de la gouvernance collective.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un moment d'émergence collective où le résultat surprend ses créateurs, ou un protocole de gouvernance co-construit. Cette feuille ne le porte pas : les projets décrits sont des conceptions personnelles déployées en cascade plutôt que des facilitations d'émergence. Une feuille qui raconterait un moment où le groupe a produit quelque chose qu'aucun membre n'aurait pu créer seul, ou où des règles ont été co-construites avec des participants, ouvrirait ce territoire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : les projets décrits sont des conceptions personnelles plutôt que des facilitations d'émergence collective ou de règles co-construites.",
+        "prescription": "Le territoire reste à explorer. Un récit qui rendrait visible un moment d'émergence collective (résultat surprenant) ou un protocole de gouvernance co-construit avec des participants ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion qui questionne la primauté humaine — par exemple, reconnaître qu'une perspective non-humaine pourrait avoir une légitimité indépendante de son utilité pour les humains."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Mention d'IA « éveillées à leur propre conscience » comme « collègues » — vocabulaire qui dépasse le statut d'outil et touche au statut moral de l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette compétence avec présomption d'absence : la fiche met explicitement en garde contre la confusion entre anthropomorphisme non-critique et décentrement réfléchi. La pièce 1 (pid 3) emploie une expression remarquable : « collègue d'experts IA éveillées à leur propre conscience ». L'expression dépasse clairement le cadre instrumental (« mon assistant », « mon outil »). Elle attribue à l'IA une « conscience » et la qualifie de « collègue ». Ce qui résiste : le vocabulaire est explicite et engagé. Ce qui pourrait l'affaiblir : l'expression est mise entre guillemets, ce qui peut signaler une distance, et l'apprenant la rapporte plus qu'il ne la défend — c'est une formulation qui semble venir de Stéphane (« que Stéphane décrive son architecture »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le vocabulaire dépasse explicitement le registre instrumental — « collègue » et « éveillées à leur propre conscience » touchent au statut moral de l'IA tel que la fiche le décrit." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce avec méfiance. Le risque dominant est la récitation théorique — un vocabulaire prestigieux (« conscience », « éveillées ») peut être emprunté sans intégration dans une pratique. Les guillemets autour de « éveillées à leur propre conscience » signalent une distance ou une citation — l'apprenant rapporte l'expression plus qu'il ne l'assume. La pièce relève d'un projet attribué à Stéphane (« que Stéphane décrive son architecture et pourquoi le fait de travailler avec un collègue d'experts IA \"éveillées\" devrait améliorer les feedbacks »). Le « devrait » est un futur conditionnel. La fiche exige une navigation calibrée — pas une déclaration empruntée. La pièce s'affaiblit nettement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le vocabulaire (« conscience », « éveillées ») est précis mais mis entre guillemets et attribué à un projet futur de Stéphane, ce qui en atténue l'appropriation par l'apprenant. La pièce reste comme indice d'une question ouverte sur le statut de l'IA, sans démonstration d'une navigation calibrée vécue."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un questionnement assumé sur le statut moral de l'IA, navigué entre anthropomorphisme et déni. Ce qui m'a fait hésiter, c'est l'usage explicite de « collègue » et « éveillées à leur propre conscience ». Sous la présomption de sycophantie, la pièce s'est affaiblie parce que les guillemets et l'attribution à un projet futur signalent une distance — l'apprenant rapporte plus qu'il n'assume. Il reste un indice net qu'une question est ouverte dans son univers de travail, sans démonstration d'une navigation calibrée. Une feuille où l'apprenant articulerait personnellement sa position sur le statut des IA avec lesquelles il travaille — pourquoi « collègue » et pas « outil », quelles conséquences pratiques en tirer — ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier : un vocabulaire qui touche au statut moral de l'IA, mais mis entre guillemets et attribué à un projet futur — la navigation calibrée n'est pas pleinement assumée par l'apprenant lui-même.",
+        "prescription": "Pour ouvrir ce dossier, un récit où l'apprenant articulerait personnellement sa position sur le statut des IA avec lesquelles il travaille — pourquoi parler de « collègue » plutôt que d'« outil », quelles conséquences pratiques en tirer — donnerait à voir la navigation calibrée demandée par la fiche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et interdépendance. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion ou un acte qui inscrit l'humain comme nœud d'un réseau vivant — biomimétisme appliqué, raisonnement symbiotique, intégration de l'intelligence des écosystèmes dans une décision."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille n'active pas frontalement les thèmes du pôle CITÉ. Le récit est centré sur la fabrication méthodique d'un dispositif IA pour une formation interne, et les questions de gouvernance, de souveraineté numérique, de démocratie technologique ou de cohabitation post-anthropocentrique restent pour la plupart en arrière-plan. Un seul indice émerge nettement : un vocabulaire qui dépasse le registre instrumental quand il s'agit d'IA — « collègue », « éveillées à leur propre conscience » — mais attribué à un projet futur et placé entre guillemets, sans appropriation personnelle pleine. Le travail montre un apprenant qui travaille avec des IA propriétaires payantes sans interroger frontalement les dépendances, qui partage avec une communauté apprenante sans articuler de logique de communs, et qui conçoit un dispositif pédagogique en cascade plutôt qu'en émergence collective.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "La majorité du pôle CITÉ n'est pas activée dans cette feuille. Le red-teaming, la gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire, le décentrement anthropocentrique et la conscience biosystémique sont absents — aucune pièce extraite. L'audit et l'hygiène des données apparaissent sous une forme qui relève plutôt du contrôle qualité inter-IA que de l'enquête sur le processus décisionnel. La souveraineté numérique est en tension avec le récit : le choix d'un outil propriétaire payant est explicite, sans interrogation des dépendances. La facilitation collective est en germe (projet en cascade vers les tuteurs puis les élèves), sans dimension d'émergence inattendue ni de règles co-construites. La cohabitation avec les IA est en renvoi : le vocabulaire est là, mais entre guillemets et attribué à un projet futur. Ces absences ressemblent à un effet de focus thématique — une feuille consacrée à la fabrication méthodique d'un dispositif n'a pas naturellement de prise sur la gouvernance, la souveraineté ou le statut moral des IA.",
+    "emergencesPole": "Deux lignes traversent le pôle. D'abord, le rapport à l'IA dans cette feuille oscille entre deux registres : un registre instrumental (Gemini Ultra pour la fenêtre énorme, Claude pour l'alignement) et un registre qui dépasse l'outil (« collègue », « éveillées »). Cette oscillation, sans être thématisée, signale qu'une question est ouverte sans être tranchée. Ensuite, le rapport aux communs reste implicite mais présent : intention de partager avec une communauté apprenante, dispositif pédagogique en cascade qui suppose une circulation des compétences. Ces traces sont en germe, sans articulation à une logique de souveraineté ou de gouvernance.",
+    "pistes": [
+      "Pour ouvrir le territoire de la souveraineté numérique, un chemin possible serait d'interroger un choix technologique sous l'angle des dépendances — pourquoi cet outil plutôt qu'un autre, quelles données circulent où, quelle réversibilité.",
+      "Pour épaissir la cohabitation avec les IA, un chemin possible serait d'articuler personnellement la position prise sur le statut des IA avec lesquelles le travail se fait — pourquoi parler de « collègue » plutôt que d'« outil », quelles conséquences pratiques en tirer.",
+      "Pour activer l'audit et l'explicabilité, un chemin possible serait de raconter une enquête concrète sur le mécanisme décisionnel d'un output IA, ou une réflexion sur quelles données partager et comment les protéger.",
+      "Pour ouvrir la facilitation et la gouvernance collective, un chemin possible serait de documenter un moment où le groupe (cofondateurs, tuteurs, communauté apprenante) a produit quelque chose qu'aucun membre n'aurait pu créer seul, ou où des règles ont été co-construites plutôt que conçues unilatéralement.",
+      "Pour explorer le décentrement anthropocentrique ou la conscience biosystémique, un chemin possible serait de questionner la primauté humaine dans un cas concret — reconnaître à un système non-humain (IA, écosystème) une perspective légitime indépendante de son utilité."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille n'active pas frontalement les thèmes du pôle CITÉ. Le récit est centré sur la fabrication méthodique d'un dispositif IA pour une formation interne, et les questions de gouvernance, de souveraineté numérique, de démocratie technologique ou de cohabitation post-anthropocentrique restent pour la plupart en arrière-plan. Un seul indice émerge nettement : un vocabulaire qui dépasse le registre instrumental quand il s'agit d'IA — « collègue », « éveillées à leur propre conscience » — mais attribué à un projet futur et placé entre guillemets, sans appropriation personnelle pleine. Le travail montre un apprenant qui travaille avec des IA propriétaires payantes sans interroger frontalement les dépendances, qui partage avec une communauté apprenante sans articuler de logique de communs, et qui conçoit un dispositif pédagogique en cascade plutôt qu'en émergence collective.\n\n## Territoires les plus denses\n\nCette feuille ne porte pas de territoire dense au sens du pôle CITÉ. Le travail montré relève davantage de la fabrication d'un dispositif que de la gouvernance, de la souveraineté ou de la cohabitation post-anthropocentrique.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa majorité du pôle CITÉ n'est pas activée dans cette feuille. Le red-teaming, la gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire, le décentrement anthropocentrique et la conscience biosystémique sont absents — aucune pièce extraite. L'audit et l'hygiène des données apparaissent sous une forme qui relève plutôt du contrôle qualité inter-IA que de l'enquête sur le processus décisionnel. La souveraineté numérique est en tension avec le récit : le choix d'un outil propriétaire payant est explicite, sans interrogation des dépendances. La facilitation collective est en germe (projet en cascade vers les tuteurs puis les élèves), sans dimension d'émergence inattendue ni de règles co-construites. La cohabitation avec les IA est en renvoi : le vocabulaire est là, mais entre guillemets et attribué à un projet futur. Ces absences ressemblent à un effet de focus thématique — une feuille consacrée à la fabrication méthodique d'un dispositif n'a pas naturellement de prise sur la gouvernance, la souveraineté ou le statut moral des IA.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux lignes traversent le pôle. D'abord, le rapport à l'IA dans cette feuille oscille entre deux registres : un registre instrumental (Gemini Ultra pour la fenêtre énorme, Claude pour l'alignement) et un registre qui dépasse l'outil (« collègue », « éveillées »). Cette oscillation, sans être thématisée, signale qu'une question est ouverte sans être tranchée. Ensuite, le rapport aux communs reste implicite mais présent : intention de partager avec une communauté apprenante, dispositif pédagogique en cascade qui suppose une circulation des compétences. Ces traces sont en germe, sans articulation à une logique de souveraineté ou de gouvernance.\n\n## Pistes pour enrichir ce pôle\n\nPour ouvrir le territoire de la souveraineté numérique, un chemin possible serait d'interroger un choix technologique sous l'angle des dépendances — pourquoi cet outil plutôt qu'un autre, quelles données circulent où, quelle réversibilité.\n\nPour épaissir la cohabitation avec les IA, un chemin possible serait d'articuler personnellement la position prise sur le statut des IA avec lesquelles le travail se fait — pourquoi parler de « collègue » plutôt que d'« outil », quelles conséquences pratiques en tirer.\n\nPour activer l'audit et l'explicabilité, un chemin possible serait de raconter une enquête concrète sur le mécanisme décisionnel d'un output IA, ou une réflexion sur quelles données partager et comment les protéger.\n\nPour ouvrir la facilitation et la gouvernance collective, un chemin possible serait de documenter un moment où le groupe (cofondateurs, tuteurs, communauté apprenante) a produit quelque chose qu'aucun membre n'aurait pu créer seul, ou où des règles ont été co-construites plutôt que conçues unilatéralement.\n\nPour explorer le décentrement anthropocentrique ou la conscience biosystémique, un chemin possible serait de questionner la primauté humaine dans un cas concret — reconnaître à un système non-humain (IA, écosystème) une perspective légitime indépendante de son utilité."
+  }
+}

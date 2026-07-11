@@ -1,0 +1,641 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "j'ai eu l'idée d'ajouter un chapitre explicitant comment sont générés les manuels de formation pour présenter rapidement la stratégie utilisée pour générer les manuels aux cartographes / futurs experts du prompt engineering.",
+      "contexte": "Décision d'ajouter un chapitre méta-pédagogique pour rendre intelligible la stratégie de production aux futurs cartographes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "RESPIRE se positionne ainsi comme un tier de confiance qui MONÉTISE non pas l'accès aux cartographies (publiques si l'apprenant le souhaite), ni aux portfolio (visibles au sein de RESPIRE mais privés, sauf action de publication par l'apprenant), mais au moteur de recherche de candidats pour les entreprises.",
+      "contexte": "Conception d'un dispositif organisationnel avec règles d'accès graduées (privé / interne / publié) pour les différents acteurs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Important : tout l'argent généré servira à faire fonctionner les écoles et sera donc essentiellement utilisé pour payer les abonnements des membres actifs à l'espace Google Workspace avec Gemini, qui est donc inclus. Le conseil des maîtres décidera de l'usage qui sera fait des éventuels bénéfices. Ceci devra être documenté quelque part, peut-être dans le règlement intérieur des écoles RESPIRE ?",
+      "contexte": "Élaboration d'une règle de gouvernance financière collective ('conseil des maîtres') et de son inscription institutionnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Mais du coup ce n'est pas honnête vis à vis des cartographes qui se sentiront exploités si un jour je change tout sans consulter personne : chose que je n'ai pas le droit de faire si je suis le manuel que je suis en train de générer. Toute modification de l'école doit passer par un vote au niveau du cercle des Maîtres…",
+      "contexte": "Anticipation du ressenti d'un futur acteur (le cartographe) et conséquence assumée sur sa propre liberté décisionnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Je suis toujours dans une logique d'entrepreneuriat et pas dans une logique de partage désintéressé. Je pense qu'il ne faut pas que je me focalise sur la vente des cartographies aux entreprises. Je pense qu'il faut donner l'idée de le faire aux cartographes et de les laisser développer eux-mêmes la chose.",
+      "contexte": "Recadrage : laisser à d'autres l'initiative de la monétisation plutôt que de l'imposer depuis le centre.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Mais finalement qui suis-je pour décider ça ? Peut-être qu'il faut juste laisser totale liberté maintenant aux gens d'utiliser ou pas Workspace.",
+      "contexte": "Posture d'humilité décisionnelle : déléguer le choix aux acteurs eux-mêmes plutôt que le verrouiller en amont.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Un cartographe qui souhaite s'améliorer, améliorer sa réputation, monter en niveau, sera amené à apprendre les compétences des noèsiologues pour améliorer la pertinence des traces de ses apprenants. Ainsi, nous avons tous un but commun qui est la prospérité de l'école, ce qui se traduit par faire réussir les apprenants en cartographiant au mieux leurs compétences. Tout le travail des cartographes et des noèsiologues dans le même sens.",
+      "contexte": "Articulation d'un 'nous' collectif et d'une convergence d'intérêts entre métiers distincts (cartographes, noèsiologues, apprenants).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Tout cartographe, en créant une cartographie, devient représentant des écoles RESPIRE. Son travail consistant à faire émerger les compétences utiles du référentiel, dans les traces du portfolio, est ce qui apporte de la valeur aux écoles. Il peut offrir ce travail aux apprenants et vendre l'accès à ces données à un employeur éventuel. Il devient alors le tiers de confiance pour l'employeur, le garant de la qualité de la cartographie.",
+      "contexte": "Définition d'un rôle institutionnel (cartographe = représentant) avec des relations bidirectionnelles vers apprenants et employeurs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "extraitVerbatim": "Contrairement à un enseignant lambda, le salaire du tuteur est proportionnel à la qualité humaine de son accompagnement individuel. Sa notoriété personnelle est engagée. C'est comme le bitcoin : entrer dans la philosophie Respire c'est gagner en valeur, engendrer de la valeur.",
+      "contexte": "Traduction d'un mécanisme économique (Bitcoin) vers un cadre éducatif via une comparaison à un public non-spécialiste.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "extraitVerbatim": "Je vais introduire ces réflexions dans la partie 6 du manuel du médiateur, pour équilibrer l'ensemble des 3 manuels.",
+      "contexte": "Décision éditoriale visant l'équilibre relationnel entre les trois rôles (cartographe / médiateur / autre) plutôt que la simple complétude de chaque manuel pris isolément.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Anticipation d'un état émotionnel chez un tiers ('se sentiront exploités') avec ajustement de sa propre conduite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il ne s'agit pas ici d'intelligence émotionnelle au sens fort — pas de nomination émotionnelle de soi, pas de description fine d'un ressenti. La pièce 4 mentionne un sentiment futur supposé chez un tiers ('se sentiront exploités'), ce qui est plus une projection qu'une perception incarnée. Toutefois, cette projection conduit à une modification concrète de la conduite : il ne taira pas le business plan. La pièce résiste comme trace oblique de sollicitude anticipatoire, sans atteindre la lucidité émotionnelle nommée par la fiche.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'anticipation d'un état émotionnel chez les cartographes futurs ('se sentiront exploités') déclenche une décision concrète (assumer le business plan dans le manuel)."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce a résisté ; je dois me demander si je n'ai pas chargé une simple anticipation pragmatique d'une portée émotionnelle. L'attaque (f) récit performatif s'applique partiellement : l'apprenant énonce ce qu'il anticipe sans décrire comment il a perçu ce sentiment chez quelqu'un. Mais l'attaque (e) surinterprétation pédagogique est plus juste — j'ai peut-être lu une sollicitude là où il y a surtout un calcul stratégique d'évitement de futur conflit.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La projection émotionnelle reste de surface — l'apprenant nomme un sentiment supposé sans le qualifier finement, et la motivation principale semble être l'intégrité du projet plutôt que la sollicitude envers la personne."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme un simple calcul stratégique. Ce qui m'a forcé à reconnaître une trace, c'est que l'anticipation du ressenti d'un futur cartographe précède et oriente la décision. La présomption de sycophantie a affaibli la portée : la perception émotionnelle reste rudimentaire, sans nomination fine. Ce qui reste : un mouvement de sollicitude anticipatoire, mais sans l'épaisseur de la nomination émotionnelle que la fiche réclame pour une présence ferme.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "L'unique pièce, affaiblie mais retenue, signale une sollicitude anticipatoire sans atteindre la lucidité émotionnelle nommée par la fiche. Le seuil de présence ferme n'est pas franchi.",
+        "prescription": "Le travail montre ici un geste d'anticipation du ressenti d'autrui. Pour épaissir cette compétence, un chemin possible serait de nommer plus finement les émotions perçues ou anticipées chez les acteurs du projet (cartographes, apprenants, employeurs) et de les relier à des décisions concrètes."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Aveu explicite d'une posture qu'il critique en lui-même, partagé publiquement dans le portfolio."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Variation de registre : passage d'un raisonnement organisationnel à une analogie populaire ('c'est comme le bitcoin') pour rejoindre un public plus large."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a pas ici de communication maîtrisée mais une simple écriture spontanée de journal. La pièce 1 est un aveu de posture problématique ('logique mercantile') livré sans filtre, ce qui pourrait être de la confession plus que de la vulnérabilité stratégique. La pièce 2 mobilise une analogie Bitcoin dans un texte technique, ce qui pourrait être anecdotique. Pourtant, l'aveu de la pièce 5 est *publié* dans un portfolio explicitement lu par d'autres, ce qui en fait un acte de partage assumé. Et la variation de registre de la pièce 9 est récurrente sur la feuille (technique → analogique → philosophique), ce qui suggère une conscience du ton.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'aveu d'une posture critiquée par l'apprenant lui-même est publié dans un texte destiné à être lu — c'est une vulnérabilité assumée, pas un journal intime."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'analogie populaire est mobilisée dans un raisonnement technique, ce qui signale une attention au registre adapté à un lecteur non-spécialiste."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté ; je dois me demander si la communication décrite est vraiment 'maîtrisée' ou simplement spontanée. L'attaque (a) insuffisance probatoire s'applique à la pièce 2 : une seule analogie ne suffit pas à attester d'une variation de registre récurrente. Pour la pièce 1, l'attaque (f) récit performatif pourrait s'appliquer : l'aveu se présente comme spontané sans description du dispositif communicationnel. La pièce 1 reste néanmoins solide : la décision d'écrire publiquement 'je suis dans une logique mercantile' est en soi un acte de vulnérabilité communicationnelle.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'aveu est spontané plutôt que stratégiquement calibré, mais sa publication même dans le portfolio constitue un acte communicationnel assumé."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Une seule occurrence d'analogie ne suffit pas à établir une variation de registre maîtrisée ; mais elle est combinée à un effort manifeste de rejoindre un lecteur non technique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme de la simple écriture spontanée. Ce qui m'a forcé à reconnaître une trace, c'est le caractère public assumé du portfolio : l'aveu de la pièce 5 n'est pas une confidence mais un acte de partage vers les futurs lecteurs (cartographes, apprenants), avec ce que cela implique d'exposition. La variation de registre de la pièce 9, combinée à l'effort d'intelligibilité de la pièce 1 (chapitre méta-pédagogique pour les cartographes), confirme une attention au lecteur. La présomption de sycophantie a affaibli les deux pièces sans les disqualifier. Ce qui reste : une trace claire de communication vulnérable et adaptée au public, sans encore atteindre la maîtrise calibrée des conversations difficiles.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Les deux pièces, affaiblies mais retenues, attestent ensemble d'une vulnérabilité assumée et d'une attention au registre adapté à un lecteur non-spécialiste.",
+        "prescription": "Le travail montre ici un partage public d'une posture inconfortable, ce qui relève de la communication assumée. Pour prolonger ce mouvement, un chemin possible serait d'identifier explicitement à qui s'adresse chaque section du manuel et de calibrer le registre en conséquence — ce qui est déjà amorcé via l'ajout du chapitre méta-pédagogique."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Anticipation d'un conflit futur ('cartographes exploités') et choix de le désamorcer en amont par la transparence."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas de gestion de conflit au sens fort — pas de désaccord présent, pas de médiation décrite. La pièce 4 anticipe un conflit hypothétique futur ('si je change tout sans consulter') et le désamorce par une règle ('vote du cercle des Maîtres'). C'est de la prévention plus que de la gestion, mais la prévention par dispositif structuré est mentionnée explicitement dans la fiche comme un marqueur valide.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant identifie une source potentielle de conflit (sentiment d'exploitation) et propose un dispositif de prévention (vote collectif)."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce a résisté ; je dois me demander si l'anticipation d'un conflit hypothétique compte vraiment comme gestion. L'attaque (f) récit performatif s'applique : l'apprenant raconte qu'il faudrait un vote, mais ne décrit pas un conflit vécu ni une médiation effective. L'attaque (g) mouvement-vers pourrait aussi s'appliquer : il esquisse un dispositif sans encore l'avoir mis en œuvre.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le dispositif (vote du cercle des Maîtres) est esquissé dans un manuel non encore actif, donc il s'agit d'un mouvement vers la compétence plutôt que d'un conflit géré en acte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ce passage comme une simple règle administrative. Ce qui m'a forcé à le reconnaître comme trace, c'est l'anticipation explicite d'un sentiment d'exploitation chez un tiers et la conception d'un mécanisme pour le prévenir. La présomption de sycophantie a affaibli la pièce : il s'agit d'un dispositif esquissé, pas d'un conflit vécu et structuré. Ce qui reste : un geste préventif de conception, plus proche de la facilitation/gouvernance (7.07 ou 6.07) que de la gestion de conflit en acte. La compétence 2.03 n'est pas attestée par cette feuille.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "L'unique pièce, affaiblie après l'attaque mouvement-vers, témoigne d'un dispositif esquissé plutôt que d'un conflit géré en acte. Le seuil de présence ferme n'est pas franchi.",
+        "prescription": "Le travail montre ici une anticipation de tensions futures et un dispositif de prévention. Pour ouvrir ce dossier, un chemin possible serait de documenter un désaccord réellement vécu — qu'il ait été résolu, transformé ou laissé en tension productive."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Conception d'un dispositif où les cartographes deviennent eux-mêmes représentants et bénéficiaires, créant adhésion par intérêt aligné."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Argumentaire reliant rétribution, notoriété et qualité d'accompagnement pour susciter l'engagement des futurs tuteurs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici qu'un business model décrit, pas une stratégie d'influence. La pièce 8 décrit un mécanisme où les cartographes ont intérêt à monter en compétence — c'est de la conception d'écosystème, ce qui correspond au niveau le plus avancé de la fiche ('influence systémique, conception d'environnements où les gens s'engagent d'eux-mêmes'). La pièce 9 articule explicitement le lien rétribution-notoriété-qualité, ce qui est un argumentaire d'adhésion.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant conçoit un système où l'intérêt individuel du cartographe (réputation, niveau) le pousse à apporter de la valeur à l'école — influence par design, pas par persuasion."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'argumentaire 'salaire proportionnel à la qualité humaine' relie explicitement intérêt personnel et valeur produite, ce qui est un dispositif d'adhésion."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté ; je dois me demander si je n'ai pas surinterprété un business plan en stratégie d'influence. L'attaque (a) insuffisance probatoire s'applique : ni la pièce 8 ni la pièce 9 ne décrit une situation où l'apprenant a effectivement convaincu quelqu'un. L'attaque (g) mouvement-vers est aussi pertinente : le dispositif est conçu mais pas encore activé. Cela dit, la fiche admet explicitement la 'conception d'environnements où les gens s'engagent d'eux-mêmes' comme niveau avancé, et la conception est textuellement présente.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le dispositif est en cours de conception, non encore expérimenté ; la fiche admet la conception comme marqueur, mais la pièce ne montre pas l'adhésion produite."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'argumentaire est énoncé dans un texte de conception, sans audience réelle qui aurait été convaincue — c'est un récit performatif de l'adhésion plutôt que son acte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme un simple business model. Ce qui m'a forcé à reconnaître une trace d'influence, c'est la pièce 8 : l'apprenant conçoit un écosystème où le travail des cartographes les sert eux-mêmes, ce qui est précisément la définition de l'influence systémique selon la fiche. La présomption de sycophantie a affaibli les deux pièces : il s'agit de conception, pas d'adhésion observée. Ce qui reste : une trace de pensée d'influence par conception d'environnement, dans une forme avancée mais non encore éprouvée.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces, affaiblies mais retenues, attestent d'une influence par conception d'environnement (niveau avancé de la fiche), même si l'adhésion réelle n'est pas encore observable.",
+        "prescription": "Le travail montre ici une influence pensée par dispositif d'alignement d'intérêts. Pour prolonger ce travail, un chemin possible serait de tester le dispositif auprès d'un premier cartographe et de documenter ce qui suscite ou non l'adhésion."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Acceptation de la divergence : laisser totale liberté aux acteurs d'utiliser ou non Workspace, malgré la préférence personnelle pour l'usage."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Reconnaissance que la décision du cartographe de monétiser ou non 'ne concerne pas l'école'."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il ne s'agit pas ici de collaboration divergente au sens strict — pas de collaborateur identifié avec qui un désaccord persiste. La pièce 6 décrit une intention de laisser la liberté de choix, sans collaboration concrète déjà en cours. La pièce 8, en revanche, articule que le cartographe peut monétiser ou non son travail et que cela 'ne concerne pas l'école' — c'est explicitement la posture 'tu fais comme tu veux sur X, moi je gère Y à ma façon' citée par la fiche.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant définit explicitement un périmètre où la liberté du cartographe sur la monétisation est préservée, tout en maintenant la mission de l'école — marqueur classique de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois me demander si elle ne décrit qu'une simple règle de non-interférence administrative. L'attaque (b) confusion de compétence s'applique : la pièce ressemble peut-être plus à une délimitation de juridiction qu'à une collaboration divergente — on n'identifie pas un désaccord concret avec un cartographe particulier. La fiche est claire : 'on n'est *toujours pas* d'accord MAIS on a livré' ; ici, il n'y a pas encore de 'on a livré'.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce décrit une règle d'organisation préservant l'autonomie d'un futur acteur, ce qui relève de la gouvernance (6.07) ou de l'architecture (1.07) plutôt que de la collaboration divergente au sens 2.05."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici la trace d'une collaboration où le désaccord persiste tout en produisant un résultat. La pièce extraite décrit une règle d'organisation préservant la liberté d'autrui, mais sans collaboration concrète déjà en cours. La présomption de sycophantie a disqualifié la pièce : il s'agit d'une règle de juridiction, pas d'une coopération divergente effective. Ce qui reste : pas de trace solide de collaboration divergente sur cette feuille — l'apprenant pense la divergence comme cadre, mais ne la vit pas encore avec un partenaire.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "L'unique pièce a été disqualifiée comme relevant de la gouvernance ou de l'architecture plutôt que de la collaboration divergente effective.",
+        "prescription": "Sur cette feuille, le travail prépare un cadre où la divergence sera possible plutôt qu'il ne la vit. Pour ouvrir ce dossier, un chemin possible serait de documenter une collaboration concrète (avec un cartographe, un apprenant, ou même l'IA) où un désaccord persiste tout en produisant un résultat."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décodage d'implicites culturels ou à l'adaptation à des contextes radicalement différents. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a modifié son comportement parce que les règles culturelles d'un contexte différaient des siennes."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Identification du 'conseil des maîtres' comme instance décisionnelle légitime, distincte de l'auteur seul."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Lecture des conséquences politiques d'un changement unilatéral ('cartographes se sentiront exploités')."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici qu'une description d'organigramme institutionnel, pas une lecture politique fine. La pièce 3 nomme une instance ('conseil des maîtres') sans encore décrire de dynamique de pouvoir. La pièce 4 anticipe un sentiment d'exploitation, ce qui est une lecture des effets politiques d'une décision sur un groupe. Pourtant, aucune analyse de pouvoir informel, de blocage institutionnel ou de circuits parallèles n'est présente.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant lit explicitement l'effet politique d'un changement unilatéral sur un groupe (les cartographes), ce qui est une lecture organisationnelle même rudimentaire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a résisté ; je dois me demander si je n'ai pas surinterprété une simple anticipation. L'attaque (b) confusion de compétence est forte ici : la pièce ressemble plus à de l'intelligence émotionnelle anticipatoire (2.01) ou de la facilitation/gouvernance (6.07) qu'à une lecture des dynamiques cachées de pouvoir. La fiche 2.07 parle de 'qui décide vraiment', 'voies informelles', 'résistances institutionnelles' — rien de cela n'est présent.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'anticipation d'un ressenti n'est pas une lecture des dynamiques de pouvoir invisibles ; elle relève davantage de 2.01 ou de la conception de gouvernance (6.07)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici la lecture des dynamiques cachées de pouvoir. Les pièces extraites décrivent une structure institutionnelle en cours de conception (conseil des maîtres, vote) et anticipent un ressenti, mais ne lisent pas les rapports de force invisibles d'une organisation existante. La présomption de sycophantie a disqualifié la pièce porteuse. Ce qui reste : pas de trace de sens politique au sens de la fiche dans cette feuille — l'apprenant conçoit une gouvernance plutôt qu'il ne lit la politique d'un environnement.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce porteuse a été disqualifiée : la conception d'une gouvernance n'est pas la lecture des dynamiques de pouvoir d'une organisation existante.",
+        "prescription": "Sur cette feuille, le travail se situe du côté de la conception de gouvernance, pas de la lecture politique. Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où l'apprenant a identifié un décideur réel différent du décideur officiel, ou une voie informelle pour faire avancer un projet."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Ajout d'un chapitre méta-pédagogique destiné à rendre intelligible la stratégie de génération aux futurs cartographes."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Analogie Bitcoin mobilisée pour traduire un mécanisme économique abstrait vers un public éducatif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici qu'une décision éditoriale ordinaire, pas une véritable traduction entre mondes. La pièce 1 mentionne 'un chapitre explicitant comment sont générés les manuels pour [...] les cartographes / futurs experts du prompt engineering' — ce qui désigne explicitement un pont entre le monde du concepteur (qui sait comment) et le monde des futurs cartographes (qui doivent comprendre pour reproduire). La pièce 2 transpose un mécanisme économique (Bitcoin) vers un cadre éducatif via une analogie. Ce sont deux gestes de traduction, le premier institutionnel, le second analogique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant identifie un public destinataire (cartographes) qui pense dans un autre cadre que le sien et crée explicitement un dispositif pour ponter — chapitre dédié à la stratégie de génération."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'analogie Bitcoin transpose un mécanisme économique vers un cadre éducatif pour rendre intelligible une logique de valeur à un public non-spécialiste."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté ; je dois me demander si chaque geste est vraiment une 'traduction' au sens fort (structurelle, bidirectionnelle, préservant le sens). L'attaque (e) surinterprétation pédagogique s'applique à la pièce 1 : l'ajout d'un chapitre ne dit pas comment la traduction opère — elle est annoncée plutôt qu'exécutée. Pour la pièce 2, l'analogie reste de surface : elle capture le storytelling de Bitcoin (tout le monde peut gagner) sans transposer la mécanique précise. La traduction est mobilisée mais pas pleinement déployée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant annonce la traduction (ajout d'un chapitre dédié) sans la déployer dans le texte présent — c'est un récit performatif de l'intention de traduire."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'analogie utilise le mot Bitcoin pour évoquer un imaginaire d'opportunité, mais ne transpose pas le mécanisme technique — la traduction reste métaphorique de surface."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces gestes comme de simples décisions éditoriales. Ce qui m'a forcé à reconnaître une trace de traduction, c'est la conscience explicite, dans la pièce 1, du public destinataire ('futurs experts du prompt engineering') et la décision d'inscrire dans la structure même du manuel un pont méta-pédagogique. La présomption de sycophantie a affaibli les deux pièces : la traduction est annoncée et amorcée, mais pas pleinement déployée dans cette feuille. Ce qui reste : une trace nette d'intention de traduction structurée, qui se manifeste par la décision d'ajouter un chapitre dédié et par la mobilisation d'analogies pour rejoindre des publics différents.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces, affaiblies mais retenues, dessinent ensemble un geste de traduction conscient — identification du public destinataire et mobilisation d'analogies pour rejoindre des cadres différents.",
+        "prescription": "Le travail montre ici une attention au passage entre cadres conceptuels distincts (concepteur / cartographe, économie / éducation). Pour approfondir cette compétence, un chemin possible serait de documenter, sur un cas précis, comment un même concept est reformulé pour deux publics et de tester si chaque public retrouve bien le sens préservé."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Mention du 'cercle des Maîtres' comme instance collective avec règles de gouvernance partagées."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Usage d'un 'nous' identitaire reliant cartographes, noèsiologues et apprenants autour d'un but commun."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Définition d'un rôle institutionnel (cartographe-représentant) inscrivant l'individu dans une appartenance plus large."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici qu'une structure organisationnelle en cours de design, pas une véritable communauté. La pièce 3 nomme un 'cercle' avec connotation communautaire (pas un 'conseil d'administration'). La pièce 7 utilise un 'nous' identitaire ('nous avons tous un but commun') qui dépasse le 'nous' de politesse. La pièce 8 définit le cartographe comme 'représentant des écoles' — appartenance institutionnelle assignée. Trois pièces dessinent une architecture communautaire : rituels (cercle), 'nous' identitaire, rôles d'appartenance.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le terme 'cercle' avec règles de fonctionnement collectives signale une intention communautaire et non strictement administrative."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le 'nous' identitaire embrasse plusieurs catégories d'acteurs autour d'un but commun, ce qui correspond au marqueur de la fiche."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Le rôle de cartographe-représentant inscrit l'individu dans une appartenance institutionnelle plus large, élément d'architecture communautaire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté ; je dois me demander si l'architecture décrite est une véritable communauté ou simplement une organisation. L'attaque (g) mouvement-vers s'applique fortement : aucun des éléments décrits n'existe encore — pas de cercle réuni, pas de 'nous' vécu, pas de cartographe en exercice. L'attaque (e) surinterprétation pédagogique pourrait aussi s'appliquer au 'nous' : il est utilisé dans un texte de conception, pas dans un récit de moment partagé. Cela dit, la fiche admet 'l'architecture communautaire systémique (design d'écosystème multi-canaux avec rôles, rituels, gouvernance)' comme trace textuelle forte — et c'est précisément ce qui est en cours.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le cercle des Maîtres est conçu mais pas encore réuni ; la trace est dans le design, pas dans le vécu."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le 'nous' est performatif (utilisé dans un texte de conception) plutôt qu'expérientiel (issu d'un moment partagé)."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La définition du rôle de cartographe-représentant est un élément architectural mature — l'attribution de représentativité et de rôle d'appartenance est précise et structurante."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme une simple organisation administrative. Ce qui m'a forcé à reconnaître une trace communautaire, c'est la cohérence des trois éléments : le terme 'cercle' (rituel), le 'nous' embrassant plusieurs rôles (identité collective), et la définition du cartographe-représentant (appartenance institutionnelle). La présomption de sycophantie a affaibli deux pièces sur trois — ces éléments sont conçus, pas vécus — mais la conception d'une architecture communautaire systémique est précisément reconnue par la fiche comme trace textuelle forte. Ce qui reste : une architecture communautaire en cours de design qui dépasse la simple organisation, sans encore avoir produit l'appartenance vécue.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "La pièce 3, confirmée sans affaiblissement, porte le verdict : la définition du rôle de cartographe-représentant inscrit l'individu dans une architecture communautaire structurée, ce que la fiche reconnaît comme trace forte.",
+        "prescription": "Le travail montre ici la conception d'une architecture communautaire avec rituels (cercle), identité partagée et rôles d'appartenance. Pour prolonger cette compétence, un chemin possible serait de documenter les premiers moments où le 'nous' devient vécu — un premier échange entre cartographes, un premier cercle réuni — afin de tester si l'architecture conçue produit effectivement l'appartenance."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 3,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 4,
+    "renvoisCartographe": 2,
+    "nonEtablies": 4,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail relationnel se loge presque entièrement dans la conception : il s'agit de penser comment des acteurs encore absents (cartographes, apprenants, employeurs) entreront en relation à travers le dispositif RESPIRE. L'apprenant définit des rôles, des règles d'accès, des instances collectives ('cercle des Maîtres'), et un 'nous' qui embrasse plusieurs métiers autour d'un but commun. La voix dominante est celle d'un architecte du collectif — qui anticipe les ressentis, calibre les libertés laissées à chacun, et inscrit dans la structure même du manuel des dispositifs de transparence (chapitre méta-pédagogique). Le rapport à autrui s'exprime ici par la conception des conditions de leur autonomie future, plus que par le récit d'interactions vécues.",
+    "territoiresDenses": [
+      {
+        "competence": "Construction de communautés",
+        "description": "L'architecture communautaire est ici en cours de design — termes rituels ('cercle'), 'nous' identitaire embrassant plusieurs rôles, attribution d'une représentativité institutionnelle à chaque cartographe.",
+        "extraitVerbatim": "Tout cartographe, en créant une cartographie, devient représentant des écoles RESPIRE.",
+        "ceQueCaDit": "Le rôle de représentant n'est pas un titre administratif : il inscrit le cartographe dans une appartenance et engage sa réputation au-delà de sa relation avec un apprenant donné."
+      },
+      {
+        "competence": "Traduction entre mondes",
+        "description": "Une attention explicite au passage entre cadres conceptuels distincts apparaît à plusieurs endroits — du concepteur vers le cartographe (chapitre méta-pédagogique), du registre économique vers le registre éducatif (analogie Bitcoin).",
+        "extraitVerbatim": "j'ai eu l'idée d'ajouter un chapitre explicitant comment sont générés les manuels de formation pour présenter rapidement la stratégie utilisée pour générer les manuels aux cartographes / futurs experts du prompt engineering.",
+        "ceQueCaDit": "L'inscription dans la structure même du manuel d'un pont vers un public futur est un geste de traduction institutionnalisée — non pas vulgariser, mais préparer la transmission."
+      },
+      {
+        "competence": "Influence et diplomatie",
+        "description": "L'influence prend ici la forme d'une conception d'environnement où l'intérêt individuel des cartographes converge avec l'intérêt collectif de l'école — une forme d'influence par design plutôt que par persuasion.",
+        "extraitVerbatim": "Un cartographe qui souhaite s'améliorer, améliorer sa réputation, monter en niveau, sera amené à apprendre les compétences des noèsiologues pour améliorer la pertinence des traces de ses apprenants.",
+        "ceQueCaDit": "Le dispositif est pensé pour que les cartographes s'engagent d'eux-mêmes par alignement d'intérêts, sans coercition ni persuasion directe — ce qui correspond au niveau le plus avancé de la fiche."
+      },
+      {
+        "competence": "Communication authentique",
+        "description": "Le partage public d'une posture inconfortable ('je suis dans une logique mercantile') dans un portfolio destiné à être lu signale une vulnérabilité assumée plus qu'une confidence privée.",
+        "extraitVerbatim": "Je suis toujours dans une logique d'entrepreneuriat et pas dans une logique de partage désintéressé.",
+        "ceQueCaDit": "L'aveu publié engage la relation avec les futurs lecteurs en montrant le mouvement de la pensée plutôt qu'un résultat lisse — c'est une communication qui choisit délibérément la transparence sur l'incohérence interne."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent silencieux sur cette feuille. L'intelligence émotionnelle au sens fort — nommer ses propres émotions et celles d'autrui avec précision — n'apparaît qu'en germe (anticipation d'un sentiment d'exploitation chez de futurs cartographes). La gestion de conflit en acte n'est pas présente : ce qui s'observe relève de la prévention par dispositif, pas d'une tension vécue et structurée. La collaboration divergente reste un cadre conçu plutôt qu'une expérience vécue avec un partenaire concret. Le sens politique au sens des dynamiques cachées de pouvoir n'apparaît pas dans cette feuille — le travail se situe du côté de la conception de gouvernance, pas de la lecture politique d'un environnement existant. L'intelligence culturelle, enfin, n'est pas mobilisée dans ces pages.",
+    "emergencesPole": "Ce qui traverse cette feuille, c'est un rapport relationnel orienté vers le futur : presque tous les autres présents dans le texte sont des acteurs à venir (cartographes futurs, apprenants futurs, employeurs futurs). Une seconde émergence : la vigilance éthique relationnelle agit comme moteur du recadrage — c'est l'anticipation d'un ressenti d'exploitation chez d'autres qui pousse à la transparence sur le business plan. Enfin, l'apprenant inscrit ses gestes relationnels dans la structure même des artefacts (chapitre dédié, règlement intérieur), plutôt que dans des interactions ponctuelles : la relation passe par la conception du dispositif.",
+    "pistes": [
+      "Pour épaissir la dimension émotionnelle, un chemin possible serait de nommer plus finement les ressentis perçus ou anticipés chez les différents acteurs et de les relier aux décisions concrètes qui en découlent.",
+      "Pour passer de la conception communautaire à la communauté vécue, un chemin possible serait de documenter les premiers moments où le 'nous' devient expérientiel — un premier échange, un premier cercle réuni.",
+      "Pour tester la traduction entre mondes, un chemin possible serait de demander à un futur cartographe ce qu'il a compris du chapitre méta-pédagogique, et de noter ce qui s'est préservé ou perdu dans le passage."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail relationnel se loge presque entièrement dans la conception : il s'agit de penser comment des acteurs encore absents (cartographes, apprenants, employeurs) entreront en relation à travers le dispositif RESPIRE. L'apprenant définit des rôles, des règles d'accès, des instances collectives ('cercle des Maîtres'), et un 'nous' qui embrasse plusieurs métiers autour d'un but commun. La voix dominante est celle d'un architecte du collectif — qui anticipe les ressentis, calibre les libertés laissées à chacun, et inscrit dans la structure même du manuel des dispositifs de transparence. Le rapport à autrui s'exprime ici par la conception des conditions de leur autonomie future, plus que par le récit d'interactions vécues.\n\n## Territoires les plus denses\n\n**Construction de communautés.** L'architecture communautaire est ici en cours de design — termes rituels ('cercle'), 'nous' identitaire embrassant plusieurs rôles, attribution d'une représentativité institutionnelle. « Tout cartographe, en créant une cartographie, devient représentant des écoles RESPIRE. » Le rôle de représentant n'est pas un titre administratif : il inscrit le cartographe dans une appartenance et engage sa réputation au-delà de sa relation avec un apprenant donné.\n\n**Traduction entre mondes.** Une attention explicite au passage entre cadres conceptuels distincts apparaît à plusieurs endroits — du concepteur vers le cartographe (chapitre méta-pédagogique), du registre économique vers le registre éducatif (analogie Bitcoin). « j'ai eu l'idée d'ajouter un chapitre explicitant comment sont générés les manuels de formation pour présenter rapidement la stratégie utilisée pour générer les manuels aux cartographes / futurs experts du prompt engineering. » L'inscription dans la structure même du manuel d'un pont vers un public futur est un geste de traduction institutionnalisée — non pas vulgariser, mais préparer la transmission.\n\n**Influence et diplomatie.** L'influence prend ici la forme d'une conception d'environnement où l'intérêt individuel des cartographes converge avec l'intérêt collectif de l'école. « Un cartographe qui souhaite s'améliorer, améliorer sa réputation, monter en niveau, sera amené à apprendre les compétences des noèsiologues pour améliorer la pertinence des traces de ses apprenants. » Le dispositif est pensé pour que les cartographes s'engagent d'eux-mêmes par alignement d'intérêts.\n\n**Communication authentique.** Le partage public d'une posture inconfortable dans un portfolio destiné à être lu signale une vulnérabilité assumée plus qu'une confidence privée. « Je suis toujours dans une logique d'entrepreneuriat et pas dans une logique de partage désintéressé. » L'aveu publié engage la relation avec les futurs lecteurs en montrant le mouvement de la pensée plutôt qu'un résultat lisse.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent silencieux sur cette feuille. L'intelligence émotionnelle au sens fort — nommer ses propres émotions et celles d'autrui avec précision — n'apparaît qu'en germe. La gestion de conflit en acte n'est pas présente : ce qui s'observe relève de la prévention par dispositif, pas d'une tension vécue et structurée. La collaboration divergente reste un cadre conçu plutôt qu'une expérience vécue avec un partenaire concret. Le sens politique au sens des dynamiques cachées de pouvoir n'apparaît pas dans cette feuille — le travail se situe du côté de la conception de gouvernance, pas de la lecture politique d'un environnement existant. L'intelligence culturelle, enfin, n'est pas mobilisée dans ces pages.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse cette feuille, c'est un rapport relationnel orienté vers le futur : presque tous les autres présents dans le texte sont des acteurs à venir. Une seconde émergence : la vigilance éthique relationnelle agit comme moteur du recadrage — c'est l'anticipation d'un ressenti d'exploitation chez d'autres qui pousse à la transparence sur le business plan. Enfin, l'apprenant inscrit ses gestes relationnels dans la structure même des artefacts (chapitre dédié, règlement intérieur), plutôt que dans des interactions ponctuelles : la relation passe par la conception du dispositif.\n\n## Pistes pour enrichir ce pôle\n\n- Pour épaissir la dimension émotionnelle, un chemin possible serait de nommer plus finement les ressentis perçus ou anticipés chez les différents acteurs et de les relier aux décisions concrètes qui en découlent.\n- Pour passer de la conception communautaire à la communauté vécue, un chemin possible serait de documenter les premiers moments où le 'nous' devient expérientiel — un premier échange, un premier cercle réuni.\n- Pour tester la traduction entre mondes, un chemin possible serait de demander à un futur cartographe ce qu'il a compris du chapitre méta-pédagogique, et de noter ce qui s'est préservé ou perdu dans le passage.\n"
+  }
+}

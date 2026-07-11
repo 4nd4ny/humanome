@@ -1,0 +1,437 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Message à Stéphane : J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). Demain je retourne aux manuels du Tuteur et du Maître.",
+      "contexte": "Message professionnel adressé à un destinataire nommé, mêlant statut, appréciation et engagement futur — pourrait activer 2.02, 2.08.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous.",
+      "contexte": "Réflexion sur l'effet du livrable : rendre concret le travail attendu pour l'ensemble des rôles — pourrait activer 2.08, 2.09.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool ! En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé",
+      "contexte": "Mise en équivalence d'un dispositif Respire avec son pendant institutionnel (HEP) et transposition de lectures de thèse en définition pédagogique — pourrait activer 2.08, 2.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "et dire qu'on m'a reproché de ne pas avoir suivi le PER — ce qui c'est passé à Chamblandes n'a toujours aucun sens pour moi (et je pense que ça n'en aura jamais !)",
+      "contexte": "Évocation rétrospective d'un reproche institutionnel resté incompréhensible — pourrait activer 2.03, 2.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Heureusement qu'il y a ce projet qui me fait du bien !",
+      "contexte": "Expression émotionnelle directe sur l'effet ressenti du projet — pourrait activer 2.01.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "extraitVerbatim": "Heureusement qu'il y a ce projet qui me fait du bien !",
+          "contexte": "Nomination d'un effet émotionnel positif du projet sur soi, sous forme compacte et non-clinique.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que l'intelligence émotionnelle au sens fort n'y est pas. La fiche est exigeante : il faut une nomination précise des émotions (colère, gratitude, frustration), pas seulement une humeur vague. « Ça me fait du bien » ressemble plus à « c'était dur » qu'à une nomination calibrée. Aucune régulation décrite, aucune perception d'un état chez autrui, aucun geste de sollicitude. Pourtant la pièce résiste faiblement : elle nomme un effet émotionnel positif clairement attribué à un objet (le projet), au sein d'un message à un tiers — pas un soupir intérieur, une trace adressée. Ce qui reste explicitement faible : la précision affective.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'effet émotionnel est nommé et attribué à un objet précis (le projet), dans une formulation adressée à un destinataire — pas un débordement mais une mention calibrée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas accordé à une formule routinière la dignité d'une nomination affective. La distinction critique de la fiche est claire : il faut de la précision, pas un descripteur de bien-être générique. « Fait du bien » est exactement le type de formule qui peut signaler une intelligence émotionnelle naissante ou simplement une politesse sociale.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la formule est courte et imprécise au regard du critère de nomination affective fine ; elle subsiste comme indice d'une attention portée à l'effet émotionnel du travail, pas comme preuve d'une intelligence émotionnelle articulée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette pièce ne franchissait pas le seuil de l'intelligence émotionnelle au sens fort. Largement vrai : la formule reste générique, sans précision affective ni travail de régulation décrit. Ce qui m'a tout de même retenu de la disqualifier : la formulation est adressée à un tiers, attribue l'effet positif à un objet précis, et appartient à une phrase finale du message qui colore tout le reste. Sur cette journée et ce pôle, la trace d'attention à son propre état émotionnel existe à l'état de mention. Le verdict honnête reste en suspens — un renvoi au cartographe, l'invitation à une nomination plus précise sur les feuilles à venir.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "Une seule pièce subsiste, en forme affaiblie ; la formule nomme un effet émotionnel sans la précision exigée par la fiche.",
+        "prescription": "L'attention à l'effet du projet sur soi-même apparaît en fin de message. Nommer un jour ce qui exactement « fait du bien » — un soulagement, une fierté, une reconnaissance de soi — affinerait la trace. La nomination précise des émotions est ce qui distingue une mention d'humeur d'une lucidité affective."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Message à Stéphane : J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). Demain je retourne aux manuels du Tuteur et du Maître.",
+          "contexte": "Message professionnel cité in extenso, qui combine statut, appréciation modale (« ça pourrait servir ») et engagement futur — variation de registre dans un même fragment.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'un message de statut professionnel ne suffit pas à attester la communication authentique au sens de la fiche. Pas de prise de parole inconfortable décrite, pas de feedback difficile, pas d'humour, pas de silence stratégique nommé. Pourtant la pièce résiste faiblement : le message intègre un acte (livraison), une appréciation modale qui ouvre un usage (« ça pourrait servir aux élèves actuels hors Respire ») et une projection (le lendemain). C'est un message calibré, pas un simple rapport — il pousse subtilement une extension d'usage. Reste faible : aucun moment de vulnérabilité stratégique, aucune variation marquée de registre au sein du message.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le message combine compte rendu, suggestion d'usage élargi et engagement futur — il est calibré pour un destinataire, pas neutre." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas chargé un message professionnel courant de la dignité d'une communication authentique au sens fort. C'est largement le cas : un compte rendu calibré reste un compte rendu, même s'il pousse une ouverture d'usage. La fiche réserve la compétence aux récits de prise de parole inconfortable, à l'humour, à la vulnérabilité dosée — éléments absents ici.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : le message est soigné mais sans marqueur fort de communication authentique (vulnérabilité, humour, registre rompu, assertivité difficile) ; il subsiste comme indice d'une attention au destinataire, pas comme preuve d'une communication travaillée au sens de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que ce message ne franchissait pas le seuil de la communication authentique au sens fort. Le constat tient en grande partie : aucun moment d'inconfort, aucune vulnérabilité stratégique, aucun jeu de registre marqué dans cette pièce isolée. Ce qui résiste néanmoins : le message porte une intention au-delà du compte rendu — il ouvre une extension d'usage et signale un engagement pour le lendemain, dans une économie de mots adressée à un destinataire précis. Sur cette journée, la communication apparaît dans sa version professionnelle calibrée, sans dimension expressive forte. Un renvoi au cartographe est l'option honnête : la trace existe, son intensité ne suffit pas à elle seule.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "L'unique pièce subsiste en forme affaiblie : message professionnel soigné mais sans marqueur fort des dimensions exigées par la fiche.",
+        "prescription": "Le soin porté à ce message à Stéphane suggère une attention à l'effet sur le destinataire. Documenter une fois une prise de parole inconfortable, un humour mobilisé pour désamorcer, ou une variation délibérée de registre rendrait visible la dimension expressive de la communication. Le message professionnel apparaît ici comme une trace de surface ; le travail sur le ton mérite d'être mis en récit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "extraitVerbatim": "et dire qu'on m'a reproché de ne pas avoir suivi le PER — ce qui c'est passé à Chamblandes n'a toujours aucun sens pour moi (et je pense que ça n'en aura jamais !)",
+          "contexte": "Évocation d'un conflit institutionnel passé sous forme de frustration toujours active, sans dispositif de gestion productive décrit.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'elle ne porte pas la compétence. La fiche est exigeante : la gestion de conflit suppose une transformation de la tension en intelligence collective, ou au minimum une structuration du désaccord pour qu'il produise de la valeur. Or la pièce est exactement l'inverse : un conflit passé, non résolu, dont le sens reste opaque pour l'apprenant, et exprimé comme une frustration toujours vive. Aucune médiation, aucun arbitrage, aucun protocole. La pièce ne résiste pas — elle confirme la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'évocation de Chamblandes pouvait porter, même obliquement, une trace de gestion de conflit. Elle ne le porte pas : la phrase dit l'incompréhension persistante, la non-résolution assumée, et même la projection que le sens ne viendra jamais. La fiche distingue clairement la gestion de conflit (transformation, intégration des perspectives) de la frustration brute face à un refus institutionnel. Sur cette journée, le pôle conflictuel apparaît seulement comme un souvenir non métabolisé. Une absence honnête, qui pourrait être levée par le récit d'une situation où un désaccord a été structuré pour produire de la valeur.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "L'unique pièce a été disqualifiée dès le temps 1 : la fiche distingue la gestion productive du conflit de la frustration non-résolue, et la pièce relève clairement de la seconde.",
+        "prescription": "L'évocation de Chamblandes apparaît comme une blessure restée vive. Ce n'est pas un échec de compétence — c'est un territoire où la gestion du conflit ne s'est pas faite à l'époque, et qui pourrait être visité autrement. Raconter dans le futur un moment où un désaccord a pu être structuré pour produire quelque chose ouvrirait ce dossier sur des bases neuves."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'influence diplomatique sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où, face à une résistance attendue, il a préparé une proposition en sondant les positions et en intégrant les objections probables."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la collaboration divergente sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait raconter une livraison faite malgré un désaccord persistant — ce sur quoi le désaccord tenait, ce qui a néanmoins pu être produit."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool ! En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé",
+          "contexte": "Mise en correspondance d'un dispositif Respire avec son pendant institutionnel HEP — comparaison entre deux cadres organisationnels et pédagogiques.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'elle ne porte pas la compétence. La fiche exige une lecture des implicites culturels, une analyse du pourquoi des normes différentes, ou un faux-pas et l'apprentissage qui en a été tiré. Or la pièce se contente d'une mise en équivalence rapide (« équivalent HEP pour Respire ») sans expliciter en quoi les normes diffèrent, ni quelle adaptation comportementale cela implique. Pourtant la pièce résiste faiblement : nommer un équivalent suppose une lecture comparative préalable entre deux systèmes pédagogiques distincts (institutionnel formel vs alternatif Respire), et l'apprenant signale clairement que le « plan d'étude imposé » d'un côté n'aurait pas eu sa place de l'autre. Reste faible : aucune analyse fine des implicites culturels propres à chaque système.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La mise en équivalence suppose une lecture comparative entre deux systèmes pédagogiques aux normes différentes, et l'apprenant signale leur incompatibilité." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu une mention rapide avec une lecture culturelle articulée. La fiche est claire : la compétence porte sur la *suspension de son cadre de référence* pour naviguer celui de l'autre. Or la pièce ne suspend rien — elle juxtapose et signale une préférence. La lecture comparative est implicite, jamais déployée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la mise en équivalence est nommée mais non développée — elle reste un indice qu'une comparaison entre systèmes existe en arrière-plan, pas une preuve d'analyse culturelle déployée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette pièce ne portait pas une intelligence culturelle au sens fort. Le constat tient pour l'essentiel : aucune analyse explicite des normes implicites différentes, aucune description d'une adaptation comportementale à un nouveau cadre. Ce qui résiste néanmoins : la mise en équivalence (« équivalent HEP pour les écoles Respire ») suppose qu'une lecture comparative a eu lieu en arrière-plan, et l'apprenant nomme la tension entre les deux cadres (« si nous n'avions pas eu de plan d'étude imposé »). Sur cette journée, la trace existe sous forme d'écho — une cartographie comparative travaille mais ne se déploie pas dans le texte. Un renvoi au cartographe est l'option honnête.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une seule pièce subsiste en forme affaiblie : la mise en équivalence est nommée mais non développée, ce qui reste insuffisant pour établir une lecture culturelle déployée.",
+        "prescription": "L'évocation d'un équivalent HEP pour Respire pointe vers une lecture comparative qui ne s'expose pas. Décrire un jour, même brièvement, ce qui distingue les deux cadres dans leur fonctionnement quotidien — quelles attentes implicites diffèrent, quel comportement convient ici et pas là — rendrait visible le travail d'analyse culturelle qui semble déjà à l'œuvre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "extraitVerbatim": "et dire qu'on m'a reproché de ne pas avoir suivi le PER — ce qui c'est passé à Chamblandes n'a toujours aucun sens pour moi (et je pense que ça n'en aura jamais !)",
+          "contexte": "Évocation d'un reproche institutionnel sans lecture des dynamiques de pouvoir qui ont produit le reproche.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que le sens politique au sens de la fiche n'y est pas. La fiche est exigeante : lire les dynamiques invisibles, identifier qui décide vraiment, analyser les causes structurelles d'un blocage, repérer des fenêtres d'opportunité. Or la pièce dit l'incompréhension persistante face à un reproche institutionnel : « n'a toujours aucun sens pour moi ». L'absence de sens est l'opposé de la lecture politique. La pièce ne résiste pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'évocation du reproche institutionnel portait, même obliquement, une trace de sens politique. Elle ne la porte pas : la phrase nomme un reproche reçu sans l'analyser, et affirme que son sens restera toujours inaccessible. La fiche distingue la lecture lucide des rapports de force de la frustration non-articulée — c'est précisément cette deuxième posture qui s'exprime ici. Sur cette journée, ce pôle n'apparaît pas. La trace future pourrait passer par l'analyse, même partielle, des forces qui ont produit ce reproche : qui avait intérêt à le formuler, quelles règles non-écrites étaient en jeu, quelles alliances le rendaient inévitable.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "L'unique pièce a été disqualifiée dès le temps 1 : la fiche oppose la lecture politique à la frustration non-articulée, et la pièce relève clairement de la seconde.",
+        "prescription": "L'évocation du reproche reçu reste à l'état de tension non-décryptée. Raconter dans le futur ce qui, dans une situation organisationnelle, a fait pencher une décision dans un sens plutôt qu'un autre — qui pesait, qui s'effaçait, quelles règles non-écrites jouaient — ouvrirait ce pôle. Le passage du « ça n'a aucun sens » au « voici ce que j'en lis » est le seuil de cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Message à Stéphane : J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). Demain je retourne aux manuels du Tuteur et du Maître.",
+          "contexte": "Production de quatre manuels distincts pour quatre rôles (Apprenant, Accompagnant, Tuteur, Maître) — différenciation systématique du même objet pédagogique selon le public.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous.",
+          "contexte": "Articulation explicite de l'effet de traduction : le geste d'écrire concrétise le travail attendu pour l'ensemble des rôles concernés.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "extraitVerbatim": "Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool ! En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé",
+          "contexte": "Transposition d'un savoir académique (lectures de thèse) vers une définition pédagogique opérationnelle, en équivalence avec un cadre institutionnel reconnu (HEP).",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la traduction entre mondes n'y est pas attestée au sens fort. La fiche exige des analogies structurelles, des reformulations successives pour des audiences différentes, ou de la bidirectionnalité — pas seulement écrire pour des publics différents. La pièce 2 (« rend plus concret ») ressemble à un constat. Pourtant les trois pièces résistent. La pièce 1 décrit la production de quatre manuels distincts pour quatre rôles — c'est une reformulation systématique du même objet pour des audiences différentes. La pièce 2 nomme l'effet de cette traduction (rendre concret pour tous). La pièce 3 articule deux mouvements de transposition : académique (thèse) vers pédagogique opérationnel, et institutionnel formel (HEP) vers alternatif (Respire). Reste faible : aucune analogie structurelle citée, aucune bidirectionnalité explicite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La production de quatre manuels distincts pour quatre rôles signale une reformulation systématique selon le public — geste de traduction de fond." },
+            { "pieceId": 2, "motifResistance": "L'effet de la traduction est nommé : rendre concret le travail attendu pour tous les rôles concernés." },
+            { "pieceId": 3, "motifResistance": "Double transposition explicite : académique → pédagogique opérationnel, et HEP → Respire ; les lectures de thèse deviennent une définition d'enseignement." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis les pièces qui ont résisté pour voir si je n'ai pas confondu l'écriture de manuels avec un acte de traduction au sens fort. La pièce 1 mentionne la production sans détailler comment chaque manuel diffère pour son public — la traduction est en arrière-plan, pas exposée. La pièce 2 nomme un effet mais ne donne pas d'exemple de transposition concrète. La pièce 3 résiste mieux : elle articule explicitement la conversion d'un savoir de thèse en pratique pédagogique nommée. Le risque de surinterprétation est réel sur les pièces 1 et 2 ; il est plus faible sur la pièce 3.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la mention de quatre manuels pour quatre rôles signale la différenciation mais ne montre pas en quoi chacun transpose ; elle reste un indice solide d'un dispositif de traduction systématique."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif : la pièce dit l'effet (« rendre concret pour tous ») sans le montrer en acte ; elle vaut comme indice du sens donné au geste, pas comme preuve d'une opération de transposition citée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Insuffisance probatoire non recevable : la pièce articule explicitement la double transposition (académique → pédagogique, HEP → Respire) et la condense en une formule (« ça définit exactement comment j'aurai aimé pouvoir enseigner ») — la nature de la traduction est lisible."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer qu'écrire des manuels pour plusieurs publics ne suffisait pas à attester la traduction entre mondes au sens fort. Ce constat tient pour les deux premières pièces, qui restent à l'état d'indice — elles signalent un dispositif sans en montrer les opérations. La troisième résiste pleinement : la conversion des lectures de thèse en définition pédagogique, mise en équivalence avec un cadre institutionnel reconnu, est un acte de traduction structurel, pas une simple vulgarisation. Sur cette journée, le pôle de la traduction apparaît comme le territoire le plus dense — l'apprenant ne décrit pas seulement écrire pour différents publics, il articule la conversion d'un savoir vers un usage. Le seuil de la présence est franchi avec une confiance modérée.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.65,
+        "motif": "La pièce de transposition académique → pédagogique a été confirmée au temps 2 ; deux autres pièces ont résisté en forme affaiblie comme indices d'un dispositif de différenciation par rôle.",
+        "prescription": "La traduction entre mondes apparaît comme un fil porteur de cette journée. Donner à voir un fragment précis de la transposition — quel principe issu de la thèse a été réécrit pour le manuel Apprenant, quelle métaphore a permis de le rendre accessible — révélerait la mécanique de traduction qui semble déjà à l'œuvre. La bidirectionnalité (remonter des besoins terrain vers un langage spécialisé) serait un prolongement naturel."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous.",
+          "contexte": "Le « par tous » suggère un collectif partagé pour lequel le travail attendu est en train d'être nommé.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la construction de communautés au sens de la fiche n'y est pas. La fiche est exigeante : « nous » identitaire chargé d'émotion, rituels partagés, vocabulaire propre, expression du sentiment d'appartenance, architecture d'écosystème. Or la pièce contient un « par tous » impersonnel, sans charge affective, sans nous identitaire, sans rituel. Pourtant la pièce résiste faiblement : nommer le travail attendu pour quatre rôles distincts (Apprenant, Accompagnant, Tuteur, Maître) construit en filigrane une cartographie des rôles d'une communauté pédagogique en train de se définir.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le geste de définir un travail attendu pour quatre rôles distincts construit la cartographie d'une communauté pédagogique différenciée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas chargé un « par tous » de la dignité d'une architecture communautaire. C'est très probablement le cas : la formule est générique, le « tous » n'est pas affectivement chargé, aucun rituel n'est nommé, aucune appartenance ne s'exprime. La distinction critique de la fiche est sans ambiguïté : un canal de communication ne fait pas une communauté.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Surinterprétation pédagogique : j'ai prêté au « par tous » la portée d'une architecture communautaire ; elle reste un indice faible qu'une cartographie des rôles est en jeu, pas une preuve d'identité collective."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette pièce ne portait pas la construction de communautés au sens fort. Le constat tient largement : aucun nous identitaire, aucun rituel, aucune émotion d'appartenance. Ce qui résiste, faiblement : le geste même de différencier le travail attendu par rôle dessine en arrière-plan une communauté pédagogique articulée. Sur cette journée, la trace existe à l'état d'écho — la communauté n'est pas nommée, elle est rendue visible par les rôles qui la composent. Un renvoi au cartographe est l'option honnête.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "L'unique pièce subsiste en forme affaiblie : la cartographie des rôles est implicite, jamais portée par un « nous » identitaire ou une architecture communautaire explicite.",
+        "prescription": "Le travail sur les quatre manuels suppose une communauté pédagogique en arrière-plan. Nommer un jour ce qui fait tenir ensemble Apprenants, Accompagnants, Tuteurs et Maîtres — un rituel commun, une formule partagée, un moment d'identité collective — ferait passer cette compétence du territoire implicite à la trace explicite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 4,
+    "nonEtablies": 2,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée, le travail relationnel se fait par médiation : l'apprenant écrit pour des destinataires distincts plutôt qu'il ne se relie à eux en direct. Les manuels destinés à quatre rôles différents — Apprenant, Accompagnant, Tuteur, Maître — portent la majorité du travail de mise en lien. Un message professionnel adressé à Stéphane clôt la journée, et une phrase finale signale l'effet du projet sur soi. Le pôle se manifeste surtout dans ce qui rend lisible et partageable un travail pédagogique exigeant.",
+    "territoiresDenses": [
+      {
+        "competence": "Traduction entre mondes",
+        "description": "La journée articule deux gestes de traduction : la différenciation systématique d'un savoir pédagogique pour quatre rôles distincts, et la conversion de lectures de thèse en définition opérationnelle d'enseignement.",
+        "extraitVerbatim": "En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé",
+        "ceQueCaDit": "L'écriture des manuels fonctionne comme un atelier de transposition : un savoir académique devient une pratique pédagogique nommée, et un cadre institutionnel reconnu (HEP) sert de point de comparaison pour situer un dispositif alternatif (Respire)."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas traversés sur cette feuille. L'influence diplomatique et la collaboration divergente ressemblent à une limite de l'objet du jour : une journée d'écriture solitaire de manuels n'appelle pas naturellement ces angles. La gestion de conflit et le sens politique apparaissent en creux, à travers l'évocation de Chamblandes — un souvenir resté non métabolisé qui pourrait être visité autrement, par exemple en racontant une situation où une tension a pu être structurée pour produire de la valeur. L'intelligence émotionnelle ne déploie qu'une mention finale du bien que fait le projet, sans précision affective. La construction de communautés et la communication authentique restent à l'état d'écho — les rôles d'une communauté pédagogique se dessinent, un message professionnel est calibré, mais l'expressivité plus marquée n'apparaît pas sur cette feuille.",
+    "emergencesPole": "Trois fils traversent ce pôle sur cette journée. Le premier : le relationnel passe par les manuels plutôt que par les personnes, ce qui privilégie la traduction sur l'expression directe. Le deuxième : le passé institutionnel (PER, Chamblandes) revient comme une trace non-décryptée — frustration plutôt qu'analyse politique — ce qui ouvre un territoire de transformation possible. Le troisième : la mention finale du « projet qui fait du bien » place le travail dans une économie affective discrète, plus suggérée que développée.",
+    "pistes": [
+      "Pour enrichir la traduction entre mondes, un chemin possible serait de citer un principe précis issu de la thèse et de montrer la version qu'il prend pour le manuel Apprenant, puis pour celui du Tuteur — la mécanique de transposition deviendrait visible.",
+      "Pour enrichir la gestion de conflit, un chemin possible serait de raconter dans le futur une situation où un désaccord a pu être structuré pour produire de la valeur, ouvrant ainsi un dossier que Chamblandes a laissé fermé.",
+      "Pour enrichir le sens politique, un chemin possible serait de revenir sur le reproche reçu en cherchant non pas son sens mais les forces qui l'ont produit — qui avait intérêt à le formuler, quelles règles non-écrites jouaient.",
+      "Pour enrichir l'intelligence émotionnelle, un chemin possible serait de préciser ce que recouvre exactement le « ça me fait du bien » — un soulagement, une fierté, une reconnaissance de soi, un sentiment de cohérence retrouvée."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée, le travail relationnel se fait par médiation : l'apprenant écrit pour des destinataires distincts plutôt qu'il ne se relie à eux en direct. Les manuels destinés à quatre rôles différents — Apprenant, Accompagnant, Tuteur, Maître — portent la majorité du travail de mise en lien. Un message professionnel adressé à Stéphane clôt la journée, et une phrase finale signale l'effet du projet sur soi. Le pôle se manifeste surtout dans ce qui rend lisible et partageable un travail pédagogique exigeant.\n\n## Territoires les plus denses\n\n**Traduction entre mondes.** La journée articule deux gestes de traduction qui se renforcent. D'un côté, la différenciation systématique d'un savoir pédagogique pour quatre rôles distincts ; de l'autre, la conversion de lectures de thèse en définition opérationnelle d'enseignement. La phrase « En gros, c'est la synthèse de toutes mes lectures faites dans le cadre de la thèse… et ça définit exactement comment j'aurai aimé pouvoir enseigner, si nous n'avions pas eu de plan d'étude imposé » porte la condensation de ce double mouvement. L'écriture des manuels fonctionne comme un atelier de transposition : un savoir académique devient une pratique pédagogique nommée, et un cadre institutionnel reconnu (HEP) sert de point de comparaison pour situer un dispositif alternatif (Respire).\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas traversés sur cette feuille. L'influence diplomatique et la collaboration divergente ressemblent à une limite de l'objet du jour : une journée d'écriture solitaire de manuels n'appelle pas naturellement ces angles. La gestion de conflit et le sens politique apparaissent en creux, à travers l'évocation de Chamblandes — un souvenir resté non métabolisé qui pourrait être visité autrement, par exemple en racontant une situation où une tension a pu être structurée pour produire de la valeur. L'intelligence émotionnelle ne déploie qu'une mention finale du bien que fait le projet, sans précision affective. La construction de communautés et la communication authentique restent à l'état d'écho — les rôles d'une communauté pédagogique se dessinent, un message professionnel est calibré, mais l'expressivité plus marquée n'apparaît pas sur cette feuille.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent ce pôle sur cette journée. Le premier : le relationnel passe par les manuels plutôt que par les personnes, ce qui privilégie la traduction sur l'expression directe. Le deuxième : le passé institutionnel (PER, Chamblandes) revient comme une trace non-décryptée — frustration plutôt qu'analyse politique — ce qui ouvre un territoire de transformation possible. Le troisième : la mention finale du « projet qui fait du bien » place le travail dans une économie affective discrète, plus suggérée que développée.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir la traduction entre mondes, un chemin possible serait de citer un principe précis issu de la thèse et de montrer la version qu'il prend pour le manuel Apprenant, puis pour celui du Tuteur — la mécanique de transposition deviendrait visible.\n\nPour enrichir la gestion de conflit, un chemin possible serait de raconter dans le futur une situation où un désaccord a pu être structuré pour produire de la valeur, ouvrant ainsi un dossier que Chamblandes a laissé fermé.\n\nPour enrichir le sens politique, un chemin possible serait de revenir sur le reproche reçu en cherchant non pas son sens mais les forces qui l'ont produit — qui avait intérêt à le formuler, quelles règles non-écrites jouaient.\n\nPour enrichir l'intelligence émotionnelle, un chemin possible serait de préciser ce que recouvre exactement le « ça me fait du bien » — un soulagement, une fierté, une reconnaissance de soi, un sentiment de cohérence retrouvée."
+  }
+}

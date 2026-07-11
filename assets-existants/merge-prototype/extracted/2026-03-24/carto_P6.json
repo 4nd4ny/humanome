@@ -1,0 +1,215 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-24",
+      "extraitVerbatim": "C'est 10 CHF un exemplaire chez lulu.com. Puis en distribution sous forme d'eBook auprès d'Amazon.",
+      "contexte": "Choix d'une plateforme d'auto-édition (lulu.com) et d'une plateforme de distribution (Amazon) — possible matière pour interroger la souveraineté numérique, à filtrer du simple choix opérationnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-24",
+      "extraitVerbatim": "Ça serait l'occasion de tester LangChain mais surtout l'interface LanFlow, pour éventuellement exploiter le potentiel des bases de données vectorielles. Sauf que pour le moment, je ne vois pas vraiment pourquoi ça serait utile, étant donné que tout rentre en fenêtre de contexte. Mais pour plus tard, et aussi vis-à-vis du poste EPFL, ça pourrait servir.",
+      "contexte": "Mention de LangChain (cadre open-source) et LangFlow — possible signal de pratique des communs ou simple namedropping technique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives au red-teaming et à la sécurité IA. Pour ouvrir ce dossier, un récit où l'apprenant aurait délibérément cherché à provoquer un comportement aberrant d'un système IA — pour tester sa robustesse — documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives à l'audit, l'explicabilité et l'hygiène des données. Pour ouvrir ce dossier, un récit d'investigation sur le chemin décisionnel d'une IA — ou une réflexion concrète sur quelles données partager ou retenir — documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics. Pour ouvrir ce dossier, une interrogation sur les mécanismes de contrôle citoyen face à des décisions algorithmiques affectant des populations vulnérables documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Choix de plateformes commerciales (lulu.com pour l'impression, Amazon pour l'eBook) sans mention de critère de souveraineté ni d'alternative envisagée. À examiner sous l'angle de l'absence vs présence d'un raisonnement de dépendance."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Mention de LangChain et LangFlow — outils open-source. Possible trace très faible d'orientation vers des solutions ouvertes, à filtrer du simple choix technique sans motivation souverainiste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : la souveraineté numérique au sens de la fiche demande une motivation explicite par une analyse de dépendance ou par les communs — pas un simple choix d'outil. La fiche signale précisément trois faux positifs : usage open source par commodité, gratuité confondue avec liberté, self-hosting comme hobbyisme. Sur la pièce 1, l'apprenant choisit lulu.com et Amazon sans mentionner le moindre critère de souveraineté — il accepte les plateformes dominantes pour leur fonctionnalité. La pièce 1 ne résiste pas : c'est l'opposé du raisonnement souverainiste. Sur la pièce 2, LangChain et LangFlow sont nommés comme outils à tester, sans aucun argument de souveraineté ou d'indépendance — c'est exactement le profil 'open source par commodité'. La présomption d'absence absorbe largement les deux pièces.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille avec présomption d'absence, j'ai cherché une motivation explicite par l'indépendance ou par les communs. Les choix d'outils (lulu.com, Amazon, LangChain, LangFlow) sont posés sans critère de souveraineté ; les plateformes dominantes sont acceptées sans interrogation sur la dépendance qu'elles installent. La compétence reste un territoire non visité dans cette feuille. Un récit où le choix d'un outil serait justifié par la portabilité des données ou par la réversibilité du choix technologique en serait une trace claire.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Le temps 1 a absorbé les deux pièces : les choix d'outils sont posés sans aucune motivation par l'indépendance ou par les communs, ce qui correspond aux faux positifs documentés de la fiche.",
+        "prescription": "Le travail du jour fait des choix de plateformes sans encore expliciter de critère de souveraineté. Pour ouvrir ce dossier, une décision où la portabilité des données ou la réversibilité du choix technologique serait nommée comme critère serait un chemin possible."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique. Pour ouvrir ce dossier, un récit d'association de non-experts à une décision technologique documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives à la veille réglementaire et à l'anticipation normative. Pour ouvrir ce dossier, une analyse prospective d'une évolution réglementaire — avec positionnement préalable — documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives à la facilitation et la gouvernance collective. Pour ouvrir ce dossier, un récit de collaboration qui aurait produit un résultat surprenant — ou une description de règles co-construites — documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives au décentrement anthropocentrique. Pour ouvrir ce dossier, un raisonnement qui adopterait une perspective non-humaine — ou questionnerait la primauté implicite de l'humain dans un arbitrage concret — documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines. Pour ouvrir ce dossier, une réflexion sur le statut moral de l'IA — ou sur la manière de traiter l'entité au-delà du fonctionnel — documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance. Pour ouvrir ce dossier, un raisonnement où l'humain serait pensé comme nœud d'un réseau vivant — ou un principe de conception inspiré d'un système écosystémique — documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 1,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 1,
+    "courtCircuits": 9
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du jour, le pôle de la gouvernance et de l'ouverture reste largement en arrière-plan. Le récit du jour porte sur la finition d'un livre, des arbitrages opérationnels et la gestion de la charge cognitive — les enjeux politiques, démocratiques et post-anthropocentriques ne sont pas thématisés. Les marqueurs concrets qui pourraient activer ce pôle (mécanismes de contrôle, souveraineté numérique, gouvernance collective, statut moral de l'IA) n'apparaissent pas. Les choix d'outils (lulu.com pour l'impression, Amazon pour l'eBook, LangChain et LangFlow à tester) sont posés en mode opérationnel sans interrogation sur les dépendances qu'ils installent. Ce qui traverse cette feuille pour ce pôle, c'est plutôt une absence — celle d'un cadrage politique du travail technique.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble de ce pôle reste non visité par la feuille du jour. Cela ressemble plus à une limite du sujet traité ce jour-là — un journal de production et d'arbitrages personnels — qu'à un trait de fond. Plusieurs zones étaient à portée si elles avaient été activées : le choix d'Amazon pour la distribution numérique aurait pu donner lieu à un questionnement sur la dépendance aux plateformes dominantes ; la mention de LangChain et LangFlow comme outils open-source aurait pu être motivée par un critère de souveraineté ; le projet de cartographies pourrait à terme rejoindre la facilitation collective. Aucune de ces ouvertures n'est cependant prise dans cette feuille. Les territoires du red-teaming, de l'audit, de la gouvernance algorithmique, de la participation citoyenne, de la veille réglementaire, du décentrement anthropocentrique, de la cohabitation IA et de la conscience biosystémique restent intacts pour les feuilles à venir.",
+    "emergencesPole": "Ce qui émerge entre les lignes sur ce pôle, c'est que le travail technique du jour s'effectue sans cadrage politique explicite. Les choix de plateformes sont posés comme des données techniques — lulu pour l'impression, Amazon pour la diffusion — sans interrogation sur ce qu'ils impliquent en termes de dépendance ou de chaîne de valeur. Cette absence pourrait être une caractéristique du registre de la feuille (journal opérationnel) plutôt qu'une marque d'une non-activation du pôle dans le portfolio entier — la suite des feuilles dira si ce silence est local ou plus structurel.",
+    "pistes": [
+      "Pour ouvrir la souveraineté numérique sur un terrain immédiatement disponible, un chemin possible serait de revenir sur le choix d'Amazon pour la distribution eBook — ce que cette plateforme permet, ce qu'elle conditionne en termes de dépendance ou de captation du lecteur.",
+      "Pour donner à voir la dimension de gouvernance dans le projet de cartographies, un chemin possible serait d'expliciter qui décide des critères d'évaluation et avec quels mécanismes de contrôle sur les jugements produits.",
+      "Pour ouvrir la cohabitation avec l'IA au-delà du registre opérationnel, un chemin possible serait de raconter un moment où l'usage du verbe 'générer' à propos de l'IA aurait suscité une interrogation sur le statut de ce qui est produit."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du jour, le pôle de la gouvernance et de l'ouverture reste largement en arrière-plan. Le récit du jour porte sur la finition d'un livre, des arbitrages opérationnels et la gestion de la charge cognitive — les enjeux politiques, démocratiques et post-anthropocentriques ne sont pas thématisés. Les marqueurs concrets qui pourraient activer ce pôle (mécanismes de contrôle, souveraineté numérique, gouvernance collective, statut moral de l'IA) n'apparaissent pas. Les choix d'outils (lulu.com pour l'impression, Amazon pour l'eBook, LangChain et LangFlow à tester) sont posés en mode opérationnel sans interrogation sur les dépendances qu'ils installent. Ce qui traverse cette feuille pour ce pôle, c'est plutôt une absence — celle d'un cadrage politique du travail technique.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'a atteint le seuil d'une présence établie sur cette feuille. Le pôle reste ouvert pour les feuilles à venir.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble de ce pôle reste non visité par la feuille du jour. Cela ressemble plus à une limite du sujet traité ce jour-là — un journal de production et d'arbitrages personnels — qu'à un trait de fond. Plusieurs zones étaient à portée si elles avaient été activées : le choix d'Amazon pour la distribution numérique aurait pu donner lieu à un questionnement sur la dépendance aux plateformes dominantes ; la mention de LangChain et LangFlow comme outils open-source aurait pu être motivée par un critère de souveraineté ; le projet de cartographies pourrait à terme rejoindre la facilitation collective. Aucune de ces ouvertures n'est cependant prise dans cette feuille. Les territoires du red-teaming, de l'audit, de la gouvernance algorithmique, de la participation citoyenne, de la veille réglementaire, du décentrement anthropocentrique, de la cohabitation IA et de la conscience biosystémique restent intacts pour les feuilles à venir.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui émerge entre les lignes sur ce pôle, c'est que le travail technique du jour s'effectue sans cadrage politique explicite. Les choix de plateformes sont posés comme des données techniques — lulu pour l'impression, Amazon pour la diffusion — sans interrogation sur ce qu'ils impliquent en termes de dépendance ou de chaîne de valeur. Cette absence pourrait être une caractéristique du registre de la feuille (journal opérationnel) plutôt qu'une marque d'une non-activation du pôle dans le portfolio entier — la suite des feuilles dira si ce silence est local ou plus structurel.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir la souveraineté numérique sur un terrain immédiatement disponible, un chemin possible serait de revenir sur le choix d'Amazon pour la distribution eBook — ce que cette plateforme permet, ce qu'elle conditionne en termes de dépendance ou de captation du lecteur.\n- Pour donner à voir la dimension de gouvernance dans le projet de cartographies, un chemin possible serait d'expliciter qui décide des critères d'évaluation et avec quels mécanismes de contrôle sur les jugements produits.\n- Pour ouvrir la cohabitation avec l'IA au-delà du registre opérationnel, un chemin possible serait de raconter un moment où l'usage du verbe « générer » à propos de l'IA aurait suscité une interrogation sur le statut de ce qui est produit.\n"
+  }
+}

@@ -1,0 +1,315 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Il y a encore un peu de travail, mais voilà la nouvelle structure des parcours de formation pour les Tuteurs Respire (équivalent HEP)",
+      "contexte": "Présentation d'une nouvelle structure assumée comme inachevée : geste de production inachevée montrée ; touche à 3.01 (itération).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Petite correction dans l'artefact Claude parle des 42 fonctions cognitives de Feuerstein, mais en fait ce sont mes travaux de thèse qui ont compilé non pas 42 (ça c'est la version publiée) mais [64 fonctions cognitives utiles pour apprendre]",
+      "contexte": "Acte de curation : retouche d'un output IA et reprise éditoriale appuyée sur sa propre source ; touche à 3.04 (jugement esthétique et curation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Lorsque j'ai travaillé dans les années 1995 sur l'architecture G-Blaster qui a donné naissance en 2011 à la méta heuristique \"The Friends Algorithm\" publiée en mémoire de Master EPFL, j'avais cette intuition profonde que la guilde des spécialistes d'un domaine était plus forte que l'individu.",
+      "contexte": "Filiation créative ancienne et récurrente d'un même geste conceptuel : la guilde / le collectif ; touche à 3.02 (signature) et 3.01 (radicalité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Je vais donc peut-être essayer de crafter un nouveau prompt système pour compléter ou remplacer le protocole CATALYST, lorsque j'aurai un peu plus de temps, pour m'aider à challenger mes idées et les enrichir, afin de tenter de recréer une forme d'intelligence collective en synergie humain / IA.",
+      "contexte": "Projet d'invention d'un nouveau dispositif visant à recréer une intelligence collective humain/IA ; touche à 3.01 (créativité radicale) et 3.03 (design de problèmes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Ce qui me manque, c'est donc le groupe et les aléas qui sont générés par les consciences humaines en synergie.",
+      "contexte": "Identification d'un manque dans le dispositif actuel qui pose une question neuve : comment réintroduire les aléas humains dans un environnement majoritairement IA ; touche à 3.03 (design de problèmes).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Présentation d'un dispositif inachevé montré tel quel : geste itératif assumé."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Projet d'un nouveau prompt système pour compléter ou remplacer un protocole existant : amorce d'itération sur un dispositif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la créativité itérative et radicale n'est pas attestée : la fiche exige des versions successives avec apprentissage explicite entre cycles, ou une transgression consciente d'une règle. La pièce 1 résiste faiblement : montrer un travail inachevé est l'une des manifestations listées (inconfort à montrer un travail non terminé), mais aucune itération précédente n'est explicitement décrite ici. La pièce 2 résiste également faiblement : il s'agit d'un projet d'amélioration d'un protocole existant (CATALYST), qui pourrait être lu comme un cycle d'itération, mais reste au stade de l'intention.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Production montrée comme inachevée ('il y a encore un peu de travail') : geste d'exposition d'une version intermédiaire." },
+            { "pieceId": 2, "motifResistance": "Projet de complétion ou remplacement d'un protocole existant : forme de cycle itératif esquissé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé ces pièces. La pièce 1 dit qu'il reste du travail, mais ne raconte ni l'itération précédente ni l'apprentissage entre versions — c'est l'aveu d'un inachèvement, pas la description d'un cycle. La pièce 2 reste un projet, et le mot 'crafter' n'est pas un cycle d'itération.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Insuffisance probatoire : la mention d'un travail inachevé ne décrit pas d'itération entre versions, ni d'apprentissage entre cycles."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Mouvement-vers : le 'je vais donc peut-être essayer' et 'lorsque j'aurai un peu plus de temps' situent le geste au stade du projet, sans itération en cours."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une itération ou une rupture créative dans deux pièces qui n'en portent que les premiers indices. Les deux pièces sont tombées au second examen : la première dit l'inachèvement sans raconter le cycle, la seconde reste au stade du projet. Pour cette feuille, le travail ne déploie pas la mécanique d'itération avec apprentissage entre versions qui définit la compétence. La trace n'est pas établie ici, ce qui n'enlève rien à la possibilité qu'elle apparaisse ailleurs dans le portfolio.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les deux pièces ont été disqualifiées au temps 2 : ni cycle d'itération ni transgression consciente ne sont décrits dans la feuille du jour.",
+        "prescription": "Pour ouvrir la créativité itérative, un chemin possible serait de raconter, lors de la prochaine livraison d'une version inachevée, ce qui s'est joué entre la version précédente et celle-ci : quel feedback reçu, quel pivot opéré, quelle hypothèse abandonnée. Le cycle deviendrait visible dans son geste, pas seulement dans son résultat."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Récit d'une filiation conceptuelle stable depuis 1992 (la guilde, le collectif spécialisé) qui retraverse les productions de l'apprenant à plusieurs décennies d'écart."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la singularité au sens de la fiche n'est pas attestée : il faut un fil stylistique récurrent identifiable, un style qui revient à travers plusieurs entrées. Lue depuis la seule feuille du jour, la pièce résiste faiblement : elle revendique une cohérence conceptuelle sur trente ans (G-Blaster, Friends Algorithm, projet Respire) qui suggère une patte, sans qu'on puisse encore en vérifier la récurrence stylistique sur l'ensemble du portfolio.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Revendication d'une intuition profonde et récurrente qui traverse plusieurs travaux datés et nommés : amorce de signature conceptuelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas pris pour une signature ce qui n'est qu'une auto-narration cohérente. La fiche demande que quelqu'un d'autre puisse identifier l'auteur sans voir son nom — ce critère est hors de portée d'une seule feuille. La pièce raconte une signature plus qu'elle ne l'incarne dans le style du jour.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif partiel : la singularité est racontée comme fil conducteur autobiographique sans que le style du jour la donne à reconnaître par lui-même ; la cohérence des références et la datation précise font néanmoins office de marqueurs."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une simple auto-narration plutôt qu'une signature. Ce qui m'a forcé à reconnaître une trace, c'est la cohérence des références mobilisées — un même fil (la guilde, le collectif spécialisé) traversant trois moments datés et liés à des productions documentées. La pièce reste affaiblie parce qu'une signature, telle que la fiche la définit, se vérifie par récurrence à travers le portfolio, ce qui dépasse l'horizon d'une seule feuille. Pour cette feuille, le travail montre une amorce de signature conceptuelle revendiquée ; la vérification par récurrence stylistique appartient à la lecture transversale du portfolio.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La pièce, affaiblie, esquisse une signature conceptuelle revendiquée à travers une généalogie de productions, sans pouvoir, sur cette seule feuille, attester de la récurrence stylistique exigée.",
+        "prescription": "Pour rendre la signature plus tangible, un chemin possible serait, dans une prochaine feuille, de poser explicitement deux ou trois traits récurrents reconnus dans son propre travail — par exemple le réflexe de relier le présent à une généalogie datée, ou la convocation de dispositifs nommés (G-Blaster, CATALYST). La récurrence en deviendrait reconnaissable par l'auteur lui-même, et donc transmissible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Identification d'un manque (le groupe, les aléas humains) qui transforme le problème : non plus 'comment mieux utiliser l'IA' mais 'comment faire émerger une intelligence collective humain/IA'."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Projet de réponse à ce nouveau problème par la création d'un dispositif (nouveau prompt système) pour challenger les idées."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que le design de problèmes n'est pas attesté : la fiche le distingue rigoureusement du cadrage (1.02) — il faut créer une question nouvelle, pas reformuler une question existante. La pièce 1 résiste : l'apprenant ne reformule pas un problème d'utilisation de l'IA, il pose une question d'un autre ordre — comment réintroduire les aléas humains dans un dispositif IA, afin de recréer une intelligence collective. C'est un déplacement de niveau, pas une reformulation. La pièce 2 résiste plus faiblement : elle décrit la réponse projetée plus que la question posée, ce qui n'est pas exactement le geste de design de problèmes.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Déplacement de niveau du problème : on passe de 'comment mieux travailler avec l'IA' à 'comment recréer une intelligence collective humain/IA en réintroduisant les aléas humains'." },
+            { "pieceId": 2, "motifResistance": "Le projet de dispositif révèle, en creux, la formulation d'une question neuve à laquelle il prétend répondre." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu cadrage et design de problèmes. La pièce 1 pourrait être lue comme un simple recadrage du problème de coopération avec l'IA. Mais la fiche est explicite : si la question portait sur la solution, ce serait du recadrage ; ici, elle porte sur la nature même du dispositif à imaginer, sur le champ d'action à ouvrir.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Confusion de compétence : la frontière avec le cadrage (1.02) est fine ; la pièce tient parce que l'apprenant ne reformule pas un problème existant mais ouvre un champ d'action — la conception d'un dispositif d'intelligence collective hybride — qui n'était pas posé comme question avant."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Mouvement-vers : la pièce parle de la solution projetée, pas de la formulation de la question elle-même, et reste au conditionnel."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un recadrage là où il y a, plus probablement, un design de problèmes. Ce qui m'a forcé à reconnaître une trace, c'est l'identification d'un manque qui ouvre une question d'un autre niveau — comment recréer une intelligence collective humain/IA en réintroduisant les aléas humains — et qui ne se contente pas d'optimiser l'usage existant. La pièce 2 n'a pas tenu, étant trop projetée. Pour cette feuille, le travail montre un geste de design de problèmes en amorce, suffisamment articulé pour être lisible mais sans déploiement de la généralisation reproductible que la fiche valorise dans ses formes les plus abouties.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La pièce 1 a tenu, affaiblie : elle pose une question d'un autre niveau plutôt que de reformuler le problème initial, ce qui répond au critère discriminant de la fiche.",
+        "prescription": "Pour prolonger ce geste de design de problèmes, un chemin possible serait d'écrire séparément, en quelques lignes, la formulation exacte de la nouvelle question — non pas la solution envisagée, mais la question elle-même — et de préciser pourquoi elle n'existait pas formulée ainsi auparavant. La distinction avec le simple recadrage en deviendrait nette."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Acte de curation appliqué à une production IA : retouche éditoriale ciblée sur un point qui sonnait juste mais ne l'était pas."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que le jugement esthétique et la curation ne sont pas attestés : la fiche distingue rigoureusement la curation (jugement de justesse formelle) de la pensée critique (jugement de véracité). La pièce résiste très faiblement : la correction porte sur la véracité du chiffre (42 contre 64), pas sur la justesse formelle du passage. C'est une rectification factuelle plutôt qu'un acte de curation.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Geste de retouche d'un output IA, avec rétablissement de la source d'autorité personnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé cette pièce. Ce qui est corrigé, c'est un chiffre faux, pas un ton inadéquat ou une cohérence formelle. La fiche est explicite sur la distinction avec la pensée critique : 1.01 évalue la véracité, 3.04 la justesse formelle. La pièce relève manifestement du premier registre.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Confusion de compétence : la correction porte sur la véracité d'une donnée (1.01), pas sur la justesse formelle d'une production ; le geste ne relève pas de la curation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une curation dans une rectification factuelle. La pièce n'a pas tenu sous l'examen : la fiche distingue précisément ce qui relève de la véracité de ce qui relève de la justesse formelle, et l'acte raconté ici porte sur le premier registre. Pour cette feuille, le travail ne déploie pas le jugement esthétique articulé qui définit la compétence. La trace n'est pas établie ici, ce qui n'enlève rien à la possibilité qu'elle apparaisse ailleurs dans le portfolio.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a été disqualifiée au temps 2 : la correction porte sur la véracité et non sur la justesse formelle qui caractérise la curation.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de revenir, lors d'un prochain travail avec une production IA, sur un choix éditorial qui ne porte pas sur le vrai ou le faux mais sur le ton, le registre ou l'ordre des idées — en explicitant le critère qui a fait préférer une option à une autre."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à l'intelligence manuelle et artisanale. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment d'interaction physique avec la matière — montage, réparation, assemblage, cuisine — où le geste, la résistance et le toucher ont guidé la résolution d'un problème."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à l'ancrage sensoriel et à la pleine présence. Pour ouvrir ce dossier, l'apprenant pourrait documenter une sensation physique précise qui a orienté une décision, ou un moment d'attention incarnée dans un échange."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la présence et à la performance live. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment en présentiel où une réaction imprévue a appelé une improvisation et a produit quelque chose de meilleur que le script."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle se manifeste presque exclusivement dans le registre conceptuel : pas de matière physique, pas de présence corporelle racontée, pas de scène incarnée. Ce qui s'y déploie tient d'une création par l'organisation des idées plutôt que par les mains ou par le geste live. Un déplacement de problème apparaît au fil de l'écriture — non pas comment mieux utiliser l'IA, mais comment recréer avec elle une intelligence collective qui inclurait les aléas humains. Cette question neuve traverse l'ensemble et donne sa cohérence aux références mobilisées.",
+    "territoiresDenses": [
+      {
+        "competence": "Design de problèmes",
+        "description": "Déplacement de niveau du problème posé : passage de l'usage de l'IA à la conception d'un dispositif d'intelligence collective humain/IA, à partir de l'identification du manque (les aléas humains en synergie).",
+        "extraitVerbatim": "Ce qui me manque, c'est donc le groupe et les aléas qui sont générés par les consciences humaines en synergie.",
+        "ceQueCaDit": "Le travail montre une orientation vers la formulation de questions neuves plutôt que vers l'optimisation de questions existantes — ce qui ouvre un champ d'action et non seulement une réponse."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à explorer dans cette feuille. La créativité itérative au sens strict — versions successives avec apprentissage explicite entre cycles — n'est pas attestée : les productions inachevées sont montrées sans déploiement du cycle qui les a fait advenir. Le jugement esthétique reste à découvert : la rectification d'un chiffre relève de la véracité, non de la justesse formelle. L'intelligence manuelle, l'ancrage sensoriel et la performance live appartiennent à un autre registre que celui mobilisé ici — la feuille est entièrement écrite depuis l'organisation des idées et des dispositifs. La signature, enfin, est revendiquée mais ne peut se vérifier que par récurrence à travers le portfolio.",
+    "emergencesPole": "Deux choses traversent les compétences de ce pôle dans cette feuille. La première est une création par la conception plutôt que par la matière : ce qui s'invente ici se loge dans la structure d'un parcours, dans la formulation d'une question, dans la généalogie d'une intuition — pas dans un geste corporel ou un objet façonné. La seconde est une cohérence inter-temporelle qui sert d'argument de signature : trois travaux datés (1992, 1995, 2011) sont convoqués pour donner au présent sa profondeur de champ.",
+    "pistes": [
+      "Pour rendre la créativité itérative visible, un chemin possible serait de raconter, lors de la prochaine livraison d'une version inachevée, ce qui s'est joué entre la version précédente et celle-ci : quel feedback reçu, quel pivot opéré, quelle hypothèse abandonnée.",
+      "Pour rendre la signature plus tangible, un chemin possible serait de poser explicitement, dans une prochaine feuille, deux ou trois traits récurrents reconnus dans son propre travail — par exemple le réflexe de relier le présent à une généalogie datée.",
+      "Pour prolonger le design de problèmes, un chemin possible serait d'écrire séparément, en quelques lignes, la formulation exacte de la nouvelle question — non pas la solution envisagée, mais la question elle-même — et de préciser pourquoi elle n'existait pas formulée ainsi auparavant.",
+      "Pour ouvrir le jugement esthétique, un chemin possible serait de revenir, lors d'un prochain travail avec une production IA, sur un choix éditorial qui ne porte pas sur le vrai ou le faux mais sur le ton, le registre ou l'ordre des idées."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle se manifeste presque exclusivement dans le registre conceptuel : pas de matière physique, pas de présence corporelle racontée, pas de scène incarnée. Ce qui s'y déploie tient d'une création par l'organisation des idées plutôt que par les mains ou par le geste live. Un déplacement de problème apparaît au fil de l'écriture — non pas comment mieux utiliser l'IA, mais comment recréer avec elle une intelligence collective qui inclurait les aléas humains. Cette question neuve traverse l'ensemble et donne sa cohérence aux références mobilisées.\n\n## Territoires les plus denses\n\n**Design de problèmes.** Déplacement de niveau du problème posé : passage de l'usage de l'IA à la conception d'un dispositif d'intelligence collective humain/IA, à partir de l'identification du manque (les aléas humains en synergie).\n\n> « Ce qui me manque, c'est donc le groupe et les aléas qui sont générés par les consciences humaines en synergie. »\n\nLe travail montre une orientation vers la formulation de questions neuves plutôt que vers l'optimisation de questions existantes — ce qui ouvre un champ d'action et non seulement une réponse.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à explorer dans cette feuille. La créativité itérative au sens strict — versions successives avec apprentissage explicite entre cycles — n'est pas attestée : les productions inachevées sont montrées sans déploiement du cycle qui les a fait advenir. Le jugement esthétique reste à découvert : la rectification d'un chiffre relève de la véracité, non de la justesse formelle. L'intelligence manuelle, l'ancrage sensoriel et la performance live appartiennent à un autre registre que celui mobilisé ici — la feuille est entièrement écrite depuis l'organisation des idées et des dispositifs. La signature, enfin, est revendiquée mais ne peut se vérifier que par récurrence à travers le portfolio.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux choses traversent les compétences de ce pôle dans cette feuille. La première est une création par la conception plutôt que par la matière : ce qui s'invente ici se loge dans la structure d'un parcours, dans la formulation d'une question, dans la généalogie d'une intuition — pas dans un geste corporel ou un objet façonné. La seconde est une cohérence inter-temporelle qui sert d'argument de signature : trois travaux datés (1992, 1995, 2011) sont convoqués pour donner au présent sa profondeur de champ.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre la créativité itérative visible, un chemin possible serait de raconter, lors de la prochaine livraison d'une version inachevée, ce qui s'est joué entre la version précédente et celle-ci : quel feedback reçu, quel pivot opéré, quelle hypothèse abandonnée.\n- Pour rendre la signature plus tangible, un chemin possible serait de poser explicitement, dans une prochaine feuille, deux ou trois traits récurrents reconnus dans son propre travail — par exemple le réflexe de relier le présent à une généalogie datée.\n- Pour prolonger le design de problèmes, un chemin possible serait d'écrire séparément, en quelques lignes, la formulation exacte de la nouvelle question — non pas la solution envisagée, mais la question elle-même — et de préciser pourquoi elle n'existait pas formulée ainsi auparavant.\n- Pour ouvrir le jugement esthétique, un chemin possible serait de revenir, lors d'un prochain travail avec une production IA, sur un choix éditorial qui ne porte pas sur le vrai ou le faux mais sur le ton, le registre ou l'ordre des idées."
+  }
+}

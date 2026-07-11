@@ -1,0 +1,461 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Je ne me sens bientôt plus légitime d'enseigner l'informatique à l'école. Les avancées en IA sont trop rapides et depuis avril j'ai arrêté de me maintenir à jour en développement.",
+      "contexte": "Constat de décrochage technique nommé, question implicite de positionnement professionnel face à l'évolution rapide de l'IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Antigravity, Kiro, WebDev, Cursor, Visual Code, Codex, Claude Code, Skills, MCP…  Ai-je besoin d'apprendre à maîtriser tout ça ? Ma valeur ajoutée est-elle toujours centrée sur mes capacités de développement ?",
+      "contexte": "Énumération d'outils du paysage IA développeur suivie d'un questionnement sur la valeur ajoutée — possible cadrage de l'intention, possible littératie IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Si je ne suis plus au top comme avant de devenir enseignant, est-ce que ça vaut vraiment la peine de continuer à apprendre à travailler avec ces outils ? Ne devrais-je pas accepter de laisser tomber et de passer à autre chose, en me concentrant pleinement à la pédagogie assistée par IA ?",
+      "contexte": "Questionnement sur la pertinence même de la poursuite — interrogation du périmètre, possible cadrage de l'intention.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "J'avance la lecture du manuel Expert et des réflexions vis à vis des manques de concepts importants me questionnent. Il y a des notions qui devraient être présentes, des niveaux d'intervention qui ne sont pas clairs (Apprenants/Praticien/Pairs Experts) et qu'il faudra formaliser avec des sous sections claire.",
+      "contexte": "Lecture critique d'un manuel avec identification de manques structurels et de niveaux d'intervention à clarifier.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Ce manuel est moins bien construit que le précédent. Je vais probablement devoir repenser le plan et devoir régénérer les 4 manuels pour dispatcher les outils théoriques entre les niveaux plutôt que de tout concentrer chez le Maître.",
+      "contexte": "Décision de restructuration globale touchant 4 manuels en interaction — possible pensée systémique sur l'architecture de contenu, possible cadrage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-11",
+      "extraitVerbatim": "Ce n'est pas simple de trouver le bon équilibre. Peut-être que je changerai d'avis en lisant le manuel du Maître ?",
+      "contexte": "Réserve épistémique sur sa propre décision en cours, conditionnée à une information à venir.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "L'apprenant suspend sa propre conclusion (\"je vais probablement devoir repenser le plan\") en notant qu'une lecture à venir pourrait la renverser. C'est un acte d'autocritique en plein élan : une réserve calibrée appliquée à sa propre idée juste après l'avoir formulée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la conviction que la pensée critique anti-hallucination ne sera probablement pas attestée ici : la feuille est essentiellement un flux de doute généralisé, pas un doute méthodique calibré. La fiche P1 distingue précisément le scepticisme calibré de la simple hésitation. Or la quasi-totalité de la feuille est de l'hésitation existentielle (« puis-je redevenir employable ? »), pas de la vérification. La pièce 1 est la seule où l'apprenant applique un doute à sa propre conclusion en cours (« je changerai peut-être d'avis ») — c'est une autocritique en plein élan, ce que la fiche signale explicitement comme la forme la plus avancée. Cette pièce résiste donc, mais avec une étroitesse qui ne se laisse pas étendre au reste de la feuille.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant suspend sa propre proposition de restructuration en notant qu'une lecture future pourrait la renverser — autocritique appliquée à sa propre idée au moment de la formuler."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce courte et je dois maintenant me demander si je n'en ai pas surchargé la portée. La phrase « peut-être que je changerai d'avis en lisant le manuel du Maître » est-elle vraiment un acte de scepticisme calibré, ou simplement une formule de prudence rhétorique sans charge méthodique ? L'attaque qui me menace le plus est l'insuffisance probatoire (a) : une phrase courte, sans dispositif de vérification décrit, sans protocole nommé. Mais la fiche prévoit explicitement que l'autocritique en plein élan enthousiaste compte, même brève. La pièce passe affaiblie : elle vaut un indice, pas une preuve.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est courte et ne décrit pas de dispositif de vérification, juste une suspension conditionnée. La fiche couvre toutefois ce type de trace oblique (réserve appliquée à sa propre proposition), donc la pièce tient avec confiance réduite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai d'abord cherché à nier la présence d'une pensée critique méthodique : la feuille est traversée par un doute existentiel généralisé qui ne ressemble pas au scepticisme calibré que la fiche décrit. Ce qui m'a forcé à reconnaître une trace, c'est la phrase finale du paragraphe sur les manuels — la décision de repenser le plan est immédiatement suspendue par une réserve conditionnée à une lecture à venir. Sous la présomption de sycophantie, cette pièce est restée debout mais affaiblie : elle ne décrit pas de protocole, juste un mouvement d'autocritique en plein élan. Dans ce pôle, le travail montre une amorce de doute appliqué à sa propre idée, plus que sur la feuille un scepticisme outillé. C'est un indice, à approfondir lorsqu'un acte de vérification concret se présentera.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une seule pièce a survécu, affaiblie par sa brièveté ; la présomption de sycophantie a tenu sans la disqualifier mais elle ne porte pas seule une présence établie.",
+        "prescription": "Le portfolio gagnerait à documenter un moment où la vérification a pris la forme d'un geste concret — un croisement de sources, une détection d'erreur dans une suggestion d'IA, ou un protocole personnel nommé. Un récit de ce type ouvrirait ce territoire avec un appui plus tangible."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant ne demande pas comment maîtriser ces outils mais s'interroge sur la pertinence même du périmètre (« ai-je besoin d'apprendre tout ça ? »). C'est une mise en cause de l'objectif, pas de la méthode."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "La question « ne devrais-je pas accepter de laisser tomber et me concentrer pleinement à la pédagogie assistée par IA » reformule l'orientation professionnelle elle-même, pas l'exécution d'une tâche donnée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction qu'il s'agit probablement d'anxiété professionnelle plutôt que de cadrage d'intention. La fiche distingue le cadrage (interrogation de l'objectif lui-même) de la simple plainte ou hésitation. Pour la pièce 1, l'apprenant ne demande pas « comment apprendre ces outils » mais « ai-je besoin d'apprendre tout ça » — la question porte sur le périmètre, donc sur l'objectif. La pièce 2 va plus loin : elle propose explicitement de redéfinir l'identité professionnelle (laisser tomber la maîtrise développeur pour se concentrer sur la pédagogie IA). Les deux pièces résistent en ce qu'elles ne sont pas de simples plaintes : elles sont structurées en interrogations explicites sur ce qu'il y a à viser. Ce qui reste faible : aucune conclusion n'est posée, le mouvement n'est qu'amorcé.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La question porte sur la nécessité même de la maîtrise (le périmètre) et non sur la méthode — c'est une interrogation de l'objectif."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La question propose une bifurcation professionnelle complète et redéfinit ce qui est cherché — pas une optimisation, un recadrage."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces et je dois maintenant me demander si je n'ai pas confondu doute existentiel et cadrage méthodique. La fiche du faux positif est claire : « j'ai défini mes objectifs » sans questionnement n'est pas cadrage. Inversement, un questionnement qui ne mène à aucune redéfinition opérante est-il un cadrage ? L'attaque dominante pour la pièce 1 est le mouvement-vers (g) : l'apprenant est en train de se poser la question du périmètre mais ne tranche pas. Pour la pièce 2, l'attaque est plutôt le récit performatif (f) ou le mouvement-vers (g) : la bifurcation est nommée mais pas décidée. Cela dit, la fiche précise que la question « faut-il vraiment résoudre ça ? » est le signal le plus profond — et c'est exactement la forme de la pièce 1. Les deux pièces tiennent affaiblies : elles montrent un cadrage en cours, pas un cadrage abouti.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant pose la question du périmètre mais ne la tranche pas — c'est un cadrage en mouvement, pas un cadrage abouti. La fiche reconnaît cependant ce type de question comme un signal central."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La bifurcation professionnelle est nommée mais pas décidée — c'est une amorce de recadrage de l'objectif, pas un acte de redéfinition abouti."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si le doute généralisé ne cachait pas plutôt un simple flot d'anxiété professionnelle. Ce qui m'a forcé à reconnaître autre chose, c'est la forme précise des questions posées : non pas « comment me remettre à niveau » (méthode), mais « ai-je besoin de me remettre à niveau » et « ne devrais-je pas changer d'orientation » (objectif). Sous la présomption de sycophantie, les deux pièces sont restées debout mais affaiblies : le mouvement est amorcé, jamais tranché. Dans ce pôle, le travail montre une interrogation active sur ce qu'il y a à viser professionnellement, plus qu'une réorientation décidée. Le cadrage est en cours, pas accompli. Le verdict tient à un niveau d'indice fort, sans franchir le seuil de la preuve.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Deux pièces affaiblies mais retenues au temps 2, portant chacune une interrogation explicite de l'objectif (périmètre, orientation) plutôt que de la méthode.",
+        "prescription": "Ce dossier gagnerait à être prolongé par un récit du moment où une de ces questions trouve une réponse provisoire — ce qui a fait pencher la balance, quels critères ont émergé. Documenter le passage de la question ouverte à une décision située rendrait visible la maturation du cadrage."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synthèse intégrative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où des sources de nature différente convergent vers un insight qui n'existait dans aucune d'elles."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant identifie précisément le mécanisme par lequel il décroche (« depuis avril j'ai arrêté de me maintenir à jour ») — c'est une observation calibrée de sa propre trajectoire d'apprentissage, pas un simple bilan."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "La phrase « peut-être que je changerai d'avis en lisant le manuel du Maître » est une déclaration explicite d'incertitude calibrée — une zone d'ignorance assumée et localisée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que la métacognition ne sera probablement pas attestée : la fiche distingue clairement la métacognition (s'observer penser) du simple bilan (« j'ai beaucoup appris »). La pièce 1 est à la frontière : « depuis avril j'ai arrêté de me maintenir à jour » est en partie un constat factuel sur sa pratique. Elle ne porte pas explicitement sur ses processus cognitifs. La pièce 2 est plus solide : la suspension conditionnée d'un jugement (« peut-être que je changerai d'avis ») est une humilité épistémique calibrée — l'apprenant nomme précisément la condition qui pourrait renverser sa position. La pièce 1 résiste faiblement ; la pièce 2 résiste mieux.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La phrase nomme explicitement la condition d'un changement d'avis — c'est une zone d'ignorance localisée et conditionnée, pas un doute généralisé."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une seule pièce et dois examiner si je n'en hallucine pas la portée métacognitive. La phrase « peut-être que je changerai d'avis » est-elle une vraie humilité épistémique calibrée, ou simplement une formule de prudence ? L'attaque dominante est l'insuffisance probatoire (a) : la phrase est très courte, sans dispositif. La fiche signale toutefois que « je ne sais pas assumé et calibré » est une manifestation reconnue, et la condition est explicite (« en lisant le manuel du Maître »). La pièce tient mais affaiblie. La pièce 1 que j'avais écartée au temps 1 ne mérite pas d'être ressuscitée : elle reste un constat d'arrêt de pratique, pas une observation du processus cognitif lui-même.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La phrase est brève et ne déploie pas un dispositif métacognitif articulé, mais elle localise précisément la zone d'ignorance et la condition de sa résolution — une humilité épistémique calibrée que la fiche reconnaît."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai d'abord cherché à voir si la métacognition n'était pas confondue avec un simple bilan rétrospectif d'apprentissage. La feuille est traversée par des constats sur la pratique (« j'ai arrêté de me maintenir à jour »), mais ce ne sont pas des observations du processus cognitif lui-même. Ce qui m'a forcé à reconnaître une trace, c'est la réserve finale sur le manuel du Maître — une humilité épistémique calibrée qui nomme précisément ce qui pourrait renverser son jugement. Sous la présomption de sycophantie, cette pièce a tenu affaiblie : elle est brève, mais elle articule une condition explicite. Dans ce pôle, le travail montre ici une amorce d'humilité épistémique localisée plus qu'une métacognition articulée sur ses propres stratégies cognitives.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce a survécu au temps 2, affaiblie ; un indice unique calibré ne porte pas seul une présence établie sur cette compétence.",
+        "prescription": "Ce dossier gagnerait à être prolongé par un récit où l'apprenant observe ses propres stratégies en cours d'action — un moment où il nomme précisément comment il pense, pas seulement ce qu'il pense. Une telle trace ouvrirait ce territoire de façon plus visible."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant décrit une interdépendance entre les 4 manuels : modifier la distribution des outils théoriques entre les niveaux change la cohérence de l'ensemble — c'est un raisonnement sur les liens, pas sur un objet isolé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la conviction que la pensée systémique ne sera probablement pas attestée : la fiche distingue clairement la modélisation des liens (quels liens, dans quelle direction, avec quels effets) du simple constat « tout est lié ». La pièce 5 décrit un projet de restructuration touchant 4 manuels et leur distribution des outils théoriques. Est-ce une vraie modélisation des liens, ou une simple description d'un projet à 4 documents ? La pièce nomme une relation explicite : actuellement tout est concentré chez le Maître, il faut dispatcher entre les niveaux Apprenants/Praticien/Pairs Experts. Cette relation porte une direction (du Maître vers les autres niveaux) et un effet attendu (meilleure construction). La pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant nomme une relation entre les manuels (concentration vs dispatch entre niveaux d'intervention) avec une direction et un effet — pas un simple constat de complexité."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce affaiblie et dois examiner si je n'en surcharge pas la portée systémique. La pièce parle d'une réorganisation de contenu pédagogique, pas d'un système avec des boucles de rétroaction. L'attaque dominante est ici la confusion de compétence (b) : ce passage active probablement mieux d'autres compétences (architecture pédagogique, cadrage de structure) que la pensée systémique au sens strict. La fiche réserve 1.05 aux boucles, effets de cascade, points de levier — éléments que la pièce ne contient pas. La pièce ne décrit pas comment les niveaux s'influencent mutuellement, juste comment redistribuer les outils. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage active une réorganisation hiérarchique de contenu (distribution top-down), pas une modélisation de boucles ou d'influences mutuelles. La fiche réserve 1.05 aux dynamiques systémiques, que cette pièce ne porte pas."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai d'abord cherché à voir si la décision de restructurer les 4 manuels n'était pas une trace de pensée systémique. Ce qui m'a forcé à m'arrêter, c'est le rappel de la fiche : la pensée systémique modélise des boucles et des influences mutuelles, pas une redistribution top-down de contenu entre niveaux. Sous la présomption de sycophantie, la pièce est tombée : elle parle d'organisation pédagogique, pas de dynamique de système. Dans ce pôle, le travail ne montre pas ici de pensée systémique attestée. Ce territoire reste à ouvrir.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce extraite a été disqualifiée au temps 2 par confusion de compétence : le passage relève d'une réorganisation structurelle de contenu, pas d'une modélisation de boucles ou d'influences mutuelles.",
+        "prescription": "Ce territoire pourrait s'ouvrir si l'apprenant racontait un moment où une boucle entre domaines de sa vie ou de son projet a été identifiée — où une modification ici entraînerait un effet là-bas, dans une direction nommée. La voisine 1.02 (cadrage) est plus proche du matériau présent dans cette feuille."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant nomme un paysage d'outils IA développeur (Antigravity, Kiro, Cursor, Claude Code, Skills, MCP) — c'est une connaissance du terrain, à examiner pour distinguer la simple énumération d'une compréhension causale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la conviction que la littératie IA n'est probablement pas attestée : la fiche est explicite sur le critère discriminant — il faut une compréhension causale du pourquoi l'IA échoue ou réussit, pas une réutilisation de vocabulaire. La pièce 2 énumère des outils (Antigravity, Kiro, Cursor, Skills, MCP) sans expliquer leur mécanisme. C'est une connaissance du paysage, pas une compréhension sous le capot. La pièce résiste très faiblement : elle montre que l'apprenant est au courant des outils, mais elle n'active pas le marqueur central.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant connaît le paysage actuel des outils IA développeur, ce qui suppose un suivi minimal — mais la pièce ne porte pas d'explication mécanistique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je dois examiner si cette énumération d'outils porte vraiment une charge sémantique de littératie. L'attaque dominante est le glissement lexical (d) : les noms d'outils apparaissent en surface (vocabulaire ambiant) mais leur sens technique n'est pas mobilisé. La fiche précise explicitement que « réutiliser le mot hallucination sans expliquer le mécanisme n'est pas de la littératie : c'est du vocabulaire ambiant ». La pièce tombe : elle est une liste de noms, pas une analyse mécanistique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce porte du vocabulaire de surface (noms d'outils) sans charge sémantique correspondante. La fiche exclut explicitement ce type de mention sans mécanisme expliqué."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si la mention du paysage IA (Antigravity, Kiro, Cursor, Skills, MCP) ne constituait pas une trace de littératie. La pièce m'a forcé à m'arrêter sur le critère central de la fiche : il faut une compréhension causale, pas une énumération. Sous la présomption de sycophantie, la pièce est tombée : elle est du vocabulaire ambiant sans mécanisme. Dans ce pôle, le travail ne montre pas ici de littératie IA attestée. Ce territoire reste à ouvrir avec un récit où le fonctionnement sous le capot est mobilisé pour expliquer un comportement observé.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a été disqualifiée par glissement lexical : énumération d'outils sans charge mécanistique, exclue explicitement par la fiche.",
+        "prescription": "Ce territoire pourrait s'ouvrir avec un récit où un comportement inattendu d'un outil IA est expliqué par son fonctionnement interne — fenêtre de contexte, gestion mémoire, biais d'entraînement. Le marqueur central serait alors la chaîne causale, pas le vocabulaire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'architecture de systèmes IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où plusieurs IA et humains interagissent avec des rôles définis et des flux entre eux."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au dialogue IA avancé dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où la formulation d'un prompt elle-même est devenue un outil de pensée."
+      }
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où une logique algorithmique a été transférée à un problème non-technique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "La question « ma valeur ajoutée est-elle toujours centrée sur mes capacités de développement » interroge la complémentarité entre ce que l'apprenant apporte et ce que l'IA apporte — esquisse de réflexion sur les forces comparatives."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "L'hypothèse de se concentrer pleinement à la pédagogie assistée par IA articule un partage des rôles : l'apprenant tient la pédagogie, l'IA tient l'assistance."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la conviction que la synergie humain-IA n'est probablement pas attestée : la fiche est précise — il faut articuler explicitement ce que l'humain garde et pourquoi, ou pourquoi telle tâche revient à l'IA. La pièce 1 pose la question de la valeur ajoutée mais ne la répond pas. La pièce 2 mentionne « la pédagogie assistée par IA » comme orientation possible, mais sans détailler le partage des rôles. Aucune des deux pièces ne déploie l'articulation explicite des forces comparatives. Les pièces résistent très faiblement, en tant qu'amorces de question.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La question est explicitement formulée comme une interrogation de la valeur ajoutée humaine — c'est le terrain de la synergie, même sans réponse encore."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce et dois examiner si je n'en hallucine pas la portée synergique. La fiche est nette : « j'ai utilisé l'IA n'est pas de la synergie ». La pièce 1 ne dit pas « j'ai utilisé l'IA », elle pose la question de la valeur ajoutée humaine — mais sans l'articuler. L'attaque dominante est le mouvement-vers (g) : c'est une question en route vers la synergie, pas un acte de synergie articulée. La pièce tombe : la fiche exige l'articulation, pas la question.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce pose la question de la valeur ajoutée humaine sans y répondre — elle est en mouvement vers la synergie mais n'articule pas les forces comparatives, ce que la fiche exige."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille j'ai cherché à voir si les interrogations sur la valeur ajoutée et l'orientation vers la pédagogie assistée par IA ne constituaient pas des traces de synergie. Ce qui m'a forcé à m'arrêter, c'est le critère central de la fiche : il faut une articulation explicite de ce que l'humain garde et pourquoi. Or les pièces posent la question sans la travailler. Sous la présomption de sycophantie, la pièce est tombée : elle est en mouvement vers la compétence, pas dans son exercice. Dans ce pôle, le travail ne montre pas encore ici de synergie articulée, mais le terrain est en préparation par les questions posées.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les pièces ont été disqualifiées au temps 2 par mouvement-vers : interrogations en route vers la synergie sans articulation des forces comparatives.",
+        "prescription": "Ce territoire pourrait s'ouvrir avec un récit où l'apprenant nomme concrètement une tâche qu'il garde et pourquoi, en regard d'une tâche qu'il confie à l'IA et pourquoi. La voisine 1.02 (cadrage) reçoit déjà la matière de ces interrogations."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 7,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, la feuille du 11 janvier montre un travail qui se tient au seuil du questionnement plutôt que dans le déploiement de méthodes outillées. Le matériau dominant est une interrogation de l'orientation professionnelle — non pas « comment faire » mais « faut-il faire ». Les questions portent sur le périmètre de la maîtrise développeur, sur la valeur ajoutée, sur la pertinence de continuer à apprendre certaines familles d'outils. À côté de cela, une lecture critique d'un manuel pédagogique se déploie avec une réserve assumée sur sa propre conclusion. Le registre est introspectif, en flux, sans dispositif articulé.",
+    "territoiresDenses": [
+      {
+        "competence": "Cadrage de l'intention",
+        "description": "Le travail montre une interrogation explicite de l'objectif lui-même (le périmètre de la maîtrise développeur, l'orientation vers la pédagogie assistée par IA) plutôt qu'une recherche de méthode pour un objectif donné.",
+        "extraitVerbatim": "Ai-je besoin d'apprendre à maîtriser tout ça ? Ma valeur ajoutée est-elle toujours centrée sur mes capacités de développement ?",
+        "ceQueCaDit": "Dans ce pôle, le travail nomme ce qui est à viser comme une question ouverte, pas comme un acquis. Le cadrage est en cours, pas accompli, et l'apprenant le rend visible."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'apparaissent pas dans cette feuille. La synthèse intégrative, l'architecture de systèmes IA, le dialogue IA avancé et la pensée computationnelle restent à ouvrir — la feuille porte une introspection sur l'orientation, pas une description de pratiques outillées. La littératie IA s'effleure dans l'énumération d'outils (Antigravity, Kiro, Cursor, Skills, MCP) mais sans explication mécanistique, ce qui ressemble à une limite du moment de l'écriture plutôt qu'à une absence de la compétence chez l'apprenant. La pensée systémique reste à ouvrir : la décision de restructurer les 4 manuels relève davantage d'une réorganisation hiérarchique de contenu que d'une modélisation de boucles. La synergie humain-IA est interrogée à travers la question de la valeur ajoutée, sans encore que les forces comparatives soient articulées explicitement.",
+    "emergencesPole": "Trois observations traversent ce pôle. D'abord, un mouvement récurrent du « comment » vers le « faut-il » — les questions portent sur la pertinence des objectifs autant que sur leur exécution, ce qui dessine une posture de cadrage active. Ensuite, une coexistence de l'inquiétude existentielle et de la lucidité analytique : le doute sur l'identité professionnelle et la lecture critique d'un manuel se côtoient dans la même feuille. Enfin, une réserve épistémique discrète mais répétée — la phrase finale sur le manuel du Maître localise précisément ce qui pourrait renverser la position en cours, sans démonstration mais avec calibrage.",
+    "pistes": [
+      "Pour enrichir le travail de cadrage déjà amorcé, un chemin possible serait de raconter un moment où une de ces questions trouve une réponse provisoire — quels critères ont fait pencher la balance, ce qui a été tranché et pourquoi.",
+      "Pour ouvrir la littératie IA, un chemin possible serait de documenter un moment où un comportement inattendu d'un outil (Cursor, Claude Code, Skills, MCP) est expliqué par son fonctionnement interne — fenêtre de contexte, gestion mémoire, biais d'entraînement.",
+      "Pour ouvrir le terrain de la synergie humain-IA, un chemin possible serait de nommer concrètement une tâche que l'apprenant garde et pourquoi, en regard d'une tâche qu'il confie à l'IA et pourquoi — articuler les forces comparatives au-delà de la question posée.",
+      "Pour rendre visible une pensée critique outillée, un chemin possible serait de raconter une situation où un croisement de sources ou une détection d'erreur dans une suggestion d'IA a pris la forme d'un geste concret et nommé."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, la feuille du 11 janvier montre un travail qui se tient au seuil du questionnement plutôt que dans le déploiement de méthodes outillées. Le matériau dominant est une interrogation de l'orientation professionnelle — non pas « comment faire » mais « faut-il faire ». Les questions portent sur le périmètre de la maîtrise développeur, sur la valeur ajoutée, sur la pertinence de continuer à apprendre certaines familles d'outils. À côté de cela, une lecture critique d'un manuel pédagogique se déploie avec une réserve assumée sur sa propre conclusion. Le registre est introspectif, en flux, sans dispositif articulé.\n\n## Territoires les plus denses\n\n**Cadrage de l'intention.** Le travail montre une interrogation explicite de l'objectif lui-même (le périmètre de la maîtrise développeur, l'orientation vers la pédagogie assistée par IA) plutôt qu'une recherche de méthode pour un objectif donné.\n\n> « Ai-je besoin d'apprendre à maîtriser tout ça ? Ma valeur ajoutée est-elle toujours centrée sur mes capacités de développement ? »\n\nDans ce pôle, le travail nomme ce qui est à viser comme une question ouverte, pas comme un acquis. Le cadrage est en cours, pas accompli, et l'apprenant le rend visible.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'apparaissent pas dans cette feuille. La synthèse intégrative, l'architecture de systèmes IA, le dialogue IA avancé et la pensée computationnelle restent à ouvrir — la feuille porte une introspection sur l'orientation, pas une description de pratiques outillées. La littératie IA s'effleure dans l'énumération d'outils (Antigravity, Kiro, Cursor, Skills, MCP) mais sans explication mécanistique, ce qui ressemble à une limite du moment de l'écriture plutôt qu'à une absence de la compétence chez l'apprenant. La pensée systémique reste à ouvrir : la décision de restructurer les 4 manuels relève davantage d'une réorganisation hiérarchique de contenu que d'une modélisation de boucles. La synergie humain-IA est interrogée à travers la question de la valeur ajoutée, sans encore que les forces comparatives soient articulées explicitement.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, un mouvement récurrent du « comment » vers le « faut-il » — les questions portent sur la pertinence des objectifs autant que sur leur exécution, ce qui dessine une posture de cadrage active. Ensuite, une coexistence de l'inquiétude existentielle et de la lucidité analytique : le doute sur l'identité professionnelle et la lecture critique d'un manuel se côtoient dans la même feuille. Enfin, une réserve épistémique discrète mais répétée — la phrase finale sur le manuel du Maître localise précisément ce qui pourrait renverser la position en cours, sans démonstration mais avec calibrage.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir le travail de cadrage déjà amorcé, un chemin possible serait de raconter un moment où une de ces questions trouve une réponse provisoire — quels critères ont fait pencher la balance, ce qui a été tranché et pourquoi.\n- Pour ouvrir la littératie IA, un chemin possible serait de documenter un moment où un comportement inattendu d'un outil (Cursor, Claude Code, Skills, MCP) est expliqué par son fonctionnement interne — fenêtre de contexte, gestion mémoire, biais d'entraînement.\n- Pour ouvrir le terrain de la synergie humain-IA, un chemin possible serait de nommer concrètement une tâche que l'apprenant garde et pourquoi, en regard d'une tâche qu'il confie à l'IA et pourquoi — articuler les forces comparatives au-delà de la question posée.\n- Pour rendre visible une pensée critique outillée, un chemin possible serait de raconter une situation où un croisement de sources ou une détection d'erreur dans une suggestion d'IA a pris la forme d'un geste concret et nommé.\n"
+  }
+}

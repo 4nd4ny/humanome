@@ -1,0 +1,397 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Autant avec Claude Opus 4.6 ce n'est pas un véritable problème, autant avec les versions open source tournant sur très peu de mémoire, c'est un problème central. Or même à l'EPFL ils utilisent Qwen sur leur datacenter, car les données privées des élèves ne peuvent pas être envoyées sur des serveurs en dehors de la Suisse. Ils ont donc le même problème que nous avons avec Aurora, sans les contraintes de CPU apparemment.",
+      "contexte": "Identification d'une contrainte de souveraineté des données (données privées des élèves ne pouvant sortir de Suisse) qui module les choix techniques.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "L'architecture d'Aurora que j'ai récupérée sur son Git est relativement lourde en ressource matérielle et sous-optimale pour du prototypage rapide.",
+      "contexte": "Conscience des ressources matérielles consommées par une architecture (« lourde en ressource matérielle ») — lecture de l'empreinte technique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Avec Cowork, les prompts peuvent être directement interprétés. Je les ai donc mis dans la structure d'Aurora (dans le répertoire \"protocole\") et indiqué dans CLAUDE.md ce que je voulais en faire.",
+      "contexte": "Choix d'outil informé par l'efficacité ressource : passage à CoWork pour éviter le coût matériel d'Aurora.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Je viens de recevoir le numéro ISBN 978-2-8399-5075-6 ! J'ai craqué, j'ai commandé une impression papier de 15 exemplaires avant d'avoir le temps de finir de relire",
+      "contexte": "Commande d'objets physiques (impression papier) — passage du numérique au matériel, avec son empreinte propre (papier, encre, transport).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Je devrais partir pour aller visiter l'école 42. Je me suis inscrit (la visite est payante, le nombre de places est limité). C'est une activité organisée pour les anciens étudiants alumni de l'EPFL.",
+      "contexte": "Sortie physique organisée pour les alumni EPFL — implication dans un réseau institutionnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Il est vrai que depuis que je ne travaille plus, mes sorties se limitent à aller accompagner Leila à l'école, faire les courses et jeter les poubelles. C'est assez limité",
+      "contexte": "Habitat quotidien : routine de soutien familial (école de Leila, courses, poubelles) — territoire concret de la vie ordinaire.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "ce qui impliquerait potentiellement une annulation de la sortie prévue mardi prochain (IA Meetup autour de l'enseignement) et qui est beaucoup plus importante.",
+      "contexte": "Engagement dans un Meetup autour de l'enseignement — participation à un écosystème professionnel local.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "ces versions papiers seront destinées à être distribuées aux gens qui voudront bien me faire une retour sur les incohérences restantes ou problèmes de style restant, afin que je puisse uploader une version définitive sur le site et ouvrir la vente du livre au public",
+      "contexte": "Architecture éditoriale (papier d'abord, version définitive en ligne, vente au public) — gestion d'un cycle de publication.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "extraitVerbatim": "comme le site web est à la ramasse, complètement dépassé avec tout ce que j'ai fais de nouveau depuis le début de l'année, et que j'ai tous les débats autour du nouveau référentiel v7 générés par Claude mais non publiés sur Décidim, ce n'est vraiment pas super urgent non plus que les gens viennent sur nos sites principaux",
+      "contexte": "Conscience des écarts entre l'état réel des sites/dispositifs et ce qui a été produit — lecture de l'infrastructure numérique propre.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "extraitVerbatim": "L'école est donc morte sous sa forme actuelle – l'école de demain mettra la noèsiologie et la valorisation des forces de l'humain au centre de sa pédagogie – c'est la base des idées d'Harmonia, traduites de manière théorique dans la pédagogie de l'émergence, implémentée de manière pratique dans les écoles RESPIRE",
+      "contexte": "Vision systémique : l'école actuelle versus l'école de demain, articulée à plusieurs niveaux (théorie, pratique, narration) — pensée écosystémique de la transformation éducative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "extraitVerbatim": "le rôle du maître dans l'école de demain reste central, mais totalement différent de ce qui est pratiqué aujourd'hui",
+      "contexte": "Vision prospective de la transformation d'un rôle — perspective long-terme sur les métiers de l'éducation.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Description de l'habitat quotidien (école de Leila, courses, poubelles) — territoire ordinaire nommé."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Sortie organisée pour les alumni EPFL à l'école 42 — participation à un territoire institutionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : la fiche 6.01 est exigeante — il faut une relation à un territoire avec connaissance fine, présence régulière dans l'année, marqueurs phénoménologiques (saisons, odeurs, gestes), interaction avec une communauté locale. La pièce 1 nomme un territoire (l'école de Leila, le quartier de courses) mais sans aucune description phénoménologique ni mention de communauté. La pièce 2 est une visite ponctuelle. Aucune saison, aucun lieu de pratique régulier nommé, aucun acteur local (commerçant, voisin, association).",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché une relation à un territoire avec connaissance fine et présence régulière. Sous la présomption d'absence, aucune pièce n'a résisté : les territoires mentionnés (école de Leila, école 42) sont des points de passage, pas des territoires habités au sens 6.01. Ce qui en résulte : sur ce pôle, le travail ne porte pas dans cette feuille de traces d'ancrage territorial — la vie locale est mentionnée comme cadre fonctionnel sans description phénoménologique ni interaction avec une communauté locale.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à l'analyse — la vie locale est nommée comme cadre fonctionnel sans la connaissance fine, la présence régulière ni la communauté locale qu'exige l'ancrage territorial.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de raconter, lors d'une prochaine sortie ordinaire (école, courses, balade), un lieu, un moment, un acteur local précis — afin que le quartier devienne lisible comme territoire et pas seulement comme infrastructure."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Conscience de l'empreinte matérielle d'une architecture logicielle (« lourde en ressource matérielle ») — lecture de l'impact technique des outils."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Choix d'outil informé par l'efficacité ressource (passage à CoWork pour réduire le coût matériel) — décision pragmatique orientée empreinte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : la fiche 6.02 demande une lucidité spécifique sur les externalités systémiques — empreinte carbone du numérique, eau, externalités du cloud, conditions de travail invisibles. Ces pièces parlent de ressource matérielle (CPU, mémoire) mais pour des raisons d'efficacité, pas écologiques. Le passage de « lourde en ressource matérielle » à « moins lourde » est un gain technique, pas un arbitrage écologique explicite. Ce qui reste plus faible : aucune mention de l'empreinte carbone du datacenter, aucune lecture des externalités énergétiques.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché une lucidité explicite sur les externalités écologiques du numérique. Sous la présomption d'absence, aucune pièce n'a résisté : les choix techniques sont motivés par l'efficacité, pas par une lecture écologique. Ce qui en résulte : sur ce pôle, le travail ne documente pas dans cette feuille de prise en compte explicite des externalités écologiques — la ressource matérielle est lue comme contrainte pratique, pas comme empreinte.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "Aucune pièce n'a résisté — la conscience matérielle est présente mais comme contrainte technique, pas comme arbitrage écologique.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de documenter, lors d'un prochain choix entre deux outils (modèle local versus cloud, par exemple), l'externalité écologique du choix retenu — coût énergétique, empreinte carbone, localisation du datacenter."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Vision systémique de la transformation éducative (école actuelle → école de demain, articulée à plusieurs niveaux théorique/pratique/narratif) — pensée écosystémique."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Vision prospective de la transformation d'un rôle (le maître dans l'école de demain) — perspective long-terme sur les acteurs de l'écosystème éducatif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : la fiche 6.03 demande une pensée des interdépendances visibles et invisibles, anticipation des effets en cascade, identification des points de levier. La pièce 1 articule un écosystème (Harmonia, pédagogie, écoles, roman) mais sans identifier les interdépendances ni les effets en cascade. La pièce 2 énonce une transformation mais sans articuler ses causes ni ses ondes. Ce qui reste plus faible : aucune analyse de comment un changement à un endroit propage des effets ailleurs.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché une pensée des effets en cascade et des points de levier. Sous la présomption d'absence, aucune pièce n'a résisté : les visions énoncées sont des architectures conceptuelles (à plusieurs strates) mais sans analyse des interdépendances. Ce qui en résulte : sur ce pôle, le travail montre des visions systémiques articulées mais sans analyse explicite des interdépendances ni des points de levier au sens 6.03.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les visions systémiques articulées dans cette feuille ne descendent pas dans l'analyse des interdépendances et des points de levier qu'exige 6.03.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de noter, à propos d'une initiative déjà engagée (Aurora, le référentiel, l'école RESPIRE), les ondes attendues d'un changement et les acteurs concernés en première et seconde ligne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Identification précise d'une contrainte de souveraineté des données : les données privées des élèves de l'EPFL ne peuvent sortir de Suisse — diagnostic technique-juridique articulé."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Choix d'outil (CoWork) qui permet d'éviter la dépendance à des serveurs distants pour le prototypage — décision orientée souveraineté."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : la fiche 6.04 est très exigeante — elle demande une triple distinction (chiffrement vs cloud public, FOSS vs SaaS, données personnelles vs anonymisées), choix radicaux personnels avec justification systémique, conscience du caractère politique. La pièce 1 articule explicitement une logique de souveraineté des données (les données ne peuvent sortir de Suisse) appliquée à l'éducation. C'est une compréhension précise d'un enjeu de souveraineté numérique. La pièce 2 montre un choix qui réduit la dépendance à des serveurs distants. Ce qui reste plus faible : la pièce 1 décrit la pratique de l'EPFL, pas nécessairement les choix personnels de l'apprenant ; la pièce 2 est un choix d'efficacité dont la dimension souveraineté n'est pas explicitée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification claire d'une contrainte de souveraineté (données privées des élèves ne sortant pas de Suisse) et application explicite à un projet pédagogique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce. L'attaque (b) — confusion — la rapproche de 2.06 (intelligence culturelle) où elle a déjà été comptée. L'attaque (a) — insuffisance probatoire — touche : la pièce décrit la pratique de l'EPFL, pas les choix personnels de l'apprenant. Cependant l'apprenant articule explicitement « Ils ont donc le même problème que nous avons avec Aurora » — il assimile le problème comme étant aussi le sien.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'apprenant articule explicitement le partage du problème (« le même problème que nous avons avec Aurora ») — la souveraineté n'est pas un commentaire extérieur, c'est une contrainte assumée pour son propre projet." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché une compréhension fine et appropriée de la souveraineté numérique. Sous la présomption d'absence, une pièce a résisté parce qu'elle articule un enjeu de souveraineté (données qui ne peuvent sortir d'un territoire) appliqué à un projet éducatif. Sous la présomption de sycophantie, l'insuffisance probatoire l'a affaiblie mais l'appropriation explicite (« le même problème que nous ») l'a maintenue. Ce qui en résulte : sur ce pôle, le travail montre une compréhension précise d'un enjeu de souveraineté numérique appliqué à son propre projet — sans déploiement plus large de la triple distinction qu'exige la fiche.",
+          "confianceFinale": 0.50
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.50,
+        "motif": "Une pièce affaiblie mais retenue : compréhension explicite d'un enjeu de souveraineté appliqué à son propre projet.",
+        "prescription": "Pour épaissir cette dimension, un chemin possible serait de documenter, à propos d'Aurora ou d'un autre projet, le choix d'architecture (local vs cloud, modèle Suisse vs hors-Suisse) avec ses conséquences pour les données des apprenants — afin que la souveraineté devienne un critère de design explicite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Commande d'objets physiques (15 exemplaires papier) — passage du numérique au matériel."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Routine de soutien matériel (école de Leila, courses, poubelles) — actes de la vie matérielle ordinaire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : la fiche 6.05 demande l'enracinement dans le réel non-numérique avec descriptions physiques précises, conscience des temporalités lentes, attention aux gestes corporels. La pièce 1 commande des objets sans les manipuler ni les décrire. La pièce 2 mentionne des routines sans description corporelle ni temporalité lente. Ce qui reste plus faible : aucun geste précis nommé, aucun lien biorégional, aucune dimension de temps long.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché un enracinement matériel avec gestes précis et temporalités lentes. Sous la présomption d'absence, aucune pièce n'a résisté : la matérialité est mentionnée comme fonction (commander, faire les courses, sortir les poubelles) sans description phénoménologique. Ce qui en résulte : sur ce pôle, le travail ne documente pas d'enracinement matériel au sens 6.05 dans cette feuille.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté — la matérialité est mentionnée comme fonction et non comme expérience avec gestes nommés et temporalités lentes.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de raconter, lors d'une prochaine activité matérielle (réception des 15 exemplaires, manipulation, distribution physique), un geste précis et la temporalité qui s'y joue."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Architecture éditoriale (papier d'abord, version définitive en ligne, vente au public) — gestion d'un cycle de publication."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Lecture lucide de l'état des sites/dispositifs (« site web à la ramasse, complètement dépassé ») — conscience de la dette technique."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Choix d'outil (CoWork) qui réduit le coût matériel et accélère le prototypage — décision d'organisation des moyens."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : la fiche 6.06 demande la gestion des ressources, du temps, de l'énergie, des moyens financiers — capacité à organiser un projet ou une vie de manière soutenable. La pièce 1 articule une stratégie éditoriale (papier d'abord pour relectures, puis numérique). La pièce 2 fait une lecture lucide de la dette technique du site. La pièce 3 articule un choix d'outil orienté efficacité. Cependant, aucune de ces pièces n'articule de soutenabilité au sens fort (équilibre temporel, énergétique, financier). La frontière avec 6.07 (cycle long, vision sur 10-20 ans) et avec 4.05/4.09 (décision/patience) est fine.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Stratégie éditoriale articulée (papier d'abord pour les retours, puis numérique, puis vente publique) — gestion d'un cycle complet." },
+            { "pieceId": 3, "motifResistance": "Choix d'outil orienté efficacité ressource — décision d'organisation des moyens." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. L'attaque (b) — confusion — touche fortement : la pièce 1 est une stratégie de publication, pas nécessairement de la gestion soutenable au sens 6.06. La pièce 3 est un choix d'efficacité, pas un arbitrage de soutenabilité. La fiche 6.06 demande une dimension explicite de soutenabilité (énergie, temps long, équilibre).",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Stratégie éditoriale plus que gestion soutenable — pas d'arbitrage temporel/énergétique articulé." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Choix d'efficacité, pas d'arbitrage soutenable explicite (durée, énergie consommée à long terme, équilibre des moyens)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché une gestion soutenable des ressources avec arbitrage explicite. Sous la présomption d'absence, deux pièces ont résisté comme stratégies d'organisation. Sous la présomption de sycophantie, elles sont tombées parce qu'elles relèvent d'efficacité ou de stratégie de publication, pas de soutenabilité au sens fort. Ce qui en résulte : sur ce pôle, le travail ne documente pas dans cette feuille de gestion soutenable des ressources — les choix d'organisation sont là, sans la dimension explicite de soutenabilité.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "Les pièces retenues sont tombées sous l'attaque de confusion — l'organisation est documentée, mais sans la dimension explicite de soutenabilité qu'exige 6.06.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de documenter, à propos du rythme de travail actuel, comment les ressources personnelles (temps, énergie, attention) sont arbitrées et ce qui rend ce rythme soutenable ou non."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Articulation d'un projet à long terme (l'école de demain) avec ses dispositifs successifs (théorie, écoles, roman, idées d'Harmonia) — vision sur un horizon plurigénérationnel."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Vision prospective de la transformation d'un rôle (le maître dans l'école de demain) — horizon long-terme."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec doute : la fiche 6.07 demande une articulation entre actions présentes et conséquences futures, capacité à différer la gratification, conscience des effets cumulés. La pièce 1 articule une vision longue (Harmonia, pédagogie de l'émergence, écoles RESPIRE, roman) mais sans articulation des effets cumulés ni de la gratification différée. La pièce 2 est prospective mais sans articulation explicite de l'horizon. Cependant, l'ensemble du travail décrit dans la feuille est orienté vers une transformation pédagogique à long terme (« l'école de demain »), ce qui constitue une trace.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Vision orientée long terme avec plusieurs dispositifs successifs articulés (théorie, pratique, narration)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce. L'attaque (b) — confusion avec 2.09 (construction de communautés) et 6.03 (pensée systémique) — est lourde. L'attaque (f) — récit performatif — touche : énoncer une vision longue n'est pas la même chose que travailler sur un horizon long. Mais l'ensemble du portfolio (que je ne vois qu'au travers de cette feuille) est ce travail.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Frontière avec 2.09 (communautés) et 6.03 (pensée systémique) ; tient sur la dimension d'horizon long et de gratification différée — le projet est porté depuis plusieurs années sans bénéfice immédiat." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché une articulation entre actions présentes et conséquences futures avec capacité à différer. Sous la présomption d'absence, une pièce a résisté (vision longue avec dispositifs successifs). Sous la présomption de sycophantie, elle s'est affaiblie par frontière avec d'autres compétences mais tenue sur l'horizon long. Ce qui en résulte : sur ce pôle, le travail montre une orientation vers l'horizon long (l'école de demain, la transformation du rôle du maître) — sans articulation explicite des effets cumulés ni des arbitrages temporels longs.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce affaiblie mais retenue : vision orientée long terme, sans articulation explicite des arbitrages temporels longs.",
+        "prescription": "Pour épaissir cette compétence, un chemin possible serait d'articuler, à propos d'un dispositif présent (les 15 exemplaires papier, le référentiel v7), l'horizon à 5 ou 10 ans et les effets cumulés attendus — afin que la temporalité longue devienne un objet de design explicite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 5,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail est globalement peu déployé dans cette feuille. La journée est centrée sur des dispositifs techniques (architecture d'évaluation par prompts, migration des fichiers YAML, choix de CoWork) et des projets numériques (livre, site web, Décidim). La matérialité est mentionnée — commande de 15 exemplaires papier, école de Leila, courses, poubelles — mais comme cadre fonctionnel plutôt que comme territoire habité. Les questions écologiques, biorégionales, ou de gestion soutenable des ressources personnelles n'apparaissent pas explicitement. Une trace claire émerge sur la souveraineté numérique (souveraineté des données suisses appliquée à un projet pédagogique), et une orientation longue est articulée à travers les visions Harmonia / pédagogie de l'émergence / écoles RESPIRE.",
+    "territoiresDenses": [
+      {
+        "competence": "Souveraineté numérique (lecture appliquée)",
+        "description": "Le travail articule explicitement un enjeu de souveraineté des données (données privées qui ne peuvent sortir de Suisse) et l'applique à son propre projet pédagogique.",
+        "extraitVerbatim": "même à l'EPFL ils utilisent Qwen sur leur datacenter, car les données privées des élèves ne peuvent pas être envoyées sur des serveurs en dehors de la Suisse. Ils ont donc le même problème que nous avons avec Aurora, sans les contraintes de CPU apparemment.",
+        "ceQueCaDit": "L'enjeu de souveraineté n'est pas un commentaire extérieur — il est appropriations explicite (« le même problème que nous avons »), ce qui rend la dimension politique de l'architecture technique consciente."
+      }
+    ],
+    "territoiresNonVisites": "L'ancrage territorial (6.01) n'est pas documenté — les territoires mentionnés sont des points de passage fonctionnels (école de Leila, courses, école 42) sans description phénoménologique ni interactions avec une communauté locale. La conscience écologique (6.02) est absente — la ressource matérielle est lue comme contrainte technique, pas comme empreinte. La pensée systémique des interdépendances (6.03) est amorcée par des visions énoncées mais sans analyse des effets en cascade. L'enracinement matériel (6.05) est mentionné en fonction sans gestes nommés ni temporalités lentes. La gestion soutenable des ressources (6.06) est présente comme efficacité mais pas comme soutenabilité explicite. La vision long terme (6.07) est amorcée mais sans articulation des arbitrages temporels longs.",
+    "emergencesPole": "Trois traversées : d'abord, la dimension écosystémique du travail est davantage projetée vers l'avenir (l'école de demain) que pratiquée au présent (le quartier, le quotidien) — l'horizon long absorbe l'horizon court. Ensuite, la matérialité est subordonnée au numérique : le papier est commandé pour permettre une version définitive en ligne, le quotidien est résumé à ses fonctions support, le datacenter est lu comme infrastructure et pas comme territoire. Enfin, la seule dimension écosystémique pleinement habitée dans cette feuille est la souveraineté numérique — la dimension politique des architectures techniques —, ce qui suggère que l'écosystème dans lequel l'apprenant se reconnaît le mieux est l'écosystème logiciel-pédagogique plutôt que biorégional.",
+    "pistes": [
+      "Pour ouvrir l'ancrage territorial, un chemin possible serait de raconter, lors d'une prochaine sortie ordinaire, un lieu, un moment, un acteur local précis — afin que le quartier devienne lisible comme territoire et pas seulement comme infrastructure.",
+      "Pour ouvrir la conscience écologique, un chemin possible serait de documenter, lors d'un prochain choix d'outil, l'externalité écologique du choix retenu (coût énergétique, empreinte carbone, localisation du datacenter).",
+      "Pour épaissir la souveraineté numérique, un chemin possible serait de documenter, à propos d'Aurora ou d'un autre projet, le choix d'architecture avec ses conséquences pour les données des apprenants.",
+      "Pour ouvrir la vision long terme, un chemin possible serait d'articuler, à propos d'un dispositif présent, l'horizon à 5 ou 10 ans et les effets cumulés attendus."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail est globalement peu déployé dans cette feuille. La journée est centrée sur des dispositifs techniques (architecture d'évaluation par prompts, migration des fichiers YAML, choix de CoWork) et des projets numériques (livre, site web, Décidim). La matérialité est mentionnée — commande de 15 exemplaires papier, école de Leila, courses, poubelles — mais comme cadre fonctionnel plutôt que comme territoire habité. Les questions écologiques, biorégionales, ou de gestion soutenable des ressources personnelles n'apparaissent pas explicitement. Une trace claire émerge sur la souveraineté numérique (souveraineté des données suisses appliquée à un projet pédagogique), et une orientation longue est articulée à travers les visions Harmonia / pédagogie de l'émergence / écoles RESPIRE.\n\n## Territoires les plus denses\n\n**Souveraineté numérique (lecture appliquée).** Le travail articule explicitement un enjeu de souveraineté des données (données privées qui ne peuvent sortir de Suisse) et l'applique à son propre projet pédagogique. Extrait : *« même à l'EPFL ils utilisent Qwen sur leur datacenter, car les données privées des élèves ne peuvent pas être envoyées sur des serveurs en dehors de la Suisse. Ils ont donc le même problème que nous avons avec Aurora, sans les contraintes de CPU apparemment ».* L'enjeu de souveraineté n'est pas un commentaire extérieur — il est appropriations explicite, ce qui rend la dimension politique de l'architecture technique consciente.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ancrage territorial n'est pas documenté — les territoires mentionnés sont des points de passage fonctionnels sans description phénoménologique. La conscience écologique est absente — la ressource matérielle est lue comme contrainte technique, pas comme empreinte. La pensée systémique des interdépendances est amorcée par des visions énoncées mais sans analyse des effets en cascade. L'enracinement matériel est mentionné en fonction sans gestes nommés ni temporalités lentes. La gestion soutenable des ressources est présente comme efficacité mais pas comme soutenabilité explicite. La vision long terme est amorcée mais sans articulation des arbitrages temporels longs.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois traversées : d'abord, la dimension écosystémique du travail est davantage projetée vers l'avenir (l'école de demain) que pratiquée au présent — l'horizon long absorbe l'horizon court. Ensuite, la matérialité est subordonnée au numérique : le papier est commandé pour permettre une version définitive en ligne, le quotidien est résumé à ses fonctions support, le datacenter est lu comme infrastructure et pas comme territoire. Enfin, la seule dimension écosystémique pleinement habitée dans cette feuille est la souveraineté numérique, ce qui suggère que l'écosystème dans lequel l'apprenant se reconnaît le mieux est l'écosystème logiciel-pédagogique plutôt que biorégional.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir l'ancrage territorial, un chemin possible serait de raconter, lors d'une prochaine sortie ordinaire, un lieu, un moment, un acteur local précis.\n- Pour ouvrir la conscience écologique, un chemin possible serait de documenter, lors d'un prochain choix d'outil, l'externalité écologique du choix retenu.\n- Pour épaissir la souveraineté numérique, un chemin possible serait de documenter, à propos d'Aurora ou d'un autre projet, le choix d'architecture avec ses conséquences pour les données des apprenants.\n- Pour ouvrir la vision long terme, un chemin possible serait d'articuler, à propos d'un dispositif présent, l'horizon à 5 ou 10 ans et les effets cumulés attendus.\n"
+  }
+}

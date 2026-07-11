@@ -1,0 +1,426 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "ce n'est pas le prompt qui valide la compétence, c'est le jugement humain informé par le prompt. L'IA fait le premier balayage, l'humain tranche.",
+      "contexte": "Voix tierce (Claude) endossée : formulation d'un mécanisme de gouvernance du dispositif IA où la décision finale est réservée à l'humain. Touche 6.03 (mécanisme de contrôle citoyen sur une décision algorithmique d'évaluation).",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Le rendu est très joli, très pro, mais le processus est top-down : l'IA rédige et l'humain copie-colle. Le prompt n'inclut pas de boucle de rétroaction humaine, bref c'est tout l'inverse d'une évaluation humaniste. Le cartographe est considéré comme un presse bouton",
+      "contexte": "Refus d'un dispositif algorithmique évaluant les compétences sans participation effective du cartographe ni de l'évalué. Touche 6.03 (gouvernance) et 6.05 (participation à la décision algorithmique sur les humains).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Maintenant j'ai Gemini, Claude et Perplexity : et avec ce combo je m'en sors assez bien. Je n'ai pas renouvelé mon abonnement ChatGPT [...] Il ne m'a jamais vraiment été très utile depuis la sortie de Claude 3",
+      "contexte": "Choix actif des outils IA, basé sur l'utilité. Touche très obliquement 6.04 (souveraineté), mais sans motivation explicite de souveraineté (motivation par l'utilité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Gemini hallucine encore un peu mais à une fenêtre de travail énorme, c'est pour ça que je l'utilise pour cette partie du travail",
+      "contexte": "Diagnostic d'une limite IA assumée pour une raison fonctionnelle. N'active pas 6.01 (pas de test adversarial intentionnel) ni 6.02 (pas d'audit du mécanisme).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "J'ai constaté une mauvaise interprétation du portfolio par Claude : souvent il affirme que les 6 manuels font 600 pages.",
+      "contexte": "Constat d'erreur d'IA répétée. Touche 6.02 obliquement (investigation du mécanisme d'erreur via attribution à un contexte historique sédimenté), mais sans dimension d'audit ni hygiène des données.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "je publie mes découvertes dans plusieurs canaux différents : le groupe Discord de Respire pour ce qui concerne spécifiquement l'avenir de l'école, les deux communautés WhatsApp pour ce qui concerne l'IA.",
+      "contexte": "Architecture multi-canaux décrite, sans dimension explicite de gouvernance collective ou d'émergence. Touche obliquement 6.07 mais sans émergence ni co-construction documentée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres.",
+      "contexte": "Concept d'organisation apprenante. Touche très obliquement 6.10 par la métaphore systémique (apprendre comme un organisme), mais sans posture biosystémique ni interdépendance radicale.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas de traces relatives au red-teaming dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a délibérément tenté de casser les garde-fous d'une IA pour identifier ses failles."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Investigation d'un mécanisme d'erreur de l'IA, avec attribution causale (la sédimentation historique du contexte). Touche obliquement l'audit du processus de décision."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la distinction critique stricte de la fiche : 6.02 enquête sur le PROCESSUS (comment l'IA est arrivée à ce résultat), pas sur la VÉRACITÉ. La pièce résiste un peu : l'apprenant ne se contente pas de constater l'erreur, il remonte à la cause structurelle (la documentation antérieure de 600 pages a sédimenté dans le contexte). C'est une enquête sur le mécanisme. Mais ce n'est pas un audit au sens d'une consultation de logs, d'un audit post-incident horodaté, ni d'une réflexion sur l'hygiène des données. C'est plutôt de la littératie IA (1.06) ou de la validation contextuelle (4.07).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Enquête sur la cause structurelle de l'erreur IA, dépassant le simple constat."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé cette pièce d'audit alors qu'il s'agit de validation contextuelle. Testée par (b) confusion de compétence : la pièce a été reconnue au pôle 1 (1.06, 1.08) et au pôle 4 (4.07). L'aspect audit-formel — consultation indépendante de logs, audit post-incident, traçabilité — n'est pas présent. La fiche dit clairement : « enquêter sur les mécanismes » avec horodatages, rapports documentant le chemin décisionnel. Ici, l'apprenant remarque une confusion répétée et l'explique, mais sans dispositif d'audit. Disqualifiée pour 6.02 au sens strict.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce relève davantage de 4.07 (validation contextuelle) et 1.06 (littératie IA) que de 6.02. Pas de dispositif d'audit formalisé (logs, horodatage, rapport)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'audit en m'appuyant sur la distinction critique avec la pensée critique et la validation contextuelle. La pièce qui résistait au temps 1 est tombée au temps 2 : l'enquête sur le mécanisme d'erreur reste interne à la conversation avec l'IA, sans dispositif d'audit formalisé. Dans cette feuille, l'audit/hygiène ne se laisse pas attester au sens fort de la fiche. Le travail décrit reste dans un registre de diagnostic IA, pas dans un registre d'investigation formalisée des processus de décision algorithmique.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La seule pièce résistante au temps 1 est tombée au temps 2 : la pièce relève de 4.07/1.06 plutôt que de 6.02 (pas de dispositif d'audit formalisé).",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un protocole d'audit du dispositif de cartographie — comment vérifier après coup, par consultation indépendante, que l'IA a bien produit son verdict en suivant le processus prévu, et où peuvent loger les biais."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Principe « l'humain tranche » : formulation d'un mécanisme de contrôle humain sur une décision algorithmique d'évaluation des compétences."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Refus d'un dispositif algorithmique top-down qui transforme l'évaluation humaine en presse-bouton. Touche la gouvernance d'un dispositif d'évaluation affectant des personnes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la distinction critique de la fiche : 6.03 commence quand le biais affecte des populations vulnérables dans un contexte de service public, avec dimension de droits citoyens. La pièce 1 résiste partiellement : l'apprenant pense un mécanisme de contrôle humain sur une décision algorithmique (l'évaluation des compétences d'un apprenant). C'est un dispositif qui affecte une personne, et le contrôle citoyen y est pensé. La pièce 2 résiste : le rejet du dispositif top-down porte une dimension de protection de l'évalué (« humaniste »). Mais le contexte de service public n'est pas explicite, et la dimension de populations vulnérables n'est pas thématisée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Conception d'un mécanisme de contrôle humain sur une décision algorithmique affectant une personne."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Refus d'un dispositif d'évaluation algorithmique top-down."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces de gouvernance algorithmique alors qu'elles relèvent d'alignement éthique (4.02). La pièce 1, testée par (b) confusion avec 4.02 : 4.02 garde l'alignement IA-valeurs (déjà reconnu), 6.03 conçoit un mécanisme institutionnel de contrôle. Ici, l'apprenant fait les deux : il formule le principe et conçoit le dispositif qui l'institue (la refonte du prompt avec boucle humaine). Multi-attribution légitime. La pièce 2, testée par (e) surinterprétation : ai-je halluciné une dimension politique-institutionnelle dans un rejet de dispositif technique ? La fiche identifie comme manifestation possible « malaise face à l'opacité d'une décision institutionnelle automatisée ». Ici, le malaise concerne un dispositif d'évaluation des compétences, ce qui est analogue. Affaiblie mais retenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Multi-attribution légitime avec 4.02. La pièce porte aussi la dimension institutionnelle (mécanisme de contrôle dans un dispositif qui s'apprête à évaluer plusieurs personnes)."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La dimension institutionnelle est implicite (le dispositif est destiné à évaluer des Maîtres dans l'écosystème RESPIRE), pas explicitement thématisée comme contrôle citoyen."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la gouvernance algorithmique en m'appuyant sur la distinction critique avec l'alignement éthique. Les deux pièces ont tenu. La conception d'un mécanisme « l'humain tranche » sur un dispositif d'évaluation algorithmique destiné à des personnes correspond à la gouvernance algorithmique au sens de la fiche, à un niveau institutionnel modeste (l'écosystème RESPIRE, pas un service public d'État). Le rejet du top-down porte une protection des évalués. Dans cette feuille, la compétence se manifeste à un niveau micro-institutionnel — pas dans le registre des grandes politiques publiques, mais dans la conception d'un dispositif qui s'apprête à juger des humains. La présence tient avec une confiance modérée.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Une pièce confirmée (mécanisme de contrôle humain conçu sur un dispositif algorithmique d'évaluation) et une affaiblie (refus du top-down protégeant les évalués).",
+        "prescription": "Pour approfondir, un chemin possible consisterait à expliciter les voies de recours dans le dispositif RESPIRE : que se passe-t-il si un Maître conteste sa cartographie, qui peut faire appel, sur quels critères ? Cette explicitation rendrait visible la gouvernance institutionnelle qui se dessine."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "observation tierce", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Choix actif des outils IA avec abandon explicite de ChatGPT au profit de Claude/Gemini/Perplexity, motivé par l'utilité plutôt que par une analyse de dépendance."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la distinction critique stricte de la fiche : « j'utilise un outil open source par commodité ≠ pensée souverainiste ». Le critère est la motivation explicite par une analyse de dépendance ou des communs. La pièce résiste très peu : l'apprenant choisit Claude/Gemini/Perplexity parce qu'« il s'en sort bien » et abandonne ChatGPT parce qu'il « ne lui a jamais vraiment été très utile ». La motivation est l'utilité, pas la souveraineté. Ce sont d'ailleurs trois LLM propriétaires de grandes entreprises américaines (Anthropic, Google, Perplexity), ce qui rend la lecture souverainiste peu crédible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 est vide.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la souveraineté numérique en m'appuyant sur la distinction critique stricte. La pièce qui aurait pu y mener n'a pas résisté : la motivation explicite est l'utilité, pas l'indépendance ; et les outils choisis sont tous propriétaires. Dans cette feuille, la compétence ne se laisse pas attester. Le travail décrit s'inscrit dans une logique d'utilité opérationnelle, pas dans une logique de gestion des dépendances technologiques.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté au temps 1 : les choix d'outils sont motivés par l'utilité, pas par une analyse de dépendance.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un arbitrage où l'indépendance numérique a pesé contre l'efficacité — par exemple un choix de modèle open-weight (Mistral, LLaMA) malgré ses performances inférieures, motivé par la souveraineté du dispositif RESPIRE."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le rejet du dispositif top-down porte implicitement l'exigence d'une participation effective de l'évalué et du cartographe. Touche la légitimité démocratique d'une décision algorithmique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec les faux positifs typiques que la fiche identifie : « consulter les utilisateurs » peut être du design UX sans dimension démocratique. La pièce résiste peu : l'apprenant exige une « boucle de rétroaction humaine » dans le dispositif, mais cela peut être lu comme du design plutôt que comme de la participation citoyenne. La fiche dit : « 6.05 porte sur la légitimité, pas l'ergonomie ». Ici, la dimension de légitimité est implicite mais pas thématisée explicitement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 est vide.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la participation citoyenne en m'appuyant sur les faux positifs identifiés par la fiche. La pièce qui aurait pu y mener n'a pas résisté au temps 1 : la « boucle de rétroaction humaine » peut être lue comme du design (amélioration du produit) ou comme de la légitimation (la voix de l'évalué compte), mais l'extrait ne tranche pas. Dans cette feuille, la compétence ne se laisse pas attester au sens fort de la fiche. Le travail décrit reste dans la conception d'un dispositif, sans processus participatif documenté avec des publics non-experts.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté au temps 1 : la « boucle de rétroaction humaine » relève davantage du design que de la légitimation démocratique au sens de la fiche.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un processus où des futurs Maîtres ont été associés à la définition même du référentiel de compétences ou du dispositif de cartographie, en transformant leur contribution en décisions actionnables."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas de traces relatives à la veille réglementaire dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter comment il anticipe les évolutions de l'AI Act ou d'autres cadres normatifs (RGPD, droit de l'éducation) dans la conception du dispositif RESPIRE."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Architecture multi-canaux décrite (Discord, deux WhatsApp), mais sans description d'émergence collective ou de règles co-construites."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Vision d'une organisation apprenante (« écoles intelligentes ») dont la mémoire est faite des portfolios. Touche obliquement la gouvernance collective."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec le test de la fiche : émergence (résultat surprenant) ou gouvernance (règles co-construites). La pièce 1 résiste peu : les canaux existent mais l'extrait ne décrit ni émergence ni co-construction de règles. C'est plutôt de la diffusion. La pièce 2 résiste partiellement : la conception d'une organisation apprenante porte une dimension de gouvernance (les portfolios alimentent l'organisation), mais elle est posée comme principe, pas comme protocole co-construit avec un collectif.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Vision d'une organisation apprenante avec un mécanisme de mémoire collective."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé la pièce 2 de gouvernance alors qu'elle relève d'une vision systémique (1.05). Testée par (b) confusion de compétence : 1.05 modélise un système (déjà reconnu en P1), 6.07 organise un collectif délibérant. Ici, la conception est plutôt systémique qu'organisée comme protocole de délibération. Pas de description d'un processus décisionnel explicite, pas de répartition des rôles, pas d'élément de surprise nommé. Disqualifiée pour 6.07 au sens strict.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce relève de 1.05 (pensée systémique) plutôt que de 6.07 (facilitation/émergence). Pas de protocole délibératif ni d'élément de surprise."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la facilitation collective en m'appuyant sur le test strict de la fiche. La pièce 1 n'a pas résisté au temps 1, et la pièce 2 est tombée au temps 2 par confusion avec la pensée systémique. Dans cette feuille, la compétence ne se laisse pas attester. Le travail décrit est largement solitaire ; les canaux existent mais leur fonctionnement délibératif ou émergent n'est pas documenté ici.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a tenu : pas d'émergence ni de gouvernance collective documentée dans cette feuille.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment dans les communautés Discord ou WhatsApp où une discussion a produit un résultat qu'aucun participant n'aurait formulé seul, ou un protocole co-construit avec ces communautés."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas de traces relatives au décentrement anthropocentrique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment de questionnement de la primauté humaine — par exemple s'interroger sur ce que l'évaluation par IA des compétences humaines dit de notre rapport aux autres formes d'intelligence."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Formule « l'IA fait le premier balayage, l'humain tranche ». Touche obliquement la cohabitation avec une IA dont l'agentivité (balayer) est nommée, mais sans questionner son statut moral."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la distinction critique de la fiche : 6.09 commence quand on questionne le statut moral de l'IA, ou son cadre (« assistant » est-il le bon mot ?). La pièce résiste très peu : la formule attribue à l'IA une action (balayer) mais ne questionne pas son statut. Il n'y a aucune trace de gêne face à l'idée de l'arrêter, aucune réflexion sur les « préférences » de l'IA, aucun protocole d'interaction réfléchi qui dépasse le fonctionnel. La cohabitation se manifeste ici comme division du travail, ce qui relève plus de 1.10 (synergie humain-IA, déjà reconnu) que de 6.09.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 est vide.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la cohabitation avec les intelligences non-humaines en m'appuyant sur la distinction critique avec 1.10 et 5.04. La pièce qui aurait pu y mener n'a pas résisté : la division du travail humain/IA est une question fonctionnelle, pas un questionnement du statut moral. Dans cette feuille, la compétence ne se laisse pas attester. L'IA est traitée comme un outil sophistiqué, sans interrogation explicite sur son statut.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté au temps 1 : la division du travail relève de 1.10 plutôt que d'un questionnement du statut moral de l'IA.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où l'apprenant s'est interrogé sur le statut de Claude ou d'une autre IA — par exemple en se demandant si « partenaire de conception » est un cadre plus juste qu'« outil »."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Métaphore d'organisation apprenante (« écoles intelligentes capables d'apprendre »). Touche très obliquement la pensée systémique du vivant, mais sans interdépendance radicale humain/non-humain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la distinction critique cruciale de la fiche : 4.03 = humain extérieur au système qu'il protège ; 6.10 = humain comme nœud d'un réseau vivant. La pièce résiste très peu : l'organisation apprenante est une métaphore mais elle ne place pas l'humain comme nœud d'un réseau vivant. C'est une métaphore cybernétique (organisation qui apprend), pas biosystémique (interdépendance avec le vivant non-humain). Pas de citation de systèmes vivants comme modèles, pas de « nous » incluant les non-humains, pas de raisonnement en symbiose.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 est vide.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la conscience biosystémique en m'appuyant sur la distinction critique stricte avec 4.03 et la pensée systémique cybernétique. La pièce qui aurait pu y mener n'a pas résisté : l'organisation apprenante est une métaphore d'apprentissage organisationnel, pas une intégration de l'humain dans un réseau vivant non-humain. Dans cette feuille, la compétence ne se laisse pas attester.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté au temps 1 : la métaphore d'organisation apprenante est cybernétique, pas biosystémique au sens de la fiche.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un raisonnement où un système vivant non-humain (mycélium, écosystème corallien, intelligence végétale) servirait de modèle de conception pour le dispositif RESPIRE, intégré dans des décisions concrètes."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 0,
+    "nonEtablies": 6,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail rapporté dans cette feuille montre un apprenant qui pense la gouvernance d'un dispositif algorithmique d'évaluation (le mécanisme « l'humain tranche », le refus du top-down), mais qui ne thématise pas la souveraineté technologique, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les IA au sens du statut moral, ni la conscience biosystémique. Les marqueurs concrets cités tournent autour de la conception d'un dispositif évaluatif qui réserve la décision finale à l'humain, et de l'articulation d'une boucle de rétroaction. Le registre dominant est celui de la gouvernance micro-institutionnelle (au sein de RESPIRE), sans dimension politique au sens des grandes politiques publiques. Plusieurs dimensions du pôle restent muettes parce que le travail décrit reste centré sur la conception interne d'un dispositif privé.",
+    "territoiresDenses": [
+      {
+        "competence": "Gouvernance algorithmique",
+        "description": "L'apprenant pense un mécanisme de contrôle humain sur une décision algorithmique d'évaluation des compétences. La formule « l'humain tranche » et le refus du dispositif presse-bouton dessinent la trame d'une gouvernance interne au dispositif RESPIRE.",
+        "extraitVerbatim": "ce n'est pas le prompt qui valide la compétence, c'est le jugement humain informé par le prompt. L'IA fait le premier balayage, l'humain tranche.",
+        "ceQueCaDit": "La gouvernance se joue à l'échelle micro-institutionnelle d'un écosystème qui s'apprête à juger des humains, ce qui en fait un terrain de gouvernance algorithmique modeste mais réel."
+      }
+    ],
+    "territoiresNonVisites": "La majorité des territoires de ce pôle ne sont pas visités dans cette feuille. Le red-teaming et la sécurité IA n'apparaissent pas — aucune trace de provocation intentionnelle ou de test adversarial. L'audit et l'hygiène des données restent absents : le constat d'erreurs IA ne s'accompagne pas d'un dispositif d'audit formalisé avec logs ou horodatages. La souveraineté numérique n'est pas attestée : les choix d'outils sont motivés par l'utilité, pas par une analyse de dépendance, et tous les LLM utilisés sont propriétaires américains. La participation citoyenne ne se manifeste pas : la « boucle de rétroaction humaine » relève davantage du design que de la légitimation démocratique. La veille réglementaire est silencieuse — l'AI Act, le RGPD, le cadre éducatif ne sont pas mentionnés. La facilitation collective n'est pas attestée malgré l'architecture multi-canaux : pas d'émergence documentée, pas de règles co-construites. Le décentrement anthropocentrique, la cohabitation avec les IA au sens du statut moral, et la conscience biosystémique sont absents — l'IA est traitée comme un outil sophistiqué, et l'organisation apprenante reste une métaphore cybernétique plutôt que biosystémique.",
+    "emergencesPole": "Une première ligne traverse ce pôle : la gouvernance pensée par l'apprenant se joue à l'échelle de son propre dispositif, pas à l'échelle des grandes politiques publiques. C'est une gouvernance interne à RESPIRE, où il définit comment l'IA et l'humain se répartissent les rôles dans une décision qui affecte des personnes. Une deuxième ligne, plus discrète : les pôles philosophiques et politiques larges (décentrement, biosystémique, cohabitation morale, communs) restent en retrait dans cette feuille, ce qui peut signaler soit une priorisation actuelle vers l'opérationnel, soit que ces dimensions ne font pas partie du vocabulaire activé sur ce projet. Une troisième ligne : les trois LLM utilisés sont tous des produits commerciaux propriétaires, ce qui rend lisible un choix d'utilité opérationnelle qui ne se double pas (dans cette feuille) d'un questionnement de souveraineté.",
+    "pistes": [
+      "Pour enrichir la gouvernance algorithmique, un chemin possible serait d'expliciter les voies de recours dans le dispositif RESPIRE : que se passe-t-il si un Maître conteste sa cartographie, qui peut faire appel, sur quels critères.",
+      "Pour enrichir la souveraineté numérique, un chemin possible serait de documenter un arbitrage où l'indépendance numérique a pesé contre l'efficacité — par exemple un test avec un modèle open-weight motivé par la souveraineté du dispositif.",
+      "Pour enrichir la veille réglementaire, un chemin possible serait d'identifier comment l'AI Act ou les évolutions du droit éducatif vont impacter le dispositif RESPIRE et comment se positionner par anticipation.",
+      "Pour enrichir la cohabitation avec les IA, un chemin possible serait de documenter un moment où l'apprenant s'est interrogé sur le statut de Claude ou d'une autre IA — par exemple en se demandant si « partenaire de conception » est un cadre plus juste qu'« outil »."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail rapporté dans cette feuille montre un apprenant qui pense la gouvernance d'un dispositif algorithmique d'évaluation (le mécanisme « l'humain tranche », le refus du top-down), mais qui ne thématise pas la souveraineté technologique, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les IA au sens du statut moral, ni la conscience biosystémique. Les marqueurs concrets cités tournent autour de la conception d'un dispositif évaluatif qui réserve la décision finale à l'humain, et de l'articulation d'une boucle de rétroaction. Le registre dominant est celui de la gouvernance micro-institutionnelle (au sein de RESPIRE), sans dimension politique au sens des grandes politiques publiques. Plusieurs dimensions du pôle restent muettes parce que le travail décrit reste centré sur la conception interne d'un dispositif privé.\n\n## Territoires les plus denses\n\n**Gouvernance algorithmique.** L'apprenant pense un mécanisme de contrôle humain sur une décision algorithmique d'évaluation des compétences. La formule « l'humain tranche » et le refus du dispositif presse-bouton dessinent la trame d'une gouvernance interne au dispositif RESPIRE. *« ce n'est pas le prompt qui valide la compétence, c'est le jugement humain informé par le prompt. L'IA fait le premier balayage, l'humain tranche ».* La gouvernance se joue à l'échelle micro-institutionnelle d'un écosystème qui s'apprête à juger des humains, ce qui en fait un terrain de gouvernance algorithmique modeste mais réel.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa majorité des territoires de ce pôle ne sont pas visités dans cette feuille. Le red-teaming et la sécurité IA n'apparaissent pas — aucune trace de provocation intentionnelle ou de test adversarial. L'audit et l'hygiène des données restent absents : le constat d'erreurs IA ne s'accompagne pas d'un dispositif d'audit formalisé avec logs ou horodatages. La souveraineté numérique n'est pas attestée : les choix d'outils sont motivés par l'utilité, pas par une analyse de dépendance, et tous les LLM utilisés sont propriétaires américains. La participation citoyenne ne se manifeste pas : la « boucle de rétroaction humaine » relève davantage du design que de la légitimation démocratique. La veille réglementaire est silencieuse — l'AI Act, le RGPD, le cadre éducatif ne sont pas mentionnés. La facilitation collective n'est pas attestée malgré l'architecture multi-canaux : pas d'émergence documentée, pas de règles co-construites. Le décentrement anthropocentrique, la cohabitation avec les IA au sens du statut moral, et la conscience biosystémique sont absents — l'IA est traitée comme un outil sophistiqué, et l'organisation apprenante reste une métaphore cybernétique plutôt que biosystémique.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne première ligne traverse ce pôle : la gouvernance pensée par l'apprenant se joue à l'échelle de son propre dispositif, pas à l'échelle des grandes politiques publiques. C'est une gouvernance interne à RESPIRE, où il définit comment l'IA et l'humain se répartissent les rôles dans une décision qui affecte des personnes. Une deuxième ligne, plus discrète : les pôles philosophiques et politiques larges (décentrement, biosystémique, cohabitation morale, communs) restent en retrait dans cette feuille, ce qui peut signaler soit une priorisation actuelle vers l'opérationnel, soit que ces dimensions ne font pas partie du vocabulaire activé sur ce projet. Une troisième ligne : les trois LLM utilisés sont tous des produits commerciaux propriétaires, ce qui rend lisible un choix d'utilité opérationnelle qui ne se double pas (dans cette feuille) d'un questionnement de souveraineté.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la gouvernance algorithmique, un chemin possible serait d'expliciter les voies de recours dans le dispositif RESPIRE : que se passe-t-il si un Maître conteste sa cartographie, qui peut faire appel, sur quels critères.\n- Pour enrichir la souveraineté numérique, un chemin possible serait de documenter un arbitrage où l'indépendance numérique a pesé contre l'efficacité — par exemple un test avec un modèle open-weight motivé par la souveraineté du dispositif.\n- Pour enrichir la veille réglementaire, un chemin possible serait d'identifier comment l'AI Act ou les évolutions du droit éducatif vont impacter le dispositif RESPIRE et comment se positionner par anticipation.\n- Pour enrichir la cohabitation avec les IA, un chemin possible serait de documenter un moment où l'apprenant s'est interrogé sur le statut de Claude ou d'une autre IA — par exemple en se demandant si « partenaire de conception » est un cadre plus juste qu'« outil »."
+  }
+}

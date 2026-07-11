@@ -1,0 +1,751 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "L'objectif ultime d'une évaluation assistée par IA est la **soundness** : garantir qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict « présence établie ». Tout faux positif — qu'il provienne d'un portfolio fabriqué, d'une confusion entre intérêt et maîtrise, ou d'une déclaration non étayée — est un dommage silencieux qui invalide la démarche évaluative. Aurora est architecturé autour de cet impératif.",
+      "contexte": "Cadrage explicite de l'objectif central du dispositif Aurora ; activation possible de 1.02 (cadrage), 1.01 (pensée critique anti-faux-positifs), 1.07 (architecture), 1.10 (synergie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La **structure adversariale** de ce nouveau protocole d'évaluation retourne le biais sycophantique du LLM dans les deux directions : l'Accusation interprète favorablement, la Défense attaque systématiquement, et l'interaction des deux produit un effet d'annulation qui protège directement la soundness.",
+      "contexte": "Description d'un mécanisme adversarial pour neutraliser un biais IA documenté ; activation possible de 1.06 (littératie IA), 1.07 (architecture), 1.01 (pensée critique), 1.05 (boucle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Le **jury pluriépistémique** (6 angles isolés, seuil de supermajorité à 5/6) amplifie cette protection par redondance orthogonale. La taxonomie probatoire du Greffier verrouille la distinction entre « montrer qu'on sait » et « dire qu'on sait » — le mécanisme le plus fondamental contre les faux positifs.",
+      "contexte": "Description architecturale d'un système multi-agents avec rôles spécialisés et seuils ; activation possible de 1.07 (architecture), 1.01 (anti-hallucination), 1.06 (littératie IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Le Trieur réduit massivement les coûts sans compromettre la soundness grâce à son biais de sur-détection. Et la compartimentation informative entre agents protège l'intégrité du jugement contre le biais de halo, empêchant qu'une impression globale favorable ne contamine les verdicts individuels.",
+      "contexte": "Justification fine de choix de conception avec mention de biais cognitifs nommés ; activation possible de 1.07 (architecture), 1.06 (littératie IA), 1.01 (biais).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Les résultats sont sévères (quasiment aucune compétence validée). Les discussions sont intéressantes et étayent les décisions du juge. Plusieurs run ont été exécutés durant la phase de développement. Tous les résultats sont congruents, même avec de plus petits modèles, même si Opus donne les meilleurs conseils et résultats d'analyse. Sonnet s'en sort pas mal et pourrait être suffisant pour un déploiement en production. Haiku est le plus bavard mais le moins intelligent (slop generator).",
+      "contexte": "Test comparatif inter-modèles et constat de reproductibilité ; activation possible de 1.01 (vérification), 1.06 (littératie IA), 1.08 (dialogue IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "**Solution hybride :** - 1 orchestrateur en bash à la racine 'aurora.sh' - 21 prompts pour les agents dans le dossier protocole - 1 fichier cache 'index_triage.md' dans le dossier référentiel utilisé par le Greffier - 6 outils en python dans le sous-dossier scripts",
+      "contexte": "Inventaire des composants du système avec rôles différenciés ; activation possible de 1.07 (architecture), 1.09 (pensée computationnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Un parallélisme inter-compétences apporterait un gain significatif de performance, pour lancer tous les tribunaux (un par compétence suspecte) simultanément. L'API Batch permettrait de réduire les coûts et de soumettre les 6 appels des jurés en parallèle. Haiku pourrait faire le travail du Trieur et du Gardien. Opus pourrait faire le travail de l'Accusation, la Défense, les Jurés, le Président. Sonnet pourrait s'occuper de l'Orchestrateur, de la Première impression, du Greffier, de Kairos, du calcul Ipsatif, du Rapporteur et du Contrôle qualité.",
+      "contexte": "Allocation différenciée modèle-tâche selon coût/intelligence, parallélisation ; activation possible de 1.07 (architecture), 1.10 (synergie), 1.06 (littératie IA), 1.09 (computationnel).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Le protocole 4 aka le dispositif Aurora Juge, m'a fait réaliser mes biais d'enseignant. J'ai compris pourquoi, connaissant mes élèves, j'avais mis des bonnes notes à certains portfolio qui finalement ne sont pas vraiment réflexifs dans l'absolu.",
+      "contexte": "Auto-révision d'un biais professionnel propre grâce au dispositif IA ; activation possible de 1.04 (métacognition), 1.01 (pensée critique sur soi), 1.10 (synergie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Et que ce moi je n'arrive pas bien à faire en tant que prof, c'est à dire la vérité cru aux élèves (je cherche toujours à les valoriser, je sycophante à mort en fait, sans m'en rendre compte), l'IA me permet ici d'ouvrir les yeux et de voir que non, même les bons ne sont pas si bons que ça.",
+      "contexte": "Transfert métacognitif : reconnaître chez soi un travers nommé d'abord pour l'IA (sycophantie) ; activation possible de 1.04 (métacognition), 1.10 (synergie), 1.06 (littératie IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Mais ce qui est magnifique, ce sont les conseils rédigés par l'IA pour permettre aux élèves de progresser dans une logique d'évaluation formative et d'amélioration continue. Je pense que ce système, sous sa forme actuelle, produit de meilleures évaluations que les notes attribuées aux travaux de maturité du gymnase.",
+      "contexte": "Appréciation comparée IA / dispositif institutionnel sur la qualité formative ; activation possible de 1.10 (synergie), 1.03 (synthèse).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela. Ce qui est beaucoup plus fort qu'une simple note. *IA feedback is the power of IA evaluations!*",
+      "contexte": "Articulation de la valeur ajoutée du raisonnement traçable IA vs jugement opaque humain ; activation possible de 1.10 (synergie), 1.01 (vérifiabilité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La pertinence du dispositif d'évaluation est d'autant plus facile à accepter que l'on peut suivre les raisonnements dans les logs.",
+      "contexte": "Traçabilité du raisonnement IA comme condition d'acceptabilité ; activation possible de 1.06 (littératie IA), 1.07 (architecture), 1.01 (vérification).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Maintenant que le système m'a rejeté comme un cancer [...] j'avais vraiment l'impression d'être dans le bureau du directeur du gymnase de Chamblande, le 15 Mai 2025",
+      "contexte": "Rapprochement entre une scène de fiction (Dossier 137) et son vécu institutionnel ; activation possible de 1.03 (synthèse intégrative) et compétences hors pôle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Je gérais l'équipe des 5 développeurs et je m'étais attribué la partie la plus floue et la plus complexe du projet, celle de concevoir un système de cartographie des compétences. Ça nécessitait de savoir comment encoder l'analyse des compétences mobilisées par l'apprenant lors de la résolution de son problème, pour pouvoir identifier ses forces et faiblesses lors de l'analyse automatique.",
+      "contexte": "Récit de conception d'un système d'analyse algorithmique des compétences en 1997-2006 ; activation possible de 1.07 (architecture), 1.09 (computationnel).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La grosse lacune du système était son impossibilité d'évaluation des compétences transversales, chose que j'avais identifiée mais que je ne pouvais pas améliorer sans réformer et invalider tout le travail que nous avions fait. C'est pourquoi je me suis intéressé à la question de l'évaluation lorsque j'ai repris l'enseignement 9 ans plus tard, en 2013, ce qui m'a conduit à inventer les évaluations humanistes : le coeur de ce qui me posait problème dans le système éducatif en vigueur, par rapport à mes valeurs et ma vision de l'enseignement.",
+      "contexte": "Récit d'identification d'une limite structurelle ayant orienté toute une trajectoire de recherche ; activation possible de 1.02 (cadrage), 1.04 (métacognition longue), 1.05 (systémique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "L'IA n'a fait que confirmer ce que j'avais identifié comme étant important de faire en classe, et ignoré par le système en cours.",
+      "contexte": "Recoupement entre une intuition pédagogique antérieure et l'analyse IA ; activation possible de 1.03 (synthèse), 1.10 (synergie), 1.01 (croisement de sources).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "le niveau méta-cognitif de mes élèves était très très faible",
+      "contexte": "Diagnostic métacognitif sur autrui via le dispositif Aurora ; activation possible de 1.04 (métacognition appliquée), 1.10 (synergie).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le critère de soundness énoncé est précisément un dispositif anti-faux-positifs ; il nomme trois sources de contamination (fabrication, confusion intérêt/maîtrise, déclaration non étayée) et les traite comme dommages silencieux."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "La structure adversariale est une réponse architecturée au biais sycophantique du LLM : pensée critique anti-hallucination opérationnalisée."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Distinction explicite « montrer qu'on sait » vs « dire qu'on sait » : c'est exactement la frontière que la pensée critique trace contre la performativité non étayée."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "Nomination du biais de halo et compartimentation comme contre-mesure : doute méthodique appliqué au dispositif lui-même."
+        },
+        {
+          "numero": 5,
+          "pid": 5,
+          "contexte": "Vérification empirique par runs croisés avec plusieurs modèles, congruence rapportée : protocole personnel de vérification."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'hypothèse que ce qui est décrit reste du discours sur la pensée critique plutôt que la pensée critique en acte. Une déclaration générale sur la soundness pourrait n'être qu'un slogan repris d'ailleurs ; un dispositif adversarial mentionné pourrait être emprunté sans appropriation réelle. Pourtant, la pièce 1 ne se contente pas d'invoquer la soundness : elle décompose trois sources distinctes de faux positifs et les nomme comme « dommage silencieux ». La pièce 2 articule un mécanisme précis (annulation par symétrie adversariale) qui répond à un biais nommé. La pièce 3 trace la distinction « montrer qu'on sait » vs « dire qu'on sait » comme verrou probatoire. La pièce 4 désigne le biais de halo et prescrit la compartimentation comme contre-mesure. La pièce 5 décrit une vérification empirique réitérée. Ce qui reste explicitement faible, c'est que tout ce discours est interne à la défense d'un dispositif que l'apprenant a conçu ; il pourrait s'auto-flatter du raisonnement plutôt qu'exercer le doute.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La décomposition tripartite des sources de faux positifs n'est pas un slogan mais une taxonomie opératoire." },
+            { "pieceId": 2, "motifResistance": "Le mécanisme d'annulation par symétrie adversariale est articulé causalement, pas seulement nommé." },
+            { "pieceId": 3, "motifResistance": "La distinction probatoire « montrer/dire » est le marqueur classique de l'anti-déclaratif." },
+            { "pieceId": 4, "motifResistance": "Nommer le biais de halo et prescrire une contre-mesure structurelle dépasse la simple mention." },
+            { "pieceId": 5, "motifResistance": "Plusieurs runs croisés modèles forts/moyens/faibles avec rapport de congruence constituent une vérification empirique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Toutes les pièces ont résisté au temps 1, ce qui me met en alerte : ai-je trop vite accordé du crédit au discours sophistiqué de l'apprenant sur son propre dispositif ? Je durcis l'examen. Les pièces 1 à 4 partagent un risque : elles décrivent toutes le système du même point de vue (celui de son concepteur) et pourraient relever du récit performatif (« j'ai conçu un système critique ») plus que de l'exercice de la critique. La pièce 5, en revanche, raconte une vérification effectivement conduite. Je teste chaque pièce avec l'attaque la plus pertinente.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La taxonomie des faux positifs reste descriptive sans démonstration in situ ; mais elle est suffisamment fine pour ne pas être un slogan." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le mécanisme adversarial n'est pas seulement raconté : il est implémenté dans le code livré (orchestrateur, 21 prompts, agents Accusation/Défense). La pièce dit ET montre." },
+            { "pieceId": 3, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La distinction « montrer/dire » n'est pas du vocabulaire ambiant ; c'est une frontière probatoire que l'apprenant opérationnalise dans la taxonomie du Greffier." },
+            { "pieceId": 4, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Biais de halo et compartimentation sont des concepts techniques précis, appliqués à un dispositif livré : pas de glissement lexical." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Les logs sont mentionnés mais pas cités ; la vérification reste rapportée plutôt que montrée, mais elle est située (Opus, Sonnet, Haiku, plusieurs runs)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ce passage à un récit de soi sur soi : l'auteur d'un dispositif décrivant les qualités de son propre dispositif. Ce que la lecture m'a forcé à reconnaître, c'est que l'objet de la pensée critique ici n'est pas une source externe — c'est le LLM lui-même, et la propension du concepteur à se laisser séduire par ses propres résultats. La structure adversariale, la distinction probatoire « montrer/dire », la nomination du biais de halo et de la sycophantie ne sont pas du vocabulaire ambiant : ce sont des leviers opérationnalisés dans un code livré. Sous la présomption de sycophantie, la taxonomie des faux positifs et le rapport de runs croisés restent un peu déclaratifs faute de citation directe des logs ; le reste tient solidement. Ce qui se dégage, c'est une pensée critique qui ne porte pas seulement sur l'IA, mais sur le sujet qui évalue avec l'IA — un cran au-dessus de la simple vigilance anti-hallucination. La réserve qui demeure tient au fait que toute la matière est interne à la défense du dispositif ; un test conduit par un tiers offrirait une corroboration externe.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.82,
+        "motif": "Le temps 2 a confirmé trois pièces (mécanisme adversarial, distinction probatoire, nomination du biais de halo) comme traces concrètes d'une pensée critique opérationnalisée, pas simplement nommée.",
+        "prescription": "Le travail sur Aurora a installé un doute méthodique calibré qui agit sur le dispositif lui-même et sur le concepteur du dispositif. Pour prolonger ce mouvement, une piste consisterait à inviter un tiers à conduire un test adversarial du protocole — quelqu'un qui chercherait à fabriquer un portfolio capable de passer les contrôles — afin que la critique cesse d'être interne au concepteur. Documenter ce test, même bref, donnerait au protocole une seconde couche d'attestation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'objectif du dispositif est explicitement reformulé : non pas « évaluer » au sens flou, mais garantir la soundness — c'est un cadrage de l'intention qui transforme la nature de ce qu'on cherche."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "L'identification d'une lacune (les compétences transversales) a recadré une trajectoire entière : d'une question technique d'encodage à la question de l'évaluation humaniste."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que tout objectif énoncé n'est pas un cadrage. Beaucoup d'apprenants déclarent un but sans jamais interroger le but lui-même. La pièce 1 pourrait n'être qu'un énoncé d'objectif standard pour un produit IA. Pourtant, le verbe « ultime » et la définition par contraposée (« qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict ») ne sont pas le langage du périmètre ; ce sont les marques d'un cadrage qui choisit la rigueur plutôt que la couverture. La pièce 2 raconte explicitement le moment où une lacune identifiée a changé la nature du problème de carrière de l'apprenant. Ce qui reste faible, c'est que les deux pièces décrivent des cadrages déjà accomplis plutôt qu'un cadrage en train de se faire dans le texte du jour.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le choix de la soundness contre la couverture est un cadrage qui transforme la nature du problème évaluatif." },
+            { "pieceId": 2, "motifResistance": "Le récit montre une trajectoire infléchie par l'identification d'un mauvais cadrage initial : passage de l'encodage technique à l'évaluation humaniste." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 décrit-elle vraiment un cadrage situé pour l'auteur, ou répète-t-elle un principe technique partagé dans la communauté ML ? La pièce 2 peut sembler un bilan rétrospectif idéalisant. J'examine.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le choix de prioriser la soundness sur la recall — formulé comme objectif ultime — est une décision de cadrage explicite, pas un cliché ML. L'apprenant aurait pu cadrer le dispositif autour de la rapidité, du coût, ou de la couverture ; il a cadré autour du refus du faux positif." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le récit reste rétrospectif et présenté comme déjà résolu ; mais il porte bien la trace d'un recadrage majeur historique, vérifiable par les dates citées (2006, 2013, 2017)." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces n'étaient que des bilans rétrospectifs ou des objectifs de produit standards. La pièce 1 m'a forcé à reconnaître qu'un cadrage opère ici : la soundness a été préférée à la couverture, et tout le dispositif Aurora découle de ce choix. La pièce 2 a tenu sous l'attaque du « mouvement-vers » avec un léger affaiblissement : elle raconte un cadrage accompli plutôt qu'un cadrage en train de se faire. Ce qui en résulte, c'est une attestation modérée du cadrage de l'intention dans ce passage. Le mouvement est attesté ; il se déploie cependant sur des décisions de cadrage anciennes ou globales, plutôt que sur une mise en cadre d'une question fraîche. Une réserve assumée demeure : un nouveau cadrage en train de s'opérer dans une note de journal serait un signal plus fort.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.62,
+        "motif": "Le temps 2 a confirmé que le choix de la soundness comme objectif ultime constitue un cadrage actif, et a retenu avec affaiblissement le récit du recadrage historique vers l'évaluation humaniste.",
+        "prescription": "Le cadrage opère ici sur des questions de fond — la nature de l'évaluation, la priorité accordée à la soundness. Pour donner à voir ce mouvement en train de se faire, une piste serait de tenir, lors d'un prochain dispositif, une courte note du type « voici la question que j'ai d'abord posée, voici celle vers laquelle elle s'est déplacée, voici pourquoi »."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Le passage rapproche la scène finale de Dossier 137 (Léa Drucker / Florence Viala) à la convocation du 15 mai 2025 chez le directeur : croisement d'une source filmique et d'un vécu institutionnel pour produire une compréhension de l'expérience."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "Le récit fait converger trois sources hétérogènes (le projet ForEva 1997-2006, le retour à l'enseignement 2013, la thèse 2017) en une compréhension unifiée de la trajectoire — synthèse rétrospective."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Le passage croise une intuition pédagogique antérieure et le verdict du dispositif IA : « l'IA n'a fait que confirmer ce que j'avais identifié »."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée qu'un rapprochement n'est pas une synthèse. Citer deux choses qui se ressemblent ne produit pas nécessairement un insight nouveau ; il faut que l'assemblage dise quelque chose que les éléments seuls ne disaient pas. La pièce 1 (le rapprochement Dossier 137 / Chamblande) pourrait n'être qu'une comparaison illustrative. La pièce 2 pourrait n'être qu'un bilan chronologique enchaînant trois épisodes. La pièce 3 (l'IA confirme ce qui était identifié) pourrait n'être qu'une auto-validation. Pourtant, la pièce 1 mobilise la fiction pour étayer le réel et inversement (« si je n'avais pas vécu ça moi-même, j'aurai pensé que les répliques étaient vraiment exagérées »), ce qui produit un effet d'attestation croisée. La pièce 2 articule une trajectoire causale : la lacune identifiée en 2006 cause le pivot de 2013, qui cause la thèse de 2017 — ce n'est pas une chronologie, c'est une causalité. La pièce 3 est plus mince : le simple constat de confirmation n'est pas un assemblage productif.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le mouvement fiction-réel est bidirectionnel et produit un effet d'attestation croisée." },
+            { "pieceId": 2, "motifResistance": "Le récit ne juxtapose pas les épisodes : il les noue par une chaîne causale (lacune → pivot → thèse)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis les deux pièces qui ont résisté. La pièce 1 est-elle vraiment une synthèse, ou simplement un parallèle émotionnel rendu vivant par l'écriture ? La pièce 2 est-elle un insight ou un récit de carrière chronologique habillé en causalité ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le rapprochement Dossier 137 / Chamblande est rhétoriquement efficace, mais l'insight produit (la véridicité par croisement) reste implicite, à demi-extrait. La pièce porte la trace d'une synthèse plutôt qu'une synthèse pleinement déployée." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le récit nomme précisément le mécanisme qui a fait pivoter : l'impossibilité d'évaluer les compétences transversales dans ForEva a produit le retour à l'évaluation humaniste — c'est une thèse causale émergente, pas un bilan." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à des juxtapositions ou des bilans. La pièce 2 m'a forcé à reconnaître qu'une véritable synthèse causale opère : la lacune d'un système des années 1997-2006 a produit la question des évaluations humanistes en 2013 et a structuré la thèse en 2017. C'est un insight émergent — la trajectoire entière relit le passé comme un cadrage de la question qui a guidé tout le travail ultérieur. La pièce 1 a tenu avec un affaiblissement : le rapprochement entre Dossier 137 et la scène réelle du 15 mai porte un mouvement de synthèse mais ne le déploie pas pleinement. Ce qui en résulte, c'est une attestation modérée à solide. La synthèse intégrative s'exerce ici dans le registre du récit de soi sur le long temps, plus que dans la mise en relation de domaines techniquement éloignés. Une réserve : la synthèse pleine pourrait être plus saisissable si elle opérait sur le matériau IA et le matériau humaniste en train de se rejoindre, et pas seulement sur leur convergence narrée a posteriori.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé que la chaîne causale lacune ForEva → évaluation humaniste → thèse est une synthèse émergente, et a retenu avec affaiblissement le croisement fiction-vécu autour de Dossier 137.",
+        "prescription": "Ce qui se dessine ici, c'est une compétence de synthèse qui opère sur le long temps, en relisant une trajectoire de 25 ans comme une question unifiée. Pour donner à cette compétence un terrain plus immédiat, une piste serait de tenir, sur deux ou trois feuilles consécutives, le suivi d'une convergence en train de se faire entre une source IA et une source humaine — pour saisir le geste de synthèse à chaud, et non seulement à froid."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Le dispositif Aurora a permis à l'apprenant de réaliser un biais qu'il portait en tant qu'enseignant (surnoter les portfolios d'élèves connus) ; il observe son propre processus de notation."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Transfert métacognitif explicite : le mot « sycophantie », d'abord nommé pour le LLM, est appliqué à soi (« je sycophante à mort en fait, sans m'en rendre compte »)."
+        },
+        {
+          "numero": 3,
+          "pid": 17,
+          "contexte": "Diagnostic métacognitif appliqué aux élèves : leur niveau méta-cognitif est jugé très faible, ce qui suppose une grille de lecture métacognitive opérante."
+        },
+        {
+          "numero": 4,
+          "pid": 15,
+          "contexte": "Relecture longue d'une trajectoire de 25 ans : observation de la manière dont une lacune identifiée a orienté tout un parcours de recherche."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que beaucoup d'apprenants confondent métacognition et bilan introspectif. « J'ai compris pourquoi j'avais surnoté » pourrait n'être qu'un constat. Pourtant, la pièce 1 ne s'arrête pas au constat : elle nomme le biais professionnel (« mes biais d'enseignant ») et le relie à un mécanisme (connaître les élèves) — c'est une observation sur le processus de jugement lui-même. La pièce 2 va plus loin : le mot « sycophantie » est d'abord un terme technique pour le LLM, et l'apprenant l'applique à lui-même — c'est exactement le transfert métacognitif évoqué dans la fiche. La pièce 3 mobilise une grille métacognitive pour évaluer autrui. La pièce 4 relit un quart de siècle de carrière comme un processus dont les étapes s'éclairent rétrospectivement. Ce qui reste explicitement faible, c'est que les pièces 1 et 2 viennent du dispositif d'évaluation lui-même — sans le dispositif, l'observation ne serait peut-être pas advenue.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le biais d'enseignant est nommé et son mécanisme est compris ; ce n'est pas un bilan mais une observation du processus de notation." },
+            { "pieceId": 2, "motifResistance": "Le transfert d'un concept technique IA vers une auto-description (sycophantie) est le marqueur le plus pur du transfert métacognitif." },
+            { "pieceId": 3, "motifResistance": "Diagnostiquer le niveau métacognitif des élèves implique une grille métacognitive opérante." },
+            { "pieceId": 4, "motifResistance": "La relecture causale d'une trajectoire de 25 ans observe le processus, pas seulement le résultat." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Toutes les pièces ont résisté. Je durcis. La pièce 1 est-elle une métacognition ou un mea culpa général ? La pièce 2 est-elle un vrai transfert ou un emprunt rhétorique au vocabulaire IA ? La pièce 3 est-elle un jugement sur autrui plutôt qu'une réflexion sur soi ? La pièce 4 est-elle de la métacognition ou un récit de carrière ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le passage relie le biais à son mécanisme (connaissance des élèves → indulgence) ; c'est une observation suffisamment précise du processus pour résister à l'attaque d'insuffisance." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant ne se contente pas d'emprunter le mot : il l'opérationnalise sur lui-même (« je cherche toujours à les valoriser », « sans m'en rendre compte »), ce qui est exactement la charge sémantique technique du terme." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Diagnostiquer la métacognition d'autrui active une grille métacognitive, mais la pièce attestate mieux la compétence d'évaluation que la métacognition de soi-même. Affaiblie sans tomber." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le récit raconte la métacognition longue plutôt qu'il ne la montre en acte ; mais la précision causale (lacune → pivot → thèse) lui donne du poids." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à des bilans introspectifs ou des emprunts rhétoriques. Le transfert du mot « sycophantie » du LLM à soi-même m'a forcé à reconnaître un mouvement métacognitif rare : l'apprenant utilise une grille apprise sur la machine pour se relire comme évaluateur humain — c'est exactement la trace oblique « reprocher à un pair (ici, l'IA) un travers puis s'apercevoir qu'on fait pareil » mentionnée dans la fiche. La métacognition sur son propre biais d'enseignant a tenu fermement. Les pièces 3 et 4 ont été affaiblies sans tomber : diagnostiquer la métacognition d'autrui et relire 25 ans de trajectoire sont des manifestations valables mais moins probantes que le transfert direct. Ce qui en résulte, c'est une attestation solide de la métacognition dans ce passage. Une réserve : presque toute la matière métacognitive ici advient grâce au dispositif Aurora ; sans ce miroir, l'observation n'aurait peut-être pas eu lieu sous cette forme. Cela ne disqualifie pas la métacognition — cela en situe la condition de possibilité.",
+          "confianceFinale": 0.83
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.83,
+        "motif": "Le temps 2 a confirmé le transfert métacognitif (sycophantie LLM → sycophantie d'enseignant) et l'observation du biais professionnel comme traces concrètes ; les deux autres pièces ont été affaiblies sans tomber.",
+        "prescription": "Le dispositif Aurora a ouvert ici un miroir métacognitif rare — celui qui permet d'appliquer à soi-même les biais d'abord identifiés chez la machine. Pour rendre ce miroir moins dépendant de l'outil, une piste serait de tenir, après chaque session de notation, une courte note dans le format « ce que je pense de ce travail / ce que je remarquerais si je le lisais sans connaître l'élève » — pour exercer l'observation à blanc, sans assistance."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'« effet d'annulation » entre Accusation et Défense est une boucle de rétroaction conçue pour compenser le biais sycophantique du LLM."
+        },
+        {
+          "numero": 2,
+          "pid": 15,
+          "contexte": "La lacune systémique de ForEva (impossibilité d'évaluer les compétences transversales) ne pouvait pas être corrigée sans invalider l'ensemble du système : description d'un effet de cascade architectural."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption que « tout est lié » n'est pas de la pensée systémique. La pièce 1 mobilise bien le mot « effet d'annulation » mais cela pourrait n'être qu'une métaphore. La pièce 2 décrit une contrainte d'évolution d'un système (« impossibilité d'améliorer sans réformer tout ») — c'est plus proche de la pensée systémique, parce qu'elle nomme un effet de second ordre (modifier un élément invaliderait l'ensemble). Ce qui reste faible : ni l'une ni l'autre ne déploie une véritable cartographie de boucles ou de leviers ; ce sont plutôt des mécanismes ponctuels.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'identification du caractère bloquant d'une réforme partielle pour cause de couplage architectural est une pensée systémique sur un système complexe." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce résiste. Je la teste sérieusement. Est-ce une vraie analyse de système ou un simple constat de difficulté technique ?",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le passage nomme un effet de couplage (modifier un élément invalide l'ensemble) ; mais il ne déploie pas la cartographie causale qui caractérise la pensée systémique mature. Affaiblie sans tomber." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à des métaphores ou des constats. La pièce 1 n'a pas survécu à la première présomption d'absence : « effet d'annulation » entre deux agents est un mécanisme ponctuel, pas une analyse de boucle systémique. La pièce 2 a tenu avec affaiblissement : la contrainte de couplage architectural relevée est bien une observation systémique, mais elle reste isolée. Ce qui en résulte, c'est une attestation faible. La pensée systémique pourrait être présente ailleurs dans le portfolio ; sur ce passage du 29 mars, elle apparaît surtout comme conscience d'un couplage, sans modélisation déployée. Le renvoi au cartographe est ce qui correspond le mieux : la pièce qui tient est trop seule pour fonder une présence pleinement établie.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce tient, affaiblie ; elle nomme un couplage systémique (réforme partielle bloquée par l'ensemble) sans déployer la cartographie causale qui caractérise pleinement la pensée systémique.",
+        "prescription": "La conscience d'un couplage architectural se perçoit ici, sans s'épanouir en cartographie causale. Pour ouvrir le dossier, une piste consisterait à diagrammer une fois — sur Aurora, ou sur le geste enseignant — les boucles principales (qui influence quoi, dans quelle direction, avec quels effets de retour), même grossièrement. Le passage de la conscience à la modélisation pourrait rendre cette compétence plus saisissable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le « biais sycophantique du LLM » est nommé comme un mécanisme — pas seulement comme un défaut. La compréhension du pourquoi guide la conception de la contre-mesure."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Le « biais de halo » et la compartimentation entre agents : compréhension fine d'un mécanisme cognitif appliqué aux LLM."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Comparaison qualitative inter-modèles (Opus / Sonnet / Haiku) avec diagnostic précis : Haiku « hallucine beaucoup », est « bavard mais le moins intelligent (slop generator) »."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Allocation modèle-tâche selon la nature cognitive de chaque agent (Haiku pour le tri à fort recall, Opus pour le jugement, Sonnet pour l'orchestration) : compréhension différenciée des capacités."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que la réutilisation du vocabulaire IA n'est pas de la littératie. « Hallucination », « biais », « slop » sont devenus du vocabulaire ambiant. Pourtant, la pièce 1 ne se contente pas de nommer la sycophantie : elle la traite comme un mécanisme dont on peut retourner la direction (« retourne le biais sycophantique dans les deux directions »). La pièce 2 fait pareil avec le biais de halo : nommer + prescrire la contre-mesure structurale. La pièce 3 ne dit pas seulement « Haiku hallucine », elle distingue trois modèles sur deux dimensions (intelligence, verbosité) et formule un diagnostic discriminant. La pièce 4 répartit explicitement les tâches selon les forces des modèles. Ce qui reste faible : les explications causales (pourquoi tel modèle échoue) ne sont pas pleinement déployées — l'apprenant en livre les conséquences plus que les mécanismes profonds.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le biais sycophantique est traité comme un mécanisme retournable, pas comme un mot." },
+            { "pieceId": 2, "motifResistance": "Le biais de halo nommé entraîne une contre-mesure architecturale (compartimentation)." },
+            { "pieceId": 3, "motifResistance": "Le diagnostic inter-modèles est différencié et empirique." },
+            { "pieceId": 4, "motifResistance": "L'allocation modèle-tâche révèle une compréhension opérationnelle des forces relatives." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Toutes les pièces ont résisté. Je durcis. Suis-je en train de surévaluer un discours qui sait simplement nommer les choses sans en comprendre les mécanismes profonds ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le retournement directionnel du biais sycophantique implique de comprendre que ce biais est dépendant de l'orientation de l'instruction — c'est une compréhension causale, pas un emprunt lexical." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La compartimentation comme contre-mesure du halo opérationnalise la compréhension : le mot n'est pas seul, il déclenche une décision technique." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le diagnostic « congruent même avec de plus petits modèles » est une affirmation testée empiriquement par plusieurs runs, pas un cliché." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'allocation modèle-tâche est suffisamment fine (Haiku pour Trieur/Gardien, Opus pour les agents jurés, Sonnet pour l'orchestration) pour qu'il n'y ait pas surinterprétation de ma part : la pièce porte la décision." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à du vocabulaire ambiant ou des slogans techniques. Toutes ont tenu sous l'attaque du glissement lexical : la sycophantie est traitée comme un biais directionnellement exploitable, le halo comme un risque architecturalement contrable, les modèles sont différenciés par leurs limites concrètes, et l'allocation modèle-tâche révèle une compréhension fine de ce que chaque modèle fait bien. Ce qui se dégage, c'est une littératie IA opérationnelle : pas la compréhension académique sous le capot des transformeurs, mais la compréhension causale qui permet de concevoir un dispositif robuste avec et contre les comportements observables des LLM. Une réserve assumée : les explications mécanistes plus profondes (pourquoi Haiku hallucine, pourquoi la sycophantie existe au niveau du RLHF) ne sont pas déployées ici — elles pourraient l'être ailleurs dans le portfolio.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 4,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "Le temps 2 a confirmé que les quatre pièces ne relèvent pas du vocabulaire ambiant mais d'une compréhension causale opérationnalisée — biais nommés et retournés, modèles différenciés sur des critères empiriques, allocation modèle-tâche fine.",
+        "prescription": "La littératie IA opère ici au niveau de la conception d'un dispositif. Pour prolonger ce mouvement, une piste serait de documenter une fois, sur un exemple concret, le mécanisme causal d'une défaillance observée — pourquoi tel modèle a halluciné sur tel passage — afin de relier l'observation comportementale à une hypothèse sur l'architecture sous-jacente. Le passage du « ça marche » au « voici pourquoi ça marche » deviendrait alors plus saisissable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le jury pluriépistémique à 6 angles isolés avec seuil de supermajorité 5/6 est une architecture de décision multi-agents avec rôles définis et règle de routing."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Le Trieur, la compartimentation informative, le biais de halo : description des composants architecturaux et des règles de flux d'information."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Inventaire structuré du système : 1 orchestrateur bash, 21 prompts agents, 1 cache, 6 scripts python. Architecture livrée et explicitement décomposée."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Allocation modèle-tâche dans le code shell (model_for_agent) : routing intelligent par nom d'agent, parallélisme inter-tribunaux, batch API."
+        },
+        {
+          "numero": 5,
+          "pid": 14,
+          "contexte": "Récit explicite de conception d'un système de cartographie des compétences dans le projet ForEva (1997-2006), comme architecte principal."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que « parler d'un système » n'est pas concevoir un système. Beaucoup de descriptions architecturales sont en réalité de simples listes de composants. Pourtant, la pièce 1 ne se contente pas de nommer le jury : elle pose une règle d'agrégation (supermajorité 5/6) et un principe d'isolation (angles orthogonaux). La pièce 2 décompose les composants avec leurs rôles et leurs interactions (Trieur en amont, compartimentation pour le halo). La pièce 3 est l'inventaire concret du livré : bash, prompts, cache, scripts python — quelqu'un d'autre pourrait reprendre et maintenir. La pièce 4 livre du code shell (model_for_agent) avec une logique de routing. La pièce 5 rappelle qu'il s'agit de la deuxième fois que l'apprenant conçoit ce type de système (ForEva, 1997-2006). Ce qui reste faible : le passage ne décrit pas la justification technique fine de chaque choix architectural — pourquoi 21 prompts et pas 30, par exemple.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le jury avec seuil de supermajorité est une décision architecturale, pas un slogan." },
+            { "pieceId": 2, "motifResistance": "Les composants sont nommés avec leurs rôles et leurs liens." },
+            { "pieceId": 3, "motifResistance": "L'inventaire est précis et le système est livré — critère « quelqu'un d'autre pourrait reprendre » satisfait." },
+            { "pieceId": 4, "motifResistance": "Le code shell montre le routing en acte, pas seulement raconté." },
+            { "pieceId": 5, "motifResistance": "L'antériorité conceptuelle (ForEva) ancre la compétence dans une trajectoire de 25 ans." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Cinq pièces résistent. Je durcis pour ne pas être séduit par la densité du discours. Les pièces 1 et 2 décrivent-elles une architecture ou un prompting sophistiqué (qui relèverait plutôt de 1.08) ? La pièce 5 raconte ForEva, mais pas le code Aurora.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le jury pluriépistémique n'est pas du prompting : c'est une architecture où plusieurs appels LLM cloisonnés produisent des verdicts agrégés selon une règle. C'est pleinement 1.07 et pas 1.08." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Trieur, Greffier, Accusation, Défense, Jury, Président sont des composants distincts avec rôles et flux entre eux — pas un prompt isolé." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'inventaire est concret et livré ; le système existe au-delà du récit." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le code shell est cité in extenso ; ce n'est pas allusif." },
+            { "pieceId": 5, "attaqueDominante": "c", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le récit ForEva est rapporté plutôt que démontré aujourd'hui ; mais il étaye que l'architecture Aurora n'est pas un coup isolé." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à du prompting sophistiqué (qui relèverait de 1.08) ou à des descriptions allusives. Quatre pièces ont tenu fermement : le jury est une architecture multi-agents, la compartimentation est un dispositif structurel, l'inventaire du livré est explicite et le code de routing est cité in extenso. La cinquième pièce, le récit ForEva, a tenu avec un affaiblissement parce qu'elle n'est pas synchrone du livré actuel. Ce qui se dégage, c'est une compétence d'architecture mature et déployée : le critère « quelqu'un d'autre pourrait reprendre et maintenir » est satisfait par l'existence d'un dépôt avec orchestrateur, 21 prompts agents, cache, 6 scripts python — et l'antériorité ForEva ajoute une couche d'attestation. Une réserve assumée : la justification technique fine de chaque choix (pourquoi 21 prompts, pourquoi ce nombre d'angles dans le jury) n'est pas développée dans ce passage du 29 mars.",
+          "confianceFinale": 0.9
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 4,
+        "nombreIndices": 1,
+        "confiance": 0.9,
+        "motif": "Le temps 2 a confirmé que le jury à 6 angles, la compartimentation, l'inventaire des composants et le code de routing sont des traces concrètes d'une architecture livrée — pas du prompting déguisé en architecture.",
+        "prescription": "Le dispositif Aurora atteste d'une compétence d'architecture solide, livrée et reproductible. Pour prolonger ce mouvement, une piste serait de tenir une courte note technique de justification — pourquoi 21 prompts plutôt que 30, pourquoi un seuil de supermajorité à 5/6 et pas 4/6, pourquoi tel modèle pour tel agent — afin que les choix architecturaux laissent trace, et pas seulement leurs résultats."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le dispositif comprend des rôles différenciés (Accusation, Défense, Jurés, Président, Greffier) qui constituent une orchestration multi-agents avec personae spécialisées."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "L'allocation modèle-tâche et le routing par nom d'agent constituent une orchestration explicite des 21 agents du système."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec une présomption d'absence sévère pour 1.08, parce que les pièces que je tiens ont déjà été comptées en 1.07. La distinction critique de la fiche est claire : 1.08 = sophistication de la formulation, conscience de l'effet du prompt, orchestration intentionnelle de rôles dans un dialogue. Or les pièces 1 et 2 décrivent l'architecture du système, pas la formulation des prompts. Le passage du 29 mars mentionne « 21 prompts » sans en montrer un seul, ne livre aucune itération de prompting, ne raconte aucune session de dialogue stratégique. Ce qui reste faible, c'est que l'existence des 21 prompts implique forcément du travail de formulation, mais ce travail n'est pas montré ici.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Les rôles différenciés (Accusation, Défense, Jurés, Président) impliquent une orchestration de personae IA distinctes." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce a résisté. Je la teste sévèrement, parce que la frontière entre 1.07 (architecture) et 1.08 (orchestration de dialogues) est précisément le point de la distinction critique de la fiche.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce active mieux 1.07 (architecture des composants et flux) que 1.08 (sophistication de la formulation). Aucun extrait de prompt, aucune itération de dialogue, aucune réflexion sur l'effet du prompt n'apparaît dans le passage du 29 mars. La distinction critique tranche en faveur de 1.07." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le passage du 29 mars portait des traces du dialogue IA avancé. La seule pièce qui avait résisté à la présomption d'absence est tombée sous l'attaque de confusion de compétence : ce que le passage montre, c'est l'architecture, pas la sophistication des prompts eux-mêmes. Le portfolio livre l'existence de 21 prompts mais n'en cite aucun, ne montre aucune itération, ne décrit aucun méta-prompting. Ce qui en résulte, c'est que la compétence 1.08 n'est pas attestée par ce passage. La compétence existe sans doute en pratique (les 21 prompts l'attestent indirectement), mais elle n'est pas montrée ici. La note non établie sur ce passage n'est pas une absence de la compétence chez l'apprenant — c'est une absence dans ce qui a été ramené à l'écrit.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "Le temps 2 a fait tomber la seule pièce résistante sous l'attaque de confusion de compétence : le passage atteste 1.07 (architecture), pas 1.08 (sophistication du prompting).",
+        "prescription": "Le dispositif Aurora suppose un travail de formulation important sur les 21 prompts — mais ce travail reste hors champ dans ce passage. Pour ouvrir le dossier sur la sophistication du dialogue IA, une piste serait de documenter, sur un seul prompt critique du dispositif (par exemple le prompt de l'Accusation ou du Président), comment il a été itéré, ce qui ne marchait pas dans une première version, et pourquoi une formulation a fini par tenir."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "L'inventaire en bash + python + prompts + cache est une décomposition computationnelle d'un problème pédagogique (évaluation de portfolios)."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Le code shell (model_for_agent avec case par agent) applique de la logique conditionnelle algorithmique à un problème d'orchestration."
+        },
+        {
+          "numero": 3,
+          "pid": 14,
+          "contexte": "Le récit ForEva décrit l'encodage de l'analyse des compétences en algorithmes d'identification de forces/faiblesses — pensée computationnelle appliquée au problème pédagogique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée centrale de la fiche : le critère discriminant de 1.09 est le TRANSFERT — la logique algorithmique appliquée hors de l'informatique. Or les pièces 1, 2 et 3 montrent toutes l'apprenant écrivant du code (bash, python) pour un problème d'évaluation pédagogique. Est-ce du transfert, ou est-ce simplement de l'informatique appliquée à un domaine qui n'est pas la programmation pure ? La pièce 3 va plus loin : elle décrit l'encodage de l'évaluation des compétences en algorithme, donc une traduction d'un problème pédagogique flou en problème algorithmique. C'est précisément le mouvement de transfert. Les pièces 1 et 2, en revanche, montrent du code qui orchestre du code — ce n'est pas un transfert vers le non-technique. Ce qui reste explicitement faible, c'est qu'aucune pièce ne montre la logique computationnelle dans un domaine clairement non-informatique (pas de structure si-alors appliquée à une situation relationnelle ou pédagogique en dehors du dispositif IA).",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "L'encodage d'une analyse de compétences en algorithme suppose de transférer une logique computationnelle vers un objet pédagogique flou — c'est un transfert authentique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce résiste. Je la teste. Le récit ForEva décrit-il vraiment un transfert de logique computationnelle hors informatique, ou s'agit-il simplement d'écrire un programme pour évaluer des élèves ?",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le récit décrit le résultat (un système livré qui encodait l'analyse) sans détailler le geste de transfert lui-même : à quel moment précis une pratique pédagogique a été repensée en termes algorithmiques. La pièce porte la trace du transfert plus qu'elle ne le montre en acte." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la pensée computationnelle ici n'était que de l'informatique appliquée. Les pièces 1 et 2 sont tombées sous cette présomption : du code qui orchestre du code reste dans le champ informatique. La pièce 3 a tenu avec affaiblissement : l'encodage du diagnostic des compétences en algorithme (dans ForEva) est un vrai transfert, mais il est raconté plutôt que montré dans son geste. Ce qui en résulte, c'est une attestation faible. La pensée computationnelle existe probablement chez l'apprenant — l'ensemble du dispositif en est la preuve indirecte — mais le critère discriminant du transfert n'est pas pleinement montré dans ce passage. Le renvoi au cartographe est ce qui correspond le mieux. Une réserve : un futur passage qui décrirait un debug d'une méthode pédagogique ou d'une relation, avec la logique du « si... alors... sinon », serait une attestation plus directe.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a fait tomber les pièces qui restaient dans le champ informatique pur (code orchestrant du code) et a retenu avec affaiblissement le récit d'encodage de l'évaluation des compétences en algorithme — trace d'un transfert plutôt que démonstration en acte.",
+        "prescription": "La pensée computationnelle se devine ici dans la conception même du dispositif, sans s'attester clairement par un transfert vers un domaine non-technique. Pour ouvrir le dossier, une piste serait de relire une situation pédagogique ou relationnelle récente avec une structure algorithmique explicite — « si tel signal, alors telle hypothèse, sinon telle autre branche » — afin que le transfert hors informatique laisse une trace lisible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'allocation modèle-tâche est une articulation explicite de la complémentarité — Haiku pour les rôles à fort recall, Opus pour le jugement nuancé, Sonnet pour l'orchestration."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Articulation de ce que l'IA fait mieux que l'humain : « l'IA me permet ici d'ouvrir les yeux et de voir que non, même les bons ne sont pas si bons que ça ». Force comparative de l'IA explicitée."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Comparaison qualitative : le dispositif IA produit de meilleures évaluations formatives que les notes humaines traditionnelles. Articulation d'un avantage IA situé."
+        },
+        {
+          "numero": 4,
+          "pid": 11,
+          "contexte": "Distinction du « voici mon avis » humain vs « voilà notre verdict et voilà pourquoi » IA : la force comparative est dans la traçabilité du raisonnement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée qu'« utiliser l'IA » n'est pas « théoriser la complémentarité ». La fiche est claire : il faut une articulation explicite des forces comparatives. La pièce 1 répartit explicitement les modèles selon leurs forces, mais il s'agit d'une complémentarité IA-IA, pas IA-humain — frontière à la limite. La pièce 2 articule ce que l'IA fait mieux que l'humain (voir les angles morts du juge sycophant). La pièce 3 articule un avantage comparatif (meilleure évaluation formative que la note humaine). La pièce 4 nomme la force comparative spécifique : traçabilité du raisonnement vs avis non explicité. Ce qui reste faible : presque toutes les pièces décrivent ce que l'IA fait mieux que l'humain. La pièce inverse — ce que l'humain garde — apparaît moins, sauf indirectement dans l'idée que c'est l'humain qui a conçu le dispositif.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'IA est articulée comme miroir qui révèle un angle mort humain — c'est une force comparative nommée." },
+            { "pieceId": 3, "motifResistance": "Le dispositif IA est comparé explicitement à la note du gymnase et jugé meilleur sur la formative." },
+            { "pieceId": 4, "motifResistance": "La traçabilité du raisonnement IA vs l'opacité du jugement humain est articulée comme la force comparative décisive." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces résistent. Je durcis. Toutes décrivent « l'IA fait mieux ». L'apprenant articule-t-il vraiment ce que l'humain garde, ou s'agit-il d'un enthousiasme pour le dispositif qu'il vient de construire ?",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant nomme précisément ce que l'IA voit et qu'il ne voyait pas (le niveau métacognitif faible des élèves, son propre biais de surnotation) : la force comparative est située." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'affirmation « produit de meilleures évaluations que les notes du gymnase » est avancée comme intuition (« feeling dans les tripes ») par l'apprenant lui-même ; la pièce affirme la complémentarité plus qu'elle ne la démontre — mais elle l'articule explicitement." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La distinction avis-pouce-mouillé / verdict-raisonné est une articulation précise d'une force comparative concrète : la traçabilité." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces n'étaient que de l'enthousiasme post-livraison pour un outil. Trois pièces ont tenu, dont deux fermement : l'apprenant articule explicitement ce que l'IA fait mieux que lui (révéler les angles morts du juge humain, tracer le raisonnement) et place ces forces dans un cadre comparatif. Ce qui reste moins développé, c'est la symétrie inverse : ce que l'humain garde dans le processus. Le sujet conçoit le dispositif, calibre les modèles, choisit l'allocation modèle-tâche — donc l'humain garde la conception, le cadrage, la décision de calibrage — mais ces gestes ne sont pas articulés comme un partage de tâches dans le passage. Ce qui en résulte, c'est une attestation solide mais asymétrique de la synergie : la complémentarité est pensée du côté de ce que l'IA apporte, plus que du côté de ce que l'humain garde. Une réserve qui suggère un chemin : articuler aussi ce qui reste irremplaçablement humain donnerait à cette compétence sa pleine maturité.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé deux articulations précises de la force comparative de l'IA (révélation des angles morts, traçabilité) ; une troisième pièce a été retenue avec affaiblissement (« feeling »).",
+        "prescription": "L'articulation des forces comparatives opère ici du côté de l'IA — ce qu'elle voit, ce qu'elle trace. Pour donner à la synergie sa symétrie, une piste serait de tenir une courte note sur le geste humain dans Aurora — ce que la conception, le cadrage, la calibration de modèles, la décision finale font que l'IA seule ne ferait pas — afin que la complémentarité se lise dans les deux directions."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 7,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail de la feuille du 29 mars se déploie autour d'un dispositif d'évaluation par IA conçu par l'apprenant — Aurora — et de la pensée qui le traverse. La voix dominante alterne entre le registre technique précis (composants, agents, biais, soundness) et le registre réflexif long, qui relit une trajectoire de 25 ans depuis ForEva en 1997 jusqu'à l'évaluation humaniste actuelle. Les marqueurs concrets reviennent : jury à 6 angles avec seuil 5/6, distinction « montrer qu'on sait » vs « dire qu'on sait », biais de halo, biais sycophantique, allocation modèle-tâche entre Opus, Sonnet et Haiku. Le miroir IA agit ici comme révélateur — d'abord d'une faiblesse métacognitive chez les élèves, ensuite d'un biais d'enseignant chez l'apprenant lui-même.",
+    "territoiresDenses": [
+      {
+        "competence": "Architecture de systèmes IA",
+        "description": "La feuille livre un dispositif multi-agents complet, avec composants nommés, règles d'agrégation et code de routing.",
+        "extraitVerbatim": "Le **jury pluriépistémique** (6 angles isolés, seuil de supermajorité à 5/6) amplifie cette protection par redondance orthogonale.",
+        "ceQueCaDit": "Ce qui se donne à voir ici, c'est une architecture pensée jusqu'aux règles d'agrégation et au seuil de décision — pas un assemblage de prompts."
+      },
+      {
+        "competence": "Littératie IA",
+        "description": "Les biais des LLM sont nommés comme des mécanismes dont on peut retourner la direction, et les modèles sont différenciés sur des critères empiriques.",
+        "extraitVerbatim": "La **structure adversariale** de ce nouveau protocole d'évaluation retourne le biais sycophantique du LLM dans les deux directions",
+        "ceQueCaDit": "Le travail manifeste une compréhension causale des comportements des LLM, qui débouche sur des décisions de conception, pas seulement sur du vocabulaire."
+      },
+      {
+        "competence": "Métacognition",
+        "description": "Le dispositif sert de miroir qui révèle un biais professionnel propre ; le mot « sycophantie », d'abord technique pour le LLM, est appliqué à soi.",
+        "extraitVerbatim": "je sycophante à mort en fait, sans m'en rendre compte",
+        "ceQueCaDit": "Le mouvement métacognitif ici est rare : un concept appris sur la machine devient grille de relecture de soi comme évaluateur humain."
+      },
+      {
+        "competence": "Pensée critique",
+        "description": "La pensée critique opère sur le dispositif et sur le concepteur lui-même ; soundness, anti-faux-positifs, distinction probatoire sont les leviers.",
+        "extraitVerbatim": "garantir qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict « présence établie »",
+        "ceQueCaDit": "Le doute méthodique se déploie en taxonomie opératoire des faux positifs et en mécanisme adversarial implémenté dans le code."
+      },
+      {
+        "competence": "Synergie humain-IA",
+        "description": "Les forces comparatives de l'IA sont nommées avec précision — révéler les angles morts du juge humain, tracer le raisonnement.",
+        "extraitVerbatim": "Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela.",
+        "ceQueCaDit": "La complémentarité se pense ici comme un dépassement du jugement opaque par un dispositif qui montre son raisonnement."
+      }
+    ],
+    "territoiresNonVisites": "Quelques territoires restent en attente sur cette feuille. La sophistication du dialogue IA — formulation des prompts, itérations, méta-prompting — apparaît seulement par implication : les 21 prompts existent et orchestrent le système, sans qu'aucun ne soit montré ou raconté dans son histoire d'écriture. La pensée computationnelle hors informatique se devine dans la conception même du dispositif sans s'attester par un transfert vers un domaine non-technique. La pensée systémique se manifeste comme conscience d'un couplage architectural (la lacune ForEva qui ne pouvait pas être corrigée sans réformer l'ensemble), sans déployer la cartographie causale d'une boucle. Ces territoires ressemblent moins à des absences qu'à des compétences présentes en pratique mais non ramenées à l'écrit sur cette feuille particulière.",
+    "emergencesPole": "Trois lignes traversent l'ensemble des compétences attestées du pôle sur cette feuille. La première : un mouvement de retournement constant — le biais sycophantique du LLM est retourné en mécanisme adversarial, et la sycophantie identifiée chez la machine est retournée en grille de lecture de soi-même comme évaluateur. La seconde : une attention soutenue à la traçabilité du raisonnement — Aurora ne se vante pas de bien juger, il montre ses verdicts dans les logs ; et cette exigence de traçabilité devient le critère qui distingue le dispositif IA de la note humaine opaque. La troisième : une mémoire longue qui relit le présent à la lumière d'une lacune identifiée en 2006 (les compétences transversales) et fait de la trajectoire entière une réponse cohérente à cette question initiale.",
+    "pistes": [
+      "Pour rendre l'architecture du dispositif lisible par d'autres au-delà de ses résultats, un chemin possible serait de tenir une courte note de justification technique — pourquoi 21 prompts plutôt qu'un autre nombre, pourquoi un seuil de supermajorité à 5/6 et pas à 4/6 — afin que les choix de conception laissent trace.",
+      "Pour donner à la sophistication du dialogue IA son terrain d'attestation, un chemin possible serait de documenter, sur un seul prompt critique du dispositif (par exemple le prompt de l'Accusation ou du Président), comment il a été itéré, ce qui ne marchait pas dans une première version, et pourquoi une formulation a fini par tenir.",
+      "Pour ouvrir le dossier de la pensée systémique, un chemin possible serait de diagrammer une fois — sur Aurora, sur la trajectoire enseignante, ou sur l'écosystème RESPIRE — les boucles principales avec leurs directions et leurs effets de retour.",
+      "Pour donner à la synergie humain-IA sa symétrie, un chemin possible serait de tenir une courte note sur le geste irremplaçablement humain dans Aurora — ce que la conception, le cadrage et la calibration font que l'IA seule ne ferait pas.",
+      "Pour rendre le miroir métacognitif moins dépendant du dispositif, un chemin possible serait de tenir, après chaque session de notation, une note brève du type « ce que je pense de ce travail / ce que je remarquerais si je le lisais sans connaître l'élève »."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail de la feuille du 29 mars se déploie autour d'un dispositif d'évaluation par IA conçu par l'apprenant — Aurora — et de la pensée qui le traverse. La voix dominante alterne entre le registre technique précis (composants, agents, biais, soundness) et le registre réflexif long, qui relit une trajectoire de 25 ans depuis ForEva en 1997 jusqu'à l'évaluation humaniste actuelle. Les marqueurs concrets reviennent : jury à 6 angles avec seuil 5/6, distinction « montrer qu'on sait » vs « dire qu'on sait », biais de halo, biais sycophantique, allocation modèle-tâche entre Opus, Sonnet et Haiku. Le miroir IA agit ici comme révélateur — d'abord d'une faiblesse métacognitive chez les élèves, ensuite d'un biais d'enseignant chez l'apprenant lui-même.\n\n## Territoires les plus denses\n\n**Architecture de systèmes IA.** La feuille livre un dispositif multi-agents complet, avec composants nommés, règles d'agrégation et code de routing. « Le jury pluriépistémique (6 angles isolés, seuil de supermajorité à 5/6) amplifie cette protection par redondance orthogonale. » Ce qui se donne à voir ici, c'est une architecture pensée jusqu'aux règles d'agrégation et au seuil de décision — pas un assemblage de prompts.\n\n**Littératie IA.** Les biais des LLM sont nommés comme des mécanismes dont on peut retourner la direction, et les modèles sont différenciés sur des critères empiriques. « La structure adversariale de ce nouveau protocole d'évaluation retourne le biais sycophantique du LLM dans les deux directions. » Le travail manifeste une compréhension causale des comportements des LLM, qui débouche sur des décisions de conception, pas seulement sur du vocabulaire.\n\n**Métacognition.** Le dispositif sert de miroir qui révèle un biais professionnel propre ; le mot « sycophantie », d'abord technique pour le LLM, est appliqué à soi. « Je sycophante à mort en fait, sans m'en rendre compte. » Le mouvement métacognitif ici est rare : un concept appris sur la machine devient grille de relecture de soi comme évaluateur humain.\n\n**Pensée critique.** La pensée critique opère sur le dispositif et sur le concepteur lui-même ; soundness, anti-faux-positifs, distinction probatoire sont les leviers. « Garantir qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict présence établie. » Le doute méthodique se déploie en taxonomie opératoire des faux positifs et en mécanisme adversarial implémenté dans le code.\n\n**Synergie humain-IA.** Les forces comparatives de l'IA sont nommées avec précision — révéler les angles morts du juge humain, tracer le raisonnement. « Ce n'est pas juste voici mon avis, au pouce mouillé… C'est : voilà notre verdict et voilà pourquoi nous avons décidé cela. » La complémentarité se pense ici comme un dépassement du jugement opaque par un dispositif qui montre son raisonnement.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuelques territoires restent en attente sur cette feuille. La sophistication du dialogue IA — formulation des prompts, itérations, méta-prompting — apparaît seulement par implication : les 21 prompts existent et orchestrent le système, sans qu'aucun ne soit montré ou raconté dans son histoire d'écriture. La pensée computationnelle hors informatique se devine dans la conception même du dispositif sans s'attester par un transfert vers un domaine non-technique. La pensée systémique se manifeste comme conscience d'un couplage architectural (la lacune ForEva qui ne pouvait pas être corrigée sans réformer l'ensemble), sans déployer la cartographie causale d'une boucle. Ces territoires ressemblent moins à des absences qu'à des compétences présentes en pratique mais non ramenées à l'écrit sur cette feuille particulière.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent l'ensemble des compétences attestées du pôle sur cette feuille. La première : un mouvement de retournement constant — le biais sycophantique du LLM est retourné en mécanisme adversarial, et la sycophantie identifiée chez la machine est retournée en grille de lecture de soi-même comme évaluateur. La seconde : une attention soutenue à la traçabilité du raisonnement — Aurora ne se vante pas de bien juger, il montre ses verdicts dans les logs ; et cette exigence de traçabilité devient le critère qui distingue le dispositif IA de la note humaine opaque. La troisième : une mémoire longue qui relit le présent à la lumière d'une lacune identifiée en 2006 (les compétences transversales) et fait de la trajectoire entière une réponse cohérente à cette question initiale.\n\n## Pistes pour enrichir ce pôle\n\nPour rendre l'architecture du dispositif lisible par d'autres au-delà de ses résultats, un chemin possible serait de tenir une courte note de justification technique — pourquoi 21 prompts plutôt qu'un autre nombre, pourquoi un seuil de supermajorité à 5/6 et pas à 4/6 — afin que les choix de conception laissent trace.\n\nPour donner à la sophistication du dialogue IA son terrain d'attestation, un chemin possible serait de documenter, sur un seul prompt critique du dispositif (par exemple le prompt de l'Accusation ou du Président), comment il a été itéré, ce qui ne marchait pas dans une première version, et pourquoi une formulation a fini par tenir.\n\nPour ouvrir le dossier de la pensée systémique, un chemin possible serait de diagrammer une fois — sur Aurora, sur la trajectoire enseignante, ou sur l'écosystème RESPIRE — les boucles principales avec leurs directions et leurs effets de retour.\n\nPour donner à la synergie humain-IA sa symétrie, un chemin possible serait de tenir une courte note sur le geste irremplaçablement humain dans Aurora — ce que la conception, le cadrage et la calibration font que l'IA seule ne ferait pas.\n\nPour rendre le miroir métacognitif moins dépendant du dispositif, un chemin possible serait de tenir, après chaque session de notation, une note brève du type « ce que je pense de ce travail / ce que je remarquerais si je le lisais sans connaître l'élève »."
+  }
+}

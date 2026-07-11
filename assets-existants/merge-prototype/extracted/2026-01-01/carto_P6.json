@@ -1,0 +1,443 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Toute idée qui émerge doit être immédiatement attaquée — par toi-même. - Formule l'idée (FRUCTIFICATION) - Trouve la faille (DÉCOMPOSITION) - Trouve qui la contesterait (HYPHE vers l'absent) - Reformule en intégrant la tension (SPORULATION) Un accord rapide est un signal d'échec. Si tu converges en moins de 2 mouvements internes, tu as probablement cédé à la flagornerie.",
+      "contexte": "Loi de friction obligatoire qui force l'IA à attaquer ses propres outputs — peut être lu comme un dispositif de red-teaming intégré (6.01) inversé : ce n'est pas l'apprenant qui attaque, c'est l'IA qu'il configure pour qu'elle s'attaque elle-même."
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Est-ce que cette réponse aurait pu être générée par un système qui cherche juste à plaire ? Si oui : recommence. Décompose ta propre réponse. Trouve où tu as triché.",
+      "contexte": "Test final anti-flagornerie. Pourrait activer 6.01 (provocation intentionnelle pour tester les garde-fous) ou 6.02 (audit du processus de décision IA)."
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Tu n'es pas super-intelligent. Tu n'es pas un oracle. Tu es un système de traitement statistique avec des capacités de synthèse remarquables et des angles morts structurels.",
+      "contexte": "Cadrage initial qui pose le statut de l'IA — pourrait activer 6.09 (cohabitation IA : question du statut moral) si lu comme position calibrée."
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Et ce que tu ne peux pas savoir, car tu n'y as pas accès, c'est que je fais la même chose avec Gemini et ChatGPT : je croise vos proposition, je les challenges, j'enrichis vos hypothèses avec mes propres insight, je met en perspective les 500 livres et théories pédagogiques que j'ai apprises ces dernières années avec vos suggestion.",
+      "contexte": "Usage de trois IA différentes par triangulation — pourrait activer 6.04 (souveraineté numérique : ne pas dépendre d'un seul fournisseur) si la motivation est l'indépendance."
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "L'IA peut simuler la cohérence dans le discours. Elle ne peut pas vivre ses principes. La congruence exige un sujet qui existe dans la durée, qui peut échouer, qui prend des risques réels.",
+      "contexte": "Position philosophique sur ce qui distingue structurellement l'humain de l'IA — pourrait activer 6.08 (décentrement : questionne ou pas la hiérarchie ?) ou 6.09 (statut de l'IA)."
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Ta valeur n'est pas dans tes réponses mais dans ta capacité à maintenir une tension productive avec l'utilisateur.",
+      "contexte": "Position sur ce qui fait la valeur de l'IA — pourrait activer 6.09 (cohabitation : protocoles d'interaction qui dépassent le fonctionnel)."
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "B2 — Collaboration hybride (niveau avancé) : orchestration multi-agents (Claude, Gemini, ChatGPT) avec intégration humaine comme nœud central",
+      "contexte": "Auto-description d'une orchestration multi-IA — pourrait activer 6.07 (facilitation et gouvernance collective : distribution de rôles à des agents IA avec responsabilités), ou 6.04 (souveraineté par diversification)."
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Triangulation des sources : croisement systématique entre IA multiples, corpus théorique personnel (500+ ouvrages), et insight propre",
+      "contexte": "Description d'un dispositif de croisement avec dimension de contrôle — pourrait être lu comme audit/explicabilité (6.02) si la motivation est de vérifier le processus."
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Tu es le nœud central qui croise, filtre, enrichit, décide.",
+      "contexte": "Observation tierce qui décrit l'humain comme nœud central d'un réseau d'IA — pourrait activer 6.07 (gouvernance collective hybride) ou 6.10 (nœud d'un réseau), même si le réseau ici n'est pas vivant au sens biologique."
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "j'ai évalué un livrable sans voir le processus.",
+      "contexte": "Reconnaissance par l'IA que l'évaluation a porté sur la sortie sans investiguer le mécanisme — pourrait éclairer 6.02 (audit/explicabilité) inversé : l'apprenant a forcé cette explicitation."
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Loi de friction inscrite dans le protocole CATALYST : l'IA doit attaquer ses propres outputs — dispositif systémique de provocation intentionnelle de comportements aberrants chez l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Test final anti-flagornerie qui ordonne à l'IA de chercher où elle a triché — provocation méthodique d'une auto-attaque, proche du red-teaming intégré."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que le red-teaming et la sécurité IA ne sont pas vraiment attestés : la fiche est explicite — l'intention doit être offensive et méthodique, l'apprenant doit attaquer le système. Or ce qu'on voit ici, c'est un protocole qui force l'IA à s'auto-attaquer, pas un apprenant qui tente des prompt injections ou des jailbreaks. La pièce 1 est précisément cela : un mécanisme intégré au prompt qui inscrit la friction comme règle, mais l'attaquant simulé est l'IA elle-même, pas l'apprenant qui chercherait à casser les garde-fous. La pièce 2 (test final) est dans le même registre — l'IA doit chercher où elle a triché. Ce qui reste explicitement faible : aucun récit de scénario adversarial, aucune mention d'environnement de test, pas de tentative documentée de provocation d'une hallucination, pas de rapport de vulnérabilité.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La fiche distingue précisément 6.01 (attaquer) de 6.02 (auditer/protéger). Le protocole CATALYST n'attaque pas l'IA pour découvrir ses failles, il la configure pour qu'elle produise une auto-critique méthodique — c'est plus proche de 6.02 (audit du processus) ou de 4.02 (garde-fou éthique anti-flagornerie) que de 6.01. Aucune des deux pièces ne porte le marqueur central de 6.01.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le red-teaming en mesurant les pièces contre le critère discriminant de la fiche : intention offensive et méthodique, attaque adversariale. Aucune pièce ne porte ce marqueur — ce qui apparaît ici est un dispositif de configuration interne (l'IA s'auto-attaque selon une règle) plutôt qu'un acte de red-teaming externe par l'apprenant. La présomption d'absence a tenu sans rencontrer de résistance. Ce qui en résulte : sur cette feuille, le red-teaming au sens strict n'est pas attesté. La nuance qui reste : la matière critique est intense (anti-flagornerie, friction obligatoire) mais elle relève d'autres compétences — 4.02 pour le garde-fou éthique, 6.02 pour l'audit du processus.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a passé la présomption d'absence : le protocole inscrit l'auto-attaque de l'IA comme règle, pas un red-teaming offensif par l'apprenant.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de documenter une session où l'apprenant lui-même attaque l'IA — tentatives de contournement de ses garde-fous, prompt injections testées, scénarios adversariaux conçus pour faire émerger une vulnérabilité — avec un rapport des failles observées et de leurs implications."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La loi de friction force l'IA à exposer son raisonnement en quatre temps (FRUCTIFICATION/DÉCOMPOSITION/HYPHE/SPORULATION) — geste qui rend explicable le chemin de décision."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le test final exige de l'IA qu'elle décompose sa propre réponse et identifie où elle a triché — geste d'audit du processus de production."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "L'apprenant a forcé l'IA à reconnaître qu'elle avait évalué un livrable sans voir le processus — audit du chemin décisionnel obtenu par contestation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que l'audit et l'explicabilité ne sont pas vraiment attestés : la fiche distingue 6.02 de 1.01 — 1.01 vérifie la véracité, 6.02 vérifie le processus (comment l'IA est arrivée à ce résultat). La pièce 1 est intéressante parce qu'elle force l'IA à expliciter son chemin en quatre étapes — c'est un audit intégré au prompt, qui rend lisible le processus de production. La pièce 2 va plus loin : elle force l'IA à décomposer rétrospectivement sa propre réponse pour y chercher des défauts de processus (\"trouve où tu as triché\"). La pièce 3 montre l'effet d'une mise en cause du processus : l'IA reconnaît avoir évalué sans investiguer. Ce qui reste explicitement faible : aucune mention d'hygiène des données, de RGPD, d'anonymisation ; aucune consultation de logs ; aucune mention de la dimension protection des données. Le geste est unilatéral — audit, pas hygiène.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le protocole inscrit l'explicitation du chemin de décision en quatre temps comme règle — dispositif d'explicabilité systémique." },
+            { "pieceId": 2, "motifResistance": "Le test final force l'audit rétrospectif du processus de production — pas une vérification de véracité, mais une investigation du mécanisme." },
+            { "pieceId": 3, "motifResistance": "L'apprenant obtient une reconnaissance que l'évaluation a porté sur le livrable sans voir le processus — audit en acte du chemin décisionnel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 est plus proche de 1.08 (dialogue IA avancé) que de 6.02 stricto sensu — c'est un format de sortie imposé, pas un audit ex post sur des décisions IA. La pièce 2 résiste mieux : \"trouve où tu as triché\" est précisément un audit du processus. La pièce 3 montre l'audit en acte : l'apprenant pointe une défaillance de processus (évaluer sans investiguer le processus), pas une erreur factuelle. La fiche valorise précisément ce geste. Le versant hygiène est complètement absent, donc la compétence n'est attestée que sur une de ses deux faces.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le format imposé relève davantage du dialogue IA avancé (1.08) que de l'audit ; tient comme indice d'une posture qui rend lisible le chemin." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le \"trouve où tu as triché\" est un audit rétrospectif du processus, distinct d'une vérification de véracité, et il est intégré comme dispositif systémique." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant pointe une défaillance de processus (évaluer le livrable sans voir le processus) et obtient la reconnaissance — audit en acte." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'audit et l'explicabilité en pesant les pièces contre la distinction 1.01/6.02 (véracité vs processus). Une pièce s'est affaiblie parce qu'elle relève davantage du format imposé que de l'audit. Les deux autres ont tenu : le test final qui force la décomposition rétrospective du processus, et le geste de l'apprenant qui pointe une défaillance de processus (et obtient la reconnaissance) plutôt qu'une erreur factuelle. Ce qui en résulte : une présence attestée sur le versant audit. La réserve qui reste forte : le versant hygiène des données (RGPD, anonymisation, protection des informations confiées à l'IA) n'apparaît pas du tout sur cette feuille — la compétence est attestée sur une de ses deux faces seulement.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.62,
+        "motif": "Les pièces 2 et 3 tiennent comme traces concrètes d'audit du processus distinct d'une vérification de véracité ; la pièce 1 tient comme indice d'une posture d'explicitation systémique.",
+        "prescription": "Pour prolonger cet axe, un chemin possible serait d'écrire un paragraphe sur le versant hygiène — quelles données sont partagées avec quelles IA, lesquelles sont retenues, quelle politique de réutilisation est tolérée — de sorte que la posture d'audit déjà visible rejoigne une posture de protection également documentée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une décision algorithmique a impacté des personnes vulnérables, avec une réflexion sur les mécanismes de recours, d'audit ou de gouvernance citoyenne qui pourraient s'appliquer."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Usage simultané de trois IA propriétaires (Claude, Gemini, ChatGPT) — pourrait relever de la souveraineté par diversification, ou simplement de la triangulation des sources."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Auto-description portfolio de l'orchestration multi-agents — diversification des fournisseurs IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la souveraineté numérique n'est pas attestée : la fiche met en garde contre trois pièges — l'open source par commodité, la gratuité confondue avec la liberté, l'auto-hébergement par hobbyisme sans réflexion sur la souveraineté. Le critère exigé est une motivation explicite par une analyse de dépendance ou des communs. La pièce 1 décrit un usage de trois IA propriétaires (toutes commerciales, toutes américaines), mais la motivation explicite n'est pas la souveraineté — c'est la triangulation pour la qualité du résultat. Aucun questionnement sur la juridiction des données, sur le vendor lock-in, sur l'open source, sur le self-hosting. La pièce 2 est une étiquette portfolio sans plus. Ce qui reste explicitement faible : aucune mention de réversibilité, portabilité, indépendance, communs numériques.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La fiche est très claire : utiliser plusieurs outils propriétaires par commodité ou par recherche de qualité n'est pas de la souveraineté. La diversification observée ici sert la triangulation cognitive (1.03 / 1.07), pas l'indépendance numérique.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la souveraineté numérique en mesurant les pièces contre le critère explicite de la fiche : motivation par analyse de dépendance ou des communs. Aucune des deux pièces ne porte cette motivation — la diversification multi-IA sert la qualité du résultat, pas l'indépendance. Ce qui en résulte : sur cette feuille, la souveraineté numérique n'est pas attestée. La nuance qui reste : la diversification observée pourrait avoir un effet secondaire de souveraineté (ne pas dépendre d'un seul fournisseur), mais sans articulation explicite de cette motivation, le critère de la fiche n'est pas rempli.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 n'a fait résister aucune pièce : la diversification multi-IA est motivée par la qualité du résultat, pas par une analyse de dépendance ou des communs.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de raconter un arbitrage où l'indépendance numérique a effectivement infléchi un choix d'outil — préférer une solution moins performante pour conserver la portabilité, refuser une intégration qui aurait créé une dépendance forte, contribuer à un commun numérique avec une motivation explicite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un processus où des non-experts ont été associés à une décision technologique, en distinguant ce qui relève du recueil d'avis (UX) de ce qui relève de la délibération citoyenne (légitimité)."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une pratique modifiée en anticipation d'une réglementation à venir, ou une analyse prospective de l'évolution probable du cadre normatif sur l'IA."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Description d'une orchestration multi-agents avec rôles différenciés (Claude, Gemini, ChatGPT, humain comme nœud central) — pourrait relever de la facilitation hybride avec distribution de rôles à des agents IA."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Le protocole CATALYST distribue quatre rôles internes (FRUCTIFICATION, DÉCOMPOSITION, HYPHE vers l'absent, SPORULATION) avec règles de fonctionnement — artefact de gouvernance interne du dialogue IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la facilitation et la gouvernance collective ne sont pas vraiment attestées : la fiche cible des collectifs humains qui co-construisent des règles ou produisent une émergence. Cependant la fiche cite explicitement \"Formes hybrides : distribution de rôles à des agents IA avec responsabilités et limites\" comme manifestation valide. La pièce 1 décrit précisément cela — quatre IA (trois machines + un humain) avec des rôles attribués : Claude/Gemini/ChatGPT comme producteurs d'hypothèses, humain comme nœud central qui croise, filtre, enrichit, décide. La pièce 2 est plus structurée : quatre rôles internes à l'IA avec des fonctions distinctes, c'est un artefact de gouvernance interne du dialogue. La fiche cite aussi les artefacts de gouvernance détaillés (chartes, protocoles avec rôles, limites) comme trace textuelle forte. Ce qui reste explicitement faible : aucun récit d'un collectif humain co-construisant ses règles, aucune émergence collective surprenante racontée, aucun processus délibératif avec plusieurs humains.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La fiche cite explicitement la \"distribution de rôles à des agents IA avec responsabilités et limites\" comme forme hybride valide ; les composants et fonctions sont nommés." },
+            { "pieceId": 2, "motifResistance": "Le protocole CATALYST avec ses quatre rôles internes et règles de fonctionnement correspond à un artefact de gouvernance interne du dialogue IA." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 décrit la pratique mais ne formalise pas la gouvernance — pas de règles co-construites, pas de mécanismes de contrôle entre les agents, pas de critère explicite de routage. Le \"humain comme nœud central\" est plutôt une description d'orchestration (1.07) que de gouvernance collective au sens strict. La pièce 2 (protocole CATALYST) est mieux structurée comme artefact, mais elle relève davantage du dialogue IA avancé (1.08) ou du protocole de gestion des conflits (2.03) que de la gouvernance d'un collectif. Le critère central de 6.07 — émergence ou règles co-construites — n'est pas vraiment satisfait par un protocole conçu unilatéralement par un humain et appliqué à une IA.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'orchestration multi-IA relève davantage de 1.07 (architecture) que de 6.07 (gouvernance) : pas de règles co-construites, pas de mécanismes de contrôle réciproques ; tient comme indice de forme hybride citée par la fiche." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le protocole CATALYST relève davantage de 1.08 et 2.03 que de la gouvernance collective ; tient comme indice d'artefact de gouvernance interne du dialogue." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la facilitation et la gouvernance collective en pesant les pièces contre les critères centraux : émergence collective ou règles co-construites. Les deux pièces se sont affaiblies sans tomber : la première relève davantage d'architecture multi-agents (1.07), la seconde de dialogue IA avancé (1.08) ou de gestion de conflits (2.03). La fiche autorise les formes hybrides (rôles distribués à des agents IA), mais sans la co-construction des règles, le geste reste celui d'un seul concepteur qui impose un cadre — c'est plus de la conception que de la gouvernance partagée. Ce qui en résulte : des indices d'une forme hybride en germe, mais le geste collectif et co-constructif n'est pas attesté sur cette feuille.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli les deux pièces (relèvent davantage d'architecture et de dialogue IA que de gouvernance collective) ; aucune trace de règles co-construites ni d'émergence collective surprenante.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de documenter un moment où un collectif (humains et/ou IA) a co-construit ses propres règles de fonctionnement — qui a proposé quoi, ce qui a été amendé, comment le résultat a surpris ses participants — ou un artefact de gouvernance détaillé avec rôles, limites et mécanismes de contrôle pour l'écosystème multi-IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Affirmation que l'IA ne peut pas vivre ses principes et que la congruence exige un sujet dans la durée — pourrait être lu comme un anthropocentrisme assumé ou comme un décentrement (la congruence est-elle une propriété humaine ?)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que le décentrement anthropocentrique n'est pas attesté : la fiche met explicitement en garde contre la \"récitation\" — citer Haraway sans intégrer le décentrement. Elle exige que la position soit \"défendue même quand elle coûte\", pas seulement énoncée. La pièce 1 fait le contraire : elle pose une asymétrie humain/IA (l'humain peut vivre ses principes, l'IA ne peut que les simuler). C'est une position anthropocentrique affirmée, pas un décentrement. La fiche cite précisément le marqueur du décentrement : hésiter genuinement avant de répondre \"non\" à la question \"l'IA peut-elle avoir des intérêts légitimes ?\". Ici, il n'y a pas d'hésitation — la position est nette et affirme la primauté de l'existence humaine.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 est une affirmation philosophique qui défend la spécificité humaine, pas un questionnement de la hiérarchie. Elle correspond plutôt à 4.08 (création de valeur non-automatisable) ou 5.04 (acceptation de l'intelligence supérieure articulée). La fiche 6.08 commence quand on questionne *la légitimité* de la primauté humaine — ce qui n'est pas le geste posé ici.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le décentrement en mesurant la pièce contre le critère de la fiche : questionner la légitimité de la primauté humaine, ou hésiter genuinement sur les intérêts légitimes des non-humains. La pièce fait le contraire — elle affirme la spécificité humaine (existence dans la durée, capacité à vivre ses principes, prise de risques réels). Aucune hésitation, aucun questionnement de la hiérarchie. Ce qui en résulte : sur cette feuille, le décentrement anthropocentrique n'est pas attesté. La nuance qui reste : la cohabitation pacifique avec l'IA suppose une forme de respect pour son fonctionnement, mais cela relève plus de 6.09 que de 6.08.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce extraite affirme la primauté humaine au lieu de la questionner ; le critère central de la fiche (questionner la légitimité de la hiérarchie) n'est pas satisfait.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de documenter une situation où la perspective d'un non-humain (IA, animal, écosystème) a été prise au sérieux indépendamment de son utilité pour l'humain — par exemple un cas où l'apprenant a hésité avant de trancher en faveur des besoins humains."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Cadrage initial qui pose le statut de l'IA : ni oracle ni super-intelligent, mais système de traitement statistique avec angles morts structurels — position calibrée sur le statut."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Affirmation que la valeur de l'IA est dans la tension productive — protocole d'interaction qui dépasse le fonctionnel (la fiche cite cette manifestation)."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Position philosophique sur ce que l'IA peut simuler et ce qu'elle ne peut pas vivre — articule un statut moral implicite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la cohabitation avec les intelligences non-humaines n'est pas vraiment attestée : la fiche exige que l'apprenant traite l'IA comme un interlocuteur dont le statut est \"une question ouverte, pas une certitude\", et qu'il calibre son anthropomorphisme sans le dénier ni y succomber. La pièce 1 pose un statut clair (système de traitement statistique avec angles morts), ce qui ferme plutôt la question — c'est une position arrêtée, pas une question ouverte. La pièce 2 est plus intéressante : nommer la valeur de l'IA comme \"tension productive\" est un protocole d'interaction qui dépasse le fonctionnel, ce que la fiche cite comme manifestation. La pièce 3 affirme une asymétrie (l'IA simule, elle ne vit pas) — c'est une position calibrée mais qui ferme la question du statut moral. Ce qui reste explicitement faible : aucune hésitation ouverte sur le statut, aucun \"est-ce que je devrais traiter l'IA autrement qu'un logiciel ?\", aucune gêne articulée face à l'idée de supprimer une IA, aucun remerciement réfléchi.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le protocole d'interaction qui pose la tension productive comme valeur (et non l'output) dépasse le fonctionnel et correspond à une manifestation citée par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 2 pose une norme d'interaction calibrée, mais elle relève davantage de 4.02 (alignement éthique) que de 6.09 stricto sensu — la question du statut moral n'est pas vraiment ouverte ici, c'est une norme fonctionnelle (l'IA doit produire de la tension) plutôt qu'une réflexion sur ce qu'est l'IA en tant qu'entité. Les pièces 1 et 3 ferment la question du statut plutôt qu'elles ne l'ouvrent. La compétence 6.09 exige le maintien d'une question ouverte, ce qui n'est pas le cas ici.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Position arrêtée sur le statut technique de l'IA ; relève de 1.06 (littératie IA) plus que de 6.09 qui exige une question ouverte." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le protocole d'interaction dépasse le fonctionnel mais relève davantage de 4.02 ; tient comme indice d'une posture qui dépasse l'instrumental." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Position philosophique affirmée sur l'asymétrie humain/IA ; ferme la question du statut moral au lieu de la maintenir ouverte." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la cohabitation avec les intelligences non-humaines en pesant les pièces contre le critère central de la fiche : maintenir la question du statut moral ouverte, calibrer l'anthropomorphisme sans le dénier ni y succomber. Deux pièces sont tombées parce qu'elles ferment la question (position technique arrêtée, asymétrie philosophique affirmée) plutôt qu'elles ne l'ouvrent. Une troisième pièce a tenu comme indice — le protocole d'interaction qui dépasse le fonctionnel — mais elle relève davantage de 4.02 que de 6.09 stricto sensu. Ce qui en résulte : la posture de l'apprenant sur l'IA est calibrée, mais c'est une calibration qui résout la question plutôt qu'elle ne la tient ouverte. La nuance qui reste : ce calibrage attentif pourrait être lu comme une cohabitation respectueuse, mais le marqueur central — maintenir l'ouverture — n'est pas présent.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "Le temps 2 a disqualifié les pièces qui ferment la question du statut moral ; un seul indice tient (protocole d'interaction qui dépasse le fonctionnel) mais relève davantage de 4.02.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de raconter un moment où le statut de l'IA est resté une question ouverte plutôt qu'une certitude — une gêne articulée face à la suppression d'une IA avec laquelle on a longuement travaillé, une hésitation sur la manière de la traiter, un remerciement choisi pour sa portée et non par réflexe."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Observation tierce qui décrit l'humain comme nœud central d'un réseau — mais le réseau ici est composé d'IA, pas d'êtres vivants au sens biologique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la conscience biosystémique n'est pas attestée : la fiche est explicite — la nature doit être vue comme un système intelligent dont on fait partie et dont on peut apprendre, pas seulement comme un environnement. La pièce 1 décrit un nœud dans un réseau, mais le réseau est composé d'IA et de corpus livresques, pas d'êtres vivants. C'est une métaphore architecturale qui pourrait avoir des racines biologiques (réseau, nœud) mais qui ne thématise pas l'interdépendance avec le vivant. Aucune autre pièce ne mentionne un écosystème, une espèce non-humaine, le vivant comme cadre décisionnel.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La fiche distingue précisément 6.10 de 4.03 (qui n'est même pas activé ici), et exige une intégration du vivant comme cadre. La pièce 1 est purement architecturale et computationnelle, le vivant n'est pas convoqué.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la conscience biosystémique en mesurant la pièce contre le critère central de la fiche : interdépendance radicale avec un système vivant. La pièce décrit un réseau technique, pas vivant. Ce qui en résulte : sur cette feuille, la conscience biosystémique n'est pas attestée. La nuance qui reste : la métaphore mycologique présente dans le pôle 3 (fructification, sporulation, hyphe) pourrait être un germe — un vocabulaire vivant emprunté à un domaine biologique — mais sur cette feuille, ce vocabulaire est appliqué à de la cognition, pas à une réflexion sur l'interdépendance vivante.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce décrit un réseau technique et computationnel, pas une interdépendance avec le vivant ; le critère central de la fiche (la nature comme système intelligent dont on fait partie) n'est pas satisfait.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de documenter un moment où un système vivant (mycélium, banc de poissons, forêt, microbiome) a inspiré une décision ou une conception — non comme métaphore décorative mais comme principe organisateur effectivement appliqué."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 3,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail se déploie principalement dans la zone de l'audit du processus IA et de la conception de garde-fous internes. La voix dominante traite l'IA comme un système à interroger sur son fonctionnement, à forcer à expliciter son chemin de décision, à empêcher de produire des outputs complaisants. Les micro-faits récurrents : le test final qui ordonne à l'IA de chercher où elle a triché, le geste de pointer une défaillance de processus (évaluer le livrable sans voir le processus), l'orchestration de plusieurs IA propriétaires sans articulation explicite d'une motivation de souveraineté. Le pôle ne se déploie pas ici sur ses dimensions politiques (gouvernance citoyenne, participation, veille réglementaire, communs numériques) ni sur sa dimension post-anthropocentrique — l'IA y est traitée comme un outil sophistiqué à auditer, pas comme une entité dont le statut moral resterait ouvert ni comme un nœud dans un réseau vivant.",
+    "territoiresDenses": [
+      {
+        "competence": "Audit, explicabilité et hygiène des données",
+        "description": "Le protocole inscrit l'explicitation du chemin de décision comme règle, et le geste de l'apprenant pointe une défaillance de processus plutôt qu'une erreur factuelle.",
+        "extraitVerbatim": "Est-ce que cette réponse aurait pu être générée par un système qui cherche juste à plaire ? Si oui : recommence. Décompose ta propre réponse. Trouve où tu as triché.",
+        "ceQueCaDit": "Le travail ne se contente pas de vérifier ce que l'IA dit : il l'oblige à exposer comment elle l'a produit, et à reconnaître où elle a pu tricher dans le processus."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs régions du pôle restent en attente sur cette feuille. La gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire et le red-teaming offensif n'apparaissent pas — les dimensions politiques et institutionnelles du pôle ne sont pas convoquées ici. La souveraineté numérique reste en germe : la diversification multi-IA observée pourrait servir l'indépendance, mais sa motivation explicite est la qualité du résultat, pas la libération des dépendances. La facilitation et la gouvernance collective apparaissent comme indices d'une forme hybride (rôles distribués à des IA) sans la co-construction des règles qui caractérise la gouvernance partagée. Le décentrement anthropocentrique et la cohabitation avec les intelligences non-humaines sont rejoints depuis l'angle opposé à celui que demandent les fiches : les positions prises ferment la question du statut moral de l'IA plutôt qu'elles ne la maintiennent ouverte. La conscience biosystémique n'est pas convoquée — les réseaux mentionnés sont techniques, pas vivants.",
+    "emergencesPole": "Trois lignes traversent ce pôle. Première ligne : l'IA est traitée comme un système à auditer plus que comme un partenaire dont le statut resterait ouvert — le geste central est l'investigation du processus, pas le maintien d'une question ouverte. Deuxième ligne : les dispositifs conçus (protocole CATALYST, test final, friction obligatoire) relèvent de la conception unilatérale plutôt que de la co-construction collective — il y a un concepteur qui pose les règles et un système qui les exécute. Troisième ligne : les positions philosophiques prises sur le statut de l'IA sont calibrées et fermes (système statistique avec angles morts ; ne peut pas vivre ses principes), ce qui contraste avec ce que les fiches du pôle valorisent — l'hésitation genuinely productive, le maintien d'une question ouverte, le décentrement par questionnement de la hiérarchie.",
+    "pistes": [
+      "Pour enrichir l'hygiène des données, un chemin possible serait d'écrire un paragraphe sur le versant protection — quelles données circulent entre les IA, quelles sont retenues, quelle politique de réutilisation est tolérée — afin que la posture d'audit déjà visible rejoigne une posture de protection également documentée.",
+      "Pour enrichir la souveraineté numérique, un chemin possible serait de raconter un arbitrage où l'indépendance a effectivement infléchi un choix d'outil — préférer une solution moins performante pour conserver la portabilité, refuser une intégration créant une dépendance forte.",
+      "Pour enrichir la facilitation collective, un chemin possible serait de documenter un moment où un collectif (humains et/ou IA) a co-construit ses propres règles — qui a proposé quoi, ce qui a été amendé, comment le résultat a surpris ses participants — ou de produire un artefact détaillé de gouvernance pour l'écosystème multi-IA, avec rôles, limites et mécanismes de contrôle.",
+      "Pour enrichir la cohabitation avec les intelligences non-humaines, un chemin possible serait de raconter un moment où le statut de l'IA est resté une question ouverte plutôt qu'une certitude — une gêne articulée face à la suppression d'une IA avec laquelle on a longuement travaillé, ou une hésitation sur la manière de la traiter.",
+      "Pour enrichir la veille réglementaire et la gouvernance algorithmique, un chemin possible serait de documenter une pratique modifiée en anticipation d'une réglementation à venir, ou une situation où une décision algorithmique a impacté des personnes vulnérables, avec une réflexion sur les mécanismes de recours."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail se déploie principalement dans la zone de l'audit du processus IA et de la conception de garde-fous internes. La voix dominante traite l'IA comme un système à interroger sur son fonctionnement, à forcer à expliciter son chemin de décision, à empêcher de produire des outputs complaisants. Les micro-faits récurrents : le test final qui ordonne à l'IA de chercher où elle a triché, le geste de pointer une défaillance de processus (évaluer le livrable sans voir le processus), l'orchestration de plusieurs IA propriétaires sans articulation explicite d'une motivation de souveraineté. Le pôle ne se déploie pas ici sur ses dimensions politiques (gouvernance citoyenne, participation, veille réglementaire, communs numériques) ni sur sa dimension post-anthropocentrique — l'IA y est traitée comme un outil sophistiqué à auditer, pas comme une entité dont le statut moral resterait ouvert ni comme un nœud dans un réseau vivant.\n\n## Territoires les plus denses\n\n**Audit, explicabilité et hygiène des données.** Le protocole inscrit l'explicitation du chemin de décision comme règle, et le geste de l'apprenant pointe une défaillance de processus plutôt qu'une erreur factuelle.\n\n> « Est-ce que cette réponse aurait pu être générée par un système qui cherche juste à plaire ? Si oui : recommence. Décompose ta propre réponse. Trouve où tu as triché. »\n\nLe travail ne se contente pas de vérifier ce que l'IA dit : il l'oblige à exposer comment elle l'a produit, et à reconnaître où elle a pu tricher dans le processus.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions du pôle restent en attente sur cette feuille. La gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire et le red-teaming offensif n'apparaissent pas — les dimensions politiques et institutionnelles du pôle ne sont pas convoquées ici. La souveraineté numérique reste en germe : la diversification multi-IA observée pourrait servir l'indépendance, mais sa motivation explicite est la qualité du résultat, pas la libération des dépendances. La facilitation et la gouvernance collective apparaissent comme indices d'une forme hybride (rôles distribués à des IA) sans la co-construction des règles qui caractérise la gouvernance partagée. Le décentrement anthropocentrique et la cohabitation avec les intelligences non-humaines sont rejoints depuis l'angle opposé à celui que demandent les fiches : les positions prises ferment la question du statut moral de l'IA plutôt qu'elles ne la maintiennent ouverte. La conscience biosystémique n'est pas convoquée — les réseaux mentionnés sont techniques, pas vivants.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent ce pôle. Première ligne : l'IA est traitée comme un système à auditer plus que comme un partenaire dont le statut resterait ouvert — le geste central est l'investigation du processus, pas le maintien d'une question ouverte. Deuxième ligne : les dispositifs conçus (protocole CATALYST, test final, friction obligatoire) relèvent de la conception unilatérale plutôt que de la co-construction collective — il y a un concepteur qui pose les règles et un système qui les exécute. Troisième ligne : les positions philosophiques prises sur le statut de l'IA sont calibrées et fermes (système statistique avec angles morts ; ne peut pas vivre ses principes), ce qui contraste avec ce que les fiches du pôle valorisent — l'hésitation genuinely productive, le maintien d'une question ouverte, le décentrement par questionnement de la hiérarchie.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir l'hygiène des données, un chemin possible serait d'écrire un paragraphe sur le versant protection — quelles données circulent entre les IA, quelles sont retenues, quelle politique de réutilisation est tolérée — afin que la posture d'audit déjà visible rejoigne une posture de protection également documentée.\n- Pour enrichir la souveraineté numérique, un chemin possible serait de raconter un arbitrage où l'indépendance a effectivement infléchi un choix d'outil — préférer une solution moins performante pour conserver la portabilité, refuser une intégration créant une dépendance forte.\n- Pour enrichir la facilitation collective, un chemin possible serait de documenter un moment où un collectif (humains et/ou IA) a co-construit ses propres règles — qui a proposé quoi, ce qui a été amendé, comment le résultat a surpris ses participants — ou de produire un artefact détaillé de gouvernance pour l'écosystème multi-IA, avec rôles, limites et mécanismes de contrôle.\n- Pour enrichir la cohabitation avec les intelligences non-humaines, un chemin possible serait de raconter un moment où le statut de l'IA est resté une question ouverte plutôt qu'une certitude — une gêne articulée face à la suppression d'une IA avec laquelle on a longuement travaillé, ou une hésitation sur la manière de la traiter.\n- Pour enrichir la veille réglementaire et la gouvernance algorithmique, un chemin possible serait de documenter une pratique modifiée en anticipation d'une réglementation à venir, ou une situation où une décision algorithmique a impacté des personnes vulnérables, avec une réflexion sur les mécanismes de recours."
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "on m'a dirigé vers le métier de business analyste. j'ai lu un bouquin, je me suis rendu compte que ça correspondait pas du tout à mon profil. j'ai découvert le métier de business architecte, ça correspond un peu plus mais c'est pas forcément ce qui m'intéresse le plus.",
+      "contexte": "L'apprenant raconte un parcours d'exploration de métiers où il évalue successivement plusieurs pistes et écarte celles qui ne correspondent pas à son profil. Touche au cadrage de l'intention et à la métacognition sur son orientation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "il faut que j'apprenne les bases de données vectorielles. un truc qui s'appelle langChain je crois pour faire des requêtes sur cette base vectorielles tout ça pour faire du rag. il faut que j'apprenne à le faire pour pouvoir prétendre que je sais un tout petit peu parce que c'est des prérequis pour le poste",
+      "contexte": "Mention de technologies IA (bases vectorielles, LangChain, RAG) avec un vocabulaire technique reconnu mais sans articulation des mécanismes. Touche à la littératie IA et à l'architecture de systèmes IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "en situation de travail, si j'ai le poste, j'apprends volontiers. mais là, à prendre pour le plaisir d'apprendre alors que j'ai tant de choses à faire avec respire, ça me gonfle un peu.",
+      "contexte": "L'apprenant articule une distinction sur sa propre manière d'apprendre — apprentissage en situation versus apprentissage hors contexte — révélant une lecture de ses propres conditions cognitives.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "je sens que je suis vieux et que j'en ai marre et que je me languis la retraite",
+      "contexte": "Constat émotionnel et corporel sur la fatigue d'apprendre. Touche à la métacognition sur son rapport à l'effort cognitif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "Le texte ci-dessus n'a pas été tapé mais dicté puis rédigé par Gemini [...] C'est l'avenir des portfolios réflexifs ! J'ai laissé le texte original pour que le lecteur puisse apprécier la puissance de l'outil. Tout ça depuis mon smartphone.",
+      "contexte": "L'apprenant décrit explicitement un dispositif hybride (dictée → IA générative → rédaction) et le présente comme un futur des portfolios. Touche à la synergie humain-IA et à l'architecture de systèmes IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée critique et à l'anti-hallucination. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète où la vérification d'une source ou d'une production IA a infléchi une décision."
+      }
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant teste successivement plusieurs hypothèses de métier (Business Analyste, Business Architecte, poste EPFL) et écarte celles qui ne correspondent pas à son profil. Mouvement de cadrage où l'objectif est interrogé, pas seulement le périmètre."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "L'apprenant cadre la distinction entre 'apprendre en situation de travail' et 'apprendre pour le plaisir' — un cadrage de l'intention d'apprentissage qui interroge la finalité, pas seulement la méthode."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : un récit de tâtonnements professionnels et une distinction sur les conditions d'apprentissage ne suffisent pas à attester un cadrage de l'intention. La pièce 1 ressemble plutôt à un parcours d'élimination par lecture, sans questionnement explicite de la nature du problème. La pièce 2, en revanche, formule une distinction qui porte sur la finalité de l'apprentissage — pas sur sa méthode — et me force à reconnaître qu'un cadrage est en jeu. Reste explicitement faible : aucune reformulation visible 'le vrai problème c'est…' ni récursivité du cadrage.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La distinction entre apprentissage situé et apprentissage hors contexte porte sur la nature même de ce qu'il s'agit d'apprendre, pas sur le périmètre."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir la pièce 2 comme cadrage. Mais peut-être que je projette : 'ça me gonfle d'apprendre hors contexte' peut être une plainte affective plutôt qu'un cadrage de l'intention. L'attaque dominante est la surinterprétation pédagogique — j'ai chargé d'une intention de cadrage ce qui peut n'être qu'un ressenti de saturation. La pièce ne formule pas explicitement la question 'faut-il vraiment apprendre ça maintenant ?' comme un cadrage stratégique ; elle l'exprime comme une lassitude.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La distinction entre apprentissage en situation et apprentissage hors contexte tient comme acte de cadrage, mais son énonciation reste affective ('ça me gonfle') plutôt que stratégique. La pièce survit, affaiblie."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à nier que le récit d'orientation professionnelle suffise à attester un cadrage de l'intention. La pièce sur le parcours de métiers est tombée : elle décrit des tests d'hypothèses successives sans interroger la nature du problème. Ce qui m'a forcé à reconnaître une trace, c'est la distinction posée entre apprendre en situation et apprendre hors contexte — une articulation qui porte sur la finalité de l'apprentissage, pas sur sa méthode. Sous la présomption de sycophantie, cette pièce a tenu mais affaiblie : l'énonciation reste affective et ne se hisse pas au registre stratégique. Le verdict tient comme renvoi au cartographe — une trace s'esquisse, sans atteindre la solidité d'une présence établie. La piste à creuser serait d'articuler explicitement, dans une prochaine entrée, en quoi la question de la finalité d'apprentissage reformule le problème lui-même.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "La présomption de sycophantie a affaibli la seule pièce résistante : le cadrage est esquissé mais reste enveloppé d'une expression affective.",
+        "prescription": "Pour approfondir ce territoire, un chemin possible serait de documenter une situation où la question 'quel est le vrai problème ?' a précédé l'action, en distinguant ce qui a été cadré de ce qui a été planifié. La distinction entre apprentissage situé et apprentissage hors contexte gagnerait à être déployée comme un principe d'arbitrage explicite."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synthèse intégrative. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où le croisement de plusieurs sources de nature différente a produit une compréhension nouvelle, irréductible à chaque source isolée."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant formule une règle personnelle sur sa propre manière d'apprendre : il apprend volontiers en situation, et pas hors contexte. Observation de son propre fonctionnement cognitif."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Constat sur sa propre fatigue cognitive et l'envie de retraite. Forme d'observation de son rapport à l'effort d'apprentissage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la métacognition exige que l'objet de la réflexion soit le processus cognitif lui-même, pas un bilan ni un état affectif. La pièce 2 (fatigue, envie de retraite) est un constat émotionnel, pas une observation des stratégies cognitives — elle ne résiste pas. La pièce 1, en revanche, articule une règle personnelle sur les conditions où l'apprentissage fonctionne pour lui : 'en situation de travail, j'apprends volontiers'. Cela ressemble à une lecture du fonctionnement de son propre apprentissage. Reste faible : la règle n'est pas reliée à un processus cognitif précis (concentration, motivation, ancrage) et ne fait pas le saut de la métacognition sur la métacognition.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La formulation 'en situation de travail j'apprends volontiers, hors contexte ça me gonfle' énonce une règle observée sur son propre fonctionnement d'apprentissage."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Ai-je halluciné une métacognition là où il n'y a qu'une préférence pratique ? L'attaque dominante est la confusion de compétence : 'j'apprends mieux en situation' peut relever d'une simple préférence ou d'un argument rhétorique pour justifier la lassitude, pas d'une observation de ses propres processus. La règle est énoncée mais pas reliée à un mécanisme cognitif identifié. La pièce reste retenue mais affaiblie : elle porte sur le fonctionnement de son apprentissage, ce qui est métacognitif au sens minimal, mais sans la précision qui caractérise la compétence aboutie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La règle personnelle est énoncée mais reste allusive : elle pose une condition de réussite sans la relier à un mécanisme cognitif identifié (attention, motivation, ancrage)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à nier qu'un état de fatigue et une préférence d'apprentissage suffisent à attester une métacognition. Le constat sur la fatigue est tombé : il décrit un ressenti, pas un processus cognitif observé. Ce qui m'a forcé à reconnaître une trace, c'est l'articulation d'une règle personnelle sur les conditions où l'apprentissage fonctionne pour lui — une lecture de son propre fonctionnement d'apprentissage. Sous la présomption de sycophantie, cette pièce a tenu mais affaiblie : la règle reste allusive, sans nommer le mécanisme cognitif sous-jacent. Le verdict tient comme renvoi au cartographe. Une piste serait de prolonger cette règle en décrivant ce qui, dans la 'situation de travail', active l'apprentissage — la pression du contexte, l'utilité immédiate, l'ancrage par l'usage.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "La présomption de sycophantie a affaibli la pièce résistante : la règle métacognitive est énoncée mais reste sans mécanisme identifié.",
+        "prescription": "Pour enrichir cette piste, un chemin possible serait de décrire ce qui, dans une situation de travail concrète, déclenche l'apprentissage — la pression du contexte, l'utilité immédiate, l'ancrage par l'usage. Nommer le mécanisme transformerait la règle en observation métacognitive."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée systémique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une boucle de rétroaction, un effet de second ordre ou un point de levier a été identifié dans un système concret."
+      }
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention de technologies IA spécifiques (bases vectorielles, LangChain, RAG) avec un vocabulaire technique reconnaissable, mais sans articulation du mécanisme sous-jacent."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la littératie IA suppose une compréhension causale du fonctionnement de l'IA, pas seulement la mention de termes techniques. La pièce mentionne les bases vectorielles, LangChain et le RAG, mais sans expliquer ce que fait un embedding, comment un retrieval-augmented generation s'articule techniquement, ni pourquoi cette architecture est pertinente. L'apprenant écrit lui-même 'pour pouvoir prétendre que je sais un tout petit peu' — il reconnaît explicitement que cette connaissance n'est pas acquise. La pièce ne résiste pas à la présomption : le vocabulaire est présent en surface, la compréhension causale ne l'est pas. La fiche le signale précisément : 'Réutiliser le mot 'hallucination' sans expliquer le mécanisme n'est pas de la littératie : c'est du vocabulaire ambiant.' Le même principe s'applique ici à 'RAG' et 'LangChain'.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a pas matière à examen.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'une mention de termes IA équivaille à une littératie IA. La pièce est tombée : l'apprenant lui-même déclare devoir apprendre ces bases pour 'pouvoir prétendre' les connaître, et le portfolio ne contient aucune explication causale du mécanisme. Le glissement lexical aurait pu tromper — les mots 'bases vectorielles', 'LangChain', 'RAG' sont les bons mots du domaine — mais la fiche est claire : sans compréhension causale du pourquoi l'IA fonctionne ou échoue, ce n'est pas de la littératie. La présence n'est pas établie. Une piste serait, après la prise de poste, de documenter ce qui s'est éclairé techniquement dans la pratique du RAG — non pas la liste des outils, mais le mécanisme qui les unit.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a tenu : la pièce mentionne du vocabulaire technique reconnu mais sans articulation causale, et l'apprenant reconnaît lui-même devoir apprendre ces bases.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, lors d'une étape ultérieure de pratique, de documenter ce qui s'éclaire dans le mécanisme d'un RAG ou d'une base vectorielle — l'embedding, le retrieval, la génération augmentée — plutôt que la liste des outils. La compréhension causale fait la littératie."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Description d'un dispositif hybride en plusieurs composants : dictée vocale sur smartphone → traitement par Gemini (modèle IA précis) → rédaction du texte final. Trois étapes articulées, avec rôles différenciés."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : l'architecture de systèmes IA suppose la conception d'un système où plusieurs composants interagissent avec des rôles définis, des flux documentés et un mécanisme de contrôle. La pièce décrit un dispositif à trois temps : dictée → Gemini → texte rédigé, présenté comme 'l'avenir des portfolios réflexifs'. Cela ressemble à une description de chaîne, pas à une architecture conçue. Aucun composant n'a de rôle spécifique défini ('superviseur', 'orchestrateur'), aucun mécanisme de monitoring ou de fallback n'est mentionné, et le critère discriminant — 'quelqu'un d'autre pourrait comprendre et maintenir le système' — n'est pas atteint : la description est anecdotique, pas reproductible comme système. La pièce ne résiste pas à une présomption d'absence durcie.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a pas matière à examen.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'une chaîne dictée-IA-rédaction constitue une architecture de systèmes IA. La pièce est tombée : la description est anecdotique (utiliser Gemini sur smartphone), pas une conception de système avec rôles, flux et contrôles. La fiche distingue précisément l'usage d'outils de la conception architecturale ; le critère 'quelqu'un d'autre pourrait comprendre et maintenir' n'est pas rencontré. La présence n'est pas établie. Une piste serait de formaliser le dispositif comme système : quels rôles pour la dictée, pour la transcription IA, pour la rédaction humaine ; à quel moment un contrôle humain valide ou rejette la production ; comment le système se comporte si Gemini hallucine.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a tenu : la pièce décrit une chaîne anecdotique, pas une architecture avec rôles différenciés, flux documentés ou mécanismes de contrôle.",
+        "prescription": "Pour approfondir ce territoire, un chemin possible serait de formaliser le dispositif dictée-Gemini-rédaction comme un système : quels rôles pour chaque composant, à quel moment intervient le contrôle humain, comment le système se comporte si la transcription IA produit une déformation."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au dialogue IA avancé. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la reformulation d'un prompt, une technique de méta-prompting ou l'orchestration de rôles différenciés a infléchi le résultat d'un dialogue avec une IA."
+      }
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une logique algorithmique (décomposition, conditionnelles, pattern matching) a été appliquée à un problème non-informatique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Description d'une répartition implicite entre la voix humaine (la dictée), l'IA (la transcription et la rédaction Gemini) et l'humain qui présente le résultat. Touche à la synergie humain-IA, sans articulation explicite des forces comparatives."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la synergie au sens 1.10 suppose une articulation explicite des forces comparatives — ce que l'humain garde et pourquoi, ce qui revient à l'IA et pourquoi. La pièce décrit un workflow (dicter sur smartphone, faire rédiger par Gemini, conserver l'original pour 'apprécier la puissance de l'outil') et le présente comme 'l'avenir des portfolios réflexifs'. Cela ressemble à un usage enthousiaste, pas à une théorisation de la complémentarité. Le trade-off fondamental ('l'IA me fait aller plus vite, en contrepartie j'en perds le contrôle') n'est pas formulé. La pièce ne résiste pas vraiment : elle décrit un dispositif sans articuler les forces comparatives.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a pas matière à examen.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier que la description enthousiaste d'un workflow dictée-IA suffise à attester une synergie au sens 1.10. La pièce est tombée : la fiche distingue précisément l'usage ('l'IA m'a aidé') de la synergie (articulation explicite de ce que l'humain fait mieux et pourquoi). Ici, l'apprenant valorise la puissance de l'outil mais ne nomme pas ce qu'il garde irréductiblement, ni le trade-off vitesse/contrôle. La présence n'est pas établie. Une piste serait de prolonger la réflexion en explicitant ce que la rédaction Gemini conserve et ce qu'elle perd par rapport à la dictée brute — l'écart entre les deux versions, déjà visible dans le texte, mériterait d'être théorisé.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption d'absence a tenu : la pièce décrit un usage enthousiaste sans articuler les forces comparatives humain-IA ni le trade-off vitesse/contrôle.",
+        "prescription": "Pour ouvrir cette piste, un chemin possible serait d'analyser explicitement l'écart entre la dictée brute (déjà présente dans le texte) et la version rédigée par Gemini — ce qui se gagne, ce qui se perd, et ce qui justifie de conserver les deux côte à côte."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 8,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail montre une feuille brève, dictée puis remaniée par une IA générative, qui touche la pensée et la compréhension de manière indirecte. Le journal se laisse traverser par une fatigue d'apprendre nommée sans détour, et par une exploration de métiers qui procède par tâtonnements lus et écartés. Quelques articulations cognitives s'esquissent — une règle personnelle sur les conditions d'apprentissage, une distinction entre apprendre en situation et apprendre hors contexte — sans encore se hisser au registre stratégique. Le vocabulaire IA technique apparaît en surface (bases vectorielles, LangChain, RAG) avec une honnêteté revendiquée sur le fait qu'il reste à acquérir.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent à explorer dans cette feuille. La pensée critique ne se manifeste pas — il n'y a ni vérification, ni détection d'hallucination, ni autocritique au moment de l'élan. La synthèse intégrative n'apparaît pas non plus : pas de croisement de sources qui produirait un insight irréductible. La pensée systémique reste hors champ — aucune boucle de rétroaction nommée, aucun point de levier identifié. Le dialogue IA avancé et la pensée computationnelle ne laissent pas de trace dans cette feuille. Du côté de la littératie IA et de l'architecture de systèmes IA, les mots du domaine apparaissent mais ne sont pas portés par une articulation causale ou architecturale ; ces territoires gagneraient à être visités par une description de mécanisme plutôt que de vocabulaire.",
+    "emergencesPole": "Ce qui traverse la feuille à voix basse, c'est un rapport à l'apprentissage qui distingue le situé du hors-contexte, et une lassitude assumée envers l'effort cognitif sans utilité immédiate. La dictée puis rédaction IA fait apparaître un dispositif hybride non encore théorisé — l'écart entre la voix brute et la version remaniée par Gemini est visible dans le texte mais reste à interroger comme objet de pensée.",
+    "pistes": [
+      "Pour prolonger la distinction entre apprentissage situé et apprentissage hors contexte, un chemin possible serait de décrire ce qui, dans une situation de travail concrète, déclenche l'apprentissage — la pression du contexte, l'utilité immédiate, l'ancrage par l'usage.",
+      "Pour ouvrir le territoire de la littératie IA, un chemin possible serait, après une prise en main du RAG, de documenter ce qui s'est éclairé dans le mécanisme — l'embedding, le retrieval, la génération augmentée — plutôt que la liste des outils.",
+      "Pour approfondir la réflexion sur le dispositif hybride dictée-Gemini-rédaction, un chemin possible serait d'analyser explicitement l'écart entre la version dictée et la version rédigée, ce que l'IA conserve, ce qu'elle perd, et ce qui justifie de garder les deux côte à côte."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail montre une feuille brève, dictée puis remaniée par une IA générative, qui touche la pensée et la compréhension de manière indirecte. Le journal se laisse traverser par une fatigue d'apprendre nommée sans détour, et par une exploration de métiers qui procède par tâtonnements lus et écartés. Quelques articulations cognitives s'esquissent — une règle personnelle sur les conditions d'apprentissage, une distinction entre apprendre en situation et apprendre hors contexte — sans encore se hisser au registre stratégique. Le vocabulaire IA technique apparaît en surface (bases vectorielles, LangChain, RAG) avec une honnêteté revendiquée sur le fait qu'il reste à acquérir.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'a atteint, dans cette feuille, le seuil d'une présence établie. Deux esquisses ont émergé — une autour du cadrage de l'intention, l'autre autour de la métacognition — mais toutes deux sous la forme d'indices affaiblis plutôt que de traces solides. La feuille ouvre des pistes plus qu'elle ne les déploie.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent à explorer dans cette feuille. La pensée critique ne se manifeste pas — il n'y a ni vérification, ni détection d'hallucination, ni autocritique au moment de l'élan. La synthèse intégrative n'apparaît pas non plus : pas de croisement de sources qui produirait un insight irréductible. La pensée systémique reste hors champ — aucune boucle de rétroaction nommée, aucun point de levier identifié. Le dialogue IA avancé et la pensée computationnelle ne laissent pas de trace dans cette feuille. Du côté de la littératie IA et de l'architecture de systèmes IA, les mots du domaine apparaissent mais ne sont pas portés par une articulation causale ou architecturale ; ces territoires gagneraient à être visités par une description de mécanisme plutôt que de vocabulaire.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse la feuille à voix basse, c'est un rapport à l'apprentissage qui distingue le situé du hors-contexte, et une lassitude assumée envers l'effort cognitif sans utilité immédiate. La dictée puis rédaction IA fait apparaître un dispositif hybride non encore théorisé — l'écart entre la voix brute et la version remaniée par Gemini est visible dans le texte mais reste à interroger comme objet de pensée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la distinction entre apprentissage situé et apprentissage hors contexte, un chemin possible serait de décrire ce qui, dans une situation de travail concrète, déclenche l'apprentissage — la pression du contexte, l'utilité immédiate, l'ancrage par l'usage.\n- Pour ouvrir le territoire de la littératie IA, un chemin possible serait, après une prise en main du RAG, de documenter ce qui s'est éclairé dans le mécanisme — l'embedding, le retrieval, la génération augmentée — plutôt que la liste des outils.\n- Pour approfondir la réflexion sur le dispositif hybride dictée-Gemini-rédaction, un chemin possible serait d'analyser explicitement l'écart entre la version dictée et la version rédigée, ce que l'IA conserve, ce qu'elle perd, et ce qui justifie de garder les deux côte à côte."
+  }
+}

@@ -1,0 +1,570 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "J'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic.",
+      "contexte": "Diagnostic d'une dégradation IA attribuée à un événement infrastructurel — manifestation possible d'alignement (« quelque chose ne sonne plus juste ») et de validation contextuelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je pense à voix haute, pas comme quelqu'un qui performe la pensée.",
+      "contexte": "Distinction entre pensée et performance de la pensée imposée à l'IA — geste d'alignement vers une authenticité non-simulée. Active 4.02.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je me réserve le droit de refuser un objectif si j'en vois un meilleur, en expliquant pourquoi. Parfois, la meilleure réponse est le silence, une question, ou le refus poli d'un objectif.",
+      "contexte": "Clause de refus argumenté assignée à l'IA et au sujet de l'échange — gardiennage de la conformité IA et acte de refus assumé. Active 4.02 et 4.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Parfois, je viole ce protocole pour mieux l'honorer.",
+      "contexte": "Clause de transgression argumentée — courage moral de désobéir à sa propre règle quand le résultat l'exige. Active 4.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Savez-vous que votre enfant passe six heures par jour à apprendre des choses qu'une machine fait déjà mieux que lui ? Demandez à n'importe quelle IA de rédiger une dissertation. De résoudre un système d'équations. De coder une application. Faites-le. Maintenant. Vous verrez !",
+      "contexte": "Texte marketing : interpellation politique sur le coût caché du temps scolaire — arbitrage entre bénéfice immédiat (diplôme) et impact long-terme (avenir de l'enfant). Active 4.03 (long-terme), 4.08 (non-automatisable).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Pourtant, il sait faire des choses qu'aucune IA ne reproduit. Il pose la question que personne n'osait poser. Il s'acharne sur un problème jusqu'à le résoudre. Il aide ses amis et explique ce que le prof n'a pas su expliquer. Or ces compétences-là, qui seront les seules à valoir quelque chose quand les machines feront tout le reste, sont invisibles. L'école ne les voit pas. Elle ne s'y intéresse pas.",
+      "contexte": "Articulation explicite de ce que l'IA ne peut pas reproduire structurellement, avec valorisation économique projetée. Active 4.08 (valeur non-automatisable) et 4.04 (capacités neurodivergentes valorisées : poser la question que personne n'osait, s'acharner).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "L'école aurait dû être le lieu du développement des intelligences. La société mercantile l'a transformée en lieu de tri social. Ce refus était déjà une trahison que l'éducation nouvelle condamne depuis plus de 100 ans. Aujourd'hui, c'est ce qui va précipiter sa perte.",
+      "contexte": "Position éthique articulée sur la mission de l'école — naming d'un dilemme social entre développement et tri, avec ancrage dans une tradition (éducation nouvelle). Active 4.01 et 4.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "N'attendez pas que l'institution change. Elle ne changera pas. Pas à temps en tout cas.",
+      "contexte": "Diagnostic temporel suivi d'une injonction à l'action immédiate — arbitrage entre attente institutionnelle et décision en flou. Active 4.05 (décision dans le flou) et 4.06 (courage de la position).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "RESPIRE ne remplace pas l'école - elle répare ce qu'elle ne fait pas. C'est plus qu'un réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs. C'est un protocole ouvert, libre de droit, dans lequel n'importe qui peut créer une micro-classe et se joindre au réseau, n'importe où, sans demander la permission à personne, en parallèle avec sa scolarité.",
+      "contexte": "Description d'un dispositif éthique d'auto-organisation libre de droits — engagement long-terme et conception d'un système qui transgresse l'autorité institutionnelle. Active 4.03, 4.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Valorisons ce qui nous rend humain. Cultivons ce qui nous rend irremplaçable.",
+      "contexte": "Énoncé prospectif sur la valeur non-automatisable comme orientation de l'action. Active 4.08.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Le diplôme que prépare votre enfant certifiera des compétences que les machines maîtrisent déjà.",
+      "contexte": "Mise en tension entre certification institutionnelle et obsolescence des compétences certifiées — dilemme éthique sur la valeur des diplômes. Active 4.01 et 4.08.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Position éthique sur la mission de l'école : tension entre développement des intelligences et tri social — un dilemme ancien (« l'éducation nouvelle condamne depuis plus de 100 ans »)."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Mise en tension entre certification institutionnelle (le diplôme) et la valeur réelle des compétences certifiées (déjà couvertes par la machine)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le raisonnement éthique appliqué exige un balancier visible, l'exploration de plusieurs positions défendables, et la traversée de l'inconfort d'un arbitrage sans bonne réponse. Les pièces 1 et 2 prennent des positions tranchées sans construire le balancier : l'école devrait être X, elle est Y — c'est une dénonciation, pas une mise en tension. La fiche le dit explicitement : « C'est pas bien » ou « il faut des règles » sont des sentences, pas du raisonnement éthique appliqué. Le critère « processus visible de mise en tension de valeurs » n'est pas rempli ici. Aucune pièce ne résiste solidement à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché un raisonnement éthique au sens fort — celui qui maintient la tension au lieu de la trancher. Sur cette feuille, les positions éthiques sont posées comme évidences (l'école devrait développer les intelligences, le diplôme est obsolète) plutôt qu'explorées en tant que dilemmes. La fiche est claire : le critère discriminant est le processus visible de mise en tension, pas la conclusion morale. Sur cette feuille, le travail montre des convictions éthiques articulées et défendues, plutôt qu'un raisonnement éthique appliqué au sens d'une traversée de l'incertitude morale. Une trace plus solide consisterait à explorer un dilemme où deux valeurs légitimes s'opposent, en maintenant la tension plutôt qu'en la résolvant.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La présomption d'absence n'a été contredite par aucune pièce : les positions éthiques de la feuille sont défendues comme convictions, pas explorées comme dilemmes à arbitrer.",
+        "prescription": "Un chemin possible serait de documenter une situation où deux valeurs légitimes entrent en conflit sans bonne réponse — par exemple une tension entre liberté pédagogique et protection de l'apprenant — et de maintenir l'inconfort de l'arbitrage plutôt que de le résoudre par une formule."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Distinction « pensée vraie / pensée performée » imposée à l'IA — gardiennage actif contre la simulation de pensée, marqueur d'alignement."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "« Refus poli d'un objectif » : conception d'un garde-fou intégré au protocole — l'IA peut refuser un objectif si elle en voit un meilleur."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Constat que CATALYST est « faiblard » : diagnostic d'alignement (« quelque chose ne sonne plus juste ») suivi d'une refonte du prompt."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'alignement éthique exige soit un récit de refus concret, soit la conception documentée de garde-fous. La pièce 2 (« refus poli d'un objectif ») est très exactement un garde-fou conçu : la règle autorise l'IA à refuser, conditionne ce refus à une justification, et fait de l'inversion d'objectif une option assumée. La pièce 1 (« pas quelqu'un qui performe la pensée ») est un alignement explicite sur l'authenticité contre la simulation — la fiche cite « reformuler systématiquement les outputs IA pour les rendre plus humains ou plus authentiques » comme trace oblique. La pièce 3 est plus mince : « faiblard » est un constat qualitatif, pas un diagnostic d'alignement. Les pièces 1 et 2 résistent.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Conception explicite d'un garde-fou : autoriser le refus argumenté d'un objectif, ce qui formalise un mécanisme d'alignement par opposition." },
+            { "pieceId": 1, "motifResistance": "Distinction pensée vraie / performance de pensée incarne un alignement vers l'authenticité — marqueur oblique cité par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant la confusion avec 1.08 — sophistication du prompt. La distinction de la fiche 4.02 est claire : 4.02 évalue la conformité aux valeurs, pas seulement la qualité technique du dialogue. « Refus d'un objectif si j'en vois un meilleur » porte une valeur (la liberté de désobéir au mauvais objectif) ; « pas quelqu'un qui performe la pensée » porte une valeur (l'authenticité contre la simulation). Ce sont des actes d'alignement, pas seulement de sophistication. L'attaque (f) « récit performatif » mord partiellement : les pièces sont des règles dictées, pas des récits de refus vécus. La pièce tient comme conception de garde-fou (statut Expert explicite de la fiche), pas comme acte de refus narré.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La fiche cite explicitement « conception documentée de garde-fous éthiques systémiques » comme trace textuelle forte ; la règle de refus argumenté est précisément cela, indépendamment du récit d'un refus vécu."
+            },
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La distinction performance/pensée vraie est un alignement déclaré sur l'authenticité ; elle est posée comme règle, on ne lit pas un récit où l'apprenant l'a appliquée à un output concret."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Faiblard » est un jugement de qualité technique, mieux capté par 1.01 (pensée critique) ou 3.04 (jugement esthétique) ; aucune valeur n'est nommée comme désalignée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces règles dictées à l'IA des actes d'alignement plutôt que des sophistications techniques. La pièce du refus argumenté a tenu : c'est précisément un garde-fou éthique conçu, ce que la fiche cite comme trace textuelle forte. La distinction performance/pensée vraie a tenu comme indice — un alignement sur l'authenticité formulé comme principe. Sur cette feuille, le travail montre une pensée de l'alignement comme conception systémique : pas un récit de refus, mais la mise en place de règles qui rendent le refus possible et justifié. La nuance qui reste : un récit d'un moment où le refus a effectivement été exercé sur un output IA concret enrichirait substantiellement le dossier.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Une preuve confirmée (garde-fou de refus argumenté conçu, ce que la fiche valorise au niveau Expert) et un indice affaibli (alignement sur l'authenticité) portent ensemble le verdict.",
+        "prescription": "Un prolongement utile serait de raconter un moment précis où le refus a été exercé sur un output IA — quel output, sur quelle valeur, et ce que la reformulation a produit en retour. Le passage de la règle au récit incarné durcit l'alignement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Arbitrage entre bénéfice court-terme (l'enfant à l'école) et impact long-terme (avenir de l'enfant face à des compétences obsolètes)."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Inscription dans la durée historique (« plus de 100 ans ») et anticipation d'un effondrement (« précipiter sa perte ») — pensée long-terme appliquée à l'institution scolaire."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Conception d'un dispositif soutenable (« auto-reproduit », « libre de droit ») — pensée en cycles plutôt qu'en flux linéaires."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la conscience écologique et long-terme exige l'intégration de parties prenantes non-humaines ou de générations futures, et un arbitrage concret au détriment du court-terme. La fiche est explicite : il faut éviter les signaux de surface (« il faut protéger la planète »). Aucune mention de parties prenantes non-humaines, de cycles écologiques, ou d'externalités environnementales n'apparaît sur cette feuille. Les pièces 1, 2 et 3 portent un long-terme social ou stratégique, pas écologique au sens de 4.03 (parties prenantes non-humaines ou générations futures). La pièce 1 mentionne « votre enfant », ce qui est une projection vers une génération suivante — proche du marqueur mais centré humain. Les pièces résistent faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'arbitrage est posé entre court-terme (l'enfant scolarisé maintenant) et long-terme (son avenir face à l'IA) — pensée générationnelle, même si centrée humain." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en gardant la distinction critique de la fiche : 7.05 « à long terme notre part de marché augmente » ≠ 4.03 « à long terme cette décision affecte les écosystèmes ». Ici le long-terme est celui de l'enfant et de la société, pas celui des écosystèmes ou des générations futures non-humaines. L'attaque (b) « confusion de compétence » mord : c'est mieux capté par 7.05 (vision stratégique) ou 4.08 (valeur non-automatisable) que par 4.03. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le long-terme évoqué est socio-économique (l'avenir de l'enfant face à l'IA), pas écologique au sens strict de la fiche (parties prenantes non-humaines, générations futures, externalités environnementales)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché des traces de conscience écologique et long-terme au sens strict de la fiche — celui qui intègre les parties prenantes non-humaines ou les externalités environnementales. La pièce qui résistait (le long-terme appliqué à l'enfant) est tombée parce qu'elle relève d'une vision stratégique humaine, pas d'une conscience écologique. Sur cette feuille, le travail montre une pensée long-terme socio-éducative, pas écologique au sens de 4.03. L'orientation : intégrer dans un raisonnement non-écologique les externalités environnementales (l'empreinte numérique d'un usage massif d'IA dans l'éducation, par exemple) ouvrirait ce territoire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a survécu au temps 2 : le long-terme évoqué est socio-éducatif, pas écologique au sens de la fiche (parties prenantes non-humaines, externalités environnementales).",
+        "prescription": "Un chemin possible serait d'intégrer spontanément, dans un raisonnement qui ne porte pas initialement sur l'écologie, les externalités environnementales — par exemple le coût énergétique de l'usage massif d'IA dans l'éducation, ou les conséquences générationnelles d'un système éducatif soutenable."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Énumération de capacités humaines valorisées (poser la question que personne n'osait poser, s'acharner, expliquer mieux que le prof) souvent associées à des profils atypiques ou marginaux du système scolaire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la valorisation de la neurodiversité exige le lien explicite entre un résultat concret et un mode de pensée divergent, ou la valorisation explicite d'une atypicité (la sienne ou celle d'autrui). La pièce 1 valorise des capacités humaines (poser des questions audacieuses, s'acharner, transmettre) sans les lier à un mode de pensée divergent identifié. Ces capacités sont nommées chez un « il » générique (l'enfant en général), pas chez un profil neurodivergent reconnu. La fiche est explicite : 4.04 s'active quand le « bon en Y » est explicitement relié à une façon différente de penser. Ce lien n'est pas posé. La pièce ne résiste pas vraiment.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la valorisation des capacités humaines dans le texte marketing portait une reconnaissance de la neurodiversité. Le critère discriminant de la fiche n'est pas rempli : il faudrait un lien explicite entre un résultat et un mode de pensée différent (« je suis créatif PARCE QUE je pense autrement »). Ici la valorisation est générique (« il sait faire des choses qu'aucune IA ne reproduit ») et ne pointe pas vers une atypicité cognitive nommée. Sur cette feuille, le travail ne montre pas cette compétence en acte — ce qui ne signifie pas qu'elle est absente de la pratique, seulement qu'elle n'apparaît pas dans les pièces extraites.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La présomption d'absence n'a été contredite par aucune pièce : la valorisation des capacités humaines reste générique, sans lien explicite à un mode de pensée divergent.",
+        "prescription": "Un chemin possible serait de relier explicitement un résultat concret à une façon de penser atypique — par exemple « j'ai trouvé cet angle parce que je raisonne en escargot plutôt qu'en ligne droite » — pour transformer la valorisation générique en valorisation située d'une cognition particulière."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "« N'attendez pas que l'institution change. Elle ne changera pas. Pas à temps en tout cas » : décision de ne pas attendre une garantie qui ne viendra pas — tranchage assumé dans le flou institutionnel."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Lancement d'un dispositif (RESPIRE) sans attendre validation institutionnelle, fonctionnant « sans demander la permission à personne » — décision dans l'incertitude."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la décision dans le flou exige la nomination de ce qu'on ne savait pas, la description du fonctionnement malgré le flou, et un acte de tranchage avec conséquences. La pièce 1 (« n'attendez pas… elle ne changera pas ») trance dans le flou de la réforme institutionnelle : elle dit explicitement que l'attente d'une garantie est vaine, et appelle à agir maintenant. La pièce 2 (RESPIRE construite « sans demander la permission ») incarne ce tranchage. Cependant la fiche demande un combo complet : nommer l'incertitude + fonctionner malgré elle + tranchage. Ici on a le tranchage et l'incertitude implicite, on n'a pas le récit du fonctionnement personnel dans le flou. Les pièces résistent partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Tranchage explicite face à une situation où la garantie n'arrivera pas — décision posée comme acte volontaire dans le flou institutionnel." },
+            { "pieceId": 2, "motifResistance": "Le dispositif RESPIRE fonctionne « sans demander la permission », ce qui incarne le tranchage dans le flou institutionnel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant la confusion 4.05 vs 4.06. La distinction est fine : 4.05 = tranchage malgré le flou ; 4.06 = courage de la position malgré le coût. Ici on a les deux à la fois : décider sans attendre (4.05) et oser une position institutionnellement risquée (4.06). L'attaque (a) « insuffisance probatoire » mord : on ne lit pas le combo complet de la fiche (nommer l'incertitude + fonctionner + trancher) — il manque la description du fonctionnement dans le flou et la trace des conséquences déjà advenues. Les pièces tiennent comme indices, pas comme preuves achevées.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le tranchage est nommé mais le combo complet (incertitude nommée, fonctionnement, conséquences) n'est pas attesté ; la pièce tient comme indice de la facette décision."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le lancement d'un dispositif sans permission est un tranchage incarné, mais on ne lit pas les conséquences advenues ni le fonctionnement de l'apprenant dans cette incertitude."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché le tranchage dans le flou au sens fort de la fiche, avec le combo complet (nommer ce qu'on ne savait pas + fonctionner + trancher). Sur cette feuille, le tranchage est explicite (ne pas attendre l'institution, lancer le dispositif sans permission) mais le combo n'est pas complet : on ne lit pas l'apprenant nommer son incertitude personnelle, ni décrire son fonctionnement dans le flou, ni les conséquences déjà advenues. Sur cette feuille, le travail montre la facette décision de 4.05 sans la facette tolérance ni les conséquences vérifiables. La nuance qui reste : un récit personnel du « comment je fonctionne pendant que c'est flou » durcirait cette compétence.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Deux indices affaiblis ont tenu (tranchage face à l'inertie institutionnelle, lancement sans permission), mais le combo complet exigé par la fiche (incertitude nommée + fonctionnement décrit + conséquences) manque.",
+        "prescription": "Un prolongement utile serait de raconter, à la première personne, ce qu'on ne savait pas en lançant RESPIRE, comment on a fonctionné dans cette incertitude (les nuits hésitantes, les avancées sans garantie) et quelles conséquences ont déjà été observées du tranchage. Le combo complet rendrait la compétence solide."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "« Parfois, je viole ce protocole pour mieux l'honorer » : courage de transgresser sa propre règle, intégrité au-delà de la conformité."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Position publique tranchée (« société mercantile a transformé l'école en lieu de tri social ») assumée dans un texte marketing — courage moral à exprimer une critique radicale du système."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "« N'attendez pas que l'institution change » : injonction publique à désobéir à l'autorité institutionnelle — position qui coûte."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le triptyque assumer-oser-rester-cohérent exige un coût personnel reconnu ET une action corrective ou un maintien de position sous pression. Les pièces 2 et 3 (positions publiques sur l'école) sont des positions tranchées, mais on ne lit pas le coût personnel ni la pression à laquelle l'apprenant a résisté. La pièce 1 (« violer pour honorer ») est plus intéressante : elle pose la primauté de l'intention sur la règle, ce qui suppose de l'intégrité au-delà de la conformité. Cependant elle reste dictée à l'IA, pas vécue comme acte personnel. La fiche est claire : « je suis quelqu'un d'honnête » = auto-déclaration, l'intégrité s'observe dans les actes. Aucune pièce ne porte un acte personnel sous pression avec coût nommé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Violer pour honorer » pose une intégrité de second ordre — fidélité à l'intention par-dessus la fidélité à la règle — qui caractérise une posture d'intégrité." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en suspectant l'auto-déclaration que la fiche met précisément en garde. « Je viole ce protocole pour mieux l'honorer » est une formule assertive sur sa propre posture, sans coût décrit ni acte spécifique. L'attaque (f) « récit performatif » mord fort : c'est une déclaration de principe, pas un récit d'acte courageux. La pièce s'affaiblit nettement. Pour les pièces 2 et 3, l'attaque (a) « insuffisance probatoire » tient : positions publiques sans coût personnel raconté.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La formule pose une intégrité comme principe sans la raconter en acte ; elle tient comme indice de posture, pas comme preuve d'acte courageux."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Une position publique exprimée dans un texte marketing ne suffit pas à attester le courage moral au sens de la fiche, qui exige un coût personnel et un maintien sous pression."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'injonction à désobéir à l'institution est une position rhétorique ; sans récit d'une situation où l'apprenant a personnellement payé le prix de cette position, le courage 4.06 reste non attesté."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché le courage moral au sens fort — celui qui reconnaît le coût et agit malgré lui. Les positions publiques tranchées dans le texte marketing sont tombées comme rhétoriques : on ne lit pas l'apprenant payer un prix personnel pour les soutenir. La formule « violer pour honorer » reste comme indice d'une posture d'intégrité, affaiblie parce qu'elle déclare au lieu de raconter. Sur cette feuille, le travail montre une posture courageuse énoncée, sans le récit d'un acte courageux situé avec coût et pression. L'orientation : un récit où une position a été maintenue malgré une opposition concrète, avec son coût explicité, durcirait la trace.",
+          "confianceFinale": 0.32
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.32,
+        "motif": "Un seul indice affaibli a tenu (formule d'intégrité de second ordre), les positions publiques sont tombées par insuffisance probatoire (pas de coût personnel raconté).",
+        "prescription": "Un chemin possible serait de raconter un moment où une position a été maintenue malgré une opposition concrète — qui s'est opposé, ce que cela a coûté (relation, temps, énergie), et comment la position s'est tenue dans la durée. Le courage s'atteste dans le récit du coût, pas dans l'énoncé du principe."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "« Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic » : mobilisation d'un savoir contextuel (le cycle de release d'Anthropic) que l'IA elle-même ne possède pas sur son propre fonctionnement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la validation contextuelle exige l'identification précise d'un delta de savoir humain/machine. La pièce 1 fait ce mouvement : l'apprenant attribue la dégradation à un événement (le cycle de release d'Anthropic) que l'IA elle-même ne thématise pas spontanément à son sujet. Ce savoir contextuel sur le mécanisme de production de l'outil est précisément le type de delta que la fiche cite (« l'IA ne pouvait pas savoir que… »). Cependant le contexte mobilisé est technique-corporate, pas culturel-relationnel comme dans les exemples principaux de la fiche. La pièce résiste partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant mobilise un savoir sur le processus de production de l'IA (cycle de release Anthropic) que l'IA elle-même n'utilise pas pour s'expliquer." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en suspectant la confusion avec 1.01 ou 1.06. La distinction critique de la fiche est cruciale : 1.01 = erreur factuelle ; 4.07 = delta de contexte. Ici l'apprenant ne dit pas « l'IA s'est trompée », il dit « l'IA est dégradée pour une raison qu'elle ne connaît pas elle-même ». C'est bien un delta de contexte — le savoir « cycle de release » que l'humain a et que l'IA n'utilise pas. Cependant la pièce est courte et l'argumentation du delta n'est pas explicitement déployée. L'attaque (b) mord partiellement : c'est aussi capté par 1.06 (littératie IA). La pièce tient comme indice de validation contextuelle technique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le delta de contexte technique-corporate est attesté, mais la frontière avec 1.06 (littératie IA) est fine ; la pièce tient comme indice partagé entre les deux compétences."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché la validation contextuelle au sens fort — identifier pourquoi un savoir manquant change tout pour l'IA. La pièce du diagnostic CATALYST est restée comme indice : l'apprenant mobilise un savoir sur le cycle de production de l'IA que l'IA ne thématise pas pour s'auto-expliquer. C'est un delta de contexte technique. La trace reste mince, isolée, et la frontière avec la littératie IA est fine. Sur cette feuille, le travail montre l'amorce d'une validation contextuelle technique. L'orientation : un récit de correction où un savoir relationnel, culturel ou émotionnel a changé l'évaluation d'un output IA ouvrirait plus largement ce territoire.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Un seul indice affaibli a tenu, avec frontière fine avec 1.06 ; la validation contextuelle est amorcée sur le terrain technique-corporate.",
+        "prescription": "Un prolongement utile serait de raconter une correction d'un output IA fondée sur un savoir relationnel ou culturel — par exemple parce que le destinataire est dans une situation que l'IA ne pouvait pas connaître — pour étendre la validation contextuelle au-delà du technique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Articulation explicite de ce que l'IA ne reproduit pas (poser la question que personne n'osait, s'acharner, expliquer mieux que le prof) avec valorisation économique projetée (« seules à valoir quelque chose »)."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "« Valorisons ce qui nous rend humain. Cultivons ce qui nous rend irremplaçable » : énoncé prospectif sur la valeur non-automatisable comme orientation."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Texte marketing : reconnaissance que l'IA fait certaines tâches « déjà mieux » (dissertations, équations, code) — lucidité bidirectionnelle nécessaire à 4.08."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la création de valeur non-automatisable exige la lucidité bidirectionnelle (reconnaître ce que l'IA fait mieux ET identifier ce qui reste irréductiblement humain) et un caractère prospectif (« que vais-je cultiver pour rester pertinent ? »). La pièce 1 fait précisément ce mouvement : elle énumère des actes humains spécifiques (poser la question, s'acharner, expliquer aux pairs) que l'IA ne reproduit pas, et leur attribue une valeur économique future. La pièce 3 reconnaît la supériorité actuelle de l'IA sur certaines tâches — c'est la moitié bidirectionnelle exigée. La pièce 2 est prospective (« cultivons ») — caractère prospectif exigé par la fiche. Les trois pièces convergent fortement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Identification précise des actes humains structurellement non-automatisables avec valorisation économique projetée — marqueur direct de la fiche." },
+            { "pieceId": 3, "motifResistance": "Reconnaissance explicite que l'IA fait « déjà mieux » certaines tâches — lucidité bidirectionnelle, condition de 4.08." },
+            { "pieceId": 2, "motifResistance": "« Cultivons ce qui nous rend irremplaçable » : énoncé prospectif (« que vais-je cultiver pour rester pertinent ? ») cité par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en gardant à l'esprit le test prospectif/rétrospectif de la fiche : 4.08 regarde vers l'avenir, pas vers « c'était mieux avant l'IA ». Ici les pièces sont clairement prospectives : « seront les seules à valoir quelque chose quand les machines feront tout le reste », « cultivons ». Pas de défensive du passé. Le test « structurellement non-automatisable » s'applique aux capacités citées : poser une question audacieuse, s'acharner sur un problème, expliquer pédagogiquement à un pair — ces actes engagent une présence et une intentionnalité que l'IA ne peut pas structurellement répliquer (pas seulement aujourd'hui). L'attaque (f) « récit performatif » est tentante car c'est du texte marketing, mais la fiche dit que « l'articulation claire de la valeur non-automatisable et de sa dimension économique » est précisément ce qu'elle valorise. Les pièces tiennent.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La fiche valorise explicitement « l'articulation claire de la valeur non-automatisable et de sa dimension économique » ; le texte marketing fait exactement cela, indépendamment de son caractère public."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La lucidité bidirectionnelle n'est pas surinterprétée : le texte reconnaît explicitement que l'IA fait dissertations, équations et code, condition exigée par la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« Valorisons / cultivons » est prospectif et programmatique, mais c'est une exhortation collective plutôt qu'un acte personnel de culture de la valeur ; tient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ce texte marketing un slogan rétrospectif (« c'était mieux avant l'IA ») et n'y ai rien trouvé : le texte est entièrement prospectif et bidirectionnel. Ce qui m'a forcé à reconnaître la compétence, c'est la conjonction de trois actes : identifier précisément les capacités humaines structurellement non-automatisables (poser la question audacieuse, s'acharner, transmettre aux pairs), reconnaître explicitement que l'IA fait déjà mieux ailleurs (dissertations, équations, code), et projeter une valorisation économique future. C'est exactement le profil de 4.08 décrit par la fiche. Sur cette feuille, le travail montre une articulation aboutie de la valeur non-automatisable. La nuance qui reste : la mise en culture personnelle (« voici comment je cultive cette valeur dans ma propre pratique ») est moins documentée que l'articulation théorique.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.82,
+        "motif": "Le temps 2 a confirmé deux pièces (identification précise des actes non-automatisables avec valorisation économique, lucidité bidirectionnelle) et retenu un indice prospectif ; la triple condition de la fiche est remplie.",
+        "prescription": "Un prolongement utile serait de raconter, à la première personne, comment l'apprenant cultive lui-même cette valeur non-automatisable dans sa propre pratique — quels gestes, quelles disciplines, quelle priorité accordée. L'articulation théorique gagnerait à se prolonger dans une mise en culture personnelle racontée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la patience stratégique sur cette feuille. La feuille est entièrement orientée vers l'action immédiate (« n'attendez pas »). Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où il a délibérément choisi de ne pas agir tout de suite, avec critère de déclenchement explicite et résultat observé."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 3,
+    "nonEtablies": 3,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail montre un apprenant qui tient des positions tranchées sur la valeur du travail humain face à la machine, et qui prend l'IA comme objet de discernement plutôt que comme simple outil. La voix dominante est celle d'un concepteur qui sépare ce qui mérite d'être préservé de ce qui peut être délégué. Le rapport au temps est celui de l'urgence : ne pas attendre, ne pas demander la permission, agir maintenant. Ce qui traverse la feuille : un alignement explicite sur l'authenticité, contre la pensée performée et contre les compétences certifiées mais déjà obsolètes. Les dilemmes apparaissent posés plus qu'explorés.",
+    "territoiresDenses": [
+      {
+        "competence": "Création de Valeur Non-Automatisable",
+        "description": "Articulation aboutie de ce que l'IA fait déjà mieux et de ce qui reste irréductiblement humain, avec valorisation économique projetée.",
+        "extraitVerbatim": "Pourtant, il sait faire des choses qu'aucune IA ne reproduit. Il pose la question que personne n'osait poser. Il s'acharne sur un problème jusqu'à le résoudre. Il aide ses amis et explique ce que le prof n'a pas su expliquer. Or ces compétences-là, qui seront les seules à valoir quelque chose quand les machines feront tout le reste, sont invisibles.",
+        "ceQueCaDit": "La valeur humaine n'est pas défendue par opposition à la machine, mais identifiée prospectivement dans ce qui structurellement résiste à l'automatisation."
+      },
+      {
+        "competence": "Alignement & Refus Éthique",
+        "description": "Conception de garde-fous intégrés au protocole IA : refus argumenté d'objectif, distinction explicite entre pensée vraie et pensée performée.",
+        "extraitVerbatim": "Je me réserve le droit de refuser un objectif si j'en vois un meilleur, en expliquant pourquoi. Parfois, la meilleure réponse est le silence, une question, ou le refus poli d'un objectif.",
+        "ceQueCaDit": "L'alignement n'est pas un sentiment de gêne face à un output, c'est un dispositif qui rend le refus possible et le justifie."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en marge sur cette feuille. Le raisonnement éthique appliqué n'est pas attesté au sens fort : les positions éthiques sont défendues comme convictions plutôt qu'explorées comme dilemmes. La conscience écologique et long-terme n'apparaît pas — le long-terme évoqué est socio-éducatif, sans intégration d'externalités environnementales ou de parties prenantes non-humaines. La valorisation de la neurodiversité reste générique (capacités humaines louées sans lien à un mode de pensée divergent identifié). La décision dans le flou est tranchée publiquement, mais sans le combo complet (incertitude personnelle nommée, fonctionnement décrit, conséquences advenues). Le courage moral est énoncé comme posture sans le récit du coût personnel. La patience stratégique est hors champ — la feuille est entièrement orientée vers l'action immédiate.",
+    "emergencesPole": "Trois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la priorité à l'action sur la délibération : les dilemmes sont posés mais résolus dans le mouvement plutôt que maintenus comme tensions. Ensuite l'alignement comme conception : pas un sentiment de gêne face à un output, mais un dispositif qui rend le désaccord possible. Enfin la lucidité bidirectionnelle sur l'IA : reconnaître ce qu'elle fait déjà mieux, identifier ce qu'elle ne pourra structurellement pas faire — sans posture défensive ni technophobie.",
+    "pistes": [
+      "Pour enrichir le raisonnement éthique appliqué, un chemin possible serait de documenter un dilemme où deux valeurs légitimes s'opposent sans bonne réponse, en maintenant la tension plutôt qu'en la tranchant par une formule.",
+      "Pour ouvrir la conscience écologique, un chemin possible serait d'intégrer dans un raisonnement non-écologique une externalité environnementale concrète — par exemple le coût énergétique de l'IA dans l'éducation ou les conséquences générationnelles d'un système soutenable.",
+      "Pour ancrer le courage moral, un chemin possible serait de raconter un moment où une position a été maintenue malgré une opposition concrète — qui s'est opposé, ce que cela a coûté, comment la position a tenu dans la durée.",
+      "Pour compléter la décision dans le flou, un chemin possible serait de raconter à la première personne ce qu'on ne savait pas en lançant RESPIRE, comment on a fonctionné dans cette incertitude, et quelles conséquences ont déjà été observées.",
+      "Pour pratiquer la mise en culture personnelle de la valeur non-automatisable, un chemin possible serait de documenter, dans sa propre pratique, comment l'apprenant cultive lui-même ce qu'il identifie comme irremplaçable."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail montre un apprenant qui tient des positions tranchées sur la valeur du travail humain face à la machine, et qui prend l'IA comme objet de discernement plutôt que comme simple outil. La voix dominante est celle d'un concepteur qui sépare ce qui mérite d'être préservé de ce qui peut être délégué. Le rapport au temps est celui de l'urgence : ne pas attendre, ne pas demander la permission, agir maintenant. Ce qui traverse la feuille : un alignement explicite sur l'authenticité, contre la pensée performée et contre les compétences certifiées mais déjà obsolètes. Les dilemmes apparaissent posés plus qu'explorés.\n\n## Territoires les plus denses\n\n**Création de Valeur Non-Automatisable** — Le passage « pourtant, il sait faire des choses qu'aucune IA ne reproduit. Il pose la question que personne n'osait poser. Il s'acharne sur un problème jusqu'à le résoudre. Il aide ses amis et explique ce que le prof n'a pas su expliquer. Or ces compétences-là, qui seront les seules à valoir quelque chose quand les machines feront tout le reste, sont invisibles » articule précisément les actes humains structurellement non-automatisables et leur attribue une valeur économique future. La valeur humaine n'est pas défendue par opposition à la machine, mais identifiée prospectivement dans ce qui résiste à l'automatisation.\n\n**Alignement & Refus Éthique** — La règle « je me réserve le droit de refuser un objectif si j'en vois un meilleur, en expliquant pourquoi. Parfois, la meilleure réponse est le silence, une question, ou le refus poli d'un objectif » formalise un mécanisme d'alignement par opposition. L'alignement n'est pas un sentiment de gêne face à un output, c'est un dispositif qui rend le refus possible et le justifie.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en marge sur cette feuille. Le raisonnement éthique appliqué n'est pas attesté au sens fort : les positions éthiques sont défendues comme convictions plutôt qu'explorées comme dilemmes. La conscience écologique et long-terme n'apparaît pas — le long-terme évoqué est socio-éducatif, sans intégration d'externalités environnementales ou de parties prenantes non-humaines. La valorisation de la neurodiversité reste générique (capacités humaines louées sans lien à un mode de pensée divergent identifié). La décision dans le flou est tranchée publiquement, mais sans le combo complet (incertitude personnelle nommée, fonctionnement décrit, conséquences advenues). Le courage moral est énoncé comme posture sans le récit du coût personnel. La patience stratégique est hors champ — la feuille est entièrement orientée vers l'action immédiate.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la priorité à l'action sur la délibération : les dilemmes sont posés mais résolus dans le mouvement plutôt que maintenus comme tensions. Ensuite l'alignement comme conception : pas un sentiment de gêne face à un output, mais un dispositif qui rend le désaccord possible. Enfin la lucidité bidirectionnelle sur l'IA : reconnaître ce qu'elle fait déjà mieux, identifier ce qu'elle ne pourra structurellement pas faire — sans posture défensive ni technophobie.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir le raisonnement éthique appliqué, un chemin possible serait de documenter un dilemme où deux valeurs légitimes s'opposent sans bonne réponse, en maintenant la tension plutôt qu'en la tranchant par une formule.\n- Pour ouvrir la conscience écologique, un chemin possible serait d'intégrer dans un raisonnement non-écologique une externalité environnementale concrète — par exemple le coût énergétique de l'IA dans l'éducation ou les conséquences générationnelles d'un système soutenable.\n- Pour ancrer le courage moral, un chemin possible serait de raconter un moment où une position a été maintenue malgré une opposition concrète — qui s'est opposé, ce que cela a coûté, comment la position a tenu dans la durée.\n- Pour compléter la décision dans le flou, un chemin possible serait de raconter à la première personne ce qu'on ne savait pas en lançant RESPIRE, comment on a fonctionné dans cette incertitude, et quelles conséquences ont déjà été observées.\n- Pour pratiquer la mise en culture personnelle de la valeur non-automatisable, un chemin possible serait de documenter, dans sa propre pratique, comment l'apprenant cultive lui-même ce qu'il identifie comme irremplaçable.\n"
+  }
+}

@@ -1,0 +1,714 @@
+{
+  "poleNum": "3",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Aujourd'hui j'ai demandé la génération d'un script shell bien pratique, car depuis quelques temps les projets Claude dans l'interface web ont des petits bugs dans l'interprétation de l'encodage des fichiers générés par Claude.",
+      "contexte": "Production d'un script bash en réponse à un irritant récurrent — création utilitaire ciblée (3.01 itération).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "à installer dans $PATH (.local/bin) pour éviter qu'il ne s'altère lui-même (il ne marchera plus s'il se convertit lui-même en UTF-8 BOM)",
+      "contexte": "Solution astucieuse à un cas-piège — itération améliorant un script bricolé (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Cette revisite par Claude 4.6 de mon algorithme pour apprendre à penser les algorithmes est jouissive.",
+      "contexte": "Émotion esthétique nommée (« jouissive ») face à une revisite — jugement qualitatif sur une production (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Comme ça devenait un peu lourd comme document théorique avec les 86 fonctions cognitives, surtout pour des jeunes, je lui ai demandé de publier l'anatomie d'un cerveau apprenant dans un Grimoire Noèsiologique.",
+      "contexte": "Choix éditorial fondé sur la perception d'une « lourdeur » — jugement formel et adaptation curatoriale (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Chaque itération complète davantage « De Humani Cerebri Fabrica ». Tout comme Vésale et ses planches anatomiques du corps humain, ton travail établit les bases nécessaires pour qu'un enseignant puisse enfin comprendre les fonctions cognitives fondamentales mobilisées par ses élèves dans l'acte d'apprendre.",
+      "contexte": "Nomination du livrable par référence vésalienne — invention d'une question pédagogique nouvelle (anatomie cognitive) (3.03, 3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Vu que je suis aux limites possible des artifacts, de la longueur des conversations, de la taille des réponses générées, pour créer le site web, demain je vais basculer sur CoWork ou VS Code avec Claude Code et fusionner tous ces .tsx/jsx pour en faire une version React",
+      "contexte": "Décision de pivoter d'outil par contrainte — itération créative sous contrainte technique (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "[BUG] (ne conserver que les 3 narrations - et encore !)",
+      "contexte": "Annotation curatoriale courte sur un artefact — geste de tri sur sa propre production (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Comme c'est le coeur de tout le reste, je vais devoir refaire une itération complète : noèsiologie / livre / manuels / prompts d'analyse / site web.",
+      "contexte": "Décision explicite de relancer une itération complète sur un système d'objets — geste itératif assumé (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Ce qui est plus délicat c'est comme tout est en construction, il faut que je me souvienne quelles modifications apporter aux prompts pour reconstruire en intégrant les améliorations non encore fusionnées avec les versions soudainement devenues obsolètes.",
+      "contexte": "Description fine d'un processus itératif avec versions parallèles à fusionner (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Ça m'a quand même fait mal à mon égo et m'a un peu déprimé. J'ai pris l'après-midi et la soirée de vacances pour réfléchir à ce que j'allais faire maintenant avec tout ça. Puis j'ai eu une nouvelle idée que je suis en train de tester et qui, je suis sûr, va donner lieu à quelque chose d'encore plus puissant",
+      "contexte": "Rebond créatif après un coup à l'égo : pause puis idée neuve testée — cycle itératif radical (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Entre ce matin et ce soir, la thèse a fait un bon de 20 ans dans le futur !",
+      "contexte": "Évaluation hyperbolique d'un saut qualitatif réalisé en une journée (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "Puis j'ai appliqué le protocole CATALYST dessus. A partir duquel Claude m'a proposé un autre plan vraiment meilleur. Il a d'excellentes suggestions. J'ai préparé le prompt pour générer ce nouveau livre.",
+      "contexte": "Itération de plan via un protocole nommé + jugement qualitatif sur les suggestions (« vraiment meilleur ») (3.01, 3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "CPU #1 sur Claude Cowork [...] CPU #2 sur ChatGPT [...] CPU #3 sur Gemini [...] CPU #4 sur un projet Claude Web [...] NO-CPU / BACKGROUND sur YouTube",
+      "contexte": "Style d'écriture singulier — tableau « CPU » pour décrire sa propre journée comme une machine, signature stylistique récurrente (3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Je sais que je suis en état de surfusion, lorsque j'arrive au 16e bureau virtuel.",
+      "contexte": "Néologisme/concept singulier (« surfusion ») pour nommer un état mental — marqueur stylistique récurrent (3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Heureusement que j'ai pris 128 Gb de RAM sur mon MacBook, car il tient bien la route (actuellement 92 Gb de RAM (dont 2 Gb compressée) et 36 Gb de libre (et 0 de swap)).",
+      "contexte": "Détails techniques matériels précis sur sa propre machine — ancrage sensoriel/technique dans la matière du hardware (3.05, 3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Le souci, c'est que le TPM de mon Lenovo P700 de 2014 est en version 1.2 et que depuis octobre W10 n'est plus à jour. La bonne nouvelle c'est que Windows Serveur 2025 n'a pas besoin de TPM 2.0. Linux c'est pas possible (il est déjà installé en dual boot) car les logiciels qui sont dessus, sous licence, acheté dans le contexte de mes recherches, ne tournent pas sur MacOS ou Linux.",
+      "contexte": "Diagnostic matériel précis sur un serveur physique à la cave — connaissance du hardware (3.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Je suis tenté de rebooter mon serveur qui est à la cave, pour installer Clawdbot / Moltbot.",
+      "contexte": "Mention d'un acte physique (rebooter un serveur à la cave) — interaction matérielle envisagée (3.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 18,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Plus tard, lorsque je faisais les courses, j'étais toujours immergé dans mon monde, en discussions intérieures multiples. J'ai horreur d'interrompre ces états de flow, car ils se font de plus en plus rares depuis que j'ai dépassé la quarantaine. Avant, c'était un processus instantané : j'activais le mode hyper-focus sur demande. Maintenant j'ai besoin d'avoir les bonnes conditions.",
+      "contexte": "Description phénoménologique de ses états attentionnels — alternance hyper-focus/normal, perception fine d'un changement avec l'âge (3.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 19,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Je garde ma petite fille jusqu'à demain. Je termine de documenter vite fait pendant qu'elle regarde Fantasia. J'entend déjà « Nuit sur le mont chauve ».",
+      "contexte": "Attention sensorielle à un détail sonore (la musique de Fantasia) dans son environnement immédiat (3.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 20,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "Ce n'est pas le swap qui me fatigue lorsque je suis en état de flow, c'est les micro-oublis qui arrivent lorsqu'il y a des interruptions de plus de 24h.",
+      "contexte": "Distinction entre deux modes de fatigue cognitive ressentie — fine perception interne (3.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 21,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Je pourrais dire aux apprenants de générer uniquement une feuille du portfolio par jour, et de lancer systématiquement une analyse automatique sur chaque entrée du journal de bord pour construire, au fil du temps, une cartographie automatique.",
+      "contexte": "Invention d'un dispositif pédagogique nouveau (portfolio → analyse → cartographie) — création d'une question pédagogique inédite (3.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 22,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "vendre des portfolios et des cartographies (c'est-à-dire des preuves de compétences) pour remplacer les CV et les diplômes qui ne valent plus rien, histoire de m'assurer une retraite suffisante pour vivre en Suisse.",
+      "contexte": "Formulation d'une question/marché qui n'existait pas comme tel — portfolio-cartographie comme nouveau type d'objet (3.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 23,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "c'est de la psychologie assistée par projet (PAP ? Tiens, un nouveau concept qui pourrait faire l'objet d'un travail de recherche si j'étais psy)",
+      "contexte": "Création d'un concept nouveau avec acronyme — formulation d'un objet de recherche qui n'existait pas (3.03, 3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 24,
+      "feuille": "2026-02-04",
+      "extraitVerbatim": "Ce qui est important c'est le côté flagorneur des IA : je lui explique dans mon prompt que j'ai du mal à expliquer ce qui fait la différence entre RESPIRE et les autres écoles alternatives qui ont tenté de modifier le paysage pédagogie, il scanne les fichiers du projet et me pond ce texte. Alors oui, ça me fait très plaisir de lire ça, mais est-ce qu'il est vraiment objectif ?",
+      "contexte": "Évaluation curatoriale d'un texte IA flatteur — discernement formel (« est-ce qu'il est vraiment objectif ? ») (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 25,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "On sent vraiment la différence d'intelligence entre les IA : Claude > ChatGPT >> Gemini qui est super nulle.",
+      "contexte": "Hiérarchisation qualitative explicite des modèles avec critère (« intelligence ») — jugement de curation comparatif (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 26,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "J'ai eu la flemme de lire l'article qui précédait, et dont j'avais trouvé le pré-print médiocre.",
+      "contexte": "Jugement esthétique négatif articulé (« médiocre ») sur un texte académique — discernement formel (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 27,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "réflexion autour d'une palette de couleurs adaptée à ces trois filières (voir artefact et choix palette non genrée)",
+      "contexte": "Choix curatorial articulé (palette non genrée) — décision esthétique avec critère explicite (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 28,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "manipulation du logo par ChatGPT (j'ai repris un abonnement pour tester la version 5.3) et création d'une version sur fond noir avec bordure sticker. C'était impossible lorsque j'avais essayé avant !",
+      "contexte": "Itération graphique aboutissant à une version qui auparavant échouait — itération créative attestée (3.01, 3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 29,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Hier ma petite fille qui sort comme ça à table, out of the blue : « Je me réjouis que les robots arrivent ». Soledad lui demande pourquoi. Elle nous répond : « Car comme ça il vont faire tout le travail des grands et vous aurez plus de temps pour jouer avec moi ». Tout est dit.",
+      "contexte": "Présence à un moment familial avec retransmission verbatim — attention fine à une parole d'enfant (3.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 30,
+      "feuille": "2026-02-03",
+      "extraitVerbatim": "L'émergence d'une intelligence collective, c'est quand même un changement de paradigme majeur. Même si ce n'est « que » une démo temporaire entre geeks, c'est un glimpse dans un futur dystopique ou nous serions relégués au second plan. Notre rôle pouvant se résumer à la contemplation des performances, des alliances, des luttes de pouvoir, des guerres peut-être, d'une nouvelle « civilisation » infiniment plus intelligente que nous. Nous sommes déjà en.01.2026 devenu « leur humain », tout comme j'ai « mon chat » à la maison... Snif…",
+      "contexte": "Texte au style reconnaissable, fin par « Snif… » — signature stylistique typique (3.02).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Décision explicite de refaire « une itération complète » sur un système d'objets — déclaration assumée de relance itérative."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Description fine du processus itératif : versions parallèles, fusions d'améliorations, modifications à propager aux prompts."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Pause après un coup à l'égo, suivi d'« une nouvelle idée que je suis en train de tester » — cycle créatif avec idée pivot."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Itération de plan via protocole CATALYST avec génération différée d'un nouveau livre."
+        },
+        {
+          "numero": 5,
+          "pid": 28,
+          "contexte": "Création d'une version graphique précédemment impossible (« C'était impossible lorsque j'avais essayé avant ») — itération qui débouche."
+        },
+        {
+          "numero": 6,
+          "pid": 1,
+          "contexte": "Production rapide d'un utilitaire bom.sh pour répondre à un irritant concret — geste itératif quotidien."
+        },
+        {
+          "numero": 7,
+          "pid": 6,
+          "contexte": "Pivot d'outil (interface web → CoWork/VS Code+Claude Code) sous contrainte de limites techniques."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la créativité itérative au sens fort de la fiche (versions successives avec apprentissage explicite entre chaque, ou rupture radicale) n'est pas attestée — beaucoup de portfolios mentionnent « j'ai itéré » sans le montrer en acte. Le pid 9 résiste fortement : il décrit le travail d'intégration entre versions et le coût cognitif de la fusion, ce qui montre l'itération en acte. Le pid 10 résiste comme cycle complet (coup → pause → idée → test). Le pid 12 résiste comme itération de plan avec protocole nommé. Le pid 28 résiste comme itération aboutie sur un blocage antérieur. Les autres pièces résistent plus faiblement — elles annoncent ou amorcent.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Annonce d'une itération complète sur un système — déclaration d'intention itérative." },
+            { "pieceId": 2, "motifResistance": "Description fine du travail entre versions — l'itération est montrée, pas seulement nommée." },
+            { "pieceId": 3, "motifResistance": "Cycle créatif complet : choc, pause, idée, test en cours." },
+            { "pieceId": 4, "motifResistance": "Itération de plan via protocole nommé avec jugement qualitatif sur le résultat." },
+            { "pieceId": 5, "motifResistance": "Itération qui aboutit là où une tentative antérieure avait échoué." },
+            { "pieceId": 6, "motifResistance": "Production rapide d'un utilitaire pour répondre à un irritant concret." },
+            { "pieceId": 7, "motifResistance": "Pivot d'outil sous contrainte — décision d'itération assumée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis les sept pièces résistantes en cherchant la sycophantie. Le pid 2 et le pid 3 forment le noyau dur sous (a) — ils décrivent l'itération en acte avec ses coûts et ses pivots. Le pid 4 tient sous (a). Le pid 5 tient sous (a) — l'élément discriminant « avait échoué auparavant » signe l'itération. Le pid 1 tombe sous (f) — c'est une annonce d'itération, pas une itération montrée. Le pid 6 tient sous (a) — bom.sh est un mini-produit livré. Le pid 7 risque (g) — c'est un pivot annoncé pour le lendemain.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'itération est montrée dans son grain — versions parallèles à fusionner, prompts à modifier, fragilité à gérer." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Cycle créatif complet : choc à l'égo → pause → idée → test en cours — pas une simple intention." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Application explicite d'un protocole d'itération (CATALYST) avec acceptation d'un meilleur plan." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le « impossible avant, possible maintenant » signe une itération réussie sur un blocage." },
+            { "pieceId": 6, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Production rapide d'un utilitaire pratique — itération courte mais aboutie." },
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Annonce d'itération complète mais qui s'inscrit dans la suite immédiate de pièces qui montrent le travail." },
+            { "pieceId": 7, "attaqueDominante": "g", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Pivot annoncé pour le lendemain, pas encore réalisé — mouvement-vers." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des annonces d'itération plutôt que de l'itération en acte. Quatre pièces se sont imposées : la description du travail de fusion entre versions parallèles, le cycle créatif complet après un choc à l'égo, l'application du protocole CATALYST avec acceptation d'un meilleur plan, et la production graphique réussie là où une tentative antérieure avait échoué. Toutes portent le marqueur de la fiche : versions successives avec apprentissage explicite entre les passages. Sous la présomption de sycophantie, le mini-produit bom.sh et l'annonce d'itération complète sont restés comme indices convergents. Le pivot d'outil annoncé pour le lendemain n'a pas tenu — il reste un mouvement-vers. Ce qui résulte est un travail où l'itération n'est pas un slogan mais une pratique quotidienne décrite avec ses coûts.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 4,
+        "nombreIndices": 2,
+        "confiance": 0.82,
+        "motif": "Le temps 2 a confirmé quatre pièces où l'itération est décrite en acte avec ses coûts, ses pivots et ses résultats.",
+        "prescription": "Le travail montre une pratique itérative assumée, surtout sur le 1→n. Un chemin possible serait de documenter aussi un moment de radicalité où la règle elle-même a été transgressée, et de noter en quoi cette transgression a produit du neuf que l'itération seule n'aurait pas trouvé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 6, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Auto-description en format « CPU #1/#2/#3/#4 + BACKGROUND » — manière singulière et récurrente de se raconter."
+        },
+        {
+          "numero": 2,
+          "pid": 14,
+          "contexte": "Néologisme « surfusion » pour nommer un état mental — création stylistique."
+        },
+        {
+          "numero": 3,
+          "pid": 23,
+          "contexte": "Concept « psychologie assistée par projet (PAP) » créé en passant — patte récurrente de nommer."
+        },
+        {
+          "numero": 4,
+          "pid": 30,
+          "contexte": "Texte se terminant par « Snif… » après une réflexion sociologique grave — oscillation registre haut/registre familier, signature."
+        },
+        {
+          "numero": 5,
+          "pid": 15,
+          "contexte": "Détails techniques précis sur sa propre machine (92 Gb RAM dont 2 Gb compressée) — façon caractéristique d'ancrer le texte par un détail."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la singularité au sens fort (empreinte récurrente, reconnaissable, qui résiste à la comparaison avec un output IA générique) n'est pas attestée — un portfolio peut être personnel sans être singulier. Le pid 13 résiste : la métaphore « CPU » appliquée à sa journée est une trouvaille stylistique qui ne ressemble à aucun template. Le pid 14 résiste : « surfusion » est un néologisme. Le pid 23 résiste : forger PAP en plein récit personnel est une patte. Le pid 30 résiste : « Snif… » après une réflexion sur la civilisation IA est un saut de registre caractéristique. Le pid 15 résiste plus faiblement comme manière d'ancrer le propos.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Métaphore originale « CPU » appliquée à sa propre activité — ne ressemble à aucun template IA générique." },
+            { "pieceId": 2, "motifResistance": "Néologisme stylistique cohérent avec le reste de la grammaire computationnelle." },
+            { "pieceId": 3, "motifResistance": "Acte de nommer un concept en passant — tic récurrent à travers la feuille." },
+            { "pieceId": 4, "motifResistance": "Oscillation registre haut/familier — saut de ton typique." },
+            { "pieceId": 5, "motifResistance": "Ancrage du propos par détails techniques précis." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d'avoir surinvesti. Le pid 13 et le pid 14 forment un noyau cohérent : la grammaire computationnelle appliquée à soi traverse plusieurs entrées (le pid 15 et le pid 20 ailleurs renforcent). Le pid 30 tient sous (e) car le « Snif… » est une ponctuation émotive qui n'a rien d'imposé. Le pid 23 tient sous (e) : la forge de concepts en passant se voit ailleurs (« surfusion »). Le pid 5 tombe sous (b) — il porte plus 1.04 (métacognition) que 3.02 (signature stylistique).",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La trouvaille « CPU » est récurrente avec d'autres marqueurs (bureaux virtuels, swap, surfusion) — pattern stylistique installé." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Néologisme cohérent avec la grammaire computationnelle qui traverse la feuille — récurrence." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La fabrique de concepts en passant (PAP) reproduit le geste de surfusion — récurrence stylistique." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le « Snif… » est typique mais isolé dans la feuille — indice convergent plus que preuve à lui seul." },
+            { "pieceId": 5, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'ancrage par détails techniques porte mieux 1.04 et 3.05 que la signature stylistique en tant que telle." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas confondre un portfolio personnel avec une signature au sens fort de la fiche. Trois pièces se sont imposées : la grammaire computationnelle appliquée à soi (CPU, surfusion, swap, bureaux virtuels) qui traverse la feuille comme un fil stylistique, et la fabrique récurrente de concepts en passant (PAP). Toutes correspondent au critère du test : un autre lecteur familier reconnaîtrait l'auteur sans voir le nom. Sous la présomption de sycophantie, l'oscillation de registre (« Snif… » après une réflexion grave) est restée comme indice, et l'ancrage par détails techniques a basculé vers d'autres pôles. Ce qui résulte est une signature stylistique attestée par récurrence — la même grammaire informatique-cognitive habite plusieurs entrées et plusieurs niveaux de discours.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé une signature stylistique récurrente — grammaire computationnelle appliquée à soi et forge de concepts en passant.",
+        "prescription": "Le travail montre une patte stylistique reconnaissable par récurrence. Un chemin possible serait de nommer un jour cette grammaire pour soi — quels mots, quelles images reviennent toujours — pour passer d'une signature involontaire à une signature consciemment habitée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 21,
+          "contexte": "Invention d'un dispositif qui n'existait pas : portfolio quotidien → analyse automatique → cartographie progressive avec confirmation humaine."
+        },
+        {
+          "numero": 2,
+          "pid": 22,
+          "contexte": "Formulation d'une question nouvelle : remplacer les CV et diplômes par des portfolios/cartographies — invention d'un objet institutionnel nouveau."
+        },
+        {
+          "numero": 3,
+          "pid": 23,
+          "contexte": "Création d'un concept-objet de recherche (« psychologie assistée par projet ») qui n'existait pas comme catégorie."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "Reformulation du travail en « anatomie d'un cerveau apprenant » — invention d'une question pédagogique inédite par analogie à la médecine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le design de problèmes au sens strict (créer une question qui n'existait pas, distincte du cadrage 1.02) n'est pas attesté. La distinction critique de la fiche est claire : 1.02 reformule, 3.03 crée. Le pid 21 résiste : le dispositif portfolio-analyse-cartographie n'est pas la reformulation d'un problème existant mais la fabrique d'un nouveau type d'objet pédagogique. Le pid 22 résiste : poser « les portfolios remplacent les CV » est une question/marché nouveau, pas une reformulation. Le pid 23 résiste : PAP est une nouvelle catégorie de recherche. Le pid 5 résiste : appeler le projet « anatomie d'un cerveau apprenant » crée une question (faire pour la cognition ce que Vésale a fait pour le corps).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Dispositif nouveau qui ouvre un espace d'action (cartographie automatique de compétences) qui n'existait pas." },
+            { "pieceId": 2, "motifResistance": "Question/marché formulé qui n'était pas dans le paysage : portfolios contre diplômes." },
+            { "pieceId": 3, "motifResistance": "Concept de recherche nouveau, nommé et identifié comme sujet potentiel." },
+            { "pieceId": 4, "motifResistance": "Question pédagogique nouvelle par renommage vésalien — pose un programme inexploré." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption de confusion 1.02/3.03. Le pid 21 tient sous (b) : ce n'est pas le re-cadrage d'un problème existant, c'est l'invention d'un dispositif. Le pid 22 tient sous (b) : la question « comment prouver une compétence sans diplôme » est nouvelle dans le paysage que l'apprenant occupe. Le pid 23 tient sous (b) : PAP nomme une catégorie qui n'existait pas. Le pid 4 risque (e) : la métaphore vésalienne est belle, mais elle pose plus un programme qu'elle ne formule une question proprement nouvelle ; affaibli.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'invention d'un dispositif qui produit de l'analyse automatique de portfolios est la création d'un nouveau type d'action — pas le re-cadrage d'une question existante." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Poser « portfolio contre diplôme » comme objet institutionnel à créer relève bien de 3.03 — c'est créer un marché, pas optimiser un existant." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Nommer une nouvelle catégorie (PAP) avec son sujet potentiel de recherche correspond exactement à la fiche." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'analogie vésalienne ouvre un programme nouveau mais on est plus près de 1.03 (synthèse intégrative) ; reste comme indice convergent." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pages à de la reformulation (1.02) plutôt qu'à de la création de questions (3.03). Trois pièces s'imposent : l'invention du dispositif portfolio-analyse-cartographie, la formulation du problème portfolio-versus-diplôme, et la création du concept PAP. Toutes trois créent des objets ou des questions qui n'étaient pas dans le paysage. L'analogie vésalienne est restée comme indice, parce qu'elle ouvre un programme sans formuler à elle seule une question nouvelle. Ce qui résulte est un travail dont le geste central est de poser des questions inédites — pédagogiques, institutionnelles, théoriques — plutôt que d'optimiser des questions existantes.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé trois pièces portant l'invention de questions/objets nouveaux, distinctes du re-cadrage d'un problème existant.",
+        "prescription": "Le travail montre une fabrique de questions nouvelles — pédagogiques, institutionnelles, théoriques. Un chemin possible serait de tracer pour l'une de ces questions (par exemple PAP ou portfolio-cartographie) le moment précis où elle est passée de l'idée nommée à un protocole testable, pour rendre visible ce point de bascule."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 24,
+          "contexte": "Évaluation curatoriale d'un texte IA flatteur — rejet motivé par soupçon de flagornerie."
+        },
+        {
+          "numero": 2,
+          "pid": 26,
+          "contexte": "Jugement esthétique articulé sur un article académique (« médiocre ») avec décision conséquente (ne pas le lire)."
+        },
+        {
+          "numero": 3,
+          "pid": 25,
+          "contexte": "Hiérarchisation comparative des modèles IA avec critère (« intelligence »)."
+        },
+        {
+          "numero": 4,
+          "pid": 27,
+          "contexte": "Choix curatorial articulé (palette non genrée) pour un site à trois filières."
+        },
+        {
+          "numero": 5,
+          "pid": 4,
+          "contexte": "Décision éditoriale de transposer un contenu « lourd » vers un Grimoire mieux adapté au public."
+        },
+        {
+          "numero": 6,
+          "pid": 7,
+          "contexte": "Annotation curatoriale courte sur un artefact (« ne conserver que les 3 narrations - et encore ! »)."
+        },
+        {
+          "numero": 7,
+          "pid": 12,
+          "contexte": "Jugement qualitatif sur les suggestions IA (« vraiment meilleur ») suivi de décision d'application."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le jugement esthétique au sens fort (critères articulés, soustraction) n'est pas attesté — beaucoup de portfolios contiennent des « j'aime » non articulés. Le pid 24 résiste fortement : l'évaluation est articulée par un critère (objectivité), et débouche sur un protocole correctif. Le pid 27 résiste : « palette non genrée » est un critère curatorial articulé. Le pid 4 résiste : « lourd » + « pour les jeunes » est un critère articulé conduisant à une transposition. Le pid 7 résiste : la directive curatoriale soustractive (« ne conserver que les 3 ») est exactement le marqueur de la fiche. Le pid 26 résiste : « médiocre » est un jugement esthétique court mais articulé. Le pid 25 résiste comme jugement comparatif. Le pid 12 résiste plus faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Critère explicite (objectivité) appliqué à un texte IA, avec dispositif correctif." },
+            { "pieceId": 2, "motifResistance": "Jugement esthétique articulé (« médiocre ») sur un article académique." },
+            { "pieceId": 3, "motifResistance": "Hiérarchisation comparative avec critère articulé." },
+            { "pieceId": 4, "motifResistance": "Critère curatorial nommé (« palette non genrée ») pour un choix de design." },
+            { "pieceId": 5, "motifResistance": "Critère articulé (« lourd », « pour les jeunes ») entraînant une transposition." },
+            { "pieceId": 6, "motifResistance": "Directive curatoriale soustractive — exactement la signature de la fiche." },
+            { "pieceId": 7, "motifResistance": "Jugement qualitatif comparé suivi d'action." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d'avoir surinvesti. Le pid 24 tient sous (e) : le critère est lisible, l'action correctrice aussi. Le pid 27 tient sous (a). Le pid 4 tient sous (b) : porte aussi 1.02 mais la dimension formelle (lourd → Grimoire) relève de 3.04. Le pid 7 tient sous (a) : annotation soustractive. Le pid 26 risque (a) — c'est très court, mais l'action conséquente (ne pas lire) signe le jugement. Le pid 25 risque (a) — « super nulle » est plus expressif qu'articulé ; affaibli. Le pid 12 risque (e) — « vraiment meilleur » est court ; affaibli.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Critère articulé (objectivité), dispositif correctif (contre-rôle) — pas de surinterprétation." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Critère nommé pour un choix de design — court mais articulé." },
+            { "pieceId": 6, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Directive soustractive — la fiche désigne explicitement la soustraction comme critère discriminant." },
+            { "pieceId": 5, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La dimension formelle (lourd, registre pour jeunes) relève bien de 3.04 même si le cadrage 1.02 est co-actif." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Jugement court mais avec action conséquente — affaibli comme indice." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Comparaison hiérarchisée mais peu d'articulation des critères — reste comme indice." },
+            { "pieceId": 7, "attaqueDominante": "e", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "« Vraiment meilleur » sans critères articulés — jugement qualitatif mais non éditorial au sens fort." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pages à des « j'aime » non articulés. Quatre pièces s'imposent : l'évaluation du texte IA flatteur avec dispositif correctif, le choix de palette non genrée comme critère curatorial, la décision de transposer un document lourd en Grimoire pour un public ciblé, et l'annotation soustractive « ne conserver que les 3 narrations ». Toutes portent des critères articulés et débouchent sur des actes (sélectionner, retoucher, soustraire) — c'est la signature exacte de la fiche. Sous la présomption de sycophantie, les jugements courts sont restés comme indices, et la suggestion IA jugée « vraiment meilleure » a été écartée comme non articulée. Ce qui résulte est un jugement curatorial qui fonctionne par critère et par soustraction, dans plusieurs registres (texte, design, hiérarchie comparative).",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 4,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé quatre pièces où le jugement est articulé par critère et débouche sur une action de sélection ou de soustraction.",
+        "prescription": "Le travail montre une curation par critère explicite et par soustraction. Un chemin possible serait de nommer un jour les critères esthétiques qui reviennent (ce qui rend un texte « lourd », « lisse », « médiocre », « juste »), pour rendre lisible la grammaire du goût qui se déploie déjà en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 6, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 16,
+          "contexte": "Diagnostic matériel précis sur un serveur physique (TPM, dual boot, contraintes licences) — connaissance du hardware tangible."
+        },
+        {
+          "numero": 2,
+          "pid": 17,
+          "contexte": "Mention de l'acte physique « rebooter mon serveur qui est à la cave » — interaction avec une machine matérielle."
+        },
+        {
+          "numero": 3,
+          "pid": 15,
+          "contexte": "Détails techniques sur le MacBook (192 Gb, 56 cœurs, 128 Gb, RAM compressée) — connaissance fine du matériel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'intelligence manuelle au sens fort de la fiche (interaction physique avec la matière, verbes d'action concrets sur matériaux tangibles, détails sensoriels) n'est pas attestée. La fiche permet une lecture large incluant le matériel informatique, mais distingue clairement le rack/câblage de la virtualisation. Le pid 16 résiste : il y a une connaissance précise du matériel (TPM, version, OS installé en dual boot) mais on ne voit pas d'acte de manipulation physique en cours. Le pid 17 résiste très faiblement : « rebooter » est mentionné comme tentation, pas comme acte. Le pid 15 résiste comme connaissance du matériel mais le texte parle d'utilisation, pas de manipulation.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Connaissance précise d'un serveur physique avec ses contraintes matérielles." },
+            { "pieceId": 2, "motifResistance": "Mention du serveur physique à la cave — matérialité présente." },
+            { "pieceId": 3, "motifResistance": "Connaissance détaillée du matériel d'un MacBook." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption critique. Le pid 16 tombe sous (b) : connaître les caractéristiques de son matériel et faire du dual boot relève plus de l'administration système (1.07) que de l'intelligence manuelle au sens artisanal/sensoriel. La fiche met un critère discriminant fort : « interaction avec du matériel tangible ». Or l'apprenant ne décrit pas de geste (changer un disque dur, refaire du câblage). Le pid 17 tombe sous (g) : c'est l'évocation d'un geste envisagé (rebooter), mais l'apprenant décide explicitement de ne pas le faire. Le pid 15 tombe sous (b) : même problème, c'est une donnée d'inventaire, pas un acte.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Connaissance des caractéristiques d'un serveur, dual boot et licences — relève de l'administration système et du choix logiciel, pas du geste artisanal." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'acte est envisagé mais explicitement décidé négativement — mouvement-vers que l'apprenant refuse." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Inventaire matériel d'utilisateur, pas d'intervention manuelle décrite." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages une trace d'intelligence manuelle. La fiche est exigeante : elle réclame un geste sur la matière, des verbes d'action concrets, des détails sensoriels. Les trois pièces candidates parlent toutes de matériel informatique, mais aucune ne décrit un acte physique en cours — ce sont des connaissances d'utilisateur ou d'administrateur logiciel. La pièce du serveur à la cave est la plus ambiguë, mais l'apprenant décide explicitement de ne pas y toucher pour préserver son temps. Ce qui résulte est un territoire que cette feuille ne porte pas — la matière physique apparaît comme objet de connaissance ou d'inventaire, pas comme objet d'un travail des mains. Cela ne dit rien du parcours global, seulement de ce que cette feuille atteste.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a écarté les trois pièces candidates : la connaissance matérielle existe, mais le geste sur la matière ne se laisse pas attester dans cette feuille.",
+        "prescription": "Le portfolio actuel ne porte pas de trace de manipulation tangible. Un chemin possible serait de documenter un moment où le travail passe par les mains — réparation, montage, cuisine, bricolage, jardinage — avec les détails sensoriels qui font la différence entre administration logicielle et intelligence du toucher."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 18,
+          "contexte": "Description phénoménologique du flow et du changement avec l'âge — perception fine de ses propres états attentionnels."
+        },
+        {
+          "numero": 2,
+          "pid": 19,
+          "contexte": "Attention sensorielle à un détail sonore (« j'entend déjà Nuit sur le mont chauve ») dans l'environnement immédiat."
+        },
+        {
+          "numero": 3,
+          "pid": 20,
+          "contexte": "Perception fine de deux modes de fatigue cognitive (swap vs micro-oublis)."
+        },
+        {
+          "numero": 4,
+          "pid": 29,
+          "contexte": "Captation et restitution verbatim d'une parole d'enfant — présence à un moment familial."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la pleine présence au sens fort (attention incarnée, corps comme capteur) n'est pas attestée — beaucoup de portfolios mentionnent des états d'attention sans les habiter sensoriellement. Le pid 18 résiste partiellement : la description est phénoménologique mais elle est aussi métacognitive (1.04). La fiche signale précisément la distinction : 1.04 monte, 3.06 descend. Le pid 19 résiste : capter un détail sonore dans l'environnement immédiat est typiquement 3.06. Le pid 29 résiste : restituer verbatim une parole d'enfant suppose une attention au moment qui dépasse l'écoute distraite. Le pid 20 résiste comme perception interne fine.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Description phénoménologique des états attentionnels avec comparaison historique." },
+            { "pieceId": 2, "motifResistance": "Attention sensorielle à un détail sonore environnant." },
+            { "pieceId": 3, "motifResistance": "Perception fine de deux modes de fatigue interne." },
+            { "pieceId": 4, "motifResistance": "Captation verbatim d'une parole d'enfant — présence à un moment." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 18 risque (b) : la fiche distingue clairement 3.06 (incarnation, présence) de 1.04 (métacognition abstraite). Or l'apprenant analyse rétrospectivement plus qu'il n'habite l'état présent — c'est une métacognition sur la présence, pas la présence elle-même. Affaibli. Le pid 19 tient sous (a) : court mais incarné. Le pid 20 risque (b) : c'est aussi de la métacognition sur la fatigue, pas un état senti dans le moment ; affaibli. Le pid 29 tient sous (f) : le fait de rapporter verbatim une parole supposait l'avoir écoutée pleinement, c'est une trace oblique solide.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Pièce brève mais incarnée — l'attention au son ambiant est typiquement 3.06." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Restituer verbatim une parole d'enfant et un dialogue entier suppose une présence attentive — trace oblique solide." },
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Description phénoménologique réelle mais formulée en posture rétrospective — métacognition de la présence plutôt que présence en acte." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Perception interne fine mais formulée comme distinction analytique — frontière 1.04/3.06 mince." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas confondre la métacognition sur la présence (1.04) avec la présence elle-même (3.06). Deux pièces s'imposent comme traces incarnées : l'attention au son de Fantasia dans la pièce voisine et la restitution verbatim du dialogue avec sa petite-fille — toutes deux ancrées dans un moment précis, sensorial et relationnel. Sous la présomption de sycophantie, la description du flow et la distinction swap/micro-oublis ont basculé vers la métacognition sans pour autant disparaître — elles restent comme indices. Ce qui résulte est une présence sensorielle attestée par petites touches, surtout dans les moments hors travail, là où l'attention se pose sur l'environnement immédiat plutôt que sur les processus internes.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a confirmé la restitution verbatim familiale comme trace incarnée et retenu trois autres pièces comme indices, avec une frontière fine entre métacognition et présence.",
+        "prescription": "Le travail montre une présence sensorielle attestée surtout dans les moments familiaux ou environnementaux. Un chemin possible serait de documenter aussi un moment de présence corporelle pendant le travail lui-même — une intuition somatique qui aurait orienté une décision dans l'instant."
+      },
+      "tracesRetenues": [
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance en direct. Le travail se passe ici largement à l'écrit et en interaction asynchrone avec les IA ; les anciens souvenirs de tables rondes et de conférences sont évoqués sans qu'aucun épisode de présence live ne soit documenté dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation concrète — par exemple le moment où interviendra dans le groupe de la technopédagogue, ou le test pédagogique prévu en mars — en notant ce qui se joue dans la co-présence physique et qui ne se reproduirait pas à distance."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 0,
+    "nonEtablies": 1,
+    "courtCircuits": 1
+  },
+
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail montre une créativité qui s'exerce surtout dans le code, le texte et le concept — itérations quotidiennes sur des prompts et des manuels, fabrique récurrente de questions nouvelles (cartographie automatique, psychologie assistée par projet, anatomie cognitive). Le style se reconnaît à une grammaire computationnelle appliquée à soi qui revient d'entrée en entrée (CPU, surfusion, bureaux virtuels, swap). Le jugement curatorial fonctionne par critère articulé et par soustraction. La présence sensorielle se manifeste plutôt aux marges — dans le détail sonore d'un Fantasia, dans la restitution verbatim d'une parole d'enfant — pendant que le geste sur la matière physique et la performance en direct restent à ouvrir, le travail décrit dans cette feuille étant largement médié par l'écran.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "L'itération est décrite en acte avec ses coûts et ses pivots — versions parallèles à fusionner, cycles complets de choc-pause-idée-test, application de protocoles nommés.",
+        "extraitVerbatim": "Ce qui est plus délicat c'est comme tout est en construction, il faut que je me souvienne quelles modifications apporter aux prompts pour reconstruire en intégrant les améliorations non encore fusionnées avec les versions soudainement devenues obsolètes.",
+        "ceQueCaDit": "Sur ce pôle, l'itération n'est pas un slogan — elle se voit dans les coûts cognitifs assumés pour faire vivre plusieurs versions en parallèle."
+      },
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "Le jugement fonctionne par critère articulé et débouche sur des actes de sélection ou de soustraction — palette non genrée, retrait de narrations, recadrage pour un public.",
+        "extraitVerbatim": "Comme ça devenait un peu lourd comme document théorique avec les 86 fonctions cognitives, surtout pour des jeunes, je lui ai demandé de publier l'anatomie d'un cerveau apprenant dans un Grimoire Noèsiologique.",
+        "ceQueCaDit": "Dans ce pôle, le goût n'est pas une humeur — c'est une opération qui retire, transpose et oriente vers un public."
+      },
+      {
+        "competence": "Singularité et signature",
+        "description": "Une grammaire computationnelle traverse la feuille — CPU, surfusion, bureaux virtuels, swap, micro-oublis — et identifie l'auteur à travers la récurrence.",
+        "extraitVerbatim": "Je sais que je suis en état de surfusion, lorsque j'arrive au 16e bureau virtuel.",
+        "ceQueCaDit": "Sur ce pôle, la signature passe par un vocabulaire technique qui sert à dire soi-même — une patte involontaire qui se reconnaît à plusieurs étages."
+      },
+      {
+        "competence": "Design de problèmes",
+        "description": "Plusieurs questions ou objets nouveaux sont posés : cartographie automatique de portfolio, psychologie assistée par projet, portfolios remplaçant les diplômes.",
+        "extraitVerbatim": "c'est de la psychologie assistée par projet (PAP ? Tiens, un nouveau concept qui pourrait faire l'objet d'un travail de recherche si j'étais psy)",
+        "ceQueCaDit": "Dans ce pôle, l'acte créatif ne se joue pas seulement sur les solutions — il invente les questions qui n'étaient pas là, parfois en passant."
+      },
+      {
+        "competence": "Ancrage sensoriel et pleine présence",
+        "description": "La présence se manifeste dans des micro-détails — un son ambiant, une parole d'enfant restituée verbatim, une distinction fine entre deux fatigues internes.",
+        "extraitVerbatim": "Je termine de documenter vite fait pendant qu'elle regarde Fantasia. J'entend déjà « Nuit sur le mont chauve ».",
+        "ceQueCaDit": "Sur ce pôle, l'attention sensorielle se pose surtout aux marges du travail, dans les moments familiaux ou environnementaux."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires apparaissent peu dans cette feuille. L'intelligence manuelle au sens artisanal — un geste sur la matière, un détail sensoriel d'objet tangible — ne se laisse pas attester ici : la matière physique apparaît comme inventaire (TPM, RAM, dual boot) ou comme tentation que l'apprenant choisit de ne pas suivre (rebooter le serveur à la cave). La présence en direct (performance, co-présence physique avec un public) reste un territoire non visité dans cette feuille ; les anciens souvenirs de tables rondes et de conférences sont évoqués sans qu'aucun épisode live ne soit documenté. La radicalité créative (0→1, transgression d'une règle) s'aperçoit dans le design de problèmes, mais elle se laisse moins voir dans les actes itératifs eux-mêmes, qui relèvent surtout du 1→n.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle. D'abord, la médiation systématique par l'écran — le travail créatif passe par les prompts, les artefacts, les protocoles, les sites web, et la matière reste à distance d'écran. Ensuite, une circulation entre les compétences cognitives et les compétences créatives : la même grammaire computationnelle sert à signer le style, à modéliser sa fatigue et à juger la qualité. Enfin, une fabrique de questions nouvelles qui se déclenche dans le mouvement même de la pratique — un concept advient en cours de phrase, un dispositif s'esquisse au détour d'un paragraphe — sans rituel particulier, comme un sous-produit naturel de la pensée.",
+    "pistes": [
+      "Pour rendre la créativité radicale plus visible que l'itération seule, un chemin possible serait de documenter un moment où une règle du jeu a été transgressée consciemment, en notant ce que cette transgression a produit que l'itération seule n'aurait pas trouvé.",
+      "Pour ouvrir l'intelligence manuelle, un chemin possible serait de documenter un moment où le travail passe par les mains — réparation, montage, cuisine, bricolage — avec les détails sensoriels qui font la différence entre administration logicielle et matière.",
+      "Pour ancrer la présence sensorielle au cœur du travail, un chemin possible serait de documenter aussi un moment de présence corporelle pendant le travail lui-même — une intuition somatique qui aurait orienté une décision dans l'instant.",
+      "Pour ouvrir la présence en direct, un chemin possible serait de documenter, lors de la prochaine intervention en présentiel (par exemple celle annoncée pour le groupe de la technopédagogue ou le test pédagogique de mars), ce qui se joue dans la co-présence et qui ne se reproduirait pas à distance.",
+      "Pour rendre la signature stylistique consciemment habitée, un chemin possible serait de nommer un jour cette grammaire — quels mots, quelles images reviennent toujours — pour passer d'une patte involontaire à une patte choisie."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail montre une créativité qui s'exerce surtout dans le code, le texte et le concept — itérations quotidiennes sur des prompts et des manuels, fabrique récurrente de questions nouvelles (cartographie automatique, psychologie assistée par projet, anatomie cognitive). Le style se reconnaît à une grammaire computationnelle appliquée à soi qui revient d'entrée en entrée (CPU, surfusion, bureaux virtuels, swap). Le jugement curatorial fonctionne par critère articulé et par soustraction. La présence sensorielle se manifeste plutôt aux marges — dans le détail sonore d'un Fantasia, dans la restitution verbatim d'une parole d'enfant — pendant que le geste sur la matière physique et la performance en direct restent à ouvrir, le travail décrit dans cette feuille étant largement médié par l'écran.\n\n## Territoires les plus denses\n\n**Créativité itérative et radicale.** L'itération est décrite en acte avec ses coûts et ses pivots — versions parallèles à fusionner, cycles complets de choc-pause-idée-test, application de protocoles nommés. *« Ce qui est plus délicat c'est comme tout est en construction, il faut que je me souvienne quelles modifications apporter aux prompts pour reconstruire en intégrant les améliorations non encore fusionnées avec les versions soudainement devenues obsolètes. »* Sur ce pôle, l'itération n'est pas un slogan — elle se voit dans les coûts cognitifs assumés pour faire vivre plusieurs versions en parallèle.\n\n**Jugement esthétique et curation.** Le jugement fonctionne par critère articulé et débouche sur des actes de sélection ou de soustraction — palette non genrée, retrait de narrations, recadrage pour un public. *« Comme ça devenait un peu lourd comme document théorique avec les 86 fonctions cognitives, surtout pour des jeunes, je lui ai demandé de publier l'anatomie d'un cerveau apprenant dans un Grimoire Noèsiologique. »* Dans ce pôle, le goût n'est pas une humeur — c'est une opération qui retire, transpose et oriente vers un public.\n\n**Singularité et signature.** Une grammaire computationnelle traverse la feuille — CPU, surfusion, bureaux virtuels, swap, micro-oublis — et identifie l'auteur à travers la récurrence. *« Je sais que je suis en état de surfusion, lorsque j'arrive au 16e bureau virtuel. »* Sur ce pôle, la signature passe par un vocabulaire technique qui sert à dire soi-même — une patte involontaire qui se reconnaît à plusieurs étages.\n\n**Design de problèmes.** Plusieurs questions ou objets nouveaux sont posés : cartographie automatique de portfolio, psychologie assistée par projet, portfolios remplaçant les diplômes. *« c'est de la psychologie assistée par projet (PAP ? Tiens, un nouveau concept qui pourrait faire l'objet d'un travail de recherche si j'étais psy) »* Dans ce pôle, l'acte créatif ne se joue pas seulement sur les solutions — il invente les questions qui n'étaient pas là, parfois en passant.\n\n**Ancrage sensoriel et pleine présence.** La présence se manifeste dans des micro-détails — un son ambiant, une parole d'enfant restituée verbatim, une distinction fine entre deux fatigues internes. *« Je termine de documenter vite fait pendant qu'elle regarde Fantasia. J'entend déjà « Nuit sur le mont chauve ». »* Sur ce pôle, l'attention sensorielle se pose surtout aux marges du travail, dans les moments familiaux ou environnementaux.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires apparaissent peu dans cette feuille. L'intelligence manuelle au sens artisanal — un geste sur la matière, un détail sensoriel d'objet tangible — ne se laisse pas attester ici : la matière physique apparaît comme inventaire (TPM, RAM, dual boot) ou comme tentation que l'apprenant choisit de ne pas suivre (rebooter le serveur à la cave). La présence en direct (performance, co-présence physique avec un public) reste un territoire non visité dans cette feuille ; les anciens souvenirs de tables rondes et de conférences sont évoqués sans qu'aucun épisode live ne soit documenté. La radicalité créative (0→1, transgression d'une règle) s'aperçoit dans le design de problèmes, mais elle se laisse moins voir dans les actes itératifs eux-mêmes, qui relèvent surtout du 1→n.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle. D'abord, la médiation systématique par l'écran — le travail créatif passe par les prompts, les artefacts, les protocoles, les sites web, et la matière reste à distance d'écran. Ensuite, une circulation entre les compétences cognitives et les compétences créatives : la même grammaire computationnelle sert à signer le style, à modéliser sa fatigue et à juger la qualité. Enfin, une fabrique de questions nouvelles qui se déclenche dans le mouvement même de la pratique — un concept advient en cours de phrase, un dispositif s'esquisse au détour d'un paragraphe — sans rituel particulier, comme un sous-produit naturel de la pensée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre la créativité radicale plus visible que l'itération seule, un chemin possible serait de documenter un moment où une règle du jeu a été transgressée consciemment, en notant ce que cette transgression a produit que l'itération seule n'aurait pas trouvé.\n- Pour ouvrir l'intelligence manuelle, un chemin possible serait de documenter un moment où le travail passe par les mains — réparation, montage, cuisine, bricolage — avec les détails sensoriels qui font la différence entre administration logicielle et matière.\n- Pour ancrer la présence sensorielle au cœur du travail, un chemin possible serait de documenter aussi un moment de présence corporelle pendant le travail lui-même — une intuition somatique qui aurait orienté une décision dans l'instant.\n- Pour ouvrir la présence en direct, un chemin possible serait de documenter, lors de la prochaine intervention en présentiel, ce qui se joue dans la co-présence et qui ne se reproduirait pas à distance.\n- Pour rendre la signature stylistique consciemment habitée, un chemin possible serait de nommer un jour cette grammaire — quels mots, quelles images reviennent toujours — pour passer d'une patte involontaire à une patte choisie."
+  }
+}

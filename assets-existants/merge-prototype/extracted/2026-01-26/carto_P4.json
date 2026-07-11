@@ -1,0 +1,473 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "J'ai besoin d'une pause réflexive pour repenser à mes valeurs et aux priorités qui en découlent. Je réalise que je suis toujours dans une logique mercantile d'entreprenariat…",
+      "contexte": "Interruption de l'écriture du manuel pour examiner explicitement la hiérarchie de ses valeurs.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Je suis toujours dans une logique d'entrepreneuriat et pas dans une logique de partage désintéressé. Je pense qu'il ne faut pas que je me focalise sur la vente des cartographies aux entreprises. Je pense qu'il faut donner l'idée de le faire aux cartographes et de les laisser développer eux-mêmes la chose. Non pas dans le but de se faire de l'argent mais dans celui de rendre Gemini gratuit pour le maximum d'apprenants via le WorkSpace de Google.",
+      "contexte": "Mise en tension de deux valeurs (entrepreneuriat / partage) et arbitrage explicite vers une finalité d'accès gratuit pour les apprenants.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Mais finalement qui suis-je pour décider ça ? Peut-être qu'il faut juste laisser totale liberté maintenant aux gens d'utiliser ou pas Workspace.",
+      "contexte": "Renoncement assumé à trancher unilatéralement — laisser ouverte la question.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Mais du coup ce n'est pas honnête vis à vis des cartographes qui se sentiront exploités si un jour je change tout sans consulter personne : chose que je n'ai pas le droit de faire si je suis le manuel que je suis en train de générer. Toute modification de l'école doit passer par un vote au niveau du cercle des Maîtres…",
+      "contexte": "Reconnaissance d'une contradiction performative et engagement à se soumettre aux règles qu'on rédige soi-même.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Je vais inclure tout ça dans une PARTIE 6 du manuel de Cartographe ou bien je garde le business plan sous \"silence\" ici, dans mon portfolio public ? Mais du coup ce n'est pas honnête vis à vis des cartographes",
+      "contexte": "Dilemme éthique explicite : transparence versus protection stratégique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Mais, le temps de lancement des écoles, vu que nous n'avons pas de fondation pour nous supporter financièrement, la partie Google Workspace ne sera pas obligatoire, le moteur de recherche ne sera pas proposé et RESPIRE ne se positionne pas comme tiers de confiance. Ceci est musique d'avenir, puisqu'il faut que les écoles fonctionnent, que la pompe soit amorcée, pour que le business plan puisse s'exécuter.",
+      "contexte": "Décision de différer une partie du dispositif — patience stratégique liée à un critère d'amorçage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Dit autrement, si quelqu'un investit assez d'argent dans le système, nous pourrions le transformer en startup. Il n'y a plus qu'à trouver un commercial !",
+      "contexte": "Reconnaissance d'une incertitude majeure sur la trajectoire (école communautaire vs startup) maintenue dans l'humour.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Vous pouvez en tant que cartographe faire office de tiers de confiance et certifier vous-même, l'authenticité, des compétences des apprenants pour qui vous avez travaillé.",
+      "contexte": "Délégation explicite d'une responsabilité (la certification) à un acteur tiers, qui assume sa garantie.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mise en tension explicite de deux valeurs concurrentes (entrepreneuriat / partage désintéressé)."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Dilemme éthique sur la transparence d'un business plan dans un portfolio public."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Maintien de l'incertitude morale ('qui suis-je pour décider') plutôt que résolution prématurée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici que des hésitations stratégiques, pas un raisonnement éthique au sens fort. La pièce 2 nomme deux logiques en tension mais arbitre rapidement ('je pense qu'il faut...'), ce qui pourrait être une simple préférence personnelle. La pièce 5 formule un dilemme ('inclure ou garder sous silence') qui ressemble à un calcul stratégique. La pièce 3 ('qui suis-je pour décider') maintient l'incertitude, ce qui correspond précisément au marqueur de la fiche : 'l'incertitude morale est *maintenue* plutôt que tranchée'. Cela force à reconnaître quelque chose.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant pose deux valeurs comme défendables et explore les conséquences ('rendre Gemini gratuit pour le maximum d'apprenants') — c'est un balancier éthique, pas une préférence simple."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le dilemme transparence/silence n'est pas tranché : l'apprenant identifie le coût éthique du silence ('pas honnête vis à vis des cartographes') sans résoudre immédiatement."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Le maintien de l'incertitude ('qui suis-je pour décider') correspond précisément au marqueur le plus avancé de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté ; je dois me demander si j'ai surinterprété un journal de doutes en raisonnement éthique. L'attaque (e) surinterprétation pédagogique s'applique partiellement à la pièce 1 : l'arbitrage est rapide et la justification reste pragmatique ('le maximum d'apprenants'). Pour la pièce 2, l'attaque (f) récit performatif pourrait s'appliquer : le dilemme est mentionné sans déploiement argumentaire. La pièce 3, en revanche, maintient activement l'incertitude — pas de résolution, pas de calcul. C'est le marqueur le plus net.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'arbitrage est rapide et fondé sur un critère utilitaire (maximiser l'accès) ; la mise en tension existe mais n'est pas longuement déployée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le dilemme n'est pas seulement nommé : il identifie le coût éthique du silence ('pas honnête') ce qui constitue un raisonnement éthique appliqué, pas une déclaration."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le maintien explicite de l'incertitude ('qui suis-je pour décider') correspond au marqueur le plus avancé de la fiche ; l'incertitude morale n'est pas refermée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme de simples hésitations pragmatiques. Ce qui m'a forcé à reconnaître une trace de raisonnement éthique, c'est la coexistence des trois pièces : mise en tension de valeurs concurrentes, identification du coût éthique d'une option, maintien de l'incertitude sur la légitimité à trancher. La présomption de sycophantie a affaibli la première pièce mais confirmé les deux autres. Ce qui reste : une trace solide de traversée d'un dilemme moral sans bonne réponse, avec le marqueur le plus avancé de la fiche — l'incertitude maintenue. La réserve qui demeure : l'arbitrage initial reste utilitaire, ce qui laisse place à d'autres mouvements éthiques sur d'autres feuilles.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Les pièces 2 et 3 ont survécu sans affaiblissement : le dilemme éthique sur la transparence et le maintien de l'incertitude décisionnelle portent ensemble un raisonnement éthique appliqué.",
+        "prescription": "Le travail montre ici une traversée d'un dilemme moral où l'incertitude reste ouverte. Pour prolonger ce mouvement, un chemin possible serait de revenir sur ce dilemme plus tard et d'examiner si l'incertitude a évolué — quelles nouvelles données morales sont apparues, quels critères ont changé."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 3,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'alignement éthique de l'IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a refusé une suggestion de l'IA pour des raisons de valeur, ou conçu un garde-fou pour qu'un comportement indésirable ne revienne pas."
+      }
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intégration des impacts environnementaux ou intergénérationnels. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage concret où l'impact long-terme a modifié une décision présente."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation explicite de modes de pensée différents. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un fonctionnement cognitif divergent (sien ou d'autrui) a produit un résultat qu'une approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Décision d'avancer avec une architecture transitoire malgré l'absence de financement assuré pour le dispositif cible."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Maintien d'une trajectoire (école) en gardant ouverte une bifurcation possible (startup) sans pouvoir trancher."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici qu'une description pragmatique de contraintes, pas un acte de décision dans le flou. La pièce 6 décrit une architecture transitoire faute de moyens, ce qui pourrait être une simple adaptation. La pièce 7 maintient deux trajectoires possibles ('école' / 'startup') dans l'humour, ce qui pourrait être de la légèreté. Pourtant, la pièce 6 nomme explicitement ce qui n'est pas garanti ('pas de fondation pour nous supporter') et avance malgré tout — c'est précisément la combinaison décrite par la fiche : nommer l'incertitude + agir malgré elle.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant nomme l'absence de soutien financier garanti et choisit d'avancer en mode dégradé — c'est un tranchage explicite malgré l'incertitude."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le maintien de deux trajectoires possibles dans l'humour ('il n'y a plus qu'à trouver un commercial !') signale une tolérance à l'incertitude couplée à une direction."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté ; je dois me demander si je n'ai pas surinterprété une description de contrainte en acte décisionnel. L'attaque (f) récit performatif s'applique à la pièce 1 : la décision d'avancer en mode dégradé est énoncée comme constat plutôt que comme tranchage explicite. Pour la pièce 2, l'attaque (a) insuffisance probatoire pèse : une boutade humoristique sur 'trouver un commercial' ne décrit pas un acte décisionnel. La fiche est exigeante : elle réclame nommer l'incertitude + fonctionner malgré + acte de tranchage. Ici, on a nommer + fonctionner, mais l'acte de tranchage est plus implicite.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La décision est rapportée comme constat ('vu que nous n'avons pas...') plutôt que comme acte explicite de tranchage ; mais l'engagement à avancer en mode dégradé est néanmoins inscrit dans le manuel."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'humour révèle une tolérance à l'incertitude mais ne décrit pas un acte décisionnel — l'incertitude est habitée plutôt que tranchée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme de simples descriptions de contraintes. Ce qui m'a forcé à reconnaître une trace, c'est la coexistence dans la pièce 6 de l'explicitation de l'incertitude (pas de financement) et de l'engagement à avancer en mode dégradé. La présomption de sycophantie a affaibli les deux pièces : le tranchage reste implicite, mais la fonction sous flou est attestée. Ce qui reste : une trace de tolérance à l'incertitude couplée à un avancement engagé, sans encore atteindre le combo complet de la fiche (nommer + fonctionner + tranchage explicite).",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces, affaiblies mais retenues, attestent ensemble d'une tolérance à l'incertitude (financement non garanti, trajectoire incertaine) couplée à un engagement à avancer.",
+        "prescription": "Le travail montre ici un avancement assumé dans le flou (architecture transitoire, trajectoire ouverte). Pour épaissir cette compétence, un chemin possible serait de nommer explicitement, dans une décision concrète, ce qui n'est pas connu et l'acte de tranchage qui s'opère malgré cela."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Engagement à se soumettre aux règles édictées dans son propre manuel — cohérence parole/acte assumée."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Reconnaissance explicite d'une posture qu'il juge problématique ('logique mercantile') avant qu'aucune erreur ne soit consommée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas d'accountability au sens fort, simplement des doutes pratiques. La pièce 4 énonce une règle ('toute modification doit passer par un vote') mais c'est une règle pour le futur, pas un acte présent. La pièce 1 reconnaît une posture mais ne décrit pas une erreur consommée à corriger. Toutefois, la pièce 4 contient un mouvement précis : l'apprenant reconnaît qu'il ne peut pas s'exonérer lui-même de la règle qu'il édicte — c'est un engagement à la cohérence interne. La pièce 1 est plus faible.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant reconnaît qu'il n'a pas le droit de modifier l'école unilatéralement parce que sa propre rédaction du manuel le lui interdit — c'est un engagement explicite à la cohérence parole/acte."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois me demander si je n'ai pas surinterprété une simple règle administrative en engagement de courage et d'intégrité. L'attaque (e) surinterprétation pédagogique se pose : la règle est énoncée dans un manuel qui n'a pas encore d'application réelle, donc rien ne coûte. L'attaque (f) récit performatif est plus juste : l'engagement à respecter la règle est déclaré, sans encore avoir été mis à l'épreuve. La fiche est très exigeante : 'engagement tenu malgré le coût personnel'. Ici, le coût n'est pas encore présent.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'engagement à la cohérence est déclaré dans un cadre qui n'a pas encore confronté l'apprenant à un coût réel — c'est une intention d'intégrité, pas encore une intégrité éprouvée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une trace de responsabilité, courage ou intégrité éprouvés. Ce qui m'a forcé à reconnaître quelque chose, c'est l'engagement explicite de la pièce 4 à se soumettre aux règles qu'on rédige soi-même, ce qui est un acte de cohérence interne. La présomption de sycophantie a affaibli la pièce : l'engagement n'est pas encore éprouvé par un coût concret. Ce qui reste : un indice d'intention d'intégrité, en deçà du seuil de présence ferme que la fiche réclame (engagement tenu *malgré* le coût).",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "L'unique pièce, affaiblie mais retenue, signale une intention d'intégrité non encore éprouvée par un coût réel. Le seuil de présence ferme n'est pas franchi sur cette feuille.",
+        "prescription": "Le travail montre ici un engagement à se soumettre aux règles qu'on édicte. Pour épaissir cette compétence, un chemin possible serait de documenter un moment où cet engagement a effectivement coûté (renoncement à une option attractive, position maintenue sous pression) et de décrire ce qui a permis de tenir."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la validation contextuelle — l'identification d'un savoir humain qu'une IA ne possède pas. Pour ouvrir ce dossier, l'apprenant pourrait documenter une correction d'une production IA fondée sur un contexte qu'elle ne pouvait pas connaître."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Définition de la valeur du cartographe par sa fonction de tiers de confiance et de garant — fonction structurellement non automatisable car la confiance se loge dans la personne."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas de réflexion sur la valeur non-automatisable au sens de la fiche. La pièce 8 définit le rôle du cartographe comme 'tiers de confiance' et 'garant'. La fonction de garantir n'est pas en soi non-automatisable — une certification peut être algorithmique. Cependant, l'apprenant inscrit cette fonction dans une économie de la *notoriété personnelle* (cf. pièce 4 du pôle 3), ce qui suggère que la valeur réside dans la signature humaine, non transférable. La pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le cartographe-garant est défini par une fonction (la certification d'authenticité) dont la valeur tient à ce qu'elle engage une personne, pas un système — c'est une articulation implicite de valeur non-automatisable."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois me demander si la fonction de tiers de confiance est vraiment articulée comme non-automatisable. L'attaque (e) surinterprétation pédagogique est sérieuse : l'apprenant définit un rôle institutionnel, mais ne thématise pas explicitement *pourquoi* l'IA ne pourrait pas le tenir. La fiche est claire : 4.08 exige une 'lucidité bidirectionnelle' (reconnaître ce que l'IA fait mieux + identifier ce qui reste irremplaçablement humain). Ici, seule la seconde face est présente, et de manière implicite.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le rôle de tiers de confiance est défini mais l'apprenant ne thématise pas ce qui le rend structurellement non-automatisable — la valeur humaine spécifique n'est pas isolée et argumentée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une articulation explicite de valeur non-automatisable. La pièce extraite décrit un rôle institutionnel sans thématiser pourquoi l'IA ne pourrait pas le tenir. La présomption de sycophantie a disqualifié la pièce — la lucidité bidirectionnelle réclamée par la fiche n'est pas présente. Ce qui reste : pas de trace solide sur cette feuille — l'apprenant conçoit des rôles humains mais ne les met pas en regard explicitement de ce que l'IA peut ou ne peut pas faire.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "L'unique pièce a été disqualifiée : la définition du rôle de cartographe-garant n'articule pas explicitement ce qui rend cette fonction structurellement non-automatisable.",
+        "prescription": "Sur cette feuille, le travail définit des rôles humains sans les mettre explicitement en regard de ce que l'IA fait ou ne fait pas. Pour ouvrir ce dossier, un chemin possible serait de décrire précisément quelle dimension du travail du cartographe ne peut pas être assumée par une IA — et pourquoi."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Différer une partie du dispositif (tiers de confiance, moteur de recherche) avec un critère de déclenchement explicite ('pompe amorcée')."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici qu'un report contraint par l'absence de moyens, pas une patience stratégique au sens de la fiche. La pièce 6 décrit effectivement un report, mais il est lié à un critère de déclenchement précis ('pompe amorcée', 'que les écoles fonctionnent') — la fiche cite explicitement ce type de marqueur ('reports bornés dans le temps avec critère de déclenchement explicite'). Cela force à reconnaître une trace.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le report n'est pas indéfini : il est lié à un critère de déclenchement précis (amorçage des écoles), ce qui correspond exactement au marqueur de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce a résisté ; je dois me demander si je n'ai pas confondu contrainte budgétaire et patience stratégique. L'attaque (b) confusion de compétence se pose : le report est-il un choix de timing ou une simple contrainte subie ? La fiche distingue patience et procrastination par le 'choix argumenté' avec critère de déclenchement. Ici, le critère est énoncé ('pour que le business plan puisse s'exécuter') et l'attente est argumentée ('musique d'avenir'), ce qui dépasse la simple contrainte.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le report contient les trois éléments réclamés par la fiche : pression à agir (vouloir le dispositif complet), raisonnement explicite d'attente (amorçage nécessaire), et moment d'action prévu (quand la pompe sera amorcée)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici à lire la pièce comme une contrainte budgétaire passive. L'identification d'un critère de déclenchement précis et d'un horizon assumé ('musique d'avenir') m'a forcé à reconnaître une trace de patience stratégique. La présomption de sycophantie n'a pas tenu : la pièce contient les trois marqueurs du combo le plus fiable. Ce qui reste : une trace nette de patience stratégique sur une décision majeure (différer la position de tiers de confiance), avec critère de déclenchement explicite.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "La pièce a survécu sans affaiblissement : le report d'une partie du dispositif est borné par un critère de déclenchement précis (amorçage des écoles), ce qui correspond au combo le plus fiable de la fiche.",
+        "prescription": "Le travail montre ici une patience stratégique inscrite dans une trajectoire : différer le tiers de confiance jusqu'à ce que les écoles fonctionnent. Pour prolonger ce mouvement, un chemin possible serait de noter, au moment du déclenchement, ce qui aura signalé l'amorçage suffisant — afin de calibrer ce signal pour d'autres décisions de timing."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 5,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail éthique se déploie dans le mouvement même de l'écriture. L'apprenant interrompt la production du manuel pour examiner ses propres valeurs ('logique mercantile' vs 'partage désintéressé'), maintient ouverte la question de sa légitimité à trancher, et identifie le coût éthique d'une option (taire le business plan) avant de la choisir. Le registre est celui d'un raisonnement éthique en acte, pas de déclarations de principe. La temporalité est également présente : différer une partie du dispositif jusqu'à un critère d'amorçage explicite signe une patience stratégique articulée. Ce qui ressort, c'est moins un système de valeurs établi qu'un examen permanent des présupposés à l'œuvre dans les décisions de conception.",
+    "territoiresDenses": [
+      {
+        "competence": "Raisonnement éthique appliqué",
+        "description": "Le travail met en tension deux valeurs concurrentes, identifie le coût éthique de chaque option et maintient ouverte la question de la légitimité à trancher unilatéralement.",
+        "extraitVerbatim": "Mais finalement qui suis-je pour décider ça ? Peut-être qu'il faut juste laisser totale liberté maintenant aux gens d'utiliser ou pas Workspace.",
+        "ceQueCaDit": "Cette question maintient l'incertitude morale plutôt que de la trancher prématurément — c'est le marqueur le plus avancé de la fiche, qui voit dans la non-résolution un acte éthique, pas une faiblesse."
+      },
+      {
+        "competence": "Patience stratégique et sens du timing",
+        "description": "L'apprenant diffère une partie du dispositif (tiers de confiance, moteur de recherche) en l'assumant comme 'musique d'avenir', avec un critère de déclenchement explicite — l'amorçage des écoles.",
+        "extraitVerbatim": "Ceci est musique d'avenir, puisqu'il faut que les écoles fonctionnent, que la pompe soit amorcée, pour que le business plan puisse s'exécuter.",
+        "ceQueCaDit": "Le report est borné par une condition précise, ce qui le distingue de la procrastination et inscrit la décision de timing dans une stratégie."
+      },
+      {
+        "competence": "Décision et tolérance à l'incertitude",
+        "description": "L'apprenant fonctionne dans le flou — pas de fondation, pas de financement assuré — tout en avançant avec une architecture transitoire et en gardant ouverte la bifurcation possible vers une startup.",
+        "extraitVerbatim": "Mais, le temps de lancement des écoles, vu que nous n'avons pas de fondation pour nous supporter financièrement, la partie Google Workspace ne sera pas obligatoire, le moteur de recherche ne sera pas proposé et RESPIRE ne se positionne pas comme tiers de confiance.",
+        "ceQueCaDit": "L'incertitude financière est nommée et la conduite s'adapte en mode dégradé — fonctionner dans le flou plutôt que d'attendre la certitude."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent silencieux sur cette feuille. La conscience écologique et l'intégration des impacts long-terme non-humains n'apparaissent pas dans ces pages — les arbitrages portent sur des publics humains (cartographes, apprenants, employeurs). La valorisation explicite de la neurodiversité comme ressource n'est pas mobilisée. L'alignement éthique de l'IA et la validation contextuelle ne sont pas thématisés ici, alors même que le projet repose sur l'usage intensif d'IA — un territoire qui mériterait probablement d'être ramené sur d'autres feuilles. Enfin, la responsabilité, le courage et l'intégrité apparaissent en intention plutôt qu'en acte éprouvé par un coût concret.",
+    "emergencesPole": "Ce qui traverse cette feuille, c'est un raisonnement éthique inscrit dans le moment même de la conception — pas une éthique des principes, mais une éthique de l'examen en cours d'écriture. Une seconde émergence : l'incertitude est plusieurs fois préservée plutôt que résolue (qui décide ? quelle trajectoire ?), ce qui dessine une posture où le non-tranchage est lui-même un acte. Enfin, l'apprenant semble lier sa propre intégrité à la cohérence entre ce qu'il écrit dans le manuel et ce qu'il s'autorise à faire ensuite — l'écriture devient elle-même contrainte éthique.",
+    "pistes": [
+      "Pour prolonger la traversée du dilemme moral, un chemin possible serait de revenir sur ce dilemme plus tard et d'examiner si l'incertitude a évolué — quelles nouvelles données morales sont apparues, quels critères ont changé.",
+      "Pour épaissir la dimension d'intégrité, un chemin possible serait de documenter un moment où l'engagement à se soumettre aux règles qu'on édicte a effectivement coûté quelque chose, et de décrire ce qui a permis de tenir.",
+      "Pour calibrer le sens du timing, un chemin possible serait de noter, au moment du déclenchement, ce qui aura signalé l'amorçage suffisant — afin de transposer ce signal à d'autres décisions de patience."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail éthique se déploie dans le mouvement même de l'écriture. L'apprenant interrompt la production du manuel pour examiner ses propres valeurs ('logique mercantile' vs 'partage désintéressé'), maintient ouverte la question de sa légitimité à trancher, et identifie le coût éthique d'une option (taire le business plan) avant de la choisir. Le registre est celui d'un raisonnement éthique en acte, pas de déclarations de principe. La temporalité est également présente : différer une partie du dispositif jusqu'à un critère d'amorçage explicite signe une patience stratégique articulée. Ce qui ressort, c'est moins un système de valeurs établi qu'un examen permanent des présupposés à l'œuvre dans les décisions de conception.\n\n## Territoires les plus denses\n\n**Raisonnement éthique appliqué.** Le travail met en tension deux valeurs concurrentes, identifie le coût éthique de chaque option et maintient ouverte la question de la légitimité à trancher unilatéralement. « Mais finalement qui suis-je pour décider ça ? Peut-être qu'il faut juste laisser totale liberté maintenant aux gens d'utiliser ou pas Workspace. » Cette question maintient l'incertitude morale plutôt que de la trancher prématurément — c'est le marqueur le plus avancé de la fiche, qui voit dans la non-résolution un acte éthique.\n\n**Patience stratégique et sens du timing.** L'apprenant diffère une partie du dispositif en l'assumant comme 'musique d'avenir', avec un critère de déclenchement explicite — l'amorçage des écoles. « Ceci est musique d'avenir, puisqu'il faut que les écoles fonctionnent, que la pompe soit amorcée, pour que le business plan puisse s'exécuter. » Le report est borné par une condition précise, ce qui le distingue de la procrastination et inscrit la décision de timing dans une stratégie.\n\n**Décision et tolérance à l'incertitude.** L'apprenant fonctionne dans le flou — pas de fondation, pas de financement assuré — tout en avançant avec une architecture transitoire et en gardant ouverte la bifurcation possible vers une startup. « Mais, le temps de lancement des écoles, vu que nous n'avons pas de fondation pour nous supporter financièrement, la partie Google Workspace ne sera pas obligatoire, le moteur de recherche ne sera pas proposé et RESPIRE ne se positionne pas comme tiers de confiance. » L'incertitude financière est nommée et la conduite s'adapte en mode dégradé — fonctionner dans le flou plutôt que d'attendre la certitude.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent silencieux sur cette feuille. La conscience écologique et l'intégration des impacts long-terme non-humains n'apparaissent pas dans ces pages — les arbitrages portent sur des publics humains. La valorisation explicite de la neurodiversité comme ressource n'est pas mobilisée. L'alignement éthique de l'IA et la validation contextuelle ne sont pas thématisés ici, alors même que le projet repose sur l'usage intensif d'IA — un territoire qui mériterait probablement d'être ramené sur d'autres feuilles. Enfin, la responsabilité, le courage et l'intégrité apparaissent en intention plutôt qu'en acte éprouvé par un coût concret.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse cette feuille, c'est un raisonnement éthique inscrit dans le moment même de la conception — pas une éthique des principes, mais une éthique de l'examen en cours d'écriture. Une seconde émergence : l'incertitude est plusieurs fois préservée plutôt que résolue (qui décide ? quelle trajectoire ?), ce qui dessine une posture où le non-tranchage est lui-même un acte. Enfin, l'apprenant semble lier sa propre intégrité à la cohérence entre ce qu'il écrit dans le manuel et ce qu'il s'autorise à faire ensuite — l'écriture devient elle-même contrainte éthique.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la traversée du dilemme moral, un chemin possible serait de revenir sur ce dilemme plus tard et d'examiner si l'incertitude a évolué — quelles nouvelles données morales sont apparues, quels critères ont changé.\n- Pour épaissir la dimension d'intégrité, un chemin possible serait de documenter un moment où l'engagement à se soumettre aux règles qu'on édicte a effectivement coûté quelque chose, et de décrire ce qui a permis de tenir.\n- Pour calibrer le sens du timing, un chemin possible serait de noter, au moment du déclenchement, ce qui aura signalé l'amorçage suffisant — afin de transposer ce signal à d'autres décisions de patience.\n"
+  }
+}

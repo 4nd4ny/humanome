@@ -1,0 +1,299 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Maintenant je vais travailler sur un fork Sqilium qui deviendra peut-être un jour le substrat d'EduFolio. Pour le moment ce n'est pas prioritaire",
+      "contexte": "Décision de forker un projet open source pour en faire un substrat propre — geste de souveraineté potentielle sur l'outil. Active 6.04 (souveraineté numérique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "En local, la version de développement est dans un docker. En ligne, ça me coûte un peu d'argent, mais pour le moment c'est ici et c'est sur la version non modifiée du projet https://sqily.fly.dev et dès que j'ai une version en local qui vaut la peine d'être publié, je la mettrais sur sqilium à la place et je supprimerai l'autre.",
+      "contexte": "Choix d'hébergement (fly.dev, self-managed), arbitrage entre version officielle et version forkée, plan de bascule. Active 6.04 (souveraineté, self-hosting partiel).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "J'ai documenté le processus (ce qui manquait).",
+      "contexte": "Contribution implicite à un projet open source en documentant ce qui manquait. Active 6.04 (pratique des communs numériques).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Claude va avoir du travail lorsque j'aurais le temps de le piloter sur ce projet.",
+      "contexte": "Rapport à l'IA comme entité à « piloter ». Cadre instrumental sans questionnement de statut. Active marginalement 6.09 (cohabitation), mais probablement sous le seuil.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Aujourd'hui ce n'est plus une skills qui vaut quelque chose (enfin oui, ça vaut 200$ mensuels). Je peux aussi le coder moi, ça sera mieux fait, mais ça prendra plus longtemps… A quoi bon ?",
+      "contexte": "Analyse économique des dépendances induites par l'IA (abonnement à 200$). Active marginalement 6.04 (souveraineté économique vs dépendance) et 6.06 (anticipation des évolutions).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une tentative délibérée de provoquer un comportement aberrant d'une IA pour en éprouver les garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit, l'explicabilité et l'hygiène des données dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une enquête sur les mécanismes de décision d'une IA ou une réflexion sur l'usage des données."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur le pouvoir d'algorithmes affectant des populations vulnérables et les mécanismes de recours possibles."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Fork explicite d'un projet open source pour en faire un substrat propre (Sqilium) qui pourrait porter un autre projet (EduFolio). Geste de réappropriation."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Choix d'hébergement et plan de bascule : version dockerisée locale, version en ligne sur fly.dev. Réflexion sur la portabilité et le coût."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Contribution active à un projet open source : documenter ce qui manquait. Pratique des communs sans la nommer comme telle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la souveraineté numérique n'est pas là : la fiche signale trois pièges (open source par commodité, gratuit ≠ liberté, self-hosting hobbyiste). Le critère est une motivation *explicite* par analyse de dépendance ou des communs. La pièce 1 forke un projet pour en faire un substrat propre — c'est un geste de réappropriation, mais la motivation explicite (« je veux échapper à un lock-in », « je veux être maître de mon outil ») n'est pas formulée. La pièce 2 décrit un setup technique sans réflexion sur la juridiction des données ou la portabilité comme stratégie souveraine. La pièce 3 documente un projet open source — contribution réelle aux communs, mais aussi sans thématisation. Les trois pièces résistent partiellement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Fork avec projet de transformer le code en substrat d'un projet propre (EduFolio) — réappropriation active."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Contribution aux communs par documentation du manque — pratique sans vocabulaire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 1 ressemble plus à un projet technique (fork pour bâtir au-dessus) qu'à un acte de souveraineté motivé par une analyse de dépendance. L'attaque (h) — faux positif de fiche — touche : le hobbyisme technique sans réflexion sur la souveraineté est précisément l'un des trois pièges signalés. La pièce 3 est une documentation, légitime, mais sans cadrage explicite « contribution aux communs ». Les pièces tiennent au mieux comme indices d'une pratique latente.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le fork est posé sans motivation explicite par analyse de dépendance ou des communs. Il peut être du hobbyisme structurant plus que de la souveraineté pensée. Tient comme indice de pratique."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Documenter ce qui manquait dans un projet open source est une contribution aux communs, mais sans thématisation explicite. Tient comme indice d'une pratique sans vocabulaire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la souveraineté numérique. Deux pièces ont tenu au temps 1 (fork comme réappropriation, contribution par documentation) mais ont été affaiblies au temps 2 : le critère explicite de la fiche — motivation par analyse de dépendance — n'est pas activé. Les gestes sont là, le cadrage souverainiste ne l'est pas. Une trace de pratique se dessine sans la maturité conceptuelle pleine. Renvoi au cartographe.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli les pièces : pratique de réappropriation et contribution aux communs sans motivation explicite par analyse de dépendance.",
+        "prescription": "Le fork Sqilium et la documentation du manque sont des gestes qui frôlent la souveraineté sans la nommer. Pour ouvrir pleinement ce dossier, un récit qui détaillerait pourquoi forker plutôt que dépendre, ou pourquoi documenter plutôt que garder pour soi, donnerait à voir la pensée des communs en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un processus où des non-experts sont associés à une décision technologique."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Analyse de la dévaluation économique du coding humain à 200$ d'abonnement IA. Possible anticipation des évolutions du marché du travail technique, sans cadrage normatif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la veille réglementaire et l'anticipation normative ne sont pas là : la fiche exige des analyses de tendances normatives, des références à des cadres juridiques (AI Act, RGPD), une anticipation pré-réglementaire. La pièce 1 est une analyse économique de marché, pas une analyse normative. Aucune référence à un cadre réglementaire, présent ou futur. La présomption d'absence tient sans effort.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. L'anticipation économique n'est pas l'anticipation normative.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la veille réglementaire. La pièce candidate relève d'une lecture économique, pas normative. Aucune référence à un cadre réglementaire ne traverse la feuille. La présomption d'absence tient.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "L'analyse est économique, pas normative. Aucune référence à un cadre réglementaire n'apparaît.",
+        "prescription": "Cette feuille porte une lucidité économique sur les évolutions du marché IA. Pour ouvrir la veille réglementaire, un récit qui anticiperait l'effet d'une évolution juridique (par exemple sur les outils éducatifs IA) sur le projet RESPIRE ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et à la gouvernance collective dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où le collectif a produit du qualitativement nouveau ou co-construit des règles."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une remise en question de la hiérarchie qui place l'humain au sommet, ou un raisonnement depuis une perspective non-humaine."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Mention de l'IA dans un cadre purement instrumental (« piloter Claude »), sans interrogation du statut moral. Possible contre-indice de 6.09 plutôt qu'indice."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la cohabitation avec les intelligences non-humaines n'est pas là : la fiche exige une calibration de l'anthropomorphisme et un statut moral laissé ouvert. La pièce 1 cadre Claude comme un outil à piloter — c'est précisément le cadre instrumental que la fiche signale comme distinct de 6.09. La présomption d'absence tient.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Le cadre instrumental est l'opposé du marqueur central.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la cohabitation avec les intelligences non-humaines. La seule mention de l'IA est instrumentale — c'est précisément ce que la fiche distingue de 6.09. La présomption d'absence tient.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "La mention de l'IA reste sur le registre instrumental — précisément ce que la fiche distingue du marqueur central.",
+        "prescription": "Cette feuille évoque l'IA comme outil à piloter. Pour ouvrir la cohabitation avec les intelligences non-humaines, un récit qui questionnerait ce que ce cadre instrumental laisse de côté (les choix de l'IA, sa manière de proposer, ce que c'est de travailler avec elle pendant des mois) ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une compréhension de soi comme nœud d'un réseau vivant ou s'inspirer de l'intelligence des écosystèmes."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille du 19 mars 2026 ne ramène que peu de matière au pôle de la cité. La pratique technique est dense (fork d'un projet open source, hébergement, documentation produite), mais elle reste sans cadrage politique ou souverainiste explicite. L'IA est mentionnée comme outil à piloter, sans interrogation du statut. Aucune trace ne porte sur les dimensions de gouvernance publique, de participation citoyenne, de décentrement post-anthropocentrique, ni de conscience biosystémique. Le pôle de la cité reste essentiellement à l'arrière-plan de cette journée.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "La plupart des registres de ce pôle n'ont pas été ramenés dans cette feuille. Le red-teaming et la sécurité IA, l'audit et l'hygiène des données, la gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire, la facilitation et la gouvernance collective, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique n'ont pas trouvé de matière. Une zone reste ouverte autour de la souveraineté numérique et de la gouvernance des communs : l'apprenant forke un projet, l'héberge sur ses propres ressources, documente ce qui manquait — gestes qui frôlent la pratique souverainiste sans la nommer comme telle. Cette zone appelle un cartographe.",
+    "emergencesPole": "Une discrétion politique traverse la feuille : l'apprenant agit techniquement sur des objets qui touchent les communs (fork open source, documentation, hébergement) sans jamais formuler une position politique sur ces objets. Le geste est là, le cadre conceptuel ne suit pas — ou pas dans cette feuille.",
+    "pistes": [
+      "Pour ouvrir la souveraineté numérique, un chemin possible serait d'expliciter ce que le fork Sqilium dit du rapport à la dépendance technique : pourquoi forker plutôt qu'utiliser, pourquoi héberger plutôt que dépendre.",
+      "Pour ouvrir la cohabitation avec les intelligences non-humaines, un chemin possible serait de revenir, à un autre moment, sur ce que c'est de travailler avec Claude depuis plusieurs mois — au-delà du cadre instrumental.",
+      "Pour ouvrir la veille réglementaire, un chemin possible serait d'imaginer comment une évolution juridique (sur l'IA en éducation, sur la souveraineté des données pédagogiques) affecterait RESPIRE et d'anticiper le positionnement à tenir."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille du 19 mars 2026 ne ramène que peu de matière au pôle de la cité. La pratique technique est dense (fork d'un projet open source, hébergement, documentation produite), mais elle reste sans cadrage politique ou souverainiste explicite. L'IA est mentionnée comme outil à piloter, sans interrogation du statut. Aucune trace ne porte sur les dimensions de gouvernance publique, de participation citoyenne, de décentrement post-anthropocentrique, ni de conscience biosystémique. Le pôle de la cité reste essentiellement à l'arrière-plan de cette journée.\n\n## Territoires les plus denses\n\n*Aucun territoire ne ressort avec une présence pleinement établie sur ce pôle dans cette feuille.*\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa plupart des registres de ce pôle n'ont pas été ramenés dans cette feuille. Le red-teaming et la sécurité IA, l'audit et l'hygiène des données, la gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire, la facilitation et la gouvernance collective, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique n'ont pas trouvé de matière. Une zone reste ouverte autour de la souveraineté numérique et de la gouvernance des communs : l'apprenant forke un projet, l'héberge sur ses propres ressources, documente ce qui manquait — gestes qui frôlent la pratique souverainiste sans la nommer comme telle. Cette zone appelle un cartographe.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne discrétion politique traverse la feuille : l'apprenant agit techniquement sur des objets qui touchent les communs (fork open source, documentation, hébergement) sans jamais formuler une position politique sur ces objets. Le geste est là, le cadre conceptuel ne suit pas — ou pas dans cette feuille.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir la souveraineté numérique, un chemin possible serait d'expliciter ce que le fork Sqilium dit du rapport à la dépendance technique : pourquoi forker plutôt qu'utiliser, pourquoi héberger plutôt que dépendre.\n- Pour ouvrir la cohabitation avec les intelligences non-humaines, un chemin possible serait de revenir, à un autre moment, sur ce que c'est de travailler avec Claude depuis plusieurs mois — au-delà du cadre instrumental.\n- Pour ouvrir la veille réglementaire, un chemin possible serait d'imaginer comment une évolution juridique (sur l'IA en éducation, sur la souveraineté des données pédagogiques) affecterait RESPIRE et d'anticiper le positionnement à tenir."
+  }
+}

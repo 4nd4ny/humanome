@@ -1,0 +1,208 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Hier journée de \"formation pour informaticien\" proposée par l'ORP. Bilan : [...]",
+      "contexte": "Mention d'une journée de formation institutionnelle dont le compte-rendu est confié à un dialogue IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+      "contexte": "Travail sur un référentiel pensé pour un horizon post-AGI — projection vers un monde où l'intelligence machinique aura largement progressé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+      "contexte": "Production déléguée à l'IA, dont l'aval est verbalisé avec une formule familière qui dit l'engagement dans la durée pour un sujet partagé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "A1 — Pensée Critique & Anti-Hallucination",
+      "contexte": "Titre du premier exemple de débat généré.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte ni récit de crise ni récit de dépassement. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un échec ponctuel rencontré sur le référentiel ou la génération, ce que l'épreuve a ouvert plutôt que ce qu'elle a fermé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne nomme pas d'ancien modèle qu'il aurait fallu désapprendre. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos de la formation ORP ou du projet post-AGI, une croyance professionnelle ancienne qui doit aujourd'hui être lâchée et ce qui reste pourtant constant."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille est descriptive — elle énumère des actions sans extraire de sens transférable. Pour ouvrir ce dossier, l'apprenant pourrait, à propos d'un moment de la journée, passer du \"j'ai fait\" au \"qu'est-ce que cela m'apprend pour la suite du projet\"."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille mentionne un horizon post-AGI mais sans tension émotionnelle ni récit vécu de la supériorité IA. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un débat IA-généré qui dépasse ce qu'il aurait su formuler lui-même, la coloration émotionnelle de la rencontre — surprise, malaise ou admiration."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 5.05, la formule \"faire avancer le schmilblick\" est une motivation explicitement nommée — légère par le ton, mais qui dit l'engagement dans la durée pour un sujet qui dépasse l'apprenant.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 5.05 demande un \"pourquoi\" qui résiste aux récompenses, à la reconnaissance et aux résultats — pas seulement une formule motivationnelle. La phrase \"pour faire avancer le schmilblick\" est elliptique : elle dit qu'il y a un schmilblick à faire avancer sans dire pourquoi cela compte pour l'apprenant. La pièce résiste pourtant un peu : la formule familière, par sa litote ironique, est plus proche du registre du sens authentique vécu que d'une grande déclaration enflée. Et l'apprenant continue de travailler — la journée de la veille (formation ORP) ne l'a pas dévié du retour à Respire ce matin.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La formule familière (\"faire avancer le schmilblick\") fonctionne comme une litote — un signe extérieur qui pointe un sens intérieur soutenu mais non revendiqué."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens d'accorder à la formule \"schmilblick\" une dignité de litote — la fiche cite explicitement \"ce n'est pas désagréable\" comme exemple de litote sens-porteuse. Mais à la relecture critique, je vois bien que je m'appuie sur l'analogie avec un exemple de la fiche, pas sur une trace propre à cette feuille. La phrase pourrait tout aussi bien être une formule légère sans charge profonde — il n'y a pas, sur cette feuille seule, de quoi distinguer la litote authentique du simple ton décontracté.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Récit performatif : la formule annonce une motivation sans la dérouler ; elle DÉCLARE un engagement (\"faire avancer\") sans donner accès à la source intérieure qui ferait persévérer dans l'inconfort."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que le sens et la motivation intrinsèque soient attestés sur cette feuille. La pièce a résisté un instant par la coloration de litote qui rappelle un exemple de la fiche. Mais sous la présomption de sycophantie, la résistance s'est avérée trop allusive : une formule légère ne suffit pas à attester le \"pourquoi qui reste quand on retire les récompenses\". La cohérence avec un sens vécu pourrait se lire à l'échelle du portfolio entier — dans la persévérance entre les feuilles — plutôt que sur celle-ci seule.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "Au temps 2, la pièce est tombée pour récit performatif : la formule motivationnelle annonce l'engagement sans dérouler la source intérieure qui le porte.",
+        "prescription": "Pour donner corps à cette compétence, l'apprenant pourrait, à un moment de fatigue ou d'incertitude sur le projet, noter ce qui fait qu'il continue malgré tout — un fil intérieur nommé, même brièvement. La lecture transversale du portfolio entier ferait alors apparaître la cohérence entre ce fil et les actions menées."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit ni panne technique gérée ni travail sans outil numérique. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un imprévu rencontré pendant la finalisation YAML ou la génération IA, le geste de repli ou la solution improvisée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas de geste explicite de protection de l'attention. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'une plage de finalisation du référentiel, le geste posé pour préserver le focus — silence de notifications, choix de support, durée délimitée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne contient pas de récit de vérification empirique d'une affirmation IA. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un débat généré, le test concret opéré pour vérifier qu'il \"tient\" face à un lecteur réel ou à une situation effective."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 1,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 1,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 19 février 2026, le pôle RACINES reste discret. Le texte est tendu vers l'avant — référentiel post-AGI, débats à publier — sans s'arrêter sur la transformation intérieure que ce travail suppose. Aucune crise, aucun désapprentissage, aucune tension émotionnelle face à l'IA n'est nommée. Une formule familière (\"faire avancer le schmilblick\") laisse pourtant entrevoir un sens intérieur qui pousse à continuer, plus visible par sa litote que par une déclaration explicite.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Sept compétences du pôle restent sans trace sur cette feuille : la résilience antifragile, la plasticité et le désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure, l'autonomie en mode dégradé, la souveraineté attentionnelle et la vérification terrain. Une seule compétence — le sens et la motivation intrinsèque — a reçu une allusion à travers la formule familière du \"schmilblick\", mais cette allusion est tombée sous la double présomption : une formule légère ne suffit pas à attester un \"pourquoi\" qui résiste aux récompenses. Ces absences ressemblent moins à des choix qu'à une limite du format brève de la feuille — le récit transformatif demande du temps de pose que cette journée n'a pas pris.",
+    "emergencesPole": "Une chose se devine pourtant : l'apprenant ne traite pas le \"post AGI\" comme un horizon angoissant ou comme un slogan. La phrase qui en parle est sobre, presque administrative (\"finaliser les fichiers YAML du référentiel\"), comme si la perspective avait déjà été intégrée et qu'elle n'occupait plus la sphère émotionnelle. Cette absence de tension peut signer soit un travail d'acceptation déjà accompli, soit un évitement de la traversée — la feuille seule ne permet pas de trancher.",
+    "pistes": [
+      "Pour donner à voir le travail d'acceptation de l'intelligence machinique, un chemin possible serait de noter, à propos d'un débat IA-généré particulièrement réussi, la coloration émotionnelle de la rencontre — la surprise, le malaise, l'admiration mêlée d'inconfort.",
+      "Pour rendre visible le sens qui porte le projet, un chemin possible serait de noter, dans un moment de fatigue ou de doute, ce qui fait qu'on continue — un fil intérieur nommé brièvement.",
+      "Pour faire affleurer la dimension réflexive de la journée, un chemin possible serait, sur une feuille suivante, de passer du \"voici ce que j'ai fait\" au \"voici ce que cela m'a appris pour la suite du projet\"."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 19 février 2026, le pôle RACINES reste discret. Le texte est tendu vers l'avant — référentiel post-AGI, débats à publier — sans s'arrêter sur la transformation intérieure que ce travail suppose. Aucune crise, aucun désapprentissage, aucune tension émotionnelle face à l'IA n'est nommée. Une formule familière (\"faire avancer le schmilblick\") laisse pourtant entrevoir un sens intérieur qui pousse à continuer, plus visible par sa litote que par une déclaration explicite.\n\n## Territoires les plus denses\n\nSur cette seule feuille, aucun territoire dense ne se laisse cartographier dans le pôle RACINES. La compétence pour laquelle une allusion existait — le sens et la motivation intrinsèque — est restée au stade de la formule. Le rapport revient sur ce fil dans les sections suivantes.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSept compétences du pôle restent sans trace sur cette feuille : la résilience antifragile, la plasticité et le désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure, l'autonomie en mode dégradé, la souveraineté attentionnelle et la vérification terrain. Une seule compétence — le sens et la motivation intrinsèque — a reçu une allusion à travers la formule familière du \"schmilblick\", mais cette allusion est tombée sous la double présomption : une formule légère ne suffit pas à attester un \"pourquoi\" qui résiste aux récompenses. Ces absences ressemblent moins à des choix qu'à une limite du format brève de la feuille — le récit transformatif demande du temps de pose que cette journée n'a pas pris.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose se devine pourtant : l'apprenant ne traite pas le \"post AGI\" comme un horizon angoissant ou comme un slogan. La phrase qui en parle est sobre, presque administrative (\"finaliser les fichiers YAML du référentiel\"), comme si la perspective avait déjà été intégrée et qu'elle n'occupait plus la sphère émotionnelle. Cette absence de tension peut signer soit un travail d'acceptation déjà accompli, soit un évitement de la traversée — la feuille seule ne permet pas de trancher.\n\n## Pistes pour enrichir ce pôle\n\n- Pour donner à voir le travail d'acceptation de l'intelligence machinique, un chemin possible serait de noter, à propos d'un débat IA-généré particulièrement réussi, la coloration émotionnelle de la rencontre — la surprise, le malaise, l'admiration mêlée d'inconfort.\n- Pour rendre visible le sens qui porte le projet, un chemin possible serait de noter, dans un moment de fatigue ou de doute, ce qui fait qu'on continue — un fil intérieur nommé brièvement.\n- Pour faire affleurer la dimension réflexive de la journée, un chemin possible serait, sur une feuille suivante, de passer du \"voici ce que j'ai fait\" au \"voici ce que cela m'a appris pour la suite du projet\"."
+  }
+}

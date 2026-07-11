@@ -1,0 +1,329 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Il manque des exemples concrets dans les fichiers de paramétrages pour pouvoir les donner aux premiers cartographes comme base de départ. Je vais tenter d'en faire générer quelques-uns sur la base de nos deux portfolios.",
+      "contexte": "Pensée aux destinataires d'un dispositif (les premiers cartographes) et mention d'un « nos » qui pourrait pointer une collaboration de fond.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "La bonne nouvelle, c'est que c'est pas moi qui fait le boulot le plus dur :-D",
+      "contexte": "Autodérision finale, émoticône clôturant la journée sur une note légère après le constat de dispersion.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Arg… Je diverge encore.",
+      "contexte": "Variation de registre soudaine au milieu de la prose réflexive, micro-interjection familière qui rompt le ton analytique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Je suis passé de 400 compétences à 48, mais relisant ce qui a été supprimé, j'ai demandé à Claude de réfléchir comment en ré-intégrer certaines. Je ne voulais pas faire trop long. La nouvelle version a été stabilisée à 60 compétences.",
+      "contexte": "Allers-retours avec Claude pour réintégrer des compétences supprimées : forme potentielle de collaboration où l'apprenant fait travailler l'IA sur ses propres choix.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-31",
+      "extraitVerbatim": "Mais je n'ai pas encore testé les 6 versions moi même (je n'ai fait que les simuler). Il faut donc que consolide tout ça, que je ferme quelques onglets, que j'intègre les fichiers markdown ouverts dans les manuels.",
+      "contexte": "Mention d'un travail en cours avec une IA dont les versions sont simulées plutôt que testées ; trace possible d'une collaboration qui assume l'imperfection.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence émotionnelle et à la sollicitude active sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait nommer précisément une émotion vécue ou perçue chez un partenaire, ou décrire un geste préparatoire à l'attention d'un tiers."
+      }
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Autodérision finale (« c'est pas moi qui fait le boulot le plus dur :-D ») qui désamorce le constat de dispersion par une chute humoristique."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Variation de registre soudaine (« Arg… Je diverge encore ») qui rompt le ton analytique par une interjection familière, marqueur possible d'une conscience du ton."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la communication authentique n'est pas attestée — il n'y a pas ici de récit de prise de parole inconfortable, pas de feedback difficile donné, pas de scène d'expression vers un tiers. Le portfolio est un journal de travail solitaire. Le pid 2 est une autodérision en fin de feuille, légère et sincère, qui contraste avec le ton plus tendu du paragraphe précédent. Le pid 3 (« Arg… Je diverge encore ») est une variation de registre dans le même texte — passage du registre analytique à l'interjection familière — qui correspond à la trace oblique décrite par la fiche. Ce qui résiste, c'est moins le contenu que le geste lui-même de moduler le ton. Ce qui reste explicitement faible : il n'y a pas d'interlocuteur identifié, pas de conversation difficile, pas de feedback ; on est dans une communication à soi-même, lue éventuellement par d'autres.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'autodérision sans cynisme dans la chute clôt la feuille en désamorçant le constat de dispersion, ce qui correspond au registre d'autodérision saine de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La rupture de ton « Arg… Je diverge encore » au milieu du paragraphe correspond exactement à la trace oblique de variation de registre dans le même texte décrite par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas confondu un style d'écriture personnel avec une compétence de communication authentique. La fiche est claire : la compétence porte sur l'expression vers l'autre, avec maîtrise du registre. Ici, le destinataire est ambigu — un journal d'apprentissage est-il une communication ? Les variations de ton sont attestées mais l'orientation vers un autre n'est pas explicite. L'attaque (c) de biais de medium tient solidement : le journal sollicite la réflexion personnelle, et la variation de registre peut être un trait d'écriture plus qu'un acte communicationnel. Pour le pid 2 (autodérision), l'attaque est moins forte car l'humour clôturant est en soi un geste relationnel, même dans un journal partagé. Pour le pid 3, l'attaque (a) d'insuffisance probatoire est défendable : une interjection isolée ne porte pas seule la compétence.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'autodérision en fin de feuille est attestée mais le destinataire reste implicite — il pourrait s'agir d'un trait de plume autant que d'un geste de communication orienté."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'interjection isolée est conforme à la trace oblique de la fiche mais reste un fragment ; à elle seule elle n'atteindrait pas le seuil, elle compose surtout avec la pièce 1."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la communication authentique parce que le sujet du jour est solitaire — un travail technique de fabrication, sans interlocuteur identifié. Ce qui m'a forcé à reconnaître une trace, c'est la double variation de registre dans le même texte : l'interjection familière qui rompt le ton analytique, et la chute autodérisoire qui désamorce le constat de dispersion. Sous présomption de sycophantie, les deux pièces se sont affaiblies sans tomber : le destinataire d'un journal reste flou, et la fiche centre la compétence sur l'expression vers l'autre. Il en résulte un renvoi au cartographe sur cette feuille : la matière existe sous forme de style et de geste, sans s'incarner dans une scène d'échange. La nuance qui reste : l'autodérision saine sans cynisme est précisément ce que la fiche valorise, et elle est ici nette dans la chute du paragraphe central.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Les deux pièces ont tenu sous la présomption d'absence puis se sont affaiblies sous la présomption de sycophantie : la matière du registre est présente mais le destinataire d'un journal reste implicite.",
+        "prescription": "Une feuille pourrait raconter un moment où le registre a été délibérément choisi en direction d'un autre — par exemple une formulation préparée avant un message difficile, ou une autodérision destinée à désamorcer une tension dans un échange. Une variante consisterait à expliciter le destinataire des modulations de ton à l'œuvre dans le journal lui-même."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion des conflits sur cette feuille. Pour ouvrir ce dossier, un récit pourrait documenter un désaccord assumé et la manière dont il a été structuré pour produire de la valeur."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'influence et à la diplomatie sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait décrire une situation où l'adhésion d'un tiers a été cherchée par anticipation de ses résistances."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Mention d'une itération sur 6 versions seulement simulées et non testées, avec poursuite du travail malgré cette imperfection : trace potentielle de tolérance à la collaboration imparfaite avec l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Aller-retour avec Claude sur la taille du référentiel, où l'apprenant garde son critère (« je ne voulais pas faire trop long ») tout en intégrant ce que la machine propose."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la collaboration divergente n'est pas attestée. La fiche est précise : le marqueur clé est « on n'est toujours pas d'accord MAIS on a livré » — il faut une divergence persistante qui ne bloque pas la production. Le pid 5 décrit une simulation à 6 versions, ce qui dit la persévérance dans l'itération, pas la divergence assumée. Le pid 4 raconte un dialogue avec Claude où l'apprenant a un critère personnel (« je ne voulais pas faire trop long ») et où la machine est mobilisée pour réfléchir à la réintégration. C'est une collaboration, mais où le désaccord persistant n'est pas nommé : on n'a pas « Claude pense qu'il faut 90 compétences, moi 48, on a livré 60 sans être d'accord ». Ce qui reste explicitement faible : aucun « malgré » assumé, aucune description d'une compensation systémique (du type « l'IA hallucine, donc je vérifie »).",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber les deux pièces sans qu'aucune ne résiste. Je note pour mémoire que la matière narrative serait propice à la compétence si elle était articulée différemment : l'aller-retour sur la taille du référentiel pourrait être lu comme une collaboration divergente si les positions divergentes étaient nommées, mais elles ne le sont pas dans le verbatim disponible.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la collaboration divergente en m'appuyant sur le marqueur clé de la fiche : il faut un « toujours pas d'accord ET on a livré ». La présomption d'absence a tenu seule : ni la simulation des 6 versions, ni le dialogue avec Claude sur la taille du référentiel ne nomment une divergence persistante assumée. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : la pratique du travail avec une IA dont on connaît les limites est en germe — l'apprenant assume des versions simulées plutôt que testées — mais le geste de nommer ce sur quoi on n'est pas d'accord, et ce malgré quoi on livre, n'est pas posé.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La présomption d'absence a tenu seule : le marqueur clé de la fiche (« pas d'accord ET on a livré ») n'est pas posé, les pièces décrivent une persévérance plutôt qu'une divergence assumée.",
+        "prescription": "Une feuille pourrait nommer explicitement ce sur quoi l'apprenant et une IA partenaire ne sont pas d'accord, et ce sur quoi la collaboration continue malgré ce désaccord. Une variante consisterait à décrire un dispositif de compensation pour pallier une limite connue d'un partenaire IA."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence culturelle et contextuelle sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait décrire un changement de cadre — organisationnel, générationnel, disciplinaire — et l'adaptation qui en a découlé."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au sens politique et à la lecture organisationnelle sur cette feuille. Pour ouvrir ce dossier, une feuille pourrait analyser un blocage institutionnel ou une dynamique de pouvoir observée."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Idée de produire des exemples concrets dans les fichiers de paramétrage pour les donner aux premiers cartographes : geste possible de transposition entre le monde de la conception et celui des utilisateurs novices."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la traduction entre mondes n'est pas attestée — la fiche est exigeante : il faut une transposition (préserver le sens dans un autre registre), une bidirectionnalité, des analogies structurelles. Ici, l'apprenant a une intention (donner des exemples concrets aux premiers cartographes) mais le geste lui-même de traduction n'est pas développé dans la feuille — on a le projet de produire ces exemples, pas leur description. La pièce porte une intention de pontage entre deux mondes (concepteur du référentiel ↔ premier cartographe qui débute), mais elle reste au stade du projet. Ce qui résiste néanmoins : la pensée explicite aux destinataires et au besoin d'exemples adaptés pour leur permettre d'entrer dans l'outil témoigne d'une conscience qu'on ne peut pas livrer le référentiel brut. Ce qui reste explicitement faible : aucun exemple de transposition réalisée n'est dans le verbatim.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La pensée explicite des destinataires (les premiers cartographes) et du besoin d'exemples concrets témoigne d'une conscience du pontage à construire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas habillé une simple bonne intention pédagogique du nom de traduction entre mondes. La fiche distingue traduire de simplifier — la traduction préserve le sens dans un autre registre. Ici, l'apprenant projette de fournir des exemples, ce qui peut tout à fait être de la simplification (donner une matière prête-à-l'emploi) sans nécessairement passer par une transposition de cadre conceptuel. Le test de la fiche (« l'expert d'origine reconnaîtrait-il son savoir dans la version traduite ? ») n'est pas explicitement posé. L'attaque (g) de mouvement-vers est juste : l'apprenant est en chemin vers une traduction mais ne montre pas le geste dans la feuille.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'intention de produire des exemples pour cartographes débutants annonce un acte de transposition mais ne le réalise pas dans le verbatim : la pièce reste au stade du projet, pas du geste accompli."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la traduction entre mondes parce que l'objet du jour est la fabrication d'un outil, pas son usage par des tiers. La présomption d'absence a laissé résister la pensée aux destinataires (cartographes débutants à qui il faudra fournir des exemples), mais sous présomption de sycophantie cette pièce est tombée : l'intention annoncée ne se matérialise pas dans la feuille en un geste de transposition. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : le souci des futurs utilisateurs est là, et c'est précisément ce souci qui pourrait devenir traduction si une feuille ultérieure documente le passage du référentiel brut à l'exemple incarné.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La pièce qui a tenu sous la présomption d'absence est tombée sous la présomption de sycophantie : l'intention de produire des exemples annonce un acte de transposition sans le réaliser dans la feuille.",
+        "prescription": "Une feuille pourrait documenter le passage concret d'un fragment du référentiel à sa version exemplifiée pour un cartographe débutant — qu'est-ce qui a été préservé, qu'est-ce qui a été rendu accessible. Une variante consisterait à décrire ce qu'un cartographe débutant aurait besoin de comprendre avant de pouvoir utiliser l'outil."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mention « nos deux portfolios » : indice d'un binôme de travail, possible amorce d'un « nous » identitaire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la construction de communautés n'est pas attestée. La fiche exige un « nous » identitaire chargé d'émotion, des rituels partagés, un vocabulaire propre, une architecture multi-canaux — la communauté est un espace d'identité qui survit au projet. Ici, le « nos deux portfolios » est un possessif partagé qui pointe une collaboration à deux, sans vocabulaire identitaire ni rituel décrit, sans architecture communautaire. C'est un signe faible d'appartenance à une dyade de travail, ce qui correspond au « nous de politesse ou d'assignation organisationnelle » que la fiche écarte explicitement. Ce qui reste explicitement faible : aucun marqueur émotionnel attaché à ce « nous », aucun rituel mentionné, aucun espace partagé décrit. La présomption d'absence absorbe sans difficulté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La présomption d'absence a fait tomber la seule pièce sans résistance. Le « nos » est trop léger, trop fonctionnel, pour porter à lui seul la trace d'une construction de communauté au sens où la fiche l'entend.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Sur cette feuille, j'ai cherché à nier la construction de communautés en m'appuyant sur la distinction critique de la fiche entre le « nous » identitaire et le « nous » fonctionnel. La présomption d'absence a tenu seule : le possessif partagé « nos deux portfolios » désigne un binôme de travail, pas une communauté chargée d'émotion. Il en résulte que la compétence n'est pas établie sur cette feuille. La nuance qui reste : l'existence même d'un binôme avec portfolios partagés est une matière qui pourrait, dans d'autres feuilles, se déployer en construction de communauté si l'identité et les rituels du binôme étaient mis en mots.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a tenu seule : le « nos deux portfolios » est un possessif fonctionnel que la distinction critique de la fiche écarte explicitement.",
+        "prescription": "Une feuille pourrait documenter ce que le binôme partage au-delà du travail — un rituel, un vocabulaire propre, un moment qui n'aurait pas lieu sans le lien. Une variante consisterait à imaginer ce qui resterait du binôme si le projet de cartographie s'arrêtait."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle relationnel reste essentiellement en arrière-plan. Le sujet du jour est une journée de fabrication solitaire — conception d'un prompt, paramétrage de fichiers YAML, allers-retours avec une IA — et les traces des liens à d'autres humains apparaissent par éclats discrets : un possessif partagé (« nos deux portfolios »), une pensée aux futurs utilisateurs (les premiers cartographes), une chute autodérisoire en fin de paragraphe. Le registre alterne entre le ton analytique du constat sur le travail et de brèves échappées familières (« Arg… Je diverge encore », l'émoticône finale). Le rapport à l'autre reste latent, en filigrane d'un travail tourné vers l'outil à construire.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'essentiel du pôle n'a pas encore été ramené sur cette feuille. L'intelligence émotionnelle, la gestion des conflits, l'influence, l'intelligence culturelle, le sens politique ne reçoivent pas de matière ici — ces absences ressemblent davantage à un effet du sujet du jour (une journée de production individuelle) qu'à un choix. La traduction entre mondes et la construction de communautés apparaissent en germe — le souci des cartographes débutants à qui il faudra fournir des exemples, la mention d'un binôme — sans atteindre le seuil d'une présence établie. La communication authentique est en travail : la variation de registre et l'autodérision sont attestées, mais le destinataire d'un journal reste implicite et la matière demande à se déployer dans une scène d'échange. La collaboration divergente affleure dans le travail avec une IA dont les versions sont simulées plutôt que testées, sans que la divergence persistante soit nommée explicitement.",
+    "emergencesPole": "Deux fils traversent les compétences relationnelles de ce pôle sur cette feuille. D'abord, une pensée diffuse aux destinataires : l'apprenant pense « pour » les premiers cartographes, partage des portfolios avec un partenaire, et son journal s'écrit avec une conscience implicite d'être lu. Ensuite, une circulation entre registres dans le même texte : la prose analytique laisse place à des éclats familiers qui ne basculent pas dans la familiarité mais en ouvrent juste la porte — un signe discret de maîtrise du ton qui ne se déclare pas comme telle.",
+    "pistes": [
+      "Pour enrichir la communication authentique, un chemin possible serait de raconter un échange où le registre a été délibérément choisi en direction d'un autre — un message difficile préparé, une autodérision destinée à désamorcer une tension.",
+      "Pour enrichir la traduction entre mondes, un chemin possible serait de documenter le passage concret d'un fragment du référentiel à sa version exemplifiée pour un cartographe débutant — qu'est-ce qui a été préservé, qu'est-ce qui a été rendu accessible.",
+      "Pour enrichir la construction de communautés latente, un chemin possible serait de nommer ce que le binôme partage au-delà du travail — un rituel, un vocabulaire propre, un moment qui n'aurait pas lieu sans le lien.",
+      "Pour enrichir la collaboration divergente, un chemin possible serait de nommer ce sur quoi l'apprenant et une IA partenaire ne sont pas d'accord, et ce sur quoi la collaboration continue malgré ce désaccord."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle relationnel reste essentiellement en arrière-plan. Le sujet du jour est une journée de fabrication solitaire — conception d'un prompt, paramétrage de fichiers YAML, allers-retours avec une IA — et les traces des liens à d'autres humains apparaissent par éclats discrets : un possessif partagé (« nos deux portfolios »), une pensée aux futurs utilisateurs (les premiers cartographes), une chute autodérisoire en fin de paragraphe. Le registre alterne entre le ton analytique du constat sur le travail et de brèves échappées familières (« Arg… Je diverge encore », l'émoticône finale). Le rapport à l'autre reste latent, en filigrane d'un travail tourné vers l'outil à construire.\n\n## Territoires les plus denses\n\nAucune compétence n'atteint sur cette feuille le seuil d'une présence établie : le pôle relationnel n'est ramené que sous forme d'éclats, sans qu'aucune compétence ne se déploie en plusieurs pièces solides.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'essentiel du pôle n'a pas encore été ramené sur cette feuille. L'intelligence émotionnelle, la gestion des conflits, l'influence, l'intelligence culturelle, le sens politique ne reçoivent pas de matière ici — ces absences ressemblent davantage à un effet du sujet du jour (une journée de production individuelle) qu'à un choix. La traduction entre mondes et la construction de communautés apparaissent en germe — le souci des cartographes débutants à qui il faudra fournir des exemples, la mention d'un binôme — sans atteindre le seuil d'une présence établie. La communication authentique est en travail : la variation de registre et l'autodérision sont attestées, mais le destinataire d'un journal reste implicite et la matière demande à se déployer dans une scène d'échange. La collaboration divergente affleure dans le travail avec une IA dont les versions sont simulées plutôt que testées, sans que la divergence persistante soit nommée explicitement.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux fils traversent les compétences relationnelles de ce pôle sur cette feuille. D'abord, une pensée diffuse aux destinataires : l'apprenant pense « pour » les premiers cartographes, partage des portfolios avec un partenaire, et son journal s'écrit avec une conscience implicite d'être lu. Ensuite, une circulation entre registres dans le même texte : la prose analytique laisse place à des éclats familiers qui ne basculent pas dans la familiarité mais en ouvrent juste la porte — un signe discret de maîtrise du ton qui ne se déclare pas comme telle.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la communication authentique, un chemin possible serait de raconter un échange où le registre a été délibérément choisi en direction d'un autre — un message difficile préparé, une autodérision destinée à désamorcer une tension.\n- Pour enrichir la traduction entre mondes, un chemin possible serait de documenter le passage concret d'un fragment du référentiel à sa version exemplifiée pour un cartographe débutant — qu'est-ce qui a été préservé, qu'est-ce qui a été rendu accessible.\n- Pour enrichir la construction de communautés latente, un chemin possible serait de nommer ce que le binôme partage au-delà du travail — un rituel, un vocabulaire propre, un moment qui n'aurait pas lieu sans le lien.\n- Pour enrichir la collaboration divergente, un chemin possible serait de nommer ce sur quoi l'apprenant et une IA partenaire ne sont pas d'accord, et ce sur quoi la collaboration continue malgré ce désaccord.\n"
+  }
+}

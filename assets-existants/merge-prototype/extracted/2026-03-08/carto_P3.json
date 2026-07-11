@@ -1,0 +1,269 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**04: YAML** → Génération des YAML & Prompts ipsatifs via script Python v2",
+      "contexte": "Item d'un inventaire de bureaux virtuels mentionnant une seconde version d'un script de génération.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**07: LIVRE** → Pédagogie Émergence + couplage Noèsis-Entendement + revoir plan v2",
+      "contexte": "Mention d'un plan v2 d'un livre — l'apprenant en est à itérer une seconde version d'une structure éditoriale.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**08: MANUELS** → 9 manuels + ludification : quel impact ? + générer v2",
+      "contexte": "Neuf manuels avec une question ouverte sur l'impact de la ludification et une seconde génération à venir.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**10: RESPIRE** → Site web v2 + add réf. + refonte new landing page",
+      "contexte": "Un second site web et une refonte d'une landing page — geste de reprise itérative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**12: REFERENTIELS** → v7 + Réflexions NotebookLM + publier débâts dans Décidim",
+      "contexte": "Référentiels en version 7 — itération avancée d'un même objet conceptuel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**13: CARTO** → CartoViewer Prototypes : fusionner + créer site React",
+      "contexte": "Plusieurs prototypes d'un CartoViewer à fusionner — pluralité d'itérations sur un même objet.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "Voici ma todo list avant refactoring :  \n![][image25]![][image26]\n\nVoici ma todo list après refactoring :  \n![][image27]",
+      "contexte": "Présentation d'un avant/après d'une todo list — geste explicite de mise en regard de deux états du travail.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-08",
+      "extraitVerbatim": "**14: EDUFOLIO** → Sqily + Cahier des charges + suite au hackathon décider si Sqily = base EduFolio ou pas",
+      "contexte": "Mention d'un hackathon récent suivi d'une décision à prendre sur l'adoption d'une plateforme — moment d'arbitrage qualitatif sur un outil.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le \"v2\" du script Python signale au moins une itération antérieure et un cycle de reprise du dispositif."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le \"plan v2\" du livre signale une seconde version d'une structure — geste itératif sur un objet long."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "\"Générer v2\" pour neuf manuels — itération à l'échelle d'un corpus."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "\"Site web v2\" et \"refonte new landing page\" — deux itérations explicites sur des artefacts web."
+        },
+        {
+          "numero": 5,
+          "pid": 5,
+          "contexte": "Référentiels en \"v7\" — itération nettement avancée d'un même objet conceptuel."
+        },
+        {
+          "numero": 6,
+          "pid": 6,
+          "contexte": "\"CartoViewer Prototypes : fusionner\" — co-existence de plusieurs prototypes, geste itératif typique."
+        },
+        {
+          "numero": 7,
+          "pid": 7,
+          "contexte": "Avant/après refactoring d'une todo list — geste de reprise sur un objet, avec mise en regard explicite de deux états."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la créativité itérative n'est pas attestée. La fiche est claire : il ne suffit pas d'avoir des versions, il faut une trace d'apprentissage explicite entre chaque passage, un choix stratégique de l'imperfection, un récit de versions avec ce qui a changé et pourquoi. Sur cette feuille, ce que je vois ce sont des étiquettes : v2, v2, v2, v7, prototypes. Aucune ne raconte ce qui a changé entre les versions, pourquoi la nouvelle a été engagée, ce que la précédente a permis d'apprendre. Sous présomption d'absence, les sept pièces tombent presque toutes. Une seule résiste un peu : l'avant/après du refactoring de la todo, parce qu'il y a là explicitement deux états mis côte à côte et un geste de reprise visible. Mais même cette pièce ne raconte pas l'apprentissage qui a guidé le refactoring — elle montre le résultat. La fiche dit que les versions seules ne suffisent pas si on ne montre pas le choix stratégique entre elles. Présomption d'absence partiellement levée pour la pièce 7, presque totalement maintenue pour les autres.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 7,
+              "motifResistance": "Le geste de présenter explicitement un avant/après d'une todo list est un acte itératif rendu visible, pas seulement une suite de versions cachées dans des fichiers."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Sous la présomption de sycophantie, je dois demander si j'ai surinterprété l'avant/après. La fiche distingue les versions successives sans apprentissage explicite d'une créativité itérative authentique. Ici, l'avant/après est montré mais aucune phrase ne dit ce qui a guidé le refactoring, ce que la première version avait raté, ce que la nouvelle gagne. Le risque de récit performatif est réel — l'apprenant raconte le geste du refactoring sans en montrer le contenu cognitif. La pièce s'affaiblit fortement sous cette pression.",
+          "examenPieces": [
+            {
+              "pieceId": 7,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce raconte un geste itératif (refactoring) sans expliciter ce qui a changé ni pourquoi. C'est davantage une déclaration d'itération qu'une démonstration en acte. Elle reste néanmoins une trace concrète parce que les deux états sont matériellement présents dans la feuille — l'attaque ne disqualifie pas, elle affaiblit."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille, j'ai cherché à voir s'il y avait là une créativité itérative au sens de la fiche : non pas la simple succession de versions, mais l'apprentissage explicite entre chacune. La feuille est saturée de \"v2\", \"v7\", \"prototypes à fusionner\" — un univers entier qui travaille par itérations. Sous présomption d'absence, la plupart de ces mentions ont cédé : elles signalent que l'apprenant itère, mais ne montrent pas qu'il en tire des apprentissages explicites. Le refactoring de la todo a résisté parce qu'il est mis en scène avec un avant/après. Sous présomption de sycophantie, il a été affaibli sans tomber : le geste est là, le contenu cognitif ne l'est pas. Ce qui en résulte, c'est une trace fragile : la feuille atteste qu'un travail itératif intense est en cours, mais ne déploie pas l'analyse qui ferait passer la simple répétition de versions au statut de créativité itérative attestée. Le verdict tient en renvoi au cartographe.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une seule pièce (l'avant/après du refactoring) a survécu, affaiblie sous attaque de récit performatif ; les autres mentions de versions sont des étiquettes sans déploiement.",
+        "prescription": "Pour approfondir cette piste, raconter une fois ce que le refactoring de la todo a fait apparaître — quelle dépendance détectée, quelle erreur de priorité corrigée, ce que la version précédente avait raté — donnerait au cycle itératif son contenu cognitif. Le même travail pourrait être conduit sur la v7 des référentiels ou la v2 du plan du livre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 7, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille seule ne suffit pas à détecter une signature, qui exige des récurrences traçables sur plusieurs entrées. Pour ouvrir ce dossier, comparer ce que les écrits ont en commun à travers les jours — un tic d'écriture, une métaphore qui revient — nommerait ce qui rend la voix reconnaissable."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne pose pas de question nouvelle à la place d'une réponse à un problème donné. Pour ouvrir ce dossier, raconter un moment où le vrai sujet a été redéfini — pas reformulé, mais inventé — documenterait cette compétence."
+      }
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "L'arbitrage \"décider si Sqily = base EduFolio ou pas\" est un moment où une option doit être tranchée parmi d'autres — possible jugement qualitatif sur un outil."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la curation n'est pas là. La fiche exige un discernement de la qualité formelle articulé, une évaluation qualitative explicite avec critères, ou au moins le rejet d'un output \"qui sonne faux\". Ici, l'apprenant mentionne qu'il faut décider si Sqily peut être la base d'EduFolio. C'est l'annonce d'un arbitrage à venir, pas l'arbitrage lui-même. Aucun critère n'est nommé, aucune évaluation n'est conduite. Sous présomption d'absence, la pièce tombe — elle est une todo, pas une décision argumentée.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Pas d'examen à conduire au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché un jugement esthétique en acte — une évaluation qualitative articulée. L'item \"décider si Sqily = base EduFolio ou pas\" annonce un arbitrage mais ne le déploie pas. Aucun critère n'apparaît, aucune comparaison n'est tenue. Ce qui en résulte, c'est qu'il n'y a pas de trace de cette compétence sur cette feuille — l'évaluation est annoncée, pas conduite.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La seule pièce extraite est une todo qui annonce un arbitrage sans le déployer ; aucun critère ni évaluation ne sont visibles.",
+        "prescription": "Pour ouvrir ce dossier, raconter une fois l'arbitrage Sqily/EduFolio lui-même — quels critères ont été retenus, ce qui sonne juste ou faux dans la plateforme, ce qui a guidé le choix — donnerait au jugement esthétique sa matière."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas d'interaction physique avec la matière. Pour ouvrir ce dossier, raconter un geste manuel concret — un câblage, un montage, une réparation — nommerait cette compétence."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de description sensorielle ou phénoménologique. Pour ouvrir ce dossier, nommer une fois ce que le corps perçoit dans un moment de travail — fatigue précise, tension localisée, intuition somatique — documenterait cette compétence."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas de moment de performance live. Pour ouvrir ce dossier, raconter un instant en présentiel où la présence physique a fait une différence identifiable — devant des élèves, dans une salle — documenterait cette compétence."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 6,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 8 mars 2026 montre un apprenant immergé dans un travail intense d'itérations : v2 d'un script Python, v2 d'un plan de livre, v2 de manuels, v2 d'un site web, v7 de référentiels, prototypes d'un CartoViewer à fusionner, refactoring d'une todo list. Le rythme de la feuille est saturé de versions. La voix dominante est celle de l'ordonnancement : on reprend, on regénère, on refond. Sur le pôle main et créativité, ce que cette feuille porte, c'est moins une production nouvelle qu'un geste de reprise systématique sur ce qui existe déjà.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas visités dans cette feuille. La singularité et la signature, qui exigent des récurrences à travers plusieurs entrées, ne peuvent pas se voir dans une seule journée. Le design de problèmes — l'invention d'une question qui n'existait pas — n'apparaît pas. L'intelligence manuelle et artisanale, l'ancrage sensoriel et la présence performative live n'ont pas d'occasion de se déployer dans une feuille consacrée à l'ordonnancement de chantiers numériques. Le jugement esthétique est annoncé à travers l'arbitrage \"décider si Sqily peut être la base d'EduFolio\", mais l'évaluation n'est pas conduite sur la feuille.",
+    "emergencesPole": "Une observation traverse cette feuille : le travail est partout en cours d'itération. Sept des seize desktops thématiques portent une trace de re-version (v2, v7, prototypes à fusionner, refonte, refactoring). Ce rythme indique un univers de production où l'imperfection initiale est admise et où la reprise est la norme — ce qui correspond au socle de la créativité itérative décrite par la fiche. Ce qui manque, sur cette feuille seule, c'est l'explicitation de l'apprentissage entre les versions : pourquoi cette v2 plutôt que la v1, qu'a-t-on appris en route, qu'est-ce qui change.",
+    "pistes": [
+      "Pour donner du contenu cognitif au geste itératif omniprésent dans la feuille, un chemin possible serait de raconter une fois, sur un objet précis, ce qui sépare la v(n) de la v(n+1) — l'apprentissage entre les versions, et pas seulement leur succession.",
+      "Pour incarner le jugement esthétique annoncé dans l'arbitrage Sqily/EduFolio, un chemin possible serait de tenir, le moment venu, le récit du choix lui-même : quels critères, quelles tensions, ce qui a fait pencher la balance."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 8 mars 2026 montre un apprenant immergé dans un travail intense d'itérations : v2 d'un script Python, v2 d'un plan de livre, v2 de manuels, v2 d'un site web, v7 de référentiels, prototypes d'un CartoViewer à fusionner, refactoring d'une todo list. Le rythme de la feuille est saturé de versions. La voix dominante est celle de l'ordonnancement : on reprend, on regénère, on refond. Sur le pôle main et créativité, ce que cette feuille porte, c'est moins une production nouvelle qu'un geste de reprise systématique sur ce qui existe déjà.\n\n## Territoires les plus denses\n\nSur cette feuille seule, aucune compétence du pôle n'atteint une présence pleinement établie. Une piste reste en renvoi au cartographe : la créativité itérative, attestée par la mise en regard explicite d'un avant/après du refactoring de la todo. Le geste est présent, son contenu cognitif demande encore à être déployé.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas visités dans cette feuille. La singularité et la signature, qui exigent des récurrences à travers plusieurs entrées, ne peuvent pas se voir dans une seule journée. Le design de problèmes — l'invention d'une question qui n'existait pas — n'apparaît pas. L'intelligence manuelle et artisanale, l'ancrage sensoriel et la présence performative live n'ont pas d'occasion de se déployer dans une feuille consacrée à l'ordonnancement de chantiers numériques. Le jugement esthétique est annoncé à travers l'arbitrage \"décider si Sqily peut être la base d'EduFolio\", mais l'évaluation n'est pas conduite sur la feuille.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse cette feuille : le travail est partout en cours d'itération. Sept des seize desktops thématiques portent une trace de re-version (v2, v7, prototypes à fusionner, refonte, refactoring). Ce rythme indique un univers de production où l'imperfection initiale est admise et où la reprise est la norme — ce qui correspond au socle de la créativité itérative décrite par la fiche. Ce qui manque, sur cette feuille seule, c'est l'explicitation de l'apprentissage entre les versions : pourquoi cette v2 plutôt que la v1, qu'a-t-on appris en route, qu'est-ce qui change.\n\n## Pistes pour enrichir ce pôle\n\nPour donner du contenu cognitif au geste itératif omniprésent dans la feuille, un chemin possible serait de raconter une fois, sur un objet précis, ce qui sépare la v(n) de la v(n+1) — l'apprentissage entre les versions, et pas seulement leur succession.\n\nPour incarner le jugement esthétique annoncé dans l'arbitrage Sqily/EduFolio, un chemin possible serait de tenir, le moment venu, le récit du choix lui-même : quels critères, quelles tensions, ce qui a fait pencher la balance."
+  }
+}

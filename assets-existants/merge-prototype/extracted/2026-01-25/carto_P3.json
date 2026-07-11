@@ -1,0 +1,430 @@
+{
+  "poleNum": "3",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Mais évidemment je vais devoir relire avant de faire la mise en page (même si c'est de nouveau 600 pages à relire) et surtout cette fois-ci tester les prompts générés, car contrairement à la v5 qui était ancienne école, ici c'est l'IA qui va donner la théorie, les exercices et les tests pour savoir si la personne a bien compris.",
+      "contexte": "Contraste entre v5 (« ancienne école », contenus statiques) et v6 (générative, IA-active) — itération avec apprentissage stratégique entre versions (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Au lieu de générer directement le contenu et les exercices statiques, j'ai demandé à l'IA d'écrire un prompt qui demande à l'IA d'écrire un prompt générique qui demande à l'IA d'écrire des prompts pour la théorie et les exercices que l'apprenant utilisera pour apprendre. C'est un peu capillotracté, mais c'est plus aligné avec la philosophie des écoles RESPIRE que ce que j'avais fais dans la version précédente.",
+      "contexte": "Rupture radicale par rapport à la version précédente : non plus du contenu statique mais une architecture récursive de prompts qui génèrent l'expérience (3.01, 3.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Le manuel de formation ne peut donc pas juste être lu, il doit être re-généré par chaque élève, de manière active.",
+      "contexte": "Création d'un objet pédagogique qui n'existait pas formulé ainsi : un manuel qui n'est pas un texte fini mais un protocole de génération (3.03, 3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "J'en ai donc profité pour introduire dans des encarts quelques tips de prompt engineering tout au long de la formation, histoire de faire d'une pierre quatre coups",
+      "contexte": "Compactage volontaire de quatre objectifs dans un seul dispositif éditorial (encarts) — choix de mise en forme avec économie de moyens (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Dans un nouveau projet, j'ai supprimé mes préférences car ni le protocole CATALYST, ni le protocole de \"co-élaboration cognitive\" ne me sont utiles ici.",
+      "contexte": "Soustraction délibérée et argumentée : retirer des éléments parce qu'ils ne servent pas l'œuvre — geste de curation (3.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas.",
+      "contexte": "Test minimal avant d'engager le pipeline complet — prototype rapide pour voir si ça tient (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum ! [...] Du coup il faut modifier les 4 prompts de génération, pour imposer ce découpage et forcer les prompts d'aller lire les informations dans la mémoire du projet plutôt que dans l'historique de la conversation.",
+      "contexte": "Itération : après le premier prototype, identification du problème et reconception immédiate du dispositif (3.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "C'est ça la pensée computationnelle : c'est exactement cette aptitude là que l'on devrait enseigner aux élèves. Plus le code en tout cas (car franchement, faire bouger une tortue logo à 15 / 16 ans pour comprendre les boucles, ça n'excite personne).",
+      "contexte": "Voix singulière : ton familier-affirmatif, parenthèse comique, autorité prise sans préambule — patte stylistique (3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "(*) J'ai quand même mis un an avant de me décider de m'attaquer à ce bug que personne dans l'équipe ne voulait traiter, qui a nécessité trois semaines de lecture du code de mes collègues et surtout… une intuition géniale ;-) Ça aussi c'est ce qu'on devrait apprendre en classe : comment avoir des intuitions géniales. Car contrairement à ce que l'on pourrait penser, ça n'est jamais possible en travaillant. Bref, je m'égare ! Mais quels beaux souvenirs <3",
+      "contexte": "Voix singulière : digression assumée, autodérision (« ;-) »), parenthèse, emoji affectif, retour au cadre (« je m'égare ! ») — signature d'écriture (3.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Ça y est, je viens d'envoyer mon prompt *ultime* pour la génération automatique de toute la formation : \"run prompt-protocole.md\" !",
+      "contexte": "Italique ironique sur « ultime », point d'exclamation, hâte théâtralisée — marque stylistique reconnaissable (3.02).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Itération explicite entre v5 (« ancienne école ») et v6 (générative), avec apprentissage stratégique entre les deux versions."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Rupture par rapport à la version précédente : non plus du contenu mais une architecture récursive de prompts — geste créatif radical au sens où il transforme la nature de l'objet."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Lancement d'un test minimal sur le premier chapitre du premier manuel — prototype rapide pour voir si ça tient."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Itération immédiate après le premier test : diagnostic du problème (saturation mémoire) et reconception du pipeline."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La créativité itérative attend des versions successives avec apprentissage explicite, et la radicalité un dépassement consciemment transgressif. J'aborde ces pièces en m'attendant à du récit de travail ordinaire. La pièce 1 oppose explicitement deux versions (v5 statique, v6 générative) avec une raison du basculement — c'est de l'itération au sens fort, avec apprentissage. La pièce 2 va au-delà : passer de « générer le contenu » à « écrire un prompt qui écrit un prompt qui écrit un prompt » n'est pas une simple variation, c'est un changement de paradigme — mais le test de radicalité de la fiche (« l'IA l'aurait-elle suggéré ? ») me fait hésiter : peut-être que ce dispositif est déjà courant en méta-prompting. Les pièces 6 et 7 sont un binôme prototype-feedback-pivot très net : lancement test minimal → premier chapitre généré → diagnostic immédiat → reconception du pipeline. C'est précisément le cycle de la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Contraste explicite entre deux versions (v5 ancienne école / v6 générative) avec apprentissage stratégique nommé — itération au sens fort." },
+            { "pieceId": 2, "motifResistance": "Passage du contenu statique à l'architecture récursive de prompts — transformation de la nature de l'objet, pas simple variation." },
+            { "pieceId": 6, "motifResistance": "Prototype rapide assumé (« voir si ça donne un truc cohérent ou pas ») — le choix stratégique de l'imperfection est explicite." },
+            { "pieceId": 7, "motifResistance": "Cycle complet itération : test minimal → diagnostic → reconception du dispositif. Forme paradigmatique de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces qui résistent toutes me met en garde : je durcis. La pièce 1 ne décrit pas vraiment l'apprentissage tiré de la v5 — elle énonce le contraste sans détailler ce qui a été compris ; (a) insuffisance probatoire la touche. La pièce 2 pose la question de la radicalité : le méta-prompting récursif est-il vraiment inédit ou une figure connue ? Probablement l'apprenant l'invente pour lui-même, sans forcément que ce soit une rupture culturelle ; (b) confusion avec 1.08 (dialogue avancé) et (e) surinterprétation pédagogique sont sérieuses, mais l'angle créatif tient (le geste de prendre du recul d'un niveau pour produire à la manière RESPIRE). La pièce 6 est claire : prototype rapide explicitement assumé. La pièce 7 montre l'itération en acte, sans pose, avec diagnostic et pivot.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le contraste v5/v6 est posé mais l'apprentissage stratégique tiré de la v5 reste implicite (« ancienne école ») — la pièce porte la trace de l'itération sans la déployer."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le geste créatif est réel (transformation de la nature de l'objet pédagogique), mais l'angle se confond partiellement avec le design de problèmes (3.03) ou le dialogue avancé (1.08) ; la dimension proprement créative tient comme indice."
+            },
+            {
+              "pieceId": 6,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Prototype rapide explicitement nommé comme tel (« voir si ça donne un truc cohérent ou pas ») — le choix stratégique de l'imperfection est clair."
+            },
+            {
+              "pieceId": 7,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Cycle complet attesté : prototype généré, problème identifié, dispositif reconçu — c'est l'itération en acte, pas le récit d'itération."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai durci ma lecture pour éviter de prendre toute reprise de travail pour de l'itération créative. Deux pièces ont tenu sans réserve : le test minimal explicitement assumé comme imparfait, et le cycle prototype-diagnostic-pivot qui s'est déroulé en une soirée. Deux pièces se sont affaiblies : le contraste v5/v6 (qui pose un apprentissage sans le détailler) et la rupture méta-prompt (qui se confond partiellement avec d'autres compétences). Ce qui résulte est une présence solidement attestée dans la dimension itérative — versions successives, prototype rapide, pivot en réponse au feedback — avec une dimension radicale plus discutable mais non absente. Ce qui resterait à approfondir, ce serait précisément ce qui a été appris de la v5 et qui a forcé le saut vers la v6 : la rétrospective rendrait visible l'itération comme apprentissage, pas seulement comme changement.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé deux pièces sans réserve (test minimal assumé, cycle prototype-diagnostic-pivot) et retenu deux pièces affaiblies (contraste v5/v6, rupture méta-prompt) — itération solidement attestée, radicalité plus discutable.",
+        "prescription": "Pour prolonger cette pratique itérative, un chemin possible serait de revenir sur le passage v5 → v6 en nommant ce que la v5 a précisément enseigné : quel détail, quel ratage, quelle gêne a forcé le saut. Ce type de rétrospective transforme une succession de versions en apprentissage cumulatif."
+      },
+      "tracesRetenues": [
+        { "pieceId": 6, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 7, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Prise de position familière-affirmative avec parenthèse comique (« faire bouger une tortue logo à 15/16 ans, ça n'excite personne ») — patte stylistique reconnaissable."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Digression assumée avec auto-dérision (« ;-) »), parenthèse en astérisque, emoji affectif (« <3 ») et retour au cadre (« je m'égare ! ») — structure narrative récurrente."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Italique ironique sur le mot « ultime », point d'exclamation théâtralisé, hâte mise en scène — marque stylistique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La singularité exige une empreinte récurrente identifiable, vérifiable sur plusieurs entrées. J'aborde ces pièces en gardant en tête que je n'ai accès qu'à une seule feuille : je ne peux pas vérifier la récurrence inter-feuilles, donc la fiche elle-même restera prudente. Les trois pièces portent effectivement des marqueurs stylistiques (parenthèses comiques, italiques ironiques, emojis affectifs, autodérision, prise de position assertive), et ils apparaissent au sein d'une même séance — ce qui suggère une cohérence stylistique sur cette feuille. La pièce 1 (« faire bouger une tortue logo à 15/16 ans, ça n'excite personne ») mélange la rigueur du propos pédagogique et la familiarité du registre, ce qui est précisément un trait de signature au sens de la fiche. La pièce 2 (digression-parenthèse-emoji-rappel au cadre) est une structure narrative riche. La pièce 3 (italique sur « ultime ») est un tic d'auto-distanciation. Sur une seule feuille, on a déjà plusieurs marqueurs stylistiques cohérents entre eux ; mais la fiche exige la récurrence inter-feuilles, que je ne peux pas attester.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Mélange de rigueur pédagogique et de familiarité (« faire bouger une tortue logo [...] ça n'excite personne ») — registre stylistique reconnaissable." },
+            { "pieceId": 2, "motifResistance": "Structure narrative composite (digression + autodérision + emoji + rappel au cadre) qui forme un pattern singulier." },
+            { "pieceId": 3, "motifResistance": "Italique ironique sur « ultime » et hâte théâtralisée — tic d'auto-distanciation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas ce qui pourrait être un style d'écriture courant de journal d'apprentissage. L'attaque (a) insuffisance probatoire est sérieuse : sur une seule feuille, la récurrence ne peut pas être attestée — c'est précisément ce que la fiche demande (« empreinte récurrente », « patterns récurrents »). Les marqueurs (autodérision, parenthèses, italiques) sont fréquents dans un registre familier. Mais ce qui distingue, c'est la combinatoire : digression assumée + retour au cadre explicite + ponctuation expressive + alternance registres élevé/familier + emojis affectifs glissés sur un texte technique. Cette combinatoire, vue sur une seule feuille, suggère une signature ; sans corpus inter-feuilles, je dois rester prudent.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le mélange registre élevé / familier est attesté sur cette pièce, mais une seule occurrence ne suffit pas à attester la récurrence — la fiche exige l'observation inter-feuilles."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La structure narrative composite est riche, mais sa qualification comme signature suppose une vérification sur d'autres feuilles que je ne peux pas faire."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'italique ironique sur un superlatif est un marqueur stylistique réel, mais isolé sur une seule feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à éviter de prendre des traits de journal pour une signature attestée. Les trois pièces portent chacune un marqueur stylistique réel (mélange de registres, structure de digression-retour, italique ironique), et leur cooccurrence dans une même séance suggère une cohérence stylistique. Mais la fiche est explicite : la singularité est récurrente dans le temps, et je n'ai accès qu'à une seule feuille. Les pièces tiennent donc comme indices d'une signature en formation sur cette séance, sans pouvoir attester la récurrence inter-feuilles. Ce qui en résulte est un renvoi : la matière textuelle est riche, le verdict ne peut pas être posé sans le corpus complet. Ce qui resterait à explorer dans la suite, ce serait la vérification de ces patterns sur d'autres feuilles, et la conscience explicite que l'apprenant en aurait — la fiche signale que la singularité revendiquée est un niveau plus avancé que la singularité simplement à l'œuvre.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.5,
+        "motif": "Trois pièces affaiblies retenues attestent une cohérence stylistique sur cette séance, mais la récurrence inter-feuilles — critère central de la fiche — ne peut pas être vérifiée à partir d'une seule feuille.",
+        "prescription": "Pour ouvrir cette compétence à l'échelle du portfolio, un chemin possible serait de remarquer, lors d'une relecture transversale, ce qui revient d'une feuille à l'autre : tics d'écriture, manières d'ancrer un propos, marqueurs de ponctuation. La signature gagnerait à être nommée par l'apprenant lui-même."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Formulation d'un problème pédagogique nouveau : non plus « comment générer un bon contenu », mais « comment faire que le manuel soit re-généré par l'élève »."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Création d'une question pédagogique qui n'existait pas formulée ainsi : qu'est-ce qu'un manuel qui ne se lit pas mais se re-génère ?"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Le design de problèmes attend la création d'une question nouvelle, pas la reformulation d'une question existante (distinction critique forte avec 1.02). J'aborde ces pièces en m'attendant à ce qu'elles ne portent qu'un cadrage déguisé. La pièce 1 montre un déplacement du problème : on ne cherche plus à générer un contenu, on cherche à concevoir le mécanisme par lequel le contenu sera re-généré — c'est qualitativement différent. Mais est-ce une question vraiment nouvelle ou une nouvelle solution à la question « comment apprendre activement » ? La pièce 2 (« le manuel doit être re-généré par chaque élève ») redéfinit ce qu'est un manuel — c'est un acte de création conceptuelle, mais c'est aussi très proche du cadrage. Je durcis : si on appliquait strictement la distinction critique, ces pièces seraient peut-être davantage 1.02 que 3.03.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le problème lui-même se déplace : non plus « générer du contenu » mais « concevoir ce qui régénère le contenu » — déplacement qualitatif du champ d'action." },
+            { "pieceId": 2, "motifResistance": "Redéfinition de l'objet pédagogique manuel — création d'une question nouvelle (qu'est-ce qu'un manuel actif ?)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec la distinction critique en tête. La fiche est claire : 1.02 reformule, 3.03 crée. La pièce 1 est limite : on peut la lire comme une reformulation profonde de l'objectif (« je ne cherche plus la même chose ») — donc 1.02 — ou comme la création d'un problème qui n'existait pas (« comment fait-on un manuel auto-générant ? ») — donc 3.03. L'attaque (b) confusion avec 1.02 est sérieuse. La pièce 2 est moins ambiguë : « le manuel doit être re-généré » pose effectivement une question nouvelle (qu'est-ce qu'un manuel qui n'est pas lu ?) mais cette question pourrait aussi être une conséquence de la reformulation, pas un acte de design de problème indépendant. Aucune des deux pièces ne porte le signal le plus clair de la fiche (« et si le vrai sujet c'était... », « je réalise après coup que j'ai changé la nature même du problème »).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le déplacement du champ d'action est réel mais chevauche fortement le cadrage de l'intention (1.02) — la frontière entre reformulation profonde et création de problème est très fine ici."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La redéfinition de l'objet manuel peut être une conséquence du recadrage (1.02) plutôt qu'un acte autonome de design de problème ; la trace tient comme indice mais ne dépasse pas la frontière."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à appliquer strictement la distinction critique entre cadrage et design de problèmes. Les deux pièces déplacent effectivement la nature de la question — passer de « comment générer le contenu » à « comment faire un objet pédagogique génératif » est plus qu'une reformulation — mais ce déplacement est solidaire d'un acte de cadrage (rejet de la v5, alignement philosophique), ce qui rend difficile de séparer les deux compétences. Ce qui en résulte est que la matière existe (deux pièces affaiblies retenues), mais que la frontière 1.02/3.03 reste à clarifier sur cette séance — peut-être que l'apprenant est en train de faire les deux gestes simultanément, ce qui est plausible. Le verdict tient comme renvoi, pas comme présence établie. Ce qui resterait à approfondir, ce serait une situation où l'apprenant aurait identifié un problème que personne n'avait formulé, indépendamment d'une reformulation d'un objectif existant.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Deux pièces affaiblies retenues attestent une activité aux frontières du design de problèmes, mais la distinction critique avec le cadrage (1.02) reste à dégager — les deux gestes sont solidaires dans cette séance.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de raconter, lors d'une prochaine séance, un moment où la question elle-même a surgi avant toute solution — un instant où l'apprenant a remarqué quelque chose que personne n'avait remarqué, et a transformé cette observation en problème à traiter."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Soustraction explicite : suppression des préférences (CATALYST, co-élaboration cognitive) parce qu'elles ne servent pas l'œuvre ici — geste de curation."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Choix éditorial d'un format unique (encart) pour porter quatre objectifs articulés — économie formelle de la mise en page."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Le jugement esthétique attend de la soustraction articulée — sélection avec critères verbalisés. J'aborde ces pièces en m'attendant à ce qu'elles soient plutôt techniques que esthétiques. La pièce 1 est un cas-école : l'apprenant supprime activement des éléments (les protocoles habituels) parce qu'ils ne servent pas le projet ici. Le critère discriminant de la fiche (« la curation implique de la soustraction ») est précisément ce qui est à l'œuvre. Mais le critère articulé est faible : « ne me sont pas utiles ici » est un jugement d'utilité, pas tout à fait un jugement de qualité formelle. La pièce 2 (choix de l'encart comme dispositif éditorial portant quatre objectifs) est davantage de la conception structurelle que de la curation au sens de la fiche (sélectionner parmi des outputs IA).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Soustraction explicitement assumée et argumentée (suppression des protocoles habituels) — geste de curation au sens de la fiche (« la curation implique de la soustraction »)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 pour vérifier que je ne confonds pas un nettoyage technique de configuration avec un jugement esthétique. La fiche distingue 3.04 de 1.01 : 1.01 évalue le vrai, 3.04 évalue le juste (qualité formelle, adéquation au public, cohérence d'ensemble). Le motif de l'apprenant (« ne me sont pas utiles ici ») relève davantage de l'utilité pragmatique que de la qualité formelle. L'attaque (b) confusion de compétence touche la pièce — elle relève peut-être davantage de la pensée critique (1.01) que de la curation esthétique. Mais le geste lui-même (soustraire pour faire entrer dans le cadre du projet) est exactement le geste curatorial. La pièce tient, affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le geste de soustraction est attesté, mais le motif (« pas utile ici ») relève davantage du jugement pragmatique que du jugement esthétique au sens strict ; la pièce porte une trace de curation sans son articulation complète."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le choix de l'encart comme dispositif portant quatre objectifs relève davantage de la conception structurelle (architecture pédagogique) que du jugement esthétique sur des outputs."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer le nettoyage technique d'un jugement esthétique articulé. La pièce sur le choix de l'encart a chuté : c'est de la conception structurelle, pas de la curation. La pièce sur la suppression des protocoles a tenu, mais affaiblie : elle pose le bon geste (soustraction) sans l'articuler avec un critère de qualité formelle. Ce qui en résulte est un signal léger : l'apprenant pratique la soustraction, mais ne déploie pas ici le vocabulaire esthétique de la fiche (ton, adéquation au public, cohérence d'ensemble). Ce qui resterait à explorer, ce serait des situations où l'apprenant aurait choisi entre plusieurs options proposées par l'IA (« celui-ci, pas celui-là ») avec une raison de qualité formelle nommée.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une seule pièce affaiblie retenue : le geste de soustraction est attesté mais le critère articulé est plutôt pragmatique qu'esthétique au sens de la fiche.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de raconter, lors d'une prochaine séance avec l'IA, un moment où le choix entre deux outputs s'est fait avec une raison de qualité formelle nommée — ton trop froid, structure trop scolaire, métaphore trop générique. La curation gagnerait à être verbalisée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à l'intelligence manuelle et artisanale. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la matière physique (matériel informatique, bricolage, cuisine, mécanique, artisanat) est manipulée directement."
+      }
+    },
+
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à l'ancrage sensoriel et à la pleine présence. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où l'attention au corps, à une sensation physique précise, a informé une décision."
+      }
+    },
+
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à la présence et la performance en direct. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment en présentiel où sa présence physique a fait une différence — face à des élèves, dans une formation, dans une situation d'improvisation."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 3,
+    "nonEtablies": 0,
+    "courtCircuits": 3
+  },
+
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail du 25 janvier déploie surtout la créativité dans sa dimension itérative : deux versions explicitement contrastées (v5 et v6), un test minimal lancé tard le soir « pour voir », un diagnostic immédiat suivi d'une reconception du dispositif. La rupture par rapport à la version précédente — passer du contenu statique à une architecture récursive de prompts — porte une dimension de design conceptuel qui frôle la création de problèmes pédagogiques nouveaux. Le geste de curation apparaît brièvement dans la suppression argumentée des protocoles habituels. La voix d'écriture porte des marqueurs stylistiques cohérents — parenthèses comiques, italiques ironiques, emojis affectifs glissés sur du texte technique, retours au cadre — qui suggèrent une signature en formation, sans qu'une seule feuille suffise à attester la récurrence. Les compétences plus directement somatiques (intelligence manuelle, ancrage sensoriel, performance live) restent en dehors du périmètre de cette séance.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité Itérative & Radicale",
+        "description": "Versions explicitement contrastées avec apprentissage stratégique, prototype rapide assumé comme imparfait, cycle complet test-diagnostic-pivot déroulé en une soirée.",
+        "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum !",
+        "ceQueCaDit": "L'itération n'est pas racontée après-coup : elle se déroule dans le journal lui-même, avec le diagnostic posé immédiatement après le premier essai, ce qui atteste une pratique vivante du prototypage."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs régions du pôle restent en dehors de la séance du 25 janvier. L'intelligence manuelle et artisanale n'apparaît nulle part : le travail est entièrement numérique, sans interaction avec une matière physique. L'ancrage sensoriel et la pleine présence sont absents : aucune description phénoménologique de sensations, aucune écoute du corps qui informerait une décision. La performance live est également absente : la séance se déroule en autonomie, sans interaction avec un public présent. Le jugement esthétique est suggéré par un geste de soustraction (suppression des protocoles) sans articulation d'un critère de qualité formelle. Le design de problèmes est en frontière fine avec le cadrage : la question pédagogique nouvelle (qu'est-ce qu'un manuel qui se re-génère ?) émerge solidairement d'un acte de recadrage, sans pouvoir être isolée. La signature stylistique est riche sur cette feuille mais ne peut pas être attestée comme récurrente sans le corpus complet.",
+    "emergencesPole": "Trois choses traversent les pièces créatives de cette séance. D'abord, une économie de moyens recherchée : faire d'une pierre quatre coups, supprimer ce qui ne sert pas, choisir un format éditorial unique pour porter plusieurs objectifs. Ensuite, un mouvement créatif qui se loge dans la transformation de la nature de l'objet plutôt que dans la production d'un objet nouveau — c'est le statut du manuel qui change, pas le contenu qu'il porterait. Enfin, une dimension stylistique discrète qui glisse en filigrane sur un texte par ailleurs technique : digressions assumées, marqueurs affectifs, italiques ironiques, qui n'occupent pas la scène mais reviennent à intervalles réguliers.",
+    "pistes": [
+      "Pour prolonger la créativité itérative, un chemin possible serait de revenir sur le passage v5 → v6 en nommant ce que la v5 a précisément enseigné : quel ratage, quelle gêne, quelle insuffisance a forcé le saut.",
+      "Pour ouvrir le design de problèmes au-delà de sa frontière avec le cadrage, un chemin possible serait de raconter un moment où la question elle-même a surgi avant toute solution — une observation qui s'est transformée en problème à traiter.",
+      "Pour rendre visible le jugement esthétique, un chemin possible serait de documenter, lors d'une prochaine séance avec l'IA, un choix entre deux outputs avec une raison de qualité formelle nommée (ton, adéquation au public, cohérence).",
+      "Pour vérifier la signature stylistique en formation, un chemin possible serait de relire trois ou quatre feuilles éloignées dans le temps en cherchant ce qui revient : tics d'écriture, manières d'ancrer un propos, marqueurs de ponctuation.",
+      "Pour ouvrir la dimension somatique du pôle, un chemin possible serait de documenter, lors d'une séance fatigante ou intuitive, ce que le corps a signalé avant que la tête ne formule."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail du 25 janvier déploie surtout la créativité dans sa dimension itérative : deux versions explicitement contrastées (v5 et v6), un test minimal lancé tard le soir « pour voir », un diagnostic immédiat suivi d'une reconception du dispositif. La rupture par rapport à la version précédente — passer du contenu statique à une architecture récursive de prompts — porte une dimension de design conceptuel qui frôle la création de problèmes pédagogiques nouveaux. Le geste de curation apparaît brièvement dans la suppression argumentée des protocoles habituels. La voix d'écriture porte des marqueurs stylistiques cohérents — parenthèses comiques, italiques ironiques, emojis affectifs glissés sur du texte technique, retours au cadre — qui suggèrent une signature en formation, sans qu'une seule feuille suffise à attester la récurrence. Les compétences plus directement somatiques (intelligence manuelle, ancrage sensoriel, performance live) restent en dehors du périmètre de cette séance.\n\n## Territoires les plus denses\n\n**Créativité Itérative & Radicale.** Versions explicitement contrastées avec apprentissage stratégique, prototype rapide assumé comme imparfait, cycle complet test-diagnostic-pivot déroulé en une soirée. *« Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum ! »* — l'itération n'est pas racontée après-coup : elle se déroule dans le journal lui-même, avec le diagnostic posé immédiatement après le premier essai, ce qui atteste une pratique vivante du prototypage.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions du pôle restent en dehors de la séance du 25 janvier. L'intelligence manuelle et artisanale n'apparaît nulle part : le travail est entièrement numérique, sans interaction avec une matière physique. L'ancrage sensoriel et la pleine présence sont absents : aucune description phénoménologique de sensations, aucune écoute du corps qui informerait une décision. La performance live est également absente : la séance se déroule en autonomie, sans interaction avec un public présent. Le jugement esthétique est suggéré par un geste de soustraction (suppression des protocoles) sans articulation d'un critère de qualité formelle. Le design de problèmes est en frontière fine avec le cadrage : la question pédagogique nouvelle (qu'est-ce qu'un manuel qui se re-génère ?) émerge solidairement d'un acte de recadrage, sans pouvoir être isolée. La signature stylistique est riche sur cette feuille mais ne peut pas être attestée comme récurrente sans le corpus complet.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les pièces créatives de cette séance. D'abord, une économie de moyens recherchée : faire d'une pierre quatre coups, supprimer ce qui ne sert pas, choisir un format éditorial unique pour porter plusieurs objectifs. Ensuite, un mouvement créatif qui se loge dans la transformation de la nature de l'objet plutôt que dans la production d'un objet nouveau — c'est le statut du manuel qui change, pas le contenu qu'il porterait. Enfin, une dimension stylistique discrète qui glisse en filigrane sur un texte par ailleurs technique : digressions assumées, marqueurs affectifs, italiques ironiques, qui n'occupent pas la scène mais reviennent à intervalles réguliers.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la créativité itérative, un chemin possible serait de revenir sur le passage v5 → v6 en nommant ce que la v5 a précisément enseigné : quel ratage, quelle gêne, quelle insuffisance a forcé le saut.\n- Pour ouvrir le design de problèmes au-delà de sa frontière avec le cadrage, un chemin possible serait de raconter un moment où la question elle-même a surgi avant toute solution — une observation qui s'est transformée en problème à traiter.\n- Pour rendre visible le jugement esthétique, un chemin possible serait de documenter, lors d'une prochaine séance avec l'IA, un choix entre deux outputs avec une raison de qualité formelle nommée (ton, adéquation au public, cohérence).\n- Pour vérifier la signature stylistique en formation, un chemin possible serait de relire trois ou quatre feuilles éloignées dans le temps en cherchant ce qui revient : tics d'écriture, manières d'ancrer un propos, marqueurs de ponctuation.\n- Pour ouvrir la dimension somatique du pôle, un chemin possible serait de documenter, lors d'une séance fatigante ou intuitive, ce que le corps a signalé avant que la tête ne formule."
+  }
+}

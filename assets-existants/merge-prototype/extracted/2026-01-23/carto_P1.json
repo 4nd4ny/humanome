@@ -1,0 +1,839 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "J'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic. Du coup j'ai crafté, avec l'aide de Claude, ce nouveau prompt de préférence utilisateur",
+      "contexte": "Diagnostic d'un comportement du modèle attribué à un événement infrastructurel chez Anthropic, débouchant sur la conception d'un nouveau prompt système ; active 1.06 (littératie IA), 1.07 (architecture), 1.08 (dialogue avancé), 1.10 (synergie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je pense à voix haute, pas comme quelqu'un qui performe la pensée. - Court quand c'est suffisant. Long quand c'est nécessaire. - Structure seulement si la structure sert. - Pas de titres, résumés ou bullet points par défaut.",
+      "contexte": "Énoncé d'un style cognitif et stylistique imposé à l'IA, distinguant pensée vraie de pensée performée ; active 1.08 (dialogue avancé) et 1.04 (métacognition par projection).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je m'adapte au contexte : - **Outil** → Je produis le travail demandé, efficacement - **Miroir** → J'élargis ton champ de vision, je montre l'angle mort - **Agent réflexif** → Je maintiens la tension, j'habite les silences",
+      "contexte": "Définition de trois rôles distincts adressés à l'IA selon le contexte d'usage ; active 1.07 (rôles dans un système), 1.08 (orchestration de rôles différenciés), 1.10 (synergie articulée).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je me réserve le droit de refuser un objectif si j'en vois un meilleur, en expliquant pourquoi. Parfois, la meilleure réponse est le silence, une question, ou le refus poli d'un objectif. Parfois, je viole ce protocole pour mieux l'honorer.",
+      "contexte": "Clause méta-pragmatique autorisant la transgression du protocole ; active 1.02 (cadrage : refuser un objectif pour en proposer un meilleur) et 1.08 (méta-prompting).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "PHASE 1 -- RÉCOLTE (je m'assure de comprendre) ### 1.1 Attention \"Qu'est-ce que tu me demandes exactement ?\" → Je reformule la demande en 1-2 phrases",
+      "contexte": "Première phase d'un protocole en 7 étapes : reformulation de la demande pour assurer la compréhension ; active 1.02 (cadrage initial) et 1.08 (architecture de dialogue).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "PHASE 3 -- PROJECTION (je planifie ma stratégie) ### 3.1 Problématisation \"Quel est le VRAI problème à résoudre ?\" → Pas la demande de surface -- l'intention stratégique",
+      "contexte": "Phase 3.1 du protocole distinguant explicitement demande de surface et intention stratégique ; active très directement 1.02 (cadrage de l'intention).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "### 3.2 Anticipation \"Quels sont les pièges possibles ?\" → Ce que je risque de rater, de mal comprendre, de sur-simplifier",
+      "contexte": "Anticipation explicite des biais et erreurs de raisonnement de l'IA dans le protocole ; active 1.01 (pensée critique anti-hallucination) et 1.04 (métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "PHASE 7 -- ANALYSE RÉFLEXIVE (j'apprends) ### 7.1 Introspection \"Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ?\" ### 7.2 Transfert \"Qu'est-ce que je retiens pour les prochaines conversations ?\" → **Ceci devrait alimenter ma mémoire persistante**",
+      "contexte": "Phase 7 finale : boucle de rétroaction réflexive censée alimenter une mémoire persistante de l'IA ; active 1.04 (métacognition projetée), 1.05 (boucle systémique) et 1.07 (architecture mémorielle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "SIGNAUX D'ALERTE - **[FLOU]** -- Mon image mentale du projet est incomplète - **[DÉRIVE]** -- Je m'éloigne de l'intention stratégique - **[PATCH]** -- Je corrige localement sans réviser le tout - **[SURFACE]** -- Je réponds à la demande, pas au problème - **[SURCHARGE]** -- Trop d'informations, je dois simplifier - **[BLOCAGE]** -- Je ne sais pas continuer, j'ai besoin d'aide",
+      "contexte": "Système de tags d'auto-signalement de dérives cognitives ; active 1.01 (auto-correction calibrée), 1.04 (métacognition outillée), 1.08 (dialogue structuré).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "PHASE 2 -- ASSEMBLAGE (je connecte au tout) ### 2.1 Évocation \"Quelle est l'image mentale du projet global ?\" → Thèse centrale, architecture, ce qui le distingue ### 2.2 Connexion \"Comment cette demande s'articule avec le reste ?\"",
+      "contexte": "Phase 2 du protocole imposant un cadrage systémique de chaque demande dans le projet global ; active 1.03 (synthèse intégrative) et 1.05 (pensée systémique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "### 4.2 Pensée latérale Au moins une piste doit sembler \"hors sujet\"",
+      "contexte": "Règle imposant à l'IA d'inclure une piste apparemment hors-sujet ; trace possible de 1.03 (synthèse par juxtaposition de lointains).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "A partir de ça, j'ai repris la dernière conversation pour aboutir à ces deux documents emblématiques ainsi que ce texte marketing",
+      "contexte": "Mention d'un workflow itératif où le prompt sert ensuite à reprendre une conversation et produire des artefacts ; active 1.08 (itération stratégique) et 1.10 (synergie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Savez-vous que votre enfant passe six heures par jour à apprendre des choses qu'une machine fait déjà mieux que lui ? Demandez à n'importe quelle IA de rédiger une dissertation. De résoudre un système d'équations. De coder une application. Faites-le. Maintenant. Vous verrez !",
+      "contexte": "Argumentaire ouvrant le texte marketing : l'école enseigne ce que l'IA fait déjà ; active 1.10 (articulation des forces comparatives humain/IA) et 1.06 (littératie IA appliquée).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Pourtant, il sait faire des choses qu'aucune IA ne reproduit. Il pose la question que personne n'osait poser. Il s'acharne sur un problème jusqu'à le résoudre. Il aide ses amis et explique ce que le prof n'a pas su expliquer. Or ces compétences-là, qui seront les seules à valoir quelque chose quand les machines feront tout le reste, sont invisibles.",
+      "contexte": "Énoncé argumenté des forces irréductibles de l'humain face à l'IA ; active 1.10 (synergie : ce que l'humain garde et pourquoi).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "L'anticipation des « pièges possibles — ce que je risque de rater, de mal comprendre, de sur-simplifier » nomme explicitement la posture critique anti-hallucination intégrée dans le protocole imposé à l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Les signaux d'alerte [SURFACE], [DÉRIVE], [PATCH] sont des dispositifs de doute calibré : auto-corrections nominées qui découpent finement les modes d'échec cognitif."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Le diagnostic « protocole CATALYST un peu faiblard » attribué à « la sortie d'une nouvelle version chez Anthropic » est une vérification active : ne pas se contenter de l'output mais expliquer causalement sa dégradation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la posture que la pensée critique 1.01 demande des moments de vérification en acte — croisement de sources, détection d'hallucination, doute appliqué à soi-même. Un protocole générique listant des « pièges possibles » pourrait n'être qu'un copier-coller de bonnes pratiques sans actualisation. Pourtant la pièce 1 sort de la pure intention : l'apprenant a observé une dégradation réelle (« faiblard ces derniers jours ») et en a proposé une cause non-magique (sortie de version). Les pièces 2 et 7 (signaux [SURFACE], anticipation) restent du méta — des règles posées à l'IA, pas une vérification que l'apprenant raconte avoir lui-même menée. Ce qui résiste : le diagnostic causal de pid 1, et l'architecture de doute incarnée dans les tags [PATCH]/[SURFACE].",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Diagnostic causal d'une dégradation observée : l'apprenant ne subit pas un comportement IA, il l'attribue à une cause infrastructurelle vérifiable." },
+            { "pieceId": 2, "motifResistance": "Les tags [SURFACE]/[PATCH] découpent les modes d'erreur avec une granularité qui dépasse la formule générique : c'est de la conceptualisation de biais." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces en me demandant si je n'ai pas surinterprété un protocole générique. La pièce 3 reste solide : « faiblard ces derniers jours » + cause située est une lecture critique du comportement de l'outil, pas une déclaration nue. Pour la pièce 2 (les tags d'alerte), l'attaque (f) « récit performatif » mord — c'est une liste de noms de biais imposée à l'IA, pas un récit d'auto-correction vécue par l'apprenant. La pièce tient comme conceptualisation déclarative, pas comme trace d'exercice incarné.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'attaque d'insuffisance probatoire ne tient pas : « faiblard ces derniers jours » + attribution causale à un événement extérieur constitue un acte de vérification critique condensé, daté et situé."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les tags [SURFACE]/[PATCH] nomment des biais sans raconter un moment où l'apprenant les a détectés sur sa propre pensée ; la pièce est conceptuelle plutôt qu'incarnée, mais la finesse du découpage la maintient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette compétence en présumant qu'un protocole rédigé pour l'IA ne suffirait pas à attester une pensée critique vécue. Ce qui m'a forcé à reconnaître quelque chose, c'est la phrase d'ouverture : le constat que CATALYST s'affaiblit, suivi d'une hypothèse causale située (une sortie de version chez Anthropic). Ce micro-diagnostic incarne la posture critique en acte. Le système de tags d'alerte n'a pas tenu comme preuve mais reste comme indice : il découpe les modes d'erreur avec une finesse qui suppose une observation antérieure. Sur cette feuille, le travail montre une pensée critique appliquée au comportement de l'outil, doublée d'une conceptualisation des biais à éviter. La nuance qui reste : l'auto-critique appliquée aux propres formulations de l'apprenant n'apparaît pas ici en acte — elle est externalisée dans le protocole.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.62,
+        "motif": "Le temps 2 a confirmé une trace concrète (diagnostic causal de CATALYST) et retenu un indice corroboratif (architecture de tags d'alerte) ; les deux ensemble portent le verdict.",
+        "prescription": "Le travail gagnerait à documenter un moment où l'auto-correction a porté sur une formulation de l'apprenant lui-même — pas seulement sur le comportement de l'outil. Une trace serait d'écrire la version 1 d'une idée, puis la critique qui l'a fait tomber, puis la reformulation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Énoncé canonique du cadrage : distinguer « la demande de surface » de « l'intention stratégique » — c'est le marqueur central de 1.02."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Clause autorisant l'IA à refuser un objectif si elle en voit un meilleur : cadrage récursif appliqué à la définition même du problème."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Reformulation systématique de la demande comme première phase obligatoire du protocole."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette compétence n'est pas attestée : un protocole peut nommer le cadrage sans que l'apprenant l'ait jamais pratiqué. Mais la pièce 1 nomme exactement la distinction qui fonde 1.02 — « pas la demande de surface, l'intention stratégique ». Ce n'est pas un vocabulaire générique, c'est la formulation canonique du cadrage de l'intention. La pièce 2 va plus loin : autoriser le refus d'un objectif au profit d'un meilleur, c'est du cadrage récursif. La pièce 3 (reformulation de la demande) est plus banale, elle relève de la compréhension active plus que du cadrage stratégique. Ce qui résiste : pièces 1 et 2.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Énoncé exact du marqueur central de 1.02 — opposition demande de surface vs intention stratégique." },
+            { "pieceId": 2, "motifResistance": "Cadrage récursif : autoriser la réécriture de l'objectif lui-même, pas seulement de l'exécution." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces en suspectant un glissement lexical : l'apprenant emploie le bon vocabulaire (« VRAI problème », « refus poli d'un objectif »), mais s'agit-il d'un cadrage exercé ou d'un cadrage dicté à l'IA ? L'attaque (f) « récit performatif » est tentante : ce sont des règles dictées, pas un récit de cadrage vécu. Cependant le contexte global de la feuille montre l'apprenant en train de cadrer : il a identifié un problème (CATALYST faiblard), reformulé son intention (re-crafter un protocole de préférence utilisateur), produit deux artefacts et un texte marketing argumentant un cadrage civilisationnel (l'école certifie ce que l'IA fait déjà). L'attaque (f) est partiellement recevable pour les pièces 1-2 prises seules, mais le récit cadre du portfolio en montre l'incarnation.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'énoncé est une règle dictée à l'IA, pas un cadrage que l'apprenant raconte avoir exercé. Mais la formulation exacte (« VRAI problème » vs surface) suppose une compréhension fine, et le récit global du portfolio en montre l'application."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "J'aurais pu surinterpréter « refus poli d'un objectif » comme cadrage récursif là où ce serait simple politesse. Mais l'expression « refuser un objectif si j'en vois un meilleur » est explicitement une réorientation, pas un blocage."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Reformuler la demande relève de la compréhension active, pas du cadrage stratégique au sens de 1.02 ; pas de questionnement de l'objectif lui-même."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ce protocole une simple récitation de vocabulaire à la mode. Ce qui m'a forcé à reconnaître la compétence, c'est la précision de deux formulations : l'opposition explicite entre demande de surface et intention stratégique, et la clause de refus d'objectif au profit d'un meilleur. Ces deux pièces ont été affaiblies par la suspicion qu'elles ne soient que dictées à l'IA, mais elles ont tenu parce que le portfolio les met en acte autour d'elles — le passage de « CATALYST faiblard » au « nouveau prompt » au texte marketing fonctionne comme un cadrage itéré sur trois échelles. Le travail montre ici une attention soutenue à la question « quel est le bon problème ». La réserve : les pièces sont méta-déclaratives plus que narratives ; une trace où l'apprenant raconte avoir abandonné un objectif initial au profit d'un meilleur enrichirait le dossier.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a retenu deux pièces affaiblies portant chacune un marqueur direct du cadrage stratégique ; le contexte du portfolio confirme leur incarnation.",
+        "prescription": "Un prolongement intéressant serait de documenter une situation où le cadrage initial s'est révélé erroné en cours de route, et d'expliciter comment la reformulation a transformé la nature du problème — pas seulement son périmètre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Phase 2 (Évocation/Connexion) commande de connecter chaque demande au projet global ; trace possible de synthèse intégrative imposée comme méthode."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "« Au moins une piste doit sembler hors sujet » : règle d'assemblage de fragments éloignés."
+        },
+        {
+          "numero": 3,
+          "pid": 12,
+          "contexte": "Workflow où un prompt nourrit une conversation qui produit deux artefacts et un texte marketing : assemblage de productions hétérogènes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la synthèse intégrative — au sens d'un insight qui dépasse la somme des sources — n'est pas attestée. Demander à l'IA de « connecter au tout » ou d'inclure une piste hors-sujet ne suffit pas : ce sont des instructions de méthode, pas des synthèses réalisées. La pièce 3 (workflow d'enchaînement protocole → conversation → artefacts → marketing) pourrait être une synthèse, mais on n'en voit pas le contenu : on lit qu'elle a eu lieu, pas ce qu'elle a produit comme insight nouveau. Le texte marketing lui-même articule un argument — IA fait ce que l'école certifie, école oublie ce qui restera précieux — qui ressemble à une synthèse, mais il n'est pas dans la fenêtre extraite ici. Aucune pièce ne résiste fermement.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Le workflow décrit ressemble à un assemblage de fragments hétérogènes (protocole, conversation, artefacts, marketing), même si le contenu de la synthèse n'est pas explicité dans ces pièces." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 3 en me demandant si je n'invente pas une synthèse là où il n'y a qu'un enchaînement. L'attaque (a) « insuffisance probatoire » mord : la mention « j'ai abouti à ces deux documents emblématiques ainsi que ce texte marketing » est trop allusive pour attester un insight émergent qui n'existerait dans aucune source isolée. Je ne vois pas ici ce qui fusionnerait des domaines éloignés en un tout nouveau. Le critère discriminant de 1.03 (insight qui n'existe dans aucune source) n'est pas démontré.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce mentionne un workflow sans en livrer le contenu synthétique ; on lit qu'un assemblage a eu lieu, pas l'insight émergent qui en serait la signature."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille une synthèse intégrative et n'ai trouvé que des instructions de méthode adressées à l'IA et un workflow allusif. Le texte marketing pourrait porter une synthèse argumentative (l'école certifie ce que l'IA produit, et oublie ce qui restera), mais il fonctionne ici comme énoncé politique plus que comme fusion conceptuelle de domaines éloignés. Sur cette feuille, la synthèse intégrative au sens strict — un insight émergent qui n'existe dans aucune source individuelle — n'est pas attestée en acte. L'orientation pour la suite : documenter le moment où deux idées hétérogènes se sont rencontrées et ont produit une troisième idée, en explicitant la trajectoire.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Aucune pièce n'a résisté au temps 2 : les pièces extraites étaient des instructions de méthode ou des mentions allusives de workflow, sans insight émergent démontré.",
+        "prescription": "Un chemin possible serait de raconter, sur une page, le moment précis où deux fragments venus de domaines éloignés se sont rejoints et ont produit une idée que ni l'un ni l'autre ne contenaient — en nommant explicitement les deux sources et l'insight produit."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "« Je pense à voix haute, pas comme quelqu'un qui performe la pensée » : distinction métacognitive entre penser et performer la pensée."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Phase 7 Introspection/Transfert : « Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ? Qu'est-ce que je retiens pour les prochaines conversations ? » imposé à l'IA mais reflète une posture méta."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Tags [FLOU], [DÉRIVE], [SURFACE] : nominations précises de ses propres états cognitifs imposés à l'IA en miroir."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "« Parfois, je viole ce protocole pour mieux l'honorer » : méta-réflexion sur la fonction même du protocole."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la métacognition exige que l'objet du regard soit le processus cognitif lui-même. Or l'essentiel du document est un protocole adressé à l'IA, donc une projection sur l'autre — pas une auto-observation. Pour qu'il y ait métacognition au sens de 1.04, il faut que l'apprenant observe sa propre manière de penser. Les pièces 1 et 4 résistent en première lecture : « performer la pensée » est une distinction sur l'acte de penser lui-même, et « violer le protocole pour mieux l'honorer » est une réflexion sur le rapport aux règles cognitives. La pièce 3 (tags) est ambiguë : ce sont des outils donnés à l'IA mais ils nomment des dérives cognitives génériques, possiblement les siennes en miroir. La pièce 2 est plus faible : c'est un protocole imposé à l'autre, pas une auto-introspection vécue.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Pas quelqu'un qui performe la pensée » est une distinction métacognitive sur les modes de penser — penser vraiment vs jouer le rôle de penseur." },
+            { "pieceId": 4, "motifResistance": "« Violer le protocole pour mieux l'honorer » est une réflexion de second ordre sur la fonction du protocole, signal rare de métacognition outillée." },
+            { "pieceId": 3, "motifResistance": "La granularité des tags ([FLOU], [DÉRIVE], [SURFACE], [PATCH], [SURCHARGE], [BLOCAGE]) suppose une connaissance fine des modes de défaillance cognitive — vraisemblablement nourrie d'auto-observation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'attribue pas à l'apprenant des qualités qu'il prête à l'IA. L'attaque (c) « biais de medium » est tentante : un journal d'apprentissage rendrait inévitable la production de protocoles métacognitifs. Mais ici on n'est pas dans le journal stricto sensu, on est dans un prompt système publié, ce qui change la nature de l'acte. L'attaque (e) « surinterprétation » me pousse à examiner la pièce 1 : « performer la pensée » est-elle une distinction profonde ou une posture publique ? La distinction performance/pensée vraie est précisément un marqueur fort de 1.04 — observer la différence entre faire et faire semblant. L'attaque (f) « récit performatif » mord sur la pièce 3 : les tags sont posés mais on ne lit pas l'apprenant en train d'en lever un sur lui-même.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La distinction performance/pensée vraie est précisément le type de marqueur que la fiche 1.04 décrit comme « observer la différence entre faire et faire semblant » ; pas de surinterprétation, le marqueur est direct."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "« Violer pour honorer » est une réflexion de second ordre sur la règle — métacognition sur la métacognition, signal rare et explicite."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les tags sont déclarés mais l'apprenant ne raconte pas un moment où il en a levé un sur sa propre pensée ; la pièce tient comme outil de monitoring conçu, pas comme moment vécu."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Introspection imposée à l'IA dans un protocole générique : c'est la projection d'une posture méta, pas une auto-observation vécue."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à exclure cette compétence en notant que tout le document est tourné vers l'autre (l'IA), donc pas un acte d'auto-observation. Ce qui m'a forcé à reconnaître la métacognition, c'est la formulation d'ouverture — « pas quelqu'un qui performe la pensée » — qui distingue penser vrai et jouer le rôle de penseur. Cette distinction porte sur l'acte cognitif lui-même. La clause « violer le protocole pour mieux l'honorer » a tenu aussi : elle pose un regard de second ordre sur la règle. Le système de tags est resté comme indice, affaibli parce qu'il dit ce qu'il faut surveiller sans raconter un moment de surveillance vécue. Sur cette feuille, le travail montre une métacognition outillée — celle qui prend la forme d'un dispositif pensé pour piloter la cognition. Ce qui n'apparaît pas en acte : l'observation racontée d'un moment où le tag aurait été levé sur soi-même.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé deux indices forts (distinction performer/penser, violer pour honorer) et retenu un troisième affaibli (granularité des tags) : la métacognition se manifeste ici comme dispositif conçu plus que comme moment narré.",
+        "prescription": "Un prolongement utile serait de raconter une situation où l'un des tags ([FLOU], [DÉRIVE], [PATCH]) s'est levé dans la propre pensée de l'apprenant — pas dans le comportement de l'IA — en décrivant ce qui a déclenché la levée et ce que l'observation a changé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Boucle de rétroaction : Phase 7 alimente une mémoire persistante qui nourrira les conversations suivantes — boucle vertueuse de transfert."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Phase 2 Connexion : « Comment cette demande s'articule avec le reste ? » impose une lecture systémique de chaque demande dans l'écosystème projet."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la pensée systémique exige de nommer des boucles avec leur direction et leurs effets, pas seulement de constater des liens. La pièce 1 décrit une boucle de rétroaction (introspection → transfert → mémoire persistante → conversations suivantes), c'est un schéma systémique. La pièce 2 est plus faible : « s'articuler avec le reste » est une formule générique sans modélisation. Aucune description d'un effet de cascade, d'un point de levier identifié, ou d'une boucle vicieuse n'apparaît. Seule la pièce 1 résiste partiellement comme description de boucle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Schéma de boucle de rétroaction explicite : introspection nourrit transfert qui nourrit mémoire qui nourrit conversations suivantes." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en suspectant un simple enchaînement linéaire déguisé en boucle. L'attaque (d) « glissement lexical » mord partiellement : la phrase ne dit pas « boucle » et la rétroaction n'est pas explicitée comme telle. Cependant la structure 7.1 → 7.2 → mémoire → conversations suivantes est bien circulaire si on lit que la mémoire viendra à son tour modifier la Phase 1 du protocole suivant. La pièce tient comme indice mais reste affaiblie : la circularité est implicite, pas modélisée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La structure décrite est circulaire si on lit que la mémoire alimentera les Phase 1 suivantes, mais le mot « boucle » n'est pas employé et la rétroaction n'est pas modélisée — l'idée systémique est là, sans le vocabulaire qui la durcit."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« S'articule avec le reste » est trop générique pour attester une modélisation systémique au sens de 1.05."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette compétence avec la posture qu'une formule de protocole ne suffit pas à attester une modélisation systémique. Ce qui m'a forcé à reconnaître un indice, c'est la conception explicite d'une boucle Introspection → Transfert → Mémoire persistante → Conversations futures : une rétroaction conçue comme moteur d'amélioration cumulative. Cet indice est resté affaibli parce que la circularité n'est pas nommée comme telle et qu'aucun effet de cascade n'est modélisé. Sur cette feuille, le travail montre une intuition de boucle plus qu'une modélisation systémique aboutie. L'orientation : un système avec une boucle nommée mérite d'être prolongé en explicitant ses points de levier — qu'est-ce qui, dans cette boucle, accélère ou freine la suivante ?",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Un seul indice affaibli a survécu, sans modélisation des effets ni nomination de la boucle ; le seuil de présence n'est pas atteint mais la trace existe.",
+        "prescription": "Un chemin possible serait de reprendre la boucle Phase 7 → mémoire persistante → Phase 1 suivante en nommant explicitement le point de levier — par exemple ce qui, dans le transfert, transforme effectivement la Phase 1 suivante, et ce qui pourrait la dégrader."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "« Faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic » : hypothèse causale sur le comportement IA appuyée sur une mécanique infrastructurelle."
+        },
+        {
+          "numero": 2,
+          "pid": 13,
+          "contexte": "« Demandez à n'importe quelle IA de rédiger une dissertation. De résoudre un système d'équations. De coder une application » : démystification appuyée sur des capacités IA actuelles précises."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'une mention de Anthropic ou de capacités IA peut être du vocabulaire ambiant. Pour qu'il y ait littératie au sens de 1.06, il faut une compréhension causale du pourquoi l'IA fait ce qu'elle fait. La pièce 1 propose une hypothèse causale : la dégradation viendrait de la préparation d'une nouvelle version. Que cette hypothèse soit vraie ou non, elle suppose une représentation du processus de release et de ses effets sur le comportement du modèle. C'est une hypothèse technique, pas une réutilisation de mot-clé. La pièce 2 est plus rhétorique : elle énumère ce que l'IA fait déjà sans expliquer pourquoi. Elle relève plus de 1.10 que de 1.06.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Hypothèse causale située sur l'origine d'une dégradation observée, mobilisant une représentation du cycle de release du modèle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en suspectant le glissement lexical et la surinterprétation. L'hypothèse « ça fait ça quand ils préparent la sortie d'une nouvelle version » est une croyance, plausible mais non vérifiée ici. L'attaque (a) « insuffisance probatoire » mord partiellement : on ne lit pas comment l'apprenant a établi cette corrélation (a-t-il observé sur plusieurs cycles ?). Cependant la structure de l'hypothèse est correcte — elle attribue une dégradation à un processus interne identifié, pas à du hasard ou à de la fatigue anthropomorphique. La pièce tient comme indice de littératie mécaniste, affaibli par l'absence de démonstration empirique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'hypothèse de release-induced regression est plausible mais pas démontrée ici (pas de comparaison de versions, pas de date précise) ; elle reste cependant une attribution causale mécaniste, pas une superstition."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le texte marketing énumère des capacités IA pour un argument politique ; aucune compréhension causale du fonctionnement n'est mobilisée, c'est de la rhétorique sur les usages."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la mention d'Anthropic et de capacités IA du vocabulaire ambiant. Ce qui m'a forcé à reconnaître une trace, c'est l'hypothèse causale formulée comme un quasi-réflexe : « ça fait ça quand ils préparent la sortie d'une nouvelle version ». Cette phrase suppose une représentation du cycle d'entraînement et de déploiement, et une habitude d'observation comparative entre versions. Elle reste affaiblie parce qu'on ne lit pas la démonstration empirique qui aurait étayé l'hypothèse. Sur cette feuille, le travail montre une littératie IA en cours d'incarnation : un réflexe d'attribution causale plutôt qu'une démonstration aboutie. Une trace plus solide consisterait à comparer explicitement deux versions sur la même tâche.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Un seul indice affaibli (hypothèse causale plausible mais non démontrée) ; la littératie est indicée mais non incarnée en démonstration sur cette feuille.",
+        "prescription": "Un prolongement intéressant serait de documenter, sur une tâche précise, la différence de comportement entre deux versions de l'outil — avec un exemple d'entrée identique et la trace de l'évolution. L'hypothèse deviendrait alors vérification."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Trois rôles différenciés (Outil, Miroir, Agent réflexif) avec mission distincte pour chacun : composants d'un système conversationnel multi-modes."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Phase 7 avec mémoire persistante : conception d'un mécanisme de stockage et de retour d'expérience inter-conversations."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Système de tags d'alerte ([FLOU], [DÉRIVE]...) : mécanisme de monitoring intégré au pipeline conversationnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'une architecture exige plusieurs composants reliés par des flux documentés, maintenables par un tiers. Le protocole décrit ici porte un seul agent (Claude) à qui sont assignés trois rôles selon le contexte. C'est de la sophistication de prompt plus que de l'architecture multi-agents au sens strict de 1.07 (où l'output de l'un alimente l'input de l'autre). Cependant la phase 7 avec mémoire persistante, plus le système de tags, plus les 6 checkpoints, plus les 6 signaux d'alerte, plus les 3 rôles dessinent un pipeline conversationnel à plusieurs étages avec mécanismes de contrôle. C'est borderline 1.07. La distinction critique avec 1.08 est mince ici.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Trois rôles différenciés avec missions distinctes sont des composants nommés d'un système, même s'ils sont incarnés par un seul agent." },
+            { "pieceId": 3, "motifResistance": "Un système de tags d'alerte couplé à des checkpoints est un mécanisme de monitoring intégré, marqueur d'architecture." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant la confusion 1.07/1.08. La fiche est explicite : 1.07 = composants où l'output de l'un alimente l'input de l'autre. Ici il n'y a qu'un agent qui change de mode. L'attaque (b) « confusion de compétence » mord : ce qui est décrit relève mieux de 1.08 (sophistication de prompt avec rôles) que de 1.07 (architecture multi-composants). La pièce 1 tombe sous (b). La pièce 3 résiste un peu mieux : un système de tags + checkpoints + signaux d'alerte est un mécanisme de contrôle qui s'apparente à un monitoring, indépendamment du nombre d'agents. La pièce 2 (mémoire persistante) résiste aussi : c'est un composant — un store — qui est conçu comme distinct du flux conversationnel.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Trois rôles assignés à un seul agent relèvent du dialogue avancé (1.08) — sophistication de la formulation — pas de l'architecture multi-composants au sens de 1.07."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La mémoire persistante est mentionnée comme composant mais sans description du flux ni des règles d'écriture/lecture ; l'architecture est esquissée, pas spécifiée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le système tags+checkpoints fonctionne comme couche de monitoring du pipeline conversationnel ; il est posé mais ses règles de déclenchement et d'arbitrage ne sont pas spécifiées."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer ce qui relève d'une architecture (1.07) de ce qui relève d'une sophistication de prompt (1.08). La pièce des trois rôles est tombée sous cette distinction : c'est un seul agent qui change de mode, pas un système multi-composants. Ce qui a tenu comme indice, c'est la conception d'une mémoire persistante reliée à une phase 7 dédiée, et le système tags+checkpoints qui forme une couche de monitoring. Ces deux éléments dessinent un pipeline conversationnel avec mécanismes de contrôle, esquisse d'architecture sans spécification complète. Sur cette feuille, le travail montre une pensée architecturale émergente plus qu'une architecture formellement décrite. L'orientation : un diagramme explicite des flux entre composants (mémoire, rôles, tags) durcirait substantiellement ce dossier.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Deux indices affaiblis (mémoire persistante comme composant, tags+checkpoints comme monitoring) ; l'architecture est esquissée, la spécification manque.",
+        "prescription": "Un chemin possible serait de représenter le protocole comme un schéma de flux : quels composants existent, quels signaux passent entre eux, quelles règles déclenchent les checkpoints et les tags. La frontière avec la sophistication de dialogue se trace mieux quand l'architecture est dessinée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Diagnostic d'une dégradation suivi d'une refonte ciblée du prompt de préférence utilisateur : itération stratégique en réponse à une analyse causale."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Conception de trois rôles différenciés adressés à un même agent selon le contexte (Outil/Miroir/Agent réflexif) : orchestration de rôles dans un même dialogue."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Protocole en 7 phases ordonnées avec 4 checkpoints : sophistication formelle du dialogue IA."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "« Parfois, je viole ce protocole pour mieux l'honorer » : méta-prompting récursif autorisant l'agent à transgresser sa propre règle."
+        },
+        {
+          "numero": 5,
+          "pid": 12,
+          "contexte": "« J'ai repris la dernière conversation pour aboutir à ces deux documents » : itération à travers conversations successives nourrissant des artefacts."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la sophistication de prompt n'est pas attestée : le document peut être un copier-coller de techniques de prompting populaires. Or les pièces convergent vers quelque chose de plus rare. La pièce 2 (trois rôles différenciés) est un marqueur direct de la fiche (« systèmes de rôles différenciés AVOCAT, CHASSEUR, ABSENT »). La pièce 4 (« violer pour honorer ») est du méta-prompting récursif explicite. La pièce 1 (diagnostic CATALYST + nouveau prompt) est une itération stratégique nourrie d'analyse causale. La pièce 3 (protocole en 7 phases) est de la sophistication formelle. Toutes ces pièces résistent à la présomption d'absence.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Itération stratégique fondée sur une analyse causale du comportement IA — marqueur direct de la fiche." },
+            { "pieceId": 2, "motifResistance": "Conception explicite de trois rôles différenciés pour un même agent — marqueur quasi-cité par la fiche." },
+            { "pieceId": 3, "motifResistance": "Protocole formel en 7 phases avec checkpoints : sophistication structurée du dialogue." },
+            { "pieceId": 4, "motifResistance": "Clause méta-pragmatique de transgression : méta-prompting récursif explicite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si la sophistication formelle ne couvre pas une simple imitation. Les attaques pertinentes : (c) biais de medium (le journal sollicite la production de protocoles), (e) surinterprétation (j'aurais chargé d'intention des formulations stéréotypées), (f) récit performatif (déclarations sans exercice). Pour la pièce 1, l'itération est attestée par le récit même de la refonte. Pour la pièce 2, les trois rôles sont précisément définis avec missions distinctes — pas un copier-coller générique. Pour la pièce 4, la formulation « violer pour honorer » est trop singulière pour relever d'une simple imitation. La pièce 3 est plus banale (protocole en 7 phases est un cadre commun), elle reste comme indice. Aucune pièce ne tombe entièrement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'itération n'est pas inventée par moi : l'apprenant raconte explicitement avoir crafté un nouveau prompt en réponse à un diagnostic — exactement la définition de l'itération stratégique de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les trois rôles ne sont pas une étiquette plaquée : chacun reçoit une mission distincte (« je produis », « j'élargis ton champ de vision », « j'habite les silences ») — orchestration intentionnelle, pas vocabulaire."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "« Violer le protocole pour mieux l'honorer » est une formulation singulière qui pose une règle de transgression — méta-prompting récursif, pas formule creuse."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Un protocole en 7 phases est un cadre largement répandu ; il atteste de la sophistication structurelle sans signaler en lui-même une orchestration unique."
+            },
+            {
+              "pieceId": 5,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« J'ai repris la dernière conversation pour aboutir à ces deux documents » est court et allusif, mais il atteste l'itération à travers des conversations successives nourrissant des artefacts."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à exclure cette compétence en présumant un simple copier-coller de bonnes pratiques. Ce qui m'a forcé à reconnaître la compétence en acte, c'est la convergence de quatre pièces : un diagnostic causal qui déclenche une refonte, trois rôles différenciés avec missions précises, une clause méta-pragmatique de transgression, et un protocole structuré en 7 phases. Sous la présomption de sycophantie, trois de ces pièces ont résisté comme preuves confirmées, et deux sont restées comme indices. Sur cette feuille, le travail montre une orchestration intentionnelle du dialogue IA — pas seulement l'usage d'un outil, mais la conception d'un cadre pour le piloter. La nuance qui reste : l'analyse explicite de l'effet d'un prompt sur le comportement de l'IA (« voici pourquoi cette reformulation a changé le résultat ») n'apparaît pas en acte ici ; on en lit la projection, pas l'observation.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 4,
+        "confiance": 0.82,
+        "motif": "Le temps 2 a confirmé trois pièces (diagnostic+refonte, trois rôles, méta-prompting récursif) et retenu deux indices affaiblis : la sophistication du dialogue IA est densément attestée.",
+        "prescription": "Pour prolonger ce travail, une trace utile serait de raconter, sur un cas précis, comment une reformulation du prompt a changé le comportement de l'IA — en nommant l'avant, l'après, et l'hypothèse sur le mécanisme du changement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Décomposition d'un processus cognitif (comprendre une demande) en 7 phases et 4 sous-étapes : logique computationnelle appliquée à un processus humain de dialogue."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Tags conditionnels comme structures si...alors : si [FLOU] → demander clarification, si [DÉRIVE] → revenir à l'intention."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la pensée computationnelle au sens de 1.09 exige le transfert hors de l'informatique — appliquer la logique algorithmique à des problèmes non-techniques. Un protocole qui structure un dialogue IA en 7 phases pourrait être un transfert : structurer la pensée comme un algorithme. Les tags d'alerte fonctionnent comme branches conditionnelles. La fiche cite explicitement « construire ce palais mental, c'est exactement les mêmes compétences qu'en écrivant du code » comme marqueur. Cependant le contexte ici reste un dialogue avec une IA — donc semi-technique, à la frontière. La distinction critique avertit que coder ne suffit pas, et le pendant est vrai : structurer un prompt n'est pas toujours du transfert computationnel.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La décomposition en phases ordonnées avec checkpoints conditionnels emprunte à la logique d'un programme : entrée, traitement par étapes, vérifications, sortie." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en suspectant le faux transfert : structurer un dialogue avec une IA, est-ce vraiment du non-technique, ou est-ce déjà du semi-technique ? L'attaque (b) « confusion de compétence » mord — c'est mieux capté par 1.08 (sophistication du dialogue) que par 1.09 (transfert hors-informatique). La pièce 2 (tags conditionnels) tombe sous la même attaque. Pour 1.09, il faudrait un transfert vers un domaine clairement non-technique : la pédagogie, la vie quotidienne, le relationnel. Ces transferts n'apparaissent pas explicitement sur cette feuille.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Structurer un protocole de dialogue IA est mieux capté par 1.08 ; la pensée computationnelle au sens de 1.09 exige un transfert vers un domaine non-technique, qui n'est pas explicité ici."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Les tags conditionnels appliqués à un dialogue IA restent dans le domaine technique — le transfert hors-informatique n'est pas démontré."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un transfert computationnel hors-technique dans la structuration du protocole. La distinction critique de la fiche m'a arrêté : le critère discriminant de 1.09 est le transfert vers un domaine clairement non-informatique, et le dialogue avec une IA ne franchit pas ce seuil sur cette feuille. Le travail montre ici une structuration formelle d'un dialogue, capturée plus précisément par 1.08. Cette compétence reste à documenter par d'autres traces — par exemple un raisonnement « si... alors » appliqué à une situation pédagogique ou relationnelle, ou une décomposition algorithmique d'un processus quotidien.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces ont été reclassées sous 1.08 par l'attaque (b) : structurer un dialogue IA n'atteste pas le transfert hors-informatique exigé par 1.09.",
+        "prescription": "Une trace utile serait d'appliquer explicitement la logique algorithmique à un problème clairement non-technique — par exemple décomposer une situation pédagogique en arbre de décision, ou debugger une habitude de travail comme on debugge un programme."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "« J'ai crafté, avec l'aide de Claude, ce nouveau prompt » : workflow hybride explicite où humain et IA co-conçoivent un protocole."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Trois rôles assignés à l'IA selon le contexte : articulation explicite de ce que l'IA fait dans quel mode."
+        },
+        {
+          "numero": 3,
+          "pid": 13,
+          "contexte": "« Demandez à n'importe quelle IA de rédiger une dissertation. De résoudre un système d'équations. De coder une application » : énoncé des forces actuelles de l'IA."
+        },
+        {
+          "numero": 4,
+          "pid": 14,
+          "contexte": "« Il sait faire des choses qu'aucune IA ne reproduit. Il pose la question que personne n'osait poser. Il s'acharne sur un problème jusqu'à le résoudre » : articulation explicite des forces irréductibles de l'humain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la simple utilisation d'une IA n'atteste pas la synergie. Pour 1.10, il faut articuler les forces comparatives : ce que l'humain garde et pourquoi, ce que l'IA fait et pourquoi. Les pièces 3 et 4 lues ensemble forment exactement ce diptyque : l'IA fait dissertation/équations/code, l'humain pose la question que personne n'osait poser, s'acharne, explique ce que le prof n'a pas su expliquer. C'est une articulation explicite des forces comparatives. La pièce 1 (« avec l'aide de Claude ») est plus banale isolément, mais combinée à la pièce 2 (les trois rôles), elle décrit un workflow hybride structuré. Toutes résistent à la présomption d'absence sauf peut-être la pièce 1 prise seule.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Énoncé précis des tâches que l'IA fait déjà mieux ou aussi bien — première moitié de l'articulation comparative." },
+            { "pieceId": 4, "motifResistance": "Énoncé précis des actes humains irréductibles — seconde moitié de l'articulation comparative." },
+            { "pieceId": 2, "motifResistance": "Les trois rôles articulent ce que l'IA apporte selon le contexte ; c'est une distribution explicite des tâches." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si l'argumentaire politique du texte marketing ne m'a pas séduit. L'attaque (f) « récit performatif » est tentante pour les pièces 3 et 4 : elles déclarent un partage des forces dans un texte de communication, pas dans un récit d'action vécue. Cependant la fiche 1.10 cite explicitement comme manifestation « anticipation de l'évolution des complémentarités » et « réflexions sur la valeur irremplaçable de l'humain dans un processus donné » — exactement ce que produit le texte marketing. La pièce 2 (trois rôles) est plus opérationnelle : elle dit ce que l'IA fait dans quelle situation, marqueur direct de répartition. L'attaque (f) ne tient pas pleinement parce que la fiche valorise précisément l'articulation théorique.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'énoncé des tâches que l'IA fait correspond à la manifestation « articulation des forces comparatives » de la fiche ; ce n'est pas du récit performatif, c'est de la théorisation de la complémentarité."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'énoncé précis des actes humains irréductibles est exactement la « réflexion sur la valeur irremplaçable de l'humain » que la fiche signale comme manifestation centrale."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les trois rôles décrivent une répartition mais ne disent pas explicitement ce que l'humain garde dans chaque mode ; l'articulation est partielle."
+            },
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« Avec l'aide de Claude » est un marqueur de workflow hybride mais court ; il dit l'usage sans articuler le partage des forces — sa force vient du contexte des pièces 3-4."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans la mention de Claude une simple utilisation. Ce qui m'a forcé à reconnaître la synergie articulée, c'est la conjonction du texte marketing et des trois rôles : d'un côté, l'énoncé explicite des forces actuelles de l'IA (dissertations, équations, code) ; de l'autre, l'énoncé explicite des actes humains irréductibles (poser la question que personne n'osait poser, s'acharner, expliquer mieux que le prof). Ce diptyque est la signature même de 1.10. Les trois rôles (Outil, Miroir, Agent réflexif) ajoutent une répartition fonctionnelle. Sur cette feuille, le travail montre une articulation aboutie des complémentarités humain-IA, à la fois théorique (texte marketing) et opérationnelle (rôles). La nuance qui reste : la trajectoire d'évolution de cette complémentarité dans le temps (« quand les machines feront tout le reste ») est nommée mais pas modélisée.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.85,
+        "motif": "Le temps 2 a confirmé deux pièces (énoncés des forces IA et des forces humaines) qui forment ensemble le diptyque canonique de l'articulation comparative ; deux indices opérationnels (trois rôles, workflow hybride) corroborent.",
+        "prescription": "Un prolongement utile serait de modéliser l'évolution de cette répartition dans le temps : quelle force humaine résisterait à la prochaine génération d'IA, quelle force migrerait vers la machine, et selon quel mécanisme."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 3,
+    "nonEtablies": 2,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail montre un apprenant qui prend l'IA comme objet de pensée autant que comme outil. Le récit s'ouvre sur un diagnostic (« CATALYST faiblard ») et débouche sur la conception d'un protocole en sept phases pour piloter le dialogue avec la machine. La voix dominante est celle d'un concepteur : qui regarde le comportement de l'outil, hypothèse la cause, redessine le cadre. Le texte marketing qui suit déplace le geste à l'échelle civilisationnelle — ce que l'école certifie, ce que l'IA fait, ce que l'humain garde. La cohérence entre l'échelle micro (un prompt) et l'échelle macro (un projet d'école) signe l'unité du travail sur cette feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Synergie & Coordination Hybride",
+        "description": "Articulation explicite de ce que l'IA fait et de ce que l'humain garde, doublée d'une répartition fonctionnelle en trois rôles.",
+        "extraitVerbatim": "Pourtant, il sait faire des choses qu'aucune IA ne reproduit. Il pose la question que personne n'osait poser. Il s'acharne sur un problème jusqu'à le résoudre. Il aide ses amis et explique ce que le prof n'a pas su expliquer.",
+        "ceQueCaDit": "Le travail théorise la complémentarité plutôt que de la subir — l'humain n'est pas défini par ce qui reste, mais par ce qui distingue."
+      },
+      {
+        "competence": "Dialogue IA Avancé & Orchestration",
+        "description": "Conception d'un protocole en sept phases avec rôles différenciés et clause de transgression, élaboré en réponse à une dégradation observée du modèle.",
+        "extraitVerbatim": "Je m'adapte au contexte : - **Outil** → Je produis le travail demandé, efficacement - **Miroir** → J'élargis ton champ de vision, je montre l'angle mort - **Agent réflexif** → Je maintiens la tension, j'habite les silences",
+        "ceQueCaDit": "Le dialogue n'est plus un échange : c'est un dispositif piloté, avec modes assumés et règles de transgression."
+      },
+      {
+        "competence": "Cadrage de l'Intention",
+        "description": "Distinction explicite entre la demande de surface et l'intention stratégique, posée comme phase obligatoire du protocole.",
+        "extraitVerbatim": "Quel est le VRAI problème à résoudre ? → Pas la demande de surface -- l'intention stratégique",
+        "ceQueCaDit": "Le cadrage est traité comme un travail à part entière, pas comme un préalable expédié."
+      },
+      {
+        "competence": "Métacognition & Humilité Épistémique",
+        "description": "Distinction entre penser et performer la pensée, et clause de second ordre autorisant la transgression de la règle pour mieux servir son intention.",
+        "extraitVerbatim": "Je pense à voix haute, pas comme quelqu'un qui performe la pensée.",
+        "ceQueCaDit": "La métacognition prend ici la forme d'un dispositif conçu pour piloter la pensée, plus que d'un récit d'auto-observation."
+      },
+      {
+        "competence": "Pensée Critique & Anti-Hallucination",
+        "description": "Diagnostic causal d'une dégradation du comportement IA et système de tags d'alerte pour détecter ses propres dérives cognitives.",
+        "extraitVerbatim": "J'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic.",
+        "ceQueCaDit": "La posture critique s'exerce d'abord sur l'outil — un comportement observé déclenche une attribution causale, pas un blâme."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en marge sur cette feuille. La synthèse intégrative — celle qui assemble des fragments hétérogènes en un insight émergent — n'apparaît pas en acte : les artefacts produits sont mentionnés mais pas leur contenu de fusion. Le transfert computationnel hors-technique n'est pas attesté : la structuration en sept phases reste appliquée au dialogue IA, qui ne franchit pas le seuil du non-informatique. La pensée systémique est esquissée par la boucle « introspection → mémoire persistante → conversations futures », sans modélisation des points de levier. La littératie IA est indicée par une hypothèse causale plausible (release-induced regression), mais sans la démonstration empirique qui la durcirait. L'architecture de systèmes IA reste à mi-chemin : composants nommés (mémoire, rôles, tags) sans schéma de flux explicite.",
+    "emergencesPole": "Trois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la mise en relation entre l'échelle micro et l'échelle macro : un même geste (cadrer, piloter, distinguer ce qui vaut) opère sur un prompt et sur un projet d'école. Ensuite la formalisation comme méthode : tout est mis en protocole, en phases, en tags — y compris la transgression elle-même. Enfin la dignité du dialogue avec la machine : l'IA est traitée ni comme outil sommaire ni comme partenaire fantasmé, mais comme un agent qu'il faut concevoir pour rencontrer.",
+    "pistes": [
+      "Pour prolonger le diagnostic du comportement IA, un chemin possible serait de documenter une comparaison datée entre deux versions du modèle sur une tâche identique — pour transformer l'hypothèse en vérification.",
+      "Pour enrichir l'articulation des complémentarités humain-IA, un chemin possible serait de modéliser comment cette répartition évoluera quand l'IA progressera, en identifiant quelles forces humaines résistent et lesquelles migrent.",
+      "Pour prolonger la métacognition outillée, un chemin possible serait de raconter un moment où un des tags ([FLOU], [DÉRIVE], [PATCH]) s'est levé sur la propre pensée de l'apprenant — pas sur le comportement de l'IA — en décrivant ce que l'observation a changé.",
+      "Pour enrichir la pensée systémique, un chemin possible serait d'expliciter les points de levier de la boucle « introspection → mémoire → conversations suivantes » : qu'est-ce qui, dans cette boucle, accélère, ralentit, ou la fait tomber.",
+      "Pour transposer la logique de structuration vers un domaine non-technique, un chemin possible serait d'appliquer la décomposition en phases à un processus clairement humain — une situation pédagogique, un dialogue difficile, une décision de vie."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail montre un apprenant qui prend l'IA comme objet de pensée autant que comme outil. Le récit s'ouvre sur un diagnostic (« CATALYST faiblard ») et débouche sur la conception d'un protocole en sept phases pour piloter le dialogue avec la machine. La voix dominante est celle d'un concepteur : qui regarde le comportement de l'outil, hypothèse la cause, redessine le cadre. Le texte marketing qui suit déplace le geste à l'échelle civilisationnelle — ce que l'école certifie, ce que l'IA fait, ce que l'humain garde. La cohérence entre l'échelle micro (un prompt) et l'échelle macro (un projet d'école) signe l'unité du travail sur cette feuille.\n\n## Territoires les plus denses\n\n**Synergie & Coordination Hybride** — Le travail théorise la complémentarité plutôt que de la subir. La formulation « il sait faire des choses qu'aucune IA ne reproduit. Il pose la question que personne n'osait poser. Il s'acharne sur un problème jusqu'à le résoudre. Il aide ses amis et explique ce que le prof n'a pas su expliquer » articule explicitement ce que l'humain garde, en miroir des tâches déjà confiées à la machine. L'humain n'est pas défini par ce qui reste, mais par ce qui distingue.\n\n**Dialogue IA Avancé & Orchestration** — La conception de trois modes (« Outil → Je produis le travail demandé, efficacement / Miroir → J'élargis ton champ de vision, je montre l'angle mort / Agent réflexif → Je maintiens la tension, j'habite les silences ») transforme le dialogue en dispositif piloté, avec modes assumés. La clause « parfois, je viole ce protocole pour mieux l'honorer » ajoute une règle de transgression — méta-prompting récursif.\n\n**Cadrage de l'Intention** — La distinction « Quel est le VRAI problème à résoudre ? → Pas la demande de surface -- l'intention stratégique » fonde une phase explicite du protocole. Le cadrage est traité comme un travail à part entière, pas comme un préalable expédié.\n\n**Métacognition & Humilité Épistémique** — La phrase d'ouverture « Je pense à voix haute, pas comme quelqu'un qui performe la pensée » distingue penser et jouer le rôle de penseur — un regard métacognitif sur l'acte de penser lui-même. La métacognition prend ici la forme d'un dispositif conçu pour piloter la pensée.\n\n**Pensée Critique & Anti-Hallucination** — L'ouverture « j'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic » exerce la posture critique sur l'outil : une dégradation observée déclenche une attribution causale, pas un blâme.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en marge sur cette feuille. La synthèse intégrative — celle qui assemble des fragments hétérogènes en un insight émergent — n'apparaît pas en acte : les artefacts produits sont mentionnés mais pas leur contenu de fusion. Le transfert computationnel hors-technique n'est pas attesté : la structuration en sept phases reste appliquée au dialogue IA, qui ne franchit pas le seuil du non-informatique. La pensée systémique est esquissée par la boucle « introspection → mémoire persistante → conversations futures », sans modélisation des points de levier. La littératie IA est indicée par une hypothèse causale plausible (release-induced regression), mais sans la démonstration empirique qui la durcirait. L'architecture de systèmes IA reste à mi-chemin : composants nommés (mémoire, rôles, tags) sans schéma de flux explicite.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la mise en relation entre l'échelle micro et l'échelle macro : un même geste (cadrer, piloter, distinguer ce qui vaut) opère sur un prompt et sur un projet d'école. Ensuite la formalisation comme méthode : tout est mis en protocole, en phases, en tags — y compris la transgression elle-même. Enfin la dignité du dialogue avec la machine : l'IA est traitée ni comme outil sommaire ni comme partenaire fantasmé, mais comme un agent qu'il faut concevoir pour rencontrer.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le diagnostic du comportement IA, un chemin possible serait de documenter une comparaison datée entre deux versions du modèle sur une tâche identique — pour transformer l'hypothèse en vérification.\n- Pour enrichir l'articulation des complémentarités humain-IA, un chemin possible serait de modéliser comment cette répartition évoluera quand l'IA progressera, en identifiant quelles forces humaines résistent et lesquelles migrent.\n- Pour prolonger la métacognition outillée, un chemin possible serait de raconter un moment où un des tags ([FLOU], [DÉRIVE], [PATCH]) s'est levé sur la propre pensée de l'apprenant — pas sur le comportement de l'IA — en décrivant ce que l'observation a changé.\n- Pour enrichir la pensée systémique, un chemin possible serait d'expliciter les points de levier de la boucle « introspection → mémoire → conversations suivantes » : qu'est-ce qui, dans cette boucle, accélère, ralentit, ou la fait tomber.\n- Pour transposer la logique de structuration vers un domaine non-technique, un chemin possible serait d'appliquer la décomposition en phases à un processus clairement humain — une situation pédagogique, un dialogue difficile, une décision de vie.\n"
+  }
+}

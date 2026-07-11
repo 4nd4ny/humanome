@@ -1,0 +1,247 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Hier journée de \"formation pour informaticien\" proposée par l'ORP. Bilan : [...]",
+      "contexte": "Mention d'une journée de formation institutionnelle dont le compte-rendu est confié à un dialogue IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+      "contexte": "Travail de finalisation d'un référentiel structuré au format YAML, objet documentaire dont l'horizon est explicitement post-AGI.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+      "contexte": "Production massive de débats déléguée à l'IA, destinée à une plateforme délibérative citoyenne.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "A1 — Pensée Critique & Anti-Hallucination",
+      "contexte": "Titre du premier exemple de débat généré.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne contient pas de geste maïeutique adressé à un autre. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un débat conçu pour Decidim, comment la formulation de la question vise à faire émerger une réflexion chez le lecteur plutôt qu'à lui livrer une thèse."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne contient pas de geste évaluatif transformatif. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un débat généré insuffisant, le retour formulé et la piste concrète proposée pour le retravailler."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+          "contexte": "Pour 7.03, le mot \"référentiel\" condense exactement ce que la compétence cible : un objet documentaire structuré (YAML), pensé pour être transmis et réutilisé, avec une intention de pérennisation lisible dans le format même.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 7.03 demande non seulement un artefact documentaire, mais l'attention délibérée à la structure pour autrui — titres, sections, versioning, conscience du destinataire. La phrase nomme l'objet (fichiers YAML, référentiel) sans en montrer la structure, sans citer le versioning, sans nommer le destinataire. On reste au niveau du mot, pas du déploiement. La pièce résiste pourtant fortement : \"référentiel\" et \"YAML\" sont, dans le contexte du portfolio, des marqueurs forts d'un travail documentaire structuré ; un référentiel n'est pas un journal intime, c'est par définition une carte destinée à être lue par d'autres.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le mot \"référentiel\" et le format YAML désignent un objet documentaire structuré dont la fonction même est la transmission ; l'intention de pérennisation est implicite mais inhérente au type d'artefact."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de reconnaître à la pièce une vraie portée — \"référentiel\" et \"YAML\" ne sont pas anodins. À la relecture critique, je vois que la phrase parle de l'objet sans nous le faire voir : pas de fragment cité, pas de description de la structure (combien de sections, comment les compétences sont-elles articulées, qu'est-ce qui est passé en annexe), pas d'historique d'évolution. La fiche est claire : 7.03 demande de la structuration intentionnelle, et nous avons ici une mention d'objet plutôt qu'une démonstration de structuration. La pièce ne tombe pas pour autant — elle reste affaiblie mais retenue, parce que la nature même de l'objet (un référentiel YAML) atteste d'un travail documentaire en cours.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la phrase mentionne l'artefact (référentiel YAML) sans en exposer la structure ni les choix architecturaux ; l'objet est crédible mais ses contours documentaires ne sont pas mis sous les yeux du lecteur."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la documentation vivante soit attestée sur cette feuille, et la pièce a résisté à cette présomption parce que \"référentiel YAML\" est, dans la pratique, déjà une trace documentaire — pas un mot creux. Sous la présomption de sycophantie, elle s'est tenue debout mais affaiblie : on a un objet nommé, pas un objet montré. Ce qui reste honnêtement attesté : un travail documentaire structuré est en cours, dont la feuille ne donne que le titre. La lecture transversale du portfolio entier pourra dire si ce référentiel a fait l'objet ailleurs de descriptions plus déployées — versioning, choix de structure, anticipation des lecteurs.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Au temps 2, la pièce a été retenue affaiblie : l'objet documentaire est crédible (référentiel YAML structuré) mais la feuille n'expose ni la structure interne, ni le versioning, ni la conscience explicite du destinataire — l'attestation passe par la mention plutôt que par la démonstration.",
+        "prescription": "Pour donner consistance à cette compétence, l'apprenant pourrait, sur une feuille suivante, coller un fragment du référentiel YAML (une entrée ou une section) et noter brièvement le choix de structure qui sous-tend l'organisation. La lecture transversale du portfolio entier pourrait aussi montrer si le geste documentaire a été déployé ailleurs."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas d'alternance entre prise et retrait du gouvernail. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos de la génération des soixante débats, un moment où il a laissé l'IA mener et un moment où il a repris la main, avec le déclencheur de chaque bascule."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+          "contexte": "Pour 7.05, le qualificatif \"post AGI\" inscrit le projet dans une anticipation prospective — l'apprenant travaille aujourd'hui à un objet dont la pertinence est conditionnée par un futur technologique encore en formation.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 7.05 demande un lien argumenté entre une décision présente et un futur anticipé. La phrase contient un horizon futur (\"post AGI\") et une action présente (\"finaliser les fichiers YAML\"), mais le lien argumenté entre les deux n'est pas explicité — on n'apprend pas pourquoi le travail d'aujourd'hui est précisément celui qu'il faut conduire pour préparer ce futur. La pièce résiste pourtant un peu : choisir de structurer un référentiel humain \"post AGI\" implique en lui-même une thèse prospective — il faudra avoir cartographié les compétences humaines AVANT que l'AGI soit là, sinon l'effort arrive trop tard.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'horizon temporel \"post AGI\" est explicitement intégré au nom de l'objet construit, ce qui inscrit l'action présente dans une anticipation stratégique, même si l'argument n'est pas déplié."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de reconnaître à la pièce une portée prospective, mais à la relecture je vois que je me suis appuyé sur un qualificatif (\"post AGI\") plutôt que sur un argument articulé. La fiche est exigeante : 7.05 distingue la vraie vision prospective du simple \"plus tard\". Ici, \"post AGI\" est un cadre, pas un raisonnement. L'apprenant n'écrit pas \"je travaille à ceci maintenant parce que dans X années…\". Le glissement lexical est plausible — l'expression \"post AGI\" est à la mode, son emploi ne garantit pas la pensée prospective qu'elle suggère.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Glissement lexical : le qualificatif \"post AGI\" pose un horizon temporel sans qu'aucun raisonnement explicite ne relie l'action présente à ce futur. Le vocabulaire prospectif est activé sans la charge argumentative correspondante."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la vision stratégique soit attestée sur cette feuille. La pièce a résisté un instant par la force d'un qualificatif — \"post AGI\" inscrit objectivement le projet dans une anticipation. Mais sous la présomption de sycophantie, le mot n'a pas suffi : un horizon temporel posé sans raisonnement explicite reste du cadre, pas de la vision. La feuille atteste qu'une perspective prospective EXISTE, sans en exhiber le raisonnement. Une feuille future pourrait combler ce vide — \"je fais X maintenant parce que dans Y années\".",
+          "confianceFinale": 0.32
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.32,
+        "motif": "Au temps 2, la pièce est tombée pour glissement lexical : l'horizon \"post AGI\" est nommé sans qu'aucun raisonnement n'articule la décision présente au futur anticipé.",
+        "prescription": "Pour donner corps à cette compétence, l'apprenant pourrait, à propos d'un choix de structure du référentiel, noter pourquoi cette décision est précisément celle qu'il faut prendre maintenant compte tenu du futur anticipé — une phrase qui transforme un cadre temporel en argument prospectif."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne contient pas de \"non\" stratégique articulé ni d'arbitrage de priorisation explicite. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'une sollicitation extérieure repoussée pour avancer sur Respire, le motif de la priorité accordée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille mentionne une finalisation mais sans en montrer le cycle d'itération ni la boucle générer-relire-tester-ajuster. Pour ouvrir ce dossier, l'apprenant pourrait noter, sur une version successive du référentiel, ce qui a été ajusté entre v1 et v2 et le retour qui a déclenché l'ajustement."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas de pilotage sous pression extrême ni d'incident en cascade. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un imprévu rencontré pendant la génération massive, la séquence de décisions opérées dans l'urgence."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 1,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 19 février 2026, le pôle FLAMBEAU trouve un point d'ancrage notable du côté de la documentation vivante : l'apprenant travaille à un référentiel YAML, c'est-à-dire à un objet structuré pensé pour la transmission. La dimension prospective du projet (compétences humaines \"post AGI\") affleure aussi, sans que le raisonnement qui relie aujourd'hui à demain ne soit déplié. Les autres compétences du pôle — pédagogie active, évaluation transformative, leadership, efficacité personnelle, agilité, gestion de crise — restent en sommeil sur cette journée centrée sur la production solitaire.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Six compétences du pôle restent sans trace sur cette feuille : la maïeutique, l'évaluation transformative, le leadership situationnel, l'efficacité personnelle, l'agilité et la conduite du changement, et la gestion de crise. Une septième compétence — la vision stratégique et prospective — a reçu une allusion à travers le qualificatif \"post AGI\", mais cette allusion est tombée sous la double présomption : un horizon temporel posé sans raisonnement explicite reste du cadre plutôt que de la vision. La documentation vivante, elle, a obtenu une attestation partielle : le travail sur un référentiel YAML est crédible, mais la feuille n'expose pas la structure interne ni la conscience du destinataire qui ferait basculer la compétence en présence pleinement établie.",
+    "emergencesPole": "Un fil traverse la feuille brève : tout ce qui est décrit aujourd'hui prépare un livrable — un référentiel à finaliser, soixante débats à publier, un bilan à archiver. L'apprenant ne consomme pas son temps, il fabrique des objets destinés à durer ou à circuler. Cette orientation vers la production de capitalisations transmissibles est précisément ce que le pôle FLAMBEAU cherche à attester ; sur cette journée, on en voit le geste sans en voir le déploiement détaillé.",
+    "pistes": [
+      "Pour donner consistance à la documentation vivante, un chemin possible serait de coller dans une feuille suivante un fragment du référentiel YAML (une entrée, une section) accompagné d'une note brève sur le choix de structure.",
+      "Pour articuler la vision prospective, un chemin possible serait de noter, à propos d'une décision présente sur le référentiel, pourquoi elle est précisément celle qu'il faut prendre maintenant compte tenu de l'horizon \"post AGI\".",
+      "Pour rendre visible le cycle d'itération du travail, un chemin possible serait de noter, lors d'une prochaine version du référentiel, ce qui a été ajusté depuis la dernière mouture et le déclencheur de l'ajustement."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 19 février 2026, le pôle FLAMBEAU trouve un point d'ancrage notable du côté de la documentation vivante : l'apprenant travaille à un référentiel YAML, c'est-à-dire à un objet structuré pensé pour la transmission. La dimension prospective du projet (compétences humaines \"post AGI\") affleure aussi, sans que le raisonnement qui relie aujourd'hui à demain ne soit déplié. Les autres compétences du pôle — pédagogie active, évaluation transformative, leadership, efficacité personnelle, agilité, gestion de crise — restent en sommeil sur cette journée centrée sur la production solitaire.\n\n## Territoires les plus denses\n\nSur cette seule feuille, aucune compétence n'a atteint le seuil d'une présence pleinement établie. La compétence la plus proche — la documentation vivante — a été examinée comme un renvoi au cartographe : le travail sur un référentiel YAML est crédible, mais la structure interne et la conscience du destinataire ne sont pas exposées sur la feuille elle-même.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSix compétences du pôle restent sans trace sur cette feuille : la maïeutique, l'évaluation transformative, le leadership situationnel, l'efficacité personnelle, l'agilité et la conduite du changement, et la gestion de crise. Une septième compétence — la vision stratégique et prospective — a reçu une allusion à travers le qualificatif \"post AGI\", mais cette allusion est tombée sous la double présomption : un horizon temporel posé sans raisonnement explicite reste du cadre plutôt que de la vision. La documentation vivante, elle, a obtenu une attestation partielle : le travail sur un référentiel YAML est crédible, mais la feuille n'expose pas la structure interne ni la conscience du destinataire qui ferait basculer la compétence en présence pleinement établie.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn fil traverse la feuille brève : tout ce qui est décrit aujourd'hui prépare un livrable — un référentiel à finaliser, soixante débats à publier, un bilan à archiver. L'apprenant ne consomme pas son temps, il fabrique des objets destinés à durer ou à circuler. Cette orientation vers la production de capitalisations transmissibles est précisément ce que le pôle FLAMBEAU cherche à attester ; sur cette journée, on en voit le geste sans en voir le déploiement détaillé.\n\n## Pistes pour enrichir ce pôle\n\n- Pour donner consistance à la documentation vivante, un chemin possible serait de coller dans une feuille suivante un fragment du référentiel YAML (une entrée, une section) accompagné d'une note brève sur le choix de structure.\n- Pour articuler la vision prospective, un chemin possible serait de noter, à propos d'une décision présente sur le référentiel, pourquoi elle est précisément celle qu'il faut prendre maintenant compte tenu de l'horizon \"post AGI\".\n- Pour rendre visible le cycle d'itération du travail, un chemin possible serait de noter, lors d'une prochaine version du référentiel, ce qui a été ajusté depuis la dernière mouture et le déclencheur de l'ajustement."
+  }
+}

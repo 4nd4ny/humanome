@@ -1,0 +1,244 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+      "contexte": "Réalisation rétrospective qui interroge l'objectif même de la mesure proposée — touche au cadrage de l'intention (1.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "La seule qui m'intéresse encore un peu, c'est celle sur REACT, car ça m'aidera à développer EduFolio. Mais HERMES par exemple, qui est demandé sur la moitié des postes de développeurs, ne m'intéresse pas plus que ça.",
+      "contexte": "Discrimination entre deux mesures de formation selon leur alignement avec un projet en cours — décision filtrée par une intention (1.02), avec une trace mince d'arbitrage stratégique (1.10 hors scope ici).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Ce sera peut-être mon dernier projet : après je me mets en pré-retraite, je retire le 2nd pilier pour faire le pont entre le chômage et l'AVS, éventuellement je gagne un peu d'argent avec mes boîtes \"Human Processor!\", avec mes 32 puzzles sur la trisection du carré, avec la partie commerciale du moteur de recherche de \"talents\" dans Respire",
+      "contexte": "Articulation d'un plan de vie multi-sources avec liens entre projets — esquisse de pensée systémique (1.05) sur sa propre trajectoire, mais surtout planification.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée critique et à l'anti-hallucination sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment de vérification, de doute calibré ou de détection d'une dérive (la sienne ou celle d'une IA)."
+      }
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+          "contexte": "Le passage interroge non pas comment exécuter la mesure proposée, mais s'il faut la suivre du tout — c'est l'objectif lui-même qui est remis en question, marqueur central du cadrage.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "La seule qui m'intéresse encore un peu, c'est celle sur REACT, car ça m'aidera à développer EduFolio. Mais HERMES par exemple, qui est demandé sur la moitié des postes de développeurs, ne m'intéresse pas plus que ça.",
+          "contexte": "L'apprenant filtre les options de formation à travers une intention plus profonde (le projet EduFolio) plutôt que par le critère apparent de l'employabilité — distinction demande de surface / intention profonde.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec l'idée que le cadrage de l'intention exige plus qu'une préférence : il demande la formulation d'une question qui transforme la nature du problème. La première pièce raconte une réalisation a posteriori, pas un acte de cadrage en amont d'un projet. La seconde trie des options selon un goût et un projet pré-existant, sans poser explicitement la question « est-ce le bon problème à résoudre ? ». Ce qui me force toutefois à reconnaître quelque chose : la première pièce met en cause l'objectif même de la mesure (« je ne vois plus le sens »), ce qui est précisément le geste discriminant du cadrage selon la fiche. La seconde manifeste un filtrage par l'intention sous-jacente (le projet EduFolio) plutôt que par le critère de surface (employabilité). Ce qui reste faible : aucune des deux ne montre la reformulation récursive du problème, et la première reste rétrospective.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le passage interroge directement le sens de l'objectif proposé, geste central du cadrage de l'intention selon la fiche." },
+            { "pieceId": 2, "motifResistance": "L'apprenant filtre les options selon une intention sous-jacente (EduFolio) plutôt que selon le critère apparent (employabilité), ce qui distingue demande de surface et intention profonde." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis maintenant ces deux pièces en me demandant si je n'ai pas chargé d'intention un récit qui n'en porte que peu. La première pièce est une réalisation rétrospective sur une mesure imposée par l'ORP ; elle ressemble plus à un constat de désintérêt qu'à un acte de cadrage délibéré. La fiche elle-même mentionne le constat rétrospectif (« j'aurais dû me poser la question ») comme registre bas du cadrage, ce qui retient la pièce mais l'affaiblit. La seconde pièce est plus subtile : choisir REACT « parce que ça m'aidera à développer EduFolio » est un acte de filtrage par intention, mais cela reste un arbitrage de consommation de formations, pas la formulation d'une bonne question qui transforme la nature du problème.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage signale un apprenant en train de réaliser qu'un objectif imposé n'a pas de sens pour lui, mais ne montre pas le geste actif de cadrage en amont ; il reste sur le registre du constat rétrospectif que la fiche reconnaît comme un niveau bas du marqueur."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "J'ai pu surinterpréter un simple arbitrage entre formations comme un cadrage par l'intention ; le passage manifeste néanmoins un filtrage par projet sous-jacent (EduFolio) plutôt que par critère de surface (employabilité), ce qui maintient une trace mince mais réelle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à voir si elles montraient un véritable acte de cadrage — la formulation d'une bonne question, pas une bonne réponse. Ce qui m'a forcé à reconnaître quelque chose, c'est que la première pièce remet explicitement en cause le sens d'une démarche imposée plutôt que ses modalités, et que la seconde fait passer le choix d'une formation par le crible d'une intention plus profonde (le projet EduFolio) au lieu du critère immédiatement visible (l'employabilité). Sous la présomption de sycophantie, ces deux pièces se sont affaiblies : la première reste un constat rétrospectif sur une mesure subie, la seconde reste un arbitrage de consommation. Dans ce pôle et sur cette feuille, le travail montre donc un cadrage en émergence, surtout lisible par contraste — refuser ce qui ne fait pas sens, retenir ce qui sert un projet déjà nommé. La trace existe, sans dispositif explicite de questionnement récursif. La nuance qui reste : cette feuille rend le mouvement visible une fois posé, mais ne donne pas à voir le geste de cadrage en amont d'une tâche en cours.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Les deux pièces ont été affaiblies au temps 2 (g et e) sans être disqualifiées ; aucune ne franchit le seuil de preuve décisive et il s'agit d'arbitrages plus que d'un cadrage récursif explicite.",
+        "prescription": "Le travail sur cette feuille laisse entrevoir un filtrage par intention sous-jacente. Pour rendre ce cadrage plus visible, un chemin possible serait de noter, avant de s'engager dans une mesure ou un projet, la question préalable qui en interroge l'objectif lui-même (« qu'est-ce que je cherche vraiment ici ? »). La documentation en amont — avant l'arbitrage — fait ressortir le geste que cette feuille rend lisible seulement après coup."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synthèse intégrative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où des fragments venus de sources distinctes ont fusionné en une compréhension qui n'existait dans aucune des sources prise isolément."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la métacognition et à l'humilité épistémique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où l'objet de la réflexion devient le processus cognitif lui-même, pas le contenu d'une décision ou d'une motivation."
+      }
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée systémique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une boucle de rétroaction nommée, un effet de second ordre anticipé, ou un point de levier identifié dans un système qu'il décrit."
+      }
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la littératie IA et data literacy sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une hypothèse technique sur le fonctionnement d'un modèle observé, ou une démystification argumentée d'un comportement IA."
+      }
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'architecture de systèmes IA sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter la conception d'un dispositif où plusieurs agents ou rôles interagissent avec des flux et des règles définis."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au dialogue IA avancé et à l'orchestration multi-agents sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une stratégie de prompt nommée, une itération analysée, ou un méta-prompting récursif."
+      }
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un transfert explicite de logique algorithmique vers un problème non-informatique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synergie et coordination hybride sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait articuler explicitement ce qu'il garde pour lui et ce qu'il confie à l'IA, et pourquoi, dans un processus précis."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 1,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 9
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle de la pensée et de la compréhension reste largement en retrait. Le texte du jour porte une réflexion d'orientation de vie — sortie du chômage, choix d'une mesure de formation, projets à venir — plutôt qu'un travail cognitif explicite sur des objets de pensée. Une seule trace ressort sur ce pôle : un filtrage des mesures proposées par une intention sous-jacente (le projet EduFolio) plutôt que par le critère apparent de l'employabilité. La voix dominante est celle d'un bilan posé, qui distingue ce qui fait sens de ce qui n'en fait plus. Les objets cognitifs propres au pôle — vérification, synthèse, métacognition, systèmes, IA — n'apparaissent pas sur cette feuille.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Sur cette feuille, neuf des dix territoires du pôle restent non visités. Une partie ressemble à un choix de feuille : le journal du jour s'occupe d'orientation et de vécu, pas d'objets de pensée techniques ou conceptuels. C'est sans doute le cas pour la littératie IA, l'architecture de systèmes IA, le dialogue IA avancé, la pensée computationnelle et la synergie hybride — domaines qui ont leur place sur d'autres feuilles dédiées à la production. D'autres absences ressemblent davantage à une limite du portfolio textuel sur cette journée : la pensée critique, la synthèse intégrative, la métacognition et la pensée systémique pourraient être touchées par la réflexion sur le sens du travail et la trajectoire, mais elles n'y apparaissent pas sous une forme suffisamment articulée pour laisser de trace. Le seul renvoi au cartographe concerne le cadrage de l'intention, où la trace existe sans franchir le seuil de preuve.",
+    "emergencesPole": "Ce qui traverse le peu de matière P1 disponible sur cette feuille, c'est un mouvement de discrimination par le sens : ce qui n'a plus de sens (la mise à niveau informatique ORP, enseigner) est écarté ; ce qui en a (REACT pour EduFolio, les écoles Respire) est retenu. Ce filtrage à la lumière d'une intention sous-jacente est le seul angle cognitif visible — il opère mais reste implicite, non thématisé comme méthode.",
+    "pistes": [
+      "Pour enrichir le cadrage de l'intention sur cette ligne de réflexion, un chemin possible serait de noter, en amont de la prochaine décision (postulation, mesure ORP, étape de projet), la question préalable qui en interroge l'objectif même — pas le « comment » mais le « pourquoi ce problème, et pas un autre ».",
+      "Pour faire émerger la métacognition à partir de la matière du jour, un chemin possible serait de relire ce passage en posant la question : « quel processus de décision est en train de se mettre en place quand je trie ces formations ? » — et de nommer le critère qui opère silencieusement."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle de la pensée et de la compréhension reste largement en retrait. Le texte du jour porte une réflexion d'orientation de vie — sortie du chômage, choix d'une mesure de formation, projets à venir — plutôt qu'un travail cognitif explicite sur des objets de pensée. Une seule trace ressort sur ce pôle : un filtrage des mesures proposées par une intention sous-jacente (le projet EduFolio) plutôt que par le critère apparent de l'employabilité. La voix dominante est celle d'un bilan posé, qui distingue ce qui fait sens de ce qui n'en fait plus. Les objets cognitifs propres au pôle — vérification, synthèse, métacognition, systèmes, IA — n'apparaissent pas sur cette feuille.\n\n## Territoires les plus denses\n\nAucun territoire dense ne se dégage sur ce pôle aujourd'hui. Le seul dossier ouvert reste en renvoi au cartographe : sur le cadrage de l'intention, deux passages laissent voir un filtrage par projet sous-jacent (« La seule qui m'intéresse encore un peu, c'est celle sur REACT, car ça m'aidera à développer EduFolio. ») sans que le geste devienne pleinement explicite. La trace existe, elle reste en attente d'un complément documentaire.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, neuf des dix territoires du pôle restent non visités. Une partie ressemble à un choix de feuille : le journal du jour s'occupe d'orientation et de vécu, pas d'objets de pensée techniques ou conceptuels. C'est sans doute le cas pour la littératie IA, l'architecture de systèmes IA, le dialogue IA avancé, la pensée computationnelle et la synergie hybride — domaines qui ont leur place sur d'autres feuilles dédiées à la production. D'autres absences ressemblent davantage à une limite du portfolio textuel sur cette journée : la pensée critique, la synthèse intégrative, la métacognition et la pensée systémique pourraient être touchées par la réflexion sur le sens du travail et la trajectoire, mais elles n'y apparaissent pas sous une forme suffisamment articulée pour laisser de trace. Le seul renvoi au cartographe concerne le cadrage de l'intention, où la trace existe sans franchir le seuil de preuve.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse le peu de matière P1 disponible sur cette feuille, c'est un mouvement de discrimination par le sens : ce qui n'a plus de sens (la mise à niveau informatique ORP, enseigner) est écarté ; ce qui en a (REACT pour EduFolio, les écoles Respire) est retenu. Ce filtrage à la lumière d'une intention sous-jacente est le seul angle cognitif visible — il opère mais reste implicite, non thématisé comme méthode.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir le cadrage de l'intention sur cette ligne de réflexion, un chemin possible serait de noter, en amont de la prochaine décision (postulation, mesure ORP, étape de projet), la question préalable qui en interroge l'objectif même — pas le « comment » mais le « pourquoi ce problème, et pas un autre ».\n- Pour faire émerger la métacognition à partir de la matière du jour, un chemin possible serait de relire ce passage en posant la question : « quel processus de décision est en train de se mettre en place quand je trie ces formations ? » — et de nommer le critère qui opère silencieusement."
+  }
+}

@@ -1,0 +1,483 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Beaucoup trop d'erreurs et de modifications à apporter au manuel de formation des Tuteurs. Je n'ai pas réussi à beaucoup avancer hier.",
+      "contexte": "Constat d'un livrable imparfait qui ouvre un cycle itératif — pourrait activer 7.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Ce matin j'ai demandé une analyse critique du manuel par l'IA ce qui m'a conduit à revoir également le manuel de l'Accompagnant. Les critiques qui sont faites : c'est un cours trop traditionnel, qui n'incarne pas la philosophie Respire.",
+      "contexte": "Délégation d'une étape (la critique) à l'IA suivie d'une reprise de direction par l'apprenant qui élargit le périmètre — pourrait activer 7.04, 7.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Du coup, petit prompt pour Claude \"\"\"Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes.\"\"\"",
+      "contexte": "Quatre directives qui dessinent une architecture pédagogique — alléger la charge, ordre du pourquoi, mise en vie, forme interrogative — pourrait activer 7.01.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Au lieu d'avancer dans la todo list, je recule : mais ce qui est important ce n'est pas le volume, c'est la qualité.",
+      "contexte": "Décision explicite de ne pas avancer sur la todo, avec critère argumenté — pourrait activer 7.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Bilan de fin de journée : les deux premières formations sont maintenant beaucoup mieux (et finalisées). En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+      "contexte": "Bilan d'un cycle d'itération avec résultat livré et règle générale extraite — pourrait activer 7.07, 7.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Message à Stéphane : J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). Demain je retourne aux manuels du Tuteur et du Maître.",
+      "contexte": "Quatre manuels distincts produits et publiés sur un site, avec anticipation explicite d'audiences au-delà du périmètre initial — pourrait activer 7.03, 7.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous.",
+      "contexte": "Énoncé de l'intention de pérennisation et de la conscience du destinataire — pourrait activer 7.03.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Du coup, petit prompt pour Claude \"\"\"Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes.\"\"\"",
+          "contexte": "Quatre directives qui dessinent une architecture pédagogique : allègement de la charge cognitive, ordre pourquoi/comment, mise en vie du contenu, transformation des titres en questions fécondes.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'elle ne porte pas la maïeutique au sens fort. La fiche est exigeante : il faut une retenue de celui qui sait, un adressage à l'autre comme source, des questions adressées pour provoquer une prise de conscience. Or la pièce contient des directives prescriptives à une IA, pas des questions à un apprenant. Pourtant la pièce résiste fortement sur la seconde dimension de la fiche — l'architecture pédagogique. Les quatre directives ne sont pas des règles de style, ce sont des choix de design pédagogique : alléger la charge cognitive (architecture), ordonner le pourquoi avant le comment (séquence d'apprentissage), faire vivre la pédagogie au lecteur (engagement actif vs frontal), transformer les titres en questions fécondes (forme interrogative qui ouvre l'investigation). C'est exactement la « facilitation » comme architecture d'un environnement où l'apprentissage se produit. Reste explicitement faible : la dimension proprement maïeutique (questionnement socratique adressé à autrui) n'apparaît pas dans cette pièce.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Quatre directives qui dessinent une architecture pédagogique délibérée — charge cognitive, ordre, engagement, forme interrogative — exactement ce que la fiche range dans la facilitation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce pour voir si je n'ai pas chargé un prompt court de la dignité d'une architecture pédagogique. Le test est précis : un prompt opérationnel banal contient des consignes de forme ; un prompt qui relève de la facilitation pédagogique contient des principes d'apprentissage. Or ici les quatre directives sont précisément des principes — la charge cognitive, l'ordre pourquoi/comment, la mise en vie, la forme interrogative sont du vocabulaire d'architecture d'apprentissage, pas du polissage rédactionnel.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Insuffisance probatoire non recevable : le prompt est court mais dense, et chacune des quatre directives appartient au registre de la facilitation pédagogique — pas du polissage rédactionnel ; la pièce porte l'architecture, même brièvement."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que ce prompt court ne portait pas la facilitation d'apprentissage au sens fort. Le constat est nuancé : la dimension maïeutique-questionnement à autrui n'apparaît pas dans cette feuille, mais la dimension architecturale est en acte — quatre principes d'apprentissage articulés en un prompt qui dirige la production du manuel. Sur cette journée, c'est la facette « architecte d'environnement pédagogique » qui s'atteste, plus que celle du « questionneur socratique ». Le seuil de la présence est franchi.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.6,
+        "motif": "La pièce a été confirmée au temps 2 comme trace concrète d'une architecture pédagogique délibérée : quatre principes de design d'apprentissage articulés en quatre directives.",
+        "prescription": "La facette architecturale de la facilitation est ici en acte ; la facette maïeutique (questionnement adressé à un apprenant pour faire émerger sa pensée) reste à explorer. Raconter un moment où une question posée à un élève ou à un collègue a fait surgir chez lui une réponse qu'il portait sans le savoir ouvrirait l'autre versant de la compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative sur cette journée — aucun acte évaluatif adressé à autrui pour le faire progresser. Pour ouvrir ce dossier, l'apprenant pourrait raconter un retour fait à un élève ou à un collègue qui nomme ce qui fonctionne et ouvre des pistes concrètes."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "extraitVerbatim": "Message à Stéphane : J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). Demain je retourne aux manuels du Tuteur et du Maître.",
+          "contexte": "Production et publication de quatre manuels distincts pour quatre rôles, avec anticipation explicite d'audiences au-delà du périmètre initial — capitalisation structurée avec conscience du destinataire.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "extraitVerbatim": "C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous.",
+          "contexte": "Énoncé de l'intention de pérennisation : rendre concret pour autrui ce qui restait flou.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la documentation vivante au sens de la fiche n'est pas attestée. La fiche est exigeante : versioning explicite, historique d'évolution, anticipation des futurs lecteurs, structuration intentionnelle. Or la pièce 1 mentionne la livraison sans citer de versioning explicite. La pièce 2 est compacte. Pourtant les deux pièces résistent. La pièce 1 résiste fortement : quatre manuels distincts pour quatre rôles (Apprenant, Accompagnant, Tuteur, Maître) constituent une architecture documentaire structurée, et l'envisagement d'audiences hors Respire signale une conscience explicite du destinataire. La pièce 2 résiste : la formule « rendre concret pour tous » est exactement l'intention de pérennisation pour autrui que la fiche signale. Reste explicitement faible : aucun versioning, aucune mention d'un mécanisme de mise à jour, aucun archivage de traces brutes.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Quatre manuels distincts pour quatre rôles, publiés et envisagés pour des audiences élargies — structuration intentionnelle avec conscience explicite du destinataire." },
+            { "pieceId": 2, "motifResistance": "Énoncé direct de l'intention de pérennisation pour autrui (« rendre plus concret le travail attendu par tous »)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas confondu la production de documents pédagogiques avec de la documentation vivante au sens technique. La fiche distingue : la documentation vivante implique la pérennisation et la conscience du destinataire. Ici les deux dimensions sont présentes — la pérennisation par la publication sur un site, la conscience du destinataire par la différenciation des rôles et l'anticipation d'audiences hors Respire. Le risque de surinterprétation porte sur la dimension « vivante » — rien ne montre encore l'évolution de ces documents dans le temps. Mais cette dimension n'est observable que sur la durée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Insuffisance probatoire non recevable : la pièce articule trois éléments simultanés — différenciation par rôle (structuration), publication sur site (pérennisation), envisagement d'audiences hors Respire (conscience du destinataire élargie)."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la pièce est courte mais elle énonce précisément l'intention de pérennisation pour autrui, ce qui est le marqueur central de la compétence."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette production restait de l'écriture ordinaire et pas de la documentation vivante. La pièce 1 a résisté pleinement : quatre manuels articulés par rôle, publiés, et envisagés pour des audiences élargies — c'est précisément l'architecture documentaire intentionnelle que la fiche décrit. La pièce 2 a résisté en forme affaiblie comme indice de l'intention de pérennisation. Sur cette journée, le pôle de la documentation vivante est attesté dans sa dimension structurelle ; la dimension proprement « vivante » (évolution dans le temps, usage effectif) reste à observer sur la durée. Le seuil de la présence est franchi avec une bonne confiance.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "La pièce de la production-publication des quatre manuels a été confirmée au temps 2 comme trace concrète d'une documentation structurée avec conscience du destinataire ; une seconde pièce a résisté en forme affaiblie comme indice de l'intention de pérennisation.",
+        "prescription": "La dimension structurelle de la documentation est en place. Pour révéler la dimension « vivante », noter dans une feuille future un retour reçu d'un utilisateur (élève, Tuteur, Accompagnant) et la modification de manuel qu'il a déclenchée rendrait visible l'évolution de l'artefact à travers son usage. Un versioning explicite ou un changelog viendrait compléter le dispositif."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Ce matin j'ai demandé une analyse critique du manuel par l'IA ce qui m'a conduit à revoir également le manuel de l'Accompagnant. Les critiques qui sont faites : c'est un cours trop traditionnel, qui n'incarne pas la philosophie Respire.",
+          "contexte": "Délégation d'une étape (la critique évaluative) à l'IA suivie d'une reprise de la conduite par l'apprenant, qui élargit le périmètre de l'action.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "extraitVerbatim": "Du coup, petit prompt pour Claude \"\"\"Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes.\"\"\"",
+          "contexte": "Reprise explicite de la direction après l'étape de critique déléguée : l'apprenant fixe quatre principes que l'IA devra suivre.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que le leadership situationnel au sens de la fiche n'y est pas. La fiche est exigeante : il faut une alternance délibérée entre direction et retrait, avec déclencheur identifiable, et un retrait volontaire qui est plus difficile à détecter que la prise de contrôle. Or les pièces décrivent un usage outillé de l'IA — déléguer une critique, donner une directive — sans articuler le choix de posture comme tel. Pourtant les pièces résistent faiblement. La pièce 1 montre un cycle bascule : l'apprenant cède le lead sur la phase critique, le récupère pour décider de l'extension à un second manuel. La pièce 2 montre la reprise du lead par une directive précise. Reste explicitement faible : aucun moment de retrait volontaire articulé comme tel, aucun critère de bascule explicité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Cycle bascule observable : l'IA mène sur la critique, l'apprenant reprend la décision d'extension." },
+            { "pieceId": 2, "motifResistance": "Reprise de la direction par une directive précise, après l'étape déléguée à l'IA." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas confondu un usage standard de l'IA avec un leadership situationnel. La distinction critique de la fiche est forte : le marqueur central est l'alternance consciente — l'apprenant décrit aussi des moments où il cède le lead ou choisit de ne pas intervenir. Or sur cette feuille, l'alternance n'est pas thématisée comme telle. Le cycle critique-direction relève davantage de la pratique de prompt outillée que d'un choix de posture délibéré.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Surinterprétation possible : le cycle critique-décision est observable mais l'alternance n'est pas thématisée comme un choix de posture ; elle vaut comme indice d'un usage différencié, pas comme preuve d'un leadership situationnel articulé."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Confusion de compétence possible avec 1.08 (dialogue IA) ou 7.01 (architecture pédagogique) ; la pièce subsiste comme indice de reprise de direction, sans la dimension d'alternance consciente."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que les pièces relevaient d'un usage standard de l'IA et pas d'un leadership situationnel articulé. Le constat tient pour l'essentiel : aucune alternance n'est nommée comme telle, aucun critère de bascule n'est explicité, aucun moment de retrait volontaire n'est raconté. Ce qui résiste faiblement : un cycle bascule est observable de l'extérieur dans la séquence critique → décision → directive. Sur cette journée, la trace existe à l'état d'écho — la pratique est là, sa thématisation comme choix de posture ne l'est pas encore. Un renvoi au cartographe est l'option honnête.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Deux pièces ont résisté en forme affaiblie comme indices d'un cycle bascule observable, mais l'alternance entre prise et retrait n'est pas thématisée comme un choix de posture délibéré.",
+        "prescription": "Le cycle bascule entre direction déléguée et reprise est observable dans la pratique du jour. Pour révéler la dimension « leadership situationnel », nommer une fois le moment où la décision de céder le lead a été prise et son déclencheur, ou décrire un moment où le choix de ne pas intervenir s'est imposé, ferait apparaître l'alternance comme une compétence consciente."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "extraitVerbatim": "Message à Stéphane : J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). Demain je retourne aux manuels du Tuteur et du Maître.",
+          "contexte": "Anticipation explicite d'usages futurs au-delà du périmètre initial (élèves hors Respire) — possible lien entre la production présente et un futur élargi.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la vision stratégique au sens de la fiche n'y est pas. La fiche est exigeante : il faut un lien explicite entre projection future et décision présente, des justifications de choix présents par une direction long-terme, ou des scénarios prospectifs articulés. Or la pièce signale l'anticipation d'une audience élargie mais ne déduit pas de cette anticipation un choix de design présent — c'est plutôt une constatation rétroactive (« ça pourrait servir »). La pièce résiste très faiblement : l'envisagement d'audiences hors Respire ouvre une perspective stratégique, mais le lien argumenté entre futur et présent n'est pas formulé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'anticipation d'audiences hors Respire signale une projection stratégique, même si le lien futur-présent reste implicite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu une simple ouverture de scope avec une vision stratégique. La fiche est claire : « ce n'est pas grave, les idées tiennent la route » comme confort face au délai est un marqueur — mais ici il n'y a pas de temporisation stratégique, juste une suggestion d'usage élargi.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : l'anticipation est nommée mais ne se traduit pas en choix de design présent argumenté ; elle vaut comme indice qu'une perspective stratégique existe, pas comme preuve d'une vision articulée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette pièce ne portait pas une vision stratégique au sens fort. Le constat tient en grande partie : le lien argumenté entre futur et présent — ce qui distingue la vision de la simple temporisation — n'est pas formulé. Ce qui résiste faiblement : l'envisagement d'audiences hors Respire ouvre une perspective qui dépasse l'objet immédiat. Sur cette journée, la trace existe à l'état d'écho. Un renvoi au cartographe est l'option honnête.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "L'unique pièce subsiste en forme affaiblie : une perspective élargie est nommée mais le lien argumenté entre futur anticipé et décision présente reste implicite.",
+        "prescription": "L'anticipation d'audiences hors Respire ouvre une perspective qui mériterait d'être articulée. Formuler une fois ce qu'une vision long-terme implique pour un choix présent — pourquoi tel format de manuel maintenant plutôt qu'un autre, en vue de quel futur — rendrait visible la mécanique de la vision stratégique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "extraitVerbatim": "Au lieu d'avancer dans la todo list, je recule : mais ce qui est important ce n'est pas le volume, c'est la qualité.",
+          "contexte": "Décision explicite de ne pas faire (ne pas avancer sur la todo) accompagnée d'une raison articulée (priorité à la qualité sur le volume) — le « non » stratégique argumenté que la fiche signale comme marqueur central.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "extraitVerbatim": "Bilan de fin de journée : les deux premières formations sont maintenant beaucoup mieux (et finalisées). En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+          "contexte": "Formalisation d'une règle personnelle sur le rapport vitesse/qualité après vérification par l'expérience du jour.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que l'efficacité personnelle au sens de la fiche n'est pas attestée. La fiche est claire : la compétence est dans le renoncement stratégique, pas l'optimisation infinie. Or la pièce 1 énonce précisément un renoncement (ne pas avancer dans la todo) avec son critère (la qualité plutôt que le volume). C'est exactement ce que la fiche identifie comme marqueur fiable. La pièce 2 livre une règle personnelle issue de l'expérience, qui pourra orienter les arbitrages futurs. Les deux pièces résistent. Reste explicitement faible : aucune mention de rituels de protection du temps, aucune limite d'énergie reconnue et respectée, aucun filtre d'utilité appliqué à l'information.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Décision explicite de ne pas faire avec critère articulé — le « non » stratégique que la fiche signale comme le plus fiable des marqueurs." },
+            { "pieceId": 2, "motifResistance": "Formalisation d'une règle personnelle sur la dynamique vitesse/qualité, vérifiée par l'expérience du jour." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces pour voir si je n'ai pas confondu une simple priorisation avec un renoncement stratégique articulé. La pièce 1 résiste à cette relecture : « je recule » est un mouvement contre-intuitif (en présence d'une todo) qui est explicitement argumenté. La pièce 2 est plus fragile : la formule peut sembler proverbiale plus que stratégique. Mais elle est liée à un résultat (« beaucoup mieux et finalisées »), ce qui la rapproche d'une heuristique éprouvée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Insuffisance probatoire non recevable : la pièce contient le « non » (je recule) et le critère argumenté (qualité vs volume) que la fiche désigne comme le marqueur le plus fiable."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif partiel : la formule est proverbiale mais elle est liée au résultat du jour (« beaucoup mieux ») ; elle subsiste comme indice d'une règle personnelle ancrée dans l'expérience."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette journée ne portait que des priorisations ordinaires et pas une efficacité personnelle au sens fort. La pièce 1 a résisté pleinement : elle énonce le « non » stratégique avec son critère, exactement ce que la fiche désigne comme le marqueur le plus fiable. La pièce 2 a résisté en forme affaiblie comme indice d'une règle personnelle issue de l'expérience. Sur cette journée, le pôle de l'efficacité personnelle est attesté dans sa dimension la plus précise — le renoncement argumenté en cours d'action — et complété par l'extraction d'une heuristique. Le seuil de la présence est franchi.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La pièce du « je recule » avec critère articulé a été confirmée au temps 2 comme trace exacte du marqueur central de la compétence ; une seconde pièce a résisté en forme affaiblie comme indice d'une règle personnelle ancrée dans l'expérience.",
+        "prescription": "Le « non » stratégique apparaît ici en acte. Pour approfondir cette compétence, raconter dans le futur un renoncement plus difficile — où la pression à faire était plus forte, ou le coût du « non » plus visible — révélerait la profondeur du dispositif personnel d'arbitrage."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Beaucoup trop d'erreurs et de modifications à apporter au manuel de formation des Tuteurs. Je n'ai pas réussi à beaucoup avancer hier.",
+          "contexte": "État initial du livrable — point de départ d'un cycle itératif.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "Ce matin j'ai demandé une analyse critique du manuel par l'IA ce qui m'a conduit à revoir également le manuel de l'Accompagnant. Les critiques qui sont faites : c'est un cours trop traditionnel, qui n'incarne pas la philosophie Respire.",
+          "contexte": "Étape de test/relecture qui produit un retour exploitable et déclenche un ajustement de plan (extension à un second manuel).",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "extraitVerbatim": "Bilan de fin de journée : les deux premières formations sont maintenant beaucoup mieux (et finalisées). En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+          "contexte": "Clôture du cycle avec résultat livré et règle générale tirée — cycle générer-relire-tester-ajuster bouclé.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que l'agilité au sens fort de la fiche n'y est pas. La fiche est exigeante : versions successives explicites (v1, v2…), artefacts de coordination utilisés activement (issues, milestones), et surtout la conduite du changement (anticipation des résistances, normalisation, ressources de transition). Or aucun versioning explicite n'apparaît, aucun artefact agile n'est cité, et la dimension conduite du changement (accompagner les résistances de futurs utilisateurs) est entièrement absente. Pourtant les pièces résistent. La pièce 1 pose l'état initial, la pièce 2 documente l'étape de relecture et l'ajustement de plan (extension au second manuel), la pièce 3 livre le résultat et l'apprentissage. Le cycle générer-relire-tester-ajuster est traçable même sans vocabulaire agile. Reste explicitement faible : la dimension conduite du changement reste vide sur cette feuille.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "État initial documenté qui ouvre le cycle — point de départ traçable." },
+            { "pieceId": 2, "motifResistance": "Étape de relecture/test qui produit un retour et déclenche un ajustement de plan (extension au manuel voisin)." },
+            { "pieceId": 3, "motifResistance": "Clôture avec résultat livré et apprentissage extrait — cycle bouclé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces pour voir si je n'ai pas confondu une simple révision quotidienne avec un cycle agile. La fiche met en garde explicitement : « théâtre agile » — adoption formelle des rituels sans la compétence. Ici, il n'y a justement aucun rituel formel ; ce qui est tracé, c'est la pratique. Mais l'absence d'artefacts explicites (versioning, backlog) limite la profondeur du verdict. La dimension conduite du changement, en outre, est totalement absente.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : l'état initial est nommé mais sans dispositif agile explicite ; elle subsiste comme indice du point de départ du cycle."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : l'étape de relecture et l'ajustement de plan sont documentés, mais sans nomenclature agile explicite ; elle vaut comme indice de la phase test-ajuster."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la clôture du cycle est nommée avec son résultat et son apprentissage, mais sans versioning ; elle vaut comme indice de la phase de livraison apprenante."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette journée ne portait pas l'agilité au sens fort de la fiche. Le constat est nuancé : le cycle générer-relire-tester-ajuster est tracé de bout en bout — état initial, étape de test, ajustement de plan, livraison, apprentissage — et c'est précisément ce que la fiche définit comme observable. Ce qui manque : la nomenclature explicite (versioning, artefacts agiles) et la dimension conduite du changement. Sur cette journée, la facette « agilité » est en acte sans vocabulaire ; la facette « conduite du changement » n'apparaît pas. Un renvoi au cartographe est l'option honnête — la trace existe, la moitié de la compétence est documentée.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.45,
+        "motif": "Trois pièces ont résisté en forme affaiblie comme indices d'un cycle itératif observable, mais sans nomenclature agile explicite et sans dimension conduite du changement — seule la moitié de la compétence est documentée.",
+        "prescription": "Le cycle itératif est en acte sur cette journée. Pour révéler la facette « conduite du changement », anticiper dans une feuille future les résistances que les manuels rencontreront chez leurs utilisateurs (« les Tuteurs trouveront sans doute que… ») et la manière dont elles seront accompagnées rendrait visible la seconde dimension de la compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette journée. La rédaction des manuels relève du temps long, pas de la compression temporelle radicale. Pour ouvrir ce dossier, l'apprenant pourrait raconter un incident géré dans l'urgence avec sa séquence de décisions précise."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 3,
+    "nonEtablies": 0,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée, le pôle du pilotage et de la transmission est le plus densément traversé. La journée est centrée sur la rédaction de manuels pédagogiques, et trois facettes s'attestent ensemble : une architecture pédagogique délibérée portée par quatre principes de design, une documentation structurée pour quatre rôles et publiée pour des audiences élargies, et un arbitrage de gestion de soi qui assume le repli au nom de la qualité.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "Quatre manuels distincts produits pour quatre rôles (Apprenant, Accompagnant, Tuteur, Maître), publiés sur un site, et envisagés pour des audiences élargies au-delà du périmètre initial de Respire.",
+        "extraitVerbatim": "J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire).",
+        "ceQueCaDit": "La structuration documentaire est intentionnelle, le destinataire est conscient et la perspective d'usage dépasse le cadre immédiat. La capitalisation pour autrui est en place ; la dimension proprement vivante (évolution dans le temps par l'usage) reste à observer."
+      },
+      {
+        "competence": "Efficacité personnelle",
+        "description": "Une décision explicite de ne pas avancer sur la todo, avec critère argumenté (qualité contre volume), suivie d'une règle générale tirée de l'expérience du jour.",
+        "extraitVerbatim": "Au lieu d'avancer dans la todo list, je recule : mais ce qui est important ce n'est pas le volume, c'est la qualité.",
+        "ceQueCaDit": "Le « non » stratégique argumenté — exactement le marqueur que la fiche désigne comme le plus fiable — est en acte. Le travail sait s'arrêter et nommer son critère, ce qui le distingue de la submersion."
+      },
+      {
+        "competence": "Maïeutique et facilitation d'apprentissage",
+        "description": "Quatre directives qui dessinent une architecture pédagogique : allègement de la charge cognitive, ordonnancement pourquoi-puis-comment, mise en vie du contenu, transformation des titres en questions fécondes.",
+        "extraitVerbatim": "Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes.",
+        "ceQueCaDit": "La facette architecturale de la facilitation est en acte — un prompt court porte quatre principes de design d'apprentissage. La facette maïeutique (questionnement adressé à un apprenant) reste à explorer."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas traversés sur cette feuille. L'évaluation transformative — adressée à autrui pour le faire progresser — et la gestion de crise en temps réel relèvent d'une limite de l'objet du jour : une journée d'écriture solitaire au temps long n'appelle ni l'acte évaluatif vers un apprenant, ni la compression temporelle d'une crise. Le leadership situationnel, la vision stratégique et l'agilité-conduite-du-changement apparaissent à l'état d'indices : un cycle bascule existe entre IA et apprenant sans être thématisé comme choix de posture, une perspective d'audience élargie est nommée sans être déduite en décision de design présent, et un cycle itératif est tracé sans nomenclature explicite ni dimension d'accompagnement des résistances futures.",
+    "emergencesPole": "Trois fils traversent ce pôle sur cette journée. Le premier : les compétences de pilotage se manifestent ici dans un travail solitaire — pas de coordination d'équipe, pas d'acte évaluatif vers un autre, mais une auto-gestion en cours et une architecture pédagogique mise en place pour des destinataires futurs. Le deuxième : la documentation et l'efficacité personnelle se renforcent mutuellement — accepter de reculer (efficacité) permet de produire des manuels qui rendent concret le travail attendu (documentation). Le troisième : ce qui est en acte (la pratique) précède sa thématisation comme compétence (le vocabulaire) — l'agilité, le leadership situationnel, la vision sont là en germe sans encore se nommer.",
+    "pistes": [
+      "Pour enrichir l'évaluation transformative, un chemin possible serait de raconter un retour fait à un élève, un Accompagnant ou un Tuteur — qui nomme ce qui fonctionne et qui ouvre des pistes concrètes plutôt que de juger.",
+      "Pour enrichir la facette maïeutique de la facilitation, un chemin possible serait de citer une question posée à un apprenant qui a fait surgir chez lui une réponse qu'il portait sans le savoir.",
+      "Pour enrichir le leadership situationnel, un chemin possible serait de nommer le moment où la décision de céder le lead à l'IA a été prise et son déclencheur, ou de raconter un moment où le choix de ne pas intervenir s'est imposé.",
+      "Pour enrichir la conduite du changement, un chemin possible serait d'anticiper les résistances que les manuels rencontreront chez leurs utilisateurs et la manière dont elles seront accompagnées."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée, le pôle du pilotage et de la transmission est le plus densément traversé. La journée est centrée sur la rédaction de manuels pédagogiques, et trois facettes s'attestent ensemble : une architecture pédagogique délibérée portée par quatre principes de design, une documentation structurée pour quatre rôles et publiée pour des audiences élargies, et un arbitrage de gestion de soi qui assume le repli au nom de la qualité.\n\n## Territoires les plus denses\n\n**Documentation vivante.** Quatre manuels distincts produits pour quatre rôles (Apprenant, Accompagnant, Tuteur, Maître), publiés sur un site, et envisagés pour des audiences élargies au-delà du périmètre initial de Respire : « Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). » La structuration documentaire est intentionnelle, le destinataire est conscient et la perspective d'usage dépasse le cadre immédiat. La capitalisation pour autrui est en place ; la dimension proprement vivante (évolution dans le temps par l'usage) reste à observer.\n\n**Efficacité personnelle.** Une décision explicite de ne pas avancer sur la todo, avec critère argumenté : « Au lieu d'avancer dans la todo list, je recule : mais ce qui est important ce n'est pas le volume, c'est la qualité. » Le « non » stratégique argumenté — exactement le marqueur que la fiche désigne comme le plus fiable — est en acte. Le travail sait s'arrêter et nommer son critère, ce qui le distingue de la submersion. Une règle générale est ensuite tirée de l'expérience du jour (« on perd du temps en voulant aller trop vite »).\n\n**Maïeutique et facilitation d'apprentissage.** Quatre directives dessinent une architecture pédagogique délibérée : « Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes. » La facette architecturale de la facilitation est en acte — un prompt court porte quatre principes de design d'apprentissage. La facette maïeutique au sens strict (questionnement adressé à un apprenant) reste à explorer.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas traversés sur cette feuille. L'évaluation transformative — adressée à autrui pour le faire progresser — et la gestion de crise en temps réel relèvent d'une limite de l'objet du jour : une journée d'écriture solitaire au temps long n'appelle ni l'acte évaluatif vers un apprenant, ni la compression temporelle d'une crise. Le leadership situationnel, la vision stratégique et l'agilité-conduite-du-changement apparaissent à l'état d'indices : un cycle bascule existe entre IA et apprenant sans être thématisé comme choix de posture, une perspective d'audience élargie est nommée sans être déduite en décision de design présent, et un cycle itératif est tracé sans nomenclature explicite ni dimension d'accompagnement des résistances futures.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent ce pôle sur cette journée. Le premier : les compétences de pilotage se manifestent ici dans un travail solitaire — pas de coordination d'équipe, pas d'acte évaluatif vers un autre, mais une auto-gestion en cours et une architecture pédagogique mise en place pour des destinataires futurs. Le deuxième : la documentation et l'efficacité personnelle se renforcent mutuellement — accepter de reculer (efficacité) permet de produire des manuels qui rendent concret le travail attendu (documentation). Le troisième : ce qui est en acte (la pratique) précède sa thématisation comme compétence (le vocabulaire) — l'agilité, le leadership situationnel, la vision sont là en germe sans encore se nommer.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir l'évaluation transformative, un chemin possible serait de raconter un retour fait à un élève, un Accompagnant ou un Tuteur — qui nomme ce qui fonctionne et qui ouvre des pistes concrètes plutôt que de juger.\n\nPour enrichir la facette maïeutique de la facilitation, un chemin possible serait de citer une question posée à un apprenant qui a fait surgir chez lui une réponse qu'il portait sans le savoir.\n\nPour enrichir le leadership situationnel, un chemin possible serait de nommer le moment où la décision de céder le lead à l'IA a été prise et son déclencheur, ou de raconter un moment où le choix de ne pas intervenir s'est imposé.\n\nPour enrichir la conduite du changement, un chemin possible serait d'anticiper les résistances que les manuels rencontreront chez leurs utilisateurs et la manière dont elles seront accompagnées."
+  }
+}

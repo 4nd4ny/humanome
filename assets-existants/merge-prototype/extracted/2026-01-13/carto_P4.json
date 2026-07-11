@@ -1,0 +1,362 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "J'ai merdé quelque part dans mes prompts : comme s'il avait oublié d'appliquer les principes pédagogiques des écoles, comme s'il avait perdu le fil rouge, au moment de générer les manuels.",
+      "contexte": "L'apprenant prend à son compte une faille du résultat IA, en l'attribuant à ses prompts plutôt qu'à la machine — possible trace d'accountability.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Pour l'instant j'ai beaucoup apprécié les 4 manuels, mais je vois que le processus de génération des textes que j'ai construit a de grosses lacunes. Ce n'est pas grave. Je vais essayer de documenter les modifications que je ferai en rentrant de vacances pour y remédier.",
+      "contexte": "Constat d'un défaut de son propre dispositif, suivi d'un « ce n'est pas grave » et d'un report à un horizon temporel défini (le retour de vacances) — possible trace de patience stratégique ou d'accountability.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "Il faudrait que je me ralentisse. Or quand je crée, je n'arrive pas à me dissocier : ça coupe mon flow. Et les nuits sont courtes : je ne suis pas sur du plein temps avec les formations du chômage, Soledad, la maison et ma petite fille : ça fait beaucoup de choses à gérer.",
+      "contexte": "Identification d'une contrainte (ralentir aurait un coût) face à des conditions de vie multiples — possible trace de tolérance au flou ou de décision en situation contrainte.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "comme s'il avait oublié d'appliquer les principes pédagogiques des écoles, comme s'il avait perdu le fil rouge, au moment de générer les manuels.",
+      "contexte": "Diagnostic d'un désalignement entre la production IA et les principes pédagogiques visés — possible trace d'alignement éthique appliqué à l'output IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-13",
+      "extraitVerbatim": "C'est le bon manuel. C'est de ça qu'il faut parler maintenant. Mais en explicitant que sans une remédiation cognitive, certains tuteurs n'arriveront pas à faire émerger chez des apprenants les compétences réflexives, s'ils ne sont pas eux-mêmes capables de manifester ces compétences.",
+      "contexte": "Affirmation tenue (« c'est le bon manuel ») nuancée par une condition exigeante sur les destinataires — possible trace de jugement maintenu malgré une difficulté pédagogique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au raisonnement éthique appliqué dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un dilemme moral traversé où deux valeurs légitimes ont été mises en tension, sans résolution hâtive."
+      }
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Constat que la génération IA a « perdu le fil rouge » des principes pédagogiques — possible trace de diagnostic d'alignement entre la production IA et l'intention humaine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'alignement éthique n'est pas vraiment là — qu'il s'agit plutôt d'un constat technique d'erreur (1.06 ou 1.08), pas d'un acte de gardiennage des valeurs humaines. La pièce diagnostique un écart entre ce que l'IA a produit et les principes pédagogiques visés, ce qui rentre formellement dans le périmètre de 4.02. Mais la fiche pose un test exigeant : il faut un refus, un garde-fou, ou un constat que quelque chose « sonne faux » au regard de valeurs explicites. Ici, l'écart est nommé en termes de « principes pédagogiques des écoles » et de « fil rouge », ce qui touche aux valeurs pédagogiques sans les formuler comme telles. Ce qui résiste très faiblement : l'apprenant identifie un désalignement, mais il l'attribue à ses prompts plutôt qu'à un comportement intrinsèquement désaligné de l'IA — il manque l'acte de refus ou de garde-fou.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a vraiment résisté au temps 1. Le diagnostic est technique (l'IA a oublié quelque chose au moment de générer), pas axiologique (l'IA produit quelque chose qui contredit nos valeurs). L'attribution de la cause au prompt humain renvoie plutôt à 1.08 qu'à 4.02.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme un geste d'alignement, et elle a glissé : le passage diagnostique un écart entre la production et les principes pédagogiques, mais il l'attribue à un problème de prompt plutôt qu'à un comportement à corriger côté IA. Aucun refus n'est posé, aucun garde-fou n'est conçu. Ce qui en résulte, c'est un territoire qui ne s'ouvre pas dans cette feuille — l'écart est nommé, mais le geste de gardiennage actif n'apparaît pas. Une trace claire pourrait apparaître ailleurs, quand un output IA serait écarté au nom de valeurs explicites.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a absorbé la pièce extraite ; l'écart est diagnostiqué mais aucun acte de refus ni garde-fou n'apparaît.",
+        "prescription": "Ce territoire n'a pas encore livré de trace claire dans cette feuille. Un chemin possible serait de documenter, lors d'un prochain output qui sonnerait faux, le critère axiologique qui motive le refus ou la reformulation — ce qui rend la trace lisible comme acte d'alignement, pas seulement comme correction technique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et au long-terme dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un arbitrage concret où un impact long-terme ou une partie prenante non-humaine a modifié une décision."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un résultat concret obtenu grâce à un mode de pensée atypique (le sien ou celui d'autrui)."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Continuation du travail malgré la conscience explicite d'un coût (nuits courtes, charges multiples, impossibilité de se ralentir sans perdre le flow) — possible trace de tolérance à un contexte contraint."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la décision et tolérance à l'incertitude ne sont pas là — qu'il s'agit plutôt d'un constat de fatigue et de charge mentale, pas d'un acte de tranchage en contexte de flou. La pièce nomme effectivement les conditions difficiles (nuits courtes, charges multiples) et énonce une persistance dans le travail créatif, mais elle ne montre pas un acte décisionnel en situation où des données manquent. La fiche exige un combo précis : nommer ce qu'on ne sait pas, fonctionner dans le brouillard, raconter un tranchage avec ses conséquences. Ici, on a la fonction (continuer à créer malgré la pression), mais pas le tranchage ni l'incertitude nommée comme telle. Ce qui ne résiste pas : il s'agit d'une persistance dans la difficulté, ce qui relève davantage du courage et de la résilience (autres compétences) que de la décision dans le flou.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La présomption d'absence absorbe l'extrait : la persistance dans la difficulté n'est pas un acte décisionnel dans l'incertitude.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une trace de tolérance au flou, et elle n'a pas tenu : la fatigue, les nuits courtes et les charges multiples ne constituent pas une incertitude au sens de la fiche, mais une contrainte connue. Le combo (nommer le flou, fonctionner dedans, trancher) n'est pas réuni. Ce qui en résulte, c'est un territoire qui ne s'ouvre pas dans cette feuille — la persistance est attestée, mais elle ne porte pas la signature de la décision dans le brouillard.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a absorbé la pièce extraite ; aucun tranchage en contexte d'incertitude réelle n'apparaît.",
+        "prescription": "Ce territoire n'a pas livré de trace claire dans cette feuille. Un chemin possible serait de raconter, lors d'un prochain moment de décision sous données incomplètes, ce qui n'était pas su et ce qui a été tranché malgré tout — pour faire voir le geste décisionnel."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Attribution explicite de la responsabilité de l'échec aux prompts (« j'ai merdé quelque part dans mes prompts »), même si l'IA a contribué — possible trace d'accountability."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Constat des lacunes du dispositif (« le processus de génération des textes que j'ai construit a de grosses lacunes ») assorti d'un engagement à remédier — possible trace de responsabilité assumée et d'action corrective annoncée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la responsabilité, le courage et l'intégrité ne sont pas là — qu'il s'agit plutôt d'une auto-flagellation rapide (« j'ai merdé ») ou d'un constat technique sans accountability. La pièce 1 résiste pourtant : « j'ai merdé quelque part dans mes prompts » est exactement la trace oblique signalée dans la fiche — appropriation explicite quand l'IA a contribué, sans rejet de la faute sur la machine. La pièce 2 confirme : l'apprenant qualifie le processus comme étant celui « que j'ai construit » et énonce une action corrective bornée dans le temps. Le combo (1) reconnaître sa part, (2) avec le coût implicite (modifier un dispositif construit), (3) action corrective annoncée est partiellement réuni. Ce qui reste explicitement faible : le coût personnel n'est pas dramatisé, l'action est différée à la rentrée de vacances et reste à concrétiser.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'attribution explicite à ses propres prompts (et non à l'IA) correspond exactement à la trace oblique « ce n'est pas la faute de l'IA » nommée dans la fiche." },
+            { "pieceId": 2, "motifResistance": "L'engagement à documenter et remédier porte une action corrective bornée dans le temps, ce qui distingue l'accountability constructive de l'auto-flagellation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Mais peut-être que je confonds appropriation de la faute et accountability constructive. « J'ai merdé » est un constat très court — est-ce que ça porte vraiment le poids de l'accountability ? L'attaque dominante est le récit performatif : la pièce déclare la responsabilité sans la mettre en acte ; et pour la pièce 2, l'action corrective est annoncée mais pas vécue dans la feuille.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le verbe « j'ai merdé » est plus une exclamation qu'un récit articulé d'erreur. Mais l'enchaînement immédiat avec une analyse de ce qui a manqué (« comme s'il avait oublié d'appliquer les principes pédagogiques ») évite l'auto-flagellation pure et tient l'attribution sans dérive vers la victimisation."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'action corrective est annoncée pour la rentrée plus que mise en acte dans la feuille. Elle reste indicielle parce que le processus est explicitement qualifié comme « celui que j'ai construit », ce qui assume la conception du dispositif défaillant."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de l'auto-flagellation rapide ou des promesses non tenues. Elles ont tenu, partiellement. Le « j'ai merdé quelque part dans mes prompts » écarte la machine comme bouc émissaire et appuie sur le « quelque part » — l'apprenant ne sait pas encore où, mais il s'attribue le défaut. Le « processus que j'ai construit » repose la même appropriation pour le dispositif. Le « ce n'est pas grave » qui suit empêche que l'accountability bascule en culpabilisation. Ce qui en résulte, c'est une trace solide de responsabilité assumée, avec une réserve : l'action corrective reste annoncée plus que vécue dans cette feuille. La signature de l'intégrité ou du courage moral, en revanche, n'apparaît pas — le triptyque de la fiche n'est partiellement actif que sur la facette « assumer ».",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a affaibli les deux pièces sans les disqualifier ; la combinaison porte la présence sur la facette « assumer » du triptyque.",
+        "prescription": "Le travail montre une appropriation claire des défauts du dispositif produit, sans renvoi sur l'IA. Un prolongement possible consisterait à documenter, au retour de vacances, l'action corrective effectivement vécue — ce qui ferait passer la trace d'une déclaration d'accountability à un récit d'accountability tenu dans le temps."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Constat que l'IA a « perdu le fil rouge » des principes pédagogiques des écoles — possible trace d'identification d'un delta de contexte entre savoir pédagogique humain et capacités de la machine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la validation contextuelle n'est pas là — qu'il s'agit plutôt d'un constat technique sans diagnostic du delta de savoir. La pièce mentionne effectivement que l'IA aurait « oublié d'appliquer les principes pédagogiques des écoles », ce qui suggère que ce savoir aurait dû être présent. Mais la fiche est exigeante : il faut nommer le contexte manquant et expliciter pourquoi il change tout. Ici, l'apprenant attribue l'échec au prompt (« j'ai merdé quelque part dans mes prompts ») plutôt qu'à un savoir indisponible à la machine. Cela renvoie davantage à 1.08 (dialogue IA avancé) qu'à 4.07. La distinction critique de la fiche est claire : 4.07 identifie le delta de contexte ; ici, le delta n'est pas nommé comme tel — le passage ne dit pas « l'IA ne pouvait pas savoir que… ». Ce qui ne résiste pas : le diagnostic reste du côté du prompteur, pas du contexte manquant à la machine.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La présomption d'absence absorbe l'extrait : l'attribution de la faute au prompt évite précisément le geste de validation contextuelle (qui aurait identifié ce que l'IA ne pouvait structurellement pas savoir).",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une validation contextuelle, et elle n'a pas tenu : l'apprenant ne nomme pas un savoir que l'IA ne pourrait pas avoir, il diagnostique une instruction insuffisante qu'il aurait dû lui donner. Cette posture est plus proche de 1.08 que de 4.07. Ce qui en résulte, c'est un territoire qui ne s'ouvre pas dans cette feuille. Une trace claire pourrait apparaître ailleurs, quand l'apprenant identifierait précisément un savoir pédagogique ou contextuel hors d'atteinte de la machine.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a absorbé la pièce extraite ; le diagnostic est posé sur le prompt, pas sur un delta de contexte irréductible.",
+        "prescription": "Ce territoire n'a pas livré de trace claire dans cette feuille. Un chemin possible serait de documenter, lors d'une prochaine correction d'output IA, ce que la machine ne pouvait pas savoir et pourquoi ce contexte change tout — pour rendre visible le savoir qui reste humain."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Affirmation que la transmission de la métacognition par les manuels requiert que les tuteurs soient eux-mêmes capables de manifester ces compétences — possible trace de valorisation d'une capacité humaine que l'output IA seul ne peut produire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la création de valeur non-automatisable n'est pas là — qu'il s'agit plutôt d'une remarque pédagogique sur la condition d'efficacité d'une transmission. La pièce pose pourtant une condition humaine forte : les tuteurs doivent « être eux-mêmes capables de manifester ces compétences » pour les faire émerger chez les apprenants. C'est l'identification d'une chose que le manuel seul (donc l'output textuel, fût-il IA) ne suffit pas à produire — il faut un sujet incarné qui porte la compétence. Cela touche au cœur de 4.08 : ce qui reste irréductiblement humain dans la transmission. Mais la fiche pose un test prospectif (« que vais-je cultiver pour rester pertinent ? ») et exige une lucidité bidirectionnelle. Ici, l'apprenant ne nomme pas l'IA comme contrepoint, ni ne formule explicitement ce qui reste non-automatisable. La trace reste oblique.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'exigence que les tuteurs manifestent eux-mêmes les compétences réflexives pour pouvoir les transmettre désigne une dimension incarnée que le manuel ne peut suppléer." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté ne nomme pas l'IA comme contrepoint et ne formule pas explicitement le critère de non-automatisabilité. L'attaque dominante est la surinterprétation pédagogique : je charge la pièce d'une intention 4.08 alors qu'elle parle de la condition humaine de la pédagogie, sans référence à l'automatisation.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce parle de la condition pédagogique de l'émergence des compétences réflexives chez l'apprenant, pas explicitement de ce qui reste non-automatisable. La fiche pose un test prospectif sur l'évolution face à l'IA qui n'apparaît pas dans le passage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une trace de création de valeur non-automatisable, et elle a glissé : la condition posée sur les tuteurs est pédagogique (il faut être habité par ce qu'on transmet) et non explicitement formulée comme un contrepoint à l'automatisation. La trace reste oblique sans franchir le seuil. Ce qui en résulte, c'est l'esquisse d'un raisonnement sur l'incarnation comme condition de la transmission — ce qui pourrait s'articuler ailleurs comme valeur non-automatisable, mais ne le fait pas ici. Le verdict ne tient pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce pour surinterprétation : la condition posée est pédagogique et n'est pas formulée comme contrepoint à l'automatisation.",
+        "prescription": "Ce territoire n'a pas livré de trace claire dans cette feuille. Un chemin possible serait d'articuler explicitement, à propos des tuteurs comme transmetteurs incarnés, ce que cette présence humaine apporte que le manuel seul ne pourrait apporter — ce qui rendrait visible la valeur non-automatisable comme cadre de réflexion."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "« Ce n'est pas grave. Je vais essayer de documenter les modifications que je ferai en rentrant de vacances pour y remédier » — possible trace de report borné dans le temps avec critère de déclenchement (le retour de vacances)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la patience stratégique n'est pas là — qu'il s'agit plutôt d'une procrastination déguisée en sérénité, ou simplement d'un constat qu'on ne va pas pouvoir traiter ça pendant les vacances. La pièce résiste pourtant en partie : elle pose un « ce n'est pas grave » associé à un horizon temporel précis (le retour de vacances) et à un acte projeté (documenter les modifications). C'est exactement la trace oblique signalée dans la fiche : « Ce n'est pas grave » serein associé à un horizon temporel et un critère de déclenchement. Ce qui reste explicitement faible : le critère de déclenchement est calendaire (la rentrée de vacances), pas conditionnel (« quand j'aurai lu X ») ; le raisonnement explicite d'attente — pourquoi maintenant n'est pas le moment — n'est pas formulé au-delà du fait que l'apprenant est en vacances.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Ce n'est pas grave » associé à un horizon temporel défini (le retour de vacances) et à une action future bornée correspond à la trace oblique signalée par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté pose un report calendaire plutôt qu'un report conditionnel. La fiche exige le combo (1) pression à agir, (2) raisonnement explicite d'attente, (3) moment d'action prévu. Ici, (3) est présent (la rentrée), (1) est implicite (les lacunes sont identifiées et appellent à correction), mais (2) — le raisonnement explicite d'attente — reste maigre : on attend parce qu'on est en vacances, pas parce que le moment n'est pas mûr. L'attaque dominante est l'insuffisance probatoire : le combo n'est que partiellement présent.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le combo de la fiche n'est que partiellement réuni : (3) le moment est prévu, mais (2) le raisonnement explicite d'attente reste implicite (vacances en cours). La pièce reste indicielle parce que le « ce n'est pas grave » est articulé à un acte futur défini, ce qui distingue clairement de la procrastination."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette pièce comme une procrastination déguisée, et elle a tenu un peu : le « ce n'est pas grave » n'est pas anxieux, il est associé à un acte futur précis et à un horizon temporel borné. Le ton serein face à des lacunes identifiées dans son propre dispositif est en soi un signal. Mais le combo complet de la fiche n'est pas réuni : le raisonnement explicite d'attente reste implicite. Ce qui en résulte, c'est un indice de patience stratégique qui pourrait se confirmer si l'apprenant racontait ailleurs pourquoi attendre la rentrée produirait un meilleur travail que le faire dans la précipitation des vacances. Le verdict tient à un renvoi au cartographe.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier ; un seul indice avec un combo partiel ne porte pas la présence établie.",
+        "prescription": "Le travail montre un report serein, borné dans le temps et associé à un acte futur précis. Un chemin possible serait d'expliciter, au retour de vacances, ce que ce report a permis : quelle distance, quel décantage, quel changement d'angle sur les lacunes diagnostiquées — pour faire passer la trace de la sérénité à la patience stratégique articulée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille montre un travail qui s'attribue volontiers les défauts de ses propres productions, sans rejeter la faute sur la machine ni dramatiser le coût. La voix dominante reconnaît une lacune, qualifie le dispositif comme étant celui qu'elle a construit, et projette une correction bornée dans le temps. Les marqueurs concrets reviennent autour du « j'ai merdé », du « ce n'est pas grave » serein, du « rentrant de vacances ». Le pôle est traversé sur deux registres : l'appropriation honnête de ce qui n'a pas fonctionné, et un report calme à un moment plus opportun. Les autres registres du pôle (dilemmes éthiques, écologie, neurodiversité, courage moral, refus IA explicite, validation contextuelle) ne s'ouvrent pas dans cette feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Responsabilité, courage et intégrité",
+        "description": "Appropriation explicite des défauts du dispositif produit, sans renvoi sur l'IA et sans auto-flagellation, suivie d'une action corrective annoncée.",
+        "extraitVerbatim": "J'ai merdé quelque part dans mes prompts : comme s'il avait oublié d'appliquer les principes pédagogiques des écoles, comme s'il avait perdu le fil rouge, au moment de générer les manuels.",
+        "ceQueCaDit": "L'apprenant prend pour lui ce qui aurait pu être attribué à la machine. Cette trace montre une accountability qui ne bascule ni dans la victimisation ni dans la dramatisation — la responsabilité est posée, la correction est projetée."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires du pôle restent silencieux dans cette feuille. Le raisonnement éthique appliqué, la conscience écologique, la valorisation de la neurodiversité n'apparaissent pas — cette feuille ne traverse pas de dilemme moral, ni d'arbitrage long-terme. L'alignement IA et la validation contextuelle effleurent la surface par le diagnostic du désalignement entre la production IA et les principes pédagogiques, mais le geste reste du côté du prompt humain, pas du gardiennage axiologique ni du delta de contexte. La décision et tolérance à l'incertitude est suggérée par la persistance dans des conditions difficiles, mais sans le combo (nommer le flou, fonctionner dedans, trancher) que la fiche attend. La création de valeur non-automatisable s'esquisse à travers l'exigence que les tuteurs portent les compétences qu'ils transmettent — sans qu'un cadre prospectif face à l'IA soit posé.",
+    "emergencesPole": "Deux observations traversent ce qui apparaît du pôle dans cette feuille. La première : le rapport à l'erreur s'organise autour d'un mouvement particulier — diagnostiquer un défaut, s'en attribuer la cause, et différer la correction sans culpabilité. C'est un geste articulé, pas une réaction défensive. La deuxième : le report au retour de vacances, posé avec sérénité, suggère un sens du moment opportun qui mériterait d'être explicité ailleurs — pourquoi maintenant n'est pas le moment, pourquoi la rentrée le sera.",
+    "pistes": [
+      "Pour prolonger l'accountability constructive esquissée dans cette feuille, un chemin possible serait de documenter, au retour de vacances, l'action corrective effectivement vécue — ce qui ferait passer la trace d'une déclaration à un récit tenu dans le temps.",
+      "Pour prolonger le report serein du « ce n'est pas grave », un chemin possible serait d'expliciter ce que ce délai a permis : quelle distance, quel décantage, quel changement d'angle — pour faire voir la patience stratégique comme choix argumenté plutôt que comme simple congé.",
+      "Pour prolonger le diagnostic du désalignement entre l'output IA et les principes pédagogiques, un chemin possible serait de formuler un critère axiologique explicite — non plus seulement « il a perdu le fil rouge », mais « ce que je refuse, et au nom de quoi »."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille montre un travail qui s'attribue volontiers les défauts de ses propres productions, sans rejeter la faute sur la machine ni dramatiser le coût. La voix dominante reconnaît une lacune, qualifie le dispositif comme étant celui qu'elle a construit, et projette une correction bornée dans le temps. Les marqueurs concrets reviennent autour du « j'ai merdé », du « ce n'est pas grave » serein, du « rentrant de vacances ». Le pôle est traversé sur deux registres : l'appropriation honnête de ce qui n'a pas fonctionné, et un report calme à un moment plus opportun. Les autres registres du pôle (dilemmes éthiques, écologie, neurodiversité, courage moral, refus IA explicite, validation contextuelle) ne s'ouvrent pas dans cette feuille.\n\n## Territoires les plus denses\n\n**Responsabilité, courage et intégrité.** Appropriation explicite des défauts du dispositif produit, sans renvoi sur l'IA et sans auto-flagellation, suivie d'une action corrective annoncée.\n\n> « J'ai merdé quelque part dans mes prompts : comme s'il avait oublié d'appliquer les principes pédagogiques des écoles, comme s'il avait perdu le fil rouge, au moment de générer les manuels. »\n\nL'apprenant prend pour lui ce qui aurait pu être attribué à la machine. Cette trace montre une accountability qui ne bascule ni dans la victimisation ni dans la dramatisation — la responsabilité est posée, la correction est projetée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires du pôle restent silencieux dans cette feuille. Le raisonnement éthique appliqué, la conscience écologique, la valorisation de la neurodiversité n'apparaissent pas — cette feuille ne traverse pas de dilemme moral, ni d'arbitrage long-terme. L'alignement IA et la validation contextuelle effleurent la surface par le diagnostic du désalignement entre la production IA et les principes pédagogiques, mais le geste reste du côté du prompt humain, pas du gardiennage axiologique ni du delta de contexte. La décision et tolérance à l'incertitude est suggérée par la persistance dans des conditions difficiles, mais sans le combo (nommer le flou, fonctionner dedans, trancher) que la fiche attend. La création de valeur non-automatisable s'esquisse à travers l'exigence que les tuteurs portent les compétences qu'ils transmettent — sans qu'un cadre prospectif face à l'IA soit posé.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux observations traversent ce qui apparaît du pôle dans cette feuille. La première : le rapport à l'erreur s'organise autour d'un mouvement particulier — diagnostiquer un défaut, s'en attribuer la cause, et différer la correction sans culpabilité. C'est un geste articulé, pas une réaction défensive. La deuxième : le report au retour de vacances, posé avec sérénité, suggère un sens du moment opportun qui mériterait d'être explicité ailleurs — pourquoi maintenant n'est pas le moment, pourquoi la rentrée le sera.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger l'accountability constructive esquissée dans cette feuille, un chemin possible serait de documenter, au retour de vacances, l'action corrective effectivement vécue — ce qui ferait passer la trace d'une déclaration à un récit tenu dans le temps.\n- Pour prolonger le report serein du « ce n'est pas grave », un chemin possible serait d'expliciter ce que ce délai a permis : quelle distance, quel décantage, quel changement d'angle — pour faire voir la patience stratégique comme choix argumenté plutôt que comme simple congé.\n- Pour prolonger le diagnostic du désalignement entre l'output IA et les principes pédagogiques, un chemin possible serait de formuler un critère axiologique explicite — non plus seulement « il a perdu le fil rouge », mais « ce que je refuse, et au nom de quoi ».\n"
+  }
+}

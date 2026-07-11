@@ -1,0 +1,485 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Je repense à la structure globale des 4 manuels (il ne me reste plus que quelques chapitres du manuel du Maître à lire). Je me dis que j'ai mal réfléchi à l'objectif final de ces manuels. Je pense les régénérer (mais j'ai un peu le flegme aussi de relire les 600 pages) avec la modification suivante :",
+      "contexte": "Réflexion sur la structure globale d'un dispositif pédagogique multi-manuels — pilotage de projet pédagogique en révision.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Praticien : comment générer une cartographie avec les IA. Que doit-on vérifier manuellement pour confirmer les compétences proposées. Quel est le référentiel des compétences que l'on souhaite observer à ce niveau là.",
+      "contexte": "Design pédagogique du niveau Praticien — contenus pratiques + critères de vérification + référentiel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Expert : réfléchir à la pertinence d'ajouter le référentiel des 64 fonctions cognitives (au lieu des 42 citées ci-dessous ou des 11 proposées dans le manuel qui a été généré avant les vacances) que je n'ai pas publiées et qui ne sont listées dans [mes travaux de recherche]([...]) uniquement. L'idée est d'outiller les Experts des fondements permettant de débloquer un Apprenants ayant des difficultés à prendre le recul nécessaire pour faire de la méta cognition.",
+      "contexte": "Design pédagogique du niveau Expert : choix entre trois référentiels possibles (11/42/64 fonctions cognitives) selon l'objectif visé (outiller pour débloquer la métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Maître : si l'objectif principal de la formation est d'aider à construire de bonnes cartographies des compétences, ce niveau devrait se concentrer sur comment aider les Experts à développer les fonctions et stratégies cognitives utiles à la métacognition. Et du coup alléger la partie motivation et confiance en soi, qui pourrait être déplacé dans un nouveau niveau (dont le nom reste à définir).",
+      "contexte": "Reconception du niveau Maître à partir d'une finalité repensée — déplacement de contenus vers un nouveau niveau à inventer."
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "La formation entière serait ainsi dédiée à l'acquisition de la compétence d'apprendre à apprendre, qui est peut-être encore une compétence utile à l'ère des super IA. Mais même ça je n'en sais rien. J'ai peur de rester enfermé dans la logique de l'ère pré-AGI de l'ancienne école \\!",
+      "contexte": "Vision prospective sur la pertinence de la formation à l'ère des super IA — direction long-terme questionnée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Si une IA tuteur personnel nous aide à apprendre tout au long de la vie, ce n'est peut-être plus la compétence ultime à maîtriser.",
+      "contexte": "Prospective sur les usages éducatifs futurs de l'IA et leur effet sur la formation à concevoir.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-15",
+      "extraitVerbatim": "Je vois que je doute du chemin que doit prendre la formation des Tuteurs. Je vais terminer mes lectures de la formation v1 et attendre d'avoir accès à un ordinateur pour réfléchir avec Claude à tout ça.",
+      "contexte": "Pilotage explicite du rythme de réflexion : reconnaître son état, finir une phase de lecture, déclencher l'analyse plus tard avec le bon outil.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Design d'un niveau pédagogique : choix entre trois référentiels possibles motivé par une intention précise (outiller pour débloquer la métacognition d'apprenants en difficulté)."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Architecture pédagogique en niveaux successifs, avec déplacement de contenus d'un niveau vers un autre selon ce qu'exige l'objectif final."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'il s'agit de simple planification de contenu, pas de maïeutique. La fiche cible la *retenue délibérée* de celui qui sait mais choisit de ne pas dire, et l'architecturation d'environnements d'apprentissage avec intention. La pièce 1 et la pièce 2 décrivent une architecture pédagogique en niveaux différenciés avec une intention articulée (outiller, alléger, déplacer) — c'est de l'architecture pédagogique au sens de la fiche. Reste faible : pas de question maïeutique citée, pas de récit de tension interne (« j'aurais pu lui dire mais... »), pas d'interaction avec un apprenant concret. C'est de la conception, pas de la facilitation in vivo.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant choisit le référentiel à enseigner en fonction de l'effet recherché sur l'apprenant en difficulté — c'est précisément un acte d'architecturation pédagogique au sens de la fiche." },
+            { "pieceId": 2, "motifResistance": "L'organisation en niveaux Praticien/Expert/Maître + un nouveau niveau, avec déplacement de contenus en cascade, est une architecture pédagogique articulée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur les deux pièces : suis-je en train d'halluciner une maïeutique ? La fiche est précise : 7.01 a deux composantes — la *méthode* (questionner pour faire accoucher) et l'*architecture pédagogique* (concevoir l'environnement). Ici, seule la seconde composante est présente : on a une architecture pensée, pas une posture maïeutique en interaction. Cependant, la fiche signale que l'architecture pédagogique est un volet à part entière de 7.01, qu'elle suffit à porter la compétence sur sa dimension « design pédagogique » (plafond Expert possible sur cette dimension).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire partielle : l'extrait articule un choix de référentiel mais ne déploie pas son ingénierie pédagogique en détail. Ce qui le retient : la finalité est explicite (débloquer la métacognition d'apprenants en difficulté), ce qui ancre le choix dans une intention pédagogique précise."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'attaque d'insuffisance ne tient pas : l'architecture en quatre niveaux successifs, avec déplacement explicite de contenus selon l'objectif final repensé, est une structuration pédagogique articulée — exactement ce que la fiche désigne comme architecture d'un environnement d'apprentissage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme une simple planification. Elles ont tenu : l'architecturation en niveaux différenciés, avec intention articulée pour chacun, est précisément la composante « architecture pédagogique » que la fiche reconnaît. La pièce 2 (architecture en quatre niveaux avec déplacement de contenus) a été confirmée ; la pièce 1 (choix d'un référentiel selon l'effet pédagogique recherché) a été retenue affaiblie. Ce qui reste : un travail de design pédagogique attesté, dans la composante architecturale du 7.01. La composante maïeutique au sens strict (retenue, questionnement socratique) n'est pas activée dans cette feuille — l'apprenant pense la structure, pas une interaction en cours.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "La pièce 2 a été confirmée au temps 2 (architecture pédagogique en niveaux articulée), la pièce 1 retenue affaiblie ; la composante architecturale de la compétence est lisible et tient solidement.",
+        "prescription": "Le design en niveaux successifs avec intention articulée tient solidement. Une piste pour prolonger : à chaque déplacement de contenu d'un niveau à un autre, expliciter ce que cela suppose chez l'apprenant cible (quel acquis préalable, quel effet attendu), pour rendre lisible la mécanique pédagogique au-delà de la structure."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention de la vérification manuelle des compétences proposées par l'IA — possible matrice d'évaluation à construire pour les Praticiens."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'un principe de vérification général, pas d'un acte évaluatif transformatif. La fiche est précise : 7.02 cible l'acte évaluatif au service de la progression — feedback, miroir structuré, grille critériée, dispositifs d'évaluation inventés. La pièce 1 mentionne la vérification des compétences proposées par l'IA — c'est de la vérification d'output, pas une évaluation transformative au service d'une progression d'apprenant. Reste faible : pas de feedback adressé à un apprenant, pas de question évaluative formative, pas de dispositif d'évaluation conçu dans cette feuille.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un acte évaluatif transformatif dans la mention de la vérification manuelle. La fiche distingue clairement l'évaluation d'output IA (qui relève d'autres compétences) de l'évaluation au service d'une progression d'apprenant. Ici, on a un principe de vérification générique, sans destinataire évaluable nommé. Ce qui en résulte : la compétence n'est pas attestée dans cette feuille — bien que le protocole de cartographie auquel cette feuille appartient relève en partie de l'évaluation transformative, ce méta-niveau n'est pas formulé dans le texte lui-même.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption d'absence n'a pas été renversée : la vérification mentionnée porte sur les sorties IA, pas sur une progression d'apprenant — l'acte évaluatif au service de la formation n'est pas déployé dans cette feuille.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, à l'occasion d'un échange avec un futur Tuteur ou Apprenant, de capturer une formulation évaluative qui ouvre des pistes concrètes plutôt qu'elle ne clôt par un jugement."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Travail sur la « structure globale des 4 manuels » — pensée d'une documentation pédagogique avec organisation et révision intentionnelle."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Référence à des travaux de recherche non publiés conservés dans un fichier dédié (« mes travaux de recherche ») — capitalisation intentionnelle d'un savoir à mobiliser plus tard."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'il s'agit de documents existants évoqués, pas de documentation vivante au sens de la fiche. La fiche est précise : 7.03 cible la *capitalisation* avec conscience du destinataire futur, le versioning, l'évolution des documents. La pièce 1 évoque quatre manuels organisés (Praticien, Expert, Maître + un autre niveau) avec une logique de v1 → v2 ; c'est un dispositif documentaire structuré. La pièce 2 mentionne des travaux de recherche non publiés mais référençables — c'est de la conservation intentionnelle avec intention de réutilisation. Reste faible : pas de récit de structuration explicite (titres, sections, choix d'architecture), pas d'anticipation explicite d'un futur lecteur ; on voit des artefacts évoqués, pas la mécanique de leur production.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'existence des quatre manuels organisés, lus séquentiellement, et la projection d'une v2 supposent une pratique de documentation versionnée — c'est l'amorce du marqueur central." },
+            { "pieceId": 2, "motifResistance": "Le fait que les travaux de recherche soient « listés » dans un document spécifique (un tableur partagé), référençables par lien, indique une organisation intentionnelle pour réutilisation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur les deux pièces : suis-je en train d'halluciner une documentation vivante ? La pièce 1 évoque des manuels comme objets existants ; on ne voit pas leur mécanique interne. La pièce 2 mentionne un tableur de référence, ce qui est plus directement un artefact de capitalisation. La fiche distingue 7.03 (documentation structurée avec intention de capitalisation pour autrui ou pour soi futur) de 5.03 (narration réflexive pour soi). Ici, on a clairement des artefacts produits *pour autrui* (les manuels) et *pour soi futur* (le tableur de recherche).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la structure des quatre manuels est évoquée, mais la mécanique de leur structuration n'est pas déployée dans cette feuille. Ce qui retient la pièce : l'existence même des manuels avec une logique de versioning (v1, projet de v2) atteste d'une pratique documentaire active."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'extrait mentionne un tableur sans en décrire la structure ; la pièce vaut comme indice de capitalisation intentionnelle (les travaux de recherche sont organisés en un document référençable), pas comme déploiement de la documentation vivante."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à disqualifier ces pièces en considérant que des documents évoqués ne sont pas une documentation vivante au sens de la fiche. Elles ont tenu, affaiblies : on voit des artefacts existants (quatre manuels avec logique de version, un tableur de recherche), même si la mécanique de leur structuration n'est pas déployée. Ce qui reste : une pratique documentaire en arrière-plan, ancrée et active, dont cette feuille évoque les contours sans les déployer. La réserve : sans description du travail interne d'architecture (choix de titres, anticipation des lecteurs, mise à jour), la compétence est attestée à un niveau de présence ordinaire — solide mais sans déploiement Expert.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Deux pièces d'indice (manuels structurés versionnés et tableur de recherche référençable) ont survécu affaiblies ; le seuil nombreIndices ≥ 2 est atteint et la confiance est tout juste suffisante pour porter une présence — la documentation vivante existe en arrière-plan plus qu'elle ne se déploie ici.",
+        "prescription": "La documentation existe et tient. Une piste pour la rendre plus visible serait, lors d'une mise à jour, de noter brièvement ce qui change, pourquoi, et pour quel futur lecteur — pour expliciter la dimension « vivante » qui distingue 7.03 d'un simple archivage."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Décision explicite de différer l'analyse jusqu'à pouvoir travailler avec Claude — choix de posture (laisser le partenaire IA mener une partie de la réflexion) à un moment précis."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'un simple usage d'outil, pas d'un leadership situationnel. La fiche est précise : 7.04 cible le *choix explicite* de laisser l'IA mener sur une phase puis de reprendre le contrôle, l'alternance consciente. La pièce 1 décrit l'intention de réfléchir avec Claude plus tard, ce qui suppose une certaine répartition à venir — l'apprenant convoque l'IA pour une phase précise (l'analyse en profondeur), tout en gardant la conduite (lecture, fin de manuel) en attendant. Reste faible : pas de description de la bascule en cours, pas de critère explicite de retour à la conduite humaine ; on est plus dans une intention d'orchestration que dans une orchestration déployée.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un leadership situationnel dans la décision de réfléchir avec Claude. La fiche est précise : il faut un récit de bascule explicite (qui mène, qui suit, à quel moment, selon quel déclencheur). Ici, l'apprenant annonce qu'il va réfléchir avec Claude, sans expliciter la posture qu'il adoptera (mener / laisser mener / alterner). L'intention est annoncée, l'orchestration n'est pas décrite. Ce qui en résulte : la compétence n'est pas attestée dans cette feuille — pas par absence probable de pratique, mais par absence de récit de bascule.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption d'absence n'a pas été renversée : l'intention de réfléchir avec Claude ne décrit pas la bascule de posture (qui mène, qui suit) qui est le marqueur central de la fiche.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, lors de la session prévue avec Claude, de noter quand on choisit de laisser l'IA proposer et quand on reprend la conduite — et selon quel signal."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Vision long-terme : si l'objectif principal de la formation est X, alors les contenus à enseigner sont Y — justification présente par une finalité projetée."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Anticipation de l'ère des super IA et questionnement de la pertinence à long terme de la compétence centrale visée."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Anticipation d'une rupture technologique (IA tuteur personnel) et de son effet sur ce qu'il faut enseigner aujourd'hui."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'il s'agit de simples projections, pas de vision stratégique au sens de la fiche. La fiche est précise : 7.05 cible le *lien explicite* entre projection future et décision présente, l'anticipation de ruptures technologiques que les outils actuels ne permettent pas encore d'exploiter. La pièce 1 fait ce lien (« si l'objectif est X → ce niveau devrait Y »). Les pièces 2 et 3 anticipent une rupture (super IA, IA tuteur personnel) et la mettent en relation avec ce qu'il faut enseigner aujourd'hui. Reste faible : aucune projection chiffrée ou bornée dans le temps, pas de scénarios à plusieurs horizons articulés.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant lie explicitement un objectif final à un choix de contenu présent — c'est la structure « décision présente justifiée par futur anticipé » que la fiche cible." },
+            { "pieceId": 3, "motifResistance": "L'anticipation que l'IA tuteur personnel reconfigure la fonction d'enseignement est une anticipation de rupture technologique avec effet sur la décision présente — la fiche cite explicitement ce marqueur." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur les deux pièces qui ont résisté : suis-je en train d'halluciner une vision ? La pièce 1 est un raisonnement conditionnel (« si X, alors Y ») qui pourrait n'être qu'une déduction logique sans portée prospective. La pièce 3 anticipe une rupture mais sans préciser un horizon ou une condition de réalisation — c'est plutôt une hypothèse ouverte. La fiche signale que le lien argumenté entre futur et présent est le critère discriminant ; ici, le lien est posé, mais sa fermeté est variable.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Risque de récit performatif : « si objectif X alors contenu Y » est un raisonnement logique, pas forcément une vision déployée. Ce qui retient la pièce : l'objectif final (« construire de bonnes cartographies de compétences ») n'est pas un objectif administratif standard ; il porte une visée prospective sur la pratique du Tuteur."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'attaque mouvement-vers ne tient pas : l'apprenant articule explicitement la rupture (IA tuteur personnel) et son effet possible sur ce qu'il faut maîtriser (« plus la compétence ultime »). C'est exactement le marqueur que la fiche désigne comme « anticipation de ruptures technologiques »."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de simples projections. Elles ont tenu : la pièce qui anticipe la rupture IA tuteur et son effet sur la décision pédagogique présente a été confirmée ; la pièce qui lie objectif final et contenu présent a été retenue affaiblie. Ce qui reste : une vision prospective active, qui ancre le travail présent (régénération des manuels) dans une lecture du futur (super IA, IA tuteur). La réserve : la vision est encore tournée vers la question (« faut-il continuer ? ») plus que vers la réponse (« voici comment se positionner »). Le passage du diagnostic prospectif à la stratégie positionnée reste à faire.",
+          "confianceFinale": 0.66
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.66,
+        "motif": "La pièce 3 a été confirmée (anticipation explicite d'une rupture technologique avec effet sur la décision présente), la pièce 1 retenue affaiblie ; le lien futur-anticipé / décision-présente est lisible et tient.",
+        "prescription": "Le diagnostic prospectif est posé. Une piste pour le prolonger : passer du « peut-être plus utile » à des hypothèses de positionnement (« si l'IA tuteur prend en charge X, alors je conçois la formation autour de Y »), pour transformer la vision en levier de décision."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Reconnaissance d'une limite d'énergie (« j'ai un peu le flegme aussi de relire les 600 pages ») qui pèse sur la décision de régénérer."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Décision explicite de non-action immédiate, articulée à un état (le doute) et à une suite (terminer les lectures, attendre l'ordinateur)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'il s'agit de fatigue racontée et de simple temporisation, pas d'efficacité personnelle au sens de la fiche. La fiche est précise : 7.06 cible des arbitrages de priorisation argumentés, la reconnaissance des limites d'énergie comme facteur de décision, le « non » stratégique argumenté. La pièce 1 reconnaît une limite d'énergie comme frein concret au projet de régénération — c'est de la conscience opérationnelle des ressources. La pièce 2 articule une non-décision immédiate à un état et à une suite, ce qui est de la priorisation contextuelle. Reste faible : pas d'arbitrage explicite entre deux options de priorisation, pas de filtre d'utilité formulé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant reconnaît explicitement une limite d'énergie comme facteur de décision dans le projet de régénération — la fiche cite ce type de marqueur (« limites d'énergie reconnues »)." },
+            { "pieceId": 2, "motifResistance": "La décision de différer l'analyse en attendant le bon contexte de travail est une priorisation contextuelle explicite, justifiée par l'état (doute) et le besoin d'outil (Claude + ordinateur)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur les deux pièces qui ont résisté : suis-je en train de surinterpréter ? La pièce 1 est très brève (« j'ai un peu le flegme ») et pourrait être une simple mention de fatigue plutôt qu'une priorisation. La pièce 2 articule mieux la décision, mais elle est plus du registre de la patience stratégique (4.09) que de l'efficacité personnelle. La frontière est fine : 7.06 est plus proche du quotidien de la priorisation, 4.09 plus proche du sens du kairos.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la fatigue est nommée brièvement (« un peu le flegme »), sans déploiement d'un arbitrage explicite. Ce qui retient la pièce : elle relie la fatigue à une décision concrète (différer la régénération), ce qui est un marqueur d'efficacité opérationnelle."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Frontière fine avec 4.09 (patience stratégique). Ce qui retient la pièce pour 7.06 : la décision est ancrée dans une organisation pragmatique (« j'aurai besoin de Claude et d'un ordinateur pour bien réfléchir »), ce qui est de la gestion contextuelle des ressources de travail."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir ces pièces comme de la fatigue ou comme de la patience stratégique pure. Elles ont tenu pour 7.06, affaiblies : la reconnaissance d'une limite d'énergie comme facteur de décision et la priorisation contextuelle des phases de travail (lire d'abord, analyser ensuite avec le bon outil) portent ensemble la trace d'une gestion des ressources personnelles. La réserve : on n'a pas ici un « non » stratégique au sens dur (refuser une sollicitation extérieure) ; on a plutôt une régulation interne de son propre rythme. La compétence est attestée dans cette dimension, sans déploiement de la dimension du refus.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Deux pièces affaiblies ont survécu, atteignant le seuil nombreIndices ≥ 2 ; la régulation interne du rythme est lisible (limite d'énergie nommée, priorisation contextuelle articulée), même sans la dimension « non » stratégique explicite.",
+        "prescription": "La régulation interne du rythme est présente. Une piste pour l'étoffer : quand une sollicitation extérieure (réunion, mail, projet annexe) entre en concurrence avec une priorité en cours, noter pourquoi le « non » a été choisi — pour rendre lisible le filtre de priorisation au-delà du seul rapport à soi."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Logique itérative explicite sur les manuels : v1 lue avec un constat de mauvais cadrage, v2 projetée comme régénération."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Ajustement de plan en cours de route avec raisons articulées (déplacer des contenus d'un niveau à l'autre selon l'objectif final repensé)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'il s'agit d'une révision de plan classique, pas d'agilité au sens de la fiche. La fiche est précise : 7.07 cible la boucle « générer-relire-tester-ajuster » et les ajustements de plan en cours avec raisons explicitées. La pièce 1 décrit une boucle complète : v1 produite (générer), lecture en cours (relire), constat (tester implicitement), projet de v2 (ajuster). La pièce 2 contient un ajustement de plan avec raison explicitée (« si l'objectif est X, alors ce niveau devrait Y »). Reste faible : pas d'artefact de coordination agile (issues, milestones), pas de conduite du changement (anticipation des résistances), pas de cycle observable dans la journée elle-même.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La structure générer-relire-constater-ajuster est lisible sur le projet des manuels : v1 lue, mauvais cadrage constaté, v2 projetée. C'est la boucle d'itération que la fiche cite." },
+            { "pieceId": 2, "motifResistance": "L'ajustement de plan (déplacer des contenus d'un niveau à un autre) est argumenté par un objectif final repensé — la fiche désigne précisément ce type de marqueur." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur les deux pièces qui ont résisté : suis-je en train d'halluciner une agilité ? La pièce 1 décrit une logique de version (v1 → v2), mais la v2 n'est pas encore produite — on est dans l'amorce d'un cycle, pas dans un cycle accompli. La pièce 2 est un ajustement de plan, mais c'est un ajustement de conception, pas un ajustement empirique fondé sur un test ou un retour terrain. La frontière avec 1.02 (cadrage récursif) est fine : ce que je vois ici est plutôt du recadrage que de l'agilité au sens strict.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : on voit un apprenant en route vers une nouvelle itération (v2 projetée) plutôt qu'en cycle agile déployé. La pièce porte l'amorce de la boucle, freinée par la fatigue assumée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Frontière fine avec 1.02 (cadrage récursif). Ce qui retient la pièce pour 7.07 : l'ajustement est de l'organisation pratique du dispositif (où va quel contenu), pas seulement de l'objectif — c'est de la conduite de plan, pas seulement du cadrage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir cette pièce comme du cadrage récursif ou de la simple révision. Elle a tenu, affaiblie : la logique v1 → v2 et l'ajustement de plan en cours sont des marqueurs d'agilité, même si la v2 n'est pas déployée et l'ajustement reste conceptuel. Ce qui reste : une agilité méthodologique en arrière-plan du projet, attestée par la pratique du versioning et par l'ajustement argumenté ; la conduite du changement (anticipation des résistances, accompagnement) n'est pas activée dans cette feuille. La réserve : sans déploiement d'un cycle complet ou d'un récit de test/retour, on reste sur une agilité de structure plus que sur une agilité d'exécution.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces ont été retenues affaiblies, atteignant le seuil nombreIndices ≥ 2 ; la boucle v1 → ajustement argumenté → v2 projetée est lisible et porte la dimension méthodologique de l'agilité.",
+        "prescription": "L'agilité est structurelle (versioning, ajustements argumentés). Une piste pour la rendre plus visible : au moment de basculer dans la régénération, noter à chaud le déclencheur du pivot, l'ajustement décidé, et le critère qui permettra d'observer si l'ajustement a porté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel dans cette feuille. Pour ouvrir ce dossier, un récit d'incident avec détails temporels précis et triage sous pression pourrait être documenté."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 4,
+    "renvoisCartographe": 0,
+    "nonEtablies": 4,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le pôle FLAMBEAU est le plus densément travaillé du portfolio. Le texte tient ensemble plusieurs gestes de pilotage : l'architecture pédagogique en quatre niveaux différenciés, la logique itérative entre une v1 lue et une v2 projetée, la vision prospective qui justifie les choix présents par l'anticipation de l'ère des super IA, et la régulation interne du rythme (reconnaissance d'une limite d'énergie, décision de différer l'analyse au moment où l'outil adéquat sera disponible). Le registre est sobre et opérationnel ; les artefacts existent en arrière-plan (manuels, tableur de recherche) sans être déployés ici. Ce qui domine, c'est un pilotage qui pense la structure et le temps plutôt qu'il ne pilote une crise ou un changement humain.",
+    "territoiresDenses": [
+      {
+        "competence": "Maïeutique et facilitation d'apprentissage",
+        "description": "L'architecture pédagogique en niveaux successifs (Praticien, Expert, Maître, nouveau niveau à inventer) est articulée avec une intention par niveau et un déplacement de contenus en cascade selon l'objectif final repensé.",
+        "extraitVerbatim": "Maître : si l'objectif principal de la formation est d'aider à construire de bonnes cartographies des compétences, ce niveau devrait se concentrer sur comment aider les Experts à développer les fonctions et stratégies cognitives utiles à la métacognition. Et du coup alléger la partie motivation et confiance en soi, qui pourrait être déplacé dans un nouveau niveau (dont le nom reste à définir).",
+        "ceQueCaDit": "La composante architecturale de la compétence est lisible : on conçoit l'environnement d'apprentissage à partir d'un objectif final et on déplace les contenus en conséquence."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Le travail présent (régénération des manuels) est justifié par l'anticipation de ruptures technologiques (super IA, IA tuteur personnel) et de leur effet sur ce qu'il faut transmettre.",
+        "extraitVerbatim": "Si une IA tuteur personnel nous aide à apprendre tout au long de la vie, ce n'est peut-être plus la compétence ultime à maîtriser.",
+        "ceQueCaDit": "Le lien entre futur anticipé et décision présente est posé, même si la position stratégique qui en découlerait reste à formuler."
+      },
+      {
+        "competence": "Agilité et conduite du changement",
+        "description": "Le projet est mené en versions (v1 lue, v2 projetée) avec un ajustement de plan argumenté en cours de route.",
+        "extraitVerbatim": "Je pense les régénérer (mais j'ai un peu le flegme aussi de relire les 600 pages) avec la modification suivante :",
+        "ceQueCaDit": "La boucle d'itération est posée, freinée par la fatigue assumée — l'agilité de structure est claire, l'agilité d'exécution est en suspens."
+      },
+      {
+        "competence": "Documentation vivante",
+        "description": "Le portfolio évoque quatre manuels organisés en niveaux et un tableur de recherche référençable — des artefacts de capitalisation qui existent en arrière-plan.",
+        "extraitVerbatim": "Je repense à la structure globale des 4 manuels (il ne me reste plus que quelques chapitres du manuel du Maître à lire).",
+        "ceQueCaDit": "L'existence des artefacts atteste d'une pratique documentaire ancrée, même si leur mécanique interne n'est pas déployée dans cette feuille."
+      },
+      {
+        "competence": "Efficacité personnelle",
+        "description": "Une limite d'énergie est reconnue comme facteur de décision, et l'analyse est différée jusqu'au moment où l'outil de travail (Claude + ordinateur) sera disponible.",
+        "extraitVerbatim": "Je pense les régénérer (mais j'ai un peu le flegme aussi de relire les 600 pages) avec la modification suivante :",
+        "ceQueCaDit": "La régulation interne du rythme est explicite : la fatigue n'est pas niée, elle est intégrée comme facteur de la décision."
+      }
+    ],
+    "territoiresNonVisites": "Cette feuille n'a pas ramené de traces sur l'évaluation transformative (l'acte évaluatif au service d'une progression d'apprenant), ni sur le leadership situationnel (la bascule explicite entre conduite humaine et conduite IA n'est pas décrite), ni sur la gestion de crise en temps réel. Plusieurs de ces absences ressemblent à un choix d'angle : la feuille est en mode design, pas en mode interaction directe avec un apprenant ni en mode incident. L'évaluation transformative pourrait s'activer dès que la formation sera mise à l'épreuve d'apprenants concrets ; le leadership situationnel pourrait être éclairé par la prochaine session avec Claude si l'apprenant note la bascule des postures.",
+    "emergencesPole": "Plusieurs compétences convergent autour d'un même geste : penser la structure depuis un objectif final repensé. La maïeutique architecture les niveaux ; la vision prospective questionne l'objectif lui-même ; l'agilité ajuste les contenus en cascade ; la documentation porte les artefacts. Un second motif traverse le pôle : la régulation honnête du rythme. La fatigue est nommée (« un peu le flegme »), la décision est différée avec critères, le travail n'est pas brutalisé. Le pilotage qu'on voit ici n'est pas celui du forceur — c'est celui de quelqu'un qui prend le temps que la pensée demande, dans un projet long.",
+    "pistes": [
+      "Pour prolonger l'architecture pédagogique, un chemin possible serait, à chaque déplacement de contenu d'un niveau à l'autre, d'expliciter ce que cela suppose chez l'apprenant cible — quel acquis préalable, quel effet attendu.",
+      "Pour prolonger la vision prospective, un chemin possible serait de passer du « peut-être plus utile » à des hypothèses de positionnement (« si l'IA tuteur prend en charge X, alors je conçois la formation autour de Y »).",
+      "Pour rendre l'agilité plus lisible, un chemin possible serait, au moment de basculer dans la régénération, de noter à chaud le déclencheur du pivot, l'ajustement décidé, et le critère qui permettra d'observer si l'ajustement a porté.",
+      "Pour rendre la documentation vivante, un chemin possible serait, lors d'une mise à jour, de noter brièvement ce qui change, pourquoi, et pour quel futur lecteur."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le pôle FLAMBEAU est le plus densément travaillé du portfolio. Le texte tient ensemble plusieurs gestes de pilotage : l'architecture pédagogique en quatre niveaux différenciés, la logique itérative entre une v1 lue et une v2 projetée, la vision prospective qui justifie les choix présents par l'anticipation de l'ère des super IA, et la régulation interne du rythme (reconnaissance d'une limite d'énergie, décision de différer l'analyse au moment où l'outil adéquat sera disponible). Le registre est sobre et opérationnel ; les artefacts existent en arrière-plan (manuels, tableur de recherche) sans être déployés ici. Ce qui domine, c'est un pilotage qui pense la structure et le temps plutôt qu'il ne pilote une crise ou un changement humain.\n\n## Territoires les plus denses\n\n### Maïeutique et facilitation d'apprentissage\n\nL'architecture pédagogique en niveaux successifs (Praticien, Expert, Maître, nouveau niveau à inventer) est articulée avec une intention par niveau et un déplacement de contenus en cascade selon l'objectif final repensé.\n\n> « Maître : si l'objectif principal de la formation est d'aider à construire de bonnes cartographies des compétences, ce niveau devrait se concentrer sur comment aider les Experts à développer les fonctions et stratégies cognitives utiles à la métacognition. Et du coup alléger la partie motivation et confiance en soi, qui pourrait être déplacé dans un nouveau niveau (dont le nom reste à définir). »\n\nLa composante architecturale de la compétence est lisible : on conçoit l'environnement d'apprentissage à partir d'un objectif final et on déplace les contenus en conséquence.\n\n### Vision stratégique et prospective\n\nLe travail présent (régénération des manuels) est justifié par l'anticipation de ruptures technologiques (super IA, IA tuteur personnel) et de leur effet sur ce qu'il faut transmettre.\n\n> « Si une IA tuteur personnel nous aide à apprendre tout au long de la vie, ce n'est peut-être plus la compétence ultime à maîtriser. »\n\nLe lien entre futur anticipé et décision présente est posé, même si la position stratégique qui en découlerait reste à formuler.\n\n### Agilité et conduite du changement\n\nLe projet est mené en versions (v1 lue, v2 projetée) avec un ajustement de plan argumenté en cours de route.\n\n> « Je pense les régénérer (mais j'ai un peu le flegme aussi de relire les 600 pages) avec la modification suivante : »\n\nLa boucle d'itération est posée, freinée par la fatigue assumée — l'agilité de structure est claire, l'agilité d'exécution est en suspens.\n\n### Documentation vivante\n\nLe portfolio évoque quatre manuels organisés en niveaux et un tableur de recherche référençable — des artefacts de capitalisation qui existent en arrière-plan.\n\n> « Je repense à la structure globale des 4 manuels (il ne me reste plus que quelques chapitres du manuel du Maître à lire). »\n\nL'existence des artefacts atteste d'une pratique documentaire ancrée, même si leur mécanique interne n'est pas déployée dans cette feuille.\n\n### Efficacité personnelle\n\nUne limite d'énergie est reconnue comme facteur de décision, et l'analyse est différée jusqu'au moment où l'outil de travail (Claude + ordinateur) sera disponible.\n\n> « Je pense les régénérer (mais j'ai un peu le flegme aussi de relire les 600 pages) avec la modification suivante : »\n\nLa régulation interne du rythme est explicite : la fatigue n'est pas niée, elle est intégrée comme facteur de la décision.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille n'a pas ramené de traces sur l'évaluation transformative (l'acte évaluatif au service d'une progression d'apprenant), ni sur le leadership situationnel (la bascule explicite entre conduite humaine et conduite IA n'est pas décrite), ni sur la gestion de crise en temps réel. Plusieurs de ces absences ressemblent à un choix d'angle : la feuille est en mode design, pas en mode interaction directe avec un apprenant ni en mode incident. L'évaluation transformative pourrait s'activer dès que la formation sera mise à l'épreuve d'apprenants concrets ; le leadership situationnel pourrait être éclairé par la prochaine session avec Claude si l'apprenant note la bascule des postures.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nPlusieurs compétences convergent autour d'un même geste : penser la structure depuis un objectif final repensé. La maïeutique architecture les niveaux ; la vision prospective questionne l'objectif lui-même ; l'agilité ajuste les contenus en cascade ; la documentation porte les artefacts. Un second motif traverse le pôle : la régulation honnête du rythme. La fatigue est nommée (« un peu le flegme »), la décision est différée avec critères, le travail n'est pas brutalisé. Le pilotage qu'on voit ici n'est pas celui du forceur — c'est celui de quelqu'un qui prend le temps que la pensée demande, dans un projet long.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger l'architecture pédagogique, un chemin possible serait, à chaque déplacement de contenu d'un niveau à l'autre, d'expliciter ce que cela suppose chez l'apprenant cible — quel acquis préalable, quel effet attendu.\n- Pour prolonger la vision prospective, un chemin possible serait de passer du « peut-être plus utile » à des hypothèses de positionnement (« si l'IA tuteur prend en charge X, alors je conçois la formation autour de Y »).\n- Pour rendre l'agilité plus lisible, un chemin possible serait, au moment de basculer dans la régénération, de noter à chaud le déclencheur du pivot, l'ajustement décidé, et le critère qui permettra d'observer si l'ajustement a porté.\n- Pour rendre la documentation vivante, un chemin possible serait, lors d'une mise à jour, de noter brièvement ce qui change, pourquoi, et pour quel futur lecteur.\n"
+  }
+}

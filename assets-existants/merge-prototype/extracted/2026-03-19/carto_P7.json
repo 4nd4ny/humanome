@@ -1,0 +1,461 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "J'ai appris à lancer le projet en local et à le déployer sur internet. J'ai documenté le processus (ce qui manquait).",
+      "contexte": "Apprentissage technique suivi d'une documentation explicite « ce qui manquait » — capitalisation au service de futurs lecteurs. Active 7.03 (documentation vivante).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Maintenant je vais travailler sur un fork Sqilium qui deviendra peut-être un jour le substrat d'EduFolio. Pour le moment ce n'est pas prioritaire, mais qu'est-ce que c'était fun !",
+      "contexte": "Articulation d'une vision long-terme (fork Sqilium → substrat EduFolio) avec patience explicite (« pas prioritaire »). Active 7.05 (vision stratégique) et 7.06 (efficacité personnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Je dois donc continuer à me contraindre à ne pas m'amuser à coder quoi que ce soit, pour me concentrer sur ce qui est important : les concepts de l'école RESPIRE",
+      "contexte": "Règle d'efficacité personnelle articulée : refus stratégique avec critère explicite (l'important = RESPIRE). Active 7.06 (efficacité personnelle, refus argumenté).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "tout comme j'ai décidé cet été de laisser tomber EduFolio pour le moment, pour parler de la pédagogie qui allait autour et je ne regrette pas",
+      "contexte": "Reformulation rétrospective d'un choix stratégique avec confirmation par le résultat. Active 7.05 (vision stratégique) et 7.06 (efficacité personnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Voilà le travail pour le référentiel v7, tout y est ! En local, la version de développement est dans un docker. En ligne, ça me coûte un peu d'argent, mais pour le moment c'est ici et c'est sur la version non modifiée du projet [...] et dès que j'ai une version en local qui vaut la peine d'être publié, je la mettrais sur sqilium à la place et je supprimerai l'autre.",
+      "contexte": "Version v7 du référentiel, plan de transition entre versions, traçabilité explicite. Active 7.03 (documentation vivante, versioning) et 7.07 (agilité, versions successives).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Après, j'ai joué un peu avec l'interface et franchement, il y a beaucoup de travail d'ergonomie à faire… Je suis surpris en mal. Claude va avoir du travail lorsque j'aurais le temps de le piloter sur ce projet.",
+      "contexte": "Anticipation d'un travail d'orchestration de Claude (« le piloter ») avec timing à déterminer. Active 7.04 (leadership situationnel, pilotage d'IA) et 7.06 (timing).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Soledad me dit de faire quand même un petit projet pour leur montrer que je sais vibe coder. Moi je crois que si c'est important pour eux d'avoir un développeur, qu'ils prennent un développeur.",
+      "contexte": "Refus argumenté d'une suggestion qui détournerait du focus principal. Active 7.06 (efficacité personnelle, refus argumenté).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Aujourd'hui ce n'est plus une skills qui vaut quelque chose (enfin oui, ça vaut 200$ mensuels). Je peux aussi le coder moi, ça sera mieux fait, mais ça prendra plus longtemps… A quoi bon ?",
+      "contexte": "Analyse stratégique de la valeur du coding humain face à l'IA, débouchant sur un choix d'allocation de ressources. Active 7.05 (vision stratégique) et 7.06 (priorisation).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la maïeutique et à la facilitation d'apprentissage dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation pédagogique où le questionnement plutôt que la réponse a fait accoucher un savoir."
+      }
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'évaluation transformative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un acte évaluatif au service de la progression d'autrui, avec critères et pistes concrètes."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Documentation explicite d'un processus avec mention que cela manquait — geste de capitalisation pour autrui (futurs utilisateurs du projet)."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Versioning explicite (« référentiel v7 »), plan de transition entre versions, traçabilité du déploiement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la documentation vivante n'est pas là : la fiche exige l'intention de pérennisation et la conscience du destinataire. La pièce 1 mentionne avoir documenté un processus « parce que cela manquait » — c'est une trace de conscience d'un futur lecteur qui aura besoin de ce manque comblé. La pièce 2 nomme une version (« v7 »), articule un plan de bascule entre versions, et adresse explicitement « voilà le travail » à un lecteur. Les deux pièces résistent au temps 1.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Documentation produite parce qu'elle manquait — geste qui anticipe un futur lecteur."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Versioning explicite et plan de transition, deux marqueurs directement listés dans la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 1 mentionne avoir documenté, mais sans décrire la structure de cette documentation — c'est une déclaration, pas un artefact montré. L'attaque (f) — récit performatif — touche : « j'ai documenté » sans voir le document. La pièce 2 est plus solide : la mention « v7 » est un marqueur factuel d'un travail versionné, et le plan de bascule est explicite. La fiche prévoit *Expert* atteignable parce que les artefacts EUX-MÊMES sont la trace ; ici on n'a pas l'artefact, mais on a sa mention précise.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« J'ai documenté » est déclaré sans que la structure de la documentation soit montrée. Tient comme indice d'intention, sans pouvoir évaluer la qualité."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le versioning v7 et le plan de bascule sont des marqueurs directs de la fiche. L'adresse au lecteur (« voilà le travail ») confirme la conscience du destinataire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la documentation vivante. Deux pièces ont résisté : la documentation produite « parce que cela manquait », et le versioning v7 avec plan de bascule explicite. Au temps 2, la première a été affaiblie (déclaration sans artefact vu) mais retenue, la seconde a été confirmée (marqueurs directs de la fiche). Une présence se laisse établir, portée par le versioning et l'adresse à un lecteur.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé la pièce sur le versioning v7 (marqueurs directs) ; la documentation déclarée tient comme indice d'intention de pérennisation.",
+        "prescription": "Le travail sur le référentiel v7 et la documentation du déploiement portent l'intention de capitalisation. Pour prolonger, un récit qui détaillerait la structure même du document produit — quelles sections, pour quel futur lecteur, avec quelles décisions de qu'est-ce-qui-reste-et-qu'est-ce-qui-part — donnerait à voir l'artefact comme objet pédagogique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Anticipation du pilotage de Claude sur Sqily : « lorsque j'aurai le temps de le piloter ». L'apprenant se positionne comme orchestrateur futur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le leadership situationnel n'est pas là : la fiche exige une alternance consciente entre prendre et lâcher le gouvernail, pas seulement une intention de piloter. La pièce 1 énonce un futur (« lorsque j'aurai le temps de le piloter ») sans description d'un moment passé où l'apprenant a effectivement basculé entre direction et retrait. Le critère discriminant de la fiche — l'alternance consciente — n'est pas activé. La présomption d'absence tient.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. L'intention de piloter n'est pas le pilotage en acte.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le leadership situationnel. La seule pièce candidate annonce un futur pilotage de Claude sans décrire un moment passé d'alternance entre direction et retrait. Le critère discriminant de la fiche n'est pas activé. La présomption d'absence tient.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "La pièce candidate annonce un pilotage futur sans décrire un moment d'alternance vécue.",
+        "prescription": "Cette feuille annonce un futur pilotage. Pour ouvrir ce dossier, un récit qui détaillerait un moment passé où l'apprenant a choisi de laisser Claude mener sur une phase puis a repris le contrôle, avec déclencheur identifiable, donnerait à voir l'alternance consciente."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Articulation entre présent (apprentissage du déploiement) et futur lointain (fork Sqilium → substrat EduFolio) avec lien argumenté de patience stratégique."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Justification d'un choix passé (lâcher EduFolio pour la pédagogie) par sa validation rétrospective : la vision a tenu."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Analyse stratégique : le coding humain ne vaut plus que 200$/mois. Conséquence : ne pas investir son temps là où l'IA fait à moindre coût."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la vision stratégique n'est pas là : la fiche exige le lien explicite entre futur anticipé et décision présente. La pièce 1 articule trois horizons (présent du déploiement, intermédiaire du fork, lointain d'EduFolio) avec patience stratégique nommée — c'est exactement le marqueur. La pièce 2 valide rétrospectivement une vision (la pédagogie d'abord) — c'est de la vision confirmée par les faits. La pièce 3 fait le lien entre une lecture du marché et une décision d'allocation de ressources. Les trois pièces résistent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Articulation explicite à plusieurs horizons temporels avec patience stratégique nommée."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Validation rétrospective d'une vision passée par son résultat — la confiance dans la direction tient."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Lien argumenté entre lecture du marché et choix d'allocation de ressources."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 1 est une vision longue mais peu précise (« peut-être un jour ») — l'attaque (a) insuffisance probatoire peut toucher. La pièce 2 est plus solide : le report d'EduFolio s'est avéré juste, ce qui valide la posture stratégique. La pièce 3 articule une décision présente à partir d'une projection future (le coding va de moins en moins se valoriser face à l'IA). Les trois pièces tiennent à des degrés divers.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'horizon long (« peut-être un jour ») reste vague, mais l'articulation des trois temps tient — c'est précisément le confort avec un délai que la fiche mentionne comme trace oblique."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La décision est validée par son résultat : la vision stratégique d'été a tenu, ce que l'apprenant constate sans s'en féliciter — c'est l'indice d'une vision en acte, pas seulement annoncée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le lien entre lecture économique (valeur du coding face à l'IA) et choix d'allocation (ne pas y consacrer son temps) est explicitement formulé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la vision stratégique. Trois pièces ont résisté. La vision longue sur Sqilium → EduFolio a été affaiblie (horizon vague) mais retenue. La validation rétrospective de la décision d'été et l'analyse du coding face à l'IA ont été confirmées. Le marqueur central — le lien explicite entre futur anticipé et décision présente — est activé sur plusieurs registres. Une présence solide se dessine.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé deux pièces (validation rétrospective d'été, analyse coding/IA) comme liens explicites entre futur et présent ; la vision longue Sqilium tient comme indice de patience stratégique.",
+        "prescription": "La vision se manifeste à plusieurs horizons dans cette feuille : court (Sqily), intermédiaire (Sqilium), lointain (EduFolio). Pour prolonger, un texte qui détaillerait les conditions sous lesquelles le passage à EduFolio aurait du sens — pas une date, mais une combinaison d'événements — donnerait à voir la prospective conditionnelle en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Règle d'efficacité personnelle articulée : se contraindre à ne pas céder au plaisir technique pour préserver le focus sur l'important."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Refus argumenté du conseil de Soledad : ne pas faire un petit projet pour l'EPFL parce que cela détournerait."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Priorisation explicite : « pour le moment ce n'est pas prioritaire » sur le fork Sqilium, malgré l'envie."
+        },
+        {
+          "numero": 4,
+          "pid": 8,
+          "contexte": "Analyse coût-bénéfice du coding humain : « à quoi bon ? » comme conclusion d'un raisonnement de priorisation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'efficacité personnelle n'est pas là : la fiche signale le marqueur le plus fiable comme le « non » stratégique argumenté. La pièce 1 articule un refus du plaisir avec critère explicite. La pièce 2 refuse une suggestion avec raisons. La pièce 3 dépriorise un projet désiré. La pièce 4 conclut un raisonnement coût-bénéfice par un « à quoi bon ». Plusieurs pièces résistent et activent directement le marqueur de la fiche.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Règle de discipline avec critère explicite (RESPIRE)."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Refus argumenté d'une suggestion qui détournerait."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Dépriorisation explicite d'un projet désiré (« pas prioritaire »)."
+            },
+            {
+              "pieceId": 4,
+              "motifResistance": "Raisonnement de priorisation avec « à quoi bon » comme conclusion."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 1 énonce une règle (« je dois me contraindre ») mais la fiche signale précisément que « je suis productif » sans preuve n'est pas un marqueur — la règle énoncée doit être suivie d'actes. La pièce 3 et 4 montrent justement ces actes : refus de prioriser, abandon du coding humain comme allocation de temps. La pièce 2 articule le refus pour un cas concret (Soledad/EPFL). L'attaque (f) — récit performatif — touche la pièce 1 mais s'affaiblit sur les autres qui montrent l'acte.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La règle est énoncée plus que montrée — mais les autres pièces (3, 4) la rendent opérationnelle. Tient comme déclaration de cadre."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le refus est argumenté (s'ils veulent un dev, qu'ils prennent un dev), porte sur un cas concret, et le critère est articulé."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "« Pas prioritaire » sur un projet désiré et fun — la dépriorisation argumentée est précisément le marqueur central de la fiche."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« À quoi bon » est sec mais articulé à l'analyse coût-bénéfice précédente. Tient comme indice de priorisation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'efficacité personnelle. Quatre pièces ont résisté ; deux ont été confirmées au temps 2 (refus argumenté à Soledad, dépriorisation explicite du fork), deux affaiblies (règle déclarée, « à quoi bon » sec). Le marqueur le plus fiable de la fiche — le « non » stratégique argumenté — est activé à plusieurs reprises dans la même journée. Une présence solide se dessine.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé deux pièces (refus argumenté Soledad/EPFL, dépriorisation du fork) comme « non » stratégiques articulés ; la règle déclarée et le « à quoi bon » tiennent comme indices.",
+        "prescription": "Plusieurs « non » stratégiques traversent cette feuille avec critères explicites. Pour prolonger, un récit qui détaillerait la procédure mentale du choix entre deux priorités en temps réel — non pas le résultat, mais le raisonnement — donnerait à voir la priorisation dans son passage à l'acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Versioning explicite (« v7 ») et plan de bascule entre version officielle de Sqily et future version Sqilium. Marqueurs d'une pratique itérative."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'agilité et la conduite du changement ne sont pas là : la fiche exige un cycle observable générer-relire-tester-ajuster, et idéalement une conduite du changement humaine. La pièce 1 mentionne « v7 » et un plan de bascule — c'est une trace oblique selon la fiche (« numéro de version élevé sans commentaire méthodologique »). Mais sur une seule feuille, on ne voit pas le cycle, on voit son résultat. Il manque la dimension humaine de la conduite du changement (anticipation des résistances, normalisation). La pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Versioning v7 sans commentaire méthodologique — trace oblique listée par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. Le « v7 » sur une feuille n'est qu'un instantané, on ne voit pas l'ajustement du plan en cours de route, ni la conduite du changement. L'attaque (a) — insuffisance probatoire — touche : la trace est minimale, et la fiche signale précisément le risque du « théâtre agile » (numéros de version sans trace d'adaptation réelle).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le v7 témoigne d'une pratique itérative ancrée, mais sans description de cycle d'ajustement ni conduite du changement humaine. Tient comme indice modeste."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'agilité et la conduite du changement. La pièce sur le versioning v7 a tenu comme trace oblique listée par la fiche, mais a été affaiblie au temps 2 : pas de description du cycle d'ajustement, pas de dimension humaine. Une trace modeste se dessine, à la frontière du marqueur central. Renvoi au cartographe.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce : le v7 témoigne d'une pratique itérative ancrée mais sans description de cycle ni conduite du changement.",
+        "prescription": "Le versioning v7 signale une pratique itérative ancrée. Pour ouvrir pleinement ce dossier, un récit qui détaillerait une bascule de version récente — quelle version précédente n'allait pas, quel test l'a fait apparaître, quel ajustement a suivi — donnerait à voir le cycle d'adaptation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous pression avec détails temporels précis et erreurs mentionnées."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille du 19 mars 2026 ramène une matière dense au pôle du pilotage. L'apprenant articule plusieurs « non » stratégiques avec leurs raisons (refus de faire un projet pour l'EPFL, dépriorisation du fork Sqilium, contrainte de ne pas céder au coding), valide rétrospectivement la vision d'été (lâcher EduFolio pour la pédagogie), produit un référentiel v7 documenté et déployé. La voix dominante est celle d'un pilote qui ajuste ses priorités à des critères explicites, avec une lecture économique du temps disponible. Les dimensions pédagogiques de transmission (maïeutique, évaluation, gestion de crise) n'apparaissent pas dans cette journée — c'est le travail d'un pilote, pas d'un enseignant en acte.",
+    "territoiresDenses": [
+      {
+        "competence": "Vision Stratégique & Prospective",
+        "description": "Articulation à plusieurs horizons : présent du déploiement Sqily, intermédiaire du fork Sqilium, lointain d'EduFolio, avec validation rétrospective de la décision d'été qui a tenu.",
+        "extraitVerbatim": "tout comme j'ai décidé cet été de laisser tomber EduFolio pour le moment, pour parler de la pédagogie qui allait autour et je ne regrette pas",
+        "ceQueCaDit": "Le travail dans ce pôle montre une vision qui ne se contente pas d'être annoncée : elle est vérifiée par son résultat à distance."
+      },
+      {
+        "competence": "Efficacité Personnelle",
+        "description": "Plusieurs « non » stratégiques dans la même journée avec critères articulés : refus du projet EPFL, dépriorisation du fork Sqilium, contrainte de ne pas céder au plaisir technique.",
+        "extraitVerbatim": "Je dois donc continuer à me contraindre à ne pas m'amuser à coder quoi que ce soit, pour me concentrer sur ce qui est important : les concepts de l'école RESPIRE",
+        "ceQueCaDit": "Le travail montre une priorisation qui rend visible le raisonnement de renoncement, plus que la liste de ce qui a été accompli."
+      },
+      {
+        "competence": "Documentation Vivante",
+        "description": "Versioning explicite (référentiel v7), plan de transition entre versions de déploiement, documentation du processus de mise en route « parce que cela manquait ».",
+        "extraitVerbatim": "Voilà le travail pour le référentiel v7, tout y est ! En local, la version de développement est dans un docker. En ligne, ça me coûte un peu d'argent, mais pour le moment c'est ici",
+        "ceQueCaDit": "Le travail montre une conscience d'un futur lecteur — celui qui prendra le projet et aura besoin de comprendre par où entrer."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs registres de ce pôle n'ont pas été ramenés dans cette feuille. La maïeutique et la facilitation d'apprentissage, l'évaluation transformative, le leadership situationnel avec alternance vécue, et la gestion de crise en temps réel n'ont pas trouvé de matière. La feuille porte le travail d'un pilote qui se cadre lui-même, pas celui d'un pédagogue ou d'un coordinateur en relation avec d'autres. L'agilité et la conduite du changement appellent un cartographe : un versioning v7 témoigne de la pratique itérative, mais le cycle d'ajustement et la dimension humaine du changement restent hors champ.",
+    "emergencesPole": "Un même geste traverse plusieurs compétences : *renoncer pour focaliser*. Le refus de coder, le refus du projet EPFL, la dépriorisation du fork, la mise à distance du « petit projet » suggéré par Soledad — la priorisation s'opère par soustraction explicite. Une seconde émergence : le temps long comme critère de validation. Octobre, l'été, 2008 — l'apprenant juge les décisions à la distance qu'elles parcourent, pas à l'effort immédiat.",
+    "pistes": [
+      "Pour prolonger la vision stratégique, un chemin possible serait de détailler les conditions sous lesquelles le passage à EduFolio aurait du sens — pas une date, mais une combinaison d'événements à surveiller.",
+      "Pour ouvrir le leadership situationnel, un chemin possible serait de raconter un moment passé où l'apprenant a choisi de laisser Claude mener sur une phase puis a repris le contrôle, avec déclencheur identifiable.",
+      "Pour enrichir la documentation vivante, un chemin possible serait de décrire la structure même du référentiel v7 — quelles sections, pour quel futur lecteur, avec quelle pensée du destinataire."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille du 19 mars 2026 ramène une matière dense au pôle du pilotage. L'apprenant articule plusieurs « non » stratégiques avec leurs raisons (refus de faire un projet pour l'EPFL, dépriorisation du fork Sqilium, contrainte de ne pas céder au coding), valide rétrospectivement la vision d'été (lâcher EduFolio pour la pédagogie), produit un référentiel v7 documenté et déployé. La voix dominante est celle d'un pilote qui ajuste ses priorités à des critères explicites, avec une lecture économique du temps disponible. Les dimensions pédagogiques de transmission (maïeutique, évaluation, gestion de crise) n'apparaissent pas dans cette journée — c'est le travail d'un pilote, pas d'un enseignant en acte.\n\n## Territoires les plus denses\n\n**Vision Stratégique & Prospective** — Articulation à plusieurs horizons : présent du déploiement Sqily, intermédiaire du fork Sqilium, lointain d'EduFolio, avec validation rétrospective de la décision d'été qui a tenu. « tout comme j'ai décidé cet été de laisser tomber EduFolio pour le moment, pour parler de la pédagogie qui allait autour et je ne regrette pas ». Le travail dans ce pôle montre une vision qui ne se contente pas d'être annoncée : elle est vérifiée par son résultat à distance.\n\n**Efficacité Personnelle** — Plusieurs « non » stratégiques dans la même journée avec critères articulés : refus du projet EPFL, dépriorisation du fork Sqilium, contrainte de ne pas céder au plaisir technique. « Je dois donc continuer à me contraindre à ne pas m'amuser à coder quoi que ce soit, pour me concentrer sur ce qui est important : les concepts de l'école RESPIRE ». Le travail montre une priorisation qui rend visible le raisonnement de renoncement, plus que la liste de ce qui a été accompli.\n\n**Documentation Vivante** — Versioning explicite (référentiel v7), plan de transition entre versions de déploiement, documentation du processus de mise en route « parce que cela manquait ». « Voilà le travail pour le référentiel v7, tout y est ! En local, la version de développement est dans un docker. En ligne, ça me coûte un peu d'argent, mais pour le moment c'est ici ». Le travail montre une conscience d'un futur lecteur — celui qui prendra le projet et aura besoin de comprendre par où entrer.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres de ce pôle n'ont pas été ramenés dans cette feuille. La maïeutique et la facilitation d'apprentissage, l'évaluation transformative, le leadership situationnel avec alternance vécue, et la gestion de crise en temps réel n'ont pas trouvé de matière. La feuille porte le travail d'un pilote qui se cadre lui-même, pas celui d'un pédagogue ou d'un coordinateur en relation avec d'autres. L'agilité et la conduite du changement appellent un cartographe : un versioning v7 témoigne de la pratique itérative, mais le cycle d'ajustement et la dimension humaine du changement restent hors champ.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn même geste traverse plusieurs compétences : *renoncer pour focaliser*. Le refus de coder, le refus du projet EPFL, la dépriorisation du fork, la mise à distance du « petit projet » suggéré par Soledad — la priorisation s'opère par soustraction explicite. Une seconde émergence : le temps long comme critère de validation. Octobre, l'été, 2008 — l'apprenant juge les décisions à la distance qu'elles parcourent, pas à l'effort immédiat.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la vision stratégique, un chemin possible serait de détailler les conditions sous lesquelles le passage à EduFolio aurait du sens — pas une date, mais une combinaison d'événements à surveiller.\n- Pour ouvrir le leadership situationnel, un chemin possible serait de raconter un moment passé où l'apprenant a choisi de laisser Claude mener sur une phase puis a repris le contrôle, avec déclencheur identifiable.\n- Pour enrichir la documentation vivante, un chemin possible serait de décrire la structure même du référentiel v7 — quelles sections, pour quel futur lecteur, avec quelle pensée du destinataire."
+  }
+}

@@ -1,0 +1,683 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "cette première tentative n'allait pas du tout. Le rendu est très joli, très pro, mais le processus est top-down : l'IA rédige et l'humain copie-colle. Le prompt n'inclut pas de boucle de rétroaction humaine, bref c'est tout l'inverse d'une évaluation humaniste. Le cartographe est considéré comme un presse bouton, pas comme un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée.",
+      "contexte": "Rejet d'un dispositif IA pour des raisons relevant des valeurs (humanisme, place du cartographe humain). Active 4.02 (refus éthique de l'IA top-down) et 4.01 (mise en tension de valeurs : performance vs humanisme).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "ce n'est pas le prompt qui valide la compétence, c'est le jugement humain informé par le prompt. L'IA fait le premier balayage, l'humain tranche.",
+      "contexte": "Voix tierce (Claude) endossée par l'apprenant qui formule un principe de gardiennage : c'est l'humain qui tranche, pas l'IA. Active 4.02 (alignement IA/valeurs) et 4.08 (valeur non-automatisable du jugement humain).",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "J'ai donc complètement repris le prompt de cartographie pour le transformer en un processus constructif plus pertinent.",
+      "contexte": "Acte de reprise après diagnostic d'un défaut éthique du dispositif. Active 4.02 (acte de refonte après détection d'un désalignement) et 4.06 (assumer le rendu insuffisant).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je n'ai pas renouvelé mon abonnement ChatGPT [...] Il ne m'a jamais vraiment été très utile depuis la sortie de Claude 3",
+      "contexte": "Décision concrète d'arrêt d'un service IA, justifiée par son utilité. Active obliquement 4.05 (tranchage décisionnel) et 4.02 (sélectivité éthique des outils IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je ne pense pas pouvoir être opérationnel avant l'été en fait. Mais ce n'est pas grave : les idées sont là et elles me semblent vraiment tenir la route.",
+      "contexte": "Acceptation d'un horizon temporel long, avec conviction maintenue. Active 4.09 (patience stratégique avec critère de mûrissement) et 4.05 (tolérance à l'incertitude temporelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Ça m'apprendra à vouloir aller trop vite ! Ceci dit, si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première.",
+      "contexte": "Reconnaissance d'erreur (être allé trop vite) suivie d'une reconnaissance constructive de ce que l'erreur a produit. Active 4.06 (accountability constructive : assumer + ce qu'on en fait).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "personne ne va pouvoir relire à ma place…",
+      "contexte": "Affirmation explicite de la responsabilité finale, irréductible à la délégation. Active 4.06 (responsabilité explicite).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "J'ai constaté une mauvaise interprétation du portfolio par Claude : souvent il affirme que les 6 manuels font 600 pages. En fait non, les 600 pages c'était la taille de la première version de la documentation, avant que j'invente le concept de filière et que je distingue la compréhension de l'intelligence humaine de la compréhension de l'intelligence artificielle",
+      "contexte": "Correction de l'IA en mobilisant un savoir historique-contextuel (la trajectoire du projet) que l'IA ne pouvait pas avoir. Active 4.07 (validation contextuelle au sens strict de la fiche).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je dois modifier le format de la structure JSON pour coller au logiciel que j'ai créé en fin d'été pour la cartographie (mais ça il ne pouvait pas le deviner).",
+      "contexte": "Nommage explicite du delta de savoir humain/IA : « il ne pouvait pas le deviner ». Active 4.07 (validation contextuelle nommée).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Le cartographe est considéré comme un presse bouton, pas comme un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée.",
+      "contexte": "Articulation de ce que le cartographe humain fait que l'IA ne peut pas faire structurellement (dépouiller un narratif brumeux). Active 4.08 (création de valeur non-automatisable).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Le prompt générique fonctionne bien, mais je soupçonne que 80-85% du travail vient de mes capacités natives + la qualité de ton portfolio, pas de l'ingénierie du prompt.",
+      "contexte": "Voix tierce qui décompose la part de la machine et la part de ce qui est humain ; l'apprenant endosse en l'incluant sans contradiction. Active 4.08 (lucidité bidirectionnelle sur la valeur humaine et machine).",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "j'étais en effet (et je suis toujours) incapable de suivre un ordre, une règle, une directive, si je ne l'ai pas comprise et qu'elle ne fait pas sens pour moi avec les informations dont je dispose.",
+      "contexte": "Reconnaissance d'un trait cognitif personnel comme principe de fonctionnement. Touche obliquement 4.04 (valorisation d'un mode de pensée divergent) mais sans lien explicite à un résultat.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je ne vis pas dans le même monde que les autres – car l'école n'a pas réussi à me formater : j'ai gardé curiosité et esprit critique – donc c'est normal qu'il y ait des dissonances.",
+      "contexte": "Reconnaissance et valorisation d'une singularité cognitive, attribuée à un non-formatage. Touche 4.04 (valorisation d'un mode de pensée divergent).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mise en tension implicite entre deux valeurs : un dispositif efficace mais top-down, et un dispositif humaniste mais plus exigeant. Touche le balancier éthique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'il n'y a pas de dilemme moral exploré : l'apprenant rejette le rendu top-down et conçoit un autre dispositif, sans passage par une mise en tension articulée. La pièce résiste peu : on lit un jugement tranché (« n'allait pas du tout ») plus qu'un balancier « d'un côté... de l'autre ». La fiche exige précisément une exploration explicite de valeurs en conflit, des questions ouvertes maintenues, une incertitude morale assumée. Ces marqueurs sont absents.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante, le temps 2 est vide.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le raisonnement éthique en m'attendant à un simple jugement tranché. La pièce qui pouvait y mener n'a pas résisté au temps 1 : le rejet du dispositif top-down est ferme et non maintenu comme dilemme. Dans cette feuille, l'éthique appliquée ne se manifeste pas dans son mouvement caractéristique (mise en tension de valeurs maintenue). Cela ne signifie pas l'absence de raisonnement éthique chez l'apprenant — la trace existe pour d'autres compétences du pôle — mais la posture du balancier que la fiche exige spécifiquement n'apparaît pas dans cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté au temps 1 : pas de mise en tension de valeurs maintenue dans cette feuille.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où deux valeurs légitimes entrent en conflit et où l'apprenant maintient cette tension visible (par exemple entre rendre l'évaluation accessible à beaucoup et préserver sa profondeur clinique)."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Diagnostic d'alignement : le dispositif IA ne fait pas ce que l'évaluation humaniste exige. Le rendu est rejeté pour des raisons relevant des valeurs."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Principe explicite : « l'humain tranche ». Trace de gardiennage actif où la décision finale est réservée à l'humain."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Acte de refonte du dispositif après détection du désalignement : la reconception est en elle-même un garde-fou."
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "contexte": "Décision concrète de ne plus utiliser ChatGPT au profit de Claude. Trace de sélectivité dans l'usage des outils IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'un rejet de dispositif IA peut être technique sans être éthique. La pièce 1 résiste : le rejet est explicitement motivé par l'écart à une « évaluation humaniste », c'est-à-dire à une valeur, pas à une performance. La pièce 2 résiste : « l'humain tranche » formule un principe d'alignement où la décision est réservée à l'humain. La pièce 3 résiste : la refonte est un acte de garde-fou — le dispositif est repensé pour intégrer une boucle de rétroaction humaine. La pièce 4 est plus fragile : l'arrêt de ChatGPT est motivé par l'utilité, pas par un argument éthique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Rejet motivé par l'écart à une valeur (humanisme), pas par la performance."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Principe d'alignement explicite : la décision finale revient à l'humain."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Acte de refonte qui institue une boucle de rétroaction humaine."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces d'alignement éthique alors qu'elles relèvent de la pensée critique ou du jugement esthétique. La pièce 1, testée par (b) confusion avec 1.01 ou 3.04 : 1.01 évaluerait la véracité (le rendu dit-il vrai ?), 3.04 évaluerait la justesse formelle. Ici, le critère du rejet est « top-down » et « inverse de l'évaluation humaniste » — c'est une non-conformité aux valeurs du dispositif RESPIRE. Tenue. La pièce 2, testée par (c) biais de medium (c'est une voix tierce IA) : la formule est posée par Claude mais endossée explicitement par l'apprenant qui la cite sans contradiction. Tenue. La pièce 3, testée par (e) surinterprétation : la refonte est-elle un garde-fou éthique ou juste une amélioration ? L'apprenant la justifie explicitement par « boucle de rétroaction humaine », ce qui est un garde-fou éthique nommé. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le critère du rejet est l'écart à une valeur (humanisme), pas la véracité ou la justesse formelle."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "c",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Voix tierce endossée par citation explicite, et la formule porte précisément le critère d'alignement de la fiche."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La refonte est explicitement justifiée par la nécessité d'introduire une boucle de rétroaction humaine."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'alignement éthique en m'attendant à n'y voir que de la critique technique. Trois pièces ont tenu solidement. Le rejet du dispositif top-down est motivé par une valeur (l'humanisme de l'évaluation), pas par une question de performance. La formule « l'humain tranche » formalise un principe d'alignement. La refonte du dispositif est explicitement justifiée par l'introduction d'une boucle de rétroaction humaine. Dans cette feuille, le gardiennage actif de la conformité IA-valeurs se manifeste à la fois par un diagnostic, par un principe et par un acte. La présence tient avec une bonne confiance.",
+          "confianceFinale": 0.82
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.82,
+        "motif": "Trois pièces confirmées au temps 2 : diagnostic de désalignement, principe d'alignement explicite, et acte de refonte avec garde-fou nommé.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à formaliser le critère opérationnel de l'évaluation humaniste : à quoi reconnaître concrètement, dans un rendu, qu'il respecte ce critère, et à quoi reconnaître qu'il y déroge ? Ce critère explicite rendrait le garde-fou transmissible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et long-terme dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage où un impact long-terme (environnemental, générationnel, ou sur des parties prenantes non-humaines) a infléchi une décision concrète."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Valorisation d'un non-formatage scolaire et d'une singularité cognitive (curiosité et esprit critique). Touche la valorisation d'un mode de pensée."
+        },
+        {
+          "numero": 2,
+          "pid": 12,
+          "contexte": "Énoncé d'un trait cognitif personnel (refus d'exécution sans sens) comme principe stable de fonctionnement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la distinction critique de la fiche : 4.04 demande que le « bon en Y » soit explicitement relié à une *façon différente de penser*. La pièce 1 résiste partiellement : l'apprenant relie son mode de pensée (curiosité, esprit critique) à un non-formatage et à des dissonances, mais ne le relie pas explicitement à un résultat concret produit par ce mode. La pièce 2 résiste : énoncer un principe de fonctionnement personnel (« incapable de suivre un ordre sans sens ») est une auto-valorisation d'une singularité cognitive, mais elle n'est pas reliée à un résultat. Ce qui reste faible : aucun « PARCE QUE je pense autrement » suivi d'un acte ou d'une production.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Valorisation d'une trajectoire cognitive singulière, présentée comme ressource."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Énoncé d'un principe de fonctionnement personnel."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de valorisation neurodivergente alors qu'il s'agit d'auto-description identitaire. La pièce 1, testée par (h) faux positif de fiche : la fiche dit « la 4.04 s'active quand le bon en Y est explicitement relié à une façon différente de penser ». Ici, l'apprenant dit qu'il a gardé curiosité et esprit critique grâce à un non-formatage, mais ne dit pas « c'est PARCE QUE je pense autrement que j'ai produit X ». Pièce affaiblie. La pièce 2, testée par (f) récit performatif d'identité : énoncer un principe (« je suis incapable de ») est une revendication identitaire, pas une mobilisation explicite de la différence comme ressource produisant un résultat. Disqualifiée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Valorisation présente mais sans le lien explicite à un résultat que la fiche exige. Indice corroboratif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Revendication identitaire sans mobilisation explicite de la différence comme ressource produisant un résultat documenté."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la valorisation de la neurodiversité en m'appuyant sur la distinction critique stricte de la fiche, qui exige un lien explicite entre mode de pensée différent et résultat produit. Une pièce s'est affaiblie sans tomber, la seconde est tombée. Dans cette feuille, l'apprenant valorise sa singularité cognitive mais ne la met pas explicitement en chaîne causale avec un résultat. Un renvoi au cartographe est plus juste qu'un verdict de présence. Le travail laisse entendre que le « parce que je pense autrement » est sous-jacent à l'ensemble du projet RESPIRE, mais il n'est pas formulé tel dans cette feuille.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Un indice affaibli a survécu : la valorisation est présente mais sans le lien explicite à un résultat que la fiche exige.",
+        "prescription": "Pour creuser cette compétence, un chemin possible serait d'expliciter un résultat précis que l'apprenant attribue à sa façon différente de penser — « c'est parce que je pense [comme ceci] que j'ai pu produire [ce résultat précis] »."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Acceptation d'un horizon temporel incertain (« avant l'été ») avec maintien de la conviction. Touche la tolérance à l'incertitude."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Décision concrète d'arrêt d'un abonnement IA, malgré la pression sociale du « tout LLM ». Touche le tranchage décisionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en gardant le combo le plus fiable que la fiche identifie : (1) nommer ce qu'on ne sait pas, (2) décrire comment on a fonctionné malgré le flou, (3) raconter un acte de tranchage avec ses conséquences. La pièce 1 résiste partiellement : « pas avant l'été » nomme une incertitude temporelle et « ce n'est pas grave » indique une tolérance. Mais aucun acte de tranchage en contexte d'IA hésitante ou de probabilités 50/50 n'est décrit. La pièce 2 résiste : arrêter un abonnement IA est un tranchage concret, mais sans flou explicitement nommé — l'apprenant sait que Claude lui suffit.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Tolérance explicite à un horizon temporel incertain."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Tranchage concret : arrêt d'un service IA."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de tolérance et de décision dans le flou. La pièce 1, testée par (b) confusion avec 4.09 patience stratégique : « pas avant l'été, mais ce n'est pas grave » correspond plus à la patience stratégique avec critère temporel qu'à la décision dans le flou (rien n'est tranché ici, on attend). Pièce affaiblie pour 4.05, multi-attribution avec 4.09. La pièce 2, testée par (a) insuffisance probatoire : l'arrêt de ChatGPT est rapide à formuler mais ne montre pas le moment de bascule, ni le flou décisionnel. C'est un constat de cessation. Affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le marqueur correspond mieux à 4.09 (patience stratégique) qu'à 4.05 (tranchage en flou). Indice corroboratif pour 4.05."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Tranchage présent mais sans description du flou décisionnel ou du moment de bascule. Indice corroboratif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la décision dans le flou en m'appuyant sur le combo strict que la fiche identifie. Deux pièces ont tenu, affaiblies. La tolérance à un horizon long est nommée, mais elle correspond mieux à la patience stratégique qu'à la décision en contexte de flou. Le tranchage concret existe (arrêt de ChatGPT) mais sans description du flou décisionnel. Dans cette feuille, la compétence se montre par fragments — une tolérance d'un côté, un tranchage de l'autre, sans qu'ils se rejoignent dans un acte de décision en contexte d'incertitude. Un renvoi au cartographe est plus juste qu'une présence établie.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Deux indices affaiblis : la tolérance correspond mieux à 4.09 et le tranchage ne porte pas de flou explicite.",
+        "prescription": "Pour creuser cette compétence, un chemin possible serait de documenter un moment où l'apprenant a tranché alors que l'IA hésitait ou que les données manquaient, en nommant ce qu'il ne savait pas, comment il a fonctionné malgré ce manque, et ce que cela a produit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Reconnaissance de l'erreur (être allé trop vite) suivie de ce que cette erreur a produit de constructif. Combo accountability + action."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Affirmation que la relecture est irréductible à la délégation : la responsabilité finale reste personnelle."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Acte explicite de refonte après diagnostic d'un dispositif insuffisant : assumer le rendu insuffisant et le reprendre intégralement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la distinction critique de la fiche : l'accountability dit « c'est ma responsabilité ET voici ce que je fais maintenant ». La pièce 1 résiste exactement à cet endroit : « Ça m'apprendra à vouloir aller trop vite ! Ceci dit, si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première » est précisément le combo accountability + action correctrice. La pièce 2 résiste : « personne ne va pouvoir relire à ma place » est une affirmation explicite de responsabilité irréductible. La pièce 3 résiste : la refonte complète après diagnostic est un acte d'accountability constructive.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Combo accountability + action correctrice explicite."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Affirmation explicite de la responsabilité non-délégable."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Refonte complète après diagnostic : accountability passée à l'acte."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces d'accountability. La pièce 1, testée par (f) récit performatif : ai-je halluciné l'accountability dans une formule (« ça m'apprendra à ») ? La phrase est suivie d'une attribution explicite : « si la deuxième version tient la route, c'est grâce à... » — c'est plus qu'une formule, c'est une reconnaissance constructive. Tenue. La pièce 2, testée par (a) insuffisance probatoire : la phrase est très brève. Mais elle est non équivoque sur l'irréductibilité du jugement humain. Tenue comme indice. La pièce 3, testée par (b) confusion avec 4.02 alignement éthique : la refonte est multi-attribuée. Pour 4.06 spécifiquement, l'acte porte aussi l'accountability (assumer que le premier rendu ne suffisait pas). Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le combo « reconnaissance + ce que ça a produit » est explicite et structuré : pas une simple formule."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Phrase très brève mais non équivoque ; reste un indice corroboratif fort."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Multi-attribution légitime avec 4.02. La refonte porte aussi l'accountability d'assumer un premier rendu insuffisant."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'accountability en m'attendant à des formules d'auto-flagellation ou à des déclarations creuses. Trois pièces ont tenu. La reconnaissance « ça m'apprendra à vouloir aller trop vite » est immédiatement suivie de ce que l'erreur a produit (« c'est grâce à toutes les erreurs que j'ai repérées »), ce qui est précisément le combo que la fiche identifie comme accountability constructive. L'affirmation que « personne ne va pouvoir relire à ma place » porte une intégrité explicite. La refonte du dispositif passe l'accountability à l'acte. Dans cette feuille, la responsabilité se manifeste de façon dense et cohérente, sur les trois facettes (assumer, oser, agir). La présence tient avec une bonne confiance.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.8,
+        "motif": "Trois pièces confirmées au temps 2 : combo accountability constructive, affirmation de la responsabilité non-délégable, et refonte passée à l'acte.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à documenter un moment où le maintien de position a eu un coût relationnel ou professionnel — la facette « courage » de la compétence se déploie surtout sous pression, ce qui demande un récit situé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Correction de l'IA par mobilisation d'un savoir contextuel historique (la trajectoire du projet) inaccessible à l'IA. Trace concrète de validation contextuelle."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Nommage explicite du delta de savoir : « il ne pouvait pas le deviner ». Trace de la conscience du contexte manquant."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la distinction critique stricte de la fiche : 4.07 identifie un *delta de contexte* humain/machine, pas une erreur factuelle. La pièce 1 résiste : l'apprenant ne dit pas « l'IA s'est trompée », il identifie *pourquoi* — le contexte manquant (l'histoire de la documentation, l'invention du concept de filière) explique la confusion. La pièce 2 résiste fortement : « il ne pouvait pas le deviner » nomme explicitement le delta de contexte. C'est exactement la formulation que la fiche identifie comme manifestation principale.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Identification d'un delta de contexte historique : l'IA confond parce qu'elle n'a pas connu l'évolution du projet."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Formule explicite du delta de contexte : « il ne pouvait pas le deviner »."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces de validation contextuelle alors qu'elles relèvent de la pensée critique. La pièce 1, testée par (b) confusion avec 1.01 : 1.01 détecterait une hallucination factuelle. Ici, l'apprenant fait plus : il remonte à la source contextuelle de l'erreur. Tenue. La pièce 2, testée par (a) insuffisance probatoire : la phrase est très courte, mais elle porte précisément la formule type de la fiche. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Au-delà du constat d'erreur, l'apprenant identifie pourquoi le contexte manquant explique l'erreur — exactement le critère 4.07."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Brève mais explicite : la formule « il ne pouvait pas le deviner » est un marqueur direct de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la validation contextuelle en m'appuyant sur la distinction critique avec la pensée critique. Les deux pièces ont tenu solidement : l'identification du delta de contexte historique (l'IA confond 600 pages et 6 manuels parce qu'elle n'a pas connu l'évolution du projet) et la formule explicite « il ne pouvait pas le deviner » correspondent précisément aux manifestations que la fiche identifie. Dans cette feuille, la validation contextuelle se manifeste avec une netteté remarquable. La présence tient avec une bonne confiance.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "Deux pièces confirmées au temps 2 : identification d'un delta de contexte historique, et formule explicite du contexte manquant.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à documenter une typologie personnelle des erreurs contextuelles de l'IA — quelles familles de delta de contexte reviennent, et quel protocole l'apprenant déploie pour chacune."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Articulation de ce que le cartographe humain fait que l'IA ne peut pas faire structurellement (dépouiller un narratif brumeux)."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Décomposition de la part humaine et de la part machine dans la production (voix tierce endossée). Touche la lucidité bidirectionnelle."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Principe « l'humain tranche » qui réserve à l'humain une valeur non automatisable (le jugement final)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec le test prospectif vs rétrospectif que la fiche identifie : 4.08 regarde vers l'avenir (ce que je cultive pour rester pertinent), pas vers le passé (c'était mieux avant). La pièce 1 résiste : la métaphore archéologique nomme une valeur humaine structurellement irréductible (l'écoute herméneutique d'un narratif brumeux). La pièce 2 résiste : la décomposition 85% humain / 15% prompt est une lucidité bidirectionnelle nette. La pièce 3 résiste : « l'humain tranche » réserve une valeur au jugement humain. Ce qui reste faible : la dimension prospective (« que vais-je cultiver ») n'est pas explicitement formulée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Nomination d'une valeur humaine structurellement non-automatisable (herméneutique du narratif)."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Décomposition lucide de la part humaine et de la part machine."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Principe qui réserve à l'humain une valeur (le tranchage final)."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces de création de valeur non-automatisable. La pièce 1, testée par (e) surinterprétation : ai-je halluciné la dimension économique ou structurelle de la valeur ? La métaphore archéologique nomme un acte (dépouiller, creuser) que l'IA ne peut pas faire avec le même type de présence interprétative. C'est une création de valeur non-automatisable au sens structurel. Tenue. La pièce 2, testée par (c) biais de medium : voix tierce d'une IA dans un journal. Mais la décomposition est endossée explicitement par l'apprenant (qui la cite avec approbation). Tenue. La pièce 3, testée par (b) confusion avec 4.02 alignement : multi-attribution légitime. Pour 4.08, l'aspect retenu est que le tranchage est posé comme valeur humaine irréductible. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La métaphore archéologique nomme une présence interprétative que l'IA ne peut structurellement pas porter."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Voix tierce endossée par citation explicite, mais la décomposition vient de la machine, pas de l'apprenant. Indice corroboratif fort."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Multi-attribution légitime avec 4.02. Pour 4.08, la pièce porte la nomination d'une valeur réservée à l'humain."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la création de valeur non-automatisable en m'attendant à des positions défensives anti-IA. Trois pièces ont tenu. La métaphore archéologique nomme une présence interprétative que l'IA ne peut structurellement pas porter. La décomposition 85%/15% (endossée) montre la lucidité bidirectionnelle exigée par la fiche. Le principe « l'humain tranche » réserve une valeur au jugement humain. Dans cette feuille, la compétence se manifeste par une articulation claire de ce que l'humain doit garder face à un dispositif IA, et cette articulation alimente concrètement la conception du dispositif. La présence tient avec une bonne confiance.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Une pièce confirmée au temps 2 (la métaphore archéologique nommant une valeur structurellement humaine) et deux indices qui corroborent la lucidité bidirectionnelle.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à expliciter la dimension prospective : qu'est-ce que l'apprenant cultive activement, dans sa pratique, pour rester pertinent face à des dispositifs IA plus performants ?"
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "observation tierce", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Acceptation explicite d'un horizon temporel long (« avant l'été ») avec « ce n'est pas grave » et conviction maintenue. Combo de la fiche : pression à agir + raisonnement d'attente + moment d'action prévu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec le combo strict de la fiche : (1) pression à agir décrite, (2) raisonnement explicite d'attente, (3) moment d'action prévu. La pièce résiste : la pression à agir est implicite mais réelle (être opérationnel rapidement), le raisonnement d'attente est nommé (« mais ce n'est pas grave : les idées sont là et elles me semblent vraiment tenir la route ») et le moment d'action est borné (« avant l'été »). C'est précisément le format que la fiche identifie comme « pas avant l'été, mais ce n'est pas grave ».",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Combo complet : horizon temporel borné + raisonnement d'attente (les idées tiennent la route) + sérénité."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé cette pièce de patience stratégique alors qu'elle relève de la procrastination ou de la simple acceptation passive. Testée par la distinction critique de la fiche : la procrastination est « j'attends sans pourquoi ni quand ». Ici, l'apprenant donne le pourquoi (les idées doivent mûrir) et le quand (avant l'été). Test passé. Testée par (g) mouvement-vers : ai-je pris pour de la patience ce qui est un mouvement de procrastination déguisé ? La sérénité de la formulation, couplée à la conviction (« les idées tiennent la route »), correspond à la trace oblique que la fiche identifie. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le combo correspond précisément au format que la fiche identifie comme patience stratégique : pas de procrastination (raisonnement et horizon nommés)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la patience stratégique en m'attendant à de la procrastination ou de l'acceptation passive. La pièce a tenu : la formulation « pas opérationnel avant l'été, mais ce n'est pas grave : les idées tiennent la route » contient exactement les trois éléments que la fiche exige — la pression à agir, le raisonnement d'attente, et le moment d'action borné. La sérénité accompagne une conviction, pas un découragement. Dans cette feuille, la patience stratégique se manifeste sur une seule trace, mais cette trace est saillante. La présence tient avec une confiance moyenne, limitée par l'absence de seconde occurrence.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.65,
+        "motif": "Une pièce a passé le temps 2 avec le combo complet de la fiche : horizon borné, raisonnement d'attente et sérénité.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à documenter rétrospectivement, après l'été, ce que la patience a permis qui n'aurait pas été possible en agissant plus tôt — l'apprentissage longitudinal complète la trace ponctuelle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 4,
+    "renvoisCartographe": 2,
+    "nonEtablies": 2,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail rapporté dans cette feuille montre un apprenant qui prend explicitement la responsabilité de ce qu'il produit, qui maintient un rôle irréductible à l'humain dans son dispositif d'évaluation, et qui sait ne pas trancher quand le moment n'est pas venu. Les marqueurs concrets cités incluent la formule « personne ne va pouvoir relire à ma place », la métaphore archéologique pour nommer ce que le cartographe humain fait que l'IA ne peut pas faire, et l'acceptation sereine d'un horizon « avant l'été ». La voix dominante combine lucidité technique sur l'IA et fermeté éthique sur la place du jugement humain. Le travail décrit ne thématise pas les questions écologiques ou les dilemmes moraux maintenus comme tels, ce qui rend ces dimensions silencieuses ici.",
+    "territoiresDenses": [
+      {
+        "competence": "Alignement et refus éthique",
+        "description": "Le travail décrit montre un gardiennage actif de l'alignement entre l'IA et les valeurs portées par le dispositif. Le diagnostic d'un désalignement (top-down), l'énoncé d'un principe (« l'humain tranche »), et la refonte du dispositif avec garde-fou nommé (boucle de rétroaction humaine) se rejoignent dans un même mouvement.",
+        "extraitVerbatim": "c'est tout l'inverse d'une évaluation humaniste. Le cartographe est considéré comme un presse bouton",
+        "ceQueCaDit": "Le refus n'est pas une posture, c'est un acte qui débouche sur une reconception."
+      },
+      {
+        "competence": "Responsabilité, courage et intégrité",
+        "description": "L'accountability se manifeste sur les trois facettes : reconnaissance d'erreur (« ça m'apprendra à vouloir aller trop vite »), affirmation de la responsabilité non-délégable (« personne ne va pouvoir relire à ma place »), et refonte passée à l'acte. La reconnaissance d'erreur est immédiatement suivie de ce que l'erreur a produit de constructif.",
+        "extraitVerbatim": "Ça m'apprendra à vouloir aller trop vite ! Ceci dit, si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première.",
+        "ceQueCaDit": "L'accountability est constructive plutôt qu'auto-flagellante : la responsabilité s'accompagne de ce qu'on en fait."
+      },
+      {
+        "competence": "Validation contextuelle",
+        "description": "L'apprenant identifie pourquoi l'IA se trompe, en remontant à la source contextuelle de l'erreur. La formule « il ne pouvait pas le deviner » correspond exactement aux manifestations principales identifiées par la fiche.",
+        "extraitVerbatim": "Je dois modifier le format de la structure JSON pour coller au logiciel que j'ai créé en fin d'été pour la cartographie (mais ça il ne pouvait pas le deviner).",
+        "ceQueCaDit": "La correction de l'IA s'accompagne systématiquement d'une attribution causale au delta de contexte humain/machine."
+      },
+      {
+        "competence": "Création de valeur non-automatisable",
+        "description": "La métaphore archéologique nomme une présence interprétative que l'IA ne peut structurellement pas porter. La décomposition de la valeur (humain/prompt/portfolio) et le principe « l'humain tranche » articulent ensemble ce que l'humain garde.",
+        "extraitVerbatim": "un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée",
+        "ceQueCaDit": "Ce qui est réservé à l'humain est nommé en termes opératoires, pas en termes idéologiques."
+      },
+      {
+        "competence": "Patience stratégique et sens du timing",
+        "description": "L'horizon « avant l'été » est posé sereinement, avec un raisonnement d'attente (les idées doivent mûrir) et une conviction maintenue. Le combo correspond exactement au format que la fiche identifie.",
+        "extraitVerbatim": "Je ne pense pas pouvoir être opérationnel avant l'été en fait. Mais ce n'est pas grave : les idées sont là et elles me semblent vraiment tenir la route.",
+        "ceQueCaDit": "La sérénité accompagne une direction claire ; ce n'est ni de la procrastination ni de la paralysie."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas visités dans cette feuille. La conscience écologique et long-terme n'apparaît pas — aucun arbitrage entre bénéfice court-terme et impact long-terme, aucune mention d'externalités, de générations futures ou d'empreinte écologique du numérique. Le raisonnement éthique appliqué au sens du balancier maintenu (mise en tension de valeurs sans résolution prématurée) n'est pas visible : les jugements sur le dispositif sont tranchés rapidement plutôt que tenus comme dilemmes. La valorisation de la neurodiversité reste en renvoi au cartographe : la singularité cognitive est nommée mais pas explicitement reliée à un résultat produit par cette différence. La décision et tolérance à l'incertitude reste en renvoi : la tolérance et le tranchage existent en fragments, mais ne se rejoignent pas dans une décision en contexte de flou. Ces silences peuvent être contingents à la nature de cette feuille (focalisée sur un dispositif technique) plutôt qu'à une absence de la compétence chez l'apprenant.",
+    "emergencesPole": "Une première ligne traverse ce pôle : le travail produit une articulation fine entre ce qui peut être confié à l'IA et ce qui doit être tenu par l'humain, et cette articulation passe à l'acte (refonte du dispositif, formule « l'humain tranche », validation contextuelle systématique). Une deuxième ligne, plus discrète : l'accountability se déploie en combo (reconnaître + ce qu'on en fait), et ce combo organise le récit même de la journée — les erreurs ne sont pas effacées, elles sont mobilisées comme matière pour la version suivante. Une troisième ligne : la temporalité longue est tolérée sans anxiété (« avant l'été », « depuis 2013 »), ce qui pose les conditions d'une patience stratégique alignée avec les valeurs portées par le dispositif.",
+    "pistes": [
+      "Pour enrichir le raisonnement éthique appliqué, un chemin possible serait de documenter un moment où deux valeurs légitimes entrent en conflit et où l'apprenant maintient cette tension visible — par exemple entre rendre l'évaluation accessible à beaucoup et préserver sa profondeur clinique.",
+      "Pour enrichir la valorisation de la neurodiversité, un chemin possible serait d'expliciter un résultat précis attribué à la façon différente de penser — « c'est parce que je pense [comme ceci] que j'ai pu produire [ce résultat précis] ».",
+      "Pour enrichir la conscience écologique et long-terme, un chemin possible serait de documenter un arbitrage où l'impact long-terme (incluant des parties prenantes non-humaines ou les générations futures) a infléchi une décision concrète, y compris sur l'empreinte des outils IA utilisés.",
+      "Pour enrichir la décision dans le flou, un chemin possible serait de documenter un moment où l'apprenant a tranché alors que l'IA hésitait ou que les données manquaient, en nommant ce qu'il ne savait pas, comment il a fonctionné malgré ce manque, et ce que cela a produit."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail rapporté dans cette feuille montre un apprenant qui prend explicitement la responsabilité de ce qu'il produit, qui maintient un rôle irréductible à l'humain dans son dispositif d'évaluation, et qui sait ne pas trancher quand le moment n'est pas venu. Les marqueurs concrets cités incluent la formule « personne ne va pouvoir relire à ma place », la métaphore archéologique pour nommer ce que le cartographe humain fait que l'IA ne peut pas faire, et l'acceptation sereine d'un horizon « avant l'été ». La voix dominante combine lucidité technique sur l'IA et fermeté éthique sur la place du jugement humain. Le travail décrit ne thématise pas les questions écologiques ou les dilemmes moraux maintenus comme tels, ce qui rend ces dimensions silencieuses ici.\n\n## Territoires les plus denses\n\n**Alignement et refus éthique.** Le travail décrit montre un gardiennage actif de l'alignement entre l'IA et les valeurs portées par le dispositif. Le diagnostic d'un désalignement, l'énoncé d'un principe (« l'humain tranche »), et la refonte du dispositif avec garde-fou nommé se rejoignent dans un même mouvement. *« c'est tout l'inverse d'une évaluation humaniste. Le cartographe est considéré comme un presse bouton ».* Le refus n'est pas une posture, c'est un acte qui débouche sur une reconception.\n\n**Responsabilité, courage et intégrité.** L'accountability se manifeste sur les trois facettes : reconnaissance d'erreur, affirmation de la responsabilité non-délégable, et refonte passée à l'acte. La reconnaissance d'erreur est immédiatement suivie de ce que l'erreur a produit de constructif. *« Ça m'apprendra à vouloir aller trop vite ! Ceci dit, si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première ».* L'accountability est constructive plutôt qu'auto-flagellante : la responsabilité s'accompagne de ce qu'on en fait.\n\n**Validation contextuelle.** L'apprenant identifie pourquoi l'IA se trompe, en remontant à la source contextuelle de l'erreur. La formule « il ne pouvait pas le deviner » correspond exactement aux manifestations principales identifiées par la fiche. *« Je dois modifier le format de la structure JSON pour coller au logiciel que j'ai créé en fin d'été pour la cartographie (mais ça il ne pouvait pas le deviner) ».* La correction de l'IA s'accompagne systématiquement d'une attribution causale au delta de contexte humain/machine.\n\n**Création de valeur non-automatisable.** La métaphore archéologique nomme une présence interprétative que l'IA ne peut structurellement pas porter. La décomposition de la valeur (humain/prompt/portfolio) et le principe « l'humain tranche » articulent ensemble ce que l'humain garde. *« un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée ».* Ce qui est réservé à l'humain est nommé en termes opératoires, pas en termes idéologiques.\n\n**Patience stratégique et sens du timing.** L'horizon « avant l'été » est posé sereinement, avec un raisonnement d'attente et une conviction maintenue. Le combo correspond exactement au format que la fiche identifie. *« Je ne pense pas pouvoir être opérationnel avant l'été en fait. Mais ce n'est pas grave : les idées sont là et elles me semblent vraiment tenir la route ».* La sérénité accompagne une direction claire ; ce n'est ni de la procrastination ni de la paralysie.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas visités dans cette feuille. La conscience écologique et long-terme n'apparaît pas — aucun arbitrage entre bénéfice court-terme et impact long-terme, aucune mention d'externalités, de générations futures ou d'empreinte écologique du numérique. Le raisonnement éthique appliqué au sens du balancier maintenu n'est pas visible : les jugements sur le dispositif sont tranchés rapidement plutôt que tenus comme dilemmes. La valorisation de la neurodiversité reste en renvoi au cartographe : la singularité cognitive est nommée mais pas explicitement reliée à un résultat produit par cette différence. La décision et tolérance à l'incertitude reste en renvoi : la tolérance et le tranchage existent en fragments, mais ne se rejoignent pas dans une décision en contexte de flou. Ces silences peuvent être contingents à la nature de cette feuille (focalisée sur un dispositif technique) plutôt qu'à une absence de la compétence chez l'apprenant.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne première ligne traverse ce pôle : le travail produit une articulation fine entre ce qui peut être confié à l'IA et ce qui doit être tenu par l'humain, et cette articulation passe à l'acte (refonte du dispositif, formule « l'humain tranche », validation contextuelle systématique). Une deuxième ligne, plus discrète : l'accountability se déploie en combo (reconnaître + ce qu'on en fait), et ce combo organise le récit même de la journée — les erreurs ne sont pas effacées, elles sont mobilisées comme matière pour la version suivante. Une troisième ligne : la temporalité longue est tolérée sans anxiété, ce qui pose les conditions d'une patience stratégique alignée avec les valeurs portées par le dispositif.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir le raisonnement éthique appliqué, un chemin possible serait de documenter un moment où deux valeurs légitimes entrent en conflit et où l'apprenant maintient cette tension visible.\n- Pour enrichir la valorisation de la neurodiversité, un chemin possible serait d'expliciter un résultat précis attribué à la façon différente de penser — « c'est parce que je pense [comme ceci] que j'ai pu produire [ce résultat précis] ».\n- Pour enrichir la conscience écologique et long-terme, un chemin possible serait de documenter un arbitrage où l'impact long-terme a infléchi une décision concrète, y compris sur l'empreinte des outils IA utilisés.\n- Pour enrichir la décision dans le flou, un chemin possible serait de documenter un moment où l'apprenant a tranché alors que l'IA hésitait ou que les données manquaient."
+  }
+}

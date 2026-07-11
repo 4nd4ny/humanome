@@ -1,0 +1,807 @@
+{
+  "poleNum": "1",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Après avoir un peu réfléchi à voix haute avec Claude pour lui donner du contexte, je lui ai demandé de concevoir un prompt générique pour générer à partir du plan des 6 manuels, la structure de chaque manuel ainsi que la structure de chacun des chapitres du manuel.",
+      "contexte": "Ouverture de la séance : l'apprenant pose un cadre de dialogue avec l'IA et formule une demande de méta-prompt (1.02, 1.07, 1.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "A partir de là, il m'a proposé trois prompts : un pour la structure de chaque manuel, un pour la structure de chaque chapitre, un pour les annexes. Je lui ai également demandé un prompt explicitant comment s'articulent ces méta-prompts pour générer les manuels.",
+      "contexte": "Description d'un dispositif à quatre prompts articulés entre eux, avec rôles différenciés (1.07, 1.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Dans un nouveau projet, j'ai supprimé mes préférences car ni le protocole CATALYST, ni le protocole de \"co-élaboration cognitive\" ne me sont utiles ici.",
+      "contexte": "Décision argumentée de réinitialiser le contexte projet en justifiant la non-pertinence des protocoles habituels (1.01, 1.06, 1.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Mais évidemment je vais devoir relire avant de faire la mise en page (même si c'est de nouveau 600 pages à relire) et surtout cette fois-ci tester les prompts générés, car contrairement à la v5 qui était ancienne école, ici c'est l'IA qui va donner la théorie, les exercices et les tests pour savoir si la personne a bien compris.",
+      "contexte": "L'apprenant anticipe la nécessité de vérifier la production IA avant diffusion, et distingue v5 (statique) de v6 (générative) (1.01, 1.10).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Au lieu de générer directement le contenu et les exercices statiques, j'ai demandé à l'IA d'écrire un prompt qui demande à l'IA d'écrire un prompt générique qui demande à l'IA d'écrire des prompts pour la théorie et les exercices que l'apprenant utilisera pour apprendre. C'est un peu capillotracté, mais c'est plus aligné avec la philosophie des écoles RESPIRE que ce que j'avais fais dans la version précédente.",
+      "contexte": "Description explicite d'une chaîne récursive de méta-prompts à trois niveaux, justifiée par un alignement philosophique (1.07, 1.08, 1.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Le manuel de formation ne peut donc pas juste être lu, il doit être re-généré par chaque élève, de manière active.",
+      "contexte": "Cadrage pédagogique : reformulation de la nature même du manuel comme objet génératif et non plus comme contenu fixe (1.02, 1.10).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "J'en ai donc profité pour introduire dans des encarts quelques tips de prompt engineering tout au long de la formation, histoire de faire d'une pierre quatre coups : 1. apprendre un sujet à choix [...] ; 2. apprendre à apprendre en prenant conscience de sa matière d'apprendre et en développant la méta-cognition lors de la rédaction du portfolio réflexif d'apprentissage ; 3. valoriser en réalisant tout celà les compétences utiles à l'ères des IA ; 4. apprendre tout en lisant le manuel quelques techniques de prompt engineering.",
+      "contexte": "Quatre objectifs articulés sur un même dispositif : empilement d'effets pédagogiques avec mention explicite de la métacognition (1.03, 1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "En rédigeant tout celà, je réalise que construire cette architecture, ce palais mental, dans lequel j'ai toutes les structures et contenus de toutes les 8 formations (6 tuteurs + 2 apprenants) en lien avec tous les 600 livres des pédagogues que j'ai lu durant la thèse et sur lesquels je m'appuie pour faire ces choix, est finalement assez simple, car c'est ce que j'ai fait toute ma vie en écrivant du code.",
+      "contexte": "Réalisation en cours d'écriture : transfert explicite entre programmation et architecture pédagogique (1.04, 1.09, 1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Lorsqu'on arrive à mémoriser la structure d'un million de ligne de code, ou débugger un logiciel avec plusieurs millions d'objets qui interagissent (*) parce qu'on a une image mentale complète du système (le code produit + les outils et librairies invoquées + les usages à différents niveaux par les différents types d'utilisateurs), ce sont exactement les mêmes compétences et fonctions cognitives qui sont mobilisées. C'est ça la pensée computationnelle : c'est exactement cette aptitude là que l'on devrait enseigner aux élèves.",
+      "contexte": "Conceptualisation explicite de la pensée computationnelle comme image mentale d'un système multi-couches, et transfert vers l'enseignement (1.09, 1.05, 1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum ! Par exemple, une conversation par module de formation. [...] Du coup il faut modifier les 4 prompts de génération, pour imposer ce découpage et forcer les prompts d'aller lire les informations dans la mémoire du projet plutôt que dans l'historique de la conversation.",
+      "contexte": "Diagnostic d'une limite technique de fenêtre de contexte et reconception du pipeline en conséquence (1.06, 1.07, 1.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Il est tard, mais je vais quand même lancer le processus pour voir si au moins pour les premiers chapitres du premier manuel de la première filière, ça donne un truc cohérent ou pas.",
+      "contexte": "Décision de test minimal avant d'engager le pipeline complet — posture expérimentale (1.01, 1.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Ça y est, je viens d'envoyer mon prompt *ultime* pour la génération automatique de toute la formation : \"run prompt-protocole.md\" !",
+      "contexte": "Mention d'un prompt orchestrateur unique appelant un fichier de protocole — geste d'architecture (1.07, 1.08).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Décision lucide d'écarter les protocoles habituels (CATALYST, co-élaboration) en justifiant leur non-pertinence pour cette tâche : doute calibré sur ses propres outils par défaut."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Anticipation de la nécessité de relire ET tester les prompts générés par l'IA — vérification active prévue avant diffusion."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Auto-correction en plein élan : juste après avoir lancé le 'prompt ultime', l'apprenant détecte le problème de mémoire et reconfigure tout le dispositif."
+        },
+        {
+          "numero": 4,
+          "pid": 11,
+          "contexte": "Décision de test minimal sur un premier chapitre avant d'engager le pipeline complet — scepticisme actif sur la cohérence de la sortie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que la pensée critique ne se réduit pas à 'vérifier après coup' : la fiche exige un doute méthodique calibré, idéalement appliqué à ses propres idées au moment où elles se forment. La pièce 4 (annonce d'une intention future de tester) ressemble surtout à une déclaration prospective, pas encore à un acte critique posé. La pièce 1 par contre porte un acte concret de désactivation d'un protocole avec motif explicite, ce qui force à reconnaître un tri méthodique de ses propres outils. La pièce 3 est plus intéressante encore : elle montre une auto-correction au moment même où le geste vient d'être posé ('je viens d'envoyer mon prompt ultime' → 'je vois tout de suite un gros problème'), ce qui est précisément le marqueur le plus avancé de la fiche. La pièce 11 ('je vais quand même lancer pour voir si ça donne un truc cohérent ou pas') montre une réserve assumée sur la sortie, mais reste relativement faible en isolation.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Désactivation argumentée de ses propres protocoles habituels — acte critique sur soi-même, pas sur une source externe." },
+            { "pieceId": 3, "motifResistance": "Auto-correction immédiate après un geste enthousiaste — exactement la trace oblique citée dans la fiche ('autocritique en plein élan enthousiaste')." },
+            { "pieceId": 4, "motifResistance": "Anticipation explicite de la nécessité de tester ce qui sort, ce qui suppose le refus de croire la production IA sur parole." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis maintenant en me demandant si je me suis laissé impressionner. La pièce 4 ne raconte pas un acte de vérification : elle annonce une intention. C'est typiquement une pièce du registre 'récit performatif' (f) — l'apprenant énonce qu'il va tester, sans encore l'avoir fait. Elle s'affaiblit. La pièce 1 en revanche raconte un acte posé ('j'ai supprimé mes préférences car...') avec une justification opérationnelle — l'attaque (a) insuffisance probatoire ne tient pas, c'est un acte vérifiable. La pièce 3 est la plus forte : l'apprenant détecte un problème immédiatement après avoir lancé son 'prompt ultime', ce qui est explicitement décrit dans la fiche comme le marqueur le plus avancé ; aucune attaque ne tient vraiment.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'acte est posé, justifié (non-pertinence des protocoles pour cette tâche) et conséquent (changement effectif de configuration projet). La pièce raconte un tri actif de ses propres outils."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce porte un diagnostic immédiat ('tout de suite'), avec identification du mécanisme (mémoire de contexte insuffisante) et reconception conséquente du pipeline. Trace d'autocritique en plein élan, donc marqueur fort de la fiche."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant déclare qu'il devra tester, sans le faire encore dans la séance. C'est une intention plus qu'un acte, mais elle s'inscrit dans la suite du même mouvement (et la pièce 11 montre qu'il lance effectivement le test minimal le soir même)."
+            },
+            {
+              "pieceId": 11,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le test minimal annoncé ('voir si ça donne un truc cohérent ou pas') est réellement engagé, mais la pièce en elle-même reste courte et ne décrit pas encore le verdict de ce test."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de simples déclarations d'intention, parce qu'un journal d'apprentissage peut facilement laisser passer une posture critique sans qu'elle soit réellement à l'œuvre. Deux pièces ont résisté solidement : la désactivation argumentée des protocoles habituels et surtout la détection immédiate du problème de mémoire après avoir lancé le pipeline. Cette seconde pièce porte le signal le plus précis de la compétence : un doute qui se déclenche sans délai, sur son propre geste, et qui produit une reconception. Deux pièces se sont affaiblies (4 et 11), parce qu'elles relèvent davantage d'une intention de test que d'une preuve de test conduit, mais elles tiennent comme indices corroboratifs dans le cadre du même épisode. La trace dominante, ici, n'est pas le scepticisme général : c'est une autocritique en plein élan, au moment précis où l'enthousiasme aurait pu fermer la lecture. Ce qui reste à approfondir, ce serait l'aval — le verdict du test, l'écart constaté entre attendu et reçu.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé deux pièces (1 et 3) sans réserve sérieuse et a retenu deux pièces affaiblies (4 et 11) qui consolident le même épisode de doute appliqué en temps réel.",
+        "prescription": "Pour approfondir cette pratique de la pensée critique, un chemin possible serait de prolonger la trace : documenter, après chaque test de pipeline, l'écart entre ce qui était attendu et ce qui est revenu, en notant le moment précis où le doute s'est activé. Ce geste de revue rapide après l'élan transformerait le scepticisme déjà actif en protocole stable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 11, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Reformulation radicale de l'objet à produire : non plus du contenu statique, mais des prompts qui produisent des prompts qui produisent l'expérience d'apprentissage."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Cadrage explicite : le manuel cesse d'être un objet à lire et devient un objet à re-générer activement par chaque élève."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Geste préalable de réflexion à voix haute avec l'IA 'pour lui donner du contexte' avant de demander un prompt générique — préparation du cadrage avant l'exécution."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Le cadrage exige une transformation de la nature de ce qu'on cherche, pas un réarrangement du périmètre. J'aborde ces pièces en m'attendant à ce qu'il s'agisse surtout de planification déguisée. La pièce 3 (réflexion à voix haute avant le prompt) est courte et plutôt ambiguë : c'est peut-être juste de la préparation, pas un cadrage. Mais les pièces 1 et 5 me posent un vrai problème pour ma présomption : elles montrent une bascule conceptuelle, pas une simple précision d'objectif. Passer de 'générer le contenu' à 'générer un prompt qui génère un prompt qui génère le contenu' transforme la nature de ce qu'est un manuel. La pièce 5 redéfinit l'objet même ('le manuel ne peut donc pas juste être lu, il doit être re-généré'), ce qui est typiquement une reformulation profonde, pas une exécution mieux planifiée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Bascule conceptuelle explicite : ne plus produire le contenu mais produire ce qui produit l'expérience — la nature de l'objet a changé." },
+            { "pieceId": 2, "motifResistance": "Redéfinition de ce qu'est un manuel ('ne peut pas juste être lu, il doit être re-généré'), qui transforme la nature de l'objet, pas son organisation." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces pour vérifier que je n'ai pas confondu un effet rhétorique avec un cadrage réel. La pièce 1 ('au lieu de... j'ai demandé...') montre bien une décision opérationnelle ; la justification 'plus aligné avec la philosophie des écoles RESPIRE' donne le motif du recadrage, ce qui est un bon signe — l'attaque (e) surinterprétation pédagogique ne tient pas, c'est l'apprenant lui-même qui formule la transformation. La pièce 2 pourrait à première vue ressembler à du glissement lexical (d) — 'doit être re-généré' fait peut-être joli sans charge réelle — mais elle est cohérente avec l'architecture décrite ailleurs (pièce 5) et avec la justification pédagogique des 'quatre coups', donc elle tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La transformation n'est pas surinterprétée par moi : l'apprenant lui-même la formule comme un changement d'angle ('au lieu de...') et justifie pourquoi (alignement philosophique)."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le 're-généré par chaque élève' a une charge sémantique réelle : il découle de l'architecture de prompts décrite en pièce 1 et conditionne tous les choix qui suivent."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce indique seulement que l'apprenant a 'réfléchi à voix haute pour donner du contexte' — c'est un geste préparatoire générique, sans contenu de cadrage visible."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de la planification mieux articulée, pour neutraliser ma propre tendance à voir du cadrage là où il n'y a qu'un meilleur plan. Une pièce a effectivement chuté : la mention de la réflexion préparatoire avec Claude, qui reste trop générique. Mais deux autres ont tenu : le passage de 'contenu' à 'prompt qui génère le prompt' modifie ce qu'est l'objet à produire, et la formule 'le manuel ne peut pas juste être lu, il doit être re-généré' redéfinit ce qu'est un manuel — ce ne sont pas des reformulations cosmétiques. La justification donnée ('plus aligné avec la philosophie des écoles RESPIRE') indique que le recadrage a été opéré pour rejoindre une intention plus profonde que la demande initiale, ce qui est précisément le marqueur central. Ce qui resterait à explorer, c'est la question récursive ('est-ce que je cadre bien ?'), qui apparaîtrait plutôt dans un retour réflexif sur le geste de cadrage lui-même.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé deux pièces qui montrent une bascule de la nature de l'objet à produire, avec justification d'intention.",
+        "prescription": "Pour prolonger cette pratique du cadrage, un chemin possible serait de documenter, à chaque grande bascule, la question qui a précédé la décision : qu'est-ce que je cherchais à produire, et qu'est-ce que je cherche à produire maintenant. Le contraste rendu visible nourrirait la lecture rétrospective du geste."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Articulation explicite de quatre objectifs hétérogènes (apprentissage de contenu, métacognition, valorisation des compétences IA-friendly, prompt engineering) sur un seul dispositif d'encarts."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Convergence en cours d'écriture entre code, palais mental et architecture des 8 formations adossées aux 600 livres de la thèse — synthèse spontanée explicitement formulée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La synthèse intégrative produit un insight que les sources n'avaient pas individuellement. J'aborde ces pièces en me demandant si je ne suis pas en train de prendre des accumulations pour des fusions. La pièce 1 ('faire d'une pierre quatre coups') pourrait n'être qu'une liste d'objectifs collés au même support, sans réel insight transversal. Mais une liste de quatre effets articulés autour du même dispositif — les encarts — est un assemblage qui dit quelque chose sur le dispositif lui-même : que le manuel-prompt peut faire travailler en parallèle des registres normalement disjoints (savoir-faire, méta-cognition, valorisation, technique IA). Ce n'est pas une simple addition, c'est l'identification d'une économie de moyens. La pièce 2 me résiste fortement : 'construire ce palais mental [...] est finalement assez simple, car c'est ce que j'ai fait toute ma vie en écrivant du code' — c'est la convergence explicite, en temps réel, de trois domaines a priori distincts (programmation, architecture pédagogique, mémoire bibliographique de la thèse) en un seul geste cognitif reconnu.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Quatre registres normalement disjoints articulés sur un même dispositif — l'insight est l'économie de moyens, qui n'apparaît dans aucun des registres pris seul." },
+            { "pieceId": 2, "motifResistance": "Convergence nommée en plein élan entre programmation, architecture pédagogique et matériau bibliographique : 'ce sont exactement les mêmes compétences'." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces deux pièces pour vérifier que je ne charge pas le récit. La pièce 1 pourrait être attaquée en (a) insuffisance probatoire (juste une liste), mais l'articulation des quatre points autour d'un dispositif unique et la mention 'faire d'une pierre quatre coups' rendent la fusion explicite. La pièce 2 pourrait être attaquée en (e) surinterprétation pédagogique — peut-être que je veux y voir une synthèse parce que la métaphore du palais mental est séduisante. Mais l'apprenant fusionne lui-même trois objets distincts ('toutes les structures et contenus des 8 formations + les 600 livres + ce que j'ai fait toute ma vie en écrivant du code') en une seule reconnaissance ('ce sont exactement les mêmes compétences'), ce qui est précisément un insight émergent.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La liste pourrait être lue comme un simple empilement d'effets, mais elle est articulée autour d'un dispositif unique et nommée comme telle ('une pierre quatre coups'). L'insight tient, modestement."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La convergence est nommée par l'apprenant lui-même, pas projetée par moi. Trois domaines apparemment éloignés sont reconnus comme mobilisant les mêmes fonctions cognitives, ce qui est un cas-école de synthèse spontanée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir des accumulations dans ce que j'aurais pu lire comme des synthèses, pour neutraliser ma propre tendance à valoriser les liens. La pièce sur les 'quatre coups' s'est affaiblie : elle reste un assemblage articulé, pas une fusion radicale, mais elle dit quelque chose sur l'économie cognitive d'un dispositif unique. La pièce sur le palais mental, en revanche, est restée intacte : trois univers (millions de lignes de code, 600 livres de pédagogues, 8 formations à architecturer) sont reconnus comme mobilisant un seul et même geste cognitif, et la reconnaissance est formulée en plein milieu de la rédaction, comme un insight qui arrive — pas comme un effet rhétorique. Ce qui resterait à approfondir, ce serait la production explicite d'une métaphore unificatrice qui nomme cette convergence sans passer par la mention de la pensée computationnelle.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Une pièce confirmée sans réserve (convergence palais mental / code / thèse) et une pièce affaiblie mais retenue (l'articulation des quatre objectifs) suffisent à établir la présence avec une réserve sur l'ampleur du corpus mobilisé.",
+        "prescription": "Pour prolonger cette pratique de la synthèse, un chemin possible serait de nommer, après-coup, les convergences qui sont arrivées en cours d'écriture, et de chercher si elles tiennent une fois la séance refroidie. Ce qui résiste au lendemain a souvent plus de portée que ce qui apparaît dans l'élan."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Réalisation explicite, en cours d'écriture, d'un transfert cognitif — observation de sa propre manière de penser au moment où elle s'exerce."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Mention explicite de la métacognition comme objectif pédagogique ('apprendre à apprendre en prenant conscience de sa manière d'apprendre') — mais comme objet d'enseignement, pas comme acte personnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La métacognition exige que l'objet de la réflexion soit le processus cognitif lui-même, pas un problème externe. J'aborde ces pièces en me demandant si l'apprenant réfléchit sur son penser, ou simplement sur son travail. La pièce 2 me pose un problème immédiat : 'développer la méta-cognition lors de la rédaction du portfolio' nomme explicitement la métacognition, mais comme objectif pour les futurs élèves, pas comme acte personnel ici. Ce n'est pas le même registre. La pièce 1 est plus intéressante : 'En rédigeant tout celà, je réalise que [...]' — il y a là un acte d'auto-observation au moment précis où elle se produit ('en rédigeant'), et l'objet de l'observation est bien une fonction cognitive (la manière dont l'architecture se construit dans la tête). Cette pièce résiste.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Observation de son propre fonctionnement cognitif au moment même où il s'exerce ('en rédigeant tout celà, je réalise que...'), avec identification d'une fonction cognitive transversale." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 pour vérifier que je n'ai pas confondu une réalisation contenutielle (le contenu de l'idée — que coder et architecturer sont liés) avec une réalisation métacognitive (l'observation de la manière dont l'idée vient). L'apprenant écrit 'En rédigeant tout celà, je réalise que construire cette architecture [...] est finalement assez simple, car c'est ce que j'ai fait toute ma vie en écrivant du code'. La réalisation porte sur les compétences mobilisées — donc bien sur le processus cognitif — et arrive parce que l'apprenant est en train d'écrire, ce qui rend visible le 'comment'. L'attaque (e) surinterprétation pédagogique est limite mais ne tient pas vraiment : l'apprenant nomme la fonction cognitive, pas seulement le contenu. La pièce 2 tombe sous (b) confusion de compétence ou (f) récit performatif : elle parle de métacognition au futur, pour d'autres.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'observation porte bien sur le processus cognitif (compétences et fonctions mobilisées), mais elle reste légère — pas de description fine de comment l'image mentale se construit, juste la reconnaissance d'une équivalence."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La métacognition est mentionnée comme objectif pédagogique pour les futurs élèves, pas comme acte de l'apprenant ici. C'est une déclaration sur la métacognition, pas une trace métacognitive."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer la métacognition réelle de sa mention. La mention de la métacognition comme objectif pédagogique a chuté : elle parle de ce que d'autres feront, pas d'un geste personnel posé. La réalisation en cours d'écriture, en revanche, est tenue : l'apprenant observe une équivalence entre des fonctions cognitives qu'il a mobilisées toute sa vie et celles qu'il mobilise maintenant, et cette observation arrive parce qu'il est en train de l'exercer. La pièce s'est affaiblie parce que la description du processus reste rapide — pas de zoom fin sur 'comment' l'image mentale se construit — mais elle tient comme indice. Ce qui resterait à approfondir, c'est précisément ce zoom : décrire les opérations cognitives elles-mêmes (recoupements, transitions, retours en arrière) plutôt que l'équivalence globale.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce affaiblie a survécu au temps 2, ce qui ne suffit pas à établir la présence ; le seuil est dépassé pour un indice isolé mais reste sous le seuil de présence établie.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de prolonger l'observation amorcée le 25 janvier en décrivant ce que fait précisément la tête au moment où elle assemble plusieurs millions d'objets — quels recoupements, quelles bascules, quels moments d'attente. Ce zoom transformerait une équivalence reconnue en pilotage conscient."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Description d'une image mentale d'un système avec ses composants et ses utilisateurs à différents niveaux — vision systémique d'un logiciel."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Effet de cascade anticipé : si la mémoire ne suit pas, c'est tout le pipeline qui s'effondre, donc reconfiguration globale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La pensée systémique modélise les boucles, pas les lignes ; elle nomme des liens, des directions, des effets. J'aborde ces pièces en m'attendant à trouver surtout des constats du type 'tout est lié'. La pièce 1 décrit une image mentale d'un système avec ses composants ('le code produit + les outils et librairies invoquées + les usages à différents niveaux'), mais elle énumère plus qu'elle ne modélise — pas de boucle de rétroaction visible, pas de point de levier nommé. Elle pourrait simplement attester une vision d'ensemble, pas une modélisation. La pièce 2 est différente : elle identifie un effet de cascade ('je n'aurais jamais assez de mémoire pour exécuter le protocole complet') et propose un point de levier (découper, externaliser dans la mémoire projet). C'est plus proche d'une modélisation, mais elle est entièrement instrumentale, sans la lecture des effets de second ordre.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Effet de cascade anticipé sur l'ensemble du pipeline (saturation mémoire) + point de levier identifié (découpage + externalisation) — modélisation opérationnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 2 pour vérifier que je n'ai pas transformé un simple bug en analyse systémique. La pièce identifie effectivement une contrainte structurelle (la mémoire de la fenêtre de contexte) et propose une reconfiguration globale du pipeline (1 conversation par module, externalisation dans la mémoire projet, modification des 4 prompts pour qu'ils aillent lire ailleurs). C'est plus qu'un correctif local : c'est une refonte de l'architecture du flux d'information. L'attaque (b) confusion de compétence est tentante — peut-être que c'est surtout de l'architecture (1.07) ou de la littératie IA (1.06) — mais la pièce articule bien plusieurs éléments en interaction (mémoire / pipeline / historique / mémoire projet), ce qui relève de la modélisation systémique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce décrit une image mentale d'ensemble mais énumère ses composants sans modéliser leurs interactions. Pas de boucle nommée, pas de direction d'influence — c'est une vision panoramique, pas une lecture systémique."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'analyse pourrait surtout relever de l'architecture (1.07), mais l'identification d'une contrainte structurelle qui se répercute sur tout le système et la conception d'un déplacement du flux d'information attestent une lecture systémique opérationnelle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer une vision d'ensemble d'une modélisation systémique. La pièce purement panoramique sur le code (énumération sans liens) a chuté. La pièce sur le diagnostic de saturation mémoire est restée, mais affaiblie : elle articule bien une cascade (saturation → échec du pipeline complet) et un point de levier (externalisation), mais elle reste très instrumentale et chevauche fortement l'architecture de systèmes. Ce qui en résulte est qu'on entend un raisonnement systémique en travail, sans qu'il soit encore explicité pour lui-même. Ce qui resterait à approfondir, ce serait de nommer les boucles vertueuses ou vicieuses qui structurent ce projet (par exemple : production rapide → fatigue → erreurs → ralentissement, ou inversement test minimal → ajustement → confiance).",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une seule pièce affaiblie survit, et elle chevauche fortement l'architecture de systèmes — la part proprement systémique reste à dégager.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de nommer, sur un projet en cours, une boucle de rétroaction réellement à l'œuvre — par exemple ce qui s'auto-renforce dans la fatigue, ou ce qui s'auto-corrige dans le test minimal. Identifier des directions d'influence rendrait visible la lecture systémique déjà active."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Diagnostic technique : la fenêtre de contexte est insuffisante pour exécuter le protocole complet ; reconfiguration en conséquence."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La littératie IA exige une compréhension causale du pourquoi l'IA échoue, pas seulement la réutilisation du vocabulaire. J'aborde la pièce 1 en m'attendant à ce que l'apprenant ait juste constaté un échec sans nommer le mécanisme. Mais la pièce identifie précisément la cause (la mémoire insuffisante pour 'exécuter le protocole complet'), distingue deux lieux de stockage (l'historique de la conversation versus la mémoire du projet) et déduit une solution architecturale (forcer les prompts à aller chercher l'information ailleurs). Ce n'est pas une plainte ('ça ne marche pas'), c'est un diagnostic mécanique avec conséquence opérationnelle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Diagnostic causal explicite (saturation de fenêtre de contexte) avec distinction technique entre historique et mémoire projet." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas une simple plainte d'une portée technique qu'elle n'a pas. La formulation 'je n'aurais jamais assez de mémoire pour exécuter le protocole complet' nomme la contrainte ; la solution proposée (découper, externaliser dans la mémoire projet, modifier les prompts pour qu'ils aillent lire ailleurs) montre que l'apprenant comprend la distinction entre le contexte d'une conversation et la mémoire persistante d'un projet. L'attaque (d) glissement lexical ne tient pas : le vocabulaire est utilisé avec sa charge technique. L'attaque (c) biais de medium pourrait pointer que le journal sollicite ce type de notation, mais le contenu lui-même est opérationnel, pas réflexif.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le diagnostic est causal (saturation mémoire → impossibilité d'exécuter le protocole long), la solution est technique (séparer le contexte conversationnel de la mémoire projet et router les prompts vers cette dernière). Le vocabulaire porte sa charge."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire la pièce comme un constat ordinaire d'échec, mais elle a tenu : l'apprenant a identifié le mécanisme (capacité de la fenêtre de contexte), proposé une reconfiguration architecturale fondée sur la distinction conversation/projet, et anticipé la modification nécessaire des prompts. Une seule pièce, mais elle est confirmée sans réserve sérieuse. Ce qui resterait à approfondir, ce serait d'autres types d'échecs IA (hallucination, dérive, biais de prompt) traités avec la même précision causale ; la séance du 25 janvier en porte un seul.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.6,
+        "motif": "Une trace concrète confirmée au temps 2 (diagnostic causal de saturation de fenêtre de contexte + reconfiguration architecturale), portée par une seule pièce mais nette.",
+        "prescription": "Pour prolonger cette littératie, un chemin possible serait de documenter, à la prochaine surprise produite par l'IA, l'hypothèse mécanique formulée pour l'expliquer, avant d'ajuster le prompt. Le diagnostic devient ainsi un protocole stable, et non plus une réaction au cas par cas."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Quatre prompts articulés entre eux avec rôles distincts (structure de manuel, structure de chapitre, annexes, articulation des trois précédents) — pipeline documenté."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Architecture récursive à trois niveaux : un prompt qui demande un prompt qui demande un prompt qui produit la matière pédagogique."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Reconception du pipeline pour distribuer la charge mémoire entre conversations et mémoire projet — re-architecture du flux d'information."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Prompt orchestrateur unique ('run prompt-protocole.md') qui invoque le fichier de protocole, signal d'une couche de niveau supérieur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'architecture de systèmes IA exige une conception : composants, connexions, rôles, et critère discriminant — quelqu'un d'autre pourrait comprendre et maintenir. J'aborde ces pièces en m'attendant à ne trouver que des prompts sophistiqués, pas une architecture. La pièce 4 (le 'run prompt-protocole.md') est trop courte en isolation pour porter une architecture. Mais la pièce 1 décrit quatre prompts distincts avec rôles définis et un quatrième prompt qui articule les trois autres — c'est précisément la définition d'un pipeline. La pièce 2 ajoute une couche de récursivité (un prompt qui demande un prompt qui demande un prompt), ce qui est une décision architecturale, pas une formulation. La pièce 3 montre une re-conception du flux d'information entre la conversation et la mémoire projet, ce qui est aussi typiquement architectural.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Quatre prompts à rôles distincts dont un articule les trois autres — c'est la définition même d'un pipeline avec composants nommés." },
+            { "pieceId": 2, "motifResistance": "Architecture récursive à trois niveaux décrite explicitement, justifiée par un alignement philosophique — décision de conception, pas de formulation." },
+            { "pieceId": 3, "motifResistance": "Reconception du flux d'information entre couches de mémoire (conversation versus projet) — re-architecture du système." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je n'ai pas confondu un usage sophistiqué de prompts avec une architecture. La distinction critique de la fiche est explicite : un prompt système isolé n'est pas une architecture, il faut des flux entre composants avec règles de routing. La pièce 1 satisfait ce critère : quatre prompts avec un méta-prompt d'articulation. La pièce 2 idem : la récursivité décrit un flux où la sortie d'un niveau alimente l'entrée du suivant. La pièce 3 décrit explicitement le routing entre historique conversationnel et mémoire projet. L'attaque (b) confusion avec 1.08 (dialogue avancé) est sérieuse — ces pièces sont aussi du méta-prompting — mais l'angle architectural est distinct et complémentaire, pas concurrent.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le quatrième prompt qui articule les trois autres est précisément ce qui fait basculer du prompting (1.08) à l'architecture (1.07) : un méta-niveau qui organise les flux entre composants."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La récursivité ('un prompt qui demande un prompt qui demande un prompt') chevauche le dialogue avancé, mais elle décrit un système à plusieurs niveaux avec un produit final (le matériel pédagogique de l'élève) — l'angle architectural tient."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La reconception du routing entre l'historique conversationnel et la mémoire projet, avec modification explicite des quatre prompts pour qu'ils aillent lire ailleurs, est une décision architecturale concrète et explicite."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce, courte, ne suffit pas à elle seule, mais elle indique une couche d'orchestration supérieure ('run prompt-protocole.md') cohérente avec les pièces 1 et 2."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à neutraliser une lecture qui glisserait du prompt sophistiqué à l'architecture sans franchir le seuil. Deux pièces ont tenu sans réserve : la décomposition en quatre prompts à rôles distincts avec articulateur, et la reconception du routing entre couches de mémoire. Deux pièces se sont affaiblies : la récursivité à trois niveaux est partiellement du dialogue avancé, et le 'run prompt-protocole.md' est trop court pour porter à lui seul. Ce qui résulte est qu'on voit la frontière 1.07/1.08 traversée explicitement par l'apprenant : non seulement il formule des prompts, mais il conçoit un système où la sortie de l'un alimente l'entrée d'un autre avec des règles de stockage et de lecture. Ce qui resterait à approfondir, c'est le critère du transfert — quelqu'un d'autre pourrait-il reprendre ce dispositif ? La nuit prévoit déjà cette question avec le test sur un manuel entier.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.8,
+        "motif": "Deux pièces confirmées sans réserve (pipeline à quatre prompts articulés ; reconception du routing mémoire) et deux pièces corroboratives (récursivité à trois niveaux ; couche d'orchestration) établissent la présence avec un niveau de confiance élevé.",
+        "prescription": "Pour prolonger cette pratique architecturale, un chemin possible serait de documenter le dispositif lui-même comme un schéma : qui appelle qui, qui lit où, qui produit quoi pour qui. Le critère de la fiche — qu'un tiers puisse maintenir le système — gagnerait à être rendu opérationnel par cette représentation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Demande de méta-prompt : un prompt générique qui génère à partir du plan la structure de chaque manuel et de chaque chapitre."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Récursivité à trois niveaux dans la formulation des prompts — méta-prompting profond, nommé et justifié."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Demande explicite d'un quatrième prompt qui explicite l'articulation des trois précédents — méta-prompt sur les méta-prompts."
+        },
+        {
+          "numero": 4,
+          "pid": 3,
+          "contexte": "Suppression argumentée de protocoles habituels (CATALYST, co-élaboration cognitive) parce que non pertinents — pilotage conscient du contexte de dialogue."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Le dialogue IA avancé attend de la sophistication dans la formulation, du méta-prompting, et de l'orchestration intentionnelle. J'aborde ces pièces en cherchant ce qui ressemble à un simple usage outillé. La pièce 1 demande un prompt générique : c'est plus qu'une question, c'est une demande de structure réutilisable. La pièce 2 décrit une chaîne 'prompt qui demande un prompt qui demande un prompt qui produit le contenu' — c'est précisément du méta-prompting récursif, signalé comme tel par l'apprenant ('c'est un peu capillotracté'). La pièce 3 ajoute un quatrième prompt qui explicite les relations entre les autres — méta-prompt sur les méta-prompts. La pièce 4 montre un pilotage conscient du contexte (suppression de protocoles non pertinents), ce qui est rare et signalé dans la fiche comme un marqueur fort.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Demande de prompt générique, pas de réponse spécifique — sophistication de la formulation visible." },
+            { "pieceId": 2, "motifResistance": "Méta-prompting récursif explicite à trois niveaux, nommé et justifié — marqueur central de la fiche." },
+            { "pieceId": 3, "motifResistance": "Méta-prompt sur les méta-prompts — couche de réflexion sur l'articulation des prompts entre eux." },
+            { "pieceId": 4, "motifResistance": "Pilotage conscient du contexte de dialogue : suppression argumentée de protocoles habituels — signal rare de mise en condition stratégique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je n'ai pas tout retenu trop vite. Quatre pièces qui résistent toutes, c'est suspect : ma présomption d'absence n'a peut-être pas été assez agressive. Je durcis. La pièce 1 pourrait n'être qu'une demande ordinaire formulée largement (pas particulièrement sophistiquée), donc affaiblissable. La pièce 2 par contre montre une chaîne triple explicite avec auto-conscience ('un peu capillotracté') — l'attaque (a) ne tient pas. La pièce 3 est confirmée par l'existence concrète des quatre prompts mentionnés (lien Drive). La pièce 4 est intéressante : l'attaque (b) confusion avec 1.07 est tentable — pourrait être de l'architecture — mais le geste est bien sur le dialogue (configuration du contexte de la conversation), donc 1.08.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La demande de prompt générique est sophistiquée mais courte ; elle attesterait davantage si elle était reliée aux itérations qui ont suivi."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La chaîne triple est explicite et auto-consciente — l'apprenant nomme la récursivité et l'évalue ('capillotracté mais aligné'). Trace dense."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La demande d'un prompt qui articule les autres est précisément un méta-prompt sur les méta-prompts ; l'existence des quatre prompts produits est confirmée par le lien Drive."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'action est sur le contexte de dialogue (préférences projet), ce qui relève de 1.08, mais elle pourrait aussi être lue comme un geste architectural — frontière fine."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai durci ma lecture parce que toutes les pièces résistaient initialement. Deux ont tenu sans réserve : la chaîne récursive triple, et le méta-prompt qui articule les trois prompts. Deux se sont affaiblies : la demande initiale de prompt générique (un peu courte en isolation) et la suppression des protocoles habituels (qui chevauche l'architecture). Ce qui résulte, c'est une compétence très densément attestée sur cette seule séance : non seulement l'apprenant formule des prompts sophistiqués, mais il pense leur articulation et configure le contexte de dialogue en conséquence. Ce qui resterait à approfondir, c'est ce qui se passe quand un prompt ne donne pas le résultat attendu : comment la reformulation s'opère, et ce qu'elle révèle du modèle.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.8,
+        "motif": "Deux pièces confirmées sans réserve (chaîne récursive triple, méta-prompt sur les méta-prompts) et deux pièces affaiblies retenues (demande initiale, configuration du contexte) attestent une pratique avancée du dialogue IA.",
+        "prescription": "Pour prolonger cette pratique du dialogue avancé, un chemin possible serait de documenter, lors d'une reformulation, ce qui n'a pas marché dans la version précédente et pourquoi. Ce type de note transforme l'itération en analyse du comportement du modèle."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Transfert explicite entre programmation et architecture pédagogique : ce qui est mobilisé pour bâtir le palais mental est ce qui était mobilisé pour coder."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Théorisation explicite de la pensée computationnelle comme aptitude à modéliser mentalement un système multi-couches, transposable hors-informatique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La pensée computationnelle exige le TRANSFERT : la logique appliquée hors de l'informatique. J'aborde ces pièces en m'attendant à ce que l'apprenant — qui a écrit du code toute sa vie — utilise du vocabulaire informatique sans pour autant transférer. La pièce 1 résiste fortement : 'construire cette architecture, ce palais mental [...] est finalement assez simple, car c'est ce que j'ai fait toute ma vie en écrivant du code' — le transfert est nommé en clair, depuis la programmation vers l'architecture pédagogique. La pièce 2 résiste encore plus : 'C'est ça la pensée computationnelle : c'est exactement cette aptitude là que l'on devrait enseigner aux élèves. Plus le code en tout cas' — non seulement le transfert est posé, mais l'apprenant le théorise et le distingue du code lui-même.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Transfert explicite (programmation → architecture pédagogique) avec reconnaissance des fonctions cognitives mobilisées dans les deux cas." },
+            { "pieceId": 2, "motifResistance": "Théorisation de la pensée computationnelle comme aptitude transversale, explicitement distinguée du code — exactement le critère discriminant de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne suis pas séduit par la formulation. L'attaque (e) surinterprétation pédagogique pourrait pointer que l'apprenant utilise le mot 'pensée computationnelle' parce qu'il connaît le concept (formateur en éducation), et qu'il l'applique à son propre cas sans vraiment montrer le transfert en acte. Mais le contenu juste avant — 'mémoriser la structure d'un million de ligne de code, débugger un logiciel avec plusieurs millions d'objets qui interagissent parce qu'on a une image mentale complète du système (le code produit + les outils et librairies invoquées + les usages à différents niveaux par les différents types d'utilisateurs)' — décrit précisément ce qu'est l'aptitude (image mentale complète d'un système multi-couches), et la pièce 1 montre qu'il l'applique effectivement à l'architecture pédagogique des 8 formations + 600 livres. Le transfert n'est pas que mentionné, il est montré.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le transfert est concrètement à l'œuvre : l'aptitude qui sert à bâtir l'architecture pédagogique est nommée comme étant la même que celle qui servait à coder, et le contenu décrit (image mentale d'un système complexe) est cohérent dans les deux domaines."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'apprenant distingue précisément l'aptitude (modéliser mentalement un système) du code lui-même, et propose qu'on devrait enseigner la première sans nécessairement passer par le second. C'est exactement la définition de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire la mention de la 'pensée computationnelle' comme un emprunt lexical, parce que le terme est devenu commun en pédagogie. Mais les deux pièces ont tenu sans réserve : l'apprenant ne se contente pas de nommer le concept, il décrit l'aptitude (image mentale d'un système multi-couches), montre qu'il l'exerce ici (sur l'architecture pédagogique des 8 formations), nomme l'équivalence avec ce qu'il faisait en codant, et la distingue explicitement du code lui-même. Le critère discriminant de la fiche — le TRANSFERT hors-informatique — est posé en clair et illustré. Ce qui resterait à approfondir, ce serait des exemples de transferts dans d'autres directions (vers d'autres domaines de vie, vers des décisions relationnelles), pour montrer que l'aptitude n'est pas captive de la métaphore du système.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "Deux pièces confirmées sans réserve qui satisfont précisément le critère discriminant de la fiche (transfert explicite hors-informatique avec théorisation).",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de chercher où, dans des situations non-pédagogiques et non-techniques, cette même aptitude à tenir une image mentale d'un système complexe s'exerce déjà — peut-être dans la lecture d'une dynamique familiale ou dans l'analyse d'une situation institutionnelle. Le transfert élargi rendrait visible une compétence qui dépasse encore son terrain d'origine."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Articulation explicite du trade-off : l'IA produit la théorie, l'humain devra relire et tester avant diffusion — répartition des rôles dans le pipeline."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Conception d'un dispositif où l'IA génère le matériel d'apprentissage actif et l'humain apprenant le re-génère — synergie pédagogique structurelle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La synergie hybride exige une articulation des forces comparatives, pas une simple délégation. J'aborde ces pièces en m'attendant à trouver surtout de l'usage. La pièce 1 'l'IA va donner la théorie, les exercices et les tests pour savoir si la personne a bien compris [...] je vais devoir relire avant la mise en page et surtout cette fois-ci tester les prompts générés' — l'apprenant articule deux rôles : l'IA produit, l'humain valide et teste. C'est embryonnaire mais réel : il y a une répartition. La pièce 2 'le manuel ne peut donc pas juste être lu, il doit être re-généré par chaque élève, de manière active' — c'est plus profond : l'apprenant conçoit que le matériel d'apprentissage soit lui-même un produit hybride co-construit par l'IA et l'élève au moment de l'apprentissage. C'est une synergie structurelle, pas juste opérationnelle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Articulation explicite des rôles (IA produit la théorie, humain relit et teste) — pas du simple usage, une répartition." },
+            { "pieceId": 2, "motifResistance": "Conception d'un manuel qui n'existe que par la co-génération IA + élève — synergie structurelle au niveau du dispositif pédagogique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas des gestes opérationnels d'un sens synergique qu'ils n'auraient pas. La pièce 1 articule effectivement deux rôles, mais ne dit pas pourquoi l'humain le fait mieux dans ce cas précis — c'est un peu court par rapport au critère de la fiche ('articuler pourquoi l'humain le fait mieux ou pourquoi cette tâche revient à l'IA'). Attaque (a) insuffisance probatoire : tient en partie. La pièce 2 est plus solide : la justification ('plus aligné avec la philosophie des écoles RESPIRE', le manuel actif vs passif, les quatre coups en encart) atteste une conception réfléchie de pourquoi l'élève doit re-générer plutôt que lire passivement — c'est bien une articulation de ce que l'humain apporte (l'engagement actif, la métacognition). Attaque (e) surinterprétation : limite mais ne tient pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'articulation des rôles est posée mais la justification de pourquoi l'humain doit relire et tester reste implicite (ce qui est sous-entendu : l'IA peut produire des prompts incohérents)."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La justification de la part humaine (apprentissage actif via re-génération, métacognition développée, valorisation des compétences IA-friendly) atteste une articulation explicite de ce que l'humain apporte dans la synergie."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de la délégation sophistiquée, pas comme de la synergie. La répartition entre 'IA produit / humain valide' s'est affaiblie : elle articule des rôles mais ne théorise pas la complémentarité dans ce cas précis. La conception du manuel qui n'existe que par la co-génération IA + élève en revanche a tenu : elle pose une économie où ce que l'IA fait (générer du contenu structuré) appelle ce que l'humain fait (s'engager activement, exercer sa métacognition), et la justification philosophique rend visible le choix. Ce qui résulte est une synergie principalement pédagogique, située au niveau du dispositif. Ce qui resterait à approfondir, ce serait la synergie au niveau du travail propre de l'apprenant : quels gestes garde-t-il à lui dans le projet en cours, pour quelles raisons ?",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une trace concrète confirmée (conception d'une synergie structurelle au niveau du dispositif pédagogique) et un indice corroboratif (répartition des rôles dans le pipeline de production) suffisent pour établir la présence avec une réserve sur la portée.",
+        "prescription": "Pour prolonger cette pratique de la synergie, un chemin possible serait d'expliciter, pour le travail propre du concepteur (et non plus seulement pour l'apprenant futur), quels gestes ne se délèguent pas et pourquoi. La répartition entre ce qui se confie à l'IA et ce qui reste irréductiblement humain gagnerait à être nommée pour le projet en cours."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 7,
+    "renvoisCartographe": 2,
+    "nonEtablies": 0,
+    "courtCircuits": 0
+  },
+
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail du 25 janvier montre une séance d'architecte cognitif : une conception générative d'un dispositif pédagogique où l'apprentissage passe par la re-génération, où les prompts s'articulent en plusieurs couches et où la limite mémoire devient elle-même un objet de design. Le registre dominant est celui d'une pensée qui transforme la nature de ce qu'elle produit pendant qu'elle le produit, avec une lucidité opérationnelle régulièrement attestée par des décisions concrètes (suppression des protocoles non pertinents, reconfiguration du routing mémoire, test minimal avant pipeline complet). La voix passe sans rupture du faire technique au questionnement pédagogique et inversement, et un moment d'auto-observation en cours d'écriture rend visible une équivalence reconnue entre des fonctions cognitives anciennes (code) et présentes (architecture des formations). Le journal porte aussi, à mi-séance, une réserve sur la santé et le rythme, qui colore la fin de la séance d'une retenue assumée.",
+    "territoiresDenses": [
+      {
+        "competence": "Pensée Computationnelle",
+        "description": "L'aptitude à tenir une image mentale d'un système multi-couches est nommée, théorisée et explicitement transférée du domaine du code vers celui de l'architecture pédagogique.",
+        "extraitVerbatim": "C'est ça la pensée computationnelle : c'est exactement cette aptitude là que l'on devrait enseigner aux élèves. Plus le code en tout cas",
+        "ceQueCaDit": "Le critère du transfert hors-informatique est posé en clair et illustré sur le projet en cours, ce qui distingue cette pratique d'un simple usage technique."
+      },
+      {
+        "competence": "Architecture de Systèmes IA",
+        "description": "Quatre prompts à rôles distincts s'articulent par un méta-prompt d'orchestration, et le routing entre couches de mémoire (historique conversationnel et mémoire projet) est reconfiguré en réponse à un diagnostic.",
+        "extraitVerbatim": "il m'a proposé trois prompts : un pour la structure de chaque manuel, un pour la structure de chaque chapitre, un pour les annexes. Je lui ai également demandé un prompt explicitant comment s'articulent ces méta-prompts pour générer les manuels.",
+        "ceQueCaDit": "La frontière entre formulation de prompts et architecture de système est traversée par la décision d'introduire un méta-niveau d'articulation et de redessiner le flux d'information."
+      },
+      {
+        "competence": "Dialogue IA Avancé & Orchestration",
+        "description": "Une chaîne récursive de méta-prompts à trois niveaux est explicitement formulée, et le contexte projet est nettoyé des protocoles habituels avec motif.",
+        "extraitVerbatim": "j'ai demandé à l'IA d'écrire un prompt qui demande à l'IA d'écrire un prompt générique qui demande à l'IA d'écrire des prompts pour la théorie et les exercices que l'apprenant utilisera pour apprendre",
+        "ceQueCaDit": "La récursivité est posée et auto-évaluée, et la configuration du contexte de dialogue est faite avec discernement, ce qui dépasse l'usage par défaut."
+      },
+      {
+        "competence": "Pensée Critique & Anti-Hallucination",
+        "description": "Le doute calibré se manifeste dans la suppression des protocoles habituels, l'anticipation de la phase de test des prompts générés, et une auto-correction immédiate après le lancement du pipeline.",
+        "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum !",
+        "ceQueCaDit": "Le scepticisme s'active dans l'élan, sur le geste qui vient d'être posé, ce qui est la forme la plus exigeante du doute méthodique."
+      },
+      {
+        "competence": "Cadrage de l'Intention",
+        "description": "Deux bascules conceptuelles transforment la nature même de ce qui est produit : passer du contenu aux prompts récursifs, et du manuel à lire au manuel à re-générer.",
+        "extraitVerbatim": "Le manuel de formation ne peut donc pas juste être lu, il doit être re-généré par chaque élève, de manière active.",
+        "ceQueCaDit": "Le geste de cadrage ne réorganise pas l'exécution : il change la nature de l'objet pédagogique, justifié par un alignement philosophique explicite."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs régions du pôle restent peu explorées sur cette feuille particulière. La métacognition apparaît surtout comme objet à enseigner aux futurs élèves et non comme acte personnel exercé en détail : une observation en cours d'écriture s'amorce, mais elle reste rapide et ne descend pas dans la description fine de ce que fait la tête au moment où elle assemble. La pensée systémique est présente par un effet de cascade diagnostiqué et un point de levier identifié, mais les boucles de rétroaction qui structurent le projet (rythme de production, fatigue, retour des tests) ne sont pas nommées en tant que telles. La synthèse intégrative se manifeste par une convergence reconnue entre code et architecture pédagogique, sans qu'une métaphore unificatrice nouvelle vienne en cristalliser la portée. La littératie IA porte un diagnostic causal solide sur la mémoire, mais ne se déploie pas sur d'autres types d'échecs IA. Ces territoires sont des choix de feuille, pas des absences structurelles : la séance était architecturale, pas réflexive sur le penser.",
+    "emergencesPole": "Trois choses traversent la séance et plusieurs compétences. D'abord, un mouvement récurrent du faire vers la conscience du faire, qui apparaît dans la suppression des protocoles, dans la formulation du méta-prompt sur les méta-prompts, dans la réalisation au milieu de l'écriture qu'on est en train d'utiliser une compétence ancienne. Ensuite, une économie de moyens recherchée — faire d'une pierre quatre coups, faire en sorte que le manuel apprenne plusieurs choses à la fois, externaliser dans la mémoire projet pour ne pas saturer — qui croise le cadrage, la synthèse et l'architecture. Enfin, un balancement entre l'élan ('je vais quand même lancer pour voir') et la retenue ('je vais me ré-imposer de dormir au moins 6h par nuit'), qui colore la séance sans s'imposer comme thème principal.",
+    "pistes": [
+      "Pour prolonger la pensée critique active, un chemin possible serait de documenter, après chaque test de pipeline, l'écart entre ce qui était attendu et ce qui est revenu, en notant le moment précis où le doute s'est activé.",
+      "Pour rendre la métacognition plus explicite, un chemin possible serait de décrire, lors d'une prochaine séance, ce que fait précisément la tête quand elle assemble plusieurs millions d'objets en une image mentale : quels recoupements, quelles bascules, quels moments d'attente.",
+      "Pour rendre visible la pensée systémique déjà à l'œuvre, un chemin possible serait de nommer une boucle de rétroaction réelle qui structure le projet — par exemple le couple production-fatigue-erreurs-ralentissement, ou la boucle test-minimal-ajustement-confiance.",
+      "Pour approfondir l'architecture, un chemin possible serait de représenter le dispositif des quatre prompts comme un schéma de flux, avec qui appelle qui, qui lit où, qui produit quoi pour qui, de sorte qu'un tiers puisse en reprendre la maintenance.",
+      "Pour rendre la synergie hybride plus explicite, un chemin possible serait de nommer, pour le travail propre du concepteur (et non plus seulement pour l'apprenant futur), quels gestes ne se délèguent pas à l'IA et pourquoi."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail du 25 janvier montre une séance d'architecte cognitif : une conception générative d'un dispositif pédagogique où l'apprentissage passe par la re-génération, où les prompts s'articulent en plusieurs couches et où la limite mémoire devient elle-même un objet de design. Le registre dominant est celui d'une pensée qui transforme la nature de ce qu'elle produit pendant qu'elle le produit, avec une lucidité opérationnelle régulièrement attestée par des décisions concrètes (suppression des protocoles non pertinents, reconfiguration du routing mémoire, test minimal avant pipeline complet). La voix passe sans rupture du faire technique au questionnement pédagogique et inversement, et un moment d'auto-observation en cours d'écriture rend visible une équivalence reconnue entre des fonctions cognitives anciennes (code) et présentes (architecture des formations). Le journal porte aussi, à mi-séance, une réserve sur la santé et le rythme, qui colore la fin de la séance d'une retenue assumée.\n\n## Territoires les plus denses\n\n**Pensée Computationnelle.** L'aptitude à tenir une image mentale d'un système multi-couches est nommée, théorisée et explicitement transférée du domaine du code vers celui de l'architecture pédagogique. *« C'est ça la pensée computationnelle : c'est exactement cette aptitude là que l'on devrait enseigner aux élèves. Plus le code en tout cas »* — le critère du transfert hors-informatique est posé en clair et illustré sur le projet en cours, ce qui distingue cette pratique d'un simple usage technique.\n\n**Architecture de Systèmes IA.** Quatre prompts à rôles distincts s'articulent par un méta-prompt d'orchestration, et le routing entre couches de mémoire (historique conversationnel et mémoire projet) est reconfiguré en réponse à un diagnostic. *« il m'a proposé trois prompts : un pour la structure de chaque manuel, un pour la structure de chaque chapitre, un pour les annexes. Je lui ai également demandé un prompt explicitant comment s'articulent ces méta-prompts pour générer les manuels. »* — la frontière entre formulation de prompts et architecture de système est traversée par la décision d'introduire un méta-niveau d'articulation et de redessiner le flux d'information.\n\n**Dialogue IA Avancé & Orchestration.** Une chaîne récursive de méta-prompts à trois niveaux est explicitement formulée, et le contexte projet est nettoyé des protocoles habituels avec motif. *« j'ai demandé à l'IA d'écrire un prompt qui demande à l'IA d'écrire un prompt générique qui demande à l'IA d'écrire des prompts pour la théorie et les exercices que l'apprenant utilisera pour apprendre »* — la récursivité est posée et auto-évaluée, et la configuration du contexte de dialogue est faite avec discernement, ce qui dépasse l'usage par défaut.\n\n**Pensée Critique & Anti-Hallucination.** Le doute calibré se manifeste dans la suppression des protocoles habituels, l'anticipation de la phase de test des prompts générés, et une auto-correction immédiate après le lancement du pipeline. *« Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum ! »* — le scepticisme s'active dans l'élan, sur le geste qui vient d'être posé, ce qui est la forme la plus exigeante du doute méthodique.\n\n**Cadrage de l'Intention.** Deux bascules conceptuelles transforment la nature même de ce qui est produit : passer du contenu aux prompts récursifs, et du manuel à lire au manuel à re-générer. *« Le manuel de formation ne peut donc pas juste être lu, il doit être re-généré par chaque élève, de manière active. »* — le geste de cadrage ne réorganise pas l'exécution : il change la nature de l'objet pédagogique, justifié par un alignement philosophique explicite.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions du pôle restent peu explorées sur cette feuille particulière. La métacognition apparaît surtout comme objet à enseigner aux futurs élèves et non comme acte personnel exercé en détail : une observation en cours d'écriture s'amorce, mais elle reste rapide et ne descend pas dans la description fine de ce que fait la tête au moment où elle assemble. La pensée systémique est présente par un effet de cascade diagnostiqué et un point de levier identifié, mais les boucles de rétroaction qui structurent le projet (rythme de production, fatigue, retour des tests) ne sont pas nommées en tant que telles. La synthèse intégrative se manifeste par une convergence reconnue entre code et architecture pédagogique, sans qu'une métaphore unificatrice nouvelle vienne en cristalliser la portée. La littératie IA porte un diagnostic causal solide sur la mémoire, mais ne se déploie pas sur d'autres types d'échecs IA. Ces territoires sont des choix de feuille, pas des absences structurelles : la séance était architecturale, pas réflexive sur le penser.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent la séance et plusieurs compétences. D'abord, un mouvement récurrent du faire vers la conscience du faire, qui apparaît dans la suppression des protocoles, dans la formulation du méta-prompt sur les méta-prompts, dans la réalisation au milieu de l'écriture qu'on est en train d'utiliser une compétence ancienne. Ensuite, une économie de moyens recherchée — faire d'une pierre quatre coups, faire en sorte que le manuel apprenne plusieurs choses à la fois, externaliser dans la mémoire projet pour ne pas saturer — qui croise le cadrage, la synthèse et l'architecture. Enfin, un balancement entre l'élan (« je vais quand même lancer pour voir ») et la retenue (« je vais me ré-imposer de dormir au moins 6h par nuit »), qui colore la séance sans s'imposer comme thème principal.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la pensée critique active, un chemin possible serait de documenter, après chaque test de pipeline, l'écart entre ce qui était attendu et ce qui est revenu, en notant le moment précis où le doute s'est activé.\n- Pour rendre la métacognition plus explicite, un chemin possible serait de décrire, lors d'une prochaine séance, ce que fait précisément la tête quand elle assemble plusieurs millions d'objets en une image mentale : quels recoupements, quelles bascules, quels moments d'attente.\n- Pour rendre visible la pensée systémique déjà à l'œuvre, un chemin possible serait de nommer une boucle de rétroaction réelle qui structure le projet — par exemple le couple production-fatigue-erreurs-ralentissement, ou la boucle test-minimal-ajustement-confiance.\n- Pour approfondir l'architecture, un chemin possible serait de représenter le dispositif des quatre prompts comme un schéma de flux, avec qui appelle qui, qui lit où, qui produit quoi pour qui, de sorte qu'un tiers puisse en reprendre la maintenance.\n- Pour rendre la synergie hybride plus explicite, un chemin possible serait de nommer, pour le travail propre du concepteur (et non plus seulement pour l'apprenant futur), quels gestes ne se délèguent pas à l'IA et pourquoi."
+  }
+}

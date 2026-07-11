@@ -1,0 +1,340 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Ce qui m'a motivé à faire le roman en priorité, c'est d'une part que le site web n'est plus du tout à jour, et d'autre part, lorsque je le montre à des jeunes, ils le scrollent sans le lire. Du coup aucun intérêt. Je me dis qu'on ne feuillette pas une histoire. Le format livre est peut être un média plus adapté pour faire comprendre les concepts.",
+      "contexte": "Constat empirique d'un échec du média antérieur, suivi d'un retournement vers un autre format — touche obliquement 5.01, 5.02, 5.08.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "J'ai au moins maintenant quelque chose à partager de compréhensible par tout le monde, pour expliquer le projet.",
+      "contexte": "Énoncé de motivation intrinsèque liée à la transmission du projet — touche obliquement 5.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Le milieu est un peu light en profondeur réflexive, mais Claude me dit que c'est nécessaire.",
+      "contexte": "Acceptation argumentée d'un jugement de l'IA sur un point où l'apprenant n'était pas d'accord initialement — touche 5.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Je n'ai pas du tout l'habitude de lire des romans. Je ne sais pas si c'est bien ou pas.",
+      "contexte": "Aveu d'incompétence dans un domaine où l'apprenant produit pourtant — touche obliquement 5.02 et 5.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Finalement j'ai passé la soirée à ajouter des notions qui me semblaient importantes et que Claude avait supprimé du cahier des charges, pour faire un texte plus humain et moins technique.",
+      "contexte": "Reprise d'autonomie sur les choix de l'IA — touche obliquement 5.04 (collaboration sans soumission) et 5.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Mais bon : je ne cherche pas à lui faire générer le prix Hugo du meilleur roman de SF : je veux juste parler du projet à la base !",
+      "contexte": "Retour à la motivation initiale par contraste, signal d'un « pourquoi » ancré — touche 5.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Donc les corrections seront pour plus tard et je ne pourrai pas proposer le livre au club de lecture lundi après midi. Rien que l'impression des 150 pages en 7 exemples me prendrais la matinée avec mon imprimante à jet d'encre.",
+      "contexte": "Anticipation d'une opération matérielle (impression papier) qui implique sortie du numérique — touche obliquement 5.06 et 5.07.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le constat d'échec du site (« ils le scrollent sans le lire ») devient le déclencheur d'un autre format — l'adversité de communication ouvre une autre voie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'un changement de média n'est pas une trace d'antifragilité. La fiche est explicite : il faut un récit de crise ou d'échec suivi d'une description de ce qui a *changé, grandi ou émergé*. Ici, l'échec du site est mentionné comme un constat froid, sans dramatisation et sans articulation du dépassement. L'apprenant n'écrit pas « cet échec m'a appris X » — il acte un changement de format et passe à autre chose. Pas d'ironie face au chaos, pas de retournement narratif, pas de marqueur de transformation. Ce qui reste faible : la pièce raconte un pivot pragmatique, pas un rebond après épreuve.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — le constat d'échec mentionné est trop sec pour porter une trace de résilience au sens de la fiche. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans cette pièce, je cherchais à voir si l'apprenant racontait un rebond transformateur. Le pivot du site vers le roman est mentionné comme une décision pragmatique, sans la structure narrative du retournement, sans ironie face à l'adversité, sans articulation de ce qui aurait grandi par l'épreuve. Ce qui en résulte sur cette feuille : aucune trace de résilience au sens fort ; le constat d'échec est utilisé comme prémisse, pas thématisé comme passage transformateur.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce n'a pas résisté à la présomption d'absence : le constat d'échec ne s'accompagne d'aucun marqueur de transformation par l'épreuve.",
+        "prescription": "Le travail montre, sur cette feuille, un constat sec d'inefficacité utilisé comme déclencheur. Une piste possible serait, lors d'un prochain pivot, de noter non seulement le changement de cap, mais ce que l'échec antérieur a permis d'apprendre ou de transformer."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Abandon implicite d'un format (site web) au profit d'un autre (roman) — peut signaler un changement de paradigme dans la manière de transmettre."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Reconnaissance d'une non-maîtrise (« je n'ai pas du tout l'habitude de lire des romans ») dans un domaine pourtant abordé — touche obliquement la plasticité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à de la plasticité n'est en fait que de l'apprentissage additif. La fiche est explicite : 5.02 implique l'*abandon* d'un modèle antérieur, pas l'enrichissement. La pièce 1 mentionne un changement de format mais sans nommer ce qui a été abandonné comme savoir ou identité. La pièce 4 reconnaît une incompétence (lire des romans) mais sans articuler ce que cette reconnaissance fait *muer* dans la manière de penser ou de produire. Ce qui reste faible : aucune métaphore d'enfermement, aucune tension entre l'ancien et le nouveau soi, aucune articulation de « ce que je savais est devenu faux ».",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Les deux mentions relèvent davantage du constat (changement de format, manque d'habitude) que du désapprentissage au sens de la fiche.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant muait — abandonnait une peau cognitive devenue trop étroite. Les deux pièces racontent des constats (un format ne fonctionne plus, je ne lis pas de romans) sans la structure de la mue : pas d'articulation de l'ancien et du nouveau, pas de tension assumée, pas de fil conducteur maintenu à travers la transformation. Ce qui en résulte sur cette feuille : aucune trace de plasticité au sens fort. La compétence pourrait exister en arrière-plan (l'apprenant écrit un roman sans en avoir l'habitude — c'est une forme de pivot identitaire), mais elle n'est pas thématisée.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces n'ont pas résisté à la présomption d'absence : le changement est constaté, pas raconté comme mue cognitive ou identitaire.",
+        "prescription": "Le travail montre, sur cette feuille, des changements pragmatiques de format et d'habitude. Une piste possible serait, lors d'une prochaine entrée, de noter ce que la posture d'auteur de roman fait bouger dans l'identité professionnelle — ce qui a été lâché, ce qui reste constant."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la narration réflexive. L'entrée est descriptive (j'ai lu, j'ai relevé, j'ai ajouté) plutôt que tissée — une piste serait de noter ce que la journée signifie au-delà du déroulé."
+      }
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant reconnaît un argument de l'IA contre son propre jugement initial sur la profondeur du milieu — geste de cohabitation cognitive."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "L'apprenant reprend la main sur les choix de l'IA en réintégrant ce qu'elle avait retiré — mouvement d'affirmation après acceptation, qui peut signaler une collaboration équilibrée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à de l'acceptation de l'intelligence supérieure n'est qu'un usage banal de l'IA. La fiche est explicite : 5.04 implique un *vécu personnel* avec tension émotionnelle (surprise, choc, colère, admiration mêlée de malaise). Ici, la pièce 3 mentionne « Claude me dit que c'est nécessaire » sur un ton neutre, sans aveu de supériorité cognitive, sans formulation du type « l'IA exprime mes idées mieux que moi ». La pièce 5 raconte une reprise d'autonomie, ce qui n'est pas par soi du 5.04 (qui suppose l'inverse : accepter ce que l'IA fait mieux). Aucune des deux pièces ne porte la marque émotionnelle de la traversée du deuil cognitif. Ce qui reste faible : pas de tension émotionnelle, pas de métaphore de miroir ou de maïeutique, pas d'aveu de dépassement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — la fiche pose explicitement le test de la tension émotionnelle, qui est absent ici. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant racontait une traversée émotionnelle liée à la supériorité de l'IA. Les deux pièces décrivent une collaboration fonctionnelle, parfois acceptante (sur la profondeur du milieu), parfois affirmative (sur les notions retirées), mais sans le registre émotionnel que la fiche désigne comme indicateur clé. Le ton reste celui d'un usage maîtrisé, pas celui d'un deuil. Ce qui en résulte sur cette feuille : aucune trace de 5.04 au sens fort ; la collaboration est pratique, pas existentielle.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé les deux pièces : la collaboration avec l'IA est racontée sur un ton fonctionnel, sans la tension émotionnelle que la fiche identifie comme indicateur.",
+        "prescription": "Le travail montre, sur cette feuille, une coopération opérationnelle avec l'IA. Une piste possible serait, lors d'une prochaine collaboration où l'IA aurait formulé quelque chose qu'on aurait voulu formuler soi-même, de noter le ressenti — ce que ça remue, ce que ça déplace dans le rapport à sa propre compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Énoncé d'une motivation à transmettre le projet à un large public — touche le « pourquoi » qui structure l'action."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Retour à la motivation initiale par contraste (« je veux juste parler du projet à la base ») — signal d'un sens qui résiste aux dérives."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que ce qui ressemble à du sens intrinsèque n'est qu'une rationalisation post-hoc. La fiche est explicite : la trace fiable se vérifie dans la cohérence entre le sens déclaré et les actions. La pièce 2 est une déclaration de but, mais elle est suivie d'actions cohérentes (l'apprenant a écrit, lu, corrigé). La pièce 6 est une formulation par contraste qui revient au « pourquoi » initial après que la dérive technique l'a poussé ailleurs — c'est un sens qui agit comme garde-fou. Ce qui reste faible : pas de litote viscérale, pas d'expression émotionnelle de sens, pas de « je me sens vivant ». Le sens est sobrement opérationnel.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La phrase « parler du projet à la base » fonctionne comme un retour au pourquoi initial qui réoriente la décision en cours de soirée — signal d'un sens qui survit à la dérive." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. J'examine si je n'ai pas chargé du sens intrinsèque ce qui est en réalité une simple clarification d'objectif.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.02 (cadrage) — la phrase est avant tout un recentrage d'intention. Pour 5.05, il faudrait que ce pourquoi soit thématisé comme moteur intérieur. Néanmoins, le fait que ce pourquoi survive à une dérive technique et oriente une décision concrète (réintégrer des éléments humains) est une trace de motivation intrinsèque en action."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans ces pièces, je cherchais à voir si l'apprenant racontait un sens qui agit, ou s'il rationalisait après coup. Une pièce m'a forcé à reconnaître quelque chose : le « pourquoi » du projet revient en cours de soirée pour redresser la trajectoire après une dérive technique de l'IA — c'est un sens qui fonctionne comme boussole en acte. Sous la présomption de sycophantie, cette pièce a été affaiblie : elle active aussi le cadrage et reste sobre, sans expression émotionnelle de sens. Ce qui en résulte sur cette feuille : une trace légère d'un sens opérationnel, qui ressemble à un sens intégré plus qu'à un sens déclaré.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier ; le sens agit en arrière-plan comme boussole mais n'est pas thématisé comme moteur intérieur.",
+        "prescription": "Le travail montre, sur cette feuille, un « pourquoi » qui revient en cours d'action pour redresser la trajectoire. Une piste possible serait, lors d'une prochaine entrée, de raconter ce qui dans la transmission du projet à des inconnus reste source d'énergie même quand le travail devient ingrat ou invisible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Anticipation d'une opération matérielle (imprimer 150 pages en 7 exemplaires) qui sortirait du numérique — touche obliquement 5.06."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que mentionner une impression n'est pas en soi de la débrouillardise. La fiche est explicite : 5.06 implique soit la gestion d'une panne, soit le travail sans outil numérique par choix, soit le bricolage avec ressources limitées. Ici, l'apprenant évoque une charge logistique (impression à jet d'encre) qui le pousse à renoncer à une étape — c'est précisément l'inverse : la contrainte matérielle paralyse l'action plutôt qu'elle ne déclenche un mode dégradé efficace. Pas de panne gérée, pas d'improvisation, pas de procédure de récupération. Ce qui reste faible : la pièce ne montre aucun geste de débrouille — elle montre un abandon devant la friction matérielle.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence — la mention d'impression ne déclenche pas un récit de bricolage mais un renoncement. Il n'y a rien à examiner sous l'angle de la sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans cette pièce, je cherchais à voir si l'apprenant racontait un mode dégradé fonctionnel. Il évoque une contrainte matérielle (jet d'encre, 7 exemplaires, 150 pages) mais sans aucun geste de bricolage — au contraire, la contrainte fait reculer l'action. Ce qui en résulte sur cette feuille : la matière est mentionnée comme obstacle, pas comme terrain d'invention.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La pièce n'a pas résisté : la contrainte matérielle n'a pas activé un mode dégradé, elle a entraîné un report.",
+        "prescription": "Le travail montre, sur cette feuille, un renoncement face à une charge logistique. Une piste possible serait, lors d'une prochaine impasse matérielle, d'inventer un dispositif minimal (lecture de quelques pages à voix haute, version courte imprimée chez un tiers, partage par mail d'un extrait) — la débrouille comme alternative au report."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la souveraineté attentionnelle. Pour ouvrir ce dossier, l'apprenant pourrait décrire un choix délibéré de focus pour la prochaine relecture (papier vs écran, mode sans IA, etc.)."
+      }
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le constat empirique d'usage du site (« lorsque je le montre à des jeunes, ils le scrollent sans le lire ») est une vérification terrain qui invalide une hypothèse précédente."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que ce qui ressemble à de la vérification terrain est en réalité une simple observation ordinaire. La fiche est explicite : 5.08 est le contact avec la réalité non médiatisée. Ici, l'apprenant n'analyse pas un dashboard ou une donnée — il décrit ce qu'il voit quand il met le site sous les yeux de vrais lecteurs. C'est exactement le geste de la fiche : ne pas confondre la carte (le site existe, il est en ligne) et le territoire (personne ne le lit vraiment). Ce qui reste faible : aucune systématisation, pas de protocole, le test est presque accidentel.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Observation directe du comportement de lecteurs réels (et non d'indicateurs d'audience) qui révèle une réalité contredisant l'hypothèse implicite : avoir un site mis à jour suffit à transmettre le projet." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. J'examine si je n'ai pas chargé du sens de vérification terrain ce qui est en réalité une anecdote.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est brève et le test est mentionné en passant. Il n'y a pas de protocole, pas de comparaison de groupes, pas de mesure. Mais la structure logique est celle de 5.08 : un dispositif (le site) est confronté à la réalité (des jeunes en train de l'utiliser) et l'écart entraîne un changement de cap. La pièce tient comme indice, pas comme preuve forte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En entrant dans cette pièce, je cherchais à voir si l'apprenant racontait une confrontation avec le réel non médiatisé. La pièce m'a forcé à reconnaître quelque chose : montrer le site à des jeunes et observer qu'ils scrollent sans lire, c'est exactement la vérification terrain — pas une analyse de métriques, mais une observation directe de l'usage. Sous la présomption de sycophantie, la pièce est restée mais affaiblie : le test reste informel, presque incident, et n'est pas thématisé comme dispositif. Ce qui en résulte sur cette feuille : une trace légère mais cohérente d'une posture de terrain — décider en fonction de ce que les gens font, pas de ce que les outils disent.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier ; la vérification est réelle mais reste informelle.",
+        "prescription": "Le travail montre, sur cette feuille, une décision fondée sur l'observation directe d'un usage. Une piste possible serait, lors d'une prochaine itération du roman, de prévoir explicitement un test terrain (mettre le texte sous les yeux d'un lecteur et noter ce qui se passe) et de décrire ce que l'observation a révélé que l'auto-évaluation n'aurait pas vu."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 6,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, l'entrée du 15 mars montre un travail intérieur essentiellement opérationnel : l'apprenant travaille avec son IA, ajuste son texte, anticipe une diffusion. La voix dominante est sobre, ponctuée d'arbitrages plutôt que de mises en récit existentielles. Le registre est descriptif, sans envolée lyrique ni détresse. Le micro-fait récurrent : un retour discret à la motivation initiale du projet (« parler du projet à la base ») qui agit comme boussole sans être thématisé comme moteur intérieur. Les registres de transformation profonde — résilience, désapprentissage, narration tissée, deuil cognitif face à l'IA — ne traversent pas cette feuille, qui est avant tout celle d'un travail technique calme.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs registres existentiels restent à l'écart de cette feuille. La résilience-antifragilité, la plasticité-désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure et la souveraineté attentionnelle n'apparaissent pas dans le texte — ce qui ressemble à un choix d'angle pour une entrée de travail technique plutôt que de réflexion existentielle. Le sens intrinsèque laisse une trace légère, qui agit plus comme un cap silencieux que comme un moteur articulé. La vérification terrain laisse une trace cohérente mais informelle. Le mode dégradé est mentionné en creux par l'évocation d'une contrainte d'impression, mais cette contrainte n'a pas activé de débrouillardise.",
+    "emergencesPole": "Une observation traverse les compétences mobilisées dans ce pôle : le travail intérieur, dans cette feuille, n'est ni célébré ni dramatisé. Aucune émotion forte n'est nommée, aucun retournement n'est mis en scène, aucune tension cognitive n'est explicitement traversée. Le récit est celui d'une journée d'édition. Une seconde observation : la posture est celle d'un auteur qui pilote son outil et son objet sans se mettre lui-même en scène — l'apprenant raconte ce qu'il fait, peu ce que ça lui fait. Cette retenue est cohérente avec la litote que la fiche du sens identifie comme une trace fiable, mais elle laisse à l'horizon des feuilles à venir le récit du vécu intérieur.",
+    "pistes": [
+      "Pour enrichir la trace de sens, un chemin possible serait, lors d'une prochaine entrée, de nommer ce qui dans la transmission du projet à des inconnus reste source d'énergie, même quand le travail devient ingrat.",
+      "Pour enrichir la trace de vérification terrain, un chemin possible serait, pour la prochaine itération du roman, de prévoir un test explicite — un lecteur, une observation, ce qui se passe — et de décrire ce que ce test a révélé.",
+      "Pour enrichir la trace de mode dégradé, un chemin possible serait, lors d'une prochaine impasse matérielle (comme l'impression à jet d'encre), d'inventer un dispositif minimal qui contourne l'obstacle plutôt que de différer la diffusion."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, l'entrée du 15 mars montre un travail intérieur essentiellement opérationnel : l'apprenant travaille avec son IA, ajuste son texte, anticipe une diffusion. La voix dominante est sobre, ponctuée d'arbitrages plutôt que de mises en récit existentielles. Le registre est descriptif, sans envolée lyrique ni détresse. Le micro-fait récurrent : un retour discret à la motivation initiale du projet (« parler du projet à la base ») qui agit comme boussole sans être thématisé comme moteur intérieur. Les registres de transformation profonde — résilience, désapprentissage, narration tissée, deuil cognitif face à l'IA — ne traversent pas cette feuille, qui est avant tout celle d'un travail technique calme.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'a atteint sur cette feuille le seuil d'une présence établie. Le sens intrinsèque et la vérification terrain laissent des traces qui demandent encore à se nommer pour franchir ce seuil. La section qui suit décrit ces traces comme des terrains à approfondir plutôt que comme des sommets atteints.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres existentiels restent à l'écart de cette feuille. La résilience-antifragilité, la plasticité-désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure et la souveraineté attentionnelle n'apparaissent pas dans le texte — ce qui ressemble à un choix d'angle pour une entrée de travail technique plutôt que de réflexion existentielle. Le sens intrinsèque laisse une trace légère, qui agit plus comme un cap silencieux que comme un moteur articulé. La vérification terrain laisse une trace cohérente mais informelle. Le mode dégradé est mentionné en creux par l'évocation d'une contrainte d'impression, mais cette contrainte n'a pas activé de débrouillardise.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse les compétences mobilisées dans ce pôle : le travail intérieur, dans cette feuille, n'est ni célébré ni dramatisé. Aucune émotion forte n'est nommée, aucun retournement n'est mis en scène, aucune tension cognitive n'est explicitement traversée. Le récit est celui d'une journée d'édition. Une seconde observation : la posture est celle d'un auteur qui pilote son outil et son objet sans se mettre lui-même en scène — l'apprenant raconte ce qu'il fait, peu ce que ça lui fait. Cette retenue est cohérente avec la litote que la fiche du sens identifie comme une trace fiable, mais elle laisse à l'horizon des feuilles à venir le récit du vécu intérieur.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la trace de sens, un chemin possible serait, lors d'une prochaine entrée, de nommer ce qui dans la transmission du projet à des inconnus reste source d'énergie, même quand le travail devient ingrat.\n- Pour enrichir la trace de vérification terrain, un chemin possible serait, pour la prochaine itération du roman, de prévoir un test explicite — un lecteur, une observation, ce qui se passe — et de décrire ce que ce test a révélé.\n- Pour enrichir la trace de mode dégradé, un chemin possible serait, lors d'une prochaine impasse matérielle (comme l'impression à jet d'encre), d'inventer un dispositif minimal qui contourne l'obstacle plutôt que de différer la diffusion.\n"
+  }
+}

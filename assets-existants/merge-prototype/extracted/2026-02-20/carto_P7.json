@@ -1,0 +1,288 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "J'adore Claude Cowork : ça me permet de travailler sur l'ensemble des fichiers sans passer par un projet.",
+      "contexte": "Adoption d'un outil agentique qui change l'efficacité de travail ; touche 7.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Ce matin, je cherche à homogénéiser la structure JSON Schema des fichiers YAML. Gain de temps incroyable.",
+      "contexte": "Tâche d'optimisation produisant un gain mesuré ; touche 7.06.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Premiers tests de cartographie non concluants : l'architecture de prompts fonctionne, mais l'algorithme n'est pas le bon.",
+      "contexte": "Test itératif avec diagnostic discriminant — touche 7.07 (agilité, boucle générer-tester-ajuster).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Je dois ralentir le projet ces prochains jours pour avancer du côté des demandes du coach de l'ORP [...] reprise du CV à faire en plus du reste.",
+      "contexte": "Arbitrage de priorité entre deux engagements avec borne temporelle ; touche 7.06 (efficacité personnelle / priorisation argumentée) et possiblement 7.05.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Maïeutique & Facilitation d'Apprentissage sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a posé une question pour faire émerger un savoir chez un autre plutôt que de donner la réponse."
+      }
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'Évaluation Transformative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un feedback construit pour faire progresser, avec critères et pistes concrètes."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Documentation Vivante sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait structurer un savoir avec conscience d'un futur lecteur — versioning, anticipation de l'usage."
+      }
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au Leadership Situationnel & Orchestration sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a choisi de prendre ou de céder le gouvernail dans une collaboration humain-IA."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Décision de ralentir un projet pour répondre à une demande externe ; à examiner si la pièce porte un lien entre projection future et décision présente."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la vision stratégique n'est pas attestée : la fiche 7.05 demande un lien explicite entre futur anticipé et décision présente — « je fais X maintenant parce que dans Y temps... ». La pièce 1 décrit un ralentissement causé par une demande pratique immédiate (les exigences du coach ORP, la reprise du CV), pas par une projection long-terme. Le motif est l'urgence administrative présente, pas une vision du futur qui aurait recalibré le projet. La pièce ne résiste pas sérieusement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Le temps 1 n'a retenu aucune pièce.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace de vision stratégique. Aucune pièce n'a résisté : ralentir un projet pour traiter une demande externe immédiate n'est pas l'établissement d'un lien entre futur anticipé et décision présente. Ce qui en résulte : le dossier reste fermé sur cette feuille ; il pourrait s'ouvrir lorsqu'une décision se justifierait explicitement par un horizon temporel long.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : le ralentissement décrit répond à une urgence administrative présente, pas à une projection long-terme argumentée.",
+        "prescription": "Pour ouvrir le dossier de la vision stratégique, une feuille future pourrait expliciter un choix présent par sa contribution à un horizon long — non « je fais X parce qu'on me le demande maintenant », mais « je fais X parce que dans six mois, cela me permettra de... »."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Arbitrage de priorité explicite et borné dans le temps entre deux engagements — c'est le marqueur central de 7.06 (refus stratégique argumenté)."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Choix d'usage d'un agent (Cowork) qui modifie le workflow — touche l'efficacité personnelle par la formalisation d'une technique."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Tâche d'homogénéisation effectuée avec gain de temps qualifié — relève d'une optimisation traçable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'efficacité personnelle n'est pas attestée : la fiche 7.06 demande des décisions explicites de ne pas faire, des arbitrages argumentés, ou la formalisation de techniques personnelles. La pièce 1 (« je dois ralentir le projet pour avancer du côté des demandes du coach ») est l'exemple le plus clair : c'est un arbitrage entre deux engagements, borné dans le temps (« ces prochains jours »), avec une raison nommée. La pièce 2 (Cowork comme nouveau mode de travail) est plus faible : c'est une adoption d'outil, pas un arbitrage. La pièce 3 (homogénéisation des YAML, gain de temps) est de l'optimisation factuelle, pas un refus stratégique. La pièce 1 résiste fortement, les pièces 2 et 3 marginalement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "C'est un arbitrage explicite entre deux engagements, avec borne temporelle et raison nommée — la structure même que la fiche décrit comme marqueur de 7.06."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "L'apprenant qualifie un gain de temps obtenu par homogénéisation : c'est une trace d'attention à l'économie de l'effort."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en me demandant si je n'ai pas chargé un simple constat administratif d'une portée stratégique. L'arbitrage est réel — il y a deux engagements en concurrence, l'un est temporairement subordonné à l'autre — mais l'apprenant écrit « je dois », ce qui signale plutôt une contrainte qu'un refus stratégique délibéré. L'attaque (a) insuffisance probatoire pèse modérément : il n'y a pas de protocole de priorisation, juste un constat. Néanmoins, le marqueur central de la fiche — « j'ai fait passer X avant Y parce que... » — est bien là, même sous une forme brève. Pour la pièce 3, l'attaque (a) tient mieux : un « gain de temps incroyable » est une appréciation, pas un protocole.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'arbitrage est exprimé brièvement et sous le mode du « je dois » plutôt que du choix souverain, mais la structure de priorisation argumentée et bornée dans le temps reste lisible."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Un « gain de temps incroyable » est une appréciation d'effet ; sans description de la technique formalisée ou de critères articulés, la pièce reste sous le seuil probatoire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace d'efficacité personnelle. La pièce de l'arbitrage entre le projet de cartographie et les demandes du coach m'a forcé à reconnaître que le marqueur central de 7.06 — la priorisation argumentée — est bien activé, même si brièvement. Sous la présomption de sycophantie, cette pièce s'est affaiblie : le « je dois » signale une contrainte plutôt qu'un refus souverain, et la pièce du gain de temps sur l'homogénéisation YAML s'est révélée trop déclarative pour tenir. Ce qui reste : un indice corroboratif d'efficacité personnelle, sous la forme d'une priorisation temporellement bornée et motivée. Le verdict tient au niveau du renvoi au cartographe — la trace est présente, mais elle attend d'autres pour s'établir.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce centrale sans la disqualifier : la priorisation est lisible mais brève, et la deuxième pièce n'a pas tenu — un indice unique ne suffit pas à établir la présence.",
+        "prescription": "L'arbitrage entre projet de cartographie et demandes ORP gagnerait à être déplié : nommer le critère qui fait passer l'un avant l'autre, le moment où le projet reprendra, ce qui se renonce explicitement. Cette articulation transformerait l'indice en trace solide d'efficacité personnelle."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le diagnostic post-test (« l'architecture fonctionne, l'algorithme n'est pas le bon ») suit la structure générer-tester-ajuster ; touche 7.07 (agilité, itération structurée)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'agilité n'est pas attestée : la fiche 7.07 demande des versions successives, des artefacts de coordination utilisés activement, et un cycle observable générer-tester-ajuster. La pièce 1 mentionne un test non concluant et un diagnostic discriminant, ce qui est la phase de relecture/test du cycle. Mais la phase d'ajustement n'est pas décrite : on sait que l'algorithme « n'est pas le bon » mais on ne lit pas ce que l'apprenant change ni ce qu'il essaie ensuite. C'est une moitié de boucle, pas une itération complète. La pièce résiste faiblement : elle pointe vers une pratique itérative en arrière-plan, mais elle n'en montre qu'un fragment.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le diagnostic post-test discriminant suppose un cycle itératif en cours et un retour critique sur la version courante."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en me demandant si je n'ai pas chargé un simple constat d'une portée méthodologique. L'attaque (a) insuffisance probatoire pèse : il n'y a aucune mention de version, d'ajustement réel, de prochaine étape — c'est un test échoué, pas une itération documentée. Néanmoins, le fait qu'il s'agisse des « premiers » tests suggère qu'une série est prévue, ce qui est cohérent avec une posture itérative. La pièce reste comme indice qu'une pratique itérative existe ailleurs dans le projet, sans s'établir ici.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le diagnostic est trop bref pour montrer une boucle complète, mais la mention des « premiers tests » et le diagnostic discriminant indiquent une pratique itérative en arrière-plan."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace d'agilité. La pièce du diagnostic post-test m'a brièvement résisté parce qu'elle implique un cycle itératif. Mais sous la présomption de sycophantie, elle s'est affaiblie : on lit la phase de relecture, pas la phase d'ajustement, et l'absence de prochaine version explicite empêche la boucle de se fermer. Ce qui en résulte : un indice qu'une pratique itérative existe en arrière-plan, sans qu'elle ne se manifeste pleinement ici. Le verdict tient au seuil du renvoi.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier : le diagnostic post-test montre une demi-boucle itérative, sans la phase d'ajustement qui la fermerait.",
+        "prescription": "Le diagnostic du test non concluant deviendrait une trace d'agilité plus solide si la prochaine feuille racontait l'ajustement précis qui en a découlé — quelle version a été produite ensuite, sur la base de quel apprentissage tiré du test échoué."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Gestion de Crise en Temps Réel sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où des décisions ont dû s'enchaîner sous compression temporelle extrême."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 6,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 20 février, le pôle du pilotage personnel apparaît à bas bruit, surtout dans deux gestes brefs. Un arbitrage entre deux engagements — le projet de cartographie ralenti pour avancer sur les demandes du coach de l'ORP — pose une priorisation bornée dans le temps. Un test de cartographie qui n'aboutit pas est suivi d'un diagnostic discriminant (« l'architecture fonctionne, l'algorithme n'est pas le bon »), qui montre une moitié de boucle itérative.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas visités sur cette feuille — la maïeutique, l'évaluation transformative, la documentation vivante, le leadership situationnel et la gestion de crise. Ces absences relèvent surtout du format de la note : une session de travail en autonomie ne convoque ni transmission ni pilotage collectif. La vision stratégique a été examinée sans aboutir : l'arbitrage de calendrier est motivé par une urgence administrative présente plutôt que par une projection long-terme.",
+    "emergencesPole": "Deux gestes traversent cette feuille : une priorisation sous contrainte (efficacité personnelle) et un diagnostic post-test (agilité). Pris ensemble, ils dessinent une figure de travailleur qui régule son tempo en cours de route — sans formaliser le geste de régulation. La trace est présente, l'articulation reste à écrire.",
+    "pistes": [
+      "Pour enrichir la trace d'efficacité personnelle, un chemin possible serait de déplier l'arbitrage : quel critère a fait passer la demande ORP avant le projet de cartographie, quand le projet reprendra son rythme, ce qui est explicitement renoncé pendant ces prochains jours.",
+      "Pour enrichir la trace d'agilité, un chemin possible serait de raconter, dans une feuille future, l'ajustement précis qui suit le test non concluant — quelle nouvelle version de l'algorithme est tentée, sur la base de quel apprentissage tiré de l'échec.",
+      "Pour ouvrir la trace de documentation vivante, un chemin possible serait de structurer une fois le projet abouti — un README, un changelog — qui rendrait l'architecture transmissible à un futur lecteur."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 20 février, le pôle du pilotage personnel apparaît à bas bruit, surtout dans deux gestes brefs. Un arbitrage entre deux engagements — le projet de cartographie ralenti pour avancer sur les demandes du coach de l'ORP — pose une priorisation bornée dans le temps. Un test de cartographie qui n'aboutit pas est suivi d'un diagnostic discriminant (« l'architecture fonctionne, l'algorithme n'est pas le bon »), qui montre une moitié de boucle itérative.\n\n## Territoires les plus denses\n\nAucun territoire ne ressort comme densité pleinement établie sur cette feuille. Deux dossiers restent ouverts en renvoi au cartographe : l'efficacité personnelle, portée par un arbitrage de calendrier argumenté, et l'agilité, portée par un diagnostic post-test discriminant. Les deux sont des indices solides qui attendent d'être étoffés.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas visités sur cette feuille — la maïeutique, l'évaluation transformative, la documentation vivante, le leadership situationnel et la gestion de crise. Ces absences relèvent surtout du format de la note : une session de travail en autonomie ne convoque ni transmission ni pilotage collectif. La vision stratégique a été examinée sans aboutir : l'arbitrage de calendrier est motivé par une urgence administrative présente plutôt que par une projection long-terme.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux gestes traversent cette feuille : une priorisation sous contrainte (efficacité personnelle) et un diagnostic post-test (agilité). Pris ensemble, ils dessinent une figure de travailleur qui régule son tempo en cours de route — sans formaliser le geste de régulation. La trace est présente, l'articulation reste à écrire.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la trace d'efficacité personnelle, un chemin possible serait de déplier l'arbitrage : quel critère a fait passer la demande ORP avant le projet de cartographie, quand le projet reprendra son rythme, ce qui est explicitement renoncé pendant ces prochains jours.\n- Pour enrichir la trace d'agilité, un chemin possible serait de raconter, dans une feuille future, l'ajustement précis qui suit le test non concluant — quelle nouvelle version de l'algorithme est tentée, sur la base de quel apprentissage tiré de l'échec.\n- Pour ouvrir la trace de documentation vivante, un chemin possible serait de structurer une fois le projet abouti — un README, un changelog — qui rendrait l'architecture transmissible à un futur lecteur."
+  }
+}

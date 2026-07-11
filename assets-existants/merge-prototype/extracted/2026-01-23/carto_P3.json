@@ -1,0 +1,463 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "J'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic. Du coup j'ai crafté, avec l'aide de Claude, ce nouveau prompt de préférence utilisateur",
+      "contexte": "Diagnostic d'un protocole existant suivi d'une refonte ; mention du verbe « crafter » comme acte créatif. Active 3.01 (itération) et 3.02 (signature : « crafter »).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je pense à voix haute, pas comme quelqu'un qui performe la pensée. - Court quand c'est suffisant. Long quand c'est nécessaire. - Structure seulement si la structure sert. - Pas de titres, résumés ou bullet points par défaut. - Italique pour les réflexions internes que je partage.",
+      "contexte": "Énoncé d'un style imposé à l'IA qui formule en creux les critères esthétiques de l'apprenant pour la prose. Active 3.04 (jugement esthétique) et 3.02 (signature stylistique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je m'adapte au contexte : - **Outil** → Je produis le travail demandé, efficacement - **Miroir** → J'élargis ton champ de vision, je montre l'angle mort - **Agent réflexif** → Je maintiens la tension, j'habite les silences",
+      "contexte": "Trois rôles différenciés assignés à l'IA — métaphores singulières (« habiter les silences »). Active 3.02 (signature).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Parfois, je viole ce protocole pour mieux l'honorer.",
+      "contexte": "Formule paradoxale et singulière qui caractérise le rapport de l'apprenant aux règles. Active 3.02 (signature : style aphoristique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "### 4.2 Pensée latérale Au moins une piste doit sembler \"hors sujet\"",
+      "contexte": "Règle d'inclusion délibérée d'une piste apparemment hors-sujet ; trace d'une conception de la créativité comme transgression. Active 3.01 (créativité radicale par règle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "A partir de ça, j'ai repris la dernière conversation pour aboutir à ces deux documents emblématiques ainsi que ce texte marketing",
+      "contexte": "Workflow itératif : prompt → conversation → artefacts. Active 3.01 (itération : v1 → v2 → artefacts).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Savez-vous que votre enfant passe six heures par jour à apprendre des choses qu'une machine fait déjà mieux que lui ? Demandez à n'importe quelle IA de rédiger une dissertation. De résoudre un système d'équations. De coder une application. Faites-le. Maintenant. Vous verrez !",
+      "contexte": "Ouverture du texte marketing : ton, ponctuation cassante, paragraphes courts — marqueurs de style. Active 3.02 (signature stylistique) et 3.04 (curation : choix de ce ton parmi d'autres).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "RESPIRE ne remplace pas l'école - elle répare ce qu'elle ne fait pas. C'est plus qu'un réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs.",
+      "contexte": "Définition d'un dispositif inédit (école auto-reproduite par validation entre pairs) — un nouveau « problème » formulé : comment construire une école que ses propres élèves font exister. Active 3.03 (design de problèmes) et 3.01 (rupture radicale).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Valorisons ce qui nous rend humain. Cultivons ce qui nous rend irremplaçable.",
+      "contexte": "Clôture aphoristique avec parallélisme rythmique — marqueur de signature. Active 3.02.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "L'école aurait dû être le lieu du développement des intelligences. La société mercantile l'a transformée en lieu de tri social.",
+      "contexte": "Reformulation du « problème » de l'école : pas « comment mieux enseigner » mais « comment réparer ce que l'école ne fait pas ». Active 3.03 (design de problèmes : créer une question nouvelle).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Itération explicite : un protocole existant (CATALYST) est diagnostiqué faiblard, une nouvelle version est craftée — cycle v1 → diagnostic → v2."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Itération en chaîne : prompt nouveau → reprise d'une conversation → deux documents emblématiques + texte marketing."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Règle de pensée latérale imposée à l'IA — geste créatif délibéré : forcer le hors-sujet."
+        },
+        {
+          "numero": 4,
+          "pid": 8,
+          "contexte": "Description d'une école auto-reproduite par validation entre pairs — concept qui transgresse la règle d'autorité scolaire ; trace possible de rupture radicale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'itération exige des versions racontées avec apprentissage explicite entre chaque, et que la radicalité exige une rupture qui ne pouvait pas venir d'un copier-coller. La pièce 1 décrit un cycle v1 → diagnostic → v2 — c'est de l'itération attestée par le récit, pas seulement par la mention. La pièce 2 prolonge ce cycle vers les artefacts. La pièce 4 (RESPIRE comme école auto-reproduite par validation entre pairs) propose une formule qui n'est pas l'optimisation d'un modèle scolaire existant — c'est une transgression du principe d'autorité scolaire. La pièce 5 est plus mince : c'est une règle dictée à l'IA, pas un acte créatif vécu. Les pièces 1, 2 et 4 résistent.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Cycle v1 → diagnostic causal → v2 explicite : c'est l'itération racontée, pas mentionnée." },
+            { "pieceId": 2, "motifResistance": "Le prompt nouveau a nourri une conversation qui a produit deux artefacts et un texte — itération en cascade." },
+            { "pieceId": 4, "motifResistance": "RESPIRE comme école auto-reproduite par validation entre pairs ne ressemble à aucun modèle existant — la rupture est dans le principe même, pas dans une amélioration de l'école." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant la sycophantie. Pour la pièce 1, l'attaque (a) « insuffisance probatoire » mord partiellement : « j'ai crafté un nouveau prompt » est plus une mention qu'un récit étayé des choix créatifs ; cependant le cycle (diagnostic + refonte) est attesté. Pour la pièce 4, l'attaque (g) « mouvement-vers » est tentante : RESPIRE est décrite, est-elle déjà construite ou est-ce un projet ? Le critère 3.01 pour la radicalité (« l'IA l'aurait-elle suggéré ? ») se pose : une école auto-reproduite par validation entre pairs est-elle vraiment nouvelle, ou est-ce une recombinaison de schémas connus (Wikipédia + Sudbury + open source) ? La radicalité s'affaiblit ; la dimension itérative tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le récit du cycle est court (« faiblard » → « du coup j'ai crafté ») mais les phases du cycle sont nommées : observation, diagnostic causal, refonte. L'itération tient comme indice."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« J'ai repris la dernière conversation pour aboutir à ces deux documents » atteste l'itération en cascade sans en décrire les apprentissages entre étapes."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La rupture est dans le principe (validation entre pairs, auto-reproduction sans permission) mais c'est un projet décrit, pas un système éprouvé ; le mouvement-vers la radicalité est présent, la radicalité accomplie reste à démontrer."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Au moins une piste doit sembler hors sujet » est une règle dictée à l'IA, pas un acte créatif que l'apprenant a posé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette compétence en présumant que la mention d'un travail ne suffit pas à attester la créativité itérative. Ce qui m'a forcé à reconnaître la trace, c'est le cycle attesté autour du protocole (constat → diagnostic → refonte → reprise → artefacts) — un schéma itératif déployé sur la longueur de la feuille. La dimension radicale s'est affaiblie sous l'examen : RESPIRE est un projet décrit qui mobilise des éléments connus (validation par les pairs, auto-organisation) recomposés de façon singulière, plus qu'une rupture entièrement neuve. Sur cette feuille, le travail montre une itération assumée à plusieurs échelles — du prompt à la cascade d'artefacts —, et un mouvement vers la rupture sans la démonstration aboutie. La nuance qui reste : ce qui a été appris entre v1 et v2, entre conversation et artefact, n'est pas explicité.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Trois pièces affaiblies mais retenues ont tenu, formant un schéma itératif sur la longueur de la feuille ; la rupture radicale est en mouvement, pas aboutie.",
+        "prescription": "Un prolongement utile serait de documenter, entre deux itérations, l'apprentissage explicite qui a fait basculer la v1 vers la v2 — pas seulement le quoi (j'ai changé), mais le pourquoi (j'ai compris que) qui rend l'itération transmissible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "« Je viole ce protocole pour mieux l'honorer » : formule aphoristique singulière, paradoxe assumé — marqueur de style propre."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "« J'habite les silences » : métaphore phénoménologique appliquée à un rôle technique — choc de registres caractéristique."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "« Valorisons ce qui nous rend humain. Cultivons ce qui nous rend irremplaçable » : parallélisme rythmique aphoristique."
+        },
+        {
+          "numero": 4,
+          "pid": 1,
+          "contexte": "« J'ai crafté » : verbe singulier (anglicisme assumé, registre artisanal) caractéristique d'un certain rapport au geste créatif."
+        },
+        {
+          "numero": 5,
+          "pid": 2,
+          "contexte": "Énoncé du style imposé à l'IA : « pas comme quelqu'un qui performe la pensée », « structure seulement si la structure sert » — formules qui posent une signature stylistique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la singularité exige un fil stylistique qui traverse plusieurs entrées dans le temps — pas un effet ponctuel. Sur une feuille unique, le test « quelqu'un d'autre pourrait-il identifier l'auteur sans voir son nom ? » est plus difficile. Cependant les pièces 1, 2 et 3 portent toutes le même geste : l'aphorisme paradoxal, la métaphore qui transgresse le registre attendu. « Violer pour honorer », « habiter les silences », « valorisons ce qui nous rend humain / cultivons ce qui nous rend irremplaçable » partagent une rhétorique caractéristique. La pièce 4 (« crafté ») et 5 (énoncé du style) sont des indices supplémentaires. Le faisceau est cohérent dans une seule feuille — ce qui ne suffit pas à conclure à la signature au sens strict (récurrence dans le temps).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Formule paradoxale aphoristique qui caractérise une posture spécifique vis-à-vis des règles." },
+            { "pieceId": 2, "motifResistance": "« Habiter les silences » applique une métaphore phénoménologique à un rôle technique — choc de registres reconnaissable." },
+            { "pieceId": 3, "motifResistance": "Parallélisme rythmique en clôture d'un texte de mobilisation — geste stylistique délibéré." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'invente pas une signature à partir d'un échantillon trop court. L'attaque (e) « surinterprétation » mord : trois formules sur une feuille ne suffisent pas à attester un style qui revient. La fiche est explicite : la singularité est « récurrente dans le temps » — sur une feuille unique, le critère discriminant n'est pas testable. L'attaque (a) « insuffisance probatoire » mord aussi : il faudrait d'autres feuilles pour vérifier la récurrence. Cependant la cohérence interne des pièces (même geste rhétorique paradoxal/aphoristique répété au moins trois fois dans la feuille) est un indice plus solide qu'une occurrence isolée. La pièce reste comme indice, affaiblie par l'horizon temporel limité.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La formule est singulière mais une seule occurrence n'établit pas un style récurrent ; affaiblie par l'horizon mono-feuille."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le choc de registres est caractéristique mais cette feuille seule ne montre pas la récurrence dans le temps exigée par la fiche."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le parallélisme aphoristique est un geste stylistique délibéré ; sa récurrence dans le temps reste à confirmer."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Crafté » est un mot, pas un fil stylistique ; le glissement lexical (utiliser un anglicisme dans un texte français) ne suffit pas à constituer une signature."
+            },
+            {
+              "pieceId": 5,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Énoncer un style à imposer à l'IA n'est pas exercer une signature ; c'est dicter un goût, pas le manifester."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché la signature et trouvé sur cette feuille un faisceau cohérent — trois aphorismes paradoxaux, choc de registres, parallélisme rythmique. La fiche exige une récurrence dans le temps pour conclure à la signature au sens strict, ce qu'une feuille unique ne peut pas démontrer. Sur cette seule feuille, le travail montre une cohérence stylistique interne forte : un même geste rhétorique se répète à plusieurs endroits du texte. Cela suffit à un indice de signature, pas à une présence établie au sens de la fiche. L'orientation : le verdict définitif de cette compétence nécessite la comparaison entre plusieurs feuilles du portfolio.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.4,
+        "motif": "Trois indices affaiblis ont tenu — la cohérence stylistique interne est forte mais la récurrence dans le temps exigée par la fiche dépasse l'horizon d'une feuille unique.",
+        "prescription": "Le verdict définitif passe par la comparaison entre plusieurs feuilles. Sur cette feuille seule, un prolongement utile serait de nommer un trait stylistique reconnaissable dans sa propre écriture — un tic, une métaphore récurrente — et d'en suivre la trace dans d'autres pages."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "« RESPIRE ne remplace pas l'école - elle répare ce qu'elle ne fait pas » : reformulation radicale du problème éducatif — pas « comment faire mieux l'école » mais « comment faire ce que l'école ne fait pas »."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "« L'école aurait dû être le lieu du développement des intelligences. La société mercantile l'a transformée en lieu de tri social » : naming d'un problème qui n'apparaissait pas comme tel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le design de problèmes exige la création d'une question qui n'existait pas — pas seulement la reformulation d'un problème classique. La pièce 1 fait exactement ce mouvement : elle déplace la question de « comment faire mieux l'école » à « comment construire ce que l'école ne fait pas ». Ce déplacement crée un espace d'action différent (le parallèle, non la réforme). La pièce 2 fait le geste inverse mais aussi caractéristique : nommer comme problème quelque chose qui n'était pas formulé comme tel (l'école comme tri social). La fiche cite explicitement « formes les plus abouties : création d'espaces d'action qui n'existaient pas avant l'intervention » — RESPIRE est précisément cela. Les deux pièces résistent.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Déplacement explicite du problème : pas « réformer l'école » mais « réparer ce qu'elle ne fait pas » — création d'un espace d'action inédit." },
+            { "pieceId": 2, "motifResistance": "Nomination d'un problème qui n'était pas formulé comme tel — la question est créée, pas seulement reformulée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant la confusion avec 1.02 — la distinction critique est précisément ce point. 1.02 reformule un problème existant ; 3.03 crée un problème nouveau. La pièce 1 (« RESPIRE répare ce que l'école ne fait pas ») ne reformule pas le problème de l'école — elle pose une question différente : non « comment réformer l'éducation » mais « comment construire l'éducation en dehors de l'éducation ». C'est un problème qualitativement différent, qui ouvre un autre champ d'action (parallèle, pas réforme). La distinction tient. L'attaque (e) « surinterprétation » est tentante mais ne mord pas : le texte le formule explicitement (« en parallèle avec sa scolarité »).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La distinction avec 1.02 tient : RESPIRE ne reformule pas le problème de l'école, elle pose un autre problème (comment construire en parallèle ce que l'école ne fait pas) qui ouvre un autre champ d'action."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« L'école est un lieu de tri social » est une thèse, posée sans démonstration empirique ; cependant comme acte de problématisation (faire passer du non-thématisé au thématisé), la pièce tient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans RESPIRE une simple reformulation du problème scolaire (ce qui relèverait de 1.02). Ce qui m'a forcé à reconnaître le design de problèmes, c'est la phrase « ne remplace pas l'école — elle répare ce qu'elle ne fait pas » : ce n'est pas « comment faire mieux l'école » mais « comment construire ce que l'école ne fait pas ». Le déplacement crée un espace d'action différent. La pièce 2 (école comme tri social) est restée comme indice — geste de nomination d'un problème non-thématisé, sans la démonstration empirique qui le durcirait. Sur cette feuille, le travail montre un acte de design de problème abouti : RESPIRE n'optimise pas l'existant, elle ouvre un terrain qui n'avait pas reçu de nom. La nuance qui reste : l'histoire de la trajectoire qui a mené à ce déplacement (qu'est-ce qui, dans le parcours, a fait basculer la question ?) n'est pas racontée ici.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Une preuve confirmée (RESPIRE comme création d'un espace d'action qui n'existait pas — pas réforme mais réparation parallèle) et un indice de nomination de problème non-thématisé portent ensemble le verdict.",
+        "prescription": "Un prolongement utile serait de raconter le moment où la question a basculé — qu'est-ce qui, dans le parcours, a fait passer de « comment réformer l'école » à « comment construire en parallèle ce que l'école ne fait pas ». Le récit de cette bascule rend le design de problème transmissible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Énoncé de critères esthétiques explicites pour la prose : pas de titres, pas de bullets par défaut, italique pour les réflexions internes — critères articulés."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Jugement qualitatif sur le protocole CATALYST (« un peu faiblard ») : évaluation formelle d'un dispositif."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Texte marketing : choix d'un registre persuasif spécifique parmi d'autres possibles (analytique, témoignage, etc.) — sélection éditoriale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le jugement esthétique exige une articulation des critères de qualité formelle. La pièce 1 est solide : « pas de titres, résumés ou bullet points par défaut », « structure seulement si la structure sert », « italique pour les réflexions internes » sont des critères esthétiques précis pour la prose. La pièce 2 est plus mince : « faiblard » est un jugement, mais sans articulation de ce qui rend faible. La pièce 3 (texte marketing) est un acte de curation implicite — choisir ce ton plutôt qu'un autre — sans explicitation des critères. La pièce 1 résiste fortement, les autres faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Critères esthétiques articulés pour la prose : longueur calibrée, structure justifiée par l'usage, italique réservé aux réflexions internes." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en suspectant la confusion avec 1.08 — la sophistication du prompt. Les critères énoncés sont-ils esthétiques (au sens de 3.04 : justesse formelle) ou seulement techniques (au sens de 1.08 : sophistication du dialogue) ? La distinction de la fiche 3.04 est claire : la curation implique de la soustraction. Ici l'apprenant soustrait — « pas de titres, pas de bullets par défaut » — au nom d'une justesse formelle (« structure seulement si la structure sert »). C'est précisément du jugement esthétique articulé. L'attaque (b) ne tient pas. Cependant l'attaque (f) « récit performatif » mord partiellement : les critères sont énoncés, pas mis en œuvre dans cette feuille avec une réflexion sur leur effet.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les critères sont articulés (et impliquent la soustraction comme le veut la fiche), mais on ne lit pas un récit où l'apprenant a choisi entre deux options et expliqué pourquoi celle-ci ; la pièce tient comme déclaration étayée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Faiblard » est un jugement nu sans articulation de ce qui rend le protocole faible — c'est une réaction, pas un jugement esthétique au sens de 3.04."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le choix du ton dans le texte marketing est implicite ; sans articulation des alternatives écartées et des raisons, il ne constitue pas une curation au sens de 3.04."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché un jugement esthétique articulé. La pièce des critères de prose a tenu : « pas de titres, pas de bullets par défaut, structure seulement si la structure sert, italique pour les réflexions internes » articule une esthétique de la prose avec un principe (la justesse formelle plutôt que l'ornement) et un acte de soustraction (ce qu'on enlève par défaut). Les autres pièces sont tombées comme jugements nus ou comme actes de curation implicites. Sur cette feuille, le travail montre un jugement esthétique articulé sur un seul terrain — la prose —, et incarné en tant que règle imposée à l'IA. La nuance qui reste : l'arbitrage en situation (« j'avais le choix entre cette tournure et celle-ci, j'ai choisi celle-ci parce que ») n'apparaît pas en acte.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Un seul indice affaibli a tenu, mais il porte une articulation explicite des critères esthétiques pour la prose avec un acte de soustraction conforme au critère de la fiche.",
+        "prescription": "Un prolongement utile serait de raconter un arbitrage esthétique en situation — par exemple deux versions du texte marketing comparées, et la raison articulée du choix de l'une plutôt que l'autre. La curation devient lisible quand le rejet est nommé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation d'interaction physique avec la matière — montage, réparation, fabrication, cuisine, bricolage."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel et la pleine présence sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où l'attention au corps, à une sensation physique ou à un moment de présence a infléchi une décision."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment en présentiel où sa présence physique a fait une différence identifiable — interaction avec un public, improvisation, adaptation à un imprévu."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail montre un apprenant qui crée par formalisation — chaque idée prend la forme d'un dispositif, chaque dispositif d'un texte. Le geste créatif passe par l'écriture : un protocole, un texte marketing, la description d'une école auto-reproduite. La voix dominante est celle d'un concepteur, avec un goût marqué pour l'aphorisme paradoxal (« je viole ce protocole pour mieux l'honorer », « valorisons ce qui nous rend humain, cultivons ce qui nous rend irremplaçable »). Le rapport à la matière physique n'apparaît pas sur cette feuille — la création se loge entièrement dans le verbal et le conceptuel.",
+    "territoiresDenses": [
+      {
+        "competence": "Design de Problèmes",
+        "description": "Déplacement explicite du problème éducatif : pas « comment réformer l'école » mais « comment construire ce que l'école ne fait pas ». Création d'un espace d'action inédit.",
+        "extraitVerbatim": "RESPIRE ne remplace pas l'école - elle répare ce qu'elle ne fait pas. C'est plus qu'un réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs.",
+        "ceQueCaDit": "L'acte créatif porte sur la question, pas sur la réponse — un autre champ d'action s'ouvre quand la question change."
+      },
+      {
+        "competence": "Créativité Itérative & Radicale",
+        "description": "Cycle itératif attesté sur la feuille : protocole jugé faiblard → diagnostic causal → nouveau prompt → reprise de conversation → deux artefacts + texte marketing.",
+        "extraitVerbatim": "J'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic. Du coup j'ai crafté, avec l'aide de Claude, ce nouveau prompt de préférence utilisateur",
+        "ceQueCaDit": "L'itération se déploie en cascade et la rupture s'esquisse — le projet RESPIRE transgresse le principe d'autorité scolaire sans encore l'avoir éprouvé."
+      },
+      {
+        "competence": "Jugement Esthétique & Curation",
+        "description": "Critères esthétiques articulés pour la prose, avec acte de soustraction : ce qu'on enlève par défaut au nom de la justesse formelle.",
+        "extraitVerbatim": "Court quand c'est suffisant. Long quand c'est nécessaire. - Structure seulement si la structure sert. - Pas de titres, résumés ou bullet points par défaut.",
+        "ceQueCaDit": "La curation passe par la règle de ce qu'on n'écrit pas — l'esthétique se définit en creux, par soustraction."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en marge sur cette feuille. L'intelligence manuelle et artisanale ne reçoit aucune trace — la création se loge dans le verbal et le conceptuel, pas dans l'interaction physique avec la matière. L'ancrage sensoriel et la pleine présence ne sont pas explorés — aucune sensation physique nommée, aucun moment de présence corporelle. La performance live est hors champ — la feuille ne raconte aucun moment en présentiel. La singularité stylistique est indicée par un faisceau cohérent dans la feuille (aphorismes paradoxaux, parallélismes rythmiques, choc de registres), mais la récurrence dans le temps — critère central de la fiche — dépasse l'horizon d'une feuille unique.",
+    "emergencesPole": "Trois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la création comme formalisation : tout devient dispositif (un protocole, un texte, une école-réseau). Ensuite le goût du paradoxe : trois aphorismes structurés sur le retournement (« violer pour honorer », « habiter les silences », « ne remplace pas — répare ce qu'elle ne fait pas »). Enfin l'absence du corps : la création ici est entièrement verbale et conceptuelle, le matériel et le sensible n'apparaissent pas.",
+    "pistes": [
+      "Pour prolonger le design de problèmes, un chemin possible serait de raconter le moment où la question a basculé — qu'est-ce qui, dans le parcours, a fait passer de « comment réformer l'école » à « comment construire en parallèle ce que l'école ne fait pas ».",
+      "Pour enrichir l'itération, un chemin possible serait d'expliciter ce qui a été appris entre v1 et v2 du protocole — pas seulement le changement opéré, mais le pourquoi qui rend l'itération transmissible.",
+      "Pour ancrer le jugement esthétique en situation, un chemin possible serait de raconter un arbitrage entre deux versions d'un texte — quelle option a été écartée et pourquoi, ce qui rendrait la curation lisible par le rejet nommé.",
+      "Pour ouvrir le territoire du corps et de la matière, un chemin possible serait de documenter un moment où la création a passé par la main, l'objet ou la sensation — un atelier, un assemblage, une rencontre physique avec un dispositif.",
+      "Pour valider la singularité dans la durée, un chemin possible serait de relire plusieurs feuilles du portfolio et de nommer ce qui revient — un tic d'écriture, une métaphore récurrente, un geste rhétorique signature."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail montre un apprenant qui crée par formalisation — chaque idée prend la forme d'un dispositif, chaque dispositif d'un texte. Le geste créatif passe par l'écriture : un protocole, un texte marketing, la description d'une école auto-reproduite. La voix dominante est celle d'un concepteur, avec un goût marqué pour l'aphorisme paradoxal (« je viole ce protocole pour mieux l'honorer », « valorisons ce qui nous rend humain, cultivons ce qui nous rend irremplaçable »). Le rapport à la matière physique n'apparaît pas sur cette feuille — la création se loge entièrement dans le verbal et le conceptuel.\n\n## Territoires les plus denses\n\n**Design de Problèmes** — La phrase « RESPIRE ne remplace pas l'école - elle répare ce qu'elle ne fait pas. C'est plus qu'un réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs » fait basculer la question. Pas « comment réformer l'école », mais « comment construire en parallèle ce que l'école ne fait pas ». L'acte créatif porte sur la formulation du problème, et le déplacement ouvre un autre champ d'action.\n\n**Créativité Itérative & Radicale** — Le cycle est attesté sur la feuille : « j'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic. Du coup j'ai crafté, avec l'aide de Claude, ce nouveau prompt de préférence utilisateur ». Constat → diagnostic causal → refonte → reprise → artefacts. L'itération se déploie en cascade, et la rupture s'esquisse dans le projet d'école auto-reproduite — encore à éprouver.\n\n**Jugement Esthétique & Curation** — La règle « court quand c'est suffisant. Long quand c'est nécessaire. - Structure seulement si la structure sert. - Pas de titres, résumés ou bullet points par défaut » articule un goût avec un principe (la justesse formelle plutôt que l'ornement) et un acte de soustraction (ce qu'on enlève par défaut). La curation se définit en creux.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en marge sur cette feuille. L'intelligence manuelle et artisanale ne reçoit aucune trace — la création se loge dans le verbal et le conceptuel, pas dans l'interaction physique avec la matière. L'ancrage sensoriel et la pleine présence ne sont pas explorés — aucune sensation physique nommée, aucun moment de présence corporelle. La performance live est hors champ — la feuille ne raconte aucun moment en présentiel. La singularité stylistique est indicée par un faisceau cohérent dans la feuille (aphorismes paradoxaux, parallélismes rythmiques, choc de registres), mais la récurrence dans le temps — critère central de la fiche — dépasse l'horizon d'une feuille unique.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la création comme formalisation : tout devient dispositif (un protocole, un texte, une école-réseau). Ensuite le goût du paradoxe : trois aphorismes structurés sur le retournement (« violer pour honorer », « habiter les silences », « ne remplace pas — répare ce qu'elle ne fait pas »). Enfin l'absence du corps : la création ici est entièrement verbale et conceptuelle, le matériel et le sensible n'apparaissent pas.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le design de problèmes, un chemin possible serait de raconter le moment où la question a basculé — qu'est-ce qui, dans le parcours, a fait passer de « comment réformer l'école » à « comment construire en parallèle ce que l'école ne fait pas ».\n- Pour enrichir l'itération, un chemin possible serait d'expliciter ce qui a été appris entre v1 et v2 du protocole — pas seulement le changement opéré, mais le pourquoi qui rend l'itération transmissible.\n- Pour ancrer le jugement esthétique en situation, un chemin possible serait de raconter un arbitrage entre deux versions d'un texte — quelle option a été écartée et pourquoi, ce qui rendrait la curation lisible par le rejet nommé.\n- Pour ouvrir le territoire du corps et de la matière, un chemin possible serait de documenter un moment où la création a passé par la main, l'objet ou la sensation — un atelier, un assemblage, une rencontre physique avec un dispositif.\n- Pour valider la singularité dans la durée, un chemin possible serait de relire plusieurs feuilles du portfolio et de nommer ce qui revient — un tic d'écriture, une métaphore récurrente, un geste rhétorique signature.\n"
+  }
+}

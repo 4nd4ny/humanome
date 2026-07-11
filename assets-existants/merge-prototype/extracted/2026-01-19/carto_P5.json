@@ -1,0 +1,358 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+      "contexte": "Énoncé de la perte de sens d'un pan entier de l'identité professionnelle (enseignement de l'informatique, mise à jour technique) — toucher central pour 5.02 (désapprentissage identitaire) et 5.05 (sens et motivation intrinsèque par contraste).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Je me suis vraiment épuisé après ce dernier job. Je n'ai absolument plus aucune envie d'enseigner avec des imbéciles.",
+      "contexte": "Nomination d'un épuisement professionnel et d'une saturation envers d'anciens collègues — matière première possible pour 5.01 (résilience/antifragilité), mais sans encore de retournement visible.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "La seule chose qui me motive encore, c'est de lancer les écoles Respire.",
+      "contexte": "Identification explicite du « pourquoi » qui survit à l'épuisement et à la perte de sens autour de l'ancien métier — trace de 5.05 (motivation intrinsèque comme reste).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "Ce sera peut-être mon dernier projet : après je me mets en pré-retraite, je retire le 2nd pilier pour faire le pont entre le chômage et l'AVS, éventuellement je gagne un peu d'argent avec mes boîtes \"Human Processor!\", avec mes 32 puzzles sur la trisection du carré, avec la partie commerciale du moteur de recherche de \"talents\" dans Respire, mais surtout : je profite du temps qui me reste en commençant par m'occuper enfin un peu de moi, car depuis le début de la thèse (et de l'enseignement) j'ai vraiment fait que bosser comme un dingue ce qui n'est pas très sain.",
+      "contexte": "Connexion explicite entre événements distants (le début de la thèse, l'enseignement, l'épuisement actuel) et formulation d'un sens transversal — touche 5.03 (narration réflexive) et 5.02 (transformation identitaire).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-19",
+      "extraitVerbatim": "mais surtout : je profite du temps qui me reste en commençant par m'occuper enfin un peu de moi, car depuis le début de la thèse (et de l'enseignement) j'ai vraiment fait que bosser comme un dingue ce qui n'est pas très sain.",
+      "contexte": "Décision orientée vers la soutenabilité personnelle — bascule de régime de vie, peut soutenir 5.02 (désapprentissage d'un mode de fonctionnement intériorisé).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Je me suis vraiment épuisé après ce dernier job. Je n'ai absolument plus aucune envie d'enseigner avec des imbéciles.",
+          "contexte": "Nomination d'un épuisement professionnel ; reste à vérifier s'il y a un retournement (antifragilité) ou seulement un retrait (endurance/fuite).",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "extraitVerbatim": "La seule chose qui me motive encore, c'est de lancer les écoles Respire.",
+          "contexte": "Après l'énoncé de l'épuisement, identification d'un projet qui reste motivant — pourrait signaler le retournement où l'épreuve ouvre vers autre chose.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que l'antifragilité demande un dépassement, un retournement où l'épreuve devient matière première de création — pas un simple retrait après épuisement. La pièce 1 nomme un épuisement avec saturation à l'égard d'anciens collègues, mais le mouvement décrit ressemble plus à un retrait défensif (« plus aucune envie ») qu'à un rebond. La pièce 2 nomme un projet qui reste motivant, mais celui-ci existe avant et indépendamment de l'épuisement raconté — il n'est pas un fruit de la traversée, il en est le survivant. Ce qui me force à m'arrêter : la fiche reconnaît « questions stratégiques posées en pleine crise de légitimité » comme résilience active sans la nommer ; l'apprenant pose effectivement une question stratégique de réorientation (pré-retraite, monétisation des productions résiduelles) à partir d'un constat d'épuisement. Ce qui reste explicitement faible : aucun ton ironique sur le chaos, aucune structure du retournement où l'échec ouvre l'histoire.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La mention d'un projet qui « motive encore » après un épuisement peut signaler un fil survivant, sur lequel un rebond pourrait s'appuyer." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas chargé d'antifragilité ce qui est en réalité un récit de fatigue suivi d'un repli. La fiche est claire : la signature de la résilience-antifragilité, c'est le retournement structurel — l'échec comme début de l'histoire. Or sur cette feuille, l'épuisement ouvre vers le ralentissement et la pré-retraite, pas vers une nouvelle énergie créatrice. Le projet Respire évoqué dans la pièce 2 préexiste à l'épuisement raconté ; ce n'est pas l'épuisement qui le fait naître. La fiche met aussi en garde explicitement contre le biais de narration positive et contre la confusion entre fuite (« passé à autre chose ») et rebond (avoir traité l'adversité). Le passage à autre chose semble ici plus proche du retrait que du dépassement.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "J'ai chargé d'antifragilité une simple mention de projet qui motive encore ; la fiche exige le retournement structurel (l'échec ouvre l'histoire), or le projet Respire est antérieur à l'épuisement, et le mouvement décrit est un retrait, pas un rebond transformatif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir si l'épuisement raconté ouvrait sur un dépassement, ou seulement sur un repli. Ce qui m'a forcé à m'arrêter, c'est la coexistence de l'épuisement et de la motivation persistante autour des écoles Respire. Sous la présomption de sycophantie, cette lecture est tombée : le projet Respire préexiste à l'épuisement, et le ton n'est pas celui d'un retournement (ironie, énergie nouvelle) mais celui d'un ralentissement choisi. Sur cette feuille et dans ce pôle, le travail ne donne pas accès à la signature de l'antifragilité. La nuance qui reste : la matière première d'une éventuelle transformation est là (épuisement nommé, projet survivant), mais le retournement n'est pas encore explicite dans le texte de ce jour.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La pièce a été disqualifiée au temps 2 sur la surinterprétation pédagogique : la motivation persistante d'un projet antérieur n'est pas un retournement antifragile.",
+        "prescription": "Cette feuille pose la matière première d'une transformation — un épuisement nommé, un projet qui survit. Pour ouvrir le territoire de l'antifragilité, un chemin possible serait de revenir, sur une feuille à venir, sur ce que cet épuisement aura produit en retour : un angle, une méthode, une lucidité qui n'existaient pas avant la traversée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+          "contexte": "Énoncé explicite de l'abandon d'une identité professionnelle (enseignement de l'informatique, maintien d'une expertise technique à jour) — geste central de désapprentissage identitaire.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "extraitVerbatim": "Ce sera peut-être mon dernier projet : après je me mets en pré-retraite, je retire le 2nd pilier pour faire le pont entre le chômage et l'AVS, éventuellement je gagne un peu d'argent avec mes boîtes \"Human Processor!\", avec mes 32 puzzles sur la trisection du carré, avec la partie commerciale du moteur de recherche de \"talents\" dans Respire, mais surtout : je profite du temps qui me reste en commençant par m'occuper enfin un peu de moi, car depuis le début de la thèse (et de l'enseignement) j'ai vraiment fait que bosser comme un dingue ce qui n'est pas très sain.",
+          "contexte": "Articulation simultanée de ce qui est lâché (l'ancien rythme de travail intensif, l'identité de chercheur-enseignant), du pourquoi (« pas très sain ») et de ce qui reste constant (les projets, les productions) — structure typique de la plasticité.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que la plasticité-désapprentissage demande la transformation interne d'un savoir ou d'un sens de soi, pas le simple changement de circonstances. La pièce 1 énonce la perte de sens d'une identité professionnelle entière (enseigner l'informatique, se maintenir à jour) ; cela ressemble à un désapprentissage identitaire en cours. La pièce 2 met côte à côte ce qui est lâché (l'enseignement, le rythme « bosser comme un dingue ») et ce qui reste constant (les écoles Respire, les productions résiduelles), avec une justification (« pas très sain »). Ce qui me force à m'arrêter : la fiche reconnaît « questionnement de la pertinence de son métier face à l'IA » et « malaise face à sa propre expertise passée » comme désapprentissage existentiel à bas bruit ; les pièces portent exactement ce mouvement. Ce qui reste explicitement faible : la fiche met en garde contre la résolution lisse (« c'est mieux comme ça » sans tension), et les passages tendent vers une résolution apaisée plutôt que vers une tension entre l'ancien et le nouveau.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le passage énonce l'abandon de pans entiers de l'identité professionnelle (enseigner l'informatique, se maintenir à jour), marqueur central du désapprentissage identitaire." },
+            { "pieceId": 2, "motifResistance": "Le passage articule simultanément ce qui est lâché, pourquoi, et ce qui reste constant — structure que la fiche reconnaît comme forme aboutie de plasticité." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas chargé d'un travail de désapprentissage ce qui est en réalité une rationalisation défensive après épuisement. La fiche met en garde explicitement : « c'est mieux comme ça » peut masquer un deuil non fait. Ici, le ton n'est pas résolument apaisé : « je n'ai absolument plus aucune envie », « les imbéciles », « pas très sain » — il y a une charge encore vive, pas une résolution lisse. La pièce 2 ne se contente pas de basculer ; elle articule un fil de continuité (les écoles Respire, les puzzles, les boîtes) qui correspond à ce que la fiche appelle « ce qui reste constant » dans la mue. La pièce 1 résiste plus solidement encore : énoncer « je ne vois plus le sens [...] d'enseigner cette discipline » à un moment où l'on enseigne encore, et où l'ORP propose précisément de continuer dans cette voie, c'est un acte d'abandon identitaire en train de se poser, pas après-coup.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'attaque « mouvement-vers la compétence sans la franchir » ne tient pas : la pièce énonce un acte d'abandon explicite (« je ne vois plus le sens [...] d'enseigner cette discipline », « ni de continuer à me maintenir à jour ») au moment où l'ORP propose au contraire de continuer ; le seuil de transformation est franchi par l'énonciation même du non-sens d'une identité antérieure."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage déclare la bascule plus qu'il ne montre le mécanisme de transformation cognitive ; il reste néanmoins une articulation simultanée des trois éléments (lâché, pourquoi, constant) que la fiche reconnaît comme structure aboutie, ce qui maintient la pièce."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir si quelque chose y attestait d'une mue identitaire au sens du pôle, et non d'une rationalisation lisse après épuisement. Ce qui m'a forcé à m'arrêter, c'est l'énoncé direct, à la première personne, de la perte de sens d'un pan entier de l'identité professionnelle — enseigner l'informatique, se maintenir à jour — au moment précis où l'ORP propose de continuer dans cette voie. Sous la présomption de sycophantie, la pièce 1 a tenu : l'acte d'abandon est posé à un moment où l'ancien rôle serait encore disponible, ce qui le distingue d'une rationalisation post-décision. La pièce 2 a tenu également, affaiblie, par son articulation simultanée de ce qui est lâché, du pourquoi, et de ce qui reste constant. Sur cette feuille et dans ce pôle, le travail montre une mue en cours autour de l'identité d'enseignant-chercheur, avec un fil de continuité explicite vers les écoles Respire. La nuance qui reste : la dimension de tension entre l'ancien et le nouveau apparaît dans la charge émotionnelle (« imbéciles », « comme un dingue », « pas très sain ») plutôt que dans une thématisation explicite du conflit interne.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Au temps 2, la pièce 1 a été confirmée comme acte d'abandon identitaire posé en présence de l'alternative inverse ; la pièce 2 a été retenue affaiblie pour son articulation lâché/pourquoi/constant.",
+        "prescription": "Le travail sur cette feuille rend visible une mue en cours autour d'une identité professionnelle, avec un fil de continuité posé vers un nouveau projet. Pour approfondir ce territoire, un chemin possible serait de revenir, sur une feuille future, sur la tension proprement dite — ce qui résiste à être lâché dans l'ancienne identité, ce qui demande encore du travail intérieur."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "extraitVerbatim": "Ce sera peut-être mon dernier projet : après je me mets en pré-retraite, je retire le 2nd pilier pour faire le pont entre le chômage et l'AVS, éventuellement je gagne un peu d'argent avec mes boîtes \"Human Processor!\", avec mes 32 puzzles sur la trisection du carré, avec la partie commerciale du moteur de recherche de \"talents\" dans Respire, mais surtout : je profite du temps qui me reste en commençant par m'occuper enfin un peu de moi, car depuis le début de la thèse (et de l'enseignement) j'ai vraiment fait que bosser comme un dingue ce qui n'est pas très sain.",
+          "contexte": "Connexion explicite entre événements distants dans le temps (la thèse, l'enseignement, l'épuisement actuel) avec extraction d'un sens transversal (« bosser comme un dingue ce qui n'est pas très sain ») — manifeste le passage du quoi au qu'est-ce que ça signifie.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec l'idée que la narration réflexive demande le passage du quoi (ce qui s'est passé) au qu'est-ce que ça signifie (le motif transférable). Le passage est principalement projectif (le plan de vie à venir) et ne décrit pas un événement vécu en détail. Cependant, l'incise « car depuis le début de la thèse (et de l'enseignement) j'ai vraiment fait que bosser comme un dingue ce qui n'est pas très sain » relie explicitement deux périodes distantes dans le temps (la thèse, l'enseignement, jusqu'à aujourd'hui) et extrait un motif transversal — un mode de fonctionnement insoutenable. Ce qui me force à m'arrêter : c'est précisément la structure que la fiche reconnaît comme manifestation centrale (connexions explicites entre événements distants + leçon nommée et spécifique). Ce qui reste explicitement faible : la narration ne s'étale pas, elle tient en une seule phrase incise ; la profondeur réflexive est ramassée plutôt que déployée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'incise relie thèse, enseignement et présent en un seul fil, et nomme spécifiquement la leçon transversale (« bosser comme un dingue ce qui n'est pas très sain ») — passage du quoi au qu'est-ce que ça signifie." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas chargé un simple bilan de fatigue de la dignité d'une narration réflexive. La fiche met en garde : « cette semaine j'ai fait » = journal descriptif, pas réflexif. Ici, le passage n'est pas seulement descriptif : il pose une connexion temporelle longue (depuis la thèse) et extrait une qualification du mode de fonctionnement (« comme un dingue », « pas très sain »). C'est plus qu'une description, c'est une lecture de soi qui s'étend sur une longue durée et nomme un motif. La fiche met aussi en garde contre la confusion entre intensité émotionnelle et profondeur réflexive ; le passage est plutôt sobre, sans larmes ni emphase, ce qui rapproche de la litote signalée comme trace fiable.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage est ramassé en une incise et ne déploie pas pleinement le motif extrait ; la connexion entre événements distants et l'extraction d'une leçon transférable restent toutefois explicites et résistent à l'attaque d'insuffisance probatoire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir si quelque chose y attestait d'une narration réflexive — passer du récit chronologique à l'extraction d'un motif transférable. Ce qui m'a forcé à m'arrêter, c'est l'incise qui relie la thèse, l'enseignement et le présent en une seule respiration, et nomme un mode de fonctionnement (« comme un dingue ») jugé insoutenable. Sous la présomption de sycophantie, cette pièce a tenu, affaiblie par son caractère ramassé : la connexion d'événements distants et la qualification du motif sont là, mais elles ne sont pas déployées. Sur cette feuille et dans ce pôle, le travail montre une narration réflexive en seuil bas — la structure y est, le développement est ailleurs. La nuance qui reste : ce qui se passe ici, c'est l'extraction d'un sens (« pas très sain ») à partir d'une longue durée, dans une économie de mots qui est elle-même une trace.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La pièce a été retenue au temps 2 (affaiblie mais conservée) pour sa connexion entre événements distants et son extraction d'un motif transférable, malgré son caractère ramassé.",
+        "prescription": "Cette feuille condense en une incise un travail de mise en sens d'une longue durée. Pour donner plus d'amplitude à ce territoire, un chemin possible serait de revenir sur une feuille future à ce fil « bosser comme un dingue depuis la thèse » et de déplier le motif — comment il s'est installé, à quels moments il a vacillé, ce qu'il a coûté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'acceptation de l'intelligence supérieure sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment vécu de tension entre son ego et une supériorité reconnue chez l'IA dans un domaine précis."
+      }
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "La seule chose qui me motive encore, c'est de lancer les écoles Respire.",
+          "contexte": "Identification explicite du « pourquoi » qui survit à l'épuisement et à la perte de sens autour de l'ancien métier — déclaration directe du motif intrinsèque.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+          "contexte": "Test indirect du sens : ce qui ne fait plus sens est nommé explicitement (mise à niveau en informatique, enseignement), ce qui par contraste isole ce qui en fait encore.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que le sens et la motivation intrinsèque demandent un « pourquoi » qui résiste à l'absence de récompense, qui ne dépend pas du moteur extérieur. La pièce 1 est une déclaration directe (« la seule chose qui me motive encore ») — la fiche met en garde contre les « pourquoi narrés » qui pourraient être des rationalisations. La pièce 2 est plus oblique : elle nomme ce qui ne fait plus sens, par contraste. Ce qui me force à m'arrêter : la fiche reconnaît comme test fiable la cohérence entre sens déclaré et actions ; ici, le projet Respire fait l'objet de productions effectives (manuels des niveaux de tuteurs en cours de finalisation, partie commerciale envisagée), ce qui n'est pas une simple déclaration. La pièce 2 ajoute une force adversariale : on nomme rarement avec autant de précision ce qui ne fait plus sens (l'informatique, l'enseignement, le maintien à jour) sans avoir mis au jour ce qui en fait. Ce qui reste explicitement faible : la pièce 1 reste une déclaration ; sans la pièce 2 elle pourrait être une formule.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le « pourquoi » est isolé explicitement comme ce qui survit à l'épuisement et à la perte de sens sur les autres axes — déclaration directe du motif intrinsèque." },
+            { "pieceId": 2, "motifResistance": "Le passage isole par contraste ce qui ne fait plus sens, mouvement qui n'est généralement effectif que si ce qui en fait est par ailleurs perçu — soutient indirectement la pièce 1." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas validé un pourquoi narré comme s'il était un pourquoi vécu. La fiche est explicite : la trace fiable se vérifie dans la cohérence entre sens déclaré et actions décrites. Sur cette feuille, l'apprenant ne fait pas que déclarer la motivation pour Respire — il évoque la finalisation des manuels par niveaux de tuteurs (production concrète en cours), la partie commerciale du moteur de recherche de talents, et place les écoles Respire en position structurante du plan de vie à venir (« ce sera peut-être mon dernier projet »). La cohérence sens-action est donc soutenue par d'autres énoncés de la même feuille. La pièce 2, le contraste avec ce qui ne fait plus sens, ajoute une force qui dépasse la simple déclaration. Le seul risque réel est qu'il s'agisse d'un enthousiasme situationnel — mais la position du projet comme survivant à l'épuisement plaide contre cette hypothèse.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est formellement une déclaration (« la seule chose qui me motive encore »), mais elle est étayée ailleurs dans la feuille par des productions concrètes (manuels des niveaux de tuteurs, partie commerciale) et par sa position de survivant à l'épuisement, ce qui dépasse la simple performance verbale."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage nomme avec une précision difficile à inventer trois axes qui ne font plus sens (mise à niveau informatique, enseignement de la discipline, maintien à jour à son âge) — opération de discrimination qui présuppose un sens encore actif ailleurs pour fonctionner comme contraste."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à voir si la mention du sens autour de Respire était une formule ou un moteur réel d'action. Ce qui m'a forcé à m'arrêter, c'est la combinaison entre la déclaration directe (« la seule chose qui me motive encore ») et la nomination précise, par contraste, de ce qui ne fait plus sens. Sous la présomption de sycophantie, ce dispositif a tenu : la cohérence entre sens déclaré et action décrite est étayée par les productions en cours (manuels par niveaux de tuteurs), et la position du projet comme survivant à l'épuisement le distingue d'un enthousiasme situationnel. Sur cette feuille et dans ce pôle, le travail montre un sens identifié et isolé par l'épreuve même de l'épuisement. La nuance qui reste : on voit le « pourquoi » nommé, on ne voit pas encore les actions quotidiennes incarnant ce sens sur cette seule feuille — la cohérence est suggérée par d'autres mentions, à confirmer sur la durée.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Au temps 2, la pièce 1 est retenue affaiblie et la pièce 2 a été confirmée comme opération de discrimination ; ensemble, elles atteignent le seuil de présence établie via deux indices corroboratifs.",
+        "prescription": "Le travail sur cette feuille rend visible un sens qui survit à l'épuisement et qui se laisse nommer par contraste avec ce qui ne fait plus sens. Pour approfondir ce territoire, un chemin possible serait de documenter, lors d'une journée ordinaire de travail sur Respire, le geste minuscule qui incarne ce « pourquoi » — la qualité d'attention qu'on y met, le détail qu'on choisit de soigner."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie, au mode dégradé et à la débrouillardise sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une panne gérée, un travail effectué sans outil numérique par choix, ou une improvisation avec des ressources limitées."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté attentionnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un choix explicite de déconnexion ou de redirection du focus, avec son raisonnement et son rituel."
+      }
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la vérification terrain sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un test direct dans le réel d'une affirmation produite par un système ou une IA."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 0,
+    "nonEtablies": 2,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle des racines est le plus dense de la journée. Le texte travaille principalement autour de deux mouvements liés : une mue identitaire en cours (le métier d'enseignant en informatique se vide de sens, le rythme intensif accumulé depuis la thèse devient insoutenable) et un fil de sens qui survit à cette mue (les écoles Respire comme « seule chose » qui motive encore). La voix dominante est celle d'un bilan posé, sans larmes ni emphase, qui nomme avec précision ce qui est lâché et ce qui reste. Les autres territoires du pôle — autonomie hors-ligne, souveraineté attentionnelle, vérification terrain, acceptation de l'intelligence supérieure — n'apparaissent pas sur ce jour.",
+    "territoiresDenses": [
+      {
+        "competence": "Plasticité et désapprentissage",
+        "description": "Énoncé explicite de l'abandon d'une identité professionnelle en présence de l'alternative inverse (l'ORP propose précisément de continuer), avec articulation simultanée de ce qui est lâché, du pourquoi et de ce qui reste constant.",
+        "extraitVerbatim": "Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge.",
+        "ceQueCaDit": "Cette feuille rend lisible le geste — souvent silencieux — par lequel un pan d'identité professionnelle est délibérément lâché. Le travail montre une mue qui ne s'embellit pas et qui assume la rupture avec un rôle qui n'a plus de sens."
+      },
+      {
+        "competence": "Sens et motivation intrinsèque",
+        "description": "Identification d'un « pourquoi » qui survit à l'épuisement et à la perte de sens autour de l'ancien métier, couplée à une nomination précise de ce qui par contraste ne fait plus sens.",
+        "extraitVerbatim": "La seule chose qui me motive encore, c'est de lancer les écoles Respire.",
+        "ceQueCaDit": "Le travail montre un moteur intrinsèque qui s'est isolé, par l'épreuve même, de ce qui le brouillait. La cohérence est soutenue par les productions en cours (manuels par niveaux de tuteurs) plutôt que reposant sur la seule déclaration."
+      }
+    ],
+    "territoiresNonVisites": "Sur cette feuille, quatre des huit territoires du pôle restent non visités, et deux autres restent en seuil bas. Une partie ressemble à un choix de feuille : le journal du jour ne traite ni de panne technique, ni de gestion de l'attention, ni de test direct dans le réel, ni d'interaction frontale avec une IA — il est cohérent que l'autonomie hors-ligne, la souveraineté attentionnelle, la vérification terrain et l'acceptation de l'intelligence supérieure n'y trouvent pas leur matière. D'autres absences ressemblent davantage à une limite du portfolio textuel sur cette journée : la résilience-antifragilité a la matière première (épuisement nommé, projet qui survit), mais le retournement structurel n'est pas encore explicite ; la narration réflexive existe mais reste ramassée en incise plutôt que déployée.",
+    "emergencesPole": "Ce qui traverse plusieurs compétences du pôle sur cette feuille, c'est une économie de la litote et de la sobriété. La fatigue se dit sans pathos, la mue identitaire s'énonce en une phrase, le sens qui reste se nomme avec précision sans envolée. Ce ton ramassé n'est pas l'absence de profondeur : la fiche elle-même reconnaît la litote (« ce n'est pas désagréable ») comme trace fiable du sens. Un second motif relie ces compétences : la discrimination — l'apprenant nomme avec un soin presque clinique ce qui ne fait plus sens (informatique, enseignement, maintien à jour, anciens collègues), et c'est par contraste que se révèle ce qui en fait encore.",
+    "pistes": [
+      "Pour approfondir le territoire de la mue identitaire, un chemin possible serait de revenir, sur une feuille future, sur la tension proprement dite — ce qui résiste à être lâché dans l'ancienne identité d'enseignant-chercheur, ce qui demande encore du travail intérieur, et ce qui se révèle à mesure que la peau ancienne se détache.",
+      "Pour donner plus d'amplitude à la narration réflexive, un chemin possible serait de déplier le fil « bosser comme un dingue depuis la thèse » qui apparaît ici en incise — comment ce mode de fonctionnement s'est installé, à quels moments il a vacillé, ce qu'il a coûté.",
+      "Pour ouvrir le territoire de l'antifragilité, un chemin possible serait de documenter, sur une feuille à venir, ce que cet épuisement aura produit en retour : un angle, une méthode, une lucidité qui n'existaient pas avant la traversée."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle des racines est le plus dense de la journée. Le texte travaille principalement autour de deux mouvements liés : une mue identitaire en cours (le métier d'enseignant en informatique se vide de sens, le rythme intensif accumulé depuis la thèse devient insoutenable) et un fil de sens qui survit à cette mue (les écoles Respire comme « seule chose » qui motive encore). La voix dominante est celle d'un bilan posé, sans larmes ni emphase, qui nomme avec précision ce qui est lâché et ce qui reste. Les autres territoires du pôle — autonomie hors-ligne, souveraineté attentionnelle, vérification terrain, acceptation de l'intelligence supérieure — n'apparaissent pas sur ce jour.\n\n## Territoires les plus denses\n\n### Plasticité et désapprentissage\n\nÉnoncé explicite de l'abandon d'une identité professionnelle en présence de l'alternative inverse (l'ORP propose précisément de continuer), avec articulation simultanée de ce qui est lâché, du pourquoi et de ce qui reste constant.\n\n> « Aujourd'hui j'ai réalisé que je n'étais pas vraiment intéressé par me mettre à niveau en informatique avec l'ORP, car je ne vois plus le sens que ça peut avoir ni d'enseigner cette discipline, ni de continuer à me maintenir à jour à mon âge. »\n\nCette feuille rend lisible le geste — souvent silencieux — par lequel un pan d'identité professionnelle est délibérément lâché. Le travail montre une mue qui ne s'embellit pas et qui assume la rupture avec un rôle qui n'a plus de sens.\n\n### Sens et motivation intrinsèque\n\nIdentification d'un « pourquoi » qui survit à l'épuisement et à la perte de sens autour de l'ancien métier, couplée à une nomination précise de ce qui par contraste ne fait plus sens.\n\n> « La seule chose qui me motive encore, c'est de lancer les écoles Respire. »\n\nLe travail montre un moteur intrinsèque qui s'est isolé, par l'épreuve même, de ce qui le brouillait. La cohérence est soutenue par les productions en cours (manuels par niveaux de tuteurs) plutôt que reposant sur la seule déclaration.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, quatre des huit territoires du pôle restent non visités, et deux autres restent en seuil bas. Une partie ressemble à un choix de feuille : le journal du jour ne traite ni de panne technique, ni de gestion de l'attention, ni de test direct dans le réel, ni d'interaction frontale avec une IA — il est cohérent que l'autonomie hors-ligne, la souveraineté attentionnelle, la vérification terrain et l'acceptation de l'intelligence supérieure n'y trouvent pas leur matière. D'autres absences ressemblent davantage à une limite du portfolio textuel sur cette journée : la résilience-antifragilité a la matière première (épuisement nommé, projet qui survit), mais le retournement structurel n'est pas encore explicite ; la narration réflexive existe mais reste ramassée en incise plutôt que déployée.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse plusieurs compétences du pôle sur cette feuille, c'est une économie de la litote et de la sobriété. La fatigue se dit sans pathos, la mue identitaire s'énonce en une phrase, le sens qui reste se nomme avec précision sans envolée. Ce ton ramassé n'est pas l'absence de profondeur : la fiche elle-même reconnaît la litote (« ce n'est pas désagréable ») comme trace fiable du sens. Un second motif relie ces compétences : la discrimination — l'apprenant nomme avec un soin presque clinique ce qui ne fait plus sens (informatique, enseignement, maintien à jour, anciens collègues), et c'est par contraste que se révèle ce qui en fait encore.\n\n## Pistes pour enrichir ce pôle\n\n- Pour approfondir le territoire de la mue identitaire, un chemin possible serait de revenir, sur une feuille future, sur la tension proprement dite — ce qui résiste à être lâché dans l'ancienne identité d'enseignant-chercheur, ce qui demande encore du travail intérieur, et ce qui se révèle à mesure que la peau ancienne se détache.\n- Pour donner plus d'amplitude à la narration réflexive, un chemin possible serait de déplier le fil « bosser comme un dingue depuis la thèse » qui apparaît ici en incise — comment ce mode de fonctionnement s'est installé, à quels moments il a vacillé, ce qu'il a coûté.\n- Pour ouvrir le territoire de l'antifragilité, un chemin possible serait de documenter, sur une feuille à venir, ce que cet épuisement aura produit en retour : un angle, une méthode, une lucidité qui n'existaient pas avant la traversée."
+  }
+}

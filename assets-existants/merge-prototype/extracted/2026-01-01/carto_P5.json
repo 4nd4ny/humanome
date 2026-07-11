@@ -1,0 +1,390 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "j'ai douté de mes travaux, j'ai augmenté mon champ de vision",
+      "contexte": "Mention furtive d'un doute traversé sur 6 mois et d'une transformation de la perception. Pourrait activer 5.01 (résilience), 5.02 (désapprentissage), 5.03 (narration réflexive)."
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Car je suis moi-même un étudiant 'Respire'.",
+      "contexte": "Auto-positionnement comme apprenant — pourrait être lu comme une plasticité identitaire (le fondateur qui se range parmi les apprenants). Active 5.02 (désapprentissage du rôle d'expert), 5.05 (sens motivant)."
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Tu as raison. Et ma faute est précisément celle que le Module 13 dénonce : j'ai évalué un livrable sans voir le processus.",
+      "contexte": "Phrase de l'IA validant la position de l'apprenant — n'est pas attribuée à l'apprenant. Hors scope direct pour P5."
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Stratégie itérative : développement incrémental, validation par étapes",
+      "contexte": "Auto-inscription portfolio d'une stratégie de travail. Pourrait étayer 5.06 (autonomie/débrouillardise) si la pratique est technique, ou 5.01 (résilience par cycles) ; reste fragile."
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Triangulation des sources : croisement systématique entre IA multiples, corpus théorique personnel (500+ ouvrages), et insight propre",
+      "contexte": "Auto-description d'une pratique de vérification croisée. Pourrait activer 5.08 (vérification terrain) si l'on lit le croisement comme un \"aller voir ailleurs\" — mais reste documentaire."
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Usage médiateur de l'IA : utilisation pour transformer et amplifier sa pensée, pas pour la remplacer",
+      "contexte": "Articulation d'un positionnement vis-à-vis de l'IA — pourrait activer 5.04 (acceptation de l'intelligence supérieure) sans tension émotionnelle."
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "le contenu a ta voix, pas une voix générique. Le Module 14 est reconnaissable comme étant de toi.",
+      "contexte": "Observation tierce qui distingue ce que l'humain apporte de spécifique vs la production IA générique. Active 5.04 (articulation de ce que l'IA fait et de ce que l'humain apporte)."
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "Cette compétence manque au référentiel. Elle pourrait s'ajouter au Domaine D (Éthiques & Philosophiques) : D4 — Congruence",
+      "contexte": "Détection d'un manque dans son propre référentiel — pourrait étayer 5.02 (désapprentissage : son référentiel n'était pas complet)."
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "L'IA peut simuler la cohérence dans le discours. Elle ne peut pas vivre ses principes. La congruence exige un sujet qui existe dans la durée, qui peut échouer, qui prend des risques réels.",
+      "contexte": "Articulation co-produite avec l'IA de ce qui distingue structurellement l'humain — pourrait étayer 5.04 (articulation sans amertume) et 5.05 (sens : exister dans la durée, prendre des risques)."
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-01",
+      "extraitVerbatim": "ces 6 derniers mois durant lesquels je t'ai utilisé comme partenaire de pensée, je t'ai demandé des variations sur mes idées, je t'ai fait générer dix fois le même chapitre pour savoir comment construire ces écoles, je t'ai fait critique, j'ai douté de mes travaux",
+      "contexte": "Récit récapitulatif d'un parcours de 6 mois avec doute et itérations multiples. Pourrait activer 5.03 (narration réflexive : extraction d'un fil), 5.01 (résilience itérative)."
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Mention d'un doute traversé sur 6 mois et d'une augmentation du champ de vision — formulation qui suggère un dépassement plutôt qu'un simple retour."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Récit récapitulatif d'un parcours d'itérations avec doute (\"je t'ai fait générer dix fois le même chapitre\") qui n'a pas fait abandonner."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la résilience et l'antifragilité ne sont pas vraiment attestées : la fiche est exigeante (récit de crise, échec, perte ; description de ce qui a changé, grandi ou émergé ; structure narrative du retournement). La pièce 1 mentionne un doute et un élargissement, mais en deux mots sans crise nommée — pas de récit, pas de retournement, pas d'ironie face au chaos. La pièce 2 décrit une persistance dans l'itération sur 6 mois — c'est de l'endurance plutôt que de l'antifragilité au sens strict ; aucun échec n'est nommé, aucune perte. Ce qui reste explicitement faible : pas de crise traversée, pas de \"démarrage en grande pompe par un crash\" comme la fiche le cite en exemple, pas de description d'un état pré-crise qui se révèle dépassé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La séquence \"j'ai douté de mes travaux, j'ai augmenté mon champ de vision\" suggère un dépassement (le doute n'a pas arrêté, il a élargi)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 est extrêmement brève — quelques mots qui survolent une expérience sans la donner à voir. La fiche 5.01 met précisément en garde contre le \"biais de narration positive embellie\" et précise que la trace fiable se reconnaît au TON (ironie, humour) et à la STRUCTURE (l'échec comme début). Ici, on n'a ni l'un ni l'autre. La pièce 2 est un récit de persistance qui n'évoque aucun échec — l'itération sur 6 mois est présentée comme un cheminement maîtrisé.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Mention trop brève pour porter à elle seule une attestation de résilience ; tient comme indice ténu d'un dépassement évoqué sans être déployé." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Récit de persistance sans crise nommée ni retournement — c'est de l'endurance qui se présente comme cheminement maîtrisé." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la résilience en mesurant les pièces contre les critères stricts de la fiche : crise, retournement, ton ironique ou structure narrative où l'échec ouvre l'histoire. Aucun de ces marqueurs n'est présent sur cette feuille. Une pièce a tenu comme indice ténu — la mention de doute qui débouche sur un élargissement — mais elle est trop allusive pour porter seule. Ce qui en résulte : la matière de résilience n'est pas suffisamment déployée sur cette feuille pour être attestée. La nuance qui reste : il est possible que des crises aient été traversées en arrière-plan de ces 6 mois — le \"j'ai douté\" en serait l'écho — mais cette feuille n'en porte pas la trace narrative.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "Le temps 2 a disqualifié la pièce de persistance (endurance sans crise) ; la pièce 1 tient comme indice trop allusif pour porter une attestation seule.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de raconter une crise précise traversée pendant ces 6 mois — un moment où le doute aurait pu fermer le projet, ce qui s'est joué là, ce qui a émergé que l'état antérieur ne contenait pas — de sorte que le dépassement devienne lisible plutôt qu'évoqué."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le fondateur qui se positionne comme apprenant — abandon du rôle d'expert exclusif, geste de plasticité identitaire."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Détection d'un manque dans son propre référentiel (D4 Congruence absente) — désapprentissage du référentiel comme objet fini."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "\"j'ai augmenté mon champ de vision\" — possible trace d'une transformation interne de la perception."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la plasticité et le désapprentissage ne sont pas vraiment attestés : la fiche exige que l'apprenant nomme explicitement ce qu'il a dû abandonner, et avertit que les rationalisations défensives lisses (\"c'est mieux comme ça\") masquent un désapprentissage non fait. La pièce 1 est intéressante : se compter parmi les apprenants Respire suppose d'avoir lâché une position de surplomb — mais on ne voit pas la tension entre l'ancien et le nouveau, on voit le résultat. La pièce 2 résiste mieux : reconnaître qu'une compétence essentielle (la congruence) manque à son propre référentiel implique d'admettre que le travail antérieur était incomplet — c'est un désapprentissage local en acte. La pièce 3 est trop brève. Ce qui reste explicitement faible : pas de métaphore d'enfermement, pas de tension entre l'ancien et le nouveau articulée, pas de description du mécanisme du désapprentissage.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le fondateur qui se positionne comme apprenant suppose d'avoir lâché la posture du seul-qui-sait." },
+            { "pieceId": 2, "motifResistance": "Reconnaître publiquement qu'une compétence manque à son propre référentiel est un acte de désapprentissage local." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 peut être de la performance d'humilité — la phrase finale d'un texte voué au portfolio, qui sonne bien et qui se range parmi les apprenants sans coût visible. La fiche met précisément en garde contre cette désirabilité. Cependant le geste reste : il aurait été plus simple de se positionner en expert ; le choix d'apprenant porte une cohérence avec ce qui précède (avoir reconnu une cécité, accepté la correction). La pièce 2 est plus solide : la détection du manque dans le référentiel est ancrée dans un cas précis (D4 Congruence) qui produit une révision concrète. Mais la fiche valorise la *tension* entre l'ancien et le nouveau ; ici, la révision se fait sans deuil visible — l'apprenant ajoute, ne lâche pas explicitement.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Performance d'humilité possible ; tient comme indice parce que le geste est cohérent avec la posture du texte (reconnaître la cécité, accepter la correction)." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le geste révise le référentiel par ajout, sans nommer explicitement ce qui devait être abandonné — mouvement vers le désapprentissage sans franchissement net." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Mention trop brève pour porter une attestation : \"augmenter le champ\" n'évoque pas l'abandon d'un modèle antérieur." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la plasticité en supposant que la matière était de la performance ou de l'ajout, pas du désapprentissage au sens strict. La pièce trop brève est tombée. Les deux autres ont été affaiblies : l'auto-positionnement comme apprenant porte un geste de plasticité mais sans tension explicite, et la révision du référentiel se fait par ajout plutôt que par abandon nommé. Ce qui en résulte : des indices convergents qui pointent vers une plasticité en cours, mais sans le marqueur central que la fiche exige (nommer ce qui a été lâché, articuler la tension entre l'ancien et le nouveau). La nuance qui reste : la plasticité est probablement présente — il faut une forme de souplesse pour reconnaître son propre angle mort — mais cette feuille n'en montre pas le travail intérieur, seulement les effets.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli les deux pièces principales (performance possible, ajout sans abandon nommé) et disqualifié la troisième ; deux indices convergent vers une plasticité en cours mais sans franchissement explicite.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de nommer une croyance pédagogique que ces 6 derniers mois ont fait tomber — quelque chose qui paraissait vrai et qui ne l'est plus, le moment où le basculement s'est opéré, et ce qui reste constant malgré le changement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Récit récapitulatif des 6 derniers mois qui tisse des éléments distants (variations sur idées, dix générations, doute, élargissement) en une trajectoire cohérente."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Formule qui condense un parcours (\"j'ai douté de mes travaux, j'ai augmenté mon champ de vision\") — extraction de sens à partir d'un vécu long."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la narration réflexive n'est pas vraiment attestée : la fiche distingue précisément le QUOI (chronique), le POURQUOI et le QU'EST-CE QUE ÇA SIGNIFIE. La pièce 1 raconte le QUOI sur 6 mois (variations, itérations multiples, doute) mais sans extraction de sens transférable — le récit est convoqué pour défendre une position, pas pour en tirer un apprentissage formulé. La pièce 2 est une condensation rapide qui pourrait porter le QU'EST-CE QUE ÇA SIGNIFIE (\"augmenter son champ de vision\" est un apprentissage), mais elle est trop sommaire pour qu'on lise le motif que forment les fils assemblés. Ce qui reste explicitement faible : pas de connexion explicite entre événements distants, pas de fil rouge nommé, pas de marqueurs métanarratifs comme \"pourquoi je parle de cela ?\".",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le récit assemble des éléments distants (six mois, plusieurs IA, 500 livres) en une trajectoire qui défend une thèse — première étape de la narration réflexive." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 est un récit défensif (contredire l'analyse de l'IA), pas un récit d'extraction de sens. Le but du passage est de rétablir une vérité contextuelle, pas de tisser un motif. La pièce 2 est trop brève pour porter un travail narratif réflexif au sens de la fiche (la fiche évoque des textes-fleuves qui maintiennent une cohérence souterraine — ici on est dans la formule brève).",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le récit est utilisé pour défendre une position face à l'IA plutôt que pour extraire un apprentissage transférable — relève davantage de 1.01 (pensée critique) que de 5.03 ; tient comme indice de capacité à tisser." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Formule trop brève pour porter une narration réflexive au sens de la fiche." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la narration réflexive en pesant les pièces contre le critère QUOI → POURQUOI → SIGNIFICATION. La condensation rapide est tombée. Le récit défensif s'est affaibli : il tisse, mais pour défendre une position, pas pour extraire un sens transférable. Ce qui en résulte : une capacité à tisser présente, mais qui ne se déploie pas comme narration réflexive sur cette feuille — elle sert un acte critique (1.01). La nuance qui reste : on devine en arrière-plan un portfolio qui pratique probablement la narration réflexive — la feuille elle-même est versée à ce portfolio — mais sa propre contribution à cet exercice est ici l'objet, pas le sujet : c'est l'IA qui produit l'analyse réflexive, l'apprenant qui la corrige.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Le temps 2 a disqualifié la condensation brève et affaibli le récit défensif (relève davantage de 1.01) ; un seul indice ténu de capacité à tisser.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait d'écrire un passage qui tisse un fil entre plusieurs entrées du portfolio — non pour défendre une position, mais pour extraire un motif qui n'apparaissait pas dans chaque entrée prise isolément, et nommer cet apprentissage transférable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Articulation d'un usage médiateur de l'IA (transformer, amplifier, pas remplacer) — articulation sereine sans tension émotionnelle visible."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Observation tierce qui distingue ce que l'humain apporte (voix reconnaissable) de la production IA générique — articulation bidirectionnelle implicite."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Articulation co-produite de ce que l'IA peut simuler et de ce qui reste structurellement humain — formulation aboutie sans amertume mais sans tension émotionnelle non plus."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que l'acceptation de l'intelligence supérieure n'est pas vraiment attestée : la fiche est explicite — l'indicateur clé est le REGISTRE ÉMOTIONNEL (surprise, choc, colère, admiration mêlée de malaise), et l'absence de tension peut indiquer un constat superficiel plutôt qu'une acceptation profonde. La fiche met précisément en garde contre la désirabilité sociale : performer l'humilité (\"l'IA est meilleure\") sans l'avoir traversée. Or les trois pièces sont toutes dans un registre serein, articulé, sans tension émotionnelle. Aucun aveu émotionnel du type cité par la fiche (\"l'IA exprime mes idées mieux que moi, je suis littéralement sur le cul\"). Aucune métaphore du miroir ou de la maïeutique. Pas de colère, pas de surprise, pas de malaise. Ce qui reste : des articulations conceptuelles propres et abouties — qui pourraient tout aussi bien indiquer un travail antérieur déjà digéré qu'un constat sans vécu.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "L'articulation aboutie de ce que l'IA fait (simuler la cohérence) et de ce qui reste humain (vivre ses principes) correspond à la \"forme aboutie\" citée par la fiche (articulation sereine sans amertume)." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 3 est l'articulation aboutie que la fiche valorise — mais elle est co-produite avec l'IA, l'apprenant la valide sans la reformuler à sa main. La fiche est claire : l'acceptation authentique implique d'avoir TRAVERSÉ la tension, pas de l'avoir évitée. Ici, on a le résultat (l'articulation sereine) sans la traversée (la tension émotionnelle qui authentifie). La pièce 1 est une étiquette portfolio. La pièce 2 est une observation tierce. Aucune des trois pièces ne porte le marqueur de tension émotionnelle que la fiche exige comme test fiable.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Auto-déclaration d'un usage médiateur sans aucune tension émotionnelle — la fiche signale précisément ce cas comme désirabilité sociale possible." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Observation tierce qui relève davantage de 1.10 (synergie hybride) ou 3.02 (signature) que de l'acceptation émotionnelle d'une intelligence supérieure." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'articulation aboutie existe mais sans traversée émotionnelle visible — possible désirabilité sociale ou travail déjà digéré ailleurs ; tient comme indice ténu." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'acceptation de l'intelligence supérieure en pesant les pièces contre le test fiable de la fiche : présence de tension émotionnelle (surprise, colère, malaise, admiration mêlée). Aucune des trois pièces ne porte cette tension. Deux pièces sont tombées. Une troisième tient comme indice ténu d'une articulation aboutie qui pourrait être l'effet d'un travail antérieur déjà fait — mais sans la traversée visible, on ne peut pas attester du processus. Ce qui en résulte : sur cette feuille, l'acceptation au sens 5.04 n'est pas attestée. La nuance qui reste : l'absence de tension ici peut indiquer que la traversée a eu lieu ailleurs, dans le portfolio plus ancien, et qu'on en voit l'aboutissement serein. Mais cette feuille seule ne porte pas la trace de la traversée.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "Le temps 2 a disqualifié deux pièces (déclaration nue, observation hors scope) et affaibli la troisième (articulation sans traversée émotionnelle visible) ; absence de tension qui constitue le test fiable selon la fiche.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de raconter un moment précis où une production de l'IA a dépassé ce que l'apprenant aurait pu produire — quelle a été la première réaction émotionnelle (surprise, colère, admiration mêlée de malaise), ce qui s'est joué là, et ce qui en est résulté."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'auto-positionnement comme apprenant Respire pourrait être lu comme un \"pourquoi\" qui persiste — le fondateur reste apprenant parce que c'est ce qui fait sens."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "L'articulation de la congruence comme \"sujet qui existe dans la durée, qui peut échouer, qui prend des risques réels\" pose le sens d'une existence engagée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que le sens et la motivation intrinsèque ne sont pas vraiment attestés : la fiche met précisément en garde contre le \"sens narré vs sens vécu\" — un pourquoi éloquent qui est en réalité une rationalisation post-hoc. La pièce 1 est trop courte pour porter un \"pourquoi\" — elle inscrit une position mais ne dit pas ce qui pousse à la tenir. La pièce 2 est une articulation co-produite avec l'IA sur la congruence en général, pas un \"pourquoi\" personnel de l'apprenant. La fiche cite des manifestations comme \"je me sens vivant, je RESPIRE\" ou la persévérance dans l'invisible — aucune de ces expressions viscérales n'apparaît ici. Ce qui reste explicitement faible : pas d'expression viscérale de sens, pas de philosophie explicite du parcours, pas de litote qui masquerait un sens authentique.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Aucune des deux pièces ne porte ce que la fiche cite comme manifestation centrale : expression viscérale de sens, philosophie du parcours, persévérance dans l'invisible, litote qui authentifie. Les pièces sont des positions philosophiques générales sans ancrage personnel viscéral.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le sens et la motivation intrinsèque en supposant que les pièces relevaient de positions philosophiques générales plutôt que d'un \"pourquoi\" vécu. La présomption d'absence n'a fait résister aucune pièce — les marqueurs viscéraux que la fiche exige (expression vivante, persévérance dans l'invisible, litote) ne sont pas là. Ce qui en résulte : sur cette feuille, le sens et la motivation intrinsèque ne sont pas attestés. La nuance qui reste : il est très probable que ce sens existe — la feuille elle-même atteste d'un engagement persistant sur 6 mois — mais sa source n'est pas exposée. C'est une absence de matière thématisée, pas nécessairement une absence de sens.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 n'a fait résister aucune pièce ; les pièces relèvent de positions générales sans ancrage viscéral personnel.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait d'écrire ce qui pousse à continuer quand le projet devient ingrat ou invisible — sans grandes envolées, simplement nommer la source intérieure qui résiste aux échecs et aux validations qui n'arrivent pas."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie et au mode dégradé sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la technologie a manqué (panne, déconnexion, IA indisponible) et où le travail a continué autrement — papier, tableau blanc, mémoire, bricolage avec les moyens du bord."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté attentionnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un choix de déconnexion délibéré — non subi, non par contrainte — et ce qu'il a permis de voir ou de produire qui ne se produit pas dans le flux ordinaire."
+      }
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Description d'un croisement systématique entre IA multiples et corpus livresque — pourrait s'apparenter à de la vérification, mais reste documentaire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant que la vérification terrain n'est pas vraiment attestée : la fiche est explicite — le critère discriminant est le \"contact avec la réalité non médiatisée\". \"J'ai vérifié sur Google\" relève de 1.01 (vérification documentaire) ; 5.08 exige un test direct dans le réel. La pièce 1 décrit une triangulation entre IA et livres — c'est de la vérification documentaire croisée, pas du contact avec le réel. Aucune mention d'un test empirique, d'une vérification par les logs, d'une confrontation avec le terrain. Ce qui reste explicitement faible : pas de récit d'expérimentation directe, pas de confrontation entre ce qu'un système affirmait et ce que l'apprenant a constaté en allant voir.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce est clairement documentaire — croiser les sources d'information ne suffit pas selon la fiche, qui distingue explicitement les deux cas.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la vérification terrain en mesurant la pièce contre le critère discriminant de la fiche : contact avec la réalité non médiatisée. La triangulation documentaire entre IA et livres ne passe pas ce critère — c'est de la vérification croisée d'informations, pas du test empirique. Ce qui en résulte : sur cette feuille, la vérification terrain n'est pas attestée. La nuance qui reste : aucune scène ne convoque cette compétence ici ; ce n'est pas une absence-choix, c'est une absence-scène.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Le temps 1 n'a fait résister aucune pièce ; la triangulation documentaire ne satisfait pas le critère du contact avec la réalité non médiatisée.",
+        "prescription": "Pour ouvrir cet axe, un chemin possible serait de raconter un moment où une affirmation (d'une IA, d'un dashboard, d'un livre) a été testée empiriquement — par observation directe, par mise en pratique sur le terrain, par confrontation au réel — et ce que le test a révélé que la source seule masquait."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 4,
+    "nonEtablies": 2,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail apparaît principalement par ses effets plutôt que par sa traversée. Plusieurs traces ténues affleurent — l'auto-positionnement comme apprenant, la mention d'un doute qui élargit, la détection d'un manque dans le référentiel — mais le registre dominant reste l'articulation aboutie sans la tension émotionnelle qui authentifie la transformation intérieure. Les micro-faits récurrents : des formules brèves qui condensent six mois (\"j'ai douté de mes travaux, j'ai augmenté mon champ de vision\"), des articulations sereines sur ce qui distingue l'humain de la machine, une posture publique d'apprenant glissée en fin de texte. Le pôle se laisse lire ici comme un palier déjà atteint dont on voit la surface tranquille, pas comme un travail en cours dont on suivrait les remous.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs régions du pôle restent en attente d'être ramenées dans le portfolio. La résilience et l'antifragilité, la plasticité et le désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure sont tous \"renvoyés au cartographe\" — la matière existe en germe mais sans la traversée explicite que les fiches exigent. Le sens et la motivation intrinsèque ne sont pas thématisés sur cette feuille — non par manque mais par effet de focale, le texte est centré sur l'analyse de la collaboration plutôt que sur la source intérieure du travail. L'autonomie en mode dégradé, la souveraineté attentionnelle et la vérification terrain sont absentes — la scène est entièrement médiatisée par l'IA. Ces absences ressemblent à un effet de focale plutôt qu'à des choix : la feuille fait le bilan d'une session de dialogue avec l'IA, elle n'invite pas à raconter une crise, un désapprentissage, une déconnexion.",
+    "emergencesPole": "Trois lignes traversent ce pôle. Première ligne : ce qui est attesté ailleurs apparaît ici en surface tranquille — l'articulation sereine sur ce que l'IA peut et ne peut pas, l'auto-positionnement d'apprenant, la révision du référentiel se font sans tension visible. Deuxième ligne : les marqueurs viscéraux que les fiches du pôle citent comme tests fiables (ironie face au chaos, métaphore d'enfermement, expression viscérale de sens, tension émotionnelle face à l'IA) ne sont pas convoqués — ce qui peut indiquer un travail déjà digéré ailleurs ou un registre stylistique qui passe les transformations en litote. Troisième ligne : la cohérence entre fondateur et apprenant qu'on voit dans le pôle 4 trouve ici son envers en pôle 5 — on voit la posture, on ne voit pas le chemin qui y mène.",
+    "pistes": [
+      "Pour enrichir la résilience et l'antifragilité, un chemin possible serait de raconter une crise précise des six derniers mois — un moment où le doute aurait pu fermer le projet, ce qui s'est joué là, ce qui a émergé que l'état antérieur ne contenait pas.",
+      "Pour enrichir la plasticité et le désapprentissage, un chemin possible serait de nommer une croyance pédagogique que ces derniers mois ont fait tomber — quelque chose qui paraissait vrai et qui ne l'est plus, le moment du basculement, et ce qui reste constant malgré le changement.",
+      "Pour enrichir la narration réflexive, un chemin possible serait d'écrire un passage qui tisse plusieurs entrées du portfolio en un motif transférable, non pour défendre une position mais pour extraire un apprentissage qui ne se voyait pas dans les entrées prises isolément.",
+      "Pour enrichir l'acceptation de l'intelligence supérieure, un chemin possible serait de raconter un moment précis où une production IA a dépassé ce que l'apprenant aurait pu produire, avec la première réaction émotionnelle (surprise, colère, admiration mêlée de malaise) et ce qui s'est joué là.",
+      "Pour enrichir l'autonomie en mode dégradé et la souveraineté attentionnelle, un chemin possible serait de documenter un moment de déconnexion délibérée ou une panne traversée — ce que le travail sans IA a permis de voir ou de produire que le flux ordinaire ne produit pas."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail apparaît principalement par ses effets plutôt que par sa traversée. Plusieurs traces ténues affleurent — l'auto-positionnement comme apprenant, la mention d'un doute qui élargit, la détection d'un manque dans le référentiel — mais le registre dominant reste l'articulation aboutie sans la tension émotionnelle qui authentifie la transformation intérieure. Les micro-faits récurrents : des formules brèves qui condensent six mois (« j'ai douté de mes travaux, j'ai augmenté mon champ de vision »), des articulations sereines sur ce qui distingue l'humain de la machine, une posture publique d'apprenant glissée en fin de texte. Le pôle se laisse lire ici comme un palier déjà atteint dont on voit la surface tranquille, pas comme un travail en cours dont on suivrait les remous.\n\n## Territoires les plus denses\n\nSur cette feuille, aucune compétence du pôle n'atteint le seuil de présence établie. Plusieurs compétences sont renvoyées au cartographe — la matière affleure sans se déployer en récit.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions du pôle restent en attente d'être ramenées dans le portfolio. La résilience et l'antifragilité, la plasticité et le désapprentissage, la narration réflexive, l'acceptation de l'intelligence supérieure sont tous renvoyés au cartographe — la matière existe en germe mais sans la traversée explicite que les fiches exigent. Le sens et la motivation intrinsèque ne sont pas thématisés sur cette feuille — non par manque mais par effet de focale, le texte est centré sur l'analyse de la collaboration plutôt que sur la source intérieure du travail. L'autonomie en mode dégradé, la souveraineté attentionnelle et la vérification terrain sont absentes — la scène est entièrement médiatisée par l'IA. Ces absences ressemblent à un effet de focale plutôt qu'à des choix : la feuille fait le bilan d'une session de dialogue avec l'IA, elle n'invite pas à raconter une crise, un désapprentissage, une déconnexion.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent ce pôle. Première ligne : ce qui est attesté ailleurs apparaît ici en surface tranquille — l'articulation sereine sur ce que l'IA peut et ne peut pas, l'auto-positionnement d'apprenant, la révision du référentiel se font sans tension visible. Deuxième ligne : les marqueurs viscéraux que les fiches du pôle citent comme tests fiables (ironie face au chaos, métaphore d'enfermement, expression viscérale de sens, tension émotionnelle face à l'IA) ne sont pas convoqués — ce qui peut indiquer un travail déjà digéré ailleurs ou un registre stylistique qui passe les transformations en litote. Troisième ligne : la cohérence entre fondateur et apprenant qu'on voit dans le pôle 4 trouve ici son envers en pôle 5 — on voit la posture, on ne voit pas le chemin qui y mène.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la résilience et l'antifragilité, un chemin possible serait de raconter une crise précise des six derniers mois — un moment où le doute aurait pu fermer le projet, ce qui s'est joué là, ce qui a émergé que l'état antérieur ne contenait pas.\n- Pour enrichir la plasticité et le désapprentissage, un chemin possible serait de nommer une croyance pédagogique que ces derniers mois ont fait tomber — quelque chose qui paraissait vrai et qui ne l'est plus, le moment du basculement, et ce qui reste constant malgré le changement.\n- Pour enrichir la narration réflexive, un chemin possible serait d'écrire un passage qui tisse plusieurs entrées du portfolio en un motif transférable, non pour défendre une position mais pour extraire un apprentissage qui ne se voyait pas dans les entrées prises isolément.\n- Pour enrichir l'acceptation de l'intelligence supérieure, un chemin possible serait de raconter un moment précis où une production IA a dépassé ce que l'apprenant aurait pu produire, avec la première réaction émotionnelle (surprise, colère, admiration mêlée de malaise) et ce qui s'est joué là.\n- Pour enrichir l'autonomie en mode dégradé et la souveraineté attentionnelle, un chemin possible serait de documenter un moment de déconnexion délibérée ou une panne traversée — ce que le travail sans IA a permis de voir ou de produire que le flux ordinaire ne produit pas."
+  }
+}

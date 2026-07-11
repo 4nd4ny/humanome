@@ -1,0 +1,364 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Grosse émotion aujourd'hui. Le poste que j'avais au CFPT est rouvert. J'ai un dilemme à résoudre qui m'épuise.",
+      "contexte": "Ouverture qui pose une crise de décision avec nomination de l'épuisement. Pourrait toucher 5.01 (résilience) ou 5.05 (motivation intrinsèque).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Retourner au CFPT ne va pas m'aider à grandir, je ne vais rien apprendre que je ne sais déjà",
+      "contexte": "Rejet du retour à un rôle antérieur comme insuffisant pour la croissance. Pourrait toucher 5.02 (désapprentissage, mue identitaire).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je préfère être pauvre et finir ce qui est important, que d'avoir un salaire et faire quelque chose qui n'a plus de sens pour moi",
+      "contexte": "Préférence radicale pour le sens contre la sécurité financière. Active 5.05 (motivation intrinsèque).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "L'école de demain à des années d'avances en intégrant noèsiologie et évaluations humanistes au cœur du projet. Je ne veux pas arrêter avant d'avoir lancer le processus, qui, ensuite, n'a plus besoin de moi pour exister.",
+      "contexte": "Énoncé d'un 'pourquoi' qui dépasse la situation présente. Active potentiellement 5.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "si je ne veux pas m'épuiser de nouveau",
+      "contexte": "Mention d'un épuisement passé qui pèse dans la décision présente. Pourrait toucher 5.01 (résilience) ou 5.07 (souveraineté attentionnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Mais le démarrage nécessite une énergie et une concentration que même en étant au chômage je n'arrive que très difficilement à avoir. Impossible à faire en travaillant à côté.",
+      "contexte": "Reconnaissance d'une limite cognitive avec choix implicite de protéger les conditions du projet. Pourrait toucher 5.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Dans tous les cas, je savais que ce moment allait arriver et ça me fatigue beaucoup d'y penser.",
+      "contexte": "Anticipation lucide d'un moment difficile inévitable. Pourrait toucher 5.01 (résilience par lucidité) ou 5.03 (narration réflexive).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Ouverture en crise ('grosse émotion', dilemme épuisant) sans effondrement — la délibération continue."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Référence à un épuisement passé ('m'épuiser de nouveau') qui informe la décision présente — apprentissage tiré d'une expérience difficile."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Reconnaissance lucide qu'un moment difficile arrive, sans fuite : 'je savais que ce moment allait arriver'."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que traverser une crise de décision n'est pas la même chose qu'antifragilité au sens de la fiche, qui exige un *dépassement* — l'apprenant ne revient pas au même point, il revient au-delà. La pièce 1 ouvre en crise mais sans description de retournement ni de matière première tirée de l'épreuve — elle est encore dans la crise. La pièce 7 reconnaît l'arrivée du moment difficile, ce qui montre une lucidité, pas un dépassement. La pièce 5 résiste un peu plus : 'si je ne veux pas m'épuiser de nouveau' implique qu'un épuisement antérieur a eu lieu, qu'il a produit une connaissance ('je sais ce que ça coûte'), et que cette connaissance modifie l'arbitrage présent — c'est une trace d'apprentissage tiré d'une épreuve.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "L'expression 'm'épuiser de nouveau' renvoie à un épuisement antérieur dont l'apprenant a tiré une connaissance opérationnelle qui informe la décision en cours."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a tenu. L'attaque (a) — insuffisance probatoire — me semble pertinente : la formulation est très courte, ne décrit pas ce qui a changé entre l'avant et l'après de l'épuisement, ne raconte pas la 'transformation' au sens de la fiche. La fiche distingue clairement 'j'ai survécu' (endurance) de 'j'en suis sorti plus fort' (antifragilité). Ici, l'apprenant utilise une mémoire pour éviter une répétition, ce qui est plus proche de l'endurance avertie que de l'antifragilité. L'attaque touche fort.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La formulation reste très courte : pas de récit de transformation, pas de description de ce qui a grandi grâce à l'épreuve. L'apprenant utilise la mémoire de l'épuisement pour s'en protéger — plus proche de l'endurance que de l'antifragilité."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les pièces portaient un dépassement au sens de la fiche, où l'apprenant revient au-delà du point de crise. Aucune ne l'a tenu sous l'examen. La crise est en cours (pièce 1), l'arrivée du moment difficile est constatée (pièce 7), la mémoire d'un épuisement antérieur sert de garde-fou (pièce 2) sans qu'un récit de transformation s'installe. Ce qui en résulte : une lucidité et une endurance traversées par cette feuille, sans déploiement de l'antifragilité comme matière première de création.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a tenu sous l'examen : la lucidité face à la crise et la mémoire d'un épuisement antérieur ne suffisent pas à attester le dépassement requis.",
+        "prescription": "Un récit qui décrirait précisément ce qu'un épuisement antérieur a produit — quelle compréhension nouvelle, quelle pratique modifiée, quel projet né de la crise — ouvrirait une trace plus solide d'antifragilité."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Refus de retourner au CFPT parce que 'je ne vais rien apprendre que je ne sais déjà' — geste implicite d'abandon d'un rôle antérieur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que refuser un retour à un rôle antérieur ne suffit pas à attester un désapprentissage au sens de la fiche, qui exige une déconstruction active d'une peau cognitive ou identitaire (un savoir devenu faux, une expertise devenue obsolète, une identité professionnelle abandonnée). La pièce 2 énonce que le CFPT n'apporterait pas d'apprentissage nouveau, ce qui est une évaluation du milieu, pas un récit d'abandon d'un savoir ou d'une identité passée. L'apprenant ne dit pas 'ce que je croyais être est devenu faux' ou 'cette expertise n'est plus la mienne' — il dit que l'environnement ne nourrira pas. La pièce ne résiste pas à la présomption d'absence : pas de tension entre ancien et nouveau, pas de mécanisme d'enfermement nommé.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si le refus du retour au CFPT portait une mue cognitive ou identitaire au sens de la fiche. Il est tombé : l'apprenant évalue un milieu plutôt que de déconstruire une peau ancienne. La compétence reste hors de portée de cette feuille — non absente du parcours global, mais non visible ici sous une forme articulée.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : refuser un retour ne décrit pas l'abandon actif d'une peau cognitive antérieure.",
+        "prescription": "Un récit qui nommerait ce qui a été abandonné comme identité ou savoir (par exemple 'ce que je croyais être un bon enseignant n'est plus ce que je peux être') et ce qui reste constant donnerait à voir le désapprentissage en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "'Dans tous les cas, je savais que ce moment allait arriver' — extraction d'un fil temporel qui relie un savoir passé à la situation présente."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que reconnaître qu'on avait prévu un événement ne suffit pas à attester une narration réflexive au sens de la fiche, qui exige une extraction de sens transférable, une connexion entre événements distants, une leçon nommée. La pièce 7 articule un savoir antérieur ('je savais que ce moment allait arriver') avec la situation présente, ce qui est un fil temporel — mais sans extraction d'une leçon, sans 'pourquoi je parle de cela', sans connexion à un autre domaine. C'est une lucidité chronologique, pas une narration réflexive. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'articulation entre un savoir antérieur ('je savais') et la situation présente portait une extraction de sens transférable. Elle est tombée : la connexion est chronologique (savoir prédire que le moment arriverait) sans devenir réflexive (qu'est-ce que cela m'apprend sur ma trajectoire, sur mes choix, sur ma manière de fonctionner). La narration réflexive au sens de la fiche reste hors de portée de cette feuille — non absente du parcours global, mais non visible ici.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : prévoir un moment ne décrit pas l'extraction d'un sens transférable.",
+        "prescription": "Un récit où l'apprenant relierait explicitement ce moment de décision à d'autres moments de sa trajectoire (autres choix entre sécurité et sens) et nommerait le motif qui en émerge ouvrirait une trace plus solide de narration réflexive."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'acceptation de l'intelligence supérieure dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où l'IA l'a surpassé et ce que cela a produit en lui."
+      }
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "'Je préfère être pauvre et finir ce qui est important, que d'avoir un salaire et faire quelque chose qui n'a plus de sens pour moi' — préférence radicale pour le sens contre la sécurité."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Articulation d'un projet long ('école de demain') comme horizon qui survit à la situation présente et dépasse le besoin personnel ('n'a plus besoin de moi pour exister')."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Persistance à protéger les conditions du projet ('impossible à faire en travaillant à côté') même au coût de la sécurité financière."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que déclarer un 'pourquoi' ne suffit pas à attester la motivation intrinsèque au sens de la fiche, qui exige cohérence entre sens déclaré et actions décrites — le test est : l'apprenant resterait-il motivé si le projet devenait difficile, ingrat ou invisible ? La pièce 3 énonce une préférence forte (pauvreté plutôt que salaire sans sens), mais elle est encore au plan déclaratif sur une situation pas encore advenue. La pièce 4 articule le projet d'école de demain comme horizon — mais 'ce projet est important' peut être un enthousiasme situationnel. La pièce 6 résiste mieux : elle décrit une persistance opérationnelle — l'apprenant accepte la difficulté présente (énergie qui manque, démarrage difficile) et refuse l'option qui rendrait la production impossible. C'est une action de protection du projet sous contrainte, pas une déclaration. La cohérence entre sens déclaré (le projet est ce qui compte) et acte (refuser la condition qui empêcherait sa réalisation) tient.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 3,
+              "motifResistance": "La pièce articule la persistance opérationnelle — accepter la difficulté présente du démarrage et refuser l'option qui rendrait le projet impossible. Action de protection du sens sous contrainte."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 3 a tenu. L'attaque (f) — récit performatif — me semble pertinente : l'apprenant *raconte* sa motivation ('je préfère', 'je ne veux pas arrêter') sans la *montrer* en acte concret accompli. La fiche signale ce risque explicitement : confusion entre sens vécu et sens narré, rationalisation post-hoc. Néanmoins, la pièce 3 retenue (pid 6) décrit une action de refus implicite — refuser le poste qui rendrait le projet impossible — sous contrainte réelle (chômage menacé, projet difficile à démarrer même au chômage). La fiche admet aussi la litote ('ce n'est pas désagréable') comme trace fiable. Ici, le ton est sobre et la persistance s'accroche à un constat opérationnel ('impossible à faire en travaillant à côté'), pas à un envol lyrique. L'attaque touche mais sans disqualifier.",
+          "examenPieces": [
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le sens reste largement narré plutôt que documenté par des actes accomplis. Néanmoins, la persistance opérationnelle face à une difficulté réelle (démarrage difficile même au chômage) ancre le 'pourquoi' dans une réalité plutôt que dans la pure déclaration."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les déclarations de préférence pour le sens portaient une motivation intrinsèque attestée, non une rationalisation post-hoc. Les pièces déclaratives (préférer la pauvreté, vouloir finir le projet) sont restées au plan énoncé. La pièce qui décrivait la persistance opérationnelle a tenu : l'apprenant accepte la difficulté présente du démarrage et refuse l'option qui le rendrait impossible, ce qui ancre le sens dans une action de protection sous contrainte. L'examen critique a affaibli sans disqualifier — le sens reste partiellement narré, mais une cohérence sens/action existe. Ce qui en résulte : un indice corroboratif de motivation intrinsèque, où le projet long structure le refus présent.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce a tenu sous forme affaiblie : la persistance opérationnelle ancre le sens dans une action de protection, sans pour autant être documentée par un acte accompli.",
+        "prescription": "Un récit ultérieur qui montrerait la persistance sur le projet d'école de demain dans des conditions plus ingrates ou invisibles encore (long délai sans validation, absence de reconnaissance) consoliderait la motivation intrinsèque comme trace pleinement attestée."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie en mode dégradé dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une situation gérée sans technologie ou avec des moyens limités."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Mention 'si je ne veux pas m'épuiser de nouveau' — reconnaissance d'un signal de surcharge passé qui informe la décision."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Choix implicite de protéger les conditions cognitives du projet face à une option qui les compromettrait."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que protéger ses conditions de travail ne suffit pas à attester la souveraineté attentionnelle au sens de la fiche, qui demande un choix délibéré du focus face à un environnement de capture, avec INTENTION en présence d'alternatives. La pièce 1 ('si je ne veux pas m'épuiser de nouveau') reconnaît un signal de surcharge mais ne décrit pas un acte concret de protection — c'est un raisonnement anticipatif. La pièce 2 ('impossible à faire en travaillant à côté') pose un constat opérationnel — l'apprenant n'a pas encore choisi explicitement de refuser le poste, il observe une incompatibilité. Le choix de souveraineté n'est pas posé : il est en train d'être délibéré. Néanmoins, la pièce 2 résiste faiblement : 'impossible à faire en travaillant à côté' implique que le projet exige une protection des conditions cognitives — c'est une forme de raisonnement de souveraineté attentionnelle en cours.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La formulation 'impossible à faire en travaillant à côté' pose une exigence de protection des conditions cognitives du projet face à une alternative qui les compromettrait."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a tenu faiblement. L'attaque (g) — mouvement-vers — me semble pertinente : l'apprenant articule un raisonnement de protection des conditions de travail, mais l'acte de souveraineté (refuser concrètement le poste, désinstaller un outil, poser un rituel) n'est pas posé dans cette feuille. La fiche est ferme : 'privilégier les traces concrètes (mentions spécifiques d'outils désinstallés, paramètres modifiés, rituels décrits avec précision) par rapport aux déclarations d'intention'. Ici, c'est encore une déclaration argumentée d'intention. L'attaque touche fort sans disqualifier complètement.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le raisonnement de protection des conditions cognitives est articulé, mais l'acte de souveraineté concret (refus posé, dispositif d'attention protégé) n'est pas encore documenté."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si les pièces portaient une souveraineté attentionnelle au sens de la fiche, avec acte concret de protection. La pièce sur la mémoire de l'épuisement est tombée (raisonnement anticipatif, pas acte). La pièce sur l'incompatibilité a tenu sous forme affaiblie : le raisonnement de protection des conditions cognitives existe, mais l'acte de souveraineté n'est pas encore posé dans cette feuille. Ce qui en résulte : un indice de souveraineté attentionnelle en construction, où l'apprenant identifie ce qui menacerait son focus mais reste avant l'acte.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce a tenu sous forme affaiblie : le raisonnement de protection existe, l'acte concret n'est pas encore documenté.",
+        "prescription": "Un récit ultérieur qui décrirait l'acte concret de protection (refus posé, rituel mis en place pour préserver les conditions du projet) consoliderait la souveraineté attentionnelle comme trace pleinement attestée."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la vérification terrain dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une situation où il a testé empiriquement ce qu'un système (IA, dashboard) affirmait."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 6,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du 6 mars 2026 montre une voix qui se tient debout dans une crise de décision — pas effondrée, pas euphorique, mais lucide et persévérante. Le 'pourquoi' du projet d'école de demain structure tout : la pauvreté est préférable à une activité sans sens, le projet long n'a plus besoin de l'apprenant une fois lancé mais nécessite encore son énergie pour démarrer. Le travail tient ensemble la mémoire d'un épuisement antérieur qui informe la décision présente, la reconnaissance qu'un moment difficile arrive, et la volonté de protéger les conditions cognitives du projet. La voix dominante est celle d'une motivation intrinsèque opérationnelle, qui ne se déclare pas seulement mais ancre l'arbitrage présent dans une cohérence avec le sens long.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. L'acceptation de l'intelligence supérieure de l'IA, l'autonomie en mode dégradé et la vérification terrain ne croisent pas l'arbitrage du jour. C'est cohérent avec une feuille centrée sur un choix de vie sans interaction technique. La résilience, le désapprentissage et la narration réflexive sont effleurés (crise traversée, refus d'un retour, fil temporel posé) sans s'installer en gestes pleinement constitués. Ces territoires mériteraient d'être explorés dans des feuilles qui décriraient explicitement ce qu'une épreuve passée a transformé, ou qui relieraient ce moment de décision à d'autres moments de la trajectoire.",
+    "emergencesPole": "Trois observations traversent la feuille. D'abord, la motivation intrinsèque opère comme structure de la délibération — elle ne se déclare pas comme thème, elle organise l'arbitrage. Ensuite, la mémoire corporelle d'un épuisement antérieur fonctionne comme garde-fou, ce qui rapproche cette feuille d'une endurance avertie plutôt que d'une antifragilité déployée. Enfin, le projet d'école de demain agit comme horizon stable contre lequel les options présentes sont évaluées.",
+    "pistes": [
+      "Pour rendre visible l'antifragilité, un chemin possible serait de décrire précisément ce qu'un épuisement antérieur a produit comme transformation — quelle pratique modifiée, quelle compréhension nouvelle, quel projet né de la crise.",
+      "Pour consolider la motivation intrinsèque comme trace pleinement attestée, un chemin possible serait de documenter dans une feuille ultérieure la persistance sur le projet dans des conditions ingrates (long délai, absence de validation, perte de soutien).",
+      "Pour ancrer la souveraineté attentionnelle dans des actes, un chemin possible serait de décrire un rituel concret mis en place pour protéger les conditions cognitives du démarrage du projet."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du 6 mars 2026 montre une voix qui se tient debout dans une crise de décision — pas effondrée, pas euphorique, mais lucide et persévérante. Le 'pourquoi' du projet d'école de demain structure tout : la pauvreté est préférable à une activité sans sens, le projet long n'a plus besoin de l'apprenant une fois lancé mais nécessite encore son énergie pour démarrer. Le travail tient ensemble la mémoire d'un épuisement antérieur qui informe la décision présente, la reconnaissance qu'un moment difficile arrive, et la volonté de protéger les conditions cognitives du projet. La voix dominante est celle d'une motivation intrinsèque opérationnelle, qui ne se déclare pas seulement mais ancre l'arbitrage présent dans une cohérence avec le sens long.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'atteint dans cette feuille la solidité d'une présence pleinement établie. Deux traces tiennent en mouvement : une motivation intrinsèque ancrée dans la persistance opérationnelle (refuser ce qui rendrait le projet impossible) et une souveraineté attentionnelle qui s'articule comme raisonnement de protection des conditions cognitives, sans acte de protection encore posé.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global, mais non visibles dans ce qui est raconté ce jour-là. L'acceptation de l'intelligence supérieure de l'IA, l'autonomie en mode dégradé et la vérification terrain ne croisent pas l'arbitrage du jour. C'est cohérent avec une feuille centrée sur un choix de vie sans interaction technique. La résilience, le désapprentissage et la narration réflexive sont effleurés (crise traversée, refus d'un retour, fil temporel posé) sans s'installer en gestes pleinement constitués. Ces territoires mériteraient d'être explorés dans des feuilles qui décriraient explicitement ce qu'une épreuve passée a transformé, ou qui relieraient ce moment de décision à d'autres moments de la trajectoire.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent la feuille. D'abord, la motivation intrinsèque opère comme structure de la délibération — elle ne se déclare pas comme thème, elle organise l'arbitrage. Ensuite, la mémoire corporelle d'un épuisement antérieur fonctionne comme garde-fou, ce qui rapproche cette feuille d'une endurance avertie plutôt que d'une antifragilité déployée. Enfin, le projet d'école de demain agit comme horizon stable contre lequel les options présentes sont évaluées.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre visible l'antifragilité, un chemin possible serait de décrire précisément ce qu'un épuisement antérieur a produit comme transformation — quelle pratique modifiée, quelle compréhension nouvelle, quel projet né de la crise.\n- Pour consolider la motivation intrinsèque comme trace pleinement attestée, un chemin possible serait de documenter dans une feuille ultérieure la persistance sur le projet dans des conditions ingrates (long délai, absence de validation, perte de soutien).\n- Pour ancrer la souveraineté attentionnelle dans des actes, un chemin possible serait de décrire un rituel concret mis en place pour protéger les conditions cognitives du démarrage du projet.\n"
+  }
+}

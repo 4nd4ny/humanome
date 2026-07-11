@@ -1,0 +1,357 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Beaucoup trop d'erreurs et de modifications à apporter au manuel de formation des Tuteurs. Je n'ai pas réussi à beaucoup avancer hier.",
+      "contexte": "Constat ouvrant la feuille : un livrable imparfait qui appelle un cycle de révision — pourrait activer 3.01.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Ce matin j'ai demandé une analyse critique du manuel par l'IA ce qui m'a conduit à revoir également le manuel de l'Accompagnant. Les critiques qui sont faites : c'est un cours trop traditionnel, qui n'incarne pas la philosophie Respire.",
+      "contexte": "Cycle critique-révision déclenché par une analyse formelle reçue (« trop traditionnel », non-incarnation) — pourrait activer 3.01, 3.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Du coup, petit prompt pour Claude \"\"\"Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes.\"\"\"",
+      "contexte": "Prompt cité contenant quatre critères formels articulés (charge cognitive, pourquoi/comment, faire vivre, questions fécondes) — pourrait activer 3.04, 3.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Au lieu d'avancer dans la todo list, je recule : mais ce qui est important ce n'est pas le volume, c'est la qualité.",
+      "contexte": "Choix qualitatif assumé contre l'accumulation — la curation comme soustraction — pourrait activer 3.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Bilan de fin de journée : les deux premières formations sont maintenant beaucoup mieux (et finalisées). En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+      "contexte": "Bilan d'une itération qui livre un résultat amélioré et formule une règle générale sur la dynamique cycle/qualité — pourrait activer 3.01.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool !",
+      "contexte": "Énoncé où la voix d'écriture devient saillante : registre familier (« cool »), ponctuation expressive, contraste entre objet académique et formulation orale — pourrait activer 3.02.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Beaucoup trop d'erreurs et de modifications à apporter au manuel de formation des Tuteurs. Je n'ai pas réussi à beaucoup avancer hier.",
+          "contexte": "Acceptation d'un livrable imparfait qui appelle un cycle suivant — point de départ d'une dynamique itérative.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "Ce matin j'ai demandé une analyse critique du manuel par l'IA ce qui m'a conduit à revoir également le manuel de l'Accompagnant. Les critiques qui sont faites : c'est un cours trop traditionnel, qui n'incarne pas la philosophie Respire.",
+          "contexte": "Cycle critique-révision déclenché par un retour explicite, avec extension à un second livrable.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "extraitVerbatim": "Bilan de fin de journée : les deux premières formations sont maintenant beaucoup mieux (et finalisées). En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+          "contexte": "Bilan d'itération avec apprentissage explicite formulé en règle générale sur la dynamique de travail.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la créativité itérative au sens fort n'y est pas attestée. La fiche distingue l'itération du simple « j'ai corrigé » : il faut un choix stratégique de l'imperfection, ou au moins un apprentissage explicite tiré du cycle. La pièce 1 raconte un constat d'imperfection sans dispositif itératif décrit. La pièce 2 décrit un cycle réel mais déclenché par une critique externe, pas par un choix de l'apprenant de produire « vite et mal pour apprendre ». La pièce 3 résiste : elle livre un bilan d'itération qui en tire une règle générale (« on perd du temps en voulant aller trop vite ») — c'est de l'apprentissage explicite entre cycles. La pièce 2 résiste aussi : le cycle est nommé, et son effet (extension à un second manuel) est tracé. Reste explicitement faible : aucune connexion radicale entre domaines, aucune transgression de règle, aucun « personne n'avait fait ça avant ».",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le cycle critique → révision est nommé et a produit un effet en cascade ; trace d'un mécanisme itératif actif." },
+            { "pieceId": 3, "motifResistance": "Le bilan d'itération formule une règle générale sur la dynamique cycle/qualité — apprentissage explicite tiré du passage." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis les pièces qui ont résisté pour voir si je n'ai pas confondu une révision quotidienne avec une démarche itérative consciente. La pièce 2 est-elle un cycle d'apprentissage ou simplement une correction déclenchée par un retour ? La fiche tolère que l'imperfection soit constatée puis travaillée, mais elle exige que le cycle soit identifié comme tel. La pièce 3 est plus solide : la formule « parfois on gagne du temps mais souvent on en perd » porte un apprentissage explicite extrait du jour. Le risque d'avoir chargé la pièce 2 d'une intention itérative qu'elle ne porte pas pleinement est réel.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : la pièce montre l'apprenant engagé dans un cycle de révision sans formuler ce qu'il en apprend stratégiquement — elle reste un indice d'itération en cours, pas une preuve d'itération consciente."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Insuffisance probatoire non recevable : la pièce livre un résultat (« beaucoup mieux »), nomme la stratégie qui l'a produit (recul, qualité), et en tire une règle générale — les trois composants d'une itération apprise sont présents."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette journée n'offrait que des révisions ordinaires et pas une itération créative au sens fort. La pièce 1 n'a pas suffi à elle seule, la pièce 2 a tenu en forme affaiblie, mais la pièce 3 a résisté pleinement : elle articule un résultat amélioré, une stratégie qui l'a produit (le repli, la priorité à la qualité), et un apprentissage tiré du cycle. Ce qui reste manquant : la dimension radicale (rupture, transgression, idée que personne n'aurait osée) — la journée est itérative, pas radicale. Sur cette journée, la trace de créativité itérative est attestée dans sa dimension la moins spectaculaire mais la plus durable : un cycle assumé, un apprentissage formulé, une qualité reconnue comme supérieure au volume.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "La pièce du bilan d'itération a été confirmée au temps 2 comme trace d'un apprentissage explicite entre cycles ; une seconde pièce a résisté en forme affaiblie comme indice du cycle en cours.",
+        "prescription": "L'itération apparaît ici sous sa forme la plus mature : un cycle qui tire une règle de l'expérience. Pour explorer la dimension radicale, raconter dans une feuille future le moment où une production volontairement bâclée ou un écart par rapport à la convention a fait apparaître quelque chose d'inattendu enrichirait ce territoire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "extraitVerbatim": "Ces deux derniers correspondent à l'équivalent HEP pour les écoles Respire et ils sont cool !",
+          "contexte": "Énoncé où la voix d'écriture devient saillante : objet académique (équivalent HEP) délivré dans un registre familier et expressif (« cool ! »).",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la singularité au sens de la fiche n'y est pas établie. La fiche est sans ambiguïté : la singularité est récurrente dans le temps. Une seule feuille ne permet pas de comparer plusieurs occurrences d'un même tic d'écriture, d'un humour récurrent, d'une métaphore propre. La pièce porte bien un trait de voix — registre familier sur un objet académique, ponctuation expressive — mais l'isoler d'autres feuilles empêche de juger de sa récurrence. La pièce résiste faiblement : elle révèle un pattern possible, sans pouvoir en attester la signature.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le mélange registre académique / registre familier dans un même énoncé suggère un trait de voix potentiellement récurrent — observable mais non vérifiable sur une seule feuille." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas pris un effet stylistique ponctuel pour une signature. Sans accès à d'autres feuilles, la question est largement insoluble : ce trait pourrait être propre à cette journée, ou caractéristique de l'écriture. La fiche elle-même indique que le portfolio est le terrain idéal pour détecter les patterns récurrents — donc qu'une seule feuille est structurellement insuffisante.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la pièce isole un trait de voix sans pouvoir établir qu'il revient ailleurs ; elle subsiste comme indice qu'un fil stylistique pourrait exister, pas comme preuve d'une signature."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que la singularité ne pouvait être établie à partir de cette pièce. Le constat tient en grande partie : la fiche exige la récurrence, et une seule feuille ne suffit pas. Ce qui résiste néanmoins : le mélange registre académique / registre familier dans un énoncé court est un trait qui mérite d'être suivi sur la durée — il pourrait constituer une signature s'il apparaît ailleurs. Sur cette journée, le verdict honnête est un renvoi au cartographe : la question reste ouverte jusqu'à comparaison avec d'autres feuilles.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "L'unique pièce révèle un trait de voix possible, mais la compétence exige une récurrence qu'une seule feuille ne peut établir.",
+        "prescription": "Le mélange registre académique / registre familier observé sur cette journée mérite d'être suivi à travers d'autres entrées. Si le même décrochage de ton revient ailleurs — un objet sérieux abordé avec une exclamation familière, une digression assumée — la signature deviendra lisible. La singularité se révèle souvent dans ce que l'on n'a pas voulu styliser."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Du coup, petit prompt pour Claude \"\"\"Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes.\"\"\"",
+          "contexte": "La directive « changer les titres en questions fécondes » paraît, à première lecture, relever d'un design de questions/problèmes ; à vérifier contre la distinction 1.02/3.03/3.04.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'elle ne porte pas le design de problèmes au sens de la fiche. La fiche est très exigeante et la distinction critique explicite : 3.03 crée un problème qui n'existait pas, 1.02 reformule un problème existant. Ici, l'apprenant ne pose pas un nouveau problème — il améliore la livraison d'un manuel pédagogique en remplaçant des titres descriptifs par des questions. La forme change, le problème de fond (former tuteurs et accompagnants) reste le même. La directive « questions fécondes » concerne le dispositif d'apprentissage du lecteur, pas la création d'un champ d'action inédit pour l'apprenant lui-même. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la directive sur les « questions fécondes » pouvait porter le design de problèmes. Elle ne le porte pas : changer la forme des titres relève du design pédagogique du livrable, pas de la création d'un problème nouveau pour soi. La distinction de la fiche entre 1.02, 3.03 et 3.04 est claire ici : c'est plutôt vers 3.04 (jugement esthétique, curation) que cette pièce porte, et secondairement vers 1.02 (cadrage de l'intention). Sur cette journée et ce pôle, la compétence ne s'atteste pas. Le seuil de la création d'un problème qui n'existait pas n'est pas franchi.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "L'unique pièce a été disqualifiée dès le temps 1 : la directive sur les « questions fécondes » concerne la forme du livrable pédagogique, pas la création d'un problème inédit pour l'apprenant.",
+        "prescription": "Le design de problèmes apparaît dans une feuille où un cas spécifique se généralise en recette reproductible, ou dans le moment où l'apprenant cesse de résoudre la question donnée pour en formuler une autre, qualitativement différente. Une trace de ce type pourrait apparaître si une difficulté pédagogique rencontrée déclenchait une reformulation du besoin que personne n'avait posé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Ce matin j'ai demandé une analyse critique du manuel par l'IA ce qui m'a conduit à revoir également le manuel de l'Accompagnant. Les critiques qui sont faites : c'est un cours trop traditionnel, qui n'incarne pas la philosophie Respire.",
+          "contexte": "Réception d'un jugement formel (« trop traditionnel », non-incarnation d'une philosophie) et activation immédiate d'une révision — discernement qualitatif accepté et opérationnalisé.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "extraitVerbatim": "Du coup, petit prompt pour Claude \"\"\"Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes.\"\"\"",
+          "contexte": "Quatre critères formels articulés qui dirigent la révision — charge cognitive, ordre pourquoi/comment, mise en vie pour le lecteur, forme interrogative.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "extraitVerbatim": "Au lieu d'avancer dans la todo list, je recule : mais ce qui est important ce n'est pas le volume, c'est la qualité.",
+          "contexte": "Choix qualitatif assumé : la curation comme soustraction — le volume rejeté au profit de la qualité.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que le jugement esthétique au sens de la fiche n'y est pas attesté. La fiche exige des critères verbalisés, l'écart de propositions IA techniquement correctes mais qui « sonnent faux », ou une curation par soustraction. La pièce 1 montre une critique reçue ; est-ce le jugement de l'apprenant ou celui de l'IA qu'il accepte sans contestation ? La pièce 3 est compacte. La pièce 2 résiste fortement : quatre critères formels sont articulés explicitement (charge cognitive, ordre pédagogique, vivacité, forme interrogative) — c'est exactement ce que la fiche réclame. La pièce 3 résiste : nommer la qualité contre le volume, accepter de reculer, est un acte de curation par soustraction. La pièce 1 résiste plus faiblement : la critique est reçue mais l'apprenant la prend à son compte (révision immédiate sur deux manuels).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La critique reçue est immédiatement opérationnalisée sur deux manuels, ce qui signale une adhésion au critère formel — pas seulement une réception passive." },
+            { "pieceId": 2, "motifResistance": "Quatre critères formels articulés (charge cognitive, pourquoi/comment, faire vivre, questions fécondes) — vocabulaire esthétique précis." },
+            { "pieceId": 3, "motifResistance": "Curation par soustraction explicite : volume rejeté, qualité retenue." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis les pièces qui ont résisté pour voir si je n'ai pas chargé un travail de révision ordinaire de la dignité d'un jugement esthétique articulé. La pièce 1 est-elle vraiment un jugement de l'apprenant, ou l'enregistrement passif d'une critique IA ? Le risque de surinterprétation est réel. La pièce 2 résiste à cette relecture : les quatre critères ne sont pas des banalités pédagogiques mais des consignes précises sur la forme. La pièce 3 est plus fragile : « qualité » est une formule générique qui peut servir d'alibi à beaucoup de choses.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Surinterprétation possible : la critique vient de l'IA, l'apprenant l'opérationnalise sans la nuancer ; elle reste un indice qu'un critère formel a été reconnu comme juste, pas une preuve d'un jugement propre."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Insuffisance probatoire non recevable : le prompt est court mais dense — quatre critères formels distincts y sont nommés avec précision (charge cognitive, ordre, vivacité, forme), ce qui correspond exactement à la définition fichée du jugement esthétique articulé."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Récit performatif partiel : « qualité » est générique, mais le geste de reculer pour la préserver est un acte concret, pas seulement un slogan ; la pièce subsiste comme indice du discernement par soustraction."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette journée ne portait pas un vrai jugement esthétique articulé. La pièce 2 a tenu pleinement : quatre critères formels précis sont nommés dans un prompt court — vocabulaire esthétique en acte. Les pièces 1 et 3 ont résisté en forme affaiblie, l'une comme acceptation d'un critère externe, l'autre comme curation par soustraction nommée mais peu détaillée. Sur cette journée, le pôle de la curation apparaît comme un territoire travaillé : l'apprenant ne se contente pas d'écrire, il oriente son écriture par des critères formels articulés et accepte de soustraire (volume) pour préserver autre chose (qualité). Le seuil de la présence est franchi.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le prompt à Claude a été confirmé au temps 2 comme trace concrète de critères formels articulés ; deux autres pièces ont résisté en forme affaiblie comme indices de l'application de ces critères et d'une curation par soustraction.",
+        "prescription": "Le travail de curation apparaît ici en acte plus qu'en théorie. Donner à voir un fragment précis de retouche — qu'a fait l'apprenant à un titre « trop traditionnel » pour qu'il porte la philosophie Respire — révélerait la mécanique du jugement formel. La curation gagne aussi à se laisser surprendre : nommer un choix de soustraction qui a été difficile rend lisible le discernement à l'œuvre."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où un geste physique — réparer, assembler, ajuster — a permis de résoudre un problème que la pensée abstraite n'avait pas tranché."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel ou à la pleine présence sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait nommer une sensation physique précise associée à un moment de bascule — un nœud à l'estomac avant une décision, une fatigue qui demandait à être écoutée."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence ou la performance live sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment en présentiel où sa présence physique a fait une différence — un imprévu accueilli, une interaction qui a produit quelque chose de meilleur que le script."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 1,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée, le travail de création prend la forme d'une révision dirigée par des critères formels précis et d'un cycle itératif assumé. La voix qui s'exprime accepte de reculer pour préserver la qualité, articule explicitement ce qu'elle attend du livrable, et tire en fin de journée une règle générale de l'expérience du cycle. Le pôle se manifeste surtout dans le jugement esthétique en acte et dans l'itération apprenante — moins dans la rupture radicale ou la matière physique.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative",
+        "description": "Le cycle critique → révision → bilan est tracé sur la journée, et le bilan en tire une règle générale sur la dynamique cycle/qualité.",
+        "extraitVerbatim": "Bilan de fin de journée : les deux premières formations sont maintenant beaucoup mieux (et finalisées). En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd !",
+        "ceQueCaDit": "L'itération apparaît dans sa forme la plus durable : un cycle assumé, un résultat amélioré, un apprentissage formulé qui agira sur les prochains cycles. La dimension radicale reste à explorer ; l'itération apprenante est, elle, en place."
+      },
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "Le jugement formel se manifeste sur quatre critères articulés dans un prompt court (charge cognitive, ordre pédagogique, vivacité, forme interrogative) et dans un acte de soustraction (qualité préférée au volume).",
+        "extraitVerbatim": "Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes.",
+        "ceQueCaDit": "Le discernement formel n'est pas seulement intuitif ; il s'énonce en critères précis et oriente la production. La curation se fait aussi par soustraction — accepter de reculer plutôt que de remplir."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas traversés sur cette feuille. L'intelligence manuelle, l'ancrage sensoriel et la performance live relèvent d'une limite de l'objet du jour : une journée d'écriture solitaire de manuels n'appelle pas naturellement le geste, le corps ou la salle. La singularité reste à l'état d'écho — un mélange registre académique / registre familier apparaît sur cette feuille mais demande à être confirmé sur d'autres pour devenir une signature lisible. Le design de problèmes au sens de la fiche n'apparaît pas : la directive sur les « questions fécondes » concerne la forme du livrable pédagogique, pas la création d'un champ d'action inédit pour l'apprenant lui-même.",
+    "emergencesPole": "Trois fils traversent ce pôle sur cette journée. Le premier : le jugement esthétique se laisse documenter dans un prompt court — la concision n'empêche pas la précision des critères. Le deuxième : l'itération produit de l'apprentissage seulement quand un bilan vient en extraire une règle, et ce passage se fait ici en fin de journée. Le troisième : la voix d'écriture mêle registres sans le thématiser, ce qui pourrait constituer une signature à condition de revenir.",
+    "pistes": [
+      "Pour enrichir le jugement esthétique, un chemin possible serait de raconter une retouche précise — qu'est-ce qui, dans un titre « trop traditionnel », a été transformé pour qu'il porte la philosophie Respire.",
+      "Pour enrichir la créativité radicale, un chemin possible serait de documenter un moment où une production volontairement bâclée ou une transgression d'une convention pédagogique a fait apparaître quelque chose d'inattendu.",
+      "Pour enrichir la singularité, un chemin possible serait de laisser les traits de voix se révéler sur la durée et, à un moment, de les nommer — quel décrochage de ton, quelle digression, quelle métaphore reviennent dans plusieurs feuilles.",
+      "Pour enrichir le design de problèmes, un chemin possible serait de raconter le moment où une difficulté pédagogique rencontrée a déclenché la reformulation d'un besoin que personne n'avait posé jusqu'ici."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée, le travail de création prend la forme d'une révision dirigée par des critères formels précis et d'un cycle itératif assumé. La voix qui s'exprime accepte de reculer pour préserver la qualité, articule explicitement ce qu'elle attend du livrable, et tire en fin de journée une règle générale de l'expérience du cycle. Le pôle se manifeste surtout dans le jugement esthétique en acte et dans l'itération apprenante — moins dans la rupture radicale ou la matière physique.\n\n## Territoires les plus denses\n\n**Jugement esthétique et curation.** Le jugement formel se manifeste sur quatre critères articulés dans un prompt court : « Revoir la structure pour alléger la charge cognitive. Créer le pourquoi avant de livrer le comment. Ne pas se contenter de décrire la pédagogie mais la faire vivre au lecteur. Changer les titres des chapitres en questions fécondes. » Le discernement formel n'est pas seulement intuitif ici ; il s'énonce en critères précis et oriente la production. La curation se fait aussi par soustraction — accepter de reculer plutôt que de remplir, choisir la qualité contre le volume. La concision n'empêche pas la précision.\n\n**Créativité itérative.** Le cycle critique → révision → bilan est tracé sur la journée, et le bilan en tire une règle générale. La phrase « En voulant aller trop vite, parfois on gagne du temps mais souvent on en perd ! » porte un apprentissage explicite extrait du jour, qui pourra agir sur les prochains cycles. L'itération apparaît dans sa forme la plus durable : un cycle assumé, un résultat amélioré, un apprentissage formulé. La dimension radicale (rupture, transgression d'une convention) reste à explorer ; l'itération apprenante est, elle, en place.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas traversés sur cette feuille. L'intelligence manuelle, l'ancrage sensoriel et la performance live relèvent d'une limite de l'objet du jour : une journée d'écriture solitaire de manuels n'appelle pas naturellement le geste, le corps ou la salle — leur absence ressemble plus à un choix de focus qu'à un manque. La singularité reste à l'état d'écho — un mélange registre académique / registre familier apparaît sur cette feuille mais demande à être confirmé sur d'autres pour devenir une signature lisible. Le design de problèmes au sens strict n'apparaît pas : la directive sur les « questions fécondes » concerne la forme du livrable pédagogique, pas la création d'un champ d'action inédit pour l'apprenant lui-même.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois fils traversent ce pôle sur cette journée. Le premier : le jugement esthétique se laisse documenter dans un prompt court — la concision n'empêche pas la précision des critères. Le deuxième : l'itération produit de l'apprentissage seulement quand un bilan vient en extraire une règle, et ce passage se fait ici en fin de journée. Le troisième : la voix d'écriture mêle registres sans le thématiser, ce qui pourrait constituer une signature à condition de revenir.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir le jugement esthétique, un chemin possible serait de raconter une retouche précise — qu'est-ce qui, dans un titre « trop traditionnel », a été transformé pour qu'il porte la philosophie Respire.\n\nPour enrichir la créativité radicale, un chemin possible serait de documenter un moment où une production volontairement bâclée ou une transgression d'une convention pédagogique a fait apparaître quelque chose d'inattendu.\n\nPour enrichir la singularité, un chemin possible serait de laisser les traits de voix se révéler sur la durée et, à un moment, de les nommer — quel décrochage de ton, quelle digression, quelle métaphore reviennent dans plusieurs feuilles.\n\nPour enrichir le design de problèmes, un chemin possible serait de raconter le moment où une difficulté pédagogique rencontrée a déclenché la reformulation d'un besoin que personne n'avait posé jusqu'ici."
+  }
+}

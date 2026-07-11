@@ -1,0 +1,424 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "J'ai besoin d'une pause réflexive pour repenser à mes valeurs et aux priorités qui en découlent. Je réalise que je suis toujours dans une logique mercantile d'entreprenariat…",
+      "contexte": "Interruption du travail technique pour examiner ses propres valeurs — auto-narration d'un mouvement intérieur.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "Je suis toujours dans une logique d'entrepreneuriat et pas dans une logique de partage désintéressé. Je pense qu'il ne faut pas que je me focalise sur la vente des cartographies aux entreprises.",
+      "contexte": "Diagnostic d'une posture cognitive comme étant la sienne ('je suis toujours dans') et amorce de son désapprentissage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "Non pas dans le but de se faire de l'argent mais dans celui de rendre Gemini gratuit pour le maximum d'apprenants via le WorkSpace de Google.",
+      "contexte": "Articulation d'un 'pourquoi' qui se passe de récompense personnelle directe.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Mais finalement qui suis-je pour décider ça ? Peut-être qu'il faut juste laisser totale liberté maintenant aux gens d'utiliser ou pas Workspace.",
+      "contexte": "Questionnement de sa propre autorité décisionnelle — humilité radicale face à un projet qu'il pilote.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Dit autrement, si quelqu'un investit assez d'argent dans le système, nous pourrions le transformer en startup. Il n'y a plus qu'à trouver un commercial !",
+      "contexte": "Humour face à l'incertitude majeure de trajectoire du projet — ironie habitable.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Mais, le temps de lancement des écoles, vu que nous n'avons pas de fondation pour nous supporter financièrement, la partie Google Workspace ne sera pas obligatoire, le moteur de recherche ne sera pas proposé et RESPIRE ne se positionne pas comme tiers de confiance. Ceci est musique d'avenir, puisqu'il faut que les écoles fonctionnent, que la pompe soit amorcée, pour que le business plan puisse s'exécuter.",
+      "contexte": "Avancement dans une situation d'incertitude financière en assumant un mode dégradé transitoire.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "Beaucoup de non dits qu'il faut encore que je spécifie pour conclure ce manuel.",
+      "contexte": "Reconnaissance lucide de zones d'ignorance dans son propre travail.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Ironie face à l'incertitude financière majeure ('il n'y a plus qu'à trouver un commercial !')."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Reformulation d'une contrainte (absence de fondation) en architecture transitoire assumée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas d'antifragilité au sens fort — pas de crise traversée, pas d'échec dépassé. La pièce 5 manie l'ironie face à l'incertitude, mais une boutade n'est pas un récit de transformation. La pièce 6 décrit une adaptation à une contrainte budgétaire, ce qui est plus de la débrouillardise (5.06) que de l'antifragilité. La fiche réclame un retournement où l'épreuve devient matière première de création ; ici, il n'y a pas encore d'épreuve traversée, plutôt une absence de moyens présente assumée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'humour face à l'incertitude majeure ('il n'y a plus qu'à trouver un commercial !') correspond à la trace oblique citée par la fiche — l'ironie comme marqueur d'antifragilité."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je dois me demander si une boutade humoristique constitue véritablement de l'antifragilité. L'attaque (a) insuffisance probatoire pèse : un trait d'humour n'est pas un récit de crise dépassée. La fiche est claire : 'l'échec ouvre l'histoire au lieu de la fermer'. Ici, il n'y a pas d'histoire d'échec — il y a une incertitude présente qui produit un sourire, ce qui pointe plutôt vers la tolérance à l'incertitude (4.05) que vers l'antifragilité.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'humour face à l'incertitude est un signal de tolérance à l'incertitude, pas de transformation par le chaos — il manque le récit d'une épreuve traversée et d'un dépassement."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici la trace d'une transformation par l'épreuve. Ce qui s'observe sur cette feuille relève davantage d'un avancement assumé dans le flou que d'un retournement où une crise devient matière première de création. La présomption de sycophantie a disqualifié la pièce porteuse. Ce qui reste : pas de trace d'antifragilité dans cette feuille — l'incertitude est habitée, pas un échec dépassé.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce porteuse a été disqualifiée : l'humour face à l'incertitude présente n'équivaut pas à un récit d'épreuve traversée et dépassée.",
+        "prescription": "Sur cette feuille, le travail relève davantage de la tolérance à l'incertitude que de l'antifragilité. Pour ouvrir ce dossier, un chemin possible serait de documenter un épisode où un échec ou un revers concret a ouvert une voie inattendue plutôt que de la fermer."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Diagnostic de sa propre posture cognitive comme nécessitant un réexamen ('repenser à mes valeurs')."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Identification d'une logique habituelle ('toujours dans une logique d'entrepreneuriat') et désengagement explicite."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Renoncement à une posture d'autorité ('qui suis-je pour décider') dans le mouvement même où il est en train de l'exercer."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici qu'une hésitation passagère, pas un désapprentissage au sens fort. La pièce 1 nomme une pause réflexive mais sans encore décrire l'abandon d'un savoir antérieur. La pièce 2 identifie une logique habituelle ('je suis toujours dans') et propose explicitement de s'en détacher, ce qui correspond précisément au marqueur de la fiche ('ce que je savais est devenu faux', 'je ne suis plus le même qu'avant'). La pièce 4 lâche une posture d'autorité — c'est un désapprentissage en temps réel d'une identité de décideur unique. Trois pièces forment une séquence cohérente de mue cognitive.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La 'pause réflexive' est explicitement orientée vers un réexamen des valeurs, pas vers un simple repos — c'est le seuil d'un mouvement de transformation."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant identifie une logique habituelle ('toujours dans une logique d'entrepreneuriat') et amorce explicitement le détachement, ce qui correspond au marqueur central de la fiche."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Le renoncement à une posture d'autorité décisionnelle, dans le mouvement même où il l'exerce, est une trace fine de désapprentissage identitaire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté ; je dois me demander si je n'ai pas confondu un doute en cours d'écriture avec un véritable désapprentissage. L'attaque (g) mouvement-vers est sérieuse : les pièces 2 et 4 montrent une amorce de détachement, pas un détachement consommé. La fiche reconnaît cependant les 'formes maladroites : résistance en cours de résolution, débat avec ses étiquettes anciennes' comme manifestations valides. L'attaque (e) surinterprétation pédagogique pèse sur la pièce 1 — la 'pause réflexive' annonce plus qu'elle ne montre. La pièce 2 reste la plus solide : 'toujours dans une logique de...' nomme précisément une peau cognitive habituelle à muer.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pause réflexive est annoncée comme intention, sans encore décrire le contenu cognitif abandonné — elle ouvre le travail sans le déployer."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La fiche admet explicitement les formes en cours de résolution comme valides ; ici, l'apprenant nomme la peau cognitive habituelle et amorce le détachement de manière articulée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le renoncement à l'autorité est en mouvement ; le détachement de l'identité de décideur unique est amorcé mais pas consommé dans cette feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces passages comme de simples hésitations en cours d'écriture. Ce qui m'a forcé à reconnaître une trace de désapprentissage, c'est la pièce 2 : l'apprenant nomme une 'logique' comme habituelle ('je suis toujours dans') et amorce explicitement son détachement, ce qui correspond au marqueur de mue cognitive de la fiche. La présomption de sycophantie a affaibli deux pièces sur trois mais confirmé la pièce centrale. Ce qui reste : une trace de désapprentissage en cours — pas un savoir abandonné définitivement, mais un débat actif avec une étiquette ancienne (entrepreneur), forme que la fiche reconnaît comme valide. La nuance qui demeure : la tension entre l'ancienne et la nouvelle posture n'est pas résolue, elle est tenue ouverte, ce qui correspond à la trace fiable selon la fiche.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.68,
+        "motif": "La pièce 2, confirmée sans affaiblissement, porte le verdict : la nomination d'une logique habituelle et l'amorce explicite de son détachement constituent une trace de mue cognitive en cours, forme reconnue par la fiche.",
+        "prescription": "Le travail montre ici un désapprentissage en cours — la logique entrepreneuriale habituelle est nommée et mise en débat avec une autre posture possible. Pour prolonger ce mouvement, un chemin possible serait de noter ce qui reste constant à travers ce changement (le fil conducteur sous la mue) et ce qui résiste effectivement à l'abandon."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Marqueur métanarratif explicite ('pause réflexive', 'je réalise que') interrompant le récit de production."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Extraction d'un motif récurrent ('toujours dans une logique') à partir d'observations sur le travail en cours."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas de narration réflexive au sens fort — le texte est un journal de conception, pas une narration qui tisse du sens. Les pièces 1 et 2 contiennent toutefois des marqueurs métanarratifs ('je réalise que', 'je pense que', 'dit autrement') et une montée en généralité depuis une observation locale vers un motif (la 'logique mercantile' comme pattern de fonctionnement). La fiche reconnaît cette extraction d'un apprentissage transférable comme marqueur central.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le marqueur 'je réalise que' interrompt la chronique pour produire un commentaire d'ordre supérieur sur ce qui vient d'être écrit — c'est le passage du QUOI au QU'EST-CE QUE ÇA SIGNIFIE."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant extrait un motif transférable ('logique d'entrepreneuriat') depuis des observations locales sur son propre travail — généralisation explicite."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté ; je dois me demander si la narration est vraiment réflexive ou simplement introspective. L'attaque (b) confusion de compétence pèse : ces pièces ressemblent fortement à de la métacognition (1.04), qui examine ses processus cognitifs. La distinction critique avec 5.03 est subtile — la narration réflexive *tisse du sens à partir du vécu*, alors que la métacognition observe les processus cognitifs. Ici, l'apprenant observe ses processus (1.04) plus qu'il ne raconte une expérience en y extrayant du sens. La pièce 1 est plus proche de 1.04 ; la pièce 2 produit un motif transférable, ce qui est plus proche de 5.03.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le marqueur 'je réalise que' relève plus de la métacognition (observation d'un processus) que de la narration réflexive (extraction de sens à partir d'un vécu)."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'extraction d'un motif ('toujours dans une logique') flotte entre métacognition et narration réflexive ; elle peut être lue comme une généralisation à partir d'un vécu d'écriture."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici une narration qui tisse du sens à partir d'un vécu. Ce qui s'observe relève davantage de la métacognition (observation de processus) que de la narration réflexive au sens strict. La pièce 1 a été disqualifiée comme appartenant plus à 1.04. La pièce 2 conserve un statut ambigu : la formulation 'toujours dans une logique' est à la frontière. Ce qui reste : une trace fragile, en deçà du seuil de présence ferme — le travail produit du sens mais dans un registre métacognitif plus que narratif.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Une pièce a été disqualifiée comme métacognition (1.04), l'autre reste à la frontière entre métacognition et narration réflexive. Le seuil de présence ferme n'est pas franchi.",
+        "prescription": "Le travail montre ici une production de sens dans un registre plus métacognitif que narratif. Pour ouvrir le dossier de la narration réflexive, un chemin possible serait de relier explicitement un événement de la journée à un fil plus long du parcours — extraire un apprentissage transférable depuis une expérience particulière, plutôt qu'observer un processus en cours."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'acceptation émotionnelle d'une intelligence qui dépasse l'apprenant. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où l'IA a fait mieux que lui sur une tâche qui touche à son identité, et la traversée émotionnelle qui en a résulté."
+      }
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Articulation d'un 'pourquoi' qui se passe de récompense personnelle directe (rendre Gemini gratuit pour le maximum d'apprenants)."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Persévérance sur le projet en mode dégradé, sans garantie financière ni validation externe."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume qu'il n'y a ici pas de sens intrinsèque articulé — l'apprenant peut chercher la reconnaissance ou la réussite entrepreneuriale. La pièce 3 articule explicitement un 'pourquoi' qui n'est pas la récompense personnelle ('non pas dans le but de se faire de l'argent mais dans celui de rendre Gemini gratuit pour le maximum d'apprenants'). La fiche cite : 'le 'pourquoi' qui reste quand on retire les récompenses'. La pièce 6 atteste d'une persévérance sans validation externe garantie. Deux pièces résistent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le 'pourquoi' articulé est explicitement détaché de la récompense personnelle ('non pas dans le but de se faire de l'argent') — c'est le marqueur central de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant continue à travailler dans une situation d'incertitude financière, sans validation externe — persévérance sans garantie."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté ; je dois me demander si je n'ai pas pris au pied de la lettre une articulation qui pourrait être une rationalisation post-hoc. La fiche est explicite sur ce risque : 'un apprenant peut formuler un pourquoi éloquent qui est en réalité une rationalisation post-hoc'. L'attaque (f) récit performatif est forte sur la pièce 1 : 'non pas dans le but de... mais dans celui de...' peut être une formule plus qu'un moteur réel. Cependant, la pièce s'inscrit dans une séquence où l'apprenant *vient juste* de critiquer sa propre logique mercantile — la cohérence entre l'autocritique et la formulation du sens alternatif renforce la pièce.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La formulation du 'pourquoi' suit immédiatement une autocritique de la logique mercantile, ce qui réduit le risque de rationalisation post-hoc — mais l'articulation reste verbale et ne se vérifie pas encore dans des actes coûteux."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La persévérance en mode dégradé existe mais ne tranche pas entre motivation intrinsèque et investissement entrepreneurial dans un projet qui pourrait encore basculer en startup."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché ici à distinguer un sens vécu d'un sens narré. La pièce 1 articule un 'pourquoi' précisément dans le mouvement où la logique mercantile est critiquée — la cohérence entre l'autocritique et l'articulation alternative m'a forcé à reconnaître plus qu'une formule. La présomption de sycophantie a affaibli les deux pièces : la formulation reste verbale, la persévérance pourrait masquer plusieurs motivations. Ce qui reste : un indice solide d'un sens en construction, articulé dans un moment de remise en question des récompenses extrinsèques, sans encore la vérification longitudinale que la fiche réclamerait pour une confiance haute.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Les deux pièces, affaiblies mais retenues, attestent ensemble d'un 'pourquoi' articulé dans un contexte d'autocritique des récompenses extrinsèques, ce qui réduit le risque de rationalisation post-hoc.",
+        "prescription": "Le travail montre ici un 'pourquoi' qui se reformule en s'écartant explicitement de la récompense personnelle directe. Pour épaissir cette compétence, un chemin possible serait de noter, sur la durée, comment ce sens articulé tient ou se transforme face à des situations concrètes où il coûte quelque chose à incarner."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au fonctionnement hors technologie. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a travaillé sur papier, ou improvisé une solution avec des moyens limités, indépendamment des outils numériques."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté attentionnelle. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision de déconnexion ou de protection de son attention, avec le critère qui l'a déclenchée."
+      }
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la vérification terrain. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a testé empiriquement quelque chose que l'IA ou un système affirmait."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 5,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail intérieur prend la forme d'une mue cognitive en cours. L'apprenant interrompt la production technique pour interroger une posture qu'il diagnostique comme habituelle ('toujours dans une logique d'entrepreneuriat'), articule un 'pourquoi' qui s'écarte explicitement de la récompense personnelle, et maintient ouverte la question de sa propre autorité décisionnelle. L'humour habite l'incertitude majeure (financement, trajectoire), ce qui signale une tolérance plus qu'une crise traversée. Le registre est celui du débat actif avec une étiquette ancienne, sans encore la consommation d'un abandon ni le récit d'une transformation aboutie — ce qui éclaire ce que cette feuille montre du travail, sans rien fermer sur la suite.",
+    "territoiresDenses": [
+      {
+        "competence": "Plasticité et désapprentissage",
+        "description": "L'apprenant nomme une logique habituelle ('toujours dans une logique d'entrepreneuriat') et amorce explicitement son détachement, sans résoudre la tension entre l'ancienne et la nouvelle posture.",
+        "extraitVerbatim": "Je suis toujours dans une logique d'entrepreneuriat et pas dans une logique de partage désintéressé.",
+        "ceQueCaDit": "Cette formulation correspond à la 'forme maladroite' reconnue par la fiche — résistance en cours de résolution, débat avec une étiquette ancienne, sans lissage de la tension."
+      },
+      {
+        "competence": "Sens et motivation intrinsèque",
+        "description": "Le 'pourquoi' s'articule précisément dans le mouvement où la logique mercantile est critiquée — la cohérence entre l'autocritique et la nouvelle formulation réduit le risque de rationalisation post-hoc.",
+        "extraitVerbatim": "Non pas dans le but de se faire de l'argent mais dans celui de rendre Gemini gratuit pour le maximum d'apprenants via le WorkSpace de Google.",
+        "ceQueCaDit": "Le 'pourquoi' est construit en s'écartant explicitement de la récompense personnelle directe, ce qui correspond au marqueur central de la fiche."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent silencieux sur cette feuille. L'antifragilité au sens d'un récit où une épreuve devient matière première de création n'apparaît pas — l'incertitude est habitée, mais sans crise traversée. L'acceptation de l'intelligence supérieure (IA) n'est pas thématisée dans ces pages, ce qui est notable étant donné que le projet repose sur l'usage intensif d'IA. Les compétences plus comportementales (mode dégradé, souveraineté attentionnelle, vérification terrain) ne laissent pas non plus de trace ici — le travail s'opère entièrement dans le registre cognitif et organisationnel. La narration réflexive apparaît en germe, mais le passage du QUOI au QU'EST-CE QUE ÇA SIGNIFIE reste plus métacognitif que narratif.",
+    "emergencesPole": "Ce qui traverse cette feuille, c'est une mue en cours dont l'apprenant raconte le mouvement plus que le résultat. Une seconde émergence : la cohérence entre l'autocritique (sortir de la logique entrepreneuriale) et l'articulation du sens alternatif (gratuité pour les apprenants) — les deux gestes se renforcent et s'authentifient mutuellement. Enfin, l'humour comme manière d'habiter l'incertitude majeure ('il n'y a plus qu'à trouver un commercial !') signale une posture où le flou ne paralyse pas, sans encore équivaloir à une antifragilité éprouvée.",
+    "pistes": [
+      "Pour prolonger le désapprentissage en cours, un chemin possible serait de noter ce qui reste constant à travers cette mue (le fil conducteur sous la transformation) et ce qui résiste effectivement à l'abandon.",
+      "Pour vérifier le sens articulé, un chemin possible serait d'observer sur la durée comment ce 'pourquoi' tient ou se transforme face à des situations concrètes où il coûte quelque chose à incarner.",
+      "Pour ouvrir le dossier de la narration réflexive, un chemin possible serait de relier explicitement un événement particulier à un fil plus long du parcours — extraire un apprentissage transférable depuis une expérience, plutôt qu'observer un processus en cours."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail intérieur prend la forme d'une mue cognitive en cours. L'apprenant interrompt la production technique pour interroger une posture qu'il diagnostique comme habituelle ('toujours dans une logique d'entrepreneuriat'), articule un 'pourquoi' qui s'écarte explicitement de la récompense personnelle, et maintient ouverte la question de sa propre autorité décisionnelle. L'humour habite l'incertitude majeure (financement, trajectoire), ce qui signale une tolérance plus qu'une crise traversée. Le registre est celui du débat actif avec une étiquette ancienne, sans encore la consommation d'un abandon ni le récit d'une transformation aboutie — ce qui éclaire ce que cette feuille montre du travail, sans rien fermer sur la suite.\n\n## Territoires les plus denses\n\n**Plasticité et désapprentissage.** L'apprenant nomme une logique habituelle et amorce explicitement son détachement, sans résoudre la tension entre l'ancienne et la nouvelle posture. « Je suis toujours dans une logique d'entrepreneuriat et pas dans une logique de partage désintéressé. » Cette formulation correspond à la forme reconnue par la fiche — résistance en cours de résolution, débat avec une étiquette ancienne, sans lissage de la tension.\n\n**Sens et motivation intrinsèque.** Le 'pourquoi' s'articule précisément dans le mouvement où la logique mercantile est critiquée — la cohérence entre l'autocritique et la nouvelle formulation réduit le risque de rationalisation post-hoc. « Non pas dans le but de se faire de l'argent mais dans celui de rendre Gemini gratuit pour le maximum d'apprenants via le WorkSpace de Google. » Le 'pourquoi' est construit en s'écartant explicitement de la récompense personnelle directe.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent silencieux sur cette feuille. L'antifragilité au sens d'un récit où une épreuve devient matière première de création n'apparaît pas — l'incertitude est habitée, mais sans crise traversée. L'acceptation de l'intelligence supérieure (IA) n'est pas thématisée dans ces pages, ce qui est notable étant donné que le projet repose sur l'usage intensif d'IA. Les compétences plus comportementales (mode dégradé, souveraineté attentionnelle, vérification terrain) ne laissent pas non plus de trace ici — le travail s'opère entièrement dans le registre cognitif et organisationnel. La narration réflexive apparaît en germe, mais le passage du QUOI au QU'EST-CE QUE ÇA SIGNIFIE reste plus métacognitif que narratif.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse cette feuille, c'est une mue en cours dont l'apprenant raconte le mouvement plus que le résultat. Une seconde émergence : la cohérence entre l'autocritique (sortir de la logique entrepreneuriale) et l'articulation du sens alternatif (gratuité pour les apprenants) — les deux gestes se renforcent et s'authentifient mutuellement. Enfin, l'humour comme manière d'habiter l'incertitude majeure signale une posture où le flou ne paralyse pas, sans encore équivaloir à une antifragilité éprouvée.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le désapprentissage en cours, un chemin possible serait de noter ce qui reste constant à travers cette mue (le fil conducteur sous la transformation) et ce qui résiste effectivement à l'abandon.\n- Pour vérifier le sens articulé, un chemin possible serait d'observer sur la durée comment ce 'pourquoi' tient ou se transforme face à des situations concrètes où il coûte quelque chose à incarner.\n- Pour ouvrir le dossier de la narration réflexive, un chemin possible serait de relier explicitement un événement particulier à un fil plus long du parcours — extraire un apprentissage transférable depuis une expérience, plutôt qu'observer un processus en cours.\n"
+  }
+}

@@ -1,0 +1,767 @@
+{
+  "poleNum": "7",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-04",
+      "extraitVerbatim": "C'est ce que j'ai essayé de creuser par la suite en lui demandant de prendre le rôle d'un directeur d'école aigris qui ne comprend rien à ce qui est en train de changer dans la société de demain. Ça m'a donné matière à réfléchir, mais au final, le problème, c'est qu'il est difficile de résumer autant d'idées en quelques phrases.",
+      "contexte": "Utilisation d'un rôle adversarial pour faire émerger un savoir non encore formulé — méthode maïeutique appliquée à soi via l'IA (7.01 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Cette partie est terminée : manuel + annexe avec prompt complet + référentiel 60 compétences + 60 fichiers YAML + 60 prompts générés par script Python sur la base des fichiers YAML.",
+      "contexte": "Architecture pédagogique structurée — manuel, annexe, référentiel, fichiers générés — pour transmission (7.01, 7.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "J'ai terminé. Le protocole est interactif et en accord avec les évaluations humanistes. Je l'intègre dans la documentation du cartographe.",
+      "contexte": "Acte d'intégration d'un protocole dans une documentation destinée à un futur acteur (le cartographe) (7.03, 7.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Le rôle du cartographe serait de consulter la cartographie produite, de lire des extraits au hasard, et de confirmer certains points en les documentant dans le portfolio => pour enrichir la cartographie avec sa vision humaine.",
+      "contexte": "Conception d'un rôle d'évaluation transformative — le cartographe enrichit, ne juge pas (7.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Je pourrais dire aux apprenants de générer uniquement une feuille du portfolio par jour, et de lancer systématiquement une analyse automatique sur chaque entrée du journal de bord pour construire, au fil du temps, une cartographie automatique.",
+      "contexte": "Architecture pédagogique : rythme prescrit (une feuille par jour) + dispositif d'analyse — design d'un environnement d'apprentissage (7.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "En Mars, je prévois de tester avec deux personnes sur un cours particulier pour apprendre à utiliser les IA. J'en profiterai pour leur faire lire le manuel Apprenant et rédiger les portfolios.",
+      "contexte": "Test pilote pédagogique annoncé avec deux personnes — déploiement progressif d'un dispositif (7.07, 7.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "C'est ce qui m'a poussé à créer une structure indépendante de la plateforme EduFolio qui pourrait être *LA* startup à créer actuellement pour récupérer le milliard d'utilisateurs de LinkedIn : vendre des portfolios et des cartographies (c'est-à-dire des preuves de compétences) pour remplacer les CV et les diplômes qui ne valent plus rien, histoire de m'assurer une retraite suffisante pour vivre en Suisse.",
+      "contexte": "Vision prospective à long terme : déplacer un marché entier (CV/diplômes) — lien explicite entre futur anticipé et décision présente (7.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "D'où la stratégie actuelle qui est de tout donner en libre pour lancer les écoles maintenant (après ce sera trop tard : il y aura d'autres alternatives).",
+      "contexte": "Lien explicite entre décision présente (gratuité) et anticipation future (concurrents) — vision stratégique (7.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "il est fort probable que l'ORP m'impose un poste d'enseignant dès le moi d'août, même si je ne peux plus enseigner comme avant, je risque d'être obligé d'accepter. Je dois donc lancer les écoles avant ça.",
+      "contexte": "Anticipation d'une contrainte future + décision présente conséquente — vision prospective conditionnelle (7.05, 7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "J'ai vraiment envie de le faire, mais je vais me forcer à ne pas le faire. Pourquoi ? Parce que c'est le bon moyen pour me remettre un petit peu à niveau en informatique ce qui ne me sert à rien. Parce que c'est de nombreuses heures passées sur le hardware et le système, ce qui ralenti la création de RESPIRE.",
+      "contexte": "Refus argumenté d'une tentation par filtre d'utilité — exactement le marqueur fort de la fiche pour le « non » stratégique (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Je ne suis plus obligé de me maintenir à jour comme je le faisais avant avec tous les outils IA qui sortent quasi chaque semaine. Je n'ai même pas encore pris le temps de tester Claude Cowork, c'est pour dire. Mais surtout je m'en fiche en fait. Je me maintenais à niveau pour savoir quoi enseigner aux élèves. Maintenant, si ça ne m'est plus directement utile pour ce que je suis en train de faire, je n'y consacre plus que quelques minutes",
+      "contexte": "Filtre d'utilité explicitement formulé pour la consommation d'information (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "Mon objectif : alléger ma charge cognitive avant le début des cours ORP de vendredi en clôturant un maximum de projets et en fermant des bureaux virtuels, afin de revenir à un nombre de projets parallèles que ma mémoire de travail peut vraiment gérer.",
+      "contexte": "Priorisation argumentée + objectif daté + critère de réussite (charge gérable) — efficacité personnelle attestée (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "Ce n'est pas le swap qui me fatigue lorsque je suis en état de flow, c'est les micro-oublis qui arrivent lorsqu'il y a des interruptions de plus de 24h.",
+      "contexte": "Formalisation d'une technique personnelle (distinction swap vs micro-oublis) issue d'une observation de soi (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "J'ai préparé le prompt pour générer ce nouveau livre. J'attendrai jeudi prochain pour le faire générer, afin de ne pas épuiser mon quota hebdomadaire de tokens et de me retrouver bloqué par rapport aux autres projets plus critiques",
+      "contexte": "Décision de timing argumentée par critère de ressource — gestion de l'énergie et des contraintes (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Comme c'est le coeur de tout le reste, je vais devoir refaire une itération complète : noèsiologie / livre / manuels / prompts d'analyse / site web. Ce qui est génial c'est que comme rien n'est terminé, je n'ai pas l'impression de défaire ce que j'ai déjà fait. Ce qui est plus délicat c'est comme tout est en construction, il faut que je me souvienne quelles modifications apporter aux prompts pour reconstruire en intégrant les améliorations non encore fusionnées avec les versions soudainement devenues obsolètes.",
+      "contexte": "Décision de pivot complet avec lucidité sur la difficulté de coordination — agilité méthodique (7.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "L'architecture de la cathédrale que j'ai construite dans ma tête est un véritable labyrinthe qui présente comme principale difficulté, des interruptions perpétuelles, là ou j'aurai besoin d'une « semaine au vert » pour tout assembler et mettre en place.",
+      "contexte": "Reconnaissance d'une difficulté de coordination et formulation d'un besoin (semaine au vert) (7.07, 7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "J'ai compris ce matin pourquoi j'ai tant de mal à boucler chaque projet : c'est parce qu'ils sont tous intrinsèquement liés. Je ne peux pas finir un puis l'autre : ils avancent tous en même temps.",
+      "contexte": "Diagnostic d'un blocage personnel récurrent — formalisation d'un pattern de fonctionnement (7.06, 7.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 18,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "CPU #1 sur Claude Cowork [...] CPU #2 sur ChatGPT [...] CPU #3 sur Gemini [...] CPU #4 sur un projet Claude Web [...] NO-CPU / BACKGROUND sur YouTube",
+      "contexte": "Orchestration explicite de quatre instances IA avec rôles différenciés — leadership situationnel sur le tandem multi-agents (7.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 19,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "J'arrive à faire tourner 5 instances parallèles de Claude en local sur mon disque dur. J'arrive à assumer mon THAD en faisant travailler Perplexity + ChatGPT + Gemini + Claude en parallèle pour avancer sur les différentes dimensions de mon projet, pendant que moi j'écoute des podcasts en lisant leurs productions ou en rangeant les fichiers générés sur mon disque dur.",
+      "contexte": "Description d'une orchestration multi-IA avec rôle d'humain (lecteur, rangeur) — leadership distribué (7.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 20,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "Ce que j'ai appris en générant la première partie du livre ce matin, c'est que je gérais très mal la fenêtre de contexte et que je devais basculer sur Claude Code et Visual Studio pour écrire les fichiers MarkDown et fournir les sources dans un répertoire de mon disque dur plutôt que dans l'interface des projets de Claude. Chaque prompt me faisait compresser la conversation => signe de grosse perte de qualité.",
+      "contexte": "Diagnostic d'une erreur de pilotage + bascule d'outil — itération structurée avec apprentissage (7.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 21,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "Puis j'ai appliqué le protocole CATALYST dessus. A partir duquel Claude m'a proposé un autre plan vraiment meilleur. Il a d'excellentes suggestions.",
+      "contexte": "Application d'un protocole itératif nommé (CATALYST) avec acceptation d'un plan amélioré (7.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 22,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Aujourd'hui j'ai demandé la génération d'un script shell bien pratique, car depuis quelques temps les projets Claude dans l'interface web ont des petits bugs dans l'interprétation de l'encodage des fichiers générés par Claude.",
+      "contexte": "Production d'un outil utilitaire en réponse à un irritant récurrent — efficacité personnelle par outillage (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 23,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Ce qui est génial c'est que comme rien n'est terminé, je n'ai pas l'impression de défaire ce que j'ai déjà fait.",
+      "contexte": "Reframing positif d'une refonte complète — accompagnement de sa propre transition (7.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 24,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Comme ça devenait un peu lourd comme document théorique avec les 86 fonctions cognitives, surtout pour des jeunes, je lui ai demandé de publier l'anatomie d'un cerveau apprenant dans un Grimoire Noèsiologique.",
+      "contexte": "Décision pédagogique : déplacer un contenu théorique vers un format adapté au public — design pédagogique (7.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 25,
+      "feuille": "2026-02-05",
+      "extraitVerbatim": "Sur la base de ses réflexions, j'ai ajouté un chapitre au manuel des Noèsiologues [...] décliné en trois versions : pour les élèves, pour les profs praticiens, pour les philosophes et noèsiologues théoriciens.",
+      "contexte": "Documentation différenciée par destinataire — conscience explicite du futur lecteur (7.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 26,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "demain je vais basculer sur CoWork ou VS Code avec Claude Code et fusionner tous ces .tsx/jsx pour en faire une version React que je publierai sur cerebri-fabrica.respire.school ou noesology.education, mais pour ça je dois installer React sur le VPS et créer une entrée DNS pour pointer vers le bon container Docker. On verra, ce n'est pas le plus urgent pour le moment : j'ai réservé le nom de domaine, le reste peut attendre.",
+      "contexte": "Plan séquencé avec priorisation explicite et report assumé (« le reste peut attendre ») (7.06, 7.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 27,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Voici ou j'en suis dans les 10 projets (je n'ai pas tout écrit, juste ce que je ne dois pas oublier - et je vois aussi que j'ai besoin d'un tableau blanc de plus !)",
+      "contexte": "Vue d'ensemble des 10 projets en cours avec identification d'un besoin matériel — pilotage en cours (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 28,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Aujourd'hui les bureaux B1 - B2 - B3 sont consacrés à la recherche d'emploi, B4 c'est les emails + veille techno, B5 à B14 RESPIRE, B15 loisirs, B16 imprévus / leila / divers.",
+      "contexte": "Cartographie attentionnelle systématique : assignation explicite de bureaux virtuels à des thématiques (7.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 29,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "Une technopédagogue me demande d'intervenir dans son groupe de travail pour partager mes connaissances en IA. J'ai accepté.",
+      "contexte": "Acceptation d'une transmission directe à un groupe professionnel — geste de transmission à venir (7.01 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 30,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Effectivement Leila a raison, nous allons très bientôt tous avoir bien plus de temps pour jouer avec elle… sauf ses parents qui sont tous les deux dans les soins et l'humain.",
+      "contexte": "Anticipation d'un futur où l'humain se redéploie sur les soins — projection sociétale (7.05).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Conception d'un environnement d'apprentissage : rythme prescrit (une feuille/jour), dispositif d'analyse, rôle du cartographe — architecture pédagogique."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Architecture pédagogique structurée (manuel, annexe, référentiel, fichiers générés) — design pédagogique multi-composants."
+        },
+        {
+          "numero": 3,
+          "pid": 24,
+          "contexte": "Décision de déplacer un contenu théorique vers un format adapté au public jeune (Grimoire) — design pédagogique adapté."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Test pilote avec deux personnes en cours particulier — déploiement d'un dispositif d'apprentissage."
+        },
+        {
+          "numero": 5,
+          "pid": 1,
+          "contexte": "Contre-rôle adversarial pour faire émerger un savoir non encore formulé — maïeutique de soi par l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la maïeutique au sens fort (retenue délibérée + adressage à l'autre comme source) n'est pas attestée — la feuille décrit un travail solitaire de conception, pas des interactions pédagogiques en cours avec des apprenants. Mais la fiche signale explicitement deux dimensions : la méthode (questionner) et l'architecture (concevoir l'environnement). L'architecture pédagogique résiste : le pid 5 décrit un environnement avec rythme, dispositif et rôle ; le pid 2 montre des composants structurés ; le pid 24 montre une adaptation au public. La dimension maïeutique vivante reste plus faible. Le pid 6 résiste comme déploiement à venir. Le pid 1 résiste comme maïeutique appliquée à soi via l'IA.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Architecture pédagogique complète avec dispositifs et rôles." },
+            { "pieceId": 2, "motifResistance": "Composants pédagogiques structurés (manuel, annexe, référentiel, prompts)." },
+            { "pieceId": 3, "motifResistance": "Adaptation du format au public — design pédagogique en acte." },
+            { "pieceId": 4, "motifResistance": "Test pilote annoncé avec utilisateurs réels." },
+            { "pieceId": 5, "motifResistance": "Méthode maïeutique appliquée à soi pour faire émerger un savoir tacite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption sévère (la fiche met en garde contre 4 faux positifs). Le pid 1 tient sous (e) : la pièce porte exactement l'architecture pédagogique au sens fort (rythme, dispositif, rôle). Le pid 2 tient sous (a) : artefacts concrets (60 fichiers YAML, etc.). Le pid 3 risque (b) — porte aussi 2.08 (traduction) et 3.04 (curation), mais l'intention pédagogique est explicite. Le pid 4 risque (g) — c'est un test à venir, pas encore réalisé ; affaibli. Le pid 5 risque (b) — porte mieux 1.08 (dialogue IA avancé) que 7.01 (maïeutique d'autrui) ; affaibli.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Architecture multi-niveaux d'un environnement d'apprentissage avec règles, rythme et rôles — signature exacte de la fiche pour la dimension facilitation." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Artefacts pédagogiques structurés et nombrés — pas une intention, des objets concrets." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le déplacement du format pour un public jeune relève bien du design pédagogique, même s'il croise d'autres compétences." },
+            { "pieceId": 4, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Test annoncé sans avoir eu lieu — mouvement-vers, mais préparation effective (manuel à faire lire, portfolios à rédiger)." },
+            { "pieceId": 5, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le contre-rôle est une méthode appliquée à soi-même via l'IA — porte mieux 1.08 que la maïeutique adressée à autrui." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille des conseils prescriptifs (« fais ceci ») plutôt qu'une maïeutique au sens fort. La dimension maïeutique pure (questions adressées à un apprenant, retenue) reste peu visible parce que la feuille raconte une phase de conception. Mais la dimension facilitation/architecture est solidement attestée : l'environnement pédagogique est conçu avec rythme, dispositif, rôle du cartographe, composants structurés (manuel, annexe, référentiel, 60 fichiers YAML, 60 prompts) et adaptation au public (Grimoire pour les jeunes). Sous la présomption de sycophantie, le test pilote à venir est resté comme indice, et le contre-rôle adversarial a basculé vers 1.08. Ce qui résulte est une maïeutique attestée par sa face d'architecture, plus que par sa face de questionnement vivant.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé trois pièces portant la dimension facilitation/architecture pédagogique de la fiche, avec adaptation au public et structuration multi-composants.",
+        "prescription": "Le travail montre une architecture pédagogique solide — dispositifs, rôles, formats adaptés. Un chemin possible serait de documenter, lors du test de mars avec deux personnes, des questions précises posées aux apprenants (verbatim) plutôt que des réponses données — pour ouvrir la dimension maïeutique vivante de la fiche."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Conception du rôle du cartographe : confirmer, enrichir avec sa vision humaine — geste d'évaluation transformative (pas verdict mais miroir)."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Protocole d'évaluation « en accord avec les évaluations humanistes » — design d'évaluation aligné sur la progression, pas le tri."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'évaluation transformative au sens fort (acte évaluatif spécifique avec critères, miroir formatif, distinction tri/progression) n'est pas attestée — la feuille ne contient pas de retours faits à des apprenants en cours. Le pid 4 résiste : le rôle du cartographe est conçu comme miroir enrichissant, pas comme juge. Le pid 3 résiste : l'intégration au cadre « évaluations humanistes » signale une visée formative. Mais on est sur la conception, pas sur l'acte évaluatif en cours.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Rôle d'évaluation conçu comme miroir formatif, pas verdict." },
+            { "pieceId": 2, "motifResistance": "Inscription explicite dans un cadre d'évaluations humanistes." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 1 tient sous (g) : la conception est aboutie, mais le rôle n'a pas encore été incarné dans une évaluation réelle ; tenu mais affaibli. Le pid 2 tient sous (e) : la formule « en accord avec les évaluations humanistes » est brève, on ne voit pas les critères ni le dispositif détaillé. La fiche exige des critères articulés, des questions adressées à un évalué, des feedbacks spécifiques — rien de tout cela n'est attesté dans cette feuille. La pièce reste comme indice de l'intention.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Conception solide d'un rôle d'évaluation enrichissante, mais pas encore acte évaluatif en cours — mouvement-vers structuré." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Inscription explicite dans un cadre humaniste mais les critères et le dispositif détaillé ne sont pas attestés dans la feuille." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille une trace d'évaluation transformative en acte. Les pièces candidates portent l'intention et la conception : le rôle du cartographe est pensé comme miroir enrichissant, le protocole est inscrit dans un cadre humaniste. Mais la fiche exige l'acte évaluatif spécifique : questions adressées à un évalué, feedbacks qui nomment ce qui fonctionne et ouvrent des pistes, grilles critériées transparentes. Aucun de ces marqueurs n'est attesté dans cette feuille — le test pédagogique de mars permettra peut-être de l'attester. Ce qui résulte est un territoire en germe : la compétence est pensée et conçue, son incarnation n'est pas encore documentée.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a retenu deux pièces comme indices de la conception d'un cadre évaluatif transformatif, sans atteindre l'acte évaluatif spécifique exigé par la fiche.",
+        "prescription": "Le travail montre la conception d'un cadre d'évaluation aligné sur la progression. Un chemin possible serait de documenter, lors du test de mars, un retour précis donné à un apprenant — avec ce qui fonctionne, ce qui pourrait s'ouvrir, et la question posée plutôt que la correction faite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Documentation structurée : manuel + annexe avec prompt complet + référentiel 60 compétences + 60 fichiers YAML + 60 prompts générés — capitalisation pour transmission."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Intégration explicite d'un protocole dans la documentation du cartographe — conscience du futur lecteur."
+        },
+        {
+          "numero": 3,
+          "pid": 25,
+          "contexte": "Documentation différenciée par destinataire (élèves, profs praticiens, philosophes) — conscience aiguë du destinataire."
+        },
+        {
+          "numero": 4,
+          "pid": 22,
+          "contexte": "Création d'un script utilitaire (bom.sh) pensé pour réutilisation dans $PATH — outillage capitalisé pour usage répété."
+        },
+        {
+          "numero": 5,
+          "pid": 26,
+          "contexte": "Plan de publication structuré avec arborescence de sous-domaines (cerebri-fabrica.respire.school, noesology.education) — architecture documentaire à venir."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la documentation vivante au sens fort (structuration intentionnelle pour autrui, conscience du destinataire, intention de pérennisation) n'est pas attestée — la fiche met en garde contre la confusion avec 5.03 (narration réflexive personnelle) ou avec « j'ai sauvegardé » (acte technique sans structuration). Le pid 1 résiste fortement : la fiche cite explicitement « titres, sections, séparation des artefacts » et le pid 1 décrit exactement cela à grande échelle (manuel + annexe + référentiel + 60 fichiers + 60 prompts). Le pid 2 résiste : intégration explicite dans une documentation pour un futur lecteur (le cartographe). Le pid 3 résiste très fort : trois versions pour trois destinataires est exactement le marqueur de conscience du destinataire. Le pid 4 résiste comme outil capitalisé. Le pid 5 résiste comme architecture à venir.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Structuration multi-composants explicite — exactement le marqueur central de la fiche." },
+            { "pieceId": 2, "motifResistance": "Conscience explicite du futur destinataire (le cartographe)." },
+            { "pieceId": 3, "motifResistance": "Trois versions pour trois publics — conscience aiguë du destinataire." },
+            { "pieceId": 4, "motifResistance": "Script pensé pour usage répété (installation dans $PATH)." },
+            { "pieceId": 5, "motifResistance": "Architecture documentaire en cours de planification." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption (la fiche signale le risque de confusion avec 5.03). Le pid 1 tient sous (a) : artefacts concrets et nombrés (60 fichiers YAML, 60 prompts) — vérifiables. Le pid 2 tient sous (a) : intégration effective. Le pid 3 tient sous (e) : trois versions explicitement nommées. Le pid 4 risque (b) — porte aussi 1.09 (pensée computationnelle), mais l'aspect « capitaliser dans $PATH pour réutiliser » est de la documentation vivante. Le pid 5 risque (g) — c'est un plan à venir ; affaibli.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Détails spécifiques et nombrés (60 fichiers, 60 prompts, manuel, annexe) — artefacts effectifs, marqueur Expert possible." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Intégration effective dans une documentation destinée à un futur acteur identifié." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Trois destinataires nommés avec versions distinctes — conscience du futur lecteur exemplaire." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Script utilitaire pensé pour réutilisation — geste de capitalisation, mais sans documentation associée explicitement décrite." },
+            { "pieceId": 5, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Plan d'architecture documentaire en cours — préparation effective (nom de domaine réservé) mais publication à venir." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à confondre cette documentation avec un journal réflexif personnel (5.03). Trois pièces s'imposent par leur structuration intentionnelle et leur conscience aiguë du destinataire : le système manuel-annexe-référentiel-60 fichiers-60 prompts comme architecture pour transmission, l'intégration du protocole dans la documentation du cartographe avec rôle nommé, et la déclinaison du chapitre des Noèsiologues en trois versions pour trois publics. La fiche signale qu'à l'Expert, les artefacts EUX-MÊMES sont la trace — c'est précisément le cas ici. Le script bom.sh et le plan d'architecture documentaire sont restés comme indices convergents. Ce qui résulte est une documentation vivante attestée à un niveau d'exigence élevé, par la quantité, la structuration et la conscience du destinataire.",
+          "confianceFinale": 0.9
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.9,
+        "motif": "Le temps 2 a confirmé trois pièces portant le marqueur Expert de la fiche — artefacts effectifs, structuration intentionnelle, conscience aiguë du destinataire.",
+        "prescription": "Le travail montre une documentation vivante attestée par ses artefacts. Un chemin possible serait de documenter le versioning explicite — qu'est-ce qui a changé entre deux versions du manuel, pourquoi — pour rendre visible la dimension évolutive que la fiche attache au mot « vivante »."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 18,
+          "contexte": "Orchestration explicite de quatre instances IA avec rôles différenciés (Cowork = livre+site, ChatGPT = palette/logo, Gemini = relecture, Claude Web = nouvelle filière)."
+        },
+        {
+          "numero": 2,
+          "pid": 19,
+          "contexte": "Cinq instances Claude en local + Perplexity/ChatGPT/Gemini en parallèle, avec rôle humain (lire les productions, ranger les fichiers)."
+        },
+        {
+          "numero": 3,
+          "pid": 21,
+          "contexte": "Acceptation d'un meilleur plan proposé par Claude après application de CATALYST — moment où l'apprenant lâche le lead pour suivre une suggestion."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le leadership situationnel au sens fort (alternance consciente entre direction et retrait, choix explicite de bascule, moments où l'apprenant cède le lead) n'est pas attesté. Le pid 18 résiste : assignation de rôles différenciés. Le pid 19 résiste : orchestration multi-IA avec rôle humain spécifique (lire, ranger). Le pid 21 résiste très fort sur la dimension « lâcher le lead » : l'apprenant accepte un plan proposé par Claude qu'il qualifie « vraiment meilleur ».",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distribution explicite de rôles différenciés à des agents IA." },
+            { "pieceId": 2, "motifResistance": "Orchestration multi-IA avec rôle humain spécifique (lecteur, rangeur)." },
+            { "pieceId": 3, "motifResistance": "Acceptation explicite d'un plan IA — moment de retrait volontaire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption (la fiche distingue 7.04 de 1.10 et de la délégation standard). Le pid 1 risque (b) — porte aussi 1.07 (architecture multi-agents) et 1.10 (synergie). La fiche dit : 7.04 cible le choix de posture (qui mène, qui suit) à un moment donné. Le pid 18 décrit qui fait quoi, pas explicitement qui mène ou suit. Affaibli. Le pid 19 même remarque : on voit l'orchestration mais pas l'alternance consciente direction/retrait. Le pid 3 tient sous (e) : « plan vraiment meilleur » et « j'ai préparé le prompt » signe une bascule où l'apprenant suit la direction de l'IA — c'est précisément le moment de retrait volontaire que la fiche cherche.",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Moment explicite où l'apprenant cède le lead à une suggestion IA qu'il qualifie « vraiment meilleure » — signature exacte du retrait volontaire de la fiche." },
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Distribution de rôles attestée mais l'alternance consciente direction/retrait reste implicite — porte aussi 1.07." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Rôle humain spécifique (lire, ranger) montre une posture choisie pendant que les IA travaillent — affaiblie mais convergente." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages un leadership situationnel avec alternance consciente entre direction et retrait. La pièce qui s'impose comme la plus probante est celle où l'apprenant accepte explicitement un plan proposé par Claude après application du protocole CATALYST — c'est le moment exact du retrait volontaire que la fiche cherche, plus difficile à détecter que la prise de contrôle. L'orchestration des CPU et des instances multi-IA portent les rôles différenciés sans expliciter l'alternance, mais elles restent comme indices convergents. La pièce sur le rôle humain comme lecteur et rangeur signale une posture choisie pendant que les agents travaillent. Ce qui résulte est un leadership attesté par sa face d'acceptation et son architecture de rôles, plus que par une théorisation explicite de la bascule.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a confirmé une pièce portant le retrait volontaire signalé par la fiche, avec deux indices d'architecture de rôles différenciés.",
+        "prescription": "Le travail montre un leadership attesté par l'acceptation d'un plan IA et par l'architecture multi-agents. Un chemin possible serait de documenter explicitement un moment où l'apprenant a choisi de NE PAS intervenir alors qu'il en aurait eu l'occasion — pour rendre visible la dimension alternance consciente que la fiche met au cœur de la compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Vision prospective explicite : remplacer le marché des CV/diplômes — anticipation d'un futur déplacement institutionnel."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Lien explicite entre décision présente (gratuité) et anticipation future (concurrents à venir) — signature exacte de la fiche."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Anticipation d'une contrainte future (ORP) + décision présente conséquente (lancer les écoles avant) — prospective conditionnelle."
+        },
+        {
+          "numero": 4,
+          "pid": 30,
+          "contexte": "Projection sociétale sur ce que l'IA va déplacer (les humains vers les soins) — vision à long terme."
+        },
+        {
+          "numero": 5,
+          "pid": 26,
+          "contexte": "Architecture documentaire surdimensionnée pour l'usage actuel (sous-domaines réservés, container Docker prévu) — vision incarnée dans la structure."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la vision stratégique au sens fort (lien explicite entre projection future et décision présente, prospective conditionnelle) n'est pas attestée — beaucoup de portfolios contiennent des projections vagues sans lien décisionnel. Le pid 7 résiste : projection précise (déplacer le marché des CV). Le pid 8 résiste très fort : lien explicite entre décision présente et anticipation future (« après ce sera trop tard »). Le pid 9 résiste : prospective conditionnelle (si ORP, alors lancer avant). Le pid 30 résiste comme projection sociétale. Le pid 5 résiste plus faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Vision d'un déplacement institutionnel précis." },
+            { "pieceId": 2, "motifResistance": "Lien explicite décision présente / anticipation future — signature exacte." },
+            { "pieceId": 3, "motifResistance": "Prospective conditionnelle assortie d'une décision conséquente." },
+            { "pieceId": 4, "motifResistance": "Projection sociétale articulée." },
+            { "pieceId": 5, "motifResistance": "Architecture surdimensionnée pour l'usage actuel — incarnation structurelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 1 risque (b) — porte aussi 6.04 (souveraineté) et 3.03 (design de problèmes), mais la dimension prospective explicite est de 7.05. Le pid 2 tient sous (a) : lien explicite, signature exacte. Le pid 3 tient sous (a) : prospective conditionnelle articulée. Le pid 4 risque (b) — porte aussi 4.08 (création de valeur non-automatisable), mais l'aspect projection est de 7.05 ; affaibli. Le pid 5 risque (a) — l'architecture est annoncée plus que réellement déployée ; affaibli.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Lien explicite entre la décision (gratuité) et l'anticipation (futurs concurrents) — exactement la signature de la fiche." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Prospective conditionnelle (« si ORP, alors lancer avant ») assortie d'une décision présente — combo de la fiche." },
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Vision d'un marché à créer — porte aussi 6.04, retenu comme indice fort." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Projection sociétale brève — retenue comme indice convergent." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Architecture annoncée mais peu déployée (« le reste peut attendre ») — préparation plus que vision incarnée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des projections vagues sans lien décisionnel. Deux pièces s'imposent : le lien explicite entre la décision de gratuité présente et l'anticipation des futurs concurrents (« après ce sera trop tard »), et la prospective conditionnelle ORP qui produit le tranchage « je dois lancer les écoles avant ça ». Toutes deux portent la signature exacte de la fiche. La vision du déplacement du marché des CV et la projection sociétale sur les soins sont restées comme indices convergents. L'architecture documentaire annoncée a été écartée comme mouvement-vers. Ce qui résulte est une vision stratégique attestée par sa fonction décisionnelle — le futur anticipé infléchit le présent.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.85,
+        "motif": "Le temps 2 a confirmé deux pièces portant la signature exacte de la fiche : lien explicite entre futur anticipé et décision présente.",
+        "prescription": "Le travail montre une vision stratégique attestée par sa fonction décisionnelle. Un chemin possible serait de documenter périodiquement la révision de ces anticipations à mesure que le futur arrive (les concurrents pressentis ont-ils émergé, l'ORP a-t-il imposé ce qui était craint) — pour ancrer la prospective dans une boucle de vérification."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Refus argumenté d'une tentation par filtre d'utilité — marqueur fort de la fiche pour le « non » stratégique."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Filtre d'utilité explicitement formulé pour la consommation d'information IA."
+        },
+        {
+          "numero": 3,
+          "pid": 12,
+          "contexte": "Priorisation argumentée avec objectif daté et critère de réussite (charge gérable)."
+        },
+        {
+          "numero": 4,
+          "pid": 13,
+          "contexte": "Technique personnelle formalisée à partir d'une observation de soi (distinction swap vs micro-oublis)."
+        },
+        {
+          "numero": 5,
+          "pid": 14,
+          "contexte": "Décision de timing argumentée par critère de ressource (quota tokens)."
+        },
+        {
+          "numero": 6,
+          "pid": 28,
+          "contexte": "Cartographie attentionnelle systématique avec assignation explicite des bureaux virtuels à des thématiques."
+        },
+        {
+          "numero": 7,
+          "pid": 17,
+          "contexte": "Diagnostic d'un blocage personnel récurrent — formalisation d'un pattern de fonctionnement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'efficacité personnelle au sens fort (décisions explicites de ne pas faire, filtres d'utilité, formalisation de techniques personnelles) n'est pas attestée — la fiche met en garde contre les auto-déclarations productivistes. Le pid 10 résiste très fort : c'est le « non » stratégique argumenté que la fiche désigne comme marqueur le plus fiable. Le pid 11 résiste : filtre d'utilité explicite. Le pid 12 résiste : priorisation avec objectif et critère. Le pid 13 résiste comme formalisation d'une technique personnelle. Le pid 14 résiste : timing argumenté par ressource. Le pid 28 résiste : cartographie attentionnelle. Le pid 17 résiste comme diagnostic d'un pattern.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Non » stratégique argumenté — marqueur le plus fiable de la fiche." },
+            { "pieceId": 2, "motifResistance": "Filtre d'utilité explicitement formulé." },
+            { "pieceId": 3, "motifResistance": "Priorisation datée avec critère de réussite." },
+            { "pieceId": 4, "motifResistance": "Technique personnelle formalisée." },
+            { "pieceId": 5, "motifResistance": "Décision de timing argumentée." },
+            { "pieceId": 6, "motifResistance": "Cartographie attentionnelle systématique." },
+            { "pieceId": 7, "motifResistance": "Diagnostic d'un pattern de fonctionnement." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption. Le pid 1 tient sous (e) : trois raisons articulées contre une envie immédiate. Le pid 2 tient sous (e) : filtre formulé. Le pid 3 tient sous (a) : objectif daté et critère. Le pid 4 tient sous (e) : technique nommée. Le pid 5 tient sous (a). Le pid 6 risque (b) — porte aussi 1.04 (métacognition) et 5.07 (souveraineté attentionnelle), mais l'aspect pilotage de ressources est de 7.06. Le pid 7 risque (b) — porte aussi 1.05 (pensée systémique) et 1.04 ; tenu mais affaibli comme indice.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Trois raisons articulées contre l'envie immédiate — exactement le marqueur le plus fiable de la fiche." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Filtre d'utilité explicitement formulé — pas un constat de fatigue mais un critère de décision." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Objectif daté (vendredi ORP), critère mesurable (mémoire de travail) — pilotage articulé." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Technique personnelle formalisée à partir d'observation de soi — marqueur de la fiche." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Décision de report bornée par critère de ressource (quota) — pilotage exact." },
+            { "pieceId": 6, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Cartographie attentionnelle co-active avec 5.07, mais l'aspect organisation et pilotage des ressources relève bien de 7.06." },
+            { "pieceId": 7, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Diagnostic d'un pattern récurrent — co-actif avec 1.05, mais le geste de comprendre pour mieux piloter est de 7.06." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des auto-déclarations productivistes. Cinq pièces s'imposent : le « non » stratégique argumenté contre le reboot du serveur (marqueur le plus fiable), le filtre d'utilité formulé pour la veille techno, la priorisation datée vers l'ORP, la technique personnelle swap/micro-oublis, et la décision de timing argumentée par le quota tokens. Toutes portent des critères articulés et des décisions explicites de ne pas faire ou de prioriser. Sous la présomption de sycophantie, la cartographie attentionnelle et le diagnostic du blocage récurrent sont restés comme indices convergents. Ce qui résulte est une efficacité personnelle attestée à un niveau d'exigence élevé — décrire ce qu'on refuse, et pas seulement ce qu'on accomplit.",
+          "confianceFinale": 0.9
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 5,
+        "nombreIndices": 2,
+        "confiance": 0.9,
+        "motif": "Le temps 2 a confirmé cinq pièces portant le marqueur le plus fiable de la fiche : le « non » stratégique argumenté et les filtres d'utilité articulés.",
+        "prescription": "Le travail montre une efficacité personnelle attestée par des décisions de refus argumentées et des techniques formalisées. Un chemin possible serait de revisiter à distance l'efficacité de ces filtres — la règle des bureaux a-t-elle tenu, le quota a-t-il été respecté, le refus du serveur a-t-il libéré le temps espéré ?"
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 6, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 7, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 15,
+          "contexte": "Décision de refaire une itération complète sur un système multi-composants — agilité méthodique avec lucidité sur la difficulté de coordination."
+        },
+        {
+          "numero": 2,
+          "pid": 20,
+          "contexte": "Diagnostic d'une erreur de pilotage (fenêtre de contexte mal gérée) + bascule d'outil — itération structurée avec apprentissage explicite."
+        },
+        {
+          "numero": 3,
+          "pid": 21,
+          "contexte": "Application du protocole CATALYST + acceptation d'un meilleur plan — itération de plan avec acceptation du retour."
+        },
+        {
+          "numero": 4,
+          "pid": 23,
+          "contexte": "Reframing de la refonte complète (« génial car rien n'est terminé ») — accompagnement de sa propre transition."
+        },
+        {
+          "numero": 5,
+          "pid": 16,
+          "contexte": "Reconnaissance de la difficulté de coordination du système — anticipation des résistances inhérentes au changement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'agilité au sens fort (boucle de rétroaction explicite, ajustements de plan avec raisons explicitées, normalisation des résistances) n'est pas attestée — la fiche met en garde contre le « théâtre agile ». Le pid 1 résiste : décision de refonte avec ses coûts coordinationnels nommés. Le pid 2 résiste très fort : cycle complet diagnostic-bascule-apprentissage. Le pid 3 résiste : application d'un protocole d'itération nommé + acceptation. Le pid 4 résiste comme conduite du changement appliquée à soi. Le pid 5 résiste comme anticipation de la difficulté.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Décision de refonte avec lucidité sur les coûts coordinationnels." },
+            { "pieceId": 2, "motifResistance": "Cycle complet diagnostic-bascule-apprentissage en acte." },
+            { "pieceId": 3, "motifResistance": "Protocole d'itération nommé (CATALYST) + acceptation effective." },
+            { "pieceId": 4, "motifResistance": "Reframing positif d'une refonte — accompagnement de sa propre transition." },
+            { "pieceId": 5, "motifResistance": "Reconnaissance des difficultés de coordination inhérentes." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption (théâtre agile). Le pid 1 tient sous (a) : la pièce articule la décision et ses coûts. Le pid 2 tient sous (a) : cycle complet vérifiable (diagnostic, action corrective, apprentissage). Le pid 3 tient sous (a). Le pid 4 risque (e) — le reframing peut être de la rationalisation, mais juxtaposé à pid 5 qui reconnaît la difficulté, c'est plus de la complexité que du déni ; affaibli. Le pid 5 risque (b) — porte aussi 5.01 (résilience) et 1.04 (métacognition) ; tenu mais affaibli comme indice. Aucune pièce ne porte la dimension « conduite du changement pour autrui » au sens de la fiche (anticipation de résistances futures chez les apprenants, normalisation pour eux) — la dimension est appliquée à soi.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Décision articulée et coûts explicités — agilité méthodique attestée." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Cycle complet : diagnostic d'erreur + bascule d'outil + apprentissage explicitement nommé." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Protocole d'itération nommé + acceptation effective d'un meilleur plan — pas du théâtre agile." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Reframing assorti d'une lucidité sur la difficulté (pid 5) — pas une rationalisation lisse." },
+            { "pieceId": 5, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Anticipation des difficultés co-active avec 5.01 ; reste comme indice convergent." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette feuille un théâtre agile. Trois pièces s'imposent : la décision de refonte complète avec ses coûts explicites, le cycle complet diagnostic-bascule-apprentissage sur la fenêtre de contexte, et l'application du protocole CATALYST avec acceptation effective d'un meilleur plan. Toutes portent la dimension d'agilité méthodique de la fiche — itération structurée, pas improvisation. Le reframing positif et la reconnaissance des difficultés coordinationnelles sont restés comme indices, en signalant la dimension conduite du changement appliquée à soi. Une réserve : la conduite du changement adressée à autrui (apprenants, équipe, organisation) n'est pas attestée — la fiche en exigerait une trace explicite. Ce qui résulte est une agilité méthodique solidement attestée, la conduite du changement étant appliquée à soi-même plutôt qu'à un groupe.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé trois pièces portant l'agilité méthodique au sens fort (cycle, protocole, ajustement avec raisons).",
+        "prescription": "Le travail montre une agilité solide appliquée à son propre travail. Un chemin possible serait de documenter, lors du test pédagogique de mars, comment les apprenants sont accompagnés dans leurs résistances inhérentes — anticipation de leur sentiment de surcharge, ressources de transition — pour ouvrir la dimension conduite du changement pour autrui."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la gestion de crise en temps réel au sens strict du référentiel (incident avec compression temporelle radicale, décisions en cascade en minutes, triage sous pression extrême). La feuille décrit des transitions et des refontes qui relèvent de l'agilité, mais pas d'incidents critiques gérés à chaud. Pour ouvrir ce dossier, l'apprenant pourrait documenter — si l'occasion se présente — un incident technique ou pédagogique avec horodatages, séquence de décisions et erreurs commises pendant l'action, plutôt qu'un récit lisse rétrospectif."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 6,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 1
+  },
+
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail montre un pilotage attesté d'abord par ses artefacts et ses décisions explicites. La documentation est massive et structurée (manuel + annexe + référentiel + 60 fichiers YAML + 60 prompts générés), différenciée par destinataire et inscrite dans une architecture pour un futur cartographe. L'efficacité personnelle s'atteste par ce qui est refusé plutôt que par ce qui est accompli — le « non » au reboot du serveur, le filtre sur la veille techno, la priorisation datée vers l'ORP, la cartographie attentionnelle des bureaux virtuels. La vision stratégique relie chaque décision présente à une anticipation argumentée (gratuité parce que les concurrents viendront, lancer les écoles parce que l'ORP s'imposera). L'agilité méthodique est en acte avec ses cycles complets diagnostic-bascule-apprentissage. La maïeutique et l'évaluation transformative sont solidement conçues mais attendent encore le test pédagogique de mars pour s'incarner avec des apprenants. La gestion de crise en temps réel reste un territoire non visité dans cette feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "L'architecture documentaire est massive, structurée et différenciée par destinataire — manuels en trois versions pour trois publics, référentiel et 60 fichiers générés, intégration explicite dans une documentation destinée au cartographe.",
+        "extraitVerbatim": "Cette partie est terminée : manuel + annexe avec prompt complet + référentiel 60 compétences + 60 fichiers YAML + 60 prompts générés par script Python sur la base des fichiers YAML.",
+        "ceQueCaDit": "Sur ce pôle, la documentation n'est pas un sous-produit — c'est l'artefact principal du travail, pensé pour un futur lecteur identifié."
+      },
+      {
+        "competence": "Efficacité personnelle",
+        "description": "L'efficacité se voit par ce qui est refusé — tentations techniques, veille technologique chronophage, projets non prioritaires — avec critères articulés et techniques personnelles formalisées.",
+        "extraitVerbatim": "J'ai vraiment envie de le faire, mais je vais me forcer à ne pas le faire. Pourquoi ? Parce que c'est le bon moyen pour me remettre un petit peu à niveau en informatique ce qui ne me sert à rien.",
+        "ceQueCaDit": "Dans ce pôle, le pilotage de soi se signale par le « non » stratégique argumenté plutôt que par les déclarations de productivité."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Chaque décision présente est reliée à une anticipation argumentée — gratuité parce que d'autres alternatives viendront, lancer les écoles parce que l'ORP s'imposera.",
+        "extraitVerbatim": "D'où la stratégie actuelle qui est de tout donner en libre pour lancer les écoles maintenant (après ce sera trop tard : il y aura d'autres alternatives).",
+        "ceQueCaDit": "Sur ce pôle, la vision n'est pas une projection désincarnée — elle infléchit ce qui se décide aujourd'hui."
+      },
+      {
+        "competence": "Agilité et conduite du changement",
+        "description": "L'itération est méthodique : diagnostic d'une erreur (gestion de la fenêtre de contexte), bascule d'outil, apprentissage nommé, et application d'un protocole d'itération (CATALYST) avec acceptation effective.",
+        "extraitVerbatim": "Ce que j'ai appris en générant la première partie du livre ce matin, c'est que je gérais très mal la fenêtre de contexte et que je devais basculer sur Claude Code et Visual Studio.",
+        "ceQueCaDit": "Dans ce pôle, l'agilité est attestée par le cycle complet — pas le rituel formel, mais l'apprentissage explicité après l'erreur."
+      },
+      {
+        "competence": "Maïeutique et facilitation d'apprentissage",
+        "description": "L'architecture pédagogique est multi-composants — manuel apprenant, dispositif d'analyse, rôle du cartographe, rythme prescrit (une feuille par jour), formats adaptés par public.",
+        "extraitVerbatim": "Comme ça devenait un peu lourd comme document théorique avec les 86 fonctions cognitives, surtout pour des jeunes, je lui ai demandé de publier l'anatomie d'un cerveau apprenant dans un Grimoire Noèsiologique.",
+        "ceQueCaDit": "Sur ce pôle, la facilitation se voit dans l'architecture de l'environnement d'apprentissage plus que dans des questions adressées à des apprenants vivants."
+      }
+    ],
+    "territoiresNonVisites": "Quelques territoires apparaissent peu dans cette feuille. La gestion de crise en temps réel au sens strict (incident avec compression temporelle radicale, décisions en cascade en minutes) reste un territoire non visité — la feuille décrit des transitions méthodiques, pas des incidents critiques. L'évaluation transformative reste en germe : le cadre est conçu (rôle du cartographe, protocole humaniste) mais l'acte évaluatif spécifique — avec critères, questions adressées à un évalué, feedbacks qui ouvrent des pistes — n'est pas encore documenté en cours. La conduite du changement adressée à autrui (anticipation des résistances des apprenants, normalisation, ressources de transition) attendra le test pédagogique pour s'attester ; pour l'instant, elle est appliquée à soi-même. Le leadership situationnel est attesté par une face d'acceptation (suivre un meilleur plan de Claude) et une architecture multi-agents, mais la théorisation explicite de l'alternance direction/retrait reste à déployer.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle. D'abord, le pilotage est attesté plus par ses artefacts (manuels, référentiels, fichiers YAML, protocoles, cartographie attentionnelle) que par ses récits — les choses faites prouvent plus que les choses racontées. Ensuite, la temporalité est partout présente : datée (vendredi ORP, jeudi prochain), conditionnelle (si ORP, alors lancer), comparative (avant/maintenant pour la veille techno, charge à alléger avant tel rendez-vous) — la même conscience du temps habite efficacité personnelle, vision stratégique et patience stratégique. Enfin, la pédagogie est conçue avec finesse mais attend encore son contact avec les apprenants ; le test de mars sera le moment où plusieurs compétences (maïeutique, évaluation, conduite du changement) passeront de l'architecture à l'incarnation.",
+    "pistes": [
+      "Pour ouvrir l'évaluation transformative, un chemin possible serait de documenter, lors du test de mars, un retour précis donné à un apprenant — avec ce qui fonctionne, ce qui pourrait s'ouvrir, et la question posée plutôt que la correction faite.",
+      "Pour ancrer la maïeutique vivante, un chemin possible serait de noter, lors de ce même test, des questions précises posées aux apprenants (verbatim) plutôt que des réponses données — pour mesurer la retenue en acte.",
+      "Pour rendre visible le leadership situationnel, un chemin possible serait de documenter un moment où l'apprenant a choisi de NE PAS intervenir alors qu'il en aurait eu l'occasion — le retrait volontaire dit plus sur cette compétence que la prise de contrôle.",
+      "Pour ouvrir la conduite du changement adressée à autrui, un chemin possible serait d'anticiper et de documenter les résistances probables des apprenants au dispositif RESPIRE — sentiment de surcharge, peur de l'évaluation par IA, inconfort du portfolio quotidien — avec les ressources de transition prévues.",
+      "Pour ancrer la documentation vivante dans sa dimension évolutive, un chemin possible serait de tenir un versioning explicite des artefacts (manuel v1, v2…) en notant ce qui a changé entre les versions et pourquoi."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail montre un pilotage attesté d'abord par ses artefacts et ses décisions explicites. La documentation est massive et structurée (manuel + annexe + référentiel + 60 fichiers YAML + 60 prompts générés), différenciée par destinataire et inscrite dans une architecture pour un futur cartographe. L'efficacité personnelle s'atteste par ce qui est refusé plutôt que par ce qui est accompli — le « non » au reboot du serveur, le filtre sur la veille techno, la priorisation datée vers l'ORP, la cartographie attentionnelle des bureaux virtuels. La vision stratégique relie chaque décision présente à une anticipation argumentée (gratuité parce que les concurrents viendront, lancer les écoles parce que l'ORP s'imposera). L'agilité méthodique est en acte avec ses cycles complets diagnostic-bascule-apprentissage. La maïeutique et l'évaluation transformative sont solidement conçues mais attendent encore le test pédagogique de mars pour s'incarner avec des apprenants. La gestion de crise en temps réel reste un territoire non visité dans cette feuille.\n\n## Territoires les plus denses\n\n**Documentation vivante.** L'architecture documentaire est massive, structurée et différenciée par destinataire — manuels en trois versions pour trois publics, référentiel et 60 fichiers générés, intégration explicite dans une documentation destinée au cartographe. *« Cette partie est terminée : manuel + annexe avec prompt complet + référentiel 60 compétences + 60 fichiers YAML + 60 prompts générés par script Python sur la base des fichiers YAML. »* Sur ce pôle, la documentation n'est pas un sous-produit — c'est l'artefact principal du travail, pensé pour un futur lecteur identifié.\n\n**Efficacité personnelle.** L'efficacité se voit par ce qui est refusé — tentations techniques, veille technologique chronophage, projets non prioritaires — avec critères articulés et techniques personnelles formalisées. *« J'ai vraiment envie de le faire, mais je vais me forcer à ne pas le faire. Pourquoi ? Parce que c'est le bon moyen pour me remettre un petit peu à niveau en informatique ce qui ne me sert à rien. »* Dans ce pôle, le pilotage de soi se signale par le « non » stratégique argumenté plutôt que par les déclarations de productivité.\n\n**Vision stratégique et prospective.** Chaque décision présente est reliée à une anticipation argumentée — gratuité parce que d'autres alternatives viendront, lancer les écoles parce que l'ORP s'imposera. *« D'où la stratégie actuelle qui est de tout donner en libre pour lancer les écoles maintenant (après ce sera trop tard : il y aura d'autres alternatives). »* Sur ce pôle, la vision n'est pas une projection désincarnée — elle infléchit ce qui se décide aujourd'hui.\n\n**Agilité et conduite du changement.** L'itération est méthodique : diagnostic d'une erreur, bascule d'outil, apprentissage nommé, et application d'un protocole d'itération avec acceptation effective. *« Ce que j'ai appris en générant la première partie du livre ce matin, c'est que je gérais très mal la fenêtre de contexte et que je devais basculer sur Claude Code et Visual Studio. »* Dans ce pôle, l'agilité est attestée par le cycle complet — pas le rituel formel, mais l'apprentissage explicité après l'erreur.\n\n**Maïeutique et facilitation d'apprentissage.** L'architecture pédagogique est multi-composants — manuel apprenant, dispositif d'analyse, rôle du cartographe, rythme prescrit (une feuille par jour), formats adaptés par public. *« Comme ça devenait un peu lourd comme document théorique avec les 86 fonctions cognitives, surtout pour des jeunes, je lui ai demandé de publier l'anatomie d'un cerveau apprenant dans un Grimoire Noèsiologique. »* Sur ce pôle, la facilitation se voit dans l'architecture de l'environnement d'apprentissage plus que dans des questions adressées à des apprenants vivants.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuelques territoires apparaissent peu dans cette feuille. La gestion de crise en temps réel au sens strict (incident avec compression temporelle radicale, décisions en cascade en minutes) reste un territoire non visité — la feuille décrit des transitions méthodiques, pas des incidents critiques. L'évaluation transformative reste en germe : le cadre est conçu mais l'acte évaluatif spécifique — avec critères, questions adressées à un évalué, feedbacks qui ouvrent des pistes — n'est pas encore documenté en cours. La conduite du changement adressée à autrui (anticipation des résistances des apprenants, normalisation, ressources de transition) attendra le test pédagogique pour s'attester ; pour l'instant, elle est appliquée à soi-même. Le leadership situationnel est attesté par une face d'acceptation (suivre un meilleur plan de Claude) et une architecture multi-agents, mais la théorisation explicite de l'alternance direction/retrait reste à déployer.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle. D'abord, le pilotage est attesté plus par ses artefacts (manuels, référentiels, fichiers YAML, protocoles, cartographie attentionnelle) que par ses récits — les choses faites prouvent plus que les choses racontées. Ensuite, la temporalité est partout présente : datée (vendredi ORP, jeudi prochain), conditionnelle (si ORP, alors lancer), comparative (avant/maintenant pour la veille techno, charge à alléger avant tel rendez-vous) — la même conscience du temps habite efficacité personnelle, vision stratégique et patience stratégique. Enfin, la pédagogie est conçue avec finesse mais attend encore son contact avec les apprenants ; le test de mars sera le moment où plusieurs compétences (maïeutique, évaluation, conduite du changement) passeront de l'architecture à l'incarnation.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir l'évaluation transformative, un chemin possible serait de documenter, lors du test de mars, un retour précis donné à un apprenant — avec ce qui fonctionne, ce qui pourrait s'ouvrir, et la question posée plutôt que la correction faite.\n- Pour ancrer la maïeutique vivante, un chemin possible serait de noter, lors de ce même test, des questions précises posées aux apprenants (verbatim) plutôt que des réponses données — pour mesurer la retenue en acte.\n- Pour rendre visible le leadership situationnel, un chemin possible serait de documenter un moment où l'apprenant a choisi de NE PAS intervenir alors qu'il en aurait eu l'occasion — le retrait volontaire dit plus sur cette compétence que la prise de contrôle.\n- Pour ouvrir la conduite du changement adressée à autrui, un chemin possible serait d'anticiper et de documenter les résistances probables des apprenants au dispositif RESPIRE — sentiment de surcharge, peur de l'évaluation par IA, inconfort du portfolio quotidien — avec les ressources de transition prévues.\n- Pour ancrer la documentation vivante dans sa dimension évolutive, un chemin possible serait de tenir un versioning explicite des artefacts (manuel v1, v2…) en notant ce qui a changé entre les versions et pourquoi."
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Je vais maintenant travailler avec Claude pour vérifier sa consistance et son alignement avec nos principes et valeurs.",
+      "contexte": "L'apprenant convoque l'IA pour vérifier la conformité d'un support pédagogique à un cadre axiologique partagé — geste qui touche au gardiennage de l'alignement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "J'envisage également de confronter notre pédagogie avec le recueil de valeurs de HEP Vaud et expliciter les différences avec leur référentiel de compétences.",
+      "contexte": "Projet de confrontation explicite entre un cadre axiologique interne et celui d'une institution de référence — espace possible de raisonnement éthique appliqué.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Confronter sa propre pédagogie à une charte éthique et à un référentiel de compétences institutionnel suppose de potentiellement mettre en tension des valeurs distinctes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La pièce annonce une intention de confronter la pédagogie interne à un cadre externe et d'expliciter les différences. La fiche exige un processus visible de mise en tension de valeurs, pas une simple mention de comparaison à venir. Ici, aucune tension n'est encore nommée, aucun dilemme n'est identifié, aucune valeur n'est mise en balance avec une autre. Le passage projette une opération de comparaison, pas un arbitrage moral. La présomption d'absence absorbe la pièce sans difficulté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché si la confrontation projetée avec le référentiel HEP portait déjà une trace de raisonnement éthique appliqué. Le projet est posé, mais le mouvement de pensée qui mettrait en tension des valeurs concrètes n'est pas encore là. Pour que la compétence soit attestée, il faudrait voir au moins une formulation en balancier — d'un côté ceci, de l'autre cela, et l'inconfort de devoir arbitrer. Sur cette feuille, l'opération annoncée est un travail d'explicitation des différences, plus descriptive que dilemmatique. La trace pourra apparaître quand la confrontation aura produit ses résultats.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.75,
+        "motif": "Le projet de confrontation est posé sans tension de valeurs identifiée ni arbitrage dilemmatique dans la feuille elle-même.",
+        "prescription": "Lorsque la confrontation avec le référentiel HEP aura eu lieu, noter une tension concrète entre deux valeurs légitimes — sans la résoudre tout de suite — donnerait à voir le raisonnement éthique en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "« Vérifier sa consistance et son alignement avec nos principes et valeurs » formule explicitement l'enjeu d'alignement entre une production (partiellement générée par IA) et un cadre axiologique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La pièce utilise le vocabulaire de l'alignement — « consistance », « alignement avec nos principes et valeurs ». La fiche prévient explicitement contre le risque de signaux de surface : le mot « alignement » seul ne suffit pas. Le geste est posé comme intention (« Je vais maintenant travailler avec Claude pour vérifier »), pas comme acte achevé. Aucun désalignement n'est identifié dans la feuille, aucun refus n'est raconté, aucun garde-fou n'est conçu. Le travail d'alignement est annoncé, sous-traité à l'IA, et son résultat n'est pas exposé dans le texte. La présomption d'absence durcit : sans le contenu du diagnostic d'alignement, le mot ne tient pas seul.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage formule le geste d'alignement comme une étape explicite du processus de production — pas comme un slogan, mais comme une opération de travail dédiée. Cette inscription dans le workflow résiste à la présomption d'absence pure."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce a résisté de justesse. Je l'examine maintenant : suis-je en train d'halluciner sa portée ? L'attaque qui me semble dominante est le récit performatif — la pièce raconte le geste d'alignement (« je vais vérifier ») sans le montrer en acte. Aucune scène de diagnostic n'est livrée : qu'a révélé Claude ? Y avait-il des passages désalignés ? Comment ont-ils été corrigés ? Le lien Claude est donné en référence externe, mais le texte de la feuille ne porte pas le travail effectué. La pièce déclare l'opération, elle ne la montre pas. Elle est affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le geste d'alignement est nommé et inscrit dans le workflow, mais l'acte lui-même — le diagnostic, les corrections, les refus éventuels — n'est pas raconté dans la feuille. La déclaration tient comme indice, pas comme trace d'exercice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la vérification d'alignement annoncée portait une trace de gardiennage éthique au sens de la fiche. La déclaration existe — l'apprenant inscrit explicitement la vérification d'alignement comme étape de travail, ce qui n'est pas rien : il sait que le travail avec l'IA appelle ce contrôle. Mais la matière concrète — qu'est-ce qui a été corrigé, refusé, retravaillé pour réaligner — n'est pas déposée dans cette feuille. Sous la présomption de sycophantie, la pièce tient en indice mais non en preuve : elle dit l'intention disciplinée, pas l'arbitrage exécuté. La trace pourra mûrir si une prochaine feuille raconte un moment précis où une production IA a été retenue ou réorientée parce qu'elle s'éloignait des principes du collectif.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce reste affaiblie mais retenue (récit performatif) sans qu'un second indice ne vienne la corroborer ; la matière du gardiennage est annoncée plus que montrée.",
+        "prescription": "Pour mûrir cette trace, raconter un moment précis du dialogue avec Claude où une formulation a été identifiée comme désalignée des principes du collectif, et comment elle a été retravaillée, ferait passer la déclaration à l'acte vérifiable."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et long-terme sur cette feuille. Intégrer un arbitrage qui prend en compte une externalité non comptabilisée — coût numérique, impact générationnel d'un dispositif de formation — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité sur cette feuille. Décrire une situation où un mode de pensée atypique — le sien ou celui d'un collaborateur — a produit un angle que l'approche standard n'aurait pas atteint ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la décision dans l'incertitude sur cette feuille. Raconter une situation où une décision a été prise sans tous les éléments, en nommant le flou et l'acte de tranchage, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la responsabilité, au courage et à l'intégrité sur cette feuille. Raconter un moment où une responsabilité a été assumée — surtout là où l'IA aurait pu servir de paravent — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Vérifier la consistance et l'alignement de sa production avec « nos principes et valeurs » suppose de mobiliser un savoir contextuel — le cadre du collectif — que l'IA ne possède pas par défaut."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La fiche est précise : 4.07 identifie un *delta de contexte* entre humain et machine, et le nomme. Ici, la pièce dit que l'apprenant va vérifier l'alignement de la production aux principes du collectif — ce qui suppose implicitement que ce cadre axiologique n'est pas connu de Claude. Mais cette implication n'est pas thématisée : à aucun moment le passage ne dit « Claude ne peut pas savoir que… ». Le delta est dans la situation, pas dans le texte. La fiche prévient explicitement qu'il faut voir le mécanisme du contexte manquant nommé, pas seulement supposé. La présomption d'absence absorbe la pièce.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la vérification d'alignement avec Claude portait une trace de validation contextuelle. La situation s'y prête — c'est précisément un cas où l'apprenant injecte dans le dialogue avec l'IA un savoir qu'elle n'a pas (le cadre interne). Mais la fiche demande que ce delta soit nommé, et il ne l'est pas dans la feuille. La pièce reste à la frontière : la pratique existe peut-être, mais le texte ne l'expose pas comme validation contextuelle. Pour que la trace tienne, il faudrait au moins une formulation qui rende visible le savoir injecté.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "Le delta de contexte humain-machine est implicite dans la situation mais n'est pas nommé dans le texte ; la fiche en demande l'explicitation.",
+        "prescription": "Lors d'une prochaine vérification avec Claude, noter le savoir injecté dans le dialogue — quels principes, quelles intentions, quel contexte d'usage que l'IA ne pouvait pas connaître — ferait apparaître la validation contextuelle en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la création de valeur non-automatisable sur cette feuille. Nommer ce qui reste structurellement humain dans la transmission aux tuteurs — la présence, la relation, le jugement situé — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la patience stratégique sur cette feuille. Raconter un report assumé, avec son critère de déclenchement, ouvrirait ce dossier."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle et pour cette feuille du 29 décembre 2025, deux gestes touchent au territoire du discernement éthique sans encore le déployer : la vérification d'alignement du support de formation avec « nos principes et valeurs » via Claude, et la confrontation projetée de la pédagogie interne à la charte éthique et au référentiel de la HEP Vaud. La journée montre un apprenant qui inscrit dans son workflow des étapes de gardiennage axiologique — pas comme slogan, mais comme opération de travail. Toutefois, le contenu de ce gardiennage — qu'est-ce qui a été identifié comme désaligné, comment cela a été retravaillé, quelles tensions de valeurs sont apparues — reste hors du récit. La feuille pose les jalons d'une vigilance éthique sans encore en livrer la substance.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. La conscience écologique, la valorisation de la neurodiversité, la décision dans l'incertitude, la responsabilité-courage-intégrité, la création de valeur non-automatisable et la patience stratégique n'ont pas d'incarnation dans le texte du 29 décembre — ce qui paraît tenir au genre de la feuille (un compte-rendu de production avec l'IA) plus qu'à un éloignement de fond. Le raisonnement éthique appliqué et la validation contextuelle sont en posture de seuil : leur situation existe dans la feuille (confrontation HEP, alignement Claude), mais leur substance — les tensions, les deltas de contexte nommés — attend d'être déposée dans la prose. L'alignement éthique avance d'un cran en indice, sans encore se constituer en trace pleinement attestée.",
+    "emergencesPole": "Une chose traverse la feuille : la vigilance axiologique est inscrite dans le workflow comme étape distincte, pas reléguée à un implicite. L'apprenant convoque Claude pour vérifier l'alignement, projette une confrontation à un référentiel institutionnel, et envisage un article qui pourrait porter ces réflexions vers l'extérieur. C'est une chorégraphie dans laquelle le gardiennage éthique est nommé sans encore être joué. Une seconde observation : la mention « nos principes et valeurs » est posée comme un cadre déjà constitué — il existe quelque part, et la production doit s'y conformer. Ce cadre, encore implicite dans la feuille, gagnerait à être rendu lisible.",
+    "pistes": [
+      "Pour enrichir la dimension d'alignement éthique, un chemin possible serait de raconter, sur une prochaine feuille, un passage précis du dialogue avec Claude où un désalignement a été repéré — la formulation initiale, le motif du désalignement, la version retenue.",
+      "Pour enrichir la dimension de raisonnement éthique appliqué, un chemin possible serait de noter, lors de la confrontation avec le référentiel HEP, une tension entre une valeur du dispositif interne et une valeur du référentiel institutionnel — sans la résoudre tout de suite.",
+      "Pour enrichir la dimension de validation contextuelle, un chemin possible serait de nommer, lors d'un prochain dialogue avec l'IA, le contexte que l'apprenant a dû injecter — ce que Claude ne pouvait pas savoir, et qui a changé la conversation."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle et pour cette feuille du 29 décembre 2025, deux gestes touchent au territoire du discernement éthique sans encore le déployer : la vérification d'alignement du support de formation avec « nos principes et valeurs » via Claude, et la confrontation projetée de la pédagogie interne à la charte éthique et au référentiel de la HEP Vaud. La journée montre un apprenant qui inscrit dans son workflow des étapes de gardiennage axiologique — pas comme slogan, mais comme opération de travail. Toutefois, le contenu de ce gardiennage — qu'est-ce qui a été identifié comme désaligné, comment cela a été retravaillé, quelles tensions de valeurs sont apparues — reste hors du récit. La feuille pose les jalons d'une vigilance éthique sans encore en livrer la substance.\n\n## Territoires les plus denses\n\nSur cette feuille, aucun territoire ne ressort comme présence pleinement établie. L'alignement éthique se constitue en indice (renvoi au cartographe) sans encore atteindre le statut de trace attestée — l'opération est nommée et inscrite dans le workflow, son contenu n'est pas encore raconté.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. La conscience écologique, la valorisation de la neurodiversité, la décision dans l'incertitude, la responsabilité-courage-intégrité, la création de valeur non-automatisable et la patience stratégique n'ont pas d'incarnation dans le texte du 29 décembre — ce qui paraît tenir au genre de la feuille (un compte-rendu de production avec l'IA) plus qu'à un éloignement de fond. Le raisonnement éthique appliqué et la validation contextuelle sont en posture de seuil : leur situation existe dans la feuille (confrontation HEP, alignement Claude), mais leur substance — les tensions, les deltas de contexte nommés — attend d'être déposée dans la prose. L'alignement éthique avance d'un cran en indice, sans encore se constituer en trace pleinement attestée.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse la feuille : la vigilance axiologique est inscrite dans le workflow comme étape distincte, pas reléguée à un implicite. L'apprenant convoque Claude pour vérifier l'alignement, projette une confrontation à un référentiel institutionnel, et envisage un article qui pourrait porter ces réflexions vers l'extérieur. C'est une chorégraphie dans laquelle le gardiennage éthique est nommé sans encore être joué. Une seconde observation : la mention « nos principes et valeurs » est posée comme un cadre déjà constitué — il existe quelque part, et la production doit s'y conformer. Ce cadre, encore implicite dans la feuille, gagnerait à être rendu lisible.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension d'alignement éthique, un chemin possible serait de raconter, sur une prochaine feuille, un passage précis du dialogue avec Claude où un désalignement a été repéré — la formulation initiale, le motif du désalignement, la version retenue.\n- Pour enrichir la dimension de raisonnement éthique appliqué, un chemin possible serait de noter, lors de la confrontation avec le référentiel HEP, une tension entre une valeur du dispositif interne et une valeur du référentiel institutionnel — sans la résoudre tout de suite.\n- Pour enrichir la dimension de validation contextuelle, un chemin possible serait de nommer, lors d'un prochain dialogue avec l'IA, le contexte que l'apprenant a dû injecter — ce que Claude ne pouvait pas savoir, et qui a changé la conversation."
+  }
+}

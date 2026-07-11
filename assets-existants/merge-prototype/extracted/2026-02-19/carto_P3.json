@@ -1,0 +1,259 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Hier journée de \"formation pour informaticien\" proposée par l'ORP. Bilan : [...]",
+      "contexte": "Mention d'une journée de formation institutionnelle dont le compte-rendu est confié à un dialogue IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+      "contexte": "Travail en cours sur un référentiel structuré dédié aux compétences humaines à l'horizon post-AGI — objet qui pourrait porter une question nouvelle posée par l'apprenant.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+      "contexte": "Production massive de débats destinée à une plateforme délibérative ; le mot \"schmilblick\" introduit un registre familier ludique dans un contexte technique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "A1 — Pensée Critique & Anti-Hallucination",
+      "contexte": "Titre du premier exemple de débat généré.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 3.01, la production de soixante débats pourrait porter une logique d'itération à grande échelle — produire en quantité pour apprendre par la quantité.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 3.01 demande des versions successives avec apprentissage explicite entre les passages, ou une rupture radicale. La phrase \"je fais générer 60 débats\" décrit une production volumineuse mais ne raconte ni d'itération, ni de pivot, ni d'apprentissage entre des essais. La quantité n'est pas l'itération — soixante coups d'un même geste ne valent pas trois coups suivis d'un ajustement. La pièce résiste très faiblement : faire générer du contenu en masse pour le verser à une plateforme suppose au moins une logique de prototypage par le volume, où la diversité des sorties servira à voir lesquelles résonnent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La production en volume implique un parti pris assumé d'imperfection — produire beaucoup, voir ce qui prend — qui est l'esprit même de la créativité itérative selon la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La résistance que j'ai accordée à la pièce repose sur une interprétation — je projette une intention itérative sur ce qui n'est peut-être qu'une commande passée à une IA. La feuille ne dit pas que l'apprenant attendra des retours pour ajuster, ni qu'il a déjà fait des essais antérieurs dont il retient des apprentissages. C'est une surinterprétation pédagogique de ma part.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Surinterprétation pédagogique : j'ai lu dans la production de soixante débats une intention itérative que la feuille ne formule pas ; la quantité décrite peut très bien procéder d'un usage en un seul jet, sans cycle d'apprentissage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la créativité itérative soit attestée sur cette feuille, et la lecture serrée m'a donné raison. La pièce a paru résister parce que le volume évoque vaguement l'itération, mais cette résistance n'a pas tenu : produire beaucoup en un coup n'est pas itérer. L'itération demande un cycle — version, retour, ajustement — que la feuille ne décrit pas. Le rebond de cette pièce vers un autre dossier (1.10 ou 1.08) est possible, mais pour 3.01 stricto sensu, rien ne tient ici.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "Au temps 2, la pièce est tombée pour surinterprétation pédagogique : la production en quantité n'est pas la même chose qu'une logique d'itération avec apprentissage entre les passages.",
+        "prescription": "Pour donner à voir cette compétence, l'apprenant pourrait, lors d'une prochaine vague de génération, noter une ou deux choses retenues du premier lot de débats et le geste d'ajustement opéré pour le lot suivant. Le cycle ainsi rendu visible transforme la quantité en itération."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 3.02, l'usage du mot \"schmilblick\" — référence familière et ludique — dans une phrase qui parle de YAML, IA et plateforme délibérative introduit une tonalité mixte qui pourrait porter une signature stylistique.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 3.02 demande un fil stylistique RÉCURRENT — la signature se constate dans la durée, pas dans un mot isolé. Une seule feuille ne peut pas attester la récurrence d'un trait. La pièce résiste un peu : le mélange registre technique / registre familier est assez marqué pour qu'un lecteur aguerri y reconnaisse une voix, mais cette reconnaissance suppose d'avoir lu d'autres feuilles. Sur celle-ci seule, on a au mieux un indice ponctuel, pas un fil.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le mot \"schmilblick\" coexistant avec \"YAML\" et \"référentiel de compétences humaines post AGI\" produit une coloration tonale distinctive qui pourrait être un trait récurrent."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de reconnaître une coloration tonale, mais à la relecture je vois bien que je l'évalue contre l'horizon d'autres feuilles imaginaires que je n'ai pas devant moi. La fiche est explicite : le test de 3.02 est la récurrence. Sur une feuille seule, je ne peux pas faire ce test. Je me suis laissé séduire par un mot bien choisi pour un seul instantané.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Insuffisance probatoire : une seule occurrence ne peut pas attester une signature qui se définit par la récurrence ; le verdict reste suspendu en attendant d'autres feuilles."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la signature stylistique soit attestée sur cette feuille. La pièce a résisté un instant par la force d'un mot — \"schmilblick\" — qui sonne particulier dans son contexte. Mais la définition même de la compétence m'a renvoyé à mes limites : la signature est récurrente par nature, et une feuille seule ne donne pas accès à la récurrence. Le mot reste là, comme un indice qui mérite d'être recoupé avec d'autres feuilles plutôt que jugé seul.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Au temps 2, la pièce est tombée pour insuffisance probatoire au sens spécifique de 3.02 : une seule feuille ne peut pas attester une signature qui se définit par la récurrence.",
+        "prescription": "Pour rendre lisible la signature stylistique, le portfolio pris dans son ensemble pourra faire son office — un travail de relecture transversale qui repère les mots, les tournures et les coupes qui reviennent. Sur la feuille seule, l'apprenant n'a rien de particulier à \"faire\" ; le geste utile se passe à l'échelle du portfolio entier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+          "contexte": "Pour 3.03, l'objet \"référentiel de compétences humaines post AGI\" pourrait porter en lui une question nouvelle — quelles compétences humaines ont valeur après l'AGI — qui dessine un champ d'action inédit.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 3.03 demande l'acte de POSER un problème qui n'existait pas, pas seulement de travailler sur un sujet où la question se pose. La phrase montre la finalisation d'un référentiel, c'est-à-dire l'aboutissement d'un travail dont la question initiale a été posée ailleurs et antérieurement. Le geste créateur de problème, s'il a eu lieu, n'est pas visible sur cette feuille. La pièce résiste pourtant un peu : l'objet est rare — un référentiel de compétences explicitement \"post AGI\" relève d'une question qui n'est pas standard, et choisir d'y répondre par un référentiel YAML structuré est une décision de design.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'objet construit — un référentiel formel de compétences humaines à l'ère post-AGI — atteste qu'une question singulière a été posée quelque part dans le parcours, dont la finalisation est aujourd'hui à l'œuvre."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de reconnaître à la pièce une trace de design de problème par l'objet. Mais à la relecture, je vois bien que je m'appuie sur l'EXISTENCE de l'objet plutôt que sur le RÉCIT de sa fabrication. La feuille décrit la finalisation, pas le geste de pose initiale. La distinction critique de la fiche est très claire : 3.03 cible le moment où l'on CRÉE le problème, pas le moment où l'on travaille à le résoudre. Cette feuille est dans la résolution, pas dans la création.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Faux positif de fiche : la fiche distingue explicitement la finalisation d'un travail (qui peut relever de 7.07 ou 7.03) de l'acte de poser un nouveau problème. La feuille est dans la première posture, pas dans la seconde."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que le design de problèmes soit attesté sur cette feuille, et la fiche elle-même m'a fourni l'argument décisif : la distinction entre POSER un problème nouveau et FINALISER un objet déjà engagé. La feuille est dans le second registre. L'objet construit — référentiel de compétences post-AGI — atteste qu'une question singulière a été posée à un moment du parcours, mais ce moment n'est pas celui-ci. Une feuille antérieure ou future pourrait raconter le moment de la pose ; sur celle-ci, on ne le lit pas.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "Au temps 2, la pièce est tombée sur faux positif de fiche : la feuille décrit une finalisation, pas l'acte créateur de problème que 3.03 cible explicitement.",
+        "prescription": "Pour donner à voir cette compétence, l'apprenant pourrait, lors d'une prochaine inflexion du référentiel, raconter le moment où une question l'a tordu — \"et si la vraie question c'était plutôt…\" — et montrer comment cette reformulation a ouvert un champ d'action que la formulation précédente fermait."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de geste de tri ni de critère qualitatif articulé — soixante débats sont mentionnés comme un bloc, sans distinction de qualité ou de pertinence. Pour ouvrir ce dossier, l'apprenant pourrait noter, sur un prochain lot de génération, lesquels seront retenus et selon quels critères."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne touche à aucune matière physique. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'une réparation, d'un montage ou d'une intervention sur du matériel, le geste précis et la sensation associée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de description sensorielle ni d'attention au corps. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'une journée de travail intense, un signal corporel perçu et le geste qu'il a entraîné — un arrêt, une pause, un changement de rythme."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille mentionne une journée de formation en présentiel mais sans en restituer la dimension live. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos d'un moment en salle, ce qui s'est joué dans la co-présence — une réaction du groupe, un ajustement à chaud, un instant non-scriptable."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 3,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 19 février 2026, le pôle MAIN reste discret. Le texte ne décrit ni geste sensoriel, ni travail de matière, ni moment de performance en direct. Une seule note de couleur affleure : le mot \"schmilblick\" venu détonner dans un paragraphe par ailleurs technique. Le travail créatif décrit — finaliser un référentiel YAML, faire générer des débats — relève davantage de la production conceptuelle que de l'incarnation au sens où le pôle l'entend.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Quatre compétences du pôle restent sans trace sur cette feuille : le jugement esthétique et la curation, l'intelligence manuelle, l'ancrage sensoriel et la présence en direct. Trois autres compétences — la créativité itérative, la signature stylistique et le design de problèmes — ont reçu des allusions, mais aucune n'a tenu sous la double présomption : la quantité ne fait pas l'itération, un mot ne fait pas une signature, et la finalisation d'un objet n'est pas la pose initiale du problème. Ces absences ressemblent à une limite de la feuille plutôt qu'à un choix — la journée de formation ORP mentionnée a eu lieu en présentiel et a sans doute mobilisé des dimensions vives qui ne sont pas couchées sur le papier.",
+    "emergencesPole": "Une chose traverse cette feuille brève : l'apprenant travaille sur un objet dont la nature même — un référentiel de compétences humaines post-AGI — suppose un acte créatif à l'origine. Le mot familier \"schmilblick\" inséré dans un contexte technique laisse aussi entrevoir une tonalité personnelle, plus visible à l'échelle du portfolio entier qu'à celle d'une feuille isolée. Le pôle MAIN, sur cette journée, vit plutôt en arrière-plan qu'en avant-scène.",
+    "pistes": [
+      "Pour rendre visible la dimension itérative du projet Decidim, un chemin possible serait de noter, après une première vague de débats, ce qui a été retenu, ce qui a été retravaillé et l'apprentissage tiré du cycle.",
+      "Pour donner corps à un jugement esthétique sur la production IA, un chemin possible serait d'expliciter, sur un lot de soixante débats générés, les critères de sélection ou de retravail appliqués.",
+      "Pour faire affleurer la dimension live du métier, un chemin possible serait de noter, à propos d'une journée en salle, un moment où la co-présence a produit autre chose que ce qu'aurait permis l'écrit ou la vidéo."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 19 février 2026, le pôle MAIN reste discret. Le texte ne décrit ni geste sensoriel, ni travail de matière, ni moment de performance en direct. Une seule note de couleur affleure : le mot \"schmilblick\" venu détonner dans un paragraphe par ailleurs technique. Le travail créatif décrit — finaliser un référentiel YAML, faire générer des débats — relève davantage de la production conceptuelle que de l'incarnation au sens où le pôle l'entend.\n\n## Territoires les plus denses\n\nSur cette seule feuille, aucun territoire dense ne se laisse cartographier dans ce pôle. Les trois compétences pour lesquelles des allusions existaient — la créativité itérative, la signature stylistique, le design de problèmes — sont restées au stade de l'évocation. Le rapport revient sur ces allusions dans les sections suivantes plutôt que de leur prêter une consistance qu'elles n'ont pas sur cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuatre compétences du pôle restent sans trace sur cette feuille : le jugement esthétique et la curation, l'intelligence manuelle, l'ancrage sensoriel et la présence en direct. Trois autres compétences — la créativité itérative, la signature stylistique et le design de problèmes — ont reçu des allusions, mais aucune n'a tenu sous la double présomption : la quantité ne fait pas l'itération, un mot ne fait pas une signature, et la finalisation d'un objet n'est pas la pose initiale du problème. Ces absences ressemblent à une limite de la feuille plutôt qu'à un choix — la journée de formation ORP mentionnée a eu lieu en présentiel et a sans doute mobilisé des dimensions vives qui ne sont pas couchées sur le papier.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse cette feuille brève : l'apprenant travaille sur un objet dont la nature même — un référentiel de compétences humaines post-AGI — suppose un acte créatif à l'origine. Le mot familier \"schmilblick\" inséré dans un contexte technique laisse aussi entrevoir une tonalité personnelle, plus visible à l'échelle du portfolio entier qu'à celle d'une feuille isolée. Le pôle MAIN, sur cette journée, vit plutôt en arrière-plan qu'en avant-scène.\n\n## Pistes pour enrichir ce pôle\n\n- Pour rendre visible la dimension itérative du projet Decidim, un chemin possible serait de noter, après une première vague de débats, ce qui a été retenu, ce qui a été retravaillé et l'apprentissage tiré du cycle.\n- Pour donner corps à un jugement esthétique sur la production IA, un chemin possible serait d'expliciter, sur un lot de soixante débats générés, les critères de sélection ou de retravail appliqués.\n- Pour faire affleurer la dimension live du métier, un chemin possible serait de noter, à propos d'une journée en salle, un moment où la co-présence a produit autre chose que ce qu'aurait permis l'écrit ou la vidéo."
+  }
+}

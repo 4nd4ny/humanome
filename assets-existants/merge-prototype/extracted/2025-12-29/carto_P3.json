@@ -1,0 +1,189 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "J'ai généré le support de formation complet des tuteurs. Il ne reste plus qu'à le relire et à homogénéiser sa mise en forme (les styles sont différents d'un doc à l'autre) pour vérifier que tout est ok.",
+      "contexte": "Production d'un support de formation suivie d'une étape d'homogénéisation des styles — possible trace de jugement sur la cohérence formelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Le problème, c'est qu'il fait 124 pages !",
+      "contexte": "Exclamation sur le volume du support — possible trace de jugement sur la dimension d'un produit livré.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-29",
+      "extraitVerbatim": "Voici un premier résultat avec lequel je suis parfaitement d'accord, puis un second qui pourrait servir de base pour un article, tellement il résume bien les choses.",
+      "contexte": "Sélection et qualification différenciée entre deux résultats Gemini — geste qui peut relever de la curation.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la créativité itérative ou radicale sur cette feuille. Raconter une version 1 imparfaite suivie d'un pivot — ou une rupture franche avec un cadre établi — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et à la signature sur cette feuille. La détection de cette compétence demande une lecture longitudinale ; les feuilles à venir, prises ensemble, donneront la matière."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au design de problèmes sur cette feuille. Raconter un moment où une question nouvelle a été créée — pas reformulée, mais inventée — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'identification des styles hétérogènes entre documents et la décision d'homogénéiser la mise en forme touchent à un jugement sur la cohérence formelle du livrable."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "La distinction entre deux résultats Gemini — l'un validé pour son contenu (« parfaitement d'accord »), l'autre qualifié pour sa qualité synthétique (« tellement il résume bien les choses ») — est un geste de hiérarchisation entre productions IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que la compétence n'est pas attestée. La pièce 1 dit que les styles sont différents et qu'il faut les homogénéiser : c'est un constat opérationnel suivi d'une intention de nettoyage. La fiche est exigeante — la curation implique de la soustraction et une articulation des critères. Ici, il y a soustraction implicite (homogénéiser revient à éliminer la diversité stylistique), mais aucun critère n'est nommé : on ne sait pas vers quel style on converge ni pourquoi. La pièce 2 distingue deux résultats Gemini et les qualifie différemment, ce qui constitue un acte de sélection minimal. Mais là encore, la fiche demande une articulation : pourquoi « parfaitement d'accord » sur l'un, pourquoi « il résume bien » sur l'autre ? Les critères ne sont pas posés. L'évaluation reste générique. La présomption d'absence durcie absorbe les deux pièces : il y a des gestes qui touchent la curation, mais sans la couche d'articulation qui ferait la compétence.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La distinction explicite entre deux résultats de même origine, avec qualifications différentes (« d'accord » vs « résume bien »), porte un minimum d'hiérarchisation que la présomption d'absence ne peut pas effacer entièrement."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a résisté de justesse. Je l'examine maintenant en me demandant si je n'ai pas halluciné sa portée. L'attaque qui me semble dominante est l'insuffisance probatoire : « parfaitement d'accord » et « tellement il résume bien » sont des qualifications affectives ou impressionnistes, pas des jugements esthétiques articulés. Aucun critère formel n'est nommé (ton, registre, structure, adéquation au public). Sans cette articulation, le geste reste de l'ordre du « j'ai aimé », que la fiche désigne explicitement comme état émotionnel, pas comme jugement esthétique. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Les qualifications sont impressionnistes (« parfaitement d'accord », « résume bien ») et ne portent aucun critère formel articulé ; la fiche refuse explicitement « j'ai aimé » comme jugement esthétique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'homogénéisation des styles et la sélection entre résultats Gemini portaient une trace de curation au sens de la fiche. L'homogénéisation est annoncée sans critère explicite ; la sélection entre Gemini A et Gemini B repose sur des qualifications impressionnistes. Le geste de tri existe — l'apprenant ne garde pas tout, il distingue — mais la couche qui ferait la compétence, l'articulation des critères, n'est pas déposée dans le texte. Pour qu'il y ait jugement esthétique attesté, il faudrait voir au moins une fois le pourquoi formel du choix : ce qui rend ce résultat plus juste pour ce public, ce qui rend ce style cohérent avec l'identité du dispositif. Cette substance reste à raconter.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a disqualifié la pièce qui résistait : les qualifications restent impressionnistes, sans articulation des critères que la fiche exige.",
+        "prescription": "Lors d'une prochaine sélection entre sorties IA ou versions de document, nommer un ou deux critères formels qui ont porté la décision — registre, ton, structure, adéquation au public — ferait apparaître le jugement esthétique en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale sur cette feuille. Décrire une interaction physique avec la matière — un bricolage, un montage, une réparation — ouvrirait ce dossier si l'occasion se présente."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel et à la pleine présence sur cette feuille. Décrire un moment d'attention incarnée — une sensation, un ralentissement intentionnel — ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et à la performance live sur cette feuille. Raconter un moment où l'interaction en temps réel avec un public a produit quelque chose que le travail solitaire ne pouvait pas produire ouvrirait ce dossier."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 1,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 7,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle et pour cette feuille du 29 décembre 2025, le travail créatif passe presque entièrement par la médiation de l'IA générative — Claude pour la vérification, Gemini pour la confrontation. La main de l'apprenant intervient surtout en aval, dans des gestes de tri et d'homogénéisation : signaler qu'un support fait 124 pages, qu'il faut harmoniser des styles disparates, choisir entre deux résultats Gemini lequel servira de base à un article. Le pôle Main, dans cette feuille, est celui d'un curateur qui orchestre des productions IA plutôt que celui d'un artisan qui façonne matière, geste ou présence. Les dimensions somatiques et incarnées — manualité, attention sensorielle, performance live — ne trouvent pas d'écho dans le texte du jour.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. La créativité itérative et radicale apparaît en creux — l'apprenant qualifie un résultat de « base pour un article », ce qui suppose une suite, mais l'itération elle-même n'est pas racontée. Le design de problèmes, l'intelligence manuelle, l'ancrage sensoriel et la performance live n'ont pas de trace ce jour-là, ce qui ressemble plus au caractère d'une journée de production avec l'IA qu'à un choix durable. Le jugement esthétique affleure dans l'homogénéisation des styles et la sélection entre résultats, mais sans la couche d'articulation qui le ferait apparaître comme compétence attestée. La singularité, par nature, se lit sur plusieurs feuilles ; elle attend la longueur du corpus.",
+    "emergencesPole": "Une chose traverse la feuille : le geste créatif y prend la forme d'une chorégraphie entre génération IA et tri humain. L'apprenant produit avec l'IA, puis évalue, puis re-oriente — sans encore mettre en mots les critères qui guident son tri. Une seconde observation : la mention « tellement il résume bien les choses » est posée comme une évidence partagée ; elle suppose un standard de qualité qui n'est pas explicité dans la feuille. Ce qui tient ici sous la couche du texte mériterait d'être rendu visible.",
+    "pistes": [
+      "Pour enrichir la dimension de curation, un chemin possible serait de noter, lors d'un prochain tri entre versions ou sorties IA, un ou deux critères concrets qui ont porté le choix — registre, structure, adéquation au public attendu.",
+      "Pour enrichir la dimension d'itération créative, un chemin possible serait de raconter l'écart entre la première version du support tuteurs et celle qui a été retenue — ce qui a bougé, et pourquoi.",
+      "Pour enrichir la dimension d'incarnation, un chemin possible serait d'inclure, lors d'un futur passage devant des tuteurs en formation, une note sur ce que la rencontre en présentiel a produit que la préparation seule n'aurait pas produit."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle et pour cette feuille du 29 décembre 2025, le travail créatif passe presque entièrement par la médiation de l'IA générative — Claude pour la vérification, Gemini pour la confrontation. La main de l'apprenant intervient surtout en aval, dans des gestes de tri et d'homogénéisation : signaler qu'un support fait 124 pages, qu'il faut harmoniser des styles disparates, choisir entre deux résultats Gemini lequel servira de base à un article. Le pôle Main, dans cette feuille, est celui d'un curateur qui orchestre des productions IA plutôt que celui d'un artisan qui façonne matière, geste ou présence. Les dimensions somatiques et incarnées — manualité, attention sensorielle, performance live — ne trouvent pas d'écho dans le texte du jour.\n\n## Territoires les plus denses\n\nSur cette feuille, aucun territoire du pôle ne ressort avec une densité suffisante pour être nommé comme tel. Le geste curatif existe mais sans l'articulation des critères qui le ferait apparaître comme jugement esthétique attesté.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas encore été ramenés dans cette feuille. La créativité itérative et radicale apparaît en creux — l'apprenant qualifie un résultat de « base pour un article », ce qui suppose une suite, mais l'itération elle-même n'est pas racontée. Le design de problèmes, l'intelligence manuelle, l'ancrage sensoriel et la performance live n'ont pas de trace ce jour-là, ce qui ressemble plus au caractère d'une journée de production avec l'IA qu'à un choix durable. Le jugement esthétique affleure dans l'homogénéisation des styles et la sélection entre résultats, mais sans la couche d'articulation qui le ferait apparaître comme compétence attestée. La singularité, par nature, se lit sur plusieurs feuilles ; elle attend la longueur du corpus.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse la feuille : le geste créatif y prend la forme d'une chorégraphie entre génération IA et tri humain. L'apprenant produit avec l'IA, puis évalue, puis re-oriente — sans encore mettre en mots les critères qui guident son tri. Une seconde observation : la mention « tellement il résume bien les choses » est posée comme une évidence partagée ; elle suppose un standard de qualité qui n'est pas explicité dans la feuille. Ce qui tient ici sous la couche du texte mériterait d'être rendu visible.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension de curation, un chemin possible serait de noter, lors d'un prochain tri entre versions ou sorties IA, un ou deux critères concrets qui ont porté le choix — registre, structure, adéquation au public attendu.\n- Pour enrichir la dimension d'itération créative, un chemin possible serait de raconter l'écart entre la première version du support tuteurs et celle qui a été retenue — ce qui a bougé, et pourquoi.\n- Pour enrichir la dimension d'incarnation, un chemin possible serait d'inclure, lors d'un futur passage devant des tuteurs en formation, une note sur ce que la rencontre en présentiel a produit que la préparation seule n'aurait pas produit."
+  }
+}

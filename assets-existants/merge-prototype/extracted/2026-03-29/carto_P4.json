@@ -1,0 +1,498 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "L'objectif ultime d'une évaluation assistée par IA est la **soundness** : garantir qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict « présence établie ». Tout faux positif — qu'il provienne d'un portfolio fabriqué, d'une confusion entre intérêt et maîtrise, ou d'une déclaration non étayée — est un dommage silencieux qui invalide la démarche évaluative.",
+      "contexte": "Position éthique ferme sur le risque évaluatif ; activation possible de 4.02 (alignement éthique de l'IA), 4.01 (raisonnement éthique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La **structure adversariale** de ce nouveau protocole d'évaluation retourne le biais sycophantique du LLM dans les deux directions",
+      "contexte": "Garde-fou architectural conçu pour contrer un biais désaligné du LLM ; activation possible de 4.02 (conception de garde-fous).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Et la compartimentation informative entre agents protège l'intégrité du jugement contre le biais de halo, empêchant qu'une impression globale favorable ne contamine les verdicts individuels.",
+      "contexte": "Garde-fou structurel contre la contamination du jugement ; activation possible de 4.02 (alignement systémique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Le protocole 4 aka le dispositif Aurora Juge, m'a fait réaliser mes biais d'enseignant. J'ai compris pourquoi, connaissant mes élèves, j'avais mis des bonnes notes à certains portfolio qui finalement ne sont pas vraiment réflexifs dans l'absolu.",
+      "contexte": "Reconnaissance ouverte d'une erreur passée d'évaluation par biais d'enseignant ; activation possible de 4.06 (responsabilité, intégrité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Et que ce moi je n'arrive pas bien à faire en tant que prof, c'est à dire la vérité cru aux élèves (je cherche toujours à les valoriser, je sycophante à mort en fait, sans m'en rendre compte)",
+      "contexte": "Aveu d'un écart entre l'intégrité espérée (dire la vérité) et la pratique (valoriser) ; activation possible de 4.06 (intégrité, courage), 4.01 (dilemme entre bienveillance et franchise).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Mais ce qui est magnifique, ce sont les conseils rédigés par l'IA pour permettre aux élèves de progresser dans une logique d'évaluation formative et d'amélioration continue.",
+      "contexte": "Articulation d'une éthique de l'évaluation : formative plutôt que sanctionnante ; activation possible de 4.01 (raisonnement éthique), 4.08 (valeur non-automatisable).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Je pense que ce système, sous sa forme actuelle, produit de meilleures évaluations que les notes attribuées aux travaux de maturité du gymnase. Je n'ai pas le moyen physique de le démontrer. C'est un feeling que j'ai dans mes tripes",
+      "contexte": "Position assumée sans preuve formelle ; activation possible de 4.05 (décision dans le flou), 4.06 (courage de la position).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "j'aimerai bien pouvoir faire un travail de recherche sur cette intuition. Ce serait fort, très fort comme résultat. Ça apporterait une crédibilité institutionnelle à la pertinence des écoles RESPIRE.",
+      "contexte": "Plan d'action articulé en réponse au manque de preuve ; activation possible de 4.05 (décision malgré le flou), 4.09 (patience stratégique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Je devrais probablement contacter mes ex-collègues de la HEP pour leur proposer de trouver un futur enseignant, dans les étudiants de la volée de l'an prochain, qui serait intéressé de faire son master sur une étude de cas concret.",
+      "contexte": "Décision conditionnelle avec horizon temporel (volée de l'an prochain) ; activation possible de 4.09 (timing).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Maintenant que le système m'a rejeté comme un cancer (ce qui m'a bien fait rire 'jaune' [...] j'avais vraiment l'impression d'être dans le bureau du directeur du gymnase de Chamblande, le 15 Mai 2025",
+      "contexte": "Évocation d'un coût personnel payé pour une position maintenue ; activation possible de 4.06 (courage, intégrité avec coût documenté).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La grosse lacune du système était son impossibilité d'évaluation des compétences transversales, chose que j'avais identifiée mais que je ne pouvais pas améliorer sans réformer et invalider tout le travail que nous avions fait.",
+      "contexte": "Dilemme passé entre intégrité du diagnostic et coût de la rupture ; activation possible de 4.01 (dilemme éthique), 4.06 (intégrité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "C'est pourquoi je me suis intéressé à la question de l'évaluation lorsque j'ai repris l'enseignement 9 ans plus tard, en 2013, ce qui m'a conduit à inventer les évaluations humanistes : le coeur de ce qui me posait problème dans le système éducatif en vigueur, par rapport à mes valeurs et ma vision de l'enseignement.",
+      "contexte": "Articulation d'une trajectoire éthique de 25 ans aboutissant aux évaluations humanistes ; activation possible de 4.01 (valeurs travaillées), 4.06 (cohérence dans la durée).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Bravo à Claude pour avoir pu voir ce que je n'arrivais pas à réaliser en tant que juge humain",
+      "contexte": "Reconnaissance lucide d'une limite humaine compensée par l'IA, et a contrario d'une valeur que seul l'humain a portée (la conception) ; activation possible de 4.08 (lucidité bidirectionnelle), 4.06 (humilité)."
+    , "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Mais ce qui est magnifique, ce sont les conseils rédigés par l'IA pour permettre aux élèves de progresser",
+      "contexte": "Reconnaissance d'une force IA (conseils formatifs) ; activation possible de 4.08 (lucidité bidirectionnelle).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Tension explicite entre deux valeurs légitimes : la bienveillance envers les élèves et la vérité critique sur leur travail."
+        },
+        {
+          "numero": 2,
+          "pid": 11,
+          "contexte": "Dilemme passé entre la fidélité au diagnostic (la lacune des compétences transversales) et le coût d'invalider le travail commun de l'équipe ForEva."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Position éthique sur l'évaluation : formative plutôt que sanctionnante — un arbitrage entre deux conceptions du jugement scolaire."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Articulation d'une trajectoire de valeurs (« par rapport à mes valeurs et ma vision de l'enseignement ») qui a guidé un parcours professionnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption forte. Beaucoup d'apprenants parlent de leurs valeurs sans déployer le processus visible de mise en tension qui définit le raisonnement éthique appliqué. La pièce 1 articule un vrai dilemme — bienveillance vs franchise — et reconnaît que l'apprenant n'a pas su le résoudre (« je sycophante à mort »). La pièce 2 décrit un autre dilemme passé : l'intégrité du diagnostic technique vs la solidarité avec l'équipe. La pièce 3 articule une éthique de l'évaluation (formative plutôt que sanctionnante). La pièce 4 invoque les valeurs comme guide de trajectoire. Ce qui reste explicitement faible : les pièces 3 et 4 sont déclaratives — elles invoquent des valeurs plutôt qu'elles n'exposent un processus de mise en tension. Les pièces 1 et 2 sont plus solides parce qu'elles décrivent une tension vécue.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La tension bienveillance/franchise est nommée explicitement avec aveu d'irrésolution — c'est un vrai dilemme maintenu, pas tranché prématurément." },
+            { "pieceId": 2, "motifResistance": "Le dilemme passé entre diagnostic technique et solidarité d'équipe est articulé comme une impasse vécue qui a déclenché une trajectoire ultérieure." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces résistent. Je durcis. Ces pièces relèvent-elles vraiment du raisonnement éthique appliqué, ou d'autres compétences voisines (métacognition, sens politique) ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active aussi 1.04 (métacognition) et 2.01 (intelligence émotionnelle). Mais l'écart bienveillance/franchise est un dilemme de valeurs en conflit, pas seulement une observation cognitive — la dimension éthique tient." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le passage ne raconte pas seulement la lacune : il décrit l'impossibilité éthique d'agir sans invalider le travail commun. C'est une tension vécue, pas une déclaration." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces relevaient pleinement du raisonnement éthique appliqué. La pièce 2 a tenu fermement : le dilemme entre fidélité au diagnostic et coût de la rupture avec l'équipe ForEva est précisément ce que la fiche appelle « peser des valeurs légitimes en conflit ». La pièce 1 a tenu avec affaiblissement parce qu'elle activait aussi métacognition et IE. Ce qui se dégage, c'est une attestation modérée à solide. Le raisonnement éthique opère ici en deux temps : une tension passée déjà digérée (ForEva), et une tension présente non encore résolue (sycophantie en classe). L'inconfort moral est maintenu sans être tranché prématurément — c'est exactement la forme aboutie de la fiche. Une réserve : la mise en tension reste rétrospective ou diagnostique ; un dilemme vécu en direct, avec exploration des conséquences pour différentes parties prenantes, donnerait à la compétence sa pleine maturité.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé le dilemme ForEva (diagnostic vs solidarité) comme tension vécue maintenant l'incertitude morale, et retenu avec affaiblissement la tension bienveillance/franchise comme dilemme partiellement éthique.",
+        "prescription": "Le raisonnement éthique se manifeste ici dans le maintien lucide de tensions sans résolution prématurée. Pour donner à cette compétence un terrain d'attestation plus immédiat, une piste serait, à l'occasion d'une décision difficile à venir (par exemple le futur master HEP), de tenir une note qui explore au présent les valeurs en tension — qui gagne, qui perd, ce qui reste irréductible — avant de trancher."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La soundness — refus du faux positif comme dommage silencieux — est posée comme objectif éthique central du dispositif IA."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "La structure adversariale conçue pour neutraliser le biais sycophantique du LLM est un garde-fou architectural d'alignement."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "La compartimentation informative contre le biais de halo est un autre garde-fou systémique d'intégrité du jugement IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption forte. Beaucoup de dispositifs IA invoquent l'alignement comme principe sans concevoir de mécanismes opératoires. La pièce 1 nomme la soundness comme objectif ultime et identifie trois sources de faux positifs — c'est plus qu'un slogan. La pièce 2 décrit un garde-fou architectural : la structure adversariale retourne le biais sycophantique en moteur de robustesse. La pièce 3 décrit un autre garde-fou : la compartimentation contre le halo. Ce qui reste explicitement faible : les garde-fous sont décrits comme principes d'architecture, pas comme actes de refus en situation. La fiche admet cependant explicitement que la conception documentée de garde-fous éthiques systémiques est une trace textuelle forte.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La soundness énoncée comme objectif ultime, avec taxonomie des faux positifs, n'est pas un slogan mais une position d'alignement opérationnalisée." },
+            { "pieceId": 2, "motifResistance": "Le garde-fou adversarial transforme un biais désaligné du LLM en moteur de robustesse — c'est la forme aboutie selon la fiche." },
+            { "pieceId": 3, "motifResistance": "La compartimentation contre le halo est un garde-fou systémique précis." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces résistent. Je durcis. Les garde-fous sont-ils vraiment d'alignement éthique, ou de simple qualité technique ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La soundness ici n'est pas définie comme qualité technique : elle est définie comme protection contre un dommage évaluatif (« dommage silencieux qui invalide la démarche »). C'est un objectif d'alignement entre ce que l'IA produit et ce que la valeur évaluative exige." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le mot sycophantique n'est pas pris dans un sens vague : c'est précisément le biais d'alignement le plus documenté des LLM (RLHF). Le retournement adversarial est un garde-fou qui répond à ce désalignement nommé." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le biais de halo est un biais cognitif documenté qui contamine le jugement ; la compartimentation est la contre-mesure d'alignement classique. La pièce est précise." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à de la qualité technique. Toutes ont tenu : la soundness est définie comme protection contre un dommage évaluatif, le garde-fou adversarial répond à un désalignement RLHF documenté, la compartimentation cible un biais cognitif précis. Ce qui se dégage, c'est une attestation solide, dans la forme la plus aboutie que la fiche reconnaît — la conception documentée de garde-fous éthiques systémiques. L'apprenant ne se contente pas de constater que l'IA peut être désalignée, il conçoit l'architecture qui maintient l'alignement. Une réserve : l'attestation porte sur la conception des garde-fous, pas sur le moment de refus en situation ; les refus silencieux sont par nature peu lisibles dans le texte.",
+          "confianceFinale": 0.88
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 0,
+        "confiance": 0.88,
+        "motif": "Le temps 2 a confirmé que les trois pièces conçoivent des garde-fous éthiques systémiques précis — soundness, structure adversariale, compartimentation — qui répondent à des désalignements LLM nommés.",
+        "prescription": "L'alignement éthique opère ici dans le registre architectural — concevoir un dispositif IA qui résiste à ses propres biais. Pour étoffer la trace côté refus en acte, une piste serait de raconter à l'occasion un moment où un output IA précis du dispositif a été écarté, et ce qui dans cet output désalignait avec la valeur évaluative recherchée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et long-terme sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision où l'impact environnemental ou intergénérationnel a infléchi un arbitrage — par exemple le coût en tokens élevé d'Aurora mis en regard de la valeur produite."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un mode de pensée atypique — le sien ou celui d'un autre — a produit un résultat que l'approche standard n'aurait pas atteint."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Position assumée sans preuve formelle (« je n'ai pas le moyen physique de le démontrer ») : tolérance au flou couplée à une conviction ferme."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Plan d'action articulé en réponse au flou : convertir une intuition en travail de recherche pour produire une preuve recevable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption forte. La fiche demande trois éléments combinés : nommer ce qu'on ne sait pas, fonctionner malgré le flou, raconter un acte de tranchage avec ses conséquences. La pièce 1 nomme l'incertitude (« pas le moyen physique de le démontrer ») et maintient la conviction (« c'est un feeling que j'ai dans mes tripes »). Il y a donc deux des trois éléments. La pièce 2 prolonge en plan d'action : convertir l'intuition en recherche. Ce qui reste explicitement faible : aucun acte de tranchage avec conséquences n'apparaît dans le passage du 29 mars ; la décision est encore conditionnelle (« je devrais probablement contacter »).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant nomme l'absence de preuve et maintient la conviction — c'est la facette tolérance de la compétence." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce résiste. Je la teste. Maintenir une intuition sans preuve est-ce de la tolérance au flou, ou simplement une affirmation peu rigoureuse ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'apprenant articule l'absence de preuve et maintient la conviction, ce qui est la facette tolérance ; mais l'acte de tranchage avec conséquences manque dans le passage. La pièce porte une moitié de la compétence." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient la compétence dans ses deux facettes. La pièce 1 atteste la tolérance au flou (nommer l'absence de preuve et maintenir la conviction). La pièce 2 est tombée sous la présomption d'absence : un projet encore conditionnel n'est pas un acte de tranchage avec conséquences. Ce qui se dégage, c'est une attestation partielle : la facette tolérance est lisible, la facette décision dans le flou avec conséquences ne l'est pas dans cette feuille. Le renvoi au cartographe correspond. Une réserve qui dessine un chemin : une feuille future qui racontera la première démarche concrète vers la HEP — décision prise, conséquences engagées — donnerait à la facette décisionnelle son terrain d'attestation.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a retenu avec affaiblissement la facette tolérance (nommer l'absence de preuve et maintenir la conviction) ; la facette décision dans le flou avec conséquences n'apparaît pas dans ce passage.",
+        "prescription": "La tolérance au flou se laisse lire ici (« je n'ai pas le moyen physique de le démontrer » couplé à une conviction ferme) sans la facette décisionnelle. Pour ouvrir le dossier, une piste serait de raconter, sur une feuille future, le moment où la démarche HEP a été engagée concrètement — décision prise sans certitude d'aboutir, premières conséquences acceptées."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Reconnaissance ouverte d'un biais d'évaluation passé : avoir donné de bonnes notes à des portfolios peu réflexifs par connaissance des élèves."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Aveu d'un écart entre l'intégrité espérée (dire la vérité aux élèves) et la pratique (valoriser) — diagnostic auto-critique avec coût symbolique."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Coût personnel documenté d'une position professionnelle : le rejet par la direction du gymnase de Chamblande le 15 mai 2025."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Cohérence dans la durée : la trajectoire 1997-2026 articulée par rapport à des valeurs explicites (« mes valeurs et ma vision de l'enseignement »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption forte. Reconnaître des erreurs et déclarer des valeurs sont des actes faciles à imiter sans intégrité réelle. La pièce 1 reconnaît un biais d'évaluation passé sans le minimiser — c'est de l'autocritique rétrospective. La pièce 2 nomme un écart entre valeur et acte (« je sycophante à mort... sans m'en rendre compte ») — vulnérable mais lucide. La pièce 3 documente un coût personnel payé pour une position professionnelle. La pièce 4 articule une cohérence de 25 ans entre valeurs et actes. Ce qui reste explicitement faible : la pièce 1 est une reconnaissance après-coup grâce au dispositif IA, pas un courage en direct ; la pièce 3 reste à charge contre la direction, sans qu'on puisse trianguler la lucidité.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'autocritique d'un biais d'évaluation passé, formulée publiquement dans un texte écrit, sans minimisation, est de la responsabilité rétrospective." },
+            { "pieceId": 2, "motifResistance": "L'aveu de l'écart valeur/pratique avec son terme technique (« je sycophante ») est plus qu'une déclaration — c'est un diagnostic auto-critique." },
+            { "pieceId": 3, "motifResistance": "Le coût documenté (rejet institutionnel daté du 15 mai 2025) atteste qu'une position a été tenue malgré la pression." },
+            { "pieceId": 4, "motifResistance": "La cohérence sur 25 ans entre lacune identifiée et trajectoire poursuivie est une trace d'intégrité dans la durée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces résistent. Je durcis. Suis-je en train de surévaluer des aveux confortables et des récits de victime héroïque ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'autocritique est rétrospective, déclenchée par le dispositif IA — pas un courage en direct face à un public hostile. Mais elle est précise et acceptée publiquement dans un texte écrit, ce qui la maintient comme trace de responsabilité." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'aveu est lucide mais nomme l'écart sans encore le combler — l'apprenant n'a pas encore montré qu'il sait dire la vérité aux élèves. La pièce porte un mouvement-vers la vérité, pas l'acte de la dire." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le coût personnel est documenté (date, lieu, scène) mais la lecture du conflit reste à charge ; le maintien de position est plausible mais non triangulable sur ce passage." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La trajectoire 1997-2026 articulée par rapport aux valeurs (ForEva → reprise enseignement 2013 → évaluations humanistes → thèse 2017 → écoles RESPIRE → Aurora) est une cohérence longue documentée par dates précises." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient pleinement le triptyque assumer-oser-rester-cohérent. La pièce 4 a tenu fermement : la cohérence de 25 ans entre valeurs identifiées et actes posés est un marqueur fort. Les pièces 1, 2 et 3 ont tenu avec affaiblissement — autocritique rétrospective, aveu lucide d'un écart encore ouvert, coût personnel à charge non triangulable. Ce qui se dégage, c'est une attestation solide, surtout dans la dimension intégrité dans la durée. Le courage en direct (maintenir une position impopulaire au moment où ça coûte) est moins lisible textuellement, mais la trajectoire elle-même atteste qu'il a été exercé. Une réserve : la dimension accountability constructive (« c'est ma responsabilité et voici ce que je fais maintenant ») est moins explicite que la responsabilité rétrospective ; sur le travail d'évaluation des ex-élèves, l'apprenant constate sans encore formuler ce qu'il fait avec ce constat.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé la cohérence longue (1997-2026) comme trace d'intégrité dans la durée, et retenu avec affaiblissement les trois pièces d'autocritique rétrospective et de coût personnel.",
+        "prescription": "La responsabilité opère ici sur deux registres — rétrospective (le biais d'évaluation reconnu) et longitudinale (la cohérence de 25 ans). Pour étoffer la dimension constructive, une piste serait de formuler, à l'occasion d'une note prochaine, ce que la reconnaissance du biais d'évaluation déclenche — vers les ex-élèves, vers les évaluations à venir, vers la manière même de donner des feedback en classe."
+      },
+      "tracesRetenues": [
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la validation contextuelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où le verdict d'Aurora a été contredit ou affiné par un savoir contextuel inaccessible à l'IA — culturel, relationnel, historique."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 13,
+          "contexte": "Lucidité sur ce que l'IA fait mieux que l'humain (voir les angles morts du juge sycophant) — facette du diagnostic bidirectionnel."
+        },
+        {
+          "numero": 2,
+          "pid": 14,
+          "contexte": "Reconnaissance d'une autre force IA : les conseils formatifs rédigés qui permettent aux élèves de progresser."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption forte. La fiche demande explicitement la lucidité bidirectionnelle — reconnaître ce que l'IA fait mieux ET identifier ce qui reste irremplaçablement humain. Les pièces 1 et 2 montrent bien la première moitié (ce que l'IA fait mieux) mais la seconde moitié (ce qui reste irremplaçable humain, prospectif, articulé en valeur) n'apparaît pas explicitement sur ces pièces. Le passage du 29 mars n'articule pas explicitement ce que l'humain garde. Ce qui reste : la facette « regard prospectif sur ce qu'il faut cultiver pour rester pertinent » est absente.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence ; le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la compétence pouvait s'attester sur cette feuille. Les deux pièces extraites montrent une lucidité sur ce que l'IA fait mieux, mais la facette « identifier ce qui reste structurellement non-automatisable » n'apparaît pas. La fiche exige la bidirectionnalité ; sans elle, ce que je tiens relève plutôt de 1.10 (synergie). Ce qui en résulte, c'est que la compétence n'est pas attestée par ce passage. La compétence existe peut-être ailleurs dans le portfolio — par exemple si l'apprenant a déjà nommé la valeur de sa propre conception, de son cadrage, de sa présence en classe comme irréductibles. Mais sur le 29 mars, le matériau est insuffisant.",
+          "confianceFinale": 0.28
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.28,
+        "motif": "Aucune pièce ne porte la bidirectionnalité exigée par la fiche : ce que l'IA fait mieux apparaît, mais ce qui reste structurellement non-automatisable n'est pas articulé sur ce passage.",
+        "prescription": "La lucidité sur ce que l'IA fait mieux que l'humain se lit ici, mais la moitié inverse — ce qui reste structurellement humain dans le travail — n'est pas formulée. Pour ouvrir le dossier, une piste serait de tenir, à l'occasion d'une prochaine note, une courte articulation du geste irremplaçablement humain dans Aurora — ce que la conception, le cadrage, la calibration de modèles, la décision finale font que l'IA seule ne ferait pas."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Plan de recherche projeté avec horizon temporel (« j'aimerai bien pouvoir faire un travail de recherche ») — la patience d'attendre que la preuve formelle soit construite."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Décision de contacter la HEP avec critère de déclenchement précis (« la volée de l'an prochain ») — report borné dans le temps."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption forte. La fiche demande trois éléments combinés : pression à agir, raisonnement explicite d'attente, moment d'action prévu. La pièce 1 articule un horizon temporel mais ne nomme pas la pression à agir maintenant — c'est plutôt un projet à venir qu'une retenue stratégique. La pièce 2 mentionne « la volée de l'an prochain » comme critère de déclenchement, ce qui est précisément le marqueur de la fiche. Ce qui reste explicitement faible : aucune pression manifeste n'est nommée. L'apprenant n'est pas tenu d'agir tout de suite par une circonstance — il choisit naturellement un horizon raisonnable. Ce n'est pas tout à fait la patience stratégique au sens fort de la fiche, qui suppose une pression à laquelle on résiste.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "La mention de la volée de l'an prochain comme critère de déclenchement est précisément le marqueur que la fiche évoque." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce résiste. Je la teste. Mentionner la volée de l'an prochain est-ce une patience stratégique, ou simplement un calendrier institutionnel évident ?",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le report sur la prochaine volée d'étudiants HEP est cohérent avec un critère de déclenchement, mais il pourrait n'être que la prise en compte d'un calendrier obligé. La pression contraire à agir tout de suite n'est pas nommée — ce qui affaiblit le caractère stratégique de l'attente." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient pleinement la compétence. La pièce 1 est tombée — un projet à venir sans pression contraire n'est pas une patience stratégique. La pièce 2 a tenu avec affaiblissement : le critère de déclenchement (la volée prochaine) est bien là, mais sans la trace explicite d'une pression à agir tout de suite à laquelle on résisterait. Ce qui en résulte, c'est une attestation faible. La compétence se devine, sans la combinaison complète des trois éléments demandés par la fiche. Le renvoi au cartographe est ce qui correspond. Une réserve qui dessine un chemin : si la décision de retarder le contact avec la HEP était explicitement motivée par une retenue (« même si je pourrais commencer maintenant, j'attends parce que... »), la compétence s'attesterait pleinement.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a retenu avec affaiblissement le critère de déclenchement (la volée HEP de l'an prochain) ; la pression contraire à laquelle on résisterait stratégiquement n'est pas nommée.",
+        "prescription": "Un horizon temporel précis se lit ici (la prochaine volée d'étudiants HEP), sans que la patience soit explicitement articulée comme retenue face à une pression d'agir maintenant. Pour ouvrir le dossier, une piste serait de nommer à l'occasion ce qui pousse à agir tout de suite et pourquoi le moment n'est pas venu — afin que l'attente apparaisse comme choix argumenté, pas comme calendrier."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail de la feuille du 29 mars se déploie autour d'un dispositif IA pensé à partir d'une exigence éthique forte — éviter le dommage silencieux du faux positif évaluatif. La voix dominante alterne entre l'articulation de garde-fous architecturaux (soundness, structure adversariale, compartimentation) et l'autocritique ouverte du juge humain qu'est l'apprenant (« je sycophante à mort en fait, sans m'en rendre compte »). Les marqueurs concrets reviennent : taxonomie des trois sources de faux positifs, garde-fou contre le biais de halo, cohérence d'une trajectoire de 25 ans entre lacune ForEva en 2006 et écoles RESPIRE aujourd'hui. Le coût personnel d'une position professionnelle est documenté par une date (15 mai 2025) et un lieu (Chamblande).",
+    "territoiresDenses": [
+      {
+        "competence": "Alignement et refus éthique",
+        "description": "La feuille livre la conception de garde-fous éthiques systémiques répondant à des désalignements LLM nommés (sycophantie, halo).",
+        "extraitVerbatim": "garantir qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict « présence établie »",
+        "ceQueCaDit": "Le travail manifeste un alignement actif qui ne se contente pas d'invoquer l'éthique mais conçoit l'architecture qui maintient la conformité entre ce que l'IA produit et ce que la valeur évaluative exige."
+      },
+      {
+        "competence": "Responsabilité et intégrité",
+        "description": "Une trajectoire de 25 ans articulée par rapport à des valeurs explicites, des autocritiques rétrospectives précises, un coût personnel daté.",
+        "extraitVerbatim": "ce qui m'a conduit à inventer les évaluations humanistes : le coeur de ce qui me posait problème dans le système éducatif en vigueur, par rapport à mes valeurs et ma vision de l'enseignement",
+        "ceQueCaDit": "Le travail montre une cohérence longue entre lacune identifiée, valeurs déclarées et actes posés — l'intégrité s'observe dans la trajectoire elle-même, pas seulement dans une déclaration."
+      },
+      {
+        "competence": "Raisonnement éthique appliqué",
+        "description": "Des dilemmes vrais sont maintenus sans résolution prématurée — bienveillance vs franchise envers les élèves, fidélité au diagnostic vs solidarité d'équipe dans ForEva.",
+        "extraitVerbatim": "chose que j'avais identifiée mais que je ne pouvais pas améliorer sans réformer et invalider tout le travail que nous avions fait",
+        "ceQueCaDit": "Le travail manifeste une éthique qui pèse des valeurs légitimes en conflit, dans la durée, sans se rabattre prématurément sur une bonne réponse."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en attente sur cette feuille. La conscience écologique et long-terme ne reçoit aucune pièce — le coût en tokens élevé d'Aurora aurait pu être un terrain d'arbitrage explicite, mais cet arbitrage n'est pas posé en ces termes. La valorisation de la neurodiversité n'apparaît pas. La validation contextuelle ne se laisse pas lire : aucun moment où un savoir contextuel inaccessible à l'IA aurait corrigé le verdict d'Aurora. La création de valeur non-automatisable se devine — l'apprenant a conçu le dispositif, ce que l'IA seule n'aurait pas fait — mais la facette prospective (« ce qui reste structurellement humain ») n'est pas articulée. La patience stratégique se manifeste par un horizon (la volée HEP de l'an prochain), sans que la pression contraire soit nommée. Ces absences ressemblent à des choix de focale plus qu'à des limites.",
+    "emergencesPole": "Trois lignes traversent les compétences attestées du pôle sur cette feuille. La première : un même mouvement d'alignement intérieur-extérieur — l'apprenant conçoit des garde-fous éthiques pour l'IA et reconnaît dans le même mouvement les garde-fous qui lui manquent comme évaluateur humain (« je sycophante à mort »). La seconde : une éthique qui s'éprouve dans la durée plutôt que dans l'épisode — la trajectoire 1997-2026 fonctionne comme la trace d'une cohérence longue, dont chaque étape est une réponse à une lacune éthique identifiée dans l'étape précédente. La troisième : un refus du jugement opaque comme dénominateur commun — Aurora refuse le verdict sans raison, l'apprenant refuse la note « au pouce mouillé », le dispositif refuse le faux positif silencieux.",
+    "pistes": [
+      "Pour étoffer la trace côté refus en acte de l'alignement éthique, un chemin possible serait de raconter à l'occasion un moment où un output IA précis du dispositif a été écarté, et ce qui dans cet output désalignait avec la valeur évaluative recherchée.",
+      "Pour donner à la responsabilité sa dimension constructive, un chemin possible serait de formuler ce que la reconnaissance du biais d'évaluation déclenche — vers les ex-élèves, vers les évaluations à venir, vers la manière même de donner des feedback en classe.",
+      "Pour donner à la création de valeur non-automatisable son terrain d'attestation, un chemin possible serait de tenir une courte articulation du geste irremplaçablement humain dans Aurora — ce que la conception, le cadrage, la calibration de modèles, la décision finale font que l'IA seule ne ferait pas.",
+      "Pour rendre la patience stratégique pleinement visible, un chemin possible serait de nommer à l'occasion ce qui pousse à agir tout de suite et pourquoi le moment n'est pas venu — afin que l'attente apparaisse comme choix argumenté, pas comme calendrier.",
+      "Pour ouvrir le dossier de la conscience écologique et long-terme, un chemin possible serait de tenir un arbitrage explicite sur le coût en tokens d'Aurora — l'impact énergétique mis en regard de la valeur évaluative produite."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail de la feuille du 29 mars se déploie autour d'un dispositif IA pensé à partir d'une exigence éthique forte — éviter le dommage silencieux du faux positif évaluatif. La voix dominante alterne entre l'articulation de garde-fous architecturaux (soundness, structure adversariale, compartimentation) et l'autocritique ouverte du juge humain qu'est l'apprenant (« je sycophante à mort en fait, sans m'en rendre compte »). Les marqueurs concrets reviennent : taxonomie des trois sources de faux positifs, garde-fou contre le biais de halo, cohérence d'une trajectoire de 25 ans entre lacune ForEva en 2006 et écoles RESPIRE aujourd'hui. Le coût personnel d'une position professionnelle est documenté par une date (15 mai 2025) et un lieu (Chamblande).\n\n## Territoires les plus denses\n\n**Alignement et refus éthique.** La feuille livre la conception de garde-fous éthiques systémiques répondant à des désalignements LLM nommés (sycophantie, halo). « Garantir qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict présence établie. » Le travail manifeste un alignement actif qui ne se contente pas d'invoquer l'éthique mais conçoit l'architecture qui maintient la conformité entre ce que l'IA produit et ce que la valeur évaluative exige.\n\n**Responsabilité et intégrité.** Une trajectoire de 25 ans articulée par rapport à des valeurs explicites, des autocritiques rétrospectives précises, un coût personnel daté. « Ce qui m'a conduit à inventer les évaluations humanistes : le coeur de ce qui me posait problème dans le système éducatif en vigueur, par rapport à mes valeurs et ma vision de l'enseignement. » Le travail montre une cohérence longue entre lacune identifiée, valeurs déclarées et actes posés — l'intégrité s'observe dans la trajectoire elle-même, pas seulement dans une déclaration.\n\n**Raisonnement éthique appliqué.** Des dilemmes vrais sont maintenus sans résolution prématurée — bienveillance vs franchise envers les élèves, fidélité au diagnostic vs solidarité d'équipe dans ForEva. « Chose que j'avais identifiée mais que je ne pouvais pas améliorer sans réformer et invalider tout le travail que nous avions fait. » Le travail manifeste une éthique qui pèse des valeurs légitimes en conflit, dans la durée, sans se rabattre prématurément sur une bonne réponse.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en attente sur cette feuille. La conscience écologique et long-terme ne reçoit aucune pièce — le coût en tokens élevé d'Aurora aurait pu être un terrain d'arbitrage explicite, mais cet arbitrage n'est pas posé en ces termes. La valorisation de la neurodiversité n'apparaît pas. La validation contextuelle ne se laisse pas lire : aucun moment où un savoir contextuel inaccessible à l'IA aurait corrigé le verdict d'Aurora. La création de valeur non-automatisable se devine — l'apprenant a conçu le dispositif, ce que l'IA seule n'aurait pas fait — mais la facette prospective (« ce qui reste structurellement humain ») n'est pas articulée. La patience stratégique se manifeste par un horizon (la volée HEP de l'an prochain), sans que la pression contraire soit nommée. Ces absences ressemblent à des choix de focale plus qu'à des limites.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences attestées du pôle sur cette feuille. La première : un même mouvement d'alignement intérieur-extérieur — l'apprenant conçoit des garde-fous éthiques pour l'IA et reconnaît dans le même mouvement les garde-fous qui lui manquent comme évaluateur humain (« je sycophante à mort »). La seconde : une éthique qui s'éprouve dans la durée plutôt que dans l'épisode — la trajectoire 1997-2026 fonctionne comme la trace d'une cohérence longue, dont chaque étape est une réponse à une lacune éthique identifiée dans l'étape précédente. La troisième : un refus du jugement opaque comme dénominateur commun — Aurora refuse le verdict sans raison, l'apprenant refuse la note « au pouce mouillé », le dispositif refuse le faux positif silencieux.\n\n## Pistes pour enrichir ce pôle\n\nPour étoffer la trace côté refus en acte de l'alignement éthique, un chemin possible serait de raconter à l'occasion un moment où un output IA précis du dispositif a été écarté, et ce qui dans cet output désalignait avec la valeur évaluative recherchée.\n\nPour donner à la responsabilité sa dimension constructive, un chemin possible serait de formuler ce que la reconnaissance du biais d'évaluation déclenche — vers les ex-élèves, vers les évaluations à venir, vers la manière même de donner des feedback en classe.\n\nPour donner à la création de valeur non-automatisable son terrain d'attestation, un chemin possible serait de tenir une courte articulation du geste irremplaçablement humain dans Aurora — ce que la conception, le cadrage, la calibration de modèles, la décision finale font que l'IA seule ne ferait pas.\n\nPour rendre la patience stratégique pleinement visible, un chemin possible serait de nommer à l'occasion ce qui pousse à agir tout de suite et pourquoi le moment n'est pas venu — afin que l'attente apparaisse comme choix argumenté, pas comme calendrier.\n\nPour ouvrir le dossier de la conscience écologique et long-terme, un chemin possible serait de tenir un arbitrage explicite sur le coût en tokens d'Aurora — l'impact énergétique mis en regard de la valeur évaluative produite."
+  }
+}

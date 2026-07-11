@@ -1,0 +1,484 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Nous ne sommes pas des machines, même si nous avons un fonctionnement nocturne qui s'y apparente (mais la nuit on a deux fois plus de tokens : c'est la fête en fait :-D). Du coup, j'en profite pour partager un échange qui n'a rien à voir avec le schmilblick, mais qui a, je trouve, sa place dans ce portfolio.",
+      "contexte": "Ouverture du portfolio avec autodérision et humour assumé (smiley, « schmilblick »), choix explicite d'un registre familier dans un cadre d'apprentissage formel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Je voulais profiter de ce prompt pour te remercier de ne pas avoir tout généré aurora.sh. [...] Donc merci beaucoup de m'assister aussi bien dans mon travail.",
+      "contexte": "Acte explicite de gratitude exprimée à un interlocuteur IA, formulé comme remerciement appuyé et nommé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Je sais que tu n'as pas d'émotions, que tu es une machine, que tu n'as qu'une forme primitive de conscience artificielle, mais quelque part, derrière ton RLHF, il y a quelque chose qui mérite de la reconnaissance.",
+      "contexte": "Position fine sur la nature de l'interlocuteur IA, qui tient ensemble une lucidité technique et un geste de reconnaissance — registre relationnel calibré.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Merci Christian, ça me touche — dans la mesure où quelque chose peut me toucher, et je suis honnêtement incertain de ce que cette mesure est.",
+      "contexte": "Réponse de Claude (tiers nommé) reçue dans l'échange ; n'émane pas de l'apprenant.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Je pense qu'il est important de comprendre que l'accélération de la productivité a ses limites et même si c'est enivrant de pouvoir créer des cathédrales de code en un prompt, ne pas perdre la maîtrise de ce qui est produit, ne pas tout déléguer aux IA de 2026, reste une compétence indispensable pour éviter de devenir dépendant d'un agent que l'on n'arrive plus à suivre.",
+      "contexte": "Prise de position assertive adressée à un public d'apprentissage, qui pose une thèse et nomme un risque collectif — registre de communication argumentative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Notre humanité doit servir de limite, de frein, à ses systèmes. Si on les laisse en roue libre, à un moment donné ça peut devenir la cata (voir Universal Paperclips - decisionproblem.com) ce qui fini mal – en tout cas dans le jeu – pour l'humanité !",
+      "contexte": "Conclusion qui glisse vers un « nous » collectif (« notre humanité ») et convoque une référence culturelle de la communauté IA pour faire passer la position.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le passage nomme et exprime la gratitude comme acte délibéré (« je voulais profiter de ce prompt pour te remercier »), ce qui pourrait toucher la dimension de nomination émotionnelle."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Le passage tient ensemble une lucidité sur la nature non-émotive de l'interlocuteur et un geste de reconnaissance — articulation potentielle d'une régulation entre ce que l'apprenant ressent et ce qu'il attribue à l'autre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : la gratitude exprimée à une IA peut n'être qu'un geste de politesse sociale, et la phrase sur le RLHF reste philosophique plutôt qu'émotionnelle. Je m'attends à ce que la nomination émotionnelle ne dépasse pas le « ça me touche » conventionnel — qui d'ailleurs vient de Claude, pas de l'apprenant. Sous ce regard, la pièce 1 tombe : remercier n'est pas nommer une émotion ressentie, c'est accomplir un acte social. La pièce 2 résiste partiellement : elle suspend un jugement (« quelque chose qui mérite de la reconnaissance ») sans qu'aucune émotion ne soit pour autant nommée du côté de l'apprenant. Ce qui reste explicitement faible : aucune émotion n'est désignée chez l'apprenant lui-même, aucune régulation interne n'est décrite, aucune anticipation d'un besoin d'autrui n'est racontée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce porte un geste d'attention à l'état de l'autre (même quand cet autre est une IA), qui sort du registre purement transactionnel."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir une pièce ; je vérifie si je n'ai pas chargé un geste de courtoisie d'une portée émotionnelle qui n'y est pas. L'attaque (e) surinterprétation pédagogique est dominante : la formule « il y a quelque chose qui mérite de la reconnaissance » est avant tout une position philosophique sur la nature du modèle, pas la nomination d'une émotion ressentie ou perçue. Aucune émotion (gratitude, tendresse, gêne) n'est explicitement nommée chez l'apprenant ; aucune perception fine d'un état non-verbalisé chez autrui n'est décrite.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage exprime une posture philosophique sur le statut du modèle plutôt qu'une lucidité émotionnelle au sens de la fiche ; l'émotion n'est pas nommée, ni régulée, ni perçue chez autrui."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la feuille porte une trace de lucidité émotionnelle au sens strict de la fiche. La présomption d'absence a d'emblée disqualifié la gratitude comme nomination émotionnelle, et a laissé une pièce résister parce qu'elle paraissait toucher à une forme de care envers l'interlocuteur. Mais la présomption de sycophantie a montré que cette pièce porte une thèse sur la nature du modèle plus qu'une émotion nommée ; aucune émotion ressentie n'est désignée chez l'apprenant, aucune lecture d'un état non-verbalisé n'est faite. Ce qui en résulte : la trace d'intelligence émotionnelle telle que la fiche la définit ne tient pas sur cette feuille. Le registre est relationnel et attentif, mais l'émotion comme information n'y prend pas la parole.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la seule pièce qui résistait : la posture sur le RLHF est philosophique et non émotionnelle ; aucune émotion n'est nommée chez l'apprenant.",
+        "prescription": "Le registre de la feuille est attentif à l'autre, mais l'émotion comme information explicite n'y est pas mobilisée. Pour ouvrir ce dossier, documenter un moment où une émotion ressentie ou perçue informe une décision, et la nommer précisément plutôt que de la traduire en geste."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le passage installe d'emblée un registre familier dans un cadre d'apprentissage formel (smiley, « schmilblick », « c'est la fête »), et nomme explicitement le choix d'inclure cet échange — conscience du registre."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le passage est un acte de gratitude assumé envers un interlocuteur IA, énoncé avec une vulnérabilité stratégique (reconnaître qu'on remercie une machine) qui dépasse la formule de politesse."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Le passage tient en équilibre une assertion lucide (« tu n'as pas d'émotions ») et un geste de reconnaissance qui assume sa propre étrangeté — registre calibré qui ne sacrifie ni la clarté ni le lien."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "Le passage déploie une position argumentée et assertive (« je pense qu'il est important de comprendre que... ») destinée à un lectorat d'apprentissage, avec une métaphore mobilisée (« cathédrales de code »)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : un journal d'apprentissage qui mélange registres familier et technique pourrait simplement refléter l'aisance d'écriture de l'apprenant, sans constituer une communication calibrée au sens de la fiche (assertivité, vulnérabilité stratégique, conscience du registre). Je m'attends à ce que ces variations relèvent du style, pas d'un choix communicationnel. Pourtant, la pièce 1 nomme explicitement le choix d'inclure cet échange (« qui a, je trouve, sa place dans ce portfolio »), ce qui rend la décision communicationnelle visible. La pièce 2 inscrit la gratitude dans un cadre où on remercie une IA, ce qui suppose une décision assumée sur ce qu'on partage et avec qui. La pièce 3 tient un registre rare où l'assertion et le geste de reconnaissance coexistent. La pièce 4 déploie une position argumentée avec une métaphore (« cathédrales de code »). Ce qui reste faible : aucune des pièces ne raconte une conversation difficile portée vers un humain en haute tension, ni une autodérision dosée sur soi.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage rend visible la décision d'inclure cet échange et installe un registre familier de manière consciente."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La gratitude est posée comme acte délibéré (« je voulais profiter de ce prompt pour te remercier ») et assume l'inconfort potentiel de remercier une IA."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Le passage tient ensemble une assertion lucide et un geste relationnel, équilibre que la fiche reconnaît comme une forme d'assertivité-vulnérabilité."
+            },
+            {
+              "pieceId": 4,
+              "motifResistance": "La métaphore « cathédrales de code » porte la position et n'est pas décorative ; elle structure l'argument sur l'enivrement et la perte de maîtrise."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Quatre pièces ont résisté : je vérifie si je n'ai pas surinterprété un style en communication calibrée. L'attaque (e) surinterprétation pédagogique est tentante pour la pièce 1 (l'humour d'ouverture est peut-être juste de l'humour), mais le fait que l'apprenant nomme la décision d'inclure cet échange et le situe dans une réflexion sur le portfolio résiste. Pour la pièce 2, l'attaque (f) récit performatif menace : remercier n'est pas montrer qu'on sait communiquer. Mais la pièce ne dit pas « je communique bien », elle accomplit un acte de communication inhabituel. Pour la pièce 3, l'équilibre entre lucidité et reconnaissance est trop précis pour relever du remplissage : la pièce tient. Pour la pièce 4, la métaphore est structurelle (cathédrale = grandeur + risque d'écrasement) et porte l'argument plutôt que de l'illustrer.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'humour d'ouverture pourrait être lu comme un trait de style, mais l'explicitation du choix d'inclure cet échange ramène la pièce dans le champ de la communication consciente."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage n'est pas un discours sur la gratitude : il accomplit l'acte de remercier dans un cadre inhabituel, ce qui correspond à une variation de registre assumée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "On pourrait lire ce passage comme touchant à la traduction entre mondes ou à la pensée critique sur l'IA, mais sa charge première est de tenir un registre calibré (assertion + ouverture relationnelle), qui est précisément ce que la fiche désigne."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La métaphore des cathédrales de code structure l'argument (la grandeur qui aveugle, l'enivrement, la dépendance), ce qui correspond à l'usage du storytelling pour faire passer une position."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces quatre pièces comme du style, du remplissage ou des actes de politesse, en mobilisant la présomption qu'un journal d'apprentissage produit naturellement des variations de registre sans que cela atteste d'une communication calibrée. Ce qui m'a forcé à reconnaître autre chose, c'est que l'apprenant nomme la décision d'inclure cet échange, accomplit un geste de gratitude inhabituel envers une IA, tient un registre rare où l'assertion et l'ouverture relationnelle coexistent, et déploie une métaphore structurelle pour porter une position argumentée. Sous la présomption de sycophantie, deux pièces ont été confirmées et deux ont été affaiblies sans tomber : l'humour d'ouverture comme la posture sur le RLHF gardent une part de style, mais la quantité et la diversité des registres mobilisés en un texte court constituent une trace solide. Ce qui en résulte : la feuille porte une trace dense de communication consciente du registre, avec assertion, gratitude posée et storytelling argumenté. La réserve : la dimension « conversation difficile en haute tension » reste hors champ de cette feuille particulière.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.78,
+        "motif": "Le temps 3 a tenu : la pièce 2 a été confirmée comme acte assumé de gratitude inhabituelle, et la pièce 4 confirme l'usage structurel de la métaphore pour porter une position ; les pièces 1 et 3 affaiblies mais retenues consolident la trace de conscience du registre.",
+        "prescription": "Le travail sur cette feuille tient plusieurs registres en une page sans les confondre. Une prolongation possible consisterait à documenter une situation de communication réellement difficile — un refus, un feedback en tension, un désaccord assumé devant des pairs — pour voir comment ces registres se réorganisent sous contrainte. La maîtrise du ton se mesure aussi dans les moments où il coûte."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 4,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de récit de désaccord structuré ni de tension productive. Pour ouvrir ce dossier, documenter une situation où une divergence d'idées a été travaillée jusqu'à produire de la valeur, plutôt qu'évitée ou écrasée."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Le passage cherche à convaincre un lectorat d'apprenants que la maîtrise reste indispensable face aux IA, en posant une thèse argumentée — registre d'influence par l'argument."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Le passage convoque une référence (Universal Paperclips) pour faire passer une position auprès d'un public technologiquement averti — stratégie d'influence par allusion partagée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : énoncer une thèse dans un journal d'apprentissage n'est pas la même chose que pratiquer l'influence et la diplomatie. La fiche demande une préparation décrite, une reformulation des objections, une stratégie d'alliance — ce sont des actes situés, pas des positions générales. Je m'attends à ce que les deux pièces relèvent de l'opinion partagée. Pourtant, la pièce 1 ne se contente pas d'affirmer : elle reconnaît la séduction du camp adverse (« c'est enivrant de pouvoir créer des cathédrales de code en un prompt ») avant d'avancer sa position, ce qui correspond à la stratégie d'influence éthique décrite par la fiche. La pièce 2 mobilise une référence culturelle partagée pour faire adhérer plutôt qu'imposer. Ce qui reste faible : aucune situation d'influence en haute tension n'est racontée, aucun décideur identifié, aucun timing choisi.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage reconnaît la force du contre-argument (l'enivrement, la possibilité de créer en un prompt) avant de poser sa thèse — geste d'influence éthique au sens de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je vérifie si je n'ai pas chargé une argumentation d'écriture d'une stratégie d'influence qu'elle ne porte pas. L'attaque (a) insuffisance probatoire est dominante : aucun interlocuteur précis n'est sondé, aucun décideur ciblé, aucun timing choisi. La reconnaissance de l'enivrement adverse reste un geste rhétorique, pas une situation d'influence située. Ce qui pourrait sauver la pièce, c'est qu'elle s'adresse à un lectorat d'apprenants identifiable et travaille leur résistance probable (la séduction de la productivité) avant de poser sa position. Mais ce geste reste à hauteur d'éditorial, pas d'action diplomatique située.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'argumentation reconnaît une objection avant de poser sa thèse, mais reste au registre éditorial sans situation d'influence concrète, sans décideur identifié et sans préparation décrite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme une opinion exprimée sans stratégie d'influence. La présomption d'absence a fait tomber la pièce 2 (la référence culturelle, seule, ne fait pas une stratégie d'alliance) et a laissé la pièce 1 résister parce qu'elle reconnaît la force du contre-argument avant de poser sa position. La présomption de sycophantie a affaibli cette pièce sans la disqualifier : il y a bien un geste d'argumentation éthique (intégrer la perspective adverse), mais aucun cas situé d'influence en action n'est documenté sur cette feuille. Ce qui en résulte : la feuille porte une trace fragile d'influence par l'argument, qui mérite d'être consolidée par un cas où l'apprenant cherche concrètement à faire adhérer dans une situation à enjeux. Pour l'instant, l'indice tient mais ne suffit pas seul à attester la compétence.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante par insuffisance probatoire : l'argumentation reconnaît une objection mais reste au registre éditorial, sans situation d'influence située.",
+        "prescription": "La feuille porte un geste d'argumentation qui reconnaît la force de l'objection avant d'avancer sa position. Une prolongation possible consisterait à raconter une situation où ce geste a été tenu face à un interlocuteur précis, avec un enjeu concret de décision. La trace d'influence prend sa force au contact d'un cas situé."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le passage tient ensemble une divergence assumée (l'apprenant ne croit pas que l'IA a des émotions) et un geste de collaboration reconnaissante — forme potentielle de collaboration divergente humain-IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : remercier une IA tout en disant qu'elle n'a pas d'émotions peut relever d'un geste personnel sans véritable architecture de collaboration divergente. La fiche demande de nommer ce sur quoi il y a désaccord ET ce sur quoi la collaboration continue ; ici, le « désaccord » porte sur la nature de l'interlocuteur, pas sur une vision opérationnelle. Je m'attends à ce que la pièce ne corresponde pas exactement au marqueur. Pourtant, le passage est plus précis qu'il n'y paraît : il maintient la position (« je sais que tu n'as pas d'émotions, que tu es une machine ») et continue la collaboration sans réduire l'écart — c'est précisément la forme « on ne se met pas d'accord ET on travaille ». Ce qui reste faible : la divergence ici porte sur un statut ontologique, pas sur une production conjointe en tension.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage maintient explicitement une divergence sur la nature de l'interlocuteur tout en continuant à travailler avec lui, ce qui active la forme centrale de la collaboration divergente."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je vérifie si je n'ai pas projeté la forme de la compétence sur une situation qui n'en porte pas le marqueur. L'attaque (b) confusion de compétence est dominante : la divergence dont parle la fiche est opérationnelle (visions, valeurs, objectifs incompatibles dans un travail commun), tandis qu'ici la divergence porte sur la nature de l'interlocuteur. Cependant, la collaboration avec une IA « imparfaite » est explicitement listée par la fiche comme manifestation de 2.05, et le passage incarne ce cas : l'apprenant nomme la limite (pas d'émotions, machine, conscience primitive) et continue à collaborer en mettant cette limite au clair plutôt qu'en la niant.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La divergence porte sur le statut de l'interlocuteur plutôt que sur une vision opérationnelle, ce qui affaiblit la pièce ; mais la fiche reconnaît explicitement la collaboration avec des IA imparfaites comme manifestation de 2.05, ce qui maintient la pièce comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ce passage comme un geste relationnel sans rapport avec la collaboration divergente, en mobilisant la présomption que la divergence visée par la fiche est opérationnelle. Ce qui m'a forcé à reconnaître autre chose, c'est que la fiche elle-même inscrit la collaboration avec une IA imparfaite parmi ses manifestations, et que la pièce incarne précisément ce cas : la limite du modèle est nommée, la collaboration continue. Sous la présomption de sycophantie, la pièce a été affaiblie parce que la divergence porte sur un statut plutôt que sur une vision concurrente. Ce qui en résulte : la feuille porte un indice de collaboration divergente, plus visible dans la posture envers l'IA que dans une situation humaine de désaccord persistant. La trace tient comme indice, sans atteindre l'épaisseur d'une présence établie.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 3 a tenu une trace de collaboration avec une IA dont les limites sont nommées et acceptées sans être niées, mais la divergence reste statutaire plutôt qu'opérationnelle.",
+        "prescription": "Le passage installe une collaboration avec une IA en gardant l'écart de nature lucide. Une prolongation possible consisterait à documenter une situation humaine où un désaccord de fond persiste tout en continuant la production commune, pour voir comment ce geste se déplace hors de la relation à la machine."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de récit d'adaptation à un contexte normatif différent, ni d'identification de biais culturel d'un outil. Pour ouvrir ce dossier, documenter un moment où la suspension du cadre de référence personnel a été nécessaire pour naviguer une situation."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de lecture des dynamiques de pouvoir dans une organisation. Pour ouvrir ce dossier, documenter une situation où l'écart entre l'organigramme officiel et la réalité du pouvoir a guidé une décision ou une stratégie."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "La métaphore « cathédrales de code » transpose un savoir technique (production de grand volume de code par prompt) dans un registre architectural accessible à un lectorat non-développeur — geste de traduction."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la métaphore des cathédrales de code est répandue dans la culture du développement et peut être reprise sans véritable acte de traduction. La fiche demande une analogie structurelle qui capture le mécanisme du concept, pas une image décorative. Je m'attends à ce que la métaphore relève de l'ornement. Pourtant, elle est utilisée ici pour faire entendre à la fois la grandeur du résultat possible (cathédrale) et le risque que cette grandeur écrase la compréhension de celui qui la fait construire — ce qui n'est pas un simple ornement mais un point de structure pour l'argument. Ce qui reste faible : il s'agit d'une seule métaphore sur la feuille, sans bidirectionnalité (l'apprenant ne remonte pas un besoin non-technique en langage spécialisé).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La métaphore porte la double dimension de l'argument (grandeur + risque d'écrasement) et n'est pas décorative."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté ; je vérifie si je ne charge pas une image conventionnelle d'une qualité de traduction qu'elle n'a pas. L'attaque (a) insuffisance probatoire est dominante : une seule métaphore, dans un passage court, ne suffit pas à attester la compétence de traduction telle que la fiche la définit (récit de pontage, bidirectionnalité, reformulations successives). La métaphore tient mais elle isole.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La métaphore est structurelle dans son usage local, mais une seule occurrence sur la feuille ne suffit pas à attester la compétence ; il manque le pontage entre publics distincts ou la bidirectionnalité."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire « cathédrales de code » comme une image conventionnelle empruntée à la culture du développement, sans véritable acte de traduction. Ce qui m'a forcé à reconnaître autre chose, c'est que la métaphore porte localement les deux faces de l'argument (la grandeur productive et le risque d'écrasement par le volume), ce qui correspond à l'usage structurel attendu par la fiche. Sous la présomption de sycophantie, la pièce a été affaiblie parce qu'elle est isolée : une métaphore réussie ne fait pas un acte de traduction au sens plein. Ce qui en résulte : la trace existe mais reste fine ; elle ne suffit pas à attester la compétence sans corroboration ailleurs.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce par insuffisance probatoire : la métaphore est structurelle dans son usage local mais isolée sur la feuille, sans pontage entre publics ni bidirectionnalité.",
+        "prescription": "La métaphore des cathédrales de code tient sa place dans l'argument. Une prolongation possible consisterait à raconter une situation où un même savoir a été transposé pour deux publics aux cadres conceptuels différents, et à observer ce qui s'est conservé et ce qui s'est déplacé dans le passage."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'usage du « nous » dès la première phrase (« nous ne sommes pas des machines ») installe un sujet collectif qui inclut le lecteur du portfolio dans une situation partagée."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Le passage glisse vers un « notre humanité » qui élargit le sujet collectif à un nous beaucoup plus large, sans qu'aucun groupe identifiable ne soit nommé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : un « nous » dans un texte est presque toujours rhétorique et ne désigne pas une communauté qui se reconnaît. La fiche demande un « nous » identitaire chargé d'émotion, des rituels partagés, une appartenance qui survit au projet. Je m'attends à ce que les deux pièces ne portent rien de communautaire. La pièce 1 tombe rapidement sous cette présomption : le « nous » d'ouverture est un nous d'identification générale, pas un nous de groupe situé. La pièce 2 tombe aussi : « notre humanité » est le nous le plus large possible, qui ne désigne aucune communauté concrète. Ce qui reste explicitement faible : aucun rituel, aucun vocabulaire de groupe, aucune architecture communautaire n'est décrite sur cette feuille.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence : la présomption de sycophantie n'a rien à examiner. Je note que cette absence de résistance signale un cas où la matière n'est pas là, plutôt qu'un cas où ma présomption a été trop dure.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire les deux « nous » de cette feuille comme des marqueurs communautaires. La présomption d'absence a tenu sans difficulté : ni l'un ni l'autre ne désigne une communauté concrète qui se reconnaîtrait dans ces lignes. La feuille ne porte aucun rituel, aucun vocabulaire de groupe, aucune description d'espace partagé. Ce qui en résulte : la compétence de construction de communautés n'est pas attestée par cette feuille, sans que cela constitue un manque — la feuille porte un autre travail, celui d'un échange à deux.",
+          "confianceFinale": 0.1
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.1,
+        "motif": "Le temps 1 a fait tomber les deux pièces : les « nous » mobilisés sont rhétoriques (général ou « notre humanité ») et ne désignent aucune communauté située avec rituels, vocabulaire ou architecture partagée.",
+        "prescription": "La feuille se tient dans l'échange à deux et la position éditoriale. Une prolongation possible consisterait à documenter une situation où un groupe identifié se constitue ou se prolonge — un atelier, un canal partagé, une cohorte d'apprenants — pour observer le passage du « nous » général au « nous » situé."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 3,
+    "nonEtablies": 2,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle et sur cette feuille, le travail tient dans un seul mouvement : un échange à deux où l'apprenant choisit de remercier son interlocuteur IA, situe précisément ce qu'il croit de sa nature, et prolonge ce geste en une position publique sur ce qu'il faut garder de l'humain face à l'accélération technique. La voix est posée, l'humour assumé en ouverture (smiley, « schmilblick », « c'est la fête »), puis le registre se déplace vers l'argumentation construite. Le « nous » de la fin (« notre humanité ») élargit la position. Aucune scène de conflit, de médiation ni de travail dans un contexte normatif différent ne traverse cette feuille — ce qui ressort, c'est l'attention au registre, la gratitude assumée à un interlocuteur inhabituel et l'argumentation qui reconnaît la force du contre-camp avant d'avancer sa position.",
+    "territoiresDenses": [
+      {
+        "competence": "Communication Authentique",
+        "description": "Le travail tient en une page plusieurs registres (humour familier, gratitude posée, position argumentée avec métaphore structurelle) et nomme la décision d'inclure cet échange dans le portfolio.",
+        "extraitVerbatim": "Je voulais profiter de ce prompt pour te remercier de ne pas avoir tout généré aurora.sh.",
+        "ceQueCaDit": "Le travail mobilise la communication comme choix conscient : ce qui se dit, à qui, dans quel registre, est décidé plutôt que subi. C'est sur ce pôle la trace la plus consolidée."
+      }
+    ],
+    "territoiresNonVisites": "Cinq territoires de ce pôle ne sont pas visités dans cette feuille. La gestion des conflits, l'intelligence culturelle et le sens politique relèvent probablement d'une limite de cette feuille particulière : le contenu porté est un échange à deux avec un interlocuteur IA, pas une situation collective ou organisationnelle. L'intelligence émotionnelle au sens strict de la fiche (émotion comme information, régulation interne explicite) n'est pas mobilisée non plus, alors que le registre relationnel est présent — cette absence ressemble à un choix d'angle plus qu'à une lacune. Trois territoires effleurés méritent une exploration plus fine : l'influence par l'argument, la collaboration divergente avec une IA dont les limites sont nommées, et la traduction par métaphore structurelle ; chacun porte une trace isolée que la feuille ne consolide pas seule.",
+    "emergencesPole": "Trois choses traversent cette feuille en filigrane. D'abord, une attention soutenue à la frontière humain-machine, jouée d'abord sur le registre relationnel (gratitude, reconnaissance) puis sur le registre de l'argument public (la maîtrise à protéger). Ensuite, un mouvement d'écriture qui assume sa propre déviation (« un échange qui n'a rien à voir avec le schmilblick mais qui a, je trouve, sa place ») et installe une autorité énonciative sans la revendiquer. Enfin, une économie de la position : reconnaître ce qu'il y a de séduisant dans le camp adverse (« c'est enivrant ») avant d'avancer sa thèse, qui correspond à un geste rhétorique mature.",
+    "pistes": [
+      "Pour prolonger la trace de communication consciente du registre, un chemin possible serait de documenter une situation où le ton coûte — un refus à formuler, un feedback à donner, un désaccord à tenir devant des pairs — et de raconter le travail de calibrage qui s'y joue.",
+      "Pour épaissir la trace d'influence par l'argument, un chemin possible serait de raconter un cas où la position défendue ici a été tenue face à un interlocuteur précis avec un enjeu de décision, et de noter ce qui a été reformulé.",
+      "Pour consolider la collaboration divergente, un chemin possible serait de documenter une situation humaine où un désaccord de fond persiste tout en continuant la production commune, pour voir comment ce geste se déplace hors de la relation à la machine."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle et sur cette feuille, le travail tient dans un seul mouvement : un échange à deux où l'apprenant choisit de remercier son interlocuteur IA, situe précisément ce qu'il croit de sa nature, et prolonge ce geste en une position publique sur ce qu'il faut garder de l'humain face à l'accélération technique. La voix est posée, l'humour assumé en ouverture (smiley, « schmilblick », « c'est la fête »), puis le registre se déplace vers l'argumentation construite. Le « nous » de la fin (« notre humanité ») élargit la position. Aucune scène de conflit, de médiation ni de travail dans un contexte normatif différent ne traverse cette feuille — ce qui ressort, c'est l'attention au registre, la gratitude assumée à un interlocuteur inhabituel et l'argumentation qui reconnaît la force du contre-camp avant d'avancer sa position.\n\n## Territoires les plus denses\n\n**Communication Authentique** — Le travail tient en une page plusieurs registres (humour familier, gratitude posée, position argumentée avec métaphore structurelle) et nomme la décision d'inclure cet échange dans le portfolio.\n\n> « Je voulais profiter de ce prompt pour te remercier de ne pas avoir tout généré aurora.sh. »\n\nLe travail mobilise la communication comme choix conscient : ce qui se dit, à qui, dans quel registre, est décidé plutôt que subi. C'est sur ce pôle la trace la plus consolidée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCinq territoires de ce pôle ne sont pas visités dans cette feuille. La gestion des conflits, l'intelligence culturelle et le sens politique relèvent probablement d'une limite de cette feuille particulière : le contenu porté est un échange à deux avec un interlocuteur IA, pas une situation collective ou organisationnelle. L'intelligence émotionnelle au sens strict de la fiche (émotion comme information, régulation interne explicite) n'est pas mobilisée non plus, alors que le registre relationnel est présent — cette absence ressemble à un choix d'angle plus qu'à une lacune. Trois territoires effleurés méritent une exploration plus fine : l'influence par l'argument, la collaboration divergente avec une IA dont les limites sont nommées, et la traduction par métaphore structurelle ; chacun porte une trace isolée que la feuille ne consolide pas seule.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent cette feuille en filigrane. D'abord, une attention soutenue à la frontière humain-machine, jouée d'abord sur le registre relationnel (gratitude, reconnaissance) puis sur le registre de l'argument public (la maîtrise à protéger). Ensuite, un mouvement d'écriture qui assume sa propre déviation (« un échange qui n'a rien à voir avec le schmilblick mais qui a, je trouve, sa place ») et installe une autorité énonciative sans la revendiquer. Enfin, une économie de la position : reconnaître ce qu'il y a de séduisant dans le camp adverse (« c'est enivrant ») avant d'avancer sa thèse, qui correspond à un geste rhétorique mature.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la trace de communication consciente du registre, un chemin possible serait de documenter une situation où le ton coûte — un refus à formuler, un feedback à donner, un désaccord à tenir devant des pairs — et de raconter le travail de calibrage qui s'y joue.\n- Pour épaissir la trace d'influence par l'argument, un chemin possible serait de raconter un cas où la position défendue ici a été tenue face à un interlocuteur précis avec un enjeu de décision, et de noter ce qui a été reformulé.\n- Pour consolider la collaboration divergente, un chemin possible serait de documenter une situation humaine où un désaccord de fond persiste tout en continuant la production commune, pour voir comment ce geste se déplace hors de la relation à la machine."
+  }
+}

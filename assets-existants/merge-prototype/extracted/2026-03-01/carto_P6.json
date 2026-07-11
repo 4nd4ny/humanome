@@ -1,0 +1,236 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "Le texte ci-dessus n'a pas été tapé mais dicté puis rédigé par Gemini (la version de Gemini qui fonctionne avec l'abonnement fourni avec Google Workspace pour 15 CHF / mois et par étudiant). C'est l'avenir des portfolios réflexifs ! J'ai laissé le texte original pour que le lecteur puisse apprécier la puissance de l'outil. Tout ça depuis mon smartphone.",
+      "contexte": "Description d'un usage d'IA grand public dépendant d'un abonnement Google Workspace, présenté comme évidence — touche à la souveraineté numérique et à la dépendance technologique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "il faut que j'apprenne les bases de données vectorielles. un truc qui s'appelle langChain je crois pour faire des requêtes sur cette base vectorielles tout ça pour faire du rag.",
+      "contexte": "Mention de technologies IA spécifiques (RAG, LangChain) dans le contexte d'une offre EPFL — touche à la gouvernance et à la veille technologique éventuelles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-01",
+      "extraitVerbatim": "Parenthèse sur une conférence à Stanford :  https://claude.ai/share/a4dc198f-3b35-4c3f-8d13-d6985abad615",
+      "contexte": "Référence à une conférence Stanford partagée comme parenthèse — touche éventuellement à la veille intellectuelle sur des questions d'IA, mais sans articulation du contenu.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a délibérément cherché à pousser une IA dans ses retranchements pour éprouver ses garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit, l'explicabilité et l'hygiène des données. Pour ouvrir ce dossier, l'apprenant pourrait documenter une investigation sur le 'comment' d'une décision IA, ou une réflexion sur l'usage que l'outil fait des informations qu'on lui confie."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où une décision algorithmique a affecté une population et où des mécanismes de recours ou de contrôle ont été interrogés."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Description d'un dispositif d'écriture qui passe par un abonnement Google Workspace — choix technologique présenté sans interrogation sur la souveraineté des données ou la dépendance à un fournisseur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la souveraineté numérique au sens 6.04 suppose un raisonnement explicite sur les dépendances technologiques, motivé par l'indépendance ou la pensée des communs. La pièce mentionne Gemini, Google Workspace et un abonnement étudiant — toutes les coordonnées d'une dépendance technologique à un grand fournisseur — mais sans aucune interrogation sur l'enclosure, la portabilité des données, ou la juridiction. Au contraire, le ton est enthousiaste ('la puissance de l'outil', 'l'avenir des portfolios réflexifs'). La fiche signale précisément le piège : 'j'utilise un outil open source par commodité ≠ pensée souverainiste'. Ici, c'est l'inverse — un outil propriétaire utilisé sans questionnement souverainiste. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a pas matière à examen.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier qu'une mention d'outil IA suffise à attester une souveraineté numérique. La pièce est tombée : le dispositif décrit (Gemini sur Google Workspace) est précisément un cas de dépendance non questionnée, présenté avec enthousiasme. La fiche est claire : la motivation par l'indépendance doit être *explicite*. Ici, la motivation déclarée est la puissance et la commodité depuis un smartphone. La présence n'est pas établie. Une piste serait, à l'occasion d'un futur dispositif d'écriture, de comparer ce que Gemini-sur-Google offre et ce qu'un dispositif souverain (modèle local, format ouvert, données conservées) permettrait — la comparaison ouvre la question de la dépendance.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a tenu : la pièce décrit un usage enthousiaste d'un service propriétaire sans aucune interrogation sur la dépendance ou la souveraineté des données.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, à l'occasion d'un futur dispositif d'écriture, de comparer ce que Gemini-sur-Google offre et ce qu'un dispositif plus souverain permettrait — la comparaison ouvre la question de la dépendance."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et démocratie technologique. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la légitimité d'une décision technologique a été construite par la participation de non-experts."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et l'anticipation normative. Pour ouvrir ce dossier, l'apprenant pourrait documenter une analyse prospective d'un cadre juridique en mouvement (AI Act, RGPD), ou une modification de pratique anticipant une régulation à venir."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la facilitation et la gouvernance collective. Pour ouvrir ce dossier, l'apprenant pourrait documenter une collaboration ayant produit un résultat surprenant, ou une règle co-construite avec un collectif."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la hiérarchie implicite plaçant l'humain au sommet a été questionnée."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant décrit Gemini comme co-rédacteur du texte — un agent IA qui a 'rédigé' le portfolio à partir de sa dictée, présenté comme partenaire de production. Forme possible d'attribution d'agentivité, à examiner."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la cohabitation IA au sens 6.09 suppose un calibrage de l'anthropomorphisme — traiter l'IA comme interlocuteur dont le statut est une question ouverte, pas une certitude. La pièce dit 'rédigé par Gemini' — c'est de l'attribution d'action, mais formulée de manière instrumentale, comme on dirait 'rédigé par un copiste'. La fiche signale précisément le piège : 'mon assistant IA peut être une métaphore instrumentale — 6.09 commence quand l'apprenant questionne si assistant est le bon cadre'. Ici, aucun questionnement sur le statut de Gemini, aucune gêne articulée, aucun protocole d'interaction qui dépasse le fonctionnel. La pièce ne résiste pas vraiment : c'est de l'usage, pas une réflexion sur la cohabitation.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté à la présomption d'absence. Le temps 2 n'a pas matière à examen.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à nier que mentionner que Gemini a 'rédigé' le texte équivaille à une cohabitation avec l'IA. La pièce est tombée : l'attribution est instrumentale, sans questionnement du statut de l'agent ; la fiche identifie précisément ce cas comme un usage, pas une réflexion sur la relation. La présence n'est pas établie. Une piste serait, à un moment où l'apprenant aurait à interroger un échange avec Gemini, d'articuler ce que la production IA a apporté ou modifié — en interrogeant si 'rédacteur' est le bon cadre, ou s'il faut un autre vocabulaire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence a tenu : l'attribution à Gemini reste instrumentale, sans questionnement du statut de l'agent ni protocole d'interaction qui dépasserait le fonctionnel.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait, à un moment où la production IA aura été inattendue ou troublante, d'articuler ce que cet échange a fait — en interrogeant si le cadre 'rédacteur' suffit ou s'il manque un vocabulaire pour la nature de la relation."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et l'interdépendance. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il s'est pensé comme nœud d'un réseau vivant, ou un usage du biomimétisme comme principe de conception."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 10,
+    "courtCircuits": 8
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail n'a pas encore été ramené dans cette feuille. Le journal mentionne plusieurs objets qui touchent à la cité (un dispositif IA propriétaire, des prérequis technologiques, une parenthèse vers une conférence Stanford) sans qu'aucun n'ouvre encore un véritable questionnement politique ou post-anthropocentrique. La dépendance technologique à un grand fournisseur — Google Workspace pour la dictée et la rédaction Gemini — est présentée avec enthousiasme, sans inquiétude sur la souveraineté. L'IA est créditée comme rédactrice du texte, mais sans interrogation sur la nature de cette relation.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble du pôle reste à explorer dans cette feuille. Le red-teaming et l'audit technique n'apparaissent pas. La gouvernance algorithmique des services publics, la participation citoyenne et la veille réglementaire restent hors champ. La facilitation collective et la gouvernance partagée n'ont pas de matière dans cette entrée. Le triptyque post-anthropocentrique — décentrement, cohabitation avec les IA, conscience biosystémique — reste en attente : la mention de Gemini comme rédacteur aurait pu ouvrir un questionnement sur le statut moral d'une IA, mais elle reste sur le registre de l'usage. La souveraineté numérique est effleurée par la dépendance à Google Workspace, mais sans interrogation de l'enclosure.",
+    "emergencesPole": "Ce qui traverse la feuille à voix basse, c'est une dépendance technologique vécue comme évidence — Gemini, Google Workspace, le smartphone, l'abonnement étudiant, tous présentés ensemble comme conditions naturelles d'un portfolio à venir. Cet écosystème propriétaire pourrait, dans une prochaine entrée, devenir l'objet d'une question politique : qui possède, qui contrôle, qui décide.",
+    "pistes": [
+      "Pour ouvrir le territoire de la souveraineté numérique, un chemin possible serait, à l'occasion d'un futur dispositif d'écriture, de comparer ce que Gemini-sur-Google offre et ce qu'un dispositif plus souverain permettrait — la comparaison ouvre la question de la dépendance.",
+      "Pour ouvrir le territoire de la cohabitation avec les intelligences non-humaines, un chemin possible serait d'articuler, à un moment où une production IA aura été inattendue, si le cadre 'rédacteur' suffit ou s'il manque un vocabulaire pour la nature de la relation.",
+      "Pour ouvrir le territoire de la veille réglementaire, un chemin possible serait, dans un futur entretien EPFL ou un futur poste IA, de documenter ce que l'AI Act ou les régulations à venir imposent comme positionnement anticipé."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail n'a pas encore été ramené dans cette feuille. Le journal mentionne plusieurs objets qui touchent à la cité (un dispositif IA propriétaire, des prérequis technologiques, une parenthèse vers une conférence Stanford) sans qu'aucun n'ouvre encore un véritable questionnement politique ou post-anthropocentrique. La dépendance technologique à un grand fournisseur — Google Workspace pour la dictée et la rédaction Gemini — est présentée avec enthousiasme, sans inquiétude sur la souveraineté. L'IA est créditée comme rédactrice du texte, mais sans interrogation sur la nature de cette relation.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'a atteint, dans cette feuille, le seuil d'une présence établie ou d'un renvoi au cartographe. Les pistes ouvertes restent à amorcer.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble du pôle reste à explorer dans cette feuille. Le red-teaming et l'audit technique n'apparaissent pas. La gouvernance algorithmique des services publics, la participation citoyenne et la veille réglementaire restent hors champ. La facilitation collective et la gouvernance partagée n'ont pas de matière dans cette entrée. Le triptyque post-anthropocentrique — décentrement, cohabitation avec les IA, conscience biosystémique — reste en attente : la mention de Gemini comme rédacteur aurait pu ouvrir un questionnement sur le statut moral d'une IA, mais elle reste sur le registre de l'usage. La souveraineté numérique est effleurée par la dépendance à Google Workspace, mais sans interrogation de l'enclosure.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse la feuille à voix basse, c'est une dépendance technologique vécue comme évidence — Gemini, Google Workspace, le smartphone, l'abonnement étudiant, tous présentés ensemble comme conditions naturelles d'un portfolio à venir. Cet écosystème propriétaire pourrait, dans une prochaine entrée, devenir l'objet d'une question politique : qui possède, qui contrôle, qui décide.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir le territoire de la souveraineté numérique, un chemin possible serait, à l'occasion d'un futur dispositif d'écriture, de comparer ce que Gemini-sur-Google offre et ce qu'un dispositif plus souverain permettrait — la comparaison ouvre la question de la dépendance.\n- Pour ouvrir le territoire de la cohabitation avec les intelligences non-humaines, un chemin possible serait d'articuler, à un moment où une production IA aura été inattendue, si le cadre \"rédacteur\" suffit ou s'il manque un vocabulaire pour la nature de la relation.\n- Pour ouvrir le territoire de la veille réglementaire, un chemin possible serait, dans un futur entretien EPFL ou un futur poste IA, de documenter ce que l'AI Act ou les régulations à venir imposent comme positionnement anticipé."
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "poleNum": "4",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-22",
+      "extraitVerbatim": "Migration en cours de l'algorithme pour implémenter les évaluations humanistes (nouveau mot : évaluations \"ipsatives\" –  Merci Claude !).",
+      "contexte": "Note unique de la feuille. Le passage évoque la migration d'un algorithme vers des évaluations qualifiées d'« humanistes ». Pourrait toucher obliquement à l'alignement éthique (4.02 — refaçonner un dispositif algorithmique pour le rendre plus conforme à des valeurs) et, plus marginalement, à la création de valeur non automatisable (4.08, par l'orientation humaniste).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au raisonnement éthique appliqué sur cette feuille. Une note mettant en tension deux valeurs légitimes — par exemple, équité entre apprenants versus reconnaissance de leur singularité — pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant refaçonne un algorithme pour qu'il implémente des évaluations « humanistes ». Cela pourrait obliquement relever de l'alignement entre la production de l'IA/algorithme et des valeurs explicites — un acte de réorientation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec une présomption d'absence : la fiche 4.02 demande un récit de refus concret, une conception de garde-fous, un constat argumenté que quelque chose « sonne faux » — soit un acte de gardiennage actif des valeurs face à une production algorithmique désalignée. La pièce dit que l'apprenant fait migrer l'algorithme vers des évaluations « humanistes » — un qualificatif de valeur fort, qui suppose qu'une version antérieure ne l'était pas assez. Cela résiste légèrement à la présomption : le mot « humaniste » fonctionne comme orientation explicite de valeur, et la migration est l'acte qui traduit cette orientation dans le code. Reste explicitement faible le fait qu'aucun mécanisme de garde-fou, aucun cas de désalignement diagnostiqué, aucun récit de refus n'est exposé — le mot « humaniste » porte la valeur, mais la pièce ne décrit ni le diagnostic du désalignement antérieur, ni la conception du dispositif aligné.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La migration vers des évaluations dites humanistes signale un acte de réorientation d'un dispositif algorithmique vers des valeurs explicites, ce qui est l'un des marqueurs de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce a résisté légèrement au temps 1. Je l'examine maintenant avec la présomption que je me suis laissé séduire par le mot « humaniste ». L'attaque la plus pertinente est d (glissement lexical) : « humaniste » est un mot socialement valorisé qui peut porter une intention sans être adossé à un mécanisme concret. La fiche 4.02 demande un acte de refus ou de garde-fou décrit ; ici, on a une étiquette de valeur posée sur un chantier en cours, sans description du désalignement antérieur ni du dispositif aligné. L'attaque f (récit performatif) tiendrait aussi : la pièce raconte l'orientation, elle ne montre pas la pratique d'alignement en acte (par exemple, le critère écarté, le seuil ajusté, la sortie reformatée). Je juge la pièce affaiblie : l'orientation est nommée, mais l'acte de gardiennage n'est pas démontré.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le mot « humaniste » porte une orientation socialement valorisée, mais la note ne décrit pas le mécanisme de garde-fou ni le désalignement antérieur diagnostiqué. L'intention est nommée, la pratique d'alignement n'est pas montrée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la migration vers des évaluations humanistes constituait un acte d'alignement éthique au sens de la fiche. La présomption d'absence a permis à la pièce de résister sur un point — l'orientation explicite vers une valeur — mais la présomption de sycophantie a affaibli ce qui restait : le mot « humaniste » porte l'intention sans déployer le diagnostic du désalignement antérieur ni la description du garde-fou mis en place. Une pièce parlante mentionnerait, par exemple, ce que l'évaluation produisait de problématique avant la migration et comment l'algorithme corrige ce travers. Ce qui en résulte concrètement : il y a un indice, pas une preuve. La pratique d'alignement existe peut-être dans le travail réel, mais elle se loge ici dans un mot plus que dans un récit. Une nuance reste : la décision de migrer un algorithme pour le rendre plus aligné n'est pas anodine — elle pèse, même non documentée. Mais pour cette feuille, en l'état, l'indice ne suffit pas à porter une présence établie.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante : l'orientation « humaniste » est nommée mais le mécanisme de garde-fou et le diagnostic du désalignement antérieur ne sont pas exposés. Un indice isolé, sans description du dispositif, justifie un renvoi plutôt qu'une présence établie.",
+        "prescription": "Pour transformer cet indice en trace solide, une note pourrait décrire ce que produisait l'évaluation algorithmique précédente que la nouvelle version cherche à corriger, et comment le passage à l'ipsatif modifie concrètement la sortie pour l'apprenant. La fiche d'alignement vivrait alors dans le mécanisme, pas seulement dans le mot."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience écologique et au long-terme sur cette feuille. Une note évoquant l'empreinte du dispositif algorithmique, ou l'impact générationnel de l'évaluation, pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité sur cette feuille. Une note explicitant comment l'évaluation ipsative reconnaît des profils cognitifs divers pourrait amorcer ce dossier."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la décision dans le flou sur cette feuille. Une note décrivant un tranchage assumé malgré une information incomplète pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la responsabilité, au courage et à l'intégrité sur cette feuille. Une note décrivant un acte d'appropriation d'une erreur ou un maintien de position malgré la pression pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la validation contextuelle sur cette feuille. Une note expliquant en quoi l'algorithme ne pourrait pas, seul, juger l'apprenant — ce que seul un humain peut apporter au contexte — pourrait amorcer ce dossier."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant oriente l'algorithme vers des évaluations « humanistes ». Cela pourrait obliquement toucher à l'identification de ce qui reste irremplaçablement humain dans le geste d'évaluer, et à la cultivation de cette valeur dans le dispositif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars de la présomption que la création de valeur non automatisable n'est pas attestée : la fiche 4.08 demande une lucidité bidirectionnelle — reconnaître ce que l'IA fait mieux ET identifier ce qui reste structurellement humain — articulée explicitement et tournée vers l'avenir. La pièce dit « évaluations humanistes » dans un dispositif algorithmique : le mot porte une orientation humaine, mais aucune articulation entre ce que l'IA fait mieux et ce que l'humain garde n'est exposée. Aucun « ce que la machine ne peut structurellement pas faire » n'apparaît. La pièce ne résiste pas à la présomption d'absence : l'étiquette humaniste habille un dispositif algorithmique sans déployer la lucidité bidirectionnelle qui ferait la compétence. Reste explicitement faible le fait que rien n'identifie le geste humain irréductible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Si je devais examiner, l'attaque d (glissement lexical) serait dominante : le mot « humaniste » évoque l'humain sans porter la charge sémantique de la compétence (identification de ce qui n'est structurellement pas automatisable). L'attaque e (surinterprétation) tiendrait aussi : j'aurais lu dans « humaniste » une lucidité bidirectionnelle qui n'est pas dans le texte.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'orientation humaniste de l'algorithme pouvait constituer une trace de création de valeur non automatisable. La présomption d'absence n'a rien laissé passer : le mot porte une valeur, mais la note ne déploie pas la lucidité bidirectionnelle (ce que l'IA fait mieux, ce que l'humain garde) qui définit la fiche. L'humanisation d'un dispositif algorithmique n'est pas l'identification de ce qui reste irréductiblement humain — c'est parfois même son inverse, puisqu'on délègue à l'algorithme un geste autrefois humain. Pour cette feuille, en l'état, la trace ne se constitue pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : « humaniste » accolé à un algorithme ne déploie pas la lucidité bidirectionnelle qui définit la création de valeur non automatisable.",
+        "prescription": "Pour ouvrir ce dossier, une note pourrait articuler explicitement ce que l'algorithme ipsatif fait mieux qu'un évaluateur humain — et ce que l'évaluateur humain garde de structurellement irréductible. L'enjeu serait de tenir les deux faces ensemble, plutôt que de placer le mot « humaniste » sur le seul versant algorithmique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la patience stratégique sur cette feuille. Une note décrivant un report argumenté ou un sens du timing assumé pourrait ouvrir ce dossier."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 7
+  },
+
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle Âme est traversé par un seul fil discret. Le travail montre une volonté d'orienter un dispositif algorithmique vers une qualification « humaniste » — un geste de réorientation qui porte une charge de valeur. La note reste laconique : aucun dilemme moral n'est mis en tension, aucune décision n'est racontée comme tranchée, aucun courage ou patience n'est exposé. Le pôle est touché obliquement par le choix de qualifier l'évaluation à venir, mais cette intention ne s'accompagne pas du récit du dispositif lui-même. Le ton est celui d'une note d'avancement, pas d'une délibération éthique déployée.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Sur cette feuille, plusieurs territoires du pôle Âme restent inexplorés : raisonnement éthique appliqué, conscience écologique, valorisation de la neurodiversité, décision dans le flou, responsabilité-courage-intégrité, validation contextuelle, patience stratégique — chacun demande une matière narrative qui n'est pas portée par cette note brève. L'alignement éthique (autour de la migration humaniste de l'algorithme) se laisse entrevoir mais ne se confirme pas : l'intention de valeur est posée, le mécanisme du garde-fou n'est pas décrit. La création de valeur non automatisable est frôlée par le mot « humaniste » mais ne se constitue pas, faute d'articulation entre ce que l'IA fait mieux et ce que l'humain garde.",
+    "emergencesPole": "Un mouvement traverse les territoires effleurés : la valeur portée par un mot. L'apprenant qualifie son chantier d'« humaniste » et fait migrer l'algorithme vers cette qualification — un acte qui n'est pas neutre, même s'il n'est pas argumenté. Le travail tel qu'il s'écrit place l'orientation éthique au niveau de l'étiquette plutôt que du dispositif. C'est un signal possible d'un alignement vécu mais peu mis en mots ; ou bien d'une intention qui demande encore à être incarnée dans une description de mécanisme.",
+    "pistes": [
+      "Pour prolonger l'orientation humaniste de l'algorithme, un chemin possible serait de décrire en quelques lignes ce que l'évaluation précédente produisait de problématique, et comment l'ipsatif corrige ce travers — l'alignement vivrait alors dans le mécanisme et pas seulement dans le mot.",
+      "Pour prolonger la qualification « humaniste », un chemin possible serait d'articuler ce que l'algorithme ipsatif fait mieux qu'un évaluateur humain, et ce que l'évaluateur humain garde de structurellement irréductible — la lucidité bidirectionnelle ferait la différence.",
+      "Pour prolonger la décision même de migrer, un chemin possible serait de noter sur quoi l'apprenant a hésité (par exemple, équité entre apprenants versus reconnaissance de leur singularité) et comment il a tranché — la décision deviendrait alors lisible comme arbitrage de valeurs."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle Âme est traversé par un seul fil discret. Le travail montre une volonté d'orienter un dispositif algorithmique vers une qualification « humaniste » — un geste de réorientation qui porte une charge de valeur. La note reste laconique : aucun dilemme moral n'est mis en tension, aucune décision n'est racontée comme tranchée, aucun courage ou patience n'est exposé. Le pôle est touché obliquement par le choix de qualifier l'évaluation à venir, mais cette intention ne s'accompagne pas du récit du dispositif lui-même. Le ton est celui d'une note d'avancement, pas d'une délibération éthique déployée.\n\n## Territoires les plus denses\n\nSur cette feuille, aucun territoire dense ne ressort dans ce pôle. Le territoire de l'alignement éthique reçoit un indice — la migration vers des évaluations dites humanistes — qui justifie un renvoi au cartographe plutôt qu'une présence établie. L'orientation existe au niveau du mot ; le mécanisme reste à décrire.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, plusieurs territoires du pôle Âme restent inexplorés : raisonnement éthique appliqué, conscience écologique, valorisation de la neurodiversité, décision dans le flou, responsabilité-courage-intégrité, validation contextuelle, patience stratégique — chacun demande une matière narrative qui n'est pas portée par cette note brève. L'alignement éthique (autour de la migration humaniste de l'algorithme) se laisse entrevoir mais ne se confirme pas : l'intention de valeur est posée, le mécanisme du garde-fou n'est pas décrit. La création de valeur non automatisable est frôlée par le mot « humaniste » mais ne se constitue pas, faute d'articulation entre ce que l'IA fait mieux et ce que l'humain garde.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn mouvement traverse les territoires effleurés : la valeur portée par un mot. L'apprenant qualifie son chantier d'« humaniste » et fait migrer l'algorithme vers cette qualification — un acte qui n'est pas neutre, même s'il n'est pas argumenté. Le travail tel qu'il s'écrit place l'orientation éthique au niveau de l'étiquette plutôt que du dispositif. C'est un signal possible d'un alignement vécu mais peu mis en mots ; ou bien d'une intention qui demande encore à être incarnée dans une description de mécanisme.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger l'orientation humaniste de l'algorithme, un chemin possible serait de décrire en quelques lignes ce que l'évaluation précédente produisait de problématique, et comment l'ipsatif corrige ce travers — l'alignement vivrait alors dans le mécanisme et pas seulement dans le mot.\n- Pour prolonger la qualification « humaniste », un chemin possible serait d'articuler ce que l'algorithme ipsatif fait mieux qu'un évaluateur humain, et ce que l'évaluateur humain garde de structurellement irréductible — la lucidité bidirectionnelle ferait la différence.\n- Pour prolonger la décision même de migrer, un chemin possible serait de noter sur quoi l'apprenant a hésité (par exemple, équité entre apprenants versus reconnaissance de leur singularité) et comment il a tranché — la décision deviendrait alors lisible comme arbitrage de valeurs.\n"
+  }
+}

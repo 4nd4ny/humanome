@@ -1,0 +1,253 @@
+{
+  "poleNum": "7",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-22",
+      "extraitVerbatim": "Migration en cours de l'algorithme pour implémenter les évaluations humanistes (nouveau mot : évaluations \"ipsatives\" –  Merci Claude !).",
+      "contexte": "Note unique de la feuille. Le passage évoque la migration d'un algorithme vers une famille d'évaluations dites humanistes/ipsatives. Active fortement le territoire de l'évaluation transformative (7.02 — ipsatif = comparaison de l'apprenant à lui-même, donc orientation vers la progression plutôt que le tri), et touche obliquement à la conduite du changement (7.07 — « migration en cours » suggère un mouvement structuré), à la vision stratégique (7.05) et à la documentation vivante (7.03, la note elle-même).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la maïeutique et à la facilitation d'apprentissage sur cette feuille. Une note décrivant une question posée à un apprenant plutôt qu'une réponse donnée pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant migre un algorithme pour implémenter des évaluations « humanistes », nommées « ipsatives ». L'évaluation ipsative compare l'apprenant à lui-même dans le temps plutôt qu'à une norme — c'est précisément l'évaluation orientée progression, pas tri, qui définit le cœur de la fiche 7.02."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec une présomption d'absence : la fiche 7.02 demande un acte évaluatif visible — un dispositif inventé, un feedback spécifique qui nomme ce qui fonctionne et ouvre des pistes, une réflexion méta sur le statut de l'erreur, un design d'évaluation qui transforme. La pièce dit « migration en cours » vers des évaluations « humanistes » qualifiées d'« ipsatives ». Le terme « ipsatif » désigne, dans la littérature pédagogique, une évaluation qui compare l'apprenant à lui-même plutôt qu'à un standard externe — c'est précisément la bascule du sommatif (trier) vers le transformatif (faire progresser) que la fiche met au centre. La pièce résiste à la présomption d'absence : l'apprenant ne dit pas seulement qu'il évalue, il dit qu'il bascule le dispositif vers une logique évaluative orientée progression, et il prend acte du concept nommé. Reste explicitement faible le fait que le mécanisme de l'évaluation lui-même (critères, retours, dispositif) n'est pas décrit, et que la note dit « en cours » plutôt qu'un acte évaluatif réalisé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La migration vise explicitement un type d'évaluation (« ipsative ») qui correspond à la bascule sommatif → transformatif décrite par la fiche : comparer l'apprenant à lui-même plutôt qu'à une norme, c'est la définition même de l'évaluation au service de la progression." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce a résisté au temps 1 sur un point fort : l'évaluation ipsative est précisément le marqueur central de la fiche. Je l'examine maintenant avec la présomption que je me suis laissé séduire. L'attaque la plus pertinente est g (mouvement-vers) : la pièce dit « migration en cours », pas « j'ai mis en œuvre, voici le dispositif, voici les retours produits ». L'apprenant est en route vers un dispositif transformatif, mais le seuil de la transformation effective n'est pas franchi dans le texte de la feuille — l'algorithme est en train d'être modifié, l'évaluation n'a pas encore été exercée. La pièce n'est cependant pas disqualifiée : la direction est explicite, le concept est juste, l'orientation est clairement transformative (et non sommative). Je la juge affaiblie mais retenue : c'est une trace de conception en cours d'un dispositif transformatif, pas d'un acte évaluatif déjà accompli.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« Migration en cours » signale un mouvement-vers : le dispositif transformatif est en chantier, pas encore en exercice. L'orientation est juste (ipsatif = transformatif au sens de la fiche), mais le seuil de mise en œuvre effective n'est pas franchi dans cette feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'évocation de l'évaluation ipsative pouvait constituer une trace d'évaluation transformative. La présomption d'absence a permis à la pièce de résister : l'ipsatif est exactement le type d'évaluation que la fiche met au centre — comparer l'apprenant à lui-même, orienter vers la progression, abandonner le tri. La présomption de sycophantie a affaibli sans disqualifier : la note dit « en cours », ce qui signale une conception engagée plutôt qu'un dispositif déjà exercé. Ce qui en résulte : il y a un indice fort de pratique évaluative orientée vers la transformation, lisible dans le choix du concept lui-même. Le journal porte ici une intention pédagogique précise — basculer le dispositif d'évaluation vers une logique de progression — sans encore exposer ses critères, ses retours produits, ou la réponse des évalués. Une nuance : la trace est solide pour la conception, fragile pour la mise en œuvre. Pour cette feuille, le verdict tient comme renvoi au cartographe — un dossier ouvert, qui demande à être prolongé par le récit du dispositif en action.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Le temps 2 (présomption de sycophantie) a affaibli la pièce sans la disqualifier : le concept d'évaluation ipsative correspond précisément au cœur de la fiche, mais « migration en cours » signale une conception engagée plutôt qu'un dispositif déjà mis en œuvre. Un indice solide pour la conception, fragile pour la pratique.",
+        "prescription": "Pour consolider ce dossier, une note pourrait, à mesure que la migration avance, décrire un premier cas concret : sur quel critère l'apprenant est-il comparé à lui-même, quel retour lui est restitué, quelle progression devient visible. Le passage du concept à l'acte ferait passer la trace d'indice à preuve."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La note elle-même consigne un terme technique nouvellement appris (« ipsatives ») dans un journal daté. Cela pourrait obliquement toucher à la capitalisation du savoir — garder trace de ce qu'on apprend pour le retrouver."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec une présomption d'absence : la fiche 7.03 demande une attention délibérée à la structuration pour un futur lecteur, du versioning, des artefacts évolutifs, une conscience explicite du destinataire. La pièce est une note datée d'une seule phrase, sans structure, sans versioning, sans titre, sans découpage, sans mention d'un futur lecteur. La feuille est une consignation rapide, pas un document vivant. La pièce ne résiste pas à la présomption d'absence : noter un mot dans un journal n'est pas, en soi, une trace de documentation structurée et orientée vers la transmission. Reste explicitement faible le fait que le journal existe — il y a une pratique de consignation — mais le geste reste cathartique/personnel plutôt que documentaire au sens de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Si je devais examiner, l'attaque h (faux positif de fiche) serait dominante : la fiche distingue explicitement le journal personnel (5.03) du document structuré pour autrui (7.03), et la pièce relève du premier. L'attaque c (biais de medium) tiendrait aussi : la note existe parce que le journal d'apprentissage le sollicite, mais cela ne fait pas d'elle une trace de documentation vivante.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la note elle-même pouvait constituer une trace de documentation vivante. La présomption d'absence n'a rien laissé passer : la fiche pose une distinction claire entre le journal personnel (expression de soi, extraction de sens pour soi) et la documentation structurée (intention de transmission, conscience du destinataire). La note du 22 février est du côté personnel : datée, brève, sans structure, sans versioning, sans destinataire identifié. Une trace plus parlante consignerait par exemple les critères ipsatifs choisis dans un document structuré pensé pour être consulté plus tard. Pour cette feuille, en l'état, la trace ne se constitue pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : la fiche distingue le journal personnel de la documentation structurée pour autrui, et la note relève du premier — brève, non structurée, sans conscience explicite d'un destinataire.",
+        "prescription": "Pour ouvrir un dossier sur la documentation vivante, une note pourrait basculer du journal court vers un document évolutif consacré à la migration : critères ipsatifs retenus, versions, décisions, à destination du futur lecteur (soi-même ou autrui). La conscience du destinataire ferait la différence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au leadership situationnel sur cette feuille. Une note décrivant un moment de bascule consciente entre laisser l'IA mener et reprendre la main pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant entreprend une migration d'algorithme vers un autre type d'évaluation. Cela suppose une direction visée, donc une vision de ce qu'on veut atteindre — touche obliquement à la vision stratégique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec une présomption d'absence : la fiche 7.05 demande un lien argumenté entre futur anticipé et décision présente, des scénarios prospectifs, des anticipations d'usages futurs qui guident l'architecture actuelle. La pièce dit « migration en cours pour implémenter les évaluations humanistes » — une direction est nommée (le « pour »), mais aucun horizon temporel n'est posé, aucun scénario alternatif n'est articulé, aucune justification du futur anticipé n'est donnée. Le « pour » exprime l'objectif immédiat de la migration, pas une vision prospective qui relierait des choix présents à un avenir construit. La pièce ne résiste pas à la présomption d'absence : un objectif d'implémentation n'est pas, en soi, une vision stratégique au sens de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Si je devais examiner, l'attaque a (insuffisance probatoire) serait dominante : la pièce est trop courte pour exposer un horizon temporel ou un scénario prospectif. L'attaque b (confusion de compétence) tiendrait : la pièce active mieux 7.07 (conduite du changement, agilité) que 7.05, puisqu'elle décrit un mouvement en cours plutôt qu'une projection long-terme.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la mention d'une migration vers un objectif pédagogique pouvait constituer une trace de vision stratégique. La présomption d'absence n'a rien laissé passer : le « pour implémenter » dit l'objectif immédiat de la migration, pas la projection à un horizon temporel construit. La vision stratégique demande un lien argumenté entre futur anticipé et décision présente, et ce lien n'est pas tissé dans la note. Pour cette feuille, en l'état, la trace ne se constitue pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : l'objectif immédiat de la migration n'est pas, en soi, une vision stratégique articulée à un horizon temporel construit.",
+        "prescription": "Pour ouvrir un dossier sur la vision stratégique, une note pourrait inscrire cette migration dans un horizon plus long — par exemple, ce que le passage à l'ipsatif rendra possible à un an, ce qu'il prépare comme évolution du dispositif d'évaluation. Le lien futur-présent ferait signal."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'efficacité personnelle sur cette feuille. Une note décrivant un arbitrage de priorisation argumenté ou un « non » stratégique pourrait ouvrir ce dossier."
+      }
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant signale une « migration en cours » — une transformation engagée du dispositif algorithmique. Cela pourrait toucher obliquement à l'agilité et à la conduite du changement — un mouvement structuré qui modifie une pratique existante."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec une présomption d'absence : la fiche 7.07 demande des traces d'itération structurée (versions, cycles générer-relire-tester-ajuster), des artefacts de coordination utilisés activement, des ajustements de plan avec raisons explicitées, ou une anticipation des résistances pour la conduite du changement. La pièce dit « migration en cours » : un mouvement est nommé, mais aucun cycle n'est décrit, aucune version n'est citée, aucun artefact agile n'est mentionné, aucune résistance n'est anticipée. Le mot « migration » suggère un travail structuré, mais il pourrait tout aussi bien désigner un chantier linéaire. La pièce ne résiste pas à la présomption d'absence : la simple mention d'un changement en cours ne suffit pas à attester une adaptation méthodique au sens de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Si je devais examiner, l'attaque f (récit performatif) serait dominante : la pièce raconte qu'on bouge, sans montrer la boucle de rétroaction explicite qui définit l'agilité. L'attaque a (insuffisance probatoire) tiendrait aussi : la pièce est trop courte pour exposer une méthode itérative.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la mention « migration en cours » pouvait constituer une trace d'agilité ou de conduite du changement. La présomption d'absence n'a rien laissé passer : la fiche demande une boucle de rétroaction explicite, des versions, des ajustements documentés, ou une anticipation des résistances — et la note ne déploie rien de tout cela. Le mot « migration » nomme un mouvement, pas une méthode. Une trace plus parlante mentionnerait par exemple les versions successives de l'algorithme, ou la manière dont les futurs utilisateurs/évaluateurs seront accompagnés dans la bascule. Pour cette feuille, en l'état, la trace ne se constitue pas.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : « migration en cours » nomme un mouvement sans exposer la boucle de rétroaction, les versions, ou l'anticipation des résistances qui caractérisent l'agilité et la conduite du changement.",
+        "prescription": "Pour ouvrir un dossier sur l'agilité, une note pourrait évoquer un cycle de la migration — version testée, retour reçu, ajustement décidé. Pour la conduite du changement, une note pourrait anticiper comment les évaluateurs ou les évalués vont vivre la bascule vers l'ipsatif, et ce que cette transition demande comme accompagnement."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Une note décrivant un incident géré sous compression temporelle radicale pourrait ouvrir ce dossier."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 4
+  },
+
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle Flambeau est traversé par un fil unique mais précis : la conception en cours d'un dispositif d'évaluation orienté vers la progression de l'apprenant. Le travail montre un concepteur qui bascule un algorithme vers une logique évaluative humaniste, et qui reçoit en passant le mot juste — « ipsatif » — pour nommer cette logique. Ce choix de concept porte une orientation pédagogique forte : comparer l'apprenant à lui-même plutôt qu'à un standard externe. La note reste courte : le dispositif n'est pas encore décrit en action, la méthode itérative n'est pas exposée, la conduite du changement n'est pas mise en mots. Mais la direction pédagogique se laisse lire dans le choix du concept lui-même.",
+    "territoiresDenses": [
+      {
+        "competence": "Évaluation transformative",
+        "description": "L'apprenant choisit explicitement de migrer son algorithme vers une évaluation ipsative — c'est-à-dire vers une évaluation qui compare l'apprenant à lui-même plutôt qu'à une norme externe. C'est précisément la bascule du sommatif (trier) vers le transformatif (faire progresser) qui structure ce territoire. Le dossier reste ouvert : la conception est engagée, le dispositif en exercice n'est pas encore décrit.",
+        "extraitVerbatim": "Migration en cours de l'algorithme pour implémenter les évaluations humanistes (nouveau mot : évaluations \"ipsatives\" –  Merci Claude !).",
+        "ceQueCaDit": "Le travail orienté vers la progression de l'apprenant prend ici la forme d'un choix de dispositif : une évaluation qui mesure l'évolution intérieure plutôt que la position relative. L'orientation est nette, la mise en œuvre demande à être prolongée par un récit du dispositif en action."
+      }
+    ],
+    "territoiresNonVisites": "Sur cette feuille, plusieurs territoires du pôle Flambeau restent silencieux : la maïeutique, le leadership situationnel, l'efficacité personnelle et la gestion de crise n'ont pas de prise textuelle dans cette note. La documentation vivante est frôlée par la note elle-même — il y a bien une consignation datée — mais la fiche distingue le journal personnel du document structuré pour autrui, et la note relève du premier. La vision stratégique est frôlée par la finalité énoncée (« pour implémenter ») sans qu'un horizon temporel construit ne soit posé. L'agilité et la conduite du changement sont frôlées par le mot « migration » sans que la boucle itérative ou l'anticipation des résistances ne soit exposée. Ces effleurements signalent un chantier qui appelle, dans les feuilles à venir, le récit de son déploiement.",
+    "emergencesPole": "Trois mouvements traversent les territoires du pôle. D'abord, un choix pédagogique fort qui place la progression de l'apprenant au centre — le choix de l'ipsatif n'est pas neutre, il déplace la mesure du tri vers la transformation. Ensuite, un mode d'écriture qui reste à l'état de consignation : le concept est posé, le dispositif n'est pas encore raconté en action. Enfin, un rapport apaisé à l'IA comme source de vocabulaire technique : Claude a apporté le mot, le mot est reçu, le travail continue. Ensemble, ces mouvements dessinent une posture de concepteur orienté progression, en chantier.",
+    "pistes": [
+      "Pour prolonger le travail engagé sur l'évaluation ipsative, un chemin possible serait de noter, à mesure que la migration avance, un premier cas concret : sur quel critère un apprenant est-il comparé à lui-même, quel retour lui est restitué, et quelle progression devient visible — le concept passerait alors à l'acte.",
+      "Pour prolonger la « migration en cours » dans une logique de documentation vivante, un chemin possible serait d'ouvrir un document évolutif à côté du journal, dédié à cette refonte — versions, décisions, alternatives écartées — pensé pour un futur lecteur.",
+      "Pour prolonger la conduite du changement qu'implique cette migration, un chemin possible serait d'anticiper comment les évaluateurs ou les évalués vont vivre la bascule vers l'ipsatif, et ce que cette transition demande comme accompagnement.",
+      "Pour prolonger l'orientation pédagogique « humaniste », un chemin possible serait d'écrire en quelques lignes le scénario à un an : ce que le dispositif aura permis d'observer, ce qu'il aura changé dans la relation enseignant-apprenant."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle Flambeau est traversé par un fil unique mais précis : la conception en cours d'un dispositif d'évaluation orienté vers la progression de l'apprenant. Le travail montre un concepteur qui bascule un algorithme vers une logique évaluative humaniste, et qui reçoit en passant le mot juste — « ipsatif » — pour nommer cette logique. Ce choix de concept porte une orientation pédagogique forte : comparer l'apprenant à lui-même plutôt qu'à un standard externe. La note reste courte : le dispositif n'est pas encore décrit en action, la méthode itérative n'est pas exposée, la conduite du changement n'est pas mise en mots. Mais la direction pédagogique se laisse lire dans le choix du concept lui-même.\n\n## Territoires les plus denses\n\n### Évaluation transformative\n\nL'apprenant choisit explicitement de migrer son algorithme vers une évaluation ipsative — c'est-à-dire vers une évaluation qui compare l'apprenant à lui-même plutôt qu'à une norme externe. C'est précisément la bascule du sommatif (trier) vers le transformatif (faire progresser) qui structure ce territoire. Le dossier reste ouvert : la conception est engagée, le dispositif en exercice n'est pas encore décrit.\n\n> « Migration en cours de l'algorithme pour implémenter les évaluations humanistes (nouveau mot : évaluations \"ipsatives\" –  Merci Claude !). »\n\nLe travail orienté vers la progression de l'apprenant prend ici la forme d'un choix de dispositif : une évaluation qui mesure l'évolution intérieure plutôt que la position relative. L'orientation est nette, la mise en œuvre demande à être prolongée par un récit du dispositif en action.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, plusieurs territoires du pôle Flambeau restent silencieux : la maïeutique, le leadership situationnel, l'efficacité personnelle et la gestion de crise n'ont pas de prise textuelle dans cette note. La documentation vivante est frôlée par la note elle-même — il y a bien une consignation datée — mais la fiche distingue le journal personnel du document structuré pour autrui, et la note relève du premier. La vision stratégique est frôlée par la finalité énoncée (« pour implémenter ») sans qu'un horizon temporel construit ne soit posé. L'agilité et la conduite du changement sont frôlées par le mot « migration » sans que la boucle itérative ou l'anticipation des résistances ne soit exposée. Ces effleurements signalent un chantier qui appelle, dans les feuilles à venir, le récit de son déploiement.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois mouvements traversent les territoires du pôle. D'abord, un choix pédagogique fort qui place la progression de l'apprenant au centre — le choix de l'ipsatif n'est pas neutre, il déplace la mesure du tri vers la transformation. Ensuite, un mode d'écriture qui reste à l'état de consignation : le concept est posé, le dispositif n'est pas encore raconté en action. Enfin, un rapport apaisé à l'IA comme source de vocabulaire technique : Claude a apporté le mot, le mot est reçu, le travail continue. Ensemble, ces mouvements dessinent une posture de concepteur orienté progression, en chantier.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le travail engagé sur l'évaluation ipsative, un chemin possible serait de noter, à mesure que la migration avance, un premier cas concret : sur quel critère un apprenant est-il comparé à lui-même, quel retour lui est restitué, et quelle progression devient visible — le concept passerait alors à l'acte.\n- Pour prolonger la « migration en cours » dans une logique de documentation vivante, un chemin possible serait d'ouvrir un document évolutif à côté du journal, dédié à cette refonte — versions, décisions, alternatives écartées — pensé pour un futur lecteur.\n- Pour prolonger la conduite du changement qu'implique cette migration, un chemin possible serait d'anticiper comment les évaluateurs ou les évalués vont vivre la bascule vers l'ipsatif, et ce que cette transition demande comme accompagnement.\n- Pour prolonger l'orientation pédagogique « humaniste », un chemin possible serait d'écrire en quelques lignes le scénario à un an : ce que le dispositif aura permis d'observer, ce qu'il aura changé dans la relation enseignant-apprenant.\n"
+  }
+}

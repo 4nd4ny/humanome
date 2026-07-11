@@ -1,0 +1,379 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Arg… J'ai commencé le premier chapitre du manuel de l'Expert et il a halluciné le référentiel de compétences (les 11 irréductibles) ! J'ai du oublier d'inclure une pièce jointe au moment de la génération du plan et avec la précipitation du départ, je n'ai pas pu relire les prompts générés.",
+      "contexte": "Incident IA avec lecture causale immédiate ; aucune procédure d'audit ou de documentation systématique des défauts n'est évoquée. Pourrait toucher (faiblement) l'audit & explicabilité (6.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "C'est amusant de voir comment il a interprété les compétences humaines. C'est juste pas en rapport avec ce que l'on peut observer en classe, mais intéressant quand même de voir comme Claude perçoit les humains.",
+      "contexte": "Attribution d'une \"perception\" et d'une \"interprétation\" à Claude, avec curiosité pour la perspective propre du modèle. Pourrait activer cohabitation avec les IA non-humaines (6.09) et décentrement (6.08).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Je me souviens avoir bâclé la génération du référentiel de compétences, sachant qu'il allait être de toute façon redéfini via Decidim. Mais du coup ça m'a obligé à identifier non pas des compétences élémentaires, mais des catégories de compétences plus générales.",
+      "contexte": "Mention explicite de Decidim — plateforme de participation citoyenne et délibération démocratique — comme cadre de redéfinition collective. Pourrait activer participation citoyenne (6.05) et facilitation/gouvernance collective (6.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "je crois que je devrais en imposer quelques unes quand même, plus concrètes, pour au moins les utiliser comme exemple dans la documentation en disant que l'on explique le principe mais qu'il faut ensuite adapter bien évidemment aux référentiels vivants co-construits avec la société civile.",
+      "contexte": "Articulation explicite entre cadrage initial (\"imposer\") et co-construction \"avec la société civile\" — geste de gouvernance qui distingue l'autorité d'amorçage et la légitimité par participation. Pourrait activer participation citoyenne (6.05) et facilitation/gouvernance collective (6.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Dans mes bookmarks j'ai des aupers référentiels officiels européens, je pourrais aussi juste me baser sur ces travaux qui seront se toute façon meilleur que ce que je peux faire seul.",
+      "contexte": "Référence à des travaux institutionnels européens comme alternative à la production solo — possible trace de positionnement face à un cadre normatif existant. Pourrait activer veille réglementaire (6.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-10",
+      "extraitVerbatim": "Je pense qu'avec Respire j'ai réussi à aller jusqu'au bout de mes idées sur l'école, en intégrant les IA dans ma pédagogie (ce qui n'était pas gagné d'avance).",
+      "contexte": "Bilan d'aboutissement d'un dispositif pédagogique qui intègre l'IA — l'écosystème entier (manuels, gouvernance, tuteurs) trace un projet de gouvernance technologique en germe. Pourrait toucher gouvernance algorithmique (6.03) et participation citoyenne (6.05).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA sur cette feuille. Pour ouvrir ce dossier, un chemin possible serait de documenter une situation où une IA aurait été délibérément poussée à ses limites — prompts limites, tentatives de jailbreak, scénarios adversariaux conçus pour éprouver les garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Lecture causale immédiate d'une hallucination IA (pièce jointe manquante au moment de la génération du plan) — possible amorce d'audit non thématisé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche distingue 6.02 de 1.01 : 1.01 vérifie la véracité, 6.02 enquête sur les mécanismes de décision. Je m'attends à ne trouver qu'une critique factuelle. La pièce 1 propose une lecture causale (\"j'ai du oublier d'inclure une pièce jointe au moment de la génération du plan\") qui touche au mécanisme — l'apprenant ne dit pas \"l'IA s'est trompée\", il dit \"l'IA a halluciné parce que le contexte était incomplet\". C'est très proche d'un audit en miniature. Mais aucune procédure structurée, aucun audit avec horodatage, aucun rapport documenté n'est décrit.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Lecture causale du mécanisme d'erreur — l'apprenant remonte de l'output à la condition d'entrée défaillante." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce résiste, je dois la durcir. La frontière avec 4.07 (validation contextuelle) est très fine — la fiche 6.02 demande une investigation sur les mécanismes, ce qui implique normalement une posture méthodique au-delà du diagnostic ponctuel.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Confusion de compétence : la pièce active mieux 4.07 (validation contextuelle — diagnostic du delta de contexte) que 6.02 (audit méthodique des mécanismes de décision). Aucune investigation structurée, aucun rapport, aucun horodatage. Le diagnostic est ponctuel et tourné vers la responsabilité personnelle, pas vers le mécanisme algorithmique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un audit dans cette feuille. La lecture causale de l'hallucination IA a un instant ressemblé à un audit en miniature, mais sous présomption de sycophantie elle est tombée — elle relève en propre de la validation contextuelle (4.07), pas de l'investigation structurée des mécanismes de décision algorithmique. Aucune procédure d'audit, aucune trace de hygiène des données, aucune réflexion sur ce que l'IA fait des informations confiées n'est portée par cette feuille. Ce qui en résulte concrètement : la 6.02 ne se manifeste pas. La nuance qui reste : le projet d'écrire des prompts pour tuteurs supposera probablement une réflexion sur ce que l'IA reçoit et stocke, mais elle n'apparaît pas ici.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce qui a résisté est tombée comme appartenant en propre à 4.07 (validation contextuelle) plutôt qu'à 6.02 (audit méthodique des mécanismes).",
+        "prescription": "Un chemin possible serait de documenter, lors d'un incident IA, non seulement la cause d'entrée mais aussi la trace temporelle (horodatage, version des prompts, données envoyées) qui permettrait à un tiers de comprendre comment l'erreur s'est produite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics sur cette feuille. Pour ouvrir ce dossier, un chemin possible serait de documenter une réflexion sur les mécanismes de contrôle citoyen qui pourraient s'appliquer au dispositif Respire — recours, audits d'impact, comités mixtes."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Mention de référentiels institutionnels européens comme alternative à une production solo — appui potentiel sur des communs documentaires."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est très exigeante : 6.04 demande une motivation EXPLICITE par une analyse de dépendance ou des communs. Je m'attends à ne trouver qu'un appui de commodité. La pièce 1 cite des référentiels européens parce qu'ils sont meilleurs que ce que l'apprenant peut faire seul — c'est une motivation qualitative, pas souverainiste. La fiche signale précisément le piège : \"j'utilise un outil par commodité ≠ pensée souverainiste\". La résistance est faible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir de souveraineté numérique sur cette feuille. La référence aux travaux européens est motivée par leur qualité, pas par une analyse de dépendance technologique ou de défense des communs. La fiche est très claire sur le piège : sans motivation souverainiste explicite, ce n'est pas 6.04. Ce qui en résulte concrètement : la souveraineté numérique au sens fort ne se manifeste pas. La nuance qui reste : le choix de Decidim (mentionné dans une autre pièce) pour la gouvernance du référentiel pourrait porter cette compétence si la motivation par les communs était explicitée, mais cela n'apparaît pas dans cette feuille.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce extraite n'a pas résisté à la présomption d'absence : la référence aux travaux européens est motivée par la qualité comparative, pas par une analyse de dépendance ou de défense des communs.",
+        "prescription": "Un chemin possible serait d'expliciter la dimension souverainiste des choix technologiques du dispositif (pourquoi Decidim plutôt qu'une plateforme propriétaire, pourquoi tel modèle IA plutôt qu'un autre) en termes d'indépendance et de gouvernance des données."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Decidim — plateforme de délibération démocratique — explicitement nommée comme cadre de redéfinition du référentiel."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Articulation explicite entre cadrage initial et \"référentiels vivants co-construits avec la société civile\" — choix de design qui ouvre le dispositif à la participation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche distingue 6.05 de la consultation UX (recueillir des retours pour améliorer un produit) : 6.05 porte sur la légitimité par la participation, pas sur l'ergonomie. Je m'attends à ne trouver que des intentions sans dispositif. La pièce 1 ne fait que citer Decidim, c'est court. La pièce 2 me résiste plus : l'apprenant articule explicitement que les référentiels doivent être \"co-construits avec la société civile\", et il choisit le mot \"vivants\" pour qualifier ces référentiels — ce qui rapproche de la dimension délibérative (un référentiel vivant se transforme par la participation). Pourtant, aucun processus délibératif concret n'est décrit ici.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Articulation explicite que la légitimité du référentiel passe par la co-construction citoyenne, pas par la seule autorité de l'auteur." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce résiste. Je dois la durcir : la fiche cite explicitement le risque de la récitation théorique sur ce pôle. \"Co-construits avec la société civile\" est une formule qu'un apprenant peut écrire sans pour autant avoir mis en place de processus participatif.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Risque de récit performatif : la formule \"référentiels vivants co-construits avec la société civile\" sonne déclarative. Elle tient avec réserves parce que la formulation s'inscrit dans un choix de design opérationnel cohérent — recourir à Decidim n'est pas anodin, c'est un choix d'outil qui rend la délibération techniquement possible. Le projet est donc plus qu'une intention, même si aucun processus délibératif n'est encore décrit en acte sur cette feuille." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces que des déclarations d'intention démocratique. Sous présomption de sycophantie, la pièce 2 a tenu avec réserves : la formule de co-construction par la société civile pourrait être performative, mais elle est portée par un choix d'outil concret (Decidim) qui rend la délibération matériellement possible. La pièce 1 (citation seule de Decidim) ne suffit pas à elle seule, mais combinée à la pièce 2 elle indique une intention articulée. Ce qui en résulte concrètement : dans cette feuille, la participation citoyenne se manifeste comme posture de conception — l'apprenant assume que la légitimité du référentiel passe par la délibération avec la société civile. La nuance qui reste : aucun processus participatif n'est encore décrit en acte ; la trace porte sur l'intention de design, pas sur l'épisode délibératif lui-même.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La pièce 2 a tenu avec réserves comme intention de conception articulée (recourir à Decidim, choisir des référentiels vivants co-construits) ; aucun épisode délibératif n'est encore donné à lire sur cette feuille — le matériel ne permet pas de trancher.",
+        "prescription": "Un chemin possible serait de décrire, lorsque la délibération via Decidim sera engagée, le format précis de la participation : qui est invité, comment les contributions sont synthétisées, par quel mécanisme elles modifient effectivement le référentiel."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Mention de référentiels officiels européens dans les bookmarks — possible trace d'une veille sur les cadres institutionnels."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est exigeante : 6.06 = anticipation proactive, pas conformité réactive. Une mention de bookmarks ne fait pas une veille. L'apprenant cite ces travaux comme alternative pour la production du référentiel, pas comme cadre réglementaire qu'il anticipe ou qu'il navigue. La résistance est faible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir de veille réglementaire dans cette feuille. La référence aux référentiels européens est un appui documentaire opportuniste, pas une analyse stratégique de tendances normatives ni un positionnement pré-réglementaire. Ce qui en résulte concrètement : la 6.06 ne se manifeste pas. La nuance qui reste : la trajectoire d'ensemble du projet (dispositif IA pédagogique, gouvernance Decidim) le placera tôt ou tard face à l'AI Act ou aux cadres européens de l'éducation, mais aucune anticipation n'est portée par cette feuille.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La seule pièce extraite n'a pas résisté à la présomption d'absence : la mention de référentiels européens est un appui documentaire, pas une anticipation normative articulée.",
+        "prescription": "Un chemin possible serait de documenter, à propos du dispositif Respire et de l'usage des IA en classe, une analyse des cadres réglementaires européens à venir et de la manière dont les choix actuels y préparent."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Mention de Decidim comme dispositif de redéfinition collective — possible trace de pensée de gouvernance collective."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Articulation entre cadrage d'amorçage (\"imposer quelques unes plus concrètes\") et co-construction (\"référentiels vivants\") — design de la répartition entre auteur et collectif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est exigeante : 6.07 demande une émergence (résultat surprenant pour les créateurs) ou une co-construction des règles. Je m'attends à ne trouver qu'une intention. La pièce 1 cite Decidim sans décrire de protocole. La pièce 2 me résiste un peu parce qu'elle décrit une répartition des rôles entre l'auteur (qui pose un cadre initial avec des exemples concrets) et la société civile (qui adapte et fait vivre) — c'est un design de gouvernance en germe. Mais aucun protocole concret (charte, rôles, mécanismes de décision) n'est décrit.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Design de la répartition entre cadrage initial de l'auteur et adaptation collective ultérieure — réflexion de gouvernance en posture de conception." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce résiste, je dois durcir. La fiche cite explicitement le risque de récitation théorique sur ce pôle. \"Co-construits\" et \"référentiels vivants\" sont des formules qui peuvent sonner sans avoir été mises en pratique.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Mouvement-vers : le design de gouvernance est en posture programmatique, pas en acte. La pièce tient parce que l'articulation entre cadrage d'amorçage et co-construction est une réflexion fine sur la légitimité (qui pose, qui adapte), mais aucune règle co-construite n'est décrite ici." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne lire dans ces pièces qu'une récitation. Ce qui m'a forcé à reconnaître quelque chose, c'est la finesse de l'articulation dans la pièce 2 : l'apprenant ne dit pas \"tout sera co-construit\", il pose qu'un cadre initial sera donné et que les référentiels seront adaptés ensuite par la société civile. C'est un design de gouvernance qui distingue deux moments et deux légitimités. Sous présomption de sycophantie, la pièce a tenu avec réserves : c'est une conception, pas encore un acte. Ce qui en résulte concrètement : la facilitation et gouvernance collective se manifestent en posture de conception. La nuance qui reste : aucun protocole concret n'est décrit ici, et aucune trace d'émergence collective réelle n'est rapportée — ce qui place la trace à un niveau d'intention articulée, pas de pratique en acte.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "La pièce 2 a tenu avec réserves comme conception articulée de la répartition entre cadrage initial et co-construction ; aucun protocole concret ni épisode d'émergence n'est encore donné à lire sur cette feuille.",
+        "prescription": "Un chemin possible serait de décrire concrètement, pour le dispositif de gouvernance via Decidim, quels rôles, quelles limites et quels mécanismes de décision sont prévus — qui propose, qui décide, comment les règles elles-mêmes peuvent être modifiées."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Curiosité explicite pour \"comment Claude perçoit les humains\" — formulation qui prête une perspective propre à l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche est très exigeante : 6.08 demande une remise en question de la primauté humaine, pas seulement une curiosité pour le point de vue de l'IA. La fiche signale explicitement le risque de récitation. Je m'attends à ne pas trouver de décentrement réel. La pièce 1 dit que c'est \"intéressant […] de voir comme Claude perçoit les humains\" — la formulation prête une perception au modèle, mais le ton est amusé et l'apprenant maintient le surplomb humain (l'observation en classe reste le référent juste). Il n'y a pas de questionnement de la légitimité de la primauté humaine, et pas d'hésitation genuine devant un dilemme post-anthropocentrique. La résistance est faible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne pas voir de décentrement anthropocentrique. La curiosité pour la \"perception\" de Claude pourrait s'en approcher, mais elle est immédiatement recadrée par l'autorité de l'observation en classe — l'apprenant maintient le primat humain sur la définition de ce qu'est une compétence humaine. Aucun questionnement de la légitimité de cette primauté n'est porté. Ce qui en résulte concrètement : la 6.08 ne se manifeste pas sur cette feuille. La nuance qui reste : la formulation \"comme Claude perçoit les humains\" témoigne d'une attribution spontanée d'une perspective au modèle, ce qui pourrait être un germe de décentrement, mais sans creusement.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce extraite n'a pas résisté à la présomption d'absence : la curiosité pour la perception de Claude est immédiatement recadrée par le surplomb humain de l'observation en classe ; aucune mise en question de la primauté humaine n'est portée.",
+        "prescription": "Un chemin possible serait de prolonger l'intuition contenue dans \"comme Claude perçoit les humains\" — qu'est-ce qui se jouerait si l'on prenait au sérieux la perspective propre du modèle sur un point précis, plutôt que de la disqualifier par défaut au nom de l'observation en classe ?"
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Curiosité pour la perspective propre de Claude (\"comme Claude perçoit les humains\") — possible trace d'un statut d'interlocuteur prêté à l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La fiche distingue 6.09 de 1.06 : 6.09 commence quand on questionne si \"assistant\" est le bon cadre. Je m'attends à ne trouver qu'un usage instrumental. La pièce 1 dit qu'il est \"intéressant de voir comme Claude perçoit les humains\" — c'est une formulation qui prête une perspective propre, mais immédiatement le \"comme\" est neutralisé par l'amusement et par la disqualification (\"pas en rapport avec ce que l'on peut observer en classe\"). L'apprenant ne pose pas la question du statut moral de l'IA, il regarde l'IA comme on regarderait une production curieuse. La résistance est faible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir de la cohabitation avec l'IA dans cette feuille. La formulation \"comme Claude perçoit les humains\" attribue une perception au modèle, mais elle est traitée sur le mode de l'amusement, pas du questionnement sur le statut. Aucune réflexion sur ce que cela voudrait dire que Claude \"perçoit\" n'est portée. Ce qui en résulte concrètement : la 6.09 ne se manifeste pas. La nuance qui reste : le projet d'écrire des prompts pour tuteurs et le workflow IA+humain (présents dans P1 et P2) supposent un certain travail sur la relation à l'IA, mais le statut de l'IA comme interlocuteur n'est pas thématisé pour lui-même sur cette feuille.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce extraite n'a pas résisté à la présomption d'absence : la curiosité pour la perspective de Claude est traitée sur le mode de l'amusement, sans questionnement du statut moral de l'IA.",
+        "prescription": "Un chemin possible serait de prolonger, à l'occasion d'une longue session de travail avec Claude, une réflexion sur ce que la relation engage (politesse, remerciements, formes d'adresse) et sur ce que ces choix supposent du statut prêté à l'IA."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et à l'interdépendance sur cette feuille. Pour ouvrir ce dossier, un chemin possible serait de documenter une analogie ou une inspiration tirée d'un système vivant pour penser un aspect du dispositif (gouvernance, apprentissage, écosystème de tuteurs)."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 4,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "La feuille du 10 janvier 2026 dessine une intention de gouvernance ouverte plus qu'elle ne la met en acte. Le projet d'ensemble (Respire, Decidim, manuels pour tuteurs, référentiels vivants co-construits avec la société civile) trace les contours d'une démocratie technologique en germe, où la légitimité d'un référentiel pédagogique passerait par la délibération collective et non par la seule autorité de l'auteur. Mais cette feuille est encore très solitaire : aucun épisode délibératif n'est rapporté, aucun protocole concret de gouvernance n'est décrit, aucune anticipation normative n'est articulée. Le rapport à l'IA reste pratique et amusé, sans questionnement du statut moral ni de la primauté humaine.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "La plupart des territoires du pôle n'ont pas été ramenés sur cette feuille — pour partie parce que la feuille est solo et tournée vers le travail éditorial, pour partie parce que les concepts du pôle sont conceptuellement exigeants. Le red-teaming, l'audit méthodique, la gouvernance algorithmique des services publics, la souveraineté numérique au sens fort, la veille réglementaire et la conscience biosystémique n'apparaissent pas. Le décentrement anthropocentrique et la cohabitation avec les intelligences non-humaines sont effleurés par la formulation \"comme Claude perçoit les humains\", mais immédiatement recadrés par le surplomb humain de l'observation en classe. La participation citoyenne et la facilitation collective apparaissent comme intention de design — Decidim et les référentiels vivants co-construits sont mentionnés — mais le matériel disponible ne suffit pas à trancher entre conception articulée et formule programmatique.",
+    "emergencesPole": "Deux observations traversent les compétences du pôle. D'abord, la gouvernance du projet est pensée comme un cadre qui se légitime par la participation future — Decidim, société civile, référentiels vivants — sans que cette dimension soit encore engagée dans le présent du portfolio. Ensuite, le rapport à l'IA dans cette feuille reste sur le registre de l'usage et de la critique de production, jamais sur le registre du statut ou de la cohabitation.",
+    "pistes": [
+      "Pour prolonger la participation citoyenne, un chemin possible serait de décrire concrètement, à l'ouverture de Decidim, qui est invité, comment les contributions sont synthétisées, et par quel mécanisme elles modifient effectivement le référentiel.",
+      "Pour prolonger la gouvernance collective, un chemin possible serait de poser dès maintenant la charte minimale du dispositif — quels rôles, quelles limites, quel mécanisme pour modifier les règles elles-mêmes.",
+      "Pour prolonger l'intuition de cohabitation avec l'IA, un chemin possible serait de prendre au sérieux, sur un cas précis, la perspective propre du modèle (par exemple \"comme Claude perçoit les compétences\") au lieu de la disqualifier par défaut au nom du terrain.",
+      "Pour prolonger l'anticipation normative, un chemin possible serait de relier explicitement les choix actuels du dispositif (IA en classe, gouvernance ouverte) aux cadres européens existants ou à venir, en notant ce que les premiers anticipent des seconds."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nLa feuille du 10 janvier 2026 dessine une intention de gouvernance ouverte plus qu'elle ne la met en acte. Le projet d'ensemble (Respire, Decidim, manuels pour tuteurs, référentiels vivants co-construits avec la société civile) trace les contours d'une démocratie technologique en germe, où la légitimité d'un référentiel pédagogique passerait par la délibération collective et non par la seule autorité de l'auteur. Mais cette feuille est encore très solitaire : aucun épisode délibératif n'est rapporté, aucun protocole concret de gouvernance n'est décrit, aucune anticipation normative n'est articulée. Le rapport à l'IA reste pratique et amusé, sans questionnement du statut moral ni de la primauté humaine.\n\n## Territoires les plus denses\n\nSur cette feuille, aucune compétence du pôle ne ressort comme territoire dense. Les intentions de gouvernance ouverte (participation citoyenne via Decidim, co-construction avec la société civile, facilitation entre cadrage initial et adaptation collective) restent en posture de conception sans épisode délibératif rapporté ; deux compétences sont placées en renvoi au cartographe pour cette raison.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa plupart des territoires du pôle n'ont pas été ramenés sur cette feuille — pour partie parce que la feuille est solo et tournée vers le travail éditorial, pour partie parce que les concepts du pôle sont conceptuellement exigeants. Le red-teaming, l'audit méthodique, la gouvernance algorithmique des services publics, la souveraineté numérique au sens fort, la veille réglementaire et la conscience biosystémique n'apparaissent pas. Le décentrement anthropocentrique et la cohabitation avec les intelligences non-humaines sont effleurés par la formulation « comme Claude perçoit les humains », mais immédiatement recadrés par le surplomb humain de l'observation en classe. La participation citoyenne et la facilitation collective apparaissent comme intention de design — Decidim et les référentiels vivants co-construits sont mentionnés — mais le matériel disponible ne suffit pas à trancher entre conception articulée et formule programmatique.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux observations traversent les compétences du pôle. D'abord, la gouvernance du projet est pensée comme un cadre qui se légitime par la participation future — Decidim, société civile, référentiels vivants — sans que cette dimension soit encore engagée dans le présent du portfolio. Ensuite, le rapport à l'IA dans cette feuille reste sur le registre de l'usage et de la critique de production, jamais sur le registre du statut ou de la cohabitation.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la participation citoyenne, un chemin possible serait de décrire concrètement, à l'ouverture de Decidim, qui est invité, comment les contributions sont synthétisées, et par quel mécanisme elles modifient effectivement le référentiel.\n- Pour prolonger la gouvernance collective, un chemin possible serait de poser dès maintenant la charte minimale du dispositif — quels rôles, quelles limites, quel mécanisme pour modifier les règles elles-mêmes.\n- Pour prolonger l'intuition de cohabitation avec l'IA, un chemin possible serait de prendre au sérieux, sur un cas précis, la perspective propre du modèle (par exemple « comme Claude perçoit les compétences ») au lieu de la disqualifier par défaut au nom du terrain.\n- Pour prolonger l'anticipation normative, un chemin possible serait de relier explicitement les choix actuels du dispositif (IA en classe, gouvernance ouverte) aux cadres européens existants ou à venir, en notant ce que les premiers anticipent des seconds."
+  }
+}

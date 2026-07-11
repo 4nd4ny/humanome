@@ -1,0 +1,395 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Je suis en sous-régime avec la fièvre, mais Claude avance bien sans moi.",
+      "contexte": "Constat d'une délégation effective à Claude pendant que l'apprenant relit la v2 du roman ; trace de coordination hybride humain-IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Cowork bosse sur Sqilium qui est le futur EduFolio. L'objectif est de créer une démo, pas un outil 100% opérationnel (même si je suis pas très loin d'avoir un truc qui marche).",
+      "contexte": "Cadrage explicite de l'objectif du projet Sqilium — démo plutôt qu'outil opérationnel ; distinction faite entre les deux états.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "A nouveau. Ce n'est pas un projet prioritaire. Je fais juste un peu mumuse car j'ai l'environnement d'ouvert. Mais c'est cool de voir les performances de Claude Opus 4.6 en action !",
+      "contexte": "Observation d'un comportement modèle (Claude Opus 4.6) avec qualificatif de performance ; encadrement du temps consacré à cette activité non-prioritaire.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "J'aimerai bien encore inclure l'interface complète de cartographie (pas le proto, mais celle que j'avais commencé à faire cet été et que je n'ai jamais terminée) et faire fonctionner le bouton IA avec une clé API en attendant Aurora.",
+      "contexte": "Description d'une intégration technique combinant interface front-end et appel API ; mention d'Aurora comme système à venir.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Finir le système d'évaluation mono IA, pour comparer avec les résultats d'Aurora — YAML + référentiel v7 == ok — Méta Prompt à rédiger avec l'architecture de gouvernance : Kairos (Gardien de l'Émergence et générateur d'hypothèses et de compétences en devenir) — Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable) — Metis (Gardien des 4 Regards : agent logicien / agent psychologue / agent historien / agent créatif)",
+      "contexte": "Architecture explicite d'un système multi-agents IA pour l'évaluation : quatre rôles différenciés avec missions distinctes (génération, véto, contradiction, regards multiples) ; comparaison prévue mono-IA vs Aurora.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Lancer les discussions sur Decidim et les débat autour du référentiel v7 (Un débat par compétence => 61 débats ?)",
+      "contexte": "Conception d'un dispositif de délibération distribué (un débat par compétence) ; structuration d'un processus participatif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Reprendre le site web respire.school en incluant la ludification : — L'Ordre des Éclaireur : Veilleurs, Architectes, Épistémiarques → Maintiennent le référentiel des compétences humaines post AGI sur Décidim — La Confrérie des Noèsiomanciens : Médiateurs, Noèsiologues, Maîtres du Grimoire → Maintiennent le référentiel des fonctions cognitives (le Grimoire) — La Guilde des Technomanciens : Cartographes, Promptologues, Promptagogue → Maintiennent la liste des prompts et fichiers YAML des cartographies",
+      "contexte": "Architecture sociotechnique tripartite (Ordre / Confrérie / Guilde) répartissant la maintenance de trois référentiels distincts (compétences, fonctions cognitives, prompts) ; rôles différenciés à l'intérieur de chaque organe.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Publier *De Humani Cerebri Fabrica* sur nosiology.education car ça c'est le cœur de la thèse inachevée : — Le grimoire — Dynamica Animata — Cartes des 86 fonctions et dysfonctions cognitives",
+      "contexte": "Mention d'un référentiel des 86 fonctions et dysfonctions cognitives au cœur d'une thèse ; volonté de publication.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Finir le livre Émergence (j'y suis presque) qui servira à lancer le concept pour le grand public (parents / étudiants) Puis le publier sur Amazon en eBook gratuit Puis imprimer une vingtaine d'exemplaires pour donner aux proches",
+      "contexte": "Plan d'édition multi-canal pour un livre conçu comme vecteur d'un concept à diffuser ; audiences cibles distinctes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Finir de rédiger la trilogie : — Votre enfant pense-t-il vraiment ? – L'intelligence à l'épreuve de l'école (livre pratique : pour les parents / explique le besoin d'une nouvelle pédagogie) — Le somnambule, le brillant, l'empêché – Réparer les intelligences en classe (livre politique : pour les profs / explique les lacunes de l'enseignement actuel) — Noèsiologie – Une pédagogie de l'émergence (livre théorique : pour les chercheurs, décrit le couplage noèsis / entendement)",
+      "contexte": "Trilogie pensée comme dispositif éditorial à audiences différenciées (parents / profs / chercheurs) avec registre adapté à chacun (pratique / politique / théorique).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée critique et anti-hallucination dans cette feuille. Pour ouvrir ce dossier, une situation concrète de vérification, de détection d'hallucination ou d'autocritique en temps réel mériterait d'être documentée."
+      }
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le passage formule un objectif borné — démo plutôt qu'outil opérationnel — ce qui pourrait activer un cadrage de l'intention sur le projet Sqilium."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Le livre Émergence est cadré explicitement par sa fonction (« servira à lancer le concept pour le grand public ») ; possible cadrage de la finalité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : le cadrage de l'intention exige une interrogation visible de l'objectif lui-même, pas seulement sa formulation. La pièce 1 énonce un périmètre (démo vs outil) sans montrer le mouvement qui a conduit à ce périmètre, et la pièce 2 attribue une fonction au livre sans tracer la décision qui a transformé une question en un projet d'objet. Une fiche d'objectifs n'est pas un cadrage — il manque la question préalable. La pièce 2, en attribuant une utilité claire au livre (« lancer le concept »), résiste un peu : c'est moins un objet en soi qu'un instrument au service d'une intention plus large. La pièce 1, elle, ressemble plutôt à de la planification d'envergure.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le livre est défini par sa fonction extérieure (servir à lancer le concept), trace d'un cadrage qui distingue l'objet produit du but visé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir la pièce 2 au motif qu'elle articule un livre à sa fonction. Mais en y regardant de plus près, c'est essentiellement une affirmation d'utilité, pas un récit de questionnement préalable sur la nature du problème. Le cadrage de l'intention exige le moment où l'on s'interroge sur la bonne question à poser — ce moment-là n'apparaît pas. L'attribution d'une fonction au livre relève plutôt d'une planification stratégique déjà calée.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce active mieux 7.05 (vision stratégique qui relie un présent à une finalité future) que 1.02 (questionnement du problème lui-même). Pas de trace d'interrogation sur l'objectif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'un cadrage de l'intention dans cette feuille. J'ai trouvé une formulation d'utilité (le livre comme vecteur du concept) qui aurait pu, prise isolément, suggérer un travail sur le pourquoi. Mais en passant cette pièce au crible, ce qui s'en dégage relève davantage d'une vision stratégique articulée que d'un questionnement actif du problème à poser. La feuille énumère des objectifs et des productions, sans montrer le moment où l'objectif lui-même est mis en question. Le cadrage, dans cette feuille, n'est pas attesté.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption de sycophantie a disqualifié la seule pièce ayant résisté : elle active une dimension stratégique plutôt qu'un cadrage de l'intention.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, une feuille décrivant un moment où le problème lui-même a été reformulé en cours de route — non pas le plan ajusté, mais la question initiale interrogée — éclairerait le cadrage tel qu'il se distingue de la planification."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synthèse intégrative dans cette feuille. Un passage où deux domaines éloignés fusionneraient en un insight nouveau ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la métacognition dans cette feuille. Une observation explicite du mode de pensée à l'œuvre (pas du résultat) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée systémique dans cette feuille. Une boucle de rétroaction nommée, avec direction et effet, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Le passage nomme un modèle précis (Claude Opus 4.6) et qualifie ses performances — usage du vocabulaire technique des modèles IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la littératie IA exige une compréhension causale du fonctionnement sous le capot — tokens, fenêtre de contexte, hallucinations — pas seulement la mention d'un nom de modèle. Nommer « Claude Opus 4.6 » et observer ses « performances » ne dit rien du mécanisme. C'est de l'usage informé, pas une hypothèse technique. La pièce ne résiste pas vraiment à la présomption d'absence : aucune compréhension du pourquoi du comportement observé n'est rendue visible.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner ici. La littératie IA telle que la fiche la définit n'apparaît pas dans cette feuille — seulement une familiarité avec les noms et performances des modèles.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette compétence soit présente dans la feuille. La mention de Claude Opus 4.6 et de ses performances en action ressemble à un constat d'utilisateur informé plutôt qu'à un diagnostic mécanique. Aucune hypothèse sur le fonctionnement interne, aucune explication d'un comportement par un mécanisme technique, aucune démystification argumentée. La littératie IA, dans cette feuille, n'est pas attestée — ce qui n'exclut pas qu'elle soit présente ailleurs dans le portfolio.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été démentie : la pièce nomme un modèle sans en expliciter le mécanisme.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage diagnostiquant une faille ou un comportement IA par son mécanisme sous-jacent (gestion de contexte, distribution, hallucination expliquée par sa cause) éclairerait la littératie telle que la fiche la définit."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Architecture multi-agents explicite : Kairos / Aegis / Daimon / Metis, chacun avec un rôle nommé, des missions distinctes, et une logique de gouvernance (générateur, véto, avocat du diable, regards multiples)."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Description d'une intégration combinant interface front-end, bouton IA et clé API ; composants distincts dont l'interaction est décrite."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Trace d'une délégation effective à Claude pendant que l'apprenant travaille en parallèle sur le roman — usage d'un système multi-sessions/multi-rôles."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : l'architecture de systèmes IA exige plus qu'une liste de noms — il faut des composants articulés par des flux, des rôles spécifiés, des mécanismes de routing ou de contrôle qu'un tiers pourrait comprendre et maintenir. La pièce 1 décrit quatre agents avec missions distinctes et fonctions claires (génération, véto, contradiction, regards multiples) — c'est la définition d'une architecture de gouvernance multi-agents, pas un nom isolé. La pièce 2 nomme bouton IA et clé API mais sans articulation systémique. La pièce 3 est trop allusive (Claude « avance bien sans moi »). La pièce 1 résiste à la présomption avec une force réelle : les quatre rôles forment un système où le véto d'Aegis peut neutraliser l'output de Kairos, où Daimon attaque ce que les autres proposent, où Metis multiplie les angles — c'est une architecture pensée, pas une accumulation de noms.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Quatre rôles nommés avec missions différenciées et logique de gouvernance (génération, véto, friction, regards multiples) — c'est une architecture multi-agents formalisée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 1 a résisté ; je dois maintenant me demander si j'ai halluciné sa portée. Les noms d'agents sont des étiquettes — Kairos, Aegis, Daimon, Metis — qui pourraient être plus décoratives qu'architecturales. Mais en relisant, chaque rôle est explicité par sa fonction (« générateur d'hypothèses », « pose un véto », « avocat du diable », « 4 Regards » avec quatre sous-agents). Les missions ne se recouvrent pas, elles se complètent dans une logique de contrôle. L'attaque du glissement lexical (les mots-clés sans charge sémantique) ne tient pas : ici, chaque nom porte un rôle fonctionnel défini. L'attaque du récit performatif (raconter sans montrer) tient partiellement : la pièce décrit une architecture à venir (« méta-prompt à rédiger »), pas une architecture déjà en marche. C'est de la conception explicite, pas une opération validée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant est en mouvement vers la construction de cette architecture (méta-prompt « à rédiger »), pas dans son exploitation effective. La conception est néanmoins suffisamment détaillée pour qualifier d'architecture pensée — pas seulement évoquée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la conception d'un système IA articulé soit présente dans cette feuille. Les pièces sur le bouton IA et la délégation à Claude n'ont pas tenu : trop allusives, sans articulation système. Mais l'architecture Kairos / Aegis / Daimon / Metis a résisté avec une cohérence interne forte — quatre rôles, quatre fonctions distinctes, une logique de gouvernance où chaque agent a sa fonction de contrôle. La conception est décrite plutôt que mise en œuvre (le méta-prompt reste à rédiger), ce qui modère la confiance sans la faire tomber. Ce qui reste : une trace d'architecture multi-agents pensée, avec rôles différenciés et logique de gouvernance — niveau d'articulation que la fiche reconnaît explicitement comme manifestation de la compétence.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "La présomption de sycophantie a affaibli la pièce sans la disqualifier : l'architecture est conçue avec quatre rôles différenciés mais reste à concrétiser dans un méta-prompt à rédiger.",
+        "prescription": "Pour approfondir cette compétence dans le portfolio, une fois le méta-prompt rédigé, documenter les flux entre Kairos, Aegis, Daimon et Metis — qui appelle qui, quand un véto se déclenche, comment les regards de Metis remontent — permettrait de matérialiser une architecture déjà bien pensée en architecture pleinement exploitable par un tiers."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Le passage évoque un méta-prompt à rédiger avec une architecture de gouvernance — la formulation du prompt comme outil structurant le comportement des agents."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : le dialogue IA avancé exige de la sophistication de la formulation, des techniques nommées (chain-of-thought, few-shot, méta-prompting), des itérations stratégiques analysées, ou la conception explicite de rôles différenciés dans un même dialogue. La pièce mentionne un « méta-prompt à rédiger » avec une architecture de gouvernance à quatre rôles. La mention de « méta-prompt » est techniquement précise, mais le prompt lui-même n'existe pas encore (« à rédiger »). Ce qui résiste : la conception explicite de quatre rôles antagonistes ou complémentaires (générateur, véto, avocat du diable, regards multiples), qui est précisément le marqueur « orchestration de rôles différenciés dans un même dialogue » de la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'orchestration de quatre rôles différenciés est explicite, et la fiche cite ce marqueur (« systèmes de rôles différenciés (AVOCAT, CHASSEUR, ABSENT) ») comme manifestation directe." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce a résisté au temps 1 ; mais ai-je halluciné sa portée ? Il y a un risque de confusion entre 1.07 (architecture, composants, flux) et 1.08 (sophistication de la formulation prompt). Ici la pièce est référencée pour les deux compétences. La fiche 1.08 souligne que la distinction tient à ce que 1.08 vise la formulation, pas la conception du système. Or, dans cette feuille, ce qu'on lit est de la conception d'architecture — les quatre rôles ne sont pas encore traduits en formulations de prompts. La pièce active plus pleinement 1.07 que 1.08.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active mieux 1.07 (architecture) que 1.08 (formulation). Le méta-prompt n'est pas encore rédigé : il y a intention de l'orchestration de rôles mais pas encore d'acte de formulation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'un dialogue IA avancé dans cette feuille. La mention d'un méta-prompt à venir et l'orchestration de quatre rôles antagonistes ont résisté en partie. Mais en passant la pièce au crible de la distinction critique avec 1.07, ce qui s'y joue relève davantage de la conception d'architecture que de la sophistication de la formulation. Le méta-prompt n'existe pas encore, et l'orchestration des rôles est formulée en termes de fonctions, pas en termes de techniques de prompting. La trace est présente mais ténue ; un méta-prompt rédigé, avec ses choix de formulation explicites, viendrait la consolider.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "La pièce résiste à la présomption d'absence par l'orchestration explicite de rôles, mais l'attaque de confusion avec 1.07 l'affaiblit : c'est l'architecture qui ressort, pas encore la formulation.",
+        "prescription": "Pour distinguer cette compétence de l'architecture pure, documenter le méta-prompt une fois rédigé — avec les choix de formulation, les techniques mobilisées (rôles, contraintes, chaînes de raisonnement) et les itérations qui ont conduit à sa version stable — éclairerait la sophistication de la formulation que la fiche désigne."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de pensée computationnelle hors-informatique dans cette feuille. Un passage transférant une logique algorithmique (décomposition, conditionnelle, debugging) à un domaine non technique ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Le passage évoque une délégation à Claude (« avance bien sans moi ») pendant que l'apprenant fait autre chose (relire le roman) — esquisse de répartition humain-IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la synergie hybride exige une articulation explicite du trade-off — ce que l'humain garde et pourquoi, ce qui revient à l'IA et pourquoi, en termes de forces comparatives. La pièce dit que Claude « avance bien sans moi » pendant que l'apprenant fait autre chose. C'est une délégation de fait, pas une articulation des forces comparatives. La pièce ne porte pas le pourquoi de la répartition, seulement son existence. Elle ne résiste pas vraiment à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à examiner ici. La synergie hybride, telle que la fiche la définit, exige une articulation que la pièce ne porte pas.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la synergie hybride soit présente dans cette feuille. La pièce sur la délégation à Claude pendant que l'apprenant relit le roman porte une répartition de fait mais pas son articulation. La fiche est très claire : « j'ai utilisé l'IA » ou « l'IA m'a aidé » sont des usages, pas de la synergie. Le critère est l'articulation des forces comparatives, qui ne figure pas ici. La compétence n'est pas attestée dans cette feuille.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été démentie : la délégation existe mais n'est pas articulée en termes de forces comparatives.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage explicitant pourquoi telle tâche revient à Claude et pas à l'apprenant — ou inversement — éclairerait la synergie au sens où la fiche la définit."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le travail de pensée a pris la forme d'un inventaire architectural : énumération de projets, agencement de rôles, conception de dispositifs à venir. La fièvre déclarée en ouverture cohabite avec une vue d'ensemble dense — sept priorités numérotées, plusieurs registres simultanés (édition, plateforme, évaluation, site web, documentation, publication scientifique, trilogie d'auteur). Le pôle de la pensée se manifeste ici plus dans la conception de structures que dans l'exercice du doute, de la synthèse ou de la métacognition. La trace la plus tenace concerne la conception d'un système d'évaluation multi-agents IA — Kairos, Aegis, Daimon, Metis — où quatre rôles antagonistes ou complémentaires forment une logique de gouvernance interne.",
+    "territoiresDenses": [
+      {
+        "competence": "Architecture de Systèmes IA",
+        "description": "La feuille décrit une architecture à quatre agents avec rôles différenciés et logique de gouvernance — générateur d'hypothèses, gardien éthique avec véto, avocat du diable, agent à quatre regards. C'est une conception multi-agents articulée plutôt qu'une accumulation de noms.",
+        "extraitVerbatim": "Kairos (Gardien de l'Émergence et générateur d'hypothèses et de compétences en devenir) — Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable) — Metis (Gardien des 4 Regards : agent logicien / agent psychologue / agent historien / agent créatif)",
+        "ceQueCaDit": "Le travail de conception multi-agents montre une habitude à penser les systèmes IA en termes de rôles antagonistes plutôt qu'en termes d'agent unique optimisé. La logique de véto, de friction et de regards multiples est portée au niveau de l'architecture, pas du prompt."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas explorés dans cette feuille. La pensée critique, la synthèse intégrative, la métacognition, la pensée systémique et la pensée computationnelle n'y laissent pas de traces — ce qui ressemble à un choix d'angle plus qu'à une limite, la feuille étant centrée sur l'inventaire des chantiers et la conception de dispositifs. La littératie IA apparaît en surface (nom de modèle, mention de performance) sans expliciter de mécanisme. Le dialogue IA avancé et la synergie hybride esquissent une intention sans encore la déployer : le méta-prompt reste à rédiger, la répartition entre l'apprenant et Claude n'est pas articulée en forces comparatives. Ces zones mériteraient d'être documentées dans des feuilles où l'acte de penser, de douter ou de raisonner devient l'objet du récit, pas seulement son contexte.",
+    "emergencesPole": "Trois traversées émergent. La première : une pensée par architectures emboîtées — quatre agents de gouvernance pour l'évaluation, trois confréries pour le site web, deux états (démo / opérationnel) pour Sqilium, des audiences différenciées pour la trilogie. La pensée se déploie en structures organisationnelles plutôt qu'en arguments. La deuxième : une cohabitation entre intention et exécution — beaucoup de « à rédiger », « à finir », « à reprendre », « à inclure » — qui place le pôle de la pensée dans un registre projectif. La troisième : une distance assumée à l'opérationnel (« mumuse », « pas un projet prioritaire ») qui ouvre un espace de pensée non instrumentale au milieu d'un agenda dense.",
+    "pistes": [
+      "Pour prolonger la conception multi-agents, un chemin possible serait de documenter, une fois le méta-prompt rédigé, comment les quatre rôles s'articulent en pratique — qui appelle qui, à quel moment un véto se déclenche, comment les regards de Metis remontent vers Kairos.",
+      "Pour ouvrir un territoire de pensée critique, un chemin possible serait de revenir, dans une feuille future, sur un moment où une suggestion IA a été refusée — non pas pour son inexactitude mais parce qu'elle ne convenait pas, en décrivant ce qui a déclenché le refus.",
+      "Pour rendre visible la synergie humain-IA déjà à l'œuvre, un chemin possible serait de prendre une journée comme celle-ci et d'expliciter, tâche par tâche, ce qui a été délégué à Claude, ce qui est resté chez l'apprenant, et ce qui a circulé entre les deux."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le travail de pensée a pris la forme d'un inventaire architectural : énumération de projets, agencement de rôles, conception de dispositifs à venir. La fièvre déclarée en ouverture cohabite avec une vue d'ensemble dense — sept priorités numérotées, plusieurs registres simultanés (édition, plateforme, évaluation, site web, documentation, publication scientifique, trilogie d'auteur). Le pôle de la pensée se manifeste ici plus dans la conception de structures que dans l'exercice du doute, de la synthèse ou de la métacognition. La trace la plus tenace concerne la conception d'un système d'évaluation multi-agents IA — Kairos, Aegis, Daimon, Metis — où quatre rôles antagonistes ou complémentaires forment une logique de gouvernance interne.\n\n## Territoires les plus denses\n\n### Architecture de Systèmes IA\n\nLa feuille décrit une architecture à quatre agents avec rôles différenciés et logique de gouvernance — générateur d'hypothèses, gardien éthique avec véto, avocat du diable, agent à quatre regards. C'est une conception multi-agents articulée plutôt qu'une accumulation de noms.\n\n> « Kairos (Gardien de l'Émergence et générateur d'hypothèses et de compétences en devenir) — Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable) — Metis (Gardien des 4 Regards : agent logicien / agent psychologue / agent historien / agent créatif) »\n\nLe travail de conception multi-agents montre une habitude à penser les systèmes IA en termes de rôles antagonistes plutôt qu'en termes d'agent unique optimisé. La logique de véto, de friction et de regards multiples est portée au niveau de l'architecture, pas du prompt.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas explorés dans cette feuille. La pensée critique, la synthèse intégrative, la métacognition, la pensée systémique et la pensée computationnelle n'y laissent pas de traces — ce qui ressemble à un choix d'angle plus qu'à une limite, la feuille étant centrée sur l'inventaire des chantiers et la conception de dispositifs. La littératie IA apparaît en surface (nom de modèle, mention de performance) sans expliciter de mécanisme. Le dialogue IA avancé et la synergie hybride esquissent une intention sans encore la déployer : le méta-prompt reste à rédiger, la répartition entre l'apprenant et Claude n'est pas articulée en forces comparatives. Ces zones mériteraient d'être documentées dans des feuilles où l'acte de penser, de douter ou de raisonner devient l'objet du récit, pas seulement son contexte.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois traversées émergent. La première : une pensée par architectures emboîtées — quatre agents de gouvernance pour l'évaluation, trois confréries pour le site web, deux états (démo / opérationnel) pour Sqilium, des audiences différenciées pour la trilogie. La pensée se déploie en structures organisationnelles plutôt qu'en arguments. La deuxième : une cohabitation entre intention et exécution — beaucoup de « à rédiger », « à finir », « à reprendre », « à inclure » — qui place le pôle de la pensée dans un registre projectif. La troisième : une distance assumée à l'opérationnel (« mumuse », « pas un projet prioritaire ») qui ouvre un espace de pensée non instrumentale au milieu d'un agenda dense.\n\n## Pistes pour enrichir ce pôle\n\n> Pour prolonger la conception multi-agents, un chemin possible serait de documenter, une fois le méta-prompt rédigé, comment les quatre rôles s'articulent en pratique — qui appelle qui, à quel moment un véto se déclenche, comment les regards de Metis remontent vers Kairos.\n\n> Pour ouvrir un territoire de pensée critique, un chemin possible serait de revenir, dans une feuille future, sur un moment où une suggestion IA a été refusée — non pas pour son inexactitude mais parce qu'elle ne convenait pas, en décrivant ce qui a déclenché le refus.\n\n> Pour rendre visible la synergie humain-IA déjà à l'œuvre, un chemin possible serait de prendre une journée comme celle-ci et d'expliciter, tâche par tâche, ce qui a été délégué à Claude, ce qui est resté chez l'apprenant, et ce qui a circulé entre les deux."
+  }
+}

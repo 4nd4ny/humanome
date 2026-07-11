@@ -1,0 +1,451 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "C'est super pénible en fait de jouer le jeu de remplir un portfolio quand on a l'impression que ça ne sert à rien.",
+      "contexte": "L'apprenant vit l'exercice du portfolio comme contraignant — il se met à la place de l'apprenant futur qui devra le faire. Active potentiellement 7.07 (anticipation des résistances dans la conduite du changement).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Donc je constate, en le faisant, une difficulté que les élèves de Respire rencontreront tous : le sentiment de surcharge de travail inutile. On vit dans un monde ou il faut courir tout le temps. Prendre le temps de documenter ce que l'on pense sur notre manière d'apprendre, n'est pas naturel. Beaucoup auront tendance à ne pas le faire ou à être trop bref. C'est inévitable, mais pas incompatible !",
+      "contexte": "Anticipation explicite des résistances futures des élèves, normalisation (\"c'est inévitable\") et maintien de la faisabilité (\"pas incompatible\"). Pattern fort de 7.07 (conduite du changement) cité quasi-littéralement par la fiche.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Mais avant tout, je dois terminer le site qui est devenu une usine à gaz avec ma dernière idée d'intégrer des notes de marge qui réalisent les liens avec le document \"Racines Pédagogiques\". Le site a maintenant 5 niveaux de lecture : 1. Les résumés → Pour tous 2. Les questions / objections → Pour tous 3. Les questions / objections déroulées → Pas pour les élèves mais pour les parents / employeurs 4. Les PDF en téléchargement → Approfondissement pour les enseignants / pédagogues 5. Les notes de marges → Approfondissement pour les enseignants / pédagogues",
+      "contexte": "Architecture documentaire stratifiée à cinq niveaux par public, avec conscience explicite des destinataires. Active potentiellement 7.03 (documentation vivante avec conscience du destinataire), 7.05 (vision stratégique : architecture surdimensionnée), 7.01 (architecture d'environnement d'apprentissage).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Je pense développer une extension invoquant Gémini pour venir taguer les portfolios afin de mettre en évidence les compétences du référentiel dans le texte.",
+      "contexte": "L'apprenant délègue à un agent IA le travail de tagging des compétences sur les portfolios. Active potentiellement 7.04 (orchestration humain-IA : qui fait quoi), 1.10 (synergie — frontière à distinguer).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Je dois aussi créer une formation pour les tuteurs, dans laquelle je commenterai tout ce qu'il faut savoir pour gérer un groupe d'apprenant et lancer les bons prompts socratiques et les scripts d'analyse pour générer les traces nécessaires pour la cartographie.",
+      "contexte": "Création d'une formation pour outiller des tuteurs à la conduite de dialogues socratiques. Active potentiellement 7.01 (architecture maïeutique : prompts socratiques pour faire accoucher les apprenants), 7.03 (documentation pour autrui), 7.02 (cartographie comme dispositif d'évaluation transformative).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "J'espère le mettre en ligne avant la fin de l'année, pour ensuite pouvoir lancer les discussions sur Decidim (https://participer.harmonia.education) pour philosopher et co-construire le référentiel que j'ai actuellement juste fait générer sur la base de réflexions perso.",
+      "contexte": "Séquençage stratégique : terminer le site avant la fin de l'année puis lancer Decidim. Active potentiellement 7.05 (lien explicite entre étape présente et étape future), 7.06 (priorisation argumentée).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2025-12-22",
+      "extraitVerbatim": "Pas mal de travail en perspective ! Je ne pense pas pouvoir être opérationnel avant l'été en fait. Mais ce n'est pas grave : les idées sont là et elles me semblent vraiment tenir la route.",
+      "contexte": "Confort explicite avec un délai long (\"avant l'été\") justifié par la solidité des idées — cité presque mot pour mot par la fiche 7.05 comme trace oblique de vision stratégique. Active potentiellement 7.05.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Architecture d'un environnement d'apprentissage stratifié à cinq niveaux par public — manifestation listée par la fiche comme \"architecture multi-niveaux d'un environnement d'apprentissage complet\"."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Formation tuteurs centrée sur \"les bons prompts socratiques\" — méthode maïeutique nommée explicitement comme cœur du dispositif pédagogique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la maïeutique et la facilitation d'apprentissage ne sont pas attestées : la fiche demande des questions adressées à autrui pour provoquer une prise de conscience, des récits de retenue délibérée (\"j'aurais pu lui dire, mais...\"), ou la description d'architectures pédagogiques effectivement conçues. La pièce 1 décrit cinq niveaux de lecture, ce qui correspond à \"architecture multi-niveaux d'un environnement d'apprentissage complet\" cité par la fiche. La pièce 2 nomme explicitement \"les bons prompts socratiques\" comme objet de la formation tuteurs — la méthode maïeutique elle-même est l'objet du travail. Ce qui résiste : les deux pièces, car la fiche pose précisément la maïeutique comme méthode ET la facilitation comme architecture, et les deux pièces couvrent ces deux dimensions. Ce qui reste faible : aucune question socratique n'est citée verbatim, aucun récit de retenue ne figure sur la feuille.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Architecture d'apprentissage stratifiée à cinq niveaux — pattern listé par la fiche comme dimension facilitation/architecture." },
+            { "pieceId": 2, "motifResistance": "La méthode maïeutique (\"prompts socratiques\") est nommée explicitement comme cœur du dispositif tuteur — la fiche pose le questionnement socratique comme manifestation centrale." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu deux pièces qui se prêtent à attaque. Pour la pièce 1, l'attaque pertinente est (b) confusion de compétence : les cinq niveaux activent peut-être mieux 7.03 (documentation vivante) ou 3.04 (curation) que 7.01 — un site stratifié par public n'est pas nécessairement un environnement d'apprentissage au sens où la fiche parle d'apprentissage maïeutique. Pour la pièce 2, l'attaque (g) mouvement-vers tient : l'apprenant annonce qu'il enseignera les prompts socratiques, sans en montrer aucun, sans décrire de retenue effective, sans citer de question maïeutique en acte. L'apprenant nomme la méthode plutôt qu'il ne la pratique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Cinq niveaux de lecture par public relèvent davantage de la documentation différenciée (7.03) ou de la curation (3.04) que d'un environnement d'apprentissage maïeutique au sens de 7.01 — un site informationnel n'est pas en soi un dispositif qui fait accoucher l'autre de son savoir."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La méthode socratique est nommée comme objet à enseigner, sans question maïeutique citée verbatim, sans récit de retenue, sans facilitation effective — on est au seuil entre intention et pratique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la maïeutique soit ici attestée, et la présomption d'absence a fait tomber la pièce sur les cinq niveaux de lecture : c'est de la documentation différenciée, pas un environnement maïeutique. Ce qui m'a forcé à reconnaître quelque chose, c'est que la méthode socratique est explicitement nommée comme cœur du dispositif tuteur. Sous la présomption de sycophantie, la pièce s'est affaiblie : nommer n'est pas pratiquer. Aucune question maïeutique n'est citée, aucune retenue effective n'est décrite — la fiche pose ces traces comme centrales. Il en résulte une présence partielle, du côté de l'intention nommée plutôt que de la pratique en acte. Le travail montre, dans ce pôle et sur cette feuille, une conscience que la maïeutique sera la méthode du dispositif Respire, sans encore montrer cette méthode au travail. La compétence pourrait se densifier le jour où le portfolio raconterait un échange précis — question posée, retenue tenue, prise de conscience suscitée.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie a survécu : la méthode socratique est nommée comme cœur du dispositif, sans question maïeutique citée verbatim ni retenue effective décrite.",
+        "prescription": "Pour approfondir le travail maïeutique amorcé, un chemin possible serait de raconter, sur une situation concrète, une question posée à autrui (ou à soi-même) qui a déclenché une prise de conscience — formulation citée, retenue tenue, effet observé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "La cartographie générée à partir des traces des portfolios est en soi un dispositif d'évaluation — miroir structuré de la progression. Active potentiellement 7.02 comme architecture évaluative."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'évaluation transformative n'est pas attestée : la fiche demande un acte évaluatif spécifique avec critères transparents, une finalité de progression (pas de tri), des questions adressées à l'évalué qui ouvrent des pistes, ou des dispositifs d'évaluation effectivement inventés. La pièce 1 mentionne \"la cartographie\" comme objet à générer à partir des traces des apprenants — c'est précisément un dispositif d'évaluation qui transforme les traces en miroir structuré. Mais la pièce reste très brève : l'apprenant ne décrit ni les critères, ni la formulation du feedback, ni l'intention transformative explicite. Ce qui résiste faiblement : la cartographie elle-même est un dispositif évaluatif qui correspond à la fiche (\"dispositifs d'évaluation inventés (miroir temporel, auto-évaluation guidée)\") — la cartographie de compétences est exactement un miroir structuré.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La cartographie de compétences est un dispositif d'évaluation inventé qui correspond au pattern \"miroir structuré de la progression\" listé par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce pour la cartographie comme dispositif évaluatif. Mais peut-être que je sur-interprète : nommer une cartographie ne suffit pas à attester d'évaluation transformative au sens fort. L'attaque pertinente est (a) insuffisance probatoire : l'apprenant ne dit rien des critères, ni du retour fait à l'apprenant, ni de l'intention transformative explicite. L'attaque touche fortement : on a une intention de dispositif, sans les critères ni la formulation du feedback. La pièce reste affaiblie. Par ailleurs, l'attaque (b) confusion de compétence pourrait s'appliquer : la cartographie peut être un outil de pilotage plus qu'un outil d'évaluation transformative — il faudrait savoir si elle est destinée à l'apprenant pour qu'il se voie, ou à un tiers pour le classer.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant nomme la cartographie comme finalité mais ne décrit ni les critères, ni la formulation du retour, ni l'intention transformative explicite — on a le contenant, pas le contenu évaluatif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que l'évaluation transformative soit ici attestée, et la présomption d'absence a tenu sur l'essentiel : aucun critère explicite, aucun feedback formulé, aucune dimension transformative articulée. Ce qui m'a forcé à hésiter, c'est que la cartographie générée à partir des traces de portfolio correspond textuellement au pattern \"miroir structuré de la progression\" cité par la fiche. Sous la présomption de sycophantie, la pièce s'est affaiblie : on a le projet d'un dispositif évaluatif, pas encore son fonctionnement décrit. Il en résulte une présence partielle, du côté de l'architecture d'évaluation en germe. La compétence pourrait se déployer plus pleinement le jour où le portfolio décrirait les critères de la cartographie, la manière dont le retour serait formulé à l'apprenant, et l'intention transformative qui le guide.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une pièce affaiblie a survécu : la cartographie comme dispositif d'évaluation inventé, sans critères ni formulation du retour décrite.",
+        "prescription": "Pour densifier le travail évaluatif amorcé, un chemin possible serait de décrire, pour la cartographie générée, les critères qui structurent le retour à l'apprenant, la manière dont il lui est adressé, et ce que ce dispositif cherche à faire progresser plutôt qu'à classer."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Structuration explicite du site à cinq niveaux avec destinataires nommés à chaque niveau (\"Pour tous\", \"Pas pour les élèves mais pour les parents / employeurs\", \"Approfondissement pour les enseignants / pédagogues\") — conscience marquée du futur lecteur."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Formation tuteurs destinée à \"commenter tout ce qu'il faut savoir\" — geste de capitalisation du savoir pour un futur tuteur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la documentation vivante n'est pas attestée : la fiche demande une attention délibérée à la structuration de l'information pour autrui (titres, sections, choix de ce qui reste où), du versioning explicite, une conscience nommée du futur lecteur. La pièce 1 contient une structuration manifeste avec destinataires identifiés à chaque niveau — c'est exactement le pattern de la fiche (\"attention délibérée à la structuration de l'information pour autrui\"). La pièce 2 est plus faible : la formation tuteurs est annoncée mais sa structuration n'est pas décrite, on est plus dans l'intention que dans l'artefact. Ce qui résiste : la pièce 1, parce qu'elle décrit un artefact (le site) avec sa structure et ses destinataires nommés à chaque niveau — la conscience du destinataire est explicite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Structuration à cinq niveaux avec destinataires nommés à chaque palier — conscience explicite du futur lecteur qui correspond au pattern central de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce 1. Mais peut-être que je sur-interprète : avoir cinq niveaux par public est de la communication différenciée, pas nécessairement de la documentation vivante au sens où la fiche exige une intention de pérennisation pour transmettre dans le temps. L'attaque pertinente est (a) insuffisance probatoire : on a la structure mais pas le versioning, pas l'historique d'évolution, pas le mécanisme de mise à jour. L'attaque touche : il manque la dimension vivante (évolution dans le temps). Mais la conscience du destinataire est nettement présente, et la fiche pose explicitement \"l'intention de pérennisation et la conscience du destinataire\" comme cœur de la compétence — la seconde au moins est clairement satisfaite.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La conscience du destinataire est explicite à chaque niveau, mais la dimension vivante (versioning, mise à jour, évolution dans le temps) n'est pas décrite — la pièce porte la moitié structurale de la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la documentation vivante soit ici attestée, et la présomption d'absence a fait tomber la pièce sur la formation tuteurs : pure intention, sans artefact décrit. Ce qui m'a forcé à reconnaître quelque chose, c'est la pièce sur le site à cinq niveaux : la structuration y est explicite, et les destinataires sont nommés palier par palier — \"Pour tous\", \"Pas pour les élèves mais pour les parents / employeurs\", \"Approfondissement pour les enseignants / pédagogues\". La conscience du destinataire, que la fiche pose comme l'un des deux critères centraux, est manifeste. Sous la présomption de sycophantie, la pièce s'est affaiblie : la dimension vivante (versioning, mise à jour) reste non décrite. Il en résulte une présence établie, calibrée prudemment. Le travail montre une structuration documentaire pensée pour différents publics, plus qu'une dynamique de mise à jour effective. La compétence pourrait se déployer plus pleinement le jour où la dimension vivante serait racontée — comment le site évolue, ce qui a été modifié, ce qui a été déplacé.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce affaiblie a survécu : structuration documentaire explicite à cinq niveaux avec destinataires nommés palier par palier — pattern central de la fiche, sans dimension vivante encore décrite.",
+        "prescription": "Pour densifier la dimension vivante de la documentation, un chemin possible serait de documenter, pour le site, l'historique de ses transformations — quelle idée a fait surgir tel niveau, ce qui a été déplacé entre niveaux, ce qui a été abandonné."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Délégation à Gémini du tagging de compétences — assignation d'un rôle (taggeur) à un agent IA dans un dispositif plus large piloté par l'humain."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le leadership situationnel et l'orchestration ne sont pas attestés : la fiche demande l'alternance délibérée entre direction et retrait, des choix explicites de laisser l'IA mener puis de reprendre, des règles de bascule, idéalement aussi des moments de retrait volontaire racontés. La pièce 1 mentionne une délégation à Gémini (tagger les compétences) mais ne décrit aucune alternance : pas de moment de reprise du contrôle, pas de critère de bascule, pas de récit de retrait volontaire. C'est de la délégation simple, ce que la fiche distingue précisément du leadership situationnel. La présomption d'absence absorbe la pièce.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner sous présomption de sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que le leadership situationnel soit ici attesté, et la présomption d'absence a tenu. La fiche distingue explicitement la délégation simple (\"j'ai délégué sans critères de bascule\") du leadership situationnel (\"alternance consciente, avec aussi des moments de retrait volontaire\"). Ici, l'apprenant annonce qu'il utilisera Gémini pour tagger sans décrire aucune alternance, aucun critère de bascule, aucun retrait. Il en résulte une absence assumée pour cette feuille. La compétence pourrait apparaître ailleurs si le portfolio raconte un moment précis où le contrôle a été repris à Gémini parce qu'un seuil a été atteint, ou inversement un moment où la tentation d'intervenir a été tenue.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé la pièce : délégation simple à Gémini sans alternance ni critère de bascule décrit — la fiche distingue précisément cela du leadership situationnel.",
+        "prescription": "Pour ouvrir le travail de leadership situationnel, un chemin possible serait de documenter, sur l'usage prévu de Gémini, les critères qui déterminent qui pilote — quand l'IA propose, quand l'humain arbitre, et un moment effectif de bascule entre les deux postures."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Architecture à cinq niveaux pour un site qui n'a encore que peu de visiteurs — cité explicitement par la fiche comme exemple de trace oblique (\"architecture de travail surdimensionnée pour l'usage actuel\")."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Séquençage stratégique : terminer le site avant la fin de l'année pour pouvoir ensuite lancer Decidim — lien explicite entre décision présente et étape future."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "\"Avant l'été, mais ce n'est pas grave : les idées sont là et elles me semblent vraiment tenir la route\" — cité quasi-littéralement par la fiche comme trace oblique de vision stratégique (\"confort explicite avec un délai\")."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la vision stratégique n'est pas attestée : la fiche demande un lien explicite entre projection future et décision présente, des justifications de choix présents par une direction long-terme. La pièce 1 décrit une architecture surdimensionnée (cinq niveaux pour un site débutant) — la fiche cite exactement ce pattern. La pièce 2 articule un séquençage : finir le site avant la fin de l'année pour pouvoir lancer Decidim ensuite — c'est un lien entre étape présente et étape future. La pièce 3 reproduit presque mot pour mot l'exemple de trace oblique donné par la fiche (\"ce n'est pas grave, les idées tiennent la route\"). Ce qui résiste fortement : les trois pièces. Il est rare qu'autant de marqueurs s'alignent sur une seule feuille — c'est précisément ce qui doit déclencher la présomption de sycophantie au temps 2.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Architecture surdimensionnée pour l'usage actuel — pattern listé textuellement par la fiche comme trace oblique de vision prospective." },
+            { "pieceId": 2, "motifResistance": "Séquençage explicite (terminer le site avant lancer Decidim) qui articule une étape présente à une étape future." },
+            { "pieceId": 3, "motifResistance": "Reproduction quasi-littérale de la formulation citée par la fiche : \"ce n'est pas grave, les idées tiennent la route\" comme marqueur de confiance dans une direction." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu trois pièces, dont deux qui reprennent presque mot pour mot des exemples cités par la fiche. Précisément parce que c'est si net, je dois suspecter (e) surinterprétation pédagogique : peut-être que le simple report (\"avant l'été\") est de la patience stratégique (4.09) ou de la simple temporisation, sans le lien argumenté entre futur et présent que la fiche exige. La pièce 3 pose un risque de double comptage avec 4.09 (patience stratégique). La pièce 2 est solide : le séquençage articule bien une suite logique site → Decidim. La pièce 1 est solide aussi : l'architecture à cinq niveaux est manifestement surdimensionnée par rapport à l'usage immédiat (l'apprenant qualifie lui-même le site d'\"usine à gaz\"), et la stratification est pensée pour des futurs publics qui ne lisent pas encore.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'architecture est explicitement surdimensionnée (cinq niveaux pour un site en construction) et la stratification est pensée pour des publics qui ne sont pas encore là — ce n'est pas une surinterprétation mais une correspondance directe au pattern de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le séquençage est posé (site puis Decidim) mais l'argument du pourquoi de cet ordre reste implicite — on devine qu'il faut le contenu pour lancer la délibération, mais ce raisonnement n'est pas explicité."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 4.09 (patience stratégique) ; pour 7.05, l'argument est la confiance dans une direction (\"les idées tiennent la route\"), ce qui reste valide mais avec un recouvrement à reconnaître."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la vision stratégique soit ici attestée, et la présomption d'absence a été fortement mise à l'épreuve : trois pièces s'alignent sur les marqueurs de la fiche, dont une qui reproduit quasi-littéralement un exemple donné. Sous la présomption de sycophantie, la première pièce (architecture surdimensionnée) a tenu sans concession — c'est une correspondance directe. Les deux autres se sont affaiblies (séquençage avec argument implicite, recouvrement avec 4.09 sur la confiance temporelle) sans disparaître. Il en résulte une présence établie, calibrée avec quelques réserves sur le recouvrement avec d'autres compétences. Le travail montre, dans ce pôle et sur cette feuille, une capacité à laisser une direction long-terme guider l'action présente — architecture pensée pour des publics futurs, séquençage projet/délibération, horizon estival assumé. La compétence pourrait se densifier le jour où le portfolio expliciterait davantage le pourquoi des choix de séquençage et la projection précise de l'état futur visé.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé une pièce centrale (architecture surdimensionnée pour usage futur) et maintenu deux pièces affaiblies (séquençage stratégique, confort avec délai long et direction maintenue) — alignement avec les marqueurs de la fiche.",
+        "prescription": "Pour densifier la vision stratégique amorcée, un chemin possible serait de raconter, sur l'un des dispositifs prévus, le futur précis qui motive le choix présent — quel état du projet à six mois ou un an justifie de faire X aujourd'hui plutôt que Y."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "\"Mais avant tout, je dois terminer le site\" : priorisation explicite d'une tâche avant d'autres. Pourrait porter un arbitrage temporel argumenté."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'efficacité personnelle n'est pas attestée : la fiche est exigeante — il faut des décisions de ne pas faire avec raisons articulées, des arbitrages de priorisation argumentés, idéalement un \"non\" stratégique. La pièce 1 mentionne \"avant tout, je dois terminer le site\" — c'est une priorisation, mais sans raison articulée (pourquoi le site avant tout ?), et surtout sans renoncement à autre chose. La fiche cite explicitement que \"je suis occupé\" ou \"j'ai beaucoup travaillé\" peuvent être des signes d'absence de 7.06. Ici, on est plus dans la déclaration que dans l'arbitrage. Aucun \"non\" stratégique n'est posé. La présomption d'absence absorbe la pièce sans grande difficulté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner sous présomption de sycophantie.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que l'efficacité personnelle soit ici attestée, et la présomption d'absence a tenu. La pièce sur la priorisation du site est posée sans argument ni renoncement explicite. La fiche est nette : le marqueur le plus fiable est le \"non\" stratégique argumenté — il rend visible le raisonnement de priorisation. Aucun \"non\" sur cette feuille. Il en résulte une absence assumée pour cette feuille. La compétence pourrait apparaître ailleurs si le portfolio raconte un refus argumenté — pourquoi telle tâche a été écartée, ce qui aurait été perdu en la prenant.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé la pièce : priorisation du site sans argument articulé ni renoncement à autre chose — la fiche pose le \"non\" stratégique comme marqueur central.",
+        "prescription": "Pour ouvrir un travail d'efficacité personnelle, un chemin possible serait de documenter un refus argumenté — quelle tâche ou sollicitation a été écartée, pourquoi, ce qui aurait été perdu en la prenant — plutôt que la liste de ce qui est fait."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Anticipation explicite des résistances futures (\"une difficulté que les élèves de Respire rencontreront tous\"), normalisation (\"c'est inévitable\") et maintien de la faisabilité (\"mais pas incompatible\") — pattern central de conduite du changement cité presque mot pour mot par la fiche."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Le site a connu plusieurs itérations (\"ma dernière idée\" intégrée fait que le site est devenu \"usine à gaz\") — travail en versions successives non thématisé comme tel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'agilité et la conduite du changement ne sont pas attestées : la fiche demande soit des itérations structurées avec cycle observable (générer-relire-tester-ajuster), soit une anticipation des résistances avec accompagnement humain. La pièce 1 contient une formulation quasi-littérale d'anticipation de résistances : \"sentiment de surcharge vécu personnellement puis projeté sur de futurs apprenants\" est l'exemple oblique exact donné par la fiche. La normalisation (\"c'est inévitable\") et le maintien de la faisabilité (\"mais pas incompatible\") relèvent du registre conduite du changement. La pièce 2 mentionne une dernière idée intégrée — mais l'apprenant ne raconte pas le cycle d'itération, juste l'effet (usine à gaz). Ce qui résiste fortement : la pièce 1, parce qu'elle reproduit exactement le pattern de la fiche. La pièce 2 résiste plus faiblement : l'itération est devinée, pas racontée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Anticipation des résistances + normalisation + maintien de la faisabilité — reproduction quasi-littérale du pattern central de conduite du changement listé par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai retenu la pièce 1 fortement. Précisément parce qu'elle reproduit l'exemple donné par la fiche, je dois suspecter (e) surinterprétation. Mais l'examen tient : l'apprenant ne fait pas seulement constater qu'un problème existe — il l'anticipe pour ses futurs élèves, le normalise (\"c'est inévitable\") et maintient la faisabilité (\"pas incompatible\"). C'est précisément la triade de conduite du changement (anticipation + normalisation + ouverture). L'attaque (a) insuffisance probatoire est plus juste : on a l'anticipation et la normalisation, on n'a pas la création de ressources de transition décrite. La pièce reste affaiblie sans être disqualifiée — le pattern est trop bien aligné.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "On a la triade anticipation/normalisation/maintien de la faisabilité, mais pas la création explicite de ressources de transition pour atténuer les résistances — le pattern est central, l'exécution reste à venir."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la conduite du changement soit ici attestée, et la présomption d'absence a fait tomber la pièce sur l'itération du site : on devine une boucle, on ne la raconte pas. Ce qui m'a forcé à reconnaître quelque chose, c'est l'anticipation explicite des résistances futures, dans une triade qui reproduit presque mot pour mot le pattern central de la fiche : reconnaître la difficulté que vivront les apprenants, la normaliser (\"c'est inévitable\"), maintenir la faisabilité (\"pas incompatible\"). Sous la présomption de sycophantie, la pièce s'est affaiblie sur l'absence de ressources de transition décrites, sans se disqualifier. Il en résulte une présence établie, calibrée prudemment. Le travail montre, dans ce pôle et sur cette feuille, une posture de conduite du changement qui anticipe et normalise les résistances. La compétence pourrait se déployer plus pleinement le jour où des ressources concrètes d'accompagnement seraient documentées (par exemple, comment soutenir les apprenants quand ils se sentiront en surcharge).",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a maintenu une pièce affaiblie centrale : anticipation des résistances futures avec normalisation et maintien de la faisabilité — triade reproduite quasi-littéralement depuis la fiche.",
+        "prescription": "Pour densifier le travail de conduite du changement amorcé, un chemin possible serait de documenter les ressources concrètes prévues pour accompagner les résistances anticipées — comment aider l'apprenant qui se sent en surcharge, quel dispositif d'allègement, quel rituel de remise en route."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident effectif avec ses détails temporels précis — séquence de décisions, timing, et les erreurs commises pendant l'action."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 2,
+    "nonEtablies": 3,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 22 décembre, le travail de pilotage et de transmission se manifeste fortement, à plusieurs niveaux. L'apprenant pense son projet comme un système pédagogique : il stratifie un site documentaire à cinq niveaux par public, il prépare une formation pour les tuteurs centrée sur les prompts socratiques, il anticipe les résistances qu'auront les futurs élèves face au portfolio. La voix dominante est celle d'un concepteur-pilote qui articule des étapes (terminer le site avant de lancer Decidim), assume des délais argumentés (avant l'été, parce que les idées tiennent) et projette sur autrui ce qu'il vit lui-même. Les marqueurs concrets cités sont le site à cinq niveaux, l'extension Gémini, la formation tuteurs, l'horizon estival. Sur ce pôle et cette feuille, le travail montre une vision stratégique incarnée dans l'architecture du dispositif et une posture de conduite du changement qui anticipe les difficultés des futurs apprenants.",
+    "territoiresDenses": [
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Architecture surdimensionnée pour des usages futurs, séquençage articulé entre étapes présentes et étapes à venir, confort assumé avec un horizon long parce que les fondations tiennent.",
+        "extraitVerbatim": "Je ne pense pas pouvoir être opérationnel avant l'été en fait. Mais ce n'est pas grave : les idées sont là et elles me semblent vraiment tenir la route.",
+        "ceQueCaDit": "Le travail montre une direction long-terme qui guide les décisions présentes — site stratifié pour des publics qui ne sont pas encore là, horizon estival assumé parce que la solidité conceptuelle prime sur la vitesse opérationnelle."
+      },
+      {
+        "competence": "Agilité et conduite du changement",
+        "description": "Anticipation des résistances futures des apprenants à partir de sa propre expérience vécue, normalisation explicite (\"c'est inévitable\") et maintien de la faisabilité (\"mais pas incompatible\").",
+        "extraitVerbatim": "Donc je constate, en le faisant, une difficulté que les élèves de Respire rencontreront tous : le sentiment de surcharge de travail inutile. [...] C'est inévitable, mais pas incompatible !",
+        "ceQueCaDit": "Le travail montre une posture de conduite du changement qui se met à la place de l'apprenant futur, qui ne nie pas la difficulté, et qui maintient ouverte la possibilité — la triade anticipation-normalisation-faisabilité."
+      },
+      {
+        "competence": "Documentation vivante",
+        "description": "Structuration explicite d'un site à cinq niveaux avec destinataires nommés palier par palier — conscience marquée du futur lecteur, au-delà d'un simple usage personnel.",
+        "extraitVerbatim": "Le site a maintenant 5 niveaux de lecture : 1. Les résumés → Pour tous 2. Les questions / objections → Pour tous 3. Les questions / objections déroulées → Pas pour les élèves mais pour les parents / employeurs 4. Les PDF en téléchargement → Approfondissement pour les enseignants / pédagogues 5. Les notes de marges → Approfondissement pour les enseignants / pédagogues",
+        "ceQueCaDit": "Le travail montre une attention à structurer l'information pour transmettre, avec conscience explicite des destinataires différents — pattern central de la documentation pour autrui."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. La gestion de crise en temps réel ressort comme territoire non visité — la feuille parle de planification, pas d'incident. Le leadership situationnel et l'efficacité personnelle apparaissent en surface (délégation simple à Gémini, priorisation déclarée du site) sans les marqueurs centraux de la fiche : alternance consciente entre direction et retrait, \"non\" stratégique argumenté. La maïeutique et l'évaluation transformative sont en germe : la méthode socratique est nommée et la cartographie est annoncée comme dispositif évaluatif, mais aucune question maïeutique citée ni critère d'évaluation décrits ne viennent encore les attester en acte. Ces territoires gagneraient à être ouverts à mesure que la formation tuteurs et les premiers usages de la cartographie produiront des situations où ces compétences trouveront leur matière.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle sur cette feuille. D'abord, une projection systématique sur autrui : ce que l'apprenant vit en remplissant le portfolio devient ce que les futurs élèves vivront, ce qu'il invente en architecte devient ce que les tuteurs animeront — la posture pédagogique pense en permanence depuis la place de l'autre. Ensuite, une cohérence entre vision long-terme et pratique présente : l'architecture du site à cinq niveaux n'est pas surdimensionnée par hasard, elle prépare une scène future de réception multiple. Enfin, un écart entre la solidité conceptuelle (\"les idées tiennent la route\") et l'incarnation opérationnelle (\"je ne serai pas opérationnel avant l'été\") — l'apprenant n'a pas peur de cet écart, il le revendique comme légitime.",
+    "pistes": [
+      "Pour densifier la maïeutique amorcée, un chemin possible serait de raconter, sur une situation concrète, une question posée à autrui (ou à soi-même) qui a déclenché une prise de conscience — formulation citée, retenue tenue, effet observé.",
+      "Pour densifier le travail de documentation vivante, un chemin possible serait de raconter l'historique des transformations du site — quelle idée a fait surgir tel niveau, ce qui a été déplacé ou abandonné — afin que la dimension vivante de la documentation devienne visible.",
+      "Pour ouvrir le territoire du leadership situationnel, un chemin possible serait de documenter, sur l'usage prévu de Gémini, les critères qui déterminent qui pilote — quand l'IA propose, quand l'humain arbitre, et un moment effectif de bascule entre les deux postures."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 22 décembre, le travail de pilotage et de transmission se manifeste fortement, à plusieurs niveaux. L'apprenant pense son projet comme un système pédagogique : il stratifie un site documentaire à cinq niveaux par public, il prépare une formation pour les tuteurs centrée sur les prompts socratiques, il anticipe les résistances qu'auront les futurs élèves face au portfolio. La voix dominante est celle d'un concepteur-pilote qui articule des étapes (terminer le site avant de lancer Decidim), assume des délais argumentés (avant l'été, parce que les idées tiennent) et projette sur autrui ce qu'il vit lui-même. Les marqueurs concrets cités sont le site à cinq niveaux, l'extension Gémini, la formation tuteurs, l'horizon estival. Sur ce pôle et cette feuille, le travail montre une vision stratégique incarnée dans l'architecture du dispositif et une posture de conduite du changement qui anticipe les difficultés des futurs apprenants.\n\n## Territoires les plus denses\n\n**Vision stratégique et prospective** — Architecture surdimensionnée pour des usages futurs, séquençage articulé entre étapes présentes et étapes à venir, confort assumé avec un horizon long parce que les fondations tiennent.\n\n> \"Je ne pense pas pouvoir être opérationnel avant l'été en fait. Mais ce n'est pas grave : les idées sont là et elles me semblent vraiment tenir la route.\"\n\nLe travail montre une direction long-terme qui guide les décisions présentes — site stratifié pour des publics qui ne sont pas encore là, horizon estival assumé parce que la solidité conceptuelle prime sur la vitesse opérationnelle.\n\n**Agilité et conduite du changement** — Anticipation des résistances futures des apprenants à partir de sa propre expérience vécue, normalisation explicite (\"c'est inévitable\") et maintien de la faisabilité (\"mais pas incompatible\").\n\n> \"Donc je constate, en le faisant, une difficulté que les élèves de Respire rencontreront tous : le sentiment de surcharge de travail inutile. [...] C'est inévitable, mais pas incompatible !\"\n\nLe travail montre une posture de conduite du changement qui se met à la place de l'apprenant futur, qui ne nie pas la difficulté, et qui maintient ouverte la possibilité — la triade anticipation-normalisation-faisabilité.\n\n**Documentation vivante** — Structuration explicite d'un site à cinq niveaux avec destinataires nommés palier par palier — conscience marquée du futur lecteur, au-delà d'un simple usage personnel.\n\n> \"Le site a maintenant 5 niveaux de lecture : 1. Les résumés → Pour tous 2. Les questions / objections → Pour tous 3. Les questions / objections déroulées → Pas pour les élèves mais pour les parents / employeurs 4. Les PDF en téléchargement → Approfondissement pour les enseignants / pédagogues 5. Les notes de marges → Approfondissement pour les enseignants / pédagogues\"\n\nLe travail montre une attention à structurer l'information pour transmettre, avec conscience explicite des destinataires différents — pattern central de la documentation pour autrui.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas été ramenés sur cette feuille. La gestion de crise en temps réel ressort comme territoire non visité — la feuille parle de planification, pas d'incident. Le leadership situationnel et l'efficacité personnelle apparaissent en surface (délégation simple à Gémini, priorisation déclarée du site) sans les marqueurs centraux de la fiche : alternance consciente entre direction et retrait, \"non\" stratégique argumenté. La maïeutique et l'évaluation transformative sont en germe : la méthode socratique est nommée et la cartographie est annoncée comme dispositif évaluatif, mais aucune question maïeutique citée ni critère d'évaluation décrits ne viennent encore les attester en acte. Ces territoires gagneraient à être ouverts à mesure que la formation tuteurs et les premiers usages de la cartographie produiront des situations où ces compétences trouveront leur matière.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle sur cette feuille. D'abord, une projection systématique sur autrui : ce que l'apprenant vit en remplissant le portfolio devient ce que les futurs élèves vivront, ce qu'il invente en architecte devient ce que les tuteurs animeront — la posture pédagogique pense en permanence depuis la place de l'autre. Ensuite, une cohérence entre vision long-terme et pratique présente : l'architecture du site à cinq niveaux n'est pas surdimensionnée par hasard, elle prépare une scène future de réception multiple. Enfin, un écart entre la solidité conceptuelle (\"les idées tiennent la route\") et l'incarnation opérationnelle (\"je ne serai pas opérationnel avant l'été\") — l'apprenant n'a pas peur de cet écart, il le revendique comme légitime.\n\n## Pistes pour enrichir ce pôle\n\n- Pour densifier la maïeutique amorcée, un chemin possible serait de raconter, sur une situation concrète, une question posée à autrui (ou à soi-même) qui a déclenché une prise de conscience — formulation citée, retenue tenue, effet observé.\n- Pour densifier le travail de documentation vivante, un chemin possible serait de raconter l'historique des transformations du site — quelle idée a fait surgir tel niveau, ce qui a été déplacé ou abandonné — afin que la dimension vivante de la documentation devienne visible.\n- Pour ouvrir le territoire du leadership situationnel, un chemin possible serait de documenter, sur l'usage prévu de Gémini, les critères qui déterminent qui pilote — quand l'IA propose, quand l'humain arbitre, et un moment effectif de bascule entre les deux postures."
+  }
+}

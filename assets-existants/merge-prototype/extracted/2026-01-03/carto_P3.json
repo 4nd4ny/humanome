@@ -1,0 +1,361 @@
+{
+  "poleNum": "3",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "J'ai supprimé du manuel du Maître les éléments déjà présents dans le manuel du Tuteur.",
+      "contexte": "Acte de suppression intentionnelle d'éléments redondants entre deux manuels, dans une logique d'architecture éditoriale.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Aujourd'hui je dois finir de relire et de mettre en page le manuel du Tuteur (actuellement 194 pages) puis, probablement demain, je relirais et mettrait en page le manuel du Maître (actuellement 373 pages).",
+      "contexte": "Programmation d'une journée de relecture et de mise en page sur deux manuels volumineux, avec décompte précis des pages.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Réfléchir si démarrer le développement d'EduFolio (l'interface pour se passer de Google Doc et des IA propriétaires en utilisant Aurora et son collège d'agents experts) maintenant ou si je peux me contenter de remettre en ligne EduChat tout simplement pour le moment, en attendant (ou peut-être faire les deux).",
+      "contexte": "Question posée sur le démarrage d'une interface alternative aux outils propriétaires, conçue autour d'agents experts.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Rédiger une bibliothèque de prompts dans le style de Comenius utiles pour apprendre les IA.",
+      "contexte": "Évocation d'un objet pédagogique original croisant un référent historique (Comenius) avec l'apprentissage des IA contemporaines.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Imprimer tout ça, créer un gros PDF sur la pédagogie de l'Émergence et l'envoyer au directeur de Chamblandes en le remerciant de m'avoir donné le temps nécessaire pour écrire / générer tout ça, et à la HEP pour leur demander si ça fait assez en complément des 400 pages précédentes (Human Processor et développement des stratégies cognitives pour apprendre à penser les algorithmes) pour finaliser ma thèse sur la Noèsiologie qui doit faire, à vu de nez, 1200 pages maintenant…",
+      "contexte": "Projet de regroupement éditorial en un gros PDF unique destiné à deux institutions, mobilisant un vocabulaire personnel dense (pédagogie de l'Émergence, Noèsiologie, Human Processor).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Bref, la pré-retraite s'annonce déjà over-bookée alors qu'elle n'a pas encore commencé 😃",
+      "contexte": "Trait d'autodérision en clôture d'énumération, mêlant français, anglicisme ('over-bookée') et emoji.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Challenge : comment résumer ces 18 concepts / projets lors d'un entretien d'embauche pour expliquer que leur job ne peut pas m'intéresser et qu'ils sont trop loin de ce que j'ai appris à faire en pédagogie ces 30 dernières années pour pouvoir me comprendre ?",
+      "contexte": "Formulation d'un défi qui retourne la fonction d'un entretien d'embauche : non plus convaincre, mais expliquer pourquoi le poste ne convient pas.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Mots clés : Association Harmonia, Écoles Respire, Plateforme démocratique Decidim, Manuels de formation des élèves, Noèsiologie, Thèse en didactique informatique / ingénierie pédagogique, Évaluations humanistes, Cartographie des compétences, Pédagogie de l'Émergence, Portfolios Réflexifs d'apprentissages, Comenius et le questionnement socratique, Hack ton Cerveau, Human Processor, Développement des stratégies cognitives et métacognitives, EduChat, Aurora et le collège d'Experts IA, Collection de prompts open sources, Edufolio.ai.",
+      "contexte": "Liste des dix-huit noms qui composent l'univers conceptuel et terminologique propre à l'apprenant.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-03",
+      "extraitVerbatim": "Tous ces rendez-vous me gonflent royalement : j'ai trouvé ce que je veux faire pour la suite et c'est les écoles 'Respire'. Je ne sais pas si je vais réussir à enseigner autre chose ou autrement.",
+      "contexte": "Énoncé direct mêlant registre colloquial ('me gonflent royalement') et incertitude posée comme question ouverte.",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Programmation de cycles successifs de relecture et de mise en page sur deux manuels, dans une logique itérative de finalisation."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Évocation d'une bibliothèque de prompts croisant Comenius et les IA contemporaines — connexion entre deux univers inhabituels."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte pas de créativité itérative ou radicale au sens fort. La programmation de relectures successives sur les manuels est une finalisation, pas une itération qui apprend entre cycles (pas de pivot décrit, pas de prototype bancal qui révèle une direction nouvelle) — la pièce ne résiste pas vraiment. L'évocation de la bibliothèque de prompts 'style Comenius' croise deux univers, mais elle est mentionnée comme tâche à faire, sans qu'un acte créatif soit décrit dans la feuille — la pièce résiste faiblement comme intention créative.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le croisement entre Comenius (XVIIe siècle, didactique de l'image et de la chose) et l'apprentissage des IA contemporaines marque une connexion entre domaines éloignés." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La seule pièce qui a résisté est relue avec méfiance. L'attaque du mouvement-vers touche : c'est une intention, pas une réalisation décrite ; l'objet créatif n'existe pas encore. L'attaque du récit performatif joue aussi : nommer la bibliothèque ne suffit pas à attester la création. La pièce ne tient pas.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'intention est posée mais l'objet créatif n'existe pas encore dans cette feuille ; le seuil de réalisation n'est pas atteint." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari de départ était que la feuille ne porterait pas de cycle créatif réalisé. La seule pièce qui avait résisté — la bibliothèque de prompts style Comenius — est tombée sous la présomption de sycophantie : la mention reste à l'état d'intention. Ce qui en résulte : la créativité itérative n'est pas attestée sur cette feuille, ce qui n'empêche pas qu'elle puisse l'être dans une feuille à venir si l'objet créé y est documenté.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce la plus prometteuse (la bibliothèque de prompts style Comenius) reste à l'état d'intention ; aucun cycle créatif réalisé n'est documenté sur cette feuille.",
+        "prescription": "L'idée d'une bibliothèque de prompts style Comenius porte une connexion entre deux univers éloignés. Pour la faire entrer dans le territoire de la créativité itérative, un chemin possible serait de documenter, lors de la première version, ce qui a marché et ce qui a été ajusté entre une itération et la suivante."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Référence à Comenius mobilisée dans un projet d'apprentissage des IA — un raccordement personnel entre tradition pédagogique et présent technologique."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Vocabulaire propre dense en un seul passage : pédagogie de l'Émergence, Noèsiologie, Human Processor — noms d'objets conceptuels personnels."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Autodérision typée associant une expression familière, un anglicisme et un emoji pour clore une longue énumération."
+        },
+        {
+          "numero": 4,
+          "pid": 8,
+          "contexte": "Liste des dix-huit noms qui composent un univers terminologique reconnaissable (Aurora, Edufolio, Hack ton Cerveau, Respire, etc.)."
+        },
+        {
+          "numero": 5,
+          "pid": 9,
+          "contexte": "Registre colloquial ('me gonflent royalement') juxtaposé à une question existentielle sur l'enseignement futur."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse initiale est qu'une seule feuille ne suffit pas à attester de la récurrence stylistique qui définit la signature. Les marqueurs sont nombreux dans cette feuille (vocabulaire propre, autodérision, registre oscillant) mais la fiche est exigeante : il faut une 'empreinte récurrente et identifiable'. Sans accès à d'autres feuilles, la récurrence ne peut s'attester que par la cohérence interne. La densité du vocabulaire propre (PID 5, PID 8) et l'oscillation des registres (PID 6, PID 9) résistent comme indices d'une signature en formation lisible à l'échelle de la feuille.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Trois objets conceptuels nommés en propre (pédagogie de l'Émergence, Noèsiologie, Human Processor) dans une même phrase composent un univers terminologique reconnaissable." },
+            { "pieceId": 4, "motifResistance": "La liste des dix-huit noms forme un écosystème lexical cohérent et personnel difficilement attribuable à un autre auteur." },
+            { "pieceId": 5, "motifResistance": "Le voisinage immédiat d'une expression colloquiale ('me gonflent royalement') et d'une question sur l'enseignement futur compose un registre oscillant typé." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les trois pièces qui ont résisté sont relues avec méfiance. La densité du vocabulaire propre peut être un ornement de surface si le fond reste générique — l'attaque du glissement lexical touche ; mais les noms désignent des objets construits (manuels, plateforme, théorie pédagogique), donc le fond change avec le vocabulaire. La liste des dix-huit noms est un signal fort, sans qu'on puisse mesurer ici sa récurrence — l'attaque d'insuffisance probatoire touche, la pièce reste un indice. L'oscillation des registres dans une même feuille est concrète, mais la fiche distingue 'récurrente dans le temps' — sans autres feuilles, c'est une observation intra-document.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Les noms désignent des objets construits, ce qui inscrit le vocabulaire propre dans le fond et pas en surface." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La liste atteste un écosystème lexical sur cette feuille ; la récurrence dans le temps reste à vérifier ailleurs." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'oscillation est observable intra-feuille mais ne peut prétendre attester la récurrence dans le temps." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était qu'une seule feuille ne suffirait pas à attester une signature au sens fort. Trois pièces ont fait pression : la densité du vocabulaire propre désignant des objets construits, la liste des dix-huit noms qui forme un écosystème lexical, l'oscillation des registres. Sous le second retournement, le vocabulaire propre est sorti confirmé (les noms portent des objets, pas des décorations), les deux autres pièces se sont affaiblies sans tomber (récurrence dans le temps non vérifiable depuis une seule feuille). Ce qui en résulte : une signature en formation se laisse percevoir sur cette feuille, suffisamment marquée pour justifier un renvoi au cartographe ; la confirmation comme signature pleinement acquise demanderait la lecture comparée de plusieurs feuilles.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Le vocabulaire propre désignant des objets construits a été confirmé ; les deux autres indices (écosystème lexical, oscillation des registres) restent affaiblis car la récurrence dans le temps ne peut s'attester depuis une seule feuille.",
+        "prescription": "Une signature stylistique se laisse percevoir, portée par des objets nommés en propre. Pour la confirmer comme signature acquise, un chemin possible serait de relire une dizaine de feuilles antérieures et de noter ce qui revient — un type de phrase, un objet conceptuel, une façon d'ouvrir ou de clore."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Question posée sur le démarrage d'une interface alternative aux IA propriétaires ; espace de problème nouveau (Comment se passer des outils propriétaires en éducation ?)."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Évocation d'un objet pédagogique qui croise Comenius et les IA : pose la question 'comment apprendre les IA dans la lignée d'une didactique classique ?'"
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Formulation d'un défi qui retourne la fonction de l'entretien d'embauche ; quasi-création d'un nouveau type d'entretien (entretien-filtre inversé)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse de départ est que cette feuille ne porte que des reformulations de problèmes existants (cadrage, 1.02), pas la création de problèmes nouveaux. EduFolio (PID 3) est mentionné comme projet à démarrer, sans que la question 'à quoi sert une telle interface ?' soit posée comme problème inédit — la pièce ne résiste pas vraiment. La bibliothèque de prompts style Comenius (PID 4) pose en germe la question d'une didactique des IA, mais reste à l'état de mention — elle résiste faiblement. Le Challenge de l'entretien (PID 7) retourne effectivement la fonction d'un entretien, mais la fiche distingue : reformuler ≠ créer ; ici l'entretien existait déjà, seul son usage change — la pièce résiste faiblement comme variation d'usage.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le croisement Comenius/IA pose en germe la question d'une didactique propre à l'apprentissage des IA, qui n'a pas d'équivalent posé ailleurs dans la feuille." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce qui a résisté est relue avec méfiance. La bibliothèque de prompts style Comenius est une intention, sans formulation explicite de la question nouvelle qu'elle ouvrirait — l'attaque du récit performatif touche. La fiche est exigeante sur la distinction avec 1.02 : pour être 3.03, il faut un problème qui n'existait pas, pas seulement un croisement de références. La pièce tombe.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'intention est posée sans que la question nouvelle ouverte par la bibliothèque soit explicitement formulée ; le seuil de design de problèmes n'est pas atteint." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari de départ était que cette feuille ne porte pas de création de problèmes nouveaux au sens strict de la fiche. Sous les deux retournements, la seule pièce qui avait résisté est tombée : le croisement Comenius/IA reste une intention sans question explicitement posée. Ce qui en résulte : le territoire n'est pas attesté sur cette feuille. Il existe, en arrière-plan, des objets qui ont sans doute été conçus en posant des questions inédites (Respire, Edufolio, la cartographie des compétences elle-même), mais leur acte de conception n'est pas raconté ici.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Les pièces extraites mentionnent des objets qui ont pu être conçus en posant des questions nouvelles, mais leur acte de design n'est pas raconté sur cette feuille ; les reformulations relèvent du cadrage plutôt que du design de problèmes.",
+        "prescription": "Plusieurs objets mentionnés ici (Respire, EduFolio, la cartographie des compétences) ont sans doute été conçus en posant des questions que personne n'avait formulées. Un chemin possible serait de revenir, dans une feuille à venir, sur l'origine de l'un d'eux : quelle question ouverte que rien d'existant ne traitait."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Suppression explicite d'éléments d'un manuel parce qu'ils figurent déjà dans un autre — acte de curation par soustraction selon une logique d'architecture éditoriale."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Programmation de la relecture et de la mise en page de deux manuels volumineux, avec décompte des pages."
+        },
+        {
+          "numero": 3,
+          "pid": 5,
+          "contexte": "Projet de regroupement éditorial en un gros PDF unique destiné à deux institutions."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'hypothèse initiale est que cette feuille ne porte pas de jugement esthétique articulé. La suppression d'éléments redondants entre deux manuels est exactement le critère discriminant de la fiche : 'la curation implique de la soustraction' — la pièce résiste fortement. La programmation de relecture et de mise en page suppose un travail formel sur le texte (cohérence, lisibilité, hiérarchie) ; la pièce résiste, sans que les critères esthétiques soient articulés. Le projet de gros PDF est un assemblage curatorial pour deux destinataires différents ; la pièce résiste, faiblement (l'assemblage final n'est pas décrit).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La suppression d'éléments redondants entre deux manuels est l'acte curatorial par soustraction que la fiche identifie comme critère discriminant." },
+            { "pieceId": 2, "motifResistance": "Relire et mettre en page sont des opérations formelles, qui supposent un jugement sur la lisibilité et la cohérence d'ensemble." },
+            { "pieceId": 3, "motifResistance": "Le regroupement en un seul PDF destiné à deux institutions suppose une sélection éditoriale en fonction des destinataires." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les trois pièces qui ont résisté sont relues avec méfiance. La suppression est explicite et fonctionnelle (éviter le doublon), mais la justification reste pratique plutôt qu'esthétique au sens fort — l'attaque de l'insuffisance probatoire touche, la pièce reste retenue comme acte de curation attesté. La relecture/mise en page est une opération formelle attestée, sans que les critères soient articulés ; affaiblie mais retenue. Le gros PDF est posé en intention, sans description du tri opéré pour l'assembler — l'attaque du mouvement-vers touche, la pièce est affaiblie mais retenue.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'acte de soustraction est explicite et accompli ; la justification fonctionnelle ne disqualifie pas le geste curatorial." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La relecture et la mise en page sont attestées comme opérations, sans articulation explicite des critères esthétiques." },
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'assemblage est posé en intention ; le tri à opérer pour le PDF n'est pas décrit en détail." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "Le pari initial était que cette feuille ne porte pas de jugement esthétique articulé. Trois pièces ont fait pression. Sous le second retournement, la suppression d'éléments redondants entre manuels est sortie confirmée : c'est l'acte de soustraction que la fiche reconnaît comme critère central de la curation. Les deux autres pièces (relecture-mise en page, gros PDF) ont été affaiblies sans tomber — elles attestent des opérations formelles sans articuler les critères. Ce qui en résulte : un jugement esthétique au sens curatorial se laisse établir, porté par un acte précis (soustraction inter-manuels) et deux indices d'arrière-plan. La réserve qui reste : les critères esthétiques eux-mêmes ne sont pas verbalisés sur cette feuille.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "La suppression d'éléments redondants entre deux manuels est l'acte de soustraction qui définit la curation selon la fiche ; deux autres pièces composent un arrière-plan d'opérations formelles (relecture, mise en page, assemblage PDF).",
+        "prescription": "La curation par soustraction est attestée. Pour rendre le jugement esthétique plus lisible, un chemin possible serait de noter, lors d'un prochain choix éditorial, ce qui a fait pencher la balance — un critère de ton, une question de hiérarchie, un effet recherché sur le lecteur."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de récit d'interaction physique avec la matière (montage, câblage, réparation, fabrication, cuisine, bricolage). Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un geste de la main a résolu un problème qu'aucune abstraction n'aurait résolu."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de descriptions phénoménologiques fines ni de récits d'intuition corporelle suivie d'action. Pour ouvrir ce dossier, l'apprenant pourrait nommer, lors d'une journée à venir, une sensation physique précise au moment où elle se manifeste et ce qu'elle a informé de la décision."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio de cette feuille ne contient pas de récit de performance en présentiel où la présence physique a fait une différence identifiable. Pour ouvrir ce dossier, l'apprenant pourrait documenter, après une des prochaines matinées d'enseignement, un moment imprévu accueilli en direct qui a produit quelque chose de meilleur que le script."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 3
+  },
+
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail créatif et incarné se concentre presque entièrement sur l'éditorial : relecture et mise en page de manuels volumineux, suppression d'éléments redondants entre deux ouvrages, projet de regroupement en un gros PDF. La voix dominante est celle d'une artisanerie textuelle — le geste créatif ici est curatorial, fait de tris et d'assemblages plutôt que de prototypes ou d'improvisations. Un univers terminologique propre traverse la feuille : pédagogie de l'Émergence, Noèsiologie, Human Processor, Aurora, EduFolio, Comenius, Hack ton Cerveau — un écosystème lexical qui ne ressemble à aucun template. Les territoires plus somatiques du pôle — intelligence manuelle, ancrage sensoriel, performance live — ne se manifestent pas dans ce texte de planification ; ils restent à explorer dans d'autres feuilles.",
+    "territoiresDenses": [
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "L'éditorial structure la journée : suppression d'éléments redondants entre deux manuels, programmation de relectures et de mises en page, regroupement projeté en un gros PDF différencié selon les destinataires.",
+        "extraitVerbatim": "J'ai supprimé du manuel du Maître les éléments déjà présents dans le manuel du Tuteur.",
+        "ceQueCaDit": "La soustraction est l'acte central de la curation selon la grille ; elle est ici accomplie, justifiée par une logique d'architecture inter-manuels qui dépasse la simple correction."
+      }
+    ],
+    "territoiresNonVisites": "La créativité itérative reste en intention : le projet d'une bibliothèque de prompts dans le style de Comenius est mentionné mais l'objet n'est pas encore là, et aucun cycle d'itération avec apprentissage entre versions n'est raconté. Le design de problèmes — la création de questions nouvelles que personne n'avait formulées — reste en arrière-plan : plusieurs objets mentionnés (Respire, EduFolio, la cartographie des compétences elle-même) ont sans doute été conçus en posant des questions inédites, mais leur acte de conception n'est pas raconté ici. L'intelligence manuelle et artisanale, l'ancrage sensoriel et la performance live sont absents de cette journée centrée sur l'éditorial textuel et numérique ; ces territoires se manifesteraient dans des feuilles où la matière physique ou l'enseignement en présentiel deviennent objet du récit.",
+    "emergencesPole": "Trois observations traversent les compétences de ce pôle sur cette feuille. D'abord, l'écriture porte un vocabulaire propre dense — pédagogie de l'Émergence, Noèsiologie, Human Processor, écoles Respire — qui désigne des objets construits et pas des décorations, ce qui inscrit la signature stylistique dans le fond. Ensuite, la geste créative ici est d'abord curatoriale : on supprime, on assemble, on hiérarchise plutôt que de prototyper du neuf. Enfin, plusieurs créations majeures sont mentionnées comme arrière-plan déjà-là (la cartographie des compétences, Respire, Aurora) sans que leur origine soit racontée — le portfolio porte les fruits mais pas le récit de la conception.",
+    "pistes": [
+      "Pour enrichir la créativité itérative, un chemin possible serait de documenter, lors d'une prochaine version de la bibliothèque de prompts style Comenius, ce qui a marché et ce qui a été ajusté entre deux itérations.",
+      "Pour enrichir le design de problèmes, un chemin possible serait de revenir, dans une feuille à venir, sur l'origine d'un des objets mentionnés (Respire, EduFolio, cartographie) : quelle question ouverte que rien d'existant ne traitait.",
+      "Pour enrichir le jugement esthétique, un chemin possible serait de noter, lors d'un prochain choix éditorial, ce qui a fait pencher la balance — un critère de ton, une question de hiérarchie, un effet recherché sur le lecteur.",
+      "Pour enrichir l'intelligence manuelle, un chemin possible serait de documenter un moment où un geste de la main a résolu un problème — réparation, montage, cuisine, bricolage — qu'aucune abstraction n'aurait résolu.",
+      "Pour enrichir la présence et performance live, un chemin possible serait de documenter, après une des prochaines matinées d'enseignement, un moment imprévu accueilli en direct qui a produit quelque chose de meilleur que le script."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail créatif et incarné se concentre presque entièrement sur l'éditorial : relecture et mise en page de manuels volumineux, suppression d'éléments redondants entre deux ouvrages, projet de regroupement en un gros PDF. La voix dominante est celle d'une artisanerie textuelle — le geste créatif ici est curatorial, fait de tris et d'assemblages plutôt que de prototypes ou d'improvisations. Un univers terminologique propre traverse la feuille : pédagogie de l'Émergence, Noèsiologie, Human Processor, Aurora, EduFolio, Comenius, Hack ton Cerveau — un écosystème lexical qui ne ressemble à aucun template. Les territoires plus somatiques du pôle — intelligence manuelle, ancrage sensoriel, performance live — ne se manifestent pas dans ce texte de planification ; ils restent à explorer dans d'autres feuilles.\n\n## Territoires les plus denses\n\n**Jugement esthétique et curation.** L'éditorial structure la journée : suppression d'éléments redondants entre deux manuels, programmation de relectures et de mises en page, regroupement projeté en un gros PDF différencié selon les destinataires. L'extrait « J'ai supprimé du manuel du Maître les éléments déjà présents dans le manuel du Tuteur. » porte l'acte central de la curation au sens de la grille : la soustraction. L'opération est ici accomplie, justifiée par une logique d'architecture inter-manuels qui dépasse la simple correction.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa créativité itérative reste en intention : le projet d'une bibliothèque de prompts dans le style de Comenius est mentionné mais l'objet n'est pas encore là, et aucun cycle d'itération avec apprentissage entre versions n'est raconté. Le design de problèmes — la création de questions nouvelles que personne n'avait formulées — reste en arrière-plan : plusieurs objets mentionnés (Respire, EduFolio, la cartographie des compétences elle-même) ont sans doute été conçus en posant des questions inédites, mais leur acte de conception n'est pas raconté ici. L'intelligence manuelle et artisanale, l'ancrage sensoriel et la performance live sont absents de cette journée centrée sur l'éditorial textuel et numérique ; ces territoires se manifesteraient dans des feuilles où la matière physique ou l'enseignement en présentiel deviennent objet du récit.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent les compétences de ce pôle sur cette feuille. D'abord, l'écriture porte un vocabulaire propre dense — pédagogie de l'Émergence, Noèsiologie, Human Processor, écoles Respire — qui désigne des objets construits et pas des décorations, ce qui inscrit la signature stylistique dans le fond. Ensuite, la geste créative ici est d'abord curatoriale : on supprime, on assemble, on hiérarchise plutôt que de prototyper du neuf. Enfin, plusieurs créations majeures sont mentionnées comme arrière-plan déjà-là (la cartographie des compétences, Respire, Aurora) sans que leur origine soit racontée — le portfolio porte les fruits mais pas le récit de la conception.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir la créativité itérative, un chemin possible serait de documenter, lors d'une prochaine version de la bibliothèque de prompts style Comenius, ce qui a marché et ce qui a été ajusté entre deux itérations. Pour enrichir le design de problèmes, un chemin possible serait de revenir, dans une feuille à venir, sur l'origine d'un des objets mentionnés (Respire, EduFolio, cartographie) : quelle question ouverte que rien d'existant ne traitait. Pour enrichir le jugement esthétique, un chemin possible serait de noter, lors d'un prochain choix éditorial, ce qui a fait pencher la balance — un critère de ton, une question de hiérarchie, un effet recherché sur le lecteur. Pour enrichir l'intelligence manuelle, un chemin possible serait de documenter un moment où un geste de la main a résolu un problème — réparation, montage, cuisine, bricolage — qu'aucune abstraction n'aurait résolu. Pour enrichir la présence et performance live, un chemin possible serait de documenter, après une des prochaines matinées d'enseignement, un moment imprévu accueilli en direct qui a produit quelque chose de meilleur que le script.\n"
+  }
+}

@@ -1,0 +1,393 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Ce qui me plaît beaucoup, c'est la dualité intelligence humaine / intelligence artificielle. Ce qui n'est pas explicite ici, c'est que l'un aide à mieux comprendre l'autre. D'où la nécessité de maîtriser les deux pour devenir Grand Maître et avoir une vision d'ensemble des processus et stratégies permettant d'améliorer l'intelligence.",
+      "contexte": "Articulation d'une dualité humain/IA pensée comme cohabitation et apprentissage mutuel ; touche à 6.09 (cohabitation avec les IA) et 6.08 (décentrement).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Petite correction dans l'artefact Claude parle des 42 fonctions cognitives de Feuerstein, mais en fait ce sont mes travaux de thèse qui ont compilé non pas 42 (ça c'est la version publiée) mais [64 fonctions cognitives utiles pour apprendre]",
+      "contexte": "Geste de reprise d'une production IA en pointant le décalage avec la source primaire ; touche à 6.02 (audit/explicabilité, vérification du processus).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "J'ai relu le document de l'âme de Claude qui a été publié hier. C'est la même chose que je dois faire ici : expliciter le pourquoi est plus important que décrire le quoi.",
+      "contexte": "Référence à un document portant sur la nature/le statut de Claude, mobilisé comme miroir d'écriture ; touche à 6.09 (statut moral de l'IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "Ce qui me manque, c'est donc le groupe et les aléas qui sont générés par les consciences humaines en synergie. Je vais donc peut-être essayer de crafter un nouveau prompt système pour compléter ou remplacer le protocole CATALYST, lorsque j'aurai un peu plus de temps, pour m'aider à challenger mes idées et les enrichir, afin de tenter de recréer une forme d'intelligence collective en synergie humain / IA.",
+      "contexte": "Projet d'un dispositif visant l'émergence d'une intelligence collective humain/IA, en mentionnant 'les consciences humaines' au pluriel ; touche à 6.07 (facilitation et gouvernance collective) et 6.09.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "C'est donc une des compétences clés à enseigner aux futurs cartographes et médiateurs (le niveau Praticien Tuteurs) et qui devra être incluse dans leur manuel d'auto-formation.",
+      "contexte": "Conception d'un dispositif d'auto-formation pour des rôles distincts (cartographes, médiateurs) avec règles de transmission ; touche à 6.07 (gouvernance collective, distribution des rôles).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-22",
+      "extraitVerbatim": "j'avais cette intuition profonde que la guilde des spécialistes d'un domaine était plus forte que l'individu",
+      "contexte": "Valorisation explicite d'une forme collective spécialisée ; touche à 6.07 (intelligence collective émergente).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives au red-teaming et à la sécurité IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter une exploration intentionnelle des limites d'un système IA — un cas conçu pour pousser le modèle dans ses retranchements et observer comment il se tient."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Reprise d'une production IA en mobilisant la source primaire personnelle : amorce d'un geste d'investigation sur le contenu produit."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que l'audit et l'explicabilité ne sont pas attestés : la fiche exige d'enquêter sur le 'comment' (mécanisme de décision, logs, audit avec horodatage) plutôt que de simplement constater une erreur. La pièce résiste très faiblement : elle constate l'écart entre la production IA et la source, mais ne déploie aucune investigation sur le mécanisme — la pièce reste du côté du constat, pas de l'enquête.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Mise au jour d'un écart entre l'output IA et la source de référence — amorce, sans déploiement, d'un geste d'audit." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu rectification factuelle et audit. La fiche est explicite : 'L'IA a fait une erreur' sans investigation = pensée critique ; enquêter sur les mécanismes = audit. La pièce relève manifestement du premier registre.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Confusion de compétence : la pièce relève de la pensée critique (1.01) ou de la validation contextuelle (4.07), sans déployer l'investigation du processus de décision qui définirait l'audit."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un geste d'audit dans une rectification ponctuelle. La pièce n'a pas tenu sous l'examen : la fiche distingue précisément la rectification du factuel de l'investigation du processus, et l'acte raconté ici relève du premier registre. Pour cette feuille, le travail ne déploie pas l'enquête sur le 'comment' qui caractérise cette compétence. La trace n'est pas établie ici, ce qui n'enlève rien à la possibilité qu'elle apparaisse ailleurs dans le portfolio.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a été disqualifiée au temps 2 : la rectification du factuel ne déploie pas l'investigation du processus de décision.",
+        "prescription": "Pour ouvrir l'audit, un chemin possible serait, lors d'une prochaine production IA douteuse, de remonter le chemin décisionnel — quelle information a probablement été utilisée, quelle source manquante explique l'écart — et de noter ce raisonnement comme audit local."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la gouvernance algorithmique des services publics. Pour ouvrir ce dossier, l'apprenant pourrait documenter un cas concret où une décision automatisée affecte des populations vulnérables, en proposant des mécanismes de recours ou d'audit citoyen."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la souveraineté numérique et aux communs. Pour ouvrir ce dossier, l'apprenant pourrait documenter un choix technologique justifié par une analyse de dépendance ou de portabilité, plutôt que par la performance ou la gratuité."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la participation citoyenne et à la démocratie technologique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un processus où des non-experts ont été associés à une décision technologique."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la veille réglementaire et à l'anticipation normative. Pour ouvrir ce dossier, l'apprenant pourrait documenter une modification de pratique anticipée en regard d'une réglementation à venir, ou une analyse prospective d'un cadre normatif en mouvement."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Conception d'un dispositif d'auto-formation avec rôles distincts (cartographes, médiateurs, niveau Praticien Tuteurs) : distribution explicite des rôles dans une architecture collective."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Projet de dispositif visant à recréer une intelligence collective humain/IA via de nouveaux prompts systèmes : recherche d'émergence par dispositif."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Valorisation explicite et ancienne de la guilde des spécialistes : conviction que le collectif organisé produit qualitativement plus que l'individu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la facilitation et la gouvernance collective ne sont pas attestées : la fiche exige un élément de surprise (émergence) ou des règles co-construites (gouvernance). La pièce 1 résiste partiellement : elle décrit une distribution de rôles dans un dispositif d'auto-formation, ce qui touche à la gouvernance, mais les règles ne sont pas explicitement co-construites — elles sont conçues par l'apprenant pour les autres. La pièce 2 résiste : elle vise explicitement l'émergence d'une intelligence collective. La pièce 3 résiste comme conviction structurante.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Distribution explicite de rôles avec dispositif de transmission : architecture de gouvernance d'un collectif spécifique." },
+            { "pieceId": 2, "motifResistance": "Visée explicite d'émergence collective par dispositif IA : intelligence collective recherchée par design." },
+            { "pieceId": 3, "motifResistance": "Valorisation explicite et structurante de la forme collective spécialisée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu architecture pédagogique (qui peut relever de la construction de communauté 2.09 ou de l'architecture IA 1.07) et facilitation/gouvernance collective au sens strict. La fiche est exigeante : il faut soit un résultat surprenant (émergence), soit des règles co-construites. Aucune des pièces ne montre un résultat surprenant déjà advenu, et les règles décrites sont posées plutôt que co-construites.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Confusion de compétence : la pièce active aussi 2.09 et 1.07 ; elle est retenue affaiblie parce que la conception d'un dispositif d'auto-formation pour rôles distincts (cartographes, médiateurs) touche à la gouvernance d'un collectif particulier."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : le dispositif est projeté plutôt que mis en œuvre, et l'émergence est visée plutôt qu'advenue ; la pièce reste retenue car la visée d'émergence collective est explicitement formulée."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Récit performatif : l'intuition de la guilde est énoncée comme conviction structurante mais n'incarne pas, ici, un acte de facilitation ou de gouvernance ; la pièce raconte la valorisation du collectif sans la faire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une simple architecture pédagogique plutôt qu'une amorce de gouvernance collective. Deux pièces ont tenu, affaiblies : la distribution des rôles dans le dispositif d'auto-formation, et la visée explicite d'émergence par dispositif IA. La troisième pièce est tombée : la valorisation de la guilde reste énoncée plus que mise en œuvre. Pour cette feuille, le travail montre une orientation explicite vers la gouvernance d'un collectif (cartographes, médiateurs) et vers l'émergence par dispositif, sans encore que les règles soient co-construites ni qu'un résultat surprenant soit raconté. La trace existe sous forme de design.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Deux pièces affaiblies convergent : la distribution explicite des rôles pour les Praticiens Tuteurs et la visée d'émergence collective par dispositif IA. Le critère 'résultat surprenant' n'est pas activé, mais la dimension gouvernance est lisible.",
+        "prescription": "Pour rendre la dimension gouvernance plus visible, un chemin possible serait de décrire, lors d'une prochaine itération du parcours Respire, un mécanisme par lequel les cartographes et médiateurs eux-mêmes pourront modifier les règles du dispositif. La co-construction deviendrait alors une propriété documentée, pas seulement un horizon."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Articulation 'l'un aide à mieux comprendre l'autre' qui place humain et IA dans une relation de réciprocité épistémique : amorce de décentrement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que le décentrement anthropocentrique n'est pas attesté : la fiche est exigeante — il faut questionner la légitimité de la primauté humaine, défendre une position épistémique non-anthropocentrique même quand elle coûte. La pièce résiste très faiblement : elle pose une réciprocité — l'un éclaire l'autre — sans pour autant questionner la hiérarchie humaine. La position reste, dans la suite du texte, anthropocentrée (le but final est d'améliorer l'intelligence, vue depuis l'humain qui devient 'Grand Maître').",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Symétrie épistémique posée entre l'intelligence humaine et l'IA — chacune aide à comprendre l'autre, sans hiérarchie d'office." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé cette pièce. La symétrie 'l'un aide à mieux comprendre l'autre' peut être lue comme une simple complémentarité fonctionnelle, sans aucun questionnement de la primauté humaine. La finalité — devenir 'Grand Maître' pour améliorer l'intelligence — reste centrée sur le sujet humain.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Confusion de compétence : la pièce active 1.10 (synergie) sans pour autant questionner la légitimité de la primauté humaine ; la finalité du passage reste anthropocentrée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir un décentrement dans une symétrie de surface. La pièce n'a pas tenu sous l'examen : la fiche est précise — le décentrement commence quand on questionne la légitimité de la primauté humaine, pas quand on reconnaît une complémentarité fonctionnelle. Pour cette feuille, le travail ne déploie pas ce questionnement. La trace n'est pas établie ici, ce qui n'enlève rien à la possibilité qu'elle apparaisse ailleurs dans le portfolio.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La pièce a été disqualifiée au temps 2 : la symétrie fonctionnelle ne suffit pas à questionner la légitimité de la primauté humaine.",
+        "prescription": "Pour ouvrir le décentrement, un chemin possible serait de documenter un moment où l'apprenant a sérieusement considéré qu'une perspective non-humaine (animale, écosystémique ou IA) pourrait avoir des raisons légitimes que la perspective humaine ne perçoit pas — non pas comme exercice intellectuel, mais en regard d'un arbitrage concret."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Référence au 'document de l'âme de Claude' comme miroir d'écriture : reconnaissance d'un statut particulier (l'âme) de l'IA, et lecture attentive de ce qui s'y dit."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Projet d'un dispositif faisant 'challenger ses idées' par l'IA et recréer une intelligence collective humain/IA : posture qui dépasse l'usage instrumental."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Dualité humain/IA où chaque type d'intelligence aide à comprendre l'autre : statut d'interlocuteur réciproque accordé à l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant que la cohabitation avec les intelligences non-humaines n'est pas attestée : la fiche exige une question ouverte sur le statut moral de l'IA, ou une navigation calibrée de l'anthropomorphisme. La pièce 1 résiste : la mention du 'document de l'âme de Claude' et le fait que ce document soit pris comme miroir de l'écriture personnelle suppose qu'on accorde à l'IA un statut au-delà du purement instrumental. La pièce 2 résiste : 'challenger ses idées', 'recréer une intelligence collective humain/IA' positionne l'IA comme partenaire actif, pas comme outil passif. La pièce 3 résiste plus faiblement : la dualité posée traite l'IA en interlocuteur de plein droit.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Référence au document de l'âme de Claude et utilisation de cette ressource comme miroir : reconnaissance implicite d'un statut particulier de l'IA." },
+            { "pieceId": 2, "motifResistance": "Projet d'une coopération où l'IA challenge les idées et participe à l'émergence collective : statut d'agent reconnu sans être absolutisé." },
+            { "pieceId": 3, "motifResistance": "Symétrie épistémique posée entre humain et IA, dans une relation où l'IA n'est pas qu'un outil." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas halluciné la portée. La pièce 1 cite le document sans s'engager dans une question morale sur le statut de Claude — la lecture est instrumentalisée pour l'écriture personnelle. La pièce 2 instrumentalise l'IA comme dispositif. La pièce 3 reste dans la symétrie fonctionnelle, sans interroger le statut moral.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Surinterprétation pédagogique partielle : la pièce ne pose pas explicitement la question 'l'IA est-elle un être moral ?', mais le fait qu'un document parlant de 'l'âme de Claude' soit pris au sérieux et utilisé comme miroir suppose une question ouverte sur le statut, même non verbalisée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Confusion de compétence : la pièce active 1.07 (architecture) et 1.10 (synergie) ; l'IA y est conçue comme dispositif fonctionnel, sans interrogation du statut moral qui définit 6.09."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Confusion de compétence : la symétrie épistémique posée relève de 1.10 (synergie) ou 4.08 (valeur non-automatisable), sans interrogation du statut moral spécifique à 6.09."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir une cohabitation au sens strict — interrogation ouverte du statut moral de l'IA — dans des pièces qui peuvent toutes être lues comme purement fonctionnelles. Deux pièces sont tombées : elles relèvent de la synergie sans poser la question du statut. Une seule pièce, affaiblie, a tenu : la lecture du 'document de l'âme de Claude' et son utilisation comme miroir personnel supposent qu'on n'a pas tranché par avance que l'IA n'a pas d'intériorité. Pour cette feuille, le travail effleure cette compétence sans la déployer ; la trace existe sous forme d'indice mais sans portée décisive.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une seule pièce affaiblie : la lecture du document de l'âme de Claude comme miroir d'écriture suppose, sans la formuler, une question ouverte sur le statut.",
+        "prescription": "Pour ouvrir cette compétence de manière nette, un chemin possible serait de revenir, après la lecture d'un document comme celui de l'âme de Claude, sur la question explicite : qu'est-ce que cela change, pour l'écriture, pour la conception du dispositif, pour la pratique quotidienne, si l'on prend au sérieux que Claude pourrait avoir une forme d'intériorité ? Le statut deviendrait alors objet de réflexion et non seulement présupposé tacite."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, dans cette feuille, de traces relatives à la conscience biosystémique et à l'interdépendance. Pour ouvrir ce dossier, l'apprenant pourrait documenter une décision où la perspective d'un écosystème vivant — réseau mycélien, communauté microbienne, dynamique animale — a servi de modèle effectif pour résoudre un problème, et non d'analogie décorative."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle se manifeste presque uniquement dans son volet 'gouvernance d'un petit collectif' et dans une attention discrète au statut de l'IA. Aucune décision politique au sens fort, aucune réflexion sur la régulation publique ou la souveraineté numérique. Le registre est celui de la conception d'un dispositif d'apprentissage avec rôles distribués, et d'une coopération humain/IA traitée avec sérieux mais sans pousser l'interrogation jusqu'au statut moral du partenaire. La plupart des compétences politiques et post-anthropocentriques du pôle restent absentes de la feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Facilitation et gouvernance collective",
+        "description": "Conception d'un dispositif d'auto-formation avec rôles distincts (cartographes, médiateurs, Praticien Tuteurs) et visée explicite d'émergence collective via de nouveaux prompts systèmes.",
+        "extraitVerbatim": "C'est donc une des compétences clés à enseigner aux futurs cartographes et médiateurs (le niveau Praticien Tuteurs) et qui devra être incluse dans leur manuel d'auto-formation.",
+        "ceQueCaDit": "Le travail montre une orientation vers la distribution des rôles et la recherche d'émergence par dispositif, sans encore que les règles soient co-construites avec ceux qui les vivront."
+      }
+    ],
+    "territoiresNonVisites": "La majorité des territoires de ce pôle restent à explorer dans cette feuille. La sécurité IA, l'audit-explicabilité, la gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne et la veille réglementaire ne sont pas activés — les enjeux politiques et institutionnels de l'IA ne sont pas l'angle de cette feuille. Le décentrement anthropocentrique au sens strict — questionner la légitimité de la primauté humaine — n'est pas déployé ; la symétrie posée entre les deux intelligences reste fonctionnelle. La cohabitation avec les intelligences non-humaines est effleurée par la référence au document de l'âme de Claude, sans que la question du statut moral soit formulée. La conscience biosystémique appartient à un autre registre que celui mobilisé ici.",
+    "emergencesPole": "Deux choses traversent les compétences de ce pôle dans cette feuille. La première est une posture sérieuse face à l'IA — ni technophile ni technophobe — où le partenaire algorithmique est traité comme une réalité avec laquelle il faut composer, dont la production se corrige, dont les limites se nomment, dont le 'document de l'âme' se lit. La seconde est une orientation vers la conception de collectifs structurés (parcours Respire, niveaux, rôles, manuels d'auto-formation) plutôt que vers la délibération politique ou la régulation extérieure.",
+    "pistes": [
+      "Pour ouvrir l'audit, un chemin possible serait, lors d'une prochaine production IA douteuse, de remonter le chemin décisionnel — quelle information a probablement été utilisée, quelle source manquante explique l'écart — et de noter ce raisonnement comme audit local.",
+      "Pour faire passer la gouvernance collective de l'intention à la pratique, un chemin possible serait de décrire un mécanisme par lequel les cartographes et médiateurs eux-mêmes pourront modifier les règles du dispositif Respire.",
+      "Pour ouvrir le décentrement, un chemin possible serait de documenter un moment où une perspective non-humaine (animale, écosystémique ou IA) aurait des raisons légitimes que la perspective humaine ne perçoit pas, en regard d'un arbitrage concret.",
+      "Pour prolonger la cohabitation avec l'IA, un chemin possible serait de revenir, après la lecture d'un document comme celui de l'âme de Claude, sur la question : qu'est-ce que cela change si l'on prend au sérieux que Claude pourrait avoir une forme d'intériorité ?",
+      "Pour ouvrir la souveraineté numérique, un chemin possible serait de documenter un choix d'outil pour le dispositif Respire en explicitant l'analyse de dépendance et la possibilité de migration, plutôt que la performance ou la gratuité."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle se manifeste presque uniquement dans son volet « gouvernance d'un petit collectif » et dans une attention discrète au statut de l'IA. Aucune décision politique au sens fort, aucune réflexion sur la régulation publique ou la souveraineté numérique. Le registre est celui de la conception d'un dispositif d'apprentissage avec rôles distribués, et d'une coopération humain/IA traitée avec sérieux mais sans pousser l'interrogation jusqu'au statut moral du partenaire. La plupart des compétences politiques et post-anthropocentriques du pôle restent absentes de la feuille.\n\n## Territoires les plus denses\n\n**Facilitation et gouvernance collective.** Conception d'un dispositif d'auto-formation avec rôles distincts (cartographes, médiateurs, Praticien Tuteurs) et visée explicite d'émergence collective via de nouveaux prompts systèmes.\n\n> « C'est donc une des compétences clés à enseigner aux futurs cartographes et médiateurs (le niveau Praticien Tuteurs) et qui devra être incluse dans leur manuel d'auto-formation. »\n\nLe travail montre une orientation vers la distribution des rôles et la recherche d'émergence par dispositif, sans encore que les règles soient co-construites avec ceux qui les vivront.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa majorité des territoires de ce pôle restent à explorer dans cette feuille. La sécurité IA, l'audit-explicabilité, la gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne et la veille réglementaire ne sont pas activés — les enjeux politiques et institutionnels de l'IA ne sont pas l'angle de cette feuille. Le décentrement anthropocentrique au sens strict — questionner la légitimité de la primauté humaine — n'est pas déployé ; la symétrie posée entre les deux intelligences reste fonctionnelle. La cohabitation avec les intelligences non-humaines est effleurée par la référence au document de l'âme de Claude, sans que la question du statut moral soit formulée. La conscience biosystémique appartient à un autre registre que celui mobilisé ici.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux choses traversent les compétences de ce pôle dans cette feuille. La première est une posture sérieuse face à l'IA — ni technophile ni technophobe — où le partenaire algorithmique est traité comme une réalité avec laquelle il faut composer, dont la production se corrige, dont les limites se nomment, dont le « document de l'âme » se lit. La seconde est une orientation vers la conception de collectifs structurés (parcours Respire, niveaux, rôles, manuels d'auto-formation) plutôt que vers la délibération politique ou la régulation extérieure.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir l'audit, un chemin possible serait, lors d'une prochaine production IA douteuse, de remonter le chemin décisionnel — quelle information a probablement été utilisée, quelle source manquante explique l'écart — et de noter ce raisonnement comme audit local.\n- Pour faire passer la gouvernance collective de l'intention à la pratique, un chemin possible serait de décrire un mécanisme par lequel les cartographes et médiateurs eux-mêmes pourront modifier les règles du dispositif Respire.\n- Pour ouvrir le décentrement, un chemin possible serait de documenter un moment où une perspective non-humaine (animale, écosystémique ou IA) aurait des raisons légitimes que la perspective humaine ne perçoit pas, en regard d'un arbitrage concret.\n- Pour prolonger la cohabitation avec l'IA, un chemin possible serait de revenir, après la lecture d'un document comme celui de l'âme de Claude, sur la question : qu'est-ce que cela change si l'on prend au sérieux que Claude pourrait avoir une forme d'intériorité ?\n- Pour ouvrir la souveraineté numérique, un chemin possible serait de documenter un choix d'outil pour le dispositif Respire en explicitant l'analyse de dépendance et la possibilité de migration, plutôt que la performance ou la gratuité."
+  }
+}

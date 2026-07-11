@@ -1,0 +1,612 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Toute tentative de reprendre le travail manuellement serait absurde et contre-productive car nous introduirions des erreurs qu'il faudrait corriger plus tard. C'est donc le bon moment pour remplir son portfolio !",
+      "contexte": "Décision argumentée de ne pas substituer le travail manuel à l'IA en panne — choix de l'inaction pour cause de coût caché futur.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel, c'est à dire les logs qui permettent à un humain (l'apprenant) d'être convaincu de la pertinence des décisions du jury qui a procédé à l'évaluation de son portfolio. Certes un étudiant pourrait toujours faire recours et avancer des arguments. L'enseignant sera alors seul juge, délégant ainsi 99% du travail aux IA évaluatives.",
+      "contexte": "Conception d'un dispositif où la décision finale en cas de litige reste à l'humain enseignant — gouvernance qui maintient l'autorité humaine sur l'évaluation automatisée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "mon choix est fortement biaisé par ma culture personnelle et ce biais va se ressentir dans mes évaluations manuelles, mais aussi, au travers de ce choix de persona, dans les évaluations du système construit.",
+      "contexte": "Reconnaissance explicite de la responsabilité de l'auteur dans la transmission de son biais au système — appropriation de la part personnelle dans une production automatisée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "J'ai arrêté mon abonnement ChatGPT pour des raisons éthiques. J'ai lu dans la presse qu'ils avaient arrêté Sora et que derrière ils étaient en phase de RLHF d'un nouveau modèle de-la-mort-qui-tue… On va voir ce que ça donne et certainement que je prendrais un abonnement d'un mois lorsqu'il sortira pour le tester, malgré tout, pour ne pas me péjorer moi-même dans ma veille technologique et dans mon maintien du niveau de mes connaissances à cause de leurs conneries.",
+      "contexte": "Tension assumée entre position éthique (arrêt) et nécessité de veille (reprise bornée) — arbitrage entre deux valeurs légitimes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Il faudrait au moins que je puisse consacrer un peu de temps avec Claude pour discuter de tout ça. Hélas mon temps d'usage de Claude est particulièrement limité en ce moment : les pannes d'un côté, le quota du forfait moyen à 100$ de l'autre.",
+      "contexte": "Reconnaissance d'un besoin de réflexion approfondie face à un dilemme (le choix des personas), différée par les contraintes externes.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Lorsque j'aurai finalisé le prototype, minimisé la consommation de tokens, et maximiser la parallélisation du traitement, alors je basculerai de la version hybride actuelle bash + python dans Claude Code à une application 100% Python, peut-être en LangChain, peut-être avec une base de données vectorielle pour les exemples et contre-exemples extraits des portfolios, permettant de créer une base d'évaluation commune. A voir.",
+      "contexte": "Report explicite d'une décision technique (basculer ou pas vers Python pur, LangChain, base vectorielle) avec critère de déclenchement (« lorsque j'aurai finalisé ») et clôture par « A voir ».",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Le choix des agents devra également faire l'objet d'une étude sérieuse.",
+      "contexte": "Annonce d'une étude à venir sur les personas du jury — décision de ne pas trancher tout de suite et d'instruire plus tard.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "Donc on fait avec, c'est-à-dire que je vais moins vite et moins loin (pas d'achat de serveur pour faire de l'inférence locale - ni location de services en ligne - ni d'utilisation de clé API).",
+      "contexte": "Décision dans la contrainte : trancher le périmètre du possible compte tenu d'un budget « ridicule », sans paralysie.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "j'avais des factures de folie (jusqu'à 600 CHF / mois) lorsque j'étais enseignant - et ce sans participation de l'école, ni reconnaissance institutionnelle puisque c'était plutôt l'inverse - mais au moins, mes 100 élèves pouvaient utiliser Claude 3.5 Opus à l'époque, de manière illimité lorsqu'ils étaient à l'école",
+      "contexte": "Récit d'une posture passée maintenue sous coût personnel et sans reconnaissance institutionnelle — maintien de position malgré contrepartie.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "le but ultime, depuis 2013, est le développement de l'intelligence à l'école.",
+      "contexte": "Cohérence dans le temps long : la visée affichée en 2026 est celle posée en 2013 — alignement parole-acte sur la durée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-27",
+      "extraitVerbatim": "ma priorité première était de développer un système qui marche. Maintenant que c'est validé, ma nouvelle priorité est de supprimer tout ce qui peut l'être pour ne conserver que l'essentiel",
+      "contexte": "Critères de déclenchement explicites pour passer d'une priorité à la suivante — discipline du timing par étapes.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Tension entre la position éthique (arrêt de ChatGPT) et la nécessité de veille (test d'un mois quand le nouveau modèle sortira) — dilemme maintenu sans résolution univoque."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Interrogation sur la légitimité d'un dispositif d'évaluation porteur d'un biais culturel personnel — questionnement sur les critères mêmes du jugement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier le raisonnement éthique appliqué, je dois lire ces pièces autrement. La pièce 1 explicite deux valeurs en tension (éthique de la non-collaboration vs. compétence professionnelle / veille). La conclusion (« certainement que je prendrais un abonnement d'un mois ») ne résout pas le dilemme par adhésion à une valeur unique mais par un arrangement borné — l'incertitude morale est maintenue avec « malgré tout ». La pièce 2 pose une question sur la légitimité même de ses critères d'évaluation : un système porteur de son biais culturel peut-il évaluer justement les autres ? C'est une interrogation sur les présupposés du jugement, marqueur de la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Deux valeurs légitimes en tension (éthique / veille technologique) sont nommées, et l'arrangement final maintient l'incertitude morale avec « malgré tout »." },
+            { "pieceId": 2, "motifResistance": "L'apprenant questionne la légitimité de ses propres critères de jugement (le biais culturel transmis à l'évaluation des autres) — interrogation sur les présupposés." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier que je ne charge pas ces passages d'une réflexion éthique qu'ils ne portent pas vraiment. La pièce 1 reste courte — la justification (« raisons éthiques ») n'est pas déployée et le « malgré tout » fait passer l'arbitrage en peu de mots. La pièce 2 active aussi 1.04 (métacognition) et 2.06 (intelligence culturelle), et son angle éthique (légitimité du juger) est implicite plutôt que déployé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La tension entre éthique et veille est bien nommée mais courte. Les « raisons éthiques » ne sont pas détaillées, et le « malgré tout » trace l'arbitrage sans déployer le raisonnement qui le porte."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'angle éthique (légitimité du juger) est implicite, le passage active plus directement la métacognition et la conscience culturelle. La trace tient comme indice partagé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à les ramener à des positions de surface ou à de la métacognition. Elles ont tenu mais toutes deux affaiblies. La tension sur ChatGPT a tenu parce que l'arbitrage entre éthique et veille est explicite et la résolution maintient l'inconfort moral (« malgré tout »), mais sans que le raisonnement éthique soit déployé. La pièce sur le biais culturel a tenu parce qu'elle interroge la légitimité des critères, même si elle active aussi d'autres compétences. Ce qui reste, c'est un travail éthique réel mais peu déployé sur cette feuille, où l'inconfort moral est nommé sans être pleinement instruit.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces tiennent affaiblies comme indices d'un travail éthique en cours : tension nommée entre éthique et veille (pièce 1), questionnement sur la légitimité des critères (pièce 2).",
+        "prescription": "Pour approfondir cette pratique, un chemin possible serait de déployer dans une entrée future les « raisons éthiques » qui fondent l'arrêt de ChatGPT : quelles valeurs sont engagées, quelles parties prenantes affectées, et où l'arrangement borné (test d'un mois) place le curseur entre ces valeurs."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Acte de refus concret et sélectif (arrêt ChatGPT) avec justification éthique, mais maintien d'une porte ouverte bornée pour la veille — refus calibré, ni technophobie ni adhésion."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Conception d'un garde-fou : les logs doivent permettre à l'humain d'être convaincu, le recours est prévu et l'enseignant reste seul juge — gouvernance qui maintient le contrôle humain final sur l'IA évaluative."
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "contexte": "Conscience que la production IA reflète le biais culturel de son concepteur — diagnostic d'alignement sur sa propre architecture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier l'alignement et le refus éthique, je dois écarter ces pièces. La pièce 1 est un acte de refus concret avec justification éthique — c'est exactement la manifestation type de la fiche. Le refus est sélectif (ChatGPT spécifiquement, pas l'IA en général) et borné (réouverture envisagée pour la veille). La pièce 2 conçoit un dispositif où l'enseignant humain reste arbitre final en cas de recours — c'est de la gouvernance d'alignement (« comment s'assurer que l'IA reste au service de notre intention »). La pièce 3 diagnostique un désalignement potentiel de sa propre production IA (transmission du biais culturel).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Refus concret, sélectif, justifié éthiquement, avec arrangement borné — combinaison directe des marqueurs de la fiche." },
+            { "pieceId": 2, "motifResistance": "Le maintien explicite de l'autorité humaine (enseignant seul juge en recours) est une conception de garde-fou de gouvernance." },
+            { "pieceId": 3, "motifResistance": "Le diagnostic d'un biais transmis du concepteur au système est un acte d'alignement appliqué à sa propre architecture." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier qu'elles relèvent bien d'alignement et pas d'autres compétences. La pièce 1 est nette : acte de refus + valeurs explicites + arrangement borné — le pattern complet. La pièce 2 est un garde-fou de gouvernance mais aussi de l'architecture (1.07) ; la dimension d'alignement (maintenir l'autorité humaine) est claire. La pièce 3 est plus à la frontière : reconnaître un biais culturel est aussi de la métacognition et de l'intelligence culturelle, mais l'acte de diagnostiquer le désalignement du système qu'on construit est spécifiquement 4.02.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le refus est concret (arrêt effectif), justifié (raisons éthiques nommées), sélectif (ChatGPT, pas l'IA en général), avec arrangement borné (un mois pour la veille). Tous les marqueurs de la fiche sont présents."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le passage active aussi 1.07 (architecture) et 1.10 (synergie). Pour 4.02, la dimension de garde-fou — l'enseignant comme juge final maintenu — est claire mais inscrite dans un dispositif d'architecture plus large."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le diagnostic du biais culturel active aussi 1.04 et 2.06. Pour 4.02, ce qui compte est l'identification d'un désalignement potentiel entre la valeur (équité d'évaluation) et la production du système. La trace tient comme indice partagé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à du refus de surface ou à de l'architecture. L'acte de refus sur ChatGPT a tenu sans faiblir parce qu'il combine tous les marqueurs de la fiche : geste concret, justification éthique, sélectivité, arrangement borné. Les deux autres ont tenu plus modestement : la gouvernance qui maintient l'humain en arbitre final est un garde-fou d'alignement, et le diagnostic du biais culturel transmis est un acte d'alignement appliqué à sa propre architecture. Ce qui reste, c'est un fil d'alignement particulièrement net sur cette feuille : refus calibré, gouvernance qui préserve l'autorité humaine, diagnostic des désalignements propres au système construit.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "L'acte de refus calibré sur ChatGPT (pièce 1) a passé le temps 2 sans faiblir comme combinaison complète des marqueurs de la fiche ; la gouvernance préservant l'autorité humaine (pièce 2) et le diagnostic du biais transmis (pièce 3) corroborent.",
+        "prescription": "Pour consolider ce travail d'alignement, un chemin possible serait de formaliser un protocole personnel de garde-fous : par exemple, quels signaux de désalignement (biais, complaisance, omission) déclenchent une intervention, et quelles procédures précisément appliquer dans le dispositif du jury IA."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "Priorité explicite donnée à la réduction des tokens après validation du prototype — réduction du coût de calcul, qui touche indirectement à l'empreinte de l'IA, mais sans formulation écologique explicite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la conscience écologique et long-terme, je dois écarter cette pièce. La fiche est exigeante : il faut un arbitrage qui intègre les externalités, les parties prenantes non humaines ou générations futures. Ici, la priorité à la réduction des tokens est justifiée par le coût économique (« réduire les coûts ») et par la scalabilité du dispositif, pas par l'empreinte écologique. Le mot « écologique » ou tout équivalent (empreinte, soutenabilité, énergie, externalité) n'apparaît pas. La pièce ne survit pas : c'est une optimisation économique, pas un arbitrage écologique.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. Rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à voir si la réduction des tokens pouvait porter une trace de conscience écologique. La fiche est explicite : la 4.03 se manifeste dans des arbitrages où l'impact long-terme ou les externalités modifient la décision. Ici, la justification est économique (« réduire les coûts »), pas écologique. Le territoire est non visité sur cette feuille. La visée longue (« depuis 2013 ») existe bien mais s'applique à un projet pédagogique, pas à une intégration des enjeux environnementaux.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La seule pièce extractible (réduction des tokens) est justifiée par le coût économique sans aucune référence aux externalités, à l'empreinte ou aux générations futures.",
+        "prescription": "Pour ouvrir ce territoire, un chemin possible serait de noter, dans une décision technique future (achat de serveur, choix de modèle, inférence locale vs. cloud), comment l'empreinte énergétique ou les externalités pèsent dans l'arbitrage — ou non, et pourquoi."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la valorisation de la neurodiversité sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait nommer en quoi sa façon de penser singulière a produit un résultat qu'une approche standard n'aurait pas atteint, ou décrire un moment où il a adapté ses méthodes à un profil cognitif différent."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Décision de suspendre le travail pendant la panne, malgré la pression à avancer — tranchage assumé dans un contexte où l'option « manuelle » existe mais introduirait des erreurs."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Décision sous contrainte budgétaire : pas de serveur, pas de cloud, pas d'API — choix tranchés du périmètre du possible, fonctionnement maintenu (« on fait avec »)."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Conclusion « A voir » sur la version Python + LangChain — capacité à laisser une option ouverte en supportant l'incertitude technique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la décision et la tolérance à l'incertitude, je dois lire ces pièces autrement. La pièce 1 décrit une décision (suspendre) prise contre la pression intuitive de l'action manuelle, avec justification — c'est un tranchage assumé. La pièce 2 nomme les contraintes (budget « ridicule ») et tranche le périmètre (« pas d'achat… ni location… ni clé API ») en maintenant le fonctionnement. La pièce 3 est plus à la frontière : « A voir » peut être de la tolérance à l'incertitude ou de la procrastination.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Décision argumentée contre la pression d'agir manuellement, avec critère explicite (coût des corrections futures) — tranchage assumé." },
+            { "pieceId": 2, "motifResistance": "Trois options écartées et fonctionnement maintenu sous contrainte budgétaire — combinaison de nommer l'incertitude et de fonctionner malgré elle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier qu'elles présentent les trois éléments que la fiche valorise comme combinaison la plus fiable : nommer ce qu'on ne sait pas, décrire le fonctionnement malgré le flou, tranchage et conséquences. La pièce 1 nomme une contrainte (l'IA est indisponible), décrit le fonctionnement (suspendre / remplir le portfolio), et trace les conséquences (éviter les erreurs futures). La pièce 2 nomme la contrainte (budget), décrit le fonctionnement (« on fait avec »), et trace les conséquences (« je vais moins vite et moins loin »).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les trois éléments de la combinaison la plus fiable sont présents : contrainte nommée (panne), fonctionnement alternatif (remplir le portfolio), conséquences anticipées (éviter erreurs et corrections futures)."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le budget « ridicule » est nommé, le périmètre du possible est tranché, et la conséquence est assumée (« moins vite et moins loin ») — tolérance et décision combinées."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à les ramener à de la simple opportunité circonstancielle ou à de la résignation. Les deux ont tenu sans faiblir : la décision de suspendre face à la panne articule la combinaison complète de la fiche (contrainte / fonctionnement / conséquences), et la décision sous contrainte budgétaire trace explicitement ce qui est écarté et ce qui est maintenu, avec acceptation du coût. Ce qui reste, c'est une pratique nette de tranchage en contexte de flou ou de contrainte, avec articulation des conséquences plutôt que paralysie. La nuance assumée : sur cette feuille, le tranchage s'exerce surtout dans des contextes de contrainte externe (panne, budget), moins dans des décisions où l'IA divergerait sur un choix de fond.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.78,
+        "motif": "Les deux pièces 1 et 2 ont passé le temps 2 sans faiblir comme tranchages assumés combinant contrainte nommée, fonctionnement maintenu et conséquences articulées — la combinaison la plus fiable selon la fiche.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de garder trace d'une décision où l'IA elle-même hésitait ou divergeait sur un choix de fond (pas seulement une contrainte externe), et de la trancher en notant le pourquoi et ce que cela a produit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Appropriation explicite de la responsabilité du biais culturel transmis au système (« mon choix… mon biais ») — accountability sur l'architecture en cours."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Récit d'une posture passée maintenue à coût personnel élevé (600 CHF/mois) sans soutien institutionnel, au bénéfice des élèves — maintien de position malgré contrepartie."
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "contexte": "Cohérence parole-acte sur la durée : la visée affichée en 2026 est celle posée en 2013 — engagement tenu dans le temps long."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier responsabilité, courage et intégrité, je dois lire ces pièces autrement. La pièce 1 attribue la responsabilité du biais au choix de l'apprenant lui-même, sans déléguer à l'IA ou à autrui — c'est l'appropriation que la fiche valorise. La pièce 2 décrit un investissement personnel élevé sous condition d'absence de reconnaissance institutionnelle (« plutôt l'inverse ») — c'est un maintien de position malgré le coût. La pièce 3 nomme une cohérence temporelle entre 2013 et 2026 — alignement entre valeur déclarée et acte tenu.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'attribution explicite (« mon choix », « mon biais ») n'évacue pas la responsabilité sur l'IA ou sur autrui — c'est l'appropriation au sens de la fiche." },
+            { "pieceId": 2, "motifResistance": "Maintien de position malgré coût personnel élevé et absence de soutien institutionnel — combinaison rare et nette." },
+            { "pieceId": 3, "motifResistance": "Une visée tenue depuis 2013 jusqu'à 2026 indique une cohérence parole-acte sur la durée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Trois pièces ont résisté. Je dois vérifier qu'elles présentent la combinaison fiable de la fiche : (1) identifier un problème, (2) reconnaître sa part et le coût, (3) action corrective ou maintien de position. La pièce 1 fait (1) et (2) mais l'action corrective n'est pas encore décrite. La pièce 2 fait les trois : problème (manque de moyens scolaires), part (mes factures), action (maintien de la mise à disposition). La pièce 3 est plus une auto-déclaration de cohérence — la fiche met précisément en garde contre « je suis honnête » comme déclaration ; ici c'est davantage une visée tenue qu'une auto-attribution morale, mais la trace est plus indirecte.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'appropriation est claire mais l'action corrective n'est pas encore décrite — la pièce identifie le problème et reconnaît la part personnelle, sans encore le « voici ce que je fais maintenant ». La trace est réelle mais incomplète."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Tous les éléments de la combinaison fiable sont présents : problème (élèves sans accès), part (factures personnelles), maintien de position malgré contrepartie (sans reconnaissance institutionnelle). La trace est dense et nette."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'auto-déclaration d'une visée tenue depuis 2013 est une auto-attribution narrative. La fiche rappelle que l'intégrité se mesure dans les actes, pas dans les déclarations — la pièce vaut comme indice si elle se combine avec d'autres traces concrètes, ce qui est le cas avec la pièce 2."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces trois pièces, j'ai cherché à les ramener à de l'auto-flagellation, de la bravade ou de l'auto-déclaration. La pièce sur l'investissement à 600 CHF/mois a tenu sans faiblir parce qu'elle combine identification du problème, reconnaissance de la part personnelle et maintien de position malgré contrepartie — c'est la trace la plus complète de la fiche. La pièce sur l'appropriation du biais a tenu plus modestement parce que l'action corrective reste à venir. La visée tenue depuis 2013 a tenu comme indice corroboré par les actes décrits. Ce qui reste, c'est un fil dense de responsabilité et de courage, surtout porté par le récit passé de l'enseignement et corroboré par l'appropriation présente du biais. La nuance assumée : sur cette feuille, l'intégrité se lit plus dans les actes décrits (présents et passés) que dans des auto-déclarations.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Le maintien de position à coût personnel élevé (pièce 2) a passé le temps 2 sans faiblir comme combinaison complète des facettes de la fiche ; l'appropriation du biais (pièce 1) et la cohérence depuis 2013 (pièce 3) corroborent.",
+        "prescription": "Pour prolonger ce travail, un chemin possible serait de prolonger l'appropriation du biais culturel par une action corrective documentée — quelle procédure mise en place, quelle évaluation de l'effet, quelles conséquences pour le dispositif construit."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Reconnaissance que les évaluations IA portent un biais que le système ne sait pas identifier seul (parce qu'il vient du concepteur humain) — identification d'un delta de contexte entre humain et machine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la validation contextuelle, je dois écarter cette pièce. La fiche distingue 4.07 (delta de contexte humain-machine) de 1.01 (erreur factuelle). La pièce 1 identifie précisément ce que l'IA ne peut pas savoir seule : qu'elle porte le biais culturel de celui qui l'a configurée. C'est un savoir contextuel sur le système qui dépasse ce que le système peut auto-diagnostiquer. Cela ressemble au pattern de la fiche, mais avec une particularité : la validation porte ici sur le système qu'on construit, pas sur une production IA à corriger. La pièce résiste de façon partielle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'apprenant identifie ce que le système IA ne peut pas voir de lui-même (le biais culturel transmis par son concepteur) — savoir contextuel inaccessible à la machine." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Je dois vérifier qu'elle relève bien de 4.07 et pas de 1.04 (métacognition) ou 4.02 (alignement). La fiche pose le test : identifier pourquoi le contexte manquant change tout. La pièce 1 pose que ce qui manque au système est le contexte de sa propre origine culturelle — c'est de la validation contextuelle, mais à un niveau réflexif inhabituel (le système ne peut pas valider son propre biais d'origine). La trace est réelle mais minoritaire par rapport à ses voisins (1.04 et 4.02 sont plus directement activés).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active prioritairement 1.04 (métacognition) et 4.02 (alignement). Pour 4.07, l'angle « ce que l'IA ne peut pas voir parce qu'elle n'a pas le contexte » est présent mais s'applique à un cas réflexif (le système biaisé par son concepteur) plutôt qu'à une correction d'output IA. La trace tient comme indice partagé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à voir si elle relevait plus directement de la métacognition ou de l'alignement. Elle a tenu mais affaiblie : l'identification d'un savoir contextuel inaccessible au système (son propre biais d'origine) est réelle, mais elle se partage avec plusieurs autres compétences voisines, et elle ne porte pas sur une correction d'output IA au sens habituel de la fiche. Ce qui reste, c'est un indice corroboratif d'une conscience du delta humain-machine, à un niveau réflexif particulier.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une seule pièce affaiblie subsiste, partagée avec 1.04 et 4.02 ; la validation contextuelle au sens habituel de la fiche (correction d'output IA à partir d'un savoir manquant) n'est pas en acte sur cette feuille.",
+        "prescription": "Pour clarifier ce dossier, un chemin possible serait de relater un moment où l'apprenant a corrigé une production IA précise parce qu'elle ne disposait pas d'un contexte spécifique (relationnel, culturel, technique tacite) — avec ce que ce contexte change concrètement à l'évaluation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Reconnaissance que ce qui se fait avec Stéphane « n'est plus humain » et serait impossible « à l'ancienne » — lucidité bidirectionnelle sur ce que l'IA permet."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le rôle final de l'enseignant en cas de recours est nommé comme irremplaçable, distinct des 99% délégués aux IA — identification d'une valeur humaine structurellement non-automatisable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la création de valeur non-automatisable, je dois lire ces pièces autrement. La pièce 1 reconnaît surtout ce que l'IA permet (faire en peu de temps ce qui prendrait des années), c'est plus du registre de la synergie (1.10) que de la valeur non-automatisable. Le mouvement de la fiche est bidirectionnel : reconnaître les forces IA ET identifier ce qui reste irremplaçablement humain. La pièce 1 fait surtout le premier mouvement. La pièce 2 fait le second : l'enseignant comme « seul juge » en cas de recours pose ce que l'IA ne fait pas — trancher sur un argument contradictoire dans un contexte d'appel. C'est une identification de valeur non-automatisable.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le rôle final de l'enseignant en recours est posé comme distinct des 99% délégués — il assume précisément ce que l'IA ne fait pas dans ce dispositif." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une pièce a résisté. Je dois vérifier qu'elle pose bien une valeur structurellement non-automatisable. La fiche met en garde contre la limitation temporaire (« l'IA ne sait pas faire X aujourd'hui ») vs. structurelle. Trancher un recours avec arguments contradictoires demande un jugement contextuel et une autorité institutionnelle — l'autorité ne semble pas automatisable au sens structurel. Mais la pièce reste courte et n'articule pas pourquoi exactement cela revient à l'humain.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'identification de la valeur non-automatisable (le juge en recours) est posée mais pas déployée. La fiche demande l'articulation explicite de pourquoi l'humain est irremplaçable sur cette tâche — ici, la formulation reste implicite. La trace tient mais comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces deux pièces, j'ai cherché à voir si la valeur non-automatisable était identifiée. La première pièce est tombée parce qu'elle célèbre surtout ce que l'IA permet — c'est de la synergie. La seconde a tenu affaiblie : le rôle d'arbitre en recours pose ce qui reste humain, mais sans articulation de pourquoi exactement. Ce qui reste, c'est une trace d'identification de valeur non-automatisable en germe, qui gagnerait à être déployée. La nuance assumée : la lucidité bidirectionnelle est présente en pointillé (reconnaître ce que l'IA permet et ce qui revient à l'humain) mais peu argumentée.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Une seule pièce affaiblie subsiste : le rôle de l'enseignant en recours pose une valeur non-automatisable sans articuler pourquoi exactement elle l'est.",
+        "prescription": "Pour clarifier ce dossier, un chemin possible serait d'expliciter, sur le cas du recours, ce que l'enseignant fait précisément que l'algorithme ne fait pas (pondération contextuelle, autorité institutionnelle, jugement situationnel) et pourquoi cela ne peut pas être délégué."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Décision technique reportée avec critère de déclenchement explicite (« lorsque j'aurai finalisé… alors je basculerai ») et clôture par « A voir » — patience stratégique avec critère."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Annonce d'une étude à venir sur les personas du jury (« le choix des agents devra également faire l'objet d'une étude sérieuse ») — décision différée délibérément."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Hiérarchie temporelle explicite des priorités : faire marcher, puis épurer, puis paralléliser — discipline du timing par étapes."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "« Il faudrait au moins que je puisse consacrer un peu de temps avec Claude pour discuter de tout ça » : besoin reconnu d'une réflexion approfondie, différée par les contraintes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Si je cherche à nier la patience stratégique, je dois lire ces pièces comme de la procrastination ou de la simple planification. La fiche est claire : le combo le plus fiable est (1) pression à agir nommée, (2) raisonnement d'attente explicite, (3) moment d'action prévu. La pièce 1 a (2) et (3) — critère de déclenchement explicite — mais (1) est implicite. La pièce 2 a (3) mais sans (2) déployé. La pièce 3 hiérarchise les priorités avec critères de bascule (« maintenant que c'est validé… ») — c'est un raisonnement explicite du timing par étapes. La pièce 4 nomme un besoin différé sans en faire un report stratégique au sens de la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Critère de déclenchement explicite (« lorsque j'aurai finalisé »), report borné dans le temps, fonctionnement intermédiaire maintenu — pattern direct de la fiche." },
+            { "pieceId": 3, "motifResistance": "La hiérarchie temporelle explicite (faire marcher → épurer → paralléliser) trace un timing par étapes avec critères de bascule." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces ont résisté. Je dois vérifier qu'elles ne sont pas de la planification ordinaire. La pièce 1 a un critère de déclenchement et une clôture par « A voir » qui assume l'incertitude finale — c'est plus que de la planification. La pièce 3 trace explicitement la séquence des priorités, mais on pourrait dire que c'est de la pure méthodologie de projet plutôt que du sens du timing. Toutefois, la fiche autorise ce cas (critères de déclenchement explicites associés à des bascules).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le report est borné par un critère de déclenchement explicite, et la conclusion « A voir » assume une part d'incertitude qui ne paralyse pas. C'est le pattern complet de la fiche."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 3.01 (créativité itérative) avec ses cycles. Pour 4.09, le marqueur est l'enchaînement des priorités avec critères de bascule (« maintenant que c'est validé »). La trace tient comme indice partagé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à les ramener à de la procrastination ou à de la simple planification. La pièce sur le report de la bascule Python + LangChain a tenu sans faiblir : critère de déclenchement explicite, fonctionnement intermédiaire maintenu, « A voir » qui assume l'incertitude. La hiérarchie temporelle des priorités a tenu plus modestement, partagée avec la créativité itérative. Les deux autres sont tombées : l'annonce d'une étude à venir et le besoin de temps avec Claude restent des reports sans critère de déclenchement nommé. Ce qui reste, c'est une pratique de patience stratégique visible sur le projet en cours, particulièrement nette sur le pivot Python + LangChain.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le report borné par critère de déclenchement explicite (pièce 1) a passé le temps 2 sans faiblir comme pattern complet de la fiche ; la hiérarchie temporelle des priorités (pièce 3) corrobore.",
+        "prescription": "Pour prolonger cette pratique, un chemin possible serait de garder trace d'un report d'une décision sous pression d'agir (pression interne ou externe), avec ce qui a justifié l'attente, le critère de déclenchement choisi et ce que la patience a produit comme résultat."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail montre une éthique en exercice plutôt qu'en déclaration. La feuille du 27 mars relate une décision concrète d'arrêt d'un fournisseur (« pour des raisons éthiques »), avec arrangement borné qui maintient l'inconfort moral ; un dispositif d'évaluation conçu pour préserver l'autorité humaine en recours ; et l'appropriation explicite du biais culturel transmis du concepteur au système. Plusieurs reports stratégiques s'inscrivent dans un timing maîtrisé (« lorsque j'aurai finalisé… alors je basculerai », « A voir »), et un acte passé continue à porter (l'investissement personnel de 600 CHF/mois pour 100 élèves, sans soutien institutionnel). La voix dominante mêle tranchage et tolérance à l'incertitude, et la dimension éthique passe surtout par des arrangements pragmatiques qui préservent des positions de fond.",
+    "territoiresDenses": [
+      {
+        "competence": "Alignement & refus éthique",
+        "description": "Acte de refus calibré (arrêt ChatGPT pour raisons éthiques) avec arrangement borné pour la veille, et conception d'un dispositif d'évaluation IA qui maintient l'autorité humaine en cas de recours.",
+        "extraitVerbatim": "J'ai arrêté mon abonnement ChatGPT pour des raisons éthiques. [...] certainement que je prendrais un abonnement d'un mois lorsqu'il sortira pour le tester, malgré tout, pour ne pas me péjorer moi-même dans ma veille technologique",
+        "ceQueCaDit": "Le refus est concret, sélectif, justifié et borné — ce qui distingue l'alignement éthique du rejet de principe. La gouvernance du jury IA, en réservant le tranchage en recours à l'enseignant, prolonge ce même geste d'alignement au niveau du dispositif construit."
+      },
+      {
+        "competence": "Décision & tolérance à l'incertitude",
+        "description": "Tranchages sous contrainte (panne, budget) qui combinent contrainte nommée, fonctionnement maintenu et conséquences articulées — le combo le plus fiable de la fiche.",
+        "extraitVerbatim": "Donc on fait avec, c'est-à-dire que je vais moins vite et moins loin (pas d'achat de serveur pour faire de l'inférence locale - ni location de services en ligne - ni d'utilisation de clé API).",
+        "ceQueCaDit": "Le périmètre du possible est tranché explicitement, ce qui est écarté est nommé, et le coût de la décision (« moins vite et moins loin ») est assumé sans plainte ni paralysie. La tolérance à l'incertitude se conjugue avec la décision d'avancer dans le périmètre restant."
+      },
+      {
+        "competence": "Responsabilité, courage & intégrité",
+        "description": "Maintien de position à coût personnel élevé sans soutien institutionnel (investissement de 600 CHF/mois en outils IA pour les élèves), et appropriation explicite du biais culturel transmis au système construit.",
+        "extraitVerbatim": "j'avais des factures de folie (jusqu'à 600 CHF / mois) lorsque j'étais enseignant - et ce sans participation de l'école, ni reconnaissance institutionnelle puisque c'était plutôt l'inverse - mais au moins, mes 100 élèves pouvaient utiliser Claude 3.5 Opus à l'époque, de manière illimité",
+        "ceQueCaDit": "Le récit articule trois éléments rarement réunis : un problème (l'accès des élèves), une part assumée (les factures personnelles), un maintien de position malgré contrepartie négative. L'intégrité se lit dans l'acte, pas dans la déclaration."
+      },
+      {
+        "competence": "Patience stratégique & sens du timing",
+        "description": "Report d'une décision technique majeure (bascule Python + LangChain) avec critère de déclenchement explicite et clôture par « A voir » qui assume l'incertitude finale.",
+        "extraitVerbatim": "Lorsque j'aurai finalisé le prototype, minimisé la consommation de tokens, et maximiser la parallélisation du traitement, alors je basculerai [...] A voir.",
+        "ceQueCaDit": "Le report est borné, le critère de déclenchement est nommé, le fonctionnement intermédiaire est maintenu — c'est exactement la patience stratégique distinguée de la procrastination. La clôture par « A voir » maintient la part d'ouverture."
+      },
+      {
+        "competence": "Raisonnement éthique appliqué",
+        "description": "Tension assumée entre éthique (arrêt ChatGPT) et veille technologique, avec arbitrage borné qui maintient l'inconfort moral plutôt que de le résoudre par adhésion à une seule valeur.",
+        "extraitVerbatim": "certainement que je prendrais un abonnement d'un mois [...] malgré tout, pour ne pas me péjorer moi-même",
+        "ceQueCaDit": "Deux valeurs légitimes sont en tension et l'arbitrage produit un arrangement borné. Le « malgré tout » signale que la résolution ne fait pas disparaître l'inconfort — pratique éthique qui maintient la complexité plutôt que de la trancher prématurément."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas pleinement déployés sur cette feuille. La conscience écologique et long-terme n'apparaît pas : la réduction des tokens est explicitement motivée par le coût économique, sans articulation des externalités énergétiques ou des impacts environnementaux — territoire qui demande des arbitrages où l'empreinte modifie la décision. La valorisation de la neurodiversité n'a pas de trace sur cette feuille, ce qui ressemble plus à un effet de focale qu'à une absence de fond. La validation contextuelle et la création de valeur non-automatisable apparaissent en germe (le rôle de l'enseignant en recours, le savoir contextuel du concepteur) sans être pleinement articulées — quelques phrases supplémentaires sur le « pourquoi » de l'irremplaçabilité humaine clarifieraient ces dossiers.",
+    "emergencesPole": "Trois observations traversent ce pôle. D'abord, l'éthique s'exprime par des arrangements bornés plutôt que par des positions tranchées : l'arrêt de ChatGPT coexiste avec une reprise programmée, le dispositif d'évaluation IA coexiste avec l'autorité humaine de recours, la critique institutionnelle coexiste avec un investissement personnel passé. La tension est nommée plutôt qu'évacuée. Ensuite, la responsabilité passe par l'appropriation des biais et des coûts plutôt que par leur évacuation : le biais culturel transmis au système est dit « mon biais », le coût des décisions sous contrainte est assumé (« moins vite et moins loin »), et l'écart entre l'institution et l'engagement personnel est tenu dans le temps long. Enfin, le timing est structurant : la feuille articule plusieurs reports (Python + LangChain, étude sur les personas, temps de réflexion avec Claude) avec ou sans critère de déclenchement, comme si la patience stratégique était une part du métier qui se travaille.",
+    "pistes": [
+      "Pour déployer le raisonnement éthique, un chemin possible serait d'expliciter les « raisons éthiques » qui fondent l'arrêt de ChatGPT : quelles valeurs sont engagées, quelles parties prenantes affectées, et où l'arrangement borné place le curseur.",
+      "Pour consolider l'alignement, un chemin possible serait de formaliser un protocole personnel de garde-fous : quels signaux de désalignement (biais, complaisance, omission) déclenchent quelle procédure dans le dispositif du jury IA.",
+      "Pour ouvrir le territoire de la conscience écologique, un chemin possible serait d'intégrer, dans une prochaine décision technique (achat de serveur, choix de modèle, inférence locale vs cloud), un arbitrage où l'empreinte énergétique pèse explicitement.",
+      "Pour clarifier la validation contextuelle et la valeur non-automatisable, un chemin possible serait d'expliciter, sur le cas du recours, ce que l'enseignant fait que l'algorithme ne fait pas, et pourquoi cela ne peut pas être délégué.",
+      "Pour rendre visible la patience stratégique dans la durée, un chemin possible serait de garder trace d'un report sous pression d'agir, avec ce que la patience a finalement produit comme résultat — preuve longitudinale qui distingue la patience de la procrastination."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail montre une éthique en exercice plutôt qu'en déclaration. La feuille du 27 mars relate une décision concrète d'arrêt d'un fournisseur (« pour des raisons éthiques »), avec arrangement borné qui maintient l'inconfort moral ; un dispositif d'évaluation conçu pour préserver l'autorité humaine en recours ; et l'appropriation explicite du biais culturel transmis du concepteur au système. Plusieurs reports stratégiques s'inscrivent dans un timing maîtrisé (« lorsque j'aurai finalisé… alors je basculerai », « A voir »), et un acte passé continue à porter (l'investissement personnel de 600 CHF/mois pour 100 élèves, sans soutien institutionnel). La voix dominante mêle tranchage et tolérance à l'incertitude, et la dimension éthique passe surtout par des arrangements pragmatiques qui préservent des positions de fond.\n\n## Territoires les plus denses\n\n**Alignement & refus éthique.** Acte de refus calibré (arrêt ChatGPT pour raisons éthiques) avec arrangement borné pour la veille, et conception d'un dispositif d'évaluation IA qui maintient l'autorité humaine en cas de recours. *« J'ai arrêté mon abonnement ChatGPT pour des raisons éthiques. […] certainement que je prendrais un abonnement d'un mois lorsqu'il sortira pour le tester, malgré tout, pour ne pas me péjorer moi-même dans ma veille technologique »* Le refus est concret, sélectif, justifié et borné — ce qui distingue l'alignement éthique du rejet de principe. La gouvernance du jury IA, en réservant le tranchage en recours à l'enseignant, prolonge ce même geste d'alignement au niveau du dispositif construit.\n\n**Décision & tolérance à l'incertitude.** Tranchages sous contrainte (panne, budget) qui combinent contrainte nommée, fonctionnement maintenu et conséquences articulées — le combo le plus fiable de la fiche. *« Donc on fait avec, c'est-à-dire que je vais moins vite et moins loin (pas d'achat de serveur pour faire de l'inférence locale - ni location de services en ligne - ni d'utilisation de clé API). »* Le périmètre du possible est tranché explicitement, ce qui est écarté est nommé, et le coût de la décision (« moins vite et moins loin ») est assumé sans plainte ni paralysie. La tolérance à l'incertitude se conjugue avec la décision d'avancer dans le périmètre restant.\n\n**Responsabilité, courage & intégrité.** Maintien de position à coût personnel élevé sans soutien institutionnel (investissement de 600 CHF/mois en outils IA pour les élèves), et appropriation explicite du biais culturel transmis au système construit. *« j'avais des factures de folie (jusqu'à 600 CHF / mois) lorsque j'étais enseignant - et ce sans participation de l'école, ni reconnaissance institutionnelle puisque c'était plutôt l'inverse - mais au moins, mes 100 élèves pouvaient utiliser Claude 3.5 Opus à l'époque, de manière illimité »* Le récit articule trois éléments rarement réunis : un problème (l'accès des élèves), une part assumée (les factures personnelles), un maintien de position malgré contrepartie négative. L'intégrité se lit dans l'acte, pas dans la déclaration.\n\n**Patience stratégique & sens du timing.** Report d'une décision technique majeure (bascule Python + LangChain) avec critère de déclenchement explicite et clôture par « A voir » qui assume l'incertitude finale. *« Lorsque j'aurai finalisé le prototype, minimisé la consommation de tokens, et maximiser la parallélisation du traitement, alors je basculerai […] A voir. »* Le report est borné, le critère de déclenchement est nommé, le fonctionnement intermédiaire est maintenu — c'est exactement la patience stratégique distinguée de la procrastination. La clôture par « A voir » maintient la part d'ouverture.\n\n**Raisonnement éthique appliqué.** Tension assumée entre éthique (arrêt ChatGPT) et veille technologique, avec arbitrage borné qui maintient l'inconfort moral plutôt que de le résoudre par adhésion à une seule valeur. *« certainement que je prendrais un abonnement d'un mois […] malgré tout, pour ne pas me péjorer moi-même »* Deux valeurs légitimes sont en tension et l'arbitrage produit un arrangement borné. Le « malgré tout » signale que la résolution ne fait pas disparaître l'inconfort — pratique éthique qui maintient la complexité plutôt que de la trancher prématurément.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas pleinement déployés sur cette feuille. La conscience écologique et long-terme n'apparaît pas : la réduction des tokens est explicitement motivée par le coût économique, sans articulation des externalités énergétiques ou des impacts environnementaux — territoire qui demande des arbitrages où l'empreinte modifie la décision. La valorisation de la neurodiversité n'a pas de trace sur cette feuille, ce qui ressemble plus à un effet de focale qu'à une absence de fond. La validation contextuelle et la création de valeur non-automatisable apparaissent en germe (le rôle de l'enseignant en recours, le savoir contextuel du concepteur) sans être pleinement articulées — quelques phrases supplémentaires sur le « pourquoi » de l'irremplaçabilité humaine clarifieraient ces dossiers.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, l'éthique s'exprime par des arrangements bornés plutôt que par des positions tranchées : l'arrêt de ChatGPT coexiste avec une reprise programmée, le dispositif d'évaluation IA coexiste avec l'autorité humaine de recours, la critique institutionnelle coexiste avec un investissement personnel passé. La tension est nommée plutôt qu'évacuée. Ensuite, la responsabilité passe par l'appropriation des biais et des coûts plutôt que par leur évacuation : le biais culturel transmis au système est dit « mon biais », le coût des décisions sous contrainte est assumé (« moins vite et moins loin »), et l'écart entre l'institution et l'engagement personnel est tenu dans le temps long. Enfin, le timing est structurant : la feuille articule plusieurs reports (Python + LangChain, étude sur les personas, temps de réflexion avec Claude) avec ou sans critère de déclenchement, comme si la patience stratégique était une part du métier qui se travaille.\n\n## Pistes pour enrichir ce pôle\n\n- Pour déployer le raisonnement éthique, un chemin possible serait d'expliciter les « raisons éthiques » qui fondent l'arrêt de ChatGPT : quelles valeurs sont engagées, quelles parties prenantes affectées, et où l'arrangement borné place le curseur.\n- Pour consolider l'alignement, un chemin possible serait de formaliser un protocole personnel de garde-fous : quels signaux de désalignement (biais, complaisance, omission) déclenchent quelle procédure dans le dispositif du jury IA.\n- Pour ouvrir le territoire de la conscience écologique, un chemin possible serait d'intégrer, dans une prochaine décision technique (achat de serveur, choix de modèle, inférence locale vs cloud), un arbitrage où l'empreinte énergétique pèse explicitement.\n- Pour clarifier la validation contextuelle et la valeur non-automatisable, un chemin possible serait d'expliciter, sur le cas du recours, ce que l'enseignant fait que l'algorithme ne fait pas, et pourquoi cela ne peut pas être délégué.\n- Pour rendre visible la patience stratégique dans la durée, un chemin possible serait de garder trace d'un report sous pression d'agir, avec ce que la patience a finalement produit comme résultat — preuve longitudinale qui distingue la patience de la procrastination."
+  }
+}

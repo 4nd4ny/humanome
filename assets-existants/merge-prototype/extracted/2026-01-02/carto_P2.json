@@ -1,0 +1,506 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Je pense utiliser ces versions pour faire un document court pour les Accompagnants, un document moyen pour les Tuteurs et un document long pour les Maîtres.",
+      "contexte": "Allocation différenciée des documents par public, première esquisse d'une architecture communautaire et d'une traduction par audience.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Il ne me restera plus qu'à générer un document pour former les Éclaireur, mais là dessus ma valeur ajoutée est quasiment nulle pour le moment.",
+      "contexte": "Reconnaissance d'un cinquième rôle dans le système (Éclaireurs) avec autodérision sur sa propre capacité à le former.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Je vais voir si l'IA me permet de trouver comment organiser cette documentation de manière judicieuse, afin de ne pas effrayer un public débutant.",
+      "contexte": "Préoccupation explicite pour le ressenti d'un public débutant face à un volume documentaire élevé.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Donc, si tu as bien compris mon cours, tu as compris que les élèves sont tuteurs des autres élèves.",
+      "contexte": "Rappel à Gemini d'un principe organisationnel central : les élèves sont eux-mêmes tuteurs - architecture relationnelle énoncée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "En gros il kiffe le module 0 de la v2 pour les apprenants, la v5 pour les tuteurs, la v2 pour les maîtres formateurs et me dit de garder la v1 sous le coude. Nous ne sommes pas d'accord, mais ça me permet de mieux comprendre la portée des documents avant des les avoir entièrement lus.",
+      "contexte": "Désaccord assumé avec la recommandation du modèle qui ne bloque pas la progression et alimente la compréhension.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Les réponses de Gemini en soit n'ont pas été utiles, les réflexions oui, pour mieux comprendre les contenus que j'ai fait générer les deux nuits précédentes alors que je m'endormais derrière mon écran.",
+      "contexte": "Travail avec une IA imparfaite en distinguant ce qui sert (les réflexions catalysées) de ce qui ne sert pas (les réponses elles-mêmes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "| v2 initiation | Apprenants | Apprendre à apprendre. | | v5 manifeste | Accompagnants | Autoformation, habilité à créer une micro-classe. | | v1 médiation | Tuteurs | ex-Accompagnant, formé par un Maître, habilité à générer des cartographies de compétences. | | v2 noèsiologue | Maîtres | ex-Tuteur, formé par un Maître, habilité à modifier Respire. |",
+      "contexte": "Tableau qui définit quatre rôles communautaires avec leurs filiations (ex-Accompagnant, ex-Tuteur) et leurs habilitations (créer une micro-classe, générer des cartographies, modifier Respire).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "extraire le module 0 de la v2 pour en faire un manuel Apprenants",
+      "contexte": "Décision de transposition : un module conçu dans un document long devient un manuel spécifique pour un autre public.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Ça serait cool d'écrire ça dans le portfolio, mais ce serait mentir, car je le savais déjà.",
+      "contexte": "Refus assumé d'inscrire au portfolio un savoir antérieur déguisé en apprentissage nouveau - communication authentique vis-à-vis du lecteur.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Gémini 3 Pro DeepThinking c'est bien pour un résumé rapide sur mon smartphone, ou pour discuter de philosophie avec une IA en conduisant en voiture. Pour le vrai travail, Claude 4.5 Opus Extended Thinking est mieux, mais il est nul en math. Pour les maths, c'est ChatGPT 5.2 Pro Extended Thinking qui explose tout le monde.",
+      "contexte": "Variation de registre dans le même paragraphe : familier (kiffe, explose tout le monde) côtoyant des dénominations techniques précises.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "le temps que je le fasse et il y aura ChatGPT 5.5 ou Gemini 3.5 qui sortira et il faudra tout recommencer…",
+      "contexte": "Arbitrage entre l'effort de documentation et l'obsolescence rapide, énoncé en parenthèses à la première personne.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne porte pas ici de trace de nomination émotionnelle fine ou de sollicitude active envers une personne. Pour ouvrir ce territoire, un chemin possible serait de documenter une situation où la perception d'un état émotionnel d'autrui a précédé une intervention concrète."
+      }
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Il ne me restera plus qu'à générer un document pour former les Éclaireur, mais là dessus ma valeur ajoutée est quasiment nulle pour le moment.",
+          "contexte": "Autodérision dosée et sans cynisme sur sa propre capacité à former un public donné.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "extraitVerbatim": "Ça serait cool d'écrire ça dans le portfolio, mais ce serait mentir, car je le savais déjà.",
+          "contexte": "Vulnérabilité stratégique vis-à-vis du lecteur du portfolio : refus de gonfler la trace pour rester aligné avec la vérité du parcours.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 10,
+          "extraitVerbatim": "Gémini 3 Pro DeepThinking c'est bien pour un résumé rapide sur mon smartphone, ou pour discuter de philosophie avec une IA en conduisant en voiture. Pour le vrai travail, Claude 4.5 Opus Extended Thinking est mieux, mais il est nul en math. Pour les maths, c'est ChatGPT 5.2 Pro Extended Thinking qui explose tout le monde.",
+          "contexte": "Variation de registre dans un même paragraphe : familier ('kiffe', 'explose tout le monde') côtoyant des dénominations techniques précises - conscience du ton.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent d'un style d'écriture personnel et non d'une communication calibrée. Dire 'ma valeur ajoutée est quasiment nulle' peut n'être qu'une formule modeste ; alterner familier et technique peut n'être qu'un tic d'écriture. Ce qui me force à m'arrêter : la pièce 2 porte un acte délibéré de refus - 'ce serait cool d'écrire ça mais ce serait mentir' - qui choisit consciemment ce qui sera partagé et ce qui ne le sera pas. La pièce 3 fait coexister, dans le même bloc, un lexique technique précis (noms exacts des modèles) et des marqueurs familiers (kiffe, explose tout le monde) - cette coexistence est une variation de registre au sens de la fiche. La pièce 1 reste plus faible : la modestie peut être réflexe.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'autodérision sans cynisme dose un aveu d'incomplétude dans un récit par ailleurs assuré." },
+            { "pieceId": 2, "motifResistance": "Le choix conscient de ce qui doit ou non figurer au portfolio fait de l'écriture un acte communicationnel délibéré." },
+            { "pieceId": 3, "motifResistance": "La coexistence dans une même phrase de termes techniques exacts et de marqueurs familiers atteste une conscience du registre." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir trois pièces et je me demande si je n'ai pas projeté une intention communicationnelle là où il n'y a qu'un style. La pièce 1 reste sur le fil : la modestie est-elle stratégique ou réflexe ? La pièce 2 tient solidement : le verbe 'mentir' et la conscience explicite du portfolio comme lieu de partage qualifient un acte de communication authentique. La pièce 3 tient également : les deux registres ne sont pas un mélange involontaire, ils se répondent (familier pour les usages quotidiens, précis pour le vrai travail).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce déclare une autodérision plus qu'elle ne la met en scène ; elle tient comme indice corroboratif des deux autres pièces."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le geste est explicite dans le verbatim ('ce serait mentir') et engage la sincérité de l'écriture envers ses lecteurs."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les registres sont articulés selon les contextes d'usage évoqués (smartphone vs vrai travail) - la conscience du ton est portée par la structure du passage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme de simples traits de style. La présomption d'absence a allégé la pièce d'autodérision mais n'a pas pu écarter le geste de refus de mentir au portfolio ni la variation de registre articulée selon les contextes. La présomption de sycophantie a confirmé les deux pièces principales. Ce qui reste : une communication où le choix de ce qui est dit, de la manière dont c'est dit et de ce qui n'est volontairement pas dit fait partie du travail. L'autodérision dosée corrobore cette tenue communicationnelle sans la porter à elle seule.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.62,
+        "motif": "Le temps 2 a confirmé la pièce du refus délibéré de fausser le portfolio comme preuve décisive, corroborée par une variation de registre articulée et une autodérision dosée.",
+        "prescription": "Le geste qui choisit de ne pas inscrire ce qui serait pourtant flatteur installe une communication authentique en acte. Pour prolonger ce travail, un chemin possible serait de noter une fois ce qui a été choisi de ne pas dire à un destinataire spécifique, et le critère qui a guidé ce choix."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio porte un désaccord avec une IA, lequel relève davantage de la collaboration divergente que du conflit humain au sens de la fiche. Pour ouvrir ce territoire, un chemin possible serait de documenter un désaccord entre personnes où le rôle actif tenu dans la structuration du débat est explicité."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne porte pas ici de stratégie de mobilisation, d'identification de décideurs ou d'alliance pensée. Pour ouvrir ce territoire, un chemin possible serait de documenter une situation où il a fallu préparer une proposition en sondant des résistances ou en choisissant un moment opportun."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "extraitVerbatim": "En gros il kiffe le module 0 de la v2 pour les apprenants, la v5 pour les tuteurs, la v2 pour les maîtres formateurs et me dit de garder la v1 sous le coude. Nous ne sommes pas d'accord, mais ça me permet de mieux comprendre la portée des documents avant des les avoir entièrement lus.",
+          "contexte": "Énoncé explicite du marqueur 'on n'est pas d'accord MAIS ça permet d'avancer' appliqué à une collaboration humain-IA.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "extraitVerbatim": "Les réponses de Gemini en soit n'ont pas été utiles, les réflexions oui, pour mieux comprendre les contenus que j'ai fait générer les deux nuits précédentes alors que je m'endormais derrière mon écran.",
+          "contexte": "Architecture de collaboration compensatoire : ce que l'IA produit reste inutilisable, mais le processus qu'elle catalyse sert quand même.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent d'un usage banal de l'IA et non d'une collaboration divergente articulée. Désapprouver les recommandations d'un modèle puis suivre les siennes peut n'être qu'un rejet ordinaire. Distinguer 'réponses pas utiles / réflexions utiles' peut n'être qu'une rationalisation a posteriori. Ce qui me force à m'arrêter : la pièce 1 nomme exactement le marqueur de la fiche ('Nous ne sommes pas d'accord, mais...') en conservant les deux positions (Gemini garde ses préférences, l'apprenant produit la sienne) et en tirant un bénéfice cognitif du désaccord. La pièce 2 décrit un dispositif de collaboration en deux étages (l'IA hallucine, l'humain trie) qui correspond précisément à la trace oblique citée par la fiche.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La formulation reproduit littéralement le marqueur central de la fiche, sans recherche de résolution du désaccord." },
+            { "pieceId": 2, "motifResistance": "L'allocation 'réponses non / réflexions oui' organise une compensation collaborative explicite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces qui paraissent fortes et je me demande si je n'ai pas surchargé la lecture en projetant un cadre. La pièce 1 tient sans réserve : le 'mais' relie deux positions qui ne sont pas réconciliées et la production reste produite. La pièce 2 tient également : la distinction entre niveaux d'utilité d'un même échange installe une collaboration où l'on travaille avec les défauts du partenaire au lieu d'en attendre la disparition. Aucune des deux pièces ne ressemble à une capitulation déguisée - l'apprenant ne se range pas à l'avis de Gemini et Gemini reste tel qu'il est.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La pièce active aussi 2.03 mais ici les positions ne convergent pas, ce qui exclut la résolution caractéristique de 2.03 et confirme 2.05."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le dispositif (extraire la valeur des réflexions sans valider les réponses) est nommé dans le verbatim et constitue une architecture compensatoire en acte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces deux pièces comme un usage ordinaire d'un outil défectueux. La présomption d'absence n'a pas pu écarter le marqueur littéral 'pas d'accord MAIS' ni le dispositif de tri 'réponses non / réflexions oui'. La présomption de sycophantie a confirmé les deux pièces. Ce qui reste : une collaboration où l'imperfection du partenaire est intégrée comme contrainte plutôt que comme obstacle, et où la livraison se produit sans réconciliation préalable. C'est la signature de la compétence telle que la fiche la décrit.",
+          "confianceFinale": 0.74
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.74,
+        "motif": "Le temps 2 a confirmé deux pièces décisives qui incarnent respectivement le marqueur 'pas d'accord MAIS livré' et l'architecture compensatoire avec une IA imparfaite.",
+        "prescription": "La pratique de travailler avec une IA tout en nommant ses limites trouve ici une forme reconnaissable. Pour prolonger ce mouvement, un chemin possible serait de transposer ce dispositif à une collaboration humaine où la divergence persisterait, en repérant ce qui change quand le partenaire répond et ne se contente pas de produire."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La sensibilité au public débutant ('ne pas effrayer') opère ici comme préoccupation pédagogique plus que comme lecture culturelle au sens de la fiche (analyse de normes partagées différentes du sien). Pour ouvrir ce territoire, un chemin possible serait de documenter un moment où l'adaptation comportementale a suivi le repérage explicite d'un cadre de référence distinct."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne porte pas ici de lecture des dynamiques de pouvoir invisibles dans une organisation. Pour ouvrir ce territoire, un chemin possible serait de documenter une situation où la voie hiérarchique officielle a été contournée parce que le vrai centre de décision se trouvait ailleurs."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Je pense utiliser ces versions pour faire un document court pour les Accompagnants, un document moyen pour les Tuteurs et un document long pour les Maîtres.",
+          "contexte": "Reformulation d'un même corpus en trois registres adaptés à trois audiences distinctes - geste de transposition par public.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "extraitVerbatim": "Je vais voir si l'IA me permet de trouver comment organiser cette documentation de manière judicieuse, afin de ne pas effrayer un public débutant.",
+          "contexte": "Conscience explicite du seuil entre le matériau spécialisé existant et la capacité d'absorption d'un public débutant.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "extraitVerbatim": "| v2 initiation | Apprenants | Apprendre à apprendre. | | v5 manifeste | Accompagnants | Autoformation, habilité à créer une micro-classe. | | v1 médiation | Tuteurs | ex-Accompagnant, formé par un Maître, habilité à générer des cartographies de compétences. | | v2 noèsiologue | Maîtres | ex-Tuteur, formé par un Maître, habilité à modifier Respire. |",
+          "contexte": "Tableau qui transpose un même matériau en quatre déclinaisons indexées sur quatre publics distincts, avec objectifs spécifiques pour chacun.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 4,
+          "pid": 8,
+          "extraitVerbatim": "extraire le module 0 de la v2 pour en faire un manuel Apprenants",
+          "contexte": "Opération de transposition concrète : un fragment d'un document destiné aux Maîtres devient un manuel autonome pour un public débutant.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent de la planification documentaire et non de la traduction entre mondes. Décider quel document pour quel public peut n'être qu'une distribution de matière, sans transposition réelle. Ce qui me force à m'arrêter : la pièce 3 articule quatre versions sur quatre publics avec quatre objectifs explicitement formulés - 'Apprendre à apprendre' pour les débutants, 'modifier Respire' pour les Maîtres. Ce n'est pas un même contenu décliné par longueur mais quatre intentions pédagogiques distinctes pour quatre cadres conceptuels distincts. La pièce 2 nomme le risque ('effrayer un public débutant'), ce qui suppose la conscience d'un saut entre cadres. La pièce 4 décrit une opération concrète d'extraction-transposition. La pièce 1 résiste plus faiblement : sans la pièce 3, elle ressemblerait à une simple distribution.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La déclinaison court/moyen/long suggère une adaptation au seuil d'absorption de chaque audience." },
+            { "pieceId": 2, "motifResistance": "Le mot 'effrayer' nomme un risque psychologique qui suppose la conscience d'un écart entre cadres conceptuels." },
+            { "pieceId": 3, "motifResistance": "Le tableau pose quatre intentions pédagogiques distinctes pour quatre cadres distincts - transposition et non simplification." },
+            { "pieceId": 4, "motifResistance": "L'extraction d'un module pour en faire un manuel autonome est un acte de transposition vérifiable." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir quatre pièces et je me demande si je n'ai pas surévalué la simple répartition par audience comme acte de traduction. Sur examen, la pièce 1 reste sur le fil : court/moyen/long peut décrire une longueur sans transposition réelle. La pièce 2 tient : le mot 'effrayer' désigne un effet sur le récepteur, pas une simple adaptation. La pièce 3 tient solidement : les objectifs pédagogiques différenciés ('Apprendre à apprendre', 'créer une micro-classe', 'générer des cartographies', 'modifier Respire') prouvent que chaque public reçoit non pas une simplification mais une intention pédagogique propre. La pièce 4 tient comme acte concret.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce annonce la distribution sans détailler ce qui change conceptuellement entre les versions - elle tient comme indice corroboratif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le terme 'effrayer' identifie un risque pour le récepteur, attestant la conscience d'un écart entre cadres."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La structure du tableau fait apparaître non des longueurs mais des intentions pédagogiques distinctes pour chaque audience."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'opération est nommée comme acte concret (extraire pour en faire) et non comme intention vague."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces pièces comme une simple distribution documentaire par longueur ou par public. La présomption d'absence a allégé la pièce 1, qui reste descriptive. La présomption de sycophantie a confirmé les trois autres : la pièce 3 surtout, qui pose quatre intentions pédagogiques distinctes pour quatre cadres conceptuels distincts. Ce qui reste : un acte de transposition explicite, indexé sur les seuils d'absorption et les habilitations attendues de chaque audience. Le test de la fiche - 'l'expert d'origine reconnaîtrait-il son savoir dans la version traduite ?' - reste à vérifier sur les contenus produits, mais le geste de traduction est en place.",
+          "confianceFinale": 0.76
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.76,
+        "motif": "Le temps 2 a confirmé trois pièces décisives, dont le tableau de transposition par public avec objectifs différenciés et l'extraction explicite d'un module pour en faire un manuel autonome.",
+        "prescription": "La transposition d'un même corpus en quatre déclinaisons indexées sur quatre publics installe ici un acte de traduction en sens descendant. Pour prolonger ce travail, un chemin possible serait de tenir une trace du sens inverse : remonter un besoin venu d'un débutant ou d'un Accompagnant vers le matériau destiné aux Maîtres, pour vérifier la bidirectionnalité que la fiche signale comme marqueur fort."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Il ne me restera plus qu'à générer un document pour former les Éclaireur, mais là dessus ma valeur ajoutée est quasiment nulle pour le moment.",
+          "contexte": "Mention d'un cinquième rôle dans le système, signalant une architecture communautaire en cours d'extension.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "extraitVerbatim": "Donc, si tu as bien compris mon cours, tu as compris que les élèves sont tuteurs des autres élèves.",
+          "contexte": "Énoncé d'un principe structurant de la communauté : la circulation des rôles entre apprenants et tuteurs.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "extraitVerbatim": "| v2 initiation | Apprenants | Apprendre à apprendre. | | v5 manifeste | Accompagnants | Autoformation, habilité à créer une micro-classe. | | v1 médiation | Tuteurs | ex-Accompagnant, formé par un Maître, habilité à générer des cartographies de compétences. | | v2 noèsiologue | Maîtres | ex-Tuteur, formé par un Maître, habilité à modifier Respire. |",
+          "contexte": "Architecture communautaire avec rôles nommés, filiations entre rôles (ex-Accompagnant, ex-Tuteur) et habilitations spécifiques (créer, générer, modifier).",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles décrivent une hiérarchie de publics et non une communauté. Avoir des rôles avec des objectifs n'est pas la même chose que créer de l'appartenance qui survit au projet. La pièce 1 mentionne un rôle supplémentaire sans installation affective. La pièce 2 énonce un principe organisationnel mais sans 'nous' identitaire chargé d'émotion. Ce qui me force à m'arrêter : la pièce 3 va au-delà de la simple répartition - elle nomme les filiations entre rôles ('ex-Accompagnant, formé par un Maître') et définit pour chaque rôle des habilitations propres qui structurent une gouvernance ('habilité à modifier Respire'). C'est précisément l'exception de la fiche : architecture systémique avec rôles, rituels implicites de transmission, gouvernance.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "L'énoncé 'les élèves sont tuteurs des autres élèves' pose une circulation des rôles qui constitue la communauté plus qu'une hiérarchie." },
+            { "pieceId": 3, "motifResistance": "Le tableau décrit une architecture avec filiations et habilitations qui dépasse la coordination d'équipe au sens de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces et je me demande si je n'ai pas surinterprété un schéma organisationnel comme une communauté. La pièce 2 reste sur le fil : l'énoncé est court et son charge identitaire est implicite. La pièce 3 tient bien : le terme 'ex-Accompagnant' fait explicitement référence à un parcours d'appartenance dans la durée (on devient Tuteur en ayant été Accompagnant), ce qui transforme une fonction en trajectoire identitaire. Les habilitations ('créer une micro-classe', 'modifier Respire') installent une gouvernance distribuée qui distingue cette structure d'un organigramme classique. Le 'nous' identitaire reste cependant peu explicite à l'écrit.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce est courte ; elle tient comme indice du principe communautaire de circulation des rôles, sans en porter seule la charge."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 2.08 (traduction par audience) mais elle porte ici la composante architecturale propre à 2.09 : filiations, habilitations, gouvernance distribuée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ce tableau comme une simple répartition de publics et non comme une architecture communautaire. La présomption d'absence a allégé la pièce 1 (mention d'un rôle additionnel) qui n'a pas été retenue parmi les pièces résistantes. La présomption de sycophantie a affaibli les deux autres : la pièce 2 reste comme principe énoncé, la pièce 3 reste comme architecture explicite mais sans charge affective lisible. Ce qui reste : un design d'écosystème avec rôles, filiations et habilitations - le squelette structurel d'une communauté, sans encore les rituels affectifs que la fiche signale comme renforcement. La présence tient mais la confiance reste mesurée.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.62,
+        "motif": "Le temps 2 a maintenu une pièce affaiblie comme preuve décisive (tableau d'architecture avec filiations et habilitations) corroborée par l'énoncé du principe de circulation des rôles.",
+        "prescription": "L'architecture qui définit les rôles, leurs filiations et leurs habilitations pose le squelette structurel d'une communauté. Pour densifier cette dimension, un chemin possible serait de documenter un rituel ou un moment de transmission entre rôles (passage Accompagnant → Tuteur par exemple), de manière à compléter la structure par l'expérience vécue de l'appartenance."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 4,
+    "renvoisCartographe": 0,
+    "nonEtablies": 0,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail visible ce jour-là porte moins sur des interactions humaines directes que sur l'architecture des relations qu'un dispositif pédagogique va instituer. Le récit construit, à l'occasion d'une journée passée à éprouver Gemini, un partage des publics futurs - Apprenants, Accompagnants, Tuteurs, Maîtres - avec leurs filiations (ex-Accompagnant, ex-Tuteur) et leurs habilitations propres (créer une micro-classe, générer des cartographies, modifier Respire). La voix laisse passer un registre familier ('kiffe', 'explose tout le monde') et de l'autodérision sur sa propre valeur ajoutée. Le désaccord avec une IA est nommé sans drame et alimente une compréhension plutôt qu'une rupture. La matière relationnelle se manifeste ici davantage par traces structurelles - tableau de rôles, économie d'audiences - que par récits d'interactions vécues.",
+    "territoiresDenses": [
+      {
+        "competence": "Traduction entre mondes",
+        "description": "Transposition d'un même corpus en quatre déclinaisons indexées sur quatre publics distincts, avec objectifs pédagogiques différenciés pour chaque audience.",
+        "extraitVerbatim": "Je vais voir si l'IA me permet de trouver comment organiser cette documentation de manière judicieuse, afin de ne pas effrayer un public débutant.",
+        "ceQueCaDit": "Le mot 'effrayer' fait apparaître la conscience d'un écart entre cadres conceptuels et installe le geste de traduction comme préoccupation centrale de l'écriture pédagogique."
+      },
+      {
+        "competence": "Collaboration divergente",
+        "description": "Travail produit avec une IA imparfaite en distinguant ce qui sert (les réflexions catalysées) de ce qui ne sert pas (les réponses produites), sans réconciliation des points de vue.",
+        "extraitVerbatim": "Nous ne sommes pas d'accord, mais ça me permet de mieux comprendre la portée des documents avant des les avoir entièrement lus.",
+        "ceQueCaDit": "Le 'mais' relie deux positions qui restent en place - le partenaire reste tel qu'il est, l'apprenant ne se range pas, et pourtant la production avance."
+      },
+      {
+        "competence": "Construction de communautés",
+        "description": "Architecture qui définit cinq rôles (Apprenants, Accompagnants, Tuteurs, Maîtres, Éclaireurs) avec leurs filiations - on devient Tuteur après avoir été Accompagnant - et leurs habilitations propres.",
+        "extraitVerbatim": "v1 médiation | Tuteurs | ex-Accompagnant, formé par un Maître, habilité à générer des cartographies de compétences.",
+        "ceQueCaDit": "La mention 'ex-Accompagnant' transforme une fonction en trajectoire d'appartenance, ce qui dépasse l'organigramme et touche au vocabulaire de la communauté."
+      },
+      {
+        "competence": "Communication authentique",
+        "description": "Choix délibéré de ce qui figure ou non au portfolio, variation de registre articulée entre familier et technique, autodérision dosée sur sa propre valeur ajoutée.",
+        "extraitVerbatim": "Ça serait cool d'écrire ça dans le portfolio, mais ce serait mentir, car je le savais déjà.",
+        "ceQueCaDit": "Le geste fait de l'écriture un acte communicationnel délibéré envers les lecteurs du portfolio : la sincérité passe avant la flatterie de soi."
+      }
+    ],
+    "territoiresNonVisites": "Cinq territoires du pôle restent hors champ dans cette feuille. L'intelligence émotionnelle ne trouve pas de prise : aucune nomination émotionnelle fine, aucun geste de sollicitude active envers une personne identifiée. La gestion des conflits humains et l'influence diplomatique restent également hors récit - le désaccord ici est avec une IA, pas avec une personne. L'intelligence culturelle est effleurée par la préoccupation de 'ne pas effrayer un public débutant', mais sans l'analyse de cadres normatifs différents que la fiche réclame, ce qui rapproche ce geste de la traduction entre mondes plutôt que de la lecture culturelle proprement dite. Le sens politique enfin reste absent : les dynamiques de pouvoir invisibles d'une organisation ne sont pas thématisées. Ces absences ressemblent ici davantage à une limite de focale de la feuille - une journée méthodologique avec une IA - qu'à un choix de fond, et pourraient s'ouvrir naturellement dans d'autres feuilles plus relationnelles.",
+    "emergencesPole": "Trois lignes traversent les compétences ressorties. D'abord, la matière relationnelle se présente à travers des architectures plutôt qu'à travers des scènes vécues : ce sont des rôles, des filiations, des habilitations qui occupent l'espace - les personnes derrière restent encore génériques. Ensuite, la collaboration s'installe dans la divergence assumée plutôt que dans la recherche d'accord, que ce soit avec une IA ou dans la circulation des rôles entre élèves-tuteurs : le désaccord devient lieu de compréhension, pas obstacle à éliminer. Enfin, l'écriture elle-même est traitée comme acte relationnel envers les lecteurs du portfolio, avec un souci explicite de ne pas leur servir un savoir antérieur déguisé en apprentissage neuf.",
+    "pistes": [
+      "Pour incarner l'architecture communautaire qui s'esquisse, un chemin possible serait de documenter un moment vécu de passage entre rôles (un Accompagnant qui devient Tuteur, ou un Apprenant qui prend le relais d'un autre), avec ce qui s'y joue côté affect et côté responsabilité.",
+      "Pour ouvrir l'intelligence émotionnelle, un chemin possible serait de noter une scène où un état émotionnel d'autrui a été perçu avant d'être verbalisé par l'intéressé, et ce qui en a découlé.",
+      "Pour vérifier la bidirectionnalité de la traduction entre mondes, un chemin possible serait de remonter une question naïve venue d'un Apprenant jusqu'au matériau des Maîtres, et de noter ce que cette remontée a fait bouger dans la version experte.",
+      "Pour prolonger la communication authentique, un chemin possible serait de tenir une trace explicite de ce qui a été choisi de ne pas dire à un destinataire donné, et du critère qui a guidé ce choix.",
+      "Pour transposer la collaboration divergente vers l'humain, un chemin possible serait de documenter un désaccord avec un collègue ou un partenaire où les deux positions ont été tenues sans réconciliation et où la livraison a quand même eu lieu."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail visible ce jour-là porte moins sur des interactions humaines directes que sur l'architecture des relations qu'un dispositif pédagogique va instituer. Le récit construit, à l'occasion d'une journée passée à éprouver Gemini, un partage des publics futurs - Apprenants, Accompagnants, Tuteurs, Maîtres - avec leurs filiations (ex-Accompagnant, ex-Tuteur) et leurs habilitations propres (créer une micro-classe, générer des cartographies, modifier Respire). La voix laisse passer un registre familier ('kiffe', 'explose tout le monde') et de l'autodérision sur sa propre valeur ajoutée. Le désaccord avec une IA est nommé sans drame et alimente une compréhension plutôt qu'une rupture. La matière relationnelle se manifeste ici davantage par traces structurelles - tableau de rôles, économie d'audiences - que par récits d'interactions vécues.\n\n## Territoires les plus denses\n\n**Traduction entre mondes.** La transposition d'un même corpus en quatre déclinaisons indexées sur quatre publics distincts, avec objectifs pédagogiques différenciés, fait du geste de traduction la préoccupation centrale de l'écriture pédagogique du jour. *« Je vais voir si l'IA me permet de trouver comment organiser cette documentation de manière judicieuse, afin de ne pas effrayer un public débutant. »* Le mot 'effrayer' fait apparaître la conscience d'un écart entre cadres conceptuels, écart qui n'est pas un défaut d'attention mais le risque inhérent à toute transmission entre experts et débutants.\n\n**Collaboration divergente.** Le travail produit avec une IA imparfaite distingue ce qui sert (les réflexions catalysées) de ce qui ne sert pas (les réponses produites), sans chercher à réconcilier les points de vue. *« Nous ne sommes pas d'accord, mais ça me permet de mieux comprendre la portée des documents avant des les avoir entièrement lus. »* Le 'mais' relie deux positions qui restent en place - le partenaire reste tel qu'il est, l'apprenant ne se range pas, et pourtant la production avance. C'est la signature de la compétence telle que la fiche la décrit.\n\n**Construction de communautés.** L'architecture définit cinq rôles avec leurs filiations - on devient Tuteur après avoir été Accompagnant - et leurs habilitations propres. *« v1 médiation | Tuteurs | ex-Accompagnant, formé par un Maître, habilité à générer des cartographies de compétences. »* La mention 'ex-Accompagnant' transforme une fonction en trajectoire d'appartenance, ce qui dépasse l'organigramme et touche au vocabulaire de la communauté, même si la dimension affective reste pour le moment implicite.\n\n**Communication authentique.** Le choix délibéré de ce qui figure ou non au portfolio, la variation de registre articulée entre familier et technique, l'autodérision dosée sur sa propre valeur ajoutée installent une tenue communicationnelle assumée. *« Ça serait cool d'écrire ça dans le portfolio, mais ce serait mentir, car je le savais déjà. »* Le geste fait de l'écriture un acte communicationnel délibéré envers les lecteurs : la sincérité passe avant la flatterie de soi.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCinq territoires du pôle restent hors champ dans cette feuille. L'intelligence émotionnelle ne trouve pas de prise : aucune nomination émotionnelle fine, aucun geste de sollicitude active envers une personne identifiée. La gestion des conflits humains et l'influence diplomatique restent également hors récit - le désaccord ici est avec une IA, pas avec une personne. L'intelligence culturelle est effleurée par la préoccupation de 'ne pas effrayer un public débutant', mais sans l'analyse de cadres normatifs différents que la fiche réclame, ce qui rapproche ce geste de la traduction entre mondes plutôt que de la lecture culturelle proprement dite. Le sens politique enfin reste absent : les dynamiques de pouvoir invisibles d'une organisation ne sont pas thématisées. Ces absences ressemblent ici davantage à une limite de focale de la feuille - une journée méthodologique avec une IA - qu'à un choix de fond, et pourraient s'ouvrir naturellement dans d'autres feuilles plus relationnelles.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences ressorties. D'abord, la matière relationnelle se présente à travers des architectures plutôt qu'à travers des scènes vécues : ce sont des rôles, des filiations, des habilitations qui occupent l'espace - les personnes derrière restent encore génériques. Ensuite, la collaboration s'installe dans la divergence assumée plutôt que dans la recherche d'accord, que ce soit avec une IA ou dans la circulation des rôles entre élèves-tuteurs : le désaccord devient lieu de compréhension, pas obstacle à éliminer. Enfin, l'écriture elle-même est traitée comme acte relationnel envers les lecteurs du portfolio, avec un souci explicite de ne pas leur servir un savoir antérieur déguisé en apprentissage neuf.\n\n## Pistes pour enrichir ce pôle\n\n- Pour incarner l'architecture communautaire qui s'esquisse, un chemin possible serait de documenter un moment vécu de passage entre rôles (un Accompagnant qui devient Tuteur, ou un Apprenant qui prend le relais d'un autre), avec ce qui s'y joue côté affect et côté responsabilité.\n- Pour ouvrir l'intelligence émotionnelle, un chemin possible serait de noter une scène où un état émotionnel d'autrui a été perçu avant d'être verbalisé par l'intéressé, et ce qui en a découlé.\n- Pour vérifier la bidirectionnalité de la traduction entre mondes, un chemin possible serait de remonter une question naïve venue d'un Apprenant jusqu'au matériau des Maîtres, et de noter ce que cette remontée a fait bouger dans la version experte.\n- Pour prolonger la communication authentique, un chemin possible serait de tenir une trace explicite de ce qui a été choisi de ne pas dire à un destinataire donné, et du critère qui a guidé ce choix.\n- Pour transposer la collaboration divergente vers l'humain, un chemin possible serait de documenter un désaccord avec un collègue ou un partenaire où les deux positions ont été tenues sans réconciliation et où la livraison a quand même eu lieu."
+  }
+}

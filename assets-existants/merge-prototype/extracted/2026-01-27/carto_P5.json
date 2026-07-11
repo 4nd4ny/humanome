@@ -1,0 +1,493 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'ai eu de nouvelles idées ce matin. En résumé : les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres.",
+      "contexte": "Ouverture de la feuille sur une idée matinale articulée et présentée comme évolution de la pensée du projet.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "À ce stade, il faudrait que je commence à lire / corriger / compléter les manuels générés, tout en continuant à lancer les prompts les uns après les autres.",
+      "contexte": "Énoncé d'une bascule : passer de la production seule à la lecture critique en parallèle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Pour celà, il faut que je m'entraîne à en faire sur le portfolio de Stéphane et sur le mien, pour mettre au point le processus.",
+      "contexte": "Étape d'expérimentation préalable au manuel du Cartographe — apprendre par la pratique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Ce sera pour plutard (après l'update du site web que j'ai du interrompre à Noël car je n'avais plus accès à mon grand écran) et probablement avant de me plonger dans Decidim, car je vois déjà sur le forum WhatsApp que des parents inquiets commencent à me solliciter pour me demander ce que leur gamin devrait faire comme étude… Ce n'est que le début. Je veux être prêt côté école et cartographies lorsqu'on lancera les débats publics.",
+      "contexte": "Calage temporel de la cartographie articulé à des signaux externes (sollicitations parentales, débats publics).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "Ce qui est cool avec ce système, c'est que regénérer une partie coûte zéro efforts. Mon prompt est toujours le même : \"Execute prompt-protocole-manuel.md. Traitement du manuel {Noèsiologue} de la filière {Humain}. Génération de la partie PARTIE {4}\". Ça coûte juste des tokens.",
+      "contexte": "Satisfaction discrète face à un dispositif qui rend la régénération non coûteuse en effort.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'ai d'ailleurs dû arrêter totalement l'abonnement de ChatGPT pour raison de restriction budgétaire. Quand je pourrais et quand j'aurai le temps (et probablement à l'occasion de la sortie d'une nouveauté intéressante ou d'un nouveau modèle), je prendrais juste un mois à 200$ pour poursuivre le travail de rédaction de la preuve pour la trisection du carré. Gemini et Perplexity sont payés à l'année, donc eux sont ok.",
+      "contexte": "Arbitrage budgétaire sous contrainte : arrêt d'un abonnement, conservation d'autres, plan de reprise ciblée.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "J'espère ne pas être bloqué d'ici là, car je ne peux pas me permettre de prendre la version au dessus, mais il ne me reste plus que les manuels niveau Maître à générer demain, ça devrait aller.",
+      "contexte": "Décision d'avancer malgré la contrainte budgétaire, avec calcul de marge.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-27",
+      "extraitVerbatim": "La plus grosse pour le moment étant pour le Noèsiologue, ou la partie explicitation des 64 fonctions cognitives avait été réduite grosso-modo aux 6 élémentaires de niveau du I-E-O du médiateur !",
+      "contexte": "Détection d'un écart entre l'intention et la production IA, signalée par un « ! » d'étonnement.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Mention d'une interruption (Noël, accès au grand écran) sans en faire un drame, suivie d'un plan de reprise — adversité matérielle intégrée à la trajectoire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. Mentionner une interruption en passant n'est pas raconter une crise. Le « j'ai du interrompre à Noël » est ténu et n'est pas suivi d'une description de transformation. La fiche met en garde contre le biais de narration positive — embellissement rétrospectif d'une difficulté. Pourtant, l'apprenant intègre cette interruption à un plan de reprise (« après l'update du site… ») sans dramatisation, ce qui peut être une trace discrète d'antifragilité. Elle résiste très faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'interruption est intégrée à la trajectoire de reprise sans dramatisation — adversité matérielle absorbée dans un plan."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en cherchant à invalider. L'attaque dominante est (g) mouvement-vers : la pièce indique une adversité mais ne décrit pas un dépassement transformateur. La fiche distingue l'endurance (revenir au même point) du rebond antifragile (revenir au-delà). Ici, on ne voit qu'une reprise — pas de description de « ce qui a changé, grandi ou émergé » grâce à l'épreuve. L'attaque tient et la pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'interruption est mentionnée et la reprise est planifiée, mais aucune trace de transformation ou de dépassement n'apparaît — il s'agit au mieux d'endurance, pas d'antifragilité."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à la disqualifier. Elle a résisté très faiblement parce qu'elle intègre une interruption à un plan sans dramatisation. Elle est tombée au temps 2 : aucune transformation issue de l'épreuve n'est nommée. Ce qui en résulte est une présence non établie pour cette feuille. La trace pointe au mieux vers une discipline d'endurance, pas vers un mouvement de renforcement par le chaos.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce : la trace montre une reprise après interruption, sans transformation issue de l'épreuve.",
+        "prescription": "Le travail mentionne une interruption absorbée. Documenter, à propos d'un échec ou d'un crash passé, ce qui a réellement changé ou émergé grâce à l'épreuve ouvrirait franchement cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Énoncé d'une bascule du mode de travail : ne plus seulement produire en série, mais commencer à relire / corriger / compléter — déplacement de posture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. « Il faudrait que je commence à lire / corriger / compléter » peut être une simple annonce d'étape suivante. La fiche 5.02 demande l'abandon d'une peau cognitive ou identitaire, ce qui est beaucoup plus fort qu'un changement d'étape. La pièce ne nomme pas ce qui doit être lâché. La présomption d'absence n'est pas vraiment battue.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le passage vers la double posture (produire et relire) implique un léger glissement, mais la trace de désapprentissage proprement dit reste implicite."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en cherchant à invalider. L'attaque dominante est (e) surinterprétation pédagogique : j'ai sans doute chargé la pièce d'une portée qu'elle ne porte pas. La fiche distingue 5.02 de l'apprentissage additif — ici on ajoute la relecture, on ne lâche rien d'identitaire. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Aucune peau cognitive n'est explicitement abandonnée ; le passage relève de l'apprentissage additif (ajout d'une posture), pas du désapprentissage."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à la ramener à un changement d'étape. Elle a résisté très faiblement au temps 1 et n'a pas tenu au temps 2 : le critère du désapprentissage (lâcher une peau) n'est pas rempli. Ce qui en résulte est une présence non établie pour cette feuille. La trace pointe vers une intention de double posture, pas vers une mue identitaire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce : aucune peau cognitive ou identitaire abandonnée n'est nommée.",
+        "prescription": "Le travail signale un élargissement de posture. Nommer une fois ce qui a été lâché — une certitude, un rôle, une expertise antérieure — ouvrirait clairement cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Ouverture de la feuille sur l'idée matinale présentée comme moment de basculement conceptuel (école apprenante)."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Connexion explicite entre événements distants : interruption à Noël, parents inquiets sur WhatsApp, débats publics à venir — tissage temporel et thématique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La pièce 1 est une annonce d'idée, ce qui peut être de la chronique. La pièce 2 est une explication de séquencement. La fiche distingue 5.03 de la chronique par l'extraction d'un apprentissage transférable. Ici, l'apprenant ne décortique pas explicitement ce que cela signifie. Pourtant, la pièce 2 relie des événements éloignés en un fil cohérent (interruption matérielle, signal social, scène à venir) qui éclaire chacune des étapes — c'est plus que de la chronique. La pièce 1 résiste moins, car l'idée est posée plus que tissée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Le passage relie des éléments distants (interruption à Noël, parents inquiets, débats publics) en une cohérence temporelle qui éclaire la décision présente."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 2 en cherchant à invalider. L'attaque dominante est (a) insuffisance probatoire : le tissage est compact, sans extraction explicite de sens. La pièce relie mais ne dit pas « voici ce que ça signifie ». Elle tient avec une portée modeste — le mouvement de pensée est lisible, le QUOI et le POURQUOI sont présents, mais le QU'EST-CE QUE ÇA SIGNIFIE reste à l'arrière-plan.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le tissage temporel est explicite et le « car » articule des éléments éloignés, mais l'extraction de sens reste implicite — la pièce vaut comme indice de narration réflexive en cours."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à de la chronique. La pièce sur le séquencement a résisté parce qu'elle relie des événements éloignés en une cohérence qui justifie une décision présente — c'est plus qu'un journal. Sous présomption de sycophantie, la portée s'est réduite : l'extraction de sens reste à l'arrière-plan. Ce qui en résulte est un indice de narration réflexive ancrée dans la chronologie du projet, sans théorisation explicite. La trace tient avec une confiance modérée.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce ; le tissage temporel résiste comme indice, sans extraction explicite de sens.",
+        "prescription": "Le travail relie des événements éloignés en un fil cohérent. Expliciter une fois ce que cette cohérence signifie — au-delà du séquencement — ferait passer cette trace d'indice à preuve."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Satisfaction discrète face au dispositif de régénération à coût zéro — relation à l'IA décrite comme partenaire opérationnel sans tension."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Détection d'une réduction non voulue : moment de tension entre l'intention humaine et la production IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La pièce 1 est un constat de confort, pas un récit d'acceptation émotionnelle d'une supériorité IA. La pièce 2 est l'inverse : un moment où l'IA n'a pas fait ce que l'humain voulait. La fiche demande une tension émotionnelle (surprise, choc, admiration mêlée de malaise). Aucune des deux pièces ne porte ce registre émotionnel. La présomption d'absence n'est pas battue.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le « cool » est un marqueur émotionnel discret, et l'expression « ça coûte juste des tokens » signale une relation détendue à un dispositif IA jugé fiable."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en cherchant à invalider. L'attaque dominante est (f) récit performatif : « ce qui est cool » est-il vraiment une trace d'acceptation de l'intelligence supérieure ? La fiche est claire : 5.04 vise le vécu personnel de la supériorité (« l'IA fait mieux que MOI ») et non un constat technique de fiabilité (qui serait 1.06). Le « cool » ici porte sur la productivité du dispositif, pas sur une expérience de dépassement par l'IA. L'attaque tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le confort exprimé porte sur un dispositif fiable, pas sur le vécu personnel d'une supériorité cognitive ; la pièce relève de la littératie IA fonctionnelle, pas du travail d'acceptation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les disqualifier comme constats neutres. La pièce 1 a résisté très faiblement par son marqueur émotionnel léger (« cool »), mais elle est tombée au temps 2 : aucune tension d'ego ou de deuil n'apparaît, c'est un confort de production. Ce qui en résulte est une présence non établie pour cette feuille. La fiche met en garde précisément contre la désirabilité sociale et l'absence de tension émotionnelle réelle.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce : aucune tension émotionnelle d'acceptation d'une supériorité IA n'apparaît dans cette feuille.",
+        "prescription": "Le travail décrit une collaboration IA confortable, sans tension. Documenter un moment où l'IA a fait quelque chose mieux que l'humain — avec ce que ce constat fait à l'ego — ouvrirait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Persistance d'un projet (cartographies, débats publics) malgré la restriction budgétaire et l'interruption matérielle — sens articulé au futur des débats publics."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Maintien du projet « trisection du carré » comme cap personnel, financé par micro-fenêtre malgré contraintes budgétaires — « pourquoi » qui survit aux conditions adverses."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. La fiche met en garde contre la confusion entre sens vécu et sens narré. La pièce 1 énonce un cap (« je veux être prêt ») qui pourrait être déclaratif. La pièce 2 conserve un projet personnel sans urgence. Pourtant, la pièce 1 manifeste la persistance dans l'adversité (restriction budgétaire, fatigue de production) sans formulation lyrique — c'est une trace discrète au sens de la litote signalée dans la fiche. La pièce 2 préserve un projet sans bénéfice immédiat (la trisection du carré) sous contrainte financière, ce qui est précisément le test : continuerait-il si le projet devenait ingrat ?",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La phrase « je veux être prêt côté école et cartographies lorsqu'on lancera les débats publics » articule un cap qui survit à la pression budgétaire et à la fatigue de production."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le projet « trisection du carré » est maintenu sans bénéfice immédiat et planifié à coût réduit malgré l'arrêt d'autres abonnements — la persistance est concrète, pas narrée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en cherchant à invalider. L'attaque dominante est (f) récit performatif : « je veux être prêt » est une déclaration. Mais la pièce 1 est entourée d'actions concrètes (production en cours, séquence des chantiers) qui cohèrent avec le cap déclaré — le sens narré et le sens vécu se rejoignent. Pour la pièce 2, l'attaque (a) insuffisance probatoire pourrait tenter de disqualifier le maintien d'un projet ; cependant, l'apprenant a réorganisé son budget pour s'y donner une fenêtre — c'est un acte, pas seulement une intention. Les deux pièces tiennent avec affaiblissement modeste.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le cap déclaré est cohérent avec le travail de production en cours et la séquence des prochains chantiers ; le sens narré rejoint le sens vécu."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le maintien du projet « trisection du carré » sous contrainte budgétaire, avec un plan concret de fenêtre courte, est un acte d'allégeance à un « pourquoi » qui survit aux conditions adverses."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à les ramener à des déclarations d'intention. La pièce sur le cap des débats publics a tenu parce qu'elle cohère avec les actions de la journée. La pièce sur la trisection du carré a tenu sans réserve : un projet personnel maintenu sans bénéfice immédiat, avec arbitrage budgétaire à l'appui, est exactement la trace du sens intrinsèque que la fiche décrit. Ce qui en résulte est une présence consistante de motivation intrinsèque, articulée à deux projets de natures différentes (collectif et personnel) qui coexistent sans se concurrencer. Le « pourquoi » se manifeste dans les arbitrages plus que dans les grandes envolées.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé la pièce sur la trisection du carré comme acte d'allégeance à un « pourquoi » qui survit aux conditions adverses.",
+        "prescription": "Le travail montre une motivation qui tient sous contrainte. Décrire une fois ce que ce projet personnel apporte qui justifie son maintien sous restriction budgétaire rendrait visible la source du « pourquoi »."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Interruption à Noël due à l'absence du grand écran — récit qui suggère une dépendance matérielle plus qu'un mode dégradé maîtrisé."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. La fiche 5.06 demande un fonctionnement sans technologie, ou la débrouillardise avec ce qu'on a (Lévi-Strauss). Ici, l'absence du grand écran a entraîné l'interruption — c'est l'inverse : une dépendance matérielle qui a empêché le travail. La pièce ne montre pas de mode dégradé maîtrisé, elle montre une mise à l'arrêt. La présomption d'absence n'est pas battue.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; le temps 2 confirme l'absence de trace.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à voir s'il s'y logeait une débrouillardise. Elle a indiqué l'inverse : l'absence d'un outil matériel a interrompu le travail. Ce qui en résulte est une présence non établie pour cette feuille, sans signal négatif au-delà du fait observé. Un récit où l'apprenant continue à travailler avec des moyens réduits ouvrirait ce dossier.",
+          "confianceFinale": 0.1
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.1,
+        "motif": "Aucune pièce n'a résisté au temps 1 : l'unique trace voisine signale une interruption due à l'absence d'un outil, pas un mode dégradé maîtrisé.",
+        "prescription": "Le travail mentionne en passant une interruption matérielle. Documenter, à l'inverse, une situation où le travail a continué sans l'outil principal — papier, tableau, bricolage — ferait apparaître cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Arrêt délibéré d'un abonnement (ChatGPT) pour raison budgétaire, avec critères explicites de reprise — décision de retrait d'un canal."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Choix d'avancer dans la production sans prendre la « version au dessus » du forfait — limite posée à la dépense d'attention/argent."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence. Le critère discriminant de 5.07 est l'intention en présence d'alternatives. Ici, les arrêts sont motivés par la contrainte budgétaire, pas par un choix attentionnel. La fiche distingue précisément la souveraineté attentionnelle de la contrainte subie (« je n'avais pas internet »). La pièce 1 ressemble à de la contrainte budgétaire ; la pièce 2 aussi. La présomption d'absence n'est pas battue de manière claire.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'arrêt de l'abonnement est argumenté et borné par des critères de reprise, ce qui implique un certain pilotage de la relation aux outils."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en cherchant à invalider. L'attaque dominante est (b) confusion de compétence : la pièce relève-t-elle de la souveraineté attentionnelle (5.07) ou de la patience stratégique (4.09) ou de l'efficacité personnelle (7.06) ? La fiche 5.07 vise la décision de braquer ou non l'attention dans un environnement saturé. Ici, le choix est budgétaire, pas attentionnel : l'apprenant n'est pas en train de protéger son focus, il rationalise un coût. La pièce tombe sur cette compétence (elle restera utile ailleurs).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La décision est argumentée par le budget, pas par un choix d'attention ou de focus — la pièce relève d'arbitrages économiques, pas de souveraineté attentionnelle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces je cherchais à voir si la souveraineté attentionnelle s'y logeait. Elles ont résisté faiblement par leur dimension de pilotage, mais elles sont tombées au temps 2 : la motivation est budgétaire et non attentionnelle. Ce qui en résulte est une présence non établie pour cette feuille. La trace est cohérente avec d'autres compétences (patience, efficacité) mais pas avec celle-ci.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce : les arrêts sont motivés par la contrainte budgétaire, pas par un choix attentionnel.",
+        "prescription": "Le travail montre des arbitrages d'outils motivés par le coût. Documenter un moment où l'attention a été délibérément protégée — déconnexion choisie, rituel de focus, refus d'un canal pourtant disponible — ouvrirait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Décision de tester le processus de cartographie sur deux portfolios réels (Stéphane, le sien) avant d'écrire le manuel — vérification par la pratique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence. La fiche 5.08 demande un contact avec la réalité non médiatisée pour vérifier ce que la carte affirme. Ici, l'apprenant veut s'entraîner sur des portfolios concrets avant de formaliser le manuel — c'est plus que de la planification, c'est une stratégie de validation par la pratique avant la théorisation. Pourtant, l'acte de vérification n'est pas encore exercé dans cette feuille ; il est annoncé. La présomption d'absence est partiellement battue.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant subordonne l'écriture du manuel à une expérimentation concrète sur deux portfolios — la pratique est posée comme arbitre du processus."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en cherchant à invalider. L'attaque dominante est (f) récit performatif : l'expérimentation est annoncée, pas exercée ce jour-là. La fiche est claire : 5.08 demande des récits d'actions de vérification, pas des intentions. La pièce tombe en grande partie sur ce critère ; elle ne tient au mieux que comme protocole annoncé.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "L'expérimentation est annoncée comme méthode mais pas exercée dans cette feuille — il manque l'acte de vérification lui-même."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce je cherchais à la disqualifier comme intention. Elle a résisté faiblement au temps 1 par la posture de subordination de la théorie à la pratique. Elle est tombée au temps 2 : pas d'acte de vérification dans cette feuille. Ce qui en résulte est une présence non établie ici, mais l'amorce d'une posture qui pourra se manifester dans une feuille où l'expérimentation sur les portfolios sera effectivement menée.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Le temps 2 a disqualifié la pièce : l'expérimentation est annoncée mais pas exercée dans cette feuille.",
+        "prescription": "Le travail subordonne la formalisation à l'expérimentation. Documenter, lorsque le moment viendra, ce que la pratique aura révélé ou contredit dans le processus envisagé ouvrira pleinement cette compétence."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 1,
+    "nonEtablies": 6,
+    "courtCircuits": 0
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le pôle des racines apparaît surtout à travers la persistance d'un projet sous contrainte. L'apprenant maintient ses caps (cartographies pour les débats publics, trisection du carré comme projet personnel) malgré une restriction budgétaire qui a fait sauter un abonnement et qui pèse sur le quota du forfait restant. Le ton est sobre, sans dramatisation ni lyrisme ; les difficultés sont mentionnées en passant et intégrées à un plan. La part de transformation intérieure, de désapprentissage ou d'acceptation émotionnelle d'une supériorité IA reste à l'arrière-plan ; ce qui ressort, c'est un sens qui tient.",
+    "territoiresDenses": [
+      {
+        "competence": "Sens et motivation intrinsèque",
+        "description": "Maintien sous contrainte budgétaire d'un projet personnel (trisection du carré) sans bénéfice immédiat, avec arbitrage qui en préserve la possibilité.",
+        "extraitVerbatim": "Quand je pourrais et quand j'aurai le temps (et probablement à l'occasion de la sortie d'une nouveauté intéressante ou d'un nouveau modèle), je prendrais juste un mois à 200$ pour poursuivre le travail de rédaction de la preuve pour la trisection du carré.",
+        "ceQueCaDit": "Un projet personnel maintenu sous restriction budgétaire, avec une fenêtre courte calibrée pour qu'il reste possible, indique une source de sens qui ne dépend pas de la reconnaissance immédiate ni du rendement. Le « pourquoi » se manifeste dans l'arbitrage, pas dans la déclaration."
+      }
+    ],
+    "territoiresNonVisites": "Cette feuille ne ramène pas la part transformationnelle du pôle : pas de récit d'antifragilité (épreuve qui transforme), pas de désapprentissage (lâcher une peau cognitive), pas d'acceptation émotionnelle d'une supériorité IA (la collaboration est décrite comme confortable, sans tension d'ego). La souveraineté attentionnelle apparaît comme contrainte budgétaire plutôt que comme choix de focus. La vérification terrain est annoncée mais pas exercée. Ces absences ressemblent au cadre d'une journée concentrée sur la production : la part intérieure et somatique du travail n'est simplement pas la matière du jour.",
+    "emergencesPole": "Le « pourquoi » de cette journée se manifeste par la persistance, pas par la déclaration. Deux projets coexistent — un projet collectif (les écoles, les débats publics) et un projet personnel (la trisection du carré) — et l'apprenant calibre son budget et son tempo pour que les deux restent vivants. Le sens n'est pas formulé en grands mots ; il se lit dans la composition des arbitrages.",
+    "pistes": [
+      "Pour enrichir la dimension antifragilité, un chemin possible serait de revenir, dans une feuille à venir, sur une difficulté traversée et de nommer ce qui a changé ou émergé grâce à elle.",
+      "Pour enrichir la dimension désapprentissage, un chemin possible serait de noter, lorsqu'un virage de conception se produit (comme l'invention de l'école apprenante), ce qui a été lâché de la conception précédente.",
+      "Pour enrichir la dimension acceptation de l'intelligence supérieure, un chemin possible serait de documenter un moment où l'IA a fait quelque chose que l'humain n'aurait pas fait aussi bien, avec ce que ce constat fait à l'ego."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le pôle des racines apparaît surtout à travers la persistance d'un projet sous contrainte. L'apprenant maintient ses caps (cartographies pour les débats publics, trisection du carré comme projet personnel) malgré une restriction budgétaire qui a fait sauter un abonnement et qui pèse sur le quota du forfait restant. Le ton est sobre, sans dramatisation ni lyrisme ; les difficultés sont mentionnées en passant et intégrées à un plan. La part de transformation intérieure, de désapprentissage ou d'acceptation émotionnelle d'une supériorité IA reste à l'arrière-plan ; ce qui ressort, c'est un sens qui tient.\n\n## Territoires les plus denses\n\n### Sens et motivation intrinsèque\n\nMaintien sous contrainte budgétaire d'un projet personnel (trisection du carré) sans bénéfice immédiat, avec arbitrage qui en préserve la possibilité.\n\n> Quand je pourrais et quand j'aurai le temps (et probablement à l'occasion de la sortie d'une nouveauté intéressante ou d'un nouveau modèle), je prendrais juste un mois à 200$ pour poursuivre le travail de rédaction de la preuve pour la trisection du carré.\n\nUn projet personnel maintenu sous restriction budgétaire, avec une fenêtre courte calibrée pour qu'il reste possible, indique une source de sens qui ne dépend pas de la reconnaissance immédiate ni du rendement. Le « pourquoi » se manifeste dans l'arbitrage, pas dans la déclaration.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nCette feuille ne ramène pas la part transformationnelle du pôle : pas de récit d'antifragilité (épreuve qui transforme), pas de désapprentissage (lâcher une peau cognitive), pas d'acceptation émotionnelle d'une supériorité IA (la collaboration est décrite comme confortable, sans tension d'ego). La souveraineté attentionnelle apparaît comme contrainte budgétaire plutôt que comme choix de focus. La vérification terrain est annoncée mais pas exercée. Ces absences ressemblent au cadre d'une journée concentrée sur la production : la part intérieure et somatique du travail n'est simplement pas la matière du jour.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nLe « pourquoi » de cette journée se manifeste par la persistance, pas par la déclaration. Deux projets coexistent — un projet collectif (les écoles, les débats publics) et un projet personnel (la trisection du carré) — et l'apprenant calibre son budget et son tempo pour que les deux restent vivants. Le sens n'est pas formulé en grands mots ; il se lit dans la composition des arbitrages.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la dimension antifragilité, un chemin possible serait de revenir, dans une feuille à venir, sur une difficulté traversée et de nommer ce qui a changé ou émergé grâce à elle.\n- Pour enrichir la dimension désapprentissage, un chemin possible serait de noter, lorsqu'un virage de conception se produit (comme l'invention de l'école apprenante), ce qui a été lâché de la conception précédente.\n- Pour enrichir la dimension acceptation de l'intelligence supérieure, un chemin possible serait de documenter un moment où l'IA a fait quelque chose que l'humain n'aurait pas fait aussi bien, avec ce que ce constat fait à l'ego.\n"
+  }
+}

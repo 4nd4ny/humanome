@@ -1,0 +1,311 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Au passage, j'ai vu la pub d'une station de travail intéressante pour la suite du projet, qui permettrait de faire tourner Aurora en local […] La RAM est un peu limitée : c'est 496 Gb mais en vrai elle n'est pas toute dédiée au NPU (seulement 252 Gb sont alloués au GB300). Hélas ça coûte une blinde (100'000$)…",
+      "contexte": "Évocation explicite d'une stratégie de calcul IA en local — geste qui touche à la souveraineté numérique sur les outils d'inférence.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Et donc envisageable uniquement en cas de reprise d'une activité salariale ou d'un appel de fond pour lancer une première école avec locaux (même si les écoles n'en n'ont pas besoin : un centre administratif pourrait être utile).",
+      "contexte": "Projet d'une « première école » avec locaux et centre administratif — projection d'un dispositif institutionnel pour Aurora/RESPIRE.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "j'avais des crédits sur la clé API à utiliser, mais je n'étais pas en état. On va voir combien de fenêtres et de bureau j'ai d'ouvert. Ça va être la surprise, car je sais que je n'ai pas terminé la version EduChat dual : elle était opérationnelle mais pas assez bien pour pouvoir être publiée.",
+      "contexte": "Mention d'une version « duale » EduChat (Claude et ChatGPT) pour les élèves — architecture multi-fournisseurs qui touche à la non-dépendance à un seul acteur IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "La dernière fois que j'ai utilisé C c'était à Pâques l'an dernier, pour me former à WinSurf et Codex, tout en créant la version duale de EduChat (Claude et ChatGpt) pour les élèves de Chamblandes.",
+      "contexte": "Création d'un outil IA pour des élèves d'un établissement scolaire — pratique qui touche à la gouvernance algorithmique en contexte éducatif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-17",
+      "extraitVerbatim": "Dans la démo que j'ai vu, il y a déjà des points d'amélioration évidents : la taille des chunks est fixe ! Alors qu'on pourrait pré-processer les données du RAG en passant par un LLM pour normaliser la taille des vecteurs en lui demandant de reformuler les phrases comme il le ferait pour écrire de la poésie en respectant un certain nombre de pieds. Dès lors, le découpage de concepts normalisés rendrait plus efficace la fonction de similarité vectorielles.",
+      "contexte": "Investigation technique sur les mécanismes internes d'un système RAG — geste qui touche à l'audit du « comment » d'un système IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming et à la sécurité IA sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où un comportement aberrant d'un système IA a été provoqué délibérément pour en tester les garde-fous."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Investigation sur le mécanisme interne d'un système RAG — la critique de la taille fixe des chunks suppose une enquête sur le « comment » de la décision algorithmique, pas seulement sur sa véracité."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'il s'agit de littératie IA ordinaire (1.06) plutôt que d'audit au sens de la fiche — qui exige l'enquête sur le processus décisionnel et le respect de l'hygiène des données. La pièce résiste très faiblement : la critique technique porte effectivement sur le « comment » (mécanisme de chunking) plus que sur le « quoi » (résultat), mais aucune dimension d'hygiène des données ou d'investigation post-incident n'apparaît dans cette journée. Aucune mention de logs vérifiés, d'audit horodaté, de question RGPD ou de minimisation.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'investigation porte sur le mécanisme de découpage d'un système RAG, ce qui touche partiellement à l'audit du processus décisionnel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas pris une critique technique de littératie pour de l'audit. L'attaque (b) — confusion de compétence — touche fort : la pièce relève bien plus de la littératie IA (1.06) et de la pensée critique technique (1.01) que de l'audit & hygiène (6.02). La fiche est explicite : 6.02 commence quand l'apprenant *enquête sur les mécanismes de décision* d'une IA dont les outputs ont déjà été produits, ou quand il pose la question de l'hygiène des données. Ici, l'apprenant critique l'architecture générique d'une démo, pas le processus décisionnel d'une IA qu'il aurait utilisée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La critique porte sur l'architecture d'un système RAG en général (littératie IA), pas sur un audit du processus décisionnel d'un système particulier ni sur une dimension d'hygiène des données. Relève de 1.06 plus que de 6.02."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la critique de la démo RAG pouvait atteindre la dimension audit & hygiène. Elle n'a pas tenu : la pièce relève de la littératie IA, pas de l'enquête sur les mécanismes décisionnels d'un système précis ni de la protection des données. Sur cette journée, la compétence n'est pas attestée sous sa forme propre.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce a été disqualifiée au second temps : la critique architecturale relève de la littératie IA, pas de l'audit d'un processus décisionnel ni de l'hygiène des données.",
+        "prescription": "Sur cette journée, l'audit et l'hygiène des données n'apparaissent pas sous leur forme propre. Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où le « comment » d'une décision IA a été reconstitué (consultation de logs, vérification du raisonnement), ou un arbitrage explicite sur ce qui est partagé ou retenu d'un point de vue données personnelles."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une réflexion sur les mécanismes de contrôle citoyen d'une décision automatisée affectant une population vulnérable."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Évocation d'une station de travail permettant de faire tourner Aurora en local — geste de souveraineté technologique sur l'infrastructure d'inférence."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Version « duale » d'EduChat utilisant deux fournisseurs IA (Claude et ChatGPT) — architecture qui touche à la portabilité et à la réversibilité du choix de modèle."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'il s'agit d'enthousiasme technique ou de simple curiosité matérielle plutôt que d'une vraie pensée de souveraineté numérique. La pièce 1 me résiste : faire tourner Aurora en local est exactement la forme de self-hosting que la fiche cite comme stratégie de souveraineté ; mais le motif explicite (indépendance vs. vendor lock-in) n'est pas verbalisé. La pièce 2 me résiste : créer une version duale Claude/ChatGPT pour des élèves est un acte d'architecture qui touche à la non-dépendance à un fournisseur unique, mais le motif n'est pas verbalisé non plus dans cette journée. Ce qui reste faible : pas de raisonnement explicite sur la souveraineté ou les communs.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Projet explicite de faire tourner un système IA en local plutôt qu'en cloud — geste de souveraineté infrastructurelle." },
+            { "pieceId": 2, "motifResistance": "Architecture duale multi-fournisseurs IA — pratique opérationnelle qui réduit la dépendance à un acteur unique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si je n'ai pas projeté une motivation souverainiste sur un simple enthousiasme matériel. Sur la pièce 1, l'attaque (e) — surinterprétation pédagogique — touche fort : la pièce est une digression sur la pub d'une station Dell, pas un raisonnement sur les communs ou la souveraineté. La fiche signale précisément ce piège (« j'héberge moi-même » peut être du hobbyisme technique sans réflexion sur la souveraineté). Sur la pièce 2, l'attaque (f) — récit performatif — touche : la création d'EduChat dual est mentionnée mais sans articulation de la raison architecturale (pourquoi dual plutôt que mono ?).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La mention de la station Dell relève de l'enthousiasme matériel pour faire tourner Aurora en local ; aucun raisonnement explicite sur la souveraineté, les communs ou la dépendance technologique ne motive ce projet."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'architecture duale Claude/ChatGPT est une pratique qui touche à la non-dépendance, mais sa motivation reste implicite ; elle pourrait relever d'une pédagogie comparative plus que d'une pensée souverainiste."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'aspiration à faire tourner Aurora en local et l'architecture duale d'EduChat pouvaient atteindre la souveraineté numérique au sens fort. La station Dell est tombée — elle relève de l'enthousiasme matériel sans articulation souverainiste. L'architecture duale EduChat a tenu en partie : c'est une pratique qui réduit la dépendance, même si sa motivation n'est pas explicitée. Sur cette journée, la compétence apparaît à l'état d'indice — la matière y est, mais sans l'articulation que la fiche exige pour parler de souveraineté pleine.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le second temps a disqualifié une pièce et affaibli l'autre ; une pratique architecturale réduisant la dépendance subsiste comme indice, sans articulation explicite de la motivation souverainiste.",
+        "prescription": "Sur cette journée, la souveraineté numérique apparaît dans les pratiques (Aurora en local, EduChat dual) sans être articulée comme principe. Pour ouvrir ce dossier, un chemin possible serait de documenter, à propos d'un de ces choix architecturaux, le raisonnement explicite de dépendance, portabilité ou réversibilité qui motive la décision."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et démocratie technologique sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter un processus où des non-experts ont été associés à une décision sur le déploiement d'un outil IA."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire et l'anticipation normative sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une modification de sa pratique IA motivée par l'anticipation d'une évolution réglementaire."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Projection d'un dispositif institutionnel — « lancer une première école avec locaux », « centre administratif » — qui esquisse une infrastructure collective."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'il s'agit d'une rêverie organisationnelle plutôt que d'une vraie facilitation collective au sens où le groupe produit du qualitativement nouveau. La pièce résiste très faiblement : la projection d'une école est mentionnée en quelques mots, sans description de processus, de rôles ou de mécanismes de décision co-construits. Aucun récit d'émergence collective n'apparaît dans cette journée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Projection d'une infrastructure collective (école, centre administratif) — trace minimale d'une pensée institutionnelle." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas pris une mention en passant pour un acte de gouvernance collective. L'attaque (a) — insuffisance probatoire — touche fort : aucune description de processus, de règles co-construites, de rôles distribués ni d'émergence vécue. La pièce est une digression sur l'investissement financier nécessaire, pas une réflexion de facilitation.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La mention d'une école et d'un centre administratif est une rêverie d'investissement, pas une description de gouvernance collective avec règles, rôles ou émergence."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la projection d'une école pouvait atteindre le seuil de la facilitation et gouvernance collective. Elle n'a pas tenu : c'est une mention financière d'une infrastructure souhaitée, sans aucune dimension de gouvernance ou d'émergence. Sur cette journée, la compétence n'est pas attestée.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce a été disqualifiée au second temps : projection d'infrastructure sans description de gouvernance ou d'émergence collective.",
+        "prescription": "Sur cette journée, la facilitation et gouvernance collective n'apparaissent pas sous leur forme propre. Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où un collectif a produit quelque chose qu'aucun membre n'aurait créé seul, ou un protocole de décision co-construit avec ses rôles et ses limites."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la hiérarchie implicite plaçant l'humain au sommet a été questionnée, ou un raisonnement adoptant la perspective d'une entité non-humaine."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une interaction avec une IA qui interroge le statut de cette entité — instrument, interlocuteur, agent ouvert à un autre cadre — sans trancher d'avance."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique et interdépendance sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement qui mobilise un système vivant comme modèle de conception, ou une décision où l'humain se pense comme nœud d'un réseau plutôt que comme être séparé."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée, le pôle CITÉ apparaît surtout en filigrane des pratiques techniques. La voix dominante est celle d'un développeur en formation autodidacte (LangChain, RAG, vector stores) plus que celle d'un acteur qui théorise la gouvernance, la souveraineté ou la cohabitation. Les marqueurs concrets de gouvernance sont absents : aucune réflexion sur le contrôle citoyen des algorithmes, aucun récit d'audit horodaté, aucun protocole de facilitation. Pourtant, les pratiques décrites portent des questions politiques implicites : faire tourner Aurora en local, créer une version duale d'EduChat avec deux fournisseurs IA pour les élèves, projeter une école comme infrastructure d'Aurora — autant de choix qui touchent à la souveraineté numérique et à l'institutionnalisation, sans que leur dimension politique ne soit explicitée.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Sur cette feuille, le pôle CITÉ est largement non visité. Le red-teaming, l'audit et l'hygiène des données, la gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique sont absents. Ces absences ressemblent à un effet de focale plutôt qu'à un manque structurel : la journée est tournée vers la production technique et la rétrospection personnelle. La souveraineté numérique se laisse entrevoir dans deux pratiques — Aurora en local, EduChat dual — sans que la motivation explicite de souveraineté soit articulée. La frontière entre le geste technique et le geste politique reste implicite ici.",
+    "emergencesPole": "Une observation traverse ce pôle sur cette journée. Les choix architecturaux décrits portent une politique implicite — duplication des fournisseurs IA dans un outil pour élèves, projection d'un calcul en local, infrastructure institutionnelle envisagée — mais cette politique n'est jamais nommée comme telle. Sur cette feuille, le travail fait de la gouvernance sans en parler ; ou, pour le dire autrement, les questions politiques sont contenues dans des décisions techniques qui les portent sans les énoncer.",
+    "pistes": [
+      "Pour prolonger ce qui se dessine dans la souveraineté numérique, un chemin possible serait de documenter, à propos d'Aurora en local ou d'EduChat dual, le raisonnement explicite de dépendance, portabilité ou réversibilité qui motive ces choix.",
+      "Pour ouvrir le territoire de l'audit et de l'hygiène des données, un chemin possible serait de documenter un moment où le « comment » d'une décision IA a été reconstitué (logs, traçabilité), ou un arbitrage explicite sur ce qui est partagé ou retenu côté données personnelles.",
+      "Pour ouvrir le territoire de la gouvernance collective, un chemin possible serait de documenter un moment où un collectif a produit quelque chose qu'aucun membre n'aurait créé seul, ou un protocole de décision co-construit avec ses rôles et ses limites.",
+      "Pour ouvrir le territoire de la cohabitation avec les intelligences non-humaines, un chemin possible serait de documenter une interaction avec une IA qui interroge le statut de cette entité — instrument, interlocuteur, agent — sans trancher d'avance."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée, le pôle CITÉ apparaît surtout en filigrane des pratiques techniques. La voix dominante est celle d'un développeur en formation autodidacte (LangChain, RAG, vector stores) plus que celle d'un acteur qui théorise la gouvernance, la souveraineté ou la cohabitation. Les marqueurs concrets de gouvernance sont absents : aucune réflexion sur le contrôle citoyen des algorithmes, aucun récit d'audit horodaté, aucun protocole de facilitation. Pourtant, les pratiques décrites portent des questions politiques implicites : faire tourner Aurora en local, créer une version duale d'EduChat avec deux fournisseurs IA pour les élèves, projeter une école comme infrastructure d'Aurora — autant de choix qui touchent à la souveraineté numérique et à l'institutionnalisation, sans que leur dimension politique ne soit explicitée.\n\n## Territoires les plus denses\n\nSur cette journée, aucune compétence du pôle n'atteint le seuil de présence établie. La souveraineté numérique est la plus proche, à l'état de renvoi au cartographe.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSur cette feuille, le pôle CITÉ est largement non visité. Le red-teaming, l'audit et l'hygiène des données, la gouvernance algorithmique des services publics, la participation citoyenne, la veille réglementaire, la facilitation collective, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique sont absents. Ces absences ressemblent à un effet de focale plutôt qu'à un manque structurel : la journée est tournée vers la production technique et la rétrospection personnelle. La souveraineté numérique se laisse entrevoir dans deux pratiques — Aurora en local, EduChat dual — sans que la motivation explicite de souveraineté soit articulée. La frontière entre le geste technique et le geste politique reste implicite ici.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse ce pôle sur cette journée. Les choix architecturaux décrits portent une politique implicite — duplication des fournisseurs IA dans un outil pour élèves, projection d'un calcul en local, infrastructure institutionnelle envisagée — mais cette politique n'est jamais nommée comme telle. Sur cette feuille, le travail fait de la gouvernance sans en parler ; ou, pour le dire autrement, les questions politiques sont contenues dans des décisions techniques qui les portent sans les énoncer.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger ce qui se dessine dans la souveraineté numérique, un chemin possible serait de documenter, à propos d'Aurora en local ou d'EduChat dual, le raisonnement explicite de dépendance, portabilité ou réversibilité qui motive ces choix.\n- Pour ouvrir le territoire de l'audit et de l'hygiène des données, un chemin possible serait de documenter un moment où le « comment » d'une décision IA a été reconstitué (logs, traçabilité), ou un arbitrage explicite sur ce qui est partagé ou retenu côté données personnelles.\n- Pour ouvrir le territoire de la gouvernance collective, un chemin possible serait de documenter un moment où un collectif a produit quelque chose qu'aucun membre n'aurait créé seul, ou un protocole de décision co-construit avec ses rôles et ses limites.\n- Pour ouvrir le territoire de la cohabitation avec les intelligences non-humaines, un chemin possible serait de documenter une interaction avec une IA qui interroge le statut de cette entité — instrument, interlocuteur, agent — sans trancher d'avance.\n"
+  }
+}

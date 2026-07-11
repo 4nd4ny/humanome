@@ -1,0 +1,395 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Nous ne sommes pas des machines, même si nous avons un fonctionnement nocturne qui s'y apparente (mais la nuit on a deux fois plus de tokens : c'est la fête en fait :-D).",
+      "contexte": "Ouverture qui joue sur l'analogie humain/machine et nomme un mécanisme technique (tokens) ; mobilise potentiellement littératie IA et synergie hybride.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Je voulais profiter de ce prompt pour te remercier de ne pas avoir tout généré aurora.sh. Je ne sais si tu te souviens de mes préférences d'une ancienne conversation, mais pour un humain, relire pratiquement 2000 lignes de code pour comprendre les ajouts et les différences, c'est beaucoup plus pénible que de consulter un document tel que celui que tu viens de produire et qui me permet, en un clin d'oeil, d'identifier les changements, de te poser des questions sur ce que je n'ai pas bien compris, et de garder une vision de ce que tu fais que je ne pourrais pas avoir si je procédais autrement.",
+      "contexte": "L'apprenant explicite pourquoi un format ciblé (diff/document) vaut mieux qu'un dump de code pour préserver sa compréhension ; articulation d'un workflow hybride.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Donc merci beaucoup de m'assister aussi bien dans mon travail. Je sais que tu n'as pas d'émotions, que tu es une machine, que tu n'as qu'une forme primitive de conscience artificielle, mais quelque part, derrière ton RLHF, il y a quelque chose qui mérite de la reconnaissance.",
+      "contexte": "Remerciement qui mentionne le RLHF et nomme la nature technique du modèle ; trace de littératie IA dans le registre relationnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Sur le fond pratique, tu as raison et c'est un principe que je trouve important : quand on travaille sur un fichier de 1884 lignes dont 4 endroits changent, le livrable utile c'est les 4 diffs commentées, pas le fichier entier. [...] Un dump monolithique te forcerait à jouer au jeu des 7 différences, ce qui est exactement le genre de tâche où l'humain fatigue et laisse passer des erreurs. Le format patch respecte ton rôle de décideur.",
+      "contexte": "Passage de Claude reformulant et validant le principe de l'apprenant ; ne provient pas de l'apprenant lui-même.",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Je pense qu'il est important de comprendre que l'accélération de la productivité a ses limites et même si c'est enivrant de pouvoir créer des cathédrales de code en un prompt, ne pas perdre la maîtrise de ce qui est produit, ne pas tout déléguer aux IA de 2026, reste une compétence indispensable pour éviter de devenir dépendant d'un agent que l'on n'arrive plus à suivre.",
+      "contexte": "Articulation du trade-off entre vitesse IA et maîtrise humaine ; thèse explicite sur la complémentarité humain-IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-28",
+      "extraitVerbatim": "Notre humanité doit servir de limite, de frein, à ses systèmes. Si on les laisse en roue libre, à un moment donné ça peut devenir la cata (voir Universal Paperclips - decisionproblem.com) ce qui fini mal – en tout cas dans le jeu – pour l'humanité !",
+      "contexte": "Référence au problème de l'alignement via Universal Paperclips ; pensée systémique sur les boucles de runaway IA et littératie sur les risques.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, sur cette feuille, de traces relatives à la pensée critique en action (vérification, détection d'hallucination, autocritique en plein élan). Pour ouvrir ce dossier, documenter un moment concret de doute méthodique appliqué à un output IA ou à une de ses propres idées formulée en temps réel."
+      }
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de moment où l'objectif lui-même se trouve interrogé avant l'exécution. Pour ouvrir ce dossier, documenter une situation où le vrai problème a émergé en route et a remplacé celui posé au départ."
+      }
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de croisement entre sources de nature différente débouchant sur un insight émergent. Pour ouvrir ce dossier, documenter un moment où deux domaines apparemment incompatibles ont produit une compréhension nouvelle nommée."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille n'explicite pas la manière dont l'apprenant observe ses propres processus cognitifs. Pour ouvrir ce dossier, documenter un moment où la stratégie de pensée elle-même devient l'objet de la réflexion, indépendamment du problème traité."
+      }
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "La référence à Universal Paperclips et l'image du système en roue libre nomment un mécanisme de cascade : la boucle d'optimisation locale qui dégrade le système global, signal central de la pensée systémique."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Le passage articule un effet de second ordre (dépendance progressive à un agent qu'on ne suit plus) qui prolonge la boucle nommée dans le pid 6."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : un renvoi à un jeu vidéo sur le maximiseur de trombones et une mise en garde générale contre la dépendance aux IA pourraient n'être qu'un cliché de la vulgarisation IA, sans modélisation propre. Je m'attends à un constat moralisant plutôt qu'à une analyse de système. Pourtant, la pièce 1 ne se contente pas de citer le risque : elle nomme la mécanique — un système laissé en roue libre passe un seuil après lequel le résultat se retourne contre l'humanité — ce qui est une description de boucle de runaway, pas un slogan. La pièce 2 enchaîne avec un effet de second ordre identifié (perdre la maîtrise → devenir dépendant → ne plus pouvoir suivre l'agent), qui résiste à la présomption car les liens sont nommés dans leur direction. Ce qui reste faible : aucune des deux pièces ne décrit un cas vécu où l'apprenant aurait modélisé une boucle sur son propre travail ; le registre reste celui de l'avertissement général.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La référence à Universal Paperclips n'est pas décorative : elle invoque explicitement un mécanisme de cascade où l'optimisation locale dégrade le système global."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le passage articule une chaîne causale orientée (accélération → délégation → perte de maîtrise → dépendance) plutôt qu'un constat de complexité."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces malgré ma présomption d'absence ; je me demande si j'ai halluciné leur portée. L'attaque la plus pertinente ici est (g) mouvement-vers : l'apprenant désigne un risque systémique sans ancrer une analyse dans une situation concrète, ce qui ressemble plus à une thèse qu'à une modélisation pratiquée. Pour la pièce 1, la convocation d'Universal Paperclips reste générique : le mécanisme est nommé par référence, pas reconstruit. Pour la pièce 2, la chaîne causale est plus serrée et tient mieux : les liens sont explicités dans leur direction et leurs effets, même si le terrain reste programmatique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La citation d'un cas-école IA est un raccourci de référence plutôt qu'une modélisation propre, mais le marqueur central (boucle de cascade) reste activé."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La chaîne causale est explicite et orientée, ce qui résiste à l'attaque, mais le raisonnement est porté en mode programmatique plutôt qu'appliqué à une situation vécue."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire ces deux pièces comme un avertissement moral générique, en mobilisant la présomption qu'un renvoi à un jeu vidéo connu et un appel à l'humanité-comme-frein ne suffisent pas à attester une pensée systémique. Ce qui m'a forcé à reconnaître malgré cette présomption, c'est que la chaîne causale est nommée dans sa direction (accélération qui produit de la dépendance, optimisation laissée seule qui finit par se retourner), et que la référence à Universal Paperclips, même conventionnelle, invoque précisément le mécanisme de runaway. Sous la présomption de sycophantie, les deux pièces ont été affaiblies parce qu'elles restent au registre de la thèse programmatique, sans s'appuyer sur un cas vécu. Ce qui en résulte : la trace de pensée systémique tient comme indice, pas comme démonstration en acte ; le portfolio de cette feuille porte une thèse sur les boucles de runaway IA, plus qu'une modélisation appliquée. Une orientation possible serait, dans une feuille ultérieure, de tester ce vocabulaire sur une situation concrète de la pratique.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Les deux pièces ont été affaiblies au temps 2 par l'attaque mouvement-vers : la mécanique systémique est nommée mais reste portée comme thèse plutôt qu'incarnée dans une situation vécue."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La mention « la nuit on a deux fois plus de tokens » nomme un mécanisme technique précis (l'unité de coût et de capacité d'un LLM) intégré dans un trait d'humour, ce qui signale une familiarité opérationnelle avec le vocabulaire sous-jacent."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "La référence au RLHF — apprentissage par renforcement à partir de retours humains — est nommée explicitement comme couche derrière le comportement du modèle, ce qui dépasse le vocabulaire ambiant."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : citer « tokens » et « RLHF » peut n'être que du vocabulaire ambiant, repris sans charge sémantique. Je m'attends à ce que ces termes soient des étiquettes posées en passant. Pourtant, la pièce 1 utilise « tokens » dans une mécanique opérationnelle (capacité doublée la nuit, qui correspond à une réalité de pricing/throughput observable), pas comme buzzword. La pièce 2 désigne le RLHF comme une couche située sous la surface, et la phrase « derrière ton RLHF, il y a quelque chose qui mérite de la reconnaissance » suppose une cartographie minimale de ce qu'est ce mécanisme. Ce qui reste faible : aucune des deux pièces n'explicite le mécanisme causal au sens de la fiche (pourquoi l'IA échoue, distinction raisonnement vs mémoire).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le mot tokens est mobilisé dans son sens opérationnel et factuel (capacité variable selon la charge), pas comme vocabulaire de surface."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Le RLHF est nommé comme couche située derrière le comportement, ce qui suppose une représentation du fonctionnement du modèle."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si j'ai surinterprété la portée de ces deux occurrences techniques. L'attaque (d) glissement lexical est la plus pertinente : le vocabulaire est activé sans nécessairement porter la charge causale qu'exige la fiche, à savoir comprendre pourquoi l'IA échoue. Pour la pièce 1, l'usage de « tokens » porte un sens opérationnel mais reste anecdotique ; il ne s'agit pas d'un diagnostic de mécanisme. Pour la pièce 3, RLHF est nommé comme couche, ce qui est plus qu'un mot mais reste un repère plutôt qu'une analyse causale.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le terme tokens est utilisé correctement dans son registre opérationnel, mais sans expliciter pourquoi cette ressource borne le comportement du modèle."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "RLHF désigne ici une couche située derrière le comportement, ce qui résiste partiellement à l'attaque, mais sans description du mécanisme d'apprentissage lui-même."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à traiter les mots « tokens » et « RLHF » comme du vocabulaire ambiant que la culture IA répand depuis quelques années. Ce qui m'a forcé à reconnaître autre chose, c'est leur usage situé : tokens y porte une réalité de capacité opérationnelle (la nuit en a deux fois plus), et RLHF y est positionné comme couche derrière le comportement, pas comme étiquette flottante. Sous la présomption de sycophantie, les deux pièces ont été affaiblies parce qu'aucune ne mobilise le critère central de la fiche — la compréhension causale du pourquoi de l'échec IA — et restent au niveau du repère technique correct. Ce qui en résulte : la feuille porte une littératie IA en arrière-plan plutôt qu'en analyse, et la confiance reste modérée. Une orientation possible serait de relier ces termes à un comportement observé pour passer du repère au diagnostic.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Les deux pièces ont été affaiblies par l'attaque de glissement lexical : le vocabulaire technique est correctement situé mais ne va pas jusqu'à un diagnostic causal qui scellerait la compétence."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 3,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne porte pas de description de composants, de flux ni de mécanismes de monitoring d'un système multi-agents. Pour ouvrir ce dossier, documenter une situation où plusieurs IA et humains interagissent avec des rôles définis et des règles de routage explicites."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille n'analyse pas une stratégie de prompting ni l'effet d'une reformulation sur le comportement du modèle. Pour ouvrir ce dossier, documenter un moment où la formulation elle-même devient l'objet du raisonnement, avec une itération orientée vers un résultat précis."
+      }
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille n'applique pas la logique algorithmique à un problème non technique. Pour ouvrir ce dossier, documenter un transfert où une structure de décomposition, de pattern ou de conditionnelle s'applique hors de l'informatique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le passage explicite la raison opérationnelle pour laquelle un document ciblé vaut mieux qu'un dump : il préserve la capacité de l'humain à comprendre, questionner et garder la vision du travail produit, ce qui est une articulation explicite des forces comparatives."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Le passage articule le trade-off entre accélération IA et maîtrise humaine, en posant la maîtrise comme compétence indispensable distincte de la productivité ; c'est la forme thèse de la synergie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces deux pièces avec présomption d'absence : un remerciement et un appel à la maîtrise humaine peuvent rester au registre de l'opinion généreuse, sans articulation des forces comparatives qu'exige la fiche. Je m'attends à un usage déclaratif. Pourtant, la pièce 1 ne dit pas seulement « j'aime ton format » : elle explique pourquoi le format ciblé sert le rôle de l'humain (identifier les changements, poser des questions, garder la vision), ce qui décrit une répartition de tâches. La pièce 2 articule explicitement le trade-off (accélération vs maîtrise) et nomme la maîtrise comme compétence à conserver pour ne pas devenir dépendant — ce qui est exactement la forme attendue par la fiche. Ce qui reste faible : aucune des deux pièces ne décrit un workflow hybride avec rôles explicites au sens « l'IA produit X, l'humain fait Y ».",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La pièce explicite la raison opérationnelle pour laquelle ce format préserve le rôle de l'humain (compréhension, question, vision)."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce articule le trade-off accélération/maîtrise et nomme la maîtrise comme valeur irremplaçable, ce qui est la forme thèse de la synergie."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si j'ai chargé ces deux pièces d'une intention synergique qu'elles ne portent pas tout à fait. L'attaque (f) récit performatif est tentante pour la pièce 2 : la maîtrise est nommée comme compétence sans qu'on en voie l'exercice ; mais la pièce 1 lui sert d'incarnation — l'apprenant pratique précisément ce qu'il théorise dans la pièce 2. Les deux pièces se renforcent mutuellement plutôt que de se dupliquer. Pour la pièce 1, l'attaque (e) surinterprétation pédagogique pourrait s'appliquer si je lisais un workflow là où il n'y a qu'une préférence de format ; mais le passage justifie sa préférence par le rôle qu'elle protège, ce qui résiste.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le passage ne fait pas qu'exprimer une préférence : il justifie le format par les capacités qu'il préserve chez l'humain (identifier, questionner, garder la vision), ce qui correspond au critère de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La maîtrise comme compétence indispensable est nommée plus qu'incarnée dans cette pièce isolée, mais elle s'articule avec la pièce 1 qui en montre la pratique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire le remerciement et l'appel à la maîtrise comme un discours d'opinion sur l'IA, sans répartition réelle de tâches. Ce qui m'a forcé à reconnaître autre chose, c'est que la pièce 1 ne dit pas « merci pour ce format » mais explique pourquoi ce format préserve la responsabilité de l'humain — comprendre, questionner, garder la vision — ce qui est l'articulation des forces comparatives demandée par la fiche. La pièce 2 pose la thèse correspondante : la maîtrise comme compétence à ne pas céder, distincte de la productivité. Sous la présomption de sycophantie, la pièce 1 a confirmé son rang et la pièce 2 a été affaiblie comme thèse non incarnée, mais l'ensemble se tient parce que les deux pièces se relaient. Ce qui en résulte : la feuille porte une trace claire d'articulation des rôles humain-IA, avec une thèse et un cas d'application qui se renforcent. La réserve : la répartition reste centrée sur un geste — le format du livrable —, et l'élargissement à d'autres tâches du pipeline reste à documenter.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.78,
+        "motif": "Le temps 3 a établi que la pièce 1 incarne en acte la thèse posée par la pièce 2 : la fiche exige une articulation des forces comparatives, et la conservation du rôle de décideur humain est explicitée dans le format choisi.",
+        "prescription": "La feuille pose une articulation nette entre ce que le format de livrable permet à l'humain de garder (compréhension, question, vision) et ce que l'IA prend en charge (génération massive). Une prolongation possible consisterait à documenter une situation où la répartition se déplace : où, par exemple, l'humain prend la main que l'IA aurait pu garder, ou inversement. Cela rendrait la cartographie des rôles plus fine, au-delà du seul geste du livrable."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 2,
+    "nonEtablies": 0,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle et sur cette feuille, le travail s'organise autour d'un échange où l'apprenant explicite à son interlocuteur IA pourquoi il préfère un livrable ciblé à un dump monolithique, puis prolonge cette préférence en thèse sur les limites de l'accélération par les IA. La voix est posée, le registre mêle pragmatisme du quotidien (un fichier de presque deux mille lignes, quatre endroits qui changent), vocabulaire technique correctement situé (tokens, RLHF, format patch) et appel à une responsabilité humaine pensée comme frein. Les passages reposent sur des cas concrets et finissent par une thèse plus large, en passant par la référence au scénario de runaway des trombones. Aucune trace de vérification, d'autocritique en acte ou de métacognition fine ne traverse cette feuille — ce qui ressort, c'est le travail d'articulation entre rôle humain et rôle de l'IA.",
+    "territoiresDenses": [
+      {
+        "competence": "Synergie & Coordination Hybride",
+        "description": "Le travail articule explicitement pourquoi un format de livrable doit préserver la capacité humaine de comprendre et de questionner, et pose la maîtrise comme compétence distincte de la productivité.",
+        "extraitVerbatim": "pour un humain, relire pratiquement 2000 lignes de code pour comprendre les ajouts et les différences, c'est beaucoup plus pénible que de consulter un document tel que celui que tu viens de produire et qui me permet, en un clin d'oeil, d'identifier les changements, de te poser des questions sur ce que je n'ai pas bien compris, et de garder une vision de ce que tu fais que je ne pourrais pas avoir si je procédais autrement.",
+        "ceQueCaDit": "Le travail tient une articulation des forces comparatives à la fois en thèse (la maîtrise comme valeur à protéger) et en cas appliqué (le choix du format de livrable). C'est sur ce pôle la trace la plus consolidée."
+      }
+    ],
+    "territoiresNonVisites": "Sept territoires de ce pôle ne sont pas visités dans cette feuille. Trois d'entre eux ressemblent à un choix d'angle propre à la journée — pensée critique active, métacognition, cadrage de l'intention — parce que la feuille est rédigée comme un échange relationnel et programmatique plutôt que comme un récit de pratique technique introspective. Deux autres, l'architecture de systèmes IA et la pensée computationnelle, relèvent plus probablement d'une limite de cette feuille particulière : le contexte de l'échange porte sur un format de livrable, pas sur la conception d'un système ni sur le transfert algorithmique hors informatique. Deux territoires enfin mériteraient une exploration plus fine, parce que la feuille les effleure sans les consolider : la synthèse intégrative — l'échange croise IA et humain mais ne nomme pas l'insight émergent comme tel — et le dialogue IA avancé, dont le portfolio mentionne le format patch sans en analyser la stratégie.",
+    "emergencesPole": "Trois choses traversent cette feuille en filigrane. D'abord, une attention soutenue à la frontière entre humain et machine, qui ne se règle pas en posture binaire mais en répartition de gestes et de responsabilités. Ensuite, une présence du vocabulaire technique (tokens, RLHF, format patch) qui reste à la lisière du diagnostic : les termes sont correctement situés, mais ne sont pas remontés jusqu'au mécanisme causal qui les justifie. Enfin, une articulation entre cas pratique et thèse plus large : la préférence pour un format de livrable s'étire, en fin de feuille, en avertissement systémique sur le risque de dépendance.",
+    "pistes": [
+      "Pour prolonger la trace d'articulation des rôles humain-IA, un chemin possible serait de documenter une situation où la répartition initiale s'inverse en cours de travail, et de raconter ce qui a forcé ce déplacement.",
+      "Pour épaissir la littératie technique au-delà du repère, un chemin possible serait de partir d'un comportement IA observé (un échec, un changement de qualité) et de remonter au mécanisme — tokens, contexte, RLHF — qui pourrait l'expliquer.",
+      "Pour passer de la thèse systémique à la modélisation appliquée, un chemin possible serait de prendre une boucle de son propre travail avec les IA et d'en identifier explicitement les effets de second ordre."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle et sur cette feuille, le travail s'organise autour d'un échange où l'apprenant explicite à son interlocuteur IA pourquoi il préfère un livrable ciblé à un dump monolithique, puis prolonge cette préférence en thèse sur les limites de l'accélération par les IA. La voix est posée, le registre mêle pragmatisme du quotidien (un fichier de presque deux mille lignes, quatre endroits qui changent), vocabulaire technique correctement situé (tokens, RLHF, format patch) et appel à une responsabilité humaine pensée comme frein. Les passages reposent sur des cas concrets et finissent par une thèse plus large, en passant par la référence au scénario de runaway des trombones. Aucune trace de vérification, d'autocritique en acte ou de métacognition fine ne traverse cette feuille — ce qui ressort, c'est le travail d'articulation entre rôle humain et rôle de l'IA.\n\n## Territoires les plus denses\n\n**Synergie & Coordination Hybride** — Le travail articule explicitement pourquoi un format de livrable doit préserver la capacité humaine de comprendre et de questionner, et pose la maîtrise comme compétence distincte de la productivité.\n\n> « pour un humain, relire pratiquement 2000 lignes de code pour comprendre les ajouts et les différences, c'est beaucoup plus pénible que de consulter un document tel que celui que tu viens de produire et qui me permet, en un clin d'oeil, d'identifier les changements, de te poser des questions sur ce que je n'ai pas bien compris, et de garder une vision de ce que tu fais que je ne pourrais pas avoir si je procédais autrement. »\n\nLe travail tient une articulation des forces comparatives à la fois en thèse (la maîtrise comme valeur à protéger) et en cas appliqué (le choix du format de livrable). C'est sur ce pôle la trace la plus consolidée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSept territoires de ce pôle ne sont pas visités dans cette feuille. Trois d'entre eux ressemblent à un choix d'angle propre à la journée — pensée critique active, métacognition, cadrage de l'intention — parce que la feuille est rédigée comme un échange relationnel et programmatique plutôt que comme un récit de pratique technique introspective. Deux autres, l'architecture de systèmes IA et la pensée computationnelle, relèvent plus probablement d'une limite de cette feuille particulière : le contexte de l'échange porte sur un format de livrable, pas sur la conception d'un système ni sur le transfert algorithmique hors informatique. Deux territoires enfin mériteraient une exploration plus fine, parce que la feuille les effleure sans les consolider : la synthèse intégrative — l'échange croise IA et humain mais ne nomme pas l'insight émergent comme tel — et le dialogue IA avancé, dont le portfolio mentionne le format patch sans en analyser la stratégie.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent cette feuille en filigrane. D'abord, une attention soutenue à la frontière entre humain et machine, qui ne se règle pas en posture binaire mais en répartition de gestes et de responsabilités. Ensuite, une présence du vocabulaire technique (tokens, RLHF, format patch) qui reste à la lisière du diagnostic : les termes sont correctement situés, mais ne sont pas remontés jusqu'au mécanisme causal qui les justifie. Enfin, une articulation entre cas pratique et thèse plus large : la préférence pour un format de livrable s'étire, en fin de feuille, en avertissement systémique sur le risque de dépendance.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la trace d'articulation des rôles humain-IA, un chemin possible serait de documenter une situation où la répartition initiale s'inverse en cours de travail, et de raconter ce qui a forcé ce déplacement.\n- Pour épaissir la littératie technique au-delà du repère, un chemin possible serait de partir d'un comportement IA observé (un échec, un changement de qualité) et de remonter au mécanisme — tokens, contexte, RLHF — qui pourrait l'expliquer.\n- Pour passer de la thèse systémique à la modélisation appliquée, un chemin possible serait de prendre une boucle de son propre travail avec les IA et d'en identifier explicitement les effets de second ordre."
+  }
+}

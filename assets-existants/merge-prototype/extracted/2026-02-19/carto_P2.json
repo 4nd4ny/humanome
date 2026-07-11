@@ -1,0 +1,296 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Hier journée de \"formation pour informaticien\" proposée par l'ORP. Bilan : [...]",
+      "contexte": "Mention d'une journée de formation institutionnelle dont le compte-rendu est confié à un dialogue IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+      "contexte": "Travail en cours sur un référentiel structuré dédié aux compétences humaines à l'horizon post-AGI.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+      "contexte": "Production massive de débats destinée à être versée à une plateforme délibérative citoyenne, avec une intention explicite de faire avancer un sujet collectif.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-19",
+      "extraitVerbatim": "A1 — Pensée Critique & Anti-Hallucination",
+      "contexte": "Titre du premier exemple de débat généré, qui prend pour objet la compétence d'anti-hallucination IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne nomme aucune émotion, aucune perception d'état affectif chez soi ou chez autrui. Pour ouvrir ce dossier, l'apprenant pourrait noter, lors d'une prochaine journée d'atelier ou d'échange, ce qu'il a perçu de la coloration émotionnelle du moment."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne contient pas de récit de prise de parole, de vulnérabilité assumée ou de variation de registre travaillée. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a choisi délibérément un ton ou un canal pour porter un message difficile."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Aucune tension ni désaccord n'est évoqué sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait noter un moment où une divergence productive a été nommée plutôt qu'évitée — y compris dans la conception du référentiel."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 2.04, le choix de Decidim comme canal n'est pas anodin — c'est une plateforme de co-décision où l'influence passe par la structuration du débat plutôt que par la persuasion frontale. Le geste pourrait donc porter une forme d'influence systémique.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 2.04 demande une stratégie d'influence visible — identification des décideurs, anticipation des résistances, reformulation des objections, propositions gagnant-gagnant. La phrase \"je posterai sur Decidim pour faire avancer le schmilblick\" décrit l'action mais ne déplie aucun de ces ingrédients. On ne sait pas qui doit être convaincu, ni quelles objections sont anticipées, ni quelle articulation de l'enjeu est proposée. La pièce résiste pourtant un peu : le choix de la plateforme délibérative trahit une intuition d'influence par dispositif plutôt que par charisme — ce qui rejoint la forme la plus aboutie de 2.04 (conception d'environnements où les gens s'engagent d'eux-mêmes).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le choix de Decidim comme canal porte en germe une logique d'influence systémique — faire émerger le débat dans un cadre conçu pour la co-décision plutôt que tenter de convaincre individu par individu."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de reconnaître à la pièce une vertu d'influence systémique, mais à la relecture critique cette vertu repose entièrement sur ce que Decidim signifie, pas sur ce que l'apprenant en dit ou en fait. La feuille ne décrit ni la stratégie, ni la préparation, ni la structuration des débats pour qu'ils suscitent l'adhésion. Je me suis laissé séduire par un signifiant institutionnel (Decidim = délibération démocratique) plutôt que par une trace d'art diplomatique réellement exhibée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Insuffisance probatoire : la phrase est trop courte pour porter une stratégie d'influence ; elle annonce un dépôt sans déplier la diplomatie qui le précède ou l'accompagne."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la diplomatie soit attestée sur cette feuille. La pièce a résisté un instant par la nature du canal choisi — Decidim n'est pas un blog, c'est un outil de délibération démocratique. Mais la critique sycophantique l'a renvoyée à sa nudité : la phrase annonce un geste sans en montrer la stratégie. Pour faire d'un dépôt sur une plateforme une trace de 2.04, il faudrait voir au moins l'amorce d'un calcul — quelles voix, quelles résistances, quel moment. Sur cette feuille, ce calcul n'est pas visible.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "Au temps 2, la pièce est tombée pour insuffisance probatoire : le choix d'un canal délibératif ne suffit pas à attester une stratégie d'influence si la stratégie elle-même n'est pas mise en mots.",
+        "prescription": "Pour donner corps à cette compétence, l'apprenant pourrait, lors du dépôt effectif sur Decidim, noter brièvement quelles voix il espère voir s'emparer du débat et pourquoi le format choisi devrait susciter cette prise de parole. Une ou deux phrases d'intention diplomatique transforment un dépôt en stratégie lisible."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne décrit pas de collaboration menée avec une vision divergente persistante. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où un travail a avancé sans que les positions initiales se rejoignent, et noter ce qui a tenu malgré le désaccord."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille ne contient pas d'adaptation à un contexte culturel, organisationnel ou générationnel différent du sien. Pour ouvrir ce dossier, l'apprenant pourrait noter, à propos de la formation ORP, comment les codes d'un milieu institutionnel ont différé ou non de ses repères usuels."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La feuille n'analyse pas de dynamique de pouvoir, de jeu d'acteurs ou de circuit de décision. Pour ouvrir ce dossier, l'apprenant pourrait, à propos du projet Decidim, noter quels relais institutionnels comptent vraiment et lesquels ne sont que de façade."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "extraitVerbatim": "Aujourd'hui je tente de finaliser les fichiers YAML du référentiel de compétences humaines post AGI.",
+          "contexte": "Pour 2.08, un référentiel de compétences humaines à l'ère post-AGI suppose en arrière-plan un travail de transposition entre vocabulaire d'experts IA et registres humanistes destinés à un public plus large.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 2.08, transformer un référentiel technique en débats citoyens postés sur une plateforme délibérative est typiquement un acte de traduction entre monde expert et monde public.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : 2.08 ne se contente pas d'évoquer un acte de traduction, elle demande à le voir — analogies structurelles, reformulations successives, bidirectionnalité, test du sens préservé. Aucune des deux pièces ne montre l'acte de traduction lui-même. La pièce 1 nomme l'objet (référentiel YAML) sans en exposer la transposition ; la pièce 2 annonce des débats sans en livrer une formulation à examiner. La pièce 2 résiste très faiblement parce qu'elle articule deux mondes (référentiel technique → débat citoyen) ; la pièce 1 ne porte qu'un produit en cours, pas un geste de traduction.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La phrase met en mouvement un transfert entre deux registres — la matière YAML structurée et le débat délibératif citoyen — ce qui constitue le squelette d'une traduction entre mondes."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La résistance de la pièce 2 repose sur une inférence sur ce qu'est Decidim et sur ce qu'est un référentiel, pas sur une trace exhibée de l'acte traducteur. Le test de 2.08 (l'expert d'origine reconnaîtrait-il son savoir dans la version traduite) n'est pas opérable ici : on n'a aucune des deux versions à comparer. Je me suis laissé porter par la structure du projet, pas par une preuve de geste.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Insuffisance probatoire : la phrase pose un mouvement entre deux mondes mais ne donne accès ni à l'amont (la formulation technique) ni à l'aval (la formulation délibérative) ; le geste de traduction reste inférable mais pas attestable."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la traduction entre mondes soit attestée sur cette feuille, et la lecture serrée m'a donné raison sur le fond. Il y a clairement un projet qui suppose de la traduction — passer d'un référentiel YAML technique à des débats sur une plateforme citoyenne. Mais le projet n'est pas la trace. Sur cette feuille seule, le geste traducteur reste à l'état d'inférence : on devine qu'il a lieu ailleurs, on ne le lit pas. Une feuille suivante pourrait reproduire un fragment du référentiel et sa version débat — la mise en regard suffirait à transformer l'inférence en trace.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Au temps 2, la seule pièce qui avait résisté est tombée pour insuffisance probatoire : l'acte de traduction est suggéré par la structure du projet sans être exhibé dans la feuille.",
+        "prescription": "Pour donner accès à ce travail de traduction, l'apprenant pourrait coller dans une feuille suivante un court fragment du YAML technique en regard de sa version délibérative pour le grand public. La mise côte à côte des deux registres rend le geste visible sans demander d'effort supplémentaire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "extraitVerbatim": "Je fais générer 60 débats que je posterai ensuite sur Decidim pour faire avancer le schmilblick.",
+          "contexte": "Pour 2.09, Decidim est par construction un espace communautaire de délibération ; alimenter cet espace pourrait participer d'un travail de construction d'une communauté délibérative autour des compétences humaines post-AGI.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : 2.09 demande un \"nous identitaire\", des rituels partagés, un vocabulaire propre, un sentiment d'appartenance qui dépasse la coordination. La pièce parle d'une plateforme de débat — qui peut accueillir une communauté ou ne rester qu'un canal de diffusion. L'apprenant ne dit pas \"notre communauté\", ne nomme pas ses interlocuteurs, n'évoque ni rituels ni langage partagé. La pièce résiste faiblement parce que l'expression familière \"faire avancer le schmilblick\" introduit un \"on\" implicite — une cause commune supposée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le \"schmilblick\" suppose un collectif implicite engagé dans la même question, ce qui constitue le tout premier germe d'un sentiment communautaire."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "J'ai accordé à un mot familier — \"schmilblick\" — la dignité d'un signal communautaire. À la relecture, c'est un glissement lexical : le mot connote la collectivité sans qu'aucun collectif ne soit nommé, identifié, situé dans le temps. La compétence demande davantage qu'un pronom implicite ; elle demande de voir le tissage des liens.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Glissement lexical : la connotation collective du mot \"schmilblick\" est activée sans que la feuille décrive un \"nous\" effectif, des participants nommés ou un sentiment d'appartenance."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la construction de communautés soit attestée ici. La pièce a résisté un instant par un petit mot — \"schmilblick\" — qui suppose un collectif en arrière-plan. Mais la critique sycophantique a vu le tour de passe-passe : un mot ne fait pas une communauté. Pour que 2.09 s'écrive sur une feuille, il faudrait au moins voir les contours de ceux à qui on parle, sentir un rituel ou un vocabulaire partagé. Sur cette feuille, on voit l'apprenant déposer dans une plateforme, pas tisser un lien.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Au temps 2, la pièce est tombée pour glissement lexical : la connotation collective du langage familier ne suffit pas à attester un travail de construction communautaire.",
+        "prescription": "Pour donner corps à cette compétence, l'apprenant pourrait, à propos du projet Decidim, nommer une ou deux personnes ou groupes avec lesquels il espère engager le débat, et noter ce qui dans le format des soixante débats devrait susciter une appartenance plutôt qu'une simple consommation."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 3,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 19 février 2026, le pôle CŒUR reste à l'arrière-plan. Le texte est tourné vers l'action solitaire — finaliser des fichiers, faire générer des débats — et ne s'attarde pas sur les visages, les voix ou les liens qui pourraient accompagner ce travail. Une plateforme communautaire (Decidim) apparaît dans le récit, mais comme destination d'un dépôt plutôt que comme espace habité. Le \"schmilblick\" suppose un collectif en arrière-plan, sans qu'aucun contour ne lui soit donné.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Six compétences du pôle restent sans trace sur cette feuille : l'intelligence émotionnelle, la communication authentique, la gestion des conflits, la collaboration divergente, l'intelligence culturelle et le sens politique. Trois autres compétences — l'influence diplomatique, la traduction entre mondes et la construction de communautés — ont reçu une allusion à travers le projet Decidim, mais aucune n'a tenu sous la double présomption : la feuille décrit la destination d'un dépôt sans en dérouler la dimension relationnelle. Ces absences ressemblent davantage à une limite du format de la feuille qu'à un choix — la journée évoquée a sans doute eu des dimensions humaines qui n'ont pas été couchées sur le papier.",
+    "emergencesPole": "Une chose traverse cette feuille brève : tout le travail décrit converge vers un espace collectif (Decidim, le débat citoyen, le \"schmilblick\" partagé). L'apprenant ne travaille pas pour lui — il prépare une matière destinée à circuler dans une communauté délibérative. Cette orientation relationnelle est là, en filigrane, sans que la feuille en montre les contours humains précis.",
+    "pistes": [
+      "Pour donner à voir le travail de traduction entre mondes, un chemin possible serait de coller, à propos d'une compétence du référentiel, le fragment YAML technique en regard de sa version délibérative pour le grand public.",
+      "Pour rendre visible la dimension communautaire du projet, un chemin possible serait de nommer une ou deux personnes ou groupes auxquels les soixante débats sont adressés, avec ce qui dans le format pourrait susciter leur prise de parole.",
+      "Pour incarner la diplomatie qui sous-tend un dépôt sur Decidim, un chemin possible serait de noter, au moment de poster, quelles résistances sont anticipées et comment la formulation des débats les prend en compte."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 19 février 2026, le pôle CŒUR reste à l'arrière-plan. Le texte est tourné vers l'action solitaire — finaliser des fichiers, faire générer des débats — et ne s'attarde pas sur les visages, les voix ou les liens qui pourraient accompagner ce travail. Une plateforme communautaire (Decidim) apparaît dans le récit, mais comme destination d'un dépôt plutôt que comme espace habité. Le \"schmilblick\" suppose un collectif en arrière-plan, sans qu'aucun contour ne lui soit donné.\n\n## Territoires les plus denses\n\nSur cette seule feuille, aucun territoire dense ne se laisse cartographier dans le pôle CŒUR. Les trois compétences pour lesquelles des allusions existaient — l'influence diplomatique, la traduction entre mondes, la construction de communautés — sont restées au stade de l'évocation, à travers la mention de Decidim. Le rapport revient sur ces allusions dans les sections suivantes.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nSix compétences du pôle restent sans trace sur cette feuille : l'intelligence émotionnelle, la communication authentique, la gestion des conflits, la collaboration divergente, l'intelligence culturelle et le sens politique. Trois autres compétences — l'influence diplomatique, la traduction entre mondes et la construction de communautés — ont reçu une allusion à travers le projet Decidim, mais aucune n'a tenu sous la double présomption : la feuille décrit la destination d'un dépôt sans en dérouler la dimension relationnelle. Ces absences ressemblent davantage à une limite du format de la feuille qu'à un choix — la journée évoquée a sans doute eu des dimensions humaines qui n'ont pas été couchées sur le papier.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne chose traverse cette feuille brève : tout le travail décrit converge vers un espace collectif (Decidim, le débat citoyen, le \"schmilblick\" partagé). L'apprenant ne travaille pas pour lui — il prépare une matière destinée à circuler dans une communauté délibérative. Cette orientation relationnelle est là, en filigrane, sans que la feuille en montre les contours humains précis.\n\n## Pistes pour enrichir ce pôle\n\n- Pour donner à voir le travail de traduction entre mondes, un chemin possible serait de coller, à propos d'une compétence du référentiel, le fragment YAML technique en regard de sa version délibérative pour le grand public.\n- Pour rendre visible la dimension communautaire du projet, un chemin possible serait de nommer une ou deux personnes ou groupes auxquels les soixante débats sont adressés, avec ce qui dans le format pourrait susciter leur prise de parole.\n- Pour incarner la diplomatie qui sous-tend un dépôt sur Decidim, un chemin possible serait de noter, au moment de poster, quelles résistances sont anticipées et comment la formulation des débats les prend en compte."
+  }
+}

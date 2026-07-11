@@ -1,0 +1,280 @@
+{
+  "poleNum": "2",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Hier j'écrivais à Stéphane : \"Je pense que je ne vais pas postuler\". Aujourd'hui j'en suis certain.",
+      "contexte": "Communication écrite à un tiers nommé d'une décision en cours de maturation, avec révision de la formulation entre la veille et le jour même.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "il faut que je change de mode de fonctionnement et que je prévienne tout le monde que je ne suis plus disponible temporairement.",
+      "contexte": "Anticipation d'une communication de retrait à un cercle non précisé, motivée par un diagnostic personnel de saturation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Après, je me lancerai dans la finalisation de la cartographie automatique dans l'objectif de boucler cette partie du projet pour pouvoir éventuellement faire une démo vendredi 20.03.lors du hackathon Sqily. De plus, ça va aider Stéphane à comparer Aurora à une cartographie mono-agent.",
+      "contexte": "Action de finalisation motivée par sa double utilité : démo collective au hackathon et utilité pour le travail de Stéphane.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-07",
+      "extraitVerbatim": "Ajout des concepts de promptologue (personne qui étudie et conçoit des prompts de manière systématique, pour comprendre comment formuler les meilleures instructions possibles aux IA) et de promptagogue (personne qui enseigne l'art de rédiger et d'utiliser des prompts, c'est‑à‑dire un formateur ou pédagogue spécialisé dans les usages pédagogiques et pratiques des prompts avec les IA).",
+      "contexte": "Nomination et définition de deux figures professionnelles destinées à être lues par d'autres dans les manuels de formation.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "2.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne nomme pas d'émotion précise (ni la sienne ni celle d'un tiers) et ne décrit pas de geste de sollicitude anticipatoire. Documenter une situation où la perception d'un état émotionnel a guidé un choix concret ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Récit d'une prise de parole écrite à Stéphane formulant une décision personnelle inconfortable (ne pas postuler), avec attention à la progression de la formulation (hypothèse hier, certitude aujourd'hui)."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Décision explicite d'une communication de retrait temporaire à un cercle d'interlocuteurs, ce qui suppose un choix de registre (transparence sur sa non-disponibilité plutôt que silence ou bricolage discret)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en présumant qu'on a affaire à de simples mentions d'échanges, pas à un travail de communication calibrée. La pièce 1 pourrait n'être qu'une citation neutre d'un message envoyé. La pièce 2 pourrait n'être qu'une intention d'organisation, pas un acte de communication. Pourtant, la pièce 1 montre une attention à la progression de la formulation (« je pense que » hier, « j'en suis certain » aujourd'hui) qui suggère une conscience du registre dans la communication d'une décision en construction. La pièce 2 articule une décision de transparence (prévenir tout le monde de la non-disponibilité), ce qui est un choix de registre conscient. Les deux pièces résistent partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La gradation de la formulation entre la veille et le jour même indique une attention à la manière dont la décision est dite à autrui." },
+            { "pieceId": 2, "motifResistance": "Le choix de prévenir explicitement plutôt que de bricoler une indisponibilité tacite constitue un geste de communication assertive." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en me demandant si j'ai surchargé des mentions allusives. La pièce 1 souffre d'insuffisance probatoire : la phrase rapportée est citée hors contexte, sans description du registre choisi pour la dire (formel, brut, accompagné d'explications ?). La pièce 2 est une intention de communiquer, pas un récit de communication accomplie — l'attaque du récit performatif est tentante (« je vais prévenir » sans description du comment). Les deux attaques touchent et réduisent la portée des pièces.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le message à Stéphane est cité mais le registre, le ton et le contexte d'émission ne sont pas décrits. La trace de communication calibrée reste minimale."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant déclare qu'il va prévenir tout le monde, sans décrire les mots qui seront utilisés, ni le canal, ni le cercle exact. C'est une intention de communication, pas une trace de communication accomplie."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne voir là que des mentions d'échanges ou des intentions floues. Ce qui m'a forcé à reconnaître quelque chose, c'est la gradation de la formulation à Stéphane (« je pense que » devient « j'en suis certain »), qui suggère une attention à la manière dont une décision se communique au fil de sa maturation, et la décision assumée de transparence sur sa non-disponibilité. Sous la présomption de sycophantie, les deux pièces se sont affaiblies sans tomber : la première manque de description du registre, la seconde est encore au stade de l'intention. Ce qui en résulte, pour cette feuille, c'est une trace mince de communication assumée, sans dispositif descriptif suffisant pour parler de communication calibrée au sens fort. La nuance qui reste : aucune variation de registre dans la feuille elle-même, pas de description de conversations difficiles vécues — la communication est mentionnée plus qu'elle n'est montrée.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.4,
+        "motif": "Les deux pièces ont été affaiblies sans être disqualifiées, mais aucune ne montre la communication en acte avec son registre — elles la mentionnent ou l'annoncent.",
+        "prescription": "Pour ouvrir ce dossier, raconter une conversation difficile en restituant le registre choisi (mots utilisés, ton, ce qui a été dit et ce qui a été retenu) rendrait la communication calibrée lisible. Une autre piste serait de documenter, pour un message important, l'écart entre la première formulation et la version envoyée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "2.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne contient pas de récit de tension, de désaccord ou de médiation. Documenter une situation où un conflit a été structuré (avocat du diable, rôle de contradicteur, tension productive maintenue) ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne décrit pas de stratégie d'adhésion ni de préparation à une proposition. Documenter une situation où une perspective adverse a été reformulée avant d'avancer sa propre position ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne décrit pas de collaboration où un désaccord persiste sans bloquer la livraison. Documenter une situation où chaque partie a conservé sa position divergente tout en produisant un résultat commun ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne contient pas de décodage d'implicites culturels (nationaux, organisationnels, générationnels, disciplinaires). Documenter une situation où des règles différentes ont conduit à modifier son comportement ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Cette feuille ne décrit pas de lecture de dynamiques de pouvoir invisibles (qui décide vraiment, qui bloque, voies informelles). Documenter une analyse de cet ordre, avec son ancrage situé, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "2.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Les définitions de promptologue et promptagogue sont conçues pour être lues par d'autres : elles transposent un univers technique (concepts d'IA, étude des prompts) dans un registre lisible (« personne qui étudie et conçoit », « personne qui enseigne »). C'est une opération de traduction entre un monde spécialisé et un public en formation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'il s'agit d'une simple définition technique, pas d'un acte de traduction entre mondes. Le critère 2.08 exige que le sens soit préservé en passant dans un autre cadre conceptuel, pas seulement reformulé. Les définitions proposées (« personne qui étudie et conçoit des prompts de manière systématique », « personne qui enseigne l'art de rédiger et d'utiliser des prompts ») sont calibrées pour un public de formation : elles ne supposent ni connaissance préalable de l'IA, ni vocabulaire technique. Elles transposent une activité (concevoir / enseigner les prompts) dans des figures professionnelles intelligibles. La pièce résiste partiellement à la présomption d'absence : il y a un effort de transposition, mais l'écart entre les deux mondes (technique IA / pédagogie professionnelle) n'est pas explicité comme tel.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Les définitions sont calibrées pour un public en formation, transposant une activité technique en figures professionnelles intelligibles." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si j'ai surinterprété une nomination en traduction entre mondes. L'attaque la plus pertinente est la confusion de compétence : nommer des figures professionnelles est plus proche du design de problèmes (3.03) ou de la documentation vivante (7.03) que de la traduction entre mondes au sens strict. Le test de 2.08 — l'expert d'origine reconnaîtrait-il son savoir dans la version traduite ? — n'est pas vraiment posable ici, car il s'agit de figures nouvelles, pas de la traduction d'un savoir existant. L'attaque tient.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Ce qui est fait ici n'est pas de la traduction entre deux mondes existants (un expert reconnaîtrait-il son savoir dans la traduction ?), mais une nomination de nouvelles figures professionnelles. Le geste relève davantage de la création de catégories ou de la documentation pédagogique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ne voir dans cette nomination qu'une importation technique, puis sous la présomption de sycophantie j'ai testé l'hypothèse qu'il s'agissait d'une traduction entre mondes. L'attaque de confusion de compétence a tenu : le geste est plus proche d'une création de catégories pédagogiques que de la transposition d'un savoir spécialisé vers un public non-spécialiste. La trace ne porte pas le marqueur central de 2.08, qui suppose un savoir existant transposé en préservant le sens. Ce qui en résulte, pour cette feuille, c'est l'absence d'établissement de la présence : le geste de nomination existe, mais il joue dans un autre champ. La nuance qui reste : si ces définitions sont insérées dans des manuels de formation lus par un public éloigné du vocabulaire IA, la dimension de traduction pourrait apparaître ailleurs dans le portfolio.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "L'unique pièce a été disqualifiée par l'attaque de confusion de compétence : la nomination de figures professionnelles relève moins de la traduction entre mondes que de la création de catégories.",
+        "prescription": "Pour ouvrir ce dossier, documenter le passage d'un savoir spécialisé existant vers un public éloigné rendrait la traduction lisible. Une autre piste serait de raconter, pour un même contenu, les reformulations successives selon les audiences (technique, pédagogique, grand public)."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "2.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "La finalisation de la cartographie est motivée par sa double utilité collective : démo au hackathon Sqily (cercle communautaire) et utilité pour le travail de Stéphane sur la comparaison Aurora / mono-agent. L'apprenant inscrit son action dans une circulation entre acteurs nommés et un événement collectif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'on a affaire à une mention utilitaire d'un événement et d'un collègue, pas à un travail de construction de communauté. Le critère 2.09 exige un « nous » identitaire chargé d'émotion, des rituels partagés, ou une architecture d'écosystème — pas seulement une participation à un événement et une coopération avec un tiers. La pièce nomme un hackathon (cadre collectif) et inscrit l'utilité de son travail pour un autre (Stéphane), mais sans expression d'appartenance, sans rituel partagé, sans vocabulaire propre à un groupe. La pièce ne résiste pas à la présomption d'absence : participer à un hackathon ou aider un collègue n'établit pas le tissage d'appartenance qui caractérise 2.09.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1, donc le temps 2 ne porte sur rien. La présomption de sycophantie n'a pas à entrer en jeu — la lecture critique au temps 1 a déjà conclu qu'il n'y avait pas de marqueur de construction de communauté dans la feuille.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la mention du hackathon et de la coopération avec Stéphane portait une dimension communautaire. Ce qui m'a renvoyé à la présomption d'absence, c'est que la participation à un événement et l'utilité pour un collègue ne constituent pas, en soi, un travail d'appartenance ou de tissage d'identité collective. Aucun « nous » chargé d'émotion, aucun rituel, aucun vocabulaire de groupe n'apparaît dans cette feuille. Ce qui en résulte, pour cette feuille, c'est une absence de trace de construction de communautés. La nuance qui reste : la mention du hackathon et la coopération nommée avec Stéphane sont des indices de circulation dans un écosystème, mais ils ne suffisent pas à établir 2.09.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : la participation à un événement et la coopération avec un collègue ne portent pas, ici, les marqueurs d'identité collective ou d'architecture communautaire.",
+        "prescription": "Pour ouvrir ce dossier, raconter un moment où un groupe a partagé une identité, un rituel ou un vocabulaire propre rendrait visible la dimension communautaire. Une autre piste serait de décrire l'architecture multi-canaux d'un écosystème (espaces de réflexion, espaces opérationnels, rencontres) si elle existe ailleurs dans la pratique."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 8,
+    "courtCircuits": 6
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le pôle relationnel est traversé surtout obliquement. L'apprenant cite un échange écrit avec Stéphane et envisage de prévenir un cercle non précisé de sa non-disponibilité, sans entrer dans le détail des registres choisis. Le hackathon Sqily et la coopération avec Stéphane sont mentionnés comme cadres d'utilité, sans expression d'appartenance ni de rituel partagé. Le travail relationnel apparaît surtout en filigrane d'une feuille centrée sur la décision, la mémoire de travail et la cartographie des projets.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle n'ont pas été ramenés dans cette feuille. L'intelligence émotionnelle, la gestion des conflits, l'influence et la diplomatie, la collaboration divergente, l'intelligence culturelle, le sens politique et la construction de communautés ressemblent à des absences de cette feuille particulière, pas nécessairement à des absences du portfolio. La communication authentique est effleurée par deux mentions (l'écrit à Stéphane, l'annonce de retrait à prévoir) qui restent au niveau de l'intention ou de la citation hors contexte. La traduction entre mondes apparaît dans la nomination de figures professionnelles, mais le geste relève davantage de la création de catégories que de la transposition d'un savoir existant.",
+    "emergencesPole": "Une observation traverse les compétences sondées dans cette feuille. La dimension relationnelle existe surtout dans l'inscription d'actes individuels dans des cercles nommés (Stéphane, le hackathon Sqily, les futurs lecteurs des manuels) plutôt que dans la description de gestes relationnels en propre. Ces inscriptions tracent une circulation dans un écosystème, mais ne décrivent ni le tissage ni les registres choisis. La feuille parle beaucoup d'organisation et peu de relations.",
+    "pistes": [
+      "Pour prolonger le travail de communication, un chemin possible serait de raconter une conversation difficile en restituant les mots utilisés et le registre choisi.",
+      "Pour ouvrir le dossier de la traduction entre mondes, un chemin possible serait de documenter, pour un même contenu, les reformulations successives selon les audiences (technique, pédagogique, grand public).",
+      "Pour ouvrir le dossier des communautés, un chemin possible serait de décrire l'architecture des espaces partagés (réflexion, opérationnel, rencontres) qui structurent le travail collectif autour de RESPIRE."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le pôle relationnel est traversé surtout obliquement. L'apprenant cite un échange écrit avec Stéphane et envisage de prévenir un cercle non précisé de sa non-disponibilité, sans entrer dans le détail des registres choisis. Le hackathon Sqily et la coopération avec Stéphane sont mentionnés comme cadres d'utilité, sans expression d'appartenance ni de rituel partagé. Le travail relationnel apparaît surtout en filigrane d'une feuille centrée sur la décision, la mémoire de travail et la cartographie des projets.\n\n## Territoires les plus denses\n\nCette feuille ne fait pas ressortir de territoire dense dans ce pôle.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle n'ont pas été ramenés dans cette feuille. L'intelligence émotionnelle, la gestion des conflits, l'influence et la diplomatie, la collaboration divergente, l'intelligence culturelle, le sens politique et la construction de communautés ressemblent à des absences de cette feuille particulière, pas nécessairement à des absences du portfolio. La communication authentique est effleurée par deux mentions (l'écrit à Stéphane, l'annonce de retrait à prévoir) qui restent au niveau de l'intention ou de la citation hors contexte. La traduction entre mondes apparaît dans la nomination de figures professionnelles, mais le geste relève davantage de la création de catégories que de la transposition d'un savoir existant.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne observation traverse les compétences sondées dans cette feuille. La dimension relationnelle existe surtout dans l'inscription d'actes individuels dans des cercles nommés (Stéphane, le hackathon Sqily, les futurs lecteurs des manuels) plutôt que dans la description de gestes relationnels en propre. Ces inscriptions tracent une circulation dans un écosystème, mais ne décrivent ni le tissage ni les registres choisis. La feuille parle beaucoup d'organisation et peu de relations.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le travail de communication, un chemin possible serait de raconter une conversation difficile en restituant les mots utilisés et le registre choisi.\n- Pour ouvrir le dossier de la traduction entre mondes, un chemin possible serait de documenter, pour un même contenu, les reformulations successives selon les audiences (technique, pédagogique, grand public).\n- Pour ouvrir le dossier des communautés, un chemin possible serait de décrire l'architecture des espaces partagés (réflexion, opérationnel, rencontres) qui structurent le travail collectif autour de RESPIRE.\n"
+  }
+}

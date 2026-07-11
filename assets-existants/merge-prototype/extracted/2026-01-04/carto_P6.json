@@ -1,0 +1,216 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-04",
+      "extraitVerbatim": "Message à Stéphane : J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). Demain je retourne aux manuels du Tuteur et du Maître. C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous.",
+      "contexte": "Description d'une infrastructure pédagogique articulée en quatre rôles (Apprenant, Accompagnant, Tuteur, Maître) dont les manuels « rendent concret le travail attendu par tous » — pourrait activer 6.07.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au red-teaming IA sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a délibérément cherché à faire échouer un garde-fou de l'IA pour en éprouver la robustesse."
+      }
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'audit ou à l'hygiène des données sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait documenter une enquête sur le chemin de décision d'une production IA ou un arbitrage sur les données partagées avec elle."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gouvernance algorithmique des services publics sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait analyser une décision automatisée affectant une population vulnérable et proposer un mécanisme de recours ou d'audit."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la souveraineté numérique sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait articuler un choix d'outil ou de plateforme motivé par l'indépendance plutôt que par la performance ou la commodité."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la participation citoyenne et à la démocratie technologique sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait raconter une situation où des non-experts ont pesé légitimement sur un choix technologique."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la veille réglementaire sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait articuler comment une réglementation à venir modifie déjà ses pratiques aujourd'hui, sans attendre la mise en conformité."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Message à Stéphane : J'ai terminé le manuel Apprenant ainsi que le manuel Accompagnant. Je les ai ajoutés en téléchargement sur le site web. Je trouve que ça pourrait dans l'état servir aux élèves actuels (hors Respire). Demain je retourne aux manuels du Tuteur et du Maître. C'est très intéressant de rédiger ces manuels : ça rend plus concret le travail attendu par tous.",
+          "contexte": "Production d'une infrastructure de quatre manuels articulant les rôles d'un dispositif pédagogique collectif — possible artefact de gouvernance par différenciation de rôles.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant que la facilitation et gouvernance collective au sens de la fiche n'y est pas. La fiche est exigeante : co-construction des règles, émergence collective qui surprend ses créateurs, distribution de rôles avec limites et mécanismes de contrôle. Or la pièce décrit une rédaction solitaire des manuels, sans aucun signe de co-construction avec les futurs détenteurs des rôles (Apprenants, Accompagnants, Tuteurs, Maîtres), sans émergence racontée, sans mention d'un processus délibératif. Pourtant la pièce résiste faiblement : elle décrit la production d'une infrastructure articulée en quatre rôles distincts, et la formule « rendre concret le travail attendu par tous » signale une intention de gouvernance par les rôles. C'est ce que la fiche signale comme exception possible — l'artefact de gouvernance avec rôles peut compter, même produit en solo.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "La rédaction articulée de quatre manuels pour quatre rôles distincts constitue un artefact de différenciation des rôles d'un dispositif collectif." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis cette pièce en me demandant si je n'ai pas confondu une production pédagogique avec un artefact de gouvernance. Le test critique de la fiche est sans appui ici : pas de co-construction, pas d'émergence, pas de description de mécanismes de contrôle entre les rôles, pas de limites explicitement posées. La fiche autorise l'exception pour les artefacts détaillés avec « rôles, limites et mécanismes de contrôle » — ici on a la différenciation des rôles, mais le détail des limites et des mécanismes n'apparaît pas dans la pièce. Le risque de surinterprétation est réel.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Insuffisance probatoire : la pièce signale la production de quatre manuels articulés mais ne décrit ni les limites entre rôles, ni les mécanismes de contrôle, ni un processus de co-construction ; elle vaut comme indice d'une intention de gouvernance par les rôles, pas comme preuve d'une facilitation collective."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à montrer que cette pièce ne portait pas la facilitation et gouvernance collective au sens fort. Le constat tient en grande partie : la rédaction est solitaire, aucune co-construction n'est documentée, aucune émergence n'est racontée, aucun mécanisme de contrôle entre rôles n'est décrit. Ce qui résiste faiblement : la production de quatre manuels articulés autour de quatre rôles distincts constitue une infrastructure de différenciation qui prépare une pratique collective. Sur cette journée, la trace existe à l'état d'artefact préparatoire — un cadre pour une gouvernance future, sans la trace de la gouvernance elle-même. Un renvoi au cartographe est l'option honnête.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.3,
+        "motif": "L'unique pièce subsiste en forme affaiblie : la différenciation des rôles est tracée, mais la co-construction, l'émergence et les mécanismes de contrôle — éléments centraux de la fiche — n'apparaissent pas dans la feuille.",
+        "prescription": "L'infrastructure des quatre manuels préfigure un dispositif de gouvernance par les rôles. Pour approfondir, raconter un moment où l'usage des manuels par les acteurs concernés a modifié leur contenu, ou décrire un mécanisme d'ajustement collectif des rôles à travers le temps, ferait passer cette compétence du cadre préparé à la gouvernance en acte. La fiche signale aussi que l'émergence — un résultat collectif qui surprend ses créateurs — est un marqueur central."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au décentrement anthropocentrique sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où la primauté humaine a été questionnée — pas affirmée par défaut, pas niée par doctrine, mais examinée."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la cohabitation avec les intelligences non-humaines sur cette journée. L'IA est utilisée comme outil ; pour ouvrir ce dossier, l'apprenant pourrait questionner le statut moral de l'IA — non pas pour trancher, mais pour tenir la question ouverte."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la conscience biosystémique sur cette journée. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où une intelligence vivante non-humaine (animale, végétale, écosystémique) a inspiré une décision ou une conception."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 1,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 0,
+    "courtCircuits": 9
+  },
+  "rapport": {
+    "portraitPole": "Sur cette journée, le pôle de la gouvernance et de l'ouverture est très peu traversé. Une seule trace apparaît, indirectement : la rédaction de quatre manuels articulant les rôles d'un dispositif pédagogique collectif. Les questions de souveraineté numérique, d'audit, de participation citoyenne, de décentrement anthropocentrique et de conscience biosystémique ne sont pas convoquées par l'objet du jour.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Presque tout le pôle reste à explorer sur cette feuille. Le red-teaming, l'audit des productions IA, la gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique relèvent d'une limite de l'objet du jour — une journée d'écriture solitaire de manuels n'appelle naturellement aucun de ces angles. L'évocation du PER imposé et de Chamblandes effleure la question normative institutionnelle, mais sous forme de désaccord non-articulé plutôt que d'analyse réglementaire. La facilitation collective apparaît à l'état d'artefact préparatoire — l'infrastructure des rôles est posée, sans encore la trace d'une gouvernance en acte.",
+    "emergencesPole": "Un seul fil traverse ce pôle sur cette journée : la production solitaire d'un dispositif qui prépare une pratique collective. Le travail sur les quatre manuels articule des rôles sans encore raconter comment ces rôles vont être tenus, ajustés ou contestés par les acteurs concernés.",
+    "pistes": [
+      "Pour enrichir la facilitation et gouvernance collective, un chemin possible serait de raconter un moment où l'usage des manuels par les acteurs (Apprenants, Accompagnants, Tuteurs, Maîtres) a modifié leur contenu — l'émergence se reconnaît à ce que le résultat échappe en partie à ses créateurs.",
+      "Pour enrichir la souveraineté numérique, un chemin possible serait d'articuler un choix d'outil ou de plateforme motivé par l'indépendance — pourquoi tel hébergement, telle solution, telle politique de données.",
+      "Pour enrichir la cohabitation avec l'IA, un chemin possible serait de questionner explicitement le statut de l'IA dans le travail — pas pour trancher mais pour tenir la question ouverte."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette journée, le pôle de la gouvernance et de l'ouverture est très peu traversé. Une seule trace apparaît, indirectement : la rédaction de quatre manuels articulant les rôles d'un dispositif pédagogique collectif. Les questions de souveraineté numérique, d'audit, de participation citoyenne, de décentrement anthropocentrique et de conscience biosystémique ne sont pas convoquées par l'objet du jour.\n\n## Territoires les plus denses\n\nAucune compétence du pôle n'atteint le seuil de la présence établie sur cette feuille. Une trace apparaît, à suivre : la production des quatre manuels (Apprenant, Accompagnant, Tuteur, Maître) articule une infrastructure de rôles qui prépare une gouvernance collective de la pédagogie Respire. La fiche autorise les artefacts de gouvernance détaillés comme trace forte, mais la pièce signale la différenciation des rôles sans encore décrire les limites entre eux, ni les mécanismes d'ajustement, ni un processus de co-construction. C'est un cadre préparé, pas encore une gouvernance en acte.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPresque tout le pôle reste à explorer sur cette feuille. Le red-teaming, l'audit des productions IA, la gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne, la veille réglementaire, le décentrement anthropocentrique, la cohabitation avec les intelligences non-humaines et la conscience biosystémique relèvent d'une limite de l'objet du jour — une journée d'écriture solitaire de manuels n'appelle naturellement aucun de ces angles. L'évocation du PER imposé et de Chamblandes effleure la question normative institutionnelle, mais sous forme de désaccord non-articulé plutôt que d'analyse réglementaire. La facilitation collective apparaît à l'état d'artefact préparatoire.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn seul fil traverse ce pôle sur cette journée : la production solitaire d'un dispositif qui prépare une pratique collective. Le travail sur les quatre manuels articule des rôles sans encore raconter comment ces rôles vont être tenus, ajustés ou contestés par les acteurs concernés. La gouvernance est ici en mode amont — on dessine les pièces avant que le jeu se joue.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir la facilitation et gouvernance collective, un chemin possible serait de raconter un moment où l'usage des manuels par les acteurs (Apprenants, Accompagnants, Tuteurs, Maîtres) a modifié leur contenu — l'émergence se reconnaît à ce que le résultat échappe en partie à ses créateurs.\n\nPour enrichir la souveraineté numérique, un chemin possible serait d'articuler un choix d'outil ou de plateforme motivé par l'indépendance — pourquoi tel hébergement, telle solution, telle politique de données.\n\nPour enrichir la cohabitation avec l'IA, un chemin possible serait de questionner explicitement le statut de l'IA dans le travail — pas pour trancher mais pour tenir la question ouverte."
+  }
+}

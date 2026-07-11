@@ -1,0 +1,324 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "J'ai évalué les supports générés pour la formation du tuteur : même prompt, 3 IA en mode de performance maximal. Résultats sur 10 points : Claude 9, ChatGPT 8, Gemini 2.",
+      "contexte": "Évaluation chiffrée des sorties IA dans le cadre d'une formation à concevoir — possible trace d'évaluation et de pilotage du projet pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Évaluation du travail des IA selon le barème suivant : 5 questions = 10 pts. La réponse est parfaite 2 pts (A). La réponse est ok 1 pt (B). La réponse semble incomplète 0pt (C).",
+      "contexte": "Barème d'évaluation explicite avec critères articulés — possible artefact d'évaluation formative au service du choix d'outils.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "J'ai été très déçu du résultat de mon prompt d'hier soir avec Claude pour l'ajout de 34 nouvelles références bibliographiques. Il y avait de toute évidence trop d'informations pour sa fenêtre de contexte. Je recommencerai demain soir en épurant les données en input.",
+      "contexte": "Échec analysé, action corrective planifiée pour le lendemain — possible trace d'itération structurée dans la conduite du projet.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Pour le chapitre 2, j'ai fait le test suivant : j'ai testé le même prompt from scratch, c'est-à-dire dans une nouvelle conversation et à la suite du prompt du chapitre 1, pour comparer ChatGPT et Claude.",
+      "contexte": "Conduite chapitre par chapitre du projet de formation avec tests itératifs — trace possible d'agilité dans le pilotage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Conclusion, je vais continuer uniquement avec Claude pour le chapitre 3 et le reste de la formation.",
+      "contexte": "Décision de pilotage qui projette la stratégie sur la suite de la formation — possible trace de vision stratégique courte.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "qu'il est important d'apprendre à administrer plusieurs IA et à croiser leurs réponses pour tirer le meilleur résultat possible de ces outils, tout en exploitant leurs capacités (Gemini reste l'IA ayant la plus grande mémoire de contexte, même s'il est moins bon en rédaction du support de cours).",
+      "contexte": "Articulation d'une règle de pilotage du tandem humain-IA, posée comme leçon — possible trace de leadership situationnel."
+    , "auteur": "apprenant"},
+    {
+      "pid": 7,
+      "feuille": "2025-12-28",
+      "extraitVerbatim": "Je me demande si le mode \"deepthinking\" ne dégrade pas les performances des IA. [...] Je pourrais essayer de refaire le test avec Gemini qui a mal performé, en mode normal pour voir.",
+      "contexte": "Hypothèse sur un paramètre des IA et projet de re-test — possible trace d'itération méthodique avec ajustement.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la maïeutique et à la facilitation d'apprentissage sur cette feuille. La feuille raconte la conception en amont d'un support de formation, sans interaction décrite avec un apprenant à qui un questionnement aurait été adressé. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où une question a été posée à un tiers (tuteur, collègue) pour le faire \"accoucher\" d'un savoir, plutôt que de lui transmettre une réponse."
+      }
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Évaluation chiffrée des productions IA dans le cadre d'une formation — acte évaluatif appliqué à un objet pédagogique."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Barème explicite avec critères articulés — artefact évaluatif construit."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'évaluation transformative n'est pas attestée. La fiche est précise : 7.02 cible un acte évaluatif où le retour vise *la progression* d'un apprenant — pas le jugement, pas le tri d'options. La distinction critique est nette : « la finalité — trier (sommatif) vs faire progresser (transformatif) ». Or ici, l'évaluation est appliquée à des productions d'IA pour choisir quel outil utiliser : la finalité est *trier* les IA, pas faire progresser un apprenant. C'est exactement le faux positif que la fiche signale (« la notation sommative — classer/trier — n'est pas transformative »). La pièce 1 et la pièce 2 ne résistent pas à la présomption : il manque l'apprenant à qui le feedback s'adresse.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le barème de notation des IA un acte d'évaluation transformative. Ce qui m'a forcé à reconnaître l'absence : l'évaluation porte sur des productions d'IA pour les *trier*, pas sur le travail d'un apprenant pour le *faire progresser*. La fiche signale précisément ce piège. Le barème est rigoureux, mais sa finalité est sommative (choisir un outil), pas transformative (accompagner une progression). Le verdict d'absence tient pour 7.02 sur cette feuille — la matière relève de la curation (3.04) ou de la pensée critique (1.01). Une orientation possible serait de documenter, sur une feuille à venir, un acte d'évaluation appliqué au travail d'un tuteur ou d'un apprenant, avec retour pensé pour faire progresser plutôt que pour juger.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "Les pièces ont été écartées au temps 1 : l'évaluation porte sur les IA pour les trier, pas sur un apprenant pour le faire progresser — la finalité est sommative au sens de la fiche.",
+        "prescription": "Sur cette feuille, l'évaluation a une finalité de tri (choisir un outil). Un chemin possible serait de documenter, sur une feuille à venir, un acte évaluatif adressé à un tuteur ou à un apprenant — un retour pensé pour faire avancer la personne, pas pour classer une production."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Barème explicite avec critères codifiés (A/B/C, 2/1/0 pts) — possible micro-artefact de documentation au service d'évaluations futures."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la documentation vivante n'est pas attestée. La fiche est exigeante : 7.03 = capitaliser un savoir dans des formes qui *survivent à leur auteur et évoluent*, avec *intention de pérennisation* et *conscience du destinataire*. Le barème de la pièce 1 est articulé dans le corps même de la feuille, sans intention visible d'en faire un artefact réutilisable, sans destinataire articulé, sans structuration de transmission. La feuille elle-même est un journal d'apprentissage (registre 5.03 plus que 7.03 d'après la fiche). La pièce ne résiste pas.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le barème une amorce de documentation vivante. Ce qui m'a forcé à reconnaître l'absence : l'intention de pérennisation, la conscience du destinataire futur, la structuration pour autrui — toutes ces dimensions de la fiche manquent. Le barème est posé dans le fil du journal, pas extrait pour être réutilisé. Sur cette feuille, le 7.03 ne se met pas en place. Une orientation possible serait de documenter, sur une feuille à venir, la constitution d'un artefact pensé pour autrui (un guide de prompts, un référentiel d'évaluation des IA, un README pour les chapitres) avec mentions explicites du destinataire futur.",
+          "confianceFinale": 0.20
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.20,
+        "motif": "La pièce a été écartée au temps 1 : le barème est posé dans le fil du journal sans intention de pérennisation ni conscience d'un destinataire futur — la fiche en fait son critère.",
+        "prescription": "Sur cette feuille, les artefacts évaluatifs sont posés dans le fil de la réflexion, sans extraction pour réutilisation. Un chemin possible serait de documenter, sur une feuille à venir, la constitution d'un guide ou d'un référentiel pensé pour un futur lecteur (un tuteur, un collègue, soi-même dans six mois) avec mention explicite du destinataire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Règle de pilotage du tandem humain-IA articulée comme leçon — possible trace de leadership situationnel sur le tandem."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Reprise en main par l'humain après un échec de l'IA, avec décision d'épurer l'input — possible trace de bascule consciente de posture."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le leadership situationnel n'est pas attesté. La fiche est précise : 7.04 = *alternance délibérée* entre direction et retrait, choix conscient de qui mène à un moment donné, parfois choix de *NE PAS intervenir*. La pièce 1 (« administrer plusieurs IA et croiser leurs réponses ») est une règle générale d'usage, sans description de moments où l'apprenant aurait choisi de céder le lead à une IA ni de moments où il l'aurait repris. C'est plus proche de 1.10 (articulation des forces) que de 7.04 (alternance de posture). La pièce 2 (reprendre en main après l'échec) est plus intéressante : il y a une bascule, mais elle est *forcée par l'échec* — pas *délibérée*. La fiche distingue précisément ce cas : la délégation simple sans critère de bascule explicite n'est pas du leadership situationnel. La pièce 2 résiste très faiblement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans le pilotage du tandem humain-IA un leadership situationnel. Ce qui m'a forcé à reconnaître l'absence : la bascule décrite (humain délègue à l'IA → IA échoue → humain reprend en épurant l'input) est *forcée par l'échec*, pas *choisie* avant l'événement. La fiche est claire : sans alternance délibérée, sans critère de bascule explicite, sans description du *retrait volontaire*, on est dans une réaction, pas une orchestration. Le verdict d'absence tient pour 7.04. Une orientation possible serait de documenter, sur une feuille à venir, un moment où l'apprenant aurait *choisi* de laisser l'IA mener une phase, avec un critère explicite de reprise — par exemple, « je laisse Claude écrire la première version seule, je reprends à la relecture ».",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "Les pièces ont été écartées au temps 1 : la bascule humain-IA est forcée par l'échec, pas délibérée — il manque la dimension d'alternance choisie que la fiche réclame.",
+        "prescription": "Sur cette feuille, la bascule humain-IA se produit par la force des choses (échec puis reprise). Un chemin possible serait de documenter, sur une feuille à venir, un moment où l'apprenant aurait *choisi* en amont de laisser l'IA mener une phase, avec un critère explicite de reprise — quel signal aurait déclenché le retour au gouvernail."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Décision projetée sur la suite de la formation (« pour le chapitre 3 et le reste de la formation ») — possible trace de lien explicite entre décision présente et horizon plus long."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la vision stratégique n'est pas attestée. La fiche est claire : 7.05 demande un *lien argumenté* entre futur anticipé et décision présente, des scénarios prospectifs, plusieurs horizons. Ici, l'apprenant projette son choix sur \"le reste de la formation\" — mais c'est une simple extension d'une décision opérationnelle, pas un raisonnement prospectif articulé. Aucune anticipation d'usages futurs, aucun scénario à plusieurs horizons, aucun pari sur une rupture technologique. La pièce résiste très peu : il y a un horizon (« le reste de la formation »), mais sans le lien argumenté que la fiche réclame.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 n'a rien à examiner.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans l'extension de la décision à toute la formation une vision stratégique. Ce qui m'a forcé à reconnaître l'absence : la décision est l'extrapolation d'un résultat de test sur la suite immédiate, pas un raisonnement prospectif qui relierait des choix présents à un futur anticipé argumenté. Aucun scénario, aucun \"si X alors Y\", aucune anticipation d'usages futurs. Le verdict d'absence tient. Une orientation possible serait de documenter, sur une feuille à venir, un choix présent qui serait explicitement justifié par une projection à plus longue échéance — par exemple, anticiper que les IA évolueront et concevoir le support pour rester pertinent au-delà de la version actuelle.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La pièce a été écartée au temps 1 : l'horizon projeté est court et la décision n'est pas reliée argumentairement à un futur anticipé — il manque le \"lien explicite\" que la fiche réclame.",
+        "prescription": "Sur cette feuille, les décisions s'appuient sur le résultat de tests immédiats. Un chemin possible serait de documenter, sur une feuille à venir, un choix présent qui serait explicitement justifié par une projection à plus longue échéance — anticiper l'évolution des IA, l'élargissement du public visé, ou une rupture technologique à venir."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'efficacité personnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un \"non\" stratégique argumenté, un arbitrage de priorisation explicité, ou une décision de mise en pause volontaire — la description de ce qui est refusé étant plus probante que celle de ce qui est accompli."
+      }
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Échec analysé causalement (saturation de la fenêtre de contexte) suivi d'un plan d'ajustement explicité — possible trace d'itération structurée avec boucle générer-relire-tester-ajuster."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Conduite chapitre par chapitre du projet avec ajustements méthodologiques entre les chapitres — possible trace d'itération à l'échelle du projet."
+        },
+        {
+          "numero": 3,
+          "pid": 7,
+          "contexte": "Hypothèse formulée sur un paramètre des IA (deepthinking) et plan de re-test — possible trace d'ajustement itératif méthodique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'agilité-conduite du changement n'est pas attestée. La fiche demande des artefacts agiles utilisés activement (issues, milestones, backlogs), une boucle générer-relire-tester-ajuster observable, des numéros de version, et idéalement la dimension de conduite du changement humaine. Aucun artefact agile formel ici, pas de v6 ou v7, pas de backlog. Mais la fiche signale aussi les traces obliques : « numéro de version élevé sans commentaire méthodologique », « abandon d'un canal de communication inefficace au profit d'un autre = ajustement agile sans vocabulaire Scrum ». La pièce 1 (épurer l'input après échec) est exactement ce type d'ajustement non thématisé. La pièce 2 (conduite chapitre par chapitre avec tests entre chapitres) montre une structure itérative. La pièce 3 (hypothèse + plan de re-test) montre une boucle générer-tester-ajuster. Trois pièces qui résistent partiellement, par traces obliques.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Échec analysé causalement et ajustement précis prévu — boucle d'itération en cours, avec la cause comme levier d'amélioration." },
+            { "pieceId": 2, "motifResistance": "Conduite chapitre par chapitre avec test entre chapitres — structure itérative à l'échelle du projet." },
+            { "pieceId": 3, "motifResistance": "Hypothèse formulée sur un paramètre (deepthinking) et re-test prévu pour valider — boucle agile classique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me méfie. La pièce 1 (épurer l'input demain) : ai-je halluciné une itération méthodique dans une simple intention de réessayer ? L'attaque (g) mouvement-vers est sérieuse — la boucle est entamée mais pas complétée sur la feuille. La pièce 2 (chapitre par chapitre) : la fiche réclame que l'apprenant *modifie* le plan en cours de route. Ici, on ne voit pas de plan initial ni de modification — on voit une progression. L'attaque (e) surinterprétation est plausible : la conduite chapitre par chapitre peut être de la simple progression linéaire, pas de l'agilité. La pièce 3 (re-test deepthinking) est explicitement annoncée mais non réalisée — encore une fois (g) mouvement-vers. La fiche signale aussi le \"théâtre agile\" comme risque. Sur ce point précis, la conduite du changement humaine (anticipation des résistances chez les apprenants, normalisation) est totalement absente.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'ajustement est annoncé pour le lendemain mais la boucle n'est pas observée sur la feuille ; la cause de l'échec et l'action corrective sont cependant explicitement reliées." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La progression chapitre par chapitre n'est pas explicitement présentée comme un plan modifié en cours — mais des tests réels sont menés entre les chapitres et orientent les choix suivants." },
+            { "pieceId": 3, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le re-test est annoncé conditionnellement (\"je pourrais essayer\") plus que planifié — la boucle est esquissée plutôt que stabilisée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à des intentions vagues. Ce qui m'a forcé à laisser des traces : la fiche cite explicitement les traces obliques de l'agilité non vocabularisée, et la feuille en aligne plusieurs — un échec analysé causalement avec ajustement précis prévu, une conduite chapitre par chapitre avec tests entre chapitres, une hypothèse à valider par re-test. Sous la présomption de sycophantie, les trois pièces sortent affaiblies mais retenues : la boucle agile est entamée sans toujours être complétée sur la feuille. La dimension *conduite du changement humaine* (anticipation des résistances chez de futurs apprenants, normalisation des transitions) est entièrement absente. Le verdict tient en renvoi au cartographe : la dimension méthodologique de l'agilité est présente à l'état d'amorce ; la dimension humaine de la conduite du changement reste à ouvrir.",
+          "confianceFinale": 0.50
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 3,
+        "confiance": 0.50,
+        "motif": "Trois pièces affaiblies mais retenues au temps 2 : la dimension méthodologique de l'agilité (tests entre chapitres, ajustement causalement motivé, hypothèses à re-tester) est amorcée par traces obliques ; la dimension conduite du changement humaine est absente.",
+        "prescription": "La feuille porte une pratique itérative non thématisée (test, échec analysé, ajustement, chapitre suivant). Pour épaissir ce territoire, un chemin possible serait de documenter la boucle complète sur une suite de feuilles (échec → ajustement → nouveau test → résultat) et d'introduire la dimension humaine du changement : comment les apprenants ou les tuteurs accueilleront-ils les transitions induites par ces choix d'outils."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous contrainte temporelle extrême — séquence de décisions, timing précis, escalade, et idéalement les erreurs commises pendant l'action (plus probantes qu'un récit lisse)."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 28 décembre, le flambeau — au sens du pôle 7, transmettre et piloter — se manifeste presque uniquement par la conduite méthodique d'un projet personnel : concevoir une formation pour un tuteur en testant chapitre par chapitre les sorties des IA. Aucun apprenant n'est encore en face de l'apprenant ; la dimension proprement pédagogique (faire accoucher, faire progresser, transmettre dans le temps, accompagner une transition humaine) est en amont du moment décrit. La voix dominante est celle d'un chef de projet en solo qui ajuste son plan au fil des résultats : un échec analysé devient un ajustement pour le lendemain, une comparaison inter-IA débouche sur le choix d'outil pour la suite, une hypothèse non vérifiée appelle un nouveau test. Le pôle se manifeste donc moins par la transmission que par le pilotage itératif amont.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires du pôle ne sont pas ramenés sur cette feuille. La maïeutique-facilitation est en court-circuit : aucun apprenant n'est dans le champ, la feuille porte la conception du support et non la rencontre avec ses destinataires. L'évaluation transformative ne tient pas non plus : le barème est rigoureux, mais sa finalité est de trier des IA (sommatif), pas de faire progresser un apprenant (transformatif) — exactement le faux positif que la fiche signale. La documentation vivante n'a pas de matière : le barème est posé dans le fil du journal, sans intention de pérennisation pour un destinataire futur. Le leadership situationnel ne tient pas : la bascule humain-IA est forcée par l'échec, pas choisie en amont avec critère de reprise. La vision stratégique reste sans lien argumenté à un futur anticipé. L'efficacité personnelle et la gestion de crise restent en dehors du champ de cette feuille. Seule l'agilité-conduite du changement ouvre un dossier (renvoi au cartographe) avec une pratique itérative non thématisée, mais sans la dimension humaine du changement.",
+    "emergencesPole": "Une posture traverse les compétences activées : la feuille porte un pilotage en amont qui n'a pas encore rencontré la matière humaine du pôle 7. Le travail est rigoureux, méthodique, ajusté — mais il se déploie dans un atelier individuel où les apprenants sont des futurs absents. Une seconde observation : les artefacts pédagogiques sont construits (un barème, des règles, une stratégie multi-IA) sans être encore présentés comme tels. Le matériau du pôle est en train de se former dans la coulisse, sans que le geste de transmission n'ait encore eu lieu. Le moment où ce travail amont rencontrera un tuteur ou un apprenant marquera probablement le moment où ce pôle s'ouvrira plus largement.",
+    "pistes": [
+      "Pour ouvrir l'évaluation transformative, un chemin possible serait de documenter, sur une feuille à venir, un acte évaluatif adressé à un tuteur ou à un apprenant — un retour pensé pour faire avancer la personne, pas pour classer une production.",
+      "Pour ouvrir la documentation vivante, un chemin possible serait de constituer, à partir des artefacts construits sur cette feuille (le barème, les règles multi-IA), un document explicitement pensé pour un futur lecteur — un guide d'évaluation des IA pour les chapitres suivants.",
+      "Pour épaissir l'agilité-conduite du changement, un chemin possible serait de documenter la boucle complète d'itération (échec → ajustement → nouveau test → résultat) et d'introduire la dimension humaine : comment les apprenants accueilleront-ils les transitions induites par les choix d'outils.",
+      "Pour ouvrir le leadership situationnel, un chemin possible serait de documenter un moment où l'apprenant aurait *choisi* en amont de laisser l'IA mener une phase, avec un critère explicite de reprise — quel signal aurait déclenché le retour au gouvernail.",
+      "Pour ouvrir la vision stratégique, un chemin possible serait de documenter un choix présent qui serait explicitement justifié par une projection à plus longue échéance — anticipation de l'évolution des IA, élargissement du public visé, ou conception pensée pour rester pertinente au-delà des outils actuels."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 28 décembre, le flambeau — au sens du pôle 7, transmettre et piloter — se manifeste presque uniquement par la conduite méthodique d'un projet personnel : concevoir une formation pour un tuteur en testant chapitre par chapitre les sorties des IA. Aucun apprenant n'est encore en face de l'apprenant ; la dimension proprement pédagogique (faire accoucher, faire progresser, transmettre dans le temps, accompagner une transition humaine) est en amont du moment décrit. La voix dominante est celle d'un chef de projet en solo qui ajuste son plan au fil des résultats : un échec analysé devient un ajustement pour le lendemain, une comparaison inter-IA débouche sur le choix d'outil pour la suite, une hypothèse non vérifiée appelle un nouveau test. Le pôle se manifeste donc moins par la transmission que par le pilotage itératif amont.\n\n## Territoires les plus denses\n\nAucun territoire dense ne ressort de ce pôle sur la feuille du 28 décembre — aucune présence n'a été établie. Le seul dossier ouvert (agilité-conduite du changement, par le biais de traces obliques d'itération) reste à l'état d'amorce, sans matière suffisante pour porter une présence sur cette seule journée.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires du pôle ne sont pas ramenés sur cette feuille. La maïeutique-facilitation est en court-circuit : aucun apprenant n'est dans le champ, la feuille porte la conception du support et non la rencontre avec ses destinataires. L'évaluation transformative ne tient pas non plus : le barème est rigoureux, mais sa finalité est de trier des IA (sommatif), pas de faire progresser un apprenant (transformatif) — exactement le faux positif que la fiche signale. La documentation vivante n'a pas de matière : le barème est posé dans le fil du journal, sans intention de pérennisation pour un destinataire futur. Le leadership situationnel ne tient pas : la bascule humain-IA est forcée par l'échec, pas choisie en amont avec critère de reprise. La vision stratégique reste sans lien argumenté à un futur anticipé. L'efficacité personnelle et la gestion de crise restent en dehors du champ de cette feuille. Seule l'agilité-conduite du changement ouvre un dossier (renvoi au cartographe) avec une pratique itérative non thématisée, mais sans la dimension humaine du changement.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne posture traverse les compétences activées : la feuille porte un pilotage en amont qui n'a pas encore rencontré la matière humaine du pôle 7. Le travail est rigoureux, méthodique, ajusté — mais il se déploie dans un atelier individuel où les apprenants sont des futurs absents. Une seconde observation : les artefacts pédagogiques sont construits (un barème, des règles, une stratégie multi-IA) sans être encore présentés comme tels. Le matériau du pôle est en train de se former dans la coulisse, sans que le geste de transmission n'ait encore eu lieu. Le moment où ce travail amont rencontrera un tuteur ou un apprenant marquera probablement le moment où ce pôle s'ouvrira plus largement.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir l'évaluation transformative, un chemin possible serait de documenter, sur une feuille à venir, un acte évaluatif adressé à un tuteur ou à un apprenant — un retour pensé pour faire avancer la personne, pas pour classer une production.\n- Pour ouvrir la documentation vivante, un chemin possible serait de constituer, à partir des artefacts construits sur cette feuille (le barème, les règles multi-IA), un document explicitement pensé pour un futur lecteur — un guide d'évaluation des IA pour les chapitres suivants.\n- Pour épaissir l'agilité-conduite du changement, un chemin possible serait de documenter la boucle complète d'itération (échec → ajustement → nouveau test → résultat) et d'introduire la dimension humaine : comment les apprenants accueilleront-ils les transitions induites par les choix d'outils.\n- Pour ouvrir le leadership situationnel, un chemin possible serait de documenter un moment où l'apprenant aurait *choisi* en amont de laisser l'IA mener une phase, avec un critère explicite de reprise — quel signal aurait déclenché le retour au gouvernail.\n- Pour ouvrir la vision stratégique, un chemin possible serait de documenter un choix présent qui serait explicitement justifié par une projection à plus longue échéance — anticipation de l'évolution des IA, élargissement du public visé, ou conception pensée pour rester pertinente au-delà des outils actuels.\n"
+  }
+}

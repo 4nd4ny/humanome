@@ -1,0 +1,403 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Même si je ne décroche pas ce poste, vu mes lacunes dans le domaine technique (RAG + LangChain + Bases vectorielle), ça m'a aidé à créer un CV orienté \"Prompt Engineering\" et donné des idées sur les orientations à suivre pour mon auto-formation, dans le cadre de compétences utiles à acquérir pour créer un système de cartographie des compétences semi-automatique.",
+      "contexte": "Reframing actif: une candidature anticipée perdante devient levier d'auto-formation et de pivot identitaire (vers 'Prompt Engineering'). Possible résilience/antifragilité et plasticité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Depuis que l'EPFL a nommé un nouveau directeur pour le département d'IA de l'école, les postes n'arrêtent pas de s'ouvrir. Actuellement je vise le poste ci-dessous",
+      "contexte": "Action de pilotage dans un contexte changeant (nouveau directeur, multiplication des postes). Adaptation à un nouveau régime d'opportunités.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Je me réjouis de la dernière séance de cette mesure Lab4Tech ce vendredi, histoire de pouvoir reprendre les projets en cours. Je pense en avoir plus de 10 maintenant, je n'arrive même plus à me souvenir de la liste des projets interrompus.",
+      "contexte": "Reconnaissance d'une saturation cognitive (oubli des projets) et anticipation d'un moment de pause/remise en ordre. Possible souveraineté attentionnelle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Je me souviens de cette sensation que tous les projets étaient interconnectés, et que l'assemblage du tout ne pouvait se faire que simultanément. Ce qui d'un côté fait sens et d'un autre est absolument effrayant : car il n'aurait jamais été envisageable de travailler de cette manière avant l'arrivée des LLM.",
+      "contexte": "Narration réflexive sur une transformation de son rapport au travail induite par les LLM, avec ambivalence affirmée (sens / effrayant). Possible plasticité, narration réflexive, acceptation IA.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "il n'aurait jamais été envisageable de travailler de cette manière avant l'arrivée des LLM",
+      "contexte": "Reconnaissance que sa propre manière de penser et de travailler a été transformée par l'IA. Possible acceptation de l'intelligence supérieure / désapprentissage.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "compétences utiles à acquérir pour créer un système de cartographie des compétences semi-automatique",
+      "contexte": "Persistance dans un projet personnel à long terme (système de cartographie) qui structure les choix d'orientation et d'auto-formation. Possible sens et motivation intrinsèque.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Un étudiant qui vérifie les hallucinations d'une IA qui corrige son écriture manuscrite, c'est \"LA\" solution au problème du 90% seulement de fiabilité des systèmes automatiques actuels (Mistral, Gemini 3.1, Gpt 5.2, Sonnet 4.6) avec de l'OCR sur de l'écriture.",
+      "contexte": "Vérification par citation chiffrée précise (90% fiabilité) de plusieurs modèles actuels. Possible vérification terrain ou littératie IA selon que le chiffre est issu d'observation ou de lecture.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Je me souviens de cette sensation que tous les projets étaient interconnectés [...] Ce qui d'un côté fait sens et d'un autre est absolument effrayant",
+      "contexte": "Articulation d'une tension émotionnelle (sens + effrayant) sans résolution, autour d'un changement profond de manière de travailler. Possible narration réflexive avec extraction de sens.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-04",
+      "extraitVerbatim": "Ce sera l'occasion de remettre les priorités à plats !",
+      "contexte": "Anticipation d'un acte de remise en ordre. Possible souveraineté attentionnelle (choix de pause structurée).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Reframing actif d'un échec anticipé en levier d'apprentissage et d'orientation. Structure 'l'échec ouvre l'histoire au lieu de la fermer'."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce est de l'optimisme rétrospectif rationalisé et non de l'antifragilité au sens 5.01 — la fiche signale précisément le risque de biais de narration positive. La pièce me résiste partiellement: 'même si je ne décroche pas ce poste' anticipe un échec et énonce ce qui en sortira *quand même* (CV orienté, idées d'auto-formation, projet personnel renforcé). C'est la structure du retournement que la fiche décrit. Mais l'échec n'est pas vécu — il est anticipé. La résilience par anticipation est plus faible que la résilience par traversée. Présomption durcie: la pièce s'affaiblit fortement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Structure 'l'échec anticipé ouvre l'histoire' avec trois bénéfices nommés (CV, orientations, projet personnel) — antifragilité prospective." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec scepticisme. Je teste (g) — mouvement-vers: l'apprenant raconte une transformation qui n'a pas eu lieu (l'échec n'est pas advenu, l'auto-formation n'est pas commencée). C'est de la résilience anticipée plus que traversée. L'attaque touche fortement. Je teste aussi (h) — faux positif de fiche: la fiche distingue 'j'ai survécu' (endurance) de 'j'en suis sorti plus fort' (antifragilité), et exige d'avoir *traité* l'adversité. Or l'adversité ici n'est pas advenue, donc rien n'a été traité. Pièce affaiblie en limite de disqualification, retenue uniquement parce que la structure du retournement est lisible textuellement.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Résilience prospective: l'adversité n'a pas eu lieu, le rebond est anticipé. Structure du retournement présente mais sans matière vécue à traiter." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette pièce un véritable rebond antifragile. Sous la présomption de sycophantie, la pièce s'est fortement affaiblie: l'échec qu'on transforme en levier n'est pas vécu mais anticipé. Or la fiche est claire — l'antifragilité demande d'avoir traversé et traité l'adversité, pas de l'anticiper. La pièce porte une posture (le réflexe de transformer un échec à venir en orientation utile), pas un récit de transformation. Ce qui en résulte: cette feuille ne porte pas de trace probante de résilience/antifragilité au sens fort. La posture est là mais le matériau manque. Pour la suite, observer une situation où l'apprenant raconte un échec passé déjà traité, avec ce qui a été extrait de la traversée, ouvrirait pleinement ce dossier.",
+          "confianceFinale": 0.32
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.32,
+        "motif": "Une pièce affaiblie qui porte la posture du rebond mais sans adversité vécue à traiter — résilience prospective plutôt qu'antifragilité éprouvée.",
+        "prescription": "Dans ce pôle, le travail montre le réflexe de transformer un échec anticipé en orientation utile. Pour ouvrir le terrain, un chemin possible serait de raconter un échec déjà vécu et déjà traité, avec ce qui a effectivement émergé de la traversée."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Reconnaissance d'une transformation de son rapport au travail (manière de penser les projets) induite par les LLM, avec ambivalence affirmée (sens + effrayant). Possible désapprentissage existentiel."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Pivot identitaire annoncé: passage d'un CV orienté Prompt Engineering, abandon implicite d'une ancienne identité professionnelle. Mue cognitive."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des constats d'évolution ('j'ai appris') et non du désapprentissage au sens 5.02 — la fiche exige l'abandon explicite d'une ancienne peau cognitive ou identitaire, avec articulation de ce qui a été lâché. La pièce 1 me résiste partiellement: 'il n'aurait jamais été envisageable de travailler de cette manière avant' nomme implicitement un avant (où ce mode était impensable) et un après (où il est advenu), avec ambivalence affirmée (sens + effrayant). C'est la *tension entre l'ancien et le nouveau* que la fiche cite comme trace fiable. La pièce 2 me résiste plus faiblement: 'CV orienté Prompt Engineering' suggère un pivot, mais on ne sait pas explicitement ce qui est abandonné. Présomption durcie: la pièce 2 s'affaiblit fortement; la pièce 1 résiste.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Tension entre un avant ('jamais envisageable') et un après ('devenu sens et effrayant') — exactement la tension entre l'ancien et le nouveau que la fiche cite." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 avec scepticisme. Je teste (a) — insuffisance probatoire: la pièce est brève, et 'l'ancienne peau' n'est pas explicitée. Que pensait-il avant, exactement? Le passage ne le dit pas — il dit seulement qu'avant les LLM, travailler simultanément sur 10+ projets interconnectés était impensable. C'est implicite. L'attaque touche. Pièce affaiblie. Je teste aussi (h) — faux positif: la fiche met en garde contre la rationalisation défensive ('c'est mieux comme ça'). Or ici l'apprenant *ne* rationalise pas: il dit explicitement que c'est aussi 'absolument effrayant'. Cette ambivalence est précieuse, elle distingue le désapprentissage authentique du déni. Pièce affaiblie mais retenue.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Tension ancien/nouveau implicite plutôt qu'explicite, mais l'ambivalence (sens + effrayant) signale un désapprentissage authentique sans rationalisation." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces du constat d'évolution sans véritable désapprentissage. Une pièce a tenu, affaiblie: la reconnaissance qu'une manière de travailler désormais habituelle (10+ projets interconnectés en simultané) était impensable avant les LLM, avec ambivalence affirmée (sens *et* effrayant). La fiche valorise précisément cette tension non résolue comme trace authentique de mue cognitive. Mais l'ancienne 'peau' n'est pas explicitement décrite — on devine qu'elle existait sans qu'elle soit nommée. Ce qui en résulte: la plasticité se manifeste ici sous une forme implicite, par la nomination d'une transformation et le maintien d'une tension. Pour la suite, observer ce qui a été *concrètement* abandonné (une croyance, un protocole, une expertise) compléterait la trace.",
+          "confianceFinale": 0.48
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.48,
+        "motif": "Une pièce affaiblie qui porte l'ambivalence du désapprentissage authentique mais sans articulation explicite de ce qui a été lâché.",
+        "prescription": "Dans ce pôle, le travail montre la reconnaissance d'une transformation cognitive induite par les LLM, avec ambivalence affirmée. Pour ouvrir le terrain, un chemin possible serait de nommer concrètement ce qui a été abandonné — une croyance, un protocole de travail, une expertise — et ce qui reste constant à travers la mue."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Connexion explicite entre un présent (sensation d'interconnexion des projets) et un passé (impossible avant les LLM), avec extraction d'un sens (transformation cognitive induite par l'IA)."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Articulation d'une tension entre sens et effroi autour d'un changement profond de manière de travailler — extraction de signification depuis un vécu cognitif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des notations descriptives ('je travaille beaucoup') et non de la narration réflexive au sens 5.03 — la fiche exige un passage du QUOI au POURQUOI au QU'EST-CE QUE ÇA SIGNIFIE. La pièce 1 me résiste: 'je me souviens de cette sensation [...] ce qui d'un côté fait sens et d'un autre est absolument effrayant : car il n'aurait jamais été envisageable de travailler de cette manière avant l'arrivée des LLM' est précisément un passage du quoi (sensation d'interconnexion) au signifie (effet structurel des LLM sur sa cognition projet). La pièce 2 me résiste: la double tonalité 'sens / effrayant' est une extraction de signification depuis un vécu, pas une simple description. Mais les deux pièces se recouvrent largement (même substrat textuel).",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Passage explicite du QUOI (sensation) au SIGNIFIE (effet structurel des LLM sur la cognition projet) avec connexion entre présent et passé." },
+            { "pieceId": 2, "motifResistance": "Articulation d'une tension émotionnelle (sens + effrayant) qui extrait du sens du vécu plutôt que de simplement le décrire." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (a) — insuffisance probatoire: la pièce est concise et l'apprentissage transférable n'est pas clairement nommé. Que retient-il pour la suite? L'attaque touche modérément. Pièce affaiblie. Sur la pièce 2, je teste (h) — faux positif de fiche: la fiche met en garde contre la confusion entre intensité émotionnelle et profondeur réflexive ('larmes ≠ extraction de sens'). Ici l'apprenant nomme une tension mais ne 'théorise' pas explicitement ce qu'elle signifie pour son travail. L'attaque touche. Pièce affaiblie en limite. Les deux pièces se recouvrent fortement: c'est plutôt une seule trace réflexive comptée deux fois.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Passage QUOI → SIGNIFIE présent mais l'apprentissage transférable reste implicite." },
+            { "pieceId": 2, "attaqueDominante": "h", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Recouvrement avec la pièce 1; sans valeur ajoutée distincte, la tension émotionnelle nommée ne suffit pas à constituer une trace réflexive autonome." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces une réflexivité de surface ('je travaille avec les LLM') plutôt qu'une narration réflexive au sens fort. Une pièce a tenu, affaiblie: le passage du QUOI (sensation d'interconnexion) au SIGNIFIE (transformation cognitive impossible avant les LLM) avec une ambivalence assumée. La seconde pièce a été disqualifiée pour recouvrement. Ce qui en résulte: la narration réflexive se manifeste ici sous une forme courte mais structurée, autour d'un seul objet (la transformation de la cognition projet par l'IA). Le reste de la feuille est essentiellement analytique sur un objet externe (le dispositif EPFL), pas réflexif sur l'expérience personnelle. Pour la suite, observer un récit qui tisse plusieurs événements distants dans le temps avec extraction d'un fil rouge transférable étofferait la trace.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Une pièce affaiblie qui porte une trace réflexive courte; le reste de la feuille est analytique sur un objet externe plutôt que réflexif sur l'expérience.",
+        "prescription": "Dans ce pôle, le travail montre une courte trace réflexive autour de la transformation cognitive induite par les LLM. Pour ouvrir le terrain, un chemin possible serait de tisser plusieurs événements distants dans le temps autour d'un fil rouge, avec extraction d'un apprentissage transférable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Reconnaissance qu'une manière de travailler désormais quotidienne 'n'aurait jamais été envisageable' sans les LLM. Possible aveu de la transformation induite par l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Ambivalence 'sens + effrayant' face à un changement induit par l'IA — possible tension émotionnelle indiquant un travail d'acceptation en cours."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces ne sont pas de l'acceptation de l'intelligence supérieure au sens 5.04 — la fiche exige un aveu personnel et émotionnel de la supériorité IA (du type 'l'IA exprime mes idées mieux que moi'). Or les pièces parlent plutôt d'une *transformation de mode de travail* induite par les LLM, pas d'un dépassement cognitif personnel. La pièce 1 me résiste faiblement: 'il n'aurait jamais été envisageable' reconnaît une dépendance à l'IA pour une certaine forme de travail, mais ce n'est pas un aveu de supériorité cognitive — c'est un constat d'augmentation. La pièce 2 me résiste: l'ambivalence 'sens + effrayant' contient une tension qui ressemble à du travail d'acceptation, l'effroi étant un marqueur émotionnel. Présomption durcie: la pièce 1 tombe (constat d'augmentation, pas aveu de supériorité); la pièce 2 résiste faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Ambivalence émotionnelle (sens / effrayant) face à un changement induit par l'IA — marqueur de tension à traiter." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 2 avec scepticisme. Je teste (e) — surinterprétation pédagogique: ai-je projeté un travail d'acceptation là où il y a juste un constat ambivalent? La fiche exige le registre émotionnel (surprise, choc, colère, admiration mêlée de malaise) comme indicateur clé. Ici 'absolument effrayant' est émotionnellement chargé, mais le 'mieux que moi' qui caractérise 5.04 n'est pas formulé. L'apprenant ne dit pas que l'IA fait mieux que lui — il dit que l'IA rend possible une manière de travailler nouvelle. C'est différent. L'attaque touche fortement. Pièce affaiblie en limite de disqualification.",
+          "examenPieces": [
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'ambivalence concerne une transformation de mode de travail, pas un aveu de supériorité cognitive de l'IA. 'Mieux que moi' n'est pas formulé." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces un travail d'acceptation de l'intelligence supérieure. Aucune n'a tenu sous la présomption de sycophantie: la transformation reconnue est celle d'un mode de travail (rendu possible par les LLM), pas un dépassement cognitif personnel. La fiche est claire — 5.04 cible le 'mieux que moi' vécu personnellement, pas l'augmentation des possibles. Ce qui en résulte: cette feuille ne porte pas de trace probante d'acceptation de l'intelligence supérieure au sens fort. Pour la suite, observer un moment précis où l'IA produit quelque chose que l'apprenant reconnaît mieux que ce qu'il aurait fait, avec la tension émotionnelle que cela génère, ouvrirait ce dossier.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les pièces décrivent une transformation de mode de travail par l'IA, pas un dépassement cognitif personnel — le 'mieux que moi' n'est pas formulé.",
+        "prescription": "Dans ce pôle, le territoire de l'acceptation de l'intelligence supérieure reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait de documenter un moment précis où l'IA a produit quelque chose que l'apprenant reconnaît meilleur que ce qu'il aurait fait, avec la tension émotionnelle que cela génère."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Mention d'un projet personnel persistant ('système de cartographie des compétences semi-automatique') qui structure les choix d'orientation et d'auto-formation. Possible sens intrinsèque persévérant à travers l'incertitude de la candidature."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Persistance dans la candidature malgré les lacunes nommées, avec orientation explicite vers un but personnel (créer un système de cartographie). Sens qui survit à l'incertitude du résultat."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des mentions instrumentales d'un projet sans véritable sens intrinsèque au sens 5.05 — la fiche cherche le 'pourquoi' qui survit quand on retire les récompenses et la reconnaissance. La pièce 1 me résiste partiellement: le projet personnel (système de cartographie) est mentionné comme cadre qui structure les apprentissages techniques à acquérir, ce qui suggère qu'il est antérieur à la candidature EPFL et survivra à elle. C'est un 'pourquoi qui précède le projet'. La pièce 2 me résiste: l'apprenant postule malgré la probabilité d'échec et oriente ses bénéfices secondaires vers ce projet personnel — le projet de cartographie est ce qui donne sens à la candidature, pas l'inverse. Présomption durcie: les pièces tiennent partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le projet personnel structure les choix d'auto-formation indépendamment du résultat de la candidature — pourquoi antérieur." },
+            { "pieceId": 2, "motifResistance": "Persistance de l'orientation (vers le projet personnel) malgré l'incertitude du résultat externe." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. Sur la pièce 1, je teste (a) — insuffisance probatoire: une mention courte sans formulation explicite du 'pourquoi' (pourquoi un système de cartographie? quel sens cela a pour lui?). L'attaque touche fortement. Pièce affaiblie. Sur la pièce 2, je teste (f) — récit performatif: l'apprenant raconte-t-il sa persistance sans la montrer? La persistance est attestée par l'acte (candidature posée, CV remanié, lettre rédigée) — c'est une trace d'exercice plus qu'un récit. Pièce affaiblie mais retenue. La fiche signale comme test fiable: 'l'apprenant resterait-il motivé même si le projet devenait difficile, ingrat ou invisible?'. La feuille ne répond pas à cette question; on voit juste un projet qui structure les choix actuels.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Mention brève qui suggère un pourquoi antérieur à la candidature mais sans formulation du sens du projet personnel." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Persistance attestée par l'acte (candidature posée malgré lacunes) plus que par un récit explicite du sens." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces un sens intrinsèque articulé. Deux pièces ont tenu, affaiblies: la mention d'un projet personnel persistant qui structure les choix d'orientation, et la persistance dans la candidature orientée vers ce projet. Le 'pourquoi' n'est pas explicitement formulé — l'apprenant ne dit pas pourquoi un système de cartographie des compétences a du sens pour lui. Mais l'orientation est claire et stable, ce qui suggère un sens vécu non thématisé. La fiche admet ce cas comme trace oblique ('apprenant qui continue à travailler dans l'adversité sans jamais expliquer pourquoi'). Ce qui en résulte: le sens et la motivation intrinsèque se manifestent ici sous une forme inférée plutôt qu'articulée — un projet personnel persistant structure les choix sans que sa justification soit nommée. Pour la suite, observer une formulation explicite du 'pourquoi' du projet de cartographie compléterait la trace.",
+          "confianceFinale": 0.48
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.48,
+        "motif": "Deux pièces affaiblies: persistance d'un projet personnel observable sans formulation explicite du sens qui le porte.",
+        "prescription": "Dans ce pôle, le travail montre la persistance d'un projet personnel qui structure les choix d'orientation. Pour ouvrir le terrain, un chemin possible serait d'articuler ce qui rend ce projet important — non pas son utilité externe, mais ce qu'il représente personnellement même sans récompense."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie en mode dégradé dans cette feuille — pas de récit de panne technique gérée, pas de travail sans outil numérique par choix, pas d'improvisation avec ressources limitées. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la technologie a fait défaut et où il a maintenu une activité par d'autres moyens."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Anticipation d'une fin de mesure Lab4Tech (vendredi) comme moment pour 'reprendre les projets en cours' et 'remettre les priorités à plats'. Possible souveraineté attentionnelle structurée."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Anticipation d'un acte de remise en ordre des priorités. Possible décision de pause structurée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des notes logistiques ('je vais réorganiser ma semaine') et non de la souveraineté attentionnelle au sens 5.07 — la fiche cherche un choix délibéré face à un environnement qui capture l'attention, avec critère discriminant de l'intention en présence d'alternatives. Les pièces 1 et 2 me résistent très faiblement: 'remettre les priorités à plats' anticipe un acte d'attention, mais l'apprenant ne décrit pas avoir 'choisi' de ne pas le faire avant; la mesure Lab4Tech est une contrainte externe qui prend fin. Il n'y a pas de description d'un environnement capteur d'attention auquel l'apprenant aurait résisté. Présomption durcie: les pièces tombent — elles décrivent une réorganisation à venir, pas un acte de souveraineté.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pièces une trace de souveraineté attentionnelle. Aucune n'a tenu: la réorganisation à venir est attendue parce qu'une contrainte externe (Lab4Tech) prend fin, pas parce que l'apprenant choisit de défendre son attention. La fiche est précise: la vraie souveraineté = 'je pourrais être connecté mais je choisis de ne pas l'être', avec intention en présence d'alternatives. Rien de tel n'apparaît dans cette feuille. Ce qui en résulte: cette feuille ne porte pas de trace probante de souveraineté attentionnelle. Pour la suite, observer une décision concrète de déconnexion ou de protection d'une plage d'attention profonde, motivée par un raisonnement explicite, ouvrirait ce dossier.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence: réorganisation à venir liée à une contrainte externe, pas choix actif face à des alternatives.",
+        "prescription": "Dans ce pôle, le territoire de la souveraineté attentionnelle reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait de documenter une décision concrète de déconnexion ou de protection d'une plage d'attention, motivée par un raisonnement explicite sur ce qui est en jeu."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Citation chiffrée précise (90% fiabilité OCR) sur plusieurs modèles actuels (Mistral, Gemini 3.1, GPT 5.2, Sonnet 4.6). Possible vérification terrain si ce chiffre est issu d'un test empirique personnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce est une donnée lue dans la littérature et non une vérification terrain au sens 5.08 — la fiche exige un contact avec la réalité non médiatisée (test direct, observation physique, logs). La pièce me résiste très faiblement: '90% fiabilité' avec quatre modèles nommés suggère soit une lecture documentaire, soit un test personnel. Sans contexte permettant de trancher, on ne peut pas attester d'une vérification terrain. La fiche distingue: 'j'ai vérifié sur Google' = 1.01, 'j'ai testé sur place' = 5.08. La pièce ne dit ni l'un ni l'autre explicitement. Présomption durcie: la pièce tombe.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans cette mention chiffrée une trace de vérification terrain. La pièce n'a pas tenu: la fiabilité OCR à 90% est citée mais on ignore si elle vient d'un test personnel (5.08) ou d'une lecture (1.01). La fiche exige des récits très détaillés avec spécificité technique pour distinguer la vérification terrain de la lecture critique. Rien de tel n'apparaît dans cette feuille. Ce qui en résulte: cette feuille ne porte pas de trace probante de vérification terrain au sens fort. Pour la suite, observer un récit où l'apprenant a effectivement testé une hypothèse IA par un contact direct avec le réel (test utilisateur, log examiné, observation physique) ouvrirait ce dossier.",
+          "confianceFinale": 0.18
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.18,
+        "motif": "La seule pièce n'a pas résisté: chiffre cité sans précision sur son origine (test direct ou lecture documentaire).",
+        "prescription": "Dans ce pôle, le territoire de la vérification terrain reste à ouvrir. Pour entrer dans ce dossier, un chemin possible serait de documenter un récit où une affirmation système ou IA a été testée par un contact direct avec le réel (test utilisateur, log examiné, observation physique), avec spécificité technique."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 4,
+    "nonEtablies": 3,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail existentiel et d'autonomie reste en bordure du texte principal. L'attention est presque entièrement absorbée par l'analyse philosophique d'un dispositif EPFL extérieur à l'apprenant. Quelques moments brefs ouvrent des fenêtres sur l'expérience personnelle: la reconnaissance que travailler sur 10+ projets interconnectés simultanément 'n'aurait jamais été envisageable avant les LLM', avec une ambivalence assumée (sens / effrayant); la candidature posée malgré des lacunes techniques nommées et orientée vers un projet personnel persistant (système de cartographie des compétences). Ces traces sont courtes, suggestives plutôt qu'établies — elles esquissent une plasticité cognitive et un sens en cours sans les développer.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent fermés ou en bordure dans cette feuille. L'autonomie en mode dégradé n'apparaît pas — pas de récit de panne technique gérée, pas de travail sans outil numérique par choix, pas d'improvisation avec ressources limitées. La souveraineté attentionnelle n'est pas attestée: l'anticipation d'une remise en ordre des priorités à venir relève davantage d'une réorganisation liée à la fin d'une mesure externe (Lab4Tech) que d'un choix actif face à un environnement capteur d'attention. La vérification terrain n'est pas établie: le chiffre de 90% de fiabilité OCR est cité sans qu'on puisse savoir s'il vient d'un test personnel ou d'une lecture documentaire. L'acceptation de l'intelligence supérieure n'est pas non plus établie: les pièces parlent d'une transformation du mode de travail induite par les LLM, pas d'un aveu personnel de supériorité cognitive ('mieux que moi'). La résilience et la plasticité, le sens intrinsèque, la narration réflexive sont des renvois au cartographe — la posture est présente mais le matériau est trop bref ou trop implicite pour attester pleinement la compétence.",
+    "emergencesPole": "Ce qui traverse les rares moments existentiels de cette feuille: une posture où la transformation est nommée sans être théorisée. L'apprenant dit qu'une chose a changé (la manière de penser projets, l'horizon des compétences à acquérir), sans articuler le 'pourquoi' ni le 'comment'. Autre récurrence: une orientation vers un projet personnel (système de cartographie des compétences) qui structure les choix sans être justifié explicitement. Le sens semble vécu sans être thématisé. Enfin: l'ambivalence comme registre récurrent. 'Fait sens / absolument effrayant', 'lacunes techniques / orientations utiles', 'décrocher / ne pas décrocher': l'apprenant tient ensemble plusieurs polarités sans chercher à les résoudre, ce qui constitue une forme d'autonomie existentielle silencieuse.",
+    "pistes": [
+      "Pour ouvrir l'antifragilité, un chemin possible serait de raconter un échec déjà traversé et déjà traité, avec ce qui en a effectivement émergé — pas un échec anticipé, un vécu transformé.",
+      "Pour articuler le désapprentissage, un chemin possible serait de nommer concrètement ce qui a été abandonné dans la manière de travailler (une croyance, un protocole, une expertise) et ce qui reste constant à travers la mue.",
+      "Pour entrer dans la souveraineté attentionnelle, un chemin possible serait de documenter une décision concrète de protection d'une plage d'attention, motivée par un raisonnement explicite.",
+      "Pour explorer la vérification terrain, un chemin possible serait de documenter un récit où une affirmation IA a été testée par contact direct avec le réel (test utilisateur, log examiné), avec spécificité technique.",
+      "Pour formuler le sens intrinsèque, un chemin possible serait d'articuler ce qui rend important le projet personnel de cartographie — non pas son utilité externe, mais ce qu'il représente personnellement."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail existentiel et d'autonomie reste en bordure du texte principal. L'attention est presque entièrement absorbée par l'analyse philosophique d'un dispositif EPFL extérieur à l'apprenant. Quelques moments brefs ouvrent des fenêtres sur l'expérience personnelle: la reconnaissance que travailler sur 10+ projets interconnectés simultanément 'n'aurait jamais été envisageable avant les LLM', avec une ambivalence assumée (sens / effrayant); la candidature posée malgré des lacunes techniques nommées et orientée vers un projet personnel persistant (système de cartographie des compétences). Ces traces sont courtes, suggestives plutôt qu'établies — elles esquissent une plasticité cognitive et un sens en cours sans les développer.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent fermés ou en bordure dans cette feuille. L'autonomie en mode dégradé n'apparaît pas — pas de récit de panne technique gérée, pas de travail sans outil numérique par choix, pas d'improvisation avec ressources limitées. La souveraineté attentionnelle n'est pas attestée: l'anticipation d'une remise en ordre des priorités à venir relève davantage d'une réorganisation liée à la fin d'une mesure externe (Lab4Tech) que d'un choix actif face à un environnement capteur d'attention.\n\nLa vérification terrain n'est pas établie: le chiffre de 90% de fiabilité OCR est cité sans qu'on puisse savoir s'il vient d'un test personnel ou d'une lecture documentaire. L'acceptation de l'intelligence supérieure n'est pas non plus établie: les pièces parlent d'une transformation du mode de travail induite par les LLM, pas d'un aveu personnel de supériorité cognitive ('mieux que moi').\n\nLa résilience et la plasticité, le sens intrinsèque, la narration réflexive sont des renvois au cartographe — la posture est présente mais le matériau est trop bref ou trop implicite pour attester pleinement la compétence.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse les rares moments existentiels de cette feuille: une posture où la transformation est nommée sans être théorisée. L'apprenant dit qu'une chose a changé (la manière de penser projets, l'horizon des compétences à acquérir), sans articuler le 'pourquoi' ni le 'comment'.\n\nAutre récurrence: une orientation vers un projet personnel (système de cartographie des compétences) qui structure les choix sans être justifié explicitement. Le sens semble vécu sans être thématisé.\n\nEnfin: l'ambivalence comme registre récurrent. 'Fait sens / absolument effrayant', 'lacunes techniques / orientations utiles', 'décrocher / ne pas décrocher': l'apprenant tient ensemble plusieurs polarités sans chercher à les résoudre, ce qui constitue une forme d'autonomie existentielle silencieuse.\n\n## Pistes pour enrichir ce pôle\n\nPour ouvrir l'antifragilité, un chemin possible serait de raconter un échec déjà traversé et déjà traité, avec ce qui en a effectivement émergé — pas un échec anticipé, un vécu transformé.\n\nPour articuler le désapprentissage, un chemin possible serait de nommer concrètement ce qui a été abandonné dans la manière de travailler (une croyance, un protocole, une expertise) et ce qui reste constant à travers la mue.\n\nPour entrer dans la souveraineté attentionnelle, un chemin possible serait de documenter une décision concrète de protection d'une plage d'attention, motivée par un raisonnement explicite.\n\nPour explorer la vérification terrain, un chemin possible serait de documenter un récit où une affirmation IA a été testée par contact direct avec le réel (test utilisateur, log examiné), avec spécificité technique.\n\nPour formuler le sens intrinsèque, un chemin possible serait d'articuler ce qui rend important le projet personnel de cartographie — non pas son utilité externe, mais ce qu'il représente personnellement."
+  }
+}

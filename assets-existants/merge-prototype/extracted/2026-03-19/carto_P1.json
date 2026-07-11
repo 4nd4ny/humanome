@@ -1,0 +1,502 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "extraitVerbatim": "Je dois donc continuer à me contraindre à ne pas m'amuser à coder quoi que ce soit, pour me concentrer sur ce qui est important : les concepts de l'école RESPIRE, tout comme j'ai décidé cet été de laisser tomber EduFolio pour le moment, pour parler de la pédagogie qui allait autour et je ne regrette pas",
+      "contexte": "Auto-discipline de cadrage : choisir le bon problème (concepts pédagogiques) plutôt que céder au plaisir technique. Active 1.02 (cadrage de l'intention) et 1.04 (métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "extraitVerbatim": "même si cet été c'était surtout un choix lié à ma perte de compétences cognitives suite au burnout, qui a commencé à aller mieux vers octobre, moment ou j'ai pu enfin commencé à travailler sur RESPIRE",
+      "contexte": "Observation rétrospective sur ses propres processus cognitifs, distinguant choix stratégique et contrainte cognitive. Active 1.04 (métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "extraitVerbatim": "ce n'est pas ça qui me rebut dans le poste EPFL, c'est le niveau des questions qu'on m'a posé et c'est la projection que je me fais de devoir me conformer à un système qui est déjà plus comme moi, d'après ce qu'en j'en ai compris en 45 minutes",
+      "contexte": "Reformulation du vrai problème : pas le coding mais le décalage systémique. Active 1.02 (cadrage de l'intention).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "extraitVerbatim": "Moi je crois que si c'est important pour eux d'avoir un développeur, qu'ils prennent un développeur. Si le projet est par contre difficile à programmer, qu'il fassent appel à moi à ce moment-là pour que je leur explique comment je le ferai et que ce soit quelqu'un d'autre ou mon IA qui le code, ça je m'en balance.",
+      "contexte": "Articulation des forces comparatives humain-IA : ce que l'humain garde (la conception), ce que l'IA fait (l'exécution). Active 1.10 (synergie hybride) et 1.07 (architecture).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "extraitVerbatim": "Aujourd'hui ce n'est plus une skills qui vaut quelque chose (enfin oui, ça vaut 200$ mensuels). Je peux aussi le coder moi, ça sera mieux fait, mais ça prendra plus longtemps… A quoi bon ?",
+      "contexte": "Analyse argumentée du trade-off coding humain vs IA : qualité contre temps. Active 1.10 (synergie) et 1.06 (littératie IA, valorisation de marché).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "extraitVerbatim": "Je n'arrivais plus à me limiter à 16 bureaux virtuels avec Sqilium c'était devenu impossible. J'ai donc basculé en dual screen : le 8k (7680×2160 = 32:9) 57\" avec 16 bureaux (comme avant) et le 4k (3456 × 2234 = 16:10) 16\" du macbook avec 16 bureaux supplémentaires, donc 32 bureaux virtuels à gérer maintenant.",
+      "contexte": "Architecture computationnelle d'un environnement de travail : structuration en bureaux, décomposition spatiale. Active 1.07 (architecture) et 1.09 (pensée computationnelle appliquée à l'organisation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "extraitVerbatim": "En local, la version de développement est dans un docker. En ligne, ça me coûte un peu d'argent, mais pour le moment c'est ici et c'est sur la version non modifiée du projet [...] et dès que j'ai une version en local qui vaut la peine d'être publié, je la mettrais sur sqilium à la place et je supprimerai l'autre.",
+      "contexte": "Description d'un pipeline de déploiement : composants (docker local, version en ligne), règles de bascule. Active 1.07 (architecture de systèmes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "extraitVerbatim": "Après, j'ai joué un peu avec l'interface et franchement, il y a beaucoup de travail d'ergonomie à faire… Je suis surpris en mal. Claude va avoir du travail lorsque j'aurais le temps de le piloter sur ce projet.",
+      "contexte": "Évaluation critique d'un produit existant et anticipation d'un travail d'orchestration IA. Active 1.01 (pensée critique appliquée à un outil) et 1.08 (orchestration IA).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "extraitVerbatim": "j'ai appris à lancer le projet en local et à le déployer sur internet. J'ai documenté le processus (ce qui manquait). Maintenant je vais travailler sur un fork Sqilium qui deviendra peut-être un jour le substrat d'EduFolio.",
+      "contexte": "Trace concrète d'apprentissage technique et de documentation d'un processus. Active marginalement 1.07 (composants techniques décrits).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Évaluation critique d'un produit existant : il y a beaucoup de travail d'ergonomie à faire. Forme un jugement orienté vers la véracité formelle d'un produit, à la frontière de 3.04."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : le doute méthodique calibré, l'auto-correction en temps réel, la vérification de sources — rien de tout cela n'apparaît dans cette feuille. La seule pièce extraite porte un jugement critique sur l'ergonomie d'un outil, mais ce n'est pas du doute appliqué à ses propres idées ni à l'IA. L'apprenant constate un manque d'ergonomie sans décrire un protocole de vérification ni une auto-correction. La pièce reste sur le registre de l'évaluation produit, pas sur celui du scepticisme calibré.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. Le temps 2 confirme : il n'y a rien à examiner. L'évaluation d'un produit existant ne porte pas le marqueur central de 1.01.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille avec présomption d'absence, j'ai cherché un acte de doute méthodique appliqué à des sources, à l'IA, ou aux propres idées de l'apprenant. La seule pièce candidate, le constat critique sur l'ergonomie de Sqily, relève davantage d'un jugement esthétique-fonctionnel que d'une vérification. Aucun protocole de croisement, aucune détection d'hallucination, aucune auto-correction explicite ne traverse cette feuille. La présomption d'absence tient sans difficulté.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "La pièce candidate relève d'un jugement produit, pas du doute méthodique. La présomption d'absence a tenu au temps 1.",
+        "prescription": "Cette feuille porte d'autres registres de pensée que le scepticisme calibré. Une trace de pensée critique pourrait apparaître dans un récit où une affirmation de l'IA ou d'une source aurait été mise à l'épreuve par une procédure de vérification explicite."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Cadrage explicite : se contraindre à ne pas céder au coding pour rester sur le vrai sujet (les concepts pédagogiques). Reformulation de l'objectif prioritaire."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Reformulation rétrospective du problème EPFL : ce n'est pas le coding qui pose problème, c'est le décalage avec un système. L'apprenant identifie la vraie nature de son blocage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette compétence n'est pas là : le cadrage de l'intention exige une interrogation de l'objectif lui-même, pas seulement une décision de priorisation. La pièce 1 ressemble à un arbitrage de discipline plutôt qu'à un cadrage. La pièce 2, en revanche, opère un véritable déplacement : l'apprenant nomme que le vrai problème n'est pas celui qu'on lui a posé (peux-tu coder ?) mais un décalage systémique. Cette reformulation rétrospective force ma reconnaissance. La pièce 1 résiste plus faiblement, parce que la formulation 'ce qui est important : les concepts' désigne un objectif au-delà du faire.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant nomme explicitement ce sur quoi il doit se concentrer et pourquoi le plaisir technique ne suffit pas."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce porte un déplacement explicite du problème : pas le coding, mais le décalage culturel."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en demandant si je me suis laissé séduire. La pièce 1 pourrait être un simple arbitrage de focus (proche de 7.06), pas un cadrage qui interroge l'objectif. Je l'affaiblis. La pièce 2 nomme un décalage et reformule ce qui rebute — c'est plus proche du cadrage car elle change la nature du problème (refuser le poste n'est plus une question de skills, c'est une question d'alignement).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Confusion possible avec 7.06 (efficacité personnelle, refus stratégique). La pièce porte un arbitrage de priorités plus qu'une interrogation de l'objectif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'apprenant identifie explicitement que le rebut n'est pas dans le faire (coder) mais dans la projection systémique — c'est un recadrage qui change la nature du problème, pas son périmètre."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte du cadrage de l'intention, en partant du principe qu'un arbitrage de priorité ne suffit pas. Le passage sur EPFL m'a forcé à reconnaître autre chose : l'apprenant ne se contente pas d'arbitrer, il reformule ce qui rebute dans l'offre. Le 'vrai problème' devient lisible — pas la compétence demandée, mais l'alignement avec un système. La pièce sur la contrainte de ne pas coder a tenu plus faiblement : elle relève davantage d'un arbitrage de focus. Une présence se dessine, portée par la pièce qui opère le déplacement du problème.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.6,
+        "motif": "Le temps 2 a confirmé la pièce 2 comme un recadrage qui change la nature du problème EPFL ; la pièce 1 a tenu plus faiblement comme indice corroboratif.",
+        "prescription": "Le travail sur EPFL montre une bascule du registre 'compétence demandée' au registre 'alignement systémique'. Pour prolonger ce geste, un récit qui détaillerait la procédure mentale du déplacement — comment l'apprenant a identifié que la question posée n'était pas la bonne — donnerait à voir le mécanisme."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synthèse intégrative dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où des fragments disparates (techniques, vécus, disciplinaires) se sont fondus en une compréhension nouvelle."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Observation rétrospective de ses propres processus cognitifs : perte de compétences cognitives suite au burnout, récupération progressive. L'objet de la réflexion est le processus cognitif lui-même."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Règle personnelle formulée explicitement : se contraindre à ne pas céder à un plaisir cognitif (coder) pour préserver son focus sur ce qui est important."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la métacognition n'est pas là : il faut une réflexion sur la manière de réfléchir, pas une simple introspection. La pièce 1 nomme un état cognitif (perte de compétences cognitives) avec datation (été, octobre) et bascule — c'est une calibration de soi sur soi qui force ma reconnaissance. La pièce 2 énonce une règle personnelle de pilotage cognitif (se contraindre à ne pas faire ce qui plaît). Les deux pièces résistent, mais avec un risque : il faut distinguer un bilan ('j'ai progressé') d'une véritable observation des processus.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant nomme précisément un état cognitif (perte de compétences) avec sa temporalité, distinct d'un bilan vague."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Règle personnelle de pilotage cognitif formulée comme contrainte délibérée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je doute. La pièce 1 nomme une perte cognitive mais reste dans le registre du diagnostic post-burnout, pas dans l'analyse fine du processus. C'est une observation honnête mais relativement plate. La pièce 2 ressemble à un commandement personnel répété sur plusieurs feuilles — la règle est posée, mais le mécanisme du comment-je-m'observe-faire-ça n'est pas explicité.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le récit de la perte cognitive énonce une métacognition rétrospective sans en montrer le mécanisme d'observation. C'est un bilan calibré plus qu'une observation en acte."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La règle 'se contraindre' énonce un pilotage cognitif sans montrer l'observation des biais qu'elle vise à corriger — c'est une discipline déclarée plus qu'une réflexion sur le penser."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la métacognition dans cette feuille. Deux pièces m'ont forcé à reconnaître quelque chose : la nomination d'un état cognitif daté (perte post-burnout, récupération en octobre) et l'énoncé d'une règle de pilotage personnel. Sous la présomption de sycophantie, les deux ont été affaiblies : ni l'une ni l'autre ne montre le mécanisme d'observation en acte. Ce qui reste, c'est une métacognition rétrospective et déclarative, calibrée sans grande profondeur. Le verdict tient, avec une réserve sur la finesse du processus observé.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.55,
+        "motif": "Le temps 2 a affaibli les deux pièces sans les disqualifier : la nomination calibrée d'un état cognitif et la règle personnelle tiennent comme indices corroboratifs.",
+        "prescription": "La nomination de la perte cognitive post-burnout et de sa récupération progressive constitue un acte d'auto-observation. Pour approfondir, un récit qui détaillerait comment l'apprenant repère, dans une journée donnée, le moment où le plaisir technique commence à le détourner — le mécanisme du basculement attentionnel — rendrait visible l'observation en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée systémique dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une boucle de rétroaction observée entre deux domaines de sa pratique (par exemple : EPFL, RESPIRE, IA, santé)."
+      }
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Évaluation du marché du coding humain face au coding assisté par IA : le coding humain vaut désormais 200$ mensuels. Référence implicite au prix d'un abonnement IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la littératie IA n'est pas dans cette feuille. Le marqueur central exige une compréhension causale du fonctionnement de l'IA — tokens, contexte, hallucinations — pas seulement une mention de prix. La pièce 1 valorise économiquement le coding humain à 200$/mois, ce qui suggère une connaissance des tarifs d'abonnement IA mais ne montre pas de mécanisme. C'est de la conscience du marché, pas de la littératie technique.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. La référence au prix de 200$ relève d'une connaissance ambiante du marché, pas d'une compréhension des mécanismes.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la littératie IA dans cette feuille. La seule mention exploitable, le chiffrage du coding humain face à un abonnement IA, ne porte pas sur le fonctionnement de la machine. Aucun mécanisme n'est explicité (tokens, contexte, distribution, hallucination). La présomption d'absence tient sans difficulté.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "La pièce candidate relève d'une conscience tarifaire, pas d'une compréhension causale du fonctionnement IA. La présomption d'absence a tenu.",
+        "prescription": "Cette feuille montre une lucidité sur la valeur économique du coding humain face à l'IA. Pour ouvrir la littératie technique, un récit qui détaillerait pourquoi l'IA échoue ou réussit sur un problème de Sqily — quel mécanisme expliquerait l'échec — ouvrirait un autre registre."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Description d'un pipeline de déploiement avec composants distincts (docker local, version en ligne hébergée sur fly.dev), règle de bascule explicite quand la version locale sera prête."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Architecture d'un environnement de travail spatial : décomposition explicite en deux écrans, 16 + 16 bureaux virtuels, hiérarchie d'usage."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Apprentissage technique du déploiement et documentation du processus. Décrit la chaîne de déploiement mais sans articuler des composants en interaction."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'architecture de systèmes IA n'est pas là : la fiche exige un système où *plusieurs IA et humains interagissent* avec rôles définis. La pièce 1 décrit un pipeline de déploiement, pas un système multi-agents — ce serait plutôt de l'architecture logicielle classique. La pièce 2 décrit une organisation spatiale, pas une architecture IA. La pièce 3 décrit l'apprentissage d'un déploiement. Aucune des trois ne porte le marqueur central de 1.07 : conception d'un système où l'output de l'un alimente l'input de l'autre avec règles de routing. La présomption d'absence tient pour chaque pièce.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La fiche 1.07 distingue précisément l'architecture IA des autres formes d'architecture, et aucune des pièces ne porte cette spécificité.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'architecture de systèmes IA dans cette feuille. Trois pièces ressemblaient à des architectures : un pipeline de déploiement, un environnement spatial, un apprentissage technique. Mais aucune ne porte le marqueur central de 1.07 — un système où plusieurs IA et humains interagissent avec des rôles définis et des flux documentés. La présomption d'absence tient.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "Les pièces candidates portent de l'architecture (logicielle, spatiale, technique) mais pas un système multi-agents humain-IA tel que la fiche 1.07 le définit.",
+        "prescription": "L'architecture est présente dans cette feuille sur d'autres terrains (déploiement, organisation spatiale). Pour ouvrir l'architecture de systèmes IA, un récit qui détaillerait comment plusieurs sessions Claude ou plusieurs rôles seraient orchestrés pour traiter Sqily — qui supervise, qui exécute, comment l'output de l'un alimente l'autre — ouvrirait ce dossier."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Anticipation d'un travail de pilotage de Claude sur le projet Sqily. Mention rapide qui ne décrit ni technique de prompting ni itération stratégique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le dialogue IA avancé n'est pas là : la fiche exige des techniques nommées, des itérations qui *analysent pourquoi* la reformulation change le résultat, du méta-prompting récursif. La pièce 1 mentionne en passant un futur travail à faire avec Claude. C'est une annonce d'intention, pas une trace d'orchestration. La présomption d'absence tient sans effort.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. La mention 'Claude va avoir du travail' relève de l'intention future, pas du dialogue avancé.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le dialogue IA avancé dans cette feuille. La seule mention de Claude est une projection vers un futur travail, pas une technique de prompting ni une orchestration en acte. La présomption d'absence tient.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.85,
+        "motif": "La pièce candidate relève d'une intention future, pas d'une orchestration en acte. La présomption d'absence a tenu.",
+        "prescription": "Cette feuille mentionne le futur travail avec Claude sans en montrer la technique. Une trace de dialogue IA avancé pourrait apparaître dans un récit où l'apprenant détaillerait comment il formule un prompt sur l'ergonomie de Sqily, et ce qu'il observe dans la reformulation."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Décomposition spatiale d'un environnement de travail en bureaux virtuels structurés (16+16). Application possible d'une logique computationnelle (parallélisation, namespacing) à un problème d'organisation."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la pensée computationnelle n'est pas là : le critère discriminant est le TRANSFERT — la logique computationnelle appliquée *hors* de l'informatique. La pièce 1 décrit 32 bureaux virtuels, mais ces bureaux sont un outil informatique pour gérer du travail informatique. C'est précisément le cas que la fiche distingue : un développeur peut coder toute sa vie sans transférer la logique algorithmique. La présomption d'absence tient.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté. La structuration en bureaux virtuels reste dans le périmètre informatique, sans transfert hors-domaine.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la pensée computationnelle dans cette feuille. La pièce sur les 32 bureaux virtuels relève d'une organisation interne au monde informatique, sans transfert vers un problème non-technique. La distinction critique de la fiche écarte précisément ce cas. La présomption d'absence tient.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.8,
+        "motif": "La pièce candidate reste dans le périmètre informatique, sans transfert hors-domaine. Le critère discriminant n'est pas activé.",
+        "prescription": "Cette feuille montre une organisation computationnelle interne à l'informatique. Une trace de pensée computationnelle pourrait apparaître dans un récit où l'apprenant appliquerait une structure algorithmique à un problème non-technique — un choix de vie, une dynamique pédagogique, une décomposition de projet RESPIRE."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Articulation explicite de la répartition humain-IA dans un projet difficile : l'humain conçoit et explique comment il ferait, l'IA ou quelqu'un d'autre code. Force comparative posée."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Trade-off explicite entre coding humain (mieux fait, plus long) et coding IA (plus rapide). Articulation des forces comparatives."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la synergie hybride n'est pas là : le critère discriminant est l'articulation explicite *de ce que l'humain garde et pourquoi*. La pièce 1 force ma reconnaissance : 'qu'il fassent appel à moi à ce moment-là pour que je leur explique comment je le ferai et que ce soit quelqu'un d'autre ou mon IA qui le code'. C'est une répartition fonctionnelle nommée, pas une délégation aveugle. La pièce 2 articule un trade-off explicite : 'ça sera mieux fait, mais ça prendra plus longtemps'. Les deux pièces portent le marqueur central de 1.10.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant nomme ce que l'humain fait (concevoir, expliquer) et ce que l'IA ou un autre fait (coder), avec une logique de répartition."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Trade-off explicite entre qualité du coding humain et rapidité du coding IA, avec une question 'À quoi bon ?' qui scelle l'arbitrage."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec méfiance. La pièce 1 articule clairement une répartition des rôles ; je ne vois pas d'attaque qui la disqualifie. La pièce 2 articule un trade-off mais aboutit à une conclusion 'à quoi bon' qui ressemble plus à un désengagement qu'à une synergie pensée. Je l'affaiblis : ce n'est pas tout à fait l'articulation positive de complémentarités.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La répartition est explicite et fonctionnelle : conception (humain) / exécution (IA ou autre). Aucune surinterprétation ne tient — l'apprenant pose clairement où sa valeur se situe."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le trade-off est posé mais sans dispositif de répartition concret ; il s'achève sur un 'à quoi bon' qui dévalorise le coding humain plus qu'il ne le situe."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la synergie hybride en partant de la sycophantie naturelle qui voit de la synergie dès qu'on évoque l'IA. La pièce sur le poste EPFL m'a forcé à reconnaître quelque chose : l'apprenant ne se contente pas de dire 'l'IA m'aide', il articule une répartition fonctionnelle — conception côté humain, exécution côté IA — avec une logique économique sous-jacente. La pièce sur le trade-off coding humain/IA a été affaiblie : la conclusion 'à quoi bon' relève davantage du désengagement que d'une synergie pensée. Ce qui reste, c'est une articulation des forces comparatives, plus mature sur la première pièce que sur la seconde.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé la pièce 1 comme articulation explicite de la répartition humain-IA ; la pièce 2 a tenu comme indice corroboratif sur le trade-off.",
+        "prescription": "Le récit du poste EPFL articule où l'apprenant situe sa valeur : conception, explication, jugement. Pour prolonger ce travail, un texte qui documenterait sur un projet concret (Sqily, par exemple) comment cette répartition opère dans une journée donnée — quels gestes restent côté humain, quels gestes basculent côté IA — donnerait à voir la synergie en acte."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 8,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 0,
+    "nonEtablies": 5,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille du 19 mars 2026 montre un travail qui se déploie surtout dans le registre du cadrage et de la répartition. L'apprenant arbitre entre plaisir technique et priorité intellectuelle, reformule ce qui rebute dans une offre professionnelle, articule où sa valeur se situe face à l'IA et au coding. La voix dominante alterne entre l'auto-discipline lucide et l'analyse économique tranchée. Le terrain de la pensée traversée est moins celui du doute méthodique ou de la pensée systémique que celui du positionnement : quoi faire, pourquoi, à quel prix.",
+    "territoiresDenses": [
+      {
+        "competence": "Synergie & Coordination Hybride",
+        "description": "L'apprenant articule explicitement ce qu'il garde côté humain (la conception, l'explication d'une approche difficile) et ce qu'il laisse à l'IA ou à d'autres (l'exécution).",
+        "extraitVerbatim": "qu'il fassent appel à moi à ce moment-là pour que je leur explique comment je le ferai et que ce soit quelqu'un d'autre ou mon IA qui le code, ça je m'en balance",
+        "ceQueCaDit": "Le travail dans ce pôle montre une lucidité économique sur la valeur comparative des deux apports, sans nostalgie technicienne ni fascination IA."
+      },
+      {
+        "competence": "Cadrage de l'Intention",
+        "description": "L'apprenant déplace la question : ce qui rebute dans le poste EPFL n'est pas le coding mais l'alignement avec un système.",
+        "extraitVerbatim": "ce n'est pas ça qui me rebut dans le poste EPFL, c'est le niveau des questions qu'on m'a posé et c'est la projection que je me fais de devoir me conformer à un système qui est déjà plus comme moi",
+        "ceQueCaDit": "Le cadrage opère ici comme reformulation rétrospective qui change la nature du problème : du faire au s'aligner."
+      },
+      {
+        "competence": "Métacognition & Humilité Épistémique",
+        "description": "L'apprenant nomme une perte de compétences cognitives suite au burnout et sa récupération progressive, datée d'octobre, comme condition d'accès à RESPIRE.",
+        "extraitVerbatim": "c'était surtout un choix lié à ma perte de compétences cognitives suite au burnout, qui a commencé à aller mieux vers octobre",
+        "ceQueCaDit": "Le travail montre une auto-observation calibrée qui distingue le choix stratégique et la contrainte cognitive."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs registres de la pensée n'ont pas été ramenés dans cette feuille. La pensée critique appliquée à des sources ou à l'IA n'apparaît pas — seule une évaluation produit sur l'ergonomie de Sqily est posée. La synthèse intégrative entre plusieurs domaines, la pensée systémique avec ses boucles de rétroaction, la littératie technique de l'IA sous le capot, le dialogue IA avancé avec ses techniques de prompting, et la pensée computationnelle appliquée hors-domaine n'ont pas trouvé de matière. Ces absences ressemblent ici à un choix de focus : la feuille porte un autre temps du travail.",
+    "emergencesPole": "Une économie du coding humain se dessine en filigrane : l'apprenant chiffre ce que vaut son geste face à l'abonnement IA, et ce chiffrage organise plusieurs décisions de la journée (refus de coder Sqilium tout de suite, position devant EPFL). Une seconde émergence : le motif du retournement temporel. Octobre devient le marqueur du retour à la disponibilité cognitive ; vingt ans sans hiérarchie deviennent l'arrière-plan d'une lucidité sur les conditions de la création.",
+    "pistes": [
+      "Pour prolonger le cadrage de l'intention, un chemin possible serait de documenter une situation où l'objectif initial s'est révélé être le mauvais — pas seulement le mauvais périmètre, mais la mauvaise question.",
+      "Pour ouvrir la pensée systémique, un chemin possible serait de cartographier une boucle de rétroaction entre la santé cognitive, le travail sur RESPIRE et le rapport à l'IA, en nommant les directions d'influence.",
+      "Pour enrichir la synergie hybride, un chemin possible serait de suivre sur quelques journées une répartition concrète des gestes humain-IA dans un projet précis, en notant ce qui bascule et ce qui résiste."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille du 19 mars 2026 montre un travail qui se déploie surtout dans le registre du cadrage et de la répartition. L'apprenant arbitre entre plaisir technique et priorité intellectuelle, reformule ce qui rebute dans une offre professionnelle, articule où sa valeur se situe face à l'IA et au coding. La voix dominante alterne entre l'auto-discipline lucide et l'analyse économique tranchée. Le terrain de la pensée traversée est moins celui du doute méthodique ou de la pensée systémique que celui du positionnement : quoi faire, pourquoi, à quel prix.\n\n## Territoires les plus denses\n\n**Synergie & Coordination Hybride** — L'apprenant articule explicitement ce qu'il garde côté humain (la conception, l'explication d'une approche difficile) et ce qu'il laisse à l'IA ou à d'autres (l'exécution). « qu'il fassent appel à moi à ce moment-là pour que je leur explique comment je le ferai et que ce soit quelqu'un d'autre ou mon IA qui le code, ça je m'en balance ». Le travail dans ce pôle montre une lucidité économique sur la valeur comparative des deux apports, sans nostalgie technicienne ni fascination IA.\n\n**Cadrage de l'Intention** — L'apprenant déplace la question : ce qui rebute dans le poste EPFL n'est pas le coding mais l'alignement avec un système. « ce n'est pas ça qui me rebut dans le poste EPFL, c'est le niveau des questions qu'on m'a posé et c'est la projection que je me fais de devoir me conformer à un système qui est déjà plus comme moi ». Le cadrage opère ici comme reformulation rétrospective qui change la nature du problème : du faire au s'aligner.\n\n**Métacognition & Humilité Épistémique** — L'apprenant nomme une perte de compétences cognitives suite au burnout et sa récupération progressive, datée d'octobre, comme condition d'accès à RESPIRE. « c'était surtout un choix lié à ma perte de compétences cognitives suite au burnout, qui a commencé à aller mieux vers octobre ». Le travail montre une auto-observation calibrée qui distingue le choix stratégique et la contrainte cognitive.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs registres de la pensée n'ont pas été ramenés dans cette feuille. La pensée critique appliquée à des sources ou à l'IA n'apparaît pas — seule une évaluation produit sur l'ergonomie de Sqily est posée. La synthèse intégrative entre plusieurs domaines, la pensée systémique avec ses boucles de rétroaction, la littératie technique de l'IA sous le capot, le dialogue IA avancé avec ses techniques de prompting, et la pensée computationnelle appliquée hors-domaine n'ont pas trouvé de matière. Ces absences ressemblent ici à un choix de focus : la feuille porte un autre temps du travail.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne économie du coding humain se dessine en filigrane : l'apprenant chiffre ce que vaut son geste face à l'abonnement IA, et ce chiffrage organise plusieurs décisions de la journée (refus de coder Sqilium tout de suite, position devant EPFL). Une seconde émergence : le motif du retournement temporel. Octobre devient le marqueur du retour à la disponibilité cognitive ; vingt ans sans hiérarchie deviennent l'arrière-plan d'une lucidité sur les conditions de la création.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le cadrage de l'intention, un chemin possible serait de documenter une situation où l'objectif initial s'est révélé être le mauvais — pas seulement le mauvais périmètre, mais la mauvaise question.\n- Pour ouvrir la pensée systémique, un chemin possible serait de cartographier une boucle de rétroaction entre la santé cognitive, le travail sur RESPIRE et le rapport à l'IA, en nommant les directions d'influence.\n- Pour enrichir la synergie hybride, un chemin possible serait de suivre sur quelques journées une répartition concrète des gestes humain-IA dans un projet précis, en notant ce qui bascule et ce qui résiste."
+  }
+}

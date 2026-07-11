@@ -1,0 +1,253 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Maintenant il suffit de tout relire, corriger, adapter la structure et la mise en page… J'en ai pour un moment 😅",
+      "contexte": "L'apprenant nomme un travail d'adaptation structurelle et de mise en page sur des manuels — possible trace de curation/jugement esthétique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Oups : Claude a oublié de documenter le bootstrap. Aucun souci : je lui demande d'ajouter les chapitres manquants dans les manuels + copier-coller et c'est réglé !",
+      "contexte": "Un cycle d'itération rapide : repérer, demander, intégrer — possible trace de créativité itérative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Ça m'a conduit à définir le référentiel des compétences à valider pour passer au niveau supérieur.",
+      "contexte": "Sortir d'un correctif local pour créer un référentiel — possible trace de design de problèmes (nouvelle question posée) ou de créativité radicale.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Le cycle « repérer un manque → demander la correction → c'est réglé » s'apparente à une itération rapide sur un livrable imparfait."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 3.01 avec présomption d'absence : la créativité itérative suppose des versions successives avec apprentissage explicite entre chaque passage — un choix stratégique de l'imperfection, pas une simple correction d'erreur. Ici l'apprenant constate un oubli de l'IA et demande un complément ; c'est un cycle de production-correction sans réelle dimension d'apprentissage entre versions, sans pivot stratégique. La pièce résiste très faiblement parce qu'il y a tout de même un mouvement itératif minimal — v0 incomplète, v1 complétée — qui s'inscrit dans la logique 1→n.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le mouvement repérer-corriger-intégrer constitue un micro-cycle itératif sur un livrable IA."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ce micro-cycle relève vraiment de la créativité itérative. L'attaque dominante est la confusion de compétence : il s'agit ici d'une correction d'omission, pas d'un choix stratégique d'imperfection ni d'un apprentissage entre versions. Aucun feedback intermédiaire qui aurait infléchi la direction, aucun pivot, aucun apprentissage formulé sur ce qui rend le prototype suivant meilleur. La pièce ne tient pas comme attestation.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Compléter un oubli relève d'un correctif, pas d'une itération créative au sens de la fiche — aucun apprentissage entre versions, aucun pivot, aucune imperfection stratégique."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de créativité itérative en doutant qu'un cycle de correction d'omission suffise. La pièce a brièvement résisté parce qu'on peut y voir une boucle de production. Mais sous présomption de sycophantie, elle s'effondre : aucun apprentissage formulé entre versions, aucun pivot, aucune dimension stratégique de l'imperfection. Le territoire de l'itération créative au sens fort reste à documenter dans cette feuille.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption de sycophantie a porté le verdict : confusion entre cycle correctif et itération créative au sens de la fiche.",
+        "prescription": "Pour ouvrir ce territoire, raconter un cycle où une version imparfaite a permis d'apprendre quelque chose qui a infléchi la version suivante donnerait à la créativité itérative sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la singularité et à la signature dans cette feuille — texte trop court pour faire émerger un fil stylistique récurrent. Pour ouvrir ce dossier sur la durée, l'apprenant pourrait laisser le portfolio accumuler suffisamment de matière pour qu'une patte stylistique apparaisse au fil des entrées."
+      }
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Passer d'un correctif (chapitre manquant) à la création d'un référentiel de compétences — possible trace de pose d'un problème nouveau."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 3.03 avec présomption d'absence : le design de problèmes consiste à créer une question qui n'existait pas, pas à reformuler une question existante (qui serait 1.02). Ici l'apprenant passe d'un correctif local à la création d'un référentiel de compétences à valider — c'est intéressant, mais l'enchaînement est raconté très brièvement (« Ça m'a conduit à »). Sans accès au contenu du référentiel, on ne peut pas juger s'il pose une question nouvelle ou s'il formalise une question déjà présente dans le dispositif pédagogique en cours. La pièce résiste faiblement parce qu'il y a un changement de niveau — passer d'un correctif d'oubli à la définition de critères de passage au niveau supérieur — qui peut signaler une question nouvelle posée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le saut entre un correctif local et la définition de critères de passage au niveau supérieur peut traduire la pose d'une question d'ordre supérieur."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ce saut atteste vraiment un design de problèmes. L'attaque dominante est la surinterprétation pédagogique : « Ça m'a conduit à » est un connecteur causal flou ; on ne lit pas le travail de pose d'une question nouvelle, on lit seulement le passage d'une tâche à une autre. Le référentiel existe peut-être déjà comme objectif tacite du dispositif Manuel/Apprenant/Accompagnant — auquel cas le créer relève d'une exécution, pas d'un design de problème. La pièce s'affaiblit fortement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage du correctif au référentiel est raconté sans le travail de pose d'une question nouvelle ; le référentiel peut être l'aboutissement attendu du dispositif, non un problème nouvellement formulé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de design de problèmes en doutant qu'un référentiel mentionné en une phrase suffise. La pièce a brièvement résisté parce que le saut de niveau peut signaler une question nouvelle posée. Mais sous présomption de sycophantie, le récit est trop elliptique pour distinguer la création d'un problème nouveau d'une simple exécution d'un livrable attendu par le dispositif. Le territoire du design de problèmes reste à documenter dans cette feuille — la question est peut-être posée, elle n'est pas racontée comme telle.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a porté le verdict : surinterprétation pédagogique d'un enchaînement causal flou.",
+        "prescription": "Pour ouvrir ce territoire, raconter ce qui a fait surgir l'idée du référentiel — quelle question s'est posée qui n'existait pas avant — donnerait au design de problèmes sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "« Tout relire, corriger, adapter la structure et la mise en page » — vocabulaire de retouches structurelles et formelles sur un livrable IA, possible trace de jugement esthétique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 3.04 avec présomption d'absence : le jugement esthétique suppose des évaluations qualitatives articulées, des critères verbalisés, un acte de soustraction ou de hiérarchisation. La fiche cite explicitement les « retouches structurelles d'un texte généré » comme manifestation. Ici l'apprenant annonce qu'il va tout relire, corriger, adapter la structure et la mise en page — c'est exactement le vocabulaire de la curation post-IA, mais le travail est annoncé, pas montré. La pièce résiste parce que ce vocabulaire est précisément celui que la fiche identifie comme marqueur ; elle s'affaiblit parce qu'on ne lit pas les critères, ni le résultat de la soustraction.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le vocabulaire « relire, corriger, adapter la structure et la mise en page » correspond exactement aux retouches structurelles post-IA que la fiche identifie comme manifestation de la curation."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si l'annonce de cette retouche atteste un jugement esthétique en acte. L'attaque dominante est le récit performatif : l'apprenant annonce le travail qu'il va faire (« j'en ai pour un moment »), il ne le montre pas. Aucun critère verbalisé, aucun exemple de choix éditorial. C'est une annonce de travail, pas l'exposition d'un jugement. La pièce s'affaiblit sans tomber : annoncer ce travail suppose une conscience qu'un livrable IA brut n'est pas un livrable fini, ce qui est une trace minimale de filtre qualitatif.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant annonce le travail de relecture et de retouche sans le montrer en acte ; on ne lit pas les critères ni un choix éditorial. Mais la conscience qu'un brut IA appelle une retouche est une trace minimale du filtre qualitatif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de jugement esthétique en doutant qu'une annonce de retouche suffise à attester un acte de curation. La pièce a résisté parce que le vocabulaire — relire, corriger, adapter structure et mise en page — est précisément celui que la fiche identifie comme manifestation de la curation. Sous présomption de sycophantie, la pièce s'affaiblit sans tomber : le travail est annoncé sans être montré, mais sa simple annonce manifeste qu'un livrable IA brut n'est pas considéré comme fini, ce qui suppose un filtre qualitatif actif. Ce qui reste, c'est une posture de curateur en arrière-plan d'un travail en cours, sans que les critères qui guident la sélection ne soient explicités dans cette feuille.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : posture de curation en arrière-plan, mais sans critère ni choix éditorial exposé.",
+        "prescription": "Pour consolider ce territoire, raconter une retouche concrète — qu'est-ce qui sonnait faux, qu'est-ce qui a été coupé ou réécrit, et selon quel critère — transformerait l'annonce de travail en trace de jugement esthétique en acte."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où le geste, le toucher ou la manipulation directe d'un objet a joué un rôle."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'ancrage sensoriel dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait noter une sensation physique, une intuition corporelle ou un moment d'attention incarnée associé à son travail."
+      }
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la performance live dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment de co-présence physique avec un public où sa présence a fait une différence."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 3,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 6,
+    "courtCircuits": 4
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail de cette feuille montre un apprenant en finition de livrables — manuels, référentiel, documents associés. La voix dominante est celle d'un opérateur qui annonce ce qui reste à faire plus qu'elle ne raconte un geste créatif déployé. Les micro-faits qui touchent ce pôle gravitent autour du même verbe — relire, corriger, adapter — qui appartient au lexique de la curation post-IA. Aucun geste manuel, aucune sensation corporelle, aucune performance vive n'apparaissent dans le texte du jour. Ce qui passe ici, dans le registre de la Main, c'est moins le faire incarné qu'une posture éditoriale en arrière-plan d'un travail en cours.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent non visités dans cette feuille. La singularité stylistique, l'intelligence manuelle, l'ancrage sensoriel et la performance live n'ont aucune trace ici — ce qui ressemble moins à un choix qu'à une caractéristique du jour : une journée de finalisation documentaire avec une IA ne sollicite pas spontanément la matière physique, le corps ou la co-présence vive. La singularité est par nature observable sur la durée plutôt que sur une feuille seule. La créativité itérative et le design de problèmes sont effleurés mais sans le travail interprétatif qui les ferait tenir. Un dossier reste ouvert en renvoi : la curation et le jugement esthétique, là où l'annonce de retouche manifeste une conscience post-IA.",
+    "emergencesPole": "Trois observations traversent ce pôle dans cette feuille. D'abord, la posture créative qui s'esquisse est celle du curateur plutôt que celle du créateur : retoucher, adapter, valider, plus qu'inventer. Ensuite, le corps et la matière sont absents du récit — tout se passe à l'écran et dans des documents. Enfin, la finition est annoncée mais pas mise en scène : on lit « j'en ai pour un moment » et on ne lit pas ce qui se passera dans cette durée — quelles décisions éditoriales, quelles soustractions, quels arbitrages.",
+    "pistes": [
+      "Pour enrichir le territoire de la curation, un chemin possible serait de raconter une retouche concrète sur un manuel — qu'est-ce qui sonnait faux, qu'est-ce qui a été coupé ou réécrit, et selon quel critère.",
+      "Pour enrichir le territoire de la créativité itérative, un chemin possible serait de noter ce que la v0 imparfaite a fait apprendre qui infléchit la v1.",
+      "Pour enrichir le territoire du design de problèmes, un chemin possible serait de raconter quelle question a fait surgir l'idée du référentiel, et en quoi cette question n'existait pas avant.",
+      "Pour enrichir les territoires somatiques et incarnés, un chemin possible serait, lors d'une prochaine entrée, de noter une sensation physique ou un moment de co-présence vive associé au travail."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail de cette feuille montre un apprenant en finition de livrables — manuels, référentiel, documents associés. La voix dominante est celle d'un opérateur qui annonce ce qui reste à faire plus qu'elle ne raconte un geste créatif déployé. Les micro-faits qui touchent ce pôle gravitent autour du même verbe — relire, corriger, adapter — qui appartient au lexique de la curation post-IA. Aucun geste manuel, aucune sensation corporelle, aucune performance vive n'apparaissent dans le texte du jour. Ce qui passe ici, dans le registre de la Main, c'est moins le faire incarné qu'une posture éditoriale en arrière-plan d'un travail en cours.\n\n## Territoires les plus denses\n\nAucun territoire de ce pôle n'atteint dans cette feuille seule le seuil de la présence pleinement établie. Un dossier reste ouvert en renvoi : la curation et le jugement esthétique. L'annonce du travail à venir — « tout relire, corriger, adapter la structure et la mise en page » — utilise précisément le vocabulaire que la fiche identifie comme manifestation des retouches post-IA. La posture de curateur transparaît : ce que Claude a produit n'est pas considéré comme un livrable fini, mais comme une matière première à reprendre. Ce qui manque pour basculer en présence établie, c'est la mise en scène d'une retouche concrète et des critères qui la guident.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nLa singularité stylistique, l'intelligence manuelle, l'ancrage sensoriel et la performance live n'ont aucune trace dans cette feuille — ce qui ressemble moins à un choix qu'à une caractéristique du jour : une journée de finalisation documentaire avec une IA ne sollicite pas spontanément la matière physique, le corps ou la co-présence vive. La singularité est par nature observable sur la durée plutôt que sur une feuille seule. La créativité itérative et le design de problèmes sont effleurés sans le travail interprétatif qui les ferait tenir — le récit reste elliptique sur le moment où une question nouvelle a pu surgir, ou sur ce qu'une version imparfaite a fait apprendre.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, la posture créative qui s'esquisse est celle du curateur plutôt que celle du créateur : retoucher, adapter, valider, plus qu'inventer. Ensuite, le corps et la matière sont absents du récit — tout se passe à l'écran et dans des documents. Enfin, la finition est annoncée mais pas mise en scène : on lit « j'en ai pour un moment » et on ne lit pas ce qui se passera dans cette durée — quelles décisions éditoriales, quelles soustractions, quels arbitrages.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir le territoire de la curation, un chemin possible serait de raconter une retouche concrète sur un manuel — qu'est-ce qui sonnait faux, qu'est-ce qui a été coupé ou réécrit, et selon quel critère. Pour enrichir le territoire de la créativité itérative, un chemin possible serait de noter ce que la v0 imparfaite a fait apprendre qui infléchit la v1. Pour enrichir le territoire du design de problèmes, un chemin possible serait de raconter quelle question a fait surgir l'idée du référentiel, et en quoi cette question n'existait pas avant. Pour enrichir les territoires somatiques et incarnés, un chemin possible serait, lors d'une prochaine entrée, de noter une sensation physique ou un moment de co-présence vive associé au travail."
+  }
+}

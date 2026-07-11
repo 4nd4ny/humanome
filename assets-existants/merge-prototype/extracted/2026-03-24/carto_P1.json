@@ -1,0 +1,542 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-24",
+      "extraitVerbatim": "Je vais maintenant relire le tout du début à la fin, car là j'ai l'histoire par morceaux dans ma tête, mais je ne sais pas encore si le fil rouge du narratif reste cohérent tout au long des chapitres et s'il n'y a pas d'autres incohérences ou effets de styles agaçant (j'en ai déjà levé beaucoup).",
+      "contexte": "L'apprenant décrit un protocole de relecture du roman pour vérifier la cohérence du fil narratif — potentielle pensée critique appliquée à sa propre production, métacognition sur sa représentation fragmentée, et synthèse intégrative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-24",
+      "extraitVerbatim": "Je vais plutôt revenir sur l'évaluation et les cartographies car ça sert directement au projet de Stéphane et en plus j'étais pas loin de finir cette partie là également, lorsque j'ai été interrompu par je ne sais quelle mesure ORP ou autre distraction. Ça serait l'occasion de tester LangChain mais surtout l'interface LanFlow, pour éventuellement exploiter le potentiel des bases de données vectorielles. Sauf que pour le moment, je ne vois pas vraiment pourquoi ça serait utile, étant donné que tout rentre en fenêtre de contexte.",
+      "contexte": "L'apprenant arbitre un choix d'orientation (poursuivre la trilogie vs reprendre l'évaluation/cartographies) et évalue la pertinence technique de bases de données vectorielles via le critère de la fenêtre de contexte — littératie IA et cadrage de l'utilité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-24",
+      "extraitVerbatim": "Sauf que, les bouquins techniques risquent de ne pas trouver leur public immédiatement. Peut-être que ce sera une plue value lorsque les écoles commenceront à se faire connaître. Mais pour le moment, c'est un peu tôt.",
+      "contexte": "Arbitrage stratégique sur le moment opportun pour publier la trilogie technique — anticipation systémique d'un effet de cascade marché/écoles.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-24",
+      "extraitVerbatim": "A part ça c'est la merdre 32 bureaux virtuels. Maintenant que j'ai terminé le roman, j'ai bien envie de redescendre à 16. C'est plus facile à gérer… Quelqu'un a dit qu'on pouvait difficilement gérer plus de 7 projets en parallèle. Moi, ma limite c'est 16. Après je n'arrive plus à me faire une représentation mentale claire de ce que je fais, ou j'en suis, et ou reprendre (surtout avec les interruptions qui sont interrompues de manière récursive).",
+      "contexte": "L'apprenant calibre sa propre capacité cognitive de représentation mentale en référence à une norme externe (7 projets), nomme sa limite personnelle (16) et décrit une dégradation cognitive sous interruptions récursives — métacognition explicite.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-24",
+      "extraitVerbatim": "Vu qu'il n'a fallu que 10 jours (avec les interruptions du poste EPFL + Sqily + rhume & fièvre) pour générer ces 400 pages, j'ai presque envie de poursuivre avec la trilogie dont le plan est déjà prêt.",
+      "contexte": "Constat de vélocité de production assistée par IA (400 pages en 10 jours) — peut indiquer une synergie hybride non explicitée ou un simple constat de productivité.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-24",
+      "extraitVerbatim": "surtout avec les interruptions qui sont interrompues de manière récursive",
+      "contexte": "Formulation d'un pattern récursif appliqué à un phénomène du quotidien (interruptions) — possible trace de pensée computationnelle (récursion appliquée hors-code).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant annonce une relecture systématique de son propre texte avec scepticisme actif sur la cohérence du fil narratif et l'incise '(j'en ai déjà levé beaucoup)' suggère une activité d'auto-correction antérieure."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présomption d'absence : une annonce de relecture est un acte banal pour tout auteur, pas nécessairement de la pensée critique calibrée. Le marqueur de 1.01 demande un doute méthodique en action, pas un projet futur de vérification. Ce qui pourrait résister dans la pièce 1, c'est l'incise entre parenthèses '(j'en ai déjà levé beaucoup)' qui atteste d'un acte critique déjà exercé sur ses propres formulations — c'est une trace rétrospective d'auto-correction concrète, pas un projet. La verbalisation explicite des objets du doute (fil rouge, incohérences, effets de style agaçants) montre un scepticisme calibré sur des dimensions précises. Reste explicitement faible : la pièce ne décrit pas le mécanisme de la vérification, ni un exemple concret d'effet de style identifié.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'incise '(j'en ai déjà levé beaucoup)' atteste d'une auto-critique en acte exercée sur ses propres effets de style — ce n'est pas un projet de vérification mais une vérification déjà pratiquée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande maintenant si je n'ai pas surinterprété cette incise. Une seule pièce, et son cœur critique tient dans une parenthèse de quatre mots, sans exemple concret ni dispositif décrit. L'attaque (a) insuffisance probatoire s'applique frontalement : la pièce est trop allusive pour porter seule un verdict de pensée critique calibrée. Je n'écarte pas la pièce mais je dois reconnaître que la portée que je lui ai attribuée tient à peu.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'auto-correction antérieure est mentionnée en quatre mots entre parenthèses sans exemple ni dispositif ; la pièce résiste comme indice mais ne porte pas la qualité probatoire d'une trace concrète documentée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille, j'ai cherché à ne pas voir de pensée critique : une relecture annoncée est trop banale pour valoir une trace. Ce qui m'a forcé à reconnaître quelque chose, c'est l'incise entre parenthèses, où l'apprenant signale avoir déjà levé plusieurs incohérences sur son propre texte — une auto-critique en acte, pas un projet. Sous présomption de sycophantie, j'ai dû reconnaître que cette incise tient en quatre mots et qu'elle ne montre aucun exemple concret ni mécanisme de vérification. Il reste donc un indice corroboratif, pas une preuve décisive. Le travail sur le roman semble inclure un mouvement d'auto-révision, mais ce que cette feuille en dit tient dans une parenthèse. Pour ouvrir davantage ce dossier, une description d'un effet de style identifié et de la raison pour laquelle il a été levé suffirait à transformer l'indice en trace concrète.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a porté le verdict : la pièce survit comme indice corroboratif mais l'attaque d'insuffisance probatoire a réduit sa portée.",
+        "prescription": "La trace d'auto-correction existe sous forme d'une incise. Pour ouvrir ce dossier, un récit court d'un effet de style identifié et de ce qui a déclenché la correction donnerait à voir le doute méthodique en acte."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant arbitre entre poursuivre la trilogie et reprendre l'évaluation/cartographies, en interrogeant la pertinence opérationnelle de LangChain/bases vectorielles via le critère 'tout rentre en fenêtre de contexte' — il interroge l'objectif lui-même avant de s'engager."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : un arbitrage de tâche au quotidien n'est pas un cadrage d'intention. Beaucoup de personnes choisissent quoi faire ensuite sans pour autant interroger 'le bon problème'. Ce qui pourrait résister, c'est la suite de questionnements sur l'utilité réelle des bases de données vectorielles : l'apprenant ne se demande pas comment les implémenter mais s'il faut les implémenter — il interroge l'objectif lui-même (« je ne vois pas vraiment pourquoi ça serait utile, étant donné que tout rentre en fenêtre de contexte »). Reste explicitement faible : la décision finale (reprendre les cartographies) répond à une utilité directe pour Stéphane, ce qui ressemble plus à une priorisation qu'à un cadrage récursif.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant interroge l'utilité même de l'outil (« je ne vois pas vraiment pourquoi ça serait utile ») avec un critère technique précis — c'est une question sur l'objectif, pas sur l'exécution."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas confondu une réflexion d'opportunité avec un cadrage d'intention. La pièce mêle deux mouvements : (1) priorisation des projets et (2) questionnement sur l'utilité d'un outil technique. Le second est effectivement un cadrage sur la pertinence avant exécution, mais il porte sur un outil (bases vectorielles), pas sur la nature du problème à résoudre. L'attaque (b) confusion de compétence est pertinente : cela ressemble davantage à de la littératie IA (1.06) qu'à du cadrage de l'intention au sens strict. Cependant, le critère 'tout rentre en fenêtre de contexte' transforme la question 'comment implémenter ?' en 'faut-il implémenter ?' — c'est un déplacement vers l'objectif qui résiste partiellement.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le questionnement sur l'utilité technique d'un outil ressemble à du diagnostic technique (1.06) ; le déplacement vers 'faut-il vraiment résoudre ça ?' existe mais reste secondaire dans la pièce."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant la pièce, j'ai cherché à n'y voir qu'une priorisation banale entre deux projets. Ce qui m'a fait reconnaître autre chose, c'est le mouvement de l'apprenant qui, sur LangChain/bases vectorielles, ne demande pas 'comment' mais 'pourquoi' — et qui s'appuie sur un critère technique (« tout rentre en fenêtre de contexte ») pour conclure que le besoin n'est pas constitué pour le moment. Sous présomption de sycophantie, cette trace reste fragile parce que le cadrage porte sur un outil, pas sur la nature du problème, ce qui la rapproche d'une autre compétence. Reste un indice : la question 'faut-il vraiment ?' existe en filigrane et résiste partiellement. Pour rendre cette compétence plus visible, un récit où le projet de Stéphane lui-même serait recadré avant l'exécution (au lieu d'un outil) permettrait de voir l'art de la bonne question à l'œuvre.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.45,
+        "motif": "Le temps 2 a affaibli la pièce sans la disqualifier : la trace de cadrage porte sur un outil plutôt que sur l'objectif du projet lui-même.",
+        "prescription": "Le geste d'interroger l'utilité avant l'exécution est présent sur le terrain technique. Pour donner à voir le cadrage de l'intention au sens plein, un récit de reformulation d'un problème en cours de route ou d'un protocole de questionnement préalable serait un chemin possible."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "La relecture du roman pour vérifier que le fil rouge narratif reste cohérent suppose une opération de mise en cohérence de fragments — éventuelle trace de synthèse intégrative appliquée à son propre travail."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : la synthèse intégrative au sens de la fiche exige qu'un insight émerge — quelque chose que les fragments ne contenaient pas isolément. Ici, l'apprenant prévoit de relire pour vérifier la cohérence, ce qui est une opération de validation, pas une production d'insight nouveau. La métaphore 'fil rouge' nomme une cohérence narrative attendue, pas une fusion de domaines hétérogènes. Aucune pièce ne montre l'apprenant tirer d'une combinaison de sources une compréhension absente de chacune. La présomption d'absence absorbe largement la pièce 1 : la mise en cohérence narrative interne d'un roman ne franchit pas le seuil 'plus que la somme des parties' au sens de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille avec présomption d'absence, j'ai cherché un moment où des fragments hétérogènes seraient fusionnés en un insight neuf. La relecture du roman vise une cohérence interne, ce qui relève de la validation narrative, pas de la synthèse intégrative au sens de la fiche. Aucune trace ne porte la fusion de sources de nature différente en une idée que les sources ne contenaient pas. La compétence reste un territoire non visité dans cette feuille. Un récit où deux univers apparemment incompatibles (par exemple le narratif du roman et l'évaluation cartographique) se rejoignent en une métaphore productive en serait une trace claire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé la seule pièce : la cohérence narrative interne d'un roman ne franchit pas le seuil de l'insight émergent.",
+        "prescription": "La feuille du jour ne porte pas de trace de fusion entre domaines hétérogènes. Un récit où des éléments de natures différentes se rejoignent en une compréhension neuve serait un chemin possible pour ouvrir cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant nomme précisément sa limite cognitive (« 16 bureaux virtuels »), la compare à une norme externe (« 7 projets en parallèle ») et décrit le mécanisme de dégradation (« je n'arrive plus à me faire une représentation mentale claire de ce que je fais, ou j'en suis, et ou reprendre ») — métacognition opératoire sur sa propre capacité."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "L'apprenant observe que l'histoire est 'par morceaux dans sa tête' et qu'il ne sait pas encore si le fil rouge tient — observation explicite sur l'état de sa propre représentation mentale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : la métacognition exige que l'objet de la réflexion soit le processus cognitif lui-même, pas un problème externe. La pièce 1 ('32 bureaux virtuels, je redescends à 16') pourrait être lue comme un simple choix d'organisation. Pourtant, ce qui résiste, c'est la calibration explicite d'une limite personnelle de représentation mentale, comparée à une norme citée (« quelqu'un a dit qu'on pouvait difficilement gérer plus de 7 projets »), et le diagnostic précis du mécanisme de dégradation : non plus pouvoir se faire 'une représentation mentale claire de ce que je fais, ou j'en suis, et ou reprendre'. L'objet de la réflexion est ici le processus cognitif lui-même, pas le projet. La pièce 2 (l'histoire 'par morceaux dans la tête') est plus mince — c'est une observation sur son état mental mais sans articulation de la limite ni du mécanisme.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant calibre explicitement sa limite cognitive personnelle (16), la compare à une norme externe (7) et nomme le mécanisme de dégradation — l'objet de la réflexion est bien le processus cognitif."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "L'apprenant observe l'état fragmentaire de sa propre représentation mentale du roman, distinct du contenu du roman lui-même."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sur la pièce 1, l'attaque (h) faux positif de fiche ne tient pas : la fiche distingue 'j'ai progressé' (bilan) de la métacognition (processus cognitif comme objet), or ici c'est bien la capacité de représentation mentale qui est l'objet du discours, pas une progression. L'attaque (c) biais de medium pourrait s'appliquer (« l'apprenant écrit un journal donc il réfléchit ») mais le contenu — calibration chiffrée, comparaison à norme, mécanisme nommé — dépasse l'effet de medium. La pièce 1 sort confirmée. Sur la pièce 2, l'attaque (a) insuffisance probatoire est plus forte : 'l'histoire par morceaux dans ma tête' nomme un état sans articuler le processus cognitif comme objet de pilotage. La pièce 2 est affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le contenu n'est pas un effet de medium : la calibration chiffrée d'une limite personnelle, comparée à une norme externe et accompagnée d'un mécanisme de dégradation nommé, dépasse la simple sollicitation à réfléchir induite par le journal."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'observation de l'état mental fragmentaire existe mais reste allusive : pas de description du mécanisme cognitif, pas d'articulation de la stratégie pour passer du fragmenté au cohérent."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette feuille, j'ai cherché à réduire ces passages à de la simple organisation ou à de l'introspection vague. Ce qui m'a fait reconnaître autre chose, c'est la pièce sur les bureaux virtuels : l'apprenant pose une limite personnelle (16), la confronte à une norme citée (7), nomme un mécanisme de dégradation cognitive précis (perte de la représentation claire du quoi/où/par-où-reprendre) et décrit l'effet des interruptions récursives sur sa capacité. L'objet de la réflexion est bien le processus cognitif lui-même. Sous présomption de sycophantie, la pièce sur les bureaux virtuels a tenu sans être un effet de medium ; la pièce sur l'histoire 'par morceaux' a été affaiblie mais reste comme indice. Le verdict s'appuie principalement sur la première pièce, qui porte une trace concrète de pilotage métacognitif (passer de 32 à 16). Pour densifier cette zone, un récit ultérieur sur ce que la descente à 16 a réellement produit — sur la qualité du suivi, sur la nature des interruptions, sur ce qui se rétablit — donnerait à voir la métacognition dans son cycle complet.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé la pièce sur les bureaux virtuels comme trace concrète de pilotage métacognitif ; la pièce sur la représentation mentale fragmentée tient comme indice.",
+        "prescription": "Le travail montre un suivi explicite de ses propres capacités de représentation mentale. Pour prolonger, un retour sur ce que la descente de 32 à 16 bureaux a réellement produit — qualité du suivi, nature des interruptions, conditions de reprise — donnerait à voir le cycle métacognitif complet."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant anticipe que la valeur des bouquins techniques dépendra de la notoriété future des écoles — une trace possible de pensée par effet de second ordre ou de chaînage causal entre marché et adoption."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "La mention des « interruptions qui sont interrompues de manière récursive » nomme un mécanisme en cascade plutôt qu'un simple agacement — possible trace d'analyse systémique sur un phénomène cognitif quotidien."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : la pensée systémique demande qu'on nomme des boucles, des effets de cascade ou des points de levier, pas seulement qu'on constate la complexité. Sur la pièce 1, anticiper que la valeur d'un livre technique dépendra de l'adoption des écoles ressemble plus à du pragmatisme stratégique qu'à de la modélisation systémique : il n'y a pas de boucle nommée, pas de point de levier identifié. Sur la pièce 2, 'interruptions qui sont interrompues de manière récursive' nomme un mécanisme — la récursion — mais sans décrire les liens ni les directions. La présomption d'absence absorbe la pièce 1 sans difficulté. Elle hésite sur la pièce 2 : la récursion est un objet systémique au sens faible (un mécanisme avec une dynamique propre), mais la description s'arrête à la nomination.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Nommer 'interruptions qui sont interrompues de manière récursive' identifie un mécanisme dynamique, pas seulement un agacement — c'est une amorce de modélisation."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a résisté sur un fil. L'attaque (a) insuffisance probatoire s'applique fortement : la formule tient en une dizaine de mots, sans description du mécanisme, sans direction des liens, sans effets de cascade nommés au-delà de l'évocation. Au critère de la fiche (« nommer quels liens, dans quelle direction, avec quels effets »), la pièce ne satisfait que la nomination du phénomène. Pièce affaiblie au point où elle ne porte plus seule la compétence.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La récursion est nommée comme un fait mais sans articulation des liens, des directions ou des effets — la pièce porte une amorce, pas une modélisation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille avec présomption d'absence, j'ai cherché à n'y voir que du constat sur la complexité. Ce qui m'a fait hésiter, c'est la formule sur les interruptions récursives : l'apprenant ne dit pas 'c'est compliqué', il nomme un mécanisme dynamique (la récursion appliquée à son propre flux d'attention). Sous présomption de sycophantie, la pièce tient comme amorce mais pas comme modélisation : la fiche demande des liens, des directions et des effets nommés. Reste donc un indice corroboratif, pas une preuve. Pour rendre cette compétence visible dans le portfolio, une description un peu plus dépliée — qui s'interrompt quoi, dans quel sens, avec quel effet cumulé sur la représentation mentale — transformerait l'amorce en modélisation.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce 2 sans la disqualifier : un mécanisme nommé sans liens ni effets articulés porte une amorce, pas une modélisation.",
+        "prescription": "Le geste de nommer la récursion dans les interruptions ouvre la porte. Pour prolonger, une description un peu plus dépliée — qui interrompt quoi, dans quel sens, avec quels effets cumulés — donnerait à voir la modélisation au sens plein."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant écarte l'usage de bases de données vectorielles au motif que « tout rentre en fenêtre de contexte » — diagnostic technique fondé sur un mécanisme précis de l'IA (la fenêtre de contexte), pas sur une intuition vague."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : la littératie IA exige une compréhension causale du fonctionnement de l'IA, pas une réutilisation de vocabulaire ambiant. Sur la pièce 1, l'apprenant pourrait simplement répéter un mot à la mode. Ce qui résiste, c'est que la fenêtre de contexte est mobilisée comme critère opérationnel de décision : 'tout rentre en fenêtre de contexte' donc le besoin d'une base vectorielle (qui sert précisément à contourner les limites de la fenêtre de contexte) ne se constitue pas. C'est une compréhension causale appliquée à un choix d'architecture. Reste explicitement faible : la pièce est courte, ne déplie pas le mécanisme, et reste au seuil de la justification technique sans s'y enfoncer.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La fenêtre de contexte est mobilisée comme critère causal de décision (faut-il une base vectorielle ?), pas comme vocabulaire — c'est un diagnostic technique appliqué."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé une phrase courte. L'attaque (d) glissement lexical pourrait s'appliquer (« il dit 'fenêtre de contexte' comme tout le monde »). Mais la phrase n'est pas une mention isolée : elle sert d'argument pour ne pas mettre en place une infrastructure technique. C'est exactement le marqueur de la fiche : compréhension du pourquoi, mobilisée pour distinguer le réel du hype. La pièce sort confirmée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le terme 'fenêtre de contexte' n'est pas vocabulaire flottant : il fonctionne comme prémisse d'un raisonnement causal (les bases vectorielles servent à dépasser cette limite, or la limite n'est pas atteinte, donc l'outil est de trop pour le moment)."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à n'y voir qu'une réutilisation de vocabulaire technique. Ce qui m'a fait reconnaître autre chose, c'est que la fenêtre de contexte sert ici de critère opérationnel : l'apprenant raisonne sur l'utilité d'une base vectorielle par référence à la limite que cet outil contourne. C'est exactement la compréhension causale demandée par la fiche. Sous présomption de sycophantie, la pièce a tenu : le mot n'est pas flottant, il porte une charge argumentative. La pièce reste courte et n'épuise pas la profondeur possible du diagnostic, mais elle suffit à constituer une trace concrète. Pour prolonger, une réflexion ultérieure sur le seuil où la fenêtre de contexte deviendrait limitante donnerait à voir la littératie en mode prédictif.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 0,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé la pièce : la fenêtre de contexte est mobilisée comme critère causal d'une décision technique, pas comme vocabulaire ambiant.",
+        "prescription": "Le travail montre un diagnostic technique appliqué à un choix d'architecture. Pour prolonger, une réflexion sur le seuil où la fenêtre de contexte deviendrait limitante — et sur les indices qui le signaleraient — donnerait à voir cette compétence en mode prédictif."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "preuve décisive"
+        }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Mention de LangChain, LangFlow et bases de données vectorielles dans une réflexion sur ce que l'évaluation/cartographie pourrait mobiliser — possible trace de pensée architecturale (composants techniques envisagés), à filtrer du simple namedropping."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : l'architecture de systèmes IA exige une conception — composants, connexions, rôles, mécanismes de contrôle — et un système qu'un tiers pourrait comprendre et maintenir. Sur la pièce 1, l'apprenant nomme des outils (LangChain, LangFlow, bases vectorielles) mais comme outils à tester, pas comme composants d'un système conçu. Il ne décrit ni rôles ni flux ni mécanismes de fallback. La présomption d'absence absorbe la pièce : nommer trois outils n'est pas une architecture.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille avec présomption d'absence, j'ai cherché un récit où des composants seraient connectés avec des rôles et des flux. Les outils nommés (LangChain, LangFlow, bases vectorielles) le sont en mode 'à tester', pas en mode 'mon système est composé de'. L'architecture comme conception n'est pas activée par cette feuille. La compétence reste un territoire non visité dans ce passage particulier. Un récit ultérieur où l'évaluation/cartographie est dépliée comme système — qui produit quoi, qui appelle qui, où le contrôle se loge — en serait une trace.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 a absorbé la pièce : la nomination d'outils techniques ne constitue pas une conception de système avec composants, flux et rôles.",
+        "prescription": "Le travail mentionne des briques techniques sans encore les agencer en système. Pour ouvrir ce dossier, un récit qui décrirait l'évaluation/cartographie comme architecture — composants, flux, rôles, mécanismes de contrôle — serait un chemin possible."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio du jour ne contient pas encore de traces relatives au dialogue IA avancé. Pour ouvrir ce dossier, une description d'itérations stratégiques de prompts, de rôles différenciés ou de méta-prompting documenterait cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "La formulation « interruptions qui sont interrompues de manière récursive » applique un concept algorithmique (la récursion) à un phénomène non-informatique (le flux d'attention quotidien) — possible trace de transfert computationnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : la pensée computationnelle exige un transfert — appliquer la logique algorithmique HORS de l'informatique. Sur la pièce 1, l'apprenant emploie 'récursive' à propos d'interruptions du quotidien : c'est exactement le profil du transfert. Ce qui résiste, c'est précisément cela : 'récursive' n'est pas un mot quotidien, et il sert ici à nommer un mécanisme du flux d'attention. Reste explicitement faible : la formule est brève, isolée, et elle ne déplie pas le mécanisme récursif (pas de base case, pas d'appel, juste le mot).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le mot 'récursive' est appliqué hors informatique à un phénomène cognitif — c'est exactement le profil du transfert demandé par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je me demande si je n'ai pas surchargé un mot isolé. L'attaque (d) glissement lexical s'applique : l'apprenant peut employer 'récursif' au sens courant ('qui se répète') sans charge algorithmique. Mais le contexte (« interruptions qui sont interrompues ») installe précisément la structure récursive — un événement qui s'applique à lui-même — pas seulement la répétition. Le mot porte sa charge sémantique. Cependant, l'attaque (a) insuffisance probatoire reste forte : un mot juste dans un contexte juste, c'est un indice, pas une preuve d'une pratique computationnelle transposée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'usage de 'récursive' porte effectivement la structure algorithmique (un événement qui s'applique à lui-même) mais tient en une incise — la pièce est un indice fin, pas une trace concrète de transfert pratiqué."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille, j'ai cherché à réduire 'récursive' à un mot d'ambiance technique. Ce qui m'a fait reconnaître autre chose, c'est que le contexte installe la structure : 'interruptions qui sont interrompues' n'est pas de la simple répétition, c'est un événement qui s'applique à lui-même — exactement la structure récursive. Sous présomption de sycophantie, la pièce a tenu sur la charge sémantique mais elle reste fine : une incise ne porte pas seule un verdict de transfert pratiqué. Le travail montre l'usage d'un concept algorithmique dans un récit du quotidien, à un seuil d'indice plus que de preuve. Pour rendre cette compétence plus visible, un récit ultérieur où une structure conditionnelle ou itérative serait explicitement utilisée pour penser un processus humain — décision, méthode, relation — en serait une trace plus dense.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a affaibli la pièce : la charge algorithmique du mot 'récursive' tient mais l'incise ne porte pas seule un verdict de transfert pratiqué.",
+        "prescription": "L'usage juste d'un concept algorithmique dans un récit du quotidien est présent. Pour prolonger, un récit où une structure conditionnelle, itérative ou décomposée serait explicitement appliquée à un processus humain — décision, méthode, relation — donnerait à voir le transfert au sens plein."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "L'apprenant note qu'il a fallu 10 jours pour produire 400 pages — possible trace implicite de complémentarité humain-IA (vitesse de génération), à filtrer d'un simple constat de productivité."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "L'apprenant garde la relecture finale pour lui (« je vais maintenant relire le tout du début à la fin »), suggérant une répartition implicite : génération IA, validation humaine."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Présomption d'absence : la synergie au sens de la fiche exige une articulation des forces comparatives — pas un usage, mais une théorisation de qui fait quoi de mieux et pourquoi. Sur la pièce 1, '10 jours pour 400 pages' est un constat de vélocité, sans articulation de ce qu'apporte l'humain ou l'IA. Sur la pièce 2, garder la relecture pour soi pourrait être une répartition implicite — l'IA génère, l'humain valide — mais l'apprenant ne le formule pas comme un choix de complémentarité, plutôt comme une étape de finition. La présomption d'absence absorbe largement les deux pièces : le verbe 'articuler' (les forces, les choix) n'est jamais activé dans cette feuille.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En lisant cette feuille avec présomption d'absence, j'ai cherché une articulation explicite des forces respectives de l'humain et de l'IA. La vélocité de production est observée, et une répartition de fait existe (générer / relire), mais la fiche demande l'articulation, pas l'usage. Aucune trace ne pose 'ce que l'IA fait mieux' face à 'ce que l'humain garde'. La compétence reste un territoire non visité dans cette feuille. Un récit où la décision de garder la relecture humaine serait justifiée par ce que l'humain perçoit que l'IA ne perçoit pas — cohérence du fil rouge ressentie ? effets de style agaçants ? — en serait une trace claire.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Le temps 1 a absorbé les deux pièces : la vélocité de production et la répartition de fait existent, mais l'articulation des forces comparatives — critère central de la fiche — n'est jamais formulée.",
+        "prescription": "Le travail montre un workflow hybride en action sans le formuler comme tel. Pour ouvrir ce dossier, une explicitation de ce que la relecture humaine perçoit là où l'IA ne perçoit pas — fil rouge ressenti, effets de style, cohérence d'ensemble — serait un chemin possible."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 9,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 4,
+    "nonEtablies": 3,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du jour, le travail de pensée se déploie principalement autour d'un projet d'auto-édition arrivé à terme et d'une réorientation vers les évaluations/cartographies. La voix dominante est celle d'un praticien qui s'arrête pour faire le point — sur l'état de sa propre représentation mentale, sur la pertinence d'un outil technique, sur le rythme à venir. Les marqueurs concrets qui reviennent sont chiffrés (10 jours, 400 pages, 32 bureaux virtuels, 16, 7) — la pensée se calibre par référence à des seuils observables. Le registre alterne entre journal opérationnel (étapes ISBN, multiples de 4, couverture, distribution) et observation cognitive sur soi (« je n'arrive plus à me faire une représentation mentale claire »). Ce qui traverse la feuille, c'est un mouvement de réduction délibérée — réduire le bruit (32 → 16 bureaux), arbitrer entre projets, écarter un outil non nécessaire.",
+    "territoiresDenses": [
+      {
+        "competence": "Métacognition et humilité épistémique",
+        "description": "Le travail sur sa propre capacité de représentation mentale est explicite : l'apprenant nomme une limite personnelle, la compare à une norme externe et identifie un mécanisme de dégradation.",
+        "extraitVerbatim": "Quelqu'un a dit qu'on pouvait difficilement gérer plus de 7 projets en parallèle. Moi, ma limite c'est 16. Après je n'arrive plus à me faire une représentation mentale claire de ce que je fais, ou j'en suis, et ou reprendre (surtout avec les interruptions qui sont interrompues de manière récursive).",
+        "ceQueCaDit": "Le suivi de ses propres processus cognitifs ne reste pas vague : il prend la forme d'une calibration chiffrée et d'un mécanisme nommé. C'est un pilotage explicite, pas un bilan."
+      },
+      {
+        "competence": "Littératie IA et data literacy",
+        "description": "Le diagnostic technique sur l'utilité d'une base de données vectorielle s'appuie sur un mécanisme précis de l'IA — la fenêtre de contexte — mobilisé comme critère de décision plutôt que comme vocabulaire.",
+        "extraitVerbatim": "Sauf que pour le moment, je ne vois pas vraiment pourquoi ça serait utile, étant donné que tout rentre en fenêtre de contexte.",
+        "ceQueCaDit": "La compréhension causale du fonctionnement de l'IA est mobilisée pour distinguer le besoin réel du réflexe d'adoption d'outils — une littératie appliquée à un choix concret."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent peu visités par la feuille du jour. La synthèse intégrative — la fusion de fragments hétérogènes en un insight neuf — n'apparaît pas : la relecture du roman vise la cohérence interne, pas l'émergence d'un sens transversal. L'architecture de systèmes IA est évoquée par le nom de quelques outils (LangChain, LangFlow, bases vectorielles) sans encore être agencée en système avec composants, flux et rôles. Le dialogue IA avancé n'est pas adressé dans cette feuille, ce qui ressemble plutôt à une limite ponctuelle qu'à une absence de fond — le projet du jour ne sollicitait pas ce registre. La synergie hybride existe en pratique (10 jours, 400 pages, relecture gardée pour soi) sans encore être formulée comme une articulation explicite des forces comparatives — c'est un territoire qui ouvrirait facilement avec une seule phrase de plus.",
+    "emergencesPole": "Ce qui traverse plusieurs compétences de ce pôle, c'est un rapport au seuil. L'apprenant ne pense pas par maximisation mais par calibration : 16 bureaux plutôt que 32, pas de base vectorielle tant que la fenêtre de contexte suffit, pas de trilogie technique tant que le marché des écoles n'est pas mûr. Le geste récurrent consiste à identifier le point où l'effort marginal cesse d'être productif. On y retrouve aussi un usage discret du vocabulaire technique appliqué hors-code — 'récursive' pour décrire un flux d'attention, 'fenêtre de contexte' pour arbitrer une infrastructure — qui suggère une circulation des concepts entre les domaines.",
+    "pistes": [
+      "Pour prolonger le suivi de ses propres processus cognitifs, un chemin possible serait de revenir, après la descente à 16 bureaux, sur ce que ce passage a réellement produit — qualité du suivi, nature des interruptions qui persistent, conditions de reprise effectives.",
+      "Pour enrichir la lecture critique de ses propres productions, un chemin possible serait de raconter un effet de style identifié lors de la relecture du roman et ce qui l'a fait lever — dépliage d'un cas particulier qui rendrait visible le doute méthodique en acte.",
+      "Pour ouvrir l'articulation des forces humain-IA, un chemin possible serait d'expliciter ce que la relecture humaine perçoit là où l'IA ne perçoit pas — cohérence ressentie du fil rouge, effets de style agaçants, autres lignes de validation propres à l'œil humain.",
+      "Pour donner à voir la dimension architecturale du travail technique, un chemin possible serait de décrire l'évaluation/cartographie comme système — composants, flux entre les rôles, mécanismes de contrôle — au moment de la reprise."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du jour, le travail de pensée se déploie principalement autour d'un projet d'auto-édition arrivé à terme et d'une réorientation vers les évaluations/cartographies. La voix dominante est celle d'un praticien qui s'arrête pour faire le point — sur l'état de sa propre représentation mentale, sur la pertinence d'un outil technique, sur le rythme à venir. Les marqueurs concrets qui reviennent sont chiffrés (10 jours, 400 pages, 32 bureaux virtuels, 16, 7) — la pensée se calibre par référence à des seuils observables. Le registre alterne entre journal opérationnel (étapes ISBN, multiples de 4, couverture, distribution) et observation cognitive sur soi (« je n'arrive plus à me faire une représentation mentale claire »). Ce qui traverse la feuille, c'est un mouvement de réduction délibérée — réduire le bruit (32 → 16 bureaux), arbitrer entre projets, écarter un outil non nécessaire.\n\n## Territoires les plus denses\n\n**Métacognition et humilité épistémique.** Le travail sur sa propre capacité de représentation mentale est explicite : l'apprenant nomme une limite personnelle, la compare à une norme externe et identifie un mécanisme de dégradation. *« Quelqu'un a dit qu'on pouvait difficilement gérer plus de 7 projets en parallèle. Moi, ma limite c'est 16. Après je n'arrive plus à me faire une représentation mentale claire de ce que je fais, ou j'en suis, et ou reprendre (surtout avec les interruptions qui sont interrompues de manière récursive). »* Le suivi des processus cognitifs ne reste pas vague : il prend la forme d'une calibration chiffrée et d'un mécanisme nommé. C'est un pilotage explicite, pas un bilan.\n\n**Littératie IA et data literacy.** Le diagnostic technique sur l'utilité d'une base de données vectorielle s'appuie sur un mécanisme précis de l'IA — la fenêtre de contexte — mobilisé comme critère de décision plutôt que comme vocabulaire. *« Sauf que pour le moment, je ne vois pas vraiment pourquoi ça serait utile, étant donné que tout rentre en fenêtre de contexte. »* La compréhension causale du fonctionnement de l'IA est mobilisée pour distinguer le besoin réel du réflexe d'adoption d'outils — une littératie appliquée à un choix concret.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent peu visités par la feuille du jour. La synthèse intégrative — la fusion de fragments hétérogènes en un insight neuf — n'apparaît pas : la relecture du roman vise la cohérence interne, pas l'émergence d'un sens transversal. L'architecture de systèmes IA est évoquée par le nom de quelques outils (LangChain, LangFlow, bases vectorielles) sans encore être agencée en système avec composants, flux et rôles. Le dialogue IA avancé n'est pas adressé dans cette feuille, ce qui ressemble plutôt à une limite ponctuelle qu'à une absence de fond — le projet du jour ne sollicitait pas ce registre. La synergie hybride existe en pratique (10 jours, 400 pages, relecture gardée pour soi) sans encore être formulée comme une articulation explicite des forces comparatives — c'est un territoire qui ouvrirait facilement avec une seule phrase de plus.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse plusieurs compétences de ce pôle, c'est un rapport au seuil. L'apprenant ne pense pas par maximisation mais par calibration : 16 bureaux plutôt que 32, pas de base vectorielle tant que la fenêtre de contexte suffit, pas de trilogie technique tant que le marché des écoles n'est pas mûr. Le geste récurrent consiste à identifier le point où l'effort marginal cesse d'être productif. On y retrouve aussi un usage discret du vocabulaire technique appliqué hors-code — 'récursive' pour décrire un flux d'attention, 'fenêtre de contexte' pour arbitrer une infrastructure — qui suggère une circulation des concepts entre les domaines.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger le suivi de ses propres processus cognitifs, un chemin possible serait de revenir, après la descente à 16 bureaux, sur ce que ce passage a réellement produit — qualité du suivi, nature des interruptions qui persistent, conditions de reprise effectives.\n- Pour enrichir la lecture critique de ses propres productions, un chemin possible serait de raconter un effet de style identifié lors de la relecture du roman et ce qui l'a fait lever — dépliage d'un cas particulier qui rendrait visible le doute méthodique en acte.\n- Pour ouvrir l'articulation des forces humain-IA, un chemin possible serait d'expliciter ce que la relecture humaine perçoit là où l'IA ne perçoit pas — cohérence ressentie du fil rouge, effets de style agaçants, autres lignes de validation propres à l'œil humain.\n- Pour donner à voir la dimension architecturale du travail technique, un chemin possible serait de décrire l'évaluation/cartographie comme système — composants, flux entre les rôles, mécanismes de contrôle — au moment de la reprise.\n"
+  }
+}

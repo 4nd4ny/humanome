@@ -1,0 +1,585 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "J'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic. Du coup j'ai crafté, avec l'aide de Claude, ce nouveau prompt de préférence utilisateur",
+      "contexte": "Diagnostic + itération v1→v2 d'un protocole — geste de pilotage agile face à une dégradation. Active 7.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Je m'adapte au contexte : - **Outil** → Je produis le travail demandé, efficacement - **Miroir** → J'élargis ton champ de vision, je montre l'angle mort - **Agent réflexif** → Je maintiens la tension, j'habite les silences",
+      "contexte": "Trois postures différenciées assignées à l'IA avec règles de bascule selon le contexte — leadership situationnel humain-IA. Active 7.04.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "### 1.1 Attention \"Qu'est-ce que tu me demandes exactement ?\" → Je reformule la demande en 1-2 phrases",
+      "contexte": "Première phase du protocole : reformuler la demande pour la comprendre — geste maïeutique imposé à l'IA. Active 7.01.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "**CHECKPOINT 1** : Je te montre ma compréhension. Tu valides ou corriges. ... **CHECKPOINT 2** : Si mon image mentale du projet est floue, je demande clarification AVANT de continuer. ... **CHECKPOINT 3** : Je te montre mon plan. Tu valides ou réorientes. ... **CHECKPOINT 4** : Si doute, je demande validation intermédiaire.",
+      "contexte": "Quatre checkpoints structurant la boucle de rétroaction du protocole — boucle d'évaluation transformative et d'agilité. Active 7.02 et 7.07.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "PHASE 7 -- ANALYSE RÉFLEXIVE (j'apprends) ### 7.1 Introspection \"Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ?\" ### 7.2 Transfert \"Qu'est-ce que je retiens pour les prochaines conversations ?\" → **Ceci devrait alimenter ma mémoire persistante**",
+      "contexte": "Phase 7 de débriefing structurée par questions transformatives, avec capitalisation pour l'avenir. Active 7.02 et 7.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "SIGNAUX D'ALERTE - **[FLOU]** -- Mon image mentale du projet est incomplète - **[DÉRIVE]** -- Je m'éloigne de l'intention stratégique - **[PATCH]** -- Je corrige localement sans réviser le tout - **[SURFACE]** -- Je réponds à la demande, pas au problème - **[SURCHARGE]** -- Trop d'informations, je dois simplifier - **[BLOCAGE]** -- Je ne sais pas continuer, j'ai besoin d'aide",
+      "contexte": "Système d'alertes structuré pour signaler dérives et blocages — boîte à outils de pilotage du flux conversationnel. Active 7.07 et 7.02.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "A partir de ça, j'ai repris la dernière conversation pour aboutir à ces deux documents emblématiques ainsi que ce texte marketing",
+      "contexte": "Itération entre prompt, conversation et artefacts — workflow d'élaboration documentée. Active 7.07 et 7.03.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "RESPIRE ne remplace pas l'école - elle répare ce qu'elle ne fait pas. C'est plus qu'un réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs. C'est un protocole ouvert, libre de droit, dans lequel n'importe qui peut créer une micro-classe et se joindre au réseau, n'importe où, sans demander la permission à personne, en parallèle avec sa scolarité.",
+      "contexte": "Architecture pédagogique inédite : auto-reproduction, validation par les pairs — design d'un environnement d'apprentissage autonome. Active 7.01 (architecture pédagogique) et 7.02 (évaluation pair-à-pair).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Pourtant, il sait faire des choses qu'aucune IA ne reproduit. Il pose la question que personne n'osait poser. Il s'acharne sur un problème jusqu'à le résoudre. Il aide ses amis et explique ce que le prof n'a pas su expliquer.",
+      "contexte": "Description du « bon » élève comme pédagogue de ses pairs — vision pédagogique implicite. Active 7.01.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "L'école aurait dû être le lieu du développement des intelligences. La société mercantile l'a transformée en lieu de tri social.",
+      "contexte": "Vision stratégique long-terme sur le rôle de l'école dans la société — lien entre projection et action présente (création de RESPIRE). Active 7.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-01-23",
+      "extraitVerbatim": "Aujourd'hui, c'est ce qui va précipiter sa perte. N'attendez pas que l'institution change. Elle ne changera pas. Pas à temps en tout cas.",
+      "contexte": "Projection future (« va précipiter sa perte ») justifiant une décision présente (« n'attendez pas ») — lien explicite entre futur anticipé et action immédiate. Active 7.05.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Phase 1.1 du protocole : reformulation de la demande par questionnement — geste maïeutique appliqué à l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Architecture pédagogique de RESPIRE : auto-reproduction par les élèves, validation pair-à-pair — environnement d'apprentissage autonome conçu."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Description du « bon » élève comme celui qui « aide ses amis et explique ce que le prof n'a pas su expliquer » — vision de la transmission par les pairs."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la maïeutique exige une retenue délibérée de celui qui sait — questionner plutôt que dire — et la facilitation exige une architecture intentionnelle. La pièce 1 est un geste maïeutique imposé à l'IA (reformuler la demande), mais dirigé vers l'IA, pas pratiqué sur un humain. La pièce 2 (architecture RESPIRE auto-reproductible avec validation pair-à-pair) est précisément ce que la fiche cite comme manifestation d'architecture pédagogique aboutie — un environnement où l'apprentissage se produit de manière autonome. La pièce 3 valorise un acte de transmission entre pairs, mais c'est une description externe, pas un récit d'acte maïeutique de l'apprenant lui-même. La pièce 2 résiste fortement, les autres faiblement.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Architecture pédagogique inédite (auto-reproduction, validation pair-à-pair, ouverture sans permission) qui conçoit un environnement où l'apprentissage se produit sans instruction frontale — marqueur direct cité par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 2 en suspectant la projection : RESPIRE est-elle un environnement d'apprentissage architecturé ou simplement un dispositif politique ? La fiche cite « ateliers, parcours différenciés, tutoriels structurés, mise en situation plutôt qu'instruction frontale » comme manifestations. RESPIRE coche plusieurs cases : c'est un « protocole » (architecture), « auto-reproduit » (suppose une transmission de la méthode), « validation pair-à-pair » (mise en situation d'évaluation), « sans permission » (autonomie d'apprentissage). L'attaque (g) « mouvement-vers » est tentante : c'est un projet décrit, pas un environnement éprouvé. La pièce s'affaiblit mais tient — la fiche valorise la *description* d'architecture (artefacts traçables) jusqu'à Expert.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'architecture est décrite (auto-reproduction, validation pair-à-pair) mais pas (encore) éprouvée par des élèves réels ; le mouvement-vers la facilitation est partiellement présent, la conception architecturale tient."
+            },
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le geste de reformulation appliqué à l'IA relève davantage de la sophistication de dialogue (1.08) que de la maïeutique au sens de 7.01, qui adresse un humain comme source de son propre savoir."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Décrire que l'enfant « aide ses amis et explique ce que le prof n'a pas su expliquer » n'est pas pratiquer la maïeutique soi-même ; la pièce relève de l'observation externe, pas du geste maïeutique de l'apprenant."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à séparer la maïeutique adressée à un humain de la sophistication de dialogue adressée à une IA. Les pièces touchant l'IA ou décrivant les autres sont tombées comme relevant d'autres compétences. Ce qui m'a forcé à reconnaître la facilitation, c'est l'architecture de RESPIRE : un environnement où l'apprentissage se produit par auto-reproduction et validation entre pairs, sans instruction frontale. Cette conception touche très directement le marqueur central de la facilitation au sens de la fiche. Sur cette feuille, le travail montre une pensée architecturale pédagogique aboutie au niveau de la conception. La nuance qui reste : aucun récit n'atteste la posture maïeutique elle-même — questions citées, retenue assumée, reformulation patiente d'une question qui n'a pas fait mouche. La compétence se manifeste ici par son volet architectural, pas par son volet posturel.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Un indice affaibli mais solide (architecture pédagogique inédite décrite) ; la fiche valorise précisément la description d'architecture comme trace forte, indépendamment de la mise en œuvre.",
+        "prescription": "Un prolongement utile serait de documenter une posture maïeutique exercée — citer une question posée à un apprenant, raconter la retenue de ne pas donner la réponse, la reformulation patiente d'une question qui n'a pas fait mouche. Le volet posturel compléterait le volet architectural déjà installé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Phase 7 « Introspection / Transfert » avec questions transformatives (« Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ? Qu'est-ce que je retiens ? ») — dispositif d'évaluation formative."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Quatre checkpoints avec validation/correction par le partenaire — dispositif évaluatif intégré au workflow."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "RESPIRE : validation des compétences par les pairs eux-mêmes — dispositif d'évaluation transformative pair-à-pair."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'évaluation transformative exige un dispositif évaluatif qui vise la progression et non le tri, avec des critères ou des questions explicites. La pièce 1 est forte : « Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ? Qu'est-ce que je retiens ? » sont précisément les questions transformatives que la fiche cite. La pièce 3 (validation pair-à-pair de RESPIRE) est un dispositif d'évaluation au sens fort, qui transforme l'acte évaluatif en levier d'apprentissage (les évaluateurs apprennent en évaluant). La pièce 2 (checkpoints) est plus mince — c'est un mécanisme de contrôle plus qu'une évaluation transformative. Les pièces 1 et 3 résistent.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Questions transformatives directement citées par la fiche (« Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ? ») structurant une phase de débriefing." },
+            { "pieceId": 3, "motifResistance": "Validation pair-à-pair des compétences est un dispositif d'évaluation où évaluateurs et évalués progressent ensemble — finalité formative au sens de la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en gardant à l'esprit le critère discriminant : trier (sommatif) vs faire progresser (transformatif). La pièce 1 est tournée vers la progression future (« qu'est-ce que je retiens pour les prochaines conversations »), pas vers le tri. La pièce 3 est plus ambiguë : la « validation des compétences » peut être lue soit comme sommative (l'élève est ou n'est pas compétent) soit comme transformative (l'évaluation est elle-même un moment d'apprentissage). Le contexte (élèves valident leurs pairs, dispositif horizontal, finalité éducative) penche vers le transformatif. L'attaque (f) « récit performatif » mord partiellement sur les deux pièces : ce sont des dispositifs conçus, pas des récits d'actes évaluatifs vécus. Tiennent comme indices solides.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Les questions transformatives sont explicitement citées par la fiche comme manifestations centrales ; leur formulation tient comme conception aboutie indépendamment du récit d'un acte évaluatif vécu."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La validation pair-à-pair de RESPIRE est conçue mais pas (encore) éprouvée ; tient comme conception de dispositif transformatif, sans le récit de son fonctionnement effectif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Les checkpoints sont des mécanismes de contrôle de progression du dialogue (mieux capté par 7.07) plutôt que des actes évaluatifs spécifiques au sens de 7.02."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché des dispositifs évaluatifs au service de la progression. La pièce des questions transformatives a tenu solidement : « Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ? Qu'est-ce que je retiens ? » sont les questions canoniques de l'évaluation formative. La validation pair-à-pair de RESPIRE a tenu comme conception aboutie, affaiblie parce qu'on ne lit pas son fonctionnement effectif. Sur cette feuille, le travail montre une pensée évaluative tournée vers la progression — dans le dialogue avec l'IA comme dans le projet RESPIRE. La nuance qui reste : un récit d'un acte évaluatif où l'apprenant aurait choisi de poser une question au lieu de corriger, ou nommé ce qui fonctionnait avant d'ouvrir une piste, manque encore — la compétence est ici conceptuelle.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.65,
+        "motif": "Deux indices solides (questions transformatives canoniques et dispositif d'évaluation pair-à-pair) portent ensemble le verdict ; la conception est aboutie même si l'acte évaluatif vécu n'est pas raconté.",
+        "prescription": "Un prolongement utile serait de raconter un acte évaluatif spécifique — une situation où l'apprenant aurait pu noter ou corriger, et où il a choisi de poser une question, en nommant ce qui fonctionnait avant d'ouvrir une piste concrète. L'acte évaluatif incarné durcirait la conception."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "« Ceci devrait alimenter ma mémoire persistante » : intention explicite de capitalisation des apprentissages d'une conversation vers une mémoire pérenne."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Workflow où un prompt nourrit une conversation qui produit des « documents emblématiques » + un texte marketing — chaîne de capitalisation explicite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la documentation vivante exige une attention délibérée à la structuration pour autrui, avec conscience du destinataire et intention de pérennisation. La pièce 1 (« alimenter ma mémoire persistante ») nomme exactement l'intention de capitalisation citée par la fiche. Le destinataire ici est l'apprenant futur lui-même (à travers l'IA), ce qui est explicitement validé par la fiche (« pour soi futur, avec distance »). La pièce 2 (chaîne prompt → conversation → artefacts) atteste un travail de structuration : ce qui est produit est explicitement nommé « emblématique », signe d'une intention de conservation. Cependant la fiche distingue 7.03 de 5.03 par le critère de la structuration : ici on a l'intention, mais le portfolio lui-même comme dispositif de capitalisation n'est pas thématisé. Les pièces résistent partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Alimenter ma mémoire persistante » nomme exactement l'intention de capitalisation transversale aux conversations — marqueur direct cité par la fiche." },
+            { "pieceId": 2, "motifResistance": "L'enchaînement prompt → conversation → artefacts « emblématiques » atteste une structuration intentionnelle de la production." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant le glissement vers la simple sauvegarde. La fiche est claire : « j'ai sauvegardé » ou « j'ai archivé » ne suffit pas — il faut une structuration. La pièce 1 va plus loin : « ALIMENTER ma mémoire persistante » suppose une mémoire en évolution, pas une sauvegarde statique. C'est le marqueur de la documentation « vivante » au sens fort. La pièce 2 est plus mince : « aboutir à ces deux documents emblématiques » est allusif, on ne lit pas la structuration documentaire elle-même. L'attaque (a) mord sur la pièce 2 mais pas sur la pièce 1.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "« Alimenter » suppose une mémoire qui évolue — c'est précisément le caractère « vivant » que la fiche valorise, distinct de la simple sauvegarde."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'enchaînement vers des « documents emblématiques » atteste une intention de structuration, mais on ne lit pas la documentation elle-même (titres, sections, séparation des artefacts) que la fiche valorise."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer la documentation vivante de la simple sauvegarde. La pièce de la « mémoire persistante alimentée » a tenu : l'intention est précisément celle d'une documentation qui évolue, pas d'un stockage statique. La chaîne vers les artefacts emblématiques a tenu comme indice. Sur cette feuille, le travail montre une intention claire de capitalisation pérenne, avec conscience du destinataire (l'apprenant futur) et structuration de la chaîne de production. La nuance qui reste : la structuration documentaire elle-même (sections, versioning, README) n'est pas montrée — le portfolio comme dispositif de capitalisation pourrait être thématisé.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "Deux indices ont tenu : l'intention explicite d'une mémoire qui évolue et la chaîne vers des artefacts emblématiques attestent une documentation vivante au sens de la fiche.",
+        "prescription": "Un prolongement utile serait de thématiser le portfolio lui-même comme dispositif de capitalisation — pourquoi telle structure, pour quel lecteur futur, avec quel versioning. La structuration nommée durcirait la documentation vivante."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Trois rôles assignés à l'IA selon le contexte (Outil, Miroir, Agent réflexif) — alternance délibérée entre directives différentes selon ce que la situation exige."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le leadership situationnel exige une alternance consciente entre direction et retrait, avec déclencheur identifiable. La pièce 1 décrit trois postures différenciées pour l'IA, mais on ne lit pas les règles de bascule entre elles (« je passe en mode Miroir quand X, je reprends en Outil quand Y »). La fiche cite « définition d'une hiérarchie de décision, recadrages ponctuels sans micro-management » et surtout « critère de bascule explicite ». Ici les trois modes sont nommés mais pas leurs critères de déclenchement. La pièce résiste partiellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Trois postures différenciées de l'IA selon le contexte — manifestation directe de l'alternance de leadership citée par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en suspectant la confusion avec 1.08 et 1.10. La fiche distingue : 1.10 = articulation des forces comparatives, 7.04 = choix de posture à un moment donné. La pièce 1 fait les deux : elle articule (Outil fait quoi, Miroir fait quoi) et elle pose un choix de posture (« je m'adapte au contexte »). L'attaque (b) mord modérément. La fiche cite explicitement « assignation de rôles différenciés à des agents IA » comme manifestation centrale de 7.04 — la pièce coïncide. Cependant on ne lit pas la règle de bascule (quel signal déclenche le passage d'un mode à l'autre).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les trois rôles sont nommés avec missions différenciées mais les critères de bascule entre modes ne sont pas explicités ; tient comme indice de leadership situationnel sans la spécification complète."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché les règles de bascule entre modes de leadership. La pièce des trois rôles tient comme indice : elle nomme l'alternance, sans spécifier ses déclencheurs. La fiche valorise explicitement « l'assignation de rôles différenciés à des agents IA » comme manifestation centrale — la pièce coïncide partiellement. Sur cette feuille, le travail montre une conscience de l'alternance entre modes de pilotage de l'IA, sans encore la mécanique précise des bascules. La nuance qui reste : un récit où l'apprenant décrit le moment où il a choisi de passer de Outil à Miroir, avec le déclencheur identifié et le résultat observé, durcirait la trace.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Un seul indice affaibli (trois rôles nommés sans règles de bascule explicites) ; le marqueur central de la fiche est touché sans être pleinement déployé.",
+        "prescription": "Un prolongement utile serait de raconter le moment où le pilotage a basculé d'un mode à l'autre — quel signal a déclenché le passage de Outil à Miroir, ce que la bascule a produit. Le critère de bascule rend l'alternance lisible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 11,
+          "contexte": "« Va précipiter sa perte. N'attendez pas » : lien explicite entre projection future (chute de l'institution) et décision présente (agir maintenant)."
+        },
+        {
+          "numero": 2,
+          "pid": 10,
+          "contexte": "Inscription dans une histoire longue (100 ans) et anticipation d'un futur (chute de l'école mercantile) — vision long-terme structurante."
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "RESPIRE conçue avec une architecture extensible (auto-reproduction, libre de droit) anticipant un déploiement à grande échelle non encore advenu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la vision stratégique exige un lien argumenté entre futur anticipé et décision présente. La pièce 1 fait exactement ce mouvement : la projection (« va précipiter sa perte ») justifie l'action immédiate (« n'attendez pas »). C'est le marqueur central. La pièce 2 inscrit le diagnostic dans une histoire longue de 100 ans — vision long-terme. La pièce 3 (architecture extensible) est citée par la fiche : « architecture de travail surdimensionnée pour l'usage actuel = vision prospective incarnée dans la structure ». Les trois pièces résistent.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Lien explicite entre projection (chute institutionnelle) et action présente (ne pas attendre) — marqueur direct de la fiche." },
+            { "pieceId": 2, "motifResistance": "Vision long-terme structurante : 100 ans d'histoire mobilisés pour éclairer le futur." },
+            { "pieceId": 3, "motifResistance": "Architecture extensible anticipant un déploiement non encore advenu — marqueur oblique cité par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant la confusion avec 4.03 (long-terme écologique). La distinction de la fiche est claire : 7.05 = long-terme stratégique, 4.03 = long-terme écologique/générationnel. Ici les pièces portent un long-terme stratégique-éducatif, pas écologique — la distinction tient pour 7.05. L'attaque (e) « surinterprétation » est tentante : « va précipiter sa perte » est-elle une vraie projection argumentée ou une prophétie rhétorique ? La pièce 1 reste affaiblie mais tient : le lien projection/action est explicite. La pièce 3 est solide : une architecture « auto-reproduite, libre de droit » est manifestement surdimensionnée pour l'usage actuel (qui est encore à zéro).",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le lien projection/action est explicite mais la projection elle-même n'est pas étayée par des conditions de réalisation précises ; tient comme indice de vision."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'inscription dans une histoire longue est posée mais ne déploie pas de scénarios prospectifs à plusieurs horizons ; vision plus large que prospective au sens strict."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'architecture extensible (auto-reproduction, libre de droit) est précisément ce que la fiche cite comme trace oblique de vision prospective incarnée dans la structure — pas de surinterprétation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché un lien argumenté entre futur anticipé et décision présente. Ce qui m'a forcé à reconnaître la compétence, c'est la triade : un argument explicite (chute institutionnelle → action immédiate), une inscription dans une histoire longue (100 ans d'éducation nouvelle), et une architecture extensible préparée pour un déploiement non encore advenu. Cette dernière pièce est particulièrement solide : RESPIRE est conçue pour passer à l'échelle (auto-reproduction, libre de droit) alors même qu'aucune micro-classe n'existe encore — c'est précisément la signature de la vision prospective incarnée dans la structure. Sur cette feuille, le travail montre une vision stratégique articulée à plusieurs horizons. La nuance qui reste : les conditions de réalisation des scénarios futurs ne sont pas explicitées.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Une preuve confirmée (architecture extensible anticipant un déploiement à grande échelle) et deux indices (lien projection/action explicite, vision long-terme) portent ensemble le verdict.",
+        "prescription": "Un prolongement utile serait d'expliciter les conditions de réalisation des scénarios futurs — quels signaux indiqueraient que RESPIRE prend, quels signaux indiqueraient que l'institution se transforme finalement à temps. Les conditions rendent la prospective testable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "« Si mon image mentale du projet est floue, je demande clarification AVANT de continuer » : règle de priorisation et de filtre — refuser d'avancer dans le flou."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Signaux d'alerte ([SURCHARGE] notamment) reconnaissant ses propres limites d'énergie ou d'attention."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'efficacité personnelle exige des décisions explicites de ne pas faire, accompagnées de raisons articulées. Les pièces 1 et 2 sont des règles imposées à l'IA dans un protocole, pas des décisions personnelles de l'apprenant racontées. La fiche dit explicitement que le marqueur le plus fiable est le « non stratégique argumenté » — il faut le récit d'un refus, pas la règle d'un refus. Le tag [SURCHARGE] nomme une limite générique sans être levé sur un cas vécu. Aucune pièce ne raconte une décision personnelle de renoncement avec ses raisons. La présomption d'absence tient.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner au temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché le « non stratégique argumenté » que la fiche identifie comme marqueur le plus fiable. Sur cette feuille, les règles de priorisation sont posées dans le protocole adressé à l'IA, sans qu'aucune décision personnelle de renoncement ne soit racontée. La fiche est claire : décrire ce qu'on refuse est plus probant que décrire ce qu'on accomplit, et l'apprenant ici décrit ce qu'il accomplit (un nouveau protocole, des artefacts, un texte marketing) sans documenter de refus. L'orientation : raconter un projet auquel il a dit non, ou une sollicitation qu'il a déclinée, avec les raisons articulées, ouvrirait ce territoire.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a été contredite par aucune pièce : les règles de priorisation sont imposées à l'IA, pas racontées comme décisions personnelles de renoncement.",
+        "prescription": "Un chemin possible serait de raconter un « non » stratégique récent — quel projet ou sollicitation a été décliné, pour quelles raisons articulées, et ce que ce refus a libéré comme énergie pour ce qui a été fait."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Itération v1→v2 du protocole en réponse à un diagnostic — cycle agile observable (générer-relire-ajuster)."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Quatre checkpoints qui structurent une boucle de rétroaction explicite avec validation et correction possible — méthodologie agile incarnée dans le protocole."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Système de tags d'alerte ([FLOU], [DÉRIVE], [PATCH], [SURFACE], [SURCHARGE], [BLOCAGE]) — mécanisme d'ajustement de plan en cours de route avec raisons explicitées."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "« J'ai repris la dernière conversation pour aboutir à ces deux documents » : itération entre conversations successives nourrissant des artefacts."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que l'agilité exige un cycle itératif observable (générer-relire-tester-ajuster) avec adaptation méthodique. La pièce 1 montre ce cycle : diagnostic → refonte → nouveau prompt. La pièce 2 (4 checkpoints) est très exactement ce que la fiche cite comme « boucle de rétroaction explicite ». La pièce 3 (tags d'alerte) est un mécanisme d'ajustement avec raisons articulées. La pièce 4 atteste l'itération en chaîne. Les quatre pièces résistent fortement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Cycle observable diagnostic → refonte → nouveau prompt — adaptation méthodique au comportement observé." },
+            { "pieceId": 2, "motifResistance": "Boucle de rétroaction explicite avec validation et correction — marqueur direct de la méthodologie agile." },
+            { "pieceId": 3, "motifResistance": "Mécanisme d'ajustement nominé : chaque tag déclenche un type d'ajustement spécifique." },
+            { "pieceId": 4, "motifResistance": "Itération en chaîne : prompt → conversation → artefacts — cycle multi-niveaux." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces en suspectant le « théâtre agile » que la fiche met en garde — adopter les rituels sans la compétence. Le protocole décrit ici n'est pas un calque de Scrum (pas de mention de sprints, dailys, retros au sens classique). C'est une méthodologie agile inventée ou adaptée. Les pièces ne sont pas de simples mentions de rituels mais des dispositifs articulés. L'attaque (f) « récit performatif » est tentante : le protocole décrit n'est pas (encore) un récit d'usage. Cependant la pièce 1 atteste un acte agile vécu (diagnostic + refonte), ce qui valide les autres comme spécifications d'une pratique en cours.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "L'itération est attestée par le récit même : la dégradation observée déclenche un cycle d'ajustement — c'est de l'agilité en acte, pas dans le concept."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les checkpoints sont conçus mais on ne lit pas un récit où ils ont été déclenchés sur un cas précis ; tient comme conception de boucle, pas comme récit d'usage."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Les tags d'alerte sont posés comme outils mais on ne lit pas un récit où un tag a été levé et a déclenché un ajustement — tient comme méthodologie articulée."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "« J'ai repris la dernière conversation » est court mais atteste une itération entre conversations — pratique agile sans le vocabulaire."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à séparer le théâtre agile de la pratique agile réelle. La pièce du diagnostic CATALYST + refonte a tenu comme preuve : c'est un cycle d'ajustement vécu et raconté, pas l'adoption formelle d'un rituel. Les autres pièces (checkpoints, tags, itération en chaîne) ont tenu comme indices forts : ce sont des dispositifs articulés, pas des labels collés. Sur cette feuille, le travail montre une méthodologie agile densément attestée — un cycle vécu et un dispositif méthodologique élaboré. La nuance qui reste : le volet « conduite du changement » (accompagnement humain des transitions, normalisation des résistances) n'apparaît pas en acte ici — la feuille montre l'itération sans la dimension humaine de la transition collective.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 3,
+        "confiance": 0.78,
+        "motif": "Une preuve confirmée (cycle d'ajustement vécu) et trois indices solides (checkpoints, tags, itération en chaîne) portent ensemble le verdict ; l'agilité comme méthodologie est densément attestée.",
+        "prescription": "Un prolongement utile serait de raconter le volet « conduite du changement » — anticipation des résistances futures chez les apprenants de RESPIRE, normalisation des difficultés, ressources de transition. L'agilité de la méthode gagnerait à s'étendre à la dimension humaine de la transition collective."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous pression — séquence temporelle de décisions, communications de crise, post-mortem structuré avec causes racines et actions correctives."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 5,
+    "renvoisCartographe": 1,
+    "nonEtablies": 1,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille, le travail montre un apprenant qui pilote par la méthodologie : le protocole de co-élaboration en sept phases est le centre de gravité du document, et il rayonne sur le projet RESPIRE et sur le texte marketing. La voix dominante est celle d'un méthodologiste qui inscrit ses gestes dans un cadre. Le rapport au temps est double : court (la boucle agile prompt-conversation-artefact) et long (la projection sur la chute de l'école). Ce qui traverse la feuille, c'est le passage du local (un protocole) au global (un dispositif d'éducation parallèle), avec un même geste — concevoir un cadre méthodologique pour ce qui n'en avait pas.",
+    "territoiresDenses": [
+      {
+        "competence": "Agilité & Conduite du Changement",
+        "description": "Cycle d'ajustement attesté (diagnostic CATALYST → refonte), couplé à une méthodologie articulée (checkpoints, tags d'alerte, itération en chaîne).",
+        "extraitVerbatim": "J'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic. Du coup j'ai crafté, avec l'aide de Claude, ce nouveau prompt de préférence utilisateur",
+        "ceQueCaDit": "L'agilité ici n'est pas un calque de rituels, c'est une méthodologie inventée à partir des contraintes — boucle observable, ajustement nommé, capitalisation."
+      },
+      {
+        "competence": "Vision Stratégique & Prospective",
+        "description": "Architecture extensible (auto-reproduction, libre de droit) anticipant un déploiement non encore advenu, justifiée par une projection institutionnelle.",
+        "extraitVerbatim": "C'est un protocole ouvert, libre de droit, dans lequel n'importe qui peut créer une micro-classe et se joindre au réseau, n'importe où, sans demander la permission à personne, en parallèle avec sa scolarité.",
+        "ceQueCaDit": "La vision est incarnée dans la structure : RESPIRE est conçue pour passer à l'échelle avant même que l'échelle existe."
+      },
+      {
+        "competence": "Évaluation Transformative",
+        "description": "Questions canoniques de l'évaluation formative intégrées au protocole (« Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ? Qu'est-ce que je retiens ? ») et dispositif d'évaluation pair-à-pair dans RESPIRE.",
+        "extraitVerbatim": "### 7.1 Introspection \"Qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ?\" ### 7.2 Transfert \"Qu'est-ce que je retiens pour les prochaines conversations ?\"",
+        "ceQueCaDit": "L'évaluation est conçue comme levier de progression, pas comme verdict — dans le dialogue avec l'IA comme dans la communauté apprenante."
+      },
+      {
+        "competence": "Documentation Vivante",
+        "description": "Intention explicite de capitalisation dans une mémoire qui évolue, et chaîne structurée prompt → conversation → artefacts.",
+        "extraitVerbatim": "Qu'est-ce que je retiens pour les prochaines conversations ? → **Ceci devrait alimenter ma mémoire persistante**",
+        "ceQueCaDit": "Le mot « alimenter » signe la documentation au sens fort : pas sauvegarder, mais nourrir une mémoire en évolution."
+      },
+      {
+        "competence": "Maïeutique & Facilitation d'Apprentissage",
+        "description": "Architecture pédagogique inédite : RESPIRE comme environnement où l'apprentissage se produit par auto-reproduction et validation entre pairs.",
+        "extraitVerbatim": "C'est plus qu'un réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs.",
+        "ceQueCaDit": "La facilitation prend la forme d'un dispositif distribué — l'environnement enseigne, pas le maître."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en marge sur cette feuille. Le leadership situationnel est indicé par les trois rôles assignés à l'IA mais sans règles de bascule explicites — la mécanique de l'alternance n'est pas spécifiée. L'efficacité personnelle est absente : la feuille décrit ce qui est fait, pas ce qui est refusé — aucun « non » stratégique articulé n'apparaît. La gestion de crise en temps réel est hors champ — la feuille ne raconte pas d'incident géré sous pression. Le volet « conduite du changement » de l'agilité (anticipation des résistances, normalisation, accompagnement humain) est en retrait par rapport au volet méthodologique — la feuille montre l'itération sans la dimension de transition collective.",
+    "emergencesPole": "Trois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la méthodologie comme acte premier : tout est mis en protocole, en phases, en checkpoints, en tags — la méthode précède le contenu. Ensuite la cohérence d'échelles : le même geste (concevoir un cadre, anticiper un déploiement, capitaliser pour la suite) opère sur un prompt et sur un projet d'école. Enfin l'absence du refus : ce qui est piloté est ce qui est produit, pas ce qui est écarté ; la stratégie se lit dans les choix d'action, pas dans les renoncements articulés.",
+    "pistes": [
+      "Pour prolonger l'agilité, un chemin possible serait d'étendre la méthodologie au volet « conduite du changement » — anticiper les résistances des futurs apprenants de RESPIRE, normaliser les difficultés, prévoir des ressources de transition.",
+      "Pour solidifier le leadership situationnel, un chemin possible serait d'expliciter les règles de bascule entre les trois modes (Outil, Miroir, Agent réflexif) — quel signal déclenche le passage de l'un à l'autre, ce que la bascule produit.",
+      "Pour pratiquer l'efficacité personnelle au sens fort, un chemin possible serait de documenter un « non » stratégique récent — quel projet a été décliné, pour quelles raisons articulées, et ce que ce refus a libéré.",
+      "Pour étendre la maïeutique, un chemin possible serait de raconter une posture maïeutique exercée — une question posée à un apprenant, la retenue de ne pas donner la réponse, la reformulation d'une question qui n'a pas fait mouche.",
+      "Pour rendre la documentation vivante plus visible, un chemin possible serait de thématiser le portfolio lui-même comme dispositif — pourquoi telle structure, pour quel lecteur futur, avec quel versioning et quelles règles d'évolution."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille, le travail montre un apprenant qui pilote par la méthodologie : le protocole de co-élaboration en sept phases est le centre de gravité du document, et il rayonne sur le projet RESPIRE et sur le texte marketing. La voix dominante est celle d'un méthodologiste qui inscrit ses gestes dans un cadre. Le rapport au temps est double : court (la boucle agile prompt-conversation-artefact) et long (la projection sur la chute de l'école). Ce qui traverse la feuille, c'est le passage du local (un protocole) au global (un dispositif d'éducation parallèle), avec un même geste — concevoir un cadre méthodologique pour ce qui n'en avait pas.\n\n## Territoires les plus denses\n\n**Agilité & Conduite du Changement** — Le récit « j'ai trouvé le protocole CATALYST un peu faiblard ces derniers jours. Ça fait ça quand ils préparent la sortie d'une nouvelle version chez Anthropic. Du coup j'ai crafté, avec l'aide de Claude, ce nouveau prompt de préférence utilisateur » atteste un cycle d'ajustement vécu, doublé d'une méthodologie articulée (checkpoints, tags d'alerte). L'agilité ici n'est pas un calque de rituels, c'est une méthodologie inventée à partir des contraintes.\n\n**Vision Stratégique & Prospective** — La description « c'est un protocole ouvert, libre de droit, dans lequel n'importe qui peut créer une micro-classe et se joindre au réseau, n'importe où, sans demander la permission à personne, en parallèle avec sa scolarité » incarne une vision prospective dans la structure : RESPIRE est conçue pour passer à l'échelle avant même que l'échelle existe.\n\n**Évaluation Transformative** — Les questions « qu'est-ce qui a bien marché ? Qu'est-ce que j'ai raté ? Qu'est-ce que je retiens pour les prochaines conversations ? » sont les questions canoniques de l'évaluation formative. Couplée au dispositif d'évaluation pair-à-pair de RESPIRE, cette pratique signe une évaluation conçue comme levier de progression, pas comme verdict.\n\n**Documentation Vivante** — La formule « ceci devrait alimenter ma mémoire persistante » signe la documentation au sens fort : pas sauvegarder, mais nourrir une mémoire en évolution. La chaîne prompt → conversation → artefacts atteste une structuration intentionnelle de la production.\n\n**Maïeutique & Facilitation d'Apprentissage** — La phrase « réseau d'écoles gratuites, auto-reproduites, construites par les élèves qui valident eux-mêmes les compétences de leurs pairs » dessine une architecture pédagogique où l'environnement enseigne, pas le maître. La facilitation prend la forme d'un dispositif distribué.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en marge sur cette feuille. Le leadership situationnel est indicé par les trois rôles assignés à l'IA mais sans règles de bascule explicites — la mécanique de l'alternance n'est pas spécifiée. L'efficacité personnelle est absente : la feuille décrit ce qui est fait, pas ce qui est refusé — aucun « non » stratégique articulé n'apparaît. La gestion de crise en temps réel est hors champ — la feuille ne raconte pas d'incident géré sous pression. Le volet « conduite du changement » de l'agilité (anticipation des résistances, normalisation, accompagnement humain) est en retrait par rapport au volet méthodologique — la feuille montre l'itération sans la dimension de transition collective.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences de ce pôle sur cette feuille. D'abord la méthodologie comme acte premier : tout est mis en protocole, en phases, en checkpoints, en tags — la méthode précède le contenu. Ensuite la cohérence d'échelles : le même geste (concevoir un cadre, anticiper un déploiement, capitaliser pour la suite) opère sur un prompt et sur un projet d'école. Enfin l'absence du refus : ce qui est piloté est ce qui est produit, pas ce qui est écarté ; la stratégie se lit dans les choix d'action, pas dans les renoncements articulés.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger l'agilité, un chemin possible serait d'étendre la méthodologie au volet « conduite du changement » — anticiper les résistances des futurs apprenants de RESPIRE, normaliser les difficultés, prévoir des ressources de transition.\n- Pour solidifier le leadership situationnel, un chemin possible serait d'expliciter les règles de bascule entre les trois modes (Outil, Miroir, Agent réflexif) — quel signal déclenche le passage de l'un à l'autre, ce que la bascule produit.\n- Pour pratiquer l'efficacité personnelle au sens fort, un chemin possible serait de documenter un « non » stratégique récent — quel projet a été décliné, pour quelles raisons articulées, et ce que ce refus a libéré.\n- Pour étendre la maïeutique, un chemin possible serait de raconter une posture maïeutique exercée — une question posée à un apprenant, la retenue de ne pas donner la réponse, la reformulation d'une question qui n'a pas fait mouche.\n- Pour rendre la documentation vivante plus visible, un chemin possible serait de thématiser le portfolio lui-même comme dispositif — pourquoi telle structure, pour quel lecteur futur, avec quel versioning et quelles règles d'évolution.\n"
+  }
+}

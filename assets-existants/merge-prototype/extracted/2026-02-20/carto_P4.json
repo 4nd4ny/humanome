@@ -1,0 +1,225 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Premiers tests de cartographie non concluants : l'architecture de prompts fonctionne, mais l'algorithme n'est pas le bon.",
+      "contexte": "Résultat d'un test qui n'aboutit pas, avec maintien d'un cap sur le projet malgré l'incertitude — touche potentiellement 4.05.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Je dois ralentir le projet ces prochains jours pour avancer du côté des demandes du coach de l'ORP [...] reprise du CV à faire en plus du reste.",
+      "contexte": "Arbitrage temporel : choisir de ralentir un travail pour répondre à une demande externe — touche potentiellement 4.09.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au Raisonnement Éthique Appliqué sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une tension entre deux valeurs légitimes qu'il a tenu à explorer sans la résoudre trop vite."
+      }
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'Alignement & Refus Éthique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment où il a écarté ou reformulé une production IA parce qu'elle ne correspondait pas à ses valeurs."
+      }
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Conscience Écologique & Long-terme sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un arbitrage où l'impact long-terme a pesé concrètement sur une décision."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Valorisation de la Neurodiversité sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait nommer une façon différente de penser — la sienne ou celle d'un autre — comme ressource d'un résultat concret."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Un test échoue mais le projet continue : à examiner pour vérifier s'il y a tolérance à l'incertitude ou simple poursuite passive."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la décision et la tolérance à l'incertitude ne sont pas attestées : la fiche 4.05 demande la nomination explicite de ce qu'on ne sait pas, la description d'un fonctionnement malgré le flou, et un acte de tranchage avec ses conséquences. La pièce 1 raconte un test non concluant mais ne nomme aucune incertitude existentielle, ne décrit aucun acte de décision dans le brouillard. L'apprenant constate un résultat — c'est de la lecture, pas de la décision. La pièce ne résiste pas sérieusement à la présomption d'absence : il n'y a ni « je ne savais pas mais j'ai avancé », ni « j'ai tranché malgré le flou ».",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Le temps 1 n'a retenu aucune pièce ; pas d'examen à conduire en temps 2.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace de décision dans l'incertitude. Aucune pièce n'a résisté : un test qui échoue suivi d'une poursuite implicite n'est pas un acte décisionnel documenté. La fiche demande les trois éléments — nommer l'inconnu, fonctionner dans le flou, raconter le tranchage — et aucun n'est ici présent. Ce qui en résulte : le dossier reste à ouvrir, probablement sur une feuille où l'apprenant raconterait comment il choisit la suite après un échec de test.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : un test non concluant rapporté brièvement ne porte pas un acte de décision dans le flou.",
+        "prescription": "Le test non concluant pourrait devenir trace de décision dans l'incertitude si une prochaine feuille racontait ce qui s'est joué juste après — quelle direction a été prise quand l'algorithme s'est révélé inadapté, sur quelle base, avec quel niveau d'inconnu assumé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Responsabilité, Courage & Intégrité sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter un moment d'appropriation d'une responsabilité ou une position tenue malgré le coût."
+      }
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Validation Contextuelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une correction d'output IA fondée sur un savoir contextuel que la machine n'avait pas."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Création de Valeur Non-Automatisable sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait identifier ce que l'IA fait mieux et ce qui reste irremplaçablement humain dans sa pratique."
+      }
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant choisit de ralentir le projet quelques jours pour répondre aux demandes du coach de l'ORP : à examiner pour vérifier si c'est de la patience stratégique ou un simple arbitrage opérationnel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la patience stratégique n'est pas attestée : la fiche 4.09 exige une pression à agir nommée, un raisonnement explicite d'attente, et un moment d'action prévu avec critère de déclenchement. La pièce 1 raconte un ralentissement, mais ce ralentissement n'est pas un acte de non-décision face à un kairos en attente — c'est un arbitrage entre deux engagements qui demandent tous deux d'agir. L'apprenant ne suspend pas une décision : il redistribue son temps. La pièce résiste légèrement parce qu'elle porte une borne temporelle (« ces prochains jours ») et un critère implicite (les demandes du coach sont à honorer en premier).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le ralentissement est borné dans le temps et a un déclencheur explicite — c'est une amorce de la structure d'attente stratégique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en me demandant si je n'ai pas confondu arbitrage opérationnel et patience stratégique. L'attaque (b) confusion de compétence pèse : ralentir A pour faire B n'est pas attendre que A mûrisse — c'est de la priorisation, qui relève de la planification (7.07) plutôt que du sens du timing. La fiche 4.09 demande qu'on ne tranche PAS parce que le moment n'est pas venu ; ici, on tranche bien — on choisit B contre A — pour des raisons d'urgence externe, pas d'attente mûrie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le ralentissement décrit est un arbitrage de priorité entre deux engagements externes, pas une non-décision face à un timing en construction. Cela relève de la planification, pas de la patience stratégique au sens de 4.09."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace de patience stratégique. La pièce du ralentissement m'a brièvement résisté parce qu'elle est bornée dans le temps. Mais sous la présomption de sycophantie, j'ai vu que ce n'est pas le même geste : la patience stratégique attend qu'un moment mûrisse, alors qu'ici l'apprenant tranche entre deux urgences au profit de la plus pressante. Ce qui en résulte : la trace appartient au pôle de la planification, pas à celui du jugement temporel au sens de 4.09. Le dossier reste ouvert ailleurs.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce pour confusion de compétence : un arbitrage de priorité entre deux engagements externes relève de la planification, pas de la patience stratégique.",
+        "prescription": "Pour ouvrir le dossier de la patience stratégique, un récit qui décrirait un report assumé d'une décision parce qu'un élément manque encore — avec le critère de déclenchement explicite — transformerait l'arbitrage en trace de timing pensé."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 2,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 0,
+    "nonEtablies": 9,
+    "courtCircuits": 7
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 20 février, le pôle du discernement et du jugement reste largement en retrait. Deux moments effleurent ses territoires sans s'y installer : un test qui n'aboutit pas et un arbitrage de calendrier entre le projet de cartographie et les demandes du coach de l'ORP. La note documente des décisions opérationnelles, pas des jugements moraux ou des choix faits dans le brouillard épistémique.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'ensemble du pôle reste essentiellement hors champ. Le raisonnement éthique, l'alignement IA, la conscience long-terme, la neurodiversité, la responsabilité, la validation contextuelle et la valeur non-automatisable n'apparaissent pas — toutes absences cohérentes avec le format technique de la feuille. Deux compétences ont été examinées sans aboutir : la décision dans l'incertitude (le test non concluant n'a pas été suivi d'un acte de tranchage documenté) et la patience stratégique (l'arbitrage de calendrier relève de la priorisation entre engagements, pas du sens du timing).",
+    "emergencesPole": "Ce qui traverse les rares pièces ici, c'est un rapport au temps : le projet ralentit, le test n'aboutit pas encore, les choses se redistribuent dans les prochains jours. Aucun de ces moments ne s'élève en jugement explicite, mais ensemble ils signalent un travail qui se règle plus qu'il ne se tranche.",
+    "pistes": [
+      "Pour ouvrir la trace de décision dans l'incertitude, un chemin possible serait de raconter, après un test non concluant, la suite immédiate — la direction prise et ce qui reste inconnu au moment de la prendre.",
+      "Pour ouvrir la trace de patience stratégique, un chemin possible serait de nommer, dans une feuille future, un report assumé avec son critère de déclenchement explicite — non pas « je verrai », mais « je trancherai quand X »."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 20 février, le pôle du discernement et du jugement reste largement en retrait. Deux moments effleurent ses territoires sans s'y installer : un test qui n'aboutit pas et un arbitrage de calendrier entre le projet de cartographie et les demandes du coach de l'ORP. La note documente des décisions opérationnelles, pas des jugements moraux ou des choix faits dans le brouillard épistémique.\n\n## Territoires les plus denses\n\nAucun territoire ne ressort comme densité sur cette feuille.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'ensemble du pôle reste essentiellement hors champ. Le raisonnement éthique, l'alignement IA, la conscience long-terme, la neurodiversité, la responsabilité, la validation contextuelle et la valeur non-automatisable n'apparaissent pas — toutes absences cohérentes avec le format technique de la feuille. Deux compétences ont été examinées sans aboutir : la décision dans l'incertitude (le test non concluant n'a pas été suivi d'un acte de tranchage documenté) et la patience stratégique (l'arbitrage de calendrier relève de la priorisation entre engagements, pas du sens du timing).\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse les rares pièces ici, c'est un rapport au temps : le projet ralentit, le test n'aboutit pas encore, les choses se redistribuent dans les prochains jours. Aucun de ces moments ne s'élève en jugement explicite, mais ensemble ils signalent un travail qui se règle plus qu'il ne se tranche.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir la trace de décision dans l'incertitude, un chemin possible serait de raconter, après un test non concluant, la suite immédiate — la direction prise et ce qui reste inconnu au moment de la prendre.\n- Pour ouvrir la trace de patience stratégique, un chemin possible serait de nommer, dans une feuille future, un report assumé avec son critère de déclenchement explicite — non pas « je verrai », mais « je trancherai quand X »."
+  }
+}

@@ -1,0 +1,477 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "J'ai donc complètement repris le prompt de cartographie pour le transformer en un processus constructif plus pertinent. J'ai expliqué à Claude les travaux de Mireille Cifali et de Claudine Blanchard-Laville, pour qu'il s'en inspire dans la conception du prompt.",
+      "contexte": "Reprise complète du prompt avec injection d'un cadre clinique externe. Active 3.01 (itération radicale) et possiblement 3.03 (poser un autre problème).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Voici ce que ça a donné : [...] (version 1) [...] (version 2) [...] (version 3) [...] (version 4) [...] (version 5). Voici une simulation d'exécution de la version 5 (en fait chaque version précédente a été simulée de la même manière)",
+      "contexte": "Cinq versions successives du prompt, chacune simulée. Trace concrète d'itération créative.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Le cartographe est considéré comme un presse bouton, pas comme un archéologue allant dépouiller une compétence enfouie dans le narratif brumeux de la personne évaluée.",
+      "contexte": "Métaphore archéologique inattendue dans un texte technique. Active 3.02 (signature stylistique) et potentiellement 3.01 (connexion radicale entre domaines).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "j'ai dû développer une macro Google Doc pour exporter les commentaires en marge des portfolio, chose qui n'est pas prévue par Google et je n'ai trouvé aucune extension dans le store qui le faisait.",
+      "contexte": "Identification d'un manque dans l'écosystème et fabrication d'un outil pour y répondre. Active 3.01 (création face à un manque) et 3.03 (poser un problème non posé).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "les écoles RESPIRE sont des écoles intelligentes, c'est-à-dire capables d'apprendre. Leur mémoire est constitué des portfolios des Maîtres.",
+      "contexte": "Concept inhabituel d'école dont la mémoire est constituée par les portfolios. Active 3.01 (créativité radicale) et 3.03 (poser une question nouvelle sur ce qu'est une école).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Elle pourrait cependant être utile pour une auto-évaluation : un aperçu des forces et des lacunes, que l'apprenant pourrait lancer quand il veut, avant de rencontrer un cartographe pour une analyse plus poussée et pertinente.",
+      "contexte": "Curation d'un résultat partiellement rejeté : ce qui n'est pas bon pour un usage est conservé pour un autre. Active 3.04 (curation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Le rendu est très joli, très pro, mais le processus est top-down : l'IA rédige et l'humain copie-colle. [...] cette première tentative n'allait pas du tout.",
+      "contexte": "Rejet articulé d'un rendu malgré sa qualité formelle. Active 3.04 (curation : dire non à un beau résultat).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je travaillais à plein temps, pas comme maintenant ou je suis à mi-temps de ma capacité de travail environ (soit 8h à 10h par jour, 7/7 jours) pour pouvoir me rendre disponible pour ma famille.",
+      "contexte": "Description quantitative du rythme corporel de travail. Touche très obliquement 3.06 (présence à son propre régime corporel).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "j'ai posé des jours de congé qui m'ont été déduit de ma rente chômage. Je n'ai clairement pas travaillé ces jours- là (sauf le 1er de l'an). [...] je me suis vraiment reposé trois jours durant les fêtes",
+      "contexte": "Mention d'un repos délibéré et de la conscience qu'on a vraiment cessé de travailler. Touche obliquement 3.06 (alternance présence/non-faire).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "c'est vraiment une approche très personnelle dans laquelle je mixe les techniques de prompt engineering que je connais pour créer les bons tokens",
+      "contexte": "Conscience explicite d'une approche personnelle de l'ingénierie de prompt. Active 3.02 (signature reconnue par soi-même).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Cinq versions successives du prompt, chacune simulée. Trace itérative au sens fort de la fiche (1→n avec apprentissage entre cycles)."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Refonte complète du dispositif après rejet du premier essai, avec injection d'un cadre externe. Touche la frontière entre itération et rupture."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Fabrication d'une macro Google Doc pour résoudre un manque non couvert par l'écosystème. Trace de création face à une absence d'outil."
+        },
+        {
+          "numero": 4,
+          "pid": 5,
+          "contexte": "Concept d'école-organisme-apprenant dont la mémoire est faite de portfolios. Touche la créativité radicale (concept inhabituel)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles décrivent des ajustements ou des variations, pas une créativité itérative au sens fort. La pièce 1 résiste : cinq versions documentées et toutes simulées, c'est précisément le marqueur que la fiche identifie comme acquis (cycles rapides, apprentissage entre passages). La pièce 2 résiste partiellement : reprendre complètement est un pivot stratégique, pas une simple correction. La pièce 3 résiste : fabriquer un outil quand aucun n'existe est de la création. La pièce 4 est plus fragile : « école intelligente » est un concept qu'on rencontre ailleurs, donc la radicalité absolue n'est pas évidente. Ce qui reste faible : la fiche demande pour la radicalité un test rigoureux (« l'IA l'aurait-elle suggéré ? »).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Cinq versions documentées avec simulation à chaque étape : itération disciplinée explicite."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Reprise complète plutôt qu'ajustement, signalée par « complètement repris »."
+            },
+            {
+              "pieceId": 3,
+              "motifResistance": "Création d'un outil face à une absence — l'écosystème ne le proposait pas."
+            },
+            {
+              "pieceId": 4,
+              "motifResistance": "Concept atypique d'école dont la mémoire est constituée par les portfolios."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de créativité. La pièce 1, testée par (a) insuffisance probatoire : 5 versions, c'est concret. Mais l'extrait ne dit pas ce qui change d'une version à l'autre, donc l'apprentissage entre cycles n'est pas montré dans cette feuille. Affaiblie mais retenue. La pièce 2, testée par (b) confusion avec 1.02 cadrage : reprendre complètement c'est cadrer à nouveau. La frontière est fine ; la même pièce active 1.02 et 3.01 (multi-attribution légitime). Tenue. La pièce 3, testée par (a) : la macro est courte mais clairement décrite comme une fabrication face à un manque. Tenue. La pièce 4, testée par le test de la fiche (« l'IA l'aurait-elle suggéré ? ») : le concept d'organisation apprenante existe largement, mais sa déclinaison spécifique (la mémoire constituée des portfolios des Maîtres) n'est pas un suggestif IA standard. Affaiblie comme radicalité, retenue comme indice.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'itération est documentée numériquement, mais l'apprentissage entre cycles n'est pas explicité dans cette feuille seule."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Multi-attribution légitime avec 1.02. La pièce porte aussi la dimension créative du pivot."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Acte de fabrication explicite face à un manque identifié, avec dispositif décrit."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le concept reste à mi-chemin entre intuition systémique et créativité radicale ; il est cohérent mais non développé comme rupture explicite ici."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la créativité en m'attendant à des ajustements et des variations. Quatre pièces ont tenu, dont deux solidement : le pivot total du dispositif (avec injection d'un cadre étranger) et la fabrication d'une macro face à un manque. L'itération à travers cinq versions tient comme trace claire, même si le détail de ce qui change d'une version à l'autre n'est pas explicité dans cette feuille. Le concept d'école apprenante tient comme indice de radicalité possible. Dans cette feuille, la créativité se déploie sur le versant itératif plus que sur la rupture clairement attestée : les cycles sont nombreux, et le geste de reconception est explicite. La présence tient avec une bonne confiance, dominée par l'itération.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le pivot complet du dispositif et la fabrication d'un outil manquant portent la présence ; l'itération versionnée et le concept d'école apprenante corroborent.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à expliciter ce qui change entre chacune des cinq versions du prompt — l'apprentissage entre cycles rendrait visible la nature itérative du travail, et permettrait au cartographe de distinguer ce qui relève de l'ajustement de ce qui relève de la rupture."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 10,
+          "contexte": "Conscience explicite d'une approche personnelle de l'ingénierie de prompt, distincte des techniques standard."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Métaphore archéologique inattendue dans un texte technique sur un prompt IA. Trace stylistique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'une feuille isolée ne suffit pas pour attester d'une signature : la fiche exige du récurrent (« le style qui revient »). La pièce 1 résiste : l'apprenant nomme explicitement une approche personnelle, ce qui est exactement la « conscience explicite de sa propre singularité » que la fiche identifie. La pièce 2 résiste partiellement : la métaphore archéologique est saillante et tonalement distincte du registre technique ambiant, mais une seule métaphore ne fait pas un fil stylistique récurrent. Ce qui reste faible : on n'a qu'une feuille pour juger de la récurrence.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Nomination explicite d'une approche personnelle distinguée des techniques standard."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Métaphore archéologique tonalement décalée dans un texte technique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces de signature alors qu'elles relèvent de revendications d'identité ou d'images isolées. La pièce 1, testée par (f) récit performatif : « une approche très personnelle » est précisément le type de revendication que tout le monde fait. Mais la formulation continue : « je mixe les techniques de prompt engineering que je connais pour créer les bons tokens » — c'est un acte technique précis, pas une simple revendication. Affaiblie mais retenue. La pièce 2, testée par (a) : une seule métaphore dans une seule feuille est trop maigre pour attester d'un fil stylistique. Affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Revendication d'approche personnelle, suivie d'une description technique qui la concrétise. Indice corroboratif."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Métaphore saillante mais isolée ; la récurrence stylistique ne peut être attestée sur une seule feuille."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la signature en m'appuyant sur l'exigence de récurrence qu'impose la fiche. Deux pièces ont tenu comme indices. La conscience d'une approche personnelle dans la conception de prompts est nommée explicitement, ce qui correspond au niveau le plus conscient décrit par la fiche. La métaphore archéologique signale un goût pour le décalage tonal qui pourrait être un trait récurrent — mais une seule feuille ne suffit pas à le confirmer. Dans cette feuille, la signature se manifeste comme conscience plus que comme pattern visible. Un renvoi au cartographe permettrait de vérifier si ces marqueurs reviennent ailleurs dans le portfolio.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "Deux pièces affaiblies, dont l'une demande la vérification du caractère récurrent sur d'autres feuilles du portfolio.",
+        "prescription": "Pour creuser cette compétence, un chemin possible serait que le cartographe relise plusieurs feuilles pour repérer ce qui revient en termes de métaphores, tics d'écriture ou structures d'idées — la signature, par définition, se reconnaît sur plusieurs entrées."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant ne reformule pas le problème (cadrage 1.02) mais pose un autre problème : non plus « comment automatiser l'analyse » mais « comment construire un dispositif clinique d'évaluation »."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Identification d'un besoin que personne n'avait formulé (exporter les commentaires marginaux) et création d'un outil pour y répondre."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence en gardant explicitement à l'esprit la distinction critique de la fiche : 3.03 *crée* un problème qui n'existait pas, là où 1.02 *reformule* un problème existant. La pièce 1 résiste partiellement : passer d'une logique d'analyse automatisée à une logique d'évaluation clinique change la nature de la question, pas seulement son angle. Mais on pourrait aussi lire ce mouvement comme un recadrage (1.02). La pièce 2 résiste : identifier un besoin que personne n'avait formulé (les commentaires marginaux comme matière de cartographie) ressemble à du design de problème. Ce qui reste faible : la fiche exige une formalisation, un étonnement rétrospectif, ou une généralisation, qui ne sont pas explicitement présents.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Passage d'une question d'analyse automatisée à une question d'évaluation clinique : changement de nature."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Identification d'un besoin que personne (Google, ni les extensions du store) n'avait formulé."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de design de problème alors que la distinction critique de la fiche tranche vers 1.02. La pièce 1, testée par (h) faux positif de fiche : la fiche dit explicitement « j'ai reformulé le problème = 1.02, j'ai créé un nouveau problème = 3.03 ». Ici l'apprenant dit « j'ai complètement repris le prompt pour le transformer en un processus constructif plus pertinent » — c'est de la reformulation/recadrage, pas explicitement la création d'une question nouvelle. Disqualifiée pour 3.03. La pièce 2, testée par (b) confusion de compétence : la macro répond à un besoin opératoire personnel, pas à un problème nouveau qui ouvre un champ d'action inédit. Disqualifiée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La distinction critique de la fiche tranche vers 1.02 : « j'ai complètement repris » est un recadrage, pas la création d'un problème inexistant."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Besoin opératoire personnel résolu par un outil, plutôt que problème nouveau ouvrant un champ d'action inédit."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le design de problème en m'appuyant sur la distinction critique stricte que la fiche pose entre 1.02 et 3.03. Les deux pièces qui résistaient au temps 1 sont tombées au temps 2 : la première relève du recadrage (déjà reconnu dans P1), la seconde d'une résolution opératoire personnelle. Dans cette feuille, le design de problème au sens fort — créer une question qui n'existait pas et qui ouvre un champ d'action inédit — ne se laisse pas attester. Le travail décrit pose de bonnes questions, mais ces questions sont des reformulations de questions déjà existantes (qu'est-ce que cartographier ? qu'est-ce qu'évaluer ?). Le territoire reste non visité dans cette feuille.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les deux pièces résistantes sont tombées au temps 2 : l'une relève du recadrage (1.02), l'autre d'une résolution opératoire.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où l'apprenant a cessé de chercher la réponse à une question donnée pour formuler une question que personne n'avait posée — typiquement précédé d'un « et si le vrai sujet c'était… ? » suivi d'un pivot concret."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "Rejet articulé d'un rendu jugé séduisant (« joli, pro ») pour des raisons de fond. Trace de curation : dire non malgré la qualité formelle apparente."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Curation différenciée : ce qui n'est pas bon pour un usage (cartographie pleine) est conservé pour un autre usage (auto-évaluation). Trace de discernement contextuel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'un rejet ponctuel ne fait pas un jugement esthétique articulé. La pièce 1 résiste : le rejet est argumenté avec un critère explicite (top-down, presse-bouton vs archéologue) et porte sur la justesse formelle du dispositif, pas sur sa véracité. La pièce 2 résiste : l'apprenant ne rejette pas tout, il identifie un autre usage où le même rendu trouverait sa place. C'est du discernement contextuel au sens fort de la fiche (sélectionner, hiérarchiser, contextualiser). Ce qui reste faible : la curation se déploie sur un seul objet (un prompt et son rendu), pas sur une abondance comme la fiche le suggère typiquement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Rejet articulé d'un rendu séduisant pour des raisons de justesse formelle."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Curation contextuelle : un rendu non adapté à un usage est conservé pour un autre."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces de jugement esthétique alors qu'elles relèvent de la pensée critique (1.01). La pièce 1, testée par (b) confusion avec 1.01 : 1.01 évalue la véracité, 3.04 évalue la justesse formelle. Ici, l'apprenant rejette le rendu pour le rôle qu'il instaure (la posture du cartographe), pas pour la justesse factuelle. C'est du registre de la justesse formelle/relationnelle, pas de la véracité. Tenue. La pièce 2, testée par (e) surinterprétation : ai-je halluciné une curation différenciée là où il y a juste un mot de consolation ? L'extrait propose explicitement un usage alternatif (auto-évaluation préalable), donc la curation est en acte. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le rejet porte sur la justesse formelle du dispositif (top-down, posture), pas sur sa véracité — donc bien 3.04 plutôt que 1.01."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Identification explicite d'un usage alternatif où le rendu serait approprié : curation en acte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier le jugement esthétique en m'attendant à de la pensée critique mal étiquetée. Les deux pièces ont tenu : le rejet articulé d'un rendu jugé séduisant porte sur la justesse formelle du dispositif et sur le rôle qu'il instaure, ce qui relève bien du jugement esthétique au sens de la fiche. La curation différenciée — un rendu réorienté vers un autre usage — montre un discernement contextuel qui ajoute à la simple sélection. Dans cette feuille, le jugement esthétique se manifeste avec une réelle articulation, et la présence tient.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.72,
+        "motif": "Les deux pièces ont passé le temps 2 : rejet argumenté d'un rendu séduisant et curation contextuelle (un même rendu réorienté vers un autre usage).",
+        "prescription": "Pour approfondir, un chemin possible consisterait à documenter, parmi plusieurs outputs IA pour une même tâche, les critères concrets qui ont conduit à retenir l'un et écarter les autres — la curation devient alors transmissible."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la matière physique (matériel informatique, bricolage, fabrication tangible) a été manipulée avec habileté."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Description quantitative du rythme corporel de travail (8h à 10h par jour, 7/7). Touche la conscience de son propre régime corporel."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Mention d'un repos délibéré pendant les fêtes, avec conscience d'avoir vraiment cessé de travailler. Touche obliquement l'alternance présence/non-faire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en gardant à l'esprit que la fiche exige une description phénoménologique précise ou une intuition somatique suivie d'action. La pièce 1 résiste très peu : indiquer un volume horaire n'est pas une description phénoménologique. La pièce 2 résiste un peu : reconnaître qu'on s'est « vraiment reposé » suggère une conscience de la différence entre présence à soi et activité, mais c'est très indirect. Ce qui reste faible : aucune sensation corporelle nommée, aucune intuition somatique suivie d'action, aucune description de l'attention incarnée comme mode d'être.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "Reconnaissance d'avoir vraiment cessé d'être en mode travail : conscience d'une bascule de régime."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai halluciné une présence somatique dans une mention banale de repos. La pièce 2, testée par (a) insuffisance probatoire : « je me suis vraiment reposé trois jours » n'est pas une description phénoménologique. C'est un constat factuel sans conscience corporelle articulée. Disqualifiée. La pièce 1 n'avait pas résisté au temps 1.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Constat factuel sans description phénoménologique ; la mention du repos ne signe pas une attention incarnée."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'ancrage sensoriel en m'attendant à n'y trouver aucune description phénoménologique. La seule pièce qui résistait au temps 1 est tombée au temps 2 : la mention du repos est factuelle, sans qualité de présence à soi articulée. Dans cette feuille, la compétence ne se laisse pas attester. Le travail décrit est cérébral et productif, sans traces phénoménologiques fines. Cela n'indique pas une absence de la compétence dans le portfolio global, mais sur cette journée précise, ce territoire reste non visité.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La seule pièce résistante est tombée au temps 2 : pas de description phénoménologique ni d'intuition somatique nommée.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter, dans une prochaine feuille, un moment où une sensation corporelle (fatigue précise, tension, élan) a été nommée et a influencé une décision concrète."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment de co-présence physique en temps réel où l'interaction directe a produit quelque chose d'inattendu."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 1,
+    "nonEtablies": 2,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail rapporté dans cette feuille se déploie principalement sur deux versants : un acte de création itérative (cinq versions d'un prompt, refonte complète d'un dispositif, fabrication d'une macro pour un besoin non couvert) et un acte de curation explicite (rejet d'un rendu jugé séduisant, réorientation d'un même rendu vers un autre usage). Les marqueurs concrets cités incluent la métaphore archéologique qui reconfigure la posture du cartographe, et la nomination d'une approche personnelle de l'ingénierie de prompt. Le registre est celui d'un praticien qui fabrique vite, juge sévèrement ses productions, et conserve ce qui peut servir ailleurs. Le travail décrit reste cérébral et numérique ; les dimensions somatiques, manuelles et live ne sont pas activées dans cette feuille.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "Le travail décrit s'incarne dans un mouvement créatif documenté : un pivot complet du dispositif après rejet du premier essai, l'injection d'un cadre clinique étranger pour reconcevoir le prompt, cinq versions successives toutes simulées, et la fabrication d'une macro pour un besoin que l'écosystème ne couvrait pas.",
+        "extraitVerbatim": "Voici une simulation d'exécution de la version 5 (en fait chaque version précédente a été simulée de la même manière)",
+        "ceQueCaDit": "La création se fait par cycles rapides, avec validation à chaque étape, et la décision de tout reprendre n'est pas vécue comme un échec mais comme une bifurcation productive."
+      },
+      {
+        "competence": "Jugement esthétique et curation",
+        "description": "L'apprenant rejette un rendu pourtant séduisant pour des raisons de fond (top-down, presse-bouton), et réoriente ce même rendu vers un usage où il trouverait sa juste place (auto-évaluation préalable). Le discernement combine soustraction et recontextualisation.",
+        "extraitVerbatim": "cette première tentative n'allait pas du tout. Le rendu est très joli, très pro, mais le processus est top-down",
+        "ceQueCaDit": "La curation ici ne se contente pas de sélectionner : elle articule pourquoi un même objet ne convient pas à un usage et conviendrait à un autre."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas visités dans cette feuille. L'intelligence manuelle et artisanale ne se manifeste pas — la macro Google Doc est un acte de programmation, pas une interaction avec une matière physique tangible. La présence et performance live est absente : le travail décrit est solitaire et asynchrone, sans co-présence en temps réel rapportée. L'ancrage sensoriel et la pleine présence restent en retrait : les mentions de rythme horaire et de repos sont factuelles, sans description phénoménologique précise. Le design de problèmes au sens strict (créer une question qui n'existait pas et qui ouvre un champ d'action inédit) ne se laisse pas attester : les pivots du dispositif relèvent plus du recadrage de questions existantes que de l'invention de questions nouvelles. La singularité et signature reste en renvoi au cartographe parce qu'une seule feuille ne permet pas de juger d'une récurrence stylistique.",
+    "emergencesPole": "Une première ligne traverse ce pôle : la création se fait par mouvement continu d'itération et de curation simultanée. L'apprenant ne crée pas puis évalue ; il produit, rejette, réoriente et reproduit, dans le même geste. Une deuxième ligne, plus discrète : les compétences corporelles et live, qui demandent un corps présent à un environnement physique ou à un public, sont silencieuses ce jour-là — non par absence supposée chez l'apprenant, mais parce que le travail décrit est tout entier dans la conception d'un dispositif numérique. Une troisième ligne : ce qui circule comme matière créative, ce sont des prompts, des métaphores, des concepts d'organisation, pas des objets tangibles ni des moments incarnés.",
+    "pistes": [
+      "Pour enrichir la créativité itérative, un chemin possible serait de documenter pour chacune des cinq versions du prompt ce qui a changé et pourquoi — la chaîne d'apprentissage entre cycles rendrait visible la créativité en acte.",
+      "Pour enrichir la singularité, un chemin possible serait que le cartographe relise plusieurs feuilles du portfolio pour repérer ce qui revient en termes de métaphores, de structure d'idées ou de registre — la signature se reconnaît sur la durée.",
+      "Pour enrichir l'ancrage sensoriel, un chemin possible serait de documenter, lorsque cela arrive, une sensation corporelle précise (fatigue localisée, élan, tension) et de noter comment elle a infléchi une décision concrète.",
+      "Pour enrichir le design de problèmes, un chemin possible serait de documenter un moment où une question nouvelle a été formulée à partir d'un accident ou d'une contrainte, et de noter ce que cette question a rendu possible qui ne l'était pas avant."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail rapporté dans cette feuille se déploie principalement sur deux versants : un acte de création itérative (cinq versions d'un prompt, refonte complète d'un dispositif, fabrication d'une macro pour un besoin non couvert) et un acte de curation explicite (rejet d'un rendu jugé séduisant, réorientation d'un même rendu vers un autre usage). Les marqueurs concrets cités incluent la métaphore archéologique qui reconfigure la posture du cartographe, et la nomination d'une approche personnelle de l'ingénierie de prompt. Le registre est celui d'un praticien qui fabrique vite, juge sévèrement ses productions, et conserve ce qui peut servir ailleurs. Le travail décrit reste cérébral et numérique ; les dimensions somatiques, manuelles et live ne sont pas activées dans cette feuille.\n\n## Territoires les plus denses\n\n**Créativité itérative et radicale.** Le travail décrit s'incarne dans un mouvement créatif documenté : un pivot complet du dispositif après rejet du premier essai, l'injection d'un cadre clinique étranger pour reconcevoir le prompt, cinq versions successives toutes simulées, et la fabrication d'une macro pour un besoin que l'écosystème ne couvrait pas. *« Voici une simulation d'exécution de la version 5 (en fait chaque version précédente a été simulée de la même manière) ».* La création se fait par cycles rapides, avec validation à chaque étape, et la décision de tout reprendre n'est pas vécue comme un échec mais comme une bifurcation productive.\n\n**Jugement esthétique et curation.** L'apprenant rejette un rendu pourtant séduisant pour des raisons de fond, et réoriente ce même rendu vers un usage où il trouverait sa juste place. Le discernement combine soustraction et recontextualisation. *« cette première tentative n'allait pas du tout. Le rendu est très joli, très pro, mais le processus est top-down ».* La curation ici ne se contente pas de sélectionner : elle articule pourquoi un même objet ne convient pas à un usage et conviendrait à un autre.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas visités dans cette feuille. L'intelligence manuelle et artisanale ne se manifeste pas — la macro Google Doc est un acte de programmation, pas une interaction avec une matière physique tangible. La présence et performance live est absente : le travail décrit est solitaire et asynchrone, sans co-présence en temps réel rapportée. L'ancrage sensoriel et la pleine présence restent en retrait : les mentions de rythme horaire et de repos sont factuelles, sans description phénoménologique précise. Le design de problèmes au sens strict — créer une question qui n'existait pas et qui ouvre un champ d'action inédit — ne se laisse pas attester : les pivots du dispositif relèvent plus du recadrage de questions existantes que de l'invention de questions nouvelles. La singularité et signature reste en renvoi au cartographe parce qu'une seule feuille ne permet pas de juger d'une récurrence stylistique.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne première ligne traverse ce pôle : la création se fait par mouvement continu d'itération et de curation simultanée. L'apprenant ne crée pas puis évalue ; il produit, rejette, réoriente et reproduit, dans le même geste. Une deuxième ligne, plus discrète : les compétences corporelles et live, qui demandent un corps présent à un environnement physique ou à un public, sont silencieuses ce jour-là — non par absence supposée chez l'apprenant, mais parce que le travail décrit est tout entier dans la conception d'un dispositif numérique. Une troisième ligne : ce qui circule comme matière créative, ce sont des prompts, des métaphores, des concepts d'organisation, pas des objets tangibles ni des moments incarnés.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la créativité itérative, un chemin possible serait de documenter pour chacune des cinq versions du prompt ce qui a changé et pourquoi.\n- Pour enrichir la singularité, un chemin possible serait que le cartographe relise plusieurs feuilles du portfolio pour repérer ce qui revient en termes de métaphores, de structure d'idées ou de registre.\n- Pour enrichir l'ancrage sensoriel, un chemin possible serait de documenter, lorsque cela arrive, une sensation corporelle précise et de noter comment elle a infléchi une décision concrète.\n- Pour enrichir le design de problèmes, un chemin possible serait de documenter un moment où une question nouvelle a été formulée à partir d'un accident ou d'une contrainte, et de noter ce que cette question a rendu possible qui ne l'était pas avant."
+  }
+}

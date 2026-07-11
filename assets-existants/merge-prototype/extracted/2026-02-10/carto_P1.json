@@ -1,0 +1,967 @@
+{
+  "poleNum": "1",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Aujourd'hui j'ai demandé la génération d'un script shell bien pratique, car depuis quelques temps les projets Claude dans l'interface web ont des petits bugs dans l'interprétation de l'encodage des fichiers générés par Claude.",
+      "contexte": "Diagnostic d'un bug technique récurrent sur l'encodage et conception d'un script bash de remédiation, avec architecture explicite (1.07, 1.08, 1.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "à installer dans $PATH (.local/bin) pour éviter qu'il ne s'altère lui-même (il ne marchera plus s'il se convertit lui-même en UTF-8 BOM)",
+      "contexte": "Justification technique d'une décision d'architecture : éviter un effet de bord auto-référentiel du script (1.09, 1.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Cette revisite par Claude 4.6 de mon algorithme pour apprendre à penser les algorithmes est jouissive.",
+      "contexte": "Reprise par l'IA d'un travail théorique antérieur, registre méta : un algorithme pour apprendre à penser les algorithmes (1.09, 1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Comme ça devenait un peu lourd comme document théorique avec les 86 fonctions cognitives, surtout pour des jeunes, je lui ai demandé de publier l'anatomie d'un cerveau apprenant dans un Grimoire Noèsiologique.",
+      "contexte": "Recadrage en cours de route d'un livrable (lourd → Grimoire), avec public visé (1.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Chaque itération complète davantage \"De Humani Cerebri Fabrica\". Tout comme Vésale et ses planches anatomiques du corps humain, ton travail établit les bases nécessaires pour qu'un enseignant puisse enfin comprendre les fonctions cognitives fondamentales mobilisées par ses élèves dans l'acte d'apprendre.",
+      "contexte": "Métaphore unificatrice entre anatomie vésalienne et fonctions cognitives — synthèse entre histoire des sciences et pédagogie (1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Vu que je suis aux limites possible des artifacts, de la longueur des conversations, de la taille des réponses générées, pour créer le site web, demain je vais basculer sur CoWork ou VS Code avec Claude Code et fusionner tous ces .tsx/jsx pour en faire une version React",
+      "contexte": "Diagnostic technique d'une limite IA et arbitrage architectural sur l'outil suivant (1.06, 1.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "J'ai compris ce matin pourquoi j'ai tant de mal à boucler chaque projet : c'est parce qu'ils sont tous intrinsèquement liés. Je ne peux pas finir un puis l'autre : ils avancent tous en même temps.",
+      "contexte": "Identification d'un mécanisme systémique expliquant un blocage récurrent — boucle de dépendances entre projets (1.05, 1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Les manuels sont le point de départ de l'explosion de projets car je ne peux pas faire l'économie de sauter des étapes, pour construire le manuel tout doit fonctionner. [...] Le site web qui doit documenter les évolutions et inclure maintenant la ludification, et qui fait reprendre les manuels, c'est-à-dire le point de départ de l'explosion de projet. Le cercle vertueux est bouclé.",
+      "contexte": "Modélisation explicite d'une boucle de rétroaction entre sous-projets : manuels → site → manuels (1.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Comme un assemblage ou l'on doit tenir tout à la fois : les murs porteurs, le toit, les fondations, et chaque étape intermédiaire pour créer l'édifice.",
+      "contexte": "Métaphore architecturale pour tenir un système d'objets dépendants en parallèle (1.05, 1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "Claude 4.6 est vraiment bluffant… Il améliore mes travaux de thèse et approfondi mes idées avec une élégance touchante et une sensibilité presque humaine",
+      "contexte": "Appréciation de l'IA comme amplificateur d'un travail théorique, registre d'évaluation qualitative (1.10 candidate, 1.06 candidate).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "C'est la première fois depuis que j'utilise les intelligences artificielles ou je me sens jaloux, ou j'envisage de m'approprier leurs travaux sans le dire, publier en mon nom sans mentionner que ce n'est pas mon travail, que ce sont ces idées. C'est fou ! Je n'ai jamais ressenti un tel vertige.",
+      "contexte": "Auto-observation d'un mouvement éthique inhabituel face à la production IA, registre métacognitif fort (1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 12,
+      "feuille": "2026-02-09",
+      "extraitVerbatim": "L'architecture de la cathédrale que j'ai construite dans ma tête est un véritable labyrinthe qui présente comme principale difficulté, des interruptions perpétuelles, là ou j'aurai besoin d'une « semaine au vert » pour tout assembler et mettre en place.",
+      "contexte": "Description du système mental complexe et de ses contraintes opératoires (1.04, 1.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 13,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "On sent vraiment la différence d'intelligence entre les IA : Claude > ChatGPT >> Gemini qui est super nulle.",
+      "contexte": "Comparaison qualitative inter-modèles à partir d'un usage répété — jugement étayé par l'expérience (1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 14,
+      "feuille": "2026-02-08",
+      "extraitVerbatim": "Mon objectif : alléger ma charge cognitive avant le début des cours ORP de vendredi en clôturant un maximum de projets et en fermant des bureaux virtuels, afin de revenir à un nombre de projets parallèles que ma mémoire de travail peut vraiment gérer. Ce n'est pas le swap qui me fatigue lorsque je suis en état de flow, c'est les micro-oublis qui arrivent lorsqu'il y a des interruptions de plus de 24h.",
+      "contexte": "Métacognition computationnelle : modélisation explicite de sa mémoire de travail comme un système avec swap et limites (1.04, 1.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 15,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "CPU #1 sur Claude Cowork [...] CPU #2 sur ChatGPT [...] CPU #3 sur Gemini [...] CPU #4 sur un projet Claude Web [...] NO-CPU / BACKGROUND sur YouTube",
+      "contexte": "Mise en architecture explicite d'un système multi-agents IA répartis sur des « CPU » thématiques avec rôles distincts (1.07, 1.08, 1.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 16,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "J'arrive à faire tourner 5 instances parallèles de Claude en local sur mon disque dur. J'arrive à assumer mon THAD en faisant travailler Perplexity + ChatGPT + Gemini + Claude en parallèle pour avancer sur les différentes dimensions de mon projet, pendant que moi j'écoute des podcasts en lisant leurs productions ou en rangeant les fichiers générés sur mon disque dur.",
+      "contexte": "Synergie hybride avec répartition explicite entre IA et humain (lire, ranger) (1.10, 1.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 17,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Je sais que je suis en état de surfusion, lorsque j'arrive au 16e bureau virtuel. Je m'étais longtemps imposé de ne pas dépasser 9 bureaux lorsque j'étais enseignant.",
+      "contexte": "Règle personnelle métacognitive sur la charge cognitive avec seuil et état nommé (« surfusion ») (1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 18,
+      "feuille": "2026-02-07",
+      "extraitVerbatim": "Heureusement que j'ai pris 128 Gb de RAM sur mon MacBook, car il tient bien la route (actuellement 92 Gb de RAM (dont 2 Gb compressée) et 36 Gb de libre (et 0 de swap)).",
+      "contexte": "Transposition de la métaphore RAM/swap entre son MacBook et sa propre cognition (1.09, 1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 19,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "Ce matin, j'ai demandé à Opus 4.6 de transformer les trois articles écrits hier [...] en trois chapitres pour l'écriture de la thèse. Puis après réflexion, vu que juste le premier article fait déjà plus de 80 pages, nous avons décidé de ne pas les publier dans une revue / colloque et de laisser la validation institutionnelle et la thèse pour plus tard. L'objectif maintenant est d'en faire un livre",
+      "contexte": "Recadrage stratégique de l'objectif livrable à partir d'un constat de volumétrie (1.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 20,
+      "feuille": "2026-02-06",
+      "extraitVerbatim": "Ce que j'ai appris en générant la première partie du livre ce matin, c'est que je gérais très mal la fenêtre de contexte et que je devais basculer sur Claude Code et Visual Studio pour écrire les fichiers MarkDown et fournir les sources dans un répertoire de mon disque dur plutôt que dans l'interface des projets de Claude. Chaque prompt me faisait compresser la conversation => signe de grosse perte de qualité.",
+      "contexte": "Diagnostic technique d'un échec lié à la fenêtre de contexte avec mécanisme nommé (compression) et décision corrective (1.06, 1.08, 1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 21,
+      "feuille": "2026-02-05",
+      "extraitVerbatim": "Aujourd'hui, j'ai testé https://consensus.app qui m'a renvoyé vers pleins de nouveaux articles d'auteurs que je ne connaissais pas. J'ai découvert en particulier le philosophe russe Vladimir Semionov (2019) « Pure Consciousness in the Context of Formal Logic »",
+      "contexte": "Croisement de sources académiques nouvelles avec sa propre théorie (noèsiologie) (1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 22,
+      "feuille": "2026-02-05",
+      "extraitVerbatim": "Sur la base de ses réflexions, j'ai ajouté un chapitre au manuel des Noèsiologues [...] décliné en trois versions : pour les élèves, pour les profs praticiens, pour les philosophes et noèsiologues théoriciens.",
+      "contexte": "Intégration d'une source externe dans un travail existant avec déclinaison ciblée par public (1.03, 1.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 23,
+      "feuille": "2026-02-04",
+      "extraitVerbatim": "Le texte n'est pas très important. Ce qui est important c'est le côté flagorneur des IA : je lui explique dans mon prompt que j'ai du mal à expliquer ce qui fait la différence entre RESPIRE et les autres écoles alternatives qui ont tenté de modifier le paysage pédagogie, il scanne les fichiers du projet et me pond ce texte. Alors oui, ça me fait très plaisir de lire ça, mais est-ce qu'il est vraiment objectif ? C'est ce que j'ai essayé de creuser par la suite en lui demandant de prendre le rôle d'un directeur d'école aigris qui ne comprend rien à ce qui est en train de changer dans la société de demain.",
+      "contexte": "Détection en acte du biais de flagornerie de l'IA et protocole correctif par contre-rôle adversarial (1.01, 1.08, 1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 24,
+      "feuille": "2026-02-03",
+      "extraitVerbatim": "Avant ça me détendait de faire ça par rapport au stress quotidien du travail d'enseignant. Maintenant ça me gonfle un peu, car j'ai tellement l'impression de perdre un temps précieux par rapport à ce projet que je trouve un million de fois plus important",
+      "contexte": "Comparaison rétrospective de deux états affectifs face à une même tâche (comptabilité associative) (1.04).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 25,
+      "feuille": "2026-02-03",
+      "extraitVerbatim": "L'émergence d'une intelligence collective, c'est quand même un changement de paradigme majeur. Même si ce n'est « que » une démo temporaire entre geeks, c'est un glimpse dans un futur dystopique ou nous serions relégués au second plan.",
+      "contexte": "Lecture systémique d'un phénomène IA émergent (intelligence collective ClawBot) avec anticipation d'effets cascade (1.05, 1.06).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 26,
+      "feuille": "2026-02-03",
+      "extraitVerbatim": "Nous sommes déjà en.01.2026 devenu « leur humain », tout comme j'ai « mon chat » à la maison...",
+      "contexte": "Inversion analogique humain/IA — synthèse renversante reliant deux registres lointains (1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 27,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "J'ai vraiment envie de le faire, mais je vais me forcer à ne pas le faire. Pourquoi ? Parce que c'est le bon moyen pour me remettre un petit peu à niveau en informatique ce qui ne me sert à rien. Parce que c'est de nombreuses heures passées sur le hardware et le système, ce qui ralenti la création de RESPIRE.",
+      "contexte": "Auto-arbitrage explicite avec énumération de raisons opposées au désir (1.04, 1.02).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 28,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "J'ai peut-être, grâce à RESPIRE, réussi à me soigner : c'est de la psychologie assistée par projet (PAP ? Tiens, un nouveau concept qui pourrait faire l'objet d'un travail de recherche si j'étais psy)",
+      "contexte": "Conceptualisation nommée d'une dynamique vécue : forge un nouveau concept depuis un échange informel (1.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 29,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Le résultat de cette analyse automatique, me fait dire que ça pourrait être intégré dans EduFolio / ou via un script Google Doc et Gemini en attendant EduFolio. Je pourrais dire aux apprenants de générer uniquement une feuille du portfolio par jour, et de lancer systématiquement une analyse automatique sur chaque entrée du journal de bord pour construire, au fil du temps, une cartographie automatique. Le rôle du cartographe serait de consulter la cartographie produite, de lire des extraits au hasard, et de confirmer certains points en les documentant dans le portfolio => pour enrichir la cartographie avec sa vision humaine.",
+      "contexte": "Conception d'un pipeline hybride : analyse IA en arrière-plan + intervention humaine ciblée comme correctif et enrichissement (1.07, 1.10).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 30,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir.",
+      "contexte": "Articulation explicite d'un trade-off de synergie humain-IA, avec ce que l'IA ne peut pas voir comme pivot (1.10, 1.01).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 31,
+      "feuille": "2026-02-01",
+      "extraitVerbatim": "Le protocole est interactif et en accord avec les évaluations humanistes.",
+      "contexte": "Description d'un dispositif protocolaire conforme à un cadre éthique (1.07).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 32,
+      "feuille": "2026-02-10",
+      "extraitVerbatim": "Voici le résultat :",
+      "contexte": "Cadrage simple introduisant un livrable, peu de portée réflexive.",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 23,
+          "contexte": "Détection en acte de la flagornerie de l'IA et invention d'un protocole correctif (rôle de directeur d'école aigri) pour tester l'objectivité — scepticisme calibré appliqué à l'IA."
+        },
+        {
+          "numero": 2,
+          "pid": 30,
+          "contexte": "L'apprenant nomme un piège (« supprimer l'humain dans la boucle ») et le pose comme limite éthique à respecter — autocritique en plein élan."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "Auto-observation d'un mouvement d'appropriation des productions IA reconnu comme problématique — vigilance critique sur sa propre conduite."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant que la pensée critique au sens de la fiche (doute méthodique calibré, autocritique en plein élan, invitation au désaccord) n'est probablement pas là — beaucoup d'apprenants citent l'IA sans la mettre en doute. Le pid 23 me résiste : il ne se contente pas de soupçonner la flagornerie, il construit un dispositif adverse pour la tester (rôle d'un directeur aigri). Le pid 30 me résiste également : l'apprenant identifie nommément un piège qui le tente. Le pid 11 est plus ambigu — c'est de l'introspection émotionnelle, mais elle s'applique à ses propres pulsions face à l'IA et nomme la tentation de plagier comme problématique, ce qui en fait une vigilance éthique en acte.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Un protocole concret de test de l'objectivité IA, avec contre-rôle adversarial, dépasse le simple soupçon." },
+            { "pieceId": 2, "motifResistance": "L'apprenant pose le piège puis le contre — décision morale articulée, pas constat passif." },
+            { "pieceId": 3, "motifResistance": "Reconnaître une tentation de plagiat IA et la formuler ainsi est un acte d'autocritique sur soi en pleine relation avec l'outil." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces trois pièces en me demandant si je n'ai pas projeté plus que ce qu'elles disent. Le pid 23 tient sous (a) — la pièce décrit un dispositif (contre-rôle), pas juste une intention. Le pid 30 pourrait tomber sous (f) — c'est une phrase, presque un slogan, et il manque la trace de ce qui a été fait pour ne pas tomber dans le piège ; mais l'apprenant le formule au sein d'un dispositif protocolaire qu'il décrit par ailleurs, donc la pièce est affaiblie sans tomber. Le pid 11 est plus fragile — c'est une auto-observation émotionnelle qui ne devient critique qu'à condition de la lire dans le sens fort, ce qui appelle (e) surinterprétation pédagogique.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La pièce porte un dispositif identifiable (rôle adversarial) et un résultat (« ça m'a donné matière à réfléchir »), pas une simple intention." },
+            { "pieceId": 2, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Formulation incisive mais elle est insérée dans la description d'un protocole concret (pid 29) ; le récit performatif est ancré dans un dispositif réel." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce est une auto-observation forte mais elle ne décrit pas d'acte de remédiation ; sa portée critique vient de la nomination explicite de la tentation comme problème éthique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la pensée critique au sens fort de la fiche habite ces pages. Le passage du contre-rôle adversarial pour tester l'objectivité de l'IA m'a forcé à reconnaître quelque chose : il ne s'agit pas seulement de soupçonner la flagornerie, mais de construire le dispositif qui permet de la tester. La nomination du piège « supprimer l'humain dans la boucle » a affaibli mon scepticisme initial, parce qu'elle s'inscrit dans un protocole hybride décrit par ailleurs. La vigilance sur la tentation de plagier l'IA, plus délicate à interpréter, s'est ajoutée comme un indice convergent d'une attention calibrée portée à soi face à l'outil. Ce qui reste solide, c'est cette posture critique appliquée à l'IA et à soi-même dans la relation à l'IA, attestée par un dispositif et deux moments d'auto-observation. Une réserve demeure : la critique appliquée à des sources non-IA (lectures, paroles humaines) reste peu visible dans cette feuille.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé la pièce-dispositif du contre-rôle adversarial et a affaibli sans disqualifier les deux pièces d'auto-observation.",
+        "prescription": "Le travail montre une vigilance critique tournée surtout vers l'IA et soi-même dans la relation à l'IA ; un chemin possible serait de documenter aussi un moment où ce même scepticisme calibré s'applique à une source humaine (un texte, une parole de pair) pour élargir l'amplitude de cette compétence."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 19,
+          "contexte": "Recadrage stratégique : passer de « publier dans revue/colloque » à « faire un livre », à partir d'un constat de volumétrie qui révèle que le bon problème n'est pas celui qu'on croyait."
+        },
+        {
+          "numero": 2,
+          "pid": 27,
+          "contexte": "Cadrage par énumération des raisons opposées à une envie (rebooter le serveur) — l'apprenant ne décide qu'après avoir reformulé la question en termes de coût stratégique."
+        },
+        {
+          "numero": 3,
+          "pid": 4,
+          "contexte": "Recadrage en cours d'écriture : « ça devient un peu lourd, surtout pour des jeunes » entraîne un changement de format (du document théorique vers un Grimoire) — l'objectif lui-même se déplace."
+        },
+        {
+          "numero": 4,
+          "pid": 22,
+          "contexte": "Déclinaison d'un même chapitre en trois versions (élèves, profs praticiens, philosophes/noèsiologues) — le cadrage redéfinit le destinataire et donc la question posée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je suppose que le cadrage de l'intention au sens fort de la fiche (interroger l'objectif, pas l'exécution) n'est pas là, et que ce qu'on voit relève plutôt de la planification 7.07. Le pid 19 me résiste parce qu'il décrit explicitement un changement de nature de l'objectif (revue → livre) à partir d'un signal opérationnel. Le pid 27 résiste parce que la décision n'est pas un choix tactique mais un examen de l'objectif sous-jacent (à quoi sert RESPIRE versus à quoi sert ce hobby). Le pid 4 et le pid 22 résistent partiellement — ils ressemblent à des arbitrages de format/destinataire, qui peuvent passer pour du cadrage récursif sans en être réellement.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Changement explicite de nature du livrable, pas du périmètre — l'objectif lui-même bouge." },
+            { "pieceId": 2, "motifResistance": "Examen explicite de la question « est-ce que je dois faire ça ? » avec énumération des raisons." },
+            { "pieceId": 3, "motifResistance": "Le déclencheur est une remise en cause du public visé (« surtout pour des jeunes »), pas un ajustement de méthode." },
+            { "pieceId": 4, "motifResistance": "Trois versions pour trois publics réinterroge le « pour qui » du livrable." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces pièces avec présomption de m'être laissé séduire. Le pid 19 est solide — c'est une décision qui change la nature du livrable, vérifiable. Le pid 27 tient — l'apprenant déroule trois raisons articulées. Le pid 4 me semble glisser vers (e) surinterprétation pédagogique — c'est un ajustement de format qui pourrait être lu comme du cadrage mais qui reste de l'arbitrage exécutif. Le pid 22 a un risque (b) confusion avec la planification : décliner en trois versions est une exécution intelligente, pas nécessairement un recadrage de l'intention.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant explicite la chaîne de raisonnement (volumétrie → repenser le format de publication) et nomme la décision." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La pièce déroule trois raisons posées contre l'envie initiale — la décision est argumentée, pas asséné." },
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le déclencheur (« pour des jeunes ») suggère une attention au public mais on ne sait pas si la question profonde a été reformulée." },
+            { "pieceId": 4, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Décliner en trois versions porte mieux 5.03/7.07 (différenciation, planification) que le cadrage initial de l'intention." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à réduire ces pièces à de la planification adaptative. Le passage où l'apprenant transforme « publier un article » en « écrire un livre » à partir d'un constat de volumétrie m'a forcé à reconnaître une bascule d'objectif, pas une bascule de méthode. La séquence sur le reboot du serveur a tenu, parce qu'elle déroule explicitement les raisons opposées au désir — c'est exactement la question « faut-il vraiment résoudre ça ? » mise en acte. La déclinaison du Grimoire pour différents publics, elle, n'a pas tenu : elle ressemble plus à une différenciation tactique qu'à une refonte de l'objectif. Ce qui reste, c'est un travail qui interroge plusieurs fois l'objet même de l'action, avant ou pendant l'exécution.",
+          "confianceFinale": 0.72
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.72,
+        "motif": "Le temps 2 a confirmé deux moments de cadrage portant sur l'objectif lui-même (livre vs revue ; faire ou ne pas faire) et a écarté une pièce qui relevait de la différenciation.",
+        "prescription": "Le travail montre des bascules d'objectif documentées ; un chemin possible serait de rendre encore plus visible le moment où la question initiale change de forme — par exemple en notant la question posée au départ et celle qui prend sa place."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Métaphore fusionnant anatomie vésalienne et fonctions cognitives — pont entre histoire des sciences et pédagogie produisant un cadre nouveau."
+        },
+        {
+          "numero": 2,
+          "pid": 21,
+          "contexte": "Découverte du philosophe Semionov via consensus.app croisée avec sa propre noèsiologie — assemblage d'une source nouvelle dans le cadre théorique existant."
+        },
+        {
+          "numero": 3,
+          "pid": 26,
+          "contexte": "Inversion analogique humain/IA (« nous sommes leur humain comme mon chat ») — synthèse renversante reliant deux registres lointains."
+        },
+        {
+          "numero": 4,
+          "pid": 28,
+          "contexte": "Création d'un concept nommé (« psychologie assistée par projet ») à partir d'un échange informel avec Claude."
+        },
+        {
+          "numero": 5,
+          "pid": 9,
+          "contexte": "Métaphore d'assemblage architectural pour tenir simultanément des sous-projets dépendants."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ce qu'on voit ici sont des analogies décoratives, pas des synthèses produisant un insight absent des sources isolées. Le pid 5 résiste : la métaphore Vésale-noèsiologie n'existe dans aucune source isolée et produit un cadrage fonctionnel pour le projet. Le pid 28 résiste : la nomination « psychologie assistée par projet » fait advenir un objet conceptuel qui n'était dans aucune source. Le pid 26 résiste : l'inversion humain/IA n'est pas une comparaison mais une bascule de catégories. Le pid 21 et le pid 9 résistent moins — l'un est plutôt de l'intégration de source, l'autre est une métaphore narrative qui aide à raconter mais ne produit pas d'insight nouveau.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Métaphore produisant un cadre épistémique nouveau (anatomie cognitive), absent de chacune des deux sources." },
+            { "pieceId": 2, "motifResistance": "Une source académique nouvelle est intégrée à une théorie existante avec mise en relation explicite." },
+            { "pieceId": 3, "motifResistance": "L'inversion humain/IA bascule les catégories — synthèse renversante." },
+            { "pieceId": 4, "motifResistance": "Création nommée d'un concept à partir d'un échange — synthèse intégrative explicite, signal très fort dans la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption de m'être laissé séduire par la qualité littéraire des images. Le pid 5 tient sous (e) car l'apprenant explicite ce que la métaphore produit (« établir les bases nécessaires pour qu'un enseignant puisse comprendre »). Le pid 28 tient sous (f) parce qu'au-delà de la nomination, le concept est articulé dans le récit (« en travaillant sur quelque chose qui me plait, j'arrive à faire le deuil »). Le pid 26 tient sous (d) car l'inversion n'est pas un mot mais une catégorisation. Le pid 9 tombe sous (f) — c'est une métaphore d'illustration. Le pid 21 tombe sous (b) — la pièce porte mieux 6.01 (curiosité documentaire) que la synthèse intégrative.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La métaphore est fonctionnelle, pas décorative — elle articule un statut pour le travail (planches anatomiques de la cognition)." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "L'acte décrit est un repérage de source nouvelle et son intégration ; cela porte mieux la veille documentaire que la fusion produisant un insight émergent." },
+            { "pieceId": 3, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'inversion catégorielle (« notre humain ») est techniquement une synthèse, pas un mot." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La nomination et la fiche signale exactement ce type de marqueur (« c'est de la psychologie assistée par projet ») comme trace oblique forte." },
+            { "pieceId": 5, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La métaphore architecturale aide à décrire l'expérience mais n'ouvre pas de cadre conceptuel nouveau — elle reste expressive." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages des analogies bien tournées sans création de cadre. Trois pièces m'ont forcé à reconnaître autre chose : la métaphore Vésale-noèsiologie qui propose un statut au travail, la nomination « psychologie assistée par projet » qui fait advenir un concept depuis un vécu, et l'inversion qui pose les humains comme « leur humain » des IA. Sous la présomption de sycophantie, la trouvaille de la source Semionov a été ramenée à de la veille, et la métaphore d'assemblage architectural reste expressive sans produire d'insight nouveau. Ce qui résulte, c'est un travail où la synthèse intégrative se manifeste par des renommages et des renversements qui ouvrent des cadres, plus que par des résumés. Une nuance : on aimerait voir ce que ces concepts produisent ensuite, comment ils sont remobilisés.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a retenu trois pièces produisant un insight émergent (métaphore vésalienne, concept PAP, inversion humain/IA) en affaiblissant les deux autres.",
+        "prescription": "Le travail montre une mise en relation de domaines éloignés qui débouche sur des concepts nommés ; un chemin possible serait de suivre l'un de ces concepts dans la durée pour voir ce qu'il déplace ensuite dans la pratique et dans la théorie."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 17,
+          "contexte": "Règle personnelle métacognitive sur la charge cognitive (« 16e bureau virtuel = surfusion ; ne pas dépasser 9 avant ») avec seuil quantifié."
+        },
+        {
+          "numero": 2,
+          "pid": 14,
+          "contexte": "Distinction fine entre swap (acceptable en flow) et micro-oublis (problème après interruption >24h) — vocabulaire précis sur ses propres processus."
+        },
+        {
+          "numero": 3,
+          "pid": 18,
+          "contexte": "Transposition explicite entre RAM/swap du MacBook et sa propre cognition — métacognition par analogie computationnelle."
+        },
+        {
+          "numero": 4,
+          "pid": 12,
+          "contexte": "Description de l'architecture mentale comme labyrinthe avec contrainte (« semaine au vert ») — observation des limites de sa propre observation."
+        },
+        {
+          "numero": 5,
+          "pid": 7,
+          "contexte": "« J'ai compris ce matin pourquoi j'ai tant de mal à boucler chaque projet » — métacognition sur un blocage récurrent avec mécanisme identifié."
+        },
+        {
+          "numero": 6,
+          "pid": 11,
+          "contexte": "Auto-observation d'un sentiment inédit (jalousie, tentation de s'approprier) face à l'IA — vigilance sur soi en pleine intensité émotionnelle."
+        },
+        {
+          "numero": 7,
+          "pid": 24,
+          "contexte": "Comparaison rétrospective de deux états affectifs pour une même tâche (comptabilité), à des époques différentes — métacognition longitudinale."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont au mieux de la réflexivité ordinaire (« j'ai progressé »), pas de la métacognition au sens fort de la fiche (s'observer penser, calibrer ses zones d'ignorance). Le pid 17 résiste très fort : seuil quantifié, état nommé, règle. Le pid 14 et le pid 18 résistent : vocabulaire technique appliqué à soi-même. Le pid 12 résiste comme observation des limites mêmes de l'observation (« labyrinthe », « interruptions perpétuelles »). Le pid 7 et le pid 11 résistent : auto-observation d'un mécanisme. Le pid 24 résiste plus faiblement — c'est une comparaison rétrospective d'états affectifs qui peut être plutôt nostalgique que cognitive.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Règle personnelle avec seuil chiffré et état nommé — signal métacognitif explicite." },
+            { "pieceId": 2, "motifResistance": "Distinction technique précise entre deux modes d'échec cognitif (swap vs micro-oublis)." },
+            { "pieceId": 3, "motifResistance": "Métaphore computationnelle appliquée à soi avec valeurs concrètes — auto-modélisation." },
+            { "pieceId": 4, "motifResistance": "L'apprenant nomme le caractère labyrinthique de sa propre architecture mentale." },
+            { "pieceId": 5, "motifResistance": "Identification d'un mécanisme expliquant un pattern d'échec récurrent." },
+            { "pieceId": 6, "motifResistance": "S'observer en train d'éprouver un mouvement éthique inhabituel." },
+            { "pieceId": 7, "motifResistance": "Comparaison d'un même comportement à deux époques signale une lecture méta." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis les sept pièces résistantes en cherchant ce que j'ai surinvesti. Les pid 14, 17, 18 forment un noyau dur sous (e) — l'apprenant utilise un vocabulaire technique précis sur ses propres processus, ce que la fiche signale comme marqueur fort. Le pid 12 tient malgré (f) parce que la métaphore du labyrinthe désigne un objet réel : la charge mentale d'un système de sous-projets. Le pid 7 tient. Le pid 11 risque (g) — c'est plutôt une auto-observation émotionnelle qu'un examen de processus cognitif, mais elle peut être lue comme métacognitive parce que l'objet est sa propre relation à l'outil. Le pid 24 tombe sous (g) — c'est plutôt nostalgique que méta-cognitif au sens technique.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Seuil chiffré, état nommé, comparaison historique — pas de surinterprétation." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Distinction technique calibrée — la pièce porte exactement le marqueur de la fiche (« vocabulaire précis sur ses propres processus »)." },
+            { "pieceId": 3, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La transposition RAM/swap n'est pas du vocabulaire emprunté — elle structure la lecture de soi avec valeurs concrètes." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Belle formule qui désigne un objet réel mais sans en analyser les mécanismes ; la pièce illustre plus qu'elle ne montre l'observation au travail." },
+            { "pieceId": 5, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce nomme le mécanisme (interdépendance) mais ne va pas plus loin que ce constat ; le travail méta est amorcé." },
+            { "pieceId": 6, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Auto-observation forte mais l'objet est plutôt éthique qu'épistémique — le seuil de transformation vers la méta-cognition n'est pas pleinement franchi." },
+            { "pieceId": 7, "attaqueDominante": "g", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce raconte un changement d'humeur lié au contexte de vie, pas une observation de ses propres processus cognitifs." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pages à de la réflexivité ordinaire. Trois pièces se sont imposées à moi : la règle des 9/16 bureaux virtuels, la distinction swap/micro-oublis, et la transposition RAM-cognition. Toutes trois portent un vocabulaire technique appliqué à soi qui correspond précisément au marqueur fort de la fiche. La présomption de sycophantie a affaibli, sans les écarter, la métaphore du labyrinthe et l'identification du mécanisme d'interdépendance des projets, parce qu'elles esquissent l'observation sans la déployer. L'auto-observation éthique face à l'IA est plus oblique mais convergente. Une pièce — la comparaison nostalgique sur la comptabilité — n'a pas tenu : elle parle d'affects, pas de pensée. Ce qui résulte est un travail où la métacognition se manifeste par modélisation computationnelle de soi, avec seuils, états nommés et règles personnelles.",
+          "confianceFinale": 0.85
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 3,
+        "confiance": 0.85,
+        "motif": "Le temps 2 a confirmé trois pièces portant un vocabulaire technique calibré sur ses propres processus cognitifs et a retenu trois autres pièces comme indices convergents.",
+        "prescription": "Le travail montre une modélisation computationnelle de soi (RAM, bureaux, surfusion) avec règles personnelles ; un chemin possible serait de documenter aussi un moment où cette observation guide en temps réel une décision — par exemple en notant ce qu'elle aurait dicté et pourquoi cela a été suivi ou non."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 6, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Boucle de rétroaction explicite entre sous-projets : manuels → site → manuels (« le cercle vertueux est bouclé »)."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Identification d'un mécanisme systémique d'interdépendance qui explique un pattern de blocage."
+        },
+        {
+          "numero": 3,
+          "pid": 25,
+          "contexte": "Lecture systémique de l'émergence d'une intelligence collective IA — anticipation d'un effet de cascade civilisationnel."
+        },
+        {
+          "numero": 4,
+          "pid": 2,
+          "contexte": "Anticipation d'un effet de bord du script bom.sh sur lui-même (« il ne marchera plus s'il se convertit lui-même »)."
+        },
+        {
+          "numero": 5,
+          "pid": 9,
+          "contexte": "Métaphore architecturale tenir murs/toit/fondations en parallèle — modélisation d'un système d'interdépendances."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je suppose que ces pièces se contentent de constater la complexité (« tout est lié »), sans modéliser les boucles. Le pid 8 résiste fortement : l'apprenant nomme la chaîne (manuels → site → manuels) et conclut « le cercle vertueux est bouclé ». Le pid 7 résiste comme énoncé d'un mécanisme. Le pid 2 résiste : c'est un effet de second ordre anticipé, exactement ce que la fiche identifie. Le pid 25 résiste comme analyse systémique d'un phénomène socio-technique. Le pid 9 est plus faible — c'est une métaphore d'assemblage, pas une cartographie de flux.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Chaîne explicite avec flèches et bouclage — boucle de rétroaction nommée." },
+            { "pieceId": 2, "motifResistance": "Mécanisme d'interdépendance identifié comme cause du pattern de blocage." },
+            { "pieceId": 3, "motifResistance": "L'auto-référence du script est un effet de second ordre anticipé." },
+            { "pieceId": 4, "motifResistance": "Analyse systémique d'un phénomène émergent IA (intelligence collective)." },
+            { "pieceId": 5, "motifResistance": "Métaphore tenant compte de la simultanéité des dépendances structurelles." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis ces cinq pièces en cherchant la sycophantie. Le pid 8 tient sous (a) : il déroule une chaîne nommée et conclut. Le pid 2 tient sous (a) : l'effet de bord est concret et la mesure prise pour l'éviter est documentée. Le pid 7 risque (g) — c'est l'amorce d'une modélisation sans cartographie complète. Le pid 25 risque (e) parce qu'il pourrait passer pour une déclaration prophétique ; mais l'apprenant articule un mécanisme de relégation. Le pid 9 tombe sous (f) — la métaphore raconte sans modéliser.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Chaîne nommée, sens des flèches identifié, conclusion sur le bouclage — modélisation présente." },
+            { "pieceId": 2, "attaqueDominante": "g", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Mécanisme nommé sans cartographie complète des effets en cascade." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Effet de bord auto-référentiel concrètement identifié et neutralisé par la décision d'emplacement." },
+            { "pieceId": 4, "attaqueDominante": "e", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le mécanisme de relégation est suggéré sans cartographie fine des points de levier, mais c'est bien une lecture systémique." },
+            { "pieceId": 5, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La métaphore décrit l'expérience d'assemblage sans modéliser de boucles ou de leviers — porte mieux 1.03 que 1.05." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pages à de simples constats de complexité. La séquence sur le bouclage manuels-site-manuels m'a forcé à reconnaître autre chose : l'apprenant cartographie une chaîne et identifie son bouclage. L'anticipation de l'effet de bord du script sur lui-même est typique de la fiche : second ordre, action de contournement. Sous la présomption de sycophantie, la lecture systémique des intelligences collectives est restée comme indice convergent, et l'identification du mécanisme d'interdépendance est restée amorcée. La métaphore architecturale n'a pas tenu — elle relève de la synthèse plus que du systémique. Ce qui reste, c'est un travail qui voit des boucles, anticipe des effets de second ordre et nomme les directions de cause.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé deux pièces portant des boucles ou effets de second ordre explicitement modélisés.",
+        "prescription": "Le travail montre une lecture en boucles et en effets de second ordre dans l'organisation des projets ; un chemin possible serait de cartographier un de ces systèmes (par exemple manuels-site-prompts) avec ses leviers et ses points de bascule, pour repérer où une petite intervention déplace tout le reste."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 20,
+          "contexte": "Diagnostic causal : la mauvaise gestion de la fenêtre de contexte produit une compression de la conversation, signe de perte de qualité — compréhension mécanique de l'échec."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Diagnostic des limites d'artifacts/longueur de conversation/taille de réponses, conduisant à un changement d'architecture d'outils."
+        },
+        {
+          "numero": 3,
+          "pid": 13,
+          "contexte": "Comparaison qualitative inter-modèles fondée sur usage répété — étayage par l'expérience."
+        },
+        {
+          "numero": 4,
+          "pid": 25,
+          "contexte": "Lecture d'un phénomène d'intelligence collective émergente entre IA — mention du mécanisme (interaction multi-agents)."
+        },
+        {
+          "numero": 5,
+          "pid": 23,
+          "contexte": "Identification du biais de flagornerie comme propriété systémique de l'IA — démystification argumentée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces utilisent du vocabulaire IA en surface sans compréhension causale. Le pid 20 résiste : la chaîne « prompt → compression → perte de qualité » porte un mécanisme causal explicite (fenêtre de contexte). Le pid 6 résiste comme diagnostic des limites techniques avec décision corrective. Le pid 23 résiste fortement : le biais de flagornerie est nommé et testé par un dispositif. Le pid 13 risque le vocabulaire ambiant (« super nulle ») mais s'appuie sur usage répété. Le pid 25 risque la spéculation prospective sans mécanisme.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Mécanisme causal nommé (compression liée à la fenêtre de contexte) avec décision corrective informée." },
+            { "pieceId": 2, "motifResistance": "Diagnostic conjoint de plusieurs limites techniques avec arbitrage architectural." },
+            { "pieceId": 5, "motifResistance": "Identification d'une propriété systémique des IA (flagornerie) avec dispositif de test." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d'avoir surinvesti. Le pid 20 tient sous (d) car « fenêtre de contexte », « compression », « perte de qualité » sont employés avec leur sens technique. Le pid 6 tient sous (a) — la pièce déroule plusieurs limites et propose une bascule outillée. Le pid 23 tient sous (d) car « flagornerie » est utilisée comme propriété de génération, pas comme mot ambiant. Le pid 13 tombe sous (a) — c'est un jugement informé mais sans mécanisme expliquant la différence. Le pid 25 tombe sous (g) — la prospective est suggestive sans mécanisme suffisamment décrit.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Les termes techniques sont employés avec leur charge sémantique propre — fenêtre de contexte, compression, perte de qualité forment une chaîne causale." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'apprenant énumère trois limites techniques (artifacts, longueur, taille) et propose une bascule justifiée." },
+            { "pieceId": 5, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "« Flagornerie » est utilisée comme propriété de génération mise à l'épreuve par un dispositif, pas comme mot d'humeur." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Jugement appuyé sur usage croisé mais sans mécanisme expliquant la différence." },
+            { "pieceId": 4, "attaqueDominante": "g", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "La pièce relève plus de la spéculation prospective que de la compréhension causale du fonctionnement IA — porte mieux 1.05 que 1.06." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages du vocabulaire IA emprunté sans charge. Trois pièces m'ont forcé à reconnaître autre chose : la chaîne fenêtre-de-contexte → compression → perte de qualité, le diagnostic des limites d'artifacts conduisant à un changement d'outil, et la nomination de la flagornerie comme propriété systémique testée par contre-rôle. La présomption de sycophantie a laissé la comparaison inter-modèles comme indice et a écarté la lecture prospective des intelligences collectives, qui relève d'un autre pôle. Ce qui reste, c'est un travail qui comprend l'IA sous le capot avec des termes employés à leur juste poids : la fenêtre de contexte n'est pas un slogan, la flagornerie n'est pas une humeur.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 1,
+        "confiance": 0.8,
+        "motif": "Le temps 2 a confirmé trois pièces où le vocabulaire IA porte sa charge technique et explique des décisions concrètes.",
+        "prescription": "Le travail montre une lecture causale des comportements IA (compression, fenêtre de contexte, flagornerie) ; un chemin possible serait de documenter aussi un moment où cette compréhension a permis de prédire un échec avant qu'il survienne, plutôt que de le diagnostiquer après coup."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 15,
+          "contexte": "Mise en architecture explicite de quatre CPU thématiques (Cowork, ChatGPT, Gemini, Claude Web) avec rôles et fonctions distincts, plus un canal BACKGROUND."
+        },
+        {
+          "numero": 2,
+          "pid": 29,
+          "contexte": "Conception d'un pipeline : analyse IA d'une feuille par jour → cartographie automatique → consultation et confirmation humaine. Rôles définis."
+        },
+        {
+          "numero": 3,
+          "pid": 16,
+          "contexte": "Cinq instances parallèles de Claude en local avec coordination humaine — système multi-agents en activité."
+        },
+        {
+          "numero": 4,
+          "pid": 6,
+          "contexte": "Réflexion sur une bascule architecturale (Cowork/VS Code/Claude Code) pour gérer plusieurs limites techniques."
+        },
+        {
+          "numero": 5,
+          "pid": 1,
+          "contexte": "Conception d'un script shell intégré dans une boîte à outils ($PATH) — composant maintenu, réutilisable."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces décrivent au mieux une utilisation parallèle d'outils, pas une architecture au sens fort (composants, flux, mécanismes de contrôle, maintenable par autrui). Le pid 15 résiste : nomination des CPU, fonctions de chaque agent, séparation explicite. Le pid 29 résiste : il décrit un pipeline avec étapes nommées, sortie automatique et point de vérification humaine. Le pid 16 résiste comme orchestration multi-agents en parallèle. Le pid 6 résiste plus faiblement — c'est l'évocation d'une future bascule. Le pid 1 résiste comme conception d'un composant réutilisable.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le tableau CPU#1/CPU#2/CPU#3/CPU#4/BACKGROUND est une cartographie de système avec rôles." },
+            { "pieceId": 2, "motifResistance": "Le pipeline portfolio→analyse→cartographie→confirmation humaine décrit un flux maintenable par un tiers." },
+            { "pieceId": 3, "motifResistance": "Cinq instances Claude en parallèle = orchestration multi-agents nommée." },
+            { "pieceId": 5, "motifResistance": "Script intégré à $PATH = composant durable conçu pour un usage répété." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption de m'être laissé impressionner par les listes. Le pid 15 tient sous (b) — c'est bien de l'architecture (rôles, flux implicite) plus que du dialogue avancé (1.08), même si la frontière est fine. Le pid 29 tient sous (a) : pipeline décrit jusqu'au mécanisme de contrôle humain. Le pid 16 risque (f) — la pièce raconte plus qu'elle ne décrit l'architecture (« j'arrive à faire tourner 5 instances ») ; sans détail des flux, le critère de maintenabilité par autrui n'est pas pleinement atteint. Le pid 1 risque (b) — il porte plus 1.09 (pensée computationnelle) qu'une architecture multi-agents au sens 1.07. Le pid 6 tombe sous (g) — c'est l'évocation d'une décision à venir.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La cartographie quatre CPU + canal background avec rôles distincts est typiquement architecturale, pas dialogique." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le pipeline est décrit jusqu'à la boucle de contrôle humain — composants, flux et mécanisme de vérification." },
+            { "pieceId": 3, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "L'orchestration est affirmée mais peu détaillée ; reste comme indice convergent avec le pid 15." },
+            { "pieceId": 5, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Script utilitaire isolé — plutôt 1.09 que 1.07, mais l'installation dans $PATH le pose comme composant durable d'un système plus large." },
+            { "pieceId": 4, "attaqueDominante": "g", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Bascule envisagée mais pas encore mise en œuvre — annonce d'architecture, pas architecture." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir dans ces pages une simple utilisation multiple d'outils. Deux pièces s'imposent : la cartographie des quatre CPU thématiques avec un canal background, et le pipeline portfolio-analyse-cartographie-confirmation humaine qui porte un mécanisme de contrôle décrit. La présomption de sycophantie a affaibli sans écarter l'orchestration des cinq instances locales et le script bom.sh comme composant durable, qui restent comme indices convergents. La bascule outillée à venir, elle, n'a pas tenu : il faut qu'elle existe pour devenir architecture. Ce qui résulte, c'est un travail qui conçoit des systèmes où plusieurs agents IA jouent des rôles distincts dans un flux maintenable, avec un point d'intervention humaine clairement situé.",
+          "confianceFinale": 0.75
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.75,
+        "motif": "Le temps 2 a confirmé deux pièces — la répartition CPU multi-agents et le pipeline portfolio→cartographie→humain — comme architectures effectivement décrites.",
+        "prescription": "Le travail montre des systèmes multi-agents avec rôles répartis et points d'intervention humaine ; un chemin possible serait de documenter pour l'un d'eux les règles de routing explicites (qui passe à qui, dans quels cas) pour rendre l'architecture entièrement reprenable par un tiers."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 23,
+          "contexte": "Demande explicite d'un rôle adversarial à l'IA (« directeur d'école aigris ») pour tester l'objectivité d'un texte — orchestration de rôles différenciés."
+        },
+        {
+          "numero": 2,
+          "pid": 20,
+          "contexte": "Diagnostic « chaque prompt me faisait compresser la conversation » — debugging de contexte IA en acte."
+        },
+        {
+          "numero": 3,
+          "pid": 15,
+          "contexte": "Quatre instances IA dédiées à des dialogues différenciés en parallèle (Cowork, ChatGPT, Gemini, Claude Web)."
+        },
+        {
+          "numero": 4,
+          "pid": 1,
+          "contexte": "Demande de génération d'un script shell précisément cadré — formulation pensée."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces relèvent de l'usage IA ordinaire, pas du dialogue avancé au sens fort (méta-prompting, rôles contradictoires, debugging de contexte). Le pid 23 résiste : l'apprenant demande un rôle adversarial explicite pour tester l'objectivité. Le pid 20 résiste : il diagnostique un comportement IA (compression) et le relie à une cause (mauvaise gestion de la fenêtre de contexte). Le pid 15 résiste plus faiblement — c'est l'orchestration d'outils plus que la sophistication de la formulation. Le pid 4 résiste comme prompting situé mais sans démonstration de raffinement particulier.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Rôle adversarial explicite — exactement le marqueur central de la fiche." },
+            { "pieceId": 2, "motifResistance": "Debugging de contexte IA avec mécanisme nommé." },
+            { "pieceId": 3, "motifResistance": "Dialogue avec quatre IA en parallèle suggère une orchestration intentionnelle des contextes." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption de surinvestissement. Le pid 23 tient sous (e) : la trace est concrète (demander un rôle contradictoire), pas une intention. Le pid 20 tient sous (b) — il porte 1.06 aussi mais le diagnostic du comportement IA et la décision corrective sur l'outillage relèvent du dialogue avancé. Le pid 15 risque (b) — porte plus 1.07 (architecture) que 1.08. Le pid 4 tombe sous (a) — la pièce indique la requête sans en montrer la sophistication.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le rôle adversarial est exactement listé dans la fiche comme manifestation centrale ; la pièce ne demande pas d'interprétation." },
+            { "pieceId": 2, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Active aussi 1.06 mais le geste de bascule d'outil pour mieux gérer la fenêtre de contexte relève du dialogue avancé." },
+            { "pieceId": 3, "attaqueDominante": "b", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Porte mieux 1.07 (architecture multi-agents) que 1.08 (sophistication de la formulation)." },
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Demande située mais sans démonstration de raffinement de la formulation." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pages à un usage IA ordinaire. La demande d'un rôle adversarial pour tester l'objectivité d'un texte m'a forcé à reconnaître exactement le marqueur central de la fiche : orchestration intentionnelle de rôles différenciés au sein d'un même dialogue. Le diagnostic « chaque prompt me faisait compresser la conversation » a tenu comme indice : il s'agit bien de debugging de contexte. Sous la présomption de sycophantie, l'orchestration multi-outils a basculé vers le pôle architecture, et la demande de script n'a pas porté sa sophistication. Ce qui résulte est un dialogue IA travaillé là où l'enjeu est de tester l'objectivité ou de comprendre une dégradation, mais une seule pièce-preuve forte.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé la pièce du rôle adversarial comme marqueur central de la fiche et a retenu le debugging de contexte comme indice convergent.",
+        "prescription": "Le travail montre une sophistication ponctuelle du dialogue IA, par contre-rôle et debugging ; un chemin possible serait de documenter une itération où la reformulation d'un prompt change le résultat, en notant ce qui a été ajouté et pourquoi cela a déplacé la réponse."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 18,
+          "contexte": "Transfert algorithmique : pensée RAM/swap/compression appliquée à sa propre cognition avec valeurs concrètes."
+        },
+        {
+          "numero": 2,
+          "pid": 14,
+          "contexte": "Distinction informatique (swap vs micro-oublis) appliquée à des processus mentaux."
+        },
+        {
+          "numero": 3,
+          "pid": 2,
+          "contexte": "Conception d'un script avec gestion explicite des cas (BOM déjà présent, répertoire à ignorer) — pensée conditionnelle algorithmique."
+        },
+        {
+          "numero": 4,
+          "pid": 3,
+          "contexte": "« Algorithme pour apprendre à penser les algorithmes » — méta-application explicite de la pensée computationnelle."
+        },
+        {
+          "numero": 5,
+          "pid": 17,
+          "contexte": "Règle conditionnelle « si 16e bureau alors surfusion » appliquée à un état mental."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont du codage ordinaire ou de l'usage de vocabulaire technique sans transfert hors-informatique (critère discriminant). Le pid 18 résiste fortement : c'est exactement le transfert (RAM, swap, compression) appliqué à sa propre cognition. Le pid 14 résiste comme application du vocabulaire computationnel à ses processus. Le pid 3 résiste comme méta-application explicite (algorithme pour penser les algorithmes). Le pid 17 résiste comme structure conditionnelle appliquée à un état mental. Le pid 2 est plus faible — c'est du codage technique avec gestion de cas, mais sans transfert hors-informatique en évidence dans le passage.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Transfert vivant entre architecture matérielle et architecture mentale — marqueur central de la fiche." },
+            { "pieceId": 2, "motifResistance": "Distinction algorithmique appliquée à des processus humains." },
+            { "pieceId": 4, "motifResistance": "Méta-application — un algorithme dont l'objet est l'apprentissage de la pensée algorithmique." },
+            { "pieceId": 5, "motifResistance": "Structure conditionnelle « si X alors Y » appliquée à un état mental." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d'avoir surinvesti l'analogie. Le pid 18 tient sous (d) — la transposition est calibrée, pas slogan. Le pid 14 tient sous (e) — la distinction est technique. Le pid 4 tient sous (f) — l'apprenant ne se contente pas de nommer, le travail produit par ce méta-algorithme est concrètement décrit ailleurs (manuels, prompts). Le pid 17 tient sous (g) — c'est une règle conditionnelle pleinement formulée, pas une amorce. Le pid 2 tombe sous (h) — c'est de l'informatique pure (gestion d'un cas dans un script bash) sans transfert hors-informatique au sens où la fiche l'exige.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La transposition RAM/swap n'est pas du vocabulaire emprunté — elle structure une lecture quantifiée de soi." },
+            { "pieceId": 2, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La distinction swap vs micro-oublis est appliquée à une réalité mentale précise." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Formule séduisante mais elle nomme le projet de toute la noèsiologie — sa portée est ancrée dans une production." },
+            { "pieceId": 5, "attaqueDominante": "g", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La structure conditionnelle est complète et opérationnelle, pas une amorce." },
+            { "pieceId": 3, "attaqueDominante": "h", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Le critère discriminant de la fiche exige le transfert hors-informatique — un script bash gérant des cas reste informatique pur." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pages à du codage ou à du vocabulaire emprunté. Trois pièces se sont imposées : la transposition RAM-swap-compression à sa propre cognition, la distinction swap vs micro-oublis appliquée à des processus humains, et la règle conditionnelle « 16e bureau = surfusion ». Toutes trois portent le critère discriminant : transfert hors-informatique. La méta-application « algorithme pour apprendre à penser les algorithmes » a tenu comme indice convergent, parce qu'elle nomme un projet qui se concrétise par ailleurs. Le script bash, lui, n'a pas tenu pour 1.09 : il relève du codage informatique. Ce qui résulte est un travail où la pensée algorithmique sert d'instrument de lecture de soi, avec règles conditionnelles et modèles quantifiés.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 2,
+        "confiance": 0.78,
+        "motif": "Le temps 2 a confirmé trois pièces portant un transfert clair de la logique computationnelle hors de l'informatique (RAM-cognition, distinction technique, règle conditionnelle).",
+        "prescription": "Le travail montre une pensée algorithmique transférée à la lecture de soi et de l'organisation ; un chemin possible serait d'expliciter pour un de ces transferts l'arbre de décision complet, pour rendre la règle reproductible par autrui."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 5, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 16,
+          "contexte": "Répartition explicite humain-IA : Perplexity + ChatGPT + Gemini + Claude en parallèle pendant que l'humain « écoute des podcasts en lisant leurs productions ou en rangeant les fichiers »."
+        },
+        {
+          "numero": 2,
+          "pid": 30,
+          "contexte": "Articulation explicite de ce que l'IA ne peut pas voir — pivot de la fiche pour 1.10."
+        },
+        {
+          "numero": 3,
+          "pid": 29,
+          "contexte": "Pipeline hybride où IA cartographie et humain confirme — répartition de rôles avec justification implicite (« vision humaine »)."
+        },
+        {
+          "numero": 4,
+          "pid": 10,
+          "contexte": "« Claude 4.6 améliore mes travaux de thèse » — constat de complémentarité mais sans articulation des forces comparatives."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que ces pièces sont des usages multiples, pas une théorisation de la synergie au sens de la fiche (articulation des forces comparatives, stratégie de répartition, ce que l'humain garde et pourquoi). Le pid 16 résiste car il décrit explicitement ce que fait l'humain pendant que les IA travaillent en parallèle — répartition des rôles. Le pid 30 résiste fortement : « ce que l'IA ne peut pas voir » est mot pour mot le pivot signalé par la fiche. Le pid 29 résiste comme pipeline avec rôles distincts et justification du rôle humain (« sa vision humaine »). Le pid 10 résiste très faiblement — c'est un constat d'aide, pas une articulation.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Description explicite des rôles humain/IA pendant un même intervalle de temps." },
+            { "pieceId": 2, "motifResistance": "Pivot exact de la fiche — « ce que l'IA ne peut pas voir »." },
+            { "pieceId": 3, "motifResistance": "Pipeline hybride avec rôles distincts et fonction humaine identifiée." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis avec présomption d'avoir surinvesti. Le pid 16 tient sous (f) : l'humain n'est pas seulement spectateur, il lit, range, organise — fonctions situées. Le pid 30 tient sous (d) — la phrase « ce que l'IA ne peut pas voir » est articulée à un piège à éviter, pas slogan. Le pid 29 tient sous (a) — le pipeline est décrit jusqu'à la fonction du cartographe. Le pid 10 tombe sous (f) — c'est une déclaration d'aide IA, pas une articulation de forces comparatives.",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "f", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Les fonctions humaines pendant le travail parallèle des IA sont concrètes (écouter, lire, ranger) — pas une déclaration." },
+            { "pieceId": 2, "attaqueDominante": "d", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La phrase « ce que l'IA ne peut pas voir » est posée comme pivot d'un trade-off, ce qui correspond exactement au marqueur de la fiche." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "Le pipeline articule le rôle de chacun (analyse IA, sélection humaine) avec justification (« vision humaine »)." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "Déclaration d'aide IA sans articulation des forces comparatives — porte mieux 1.06 (lecture des capacités IA) que 1.10." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pages à des usages d'IA juxtaposés. Trois pièces s'imposent à moi : la répartition explicite humain-IA pendant un même bloc temporel, la formulation « ce que l'IA ne peut pas voir » comme pivot d'un trade-off, et le pipeline analyse-IA + confirmation-humaine avec justification du rôle humain. Toutes trois portent le critère discriminant de la fiche : l'articulation explicite de ce que l'humain garde et pourquoi. Sous la présomption de sycophantie, le constat général « Claude améliore mes travaux » n'a pas tenu — il décrit une aide, pas une synergie articulée. Ce qui reste, c'est un travail où la complémentarité humain-IA est conçue comme une stratégie de répartition, pas comme une délégation.",
+          "confianceFinale": 0.8
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 1,
+        "confiance": 0.8,
+        "motif": "Le temps 2 a confirmé trois pièces portant une articulation explicite des forces comparatives humain/IA, dont le pivot « ce que l'IA ne peut pas voir » est exactement le marqueur de la fiche.",
+        "prescription": "Le travail montre une stratégie de répartition humain-IA articulée autour de ce que l'humain garde et pourquoi ; un chemin possible serait de revisiter cette répartition à mesure que les outils évoluent, en notant ce qui bascule de l'humain à l'IA ou inversement et le motif du déplacement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 10,
+    "presencesEtablies": 10,
+    "renvoisCartographe": 0,
+    "nonEtablies": 0,
+    "courtCircuits": 0
+  },
+
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail montre une pensée qui s'observe en train de penser et qui modélise son propre fonctionnement par emprunts au vocabulaire informatique — RAM, swap, compression, bureaux virtuels. Les outils IA sont à la fois manipulés sous le capot (fenêtre de contexte, flagornerie nommées comme propriétés mécaniques) et confrontés à des dispositifs de test (contre-rôle adversarial). Plusieurs concepts émergent à la jonction d'un échange et d'une lecture — « psychologie assistée par projet », noèsiologie comme anatomie cognitive — et viennent renommer une expérience pour la rendre transmissible. Les sous-projets eux-mêmes sont lus comme un système avec des boucles de rétroaction explicites, où chaque pièce dépend des autres et où le bouclage est nommé comme tel.",
+    "territoiresDenses": [
+      {
+        "competence": "Métacognition et humilité épistémique",
+        "description": "Le travail s'observe en train de fonctionner, avec un vocabulaire calibré sur ses propres processus et des règles personnelles assorties de seuils chiffrés.",
+        "extraitVerbatim": "Je sais que je suis en état de surfusion, lorsque j'arrive au 16e bureau virtuel. Je m'étais longtemps imposé de ne pas dépasser 9 bureaux lorsque j'étais enseignant.",
+        "ceQueCaDit": "Sur ce pôle, la lecture de soi est instrumentée — états nommés, seuils, comparaisons d'époques — ce qui permet de piloter la charge cognitive plutôt que de la subir."
+      },
+      {
+        "competence": "Littératie IA et data literacy",
+        "description": "Les comportements de l'IA sont diagnostiqués par leurs mécanismes (compression liée à la fenêtre de contexte, flagornerie comme propriété de génération), et ces diagnostics commandent des décisions d'outillage.",
+        "extraitVerbatim": "Ce que j'ai appris en générant la première partie du livre ce matin, c'est que je gérais très mal la fenêtre de contexte [...] Chaque prompt me faisait compresser la conversation => signe de grosse perte de qualité.",
+        "ceQueCaDit": "Dans ce pôle, le vocabulaire technique porte sa charge sémantique propre — il sert à comprendre ce qui se passe sous le capot, pas à orner un récit."
+      },
+      {
+        "competence": "Synergie et coordination hybride",
+        "description": "La répartition humain-IA est conçue comme une stratégie articulée autour de ce que l'humain garde et pourquoi, et non comme une simple délégation.",
+        "extraitVerbatim": "C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir.",
+        "ceQueCaDit": "Sur ce pôle, le travail nomme le pivot — ce que l'IA ne peut pas voir — et en tire un dispositif où l'humain reste situé dans la boucle, pas en surplomb."
+      },
+      {
+        "competence": "Synthèse intégrative",
+        "description": "Des sources éloignées se rejoignent dans des renommages qui ouvrent des cadres conceptuels nouveaux (Vésale et fonctions cognitives, psychologie assistée par projet, inversion humain-IA).",
+        "extraitVerbatim": "J'ai peut-être, grâce à RESPIRE, réussi à me soigner : c'est de la psychologie assistée par projet (PAP ? Tiens, un nouveau concept qui pourrait faire l'objet d'un travail de recherche si j'étais psy)",
+        "ceQueCaDit": "Dans ce pôle, la synthèse opère par nomination — un concept advient d'un échange, et ce concept déplace ensuite la lecture de l'expérience."
+      },
+      {
+        "competence": "Pensée computationnelle",
+        "description": "La logique algorithmique est transférée hors de l'informatique vers la lecture de soi et la gestion de l'attention, avec règles conditionnelles et modèles quantifiés.",
+        "extraitVerbatim": "Heureusement que j'ai pris 128 Gb de RAM sur mon MacBook, car il tient bien la route (actuellement 92 Gb de RAM (dont 2 Gb compressée) et 36 Gb de libre (et 0 de swap)).",
+        "ceQueCaDit": "Sur ce pôle, l'analogie computationnelle n'est pas décorative — elle commande la décision (combien de projets ouverts, quand fermer un bureau)."
+      }
+    ],
+    "territoiresNonVisites": "Quelques territoires sont moins visités dans ce pôle. Le scepticisme calibré envers des sources humaines (un texte de pair, une parole, un article académique) apparaît plus rarement que celui appliqué à l'IA et à soi-même ; la critique semble se concentrer sur la relation à l'outil. La pensée systémique reste majoritairement appliquée à l'organisation des projets et n'est pas encore déployée comme cartographie de leviers — les boucles sont nommées, leurs points de levier le sont moins. Côté dialogue IA avancé, les itérations sont attestées par des dispositifs forts (contre-rôle) mais une analyse explicite du pourquoi une reformulation change le résultat reste moins documentée. Enfin, le cadrage de l'intention se voit dans des bascules ponctuelles d'objectif mais s'accompagne moins de la trace de la question initiale qui se déplace au profit d'une autre.",
+    "emergencesPole": "Trois choses traversent les compétences de ce pôle. D'abord, une modélisation computationnelle de soi qui se retrouve dans la métacognition (RAM, surfusion), dans la pensée systémique (boucles entre projets) et dans la littératie IA (fenêtre de contexte, compression) — la même grammaire technique sert à lire l'humain et la machine. Ensuite, un mouvement de nomination : la pensée n'apprend pas par accumulation, elle apprend par production de concepts (PAP, anatomie cognitive, surfusion) qui réorganisent ce qui était diffus. Enfin, un souci constant de garder une place située à l'humain dans les pipelines hybrides — non pas par principe, mais parce que la lecture des biais IA en fait une exigence opératoire.",
+    "pistes": [
+      "Pour prolonger la lecture systémique des projets, un chemin possible serait de cartographier une des boucles identifiées (manuels-site-prompts par exemple) avec ses points de levier explicites, pour repérer où une petite intervention déplace tout le reste.",
+      "Pour rendre la pratique du dialogue IA avancé encore plus visible, un chemin possible serait de documenter une itération où la reformulation d'un prompt change le résultat, en notant ce qui a été ajouté et pourquoi cela a déplacé la réponse.",
+      "Pour étendre la pensée critique au-delà de la relation IA, un chemin possible serait de documenter un moment où ce même scepticisme calibré s'applique à une source humaine — un texte, une parole de pair, un article — avec les mêmes dispositifs de test.",
+      "Pour suivre la synthèse intégrative dans la durée, un chemin possible serait de reprendre un concept déjà nommé (par exemple psychologie assistée par projet) à un mois d'intervalle pour observer ce qu'il a déplacé dans la pratique ou dans la théorie.",
+      "Pour rendre la pensée computationnelle pleinement transférable, un chemin possible serait d'expliciter pour un de ses transferts l'arbre de décision complet, pour qu'un tiers puisse reprendre la règle sans avoir vécu l'expérience."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail montre une pensée qui s'observe en train de penser et qui modélise son propre fonctionnement par emprunts au vocabulaire informatique — RAM, swap, compression, bureaux virtuels. Les outils IA sont à la fois manipulés sous le capot (fenêtre de contexte, flagornerie nommées comme propriétés mécaniques) et confrontés à des dispositifs de test (contre-rôle adversarial). Plusieurs concepts émergent à la jonction d'un échange et d'une lecture — « psychologie assistée par projet », noèsiologie comme anatomie cognitive — et viennent renommer une expérience pour la rendre transmissible. Les sous-projets eux-mêmes sont lus comme un système avec des boucles de rétroaction explicites, où chaque pièce dépend des autres et où le bouclage est nommé comme tel.\n\n## Territoires les plus denses\n\n**Métacognition et humilité épistémique.** Le travail s'observe en train de fonctionner, avec un vocabulaire calibré sur ses propres processus et des règles personnelles assorties de seuils chiffrés. *« Je sais que je suis en état de surfusion, lorsque j'arrive au 16e bureau virtuel. Je m'étais longtemps imposé de ne pas dépasser 9 bureaux lorsque j'étais enseignant. »* Sur ce pôle, la lecture de soi est instrumentée — états nommés, seuils, comparaisons d'époques — ce qui permet de piloter la charge cognitive plutôt que de la subir.\n\n**Littératie IA et data literacy.** Les comportements de l'IA sont diagnostiqués par leurs mécanismes (compression liée à la fenêtre de contexte, flagornerie comme propriété de génération), et ces diagnostics commandent des décisions d'outillage. *« Ce que j'ai appris en générant la première partie du livre ce matin, c'est que je gérais très mal la fenêtre de contexte [...] Chaque prompt me faisait compresser la conversation => signe de grosse perte de qualité. »* Dans ce pôle, le vocabulaire technique porte sa charge sémantique propre — il sert à comprendre ce qui se passe sous le capot, pas à orner un récit.\n\n**Synergie et coordination hybride.** La répartition humain-IA est conçue comme une stratégie articulée autour de ce que l'humain garde et pourquoi, et non comme une simple délégation. *« C'est très tentant de supprimer l'humain dans la boucle… Un piège à éviter si on veut garantir la valeur de ces traces et y intégrer ce que l'IA ne peut pas voir. »* Sur ce pôle, le travail nomme le pivot — ce que l'IA ne peut pas voir — et en tire un dispositif où l'humain reste situé dans la boucle, pas en surplomb.\n\n**Synthèse intégrative.** Des sources éloignées se rejoignent dans des renommages qui ouvrent des cadres conceptuels nouveaux. *« J'ai peut-être, grâce à RESPIRE, réussi à me soigner : c'est de la psychologie assistée par projet (PAP ? Tiens, un nouveau concept qui pourrait faire l'objet d'un travail de recherche si j'étais psy) »* Dans ce pôle, la synthèse opère par nomination — un concept advient d'un échange, et ce concept déplace ensuite la lecture de l'expérience.\n\n**Pensée computationnelle.** La logique algorithmique est transférée hors de l'informatique vers la lecture de soi et la gestion de l'attention. *« Heureusement que j'ai pris 128 Gb de RAM sur mon MacBook, car il tient bien la route (actuellement 92 Gb de RAM (dont 2 Gb compressée) et 36 Gb de libre (et 0 de swap)). »* Sur ce pôle, l'analogie computationnelle n'est pas décorative — elle commande la décision sur combien de projets ouverts ou quand fermer un bureau.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuelques territoires sont moins visités dans ce pôle. Le scepticisme calibré envers des sources humaines (un texte de pair, une parole, un article académique) apparaît plus rarement que celui appliqué à l'IA et à soi-même ; la critique semble se concentrer sur la relation à l'outil. La pensée systémique reste majoritairement appliquée à l'organisation des projets et n'est pas encore déployée comme cartographie de leviers — les boucles sont nommées, leurs points de levier le sont moins. Côté dialogue IA avancé, les itérations sont attestées par des dispositifs forts (contre-rôle) mais une analyse explicite du pourquoi une reformulation change le résultat reste moins documentée. Enfin, le cadrage de l'intention se voit dans des bascules ponctuelles d'objectif mais s'accompagne moins de la trace de la question initiale qui se déplace au profit d'une autre.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois choses traversent les compétences de ce pôle. D'abord, une modélisation computationnelle de soi qui se retrouve dans la métacognition (RAM, surfusion), dans la pensée systémique (boucles entre projets) et dans la littératie IA (fenêtre de contexte, compression) — la même grammaire technique sert à lire l'humain et la machine. Ensuite, un mouvement de nomination : la pensée n'apprend pas par accumulation, elle apprend par production de concepts (PAP, anatomie cognitive, surfusion) qui réorganisent ce qui était diffus. Enfin, un souci constant de garder une place située à l'humain dans les pipelines hybrides — non pas par principe, mais parce que la lecture des biais IA en fait une exigence opératoire.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la lecture systémique des projets, un chemin possible serait de cartographier une des boucles identifiées (manuels-site-prompts par exemple) avec ses points de levier explicites, pour repérer où une petite intervention déplace tout le reste.\n- Pour rendre la pratique du dialogue IA avancé encore plus visible, un chemin possible serait de documenter une itération où la reformulation d'un prompt change le résultat, en notant ce qui a été ajouté et pourquoi cela a déplacé la réponse.\n- Pour étendre la pensée critique au-delà de la relation IA, un chemin possible serait de documenter un moment où ce même scepticisme calibré s'applique à une source humaine — un texte, une parole de pair, un article — avec les mêmes dispositifs de test.\n- Pour suivre la synthèse intégrative dans la durée, un chemin possible serait de reprendre un concept déjà nommé (par exemple psychologie assistée par projet) à un mois d'intervalle pour observer ce qu'il a déplacé dans la pratique ou dans la théorie.\n- Pour rendre la pensée computationnelle pleinement transférable, un chemin possible serait d'expliciter pour un de ses transferts l'arbre de décision complet, pour qu'un tiers puisse reprendre la règle sans avoir vécu l'expérience."
+  }
+}

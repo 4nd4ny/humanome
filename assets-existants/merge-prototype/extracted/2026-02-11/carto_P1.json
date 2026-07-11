@@ -1,0 +1,488 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "La création d'une interface est rapide avec ces outils. Hélas, avoir l'idée de la bonne interface de jeu à construire, ça elle n'y arrive pas encore.",
+      "contexte": "L'apprenant distingue rapidité d'exécution IA et qualité de l'intention conceptuelle ; touche à la littératie IA et au discernement entre forces et limites.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "Comme si le fait de mettre le focus sur le code l'empêche de réfléchir à la stratégie.",
+      "contexte": "Hypothèse causale sur le comportement de l'IA — diagnostic d'un mécanisme cognitif chez la machine ; touche à la littératie IA, à la pensée systémique et à la synergie hybride.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "C'est certainement une erreur d'engineering que j'ai fait : j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire l'interface.",
+      "contexte": "Autocritique rétrospective sur l'ordre du prompt ; touche au cadrage de l'intention, au dialogue IA avancé et à la métacognition.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-11",
+      "extraitVerbatim": "L'autre souci c'est la taille de la mémoire de contexte. Intégrer tous les éléments théoriques pour construire un jeu dont les racines plongent dans les documents fournis, n'est pas simple.",
+      "contexte": "Diagnostic technique du goulot d'étranglement de la fenêtre de contexte ; touche à la littératie IA et à l'architecture de systèmes IA.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée critique appliquée à ses propres idées au moment où elles se formulent. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a détecté un biais en cours de raisonnement ou croisé une affirmation IA avec une autre source."
+      }
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant identifie après coup que la définition de l'objectif (sens et effets attendus) aurait dû précéder la demande d'exécution — geste classique de cadrage rétrospectif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en présumant qu'elle ne porte pas le cadrage de l'intention. Le passage est court et rétrospectif, ce qui pourrait n'être qu'un regret d'ordonnancement sans véritable interrogation du problème lui-même. La fiche distingue le cadrage (qui interroge l'objectif) de la planification (qui ordonne l'exécution) ; or l'apprenant parle d'ordre des demandes à l'IA, ce qui glisse facilement vers la planification. Pourtant, la formulation « réfléchir au sens et aux effets attendus avant de lui demander de construire » contient explicitement un retour sur ce qui doit être pensé en amont, et la fiche cite précisément la trace oblique « j'aurais dû me poser la question » comme cadrage émergent par contrainte. Cette pièce résiste donc à la présomption d'absence, mais reste fragile car le cadrage est nommé sans être exercé dans la suite du texte.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La formulation « j'aurais dû lui demander de réfléchir au sens et aux effets attendus avant » est précisément la trace oblique du recadrage rétrospectif que la fiche décrit."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir cette pièce, mais peut-être que je me suis laissé séduire par le vocabulaire de surface (« sens », « effets attendus »). Le risque est de surinterpréter une remarque opérationnelle comme un acte de cadrage. Je teste avec l'attaque (g) mouvement-vers : l'apprenant nomme bien ce qu'il aurait dû faire, mais ne le fait pas dans cette feuille — il décrit un cadrage manqué, pas un cadrage exécuté. L'attaque touche : la pièce ne montre pas le geste, elle montre la conscience de son absence. Mais cette conscience est elle-même un marqueur reconnu par la fiche, donc la pièce tient en version affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant identifie le besoin de cadrer en amont mais raconte un cadrage manqué plutôt qu'un cadrage exécuté ; le seuil de transformation n'est pas pleinement franchi, mais la lucidité rétrospective est elle-même un indice de la compétence en formation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette pièce, j'ai cherché à la lire comme une simple remarque d'ordonnancement technique. Ce qui m'a forcé à reconnaître autre chose, c'est la formulation explicite d'un retour sur l'objectif (« réfléchir au sens et aux effets attendus ») avant l'exécution — la fiche pointe précisément ce mouvement comme marqueur oblique. Sous la seconde présomption, la pièce a perdu de sa portée : elle décrit un cadrage manqué, pas un cadrage opéré. Ce qui en résulte est un indice de cadrage en construction — la conscience que la bonne question précède la bonne réponse est nommée, sans pour autant se traduire dans la séquence racontée. Une feuille ultérieure qui montrerait l'apprenant prenant ce temps de cadrage en amont d'une demande IA viendrait confirmer ce qui n'est ici qu'amorcé.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La présomption de sycophantie a affaibli la pièce sans la disqualifier : la lucidité rétrospective tient, mais le geste de cadrage lui-même reste à exercer dans une trace future.",
+        "prescription": "Cette feuille montre la conscience que la définition du sens devrait précéder l'exécution. Pour approfondir, un récit où l'apprenant commence par formuler la question avant toute demande d'exécution viendrait incarner ce qui est ici nommé. La trace gagnerait à documenter la question travaillée en amont, pas seulement le regret de ne pas l'avoir travaillée."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synthèse intégrative. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où des sources de nature différente ont produit un insight qu'aucune ne contenait isolément."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'autocritique méthodologique (« c'est certainement une erreur d'engineering que j'ai fait ») observe la manière dont l'apprenant a structuré sa propre stratégie de prompt — réflexion sur le processus de demande, pas seulement sur le résultat."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce en supposant qu'elle ne porte pas de métacognition véritable. La phrase « c'est certainement une erreur d'engineering que j'ai fait » pourrait n'être qu'un constat d'erreur d'exécution, pas une observation sur le processus de pensée. La fiche est claire : « j'ai progressé » ou « j'ai beaucoup appris » sont des bilans, pas de la métacognition ; l'objet de la réflexion doit être le processus cognitif lui-même. Or ici, l'apprenant identifie un ordre erroné dans sa propre stratégie de questionnement de l'IA — il observe non pas que ça n'a pas marché, mais comment il s'y est pris. Cette pièce résiste donc, mais faiblement : elle pointe une procédure plus qu'un mode de pensée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant analyse l'ordre dans lequel il a structuré ses demandes — réflexion sur sa propre démarche, pas sur le résultat de la démarche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir cette pièce, mais peut-être que j'ai chargé une autocritique opérationnelle de la portée d'une métacognition. Je teste avec l'attaque (e) surinterprétation pédagogique : ai-je projeté une réflexion sur le penser-faire là où il n'y a qu'un constat d'erreur procédurale ? L'attaque touche fort : « erreur d'engineering » est un vocabulaire de méthode, pas d'observation de soi en train de penser. La nuance « certainement » suggère un diagnostic plus qu'une plongée réflexive. La pièce est disqualifiée pour 1.04 ; elle pourra servir ailleurs (1.08, par exemple), mais ici elle ne porte pas la métacognition au sens strict de la fiche.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le constat « erreur d'engineering » reste sur le terrain de la procédure technique ; l'apprenant ne s'observe pas en train de penser, il rétrojette une décision d'ordonnancement. Le critère discriminant de la fiche (objet = processus cognitif lui-même) n'est pas atteint."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si l'autocritique méthodologique pouvait porter la métacognition. La formulation « c'est une erreur que j'ai fait » m'a forcé à reconnaître un retour sur soi, et c'est ce qui a résisté au premier mouvement. Sous la seconde présomption, la pièce n'a pas tenu : l'objet du retour est une procédure d'engineering, pas un processus de pensée observé pendant qu'il s'exerce. La métacognition au sens de la fiche demande que l'apprenant prenne pour objet la manière dont il pense ; ici, il prend pour objet la manière dont il a configuré sa demande. La distinction est fine mais réelle. Cette feuille ne porte pas la trace, ce qui n'efface pas que d'autres feuilles pourraient la porter — la matière de cette compétence n'a simplement pas été ramenée ici.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a disqualifié la pièce : l'objet du retour reste une procédure, pas un processus cognitif observé en acte.",
+        "prescription": "Cette feuille raconte une autocritique de méthode, ce qui est distinct d'une observation du penser en train de se faire. Pour ouvrir ce territoire, un passage qui prend pour objet la manière dont l'apprenant pense (et non ce qu'il pense ou comment il s'y prend procéduralement) viendrait nourrir cette compétence."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant formule une hypothèse de mécanisme causal : le focus sur le code chez l'IA aurait un effet d'empêchement sur la réflexion stratégique — une relation orientée entre deux modes opératoires."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette pièce n'est pas une trace de pensée systémique. La fiche est exigeante : il faut nommer quels liens, dans quelle direction, avec quels effets — modéliser, pas constater. Le passage « comme si le fait de mettre le focus sur le code l'empêche de réfléchir à la stratégie » ressemble à une observation isolée, presque une intuition sans modélisation. Pourtant, l'apprenant énonce bien une direction (focus code → empêchement stratégie) et un mécanisme (cannibalisation des ressources cognitives entre deux modes). Ce n'est pas une boucle de rétroaction au sens fort, mais c'est un raisonnement orienté sur des effets de second ordre dans un système cognitif IA. La pièce résiste faiblement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant énonce une direction de liaison (focus code → empêche stratégie) qui dépasse le simple constat « ça marche pas »."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir cette pièce parce qu'elle énonce une direction de liaison. Mais peut-être ai-je halluciné une modélisation là où il n'y a qu'une analogie introduite par « comme si ». Je teste avec l'attaque (a) insuffisance probatoire : le passage est court, la formulation hypothétique (« comme si »), et il n'y a pas de boucle de rétroaction, pas de point de levier identifié, pas d'analyse d'effets en cascade — éléments centraux de la fiche 1.05. L'attaque tient : la pièce porte un embryon d'analyse systémique (relation orientée), pas une modélisation. Elle ne survit pas comme trace pleine.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le passage énonce une relation orientée mais ne la modélise pas : pas de boucle, pas de point de levier, pas d'effet de cascade. La fiche exige une modélisation, pas un constat de relation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à savoir si la phrase « comme si le focus sur le code l'empêche de réfléchir à la stratégie » portait une pensée systémique. Ce qui m'a forcé à m'arrêter dessus, c'est la formulation orientée — une direction nommée entre deux modes opératoires. Sous la seconde présomption, cette résistance a cédé : la fiche demande de modéliser, pas de constater une direction. Le passage reste sur le terrain de l'observation hypothétique. Ce qui en résulte n'est pas un verdict d'absence définitive de pensée systémique chez l'apprenant — c'est un constat que sur cette feuille, le mouvement ne va pas jusqu'à la modélisation. Une feuille où l'apprenant trace une boucle, identifie un point de levier ou anticipe une cascade nourrirait directement cette compétence.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a disqualifié la pièce : la fiche exige une modélisation, et le passage s'arrête à une relation orientée hypothétique.",
+        "prescription": "Cette feuille porte une intuition de mécanisme. Pour rejoindre la pensée systémique au sens de la fiche, l'apprenant pourrait pousser ce genre d'intuition jusqu'à la formulation explicite d'une boucle ou d'un effet en cascade, avec direction et conséquences nommées."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "L'apprenant propose une hypothèse sur le mécanisme interne de l'IA : un focus sur le code dégraderait sa capacité de raisonnement stratégique — diagnostic technique d'un comportement observé."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "L'apprenant nomme explicitement la « taille de la mémoire de contexte » comme cause technique d'une difficulté — vocabulaire précis d'un mécanisme IA et lien causal explicité avec une difficulté concrète."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette compétence n'est pas attestée. La fiche exige une compréhension causale du pourquoi l'IA échoue, pas seulement un vocabulaire d'ambiance. Les deux pièces évoquent des mécanismes : la première propose un effet d'empêchement entre focus code et raisonnement stratégique ; la seconde nomme la taille de la fenêtre de contexte comme limite. Si je voulais nier cette compétence, je dirais que ces formulations sont vagues — « comme si » pour la première, et la mention de la mémoire de contexte sans explication du mécanisme pour la seconde. Pourtant, la fiche cite explicitement comme manifestation : « hypothèses techniques pour expliquer les comportements observés », avec l'exemple « l'effondrement est dû à une mauvaise gestion de la mémoire de la fenêtre de contexte ». Les deux pièces résistent.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant formule une hypothèse causale sur le fonctionnement interne de l'IA, pas un simple constat d'échec."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La mention explicite de la « taille de la mémoire de contexte » comme cause d'une difficulté est un marqueur central listé par la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. Peut-être me suis-je laissé séduire par le vocabulaire technique. Je teste la première avec (d) glissement lexical : « focus sur le code l'empêche de réfléchir à la stratégie » — l'apprenant utilise-t-il vraiment un raisonnement technique IA, ou anthropomorphise-t-il un comportement sans expliquer le mécanisme ? La formulation reste métaphorique (« comme si »), ce qui affaiblit la pièce sans la disqualifier — l'intuition d'un trade-off entre modes est techniquement plausible (allocation de ressources). Je teste la seconde avec (a) insuffisance probatoire : la mention de la mémoire de contexte est juste, mais le mécanisme n'est pas développé (pas d'explication de pourquoi cela rend l'intégration « pas simple »). L'attaque touche, mais la pièce tient affaiblie parce que la fiche valide explicitement ce type de marqueur en contexte de récit technique.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'hypothèse reste métaphorique (« comme si ») et anthropomorphise sans détailler le mécanisme technique. La charge sémantique d'une diagnose causale est présente mais peu explicitée."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La mention de la mémoire de contexte est juste mais non développée — l'apprenant nomme la limite sans en expliquer le fonctionnement. La pièce tient parce que le vocabulaire technique est précisément celui que la fiche identifie."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à les lire comme du vocabulaire ambiant sans charge causale. Ce qui m'a forcé à reconnaître quelque chose, c'est la précision du marqueur « mémoire de contexte » — la fiche cite cet exemple presque mot pour mot — et l'orientation diagnostique de la première pièce, qui ne se contente pas de constater l'échec mais en propose un mécanisme. Sous la seconde présomption, les deux pièces ont été affaiblies sans tomber : la première parce que l'hypothèse reste métaphorique, la seconde parce que le mécanisme est nommé sans être développé. Ce qui en résulte est un faisceau d'indices : la littératie IA est en exercice dans ce passage — l'apprenant pense l'IA en termes de mécanismes techniques (focus, mémoire de contexte), pas en termes d'humeur ou de magie. La présence est établie à un seuil modéré, en attente d'une trace où le mécanisme serait expliqué et pas seulement nommé.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "La présomption de sycophantie a affaibli les deux pièces sans les disqualifier : le vocabulaire technique correspond précisément aux marqueurs listés par la fiche, même si le mécanisme reste peu développé.",
+        "prescription": "Cette feuille montre que l'apprenant raisonne déjà sur les mécanismes internes de l'IA (mémoire de contexte, allocation entre focus et stratégie). Pour approfondir, un passage qui explique pourquoi tel mécanisme produit tel effet — pas seulement le nommer — ouvrirait la dimension causale que la fiche distingue du vocabulaire d'ambiance."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant nomme un défi d'intégration d'éléments théoriques dans un système IA avec contraintes de fenêtre de contexte — touche à la conception d'un dispositif où documents et IA interagissent."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette compétence n'est pas portée. L'architecture de systèmes IA, selon la fiche, exige de décrire composants, connexions, rôles, dispositifs de monitoring ou de fallback, intégration de RAG ou de vector stores. La pièce identifiée évoque une difficulté d'intégration de documents dans un système, mais ne décrit pas l'architecture en question. Le risque est de lire de l'architecture là où il n'y a qu'un constat de limite. Si je voulais nier, je dirais que mentionner la mémoire de contexte ne suffit pas — la fiche valide cela pour 1.06, mais 1.07 exige une conception. La pièce ne résiste pas à la présomption d'absence dans son seuil exigeant.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'ayant résisté au temps 1, le temps 2 n'a rien à examiner. Le verdict de présence non établie est porté par le temps 1 lui-même.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la difficulté d'intégration des documents dans le jeu IA portait une conception architecturale. Aucun élément ne décrit composants, flux ou rôles dans le système — la pièce reste au stade du constat d'un goulot. Sous la première présomption, elle est tombée sans même atteindre le second mouvement. Ce qui en résulte n'est pas un jugement sur les capacités architecturales de l'apprenant — c'est un constat que cette feuille ne contient pas la matière de cette compétence. Cette feuille parle d'usage de l'IA pour construire un jeu, pas de la conception du dispositif d'IA lui-même.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a porté : aucune pièce ne décrit une conception architecturale au sens de la fiche (composants, flux, rôles, mécanismes).",
+        "prescription": "Cette feuille parle du jeu construit avec l'IA, pas de l'architecture du système qui produit le jeu. Un passage qui décrirait comment les documents, l'IA et l'apprenant s'articulent (qui fait quoi, comment l'information circule) ouvrirait ce territoire."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant analyse rétrospectivement la séquence de ses prompts et identifie qu'il aurait dû demander à l'IA de réfléchir au sens avant de demander la construction — itération stratégique sur la formulation."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "L'apprenant diagnostique un comportement de l'IA — focus code empêchant la réflexion stratégique — qui ressemble à du debugging de contexte ou de prompt."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La fiche exige des techniques de prompting nommées, des itérations stratégiques qui analysent pourquoi la reformulation change le résultat, du méta-prompting, du debugging de contexte. La pièce 1 est explicitement une analyse rétrospective de la séquence de prompts : « j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire ». C'est précisément le type d'itération stratégique que la fiche cite, et c'est une analyse du pourquoi la reformulation aurait changé le résultat. La pièce résiste fermement. La pièce 2 ressemble plus à un diagnostic de comportement IA, ce que la fiche reconnaît aussi comme trace (debugging d'erreur persistante raconté comme une frustration).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant analyse explicitement l'ordre dans lequel il aurait dû structurer ses prompts pour obtenir un meilleur résultat — itération stratégique sur la formulation."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Le diagnostic d'un comportement IA récurrent (focus code → moindre stratégie) ressemble au debugging de prompt que la fiche identifie comme trace oblique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir deux pièces. Peut-être ai-je halluciné la portée de l'itération stratégique. Pour la pièce 1, je teste avec (g) mouvement-vers : l'apprenant identifie la stratégie qu'il aurait dû adopter, mais ne la met pas en œuvre dans cette feuille. L'attaque touche : c'est un diagnostic, pas un exercice. Mais la fiche cite explicitement « itérations stratégiques qui analysent pourquoi la reformulation change le résultat » — l'analyse de la reformulation manquée est elle-même une trace. La pièce tient affaiblie. Pour la pièce 2, je teste avec (b) confusion de compétence : ce diagnostic relève-t-il plutôt de 1.06 (littératie IA) ? Oui — la pièce parle du fonctionnement interne de l'IA, pas de la formulation du prompt. La pièce est disqualifiée pour 1.08.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant identifie la bonne stratégie de prompt rétrospectivement, mais ne la déploie pas dans cette feuille. La pièce tient parce que la fiche reconnaît l'analyse de la reformulation manquée comme trace."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Le diagnostic du comportement de l'IA relève plutôt de la littératie IA (1.06) que de la sophistication du prompt (1.08). Le marqueur central de 1.08 est l'orchestration de la formulation, pas l'observation du modèle."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à les lire comme du vocabulaire vaguement IA sans charge réelle de prompting avancé. Ce qui m'a forcé à reconnaître quelque chose, c'est la précision de l'analyse rétrospective de la pièce 1 : « j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire » — c'est une analyse de la séquence des prompts et de leur effet, exactement le type de trace que la fiche identifie. Sous la seconde présomption, la pièce 2 est tombée parce qu'elle relève d'une autre compétence ; la pièce 1 a été affaiblie parce qu'elle décrit la bonne stratégie sans l'avoir exercée. Ce qui en résulte est un indice solide : l'apprenant pense déjà la formulation comme un levier — il identifie où elle a manqué et pourquoi. La compétence est en exercice à un seuil modéré, et une trace ultérieure où la séquence corrigée serait déployée nourrirait directement ce qui est ici amorcé.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "L'analyse rétrospective de la séquence de prompts et l'identification du bon ordre relèvent précisément des itérations stratégiques que la fiche reconnaît comme marqueurs.",
+        "prescription": "Cette feuille raconte la prise de conscience qu'une séquence de prompts différente aurait produit un meilleur résultat. Pour épaissir cette compétence, un passage qui documente la nouvelle séquence essayée et son effet apporterait l'aller-retour itératif que la fiche valorise. Le déploiement de la stratégie identifiée importerait autant que son diagnostic."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée computationnelle au sens du transfert hors-informatique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où une logique algorithmique a structuré une décision ou un raisonnement non-technique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant articule un trade-off entre ce que l'IA fait bien (création rapide d'interface) et ce qu'elle ne fait pas (avoir la bonne idée de jeu) — distinction des forces comparatives humain-IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume cette compétence absente. La synergie hybride au sens de la fiche exige une articulation explicite des forces comparatives — qui fait quoi de mieux et pourquoi. Le passage « La création d'une interface est rapide avec ces outils. Hélas, avoir l'idée de la bonne interface de jeu à construire, ça elle n'y arrive pas encore » contient précisément cette articulation : l'IA est bonne sur l'exécution technique, mais pas sur l'intentionnalité conceptuelle. C'est exactement le type d'observation que la fiche valorise comme manifestation. La pièce résiste, mais avec une réserve : l'articulation n'est pas suivie d'une conception de workflow, donc elle reste au stade de l'observation.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "L'apprenant nomme explicitement ce que l'IA fait bien (interface rapide) et ce qu'elle ne fait pas (idée de jeu), articulation directe des forces comparatives."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir cette pièce. Peut-être ai-je halluciné une synergie pensée là où il n'y a qu'un constat d'usage. Je teste avec (g) mouvement-vers : l'apprenant articule la distinction mais ne tire pas de stratégie de répartition — il n'écrit pas « donc je vais lui demander de réfléchir au sens en amont et garder le code pour après ». L'attaque touche : c'est une observation des forces, pas encore une conception de répartition. Mais la fiche reconnaît l'articulation elle-même comme manifestation, et le « hélas » avec « pas encore » montre une lucidité bidirectionnelle (ce que la fiche valorise pour 5.04 mais qui croise ici). La pièce tient affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'articulation des forces comparatives est faite, mais pas la conception d'une répartition stratégique. Le mouvement-vers est clair, l'aboutissement reste à venir."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette ouverture (« La création d'une interface est rapide avec ces outils. Hélas, avoir l'idée de la bonne interface de jeu à construire, ça elle n'y arrive pas encore ») comme un simple constat d'usage. Ce qui m'a forcé à reconnaître autre chose, c'est la structure même de la phrase : elle pose côte à côte ce que l'IA fait bien et ce qu'elle ne fait pas, exactement le type d'articulation que la fiche identifie. Sous la seconde présomption, la pièce a été affaiblie : l'articulation est là, mais la stratégie de répartition qui en découlerait reste implicite. Ce qui en résulte est un indice de synergie pensée — l'apprenant ne se contente pas d'utiliser l'IA, il observe précisément où elle bute. La compétence est en exercice à un seuil modéré, et une feuille qui documenterait la répartition concrète qui en découle (l'humain réfléchit au sens, l'IA construit l'interface) consoliderait directement cette trace.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "L'articulation explicite de ce que l'IA fait bien et de ce qu'elle ne fait pas encore correspond directement à la manifestation centrale que la fiche identifie pour la synergie hybride.",
+        "prescription": "Cette feuille articule clairement les forces comparatives entre l'IA et l'apprenant. Pour épaissir cette compétence, un passage qui décrit la répartition concrète qui en découle — qui prend en charge quoi, et pourquoi — viendrait transformer l'observation en stratégie. La phrase « j'aurai dû lui demander de réfléchir au sens avant » contient déjà l'amorce de cette répartition."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 6,
+    "courtCircuits": 3
+  },
+  "rapport": {
+    "portraitPole": "Cette feuille montre un travail centré sur la collaboration avec une IA pour construire un jeu. Le ton reste opérationnel, traversé d'une autocritique sobre. La voix dominante diagnostique : l'apprenant observe ce qui fonctionne, ce qui coince, et formule des hypothèses sur le mécanisme. Le vocabulaire technique (mémoire de contexte, focus, engineering) est manié avec précision, sans surcharge. La pensée se déplace entre l'observation du comportement IA et le retour sur sa propre stratégie de demande.",
+    "territoiresDenses": [
+      {
+        "competence": "Littératie IA",
+        "description": "L'apprenant pense l'IA à travers ses mécanismes internes — mémoire de contexte, allocation entre focus code et raisonnement stratégique. Le diagnostic technique remplace la simple constatation d'échec.",
+        "extraitVerbatim": "L'autre souci c'est la taille de la mémoire de contexte. Intégrer tous les éléments théoriques pour construire un jeu dont les racines plongent dans les documents fournis, n'est pas simple.",
+        "ceQueCaDit": "Le travail mobilise un vocabulaire technique précis et identifie les limites du modèle par leurs causes structurelles, pas par leurs symptômes. La trace montre une lecture déjà fine, qui gagnerait à expliciter le mécanisme derrière le nom."
+      },
+      {
+        "competence": "Dialogue IA avancé et orchestration",
+        "description": "L'apprenant identifie rétrospectivement une erreur de séquence dans ses prompts — réfléchir au sens et aux effets aurait dû précéder la demande de construction.",
+        "extraitVerbatim": "j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire l'interface",
+        "ceQueCaDit": "Le travail montre une analyse de la séquence des prompts comme levier, pas seulement comme exécution. L'itération stratégique est ici diagnostiquée ; son déploiement effectif viendrait ensuite."
+      },
+      {
+        "competence": "Synergie et coordination hybride",
+        "description": "Le passage pose côte à côte ce que l'IA fait bien (interface rapide) et ce qu'elle ne fait pas (idée de jeu pertinente) — articulation des forces comparatives à l'œuvre.",
+        "extraitVerbatim": "La création d'une interface est rapide avec ces outils. Hélas, avoir l'idée de la bonne interface de jeu à construire, ça elle n'y arrive pas encore.",
+        "ceQueCaDit": "Le travail distingue exécution et intentionnalité, technique et stratégie — exactement le clivage où la synergie hybride prend sens. L'articulation est faite ; la conception de la répartition reste à formuler."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas ramenés dans cette feuille. La pensée critique sur ses propres idées au moment où elles se forment, la synthèse intégrative entre sources hétérogènes, et la pensée computationnelle transférée hors de l'informatique n'apparaissent pas — ce qui ressemble plus à la nature focalisée de cette feuille (un récit court sur une difficulté précise) qu'à un choix d'évitement. Le cadrage de l'intention est nommé mais en creux (l'apprenant identifie son absence) ; il appellerait un passage où il est exercé en amont. L'architecture de systèmes IA n'est pas portée ici : la feuille raconte l'usage de l'IA, pas la conception du dispositif autour d'elle. La métacognition au sens strict — observer son propre processus de pensée — n'est pas non plus présente : l'autocritique reste sur le terrain de la procédure d'engineering.",
+    "emergencesPole": "Trois mouvements traversent les compétences présentes sur cette feuille. Le premier : un déplacement constant entre l'observation du comportement IA et le retour sur la propre démarche — comme deux miroirs qui se renvoient le diagnostic. Le second : le vocabulaire technique (mémoire de contexte, focus, engineering) sert d'ancrage et empêche le récit de dériver vers le commentaire généraliste. Le troisième : une autocritique sobre et orientée action, qui identifie précisément où la démarche a fléchi sans s'étendre sur le regret.",
+    "pistes": [
+      "Pour prolonger la lecture des mécanismes IA, un chemin possible serait de documenter une fois la cause technique nommée (par exemple la mémoire de contexte) en explicitant pourquoi ce mécanisme produit l'effet observé.",
+      "Pour incarner le cadrage en amont qui est ici diagnostiqué, un chemin possible serait de raconter une prochaine session où la question du sens est travaillée avant toute demande d'exécution à l'IA.",
+      "Pour transformer la lucidité sur les forces comparatives en stratégie, un chemin possible serait de décrire la répartition concrète qui en découle — qui fait quoi entre l'apprenant et l'IA, et pourquoi."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nCette feuille montre un travail centré sur la collaboration avec une IA pour construire un jeu. Le ton reste opérationnel, traversé d'une autocritique sobre. La voix dominante diagnostique : l'apprenant observe ce qui fonctionne, ce qui coince, et formule des hypothèses sur le mécanisme. Le vocabulaire technique (mémoire de contexte, focus, engineering) est manié avec précision, sans surcharge. La pensée se déplace entre l'observation du comportement IA et le retour sur sa propre stratégie de demande.\n\n## Territoires les plus denses\n\n**Littératie IA.** L'apprenant pense l'IA à travers ses mécanismes internes — mémoire de contexte, allocation entre focus code et raisonnement stratégique. Le diagnostic technique remplace la simple constatation d'échec. Extrait : « L'autre souci c'est la taille de la mémoire de contexte. Intégrer tous les éléments théoriques pour construire un jeu dont les racines plongent dans les documents fournis, n'est pas simple. » Le travail mobilise un vocabulaire technique précis et identifie les limites du modèle par leurs causes structurelles, pas par leurs symptômes. La trace montre une lecture déjà fine, qui gagnerait à expliciter le mécanisme derrière le nom.\n\n**Dialogue IA avancé et orchestration.** L'apprenant identifie rétrospectivement une erreur de séquence dans ses prompts — réfléchir au sens et aux effets aurait dû précéder la demande de construction. Extrait : « j'aurai dû lui demander de réfléchir au sens et aux effets attendus avant de lui demander de construire l'interface ». Le travail montre une analyse de la séquence des prompts comme levier, pas seulement comme exécution. L'itération stratégique est ici diagnostiquée ; son déploiement effectif viendrait ensuite.\n\n**Synergie et coordination hybride.** Le passage pose côte à côte ce que l'IA fait bien (interface rapide) et ce qu'elle ne fait pas (idée de jeu pertinente) — articulation des forces comparatives à l'œuvre. Extrait : « La création d'une interface est rapide avec ces outils. Hélas, avoir l'idée de la bonne interface de jeu à construire, ça elle n'y arrive pas encore. » Le travail distingue exécution et intentionnalité, technique et stratégie — exactement le clivage où la synergie hybride prend sens. L'articulation est faite ; la conception de la répartition reste à formuler.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas ramenés dans cette feuille. La pensée critique sur ses propres idées au moment où elles se forment, la synthèse intégrative entre sources hétérogènes, et la pensée computationnelle transférée hors de l'informatique n'apparaissent pas — ce qui ressemble plus à la nature focalisée de cette feuille (un récit court sur une difficulté précise) qu'à un choix d'évitement. Le cadrage de l'intention est nommé mais en creux (l'apprenant identifie son absence) ; il appellerait un passage où il est exercé en amont. L'architecture de systèmes IA n'est pas portée ici : la feuille raconte l'usage de l'IA, pas la conception du dispositif autour d'elle. La métacognition au sens strict — observer son propre processus de pensée — n'est pas non plus présente : l'autocritique reste sur le terrain de la procédure d'engineering.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois mouvements traversent les compétences présentes sur cette feuille. Le premier : un déplacement constant entre l'observation du comportement IA et le retour sur la propre démarche — comme deux miroirs qui se renvoient le diagnostic. Le second : le vocabulaire technique (mémoire de contexte, focus, engineering) sert d'ancrage et empêche le récit de dériver vers le commentaire généraliste. Le troisième : une autocritique sobre et orientée action, qui identifie précisément où la démarche a fléchi sans s'étendre sur le regret.\n\n## Pistes pour enrichir ce pôle\n\n- Pour prolonger la lecture des mécanismes IA, un chemin possible serait de documenter une fois la cause technique nommée (par exemple la mémoire de contexte) en explicitant pourquoi ce mécanisme produit l'effet observé.\n- Pour incarner le cadrage en amont qui est ici diagnostiqué, un chemin possible serait de raconter une prochaine session où la question du sens est travaillée avant toute demande d'exécution à l'IA.\n- Pour transformer la lucidité sur les forces comparatives en stratégie, un chemin possible serait de décrire la répartition concrète qui en découle — qui fait quoi entre l'apprenant et l'IA, et pourquoi."
+  }
+}

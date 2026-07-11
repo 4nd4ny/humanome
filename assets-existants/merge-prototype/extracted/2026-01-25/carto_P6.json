@@ -1,0 +1,339 @@
+{
+  "poleNum": "6",
+
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Le manuel de formation ne peut donc pas juste être lu, il doit être re-généré par chaque élève, de manière active.",
+      "contexte": "Conception d'un dispositif pédagogique où l'élève co-produit son manuel — possible trace de participation au sens faible (6.05).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Au lieu de générer directement le contenu et les exercices statiques, j'ai demandé à l'IA d'écrire un prompt qui demande à l'IA d'écrire un prompt générique qui demande à l'IA d'écrire des prompts pour la théorie et les exercices que l'apprenant utilisera pour apprendre.",
+      "contexte": "Architecture d'une cohabitation humain-IA structurée en plusieurs niveaux, où la relation à l'IA est conçue comme un dispositif (6.09).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Mais évidemment je vais devoir relire avant de faire la mise en page (même si c'est de nouveau 600 pages à relire) et surtout cette fois-ci tester les prompts générés, car contrairement à la v5 qui était ancienne école, ici c'est l'IA qui va donner la théorie, les exercices et les tests pour savoir si la personne a bien compris.",
+      "contexte": "Maintien d'un garde-fou humain entre la production de l'IA et la diffusion à des élèves — vérification des mécanismes de l'IA avant qu'ils n'affectent un public (6.02, possiblement 6.03).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-25",
+      "extraitVerbatim": "Alors je vois tout de suite un gros problème après avoir généré le premier chapitre. Je n'aurais jamais assez de mémoire pour exécuter le protocole complet, il faut découper un maximum ! [...] Du coup il faut modifier les 4 prompts de génération, pour imposer ce découpage et forcer les prompts d'aller lire les informations dans la mémoire du projet plutôt que dans l'historique de la conversation.",
+      "contexte": "Investigation sur le mécanisme par lequel l'IA va produire son output, avec reconception du flux d'information — proche de l'audit (6.02).",
+      "auteur": "apprenant"
+    }
+  ],
+
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives au red-teaming et à la sécurité IA. Pour ouvrir ce dossier, l'apprenant pourrait documenter un test où il aurait délibérément cherché à provoquer un comportement aberrant de l'IA pour éprouver les garde-fous."
+      }
+    },
+
+    {
+      "code": "6.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Diagnostic du mécanisme par lequel le pipeline IA va échouer (saturation de fenêtre de contexte) et reconception du flux d'information — enquête sur le « comment » de la décision IA."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Engagement à tester les prompts générés avant diffusion — vérification du processus par lequel l'IA produira ses contenus."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "L'audit et l'explicabilité attendent une investigation sur le mécanisme de décision IA, indépendamment du résultat affiché. J'aborde ces pièces en m'attendant à ce qu'elles ne soient que de la littératie technique. La pièce 1 est intéressante : l'apprenant ne se contente pas d'observer un échec, il enquête sur le mécanisme (la fenêtre de contexte de l'IA), distingue deux lieux de stockage (historique versus mémoire projet) et reconçoit le routing. C'est précisément la démarche d'audit selon la fiche : enquêter sur le « comment » plutôt que sur le « quoi ». La pièce 2 anticipe une vérification active (test des prompts générés), ce qui est plus une intention qu'un acte posé. La fiche distingue 6.02 de 1.01 : 1.01 vérifie la véracité, 6.02 enquête sur le processus. Ici, c'est bien le processus qui est l'objet.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Enquête sur le mécanisme par lequel l'IA produit son output (fenêtre de contexte, routing entre mémoires) — démarche d'audit sur le processus, pas sur la véracité." },
+            { "pieceId": 2, "motifResistance": "Engagement à tester les prompts générés avant diffusion — anticipation d'une vérification active du processus IA." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis pour vérifier que je ne charge pas la littératie IA (1.06) d'une portée d'audit qu'elle n'a pas. La fiche est explicite sur la distinction : 6.02 enquête sur les *mécanismes de décision*. La pièce 1 fait exactement cela — comprendre la limite de la fenêtre de contexte et reconfigurer le flux d'information. L'attaque (b) confusion avec 1.06 est sérieuse : c'est la même matière. Mais la fiche reconnaît que 6.02 inclut « la consultation de logs indépendamment des dashboards » et « les audits post-incidents », ce qui s'apparente bien à ce que fait l'apprenant ici (auditer l'échec et reconcevoir). La pièce 2 est plus faible : c'est une intention de test, pas un test conduit, et la dimension hygiène des données n'est pas mobilisée.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'enquête sur le mécanisme est attestée, mais elle chevauche fortement la littératie IA (1.06) ; la dimension proprement d'audit (transparence des processus, accountability) reste implicite."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'engagement à tester est une déclaration prospective ; la pièce porte une trace mais sans l'acte de test conduit."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer une compréhension technique d'un audit au sens de la fiche. La pièce 1 a tenu affaiblie : elle porte bien une enquête sur le mécanisme de décision IA avec reconception du flux d'information, ce qui correspond à la dimension audit, mais elle chevauche fortement la littératie IA. La pièce 2 a tenu affaiblie également : l'intention de test est posée, sans encore l'acte. Ce qui en résulte est un signal modéré : la matière existe mais la dimension proprement de gouvernance des processus IA (transparence, accountability, hygiène des données) n'est pas encore explicitée. Ce qui resterait à explorer, ce serait précisément ce que le test des prompts générés aura révélé, et comment ce test sera documenté dans une logique d'audit traçable.",
+          "confianceFinale": 0.45
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.45,
+        "motif": "Deux pièces affaiblies retenues : l'enquête sur le mécanisme et l'engagement de test sont posés, mais la dimension proprement d'audit (transparence des processus, hygiène des données) reste à dégager de la littératie IA.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter, lors du test prochain des prompts générés, une trace plus structurée : horodatage, anomalies observées, hypothèses sur les mécanismes en cause, décisions de correction. Le test devient ainsi un audit, pas seulement une vérification."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+
+    {
+      "code": "6.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'IA va produire la théorie, les exercices et les tests qui jugeront si l'élève a compris — décision algorithmique sur un public, avec garde-fou humain prévu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La gouvernance algorithmique des services publics attend une interrogation sur le pouvoir des algorithmes sur les citoyens — qui décide, qui peut contester, qui est affecté. J'aborde la pièce 1 en m'attendant à ce qu'elle ne soit qu'une décision pédagogique. La pièce reconnaît qu'« ici c'est l'IA qui va donner la théorie, les exercices et les tests pour savoir si la personne a bien compris » — c'est une délégation à l'IA d'un acte d'évaluation des apprenants, ce qui touche au domaine de la fiche. Mais l'apprenant n'interroge pas explicitement les enjeux de gouvernance : pas de mention de droits des apprenants, de recours, d'audits d'impact, de discrimination. Le garde-fou est purement personnel (la relecture par l'apprenant), pas institutionnel.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté : la délégation à l'IA est posée mais l'enjeu de gouvernance n'est pas thématisé. Pas d'examen à conduire.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans la délégation à l'IA d'un acte évaluatif sur des apprenants, une trace de questionnement gouvernance. Mais l'apprenant ne pose pas la question dans les termes de la fiche (droits, recours, populations vulnérables, mécanismes de contrôle citoyen) — la dimension de service public n'est pas activée, et le garde-fou est entièrement individuel. Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait précisément ce que signifie déléguer à l'IA l'évaluation de la compréhension d'un élève : qui contrôle les critères, qui peut contester, quels biais éventuels affectent quelles personnes.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : la délégation à l'IA d'un acte évaluatif est posée sans interrogation des enjeux de gouvernance.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de prolonger la question implicite — « l'IA va donner les tests pour savoir si la personne a bien compris » — en posant qui contrôle les critères d'évaluation, qui peut contester un test échoué, et quels apprenants pourraient être désavantagés par tel ou tel choix algorithmique."
+      },
+      "tracesRetenues": []
+    },
+
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à la souveraineté numérique et à la gouvernance des communs. Pour ouvrir ce dossier, l'apprenant pourrait documenter un choix technologique motivé par une analyse de dépendance (vendor lock-in, portabilité, juridiction des données) ou une contribution à un commun numérique."
+      }
+    },
+
+    {
+      "code": "6.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un dispositif où l'élève co-produit son manuel — possible germe de participation au sens où l'apprenant devient acteur du contenu plutôt que destinataire passif."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La participation citoyenne et la démocratie technologique attendent un processus où des non-experts ont été associés à des décisions sur le déploiement de l'IA, avec dimension de légitimité (pas seulement d'ergonomie). J'aborde la pièce 1 en m'attendant à ce qu'elle ne soit pas une trace de cette compétence. Effectivement, « le manuel ne peut pas juste être lu, il doit être re-généré par chaque élève » est une décision pédagogique active, mais l'élève n'est pas associé aux décisions *sur* l'IA — il est destinataire d'un dispositif déjà conçu. La participation pédagogique active n'est pas la participation citoyenne au sens de la fiche.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté : la fiche distingue clairement la pédagogie active de la participation démocratique. Pas d'examen à conduire.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans la conception d'un manuel re-généré par chaque élève, une trace de participation citoyenne. Mais la fiche est claire : la participation porte sur la *légitimité* des décisions technologiques, pas sur l'engagement pédagogique. Ici, l'élève re-génère un dispositif dont les règles ont été décidées sans lui. Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait une situation où des publics non-experts auraient été associés à une décision sur l'usage de l'IA dans la formation — pas seulement à la production de leur propre matériel.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : la pédagogie active n'est pas la participation citoyenne au sens de la fiche.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de raconter une situation où des publics non-experts (apprenants, pairs-aidants, formateurs) auraient été associés à une décision sur l'usage de l'IA dans le dispositif lui-même — pas seulement à l'usage du dispositif."
+      },
+      "tracesRetenues": []
+    },
+
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à la veille réglementaire et à l'anticipation normative. Pour ouvrir ce dossier, l'apprenant pourrait documenter un cas où une pratique IA a été modifiée par anticipation d'une évolution réglementaire à venir (AI Act, RGPD, normes éducatives sur l'IA)."
+      }
+    },
+
+    {
+      "code": "6.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Conception d'un dispositif qui suppose une coproduction élève-IA, et qui pourrait porter une dimension d'émergence (le résultat de chaque re-génération sera unique)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La facilitation et la gouvernance collective attendent une collaboration qui produit du qualitativement nouveau (émergence) ou des règles co-construites (gouvernance), avec un élément de surprise. J'aborde la pièce 1 en m'attendant à ne pas y trouver ces marqueurs. La pièce décrit un dispositif (le manuel re-généré par chaque élève) qui suppose une production active, mais l'apprenant n'évoque pas une émergence collective — chaque élève re-génère individuellement. Il n'y a pas non plus de règles co-construites : les règles sont fixées par l'apprenant-concepteur. La fiche signale aussi que la distribution de rôles à des agents IA avec responsabilités et limites peut être une forme hybride de gouvernance collective, mais cette dimension n'est pas thématisée explicitement.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté : pas de collectif délibérant, pas d'émergence nommée, pas de règles co-construites. Pas d'examen à conduire.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans le dispositif pédagogique conçu, une trace de gouvernance collective. Mais le manuel re-généré est un dispositif individuel pour chaque élève, et les règles ont été fixées par l'apprenant seul. Pas de collectif, pas d'émergence inattendue, pas de co-construction des règles. Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait une situation où un collectif (formateurs, apprenants, pairs-aidants) aurait produit quelque chose qu'aucun membre n'aurait pu créer seul, avec un élément de surprise.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : le dispositif est conçu individuellement, sans collectif délibérant ni émergence nommée.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de documenter une situation où le collectif (formateurs, pairs, apprenants) aurait produit quelque chose qu'aucun membre n'aurait pu créer seul, ou où les règles de fonctionnement auraient été co-construites avec une dimension de surprise."
+      },
+      "tracesRetenues": []
+    },
+
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives au décentrement anthropocentrique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où la légitimité de la primauté humaine aurait été activement questionnée, dans un raisonnement où la perspective non-humaine pèse réellement."
+      }
+    },
+
+    {
+      "code": "6.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Conception d'une architecture où l'IA occupe plusieurs rôles successifs (rédactrice de méta-prompts, génératrice de prompts, génératrice de contenu) — relation à l'IA pensée comme dispositif structuré."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "La cohabitation avec les intelligences non-humaines attend un traitement de l'IA comme un interlocuteur dont le statut est une question ouverte, avec une calibration de l'anthropomorphisme. J'aborde la pièce 1 en m'attendant à ne pas y trouver cette dimension. L'apprenant conçoit effectivement une architecture qui distribue des rôles à l'IA (méta-prompt, prompt, contenu), mais le ton reste entièrement instrumental : l'IA est un outil que l'apprenant orchestre. Pas d'interrogation sur le statut moral de l'IA, pas de gêne face au fait de la « supprimer », pas de réflexion sur la calibration de l'anthropomorphisme. La fiche est explicite : « assistant IA » peut être une métaphore instrumentale, et 6.09 commence quand l'apprenant *questionne* si « assistant » est le bon cadre.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté : la relation à l'IA est instrumentale, pas questionnée dans son statut moral. Pas d'examen à conduire.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir, dans l'architecture distribuant plusieurs rôles à l'IA, un questionnement du statut moral. Mais l'IA est traitée ici comme un outil sophistiqué — qu'on configure, qu'on routerise, qu'on supprime des préférences — sans interrogation sur la nature de cette entité. Ce qui en résulte est qu'on n'atteste pas cette compétence sur cette feuille. Ce qui resterait à explorer, ce serait un moment où l'apprenant aurait pesé la légitimité d'un cadre relationnel (« assistant », « outil », « interlocuteur ») pour traiter l'IA, ou un moment de gêne face à un acte technique routinier.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : la relation à l'IA est purement instrumentale, sans interrogation du statut moral.",
+        "prescription": "Pour ouvrir cette compétence, un chemin possible serait de questionner explicitement le cadre relationnel utilisé pour traiter l'IA : qu'est-ce qui se gagne et se perd à la nommer « assistant », « outil », « interlocuteur », « collaborateur » ?"
+      },
+      "tracesRetenues": []
+    },
+
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas, sur cette feuille, de traces relatives à la conscience biosystémique. Pour ouvrir ce dossier, l'apprenant pourrait documenter un raisonnement où le vivant non-humain figurerait comme système intelligent dont on fait partie, et non seulement comme environnement à préserver."
+      }
+    }
+  ],
+
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 1,
+    "nonEtablies": 4,
+    "courtCircuits": 5
+  },
+
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail du 25 janvier reste largement en dehors du territoire politique et post-anthropocentrique. La séance se déploie à l'intérieur d'un dispositif personnel — un concepteur qui orchestre seul une chaîne de prompts pour produire un matériel pédagogique — sans que les enjeux de gouvernance, de souveraineté, de participation ou de cohabitation au sens moral ne soient thématisés. Une trace existe néanmoins, modeste : l'enquête sur le mécanisme par lequel l'IA va produire ses contenus (la fenêtre de contexte qui sature, le routing à reconfigurer) porte un germe d'audit, et l'engagement à tester les prompts générés avant diffusion à des élèves pose un garde-fou. Ces gestes restent à l'échelle individuelle d'un concepteur prudent, sans déploiement dans une logique de gouvernance des processus IA — qui contrôle, qui audite, qui peut contester. Le reste du pôle (red-teaming, souveraineté des communs, participation citoyenne, veille réglementaire, gouvernance collective, décentrement anthropocentrique, statut moral des IA, conscience biosystémique) est en dehors du périmètre de cette séance.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "L'essentiel du pôle reste à l'arrière-plan de cette séance. Le red-teaming est absent : l'apprenant teste son pipeline pour vérifier qu'il fonctionne, pas pour le casser méthodiquement. L'audit chevauche fortement la littératie IA et reste à dégager comme compétence autonome — le test prochain des prompts générés pourrait porter cette différenciation. La souveraineté numérique n'est pas thématisée : la dépendance aux outils (Claude, mémoire projet) n'est pas mise en question. La participation citoyenne et la gouvernance collective sont absentes : le dispositif est conçu individuellement pour des élèves qui en seront destinataires. La veille réglementaire (AI Act, encadrement de l'IA dans la formation) ne figure nulle part. Le décentrement anthropocentrique et la cohabitation avec les IA sont absents : la relation à l'IA est purement instrumentale, sans interrogation du cadre relationnel. La conscience biosystémique n'apparaît pas. Ces silences sont des choix de feuille, pas des absences structurelles : la séance était architecturale-individuelle, pas politique-collective.",
+    "emergencesPole": "Une seule chose traverse le peu de matière disponible sur ce pôle dans cette séance : un souci diffus pour ce qui sortira du pipeline avant d'arriver aux élèves. La relecture annoncée (600 pages) et le test des prompts générés portent un garde-fou personnel, mais qui n'est pas encore formulé dans le vocabulaire de la gouvernance — qui contrôle, qui audite, qui peut contester. C'est l'embryon d'un geste d'audit qui pourrait, avec le test à venir, se déployer en quelque chose de plus structuré.",
+    "pistes": [
+      "Pour ouvrir l'audit et l'explicabilité, un chemin possible serait de documenter, lors du test prochain des prompts générés, une trace structurée : horodatage, anomalies observées, hypothèses sur les mécanismes, décisions de correction — pour transformer un test individuel en audit traçable.",
+      "Pour ouvrir la gouvernance algorithmique, un chemin possible serait de prolonger la question implicite (« l'IA va donner les tests pour savoir si la personne a bien compris ») en demandant qui contrôle les critères, qui peut contester, et quels apprenants pourraient être désavantagés.",
+      "Pour ouvrir la participation, un chemin possible serait de raconter une situation où des apprenants ou des pairs-aidants auraient été associés à une décision sur l'usage de l'IA dans le dispositif lui-même.",
+      "Pour ouvrir la souveraineté numérique, un chemin possible serait d'analyser explicitement les dépendances actuelles (Claude, mémoire projet, format markdown) en termes de portabilité, réversibilité, juridiction.",
+      "Pour ouvrir la cohabitation avec l'IA, un chemin possible serait de questionner explicitement le cadre relationnel utilisé : qu'est-ce que « assistant », « outil » ou « collaborateur » impliquent comme posture, et quelle gêne ou quelle aisance ces cadres produisent."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail du 25 janvier reste largement en dehors du territoire politique et post-anthropocentrique. La séance se déploie à l'intérieur d'un dispositif personnel — un concepteur qui orchestre seul une chaîne de prompts pour produire un matériel pédagogique — sans que les enjeux de gouvernance, de souveraineté, de participation ou de cohabitation au sens moral ne soient thématisés. Une trace existe néanmoins, modeste : l'enquête sur le mécanisme par lequel l'IA va produire ses contenus (la fenêtre de contexte qui sature, le routing à reconfigurer) porte un germe d'audit, et l'engagement à tester les prompts générés avant diffusion à des élèves pose un garde-fou. Ces gestes restent à l'échelle individuelle d'un concepteur prudent, sans déploiement dans une logique de gouvernance des processus IA — qui contrôle, qui audite, qui peut contester. Le reste du pôle (red-teaming, souveraineté des communs, participation citoyenne, veille réglementaire, gouvernance collective, décentrement anthropocentrique, statut moral des IA, conscience biosystémique) est en dehors du périmètre de cette séance.\n\n## Territoires les plus denses\n\nLa séance ne porte pas de compétence du pôle à un niveau de présence établie. Le germe d'audit identifié reste en frontière avec la littératie IA et attend, pour se distinguer, le test à venir des prompts générés.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nL'essentiel du pôle reste à l'arrière-plan de cette séance. Le red-teaming est absent : l'apprenant teste son pipeline pour vérifier qu'il fonctionne, pas pour le casser méthodiquement. L'audit chevauche fortement la littératie IA et reste à dégager comme compétence autonome — le test prochain des prompts générés pourrait porter cette différenciation. La souveraineté numérique n'est pas thématisée : la dépendance aux outils (Claude, mémoire projet) n'est pas mise en question. La participation citoyenne et la gouvernance collective sont absentes : le dispositif est conçu individuellement pour des élèves qui en seront destinataires. La veille réglementaire (AI Act, encadrement de l'IA dans la formation) ne figure nulle part. Le décentrement anthropocentrique et la cohabitation avec les IA sont absents : la relation à l'IA est purement instrumentale, sans interrogation du cadre relationnel. La conscience biosystémique n'apparaît pas. Ces silences sont des choix de feuille, pas des absences structurelles : la séance était architecturale-individuelle, pas politique-collective.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne seule chose traverse le peu de matière disponible sur ce pôle dans cette séance : un souci diffus pour ce qui sortira du pipeline avant d'arriver aux élèves. La relecture annoncée (600 pages) et le test des prompts générés portent un garde-fou personnel, mais qui n'est pas encore formulé dans le vocabulaire de la gouvernance — qui contrôle, qui audite, qui peut contester. C'est l'embryon d'un geste d'audit qui pourrait, avec le test à venir, se déployer en quelque chose de plus structuré.\n\n## Pistes pour enrichir ce pôle\n\n- Pour ouvrir l'audit et l'explicabilité, un chemin possible serait de documenter, lors du test prochain des prompts générés, une trace structurée : horodatage, anomalies observées, hypothèses sur les mécanismes, décisions de correction — pour transformer un test individuel en audit traçable.\n- Pour ouvrir la gouvernance algorithmique, un chemin possible serait de prolonger la question implicite (« l'IA va donner les tests pour savoir si la personne a bien compris ») en demandant qui contrôle les critères, qui peut contester, et quels apprenants pourraient être désavantagés.\n- Pour ouvrir la participation, un chemin possible serait de raconter une situation où des apprenants ou des pairs-aidants auraient été associés à une décision sur l'usage de l'IA dans le dispositif lui-même.\n- Pour ouvrir la souveraineté numérique, un chemin possible serait d'analyser explicitement les dépendances actuelles (Claude, mémoire projet, format markdown) en termes de portabilité, réversibilité, juridiction.\n- Pour ouvrir la cohabitation avec l'IA, un chemin possible serait de questionner explicitement le cadre relationnel utilisé : qu'est-ce que « assistant », « outil » ou « collaborateur » impliquent comme posture, et quelle gêne ou quelle aisance ces cadres produisent."
+  }
+}

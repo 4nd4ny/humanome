@@ -1,0 +1,382 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "J'adore Claude Cowork : ça me permet de travailler sur l'ensemble des fichiers sans passer par un projet.",
+      "contexte": "Énoncé d'usage d'un agent IA hors environnement projet ; touche potentiellement à 1.06, 1.07, 1.10.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Ce matin, je cherche à homogénéiser la structure JSON Schema des fichiers YAML. Gain de temps incroyable.",
+      "contexte": "Récit d'une tâche technique d'homogénéisation de structure ; peut toucher 1.09 (décomposition computationnelle) ou 1.10 (synergie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "On sent le changement de paradigme avec l'agent Cowork.",
+      "contexte": "Observation sur un changement de nature d'usage IA ; touche 1.06 ou 1.10.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Premiers tests de cartographie non concluants : l'architecture de prompts fonctionne, mais l'algorithme n'est pas le bon.",
+      "contexte": "Diagnostic distinguant deux couches d'un système IA (architecture vs algorithme) après test ; touche 1.01, 1.07, 1.08.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-02-20",
+      "extraitVerbatim": "Je dois ralentir le projet ces prochains jours pour avancer du côté des demandes du coach de l'ORP [...] reprise du CV à faire en plus du reste.",
+      "contexte": "Arbitrage temporel entre deux engagements ; relève plutôt de la planification (P7) que du pôle 1.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant pose un diagnostic après un test qui n'a pas marché : il distingue ce qui tient (l'architecture) de ce qui échoue (l'algorithme), ce qui ressemble à une lecture calibrée du résultat plutôt qu'à un rejet en bloc."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je pars du principe que cette compétence n'est pas attestée : la feuille est très courte, et le doute méthodique exige plus qu'un constat d'échec. La pièce 1 énonce un diagnostic — « l'architecture fonctionne, l'algorithme n'est pas le bon » — mais sans dispositif de vérification décrit, sans croisement de sources, sans rien qui montre comment cette conclusion a été calibrée. La pensée critique de 1.01 demanderait au minimum la trace du chemin qui mène à cette discrimination, pas seulement son énoncé. La pièce résiste partiellement parce qu'elle distingue deux niveaux au lieu de tout invalider en bloc — c'est un acte de calibration plutôt qu'un rejet global. Mais ce qui reste explicitement faible, c'est l'absence totale du mouvement de vérification.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La distinction architecture/algorithme après test échoué montre une lecture discriminante plutôt qu'un rejet en bloc."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en me demandant si j'ai chargé un simple constat d'une portée critique qu'il n'a pas. Le diagnostic est court, sans dispositif, et il est possible que le simple fait de distinguer deux couches d'un système qu'on a soi-même construit ne soit pas du doute méthodique au sens de 1.01 — ce serait plutôt une lecture technique de débogage. L'attaque la plus pertinente est (a) insuffisance probatoire : la pièce est trop allusive pour porter la compétence seule.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'énoncé est court et ne décrit pas le protocole de test, mais la discrimination architecture/algorithme reste un acte calibré qui ne se réduit pas à « ça n'a pas marché »."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant cette compétence, j'ai cherché à nier toute trace de pensée critique calibrée dans une feuille de trois paragraphes. La pièce du diagnostic post-test m'a forcé à reconnaître qu'une distinction est posée — non pas « ça a raté », mais « voici ce qui tient et voici ce qui ne tient pas ». Sous la présomption de sycophantie, cette pièce s'est affaiblie : sans dispositif de vérification visible, le diagnostic reste sur le mode de la déclaration. Ce qui en résulte concrètement : la feuille porte une amorce de lecture discriminante d'un échec technique, mais pas le mouvement de doute méthodique pleinement attesté. Le verdict tient au seuil du renvoi.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la seule pièce sans la disqualifier ; un indice unique sur une feuille courte n'autorise pas une présence établie.",
+        "prescription": "Le diagnostic posé ici gagnerait à s'étoffer : pour les prochains tests de cartographie, raconter le chemin qui mène à dire « l'architecture tient mais pas l'algorithme » — quels signaux du test ont orienté cette discrimination ? Un mot sur le protocole transformerait la déclaration en trace de pensée critique."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au Cadrage de l'Intention sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où il a interrogé l'objectif lui-même avant de chercher la solution."
+      }
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Synthèse Intégrative sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où le croisement de plusieurs sources a fait émerger un insight neuf."
+      }
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Métacognition sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment où l'objet de la réflexion a été son propre processus cognitif, pas seulement le résultat."
+      }
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Pensée Systémique sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une boucle de rétroaction observée dans son travail ou un effet de second ordre anticipé."
+      }
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant pose un constat de « changement de paradigme » lié à un agent IA — qui pourrait signaler une lecture comparative des modes d'usage IA, marqueur de littératie."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Le diagnostic « architecture/algorithme » sépare deux couches d'un système IA, ce qui peut relever d'une compréhension causale fine du fonctionnement IA plutôt que d'un simple usage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que cette compétence n'est pas attestée : la fiche exige une compréhension causale du « pourquoi » l'IA fonctionne ou échoue, pas du vocabulaire ambiant. La pièce 1 (« changement de paradigme ») est une étiquette générique qu'on entend dans tout discours IA contemporain — elle ne nomme aucun mécanisme. La pièce 2 (architecture vs algorithme) est plus intéressante car elle distingue deux niveaux techniques d'un système, ce qui suppose un modèle interne du fonctionnement. La pièce 1 s'effondre, la pièce 2 résiste légèrement. Ce qui reste explicitement faible : aucune mention de mécanisme IA précis (tokens, contexte, hallucination causale).",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La distinction architecture/algorithme suppose un modèle interne du système IA, pas un usage de surface."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 2 en me demandant si je n'ai pas confondu un vocabulaire de développeur (architecture, algorithme) avec une littératie IA spécifique. L'attaque dominante est (d) glissement lexical : ces deux mots peuvent désigner n'importe quel système logiciel, pas spécifiquement les mécanismes IA décrits dans la fiche 1.06 (tokens, fenêtre de contexte, hallucinations). Aucune compréhension causale du « pourquoi » l'IA échoue ici n'est explicitée — on ne sait pas si « l'algorithme » désigne un algorithme classique ou un comportement de modèle.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "Architecture et algorithme sont du vocabulaire générique de l'informatique ; sans précision sur le mécanisme IA en cause, le marqueur de littératie IA n'est pas activé."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la feuille porte une littératie IA au sens technique. La pièce du diagnostic architecture/algorithme m'a brièvement résisté parce qu'elle suppose un modèle mental du système. Mais sous la présomption de sycophantie, le glissement lexical s'est imposé : « architecture » et « algorithme » sont des mots qui circulent dans tout milieu informatique, et rien dans la feuille ne montre une compréhension du pourquoi l'IA produit tel ou tel comportement — pas de mention de contexte, de tokens, de mécanisme d'hallucination. Ce qui en résulte : la feuille parle d'un système IA, sans expliciter ce qu'elle comprend de son fonctionnement. La littératie IA reste à documenter ailleurs.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la seule pièce résistante pour glissement lexical : usage générique du vocabulaire architectural sans compréhension causale.",
+        "prescription": "Pour ouvrir le dossier de la littératie IA, un récit qui explicite le mécanisme — pourquoi cet algorithme de cartographie échoue côté modèle, où l'erreur se produit dans le pipeline — transformerait l'observation en trace de compréhension causale."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant parle d'une « architecture de prompts » et la distingue de son « algorithme » : c'est le vocabulaire et la pensée à deux niveaux d'un concepteur de système, pas d'un simple utilisateur."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "L'usage d'un agent IA (Cowork) qui agit sur un ensemble de fichiers évoque la conception d'un pipeline ; à examiner sous l'angle architectural."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la compétence d'architecture de systèmes IA n'est pas établie : la fiche 1.07 exige une description de composants, connexions, rôles, mécanismes de monitoring, et le critère discriminant est qu'un tiers puisse comprendre et maintenir le système. La pièce 1 (« architecture de prompts ») emploie le mot « architecture » mais ne décrit aucun composant, aucun flux, aucun rôle. La pièce 2 (Cowork sur l'ensemble des fichiers) raconte un usage d'agent, pas une conception. Aucune des deux ne franchit le seuil. La pièce 1 résiste par son vocabulaire et par le fait qu'elle suppose un système assez complexe pour qu'on en distingue les couches.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Parler d'« architecture de prompts » et en distinguer l'algorithme suggère que l'apprenant pense le système comme un ensemble structuré, pas comme un prompt isolé."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 en me demandant si je n'ai pas surchargé un mot. L'attaque (e) surinterprétation pédagogique pèse fortement : j'ai voulu lire « architecture de prompts » comme un signal architectural mature, mais la feuille ne décrit ni composants, ni rôles, ni flux entre agents — ce que la fiche 1.07 demande explicitement. Le mot « architecture » est ici à l'état de signature : il pointe vers un système que l'apprenant construit ailleurs (le projet de cartographie), mais cette feuille n'en montre que le résultat d'un test, pas la conception. La pièce reste comme indice qu'un système existe en arrière-plan, mais elle ne le montre pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le mot « architecture » ne devient pas compétence faute de description de composants et de flux, mais il indique un système conçu en arrière-plan dont cette feuille ne montre qu'un test."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une compétence d'architecture de systèmes IA. La pièce qui distingue « architecture » et « algorithme » m'a forcé à reconnaître que l'apprenant pense bien à deux niveaux d'un système plus large. Mais sous la présomption de sycophantie, j'ai dû constater que la fiche demande une description de composants, de rôles, de flux — et que cette feuille n'en fournit aucune : elle parle du résultat d'un test, pas de la conception. Ce qui en résulte : un indice qu'une architecture existe ailleurs dans le projet, mais pas la trace de sa conception ici. Le verdict reste au seuil du renvoi.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la pièce d'« architecture de prompts » par surinterprétation pédagogique : signature architecturale sans description du système.",
+        "prescription": "Une feuille qui décrirait les composants du dispositif de cartographie — quel prompt fait quoi, comment les sorties s'enchaînent, où est le point de contrôle — convertirait cette signature en trace de conception. Le système semble exister ; reste à le montrer."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Le diagnostic d'un test de cartographie distingue « architecture de prompts » de l'algorithme : peut signaler une réflexion fine sur la formulation et son effet sur le résultat."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que le dialogue IA avancé n'est pas attesté : la fiche 1.08 exige des itérations stratégiques analysées, du méta-prompting, ou la conception de rôles différenciés dans un dialogue. La pièce 1 mentionne « l'architecture de prompts » mais ne décrit aucune technique, aucune itération, aucune réflexion sur la formulation et son effet. La distinction architecture/algorithme dans 1.08 placerait la difficulté du côté de la formulation ; ici, l'apprenant identifie au contraire l'algorithme comme problème, pas la formulation. La pièce résiste faiblement parce qu'elle suppose un travail de prompt déjà avancé en arrière-plan.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "La mention d'une « architecture de prompts » qu'on distingue de l'algorithme suppose que la sophistication de la formulation a déjà été travaillée séparément."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je relis la pièce 1 et je m'aperçois que l'apprenant identifie l'algorithme — pas la formulation — comme le point qui ne va pas. C'est presque l'inverse de 1.08 : la fiche parle de sophistication du prompt comme outil de pensée. L'attaque (b) confusion de compétence s'applique : cette pièce active mieux la conception de système (1.07) que le dialogue IA avancé. Aucune technique de prompting nommée, aucune analyse de pourquoi une reformulation changerait le résultat.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce relève davantage de l'architecture de système que du dialogue IA avancé : c'est l'algorithme qui est mis en cause, pas la formulation."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace de dialogue IA avancé. La pièce du diagnostic m'a brièvement retenu parce qu'elle suppose un travail de prompts déjà avancé. Mais sous la présomption de sycophantie, j'ai vu que cette pièce relève d'une compétence voisine — la conception architecturale — et que la formulation elle-même n'est pas l'objet du diagnostic. La fiche 1.08 demande une réflexion sur l'effet du prompt sur le comportement ; cette feuille ne la porte pas. Ce qui en résulte : aucune trace attestée ici, le dossier reste ouvert pour d'autres feuilles.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 2 a disqualifié la pièce pour confusion de compétence : elle active mieux 1.07 que 1.08.",
+        "prescription": "Pour ouvrir le dossier du dialogue IA avancé, un récit qui montrerait l'effet d'une reformulation précise sur un résultat — pourquoi telle version du prompt a déplacé telle sortie — transformerait l'observation en trace de pratique de la formulation."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la Pensée Computationnelle sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un transfert de logique algorithmique hors-informatique."
+      }
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'apprenant exprime un usage qualifié de l'agent Cowork qui change sa manière de travailler ; à examiner pour voir s'il articule une complémentarité humain-IA ou s'il décrit un simple usage."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "La phrase « changement de paradigme avec l'agent Cowork » signale qu'une bascule s'opère dans le partage des tâches ; à examiner pour vérifier s'il y a articulation des forces comparatives."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume que la synergie n'est pas attestée : la fiche 1.10 exige une articulation explicite de ce que l'humain garde et de pourquoi, ou de pourquoi telle tâche revient à l'IA. Les pièces 1 et 2 parlent de Cowork avec enthousiasme et signalent un changement, mais ne nomment jamais le trade-off : qu'est-ce que l'apprenant garde en propre ? Que délègue-t-il ? Pourquoi ? Sans cette articulation, c'est un usage, pas une synergie. Aucune des deux pièces ne résiste sérieusement : « j'adore » et « on sent le changement » sont des appréciations, pas des analyses des forces comparatives.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Le temps 1 n'a retenu aucune pièce ; le temps 2 ne porte pas. La présomption d'absence a tenu naturellement : la feuille parle d'usage agréable et de bascule perçue, jamais de répartition des rôles.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que cette feuille porte une trace de synergie humain-IA articulée. Aucune des pièces n'a résisté à la présomption d'absence : la feuille parle d'usage et de bascule, sans nommer ce que l'humain garde ni pourquoi telle tâche va à l'IA. Ce qui en résulte : la synergie reste à documenter. La feuille marque un moment de bascule perçue, et c'est précisément le bon endroit pour articuler ensuite ce qui change dans la répartition des tâches.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "Aucune pièce n'a résisté à la présomption d'absence : la feuille décrit un usage et une perception de bascule, sans articuler les forces comparatives humain/IA.",
+        "prescription": "Le moment de « changement de paradigme » mériterait un récit qui nomme ce que l'agent fait mieux et ce que l'apprenant choisit de garder en propre. Une phrase explicite sur cette répartition transformerait l'enthousiasme en trace de synergie pensée."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 2,
+    "nonEtablies": 8,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur cette feuille du 20 février, le travail de la pensée se laisse entrevoir par éclats brefs. Un agent IA prend une place nouvelle dans la journée, un test de cartographie n'aboutit pas, et un diagnostic en deux temps sépare ce qui tient de ce qui ne tient pas. Le registre reste celui de la note rapide : enthousiasme, observation, arbitrage de temps. L'arrière-plan technique est dense — Cowork, JSON Schema, architecture de prompts, algorithme — mais cette feuille en donne les indices, pas la mise en œuvre détaillée.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas visités sur cette feuille, et certains absences semblent liées à la brièveté de la note plutôt qu'à un choix. Le cadrage de l'intention, la synthèse intégrative, la métacognition, la pensée systémique et la pensée computationnelle n'apparaissent pas — ce qui est cohérent avec une feuille de transition opérationnelle. Deux dossiers restent ouverts en renvoi au cartographe : la pensée critique, qui transparaît dans le diagnostic du test sans en montrer le protocole, et l'architecture de systèmes IA, dont le vocabulaire affleure (« architecture de prompts ») sans description du dispositif. La littératie IA, le dialogue IA avancé et la synergie humain-IA traversent la feuille en filigrane sans s'y poser comme traces.",
+    "emergencesPole": "Ce qui traverse les compétences travaillées ici, c'est la présence d'un système plus grand en arrière-plan — un projet de cartographie avec son architecture, ses tests, son agent Cowork — dont la feuille ne donne que des reflets. La distinction architecture/algorithme revient comme un geste discriminant qui pourrait, ailleurs, porter à la fois 1.01 et 1.07 si le récit s'étoffait.",
+    "pistes": [
+      "Pour enrichir la trace de pensée critique, un chemin possible serait de raconter, au prochain test de cartographie, comment le verdict « l'architecture tient, l'algorithme non » a été obtenu — quels signaux ont orienté la discrimination.",
+      "Pour enrichir la trace d'architecture de systèmes IA, un chemin possible serait de poser, sur une feuille dédiée, la carte des composants du dispositif de cartographie : quel prompt fait quoi, comment les sorties s'enchaînent.",
+      "Pour enrichir la trace de synergie humain-IA, un chemin possible serait de revenir, dans une feuille future, sur ce que l'agent Cowork fait mieux et sur ce qui reste irremplaçablement du côté de l'apprenant."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur cette feuille du 20 février, le travail de la pensée se laisse entrevoir par éclats brefs. Un agent IA prend une place nouvelle dans la journée, un test de cartographie n'aboutit pas, et un diagnostic en deux temps sépare ce qui tient de ce qui ne tient pas. Le registre reste celui de la note rapide : enthousiasme, observation, arbitrage de temps. L'arrière-plan technique est dense — Cowork, JSON Schema, architecture de prompts, algorithme — mais cette feuille en donne les indices, pas la mise en œuvre détaillée.\n\n## Territoires les plus denses\n\nAucun territoire ne se pose ici comme densité établie. La feuille est courte, et les compétences qui affleurent restent au seuil de la documentation.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas visités sur cette feuille, et certaines absences semblent liées à la brièveté de la note plutôt qu'à un choix. Le cadrage de l'intention, la synthèse intégrative, la métacognition, la pensée systémique et la pensée computationnelle n'apparaissent pas — ce qui est cohérent avec une feuille de transition opérationnelle. Deux dossiers restent ouverts en renvoi au cartographe : la pensée critique, qui transparaît dans le diagnostic du test sans en montrer le protocole, et l'architecture de systèmes IA, dont le vocabulaire affleure sans description du dispositif. La littératie IA, le dialogue IA avancé et la synergie humain-IA traversent la feuille en filigrane sans s'y poser comme traces.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nCe qui traverse les compétences travaillées ici, c'est la présence d'un système plus grand en arrière-plan — un projet de cartographie avec son architecture, ses tests, son agent Cowork — dont la feuille ne donne que des reflets. La distinction architecture/algorithme revient comme un geste discriminant qui pourrait, sur d'autres feuilles, porter à la fois la pensée critique et la conception architecturale si le récit s'étoffait.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la trace de pensée critique, un chemin possible serait de raconter, au prochain test de cartographie, comment le verdict « l'architecture tient, l'algorithme non » a été obtenu — quels signaux ont orienté la discrimination.\n- Pour enrichir la trace d'architecture de systèmes IA, un chemin possible serait de poser, sur une feuille dédiée, la carte des composants du dispositif de cartographie : quel prompt fait quoi, comment les sorties s'enchaînent.\n- Pour enrichir la trace de synergie humain-IA, un chemin possible serait de revenir, dans une feuille future, sur ce que l'agent Cowork fait mieux et sur ce qui reste irremplaçablement du côté de l'apprenant."
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "poleNum": "3",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Le protocole Juge fonctionne à merveille. Testé plusieurs fois, avec des modèles forts (Opus) et moyen (Sonnet), les résultats sont consistants. Avec Haiku ça marche aussi, même s'il hallucine beaucoup.",
+      "contexte": "Test itératif d'un dispositif avec plusieurs modèles ; activation possible de 3.01 (itération), 3.04 (curation).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Plusieurs run ont été exécutés durant la phase de développement. Tous les résultats sont congruents, même avec de plus petits modèles, même si Opus donne les meilleurs conseils et résultats d'analyse.",
+      "contexte": "Itérations explicites avec apprentissage entre cycles ; activation possible de 3.01 (créativité itérative), 3.04 (jugement).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Haiku est le plus bavard mais le moins intelligent (slop generator).",
+      "contexte": "Jugement esthétique tranché sur la qualité d'un output IA ; activation possible de 3.04 (curation), 3.02 (signature).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "L'objectif ultime d'une évaluation assistée par IA est la **soundness** : garantir qu'un portfolio qui ne contient pas authentiquement une compétence ne puisse pas obtenir un verdict « présence établie ».",
+      "contexte": "Énonciation d'un problème inédit : non pas comment évaluer, mais comment garantir l'absence de faux positifs ; activation possible de 3.03 (design de problèmes).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La taxonomie probatoire du Greffier verrouille la distinction entre « montrer qu'on sait » et « dire qu'on sait » — le mécanisme le plus fondamental contre les faux positifs.",
+      "contexte": "Formulation d'une frontière probatoire originale qui devient un mécanisme reproductible ; activation possible de 3.03 (création de problème), 3.01 (radicalité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "La **structure adversariale** de ce nouveau protocole d'évaluation retourne le biais sycophantique du LLM dans les deux directions",
+      "contexte": "Invention d'un retournement structurel : utiliser un biais comme moteur du dispositif ; activation possible de 3.01 (radicalité), 3.03 (design).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Maintenant que le système m'a rejeté comme un cancer (ce qui m'a bien fait rire 'jaune'",
+      "contexte": "Métaphore organique frappante et autodérision teintée d'amertume ; activation possible de 3.02 (signature), 3.01 (créativité).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "C'est un feeling que j'ai dans mes tripes et franchement, j'aimerai bien pouvoir faire un travail de recherche sur cette intuition.",
+      "contexte": "Ancrage somatique d'une intuition (« dans mes tripes ») suivi d'un projet d'action ; activation possible de 3.06 (ancrage sensoriel).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "j'avais vraiment l'impression d'être dans le bureau du directeur du gymnase de Chamblande, le 15 Mai 2025",
+      "contexte": "Reconvocation sensorielle d'une scène précise ; activation possible de 3.06 (ancrage sensoriel), 3.02 (signature dans l'ancrage temporel-spatial).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 10,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Solution hybride : 1 orchestrateur en bash à la racine 'aurora.sh', 21 prompts pour les agents dans le dossier protocole, 1 fichier cache 'index_triage.md' dans le dossier référentiel utilisé par le Greffier, 6 outils en python dans le sous-dossier scripts",
+      "contexte": "Production concrète d'un objet technique livré ; activation possible de 3.01 (itération créative), 3.05 (intelligence manuelle au sens d'artisanat technique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 11,
+      "feuille": "2026-03-29",
+      "extraitVerbatim": "Mais surtout bravo à Claude pour avoir pu voir ce que je n'arrivais pas à réaliser en tant que juge humain",
+      "contexte": "Tonalité personnelle propre — un « bravo » adressé à un LLM, mélange de gratitude et de prise de recul ; activation possible de 3.02 (signature stylistique).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "3.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Plusieurs runs exécutés durant la phase de développement avec mesure de la congruence des résultats — itération disciplinée."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Tests croisés sur trois modèles (Opus, Sonnet, Haiku) pour valider la robustesse du dispositif — itération comparative."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "L'idée de retourner le biais sycophantique du LLM contre lui-même est une rupture conceptuelle — pas seulement une amélioration incrémentale."
+        },
+        {
+          "numero": 4,
+          "pid": 10,
+          "contexte": "Production livrée d'un système complet (orchestrateur, 21 prompts, cache, 6 scripts) — itération productive."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que faire tourner plusieurs runs n'est pas de la créativité itérative au sens de la fiche. Beaucoup d'ingénieurs testent leur code sans qu'il s'agisse d'apprendre stratégiquement de l'imperfection. La pièce 1 mentionne « plusieurs runs » mais ne raconte pas ce qui a changé entre eux. La pièce 2 décrit un test sur trois modèles, mais c'est de la validation, pas nécessairement de l'itération créative. La pièce 3, en revanche, est plus saisissable : retourner le biais sycophantique du LLM dans les deux directions est une invention conceptuelle qui n'est pas une amélioration incrémentale d'un protocole existant. La pièce 4 atteste la production effective. Ce qui reste explicitement faible : la trace de ce qui a été appris entre les versions n'apparaît pas dans le passage. Les itérations sont rapportées comme un fait, pas comme un mouvement d'apprentissage.",
+          "piecesQuiResistent": [
+            { "pieceId": 3, "motifResistance": "Le retournement du biais sycophantique du LLM est une invention conceptuelle, pas une optimisation." },
+            { "pieceId": 4, "motifResistance": "La production livrée (orchestrateur + 21 prompts + cache + 6 scripts) est l'aboutissement d'un cycle d'itérations dont l'existence atteste le travail." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces résistent. Je durcis. Le retournement du biais sycophantique est-il vraiment radical ou simplement intelligent ? La production livrée atteste-t-elle l'itération ou seulement le résultat final ?",
+          "examenPieces": [
+            { "pieceId": 3, "attaqueDominante": "e", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "L'idée de retourner un biais documenté du LLM en moteur architectural — l'Accusation interprète favorablement, la Défense attaque, l'interaction produit une annulation — est une rupture conceptuelle. Le test de la fiche (l'IA l'aurait-elle suggéré seule ?) plaide pour la radicalité : c'est l'humain qui exploite l'asymétrie d'instruction pour générer la robustesse." },
+            { "pieceId": 4, "attaqueDominante": "f", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce documente le résultat (les composants livrés) mais raconte peu le geste itératif lui-même. La production atteste indirectement que des cycles ont eu lieu, sans en montrer la mécanique." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à de la simple validation logicielle ou de la livraison de résultat. Une pièce a tenu fermement : le retournement du biais sycophantique du LLM en moteur adversarial est une invention conceptuelle, pas une amélioration. La pièce de la production livrée a tenu avec affaiblissement : elle atteste l'existence de cycles d'itération, sans en restituer la dynamique d'apprentissage. Ce qui se dégage, c'est une attestation modérée à solide de la créativité, davantage dans son versant radical (rupture conceptuelle) que dans son versant itératif documenté (cycles d'apprentissage tracés). La réserve qui demeure : un récit d'une version qui a échoué et de ce que cet échec a fait pivoter dans le protocole donnerait à la dimension itérative son terrain d'attestation propre.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.7,
+        "motif": "Le temps 2 a confirmé le retournement du biais sycophantique comme rupture conceptuelle, et retenu avec affaiblissement la production livrée comme indice d'itérations effectivement parcourues.",
+        "prescription": "La créativité opère ici dans son versant radical — l'invention du retournement adversarial — plus que dans le récit du parcours itératif. Pour donner à ce parcours sa trace, une piste serait de raconter, sur une feuille future, une version antérieure d'Aurora qui n'a pas fonctionné et ce que cet échec a déplacé dans la conception."
+      },
+      "tracesRetenues": [
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "« Slot generator » sur Haiku — formule lapidaire, jugement à la machette qui imprime un ton."
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Métaphore « rejeté comme un cancer » : violence assumée d'une image qui fait signature."
+        },
+        {
+          "numero": 3,
+          "pid": 11,
+          "contexte": "« Bravo à Claude pour avoir pu voir ce que je n'arrivais pas à réaliser » — un bravo adressé à un LLM, ton inattendu."
+        },
+        {
+          "numero": 4,
+          "pid": 8,
+          "contexte": "« Un feeling dans mes tripes » dans un texte technique sur soundness et taxonomie probatoire — coexistence assumée des registres."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec une présomption forte : la singularité au sens de la fiche demande la récurrence dans le temps, et je ne dispose ici que d'une seule feuille. Quelques tics stylistiques observables sur une journée ne constituent pas un fil traversant le portfolio. La pièce 1 (« slop generator ») montre un ton tranché mais c'est un acte isolé. La pièce 2 (la métaphore du cancer) est frappante mais peut être un effet de circonstance. La pièce 3 (le bravo à Claude) est inhabituel mais reste un détail. La pièce 4 (les tripes au milieu de la soundness) signale un mélange de registres typique. Ce qui reste : un faisceau de petites singularités cohérent sur cette feuille — la maxime lapidaire, l'image organique, l'oscillation registre technique / registre charnel. Le constat de récurrence ne pourra venir que de la comparaison avec d'autres feuilles.",
+          "piecesQuiResistent": [
+            { "pieceId": 4, "motifResistance": "Le mélange de la rigueur technique (soundness, taxonomie probatoire) et de la digression personnelle (tripes, feeling) est une trace oblique de signature mentionnée par la fiche." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce résiste à la première présomption d'absence — non que les autres aient été disqualifiées, mais parce que la fiche demande de la récurrence, donc une feuille seule offre du matériau insuffisant. Je teste la pièce qui résiste.",
+          "examenPieces": [
+            { "pieceId": 4, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le mélange technique/charnel est attesté dans le passage, mais sur une seule feuille la récurrence ne peut pas être démontrée. La pièce porte une marque de signature sans qu'on puisse encore la qualifier de récurrente." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la signature pouvait s'attester depuis une seule feuille. La fiche est claire : la singularité demande la récurrence dans le temps, donc une feuille isolée ne peut pas porter une présence pleinement établie. Cependant, plusieurs petites marques cohérentes apparaissent : maxime lapidaire (« slop generator »), image organique forte (« rejeté comme un cancer »), bravo inattendu à un LLM, coexistence du technique et du charnel. Ce qui en résulte, c'est un renvoi au cartographe — la signature se devine, sans qu'une feuille puisse la confirmer en tant que récurrence. Pour qui lirait l'ensemble du portfolio, ces marques deviendraient ou non un fil. La réserve qui demeure tient à la nature même de la compétence : elle exige une comparaison inter-feuilles que ce traitement par feuille n'offre pas.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 2 a retenu avec affaiblissement le mélange registre technique / registre charnel comme trace de signature, sans qu'une seule feuille puisse établir la récurrence demandée par la fiche.",
+        "prescription": "Plusieurs marques cohérentes se laissent lire dans cette feuille — maxime lapidaire, image organique forte, coexistence du technique et du charnel — sans qu'une feuille seule puisse les qualifier de récurrentes. Le dossier reste ouvert : la lecture transversale des autres feuilles du portfolio dira si ces marques constituent un fil ou un effet d'occasion."
+      },
+      "tracesRetenues": [
+        { "pieceId": 4, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "La question centrale est déplacée : non pas « comment bien évaluer ? » mais « comment garantir l'absence de faux positifs ? » — création d'une question probatoire qui n'existait pas dans le cadre évaluatif classique."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "La distinction « montrer qu'on sait » vs « dire qu'on sait » est posée comme question fondamentale d'un nouveau régime probatoire — généralisation en recette reproductible."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption forte parce que la fiche met en garde explicitement contre la confusion avec 1.02 (cadrage). Le cadrage reformule un problème existant ; le design de problèmes en crée un nouveau. La pièce 1 (la soundness comme objectif ultime) pourrait n'être qu'un cadrage : reformuler l'évaluation comme problème de soundness. Pourtant, la soundness probatoire n'était pas la question que se posait le champ de l'évaluation par portfolio jusqu'ici ; l'apprenant introduit une catégorie de problème (le faux positif évaluatif) qui n'était pas formulée comme telle. La pièce 2 va dans le même sens : la distinction « montrer / dire » comme verrou probatoire est généralisée en taxonomie. Ce qui reste explicitement faible : la frontière entre cadrage très ambitieux (1.02) et design de problème (3.03) est mince, et il faudrait pouvoir comparer à l'état antérieur du champ pour savoir si la question est inédite ou simplement bien recadrée.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Faire de la soundness l'objectif ultime — et nommer le faux positif comme dommage silencieux — pose une question qui n'était pas formulée dans le cadre évaluatif classique." },
+            { "pieceId": 2, "motifResistance": "La généralisation de la distinction « montrer / dire » en taxonomie probatoire est une formalisation en recette, signal fort de design de problèmes." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces résistent. Je durcis : ne suis-je pas en train de surinterpréter ce qui pourrait être du cadrage très bien fait ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "La pièce active aussi solidement 1.02 (cadrage de la soundness comme objectif). Mais la nomination du faux positif évaluatif comme catégorie en soi — distincte de l'erreur de jugement — pose une question qui n'avait pas son nom : le dommage silencieux. La pièce penche du côté du design de problème, sans rompre totalement avec le cadrage." },
+            { "pieceId": 2, "attaqueDominante": "a", "verdictAttaque": "attaque non recevable, pièce confirmée", "motifAttaque": "La distinction « montrer / dire » devient une taxonomie probatoire opérationnalisée (la taxonomie du Greffier) qui crée un nouveau régime de jugement. C'est une formalisation, pas une intuition isolée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à ramener ces pièces à du cadrage très ambitieux plutôt qu'à du design de problème. Une pièce a tenu fermement : la généralisation de la distinction « montrer / dire » en taxonomie probatoire crée un cadre opérationnel qui n'existait pas comme tel. L'autre a tenu avec affaiblissement, à la frontière du cadrage et de la création de problème. Ce qui se dégage, c'est une attestation honnête mais avec réserve : l'apprenant a posé une question qui structure désormais tout un dispositif (qu'est-ce qui distingue montrer de dire dans un portfolio textuel ?), et a inventé une catégorie (le faux positif évaluatif comme dommage silencieux). La réserve : la radicalité de la question — est-elle absolument nouvelle ou plutôt nouvelle dans le contexte spécifique des évaluations assistées par IA ? — n'est pas tranchable depuis cette seule feuille.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Le temps 2 a confirmé que la généralisation de la distinction « montrer/dire » en taxonomie probatoire crée un régime probatoire qui n'existait pas comme tel, et retenu avec affaiblissement la pièce voisine du cadrage.",
+        "prescription": "Le design de problèmes opère ici en proximité du cadrage très ambitieux ; la distinction entre les deux pourrait gagner à être thématisée explicitement. Une piste serait, à l'occasion d'une prochaine note, de formuler ce que la question d'Aurora a déplacé — quelle question on posait avant, quelle question on pose maintenant, et ce que cette nouvelle question rend pensable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Jugement esthétique tranché sur Haiku (« slop generator ») : critère qualitatif (la verbosité sans intelligence) verbalisé en formule lapidaire."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Sélection comparative entre modèles avec critères de qualité explicites : « Opus donne les meilleurs conseils et résultats d'analyse »."
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Discernement nuancé : « avec Haiku ça marche aussi, même s'il hallucine beaucoup » — jugement qui retient une option tout en pointant son défaut."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec l'idée que dire « tel modèle est meilleur que tel autre » n'est pas du jugement esthétique. La fiche distingue : 1.01 évalue la véracité, 3.04 évalue la justesse formelle. La pièce 1 (slop generator) cible la qualité formelle (verbosité, manque d'intelligence) — c'est un jugement esthétique au sens de la fiche, même formulé brutalement. La pièce 2 hiérarchise les modèles avec un critère qualitatif (« meilleurs conseils et résultats d'analyse »), mais le critère reste partiellement opaque. La pièce 3 articule un discernement nuancé : retenir une option imparfaite avec lucidité sur son défaut. Ce qui reste explicitement faible : la curation au sens fort implique la soustraction et la mise en ordre ; les pièces ici sont plus dans le registre du verdict comparatif que dans celui de la curation éditoriale.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "« Slop generator » est un jugement formel précis (verbosité sans densité), pas un avis affectif." },
+            { "pieceId": 3, "motifResistance": "Retenir Haiku tout en pointant qu'il hallucine est un discernement qui articule choix et critique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Deux pièces résistent. Je durcis. Sont-ce vraiment des jugements esthétiques au sens de la fiche, ou simplement des évaluations de performance technique ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "b", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "« Slop generator » est une qualification esthétique (bavard mais sans densité) plutôt que de performance technique pure ; mais elle reste très condensée et n'est pas développée en critères articulés." },
+            { "pieceId": 3, "attaqueDominante": "a", "verdictAttaque": "pièce affaiblie mais retenue", "motifAttaque": "Le discernement « ça marche mais il hallucine » est honnête et pratique, mais il reste court — il n'y a pas de mise en ordre éditoriale élaborée." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces relevaient pleinement de la curation au sens de la fiche. Deux ont tenu avec affaiblissement : le jugement formel sur Haiku (« slop generator ») et le discernement nuancé qui retient une option imparfaite. Ce qui se dégage, c'est une attestation modérée. Le jugement esthétique opère ici dans le registre du verdict tranché, plus que dans celui de la curation éditoriale au sens fort (hiérarchies pour audiences distinctes, vocabulaire esthétique développé, soustraction explicite). Ce qui s'atteste est cohérent mais court ; il faudrait un développement plus articulé des critères pour passer à une attestation pleinement établie. Le renvoi au cartographe correspond au mieux.",
+          "confianceFinale": 0.52
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.52,
+        "motif": "Le temps 2 a retenu avec affaiblissement deux jugements esthétiques tranchés mais peu développés en critères articulés ; la curation au sens fort de la fiche ne s'illustre pas dans le passage.",
+        "prescription": "Le jugement esthétique opère ici en formules lapidaires (« slop generator ») plutôt qu'en critères articulés. Pour ouvrir le dossier, une piste serait d'écrire, à l'occasion d'un nouvel output IA, deux ou trois lignes qui précisent pourquoi tel résultat « sonne juste » ou « sonne faux » — non pas verdict, mais critères qui décomposent le jugement."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "3.05",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'intelligence manuelle et artisanale sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la matière physique a été travaillée — montage de matériel, réparation, cuisine, bricolage — avec ses détails sensoriels propres."
+      }
+    },
+    {
+      "code": "3.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "« Un feeling dans mes tripes » — ancrage somatique d'une intuition au milieu d'un texte technique."
+        },
+        {
+          "numero": 2,
+          "pid": 9,
+          "contexte": "Reconvocation sensorielle d'une scène précise (« j'avais vraiment l'impression d'être dans le bureau du directeur du gymnase de Chamblande, le 15 Mai 2025 ») : sensation physique du lieu."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption forte : un mot du registre corporel n'est pas une preuve d'ancrage sensoriel. La fiche demande de la phénoménologie précise — sensations nommées, alternance présence/distraction, intuition somatique suivie d'action et de résultat. La pièce 1 (« feeling dans mes tripes ») reste une formule courante, peu déployée phénoménologiquement. La pièce 2 (« j'avais vraiment l'impression d'être dans le bureau ») évoque une sensation de présence reconvoquée, mais c'est de la mémoire affective plus que de l'ancrage sensoriel au présent. Ce qui reste explicitement faible : aucun moment de présence ralentie, d'écoute incarnée, de sensation physique fine n'est décrit dans cette feuille.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'intuition somatique est suivie d'une intention d'action (« j'aimerai bien pouvoir faire un travail de recherche sur cette intuition ») — c'est le marqueur que la fiche mentionne." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Une seule pièce résiste. Je la teste. L'expression « feeling dans les tripes » suffit-elle à attester un ancrage sensoriel ?",
+          "examenPieces": [
+            { "pieceId": 1, "attaqueDominante": "d", "verdictAttaque": "pièce disqualifiée", "motifAttaque": "« Feeling dans les tripes » est une expression idiomatique du français courant pour désigner une conviction forte, sans charge sensorielle réelle. L'apprenant ne décrit pas une sensation, il utilise une métaphore familière. La fiche distingue la véritable intuition somatique de l'image fixe : c'est le glissement lexical sans charge sémantique correspondante." }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si ces pièces portaient un ancrage sensoriel au sens de la fiche. La pièce 1 (« feeling dans les tripes ») est tombée sous l'attaque du glissement lexical : c'est une expression idiomatique, pas la description d'une sensation. La pièce 2 (la reconvocation du bureau de Chamblande) avait été déjà absorbée par la présomption d'absence — il s'agit de mémoire affective, pas d'ancrage sensoriel au présent. Ce qui en résulte, c'est que la compétence n'est pas attestée sur cette feuille. Le passage du 29 mars est essentiellement cognitif et politique ; le registre somatique n'y trouve pas son terrain. L'absence ici ressemble à un choix de focale (la feuille parle d'évaluation et de trajectoire), pas à une limite de l'apprenant.",
+          "confianceFinale": 0.22
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.22,
+        "motif": "La seule pièce qui avait résisté est tombée sous l'attaque du glissement lexical : « feeling dans les tripes » relève de l'expression idiomatique, pas de la description sensorielle.",
+        "prescription": "Le registre somatique ne trouve pas son terrain sur cette feuille. Pour ouvrir ce dossier, une piste serait de documenter à l'occasion un moment où le corps a délivré une information précise — fatigue ressentie qui infléchit une décision de travail, sensation physique précise dans une situation tendue, écoute incarnée d'un échange — avec les détails phénoménologiques qui distinguent l'ancrage sensoriel de l'expression idiomatique."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "3.07",
+      "courtCircuit": false,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la présence et performance live sur cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment en présentiel où sa présence physique a fait une différence — interaction avec un public, improvisation face à une réaction imprévue, énergie d'une salle."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 7,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 2,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail de la feuille du 29 mars se déploie principalement dans le registre conceptuel et productif, et peu dans le registre somatique ou en présence. L'apprenant raconte un dispositif livré, articule des inventions structurales (le retournement adversarial du biais sycophantique, la taxonomie probatoire « montrer / dire »), et juge tranché les outputs d'IA dans des formules lapidaires (« slop generator »). Les marqueurs concrets reviennent : trois modèles testés, plusieurs runs, congruence rapportée, 21 prompts livrés. La matière physique, la sensation au présent, la performance en direct ne sont pas la scène de cette feuille. Ce qui se laisse lire avec le plus de netteté tient à l'invention d'un dispositif et au régime probatoire qu'il rend pensable.",
+    "territoiresDenses": [
+      {
+        "competence": "Créativité itérative et radicale",
+        "description": "Le retournement du biais sycophantique du LLM en moteur adversarial relève de la rupture conceptuelle ; la production livrée atteste les cycles d'itération.",
+        "extraitVerbatim": "La structure adversariale de ce nouveau protocole d'évaluation retourne le biais sycophantique du LLM dans les deux directions",
+        "ceQueCaDit": "Le travail manifeste une invention qui exploite l'asymétrie d'instruction d'un système — geste de rupture, pas d'optimisation incrémentale."
+      },
+      {
+        "competence": "Design de problèmes",
+        "description": "La distinction « montrer qu'on sait » vs « dire qu'on sait » est généralisée en taxonomie probatoire qui ouvre un régime de jugement nouveau.",
+        "extraitVerbatim": "le mécanisme le plus fondamental contre les faux positifs",
+        "ceQueCaDit": "Le travail pose une question qui n'avait pas son nom — le faux positif évaluatif comme dommage silencieux — et l'opérationnalise en outil reproductible."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en attente sur cette feuille. L'intelligence manuelle et artisanale ne reçoit aucune pièce — le travail décrit est entièrement logiciel et conceptuel, sans détail sensoriel sur l'objet physique. La présence et performance live n'apparaît pas davantage : la feuille parle de runs et de tests, pas de moments en présentiel. L'ancrage sensoriel et la pleine présence sont mentionnés par expression idiomatique (« feeling dans les tripes »), sans la phénoménologie qui en ferait une trace. La singularité reste à confirmer par la lecture transversale du portfolio : plusieurs marques stylistiques cohérentes apparaissent sur cette feuille (maxime lapidaire, image organique forte, coexistence du technique et du charnel), mais une feuille seule ne peut pas établir la récurrence demandée. Ces absences ressemblent à des choix de focale propres à cette feuille, où la main et le corps sont mis en sourdine au profit de la pensée et de la production.",
+    "emergencesPole": "Trois lignes traversent les compétences abordées du pôle sur cette feuille. La première : un même mouvement de rupture-puis-formalisation — l'idée du retournement adversarial devient un protocole, la distinction « montrer / dire » devient une taxonomie. L'invention ne reste pas à l'état d'éclair, elle se fixe en dispositif. La deuxième : un jugement tranché qui aime la formule courte (« slop generator », « rejeté comme un cancer ») — une économie de mot qui produit son effet en une expression. La troisième : une voix qui passe sans transition de la rigueur technique à l'image organique forte, comme si la machine et le corps relevaient d'un même registre d'expression.",
+    "pistes": [
+      "Pour donner à la dimension itérative de la créativité son terrain d'attestation propre, un chemin possible serait de raconter, sur une feuille future, une version antérieure d'Aurora qui n'a pas fonctionné et ce que cet échec a déplacé dans la conception.",
+      "Pour préciser le jugement esthétique, un chemin possible serait d'écrire, à l'occasion d'un nouvel output IA, deux ou trois lignes qui décomposent pourquoi tel résultat « sonne juste » ou « sonne faux ».",
+      "Pour ouvrir le dossier de l'ancrage sensoriel, un chemin possible serait de documenter à l'occasion un moment où le corps a délivré une information précise — fatigue ressentie qui infléchit une décision, sensation dans une situation tendue, écoute incarnée d'un échange.",
+      "Pour distinguer plus nettement le design de problèmes du cadrage très ambitieux, un chemin possible serait de formuler explicitement, à l'occasion d'une note, ce que la question d'Aurora a déplacé — quelle question on posait avant, quelle question on pose maintenant, et ce que cette nouvelle question rend pensable."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail de la feuille du 29 mars se déploie principalement dans le registre conceptuel et productif, et peu dans le registre somatique ou en présence. L'apprenant raconte un dispositif livré, articule des inventions structurales (le retournement adversarial du biais sycophantique, la taxonomie probatoire « montrer / dire »), et juge tranché les outputs d'IA dans des formules lapidaires (« slop generator »). Les marqueurs concrets reviennent : trois modèles testés, plusieurs runs, congruence rapportée, 21 prompts livrés. La matière physique, la sensation au présent, la performance en direct ne sont pas la scène de cette feuille. Ce qui se laisse lire avec le plus de netteté tient à l'invention d'un dispositif et au régime probatoire qu'il rend pensable.\n\n## Territoires les plus denses\n\n**Créativité itérative et radicale.** Le retournement du biais sycophantique du LLM en moteur adversarial relève de la rupture conceptuelle ; la production livrée atteste les cycles d'itération. « La structure adversariale de ce nouveau protocole d'évaluation retourne le biais sycophantique du LLM dans les deux directions. » Le travail manifeste une invention qui exploite l'asymétrie d'instruction d'un système — geste de rupture, pas d'optimisation incrémentale.\n\n**Design de problèmes.** La distinction « montrer qu'on sait » vs « dire qu'on sait » est généralisée en taxonomie probatoire qui ouvre un régime de jugement nouveau. « Le mécanisme le plus fondamental contre les faux positifs. » Le travail pose une question qui n'avait pas son nom — le faux positif évaluatif comme dommage silencieux — et l'opérationnalise en outil reproductible.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle restent en attente sur cette feuille. L'intelligence manuelle et artisanale ne reçoit aucune pièce — le travail décrit est entièrement logiciel et conceptuel, sans détail sensoriel sur l'objet physique. La présence et performance live n'apparaît pas davantage : la feuille parle de runs et de tests, pas de moments en présentiel. L'ancrage sensoriel et la pleine présence sont mentionnés par expression idiomatique (« feeling dans les tripes »), sans la phénoménologie qui en ferait une trace. La singularité reste à confirmer par la lecture transversale du portfolio : plusieurs marques stylistiques cohérentes apparaissent sur cette feuille (maxime lapidaire, image organique forte, coexistence du technique et du charnel), mais une feuille seule ne peut pas établir la récurrence demandée. Ces absences ressemblent à des choix de focale propres à cette feuille, où la main et le corps sont mis en sourdine au profit de la pensée et de la production.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois lignes traversent les compétences abordées du pôle sur cette feuille. La première : un même mouvement de rupture-puis-formalisation — l'idée du retournement adversarial devient un protocole, la distinction « montrer / dire » devient une taxonomie. L'invention ne reste pas à l'état d'éclair, elle se fixe en dispositif. La deuxième : un jugement tranché qui aime la formule courte (« slop generator », « rejeté comme un cancer ») — une économie de mot qui produit son effet en une expression. La troisième : une voix qui passe sans transition de la rigueur technique à l'image organique forte, comme si la machine et le corps relevaient d'un même registre d'expression.\n\n## Pistes pour enrichir ce pôle\n\nPour donner à la dimension itérative de la créativité son terrain d'attestation propre, un chemin possible serait de raconter, sur une feuille future, une version antérieure d'Aurora qui n'a pas fonctionné et ce que cet échec a déplacé dans la conception.\n\nPour préciser le jugement esthétique, un chemin possible serait d'écrire, à l'occasion d'un nouvel output IA, deux ou trois lignes qui décomposent pourquoi tel résultat « sonne juste » ou « sonne faux ».\n\nPour ouvrir le dossier de l'ancrage sensoriel, un chemin possible serait de documenter à l'occasion un moment où le corps a délivré une information précise — fatigue ressentie qui infléchit une décision, sensation dans une situation tendue, écoute incarnée d'un échange.\n\nPour distinguer plus nettement le design de problèmes du cadrage très ambitieux, un chemin possible serait de formuler explicitement, à l'occasion d'une note, ce que la question d'Aurora a déplacé — quelle question on posait avant, quelle question on pose maintenant, et ce que cette nouvelle question rend pensable."
+  }
+}

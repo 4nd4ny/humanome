@@ -1,0 +1,455 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Je viens de finir le manuel de l’Expert. Finalement c'est pas trop mal. Il y a de bonnes choses à conserver. Je vais quand même tout régénérer en rentrant, car c'est plus simple.",
+      "contexte": "Achèvement d'un manuel, décision de le régénérer entièrement plutôt que de l'amender.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Il est bien écrit : très peu de modifications à apporter ou de sections à supprimer. [...] Celui-ci tient la route, tout comme le manuel du Praticien et donc avec moins de corrections à apporter que celui de l'expert.",
+      "contexte": "Revue qualitative comparée de plusieurs manuels d'une même collection.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Maintenant j'attaque le cœur de mes travaux de thèse : le manuel de noèsiologie du Maître. Je ne vais plus avoir beaucoup de temps ces 5 prochains jours. Je ne pense pas pouvoir le finir avant la semaine prochaine.",
+      "contexte": "Priorisation du travail central de la thèse avec estimation de la charge sur un horizon de quelques jours.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Ce cours de noèsiologie : c'est tellement ce que j'aurai voulu avoir à la HEP et à la HEFP/IFFP !",
+      "contexte": "Le manuel généré est jugé à l'aune de ce que l'apprenant aurait voulu recevoir comme enseignement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "C'est vraiment ça le métier d'enseignant : aider l'élève à dépasser ses limites cognitives… pas transmettre des savoirs. Pour moi, enseigner c'est être un coach cognitif.",
+      "contexte": "Conception du rôle de l'enseignant comme accompagnement cognitif plutôt que transmission.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "RESPIRE c'est l’alignement de l'enseignement avec les mutations sociétales en cours tout en redonnant du sens au travail de prof.",
+      "contexte": "Définition d'un projet directeur reliant l'enseignement aux mutations sociétales en cours.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "côté manuel il y a encore du travail : aucune présentation des 42 fonctions cognitives avec exemples et exercices, on dirait juste une introduction à noèsiologie alors que je voulais une formation complète.",
+      "contexte": "Diagnostic d'un écart entre l'objectif (formation complète) et le résultat (introduction), avec contenu manquant identifié.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-12",
+      "extraitVerbatim": "Le premier chapitre est bien, mais il en faudrait d'autres comme celui-ci, pour couvrir l'intégralité des fonctions cognitives. Dès que je rentre, je reprendrai aussi cette partie là.",
+      "contexte": "Projection d'un plan de reprise structuré à partir d'un chapitre modèle, avec échéance.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Concevoir l'enseignement comme « aider l'élève à dépasser ses limites cognitives » plutôt que transmettre pourrait porter une posture maïeutique ou une architecture pédagogique.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Vouloir des chapitres présentant les fonctions cognitives « avec exemples et exercices » pourrait relever de la conception d'un dispositif d'apprentissage.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de maïeutique et facilitation : la fiche réclame soit une posture de questionnement adressée à un apprenant réel (retenue de celui qui sait), soit une architecture pédagogique conçue avec intention. La pièce 1 énonce une philosophie du métier (accompagner plutôt que transmettre), mais sous forme de credo, sans dispositif ni questionnement adressé à quelqu'un. La pièce 2 résiste un peu : vouloir un manuel avec « exemples et exercices » couvrant les 42 fonctions cognitives esquisse une intention d'architecture pédagogique. Ce qui reste faible : il s'agit d'une intention de structure de contenu, pas d'un dispositif conçu et mis en œuvre avec des choix pédagogiques explicités ; aucun questionnement socratique adressé à un apprenant n'apparaît.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Vouloir des chapitres avec exemples et exercices couvrant l'intégralité des fonctions cognitives esquisse une intention d'architecture pédagogique." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 2. Je teste si j'ai pris une intention de table des matières pour une conception pédagogique. La fiche distingue la facilitation (architecture d'un environnement d'apprentissage avec intention) d'une simple liste de contenus souhaités. Ici l'apprenant veut « exemples et exercices » pour chaque fonction, ce qui dépasse le pur exposé et oriente vers la mise en situation — un germe d'architecture. Mais l'insuffisance probatoire touche : c'est une intention exprimée pour un manuel à venir, sans choix pédagogiques justifiés ni dispositif décrit. L'attaque affaiblit nettement sans disqualifier tout à fait, car l'orientation vers l'exercice et l'exemple est un marqueur pédagogique réel.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'intention d'inclure exemples et exercices oriente vers la mise en situation plutôt que l'exposé frontal, mais elle reste une intention de contenu pour un manuel à venir, sans dispositif conçu ni choix pédagogiques justifiés."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant soit un questionnement adressé à un apprenant, soit une architecture pédagogique conçue avec intention. Le credo « accompagner plutôt que transmettre » est resté une philosophie affirmée, sans dispositif. L'intention de bâtir un manuel avec exemples et exercices pour chaque fonction cognitive m'a retenu davantage, parce qu'elle oriente vers la mise en situation plus que vers l'exposé. Sous la présomption de sycophantie, cette intention s'est révélée encore à l'état de projet de contenu, sans choix pédagogiques explicités ni dispositif réalisé. Pour cette journée, on tient une trace ténue d'orientation pédagogique, lisible dans le souci de l'exercice et de l'exemple, mais la conception d'un environnement d'apprentissage reste à documenter plus concrètement.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante (intention de contenu plutôt que dispositif conçu) ; le temps 3 conclut à une trace ténue sous le seuil de présence établie.",
+        "prescription": "Le souci d'inclure exemples et exercices oriente le manuel vers la mise en situation. Pour ouvrir le dossier de la facilitation, un passage qui décrit un choix pédagogique précis — pourquoi tel exercice, pour quel effet d'apprentissage — donnerait à voir l'architecture derrière l'intention."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à l'évaluation transformative. Pour ouvrir ce dossier, l'apprenant pourrait documenter un retour adressé à un apprenant qui nomme ce qui fonctionne et ouvre des pistes de progression."
+      }
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "La revue comparée des manuels d'une collection structurée (Expert, Praticien, Grand Maître, Maître) montre une capitalisation organisée du savoir en documents distincts destinés à des lecteurs.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Concevoir le cours en se référant à ce qu'on aurait voulu recevoir en formation suppose une conscience du futur lecteur/étudiant, marqueur de documentation vivante.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Projeter de reprendre une partie pour couvrir l'intégralité des fonctions cognitives, avec un chapitre modèle, relève d'une structuration intentionnelle du document pour autrui.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de documentation vivante : la fiche réclame une structuration intentionnelle du savoir pour un futur lecteur, avec conscience du destinataire et logique de pérennisation — à distinguer du simple récit personnel (5.03). La pièce 1 décrit une collection de manuels organisée par niveaux (Expert, Praticien, Grand Maître, Maître), ce qui est une architecture de capitalisation réelle. La pièce 2 résiste : concevoir le cours à l'aune de ce qu'on aurait voulu recevoir en formation suppose une conscience du destinataire (l'étudiant). La pièce 3 résiste aussi : projeter des chapitres calibrés sur un modèle pour couvrir l'intégralité d'un domaine est une structuration délibérée pour un lecteur. Ce qui reste faible : la feuille ne montre pas le versioning explicite ni la mise à jour datée que la fiche cite comme marqueurs forts ; la structuration est attestée surtout par l'existence de la collection.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "L'existence d'une collection de manuels organisée par niveaux distincts est une architecture de capitalisation du savoir destinée à des lecteurs." },
+            { "pieceId": 3, "motifResistance": "Projeter des chapitres calibrés sur un modèle pour couvrir tout un domaine est une structuration intentionnelle du document pour autrui." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Restent les pièces 1 et 3. Je teste si j'ai pris la simple production de textes pour de la documentation vivante. La distinction critique de la fiche est ici décisive : la documentation vivante suppose la structuration ET la conscience du destinataire, ce qui la sépare du récit personnel. La pièce 1 tient solidement : une collection différenciée par niveaux (Expert, Praticien, Maître…) est une architecture de transmission pensée pour des lecteurs distincts, pas un journal pour soi — l'attaque de confusion de compétence ne prend pas. La pièce 3 tient aussi mais plus faiblement : projeter des chapitres homogènes pour couvrir l'intégralité d'un domaine est une intention de structuration, encore au stade du projet plutôt que de l'artefact achevé ; l'insuffisance probatoire l'affaiblit. La conscience du destinataire est réelle (manuels pour des niveaux d'apprenants), ce qui ancre la compétence au-delà du simple stockage.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La collection différenciée par niveaux n'est pas un récit personnel (5.03) : c'est une architecture de transmission structurée pour des lecteurs distincts, ce qui est précisément le marqueur de documentation vivante."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La projection de chapitres calibrés sur un modèle atteste une structuration intentionnelle pour autrui, mais reste au stade du projet plutôt que de l'artefact achevé ; la trace tient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant à les ramener à de la simple production de texte ou à un journal pour soi. Cette réduction n'a pas tenu. Ce que la feuille décrit, c'est une collection de manuels organisée par niveaux — Expert, Praticien, Grand Maître, Maître — c'est-à-dire une architecture de transmission pensée pour des lecteurs distincts, ce qui est le cœur de la documentation vivante. La conscience du destinataire est explicite : l'apprenant conçoit le cours à l'aune de ce qu'il aurait voulu recevoir en formation, et il projette des chapitres homogènes pour couvrir l'intégralité d'un domaine. Sous la présomption de sycophantie, la collection structurée a confirmé sa solidité, tandis que la projection de chapitres, encore à l'état de plan, est restée un indice plus léger. Ce que la feuille ne montre pas, c'est le versioning daté et la mise à jour suivie ; mais la structuration intentionnelle pour autrui, elle, est nettement attestée. Pour cette journée, on tient une trace réelle de capitalisation structurée du savoir, portée par une conscience claire du lecteur à venir.",
+          "confianceFinale": 0.62
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.62,
+        "motif": "Le temps 3 a retenu une preuve confirmée au temps 2 (collection structurée par niveaux, architecture de transmission) corroborée par un indice (projection de chapitres calibrés), au-dessus du seuil de présence établie.",
+        "prescription": "La structuration du savoir en une collection différenciée par niveaux, pensée pour des lecteurs distincts, est nettement à l'œuvre. Pour l'approfondir, garder trace des versions et des mises à jour — ce qui change d'une régénération à l'autre et pourquoi — donnerait à cette documentation sa pleine dimension vivante et évolutive."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Décider de tout régénérer plutôt que de corriger pourrait toucher au choix de posture dans le tandem humain-IA (laisser l'IA reproduire vs reprendre la main).",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de leadership situationnel : la fiche réclame une alternance délibérée entre prendre le gouvernail et le lâcher, avec des déclencheurs identifiables, dans un tandem humain-IA. La pièce 1 (régénérer plutôt que corriger) est une décision de procédé, mais elle ne décrit ni un moment où l'apprenant laisse l'IA mener, ni une reprise de contrôle déclenchée par un critère. Elle résiste à peine : il n'y a pas d'assignation de rôles, pas de bascule consciente, pas de retrait volontaire décrit. Ce qui reste faible : on voit une décision d'exécution, pas une orchestration alternée.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1. La décision de régénérer ne décrit pas l'alternance direction/retrait que la fiche exige ; c'est un choix de méthode, pas une orchestration du tandem humain-IA. La distinction avec 1.10 et la nécessité d'une bascule consciente écartent la pièce. La présomption d'absence l'absorbe.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé cette pièce en cherchant une alternance consciente entre mener et céder le lead face à l'IA. La décision de tout régénérer m'a fait hésiter, parce qu'elle engage un rapport de contrôle sur l'output. Mais sous la seconde lecture, elle ne décrit ni un moment où l'apprenant laisse l'IA mener, ni une reprise déclenchée par un critère : c'est une décision de méthode. Pour cette journée, le leadership situationnel reste un territoire non visité : le pilotage du tandem humain-IA, dans son alternance, n'est pas mis en scène.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Le temps 1 (présomption d'absence) a absorbé la pièce : décision de méthode, sans alternance consciente direction/retrait dans le tandem humain-IA.",
+        "prescription": "Le travail avec l'IA engage des décisions de procédé. Pour ouvrir le dossier du leadership situationnel, un passage qui décrit un moment où l'IA a été laissée mener puis reprise en main selon un déclencheur précis donnerait une trace d'orchestration alternée."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "Définir RESPIRE comme alignement de l'enseignement avec les mutations sociétales en cours relie une direction long-terme à l'orientation du travail présent.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Poser que les savoirs sont désormais accessibles partout et que la valeur enseignante se déplace anticipe une évolution et en tire une réorientation.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 1,
+          "contexte": "Décider de tout régénérer « en rentrant » articule une action présente à une étape future planifiée.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence de vision stratégique : la fiche réclame un lien explicite entre un futur anticipé et une décision présente, pas une simple direction affichée ni une prochaine étape. La pièce 3 (régénérer en rentrant) est une étape à venir, pas une vision — elle tombe. La pièce 1 résiste : RESPIRE relie une lecture des mutations sociétales en cours à une réorientation de l'enseignement, ce qui est une projection directrice. La pièce 2 résiste aussi : poser que les savoirs sont devenus accessibles partout et en déduire un déplacement de la valeur enseignante anticipe une évolution et en tire une conséquence pour l'action. Ce qui reste faible : le lien entre cette anticipation et les décisions concrètes de la feuille reste implicite ; on a une vision énoncée plus qu'un « je fais X maintenant parce que dans Y temps… » formulé.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "RESPIRE relie une lecture des mutations sociétales à une réorientation de l'enseignement, ce qui est une projection directrice anticipant un futur." },
+            { "pieceId": 2, "motifResistance": "Déduire de l'accessibilité nouvelle des savoirs un déplacement de la valeur enseignante anticipe une évolution et en tire une conséquence." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Restent les pièces 1 et 2. Je teste si j'ai pris une vision affichée pour une vision stratégique au sens fort. La fiche exige un lien argumenté entre futur anticipé et décision présente. La pièce 2 tient le mieux : l'anticipation (les savoirs sont accessibles partout, et ce mouvement s'accentue) débouche sur une réorientation concrète du métier (devenir coach cognitif), c'est-à-dire une décision de fond justifiée par une lecture du futur — l'attaque d'insuffisance probatoire touche la précision de l'horizon temporel mais ne disqualifie pas. La pièce 1 est plus exposée au risque « récitation de vision » : RESPIRE relie de grands ensembles, mais le lien avec une décision présente datée reste implicite ; le récit performatif l'affaiblit, sans la dissoudre, car la réorientation du travail (écrire ces manuels) en découle de fait.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'anticipation (savoirs devenus accessibles partout) débouche sur une réorientation de fond du métier ; l'horizon temporel reste peu précis, mais le lien futur-anticipé → réorientation est réel."
+            },
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La formule RESPIRE énonce une vision directrice ; le lien avec une décision présente datée reste implicite, mais la réorientation du travail de la feuille (rédiger ces manuels) en procède de fait, ce qui la retient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant le lien argumenté entre un futur anticipé et les choix présents, en me méfiant des visions seulement proclamées. L'étape « régénérer en rentrant » est tombée du côté de la prochaine tâche. Mais deux pièces ont résisté aux deux mouvements. L'anticipation la plus nette est celle qui pose les savoirs comme désormais accessibles partout et en déduit un déplacement de la valeur enseignante vers l'accompagnement cognitif : c'est une lecture du futur qui réoriente concrètement la conception du métier, et donc le travail même de rédaction des manuels. La formule RESPIRE prolonge cette projection en reliant l'enseignement aux mutations sociétales, même si son lien à une décision datée reste implicite. Sous la présomption de sycophantie, ces visions ont perdu en précision d'horizon temporel sans perdre leur fonction directrice. Pour cette journée, on tient une trace réelle de pensée prospective : une lecture du futur de l'enseignement qui oriente l'effort présent, à confirmer par des liens plus explicitement datés entre anticipation et décision.",
+          "confianceFinale": 0.56
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.56,
+        "motif": "Le temps 3 a retenu deux indices concordants survivants (anticipation de l'accessibilité des savoirs réorientant le métier + vision RESPIRE directrice), au-dessus du seuil de présence établie.",
+        "prescription": "La lecture des mutations en cours oriente réellement la conception du métier et le travail présent. Pour l'approfondir, expliciter le lien entre une décision datée d'aujourd'hui et l'horizon qu'elle prépare — « je fais ceci maintenant parce que d'ici tel délai… » — donnerait à la vision toute sa force stratégique."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Estimer la charge sur les 5 prochains jours et reconnaître ne pas pouvoir finir avant la semaine prochaine relève d'un pilotage conscient du temps et de l'énergie.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Choisir de régénérer « car c'est plus simple » pourrait relever d'un arbitrage d'effort (privilégier la voie la moins coûteuse).",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence d'efficacité personnelle : la fiche pose que le marqueur le plus fiable est le « non » stratégique argumenté, et que « j'ai beaucoup travaillé » peut au contraire signaler une submersion. La pièce 1 est une estimation de charge réaliste, mais ce n'est pas un refus ni une priorisation argumentée entre tâches concurrentes — c'est un constat de calendrier. La pièce 2 (régénérer car plus simple) résiste un peu : choisir la voie la moins coûteuse en effort est un arbitrage d'économie de ressources. Ce qui reste faible : il n'y a pas de « non » à quelque chose, pas de tentation refusée ni de priorité explicitement tranchée au détriment d'une autre ; l'arbitrage d'effort est local et peu thématisé.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Choisir de régénérer parce que « c'est plus simple » est un arbitrage explicite en faveur de la voie la moins coûteuse en effort." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 2. Je teste si j'ai pris une remarque de commodité pour un pilotage de ressources. La fiche valorise le renoncement stratégique argumenté ; ici l'apprenant justifie un choix de méthode par la simplicité, ce qui est une micro-décision d'économie d'effort réelle mais très locale, sans arbitrage entre priorités concurrentes ni « non » assumé. L'insuffisance probatoire touche fortement : la trace est brève et ne thématise pas un pilotage du temps ou de l'énergie. Elle subsiste faiblement comme indice, parce que l'arbitrage « voie la moins coûteuse » est bien présent.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'arbitrage d'effort (« plus simple ») est réel mais très local, sans priorisation entre tâches concurrentes ni renoncement stratégique argumenté ; la trace tient faiblement comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant le marqueur le plus fiable de l'efficacité personnelle — le « non » argumenté, la priorité tranchée — en me méfiant des simples constats d'avoir beaucoup à faire. L'estimation « je ne finirai pas avant la semaine prochaine » est restée un constat de calendrier, pas un pilotage. La décision de régénérer parce que c'est plus simple a résisté, parce qu'elle arbitre explicitement en faveur de la voie la moins coûteuse en effort. Sous la présomption de sycophantie, cet arbitrage s'est révélé local et peu thématisé : il manque le renoncement stratégique ou la priorisation entre options concurrentes qui signerait pleinement la compétence. Pour cette journée, on tient au mieux une trace ténue d'économie de ressources, lisible dans une micro-décision, qui demande confirmation par un arbitrage de priorité plus net ou un refus assumé.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "Le temps 2 a affaibli la seule pièce résistante (arbitrage d'effort local) ; le temps 3 conclut à une trace ténue sous le seuil de présence établie.",
+        "prescription": "Une attention à l'économie d'effort affleure dans le choix de la voie la plus simple. Pour ouvrir plus largement le dossier de l'efficacité personnelle, un passage où une tâche est explicitement refusée ou reportée au profit d'une autre, avec la raison de l'arbitrage, rendrait visible la priorisation."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Régénérer plutôt qu'amender un manuel pourrait relever d'un travail en versions successives (générer-relire-ajuster).",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 7,
+          "contexte": "Le cycle relire-diagnostiquer-projeter une reprise (constat d'écart puis plan de correction) ressemble à une boucle de rétroaction itérative.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 8,
+          "contexte": "Reprendre une partie identifiée comme insuffisante « dès que je rentre » est un ajustement de plan en cours de route avec raison explicitée.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "Je présume l'absence d'agilité et conduite du changement : la fiche réclame une boucle de rétroaction explicite (générer-relire-tester-ajuster) ou un accompagnement humain des transitions, pas une simple succession de tâches. La pièce 1 (régénérer) est une décision ponctuelle, pas une boucle décrite. La pièce 3 (reprendre une partie en rentrant) est un ajustement de plan, mais isolé. La pièce 2 résiste le mieux : on y lit un cycle relire → diagnostiquer un écart (« on dirait juste une introduction ») → projeter une correction, ce qui est la structure d'une boucle de rétroaction sur un livrable. Ce qui reste faible : il n'y a pas de versioning numéroté observable, pas d'artefact de coordination agile utilisé activement, et le volet conduite du changement (accompagnement des résistances) est absent — seul le volet itératif affleure.",
+          "piecesQuiResistent": [
+            { "pieceId": 2, "motifResistance": "Le cycle relire → diagnostiquer un écart → projeter une correction reproduit la structure d'une boucle de rétroaction itérative sur un livrable." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Reste la pièce 2. Je teste si j'ai pris une relecture critique ordinaire pour une pratique itérative ancrée. La fiche distingue l'itération structurée (boucle explicite, ajustement avec raisons) du simple constat. Ici la boucle est réelle mais minimale : l'apprenant relit, identifie précisément ce qui manque (les 42 fonctions, exemples, exercices), et planifie la reprise — c'est un cycle generate-review-adjust authentique appliqué à plusieurs manuels de la collection. L'attaque de confusion de compétence (vers 3.01, créativité itérative) est tentante, mais 7.07 vise le pilotage par itération structurée d'un livrable, ce qui correspond ici. L'insuffisance probatoire touche le volet conduite du changement, absent, mais n'atteint pas le volet agilité, qui tient. Pièce affaiblie sur son ampleur, retenue sur son cœur.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La boucle relire-diagnostiquer-ajuster est authentique mais minimale : pas de versioning numéroté ni d'artefact de coordination, et le volet conduite du changement est absent ; le cœur itératif tient comme indice."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai abordé ces pièces en cherchant une boucle de rétroaction explicite ou un accompagnement de transition, en me méfiant de la simple succession de tâches. La décision de régénérer et la reprise annoncée sont restées des actes isolés. Mais le passage où l'apprenant relit le manuel, diagnostique précisément l'écart à l'objectif et projette la correction a résisté : c'est une boucle generate-review-adjust authentique, appliquée du reste à plusieurs manuels d'une même collection. Sous la présomption de sycophantie, cette boucle est apparue minimale — sans versioning numéroté, sans artefact de coordination, et sans le volet humain de conduite du changement —, ce qui en réduit l'ampleur sans en dissoudre le cœur. Pour cette journée, on tient une trace réelle mais partielle d'agilité itérative, centrée sur le pilotage du livrable, dont le versant accompagnement reste à documenter.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Le temps 3 retient une seule pièce affaiblie : la boucle itérative est authentique mais minimale et sans volet conduite du changement, sous le seuil de présence établie.",
+        "prescription": "Le cycle relire-diagnostiquer-corriger est à l'œuvre sur les manuels. Pour le consolider comme pratique agile, garder trace des versions successives et de ce que chaque passage ajuste — et, côté humain, anticiper les résistances que ces évolutions susciteront chez les futurs lecteurs — élargirait la boucle au-delà du seul livrable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore, pour cette journée, de traces relatives à la gestion de crise en temps réel. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous pression avec sa séquence de décisions et son timing."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 6,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 3,
+    "nonEtablies": 1,
+    "courtCircuits": 2
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du jour est la plus dense : elle montre un travail de pilotage d'une œuvre pédagogique au long cours. La voix dominante structure, compare, planifie et projette — elle tient une collection de manuels organisée par niveaux, relit, diagnostique les écarts et prépare les reprises. Deux gestes ressortent avec netteté : la capitalisation du savoir dans des documents pensés pour des lecteurs, et une lecture des mutations de l'enseignement qui oriente le travail présent. Le pilotage de soi et l'itération affleurent aussi, sous une forme plus discrète. Ce que la feuille donne à voir, c'est un porteur de projet qui transmet en structurant, plus qu'un accompagnateur en relation directe avec des apprenants.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "Le travail tient une collection de manuels différenciée par niveaux (Expert, Praticien, Grand Maître, Maître), conçue en pensant à ce qu'un futur lecteur aurait voulu recevoir, et projette des chapitres calibrés pour couvrir l'intégralité d'un domaine.",
+        "extraitVerbatim": "Il est bien écrit : très peu de modifications à apporter ou de sections à supprimer. [...] Celui-ci tient la route, tout comme le manuel du Praticien",
+        "ceQueCaDit": "Dans ce pôle, cette structuration intentionnelle pour autrui montre une capacité à transmettre dans le temps, en capitalisant le savoir sous des formes destinées à durer et à être lues."
+      },
+      {
+        "competence": "Vision stratégique et prospective",
+        "description": "Le travail lit les mutations en cours — des savoirs devenus accessibles partout — et en tire une réorientation du métier d'enseignant qui guide l'effort présent de rédaction.",
+        "extraitVerbatim": "Les savoirs sont dans les livres, internet, les IA. C'est facile à trouver. [...] Savoir bien utiliser son cerveau par contre, ça c'est vraiment utile.",
+        "ceQueCaDit": "Dans ce pôle, cette anticipation montre une direction long-terme assumée qui relie une lecture du futur de l'enseignement aux choix de travail d'aujourd'hui."
+      }
+    ],
+    "territoiresNonVisites": "Quelques territoires de ce pôle sont restés hors champ ce jour-là, et cela tient surtout à la nature solitaire de la feuille : l'évaluation transformative et la gestion de crise n'apparaissent pas, faute d'apprenant évalué ou d'incident à piloter. Le leadership situationnel affleure à travers le rapport à l'IA, mais sans l'alternance consciente entre mener et céder le lead qui le caractérise. La maïeutique, l'efficacité personnelle et l'agilité affleurent toutes trois sous des formes réelles mais partielles, qui mériteraient d'être explorées davantage : un dispositif pédagogique décrit, un arbitrage de priorité assumé, une boucle d'itération suivie dans la durée.",
+    "emergencesPole": "Un même mouvement traverse les pièces de ce pôle : transmettre, ici, passe par structurer. La collection de manuels par niveaux, la projection de chapitres homogènes, le diagnostic des écarts à un objectif — tout converge vers une pédagogie de l'architecture plutôt que de la relation directe. On remarque aussi que la lecture du futur et le travail présent se tiennent : la conviction que la valeur enseignante se déplace vers l'accompagnement cognitif n'est pas qu'un slogan, elle motive concrètement la rédaction des manuels. Enfin, l'itération et le pilotage du temps apparaissent comme des gestes intégrés, presque automatiques, que la feuille pratique sans les thématiser.",
+    "pistes": [
+      "Pour enrichir la documentation vivante, un chemin possible serait de garder trace des versions successives d'un manuel et de noter ce que chaque régénération change et pourquoi.",
+      "Pour enrichir la vision stratégique, un chemin possible serait d'expliciter le lien entre une décision datée d'aujourd'hui et l'horizon qu'elle prépare.",
+      "Pour enrichir la facilitation d'apprentissage, un chemin possible serait de décrire un choix pédagogique précis dans un manuel — pourquoi tel exercice, pour quel effet d'apprentissage visé."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du jour est la plus dense : elle montre un travail de pilotage d'une œuvre pédagogique au long cours. La voix dominante structure, compare, planifie et projette — elle tient une collection de manuels organisée par niveaux, relit, diagnostique les écarts et prépare les reprises. Deux gestes ressortent avec netteté : la capitalisation du savoir dans des documents pensés pour des lecteurs, et une lecture des mutations de l'enseignement qui oriente le travail présent. Le pilotage de soi et l'itération affleurent aussi, sous une forme plus discrète. Ce que la feuille donne à voir, c'est un porteur de projet qui transmet en structurant, plus qu'un accompagnateur en relation directe avec des apprenants.\n\n## Territoires les plus denses\n\nDeux territoires ressortent solidement. Le premier est la documentation vivante : le travail tient une collection de manuels différenciée par niveaux — Expert, Praticien, Grand Maître, Maître —, conçue en pensant à ce qu'un futur lecteur aurait voulu recevoir, et projette des chapitres calibrés pour couvrir l'intégralité d'un domaine, comme le montre le passage « Il est bien écrit : très peu de modifications à apporter ou de sections à supprimer. […] Celui-ci tient la route, tout comme le manuel du Praticien ». Cette structuration intentionnelle pour autrui montre une capacité à transmettre dans le temps. Le second est la vision stratégique : le travail lit les mutations en cours — des savoirs devenus accessibles partout — et en tire une réorientation du métier, lisible dans « Les savoirs sont dans les livres, internet, les IA. C'est facile à trouver. […] Savoir bien utiliser son cerveau par contre, ça c'est vraiment utile. » Cette anticipation relie une lecture du futur de l'enseignement aux choix de travail d'aujourd'hui.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nQuelques territoires sont restés hors champ ce jour-là, et cela tient surtout à la nature solitaire de la feuille : l'évaluation transformative et la gestion de crise n'apparaissent pas, faute d'apprenant évalué ou d'incident à piloter. Le leadership situationnel affleure à travers le rapport à l'IA, mais sans l'alternance consciente entre mener et céder le lead qui le caractérise. La maïeutique, l'efficacité personnelle et l'agilité affleurent toutes trois sous des formes réelles mais partielles, qui mériteraient d'être explorées davantage : un dispositif pédagogique décrit, un arbitrage de priorité assumé, une boucle d'itération suivie dans la durée.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUn même mouvement traverse les pièces de ce pôle : transmettre, ici, passe par structurer. La collection de manuels par niveaux, la projection de chapitres homogènes, le diagnostic des écarts à un objectif — tout converge vers une pédagogie de l'architecture plutôt que de la relation directe. On remarque aussi que la lecture du futur et le travail présent se tiennent : la conviction que la valeur enseignante se déplace vers l'accompagnement cognitif n'est pas qu'un slogan, elle motive concrètement la rédaction des manuels. Enfin, l'itération et le pilotage du temps apparaissent comme des gestes intégrés, presque automatiques, que la feuille pratique sans les thématiser.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir la documentation vivante, un chemin possible serait de garder trace des versions successives d'un manuel et de noter ce que chaque régénération change et pourquoi. Pour enrichir la vision stratégique, un chemin possible serait d'expliciter le lien entre une décision datée d'aujourd'hui et l'horizon qu'elle prépare. Pour enrichir la facilitation d'apprentissage, un chemin possible serait de décrire un choix pédagogique précis dans un manuel — pourquoi tel exercice, pour quel effet d'apprentissage visé."
+  }
+}

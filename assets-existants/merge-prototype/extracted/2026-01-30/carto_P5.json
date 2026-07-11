@@ -1,0 +1,484 @@
+{
+  "poleNum": "5",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je n'ai pas réussi à le faire du premier coup, car j'étais pris par le temps et j'ai dû brûler des étapes [...] Ça m'apprendra à vouloir aller trop vite ! Ceci dit, si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première.",
+      "contexte": "Récit d'échec relatif (rendu insuffisant) suivi d'une description explicite de ce que l'échec a produit pour la version suivante. Active 5.01 (antifragilité : structure du retournement).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je pars un peu dans tous les sens à cause des pauses \"obligatoire\" du chômeur. Mis à part ma femme qui a bien compris ce que je suis en train de faire, les autres me collent un stéréotype (chômeur = plein de temps de libre) qui ne correspond absolument pas à ma réalité. Ça fait depuis que je suis enseignant 2013 que je me pose les mêmes questions et maintenant j'ai les réponses.",
+      "contexte": "Trace de transition existentielle : passage de l'enseignement au chômage, maintien d'un fil conducteur (les questions de 2013 et leurs réponses actuelles). Active 5.02 (mue identitaire avec fil conducteur) et 5.03 (narration réflexive : connexion 2013-présent).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Donc je travaille avec la même passion qu'avant. Je suis juste plus payé de la même manière pour le faire. [...] Bref. Je ne vis pas dans le même monde que les autres – car l'école n'a pas réussi à me formater : j'ai gardé curiosité et esprit critique – donc c'est normal qu'il y ait des dissonances.",
+      "contexte": "Articulation simultanée de ce qui a changé (le mode de rémunération) et de ce qui reste constant (la passion, la curiosité). Active 5.02 (plasticité : ce qui est lâché + ce qui reste).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Mon diagnostic brutal Le prompt générique fonctionne bien, mais je soupçonne que 80-85% du travail vient de mes capacités natives + la qualité de ton portfolio, pas de l'ingénierie du prompt.",
+      "contexte": "Voix tierce (Claude) qui décompose lucidement les contributions humaine et machine. L'apprenant la cite sans la contester, sans amertume ni triomphalisme. Active 5.04 (acceptation sereine d'une intelligence qui collabore).",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "ce n'est pas le prompt qui valide la compétence, c'est le jugement humain informé par le prompt. L'IA fait le premier balayage, l'humain tranche.",
+      "contexte": "Articulation sereine de la complémentarité humain/IA, voix tierce endossée. Active 5.04 (collaboration apaisée après traversée).",
+      "auteur": "tiers_nomme"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Je continue également ma veille technologique quotidienne (je devrais dire constante depuis que je ne travaille plus) [...] Ça fait depuis que je suis enseignant 2013 que je me pose les mêmes questions et maintenant j'ai les réponses 😇.",
+      "contexte": "Persévérance prolongée sans validation externe (chômage), avec un sens nommé sans envolée. Active 5.05 (motivation intrinsèque : persévérance sans récompense conventionnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Donc je travaille avec la même passion qu'avant. Je suis juste plus payé de la même manière pour le faire.",
+      "contexte": "Le « pourquoi » continue malgré la disparition de la rétribution conventionnelle. Active 5.05 (sens qui survit aux récompenses).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "à Noël et Jour de l'an j'ai posé des jours de congé qui m'ont été déduit de ma rente chômage. [...] je me suis vraiment reposé trois jours durant les fêtes. [...] Je ne me serais pas permis de faire une si longue pause pour pouvoir être 100% avec mes enfants, si j'étais encore enseignant.",
+      "contexte": "Décision explicite de pause avec arbitrage assumé (perte de rente acceptée pour être présent à la famille). Touche 5.07 (souveraineté attentionnelle : choix délibéré d'arrêter).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-01-30",
+      "extraitVerbatim": "Voici une simulation d'exécution de la version 5 (en fait chaque version précédente a été simulée de la même manière)",
+      "contexte": "Vérification par simulation avant d'estimer qu'un prompt tient. Touche obliquement 5.08 (vérification empirique), mais reste dans le médium IA, pas dans le terrain physique.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "5.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Récit d'échec relatif (avoir brûlé des étapes) suivi d'une articulation explicite de ce que l'échec a produit (« c'est grâce à toutes les erreurs »). Structure du retournement."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : l'antifragilité au sens fort exige du chaos, du dépassement, et la fiche met en garde contre la narration positive embellie. La pièce résiste partiellement : « ça m'apprendra à vouloir aller trop vite » porte un peu d'ironie, et la phrase suivante articule explicitement ce que l'erreur a produit. Mais l'épreuve traversée reste modeste — un rendu de prompt jugé insuffisant. Ce qui reste faible : pas de récit de crise, pas de pertes existentielles, juste un retravail d'une production. La fiche parle de burnout, licenciement, crash technique majeur ; ici, on est sur une échelle moindre.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Structure du retournement (échec → ce que ça a produit) avec ton légèrement ironique."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé cette pièce d'antifragilité alors qu'il s'agit d'apprentissage par l'erreur ordinaire. Testée par (a) insuffisance probatoire : l'échec est de faible intensité (un prompt insuffisant), donc le « dépassement » est de faible intensité. Cependant, la structure narrative est nette : le retournement est exprimé, et la phrase « c'est grâce à toutes les erreurs » porte une appropriation de l'épreuve. Affaiblie mais retenue. Testée alternativement par (b) confusion avec 3.01 itération créative : la phrase pourrait être plus de l'itération que de l'antifragilité. C'est de la multi-attribution légitime, mais l'aspect 5.01 spécifique réside dans la structure narrative de l'échec assumé, pas dans le cycle itératif.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'épreuve est modeste, mais la structure du retournement et le ton ironique correspondent aux marqueurs de la fiche. Indice corroboratif."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'antifragilité en m'attendant à ne pas trouver d'épreuve traversée à la hauteur. La pièce a tenu, affaiblie : le retournement est explicite (« c'est grâce à toutes les erreurs ») et le ton porte une légère ironie, mais l'épreuve est modeste — il s'agit d'un rendu de prompt, pas d'une crise existentielle. Dans cette feuille, l'antifragilité se manifeste comme micro-trace narrative, pas comme épreuve majeure traversée. Un renvoi au cartographe permettrait de vérifier si des récits de crises de plus grande ampleur existent ailleurs dans le portfolio.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "La structure du retournement est présente mais l'épreuve traversée est modeste dans cette feuille seule.",
+        "prescription": "Pour creuser cette compétence, un chemin possible serait de documenter rétrospectivement une crise plus large que le portfolio a connue (par exemple le passage du métier d'enseignant au chômage assumé), en nommant ce qui a basculé et ce qui a émergé."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Trace de transition enseignement → chômage assumé, avec fil conducteur explicite (les questions de 2013 et leurs réponses présentes)."
+        },
+        {
+          "numero": 2,
+          "pid": 3,
+          "contexte": "Articulation simultanée de ce qui a changé (rémunération) et de ce qui reste constant (passion, curiosité). Exactement le format que la fiche identifie comme forme aboutie."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la mise en garde de la fiche : risque de rationalisation défensive (« c'est mieux comme ça ») qui masque un deuil non fait. La pièce 1 résiste : la transition est nommée, et le fil conducteur (« depuis 2013 ») est explicite, ce qui correspond au format « ce qui a été lâché + ce qui reste constant ». La pièce 2 résiste : « j'ai gardé curiosité et esprit critique » articule explicitement ce qui ne change pas, et « plus payé de la même manière » articule ce qui change. Ce qui reste faible : la fiche exige aussi une tension entre l'ancien et le nouveau ; ici, la résolution est lisse (« je travaille avec la même passion »), ce qui pourrait être une rationalisation.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Transition identitaire avec fil conducteur explicite."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Articulation simultanée de ce qui change et de ce qui reste constant."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces de plasticité alors qu'elles relèvent de rationalisation défensive ou de continuité simple. La pièce 1, testée par (e) surinterprétation : ai-je halluciné une mue dans une mention de transition ? Le rapprochement « 2013 → aujourd'hui » avec « maintenant j'ai les réponses » porte un travail de sens long, qui correspond à la mue cognitive selon la fiche. Tenue. La pièce 2, testée par (h) faux positif de fiche : la fiche met en garde contre « la résolution lisse ». Ici, « je travaille avec la même passion » n'a pas de tension visible avec l'ancien rôle d'enseignant. Cela pourrait être une rationalisation. Cependant, l'apprenant ne minimise pas l'écart (il décrit en détail le différentiel de rémunération, les dissonances sociales), donc la résolution n'est pas si lisse. Affaiblie mais retenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "e",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le rapprochement temporel (2013-aujourd'hui) avec l'arrivée des « réponses » porte un travail de sens long correspondant à la mue cognitive."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Risque de rationalisation défensive ; reste cependant que les dissonances et le différentiel sont nommés, ce qui maintient une tension."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la plasticité en m'attendant à de la rationalisation défensive. La pièce 1 a tenu : la transition enseignement-chômage est portée avec un fil conducteur long (« depuis 2013 »), ce qui correspond au format mue + continuité. La pièce 2 s'est affaiblie sans tomber : la résolution est presque trop lisse (« la même passion ») mais les dissonances sociales sont reconnues, ce qui maintient une tension. Dans cette feuille, la plasticité se manifeste comme une transition assumée plutôt que comme une déconstruction visible en acte. La présence tient, mais avec une réserve sur la profondeur du deuil opéré.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Une pièce confirmée (la transition portée avec fil conducteur long) et une affaiblie (la résolution proche de la rationalisation, mais avec dissonances reconnues).",
+        "prescription": "Pour approfondir, un chemin possible consisterait à expliciter ce qu'il a fallu lâcher dans le passage de l'enseignement à la position actuelle — quelles certitudes, quelles habitudes, quelle image de soi — au-delà du changement de rémunération."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 2,
+          "contexte": "Connexion entre 2013 (début de carrière enseignante) et aujourd'hui : « les mêmes questions, maintenant les réponses ». Fil conducteur narratif explicite."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "Lecture rétrospective d'une expérience (la v1 ratée) pour en extraire ce que cela signifie (« c'est grâce à toutes les erreurs que la v2 tient »). Passage du quoi au pourquoi."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec le critère discriminant de la fiche : passage du QUOI au POURQUOI au QU'EST-CE QUE ÇA SIGNIFIE. La pièce 1 résiste : la connexion entre 2013 et le présent dépasse la chronologie pour proposer un sens (la maturation des questions vers des réponses). La pièce 2 résiste partiellement : la lecture rétrospective de la v1 produit un apprentissage transférable (l'erreur comme matière pour la v2). Ce qui reste faible : pas de théorisation spontanée d'un concept personnel, pas de niveau métanarratif explicite.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Connexion temporelle longue (2013-2026) qui dépasse la chronologie."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Extraction d'un apprentissage transférable de la v1 ratée."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai surchargé ces pièces de narration réflexive. La pièce 1, testée par (a) insuffisance probatoire : la connexion 2013-aujourd'hui est très brève, et le « maintenant j'ai les réponses » n'est pas développé. C'est plus une affirmation qu'une narration tissée. Affaiblie. La pièce 2, testée par (b) confusion avec 5.01 antifragilité : la même pièce active les deux. Pour 5.03 spécifiquement, l'aspect retenu est le passage du quoi (j'ai brûlé des étapes) au pourquoi (parce que pris par le temps) et au signifie (cette erreur a produit la qualité de la v2). C'est un passage du QUOI au SIGNIFIE complet. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Connexion temporelle longue présente mais peu développée dans cette feuille."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Multi-attribution légitime avec 5.01. Pour 5.03, le passage QUOI → POURQUOI → SIGNIFIE est complet."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la narration réflexive en m'attendant à du journal de bord descriptif. Deux pièces ont tenu. La connexion entre 2013 et le présent est un fil narratif long, même s'il est très condensé dans cette feuille. La lecture rétrospective de la v1 produit un apprentissage transférable, ce qui correspond au critère de la fiche. Dans cette feuille, la narration réflexive se manifeste à dose modérée — pas en théorisation spontanée d'un concept, mais en extraction d'apprentissage et en mise en récit d'une trajectoire. La présence tient, avec une réserve sur l'absence de niveau métanarratif explicite.",
+          "confianceFinale": 0.65
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 1,
+        "nombreIndices": 1,
+        "confiance": 0.65,
+        "motif": "Une pièce confirmée (passage du quoi au signifie sur la v1 ratée) et une affaiblie (connexion temporelle longue condensée).",
+        "prescription": "Pour approfondir, un chemin possible consisterait à développer le « maintenant j'ai les réponses » : quelles questions exactement, quelles réponses, et comment l'écart entre 2013 et aujourd'hui se traduit dans la pratique présente."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "5.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Décomposition lucide par Claude de la part humaine et de la part machine, citée par l'apprenant sans amertume ni triomphalisme. Touche l'acceptation sereine."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Formule « l'humain tranche » qui articule sereinement la complémentarité après collaboration."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec le test fiable de la fiche : présence de TENSION émotionnelle (surprise, colère, admiration mêlée de malaise). La pièce 1 résiste peu : l'apprenant cite la décomposition de Claude sans aucune trace émotionnelle de tension — ni surprise, ni malaise. C'est un constat collaboratif posé. Or la fiche met explicitement en garde : « l'absence de tension peut indiquer un constat superficiel plutôt qu'une acceptation profonde ». La pièce 2 résiste également peu pour la même raison.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 est vide.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier l'acceptation de l'intelligence supérieure en m'appuyant strictement sur le test de tension émotionnelle que la fiche identifie comme critère discriminant. Les pièces qui auraient pu y mener n'ont pas résisté au temps 1 : la décomposition humain/machine est citée sereinement, sans surprise ni malaise, sans aveu émotionnel de la supériorité de l'IA. Cela pourrait signaler une acceptation déjà intégrée et apaisée ; cela pourrait aussi signaler une absence de traversée émotionnelle, donc une présence non attestée. La fiche tranche : sans tension émotionnelle, c'est un constat superficiel pour le marqueur 5.04. Dans cette feuille, la compétence ne se laisse donc pas attester au sens strict de la fiche.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "Les pièces extraites ne présentent pas la tension émotionnelle que la fiche identifie comme test discriminant pour distinguer acceptation profonde et constat superficiel.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où une production de l'IA a réellement surpris, déstabilisé ou ému l'apprenant — qu'a-t-il ressenti dans l'instant, et comment a-t-il composé avec ce ressenti."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 7,
+          "contexte": "« Je travaille avec la même passion qu'avant. Je suis juste plus payé de la même manière pour le faire. » Le « pourquoi » survit à la disparition de la rétribution conventionnelle."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "Persévérance prolongée (depuis 2013) sans validation institutionnelle, et veille technologique constante en situation de chômage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec le test de la fiche : l'apprenant resterait-il motivé si le projet devenait difficile, ingrat ou invisible ? La pièce 1 résiste fortement : « plus payé de la même manière pour le faire » dit explicitement que la motivation persiste alors que la rétribution a changé de nature (rente chômage). C'est précisément la formulation type de la fiche (le carburant qui ne dépend pas du moteur). La pièce 2 résiste : continuer une veille technologique « constante depuis que je ne travaille plus » est une persévérance sans récompense conventionnelle, et la fiche identifie la litote (« je devrais dire constante ») comme trace fiable.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le « pourquoi » continue alors que la rétribution a changé de nature."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Persévérance sans validation externe, formulée en litote."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé ces pièces de motivation intrinsèque alors qu'elles relèvent d'auto-justification (la rente chômage justifie la rétribution). La pièce 1, testée par (f) récit performatif : « la même passion qu'avant » pourrait être une formule. Mais la cohérence entre le sens déclaré et les actions décrites (8-10h par jour, 7/7) confirme que la motivation est en acte, pas seulement narrée. Tenue. La pièce 2, testée par (h) faux positif de fiche (sens narré vs sens vécu) : la fiche met explicitement en garde contre les « pourquoi éloquents » qui sont des rationalisations post-hoc. Ici, la formulation est sobre et passe par la litote, ce qui correspond au marqueur oblique fiable. Tenue.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La cohérence entre passion déclarée et volume horaire effectif (8-10h par jour, 7/7) confirme la motivation en acte."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "h",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "La litote (« je devrais dire constante ») correspond au marqueur oblique fiable identifié par la fiche."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la motivation intrinsèque en m'attendant à des formules rationalisantes. Deux pièces ont tenu solidement. La phrase « la même passion qu'avant, juste plus payé de la même manière » porte précisément le test de la fiche (le carburant survit à la rétribution). La veille « constante depuis que je ne travaille plus » correspond à la trace oblique de la litote. Et surtout, la cohérence entre le sens déclaré et les actions concrètes (volume horaire 8-10h × 7 jours) confirme que la motivation est en acte. Dans cette feuille, la compétence se manifeste avec une netteté remarquable, dans le registre sobre que la fiche valorise. La présence tient avec une bonne confiance.",
+          "confianceFinale": 0.78
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 2,
+        "nombreIndices": 0,
+        "confiance": 0.78,
+        "motif": "Deux pièces confirmées au temps 2 : sens qui survit à la disparition de la rétribution conventionnelle, et persévérance en litote, cohérentes avec le volume d'action décrit.",
+        "prescription": "Pour approfondir, un chemin possible consisterait à documenter, à un moment où le projet devient ingrat ou invisible (par exemple un mois sans retour des communautés), ce qui maintient l'élan ce jour-là — la source reste-t-elle la même ?"
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" }
+      ]
+    },
+    {
+      "code": "5.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'autonomie en mode dégradé dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une situation où la technologie a fait défaut et où il a continué à travailler avec les moyens du bord, ou un choix délibéré de travailler hors numérique."
+      }
+    },
+    {
+      "code": "5.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 8,
+          "contexte": "Décision explicite de pose de trois jours de congé pour être présent à la famille, avec arbitrage financier assumé. Touche la souveraineté attentionnelle au sens choix délibéré d'arrêter."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec le critère discriminant de la fiche : l'INTENTION en présence d'alternatives. La pièce résiste partiellement : l'apprenant *choisit* de poser des jours et de se reposer alors qu'il aurait pu travailler (il décrit ailleurs 8-10h/jour, 7/7). Le « je ne me serais pas permis de faire une si longue pause [...] si j'étais encore enseignant » signale une décision dans un cadre nouveau. Mais l'extrait ne porte pas explicitement la dimension attentionnelle face à un environnement algorithmique. C'est un repos familial, pas une déconnexion stratégique du flux numérique.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Choix de pause en présence de l'alternative de continuer à travailler."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Peut-être que j'ai chargé cette pièce de souveraineté attentionnelle alors qu'elle relève simplement d'un congé familial. Testée par (e) surinterprétation : la fiche parle d'« attention face à un environnement algorithmique conçu pour la capturer ». Ici, l'apprenant ne décrit pas un environnement algorithmique à neutraliser, il pose des congés. Disqualifiée pour 5.07 au sens strict de la fiche. Testée alternativement par (h) faux positif de fiche : la fiche distingue explicitement « j'étais occupé » (absorption passive) de « je pourrais être connecté mais je choisis de ne pas l'être ». Ici, c'est plutôt « j'aurais pu travailler mais j'ai choisi le repos » — c'est plus de la gestion du rythme de travail que de la souveraineté attentionnelle.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "h",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La pièce porte une décision de repos familial, pas une décision de protection attentionnelle face à un environnement algorithmique conçu pour la capturer."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la souveraineté attentionnelle en m'appuyant sur la définition stricte de la fiche (attention face à un environnement algorithmique). La pièce qui résistait au temps 1 est tombée au temps 2 : le choix de pause familiale n'est pas de la souveraineté attentionnelle au sens 5.07, c'est une gestion du temps de travail. Dans cette feuille, la compétence ne se laisse pas attester au sens strict de la fiche. Cela ne signifie pas son absence dans le portfolio global, mais sur cette journée, l'attention face au flux numérique n'est pas explicitement thématisée comme objet de souveraineté.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La seule pièce résistante est tombée au temps 2 : repos familial plutôt que protection attentionnelle face au flux numérique.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où l'apprenant a délibérément suspendu l'usage des LLM ou désactivé un outil capteur d'attention, avec le pourquoi et l'effet observé."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "5.08",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 9,
+          "contexte": "Vérification par simulation systématique de chaque version du prompt. Touche obliquement la vérification empirique, mais reste dans le médium IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la distinction critique de la fiche : le critère est le contact avec la réalité non médiatisée. Ici, la « simulation » se passe dans une conversation avec une IA — c'est un test, mais dans le même médium que la production. La fiche distingue explicitement « j'ai testé le prompt » (1.08) de « j'ai testé si le endpoint fonctionnait vraiment en tant qu'utilisateur » (5.08). La pièce ressemble à du 1.08, pas à du 5.08.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sans pièce résistante au temps 1, le temps 2 est vide.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la vérification terrain en m'appuyant sur la distinction critique stricte avec 1.08 et 1.01. La pièce qui aurait pu y mener n'a pas résisté au temps 1 : la simulation d'exécution de prompts se passe dans le médium IA, pas en contact avec une réalité non médiatisée. Dans cette feuille, la compétence ne se laisse pas attester. Le travail décrit est entièrement dans l'univers numérique, sans test physique ni contact avec un terrain externe.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "Aucune pièce n'a résisté au temps 1 : la vérification documentée est dans le médium IA, pas en contact avec une réalité non médiatisée.",
+        "prescription": "Pour ouvrir ce dossier, un chemin possible serait de documenter un moment où une affirmation d'un dashboard ou d'une IA a été confrontée à un test physique direct (par exemple : tester le dispositif RESPIRE avec un vrai apprenant), avec le delta entre l'attendu et le constaté."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 3,
+    "renvoisCartographe": 1,
+    "nonEtablies": 3,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, le travail rapporté dans cette feuille montre un apprenant qui maintient un sens à long terme indépendamment de la rétribution conventionnelle, qui articule une transition identitaire (de l'enseignement au chômage assumé) avec un fil conducteur explicite, et qui lit rétrospectivement ses erreurs pour en extraire un apprentissage. Les marqueurs concrets cités incluent la formule « la même passion qu'avant, juste plus payé de la même manière », le rapprochement temporel entre 2013 et le présent, et la litote « je devrais dire constante depuis que je ne travaille plus ». La voix dominante combine sobriété (la litote, la mention en passant) et persévérance documentée (volume horaire de 8-10h × 7 jours). Le travail décrit ne thématise pas la déconnexion attentionnelle ni le test terrain, ce qui laisse ces dimensions silencieuses ici.",
+    "territoiresDenses": [
+      {
+        "competence": "Sens et motivation intrinsèque",
+        "description": "Le « pourquoi » continue alors que la rétribution conventionnelle a disparu, et la persévérance se déploie sans validation institutionnelle. La formulation passe par la litote, ce que la fiche identifie comme marqueur fiable, et la cohérence entre le sens déclaré et les actions documentées (volume horaire continu) confirme la motivation en acte.",
+        "extraitVerbatim": "Donc je travaille avec la même passion qu'avant. Je suis juste plus payé de la même manière pour le faire.",
+        "ceQueCaDit": "Le moteur tourne indépendamment du carburant économique : c'est précisément le test de la fiche."
+      },
+      {
+        "competence": "Plasticité et désapprentissage",
+        "description": "La transition enseignement-chômage est portée avec un fil conducteur long (les questions de 2013 et leurs réponses présentes), et l'articulation simultanée de ce qui change (la rémunération) et de ce qui reste constant (la passion, la curiosité, l'esprit critique) correspond au format de la mue cognitive.",
+        "extraitVerbatim": "Ça fait depuis que je suis enseignant 2013 que je me pose les mêmes questions et maintenant j'ai les réponses",
+        "ceQueCaDit": "La continuité du questionnement traverse une rupture institutionnelle, ce qui distingue la mue du simple changement externe."
+      },
+      {
+        "competence": "Narration réflexive",
+        "description": "La lecture rétrospective de la v1 ratée produit un apprentissage transférable (« c'est grâce à toutes les erreurs que j'ai repérées »), et la connexion temporelle longue (2013-2026) installe un fil narratif qui dépasse la chronologie.",
+        "extraitVerbatim": "si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première",
+        "ceQueCaDit": "Le récit ne se contente pas de décrire l'erreur : il extrait ce qu'elle a produit pour la suite."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas visités dans cette feuille. L'autonomie en mode dégradé n'apparaît pas — aucun récit de panne technique gérée, aucun travail sur papier ou en analogique par choix, aucune débrouillardise avec les moyens du bord. La souveraineté attentionnelle au sens strict de la fiche n'est pas attestée : le choix de pause familiale relève de la gestion du temps de travail, pas de la protection attentionnelle face à un environnement algorithmique. La vérification terrain n'est pas attestée : les simulations se passent dans le médium IA, sans test physique ni contact avec une réalité non médiatisée. L'acceptation de l'intelligence supérieure reste muette au sens du test de tension émotionnelle que la fiche exige : la décomposition humain/machine est citée sereinement, sans surprise ni malaise, ce qui pourrait signaler une acceptation déjà apaisée ou une traversée absente. La résilience et antifragilité reste en renvoi : la structure du retournement est présente mais l'épreuve traversée dans cette feuille est modeste.",
+    "emergencesPole": "Une première ligne traverse ce pôle : la sobriété est un marqueur — la motivation intrinsèque passe par la litote, la transition identitaire passe par une formule presque banale (« la même passion qu'avant »), et le retournement de l'erreur passe par un constat (« c'est grâce à toutes les erreurs »). Ce registre sobre est précisément celui que la fiche identifie comme fiable, parce qu'il échappe aux biais d'auto-narration positive embellie. Une deuxième ligne : la temporalité longue est un repère récurrent — depuis 2013, jusqu'à avant l'été, à travers cinq versions et trois jours de congé. Le travail est inscrit dans des durées qui dépassent la journée. Une troisième ligne : les dimensions corporelles et terrain de ce pôle (5.06, 5.07, 5.08) sont absentes dans cette feuille, qui se déploie tout entière dans l'univers numérique de conception d'un dispositif.",
+    "pistes": [
+      "Pour enrichir la résilience et l'antifragilité, un chemin possible serait de documenter rétrospectivement une crise plus large que le portfolio a connue — par exemple le passage du métier d'enseignant au chômage assumé, en nommant ce qui a basculé et ce qui a émergé.",
+      "Pour enrichir l'autonomie en mode dégradé, un chemin possible serait de documenter une situation où la technologie a fait défaut et où l'apprenant a continué à travailler avec les moyens du bord, ou un choix délibéré de travailler hors numérique.",
+      "Pour enrichir la souveraineté attentionnelle, un chemin possible serait de documenter un moment où l'usage des LLM a été délibérément suspendu pour protéger une attention, avec le pourquoi et l'effet observé.",
+      "Pour enrichir la vérification terrain, un chemin possible serait de documenter un test du dispositif RESPIRE avec un vrai apprenant en chair et en os, et de noter le delta entre l'attendu et le constaté."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, le travail rapporté dans cette feuille montre un apprenant qui maintient un sens à long terme indépendamment de la rétribution conventionnelle, qui articule une transition identitaire (de l'enseignement au chômage assumé) avec un fil conducteur explicite, et qui lit rétrospectivement ses erreurs pour en extraire un apprentissage. Les marqueurs concrets cités incluent la formule « la même passion qu'avant, juste plus payé de la même manière », le rapprochement temporel entre 2013 et le présent, et la litote « je devrais dire constante depuis que je ne travaille plus ». La voix dominante combine sobriété (la litote, la mention en passant) et persévérance documentée (volume horaire de 8-10h × 7 jours). Le travail décrit ne thématise pas la déconnexion attentionnelle ni le test terrain, ce qui laisse ces dimensions silencieuses ici.\n\n## Territoires les plus denses\n\n**Sens et motivation intrinsèque.** Le « pourquoi » continue alors que la rétribution conventionnelle a disparu, et la persévérance se déploie sans validation institutionnelle. La formulation passe par la litote, ce que la fiche identifie comme marqueur fiable, et la cohérence entre le sens déclaré et les actions documentées (volume horaire continu) confirme la motivation en acte. *« Donc je travaille avec la même passion qu'avant. Je suis juste plus payé de la même manière pour le faire ».* Le moteur tourne indépendamment du carburant économique : c'est précisément le test de la fiche.\n\n**Plasticité et désapprentissage.** La transition enseignement-chômage est portée avec un fil conducteur long (les questions de 2013 et leurs réponses présentes), et l'articulation simultanée de ce qui change (la rémunération) et de ce qui reste constant (la passion, la curiosité, l'esprit critique) correspond au format de la mue cognitive. *« Ça fait depuis que je suis enseignant 2013 que je me pose les mêmes questions et maintenant j'ai les réponses ».* La continuité du questionnement traverse une rupture institutionnelle, ce qui distingue la mue du simple changement externe.\n\n**Narration réflexive.** La lecture rétrospective de la v1 ratée produit un apprentissage transférable, et la connexion temporelle longue installe un fil narratif qui dépasse la chronologie. *« si la deuxième version semble tenir la route, c'est grâce à toutes les erreurs que j'ai repérées en lisant la première ».* Le récit ne se contente pas de décrire l'erreur : il extrait ce qu'elle a produit pour la suite.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas visités dans cette feuille. L'autonomie en mode dégradé n'apparaît pas — aucun récit de panne technique gérée, aucun travail sur papier ou en analogique par choix, aucune débrouillardise avec les moyens du bord. La souveraineté attentionnelle au sens strict de la fiche n'est pas attestée : le choix de pause familiale relève de la gestion du temps de travail, pas de la protection attentionnelle face à un environnement algorithmique. La vérification terrain n'est pas attestée : les simulations se passent dans le médium IA, sans test physique ni contact avec une réalité non médiatisée. L'acceptation de l'intelligence supérieure reste muette au sens du test de tension émotionnelle que la fiche exige : la décomposition humain/machine est citée sereinement, sans surprise ni malaise, ce qui pourrait signaler une acceptation déjà apaisée ou une traversée absente. La résilience et antifragilité reste en renvoi : la structure du retournement est présente mais l'épreuve traversée dans cette feuille est modeste.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne première ligne traverse ce pôle : la sobriété est un marqueur — la motivation intrinsèque passe par la litote, la transition identitaire passe par une formule presque banale (« la même passion qu'avant »), et le retournement de l'erreur passe par un constat (« c'est grâce à toutes les erreurs »). Ce registre sobre est précisément celui que la fiche identifie comme fiable, parce qu'il échappe aux biais d'auto-narration positive embellie. Une deuxième ligne : la temporalité longue est un repère récurrent — depuis 2013, jusqu'à avant l'été, à travers cinq versions et trois jours de congé. Le travail est inscrit dans des durées qui dépassent la journée. Une troisième ligne : les dimensions corporelles et terrain de ce pôle sont absentes dans cette feuille, qui se déploie tout entière dans l'univers numérique de conception d'un dispositif.\n\n## Pistes pour enrichir ce pôle\n\n- Pour enrichir la résilience et l'antifragilité, un chemin possible serait de documenter rétrospectivement une crise plus large que le portfolio a connue, en nommant ce qui a basculé et ce qui a émergé.\n- Pour enrichir l'autonomie en mode dégradé, un chemin possible serait de documenter une situation où la technologie a fait défaut et où l'apprenant a continué à travailler avec les moyens du bord.\n- Pour enrichir la souveraineté attentionnelle, un chemin possible serait de documenter un moment où l'usage des LLM a été délibérément suspendu pour protéger une attention, avec le pourquoi et l'effet observé.\n- Pour enrichir la vérification terrain, un chemin possible serait de documenter un test du dispositif RESPIRE avec un vrai apprenant en chair et en os, et de noter le delta entre l'attendu et le constaté."
+  }
+}

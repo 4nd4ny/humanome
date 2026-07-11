@@ -1,0 +1,419 @@
+{
+  "poleNum": "1",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Est-ce que je postule avec de fortes chances d'obtenir le poste et de ne plus pouvoir avancer sur RESPIRE. Est-ce que je refuse et je perds mes allocations chômage avec le risque qu'on m'impose un poste moins bien d'enseignant en secondaire 2 [...] et que je refuserai aussi d'ailleurs ?",
+      "contexte": "Formulation explicite d'un dilemme à deux branches avec anticipation des conséquences en cascade. Active potentiellement 1.02 (cadrage du problème) et 1.05 (boucles systémiques).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Retourner au CFPT ne va pas m'aider à grandir, je ne vais rien apprendre que je ne sais déjà et ça ne va pas aider à l'avancement de mes recherches et du projet de construction des écoles de demain.",
+      "contexte": "Évaluation comparative entre options selon des critères de croissance et d'utilité au projet. Peut activer 1.02 (cadrage), 1.04 (métacognition sur sa propre trajectoire).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Le poste de l'EPFL a pour avantage qu'il va me nourrir intellectuellement pendant au moins une année. Je vais rencontrer des gens intelligents. Ce que je vais y apprendre va contribuer à l'amélioration d'EduFolio ou de la partie IA de Sqily.",
+      "contexte": "Connexion explicite entre apprentissage futur (EPFL) et alimentation de deux projets parallèles. Pourrait activer 1.03 (synthèse intégrative) ou 1.05 (boucles vertueuses).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Faire 1h15 de route pour commencer à 7h30 le matin, ça implique une routine de levé à 5h du matin toute la semaine avec un retour vers 18h30 pour un dodo vers 22h30 si je ne veux pas m'épuiser de nouveau. Donc 4h de temps de libre par jour pour tout faire (préparation des cours et veille technologique).",
+      "contexte": "Calcul concret en cascade : trajet → horaires → temps disponible. Décomposition algorithmique d'un emploi du temps. Peut activer 1.09 (pensée computationnelle).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je sais que j'ai trop de respect pour les élèves pour donner des cours de merde, et donc que je n'aurais probablement plus la force d'avancer sur mes projets.",
+      "contexte": "Raisonnement conditionnel sur ses propres patterns de fonctionnement : valeur → comportement prévisible → conséquence sur l'énergie. Peut activer 1.04 (métacognition) et 1.05 (boucle vicieuse).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "En plus je ne verrais quasiment plus Leila et je ne pourrais plus aider Soledad pour toutes les tâches ménagères (il faudra prendre une aide pour les courses, la vaisselle, la lessive et le ménage que je ne pourrais plus faire).",
+      "contexte": "Anticipation des effets de cascade d'une décision professionnelle sur la sphère domestique. Active potentiellement 1.05 (effets de second ordre, connexions entre domaines de vie).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 7,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "L'école de demain à des années d'avances en intégrant noèsiologie et évaluations humanistes au cœur du projet. Je ne veux pas arrêter avant d'avoir lancer le processus, qui, ensuite, n'a plus besoin de moi pour exister.",
+      "contexte": "Articulation d'un projet à plus long terme avec une logique d'auto-suffisance (le processus qui n'a plus besoin de l'initiateur). Peut activer 1.05 (pensée systémique).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 8,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Mais le démarrage nécessite une énergie et une concentration que même en étant au chômage je n'arrive que très difficilement à avoir. Impossible à faire en travaillant à côté.",
+      "contexte": "Constat sur ses propres conditions de production cognitive : observation de ses limites d'énergie et de concentration. Active potentiellement 1.04 (métacognition).",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 9,
+      "feuille": "2026-03-06",
+      "extraitVerbatim": "Je préfère être pauvre et finir ce qui est important, que d'avoir un salaire et faire quelque chose qui n'a plus de sens pour moi, avec des personnes dont je connais déjà le niveau et qui ne vont pas m'enrichir ni humainement, ni intellectuellement.",
+      "contexte": "Arbitrage explicite entre deux options de vie selon un critère qualitatif (sens, enrichissement). Peut activer 1.02 (cadrage de l'intention).",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la pensée critique et anti-hallucination dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un moment de vérification active d'une source ou d'une production IA."
+      }
+    },
+    {
+      "code": "1.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Pose le dilemme comme deux questions binaires. Reste à voir si c'est un vrai cadrage (questionner l'objectif) ou une simple énumération des options."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Réinterroge la valeur même de retourner au CFPT (apprentissage, contribution au projet) plutôt que la modalité d'exécution."
+        },
+        {
+          "numero": 3,
+          "pid": 9,
+          "contexte": "Formule l'arbitrage par un critère qualitatif (sens, enrichissement) plutôt que par les paramètres habituels (salaire, sécurité). Reformulation du problème."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que ce qui apparaît ici relève plus de l'énumération d'options que d'un cadrage qui transforme la nature du problème. La fiche 1.02 distingue clairement la question 'faut-il vraiment résoudre ça ?' du simple inventaire d'alternatives. La pièce 1 pose deux branches mais ne questionne pas l'objectif sous-jacent — elle suppose acquis qu'il faut décider. La pièce 9 énonce une préférence affirmée plutôt qu'un questionnement du cadre. La pièce 2 résiste un peu plus : elle reformule la valeur même du retour au CFPT en termes d'apprentissage et de contribution au projet long, ce qui déplace le critère d'évaluation depuis la sécurité financière vers la croissance personnelle.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce reformule l'évaluation de l'option CFPT par un critère qualitatif inhabituel (capacité à apprendre, contribution au projet long), ce qui déplace la nature de la question et non son périmètre."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir la pièce 2 comme résistant à ma présomption d'absence. Mais l'attaque (g) du mouvement-vers me semble pertinente : la pièce porte une évaluation qualitative ferme, mais s'agit-il vraiment d'un acte de cadrage récursif ou d'une justification a posteriori d'une décision déjà prise affectivement ? La fiche signale aussi que 'j'ai défini mes objectifs' sans questionnement ≠ cadrage. Ici, l'apprenant ne dit pas 'la vraie question est…' ; il dit que le CFPT ne lui apportera rien — ce qui est plus proche d'un constat évaluatif que d'une reformulation du problème.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'évaluation qualitative existe mais reste proche du constat ('ça ne va pas m'aider à grandir'), sans formulation explicite de 'la vraie question est'. Le geste de cadrage est en mouvement plutôt qu'établi."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à voir si l'apprenant questionnait l'objectif lui-même plutôt qu'à énumérer des options. La pièce 1 et la pièce 9 sont tombées rapidement : poser un dilemme binaire ou affirmer une préférence ne suffit pas à reformuler un problème. La pièce 2 a tenu, parce qu'elle déplace le critère d'évaluation depuis ce qui est habituellement attendu (salaire, sécurité) vers ce qui nourrit le projet long. La présomption de sycophantie a néanmoins affaibli cette pièce : le geste reste proche du constat évaluatif, sans formulation explicite de 'la vraie question est'. Ce qui en résulte concrètement : une trace de cadrage en mouvement, située dans l'arbitrage en cours, sans verdict consolidé. La compétence s'esquisse dans le déplacement du critère ; elle ne se montre pas encore dans un acte de reformulation pleinement assumé.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce a résisté aux deux temps, et avec un affaiblissement notable (geste de cadrage en mouvement, pas un acte de reformulation consolidé).",
+        "prescription": "Le travail montre un déplacement de critère dans l'arbitrage en cours, ce qui ouvre la voie d'un cadrage explicite. Pour densifier cette piste, un récit où la question est explicitement reformulée — par exemple 'la vraie question n'est pas si je postule, mais…' — donnerait à voir le geste de cadrage en acte."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "Relie un apprentissage futur (EPFL) à deux projets distincts (EduFolio, partie IA de Sqily). Synthèse potentielle entre formation et production."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que la simple connexion entre une formation et des projets ne constitue pas une synthèse intégrative au sens de la fiche, qui exige un insight émergent que les sources ne contenaient pas isolément. La pièce 3 énonce une relation utilitaire (l'EPFL va nourrir EduFolio et Sqily) sans qu'apparaisse une fusion conceptuelle nouvelle. Aucune métaphore unificatrice, aucun pattern transversal nommé, aucun 'ça converge vers' qui produirait un insight non présent dans les sources isolées. La pièce ne résiste donc pas à la présomption d'absence : elle décrit un flux d'utilité, pas une synthèse.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la connexion entre l'EPFL et les deux projets produisait un insight émergent absent des sources prises isolément. Rien n'est venu : la pièce 3 décrit une circulation d'apprentissage (j'apprends ici, j'applique là) sans assemblage qui dirait plus que la somme des parties. La synthèse intégrative au sens de la fiche reste hors de portée de cette feuille — non pas absente, mais non visible ici.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : une relation utilitaire entre formation et projets ne fait pas une synthèse intégrative.",
+        "prescription": "Un récit où le portfolio nommerait explicitement un insight né de la rencontre entre deux domaines éloignés — par exemple une métaphore unificatrice trouvée en croisant pédagogie et architecture IA — ouvrirait une trace plus solide."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Raisonnement sur ses propres patterns : 'j'ai trop de respect pour les élèves pour donner des cours de merde' — anticipation de son propre fonctionnement à partir d'une valeur connue."
+        },
+        {
+          "numero": 2,
+          "pid": 8,
+          "contexte": "Observation directe d'une limite cognitive personnelle : l'énergie et la concentration nécessaires au démarrage ne sont 'que très difficilement' disponibles, même au chômage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que la métacognition exige une réflexion sur le processus cognitif lui-même, pas un simple bilan ou une auto-évaluation. La fiche est claire : 'j'ai beaucoup appris' n'est pas de la métacognition. La pièce 1 anticipe un comportement futur à partir d'une valeur ('respect pour les élèves'), ce qui est de la connaissance de soi mais pas nécessairement de l'observation du fonctionnement cognitif. Elle reste proche de l'auto-prédiction comportementale. La pièce 2 résiste mieux : elle nomme une ressource cognitive précise (l'énergie, la concentration nécessaires au 'démarrage') et la calibre par rapport à un seuil ('même en étant au chômage, je n'arrive que très difficilement'). Cela ressemble plus à une observation sur la mécanique de sa propre production cognitive.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce observe directement un mécanisme cognitif (l'énergie et la concentration nécessaires au démarrage) et le calibre par rapport à une condition (le chômage), ce qui touche au processus, pas au résultat."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a tenu. L'attaque (a) — insuffisance probatoire — pourrait s'appliquer : la formulation reste courte et générique ('énergie et concentration'), sans dispositif d'observation décrit ni protocole. Mais l'attaque ne disqualifie pas complètement : la pièce nomme une condition de fonctionnement cognitif et la met en tension avec une option (travailler à côté). Le seuil est calibré, ce qui distingue cette observation du bilan vague.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce reste courte et générique, sans dispositif d'observation. Néanmoins le calibrage ('même en étant au chômage') montre une observation calibrée des conditions, pas un bilan vague."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "En abordant ces pièces, j'ai cherché à distinguer la connaissance de soi de l'observation du fonctionnement cognitif. La pièce 1 est tombée parce qu'anticiper son comportement à partir d'une valeur reste de l'auto-prédiction, pas une observation des processus. La pièce 2 a tenu : elle nomme une condition cognitive précise et la calibre par rapport à une situation. L'examen critique a affaibli la pièce sans la disqualifier — la formulation reste générique mais le geste d'observation est réel. Ce qui en résulte : un indice corroboratif de métacognition orientée vers les conditions de travail cognitif, plutôt qu'une métacognition aboutie sur les processus de pensée eux-mêmes.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.5,
+        "motif": "Une seule pièce a résisté, affaiblie par la généralité de la formulation. Le geste métacognitif s'esquisse sans s'installer.",
+        "prescription": "Le travail montre une observation calibrée des conditions de production cognitive. Pour approfondir cette piste, un récit qui décrit un protocole d'observation de soi en action — par exemple noter à quel moment de la journée la concentration plonge et pourquoi — donnerait à voir la métacognition à l'œuvre."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Anticipation des conséquences en cascade de chaque branche du dilemme (refus → perte chômage → poste imposé → refus à nouveau)."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Boucle implicite : respect des élèves → cours sérieux → épuisement → impossibilité d'avancer sur les projets. Effet de cascade entre valeurs, comportement et énergie."
+        },
+        {
+          "numero": 3,
+          "pid": 6,
+          "contexte": "Effets de cascade d'une décision professionnelle sur la sphère domestique : moins de présence avec Leila, plus d'aide à Soledad. Connexion entre domaines de vie."
+        },
+        {
+          "numero": 4,
+          "pid": 7,
+          "contexte": "Logique d'auto-suffisance du projet : 'le processus, qui, ensuite, n'a plus besoin de moi pour exister' — pensée d'un système qui devient autonome."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec la présomption que voir des liens n'est pas modéliser un système. La fiche est ferme : 'tout est lié' ne suffit pas, il faut nommer quels liens, dans quelle direction, avec quels effets. La pièce 1 enchaîne des conséquences mais reste dans une logique linéaire de domino (refus → perte → poste imposé → refus). La pièce 4 mentionne une auto-suffisance du processus mais sans modélisation explicite du mécanisme. La pièce 3 énumère des effets sur la vie domestique mais n'identifie pas de boucle de rétroaction. La pièce 2 résiste mieux : 'respect → cours sérieux → épuisement → impossibilité d'avancer' forme une chaîne causale orientée où la valeur initiale (respect) produit, via le comportement (cours sérieux), un effet (épuisement) qui dégrade l'objectif initial (avancer sur les projets). C'est une boucle vicieuse implicite — le respect même, par la fatigue qu'il induit, devient l'obstacle au projet qui motive le respect.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 2,
+              "motifResistance": "La pièce décrit une chaîne causale orientée où une valeur (respect) produit un comportement qui dégrade l'objectif que la valeur sert. Boucle vicieuse implicite, conforme aux traces obliques de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "La pièce 2 a tenu. L'attaque (e) — surinterprétation pédagogique — me paraît la plus pertinente : ai-je chargé cette pièce d'une intention systémique qu'elle ne porte pas ? La pièce dit 'j'ai trop de respect pour les élèves pour donner des cours de merde, et donc que je n'aurais probablement plus la force d'avancer sur mes projets'. C'est bien une chaîne causale, mais l'apprenant n'identifie pas explicitement la boucle (le respect qui sape le projet que sert le respect). Néanmoins, la fiche autorise les traces obliques : la formulation porte le mécanisme même si elle ne le nomme pas systémique. L'attaque touche mais ne disqualifie pas.",
+          "examenPieces": [
+            {
+              "pieceId": 2,
+              "attaqueDominante": "e",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "L'apprenant n'identifie pas explicitement la boucle vicieuse — il en décrit la chaîne causale. L'oblique est légitime selon la fiche, mais le geste de modélisation reste implicite."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à distinguer le constat de liens de la modélisation systémique. Plusieurs pièces sont tombées : la cascade du dilemme (pièce 1), les effets domestiques (pièce 3), l'auto-suffisance projetée (pièce 4) restent des enchaînements ou des intuitions sans modélisation explicite des mécanismes. La pièce 2 a tenu parce qu'elle porte une boucle vicieuse implicite — la valeur (respect) sape, via le comportement qu'elle dicte, l'objectif qu'elle sert. L'examen critique a affaibli sans disqualifier : l'oblique est légitime, mais le geste reste implicite. Ce qui en résulte : un indice de pensée systémique en construction, qui voit la boucle sans encore la nommer comme telle.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "Une pièce a tenu — une boucle vicieuse implicite entre valeur, comportement et énergie — mais le geste de modélisation reste oblique.",
+        "prescription": "Le travail montre une perception fine des chaînes causales qui relient valeurs, comportements et ressources. Pour densifier cette piste, un récit qui nommerait explicitement une boucle ('plus je fais X, plus Y se dégrade, ce qui me pousse à plus de X') donnerait à voir la modélisation en acte."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 2,
+          "type": "déclaration étayée",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "1.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la littératie IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter une explication causale d'un comportement IA observé."
+      }
+    },
+    {
+      "code": "1.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à l'architecture de systèmes IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait décrire un système où plusieurs agents IA interagissent avec des rôles définis."
+      }
+    },
+    {
+      "code": "1.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives au dialogue IA avancé dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait raconter une itération stratégique de prompts avec analyse de pourquoi la reformulation change le résultat."
+      }
+    },
+    {
+      "code": "1.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Décomposition algorithmique d'une journée de travail : trajet → horaires → temps de sommeil → temps libre. Calcul conditionnel sur des paramètres concrets."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec la présomption que faire un calcul d'emploi du temps n'est pas de la pensée computationnelle au sens de la fiche, qui exige le TRANSFERT — la logique algorithmique appliquée hors de l'informatique avec décomposition explicite et structure conditionnelle. La pièce 4 décompose une journée par addition de durées (trajet, lever, retour, dodo), ce qui ressemble à un calcul d'arithmétique appliquée plutôt qu'à une logique algorithmique. Il n'y a pas de structure 'si... alors... sinon', pas de pattern reconnu, pas de debugging mental appliqué à un processus humain. La décomposition est descriptive, pas algorithmique au sens fort.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Pas de pièce à examiner — aucune n'a passé le temps 1.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à voir si la pièce 4 portait un transfert algorithmique hors informatique. Elle est tombée : décomposer une journée par addition d'heures relève du calcul concret plutôt que de la pensée computationnelle au sens de la fiche, qui exige des structures conditionnelles, des patterns reconnus ou du debugging mental. La compétence reste hors de portée de cette feuille — non pas absente, mais non visible ici.",
+          "confianceFinale": 0.15
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.15,
+        "motif": "La présomption d'absence a absorbé l'unique pièce : un calcul d'emploi du temps n'est pas un transfert algorithmique.",
+        "prescription": "Un récit qui appliquerait explicitement une structure algorithmique (arbre de décision, debugging d'un processus humain, pattern reconnu) à un problème non technique ouvrirait une trace plus solide."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "1.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la synergie humain-IA dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait articuler ce qu'il garde et ce qu'il délègue à l'IA, et pourquoi."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 5,
+    "presencesEtablies": 0,
+    "renvoisCartographe": 3,
+    "nonEtablies": 7,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Sur ce pôle, la feuille du 6 mars 2026 montre une pensée prise dans un arbitrage existentiel — celui d'un poste à postuler ou à refuser — qui mobilise plusieurs registres cognitifs sans qu'aucun ne s'installe complètement. Le travail tient ensemble un déplacement de critère (privilégier le sens à la sécurité), une observation des conditions cognitives nécessaires au projet, et une perception fine des chaînes causales qui relient valeurs, comportements et énergie disponible. La voix dominante est celle d'une délibération à voix haute, où les conséquences se déploient en cascade et où l'apprenant pèse ce qui nourrit la croissance contre ce qui ne nourrit plus rien. Les marqueurs concrets — l'EPFL qui nourrira EduFolio et Sqily, le calcul des heures disponibles, l'épuisement anticipé — ancrent la réflexion dans des paramètres tangibles plutôt que dans des principes abstraits.",
+    "territoiresDenses": [],
+    "territoiresNonVisites": "Plusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global de l'apprenant, mais non visibles dans ce qui est raconté ce jour-là. La pensée critique appliquée aux sources ou aux productions IA, la littératie IA et la compréhension des mécanismes sous le capot, l'architecture de systèmes multi-agents, le dialogue IA avancé et la synergie humain-IA ne croisent pas l'arbitrage du jour. C'est cohérent avec la nature de la feuille, centrée sur une décision de vie plutôt que sur une situation de travail technique. La synthèse intégrative et la pensée computationnelle sont effleurées (la connexion entre EPFL et les projets, le calcul des heures) sans s'installer en geste pleinement constitué. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte ses interactions techniques quotidiennes.",
+    "emergencesPole": "Trois observations traversent la feuille. D'abord, la pensée se déploie en cascades : chaque décision est lue à travers ses conséquences sur l'énergie, le temps, les autres, le projet long. Ensuite, le critère qualitatif (sens, nourriture intellectuelle, croissance) s'impose comme grille d'évaluation, déplaçant les critères habituels (salaire, sécurité). Enfin, l'apprenant raisonne par anticipation de ses propres patterns : il sait ce qu'il fera (refuser un poste imposé) parce qu'il sait comment il fonctionne (trop de respect pour les élèves).",
+    "pistes": [
+      "Pour densifier le cadrage du problème, un chemin possible serait de formuler explicitement la 'vraie question' qui se cache derrière le dilemme apparent, plutôt que de rester sur les deux branches initiales.",
+      "Pour rendre visible la pensée systémique, un chemin possible serait de nommer une boucle de rétroaction observée — par exemple le cercle où le respect des élèves épuise le projet que le respect sert.",
+      "Pour approfondir la métacognition, un chemin possible serait de décrire le protocole d'observation de soi qui a permis d'identifier que 'même en étant au chômage' le démarrage exige plus d'énergie que disponible."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nSur ce pôle, la feuille du 6 mars 2026 montre une pensée prise dans un arbitrage existentiel — celui d'un poste à postuler ou à refuser — qui mobilise plusieurs registres cognitifs sans qu'aucun ne s'installe complètement. Le travail tient ensemble un déplacement de critère (privilégier le sens à la sécurité), une observation des conditions cognitives nécessaires au projet, et une perception fine des chaînes causales qui relient valeurs, comportements et énergie disponible. La voix dominante est celle d'une délibération à voix haute, où les conséquences se déploient en cascade et où l'apprenant pèse ce qui nourrit la croissance contre ce qui ne nourrit plus rien. Les marqueurs concrets — l'EPFL qui nourrira EduFolio et Sqily, le calcul des heures disponibles, l'épuisement anticipé — ancrent la réflexion dans des paramètres tangibles plutôt que dans des principes abstraits.\n\n## Territoires les plus denses\n\nAucune compétence n'atteint dans cette feuille la solidité d'une présence pleinement établie. Trois territoires se dessinent en mouvement : un cadrage qui déplace le critère d'évaluation depuis la sécurité vers la nourriture intellectuelle, une métacognition orientée vers les conditions énergétiques de la production cognitive, une pensée des chaînes causales où une valeur sape l'objectif qu'elle sert. Ces traces existent mais demandent à être consolidées dans d'autres feuilles avant de constituer des territoires denses.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs régions de ce pôle restent hors champ de cette feuille — non pas absentes du parcours global de l'apprenant, mais non visibles dans ce qui est raconté ce jour-là. La pensée critique appliquée aux sources ou aux productions IA, la littératie IA et la compréhension des mécanismes sous le capot, l'architecture de systèmes multi-agents, le dialogue IA avancé et la synergie humain-IA ne croisent pas l'arbitrage du jour. C'est cohérent avec la nature de la feuille, centrée sur une décision de vie plutôt que sur une situation de travail technique. La synthèse intégrative et la pensée computationnelle sont effleurées (la connexion entre EPFL et les projets, le calcul des heures) sans s'installer en geste pleinement constitué. Ces territoires mériteraient d'être explorés dans des feuilles où l'apprenant raconte ses interactions techniques quotidiennes.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent la feuille. D'abord, la pensée se déploie en cascades : chaque décision est lue à travers ses conséquences sur l'énergie, le temps, les autres, le projet long. Ensuite, le critère qualitatif (sens, nourriture intellectuelle, croissance) s'impose comme grille d'évaluation, déplaçant les critères habituels (salaire, sécurité). Enfin, l'apprenant raisonne par anticipation de ses propres patterns : il sait ce qu'il fera (refuser un poste imposé) parce qu'il sait comment il fonctionne (trop de respect pour les élèves).\n\n## Pistes pour enrichir ce pôle\n\n- Pour densifier le cadrage du problème, un chemin possible serait de formuler explicitement la 'vraie question' qui se cache derrière le dilemme apparent, plutôt que de rester sur les deux branches initiales.\n- Pour rendre visible la pensée systémique, un chemin possible serait de nommer une boucle de rétroaction observée — par exemple le cercle où le respect des élèves épuise le projet que le respect sert.\n- Pour approfondir la métacognition, un chemin possible serait de décrire le protocole d'observation de soi qui a permis d'identifier que 'même en étant au chômage' le démarrage exige plus d'énergie que disponible.\n"
+  }
+}

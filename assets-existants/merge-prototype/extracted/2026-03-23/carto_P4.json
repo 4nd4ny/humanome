@@ -1,0 +1,321 @@
+{
+  "poleNum": "4",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève)",
+      "contexte": "Rôle nommé d'agent IA dont la mission explicite est éthique (véto, protection de l'élève) au sein d'une architecture d'évaluation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Méta Prompt à rédiger avec l'architecture de gouvernance : Kairos (Gardien de l'Émergence et générateur d'hypothèses et de compétences en devenir) — Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) — Daimon (Gardien des Frictions et du doute : l'avocat du diable) — Metis (Gardien des 4 Regards : agent logicien / agent psychologue / agent historien / agent créatif)",
+      "contexte": "Architecture de gouvernance multi-agents avec véto éthique intégré comme garde-fou structurel d'un système d'évaluation.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Finir le système d'évaluation mono IA, pour comparer avec les résultats d'Aurora",
+      "contexte": "Démarche comparative entre deux systèmes d'évaluation IA — vérification croisée par mise en regard de résultats indépendants.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Mais bon… Mes priorités : 1. Finir le livre Émergence (j'y suis presque) [...] 2. Lancer les discussions sur Decidim [...] 3. Finir le système d'évaluation mono IA [...] 4. Reprendre le site web respire.school [...] 5. Terminer la v2 de la documentation [...] 6. Publier *De Humani Cerebri Fabrica* [...] 7. Finir de rédiger la trilogie",
+      "contexte": "Hiérarchisation explicite de sept priorités numérotées dans un ordre assumé — acte de jugement et de tranchage parmi des chantiers concurrents.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "A nouveau. Ce n'est pas un projet prioritaire. Je fais juste un peu mumuse car j'ai l'environnement d'ouvert.",
+      "contexte": "Désignation explicite d'une activité comme non-prioritaire avec justification (« environnement d'ouvert ») — discernement entre ce qui compte et ce qui occupe.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-03-23",
+      "extraitVerbatim": "Je suis en sous-régime avec la fièvre, mais Claude avance bien sans moi.",
+      "contexte": "Décision tacite de laisser Claude avancer plutôt que forcer sa propre participation — accountability sur le rythme et délégation conditionnée à l'état.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "4.01",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de raisonnement éthique appliqué dans cette feuille. Un passage explicitant un dilemme moral traversé, avec mise en tension de valeurs légitimes en conflit, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "Aegis est nommé « Gardien de l'Ethique et de l'Irréversible » avec une fonction de véto explicite — c'est précisément la conception d'un garde-fou éthique systémique."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "Le méta-prompt à rédiger inscrit le véto éthique comme rôle architectural permanent du dispositif d'évaluation, pas comme contrôle ponctuel."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : l'alignement éthique exige un refus concret, une conception de garde-fous, ou un constat de désalignement justifié par des valeurs explicites. La fiche signale l'exception décisive : « La conception documentée de garde-fous éthiques systémiques est une trace textuelle forte qui peut justifier *Expert*. » La pièce 1 nomme Aegis « Gardien de l'Ethique » avec la mission explicite « pose un véto pour protéger l'élève ». C'est très précisément la conception d'un garde-fou éthique systémique intégré à l'architecture. La pièce 2 inscrit ce véto dans le méta-prompt comme rôle architectural permanent. Les deux pièces résistent à la présomption d'absence parce qu'elles correspondent exactement à l'exception que la fiche cite.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Aegis comme Gardien de l'Ethique avec véto explicite pour protéger l'élève : conception d'un garde-fou éthique systémique, marqueur fort cité par la fiche." },
+            { "pieceId": 2, "motifResistance": "Le véto éthique est inscrit comme rôle architectural permanent au sein du dispositif d'évaluation, pas comme contrôle ponctuel." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Les deux pièces ont résisté ; ai-je halluciné leur portée ? Le risque est de prendre une étiquette (« Gardien de l'Ethique ») pour une véritable conception d'alignement. Mais la fonction est explicitée — « pose un véto pour protéger l'élève » — avec une finalité claire (protection de l'élève) et un mécanisme défini (véto). Ce n'est pas un slogan, c'est l'attribution d'une fonction. L'attaque du récit performatif (raconter sans montrer en acte) tient partiellement : la fiche dit que la conception documentée est elle-même la trace, indépendamment de l'exécution. Le méta-prompt restant à rédiger affaiblit la pièce — mais l'exception explicite de la fiche reconnaît que la conception en soi peut suffire. Une attaque plus sérieuse serait celle du mouvement-vers : tant que le véto n'a jamais été déclenché, on ne peut pas vérifier que la conception tient à l'exécution. Cette attaque touche, sans disqualifier.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : la conception du véto existe mais aucune occurrence de déclenchement n'est documentée. La trace de conception reste néanmoins valide selon l'exception de la fiche."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Mouvement-vers : le méta-prompt est « à rédiger » — l'inscription architecturale reste projective. Mais la conception du dispositif vaut comme trace textuelle forte."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'un alignement éthique dans cette feuille. Mais Aegis nommé « Gardien de l'Ethique » avec mission de véto pour protéger l'élève correspond très exactement à l'exception explicite de la fiche : la conception de garde-fous éthiques systémiques. Le véto n'est pas une option mais un rôle architectural permanent. Ce qui modère la confiance : le méta-prompt reste à rédiger, aucun déclenchement n'est documenté. Mais l'acte de conception lui-même — placer la protection de l'élève comme fonction structurelle non négociable du système d'évaluation — porte la trace que la fiche reconnaît comme forte.",
+          "confianceFinale": 0.7
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.7,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : la conception d'un garde-fou éthique systémique (Aegis) correspond exactement à l'exception forte que la fiche désigne.",
+        "prescription": "Pour approfondir cette compétence, documenter, une fois le méta-prompt rédigé et Aegis opérationnel, un premier cas où le véto s'est déclenché — qu'est-ce qu'il a refusé, pourquoi, et comment le système a rebondi après ce refus. La conception se vérifiera à ses premiers exercices."
+      },
+      "tracesRetenues": [
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "4.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de conscience écologique et long-terme dans cette feuille. Un arbitrage explicite entre bénéfice immédiat et impact écologique ou générationnel ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de valorisation de la neurodiversité dans cette feuille. Un passage reliant explicitement un résultat à un mode de pensée divergent ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Hiérarchisation de sept priorités numérotées dans un ordre tranché — acte décisionnel parmi des chantiers concurrents qui n'ont pas de comparabilité naturelle."
+        },
+        {
+          "numero": 2,
+          "pid": 5,
+          "contexte": "Désignation explicite d'une activité comme non-prioritaire alors qu'elle est en cours — acceptation que tout ne sera pas fait, tolérance à l'imperfection du portefeuille."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la décision dans l'incertitude exige le combo (1) nommer ce qu'on ne sait pas, (2) décrire comment on a fonctionné malgré le flou, (3) raconter un acte de tranchage avec ses conséquences. La pièce 1 trance — sept priorités numérotées — mais sans nommer l'incertitude sous-jacente ni les conséquences du tranchage. La pièce 2 désigne le travail sur Sqilium comme non-prioritaire mais sans articuler le flou stratégique qui justifierait le terme. La fiche est exigeante : un classement de priorités sans description du flou est plutôt de la planification (7.06) que de la décision sous incertitude. Aucune des deux pièces ne porte les trois éléments du combo. Elles ne résistent pas vraiment à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à examiner ici. Le tranchage existe mais sans la mise en récit du flou que la fiche exige.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la décision sous incertitude soit attestée dans cette feuille. Les sept priorités numérotées montrent un acte de tranchage, et la désignation d'une activité comme « pas prioritaire » montre une discrimination. Mais la fiche distingue précisément la décision sous incertitude de la simple priorisation — il faut que le flou soit nommé et traversé. Ici, l'ordre des priorités est posé sans description du brouillard qui le précède, sans articulation de ce qu'on ne sait pas. Le tranchage existe, mais en mode planificateur plutôt qu'en mode décideur dans le flou. La compétence n'est pas attestée sous la forme que la fiche désigne.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption d'absence n'a pas été démentie : le tranchage existe mais l'incertitude qui devrait le précéder n'est pas mise en récit.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage explicitant non seulement l'ordre des priorités mais le flou qui le précède — ce que l'on ne savait pas, comment on a fonctionné dans ce non-savoir, ce qu'il a fallu trancher quand les données manquaient — éclairerait la décision telle que la fiche la désigne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 6,
+          "contexte": "L'apprenant accepte que Claude « avance bien sans » lui pendant qu'il est malade — délégation conditionnée à un état physique, accountability sur le rythme."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde cette pièce avec présomption d'absence : la responsabilité, le courage et l'intégrité exigent (1) un dilemme identifié, (2) la reconnaissance de sa part et du coût potentiel, (3) une action corrective ou un maintien de position malgré la pression. Ici, « Claude avance bien sans moi » est un constat tranquille — il ne nomme ni dilemme, ni coût, ni résistance à une pression. C'est plutôt une délégation pragmatique pendant un état de fatigue. La fiche est exigeante sur l'accountability constructive : il faut un mouvement de prise en charge active. La pièce ne résiste pas à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté ; il n'y a rien à examiner ici.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la responsabilité, le courage et l'intégrité soient attestés dans cette feuille. La constatation tranquille que Claude avance bien pendant la fièvre relève d'une délégation pragmatique, pas d'un acte de courage ou d'un dilemme assumé. Aucune position impopulaire maintenue, aucune vérité inconfortable dite, aucune erreur reconnue puis corrigée. La compétence n'est pas attestée dans cette feuille — ce qui n'exclut pas qu'elle puisse l'être ailleurs.",
+          "confianceFinale": 0.2
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.2,
+        "motif": "La présomption d'absence n'a pas été démentie : la délégation existe mais sans le triptyque dilemme / coût / action corrective que la fiche exige.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage où une position a été maintenue malgré la pression, ou une erreur reconnue avec son coût et l'action corrective qui s'en est suivie, éclairerait l'accountability constructive que la fiche désigne."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "4.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de validation contextuelle dans cette feuille. Un récit où l'IA a été corrigée parce qu'elle manquait d'un contexte culturel, émotionnel ou situationnel ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces de création de valeur non-automatisable dans cette feuille. Un passage articulant ce que l'IA ne peut pas reproduire structurellement, et ce que l'humain apporte d'irréductible, ouvrirait ce dossier."
+      }
+    },
+    {
+      "code": "4.09",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Désignation d'une activité comme non-prioritaire sans urgence ni reproche — possible patience stratégique sur les chantiers secondaires."
+        },
+        {
+          "numero": 2,
+          "pid": 4,
+          "contexte": "Ordre de priorités numérotées qui implique de reporter certains chantiers, sans drame ni anxiété affichée — confort apparent face au délai."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces avec présomption d'absence : la patience stratégique exige le combo (1) pression à agir décrite, (2) raisonnement explicite d'attente, (3) moment d'action prévu ou décrit. La fiche est très claire : sans (2), c'est de la procrastination ; sans (3), c'est de la paralysie. La pièce 1 (« mumuse », non prioritaire) désigne une activité comme non-prioritaire mais ne nomme pas la pression à agir — Sqilium pourrait avancer plus vite, mais aucune urgence externe n'est décrite. La pièce 2 (liste de sept priorités) implique des reports mais sans critère de déclenchement explicite. Les deux pièces ne portent pas le combo complet. Elles ne résistent pas vraiment à la présomption d'absence.",
+          "piecesQuiResistent": []
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Aucune pièce n'a résisté au temps 1 ; il n'y a rien à examiner ici. La distinction critique de la fiche est précise : « j'attends » sans pourquoi ni quand = procrastination, pas patience stratégique.",
+          "examenPieces": []
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier que la patience stratégique soit attestée dans cette feuille. La désignation d'activités comme non-prioritaires existe — Sqilium est explicitement annoncée comme un projet secondaire — mais sans la pression à agir et sans le critère de déclenchement qui distinguent la patience de la procrastination ou de l'opportunisme. La fiche exige précisément ces deux éléments. La compétence n'est pas attestée sous la forme que la fiche désigne, ce qui ne préjuge pas de la patience effective de l'apprenant ailleurs.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption d'absence n'a pas été démentie : la non-priorisation est posée sans pression à agir nommée ni critère de déclenchement explicite.",
+        "prescription": "Pour ouvrir cette compétence dans le portfolio, un passage explicitant un report assumé — la pression qui invite à agir, la raison de ne pas céder maintenant, et le critère qui déclenchera l'action plus tard — éclairerait la patience stratégique au sens où la fiche la désigne."
+      },
+      "tracesRetenues": []
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 9,
+    "competencesNonCourtCircuit": 4,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 0,
+    "nonEtablies": 8,
+    "courtCircuits": 5
+  },
+  "rapport": {
+    "portraitPole": "Dans cette feuille, le discernement se manifeste presque exclusivement dans la conception d'un dispositif éthique intégré à un système d'évaluation. La nomination d'Aegis comme « Gardien de l'Éthique et de l'Irréversible » avec mission explicite de « véto pour protéger l'élève » porte un acte de pensée éthique au niveau architectural — l'éthique devient fonction structurelle plutôt que principe externe. Les autres dimensions du pôle (dilemme moral, écologie, neurodiversité, validation contextuelle, valeur non-automatisable) ne traversent pas cette feuille. Les priorités sont posées en liste numérotée sans que les flous, les dilemmes ou les coûts qui devraient précéder le tranchage ne soient nommés.",
+    "territoiresDenses": [
+      {
+        "competence": "Alignement & Refus Éthique",
+        "description": "La conception d'Aegis comme rôle architectural permanent avec pouvoir de véto pour protéger l'élève inscrit l'éthique au cœur du système d'évaluation. Ce n'est pas un principe affiché en préambule, c'est une fonction qui peut bloquer une sortie produite par les autres agents.",
+        "extraitVerbatim": "Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève)",
+        "ceQueCaDit": "L'éthique est pensée comme contre-pouvoir structurel à l'intérieur du dispositif IA. La protection de l'élève reçoit un rôle dédié — pas une déclaration d'intention, une fonction d'arrêt."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle ne sont pas traversés dans cette feuille. Le raisonnement éthique appliqué aux dilemmes concrets, la conscience écologique, la valorisation de la neurodiversité, la validation contextuelle et la création de valeur non-automatisable n'y laissent pas de traces — ce qui ressemble à un choix d'angle, la feuille étant centrée sur la conception de dispositifs plutôt que sur le récit de décisions concrètes. La décision sous incertitude et la patience stratégique sont approchées sous forme de hiérarchisation de priorités, mais sans les éléments que les fiches exigent pour les distinguer de la simple planification (le flou nommé, la pression à agir, le critère de déclenchement). Ces zones mériteraient d'être documentées dans des feuilles où un arbitrage moral, un report assumé ou une correction de l'IA fondée sur un savoir tacite deviennent l'objet du récit.",
+    "emergencesPole": "Une traversée émerge nettement : l'éthique est pensée comme architecture, pas comme principe. Aegis n'est pas un slogan, c'est un rôle fonctionnel qui peut interrompre l'output des autres agents. Cette manière d'inscrire la valeur dans la structure même du dispositif déplace la question éthique du registre déclaratif vers le registre opérationnel. Une seconde traversée plus discrète : le rapport à la priorisation. La liste de sept priorités numérotées coexiste avec une activité menée hors hiérarchie (« mumuse »), comme si l'apprenant maintenait à la fois un ordre stratégique et un espace de jeu non soumis à cet ordre.",
+    "pistes": [
+      "Pour donner corps à la conception d'Aegis, un chemin possible serait de documenter, une fois le méta-prompt rédigé, un premier cas où le véto s'est déclenché — sur quel critère, contre quel output, et ce que le système a produit en alternative.",
+      "Pour ouvrir le territoire de la décision sous incertitude, un chemin possible serait de relire une journée comme celle-ci en explicitant non pas l'ordre des priorités, mais le flou qui le précède — ce qu'on ne savait pas en posant l'ordre, et ce qui aurait pu basculer.",
+      "Pour ouvrir un territoire éthique au-delà de l'architecture, un chemin possible serait de raconter un moment où la conception elle-même a posé un dilemme — une décision sur Sqilium ou sur le référentiel v7 où plusieurs valeurs légitimes étaient en tension."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans cette feuille, le discernement se manifeste presque exclusivement dans la conception d'un dispositif éthique intégré à un système d'évaluation. La nomination d'Aegis comme « Gardien de l'Éthique et de l'Irréversible » avec mission explicite de « véto pour protéger l'élève » porte un acte de pensée éthique au niveau architectural — l'éthique devient fonction structurelle plutôt que principe externe. Les autres dimensions du pôle (dilemme moral, écologie, neurodiversité, validation contextuelle, valeur non-automatisable) ne traversent pas cette feuille. Les priorités sont posées en liste numérotée sans que les flous, les dilemmes ou les coûts qui devraient précéder le tranchage ne soient nommés.\n\n## Territoires les plus denses\n\n### Alignement & Refus Éthique\n\nLa conception d'Aegis comme rôle architectural permanent avec pouvoir de véto pour protéger l'élève inscrit l'éthique au cœur du système d'évaluation. Ce n'est pas un principe affiché en préambule, c'est une fonction qui peut bloquer une sortie produite par les autres agents.\n\n> « Aegis (Gardien de l'Ethique et de l'Irréversible : celui qui pose un véto pour protéger l'élève) »\n\nL'éthique est pensée comme contre-pouvoir structurel à l'intérieur du dispositif IA. La protection de l'élève reçoit un rôle dédié — pas une déclaration d'intention, une fonction d'arrêt.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires de ce pôle ne sont pas traversés dans cette feuille. Le raisonnement éthique appliqué aux dilemmes concrets, la conscience écologique, la valorisation de la neurodiversité, la validation contextuelle et la création de valeur non-automatisable n'y laissent pas de traces — ce qui ressemble à un choix d'angle, la feuille étant centrée sur la conception de dispositifs plutôt que sur le récit de décisions concrètes. La décision sous incertitude et la patience stratégique sont approchées sous forme de hiérarchisation de priorités, mais sans les éléments que les fiches exigent pour les distinguer de la simple planification (le flou nommé, la pression à agir, le critère de déclenchement). Ces zones mériteraient d'être documentées dans des feuilles où un arbitrage moral, un report assumé ou une correction de l'IA fondée sur un savoir tacite deviennent l'objet du récit.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nUne traversée émerge nettement : l'éthique est pensée comme architecture, pas comme principe. Aegis n'est pas un slogan, c'est un rôle fonctionnel qui peut interrompre l'output des autres agents. Cette manière d'inscrire la valeur dans la structure même du dispositif déplace la question éthique du registre déclaratif vers le registre opérationnel. Une seconde traversée plus discrète : le rapport à la priorisation. La liste de sept priorités numérotées coexiste avec une activité menée hors hiérarchie (« mumuse »), comme si l'apprenant maintenait à la fois un ordre stratégique et un espace de jeu non soumis à cet ordre.\n\n## Pistes pour enrichir ce pôle\n\n> Pour donner corps à la conception d'Aegis, un chemin possible serait de documenter, une fois le méta-prompt rédigé, un premier cas où le véto s'est déclenché — sur quel critère, contre quel output, et ce que le système a produit en alternative.\n\n> Pour ouvrir le territoire de la décision sous incertitude, un chemin possible serait de relire une journée comme celle-ci en explicitant non pas l'ordre des priorités, mais le flou qui le précède — ce qu'on ne savait pas en posant l'ordre, et ce qui aurait pu basculer.\n\n> Pour ouvrir un territoire éthique au-delà de l'architecture, un chemin possible serait de raconter un moment où la conception elle-même a posé un dilemme — une décision sur Sqilium ou sur le référentiel v7 où plusieurs valeurs légitimes étaient en tension."
+  }
+}

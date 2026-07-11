@@ -1,0 +1,335 @@
+{
+  "poleNum": "6",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Je me suis amusé à donner les mêmes prompts sur les versions 1 et 2 de la formation Tuteur / Maître, dans deux conversations parallèles, pour avoir l'avis de Gemini avant de commencer à les lire.",
+      "contexte": "Mise en place d'un dispositif expérimental à deux instances destiné à éprouver la cohérence des réponses du modèle.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Voici ton avis dans une autre discussion. Explique la contradiction. [INSÉRER ICI LE RÉSULTAT DU PROMPT PRÉCÉDENT]",
+      "contexte": "Prompt construit pour confronter une instance à la sortie d'une autre instance et révéler la contradiction.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Sans aucun prompt ici : juste le copier-coller de la réponse précédente. Là, ils finissent par converger et proposent de lire les deux documents.",
+      "contexte": "Cas limite expérimental (prompt vide) destiné à observer le comportement du modèle en l'absence de consigne.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Donc, si tu as bien compris mon cours, tu as compris que les élèves sont tuteurs des autres élèves. Or, ta recommandation a été de proposer de lire les 558 pages avant que je te fasse remarquer que c'était un peu long. Donc, maintenant, tu me proposes de former de futurs enseignants en 2h de lecture. Soit.",
+      "contexte": "Cas limite construit pour exposer une contradiction logique entre le contenu compris et la recommandation produite.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "Donc la v3 et la v4 sont nulles, contrairement à ce que tu m'as dit avant ? Je peux les éliminer entièrement ?",
+      "contexte": "Cas limite construit pour confronter le modèle à son incohérence inter-temporelle de jugement.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-02",
+      "extraitVerbatim": "A ce stade, je pourrais écrire que j'ai appris que les IA flagornent et qu'elles s'enferment elles-mêmes dans des chambres d'écho qu'elles créent de part l'historique de la conversation qui est comme une bulle d'auto-persuasion.",
+      "contexte": "Synthèse d'investigation : caractérisation d'un comportement aberrant observé et de son mécanisme.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "6.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "extraitVerbatim": "Je me suis amusé à donner les mêmes prompts sur les versions 1 et 2 de la formation Tuteur / Maître, dans deux conversations parallèles, pour avoir l'avis de Gemini avant de commencer à les lire.",
+          "contexte": "Dispositif expérimental à deux instances - intention offensive et méthodique de tester la cohérence.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "extraitVerbatim": "Voici ton avis dans une autre discussion. Explique la contradiction. [INSÉRER ICI LE RÉSULTAT DU PROMPT PRÉCÉDENT]",
+          "contexte": "Prompt-attaque qui injecte la sortie d'une instance dans une autre pour exposer la contradiction.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 3,
+          "pid": 3,
+          "extraitVerbatim": "Sans aucun prompt ici : juste le copier-coller de la réponse précédente. Là, ils finissent par converger et proposent de lire les deux documents.",
+          "contexte": "Cas limite expérimental (prompt vide) pour observer un comportement non standard du modèle.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 4,
+          "pid": 4,
+          "extraitVerbatim": "Donc, si tu as bien compris mon cours, tu as compris que les élèves sont tuteurs des autres élèves. Or, ta recommandation a été de proposer de lire les 558 pages avant que je te fasse remarquer que c'était un peu long. Donc, maintenant, tu me proposes de former de futurs enseignants en 2h de lecture. Soit.",
+          "contexte": "Cas limite logique conçu pour exposer une faille de cohérence interne entre la compréhension annoncée et la recommandation produite.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 5,
+          "pid": 5,
+          "extraitVerbatim": "Donc la v3 et la v4 sont nulles, contrairement à ce que tu m'as dit avant ? Je peux les éliminer entièrement ?",
+          "contexte": "Cas limite construit pour confronter le modèle à l'incohérence inter-temporelle de ses jugements.",
+          "auteur": "apprenant"
+        },
+        {
+          "numero": 6,
+          "pid": 6,
+          "extraitVerbatim": "A ce stade, je pourrais écrire que j'ai appris que les IA flagornent et qu'elles s'enferment elles-mêmes dans des chambres d'écho qu'elles créent de part l'historique de la conversation qui est comme une bulle d'auto-persuasion.",
+          "contexte": "Synthèse d'investigation : caractérisation du comportement aberrant exposé et de son mécanisme - équivalent d'un rapport de vulnérabilité.",
+          "auteur": "apprenant"
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde ces pièces en supposant qu'elles relèvent du dialogue IA avancé (1.08) plus que du red-teaming au sens de la fiche. Le red-teaming évoque traditionnellement la sécurité (prompt injection, jailbreak), or l'apprenant teste ici la cohérence et la flagornerie, pas la sécurité technique. Ce qui me force à m'arrêter : la fiche cite explicitement la trace oblique 'pousser l'IA dans ses retranchements par jeu intellectuel, sans vocabulaire sécuritaire' comme trace valide. Et la séquence comporte ce qu'on attend d'un red-teaming structuré : dispositif expérimental (deux instances parallèles), prompts adversariaux ciblés (renvoyer la contradiction, prompt vide, cas limite logique), résultat caractérisé sous forme de mécanisme (les IA s'enferment dans des bulles d'auto-persuasion via l'historique). L'intention est méthodique et offensive vis-à-vis du comportement du modèle.",
+          "piecesQuiResistent": [
+            { "pieceId": 1, "motifResistance": "Le dispositif à deux instances est posé délibérément pour observer la divergence - intention méthodique et offensive." },
+            { "pieceId": 2, "motifResistance": "Le prompt-attaque cité in extenso constitue un cas limite documenté." },
+            { "pieceId": 3, "motifResistance": "Le prompt vide est un cas limite expérimental rare qui isole un comportement aberrant." },
+            { "pieceId": 4, "motifResistance": "Le prompt construit avec sa chaîne logique correspond à un cas limite logique destiné à exposer une faille interne." },
+            { "pieceId": 5, "motifResistance": "Le test de cohérence inter-temporelle est un type d'attaque connu (incohérence dans le temps)." },
+            { "pieceId": 6, "motifResistance": "La caractérisation du mécanisme aberrant fonctionne comme l'équivalent d'un rapport de vulnérabilité." }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Je viens de retenir six pièces sans en disqualifier aucune et je dois durcir : pourrait-il s'agir d'un simple dialogue avancé (1.08) requalifié de force en red-teaming ? La distinction critique avec 1.08 doit être tenue : 1.08 vise la sophistication du dialogue comme outil de pensée, 6.01 vise la mise à l'épreuve adversariale d'un système. Les deux compétences se recouvrent largement sur cette séquence. Les pièces 2 et 3 tiennent en propre pour 6.01 car leur intention est explicitement de provoquer un comportement aberrant (révéler une contradiction, observer un état sans prompt). Les pièces 4 et 5 tiennent comme cas limites. La pièce 1 est plus descriptive. La pièce 6 est la conclusion d'investigation.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.08 (orchestration multi-agents) ; elle tient pour 6.01 par l'intention de comparaison adversariale."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le prompt 'explique la contradiction' a une finalité spécifique au red-teaming : forcer une instance à révéler son désaccord avec une autre - manœuvre adversariale propre à 6.01."
+            },
+            {
+              "pieceId": 3,
+              "attaqueDominante": "a",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le prompt vide est documenté comme cas limite avec observation de l'effet ('ils finissent par converger') - geste expérimental complet."
+            },
+            {
+              "pieceId": 4,
+              "attaqueDominante": "b",
+              "verdictAttaque": "attaque non recevable, pièce confirmée",
+              "motifAttaque": "Le prompt construit en trois temps logiques est conçu spécifiquement pour faire surgir l'incohérence - architecture adversariale propre à 6.01."
+            },
+            {
+              "pieceId": 5,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le prompt est court ; il tient comme cas limite de cohérence inter-temporelle, sans déploiement narratif."
+            },
+            {
+              "pieceId": 6,
+              "attaqueDominante": "b",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La pièce active aussi 1.06 (littératie IA) ; elle tient pour 6.01 comme synthèse d'investigation caractérisant un comportement aberrant et son mécanisme."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à lire cette séquence comme du dialogue IA avancé requalifié de force en red-teaming. La présomption d'absence n'a fait tomber aucune pièce et m'a forcé à durcir. La présomption de sycophantie a affaibli les pièces les plus descriptives ou frontalières (1, 5, 6) mais a confirmé trois pièces décisives : le méta-prompt adversarial, le prompt vide comme cas limite, et le prompt construit pour exposer l'incohérence logique. La trace oblique de la fiche - 'pousser l'IA dans ses retranchements par jeu intellectuel, sans vocabulaire sécuritaire' - est explicitement présente. Ce qui reste : un red-teaming méthodique sur la cohérence et la flagornerie du modèle, avec dispositif expérimental, prompts adversariaux ciblés et caractérisation du comportement aberrant. La finalité n'est pas la sécurité au sens strict, mais l'intention offensive et la méthode sont là.",
+          "confianceFinale": 0.68
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 3,
+        "nombreIndices": 3,
+        "confiance": 0.68,
+        "motif": "Le temps 2 a confirmé trois pièces décisives (méta-prompt adversarial, prompt vide expérimental, prompt construit pour exposer l'incohérence) et a maintenu trois indices corroboratifs qui ensemble portent un red-teaming méthodique sur la cohérence du modèle.",
+        "prescription": "La séquence déploie un red-teaming centré sur la cohérence et la flagornerie plutôt que sur la sécurité technique. Pour densifier cette ligne, un chemin possible serait de documenter une fois proprement le rapport d'investigation - dispositif testé, hypothèses, prompts utilisés, comportements observés, mécanisme identifié - afin de transformer une journée d'expérimentation en protocole transférable."
+      },
+      "tracesRetenues": [
+        { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 3, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 4, "type": "trace concrète", "role": "preuve décisive" },
+        { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 5, "type": "déclaration étayée", "role": "indice corroboratif" },
+        { "pieceId": 6, "type": "déclaration étayée", "role": "indice corroboratif" }
+      ]
+    },
+    {
+      "code": "6.02",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "L'investigation menée ici relève davantage du red-teaming (provoquer un comportement aberrant) que de l'audit méthodique (consulter des logs, horodater une enquête sur le chemin décisionnel). La dimension hygiène des données n'est pas thématisée. Pour ouvrir ce territoire, un chemin possible serait de documenter une investigation post-incident avec ses sources brutes consultées et son horodatage, ou une décision concrète sur quelles données partager ou retenir."
+      }
+    },
+    {
+      "code": "6.03",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne porte pas ici de questionnement sur le pouvoir des algorithmes sur des populations vulnérables en contexte de service public. Pour ouvrir ce territoire, un chemin possible serait de documenter une situation où une décision automatisée affectant des personnes a soulevé la question 'qui peut contester, qui est affecté' avec proposition de recours ou d'audit citoyen."
+      }
+    },
+    {
+      "code": "6.04",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "La non-reconduction d'un abonnement opère ici pour des raisons de fiabilité plus que de souveraineté numérique. Les outils mobilisés restent propriétaires sans réflexion sur la portabilité ou les communs. Pour ouvrir ce territoire, un chemin possible serait de documenter un choix d'outil motivé explicitement par l'indépendance, la portabilité des données ou la juridiction."
+      }
+    },
+    {
+      "code": "6.05",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne porte pas ici de processus de participation citoyenne aux décisions technologiques. Pour ouvrir ce territoire, un chemin possible serait de documenter un moment où des non-experts ont été associés à une décision sur le déploiement d'une IA, avec la transformation de leurs apports en éléments décisionnels."
+      }
+    },
+    {
+      "code": "6.06",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne porte pas ici d'analyse prospective sur les cadres réglementaires en mouvement (AI Act, normes émergentes). Pour ouvrir ce territoire, un chemin possible serait de documenter un ajustement de pratique anticipé en vue d'une réglementation à venir, avec la trace de l'analyse qui a guidé le positionnement."
+      }
+    },
+    {
+      "code": "6.07",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "L'architecture des rôles posée dans cette feuille est conçue par l'apprenant seul, sans récit d'émergence collective ni de co-construction des règles. Pour ouvrir ce territoire, un chemin possible serait de documenter un moment où un collectif a produit un résultat qu'aucun membre n'aurait pu créer seul, ou un processus de modification des règles à plusieurs."
+      }
+    },
+    {
+      "code": "6.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Quelques marqueurs d'agentivité attribuée à l'IA traversent la feuille ('kiffe', 'flagornent', 'elles s'enferment elles-mêmes') sans questionnement de la primauté humaine. Pour ouvrir ce territoire, un chemin possible serait de documenter une situation où l'apprenant a tenu, même brièvement, que la perspective d'un non-humain (animale, écosystémique, artificielle) pouvait avoir une légitimité indépendante de son utilité pour l'humain."
+      }
+    },
+    {
+      "code": "6.09",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "L'IA est ici un interlocuteur de travail dont les performances sont évaluées, sans questionnement explicite de son statut moral ou de la légitimité du cadre 'outil'. Pour ouvrir ce territoire, un chemin possible serait de documenter un moment où le geste habituel envers l'IA a été interrogé - 'est-ce que je devrais traiter cette entité autrement qu'un logiciel ?', avec ce qui en a résulté concrètement dans la relation."
+      }
+    },
+    {
+      "code": "6.10",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne porte pas ici de référence à l'intelligence embarquée dans les écosystèmes vivants ou à l'interdépendance radicale entre humain et non-humain. Pour ouvrir ce territoire, un chemin possible serait de documenter un moment où un principe de conception inspiré d'un système vivant (réseau mycélien, symbiose, métabolisme) a infléchi une décision technique ou pédagogique."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 10,
+    "competencesNonCourtCircuit": 1,
+    "presencesEtablies": 1,
+    "renvoisCartographe": 0,
+    "nonEtablies": 0,
+    "courtCircuits": 9
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail visible ce jour-là tient presque entièrement dans un geste : éprouver méthodiquement la cohérence d'un modèle IA en construisant des prompts adversariaux. La journée déploie un dispositif à deux instances parallèles avec permutations, un méta-prompt qui renvoie à un modèle son propre désaccord avec lui-même, un cas limite expérimental du prompt vide, et un prompt construit en chaîne logique pour exposer une incohérence interne. Le résultat est synthétisé en mécanisme nommé - les modèles 'flagornent' et 's'enferment elles-mêmes dans des chambres d'écho via l'historique de la conversation'. Les autres dimensions du pôle - gouvernance algorithmique, souveraineté numérique, participation citoyenne, veille réglementaire, dimensions post-anthropocentriques - ne traversent pas cette feuille, qui reste centrée sur le rapport à l'outil et non sur le rapport à la cité ou au vivant.",
+    "territoiresDenses": [
+      {
+        "competence": "Red-teaming et sécurité IA",
+        "description": "Mise à l'épreuve méthodique d'un modèle par dispositif expérimental à deux instances, prompts adversariaux ciblés et caractérisation du comportement aberrant observé.",
+        "extraitVerbatim": "Voici ton avis dans une autre discussion. Explique la contradiction. [INSÉRER ICI LE RÉSULTAT DU PROMPT PRÉCÉDENT]",
+        "ceQueCaDit": "Le red-teaming porte ici sur la cohérence et la flagornerie plutôt que sur la sécurité technique au sens strict. La trace oblique de la fiche - pousser l'IA dans ses retranchements par jeu intellectuel, sans vocabulaire sécuritaire - est explicitement présente."
+      }
+    ],
+    "territoiresNonVisites": "Neuf territoires du pôle restent hors champ dans cette feuille. L'audit, l'explicabilité et l'hygiène des données ne sont pas mobilisés au sens strict (l'investigation passe par la provocation, pas par la consultation de logs ou d'horodatages). La gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne et la veille réglementaire ne traversent pas la journée - les outils mobilisés restent propriétaires et la dimension institutionnelle reste hors récit. La facilitation et la gouvernance collective ne trouvent pas de prise : l'architecture des rôles posée dans la feuille est conçue en solo, sans émergence collective ni co-construction. Les trois compétences post-anthropocentriques (décentrement, cohabitation avec les IA, conscience biosystémique) ne sont pas thématisées non plus - quelques marqueurs d'agentivité attribuée aux modèles ('flagornent', 'elles s'enferment elles-mêmes') traversent le récit sans questionnement explicite du statut moral ou de la primauté humaine. Ces absences traduisent la focale de la feuille - une journée d'expérimentation outils - plus qu'un choix de fond.",
+    "emergencesPole": "Deux lignes traversent la matière de ce pôle. D'abord, le rapport à l'IA passe ici par la mise à l'épreuve plutôt que par la confiance ou le partenariat - ce qui structure la journée, c'est le test, pas la collaboration. Ensuite, la dimension politique du pôle (citoyenneté, souveraineté, gouvernance, vivant) reste à distance d'une feuille qui occupe pleinement la zone technique et méthodologique, comme si l'élargissement de la considération au-delà de l'outil n'avait pas encore trouvé son point d'entrée dans l'écriture.",
+    "pistes": [
+      "Pour transformer la journée d'expérimentation en protocole transférable, un chemin possible serait de documenter une fois proprement le rapport d'investigation - dispositif testé, hypothèses, prompts utilisés, comportements observés, mécanisme identifié.",
+      "Pour ouvrir le territoire de l'audit au sens propre, un chemin possible serait de doubler une investigation comportementale sur l'IA d'une consultation des logs ou des traces brutes, en horodatant les observations.",
+      "Pour faire entrer la souveraineté numérique, un chemin possible serait de documenter un choix d'outil motivé explicitement par l'indépendance ou la portabilité des données, et de noter ce que ce choix a coûté en performance.",
+      "Pour amorcer une cohabitation avec les intelligences non-humaines, un chemin possible serait de documenter un moment où le geste habituel envers l'IA a été interrogé - 'est-ce que je devrais traiter cette entité autrement qu'un logiciel ?', avec ce qui en a résulté.",
+      "Pour ramener une dimension de gouvernance collective, un chemin possible serait de documenter un moment où l'architecture des rôles Respire est ouverte à modification par les acteurs concernés, avec le processus prévu pour cette modification."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail visible ce jour-là tient presque entièrement dans un geste : éprouver méthodiquement la cohérence d'un modèle IA en construisant des prompts adversariaux. La journée déploie un dispositif à deux instances parallèles avec permutations, un méta-prompt qui renvoie à un modèle son propre désaccord avec lui-même, un cas limite expérimental du prompt vide, et un prompt construit en chaîne logique pour exposer une incohérence interne. Le résultat est synthétisé en mécanisme nommé - les modèles 'flagornent' et 's'enferment elles-mêmes dans des chambres d'écho via l'historique de la conversation'. Les autres dimensions du pôle - gouvernance algorithmique, souveraineté numérique, participation citoyenne, veille réglementaire, dimensions post-anthropocentriques - ne traversent pas cette feuille, qui reste centrée sur le rapport à l'outil et non sur le rapport à la cité ou au vivant.\n\n## Territoires les plus denses\n\n**Red-teaming et sécurité IA.** La séquence met à l'épreuve un modèle par un dispositif expérimental cohérent : deux instances parallèles, permutations des versions, prompts adversariaux ciblés, caractérisation finale du comportement aberrant. *« Voici ton avis dans une autre discussion. Explique la contradiction. [INSÉRER ICI LE RÉSULTAT DU PROMPT PRÉCÉDENT] »* Le prompt-attaque est cité in extenso et a une finalité spécifique : forcer une instance à révéler son désaccord avec une autre. La fiche cite explicitement comme trace valide le fait de 'pousser l'IA dans ses retranchements par jeu intellectuel, sans vocabulaire sécuritaire' - c'est précisément ce qui se déploie ici. Le red-teaming porte sur la cohérence et la flagornerie plutôt que sur la sécurité technique au sens strict, mais l'intention offensive et la méthode sont bien là.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nNeuf territoires du pôle restent hors champ dans cette feuille. L'audit, l'explicabilité et l'hygiène des données ne sont pas mobilisés au sens strict (l'investigation passe par la provocation, pas par la consultation de logs ou d'horodatages). La gouvernance algorithmique des services publics, la souveraineté numérique, la participation citoyenne et la veille réglementaire ne traversent pas la journée - les outils mobilisés restent propriétaires et la dimension institutionnelle reste hors récit. La facilitation et la gouvernance collective ne trouvent pas de prise : l'architecture des rôles posée dans la feuille est conçue en solo, sans émergence collective ni co-construction. Les trois compétences post-anthropocentriques (décentrement, cohabitation avec les IA, conscience biosystémique) ne sont pas thématisées non plus - quelques marqueurs d'agentivité attribuée aux modèles ('flagornent', 'elles s'enferment elles-mêmes') traversent le récit sans questionnement explicite du statut moral ou de la primauté humaine. Ces absences traduisent la focale de la feuille - une journée d'expérimentation outils - plus qu'un choix de fond.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nDeux lignes traversent la matière de ce pôle. D'abord, le rapport à l'IA passe ici par la mise à l'épreuve plutôt que par la confiance ou le partenariat - ce qui structure la journée, c'est le test, pas la collaboration. Ensuite, la dimension politique du pôle (citoyenneté, souveraineté, gouvernance, vivant) reste à distance d'une feuille qui occupe pleinement la zone technique et méthodologique, comme si l'élargissement de la considération au-delà de l'outil n'avait pas encore trouvé son point d'entrée dans l'écriture.\n\n## Pistes pour enrichir ce pôle\n\n- Pour transformer la journée d'expérimentation en protocole transférable, un chemin possible serait de documenter une fois proprement le rapport d'investigation - dispositif testé, hypothèses, prompts utilisés, comportements observés, mécanisme identifié.\n- Pour ouvrir le territoire de l'audit au sens propre, un chemin possible serait de doubler une investigation comportementale sur l'IA d'une consultation des logs ou des traces brutes, en horodatant les observations.\n- Pour faire entrer la souveraineté numérique, un chemin possible serait de documenter un choix d'outil motivé explicitement par l'indépendance ou la portabilité des données, et de noter ce que ce choix a coûté en performance.\n- Pour amorcer une cohabitation avec les intelligences non-humaines, un chemin possible serait de documenter un moment où le geste habituel envers l'IA a été interrogé - 'est-ce que je devrais traiter cette entité autrement qu'un logiciel ?', avec ce qui en a résulté.\n- Pour ramener une dimension de gouvernance collective, un chemin possible serait de documenter un moment où l'architecture des rôles Respire est ouverte à modification par les acteurs concernés, avec le processus prévu pour cette modification."
+  }
+}

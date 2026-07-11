@@ -1,0 +1,506 @@
+{
+  "poleNum": "7",
+  "passagesSaillants": [
+    {
+      "pid": 1,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "FILIÈRE MACHINE - Manuel 3 : Maître IA",
+      "contexte": "Titre de section qui nomme un dispositif pédagogique structuré (filière, manuel, niveau Maître) — possible trace d'architecture pédagogique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 2,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "FILIÈRE HUMAIN - Manuel 3 : Maître Noèsiologue",
+      "contexte": "Titre de section qui nomme une seconde filière parallèle avec son propre manuel — architecture pédagogique à double voie.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 3,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Maintenant il suffit de tout relire, corriger, adapter la structure et la mise en page… J'en ai pour un moment 😅",
+      "contexte": "L'apprenant assume la charge finale du travail de finition documentaire — possible trace d'efficacité personnelle et de documentation vivante en construction.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 4,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Oups : Claude a oublié de documenter le bootstrap. Aucun souci : je lui demande d'ajouter les chapitres manquants dans les manuels + copier-coller et c'est réglé !",
+      "contexte": "L'apprenant pilote l'IA — détecte un manque, donne une instruction, valide — possible trace de leadership situationnel.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 5,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Ça m'a conduit à définir le référentiel des compétences à valider pour passer au niveau supérieur.",
+      "contexte": "L'apprenant crée un référentiel d'évaluation pour le passage de niveau — possible trace d'évaluation transformative et de vision stratégique.",
+      "auteur": "apprenant"
+    },
+    {
+      "pid": 6,
+      "feuille": "2026-01-28",
+      "extraitVerbatim": "Et à mettre à jour la doc de l'Apprenant et de l'Accompagnant en conséquence.",
+      "contexte": "L'apprenant maintient la cohérence d'un système documentaire pour deux publics — possible trace de documentation vivante.",
+      "auteur": "apprenant"
+    }
+  ],
+  "competences": [
+    {
+      "code": "7.01",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 1,
+          "contexte": "L'existence d'une filière structurée en plusieurs manuels gradués (Manuel 3, Maître) suggère un dispositif pédagogique architecturé."
+        },
+        {
+          "numero": 2,
+          "pid": 2,
+          "contexte": "La symétrie d'une filière Humain en parallèle de la filière Machine renforce la conception architecturale du dispositif d'apprentissage."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 7.01 avec présomption d'absence : la maïeutique et la facilitation d'apprentissage supposent soit la méthode (questions adressées pour faire accoucher), soit l'architecture pédagogique (environnements conçus avec intention). Aucune question maïeutique n'apparaît dans le texte du jour. Mais la fiche valorise explicitement « l'architecture multi-niveaux d'un environnement d'apprentissage complet » comme manifestation aboutie. Ici, deux filières parallèles, trois manuels gradués (Apprenti, Compagnon, Maître), un référentiel de passage — l'architecture est visible. Les pièces résistent parce qu'elles attestent la conception d'un dispositif pédagogique structuré, même si le texte du jour ne raconte pas sa genèse.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le dispositif « Filière + Manuel 3 + Maître » manifeste une structuration pédagogique en niveaux gradués, ce que la fiche identifie comme architecture pédagogique."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La symétrie entre filière Machine et filière Humain manifeste une intention pédagogique d'articulation entre deux ordres de compétences."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si la mention des manuels et filières atteste vraiment la facilitation d'apprentissage. L'attaque dominante est le biais de medium : ce sont des titres de section dans un journal de bord, qui pointent vers des artefacts externes via des liens — l'architecture est lisible à travers ces titres, mais le travail pédagogique lui-même se trouve dans les manuels, pas dans cette feuille. La pièce 1 s'affaiblit sans tomber : la dénomination est précise et signale une structuration pédagogique réelle. La pièce 2 s'affaiblit de la même manière, mais la symétrie de l'architecture la maintient comme indice corroboratif.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le titre est une trace indirecte d'un artefact pédagogique qui se trouve ailleurs ; mais la structuration en niveaux (Apprenti/Compagnon/Maître) est lisible jusque dans la dénomination, ce qui maintient la trace."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "c",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La symétrie Filière Humain / Filière Machine, attestée par le titre, signale une architecture pédagogique délibérée, même si le contenu détaillé se trouve dans les artefacts liés."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de maïeutique et de facilitation en doutant que des titres de section suffisent à attester une architecture pédagogique. Les pièces ont résisté parce que la fiche valorise précisément l'architecture multi-niveaux comme manifestation aboutie. Sous présomption de sycophantie, elles s'affaiblissent sans tomber : ce qui apparaît ici n'est pas la genèse pédagogique mais ses artefacts dénommés. Ce qui reste, c'est un apprenant qui pilote un dispositif d'apprentissage à deux voies (Humain/Machine) en trois niveaux gradués (Apprenti/Compagnon/Maître), dont la rédaction de niveau Maître est en cours d'achèvement. La facette « facilitation » est plausible et tient comme indice ; la facette « maïeutique » au sens strict (questions adressées) n'est pas visible dans cette feuille.",
+          "confianceFinale": 0.5
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.5,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : les pièces attestent une architecture pédagogique par leurs dénominations, mais la genèse interprétative n'apparaît pas dans cette feuille.",
+        "prescription": "Pour consolider ce territoire, raconter comment l'architecture en filières et niveaux a été pensée — quelle progression vise-t-elle, à quels moments l'apprenant a-t-il choisi de ne pas dire pour laisser l'apprenant découvrir — transformerait l'artefact en trace de maïeutique en acte."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.02",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "La définition d'un référentiel de compétences à valider pour passer au niveau supérieur pose un dispositif d'évaluation gradué — possible trace d'évaluation transformative."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 7.02 avec présomption d'absence : l'évaluation transformative suppose un acte évaluatif au service de la progression — feedback honnête et constructif, miroir structuré, dispositifs inventés, grilles critériées transparentes. La fiche cite explicitement « grilles critériées transparentes » et « dispositifs d'évaluation inventés ». Ici, l'apprenant définit un référentiel de compétences à valider pour passer au niveau supérieur — c'est précisément la conception d'un dispositif évaluatif transparent. La pièce résiste parce qu'elle correspond à une manifestation explicite de la fiche.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le référentiel des compétences à valider est, par définition, une grille critériée transparente pour la progression — manifestation explicite de la fiche."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si la mention de la création du référentiel atteste vraiment une évaluation transformative au sens fort. L'attaque dominante est le récit performatif : la création est annoncée, le contenu du référentiel n'est pas montré. On ne lit ni la formulation des critères, ni leur transparence, ni leur finalité formative explicite ; et la fiche prévient que la notation peut être sommative (classer/trier) plutôt que transformative (faire progresser). Cependant, le contexte — un dispositif d'apprentissage en filières graduées — oriente plutôt vers la progression que vers le tri. La pièce s'affaiblit sans tomber : le livrable est annoncé sans son contenu, mais sa nature même (référentiel de progression dans un dispositif pédagogique) en fait un indice solide.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La création est annoncée et le contenu reste dans un artefact externe ; mais le référentiel, dans un dispositif pédagogique gradué (Apprenti/Compagnon/Maître), correspond précisément à la conception d'un dispositif d'évaluation au service de la progression."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'évaluation transformative en doutant qu'une annonce de référentiel suffise. La pièce a résisté parce que le référentiel est exactement le type d'artefact que la fiche identifie comme manifestation — une grille critériée transparente pour la progression. Sous présomption de sycophantie, elle s'affaiblit : le contenu lui-même se trouve dans le lien externe, pas dans cette feuille, et on ne lit pas la formulation des critères. Ce qui reste, c'est un apprenant qui conçoit l'infrastructure d'une évaluation formative pour son dispositif. La trace tient comme indice corroboratif fort sans atteindre le seuil de la preuve mise en scène.",
+          "confianceFinale": 0.55
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.55,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : la création d'un référentiel de validation pour le passage de niveau correspond précisément à la conception d'un dispositif d'évaluation formative.",
+        "prescription": "Pour approfondir ce territoire, raconter comment les critères ont été formulés pour faire progresser plutôt que pour trier — quelle place est laissée à l'auto-évaluation, à l'erreur comme matériau pédagogique — consoliderait la trace de conception en trace de pratique évaluative."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.03",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "L'apprenant assume la relecture, correction et adaptation de structure et de mise en page des manuels — travail explicite de structuration pour le lecteur."
+        },
+        {
+          "numero": 2,
+          "pid": 6,
+          "contexte": "La mise à jour synchronisée de la doc Apprenant et de la doc Accompagnant manifeste une gestion vivante d'un système documentaire."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 7.03 avec présomption d'absence : la documentation vivante suppose la capitalisation du savoir pour un futur lecteur, avec attention délibérée à la structuration, versioning explicite, mises à jour de documents existants. La fiche cite explicitement « mises à jour de documents existants » comme manifestation. Ici, la pièce 1 affiche les verbes mêmes de la documentation vivante (« relire, corriger, adapter la structure et la mise en page ») appliqués à un manuel — c'est exactement la pratique nommée par la fiche. La pièce 2 manifeste explicitement la mise à jour de documents existants en cohérence avec un changement du référentiel : c'est de la documentation vivante en acte. Les pièces résistent solidement.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "« Adapter la structure et la mise en page » d'un manuel destiné à des apprenants correspond précisément à la structuration intentionnelle pour un futur lecteur."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "Mettre à jour deux documents en conséquence d'une modification du référentiel manifeste une gestion vivante d'un système documentaire cohérent."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ces gestes atteignent vraiment le seuil de la documentation vivante au sens fort. L'attaque dominante sur la pièce 1 est le récit performatif : l'apprenant annonce le travail sans montrer ses choix de structuration. Sur la pièce 2, l'attaque dominante est l'insuffisance probatoire : « mettre à jour en conséquence » signale une cohérence documentaire sans détailler ce qui change ni pourquoi. Les deux pièces s'affaiblissent. Mais la fiche distingue 7.03 de 5.03 par la *conscience du destinataire* et la *structuration*, et le contexte (manuels pour Apprenants, doc Accompagnant) confirme cette conscience du destinataire. Les pièces tiennent affaiblies.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "f",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le travail est annoncé sans être montré ; mais le contexte (manuel pour apprenants) et le verbe « adapter la structure et la mise en page » manifestent la conscience du destinataire."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "La mise à jour est annoncée sans son contenu, mais elle illustre la pratique de cohérence documentaire dans un écosystème de plusieurs documents."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de documentation vivante en doutant qu'annoncer une relecture et une mise à jour suffise. Les deux pièces ont résisté parce que la fiche identifie précisément ces gestes — adaptation de structure, mises à jour de documents existants — comme manifestations centrales. Sous présomption de sycophantie, elles s'affaiblissent : on lit l'annonce, pas le contenu. Ce qui reste solide, c'est qu'un système documentaire à plusieurs documents (manuels + doc Apprenant + doc Accompagnant + référentiel) est en cours de maintenance cohérente, par un apprenant qui passe ses « moments » à structurer pour un futur lecteur. La compétence est lisible dans l'écosystème lui-même, qui apparaît à travers les artefacts liés et les actions annoncées. Cette feuille consolide une présence qui se dessine à l'échelle du dispositif.",
+          "confianceFinale": 0.6
+        }
+      },
+      "verdict": {
+        "statut": "présence établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 2,
+        "confiance": 0.6,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier les deux pièces : adaptation de structure et mise à jour cohérente de documents existants correspondent précisément à la documentation vivante telle que définie par la fiche.",
+        "prescription": "Pour approfondir ce territoire, expliciter à quels endroits les documents ont été modifiés et selon quel principe — versioning, choix de ce qui reste central et ce qui est déplacé — transformerait l'annonce d'entretien en trace fine de pratique éditoriale."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        },
+        {
+          "pieceId": 2,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.04",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "L'apprenant pilote Claude — détecte le manque, donne l'instruction, valide — possible trace de leadership situationnel sur l'IA."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 7.04 avec présomption d'absence : le leadership situationnel suppose l'alternance délibérée entre direction et retrait — savoir quand prendre le gouvernail et quand le lâcher. La fiche cite « assignation de rôles différenciés à des agents IA » et « recadrages ponctuels » comme manifestations. Ici l'apprenant a laissé Claude générer les manuels (phase de retrait), constate un manque (reprise du contrôle), donne une instruction de remédiation, valide. C'est une amorce du cycle décrit par la fiche. Mais la fiche prévient : la trace la plus probante est *l'alternance consciente*, et notamment les moments où l'apprenant *choisit de ne pas intervenir*. Ici on lit la reprise, pas le retrait délibéré.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le geste de « faire revenir Claude sur ce qu'il a oublié » manifeste un recadrage ponctuel — type de manifestation que la fiche identifie."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ce recadrage atteste vraiment un leadership situationnel. L'attaque dominante est le mouvement-vers : la pratique de supervision et de recadrage est en acte, mais l'alternance consciente avec critère de bascule n'est pas formulée — il s'agit d'un automatisme de copilote plus que d'un choix de posture articulé. La fiche distingue précisément cela : « j'ai supervisé » peut être du micro-management déguisé. Ici on est plus proche d'une routine corrective que d'un choix de posture. La pièce s'affaiblit.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "g",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le recadrage est en acte (détection, instruction, validation), mais l'alternance consciente avec critère de bascule explicite n'est pas formulée ; le seuil de la trace probante au sens fort n'est pas franchi."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de leadership situationnel en doutant qu'un cycle de correction d'oubli suffise. La pièce a résisté parce que le recadrage de l'IA est une manifestation citée par la fiche. Sous présomption de sycophantie, elle s'affaiblit : la fiche valorise l'alternance consciente avec critère de bascule, et ici on lit l'automatisme du copilote plus que la posture choisie. Ce qui reste, c'est un apprenant qui pilote l'IA avec aisance dans un cycle de délégation-supervision, sans que le texte du jour ne formule la logique de ce pilotage. L'indice tient sans atteindre la pleine attestation.",
+          "confianceFinale": 0.4
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.4,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier : pratique de recadrage en acte sans formulation de l'alternance consciente.",
+        "prescription": "Pour consolider ce territoire, expliciter sur quoi Claude a été laissé en autonomie et à quel signal l'apprenant reprend la main — quel critère déclenche le recadrage — transformerait l'automatisme en trace de posture choisie."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.05",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 5,
+          "contexte": "Définir un référentiel pour passer au niveau supérieur articule un présent (manuel 3 en cours) à un futur (niveau supérieur) — possible trace de vision stratégique."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 7.05 avec présomption d'absence : la vision stratégique suppose un lien explicite entre projection future et décision présente — « je fais X maintenant parce que dans Y temps ». Ici, l'apprenant définit un référentiel pour le passage au niveau supérieur ; il y a bien un horizon (le niveau supérieur) et une action présente (la définition du référentiel). Mais le lien argumenté entre la projection et la décision n'est pas explicité — on ne lit pas pourquoi ce référentiel maintenant, ni en quoi le niveau supérieur exige cette préparation aujourd'hui. La pièce résiste faiblement parce que le geste lui-même articule un présent à un futur, même sans argumentation déployée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Définir aujourd'hui le référentiel d'un niveau supérieur articule explicitement une action présente à un horizon futur."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si cette articulation atteste vraiment une vision stratégique. L'attaque dominante est l'insuffisance probatoire : aucune phrase n'explicite *pourquoi* préparer le référentiel maintenant, ni quel scénario prospectif justifie ce choix. La fiche est explicite : la vision stratégique produit un *lien argumenté*, pas une simple chronologie « prochaine étape ». Ici, on est plus proche d'une suite logique d'étapes que d'une vision prospective. La pièce tombe.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La définition du référentiel relève d'une étape logique du dispositif plus que d'une vision prospective argumentée ; aucun lien explicite entre futur anticipé et choix présent."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence de vision stratégique en doutant qu'une simple anticipation d'étape suffise. La pièce a brièvement résisté parce que tout référentiel d'un niveau N+1 articule un présent à un futur. Mais sous présomption de sycophantie, la pièce tombe : il manque le lien argumenté entre projection et décision, sans lequel la fiche prévient qu'on est dans la simple temporisation, pas dans la vision. Le territoire de la vision stratégique reste à documenter dans cette feuille.",
+          "confianceFinale": 0.3
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.3,
+        "motif": "La présomption de sycophantie a porté le verdict : insuffisance probatoire — articulation chronologique sans lien argumenté entre futur anticipé et choix présent.",
+        "prescription": "Pour ouvrir ce territoire, raconter pourquoi le référentiel a été conçu maintenant — quel scénario à plus long terme justifie ce choix présent — donnerait à la vision stratégique sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.06",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 3,
+          "contexte": "« J'en ai pour un moment 😅 » reconnaît la charge de travail à venir — possible amorce d'efficacité personnelle (estimation, conscience du temps)."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 7.06 avec présomption d'absence : l'efficacité personnelle suppose le pilotage de ses ressources avec intention — décisions explicites de ne pas faire quelque chose, arbitrages argumentés, refus stratégiques. La fiche est explicite : « le marqueur le plus fiable est le non stratégique argumenté ». Ici, l'apprenant fait l'inverse : il dit « oui » à un long travail de relecture (« j'en ai pour un moment »). Aucun refus, aucun arbitrage explicite, aucune mise en pause stratégique. La pièce résiste très faiblement parce que reconnaître la durée d'un travail manifeste minimalement une conscience de l'effort à mobiliser.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Reconnaître « j'en ai pour un moment » manifeste une estimation consciente de la charge à venir."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si cette estimation atteste une efficacité personnelle. L'attaque dominante est l'insuffisance probatoire : aucune priorisation, aucun refus, aucun arbitrage. La fiche prévient même : « J'ai beaucoup travaillé » peut être un signe d'absence de 7.06. Ici on est dans le registre de la prise en charge sans arbitrage. La pièce ne tient pas.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "La phrase est une estimation de durée sans priorisation, refus ou arbitrage ; la fiche distingue précisément l'efficacité personnelle de la simple submersion."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'efficacité personnelle en doutant qu'estimer la durée d'un travail suffise. La pièce a brièvement résisté parce qu'estimer suppose une conscience. Mais sous présomption de sycophantie, elle tombe : aucun refus, aucun arbitrage, aucune priorisation. Le territoire de l'efficacité personnelle au sens fort reste à documenter dans cette feuille.",
+          "confianceFinale": 0.25
+        }
+      },
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 0.25,
+        "motif": "La présomption de sycophantie a porté le verdict : estimation de durée sans priorisation ni refus stratégique.",
+        "prescription": "Pour ouvrir ce territoire, raconter un arbitrage — ce qui a été reporté ou refusé pour faire de la place à ce travail long de relecture — donnerait à l'efficacité personnelle sa trace en acte."
+      },
+      "tracesRetenues": []
+    },
+    {
+      "code": "7.07",
+      "courtCircuit": false,
+      "pieces": [
+        {
+          "numero": 1,
+          "pid": 4,
+          "contexte": "Le cycle « production IA → repérage d'oubli → demande de complément » s'inscrit dans une itération corrective sur un livrable."
+        },
+        {
+          "numero": 2,
+          "pid": 1,
+          "contexte": "L'usage des « manuels » comme livrables successifs (Manuel 1, 2, 3) manifeste un travail en versions et étapes."
+        }
+      ],
+      "pedagogue": {
+        "presomptionAbsence": {
+          "raisonnement": "J'aborde 7.07 avec présomption d'absence : l'agilité et la conduite du changement supposent un travail en versions successives avec cycle observable, une boucle de rétroaction explicite, ou un accompagnement des résistances. La fiche cite « v1, v2, v6 » comme manifestation. Ici, on a Manuel 3 (en cours) après Manuel 1 et Manuel 2 — pas un versioning d'un même artefact, mais une progression d'objets gradués. Et la pièce 1 manifeste une boucle générer-relire-tester-ajuster en miniature : Claude génère, l'apprenant relève un manque, demande une correction, intègre. Les pièces résistent faiblement parce que ces gestes correspondent à des manifestations de la fiche, mais sans amplitude méthodologique formulée.",
+          "piecesQuiResistent": [
+            {
+              "pieceId": 1,
+              "motifResistance": "Le cycle « générer-relire-repérer-corriger-intégrer » manifeste une boucle d'itération sur un livrable."
+            },
+            {
+              "pieceId": 2,
+              "motifResistance": "La numérotation Manuel 1, 2, 3 atteste une progression structurée par étapes successives."
+            }
+          ]
+        },
+        "presomptionSycophantie": {
+          "raisonnement": "Sous présomption de sycophantie, je teste si ces deux pièces atteignent vraiment le seuil de l'agilité. L'attaque dominante sur la pièce 1 est l'insuffisance probatoire : un seul cycle de correction d'oubli ne fait pas une pratique itérative, et il manque l'ajustement de plan ou la conduite du changement. L'attaque dominante sur la pièce 2 est le glissement lexical : « Manuel 1, 2, 3 » désigne des artefacts gradués, pas des versions successives d'un même artefact qui se serait amélioré par itération. La fiche distingue précisément cela : la numérotation seule ne suffit pas. La pièce 2 s'affaiblit fortement, la pièce 1 reste mais affaiblie.",
+          "examenPieces": [
+            {
+              "pieceId": 1,
+              "attaqueDominante": "a",
+              "verdictAttaque": "pièce affaiblie mais retenue",
+              "motifAttaque": "Le cycle est en acte mais ne montre qu'un seul tour de boucle ; l'agilité méthodique sur la durée n'est pas attestée par cette seule pièce."
+            },
+            {
+              "pieceId": 2,
+              "attaqueDominante": "d",
+              "verdictAttaque": "pièce disqualifiée",
+              "motifAttaque": "« Manuel 1, 2, 3 » nomme une progression par étapes graduées, pas des versions successives d'un même artefact retravaillé — la fiche distingue précisément ces deux cas."
+            }
+          ]
+        },
+        "conclusionAdversariale": {
+          "raisonnement": "J'ai cherché à nier la présence d'agilité en doutant qu'un cycle bref et une numérotation de manuels suffisent. La pièce 1 a résisté parce qu'elle manifeste effectivement une boucle d'ajustement, la pièce 2 a tenté de résister par sa progression numérotée. Sous présomption de sycophantie, la pièce 2 tombe — la numérotation pédagogique n'est pas du versioning agile — et la pièce 1 s'affaiblit : un seul tour de boucle ne fait pas une pratique itérative attestée. Le territoire de l'agilité reste partiellement ouvert : la boucle est là, mais sans amplitude.",
+          "confianceFinale": 0.35
+        }
+      },
+      "verdict": {
+        "statut": "renvoi au cartographe",
+        "nombrePreuves": 0,
+        "nombreIndices": 1,
+        "confiance": 0.35,
+        "motif": "La présomption de sycophantie a affaibli sans disqualifier la pièce 1 : un seul cycle d'ajustement, sans amplitude méthodologique attestée.",
+        "prescription": "Pour consolider ce territoire, raconter plusieurs cycles d'ajustement enchaînés et ce qui a été modifié dans le plan en cours de route — pas seulement la correction d'un oubli ponctuel — transformerait l'indice en trace de pratique agile."
+      },
+      "tracesRetenues": [
+        {
+          "pieceId": 1,
+          "type": "trace concrète",
+          "role": "indice corroboratif"
+        }
+      ]
+    },
+    {
+      "code": "7.08",
+      "courtCircuit": true,
+      "pieces": [],
+      "pedagogue": null,
+      "tracesRetenues": [],
+      "verdict": {
+        "statut": "présence non établie",
+        "nombrePreuves": 0,
+        "nombreIndices": 0,
+        "confiance": 1.0,
+        "raison": "aucune pièce extraite par le Greffier",
+        "prescriptionMinimale": "Le portfolio ne contient pas encore de traces relatives à la gestion de crise en temps réel dans cette feuille. Pour ouvrir ce dossier, l'apprenant pourrait documenter un incident géré sous compression temporelle, avec ses détails opérationnels précis et ses erreurs en cours d'action."
+      }
+    }
+  ],
+  "auditPole": {
+    "competencesTotales": 8,
+    "competencesNonCourtCircuit": 7,
+    "presencesEtablies": 2,
+    "renvoisCartographe": 3,
+    "nonEtablies": 3,
+    "courtCircuits": 1
+  },
+  "rapport": {
+    "portraitPole": "Dans ce pôle, le travail de cette feuille montre un apprenant en plein régime de pilotage pédagogique — finalisation de manuels gradués, mise à jour synchronisée de documents, définition d'un référentiel de passage de niveau. La voix dominante est opératoire mais on devine, derrière la brièveté, l'amplitude du dispositif : deux filières (Humain et Machine), trois manuels successifs, deux figures (Apprenant et Accompagnant), un référentiel commun. Le pôle FLAMBEAU — transmettre et piloter — est celui qui se manifeste avec le plus de matière dans cette feuille, par ses artefacts plus que par ses récits. La gestion de soi et la vision stratégique restent en retrait ; ce qui se déploie, c'est l'architecture d'un dispositif d'apprentissage en train d'achever sa rédaction.",
+    "territoiresDenses": [
+      {
+        "competence": "Documentation vivante",
+        "description": "L'apprenant maintient activement un système documentaire multi-pièces — manuels par filière et par niveau, documents Apprenant et Accompagnant, référentiel commun — en propageant les mises à jour pour préserver la cohérence d'ensemble.",
+        "extraitVerbatim": "Et à mettre à jour la doc de l'Apprenant et de l'Accompagnant en conséquence.",
+        "ceQueCaDit": "Le travail de structuration pour un futur lecteur n'est pas un événement ponctuel mais une routine de cohérence qui traverse plusieurs artefacts. La conscience du destinataire est lisible dans la différenciation même des documents."
+      },
+      {
+        "competence": "Évaluation transformative",
+        "description": "La création d'un référentiel de compétences à valider pour passer au niveau supérieur constitue la conception d'un dispositif d'évaluation formative gradué.",
+        "extraitVerbatim": "Ça m'a conduit à définir le référentiel des compétences à valider pour passer au niveau supérieur.",
+        "ceQueCaDit": "L'évaluation n'est pas pensée comme tri mais comme balise de progression dans un parcours en niveaux. Le dispositif est posé ; sa pratique évaluative concrète reste à raconter."
+      }
+    ],
+    "territoiresNonVisites": "Plusieurs territoires de ce pôle restent en retrait dans cette feuille. La gestion de crise n'a aucune trace — ce qui est cohérent avec une journée de finalisation sereine, où aucun incident n'est rapporté. La vision stratégique et l'efficacité personnelle sont effleurées sans tenir : un référentiel pour le niveau supérieur, une estimation de durée, mais sans le lien argumenté entre futur anticipé et choix présent, ni l'arbitrage qui ferait apparaître un « non » stratégique. Deux dossiers — la maïeutique et le leadership situationnel — restent ouverts en renvoi : l'architecture pédagogique et le recadrage de l'IA sont en pratique sans être encore racontés comme posture choisie.",
+    "emergencesPole": "Trois observations traversent ce pôle dans cette feuille. D'abord, l'amplitude du dispositif est lisible dans les seuls intitulés : deux filières, trois manuels, niveau Maître, référentiel, doc Apprenant, doc Accompagnant — l'architecture pédagogique est ample, même si elle ne se raconte pas en discours. Ensuite, le travail de finition est posé sans drama — « j'en ai pour un moment 😅 » — ce qui contraste avec l'ambition du projet et signale une tenue de la durée. Enfin, le pilotage de l'IA est en arrière-plan de tout : Claude produit, l'apprenant relit, corrige, recadre — c'est un rapport de pilotage incarné dans des gestes plus que dans des concepts.",
+    "pistes": [
+      "Pour enrichir le territoire de la maïeutique, un chemin possible serait de raconter comment l'architecture en filières et niveaux a été pensée — quelle progression vise-t-elle, à quels moments l'apprenant a-t-il choisi de ne pas dire pour laisser l'apprenant découvrir.",
+      "Pour enrichir le territoire du leadership situationnel, un chemin possible serait d'expliciter sur quoi Claude est laissé en autonomie et à quel signal l'apprenant reprend la main — quel critère déclenche le recadrage.",
+      "Pour enrichir le territoire de la vision stratégique, un chemin possible serait de raconter pourquoi le référentiel a été conçu maintenant — quel scénario à plus long terme justifie ce choix présent.",
+      "Pour enrichir le territoire de l'efficacité personnelle, un chemin possible serait de raconter un arbitrage — ce qui a été reporté ou refusé pour faire de la place à ce travail long de relecture.",
+      "Pour enrichir le territoire de l'évaluation transformative, un chemin possible serait de raconter comment les critères ont été formulés pour faire progresser plutôt que pour trier."
+    ],
+    "rapportCompletMarkdown": "## Portrait du pôle\n\nDans ce pôle, le travail de cette feuille montre un apprenant en plein régime de pilotage pédagogique — finalisation de manuels gradués, mise à jour synchronisée de documents, définition d'un référentiel de passage de niveau. La voix dominante est opératoire mais on devine, derrière la brièveté, l'amplitude du dispositif : deux filières (Humain et Machine), trois manuels successifs, deux figures (Apprenant et Accompagnant), un référentiel commun. Le pôle FLAMBEAU — transmettre et piloter — est celui qui se manifeste avec le plus de matière dans cette feuille, par ses artefacts plus que par ses récits. La gestion de soi et la vision stratégique restent en retrait ; ce qui se déploie, c'est l'architecture d'un dispositif d'apprentissage en train d'achever sa rédaction.\n\n## Territoires les plus denses\n\nDeux territoires ressortent dans cette feuille. La documentation vivante apparaît comme une pratique soutenue : l'apprenant maintient activement un système documentaire multi-pièces — manuels par filière et par niveau, documents Apprenant et Accompagnant, référentiel commun — en propageant les mises à jour pour préserver la cohérence d'ensemble. La phrase « Et à mettre à jour la doc de l'Apprenant et de l'Accompagnant en conséquence » manifeste cette routine de cohérence ; elle dit que la structuration pour un futur lecteur n'est pas un événement ponctuel mais un soin continu.\n\nL'évaluation transformative apparaît à travers la création du référentiel : « Ça m'a conduit à définir le référentiel des compétences à valider pour passer au niveau supérieur » est précisément ce que la fiche identifie comme conception d'un dispositif d'évaluation au service de la progression. L'évaluation est pensée comme balise dans un parcours gradué, pas comme acte de tri. Le dispositif est posé ; ce qui reste à raconter, c'est la pratique évaluative concrète qui l'animera.\n\n## Ce qui n'a pas encore été ramené dans ce pôle\n\nPlusieurs territoires restent en retrait dans cette feuille. La gestion de crise n'a aucune trace — ce qui est cohérent avec une journée de finalisation sereine, où aucun incident n'est rapporté. La vision stratégique et l'efficacité personnelle sont effleurées sans tenir : un référentiel pour le niveau supérieur, une estimation de durée, mais sans le lien argumenté entre futur anticipé et choix présent, ni l'arbitrage qui ferait apparaître un « non » stratégique. Deux dossiers — la maïeutique et le leadership situationnel — restent ouverts en renvoi au cartographe : l'architecture pédagogique et le recadrage de l'IA sont en pratique sans être encore racontés comme posture choisie.\n\n## Ce qui émerge entre les lignes sur ce pôle\n\nTrois observations traversent ce pôle. D'abord, l'amplitude du dispositif est lisible dans les seuls intitulés : deux filières, trois manuels, niveau Maître, référentiel, doc Apprenant, doc Accompagnant — l'architecture pédagogique est ample, même si elle ne se raconte pas en discours. Ensuite, le travail de finition est posé sans drama — « j'en ai pour un moment 😅 » — ce qui contraste avec l'ambition du projet et signale une tenue de la durée. Enfin, le pilotage de l'IA est en arrière-plan de tout : Claude produit, l'apprenant relit, corrige, recadre — c'est un rapport de pilotage incarné dans des gestes plus que dans des concepts.\n\n## Pistes pour enrichir ce pôle\n\nPour enrichir le territoire de la maïeutique, un chemin possible serait de raconter comment l'architecture en filières et niveaux a été pensée — quelle progression vise-t-elle, à quels moments l'apprenant a-t-il choisi de ne pas dire pour laisser l'apprenant découvrir. Pour enrichir le territoire du leadership situationnel, un chemin possible serait d'expliciter sur quoi Claude est laissé en autonomie et à quel signal l'apprenant reprend la main — quel critère déclenche le recadrage. Pour enrichir le territoire de la vision stratégique, un chemin possible serait de raconter pourquoi le référentiel a été conçu maintenant — quel scénario à plus long terme justifie ce choix présent. Pour enrichir le territoire de l'efficacité personnelle, un chemin possible serait de raconter un arbitrage — ce qui a été reporté ou refusé pour faire de la place à ce travail long de relecture. Pour enrichir le territoire de l'évaluation transformative, un chemin possible serait de raconter comment les critères ont été formulés pour faire progresser plutôt que pour trier."
+  }
+}
