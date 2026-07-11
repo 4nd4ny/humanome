@@ -2,9 +2,18 @@
 
 ## En cours
 
-- **M1 (P0+P1)** : fondations du dépôt.
+- **M2 (P2)** : visualisation unifiée + premier déploiement humanome.xyz.
 
 ## Fait
+
+- 2026-07-12 — **M1 terminé (P0+P1)**. P0 : CLAUDE.md, ADR-001..009 (relus adversarialement),
+  inventaire-assets, docker php8.2+mysql8, /api/health, web Vite+React, engine ESM, AGPL-3.0.
+  P1 : 5 schémas draft 2020-12 dérivés du corpus réel (enums recensées sur 3590 compétences×59 jours),
+  convertisseurs (carto-data→merge, extracted→jour, extract-referentiel), validation double runtime
+  (ajv engine/src/validation.js + opis api/src/Validation.php), fixtures fictives « Maya » 3 journées,
+  docs/contrats.md. Vérifié : validate-corpus 68/68 OK, engine 6/6, web 2/2, PHP 6/6.
+  Bonus : deploy FTPS prêt (ADR-008), oracle de parité sunburst capturé (331 paths du rendu original),
+  MySQL prod vérifiée (8.0.46 joignable depuis le cluster).
 
 - 2026-07-12 — Repo initialisé (commit 1 = .gitignore seul), assets copiés en lecture seule
   (`assets-existants/merge-prototype/`, `assets-existants/prototypes-react/`), cahier des
@@ -13,6 +22,10 @@
   fournie (hors repo) ; MySQL OVH à créer via panel (plugin Chrome) ; données réelles de
   démo publiées telles quelles (consentement explicite du 2026-07-11).
 - 2026-07-12 — Vérifié serveur OVH : PHP 8.2 (.ovhconfig), www/ vide, FTP OK, pas de SSH.
+- 2026-07-12 — MySQL : base OVH existante fournie par l'utilisateur (`example123.mysql.db`,
+  hébergée sur un autre hébergement OVH — credentials hors repo, `cahier des charges/mysql.txt`).
+  Plus de création via panel nécessaire. **Vérifié le jour même par sonde PDO éphémère
+  depuis le cluster humanome.xyz : joignable, MySQL 8.0.46, utf8mb4, PHP webroot 8.2.29.**
 
 ## Prochaines étapes
 

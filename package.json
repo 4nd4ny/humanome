@@ -1,0 +1,10 @@
+{
+  "name": "humanome",
+  "private": true,
+  "version": "0.1.0",
+  "license": "AGPL-3.0-only",
+  "description": "Racine du monorepo humanome.xyz — voir web/, engine/, api/. Ce package.json ne porte que des raccourcis de scripts transverses.",
+  "scripts": {
+    "validate:corpus": "node scripts/validate-corpus.mjs"
+  }
+}

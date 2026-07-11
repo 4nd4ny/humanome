@@ -1,0 +1,353 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "referentiel",
+  "id": "respire",
+  "version": "7.0.0",
+  "label": "RESPIRE v7",
+  "contentHash": "b246101cab241ac3842bcdc8bc2d1672457d13b2cbff74cf734da67fa416b6b1",
+  "source": "Instantané (fixture) du référentiel réel web/public/data/referentiel/respire-v7.json — reconstruit depuis agrege.par_competence (carto_merge.json) et domainsData (carto-data.js)",
+  "poles": [
+    {
+      "num": 1,
+      "nom": "TETE — Penser & Comprendre",
+      "couleur": "#2563eb"
+    },
+    {
+      "num": 2,
+      "nom": "COEUR — Relier & Naviguer",
+      "couleur": "#10b981"
+    },
+    {
+      "num": 3,
+      "nom": "MAIN — Créer & Incarner",
+      "couleur": "#ec4899"
+    },
+    {
+      "num": 4,
+      "nom": "AME — Discerner & Juger",
+      "couleur": "#8b5cf6"
+    },
+    {
+      "num": 5,
+      "nom": "RACINES — Évoluer & Résister",
+      "couleur": "#f59e0b"
+    },
+    {
+      "num": 6,
+      "nom": "CITE — Gouverner & S'ouvrir",
+      "couleur": "#06b6d4"
+    },
+    {
+      "num": 7,
+      "nom": "FLAMBEAU — Transmettre & Piloter",
+      "couleur": "#f97316"
+    }
+  ],
+  "competences": [
+    {
+      "code": "1.01",
+      "nom": "Pensée Critique & Anti-Hallucination",
+      "pole": 1
+    },
+    {
+      "code": "1.02",
+      "nom": "Cadrage de l'Intention",
+      "pole": 1
+    },
+    {
+      "code": "1.03",
+      "nom": "Synthèse Intégrative",
+      "pole": 1
+    },
+    {
+      "code": "1.04",
+      "nom": "Métacognition & Humilité Épistémique",
+      "pole": 1
+    },
+    {
+      "code": "1.05",
+      "nom": "Pensée Systémique",
+      "pole": 1
+    },
+    {
+      "code": "1.06",
+      "nom": "Littératie IA & Data Literacy",
+      "pole": 1
+    },
+    {
+      "code": "1.07",
+      "nom": "Architecture de Systèmes IA",
+      "pole": 1
+    },
+    {
+      "code": "1.08",
+      "nom": "Dialogue IA Avancé & Orchestration Multi-Agents",
+      "pole": 1
+    },
+    {
+      "code": "1.09",
+      "nom": "Pensée Computationnelle",
+      "pole": 1
+    },
+    {
+      "code": "1.10",
+      "nom": "Synergie & Coordination Hybride",
+      "pole": 1
+    },
+    {
+      "code": "2.01",
+      "nom": "Intelligence Émotionnelle & Sollicitude Active",
+      "pole": 2
+    },
+    {
+      "code": "2.02",
+      "nom": "Communication Authentique",
+      "pole": 2
+    },
+    {
+      "code": "2.03",
+      "nom": "Gestion des Conflits",
+      "pole": 2
+    },
+    {
+      "code": "2.04",
+      "nom": "Influence & Diplomatie",
+      "pole": 2
+    },
+    {
+      "code": "2.05",
+      "nom": "Collaboration Divergente",
+      "pole": 2
+    },
+    {
+      "code": "2.06",
+      "nom": "Intelligence Culturelle & Contextuelle",
+      "pole": 2
+    },
+    {
+      "code": "2.07",
+      "nom": "Sens Politique & Lecture Organisationnelle",
+      "pole": 2
+    },
+    {
+      "code": "2.08",
+      "nom": "Traduction entre Mondes",
+      "pole": 2
+    },
+    {
+      "code": "2.09",
+      "nom": "Construction de Communautés",
+      "pole": 2
+    },
+    {
+      "code": "3.01",
+      "nom": "Créativité Itérative & Radicale",
+      "pole": 3
+    },
+    {
+      "code": "3.02",
+      "nom": "Singularité & Signature",
+      "pole": 3
+    },
+    {
+      "code": "3.03",
+      "nom": "Design de Problèmes",
+      "pole": 3
+    },
+    {
+      "code": "3.04",
+      "nom": "Jugement Esthétique & Curation",
+      "pole": 3
+    },
+    {
+      "code": "3.05",
+      "nom": "Intelligence Manuelle & Artisanale",
+      "pole": 3
+    },
+    {
+      "code": "3.06",
+      "nom": "Ancrage Sensoriel & Pleine Présence",
+      "pole": 3
+    },
+    {
+      "code": "3.07",
+      "nom": "Présence & Performance Live",
+      "pole": 3
+    },
+    {
+      "code": "4.01",
+      "nom": "Raisonnement Éthique Appliqué",
+      "pole": 4
+    },
+    {
+      "code": "4.02",
+      "nom": "Alignement & Refus Éthique",
+      "pole": 4
+    },
+    {
+      "code": "4.03",
+      "nom": "Conscience Écologique & Long-terme",
+      "pole": 4
+    },
+    {
+      "code": "4.04",
+      "nom": "Valorisation de la Neurodiversité",
+      "pole": 4
+    },
+    {
+      "code": "4.05",
+      "nom": "Décision & Tolérance à l'Incertitude",
+      "pole": 4
+    },
+    {
+      "code": "4.06",
+      "nom": "Responsabilité, Courage & Intégrité",
+      "pole": 4
+    },
+    {
+      "code": "4.07",
+      "nom": "Validation Contextuelle",
+      "pole": 4
+    },
+    {
+      "code": "4.08",
+      "nom": "Création de Valeur Non-Automatisable",
+      "pole": 4
+    },
+    {
+      "code": "4.09",
+      "nom": "Patience Stratégique & Sens du Timing",
+      "pole": 4
+    },
+    {
+      "code": "5.01",
+      "nom": "Résilience & Antifragilité",
+      "pole": 5
+    },
+    {
+      "code": "5.02",
+      "nom": "Plasticité & Désapprentissage",
+      "pole": 5
+    },
+    {
+      "code": "5.03",
+      "nom": "Narration Réflexive",
+      "pole": 5
+    },
+    {
+      "code": "5.04",
+      "nom": "Acceptation de l'Intelligence Supérieure",
+      "pole": 5
+    },
+    {
+      "code": "5.05",
+      "nom": "Sens & Motivation Intrinsèque",
+      "pole": 5
+    },
+    {
+      "code": "5.06",
+      "nom": "Autonomie, Mode Dégradé & Débrouillardise",
+      "pole": 5
+    },
+    {
+      "code": "5.07",
+      "nom": "Souveraineté Attentionnelle",
+      "pole": 5
+    },
+    {
+      "code": "5.08",
+      "nom": "Vérification Terrain",
+      "pole": 5
+    },
+    {
+      "code": "6.01",
+      "nom": "Red-Teaming & Sécurité IA",
+      "pole": 6
+    },
+    {
+      "code": "6.02",
+      "nom": "Audit, Explicabilité & Hygiène des Données",
+      "pole": 6
+    },
+    {
+      "code": "6.03",
+      "nom": "Gouvernance Algorithmique des Services Publics",
+      "pole": 6
+    },
+    {
+      "code": "6.04",
+      "nom": "Souveraineté Numérique & Gouvernance des Communs",
+      "pole": 6
+    },
+    {
+      "code": "6.05",
+      "nom": "Participation Citoyenne & Démocratie Technologique",
+      "pole": 6
+    },
+    {
+      "code": "6.06",
+      "nom": "Veille Réglementaire & Anticipation Normative",
+      "pole": 6
+    },
+    {
+      "code": "6.07",
+      "nom": "Facilitation & Gouvernance Collective",
+      "pole": 6
+    },
+    {
+      "code": "6.08",
+      "nom": "Décentrement Anthropocentrique",
+      "pole": 6
+    },
+    {
+      "code": "6.09",
+      "nom": "Cohabitation avec les Intelligences Non-Humaines",
+      "pole": 6
+    },
+    {
+      "code": "6.10",
+      "nom": "Conscience Biosystémique & Interdépendance",
+      "pole": 6
+    },
+    {
+      "code": "7.01",
+      "nom": "Maïeutique & Facilitation d'Apprentissage",
+      "pole": 7
+    },
+    {
+      "code": "7.02",
+      "nom": "Évaluation Transformative",
+      "pole": 7
+    },
+    {
+      "code": "7.03",
+      "nom": "Documentation Vivante",
+      "pole": 7
+    },
+    {
+      "code": "7.04",
+      "nom": "Leadership Situationnel & Orchestration",
+      "pole": 7
+    },
+    {
+      "code": "7.05",
+      "nom": "Vision Stratégique & Prospective",
+      "pole": 7
+    },
+    {
+      "code": "7.06",
+      "nom": "Efficacité Personnelle",
+      "pole": 7
+    },
+    {
+      "code": "7.07",
+      "nom": "Agilité & Conduite du Changement",
+      "pole": 7
+    },
+    {
+      "code": "7.08",
+      "nom": "Gestion de Crise en Temps Réel",
+      "pole": 7
+    }
+  ]
+}

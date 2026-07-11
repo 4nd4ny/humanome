@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "prompt-package",
+  "id": "aurora-demo",
+  "version": "1.0.0",
+  "auteur": "Atelier promptologue (fixture)",
+  "description": "Paquet d'exemple minimal pour les tests de schéma : un prompt d'extraction par pôle et un prompt de synthèse kairos, avec une orchestration réduite à l'enchaînement des deux appels. Fictif : ne produit pas une cartographie complète du protocole Aurora.",
+  "modeleCible": "claude-sonnet-4-5",
+  "referentielCompatible": { "id": "respire", "versionMin": "7.0.0" },
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-01-07", "description": "Première version de démonstration du format prompt-package." }
+  ],
+  "prompts": [
+    {
+      "role": "extraction-pole",
+      "nom": "Extraction des traces d'un pôle",
+      "texte": "# Cadre\nTu es le Greffier du protocole de cartographie. Pôle examiné : {{pole_nom}} (n° {{pole_num}}). Feuille de portfolio du {{date_feuille}}.\n\n# Tâche\nExtrais du texte ci-dessous les passages saillants qui peuvent constituer des pièces pour les compétences de ce pôle : {{competences_liste}}.\n\n# Consignes\n- Cite les passages verbatim, sans reformuler ni inventer.\n- Pour chaque passage : pid, extraitVerbatim, contexte, auteur (apprenant ou tiers_nomme).\n- Si aucun passage ne concerne le pôle, renvoie une liste vide.\n\n# Format de sortie\nJSON strict : { \"passagesSaillants\": [ ... ] }\n\n# Texte de la feuille\n{{texte_feuille}}",
+      "variables": [
+        { "nom": "pole_num", "description": "Numéro du pôle examiné, tiré du référentiel (poles[].num).", "exemple": "2" },
+        { "nom": "pole_nom", "description": "Nom complet du pôle, tiré du référentiel (poles[].nom).", "exemple": "COEUR — Relier & Naviguer" },
+        { "nom": "date_feuille", "description": "Date de la feuille de portfolio en cours de cartographie (segmentation du portfolio).", "exemple": "2026-01-05" },
+        { "nom": "competences_liste", "description": "Liste « code — nom » des compétences du pôle, construite depuis le référentiel.", "exemple": "2.01 — Intelligence Émotionnelle & Sollicitude Active ; 2.02 — Communication Authentique" },
+        { "nom": "texte_feuille", "description": "Texte intégral du segment journalier du portfolio (portfolios[].texte découpé par segmentation).", "exemple": "Première semaine de la nouvelle année à l'Astrolabe…" }
+      ]
+    },
+    {
+      "role": "kairos",
+      "nom": "Synthèse transversale de la journée",
+      "texte": "# Cadre\nTu es le prompt kairos : lecture transversale de la feuille du {{date_feuille}} après cartographie des {{nb_poles}} pôles.\n\n# Tâche\nRédige le portrait de l'apprenant, la forme du profil, ce qui relie les pôles, ce qui émerge entre les lignes, et 3 à 5 invitations pour la suite.\n\n# Consignes\n- Tonalité Aurora : précise, non complaisante, adressée à l'apprenant.\n- Interdiction d'inventer : tout doit s'appuyer sur les verdicts fournis.\n\n# Format de sortie\nJSON strict : { \"kairos\": { \"apprenant\": { ... } }, \"emergencesCrossPoles\": { ... } }\n\n# Verdicts de la journée\n{{verdicts_json}}",
+      "variables": [
+        { "nom": "date_feuille", "description": "Date de la feuille de portfolio.", "exemple": "2026-01-07" },
+        { "nom": "nb_poles", "description": "Nombre de pôles du référentiel utilisé pour le run.", "exemple": "7" },
+        { "nom": "verdicts_json", "description": "Verdicts par compétence produits par les passes précédentes, sérialisés en JSON.", "exemple": "[{\"code\":\"2.01\",\"statut\":\"présence établie\",\"confiance\":0.7}]" }
+      ]
+    }
+  ],
+  "code": {
+    "orchestration": "// Module ESM exécuté dans la sandbox Web Worker (pas de DOM, pas de réseau direct).\n// providers.complete(prompt) est la seule voie d'appel LLM autorisée.\nexport async function run({ texteFeuille, dateFeuille, referentiel, providers, prompts }) {\n  const passes = [];\n  for (const pole of referentiel.poles) {\n    const liste = referentiel.competences\n      .filter((c) => c.pole === pole.num)\n      .map((c) => `${c.code} — ${c.nom}`)\n      .join(' ; ');\n    const texte = prompts['extraction-pole']\n      .replaceAll('{{pole_num}}', String(pole.num))\n      .replaceAll('{{pole_nom}}', pole.nom)\n      .replaceAll('{{date_feuille}}', dateFeuille)\n      .replaceAll('{{competences_liste}}', liste)\n      .replaceAll('{{texte_feuille}}', texteFeuille);\n    passes.push(JSON.parse(await providers.complete(texte)));\n  }\n  const kairos = JSON.parse(await providers.complete(\n    prompts['kairos']\n      .replaceAll('{{date_feuille}}', dateFeuille)\n      .replaceAll('{{nb_poles}}', String(referentiel.poles.length))\n      .replaceAll('{{verdicts_json}}', JSON.stringify(passes))\n  ));\n  return { schemaVersion: '1.0.0', kind: 'cartographie-jour', date: dateFeuille, poles: passes, kairos };\n}\n",
+    "entrypoint": "run"
+  },
+  "metadata": {
+    "creeLe": "2026-01-05T10:00:00+01:00",
+    "publieLe": "2026-01-07T18:00:00+01:00",
+    "licence": "CC-BY-SA-4.0"
+  }
+}

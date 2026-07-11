@@ -1,0 +1,430 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "cartographie-merge",
+  "generatedAt": "2026-01-07T21:30:00",
+  "source": {"protocole":"Aurora v3 — pédagogue adversarial · merge évolutif v3","journalId":"maya-fixture"},
+  "periode": {"premiere":"2026-01-05","derniere":"2026-01-07","nbFeuilles":3},
+  "domains": [
+    {
+      "id": "TETE — Penser & Comprendre",
+      "color": "#2563eb",
+      "competences": [
+        {
+          "id": "1.01 — Pensée Critique & Anti-Hallucination",
+          "code": "1.01",
+          "description": "Pensée Critique & Anti-Hallucination",
+          "niveau": 1,
+          "points": 1,
+          "statut": "présence établie",
+          "archetype": "touche_occasionnelle",
+          "archetype_titre": "Touche occasionnelle",
+          "archetype_description": "Territoire effleuré",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>La vérification de la date de la halle (cartel corrigé, source citée) établit la pensée critique en acte le 6 janvier ; le doute consigné sur le lavoir le 7 reste à boucler.</p>",
+          "score_cumule": 1,
+          "score_moyen_par_feuille": 1,
+          "confiance_moyenne": 0.62,
+          "cumul_preuves": 1,
+          "cumul_indices": 0,
+          "nb_feuilles_etablies": 1,
+          "nb_feuilles_renvois": 1,
+          "parFeuille": [
+            {"date":"2026-01-06","statut":"présence établie","confiance":0.62,"preuves":1,"indices":0,"score":1},
+            {"date":"2026-01-07","statut":"renvoi au cartographe","confiance":0.45,"preuves":0,"indices":1,"score":0.45}
+          ]
+        }
+      ],
+      "parFeuille": [
+        {"date":"2026-01-05","score":0,"etablies":0,"renvois":1},
+        {"date":"2026-01-06","score":1,"etablies":1,"renvois":0},
+        {"date":"2026-01-07","score":0,"etablies":0,"renvois":1}
+      ],
+      "rapport_html": "<h3>Rapport évolutif du pôle 1 — TETE — Penser &amp; Comprendre</h3><p>Le pôle TETE avance par vérifications : une date corrigée contre les archives le 6 janvier, un doute consigné mais différé le 7. La méthode critique s'installe, le cycle complet reste à boucler.</p>",
+      "tendance_temporelle": "pic_milieu",
+      "tendance_titre": "Pic au milieu",
+      "tendance_description": "Pôle qui s'approfondit dans la phase intermédiaire",
+      "tendance_stats": {"t1":0,"t2":1,"t3":0,"p1":0,"p2":100,"p3":0,"ecart_max_min":100}
+    },
+    {
+      "id": "COEUR — Relier & Naviguer",
+      "color": "#10b981",
+      "competences": [
+        {
+          "id": "2.01 — Intelligence Émotionnelle & Sollicitude Active",
+          "code": "2.01",
+          "description": "Intelligence Émotionnelle & Sollicitude Active",
+          "niveau": 5,
+          "points": 3,
+          "statut": "présence établie",
+          "archetype": "trait_fondateur",
+          "archetype_titre": "Trait fondateur",
+          "archetype_description": "Revient souvent et avec densité",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>Établie les trois jours avec une confiance croissante : Naël réintégré par un rôle, Lina accompagnée puis suivie, Mme Berthier incluse — et une première corroboration externe par l'enseignante.</p>",
+          "score_cumule": 6.98,
+          "score_moyen_par_feuille": 2.3267,
+          "confiance_moyenne": 0.7433,
+          "cumul_preuves": 4,
+          "cumul_indices": 4,
+          "nb_feuilles_etablies": 3,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [
+            {"date":"2026-01-05","statut":"présence établie","confiance":0.7,"preuves":1,"indices":1,"score":1.7},
+            {"date":"2026-01-06","statut":"présence établie","confiance":0.75,"preuves":1,"indices":2,"score":2.5},
+            {"date":"2026-01-07","statut":"présence établie","confiance":0.78,"preuves":2,"indices":1,"score":2.78}
+          ]
+        },
+        {
+          "id": "2.06 — Intelligence Culturelle & Contextuelle",
+          "code": "2.06",
+          "description": "Intelligence Culturelle & Contextuelle",
+          "niveau": 3,
+          "points": 1,
+          "statut": "présence établie",
+          "archetype": "en_formation",
+          "archetype_titre": "En formation",
+          "archetype_description": "En train de prendre place dans le profil",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>Les codes culturels observés puis intégrés (salut du grand-père de Yusuf, consigne traduite par les ados) dessinent une compétence en formation, encore sans situation de tension documentée.</p>",
+          "score_cumule": 1.2,
+          "score_moyen_par_feuille": 1.2,
+          "confiance_moyenne": 0.6,
+          "cumul_preuves": 0,
+          "cumul_indices": 2,
+          "nb_feuilles_etablies": 1,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [{"date":"2026-01-06","statut":"présence établie","confiance":0.6,"preuves":0,"indices":2,"score":1.2}]
+        }
+      ],
+      "parFeuille": [
+        {"date":"2026-01-05","score":1.7,"etablies":1,"renvois":0},
+        {"date":"2026-01-06","score":3.7,"etablies":2,"renvois":1},
+        {"date":"2026-01-07","score":2.78,"etablies":1,"renvois":0}
+      ],
+      "rapport_html": "<h3>Rapport évolutif du pôle 2 — COEUR — Relier &amp; Naviguer</h3><p>Cœur battant de la période : la sollicitude active est établie les trois jours, l'intelligence culturelle émerge le 6, et la communication authentique reste le territoire en jachère, nommé mais non franchi (Karim).</p>",
+      "tendance_temporelle": "pic_milieu",
+      "tendance_titre": "Pic au milieu",
+      "tendance_description": "Pôle qui s'approfondit dans la phase intermédiaire",
+      "tendance_stats": {"t1":1,"t2":2,"t3":1,"p1":25,"p2":50,"p3":25,"ecart_max_min":25}
+    },
+    {
+      "id": "MAIN — Créer & Incarner",
+      "color": "#ec4899",
+      "competences": [
+        {
+          "id": "3.04 — Jugement Esthétique & Curation",
+          "code": "3.04",
+          "description": "Jugement Esthétique & Curation",
+          "niveau": 1,
+          "points": 1,
+          "statut": "présence établie",
+          "archetype": "touche_occasionnelle",
+          "archetype_titre": "Touche occasionnelle",
+          "archetype_description": "Territoire effleuré",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>Un acte de curation net le 5 janvier (douze clichés écartés, la série des mains conservée) ; le territoire n'est pas revisité ensuite.</p>",
+          "score_cumule": 1,
+          "score_moyen_par_feuille": 1,
+          "confiance_moyenne": 0.6,
+          "cumul_preuves": 1,
+          "cumul_indices": 0,
+          "nb_feuilles_etablies": 1,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [{"date":"2026-01-05","statut":"présence établie","confiance":0.6,"preuves":1,"indices":0,"score":1}]
+        },
+        {
+          "id": "3.07 — Présence & Performance Live",
+          "code": "3.07",
+          "description": "Présence & Performance Live",
+          "niveau": 5,
+          "points": 1,
+          "statut": "présence établie",
+          "archetype": "pic_intensite",
+          "archetype_titre": "Pic d'intensité",
+          "archetype_description": "Apparaît rarement, mais densément quand c'est le cas",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>Une seule journée, mais dense : micro en panne converti en dispositif scénique, trac transformé, improvisation pilotée par la salle au vernissage du 7 janvier.</p>",
+          "score_cumule": 2.48,
+          "score_moyen_par_feuille": 2.48,
+          "confiance_moyenne": 0.74,
+          "cumul_preuves": 1,
+          "cumul_indices": 2,
+          "nb_feuilles_etablies": 1,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [{"date":"2026-01-07","statut":"présence établie","confiance":0.74,"preuves":1,"indices":2,"score":2.48}]
+        }
+      ],
+      "parFeuille": [
+        {"date":"2026-01-05","score":1,"etablies":1,"renvois":0},
+        {"date":"2026-01-06","score":0,"etablies":0,"renvois":0},
+        {"date":"2026-01-07","score":2.48,"etablies":1,"renvois":0}
+      ],
+      "rapport_html": "<h3>Rapport évolutif du pôle 3 — MAIN — Créer &amp; Incarner</h3><p>Deux éclats nets : la curation de l'accrochage le 5 janvier, puis la performance live du vernissage le 7, où la panne de micro devient dispositif scénique.</p>",
+      "tendance_temporelle": "intermittence",
+      "tendance_titre": "Présence intermittente",
+      "tendance_description": "Pôle mobilisé par touches, avec un creux au milieu de la période",
+      "tendance_stats": {"t1":1,"t2":0,"t3":1,"p1":50,"p2":0,"p3":50,"ecart_max_min":50}
+    },
+    {
+      "id": "AME — Discerner & Juger",
+      "color": "#8b5cf6",
+      "competences": [
+        {
+          "id": "4.05 — Décision & Tolérance à l'Incertitude",
+          "code": "4.05",
+          "description": "Décision & Tolérance à l'Incertitude",
+          "niveau": 2,
+          "points": 1,
+          "statut": "présence établie",
+          "archetype": "touche_occasionnelle",
+          "archetype_titre": "Touche occasionnelle",
+          "archetype_description": "Territoire effleuré",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>La décision de rapatrier la lecture en salle, tranchée seule et assumée avec son incertitude résiduelle, ouvre le territoire sur un enjeu encore modeste.</p>",
+          "score_cumule": 1.16,
+          "score_moyen_par_feuille": 1.16,
+          "confiance_moyenne": 0.58,
+          "cumul_preuves": 0,
+          "cumul_indices": 2,
+          "nb_feuilles_etablies": 1,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [{"date":"2026-01-07","statut":"présence établie","confiance":0.58,"preuves":0,"indices":2,"score":1.16}]
+        }
+      ],
+      "parFeuille": [
+        {"date":"2026-01-05","score":0,"etablies":0,"renvois":0},
+        {"date":"2026-01-06","score":0,"etablies":0,"renvois":0},
+        {"date":"2026-01-07","score":1.16,"etablies":1,"renvois":0}
+      ],
+      "rapport_html": "<h3>Rapport évolutif du pôle 4 — AME — Discerner &amp; Juger</h3><p>Le pôle s'ouvre le 7 janvier par la décision sous incertitude (la lecture rapatriée en salle) ; le courage relationnel, lui, reste documenté en creux par l'évitement reconnu de la conversation avec Karim.</p>",
+      "tendance_temporelle": "crescendo",
+      "tendance_titre": "Crescendo",
+      "tendance_description": "Pôle dont la place croît au fil du portfolio",
+      "tendance_stats": {"t1":0,"t2":0,"t3":1,"p1":0,"p2":0,"p3":100,"ecart_max_min":100}
+    },
+    {
+      "id": "RACINES — Évoluer & Résister",
+      "color": "#f59e0b",
+      "competences": [
+        {
+          "id": "5.01 — Résilience & Antifragilité",
+          "code": "5.01",
+          "description": "Résilience & Antifragilité",
+          "niveau": 3,
+          "points": 1,
+          "statut": "présence établie",
+          "archetype": "en_formation",
+          "archetype_titre": "En formation",
+          "archetype_description": "En train de prendre place dans le profil",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>L'atelier qui dérape est réorganisé en petits groupes, et la comparaison avec septembre trace une trajectoire d'antifragilité naissante.</p>",
+          "score_cumule": 1.28,
+          "score_moyen_par_feuille": 1.28,
+          "confiance_moyenne": 0.64,
+          "cumul_preuves": 0,
+          "cumul_indices": 2,
+          "nb_feuilles_etablies": 1,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [{"date":"2026-01-06","statut":"présence établie","confiance":0.64,"preuves":0,"indices":2,"score":1.28}]
+        },
+        {
+          "id": "5.03 — Narration Réflexive",
+          "code": "5.03",
+          "description": "Narration Réflexive",
+          "niveau": 4,
+          "points": 2,
+          "statut": "présence établie",
+          "archetype": "trait_fondateur",
+          "archetype_titre": "Trait fondateur",
+          "archetype_description": "Revient souvent et avec densité",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>Le carnet fonctionne dès le premier soir comme instrument d'auto-observation (le « on » de fuite), puis boucle sur lui-même le troisième (relire lundi pour préparer mercredi).</p>",
+          "score_cumule": 3.47,
+          "score_moyen_par_feuille": 1.735,
+          "confiance_moyenne": 0.735,
+          "cumul_preuves": 2,
+          "cumul_indices": 2,
+          "nb_feuilles_etablies": 2,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [
+            {"date":"2026-01-05","statut":"présence établie","confiance":0.72,"preuves":1,"indices":1,"score":1.72},
+            {"date":"2026-01-07","statut":"présence établie","confiance":0.75,"preuves":1,"indices":1,"score":1.75}
+          ]
+        }
+      ],
+      "parFeuille": [
+        {"date":"2026-01-05","score":1.72,"etablies":1,"renvois":0},
+        {"date":"2026-01-06","score":1.28,"etablies":1,"renvois":0},
+        {"date":"2026-01-07","score":1.75,"etablies":1,"renvois":0}
+      ],
+      "rapport_html": "<h3>Rapport évolutif du pôle 5 — RACINES — Évoluer &amp; Résister</h3><p>Présence régulière et discrète : le carnet s'outille (relecture, motifs, loi personnelle du renoncement) pendant que la résilience se montre une fois, à chaud, le 6 janvier.</p>",
+      "tendance_temporelle": "presence_reguliere",
+      "tendance_titre": "Présence régulière",
+      "tendance_description": "Pôle mobilisé tout au long de la période",
+      "tendance_stats": {"t1":1,"t2":1,"t3":1,"p1":33.3,"p2":33.3,"p3":33.3,"ecart_max_min":0}
+    },
+    {
+      "id": "CITE — Gouverner & S'ouvrir",
+      "color": "#06b6d4",
+      "competences": [
+        {
+          "id": "6.07 — Facilitation & Gouvernance Collective",
+          "code": "6.07",
+          "description": "Facilitation & Gouvernance Collective",
+          "niveau": 2,
+          "points": 1,
+          "statut": "présence établie",
+          "archetype": "frontiere_en_mouvement",
+          "archetype_titre": "Frontière en mouvement",
+          "archetype_description": "Vibre à des frontières fines, à clarifier en entretien",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>Le comité d'habitants du 7 janvier montre un dispositif complet (tour de parole, reformulation, régulation) sur une seule occurrence : frontière à confirmer en entretien.</p>",
+          "score_cumule": 1.1,
+          "score_moyen_par_feuille": 1.1,
+          "confiance_moyenne": 0.55,
+          "cumul_preuves": 0,
+          "cumul_indices": 2,
+          "nb_feuilles_etablies": 1,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [{"date":"2026-01-07","statut":"présence établie","confiance":0.55,"preuves":0,"indices":2,"score":1.1}]
+        }
+      ],
+      "parFeuille": [
+        {"date":"2026-01-05","score":0,"etablies":0,"renvois":0},
+        {"date":"2026-01-06","score":0,"etablies":0,"renvois":0},
+        {"date":"2026-01-07","score":1.1,"etablies":1,"renvois":0}
+      ],
+      "rapport_html": "<h3>Rapport évolutif du pôle 6 — CITE — Gouverner &amp; S'ouvrir</h3><p>Pôle qui n'apparaît qu'au dernier jour, avec la facilitation du comité d'habitants : dispositif complet mais occurrence unique, à confirmer.</p>",
+      "tendance_temporelle": "crescendo",
+      "tendance_titre": "Crescendo",
+      "tendance_description": "Pôle dont la place croît au fil du portfolio",
+      "tendance_stats": {"t1":0,"t2":0,"t3":1,"p1":0,"p2":0,"p3":100,"ecart_max_min":100}
+    },
+    {
+      "id": "FLAMBEAU — Transmettre & Piloter",
+      "color": "#f97316",
+      "competences": [
+        {
+          "id": "7.01 — Maïeutique & Facilitation d'Apprentissage",
+          "code": "7.01",
+          "description": "Maïeutique & Facilitation d'Apprentissage",
+          "niveau": 4,
+          "points": 2,
+          "statut": "présence établie",
+          "archetype": "trait_fondateur",
+          "archetype_titre": "Trait fondateur",
+          "archetype_description": "Revient souvent et avec densité",
+          "feedback": "<div class=\"verdict-badge etablie\">Présence établie (cumulée)</div><p>Du questionnement en visite scolaire (lundi) aux ados co-guides préparés par les questions (mercredi), la posture maïeutique structure la période.</p>",
+          "score_cumule": 3.16,
+          "score_moyen_par_feuille": 1.58,
+          "confiance_moyenne": 0.74,
+          "cumul_preuves": 1,
+          "cumul_indices": 3,
+          "nb_feuilles_etablies": 2,
+          "nb_feuilles_renvois": 0,
+          "parFeuille": [
+            {"date":"2026-01-05","statut":"présence établie","confiance":0.68,"preuves":0,"indices":2,"score":1.36},
+            {"date":"2026-01-07","statut":"présence établie","confiance":0.8,"preuves":1,"indices":1,"score":1.8}
+          ]
+        }
+      ],
+      "parFeuille": [
+        {"date":"2026-01-05","score":1.36,"etablies":1,"renvois":0},
+        {"date":"2026-01-06","score":0,"etablies":0,"renvois":0},
+        {"date":"2026-01-07","score":1.8,"etablies":1,"renvois":0}
+      ],
+      "rapport_html": "<h3>Rapport évolutif du pôle 7 — FLAMBEAU — Transmettre &amp; Piloter</h3><p>La transmission encadre la période : questionner plutôt qu'expliquer le lundi, faire guider les ados le mercredi. La documentation des outils produits reste le chaînon manquant.</p>",
+      "tendance_temporelle": "intermittence",
+      "tendance_titre": "Présence intermittente",
+      "tendance_description": "Pôle mobilisé par touches, avec un creux au milieu de la période",
+      "tendance_stats": {"t1":1,"t2":0,"t3":1,"p1":50,"p2":0,"p3":50,"ecart_max_min":50}
+    }
+  ],
+  "profilMeta": {
+    "journal_id": "maya-fixture",
+    "nb_feuilles": 3,
+    "premiere_date": "2026-01-05",
+    "derniere_date": "2026-01-07",
+    "date_construction": "2026-01-07T21:30:00",
+    "source_protocole": "Aurora v3 — pédagogue adversarial · merge évolutif v3",
+    "score_total": 22.83,
+    "indice_herfindahl": 0.1622,
+    "competences_etablies": 10,
+    "competences_renvoyees": 2,
+    "competences_orphelines": 1,
+    "feuilles_chronologiques": ["2026-01-05","2026-01-06","2026-01-07"],
+    "evolution_globale": [
+      {"date":"2026-01-05","score_total":5.78,"etablies":4,"renvois":1,"non_etablies":10,"herfindahl":0.2604},
+      {"date":"2026-01-06","score_total":5.98,"etablies":4,"renvois":1,"non_etablies":10,"herfindahl":0.2888},
+      {"date":"2026-01-07","score_total":11.07,"etablies":6,"renvois":1,"non_etablies":8,"herfindahl":0.1855}
+    ]
+  },
+  "profilIpsatif": {
+    "1": {
+      "pole_num": 1,
+      "pole_nom": "TETE — Penser & Comprendre",
+      "score_cumule": 1,
+      "proportion_globale": 0.0438,
+      "competences_etablies": 1,
+      "competences": [{"code":"1.01","nom":"Pensée Critique & Anti-Hallucination","score":1,"proportion_globale":0.0438,"proportion_intra_pole":1}]
+    },
+    "2": {
+      "pole_num": 2,
+      "pole_nom": "COEUR — Relier & Naviguer",
+      "score_cumule": 8.18,
+      "proportion_globale": 0.3583,
+      "competences_etablies": 2,
+      "competences": [
+        {"code":"2.01","nom":"Intelligence Émotionnelle & Sollicitude Active","score":6.98,"proportion_globale":0.3057,"proportion_intra_pole":0.8533},
+        {"code":"2.06","nom":"Intelligence Culturelle & Contextuelle","score":1.2,"proportion_globale":0.0526,"proportion_intra_pole":0.1467}
+      ]
+    },
+    "3": {
+      "pole_num": 3,
+      "pole_nom": "MAIN — Créer & Incarner",
+      "score_cumule": 3.48,
+      "proportion_globale": 0.1524,
+      "competences_etablies": 2,
+      "competences": [
+        {"code":"3.07","nom":"Présence & Performance Live","score":2.48,"proportion_globale":0.1086,"proportion_intra_pole":0.7126},
+        {"code":"3.04","nom":"Jugement Esthétique & Curation","score":1,"proportion_globale":0.0438,"proportion_intra_pole":0.2874}
+      ]
+    },
+    "4": {
+      "pole_num": 4,
+      "pole_nom": "AME — Discerner & Juger",
+      "score_cumule": 1.16,
+      "proportion_globale": 0.0508,
+      "competences_etablies": 1,
+      "competences": [{"code":"4.05","nom":"Décision & Tolérance à l'Incertitude","score":1.16,"proportion_globale":0.0508,"proportion_intra_pole":1}]
+    },
+    "5": {
+      "pole_num": 5,
+      "pole_nom": "RACINES — Évoluer & Résister",
+      "score_cumule": 4.75,
+      "proportion_globale": 0.2081,
+      "competences_etablies": 2,
+      "competences": [
+        {"code":"5.03","nom":"Narration Réflexive","score":3.47,"proportion_globale":0.152,"proportion_intra_pole":0.7305},
+        {"code":"5.01","nom":"Résilience & Antifragilité","score":1.28,"proportion_globale":0.0561,"proportion_intra_pole":0.2695}
+      ]
+    },
+    "6": {
+      "pole_num": 6,
+      "pole_nom": "CITE — Gouverner & S'ouvrir",
+      "score_cumule": 1.1,
+      "proportion_globale": 0.0482,
+      "competences_etablies": 1,
+      "competences": [{"code":"6.07","nom":"Facilitation & Gouvernance Collective","score":1.1,"proportion_globale":0.0482,"proportion_intra_pole":1}]
+    },
+    "7": {
+      "pole_num": 7,
+      "pole_nom": "FLAMBEAU — Transmettre & Piloter",
+      "score_cumule": 3.16,
+      "proportion_globale": 0.1384,
+      "competences_etablies": 1,
+      "competences": [{"code":"7.01","nom":"Maïeutique & Facilitation d'Apprentissage","score":3.16,"proportion_globale":0.1384,"proportion_intra_pole":1}]
+    }
+  },
+  "feuilles": [
+    {"date":"2026-01-05","iso":"2026-01-05","label":"05/01/2026","ordre":0,"carto_day_url":"feuilles/2026-01-05/carto-day.html"},
+    {"date":"2026-01-06","iso":"2026-01-06","label":"06/01/2026","ordre":1,"carto_day_url":"feuilles/2026-01-06/carto-day.html"},
+    {"date":"2026-01-07","iso":"2026-01-07","label":"07/01/2026","ordre":2,"carto_day_url":"feuilles/2026-01-07/carto-day.html"}
+  ],
+  "narratifs": {
+    "kairosHtml": "<h3>Synthèse évolutive du portfolio</h3>\n<p class=\"periode-resume\"><em>3 feuilles cartographiées entre 05/01/2026 et 07/01/2026.</em></p>\n<h4>Portrait</h4>\n<p>Trois jours qui vont de l'accrochage au vernissage, et un geste qui se répète : renoncer à quelque chose (un plan de visite, un micro, le premier rôle) pour que la rencontre ait lieu. La sollicitude active est le trait le plus constant du profil, corroborée le dernier jour par un regard extérieur ; autour d'elle montent la maïeutique, la narration réflexive et, en pic, la performance live.</p>\n<h4>Ce qui se dessine</h4>\n<p>Une médiatrice qui conduit en s'effaçant, vérifie avant d'affirmer, et transforme les imprévus en dispositifs. Deux seuils nommés restent devant elle : la conversation directe avec le directeur, et la documentation des outils qu'elle improvise.</p>",
+    "rapportHtml": "<h3>Synthèse évolutive du portfolio</h3>\n<p class=\"periode-resume\"><em>3 feuilles cartographiées entre 05/01/2026 et 07/01/2026.</em></p>\n<h4>Portrait</h4>\n<p>Trois jours qui vont de l'accrochage au vernissage, et un geste qui se répète : renoncer à quelque chose (un plan de visite, un micro, le premier rôle) pour que la rencontre ait lieu. La sollicitude active est le trait le plus constant du profil, corroborée le dernier jour par un regard extérieur ; autour d'elle montent la maïeutique, la narration réflexive et, en pic, la performance live.</p>\n<h4>Ce qui se dessine</h4>\n<p>Une médiatrice qui conduit en s'effaçant, vérifie avant d'affirmer, et transforme les imprévus en dispositifs. Deux seuils nommés restent devant elle : la conversation directe avec le directeur, et la documentation des outils qu'elle improvise.</p>"
+  },
+  "reserved": {"connexionsData":[],"noeudsConceptuels":[],"patternTemporel":{"pattern":"","description":""},"piecesData":{}}
+}

@@ -1,0 +1,688 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://humanome.xyz/schemas/cartographie-merge.schema.json",
+  "title": "Cartographie — document merge évolutif",
+  "description": "Document « cartographie-merge » : cartographie chronologique agrégée de TOUTES les feuilles d'un portfolio (merge évolutif v3), produit par scripts/convert/carto-data-to-merge-json.mjs à partir du carto-data.js hérité. L'enveloppe (schemaVersion, kind, generatedAt, source, periode, narratifs, reserved) est construite par le convertisseur ; domains, profilMeta, profilIpsatif et feuilles sont les constantes amont recopiées telles quelles, sans renommage de champ. Schéma déduit du corpus démo (web/public/data/demo/merge.json, 59 feuilles).",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version sémantique du schéma d'enveloppe. Valeur observée : « 1.0.0 »."
+    },
+    "kind": {
+      "const": "cartographie-merge",
+      "description": "Discriminant de type de document (permet de distinguer le merge évolutif d'une feuille de journée)."
+    },
+    "generatedAt": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
+      "description": "Date-heure de construction du merge (recopie de profilMeta.date_construction, sans fuseau horaire). null si la métadonnée amont est absente."
+    },
+    "source": {
+      "type": "object",
+      "description": "Provenance du merge (recopie de métadonnées amont).",
+      "properties": {
+        "protocole": {
+          "type": ["string", "null"],
+          "description": "Protocole de cartographie ayant produit les données, ex. « Aurora v3 — pédagogue adversarial · merge évolutif v3 ». null si absent en amont."
+        },
+        "journalId": {
+          "type": ["string", "null"],
+          "description": "Identifiant du journal source (« merged » dans le corpus). null si absent en amont."
+        }
+      },
+      "required": ["protocole", "journalId"],
+      "additionalProperties": false
+    },
+    "periode": {
+      "type": "object",
+      "description": "Période couverte par le merge.",
+      "properties": {
+        "premiere": {
+          "$ref": "#/$defs/dateIso",
+          "description": "Date de la première feuille cartographiée."
+        },
+        "derniere": {
+          "$ref": "#/$defs/dateIso",
+          "description": "Date de la dernière feuille cartographiée."
+        },
+        "nbFeuilles": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Nombre de feuilles de portfolio agrégées dans le merge."
+        }
+      },
+      "required": ["premiere", "derniere", "nbFeuilles"],
+      "additionalProperties": false
+    },
+    "domains": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": { "$ref": "#/$defs/domain" },
+      "description": "Les 7 pôles du référentiel RESPIRE avec leurs compétences établies agrégées sur la période (source du sunburst)."
+    },
+    "profilMeta": { "$ref": "#/$defs/profilMeta" },
+    "profilIpsatif": {
+      "type": "object",
+      "description": "Profil ipsatif : répartition RELATIVE des scores entre pôles et compétences (les proportions comparent l'apprenant à lui-même, pas à autrui). Dictionnaire indexé par numéro de pôle, clés « 1 » à « 7 ».",
+      "patternProperties": {
+        "^[1-7]$": { "$ref": "#/$defs/profilIpsatifPole" }
+      },
+      "additionalProperties": false
+    },
+    "feuilles": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/feuille" },
+      "description": "Liste chronologique des feuilles de portfolio agrégées (une entrée par journée)."
+    },
+    "narratifs": {
+      "type": "object",
+      "description": "Narratifs HTML du merge, à assainir avec DOMPurify avant injection (ADR-007).",
+      "properties": {
+        "kairosHtml": {
+          "type": "string",
+          "description": "Synthèse évolutive kairos du portfolio complet, en HTML."
+        },
+        "rapportHtml": {
+          "type": "string",
+          "description": "Rapport évolutif global en HTML. Dans le corpus connu c'est un alias de kairosHtml ; champ distinct car le viewer lit les deux."
+        }
+      },
+      "required": ["kairosHtml", "rapportHtml"],
+      "additionalProperties": false
+    },
+    "reserved": {
+      "type": "object",
+      "description": "Constantes amont conservées pour compatibilité mais vides ou inutilisées dans le corpus actuel. Structure interne non garantie.",
+      "properties": {
+        "connexionsData": {
+          "type": "array",
+          "description": "Réservé : connexions transversales agrégées (tableau vide dans le corpus)."
+        },
+        "noeudsConceptuels": {
+          "type": "array",
+          "description": "Réservé : nœuds conceptuels agrégés (tableau vide dans le corpus)."
+        },
+        "patternTemporel": {
+          "type": "object",
+          "description": "Réservé : pattern temporel global du portfolio.",
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "description": "Identifiant du pattern temporel (chaîne vide dans le corpus)."
+            },
+            "description": {
+              "type": "string",
+              "description": "Description du pattern temporel (chaîne vide dans le corpus)."
+            }
+          },
+          "required": ["pattern", "description"],
+          "additionalProperties": true
+        },
+        "piecesData": {
+          "type": "object",
+          "description": "Réservé : dictionnaire de pièces agrégées (objet vide dans le corpus). Structure interne non contrainte.",
+          "additionalProperties": true
+        }
+      },
+      "required": ["connexionsData", "noeudsConceptuels", "patternTemporel", "piecesData"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "generatedAt",
+    "source",
+    "periode",
+    "domains",
+    "profilMeta",
+    "profilIpsatif",
+    "feuilles",
+    "narratifs",
+    "reserved"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "dateIso": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "format": "date",
+      "description": "Date au format ISO AAAA-MM-JJ."
+    },
+    "codeCompetence": {
+      "type": "string",
+      "pattern": "^[1-7]\\.\\d{2}$",
+      "description": "Code d'une compétence du référentiel RESPIRE v7 : <numéro de pôle 1-7>.<rang sur deux chiffres>, ex. « 1.01 », « 7.04 »."
+    },
+    "statutCompetence": {
+      "type": "string",
+      "enum": ["présence établie", "présence non établie", "renvoi au cartographe"],
+      "description": "Statut d'une compétence issu du verdict journalier."
+    },
+    "domain": {
+      "type": "object",
+      "description": "Un pôle du référentiel agrégé sur la période. Donnée amont recopiée telle quelle : seuls les champs décrits ici sont garantis.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifiant/nom complet du pôle, ex. « TETE — Penser & Comprendre », « FLAMBEAU — Transmettre & Piloter »."
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Couleur hexadécimale du pôle dans le sunburst, ex. « #2563eb »."
+        },
+        "competences": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/domainCompetence" },
+          "description": "Compétences du pôle retenues dans le merge (compétences établies sur la période ; 5 à 10 par pôle observées)."
+        },
+        "parFeuille": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "description": "Agrégat journalier du pôle.",
+            "properties": {
+              "date": {
+                "$ref": "#/$defs/dateIso",
+                "description": "Date de la feuille."
+              },
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Score cumulé du pôle pour cette feuille (0 à 33.04 observé)."
+              },
+              "etablies": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Nombre de compétences du pôle établies ce jour-là."
+              },
+              "renvois": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Nombre de compétences du pôle renvoyées au cartographe ce jour-là."
+              }
+            },
+            "required": ["date", "score", "etablies", "renvois"],
+            "additionalProperties": true
+          },
+          "description": "Série chronologique du pôle : un point par feuille de portfolio (59 dans le corpus)."
+        },
+        "rapport_html": {
+          "type": "string",
+          "description": "Rapport évolutif du pôle sur toute la période, en HTML (à assainir avec DOMPurify avant injection, ADR-007)."
+        },
+        "tendance_temporelle": {
+          "type": "string",
+          "description": "Identifiant de la tendance temporelle du pôle sur la période. Valeurs observées dans le corpus : « presence_reguliere », « pic_milieu », « crescendo » ; vocabulaire non fermé (d'autres tendances, ex. décroissance, sont plausibles pour d'autres corpus), d'où l'absence d'enum.",
+          "examples": ["presence_reguliere", "pic_milieu", "crescendo"]
+        },
+        "tendance_titre": {
+          "type": "string",
+          "description": "Titre lisible de la tendance, ex. « Présence régulière », « Pic au milieu », « Crescendo »."
+        },
+        "tendance_description": {
+          "type": "string",
+          "description": "Description en une phrase de la tendance, ex. « Pôle mobilisé tout au long de la période »."
+        },
+        "tendance_stats": {
+          "type": "object",
+          "description": "Statistiques d'activité du pôle par tiers de la période, support du diagnostic de tendance.",
+          "properties": {
+            "t1": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Volume d'activité du pôle sur le premier tiers de la période (effectif brut)."
+            },
+            "t2": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Volume d'activité du pôle sur le deuxième tiers de la période (effectif brut)."
+            },
+            "t3": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Volume d'activité du pôle sur le troisième tiers de la période (effectif brut)."
+            },
+            "p1": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Part du premier tiers dans l'activité du pôle, en pourcentage (p1+p2+p3 ≈ 100)."
+            },
+            "p2": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Part du deuxième tiers dans l'activité du pôle, en pourcentage."
+            },
+            "p3": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Part du troisième tiers dans l'activité du pôle, en pourcentage."
+            },
+            "ecart_max_min": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Écart entre la part du tiers le plus actif et celle du tiers le moins actif, en points de pourcentage."
+            }
+          },
+          "required": ["t1", "t2", "t3", "p1", "p2", "p3", "ecart_max_min"],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "id",
+        "color",
+        "competences",
+        "parFeuille",
+        "rapport_html",
+        "tendance_temporelle",
+        "tendance_titre",
+        "tendance_description",
+        "tendance_stats"
+      ],
+      "additionalProperties": true
+    },
+    "domainCompetence": {
+      "type": "object",
+      "description": "Une compétence établie, agrégée sur toute la période (secteur du sunburst). Donnée amont recopiée telle quelle : seuls les champs décrits ici sont garantis.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifiant lisible : « <code> — <nom> », ex. « 1.01 — Pensée Critique & Anti-Hallucination »."
+        },
+        "code": { "$ref": "#/$defs/codeCompetence" },
+        "description": {
+          "type": "string",
+          "description": "Nom court de la compétence (libellé du référentiel)."
+        },
+        "niveau": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Niveau agrégé de la compétence sur la période, de 1 à 5 (rayon du secteur dans le sunburst)."
+        },
+        "points": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Points attribués à la compétence (1 à 32 observé ; corrélé au nombre de feuilles établies)."
+        },
+        "statut": {
+          "$ref": "#/$defs/statutCompetence",
+          "description": "Statut agrégé de la compétence. Seule « présence établie » est observée dans le corpus : le merge ne retient que les compétences établies."
+        },
+        "archetype": {
+          "type": "string",
+          "enum": [
+            "trait_fondateur",
+            "presence_arriere_plan",
+            "frontiere_en_mouvement",
+            "pic_intensite",
+            "touche_occasionnelle",
+            "en_formation"
+          ],
+          "description": "Archétype temporel de la compétence sur la période (typologie du merge évolutif v3 ; les 6 valeurs sont observées dans le corpus)."
+        },
+        "archetype_titre": {
+          "type": "string",
+          "description": "Titre lisible de l'archétype, ex. « Trait fondateur », « Frontière en mouvement »."
+        },
+        "archetype_description": {
+          "type": "string",
+          "description": "Description en une phrase de l'archétype, ex. « Revient souvent et avec densité »."
+        },
+        "feedback": {
+          "type": "string",
+          "description": "Feedback narratif détaillé sur la compétence (HTML, à assainir avec DOMPurify avant injection, ADR-007)."
+        },
+        "score_cumule": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Score cumulé de la compétence sur toutes les feuilles (1.7 à 76.83 observé)."
+        },
+        "score_moyen_par_feuille": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Score moyen par feuille où la compétence apparaît."
+        },
+        "confiance_moyenne": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confiance moyenne des verdicts « présence établie » (0.58 à 0.8 observé)."
+        },
+        "cumul_preuves": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre total de preuves décisives cumulées sur la période."
+        },
+        "cumul_indices": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre total d'indices corroboratifs cumulés sur la période."
+        },
+        "nb_feuilles_etablies": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de feuilles où la compétence a le statut « présence établie »."
+        },
+        "nb_feuilles_renvois": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de feuilles où la compétence a le statut « renvoi au cartographe »."
+        },
+        "parFeuille": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "description": "Verdict journalier de la compétence (seules les feuilles où elle n'est pas court-circuitée apparaissent).",
+            "properties": {
+              "date": {
+                "$ref": "#/$defs/dateIso",
+                "description": "Date de la feuille."
+              },
+              "statut": { "$ref": "#/$defs/statutCompetence" },
+              "confiance": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Confiance du verdict journalier (0.1 à 1 observé)."
+              },
+              "preuves": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Nombre de preuves décisives ce jour-là (0 à 5 observé)."
+              },
+              "indices": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Nombre d'indices corroboratifs ce jour-là (0 à 4 observé)."
+              },
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Score de la compétence pour cette feuille (0 à 6.8 observé)."
+              }
+            },
+            "required": ["date", "statut", "confiance", "preuves", "indices", "score"],
+            "additionalProperties": true
+          },
+          "description": "Série chronologique des verdicts de la compétence (10 à 53 points observés sur 59 feuilles)."
+        }
+      },
+      "required": [
+        "id",
+        "code",
+        "description",
+        "niveau",
+        "points",
+        "statut",
+        "archetype",
+        "archetype_titre",
+        "archetype_description",
+        "feedback",
+        "score_cumule",
+        "score_moyen_par_feuille",
+        "confiance_moyenne",
+        "cumul_preuves",
+        "cumul_indices",
+        "nb_feuilles_etablies",
+        "nb_feuilles_renvois",
+        "parFeuille"
+      ],
+      "additionalProperties": true
+    },
+    "profilMeta": {
+      "type": "object",
+      "description": "Métadonnées globales du profil mergé (constante amont profilMeta recopiée telle quelle : des champs supplémentaires sont tolérés).",
+      "properties": {
+        "journal_id": {
+          "type": "string",
+          "description": "Identifiant du journal source (« merged » dans le corpus)."
+        },
+        "nb_feuilles": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Nombre de feuilles agrégées."
+        },
+        "premiere_date": {
+          "$ref": "#/$defs/dateIso",
+          "description": "Date de la première feuille."
+        },
+        "derniere_date": {
+          "$ref": "#/$defs/dateIso",
+          "description": "Date de la dernière feuille."
+        },
+        "date_construction": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
+          "description": "Date-heure de construction du merge (sans fuseau horaire). Recopiée dans generatedAt par le convertisseur."
+        },
+        "source_protocole": {
+          "type": "string",
+          "description": "Protocole ayant produit les cartographies journalières, ex. « Aurora v3 — pédagogue adversarial · merge évolutif v3 »."
+        },
+        "score_total": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Score total cumulé sur toutes les compétences et toutes les feuilles."
+        },
+        "indice_herfindahl": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Indice de Herfindahl global du profil : concentration de la répartition des scores entre compétences (0 = très diversifié, 1 = concentré sur une seule)."
+        },
+        "competences_etablies": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de compétences du référentiel établies sur la période (54/61 dans le corpus)."
+        },
+        "competences_renvoyees": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de compétences dont le statut agrégé reste « renvoi au cartographe » (0 dans le corpus)."
+        },
+        "competences_orphelines": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre cumulé de compétences orphelines (hors référentiel) détectées par les kairos journaliers."
+        },
+        "feuilles_chronologiques": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/dateIso" },
+          "description": "Dates des feuilles agrégées, dans l'ordre chronologique."
+        },
+        "evolution_globale": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "description": "Photographie globale du profil pour une feuille.",
+            "properties": {
+              "date": {
+                "$ref": "#/$defs/dateIso",
+                "description": "Date de la feuille."
+              },
+              "score_total": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Score total de la feuille, toutes compétences confondues (0 à 167.05 observé)."
+              },
+              "etablies": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Nombre de compétences établies ce jour-là (0 à 46 observé)."
+              },
+              "renvois": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Nombre de compétences renvoyées au cartographe ce jour-là."
+              },
+              "non_etablies": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Nombre de compétences non établies ce jour-là."
+              },
+              "herfindahl": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Indice de Herfindahl de la feuille (concentration des scores du jour)."
+              }
+            },
+            "required": ["date", "score_total", "etablies", "renvois", "non_etablies", "herfindahl"],
+            "additionalProperties": true
+          },
+          "description": "Série chronologique globale : une photographie du profil par feuille (source de la vue historique)."
+        },
+        "ponderation_temporelle": {
+          "type": "object",
+          "description": "OPTIONNEL — Paramètres de pondération temporelle des scores (décote des feuilles anciennes). Absent du corpus démo actuel, mais lu par le viewer historique (cartographie.html) qui affiche « -X %/an » quand le champ est présent.",
+          "properties": {
+            "decote_annuelle": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Décote annuelle appliquée aux scores, en fraction par an (0.15 = -15 %/an). Seul champ consommé par le viewer."
+            }
+          },
+          "required": ["decote_annuelle"],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "journal_id",
+        "nb_feuilles",
+        "premiere_date",
+        "derniere_date",
+        "date_construction",
+        "source_protocole",
+        "score_total",
+        "indice_herfindahl",
+        "competences_etablies",
+        "competences_renvoyees",
+        "competences_orphelines",
+        "feuilles_chronologiques",
+        "evolution_globale"
+      ],
+      "additionalProperties": true
+    },
+    "profilIpsatifPole": {
+      "type": "object",
+      "description": "Entrée du profil ipsatif pour un pôle : poids relatif du pôle et de ses compétences établies dans le profil global.",
+      "properties": {
+        "pole_num": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7,
+          "description": "Numéro du pôle (1 à 7), cohérent avec la clé du dictionnaire."
+        },
+        "pole_nom": {
+          "type": "string",
+          "description": "Nom complet du pôle, ex. « TETE — Penser & Comprendre »."
+        },
+        "score_cumule": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Score cumulé du pôle sur la période."
+        },
+        "proportion_globale": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Part du pôle dans le score total du profil (les 7 proportions somment à ≈ 1)."
+        },
+        "competences_etablies": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de compétences établies dans le pôle."
+        },
+        "competences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "description": "Poids relatif d'une compétence établie du pôle.",
+            "properties": {
+              "code": { "$ref": "#/$defs/codeCompetence" },
+              "nom": {
+                "type": "string",
+                "description": "Nom de la compétence (libellé du référentiel)."
+              },
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Score cumulé de la compétence sur la période."
+              },
+              "proportion_globale": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Part de la compétence dans le score total du profil."
+              },
+              "proportion_intra_pole": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Part de la compétence dans le score de son pôle."
+              }
+            },
+            "required": ["code", "nom", "score", "proportion_globale", "proportion_intra_pole"],
+            "additionalProperties": true
+          },
+          "description": "Compétences établies du pôle, triées par score décroissant dans le corpus."
+        }
+      },
+      "required": [
+        "pole_num",
+        "pole_nom",
+        "score_cumule",
+        "proportion_globale",
+        "competences_etablies",
+        "competences"
+      ],
+      "additionalProperties": true
+    },
+    "feuille": {
+      "type": "object",
+      "description": "Référence d'une feuille de portfolio dans le merge (même forme que jours/index.json, plus l'URL de la vue journée héritée).",
+      "properties": {
+        "date": {
+          "$ref": "#/$defs/dateIso",
+          "description": "Date de la feuille (clé de jointure avec les documents cartographie-jour)."
+        },
+        "iso": {
+          "$ref": "#/$defs/dateIso",
+          "description": "Date ISO de la feuille (identique à date dans le corpus)."
+        },
+        "label": {
+          "type": "string",
+          "pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+          "description": "Libellé d'affichage au format français JJ/MM/AAAA."
+        },
+        "ordre": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Position chronologique de la feuille (0 = première)."
+        },
+        "carto_day_url": {
+          "type": "string",
+          "description": "URL relative de la vue journée héritée du prototype, ex. « feuilles/2025-12-22/carto-day.html » (les nouveaux viewers utilisent plutôt jours/<date>.json)."
+        }
+      },
+      "required": ["date", "iso", "label", "ordre", "carto_day_url"],
+      "additionalProperties": true
+    }
+  }
+}

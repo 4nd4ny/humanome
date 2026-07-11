@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://humanome.xyz/schemas/prompt-package.schema.json",
+  "title": "Paquet de prompts (prompt-package)",
+  "description": "Unité versionnée et immuable de l'atelier promptologue (cahier §4.3, plan P10) : l'ensemble des textes de prompts + le code JS d'orchestration qui les instancie et enchaîne les appels LLM pour produire une cartographie. Chaque cartographie référence le paquet exact (id + version) qui l'a produite, garantissant la reproductibilité. Structure des prompts déduite des prompts réels du prototype merge (assets-existants/merge-prototype/intermediate/prompts/ : prompts narratifs par compétence, par pôle, kairos — gabarits avec cadre/tâche/consignes/format dans lesquels des variables sont injectées). ATTENTION SÉCURITÉ : code.orchestration est du code arbitraire exécuté chez les utilisateurs — exclusivement dans la sandbox Web Worker (P10), et seules les versions publiées sont exécutables par autrui.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "id",
+    "version",
+    "auteur",
+    "description",
+    "modeleCible",
+    "referentielCompatible",
+    "changelog",
+    "prompts",
+    "code",
+    "metadata"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "Version (semver) du schéma de données auquel ce document se conforme. Distincte de la version du paquet lui-même. Exemple : « 1.0.0 »."
+    },
+    "kind": {
+      "const": "prompt-package",
+      "description": "Discriminant de type de document. Toujours « prompt-package » pour ce schéma."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifiant stable du paquet, invariant d'une version à l'autre. Les cartographies référencent le couple (id, version). Exemple : « aurora-merge »."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "Version (semver) du paquet. Une version publiée est immuable : toute modification produit une nouvelle version avec entrée de changelog (plan P10). Exemple : « 1.0.0 »."
+    },
+    "auteur": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Auteur du paquet (promptologue). Nom d'affichage ou identifiant de compte ; jamais d'adresse e-mail en clair dans un paquet destiné à être partagé."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description libre du paquet : intention, méthode (ex. protocole Aurora), périmètre couvert (jour, merge, les deux)."
+    },
+    "modeleCible": {
+      "type": ["string", "null"],
+      "description": "Modèle LLM pour lequel le paquet a été conçu et testé (identifiant de modèle, ex. « claude-sonnet-4-5 », « llama-3.1-70b »). Null si le paquet est agnostique au modèle. Indicatif : l'exécution reste possible avec un autre modèle via l'abstraction providers."
+    },
+    "referentielCompatible": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "versionMin"],
+      "description": "Contrainte de compatibilité avec le référentiel de compétences : le paquet suppose la structure (pôles, codes) du référentiel désigné, à partir de la version indiquée (cahier §4.1 : les prompts référencent la version du référentiel).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identifiant du référentiel compatible (référence referentiel.id). Exemple : « respire »."
+        },
+        "versionMin": {
+          "type": "string",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "description": "Version minimale (semver) du référentiel avec laquelle le paquet est compatible. Exemple : « 7.0.0 »."
+        }
+      }
+    },
+    "changelog": {
+      "type": "array",
+      "description": "Historique des versions du paquet, de la plus ancienne à la plus récente. Chaque publication ajoute une entrée (plan P10 : version immuable, semver, changelog).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "description"],
+        "properties": {
+          "version": {
+            "type": "string",
+            "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+            "description": "Version (semver) concernée par cette entrée."
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de publication de la version (ISO 8601, « AAAA-MM-JJ »). Optionnelle pour les versions importées dont la date exacte est inconnue."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Résumé des changements apportés par cette version."
+          }
+        }
+      }
+    },
+    "prompts": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Les gabarits de prompts du paquet. Un gabarit = un texte à trous dans lequel le code d'orchestration injecte des variables avant l'appel LLM. Dans le prototype merge : 61 prompts « narratif-competence » (un paragraphe d'évolution par compétence), 7 « narratif-pole » (synthèse évolutive en 5 sections), 1 « kairos » (synthèse globale en 5 sections) — instanciés depuis les mêmes gabarits.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "nom", "texte", "variables"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Rôle fonctionnel du prompt dans le pipeline de cartographie, en kebab-case. Valeurs connues (liste ouverte, de nouveaux rôles peuvent apparaître avec de nouveaux pipelines) : « extraction-pole » (extraction des traces d'un pôle depuis le texte du jour), « narratif-competence » (paragraphe d'évolution d'une compétence), « narratif-pole » (synthèse évolutive d'un pôle), « kairos » (synthèse globale transversale), « merge » (fusion chronologique multi-jours).",
+            "examples": ["extraction-pole", "narratif-competence", "narratif-pole", "kairos", "merge"]
+          },
+          "nom": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nom lisible du gabarit, affiché dans l'éditeur du promptologue. Exemple : « Histoire d'apprentissage par compétence »."
+          },
+          "texte": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Texte intégral du gabarit (Markdown), avec ses emplacements de variables. Structure observée dans le prototype : cadre (compétence/pôle, période, effectifs), tâche, consignes de style (tonalité Aurora, interdiction d'inventer), format de sortie, puis données injectées feuille par feuille."
+          },
+          "variables": {
+            "type": "array",
+            "description": "Déclaration des variables injectées dans le texte par le code d'orchestration. Chaque variable utilisée dans le gabarit doit être déclarée ici : c'est le contrat entre le texte et le code. Exemples issus du prototype : code et nom de la compétence, pôle, dates de période, nombre de feuilles, statuts/preuves/indices/confiance/score par feuille, verdicts et traces retenues.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nom", "description"],
+              "properties": {
+                "nom": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Nom de la variable tel qu'utilisé dans le gabarit. Exemple : « competence_code »."
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Ce que représente la variable et d'où le code d'orchestration tire sa valeur."
+                },
+                "exemple": {
+                  "type": "string",
+                  "description": "Valeur d'exemple, telle qu'injectée (les valeurs sont sérialisées en texte au moment de l'injection). Exemple : « 1.01 », « 22/12/2025 », « présence établie »."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "code": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["orchestration", "entrypoint"],
+      "description": "Code JS d'orchestration du paquet : instancie les gabarits (injection des variables), enchaîne les appels LLM via l'abstraction providers et assemble le JSON de cartographie. Exécuté exclusivement dans un Web Worker sans accès DOM ni réseau direct (plan P10, modèle de menace dans docs/securite-prompts.md).",
+      "properties": {
+        "orchestration": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Code source JavaScript (module ESM, texte intégral). Contraintes d'exécution : pas d'accès DOM, pas de réseau hors abstraction providers, entrée = texte du portfolio (jour ou multi-jours) + référentiel, sortie = JSON validé par les schémas cartographie-jour / cartographie-merge."
+        },
+        "entrypoint": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Nom de la fonction exportée par le module d'orchestration, appelée par la sandbox pour lancer un run. Exemple : « run »."
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Métadonnées du paquet. Structure ouverte (additionalProperties: true, délibéré) : l'atelier promptologue pourra enrichir sans casser le schéma ; les champs connus sont documentés ci-dessous.",
+      "properties": {
+        "creeLe": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date de création du paquet (ISO 8601 avec heure)."
+        },
+        "modifieLe": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date de dernière modification (pour un brouillon ; une version publiée est immuable)."
+        },
+        "publieLe": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date de publication de cette version. Absent tant que le paquet est en brouillon."
+        },
+        "licence": {
+          "type": "string",
+          "description": "Licence de diffusion du paquet. Exemple : « CC-BY-SA-4.0 ». Le Golden Prompt reste privé (cahier §7) : son paquet ne doit jamais figurer dans une archive exportée par un utilisateur non autorisé."
+        }
+      }
+    }
+  }
+}

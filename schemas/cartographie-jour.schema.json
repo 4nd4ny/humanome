@@ -1,0 +1,612 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://humanome.xyz/schemas/cartographie-jour.schema.json",
+  "title": "Cartographie — feuille de journée",
+  "description": "Document « cartographie-jour » : résultat de la cartographie d'UNE feuille de portfolio (une journée), produit par scripts/convert/extracted-to-day-json.mjs à partir des sorties LLM brutes du protocole Aurora v3 (carto_P1..P7.json + kairos.json). L'enveloppe (schemaVersion, kind, date, poles, kairos) est construite par le convertisseur ; le contenu de poles[] et kairos est la sortie LLM recopiée telle quelle, sans renommage de champ. Schéma déduit du corpus démo (59 feuilles, web/public/data/demo/jours/).",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version sémantique du schéma d'enveloppe. Valeur observée : « 1.0.0 »."
+    },
+    "kind": {
+      "const": "cartographie-jour",
+      "description": "Discriminant de type de document (permet de distinguer une feuille de journée d'un document merge)."
+    },
+    "date": {
+      "$ref": "#/$defs/dateIso",
+      "description": "Date de la feuille de portfolio cartographiée (AAAA-MM-JJ). Identique au nom du fichier jours/<date>.json."
+    },
+    "poles": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": { "$ref": "#/$defs/pole" },
+      "description": "Résultat de cartographie pour chacun des 7 pôles du référentiel RESPIRE, dans l'ordre 1 à 7 (TETE, COEUR, MAIN, AME, RACINES, CITE, FLAMBEAU)."
+    },
+    "kairos": {
+      "description": "Synthèse transversale de la journée (prompt kairos) : lecture cross-pôles + portrait de l'apprenant. null si le fichier kairos.json amont est absent pour cette journée (prévu par le convertisseur ; non observé dans le corpus démo où les 59 feuilles ont un kairos).",
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/kairosJour" }
+      ]
+    }
+  },
+  "required": ["schemaVersion", "kind", "date", "poles", "kairos"],
+  "additionalProperties": false,
+  "$defs": {
+    "dateIso": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "format": "date",
+      "description": "Date au format ISO AAAA-MM-JJ."
+    },
+    "codeCompetence": {
+      "type": "string",
+      "pattern": "^[1-7]\\.\\d{2}$",
+      "description": "Code d'une compétence du référentiel RESPIRE v7 : <numéro de pôle 1-7>.<rang sur deux chiffres>, ex. « 1.01 », « 7.04 »."
+    },
+    "confiance01": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Niveau de confiance entre 0 et 1."
+    },
+    "pole": {
+      "type": "object",
+      "description": "Cartographie d'un pôle pour la journée : sortie LLM du prompt carto_P<n> recopiée telle quelle par le convertisseur. Structure non fermée : seuls les champs décrits ici sont garantis, des champs supplémentaires peuvent apparaître dans de futures versions du protocole.",
+      "properties": {
+        "poleNum": {
+          "type": "string",
+          "enum": ["1", "2", "3", "4", "5", "6", "7"],
+          "description": "Numéro du pôle, sous forme de chaîne (« 1 » à « 7 »)."
+        },
+        "passagesSaillants": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/passageSaillant" },
+          "description": "Passages du portfolio jugés saillants pour ce pôle par le Greffier (extraction amont des verdicts). Peut être vide (0 à 32 passages observés)."
+        },
+        "competences": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/competence" },
+          "description": "Verdict de cartographie pour chaque compétence du pôle (5 à 10 compétences selon le pôle du référentiel)."
+        },
+        "auditPole": { "$ref": "#/$defs/auditPole" },
+        "rapport": {
+          "description": "Rapport narratif du pôle pour la journée. null quand le LLM n'a pas produit de rapport pour ce pôle ce jour-là (8 cas sur 413 dans le corpus).",
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/rapportPole" }
+          ]
+        }
+      },
+      "required": ["poleNum", "passagesSaillants", "competences", "auditPole", "rapport"],
+      "additionalProperties": true
+    },
+    "passageSaillant": {
+      "type": "object",
+      "description": "Extrait verbatim du portfolio retenu comme saillant pour le pôle, avec son contexte.",
+      "properties": {
+        "pid": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Identifiant du passage au sein de la journée (1 à 32 observé)."
+        },
+        "extraitVerbatim": {
+          "type": "string",
+          "description": "Citation exacte du portfolio de l'apprenant."
+        },
+        "contexte": {
+          "type": "string",
+          "description": "Contexte de l'extrait : ce que l'apprenant faisait ou racontait à ce moment du portfolio."
+        },
+        "auteur": {
+          "type": "string",
+          "enum": ["apprenant", "tiers_nomme"],
+          "description": "Auteur du passage : l'apprenant lui-même ou un tiers nommé cité dans le portfolio. Champ optionnel (présent sur 2942/3042 passages du corpus)."
+        },
+        "feuille": {
+          "$ref": "#/$defs/dateIso",
+          "description": "Date de la feuille de portfolio d'où provient le passage. Champ optionnel (présent sur 2654/3042 passages du corpus)."
+        }
+      },
+      "required": ["pid", "extraitVerbatim", "contexte"],
+      "additionalProperties": true
+    },
+    "auditPole": {
+      "type": "object",
+      "description": "Compteurs d'audit du pôle pour la journée (cohérence interne du run de cartographie).",
+      "properties": {
+        "competencesTotales": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre total de compétences du pôle dans le référentiel (5 à 10 observé)."
+        },
+        "courtCircuits": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de compétences court-circuitées (aucune pièce extraite par le Greffier, pas d'examen pédagogue)."
+        },
+        "competencesNonCourtCircuit": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de compétences ayant fait l'objet d'un examen complet (non court-circuitées)."
+        },
+        "presencesEtablies": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de compétences au statut « présence établie »."
+        },
+        "nonEtablies": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de compétences au statut « présence non établie »."
+        },
+        "renvoisCartographe": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de compétences au statut « renvoi au cartographe » (arbitrage humain requis)."
+        }
+      },
+      "required": [
+        "competencesTotales",
+        "courtCircuits",
+        "competencesNonCourtCircuit",
+        "presencesEtablies",
+        "nonEtablies",
+        "renvoisCartographe"
+      ],
+      "additionalProperties": true
+    },
+    "competence": {
+      "type": "object",
+      "description": "Examen adversarial d'une compétence du référentiel pour la journée : pièces extraites, double présomption du pédagogue, verdict.",
+      "properties": {
+        "code": { "$ref": "#/$defs/codeCompetence" },
+        "courtCircuit": {
+          "type": "boolean",
+          "description": "true si la compétence a été court-circuitée : le Greffier n'a extrait aucune pièce, le pédagogue n'est pas convoqué (pedagogue: null) et le verdict porte raison + prescriptionMinimale."
+        },
+        "pieces": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/piece" },
+          "description": "Pièces (extraits du portfolio) versées au dossier de la compétence par le Greffier. Vide quand courtCircuit est true (0 à 7 pièces observées)."
+        },
+        "pedagogue": {
+          "description": "Examen adversarial du pédagogue (double présomption puis conclusion). null quand aucune pièce n'a été extraite : toutes les compétences courtCircuit=true du corpus, plus 40 compétences non court-circuitées.",
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/pedagogue" }
+          ]
+        },
+        "verdict": { "$ref": "#/$defs/verdict" },
+        "tracesRetenues": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/traceRetenue" },
+          "description": "Pièces finalement retenues au verdict, qualifiées en type et en rôle probatoire. Vide si aucune pièce retenue (0 à 7 traces observées)."
+        }
+      },
+      "required": ["code", "courtCircuit", "pieces", "pedagogue", "verdict", "tracesRetenues"],
+      "additionalProperties": true
+    },
+    "piece": {
+      "type": "object",
+      "description": "Pièce du dossier d'une compétence : extrait du portfolio identifié par le Greffier.",
+      "properties": {
+        "pid": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Identifiant du passage saillant source dans la journée (renvoie à passagesSaillants[].pid ; 1 à 32 observé)."
+        },
+        "numero": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Numéro d'ordre de la pièce dans le dossier de la compétence (1 à 7 observé). C'est ce numéro que référencent les pieceId du pédagogue et des tracesRetenues."
+        },
+        "contexte": {
+          "type": "string",
+          "description": "Contexte de la pièce : ce que l'extrait montre par rapport à la compétence."
+        },
+        "auteur": {
+          "type": "string",
+          "enum": ["apprenant", "tiers_nomme"],
+          "description": "Auteur de la pièce. Champ optionnel (présent sur 304/4098 pièces du corpus, uniquement « apprenant » observé)."
+        },
+        "extraitVerbatim": {
+          "type": "string",
+          "description": "Citation exacte du portfolio. Champ optionnel (présent sur 238/4098 pièces du corpus ; sinon l'extrait se retrouve via pid dans passagesSaillants)."
+        }
+      },
+      "required": ["pid", "numero", "contexte"],
+      "additionalProperties": true
+    },
+    "pedagogue": {
+      "type": "object",
+      "description": "Examen adversarial de la compétence par le pédagogue : deux présomptions à charge (absence, sycophantie) puis conclusion.",
+      "properties": {
+        "presomptionAbsence": { "$ref": "#/$defs/presomptionAbsence" },
+        "presomptionSycophantie": { "$ref": "#/$defs/presomptionSycophantie" },
+        "conclusionAdversariale": { "$ref": "#/$defs/conclusionAdversariale" }
+      },
+      "required": ["presomptionAbsence", "presomptionSycophantie", "conclusionAdversariale"],
+      "additionalProperties": true
+    },
+    "presomptionAbsence": {
+      "type": "object",
+      "description": "Première présomption à charge : la compétence est présumée ABSENTE ; seules les pièces qui résistent à cette présomption sont listées.",
+      "properties": {
+        "raisonnement": {
+          "type": "string",
+          "description": "Argumentation du pédagogue sur la présomption d'absence."
+        },
+        "piecesQuiResistent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pieceId": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Numéro de la pièce (pieces[].numero) qui résiste à la présomption d'absence."
+              },
+              "motifResistance": {
+                "type": "string",
+                "description": "Pourquoi cette pièce résiste à la présomption d'absence."
+              }
+            },
+            "required": ["pieceId", "motifResistance"],
+            "additionalProperties": true
+          },
+          "description": "Pièces qui survivent à la présomption d'absence (0 à 7 observées)."
+        }
+      },
+      "required": ["raisonnement", "piecesQuiResistent"],
+      "additionalProperties": true
+    },
+    "presomptionSycophantie": {
+      "type": "object",
+      "description": "Seconde présomption à charge : chaque pièce est attaquée comme possible complaisance (sycophantie) du portfolio ou de l'analyse.",
+      "properties": {
+        "raisonnement": {
+          "type": "string",
+          "description": "Argumentation du pédagogue sur la présomption de sycophantie."
+        },
+        "examenPieces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pieceId": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Numéro de la pièce examinée (pieces[].numero)."
+              },
+              "attaqueDominante": {
+                "type": "string",
+                "enum": ["a", "b", "c", "d", "e", "f", "g", "h"],
+                "description": "Code de l'attaque dominante portée contre la pièce, dans la typologie « a » à « h » du protocole Aurora v3 (les 8 codes sont observés dans le corpus)."
+              },
+              "motifAttaque": {
+                "type": "string",
+                "description": "Formulation de l'attaque portée contre la pièce."
+              },
+              "verdictAttaque": {
+                "type": "string",
+                "enum": [
+                  "attaque non recevable, pièce confirmée",
+                  "pièce affaiblie mais retenue",
+                  "pièce disqualifiée"
+                ],
+                "description": "Issue de l'attaque : la pièce est confirmée, affaiblie mais retenue, ou disqualifiée."
+              }
+            },
+            "required": ["pieceId", "attaqueDominante", "motifAttaque", "verdictAttaque"],
+            "additionalProperties": true
+          },
+          "description": "Examen contradictoire pièce par pièce (0 à 7 examens observés)."
+        }
+      },
+      "required": ["raisonnement", "examenPieces"],
+      "additionalProperties": true
+    },
+    "conclusionAdversariale": {
+      "type": "object",
+      "description": "Conclusion du pédagogue après les deux présomptions.",
+      "properties": {
+        "confianceFinale": {
+          "$ref": "#/$defs/confiance01",
+          "description": "Confiance finale du pédagogue dans la présence de la compétence (0 à 1 ; 0.1 à 0.9 observé)."
+        },
+        "raisonnement": {
+          "type": "string",
+          "description": "Synthèse argumentée de la conclusion adversariale."
+        }
+      },
+      "required": ["confianceFinale", "raisonnement"],
+      "additionalProperties": true
+    },
+    "verdict": {
+      "type": "object",
+      "description": "Verdict final sur la compétence pour la journée. Deux profils observés : verdict complet (statut, confiance, motif, nombrePreuves, nombreIndices, prescription) après examen du pédagogue ; verdict de court-circuit (statut, confiance, raison, prescriptionMinimale, nombrePreuves=0, nombreIndices=0) quand aucune pièce n'a été extraite.",
+      "properties": {
+        "statut": {
+          "type": "string",
+          "enum": ["présence établie", "présence non établie", "renvoi au cartographe"],
+          "description": "Statut du verdict : présence établie, présence non établie, ou renvoi au cartographe (arbitrage humain requis)."
+        },
+        "confiance": {
+          "$ref": "#/$defs/confiance01",
+          "description": "Confiance du verdict (0 à 1 ; 0.1 à 1 observé)."
+        },
+        "nombrePreuves": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de pièces retenues comme « preuve décisive » (0 à 5 observé)."
+        },
+        "nombreIndices": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Nombre de pièces retenues comme « indice corroboratif » (0 à 4 observé)."
+        },
+        "motif": {
+          "type": "string",
+          "description": "Motivation du verdict. Optionnel : présent quand le pédagogue a été convoqué (1937/3590 dans le corpus)."
+        },
+        "prescription": {
+          "type": "string",
+          "description": "Prescription pédagogique : comment mieux documenter cette compétence dans le portfolio. Optionnel (1916/3590 dans le corpus)."
+        },
+        "raison": {
+          "type": "string",
+          "description": "Raison du court-circuit. Optionnel : présent quand aucune pièce n'a été extraite (1653/3590 ; valeur unique observée « aucune pièce extraite par le Greffier »)."
+        },
+        "prescriptionMinimale": {
+          "type": "string",
+          "description": "Prescription minimale accompagnant un court-circuit. Optionnel (1653/3590, toujours conjointe à raison)."
+        }
+      },
+      "required": ["statut", "confiance", "nombrePreuves", "nombreIndices"],
+      "additionalProperties": true
+    },
+    "traceRetenue": {
+      "type": "object",
+      "description": "Pièce retenue au verdict, qualifiée par sa nature (type) et son poids probatoire (role).",
+      "properties": {
+        "pieceId": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Numéro de la pièce retenue (pieces[].numero)."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["trace concrète", "déclaration étayée", "observation tierce"],
+          "description": "Nature de la trace : réalisation concrète, déclaration de l'apprenant étayée, ou observation par un tiers."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["preuve décisive", "indice corroboratif"],
+          "description": "Poids probatoire de la trace dans le verdict."
+        }
+      },
+      "required": ["pieceId", "type", "role"],
+      "additionalProperties": true
+    },
+    "rapportPole": {
+      "type": "object",
+      "description": "Rapport narratif du pôle pour la journée, adressé à l'apprenant.",
+      "properties": {
+        "portraitPole": {
+          "type": "string",
+          "description": "Portrait synthétique du pôle tel qu'il apparaît dans la feuille du jour."
+        },
+        "emergencesPole": {
+          "type": "string",
+          "description": "Ce qui émerge de neuf ou de singulier dans ce pôle."
+        },
+        "territoiresDenses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "competence": {
+                "type": "string",
+                "description": "Compétence concernée, en clair (nom, éventuellement précédé du code)."
+              },
+              "description": {
+                "type": "string",
+                "description": "Description du territoire dense : où et comment la compétence s'exprime."
+              },
+              "extraitVerbatim": {
+                "type": "string",
+                "description": "Citation du portfolio illustrant le territoire."
+              },
+              "ceQueCaDit": {
+                "type": "string",
+                "description": "Interprétation : ce que ce territoire dit de l'apprenant."
+              }
+            },
+            "required": ["competence", "description", "extraitVerbatim", "ceQueCaDit"],
+            "additionalProperties": true
+          },
+          "description": "Zones du pôle où la matière est la plus riche (0 à 6 observées)."
+        },
+        "territoiresNonVisites": {
+          "type": "string",
+          "description": "Compétences ou zones du pôle non documentées dans la feuille du jour."
+        },
+        "pistes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "Pistes concrètes proposées à l'apprenant pour la suite (1 à 7 observées)."
+        },
+        "rapportCompletMarkdown": {
+          "type": "string",
+          "description": "Rapport complet du pôle au format Markdown (agrège les rubriques précédentes)."
+        }
+      },
+      "required": [
+        "portraitPole",
+        "emergencesPole",
+        "territoiresDenses",
+        "territoiresNonVisites",
+        "pistes",
+        "rapportCompletMarkdown"
+      ],
+      "additionalProperties": true
+    },
+    "kairosJour": {
+      "type": "object",
+      "description": "Sortie LLM du prompt kairos recopiée telle quelle : synthèse transversale de la journée. Contient un objet imbriqué « kairos » (portrait de l'apprenant) et les émergences cross-pôles.",
+      "properties": {
+        "kairos": {
+          "type": "object",
+          "description": "Enveloppe interne de la synthèse kairos (héritée du format amont).",
+          "properties": {
+            "apprenant": {
+              "type": "object",
+              "description": "Synthèse adressée à l'apprenant.",
+              "properties": {
+                "portrait": {
+                  "type": "string",
+                  "description": "Portrait de l'apprenant tel qu'il ressort de la feuille du jour."
+                },
+                "formeProfil": {
+                  "type": "string",
+                  "description": "Forme générale du profil de compétences (relief, équilibres, dominantes)."
+                },
+                "ceQuiRelieLesPoles": {
+                  "type": "string",
+                  "description": "Fils conducteurs reliant les 7 pôles dans la feuille du jour."
+                },
+                "ceQuiEmergeEntreLesLignes": {
+                  "type": "string",
+                  "description": "Lecture entre les lignes : ce que la feuille suggère sans le dire explicitement."
+                },
+                "invitationsPourLaSuite": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "type": "string" },
+                  "description": "Invitations concrètes pour les prochaines feuilles de portfolio (3 à 5 observées)."
+                },
+                "syntheseCompleteMarkdown": {
+                  "type": "string",
+                  "description": "Synthèse kairos complète au format Markdown."
+                }
+              },
+              "required": [
+                "portrait",
+                "formeProfil",
+                "ceQuiRelieLesPoles",
+                "ceQuiEmergeEntreLesLignes",
+                "invitationsPourLaSuite",
+                "syntheseCompleteMarkdown"
+              ],
+              "additionalProperties": true
+            }
+          },
+          "required": ["apprenant"],
+          "additionalProperties": true
+        },
+        "emergencesCrossPoles": {
+          "type": "object",
+          "description": "Émergences transversales détectées entre les pôles dans la feuille du jour.",
+          "properties": {
+            "connexionsTransversales": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "titre": {
+                    "type": "string",
+                    "description": "Titre de la connexion transversale."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description de la connexion entre compétences de pôles différents."
+                  },
+                  "codesRelies": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": { "$ref": "#/$defs/codeCompetence" },
+                    "description": "Codes des compétences reliées (2 à 12 observés)."
+                  },
+                  "piecesCommunes": {
+                    "type": "array",
+                    "items": { "type": "integer", "minimum": 1 },
+                    "description": "Identifiants (pid) des passages du jour communs aux compétences reliées. Peut être vide."
+                  }
+                },
+                "required": ["titre", "description", "codesRelies", "piecesCommunes"],
+                "additionalProperties": true
+              },
+              "description": "Connexions entre compétences de pôles différents (0 à 5 observées)."
+            },
+            "noeudsConceptuels": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "nom": {
+                    "type": "string",
+                    "description": "Nom du nœud conceptuel."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description du concept qui noue plusieurs compétences entre elles."
+                  },
+                  "codesRelies": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": { "$ref": "#/$defs/codeCompetence" },
+                    "description": "Codes des compétences nouées par le concept (2 à 10 observés)."
+                  }
+                },
+                "required": ["nom", "description", "codesRelies"],
+                "additionalProperties": true
+              },
+              "description": "Nœuds conceptuels transversaux (0 à 3 observés)."
+            },
+            "competencesOrphelines": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "titre": {
+                    "type": "string",
+                    "description": "Titre de la compétence orpheline (compétence manifestée mais absente du référentiel)."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description de la compétence orpheline et de sa manifestation dans la feuille."
+                  },
+                  "extraitsPortfolio": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": { "type": "string" },
+                    "description": "Extraits du portfolio qui manifestent cette compétence (1 à 4 observés)."
+                  },
+                  "enRelationAvecCodes": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": { "$ref": "#/$defs/codeCompetence" },
+                    "description": "Codes des compétences du référentiel les plus proches (2 à 8 observés)."
+                  }
+                },
+                "required": ["titre", "description", "extraitsPortfolio", "enRelationAvecCodes"],
+                "additionalProperties": true
+              },
+              "description": "Compétences détectées hors référentiel (matière pour les épistémiarques ; 1 à 3 observées)."
+            }
+          },
+          "required": ["connexionsTransversales", "noeudsConceptuels", "competencesOrphelines"],
+          "additionalProperties": true
+        }
+      },
+      "required": ["kairos", "emergencesCrossPoles"],
+      "additionalProperties": true
+    }
+  }
+}

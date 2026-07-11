@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://humanome.xyz/schemas/referentiel.schema.json",
+  "title": "Référentiel de compétences",
+  "description": "Référentiel de compétences humaines (7 pôles, 61 compétences) utilisé par les cartographies. Public en lecture, modifiable par les épistémiarques, historisé : chaque version est identifiée par un semver et un hash de contenu (cahier §4.1). Déduit du document réel web/public/data/referentiel/respire-v7.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "id",
+    "version",
+    "label",
+    "contentHash",
+    "source",
+    "poles",
+    "competences"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "Version (semver) du schéma de données auquel ce document se conforme. Distincte de la version du référentiel lui-même. Exemple : « 1.0.0 »."
+    },
+    "kind": {
+      "const": "referentiel",
+      "description": "Discriminant de type de document. Toujours « referentiel » pour ce schéma."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifiant stable du référentiel, invariant d'une version à l'autre (les cartographies et prompt-packages le référencent). Exemple : « respire »."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "Version (semver) du contenu du référentiel. Chaque évolution éditée par les épistémiarques produit une nouvelle version immuable (cahier §4.1). Exemple : « 7.0.0 »."
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Libellé lisible du référentiel, affiché dans l'interface. Exemple : « RESPIRE v7 »."
+    },
+    "contentHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Empreinte SHA-256 (hexadécimal minuscule, 64 caractères) du contenu normalisé du référentiel. Garantit l'intégrité et permet la déduplication : deux documents de même hash ont un contenu identique, quelle que soit leur provenance (cahier §4.1, ADR-006)."
+    },
+    "source": {
+      "type": "string",
+      "description": "Provenance du document : d'où et comment ce référentiel a été construit ou converti. Champ libre de traçabilité. Exemple : « Reconstruit depuis agrege.par_competence (carto_merge.json) et domainsData (carto-data.js) »."
+    },
+    "poles": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "description": "Les 7 pôles du référentiel, dans l'ordre de leur numéro (1 à 7). Le nombre de pôles est une propriété structurelle du référentiel RESPIRE ; une évolution du nombre de pôles imposerait une nouvelle version majeure de ce schéma.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["num", "nom", "couleur"],
+        "properties": {
+          "num": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7,
+            "description": "Numéro du pôle (1 à 7). Les compétences y sont rattachées par ce numéro et leur code commence par ce chiffre."
+          },
+          "nom": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nom complet du pôle. Exemple : « TETE — Penser & Comprendre »."
+          },
+          "couleur": {
+            "type": ["string", "null"],
+            "pattern": "^#[0-9a-fA-F]{6}$",
+            "description": "Couleur hexadécimale du pôle pour la visualisation (sunburst), au format « #rrggbb ». Null si aucune couleur n'est attribuée (l'interface applique alors sa couleur par défaut). Exemple : « #2563eb »."
+          }
+        }
+      }
+    },
+    "competences": {
+      "type": "array",
+      "minItems": 61,
+      "maxItems": 61,
+      "description": "Les 61 compétences du référentiel, triées par code. Le nombre de compétences est une propriété structurelle du référentiel RESPIRE v7 ; l'ajout ou le retrait d'une compétence par les épistémiarques imposerait une révision de ce schéma en même temps que la version majeure du référentiel.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "nom", "pole"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^\\d\\.\\d{2}$",
+            "description": "Code unique de la compétence au format « P.NN » où P est le numéro du pôle et NN le rang à deux chiffres dans le pôle. C'est l'identifiant utilisé partout ailleurs (cartographies, prompts). Exemples : « 1.01 », « 6.10 »."
+          },
+          "nom": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nom complet de la compétence. Exemple : « Pensée Critique & Anti-Hallucination »."
+          },
+          "pole": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7,
+            "description": "Numéro du pôle de rattachement (référence poles[].num). Cohérent avec le premier chiffre du code."
+          }
+        }
+      }
+    }
+  }
+}

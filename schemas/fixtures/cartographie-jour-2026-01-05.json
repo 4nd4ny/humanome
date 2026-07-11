@@ -1,0 +1,276 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "cartographie-jour",
+  "date": "2026-01-05",
+  "poles": [
+    {
+      "poleNum": "1",
+      "passagesSaillants": [
+        { "pid": 6, "extraitVerbatim": "j'ai condensé la réunion de préparation en dix lignes pour les collègues, mais j'ai mélangé décisions et impressions", "contexte": "Rédaction d'une note de synthèse interne après la réunion de préparation, dont l'apprenante reconnaît elle-même la faiblesse.", "auteur": "apprenant", "feuille": "2026-01-05" }
+      ],
+      "competences": [
+        { "code": "1.01", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Documenter une situation où une information ou une source a été vérifiée ou mise en doute avant d'être utilisée." } },
+        { "code": "1.03", "courtCircuit": false,
+          "pieces": [
+            { "pid": 6, "numero": 1, "contexte": "Tentative de condensation de la réunion de préparation en dix lignes, avec confusion entre décisions et impressions relevée par une collègue." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume la synthèse intégrative absente : condenser n'est pas synthétiser. La pièce résiste partiellement car l'acte de condensation est réel et son défaut est identifié.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "L'acte de synthèse a bien eu lieu et l'apprenante en diagnostique la limite (mélange décisions/impressions)." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Le récit pourrait embellir un simple compte rendu raté. L'attaque porte mais le regard critique de la collègue, rapporté sans se défendre, maintient la pièce.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "c", "motifAttaque": "La qualité réelle de la note n'est pas observable ; on ne dispose que du récit de son échec partiel.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.4, "raisonnement": "Une seule pièce, ambivalente : la synthèse est tentée mais ratée, et le matériel ne permet pas de trancher entre compétence émergente et simple maladresse." }
+          },
+          "verdict": { "statut": "renvoi au cartographe", "confiance": 0.4, "nombrePreuves": 0, "nombreIndices": 1,
+            "motif": "Pièce unique et ambivalente : l'acte de synthèse existe mais son résultat est reconnu défaillant ; l'arbitrage humain est requis.",
+            "prescription": "Joindre la note elle-même au portfolio, ou décrire ce qui distinguerait une bonne synthèse (décisions, responsables, échéances)." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 0, "nonEtablies": 0, "renvoisCartographe": 1 },
+      "rapport": null
+    },
+    {
+      "poleNum": "2",
+      "passagesSaillants": [
+        { "pid": 1, "extraitVerbatim": "Naël s'est figé devant le groupe ; je me suis accroupie à sa hauteur et je lui ai proposé de tenir la lampe du parcours, son rôle à lui. Il a fini la visite au premier rang.", "contexte": "Visite guidée avec une classe de CM2 : un élève se fige, l'apprenante improvise un rôle qui le remet dans le groupe.", "auteur": "apprenant", "feuille": "2026-01-05" },
+        { "pid": 2, "extraitVerbatim": "J'ai senti que la classe décrochait après la troisième salle, alors j'ai raccourci le passage sur les archives.", "contexte": "Lecture de l'état du groupe en cours de visite et ajustement du plan prévu.", "auteur": "apprenant", "feuille": "2026-01-05" }
+      ],
+      "competences": [
+        { "code": "2.01", "courtCircuit": false,
+          "pieces": [
+            { "pid": 1, "numero": 1, "contexte": "Réponse immédiate et ajustée à la détresse d'un élève : posture physique, proposition d'un rôle, réintégration réussie." },
+            { "pid": 2, "numero": 2, "contexte": "Perception fine de la fatigue collective et ajustement du déroulé au détriment de son propre plan." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : rassurer un enfant peut relever du réflexe social, pas d'une sollicitude active. La pièce 1 résiste par la précision du geste et son résultat observable ; la pièce 2 par la décision concrète qui suit la perception.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "Le geste est décrit précisément (s'accroupir, proposer un rôle) et son effet est vérifiable dans le récit (l'élève finit au premier rang)." },
+                { "pieceId": 2, "motifResistance": "La perception débouche sur un acte coûteux pour l'apprenante (renoncer à son plan), ce qui dépasse la simple déclaration d'empathie." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Le journal pourrait embellir : « il a fini au premier rang » est invérifiable. La pièce 1 tient car le doute est formulé par l'apprenante elle-même le soir ; la pièce 2 reste plus déclarative.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "e", "motifAttaque": "Le succès rapporté pourrait être enjolivé, mais le récit inclut le doute du soir (« pour eux ou pour me rassurer moi ? »), signe d'auto-examen plutôt que de complaisance.", "verdictAttaque": "attaque non recevable, pièce confirmée" },
+                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "Perception d'un décrochage non corroborée par un tiers ; l'acte d'ajustement est toutefois concret.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.7, "raisonnement": "La pièce 1 survit aux deux présomptions avec un geste précis et un effet observable ; la pièce 2 corrobore. La sollicitude est en acte, pas seulement déclarée." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.7, "nombrePreuves": 1, "nombreIndices": 1,
+            "motif": "Un geste de sollicitude précis, ajusté et suivi d'effet (pièce 1), corroboré par une lecture fine du groupe (pièce 2).",
+            "prescription": "Noter, quand c'est possible, la réaction des personnes concernées (enseignante, élève) pour corroborer l'effet des gestes de sollicitude." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] },
+        { "code": "2.02", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Documenter un échange où ce qui est dit correspond à ce qui est ressenti, y compris quand c'est inconfortable." } },
+        { "code": "2.06", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Décrire une situation où un code culturel différent du sien a été perçu et pris en compte." } }
+      ],
+      "auditPole": { "competencesTotales": 3, "courtCircuits": 2, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": {
+        "portraitPole": "La feuille du 5 janvier montre un pôle COEUR mobilisé sur le terrain scolaire : l'attention aux personnes (un élève figé, une classe qui décroche) prime sur le programme prévu.",
+        "emergencesPole": "La sollicitude ne s'exprime pas en mots mais en dispositifs : un rôle confié, un parcours raccourci. Le soin passe par l'organisation.",
+        "territoiresDenses": [
+          { "competence": "2.01 Intelligence Émotionnelle & Sollicitude Active", "description": "Réponse immédiate à la détresse d'un élève pendant la visite guidée.", "extraitVerbatim": "je me suis accroupie à sa hauteur et je lui ai proposé de tenir la lampe du parcours, son rôle à lui", "ceQueCaDit": "Le réflexe de traduire le soin en rôle concret, plutôt qu'en consolation verbale, est déjà une signature professionnelle." }
+        ],
+        "territoiresNonVisites": "La communication authentique et l'intelligence culturelle ne laissent pas de trace dans cette feuille, centrée sur un public scolaire homogène.",
+        "pistes": [
+          "Documenter un échange difficile avec un adulte (collègue, parent) pour ouvrir le territoire de la communication authentique."
+        ],
+        "rapportCompletMarkdown": "## Pôle COEUR — 5 janvier 2026\n\nPôle mobilisé en actes : un élève figé réintégré par un rôle confié, une visite raccourcie par lecture du groupe. La sollicitude passe par des dispositifs concrets plutôt que par des mots.\n\n**Piste** : documenter un échange difficile avec un adulte pour ouvrir le territoire de la communication authentique."
+      }
+    },
+    {
+      "poleNum": "3",
+      "passagesSaillants": [
+        { "pid": 3, "extraitVerbatim": "j'ai écarté douze clichés trop anecdotiques et gardé la série des mains au travail : c'est elle qui tient le propos de l'expo", "contexte": "Finalisation de l'accrochage de l'exposition « Mémoires du quartier » : choix assumé dans la sélection des photographies.", "auteur": "apprenant", "feuille": "2026-01-05" }
+      ],
+      "competences": [
+        { "code": "3.04", "courtCircuit": false,
+          "pieces": [
+            { "pid": 3, "numero": 1, "contexte": "Acte de curation tranché : douze clichés écartés, une série conservée, avec un critère explicite (ce qui « tient le propos »)." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : accrocher une expo peut n'être qu'exécution. La pièce résiste car le tri est motivé par un critère éditorial explicite et a convaincu une collègue d'abord réticente.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "Le geste de soustraction est quantifié (douze clichés), le critère est nommé, et l'effet sur la collègue est rapporté." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Le critère « tient le propos » pourrait être une justification a posteriori. L'attaque échoue : la décision précède la validation de la collègue, le jugement est en acte.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "a", "motifAttaque": "Le critère esthétique reste peu développé (une formule), mais la décision concrète et son résultat monté au mur sont observables.", "verdictAttaque": "attaque non recevable, pièce confirmée" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.6, "raisonnement": "Une seule pièce mais nette : un tri quantifié, un critère nommé, un résultat visible. Le jugement de curation est établi pour cette feuille, sans redondance." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.6, "nombrePreuves": 1, "nombreIndices": 0,
+            "motif": "Acte de curation unique mais complet : sélection motivée, assumée face à une collègue, résultat accroché.",
+            "prescription": "Expliciter le critère positif de sélection (qu'est-ce qui fait qu'une image « tient le propos » ?) pour densifier ce territoire." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
+          ] },
+        { "code": "3.07", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Décrire un moment d'animation en public : posture, voix, gestion des imprévus." } }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": null
+    },
+    {
+      "poleNum": "4",
+      "passagesSaillants": [],
+      "competences": [
+        { "code": "4.05", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Documenter une décision prise sans disposer de toutes les informations, et ce qu'on a fait du doute résiduel." } },
+        { "code": "4.06", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Relater une situation où dire ou faire ce qui est juste avait un coût personnel." } }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 2, "competencesNonCourtCircuit": 0, "presencesEtablies": 0, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": null
+    },
+    {
+      "poleNum": "5",
+      "passagesSaillants": [
+        { "pid": 4, "extraitVerbatim": "en relisant ma journée, je remarque que j'écris toujours « on » quand j'ai peur d'assumer un choix. C'est mon deuxième carnet et le tic revient.", "contexte": "Relecture du journal le soir : repérage d'un tic d'écriture récurrent et de ce qu'il révèle.", "auteur": "apprenant", "feuille": "2026-01-05" },
+        { "pid": 7, "extraitVerbatim": "Je garde une question pour demain : est-ce que je rassure les enfants pour eux, ou pour me rassurer moi ?", "contexte": "Question réflexive ouverte en clôture de journée, retournée contre sa propre pratique.", "auteur": "apprenant", "feuille": "2026-01-05" }
+      ],
+      "competences": [
+        { "code": "5.01", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Raconter un imprévu ou un échec et la manière dont le travail a continué malgré lui." } },
+        { "code": "5.03", "courtCircuit": false,
+          "pieces": [
+            { "pid": 4, "numero": 1, "contexte": "Relecture active du carnet avec repérage d'un motif récurrent (le « on » de fuite) sur deux carnets successifs." },
+            { "pid": 7, "numero": 2, "contexte": "Formulation d'une question réflexive qui retourne le geste professionnel du jour contre elle-même." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : tenir un journal n'est pas encore une narration réflexive. Les deux pièces résistent car le texte revient sur lui-même et produit un constat neuf.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "Le repérage d'un tic d'écriture inscrit dans la durée (deux carnets) suppose une relecture réelle, pas un rituel." },
+                { "pieceId": 2, "motifResistance": "La question finale transforme l'anecdote du jour en interrogation sur la pratique." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Un journal peut mimer la réflexivité pour plaire au lecteur. L'attaque échoue sur la pièce 1, trop précise et peu flatteuse pour être une pose ; la pièce 2 reste une question sans réponse, donc fragile seule.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "e", "motifAttaque": "L'auto-observation est défavorable à l'apprenante (peur d'assumer), ce qui affaiblit l'hypothèse de complaisance.", "verdictAttaque": "attaque non recevable, pièce confirmée" },
+                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "Une question posée n'engage encore aucun travail ; elle vaut comme indice d'un mouvement réflexif, pas comme preuve.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.72, "raisonnement": "La relecture est démontrée en acte (pièce 1) et prolongée par une question authentique (pièce 2). La narration réflexive fonctionne déjà comme un outil." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.72, "nombrePreuves": 1, "nombreIndices": 1,
+            "motif": "Relecture effective du carnet avec repérage d'un motif dans la durée, corroborée par une question réflexive ouverte.",
+            "prescription": "Revenir explicitement sur la question laissée ouverte dans une feuille ultérieure pour montrer le cycle complet de la réflexion." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": {
+        "portraitPole": "Le pôle RACINES apparaît par son versant réflexif : le carnet n'est pas un compte rendu mais un instrument d'auto-observation, jusque dans ses tics d'écriture.",
+        "emergencesPole": "L'apprenante commence à se lire comme un texte : le « on » de fuite repéré sur deux carnets est une trouvaille de lectrice, pas seulement de diariste.",
+        "territoiresDenses": [
+          { "competence": "5.03 Narration Réflexive", "description": "Relecture du soir qui produit un constat sur la durée et une question ouverte.", "extraitVerbatim": "je remarque que j'écris toujours « on » quand j'ai peur d'assumer un choix", "ceQueCaDit": "La réflexivité porte sur la forme même du récit : c'est le signe d'une pratique d'écriture déjà mûre." }
+        ],
+        "territoiresNonVisites": "Résilience, plasticité et souveraineté attentionnelle restent hors champ dans cette feuille sans adversité notable.",
+        "pistes": [
+          "Répondre dans une prochaine feuille à la question laissée ouverte (« pour eux ou pour moi ? ») pour boucler le cycle réflexif."
+        ],
+        "rapportCompletMarkdown": "## Pôle RACINES — 5 janvier 2026\n\nLe carnet fonctionne comme instrument d'auto-observation : repérage d'un tic d'écriture sur deux carnets, question réflexive laissée ouverte pour demain.\n\n**Piste** : répondre à la question ouverte dans une prochaine feuille pour boucler le cycle réflexif."
+      }
+    },
+    {
+      "poleNum": "6",
+      "passagesSaillants": [],
+      "competences": [
+        { "code": "6.05", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Documenter une action qui associe des habitants ou des citoyens à une décision qui les concerne." } },
+        { "code": "6.07", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Décrire l'animation d'un collectif : cadre posé, circulation de la parole, décisions collectives." } }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 2, "competencesNonCourtCircuit": 0, "presencesEtablies": 0, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": null
+    },
+    {
+      "poleNum": "7",
+      "passagesSaillants": [
+        { "pid": 5, "extraitVerbatim": "plutôt que d'expliquer la photo de la halle, j'ai demandé : « qu'est-ce qui manque sur cette image ? » Ils ont trouvé seuls la réponse (les femmes).", "contexte": "Choix pédagogique en visite guidée : questionner plutôt qu'expliquer, avec découverte autonome par les élèves.", "auteur": "apprenant", "feuille": "2026-01-05" },
+        { "pid": 8, "extraitVerbatim": "J'ai aussi laissé deux élèves guider le groupe entre la salle 2 et la salle 3, avec la carte du parcours.", "contexte": "Délégation d'un segment de la visite à deux élèves, erreur de couloir incluse et assumée.", "auteur": "apprenant", "feuille": "2026-01-05" }
+      ],
+      "competences": [
+        { "code": "7.01", "courtCircuit": false,
+          "pieces": [
+            { "pid": 5, "numero": 1, "contexte": "Substitution d'une question à une explication, suivie d'une découverte autonome par le groupe." },
+            { "pid": 8, "numero": 2, "contexte": "Délégation du guidage à deux élèves, avec acceptation de l'erreur comme partie de l'apprentissage." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : une question posée en visite peut être un simple procédé d'animation. Les deux pièces résistent ensemble car elles montrent un retrait délibéré et répété du rôle d'explicatrice.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "La question est choisie contre l'explication, et le silence est tenu jusqu'à la découverte par les élèves." },
+                { "pieceId": 2, "motifResistance": "La délégation avec erreur assumée montre que le retrait n'est pas décoratif." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Le topos « ils ont trouvé seuls » est un cliché pédagogique flatteur. Aucune pièce n'atteint le rang de preuve : les deux valent comme indices convergents d'une posture maïeutique.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "f", "motifAttaque": "Récit conforme au cliché de la pédagogie active, sans trace du tâtonnement réel des élèves.", "verdictAttaque": "pièce affaiblie mais retenue" },
+                { "pieceId": 2, "attaqueDominante": "b", "motifAttaque": "Déléguer la carte n'est pas encore faciliter un apprentissage ; l'intention pédagogique reste implicite.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.68, "raisonnement": "Deux indices convergents et aucun contre-signal : la posture maïeutique est présente, mais aucune pièce isolée n'est décisive." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.68, "nombrePreuves": 0, "nombreIndices": 2,
+            "motif": "Deux gestes convergents de retrait pédagogique (question ouverte, délégation) établissent la présence par faisceau d'indices.",
+            "prescription": "Décrire le cheminement des élèves (leurs hypothèses, leurs erreurs) pour transformer ces indices en preuves." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
+            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] },
+        { "code": "7.03", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Garder trace des outils produits (notes, supports de visite) et de leurs révisions successives." } }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": null
+    }
+  ],
+  "kairos": null
+}

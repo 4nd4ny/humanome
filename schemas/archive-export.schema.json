@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://humanome.xyz/schemas/archive-export.schema.json",
+  "title": "Archive d'export (format pivot de portabilité)",
+  "description": "Archive autoporteuse d'un compte ou d'un run de cartographie — LE format pivot des trois flux de portabilité (ADR-006, cahier §6) : export/suppression RGPD, import de compte, seed d'une instance clonée. Elle embarque en texte intégral les portfolios, les documents référentiel et prompt-package exacts utilisés, et les cartographies produites, afin que chaque cartographie reste reproductible et ré-analysable hors ligne ou sur une autre instance (cahier §4.3 : chaque cartographie est liée à la version du prompt, du référentiel et du code d'exécution). Toute évolution de ce schéma doit rester rétro-compatible en lecture (ADR-006).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "exportedAt",
+    "account",
+    "portfolios",
+    "referentiels",
+    "promptPackages",
+    "cartographies"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "Version (semver) du schéma d'archive auquel ce document se conforme. Une instance doit toujours pouvoir importer une archive de version antérieure (ADR-006). Exemple : « 1.0.0 »."
+    },
+    "kind": {
+      "const": "archive-export",
+      "description": "Discriminant de type de document. Toujours « archive-export » pour ce schéma."
+    },
+    "exportedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Horodatage de génération de l'archive (ISO 8601 avec heure). L'archive est produite côté navigateur par défaut (ADR-001)."
+    },
+    "account": {
+      "type": ["object", "null"],
+      "description": "Identité et préférences du compte exporté. Null pour un export anonyme : archive d'un run isolé sans compte (exécution locale sans stockage serveur, cahier §6.1) ou archive anonymisée. Ne contient JAMAIS de clé API, même chiffrée (ADR-004), ni de mot de passe.",
+      "additionalProperties": false,
+      "required": ["roles"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Adresse e-mail du compte. Optionnelle : omise dans les exports destinés au partage ou au seed d'instance."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Nom d'affichage du compte. Optionnel."
+        },
+        "roles": {
+          "type": "array",
+          "description": "Rôles du compte sur la plateforme (cahier §3). Valeurs connues : « apprenant », « cartographe », « promptologue », « epistemiarque », « employeur », « etablissement », « admin » — liste ouverte pour de futurs rôles.",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "examples": ["apprenant", "cartographe", "promptologue", "epistemiarque", "employeur", "etablissement", "admin"]
+          }
+        },
+        "preferences": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Préférences du compte (confidentialité par cartographie, progression de formation, réglages d'interface). Structure ouverte (additionalProperties: true, délibéré) : ces préférences évoluent avec les modules sans devoir casser le format pivot ; restaurées telles quelles à l'import."
+        }
+      }
+    },
+    "portfolios": {
+      "type": "array",
+      "description": "Portfolios réflexifs en texte intégral (v1 : texte uniquement, cahier §4.2). Le portfolio ne quitte jamais le navigateur par défaut : cette archive est précisément son export local systématique (cahier §6.1).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "titre", "source", "texte", "segmentation"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Identifiant du portfolio au sein de l'archive, référencé par les cartographies qui en sont issues."
+          },
+          "titre": {
+            "type": "string",
+            "description": "Titre donné par l'apprenant à ce portfolio. Exemple : « Journal de bord hiver 2025-2026 »."
+          },
+          "source": {
+            "enum": ["colle", "gdocs", "fichier"],
+            "description": "Mode d'acquisition du texte (cahier §4.2) : « colle » = copier-coller direct dans l'interface, « gdocs » = import depuis une URL Google Docs, « fichier » = import d'un fichier local."
+          },
+          "texte": {
+            "type": "string",
+            "description": "Texte intégral du portfolio, tel que soumis à la cartographie. C'est la donnée la plus sensible de l'archive : elle n'existe côté serveur que sur opt-in explicite (cahier §6.1, §6.2)."
+          },
+          "segmentation": {
+            "type": "array",
+            "description": "Découpage journalier du texte (cahier §4.3 : une cartographie par journée de journal de bord). Chaque segment délimite la portion de « texte » correspondant à une journée, par offsets de caractères.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["date", "debut", "fin"],
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "Date de la journée couverte par ce segment (ISO 8601, « AAAA-MM-JJ »)."
+                },
+                "debut": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Offset (en caractères, indexé à 0, inclus) du début du segment dans « texte »."
+                },
+                "fin": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Offset (en caractères, exclu) de la fin du segment dans « texte ». Doit être supérieur ou égal à « debut »."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "referentiels": {
+      "type": "array",
+      "description": "Documents référentiel COMPLETS (pas de simple référence) : chaque version de référentiel utilisée par au moins une cartographie de l'archive est embarquée intégralement, pour que l'archive soit autoporteuse et permette la régénération rétrospective (ADR-006, cahier §8). Volumineux mais accepté en v1 ; déduplication possible plus tard via contentHash sans casser le schéma.",
+      "items": {
+        "$ref": "https://humanome.xyz/schemas/referentiel.schema.json"
+      }
+    },
+    "promptPackages": {
+      "type": "array",
+      "description": "Documents prompt-package COMPLETS (textes des prompts + code JS d'orchestration + métadonnées) : chaque paquet utilisé par au moins une cartographie de l'archive est embarqué intégralement (ADR-006). Le générateur d'archive doit filtrer selon les droits : le Golden Prompt et les paquets privés ne figurent jamais dans une archive exportée par un utilisateur non autorisé (cahier §7).",
+      "items": {
+        "$ref": "https://humanome.xyz/schemas/prompt-package.schema.json"
+      }
+    },
+    "cartographies": {
+      "type": "array",
+      "description": "Cartographies produites, chacune tracée jusqu'à ses intrants exacts : le couple (promptPackageId, promptPackageVersion) et le couple (referentielId, referentielVersion) doivent désigner des documents présents respectivement dans « promptPackages » et « referentiels » (cohérence référentielle vérifiée par le code d'import, hors de portée de JSON Schema).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "document",
+          "promptPackageId",
+          "promptPackageVersion",
+          "referentielId",
+          "referentielVersion",
+          "runMeta"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Identifiant de la cartographie au sein de l'archive (et en base si elle a été stockée sur opt-in)."
+          },
+          "type": {
+            "enum": ["jour", "merge"],
+            "description": "Nature du document embarqué : « jour » = cartographie d'une journée (kind cartographie-jour), « merge » = agrégat chronologique multi-jours (kind cartographie-merge, cahier §4.3)."
+          },
+          "document": {
+            "description": "Document de cartographie COMPLET, conforme au schéma cartographie-jour ou cartographie-merge selon « type » (la cohérence type/document est imposée par les clauses if/then de l'item).",
+            "oneOf": [
+              { "$ref": "https://humanome.xyz/schemas/cartographie-jour.schema.json" },
+              { "$ref": "https://humanome.xyz/schemas/cartographie-merge.schema.json" }
+            ]
+          },
+          "promptPackageId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Identifiant du prompt-package qui a produit cette cartographie (référence promptPackages[].id)."
+          },
+          "promptPackageVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+            "description": "Version exacte (semver) du prompt-package utilisée pour ce run (référence promptPackages[].version)."
+          },
+          "referentielId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Identifiant du référentiel utilisé pour ce run (référence referentiels[].id)."
+          },
+          "referentielVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+            "description": "Version exacte (semver) du référentiel utilisée pour ce run (référence referentiels[].version) — indispensable à la régénération rétrospective (cahier §8)."
+          },
+          "runMeta": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["modele", "dateRun"],
+            "description": "Métadonnées d'exécution du run LLM. Journalisation minimale (cahier §6) : des compteurs et identifiants techniques, jamais de contenu de portfolio.",
+            "properties": {
+              "modele": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Identifiant du modèle LLM effectivement utilisé pour le run. Exemple : « claude-sonnet-4-5 »."
+              },
+              "dateRun": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Horodatage du run (ISO 8601 avec heure)."
+              },
+              "tokens": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "Compteurs de tokens du run. Optionnel (tous les providers ne les exposent pas).",
+                "properties": {
+                  "entree": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Tokens consommés en entrée (prompt)."
+                  },
+                  "sortie": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Tokens produits en sortie (complétion)."
+                  },
+                  "total": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Total entrée + sortie, si le provider ne détaille pas."
+                  }
+                }
+              },
+              "coutEstime": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Coût estimé du run en euros (estimation affichée avant lancement, plan P8). Optionnel."
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "type": { "const": "jour" } }, "required": ["type"] },
+            "then": {
+              "properties": {
+                "document": { "$ref": "https://humanome.xyz/schemas/cartographie-jour.schema.json" }
+              }
+            }
+          },
+          {
+            "if": { "properties": { "type": { "const": "merge" } }, "required": ["type"] },
+            "then": {
+              "properties": {
+                "document": { "$ref": "https://humanome.xyz/schemas/cartographie-merge.schema.json" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "audit": {
+      "type": "array",
+      "description": "Journal d'audit du compte, optionnel (présent dans les exports RGPD complets, absent des archives de run anonymes). Journalisation minimale (cahier §6) : des événements et compteurs, jamais de contenu de portfolio ni de cartographie.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "evenement"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Horodatage de l'événement (ISO 8601 avec heure)."
+          },
+          "evenement": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Type d'événement, en kebab-case. Exemples : « export-compte », « suppression-compte », « partage-employeur-cree », « partage-employeur-revoque », « opt-in-stockage », « run-cartographie »."
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Détails techniques de l'événement (identifiants, compteurs). Structure ouverte (additionalProperties: true, délibéré) mais ne doit jamais contenir de contenu textuel de portfolio ou de cartographie (cahier §6.5)."
+          }
+        }
+      }
+    }
+  }
+}

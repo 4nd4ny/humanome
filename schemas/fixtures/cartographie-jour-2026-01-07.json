@@ -1,0 +1,390 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "cartographie-jour",
+  "date": "2026-01-07",
+  "poles": [
+    {
+      "poleNum": "1",
+      "passagesSaillants": [
+        { "pid": 1, "extraitVerbatim": "une habitante affirme que la photo du lavoir date d'avant-guerre ; le cartel dit 1952. Je n'ai pas eu le temps de vérifier, je note pour demain.", "contexte": "Signalement d'une contradiction sur la datation d'une photo pendant le vernissage : le doute est consigné mais la vérification est différée.", "auteur": "apprenant", "feuille": "2026-01-07" }
+      ],
+      "competences": [
+        { "code": "1.01", "courtCircuit": false,
+          "pieces": [
+            { "pid": 1, "numero": 1, "contexte": "Doute enregistré face à une contradiction entre témoignage et cartel, avec report explicite de la vérification au lendemain." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : noter un doute n'est pas le résoudre. La pièce résiste partiellement car le réflexe critique est là (ne pas trancher sans source), mais le cycle de vérification reste inachevé dans la feuille.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "Le doute est pris au sérieux et consigné avec référence à l'épisode de la halle, signe d'une méthode en construction." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Se donner le beau rôle du vérificateur sans vérifier serait la complaisance type. L'attaque porte : seule l'intention est documentée, la suite dira si la méthode tient.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "d", "motifAttaque": "La vérification est promise, non faite : la pièce ne montre que la première moitié du geste critique.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.45, "raisonnement": "Le réflexe est présent, l'acte est différé : matériel insuffisant pour établir ou exclure, l'arbitrage humain est requis." }
+          },
+          "verdict": { "statut": "renvoi au cartographe", "confiance": 0.45, "nombrePreuves": 0, "nombreIndices": 1,
+            "motif": "Doute consigné mais vérification différée : la moitié du geste critique seulement est documentée ce jour.",
+            "prescription": "Consigner demain le résultat de la vérification sur la photo du lavoir pour boucler le cycle." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] },
+        { "code": "1.03", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Documenter un travail de mise en relation de sources ou d'idées hétérogènes en un ensemble cohérent." } }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 0, "nonEtablies": 0, "renvoisCartographe": 1 },
+      "rapport": null
+    },
+    {
+      "poleNum": "2",
+      "passagesSaillants": [
+        { "pid": 2, "extraitVerbatim": "Mme Berthier restait seule près du vestiaire ; je lui ai apporté une chaise et je l'ai présentée au groupe de la chorale. Elle est restée jusqu'à la fin.", "contexte": "Repérage d'une visiteuse isolée pendant le vernissage et geste d'inclusion suivi d'effet.", "auteur": "apprenant", "feuille": "2026-01-07" },
+        { "pid": 3, "extraitVerbatim": "vous avez vu Naël avant même qu'il lève la main, merci.", "contexte": "Message de l'enseignante de CM2 sur l'attention portée à un élève, deux jours après la visite.", "auteur": "tiers_nomme", "feuille": "2026-01-07" },
+        { "pid": 4, "extraitVerbatim": "J'ai gardé un œil sur Lina toute la soirée ; elle a présenté sa photo sans trembler.", "contexte": "Suivi discret d'une adolescente fragilisée la veille, jusqu'à sa prise de parole publique.", "auteur": "apprenant", "feuille": "2026-01-07" }
+      ],
+      "competences": [
+        { "code": "2.01", "courtCircuit": false,
+          "pieces": [
+            { "pid": 2, "numero": 1, "contexte": "Inclusion d'une visiteuse âgée isolée : geste matériel (chaise) et social (présentation à un groupe), effet durable sur la soirée." },
+            { "pid": 3, "numero": 2, "contexte": "Corroboration par un tiers nommé : l'enseignante atteste une attention précoce à l'élève en difficulté." },
+            { "pid": 4, "numero": 3, "contexte": "Vigilance discrète maintenue sur Lina d'un jour à l'autre, jusqu'à sa réussite publique." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : un vernissage réussi peut masquer une attention de surface. Les trois pièces résistent, et la pièce 2 apporte ce qui manquait jusqu'ici : un regard extérieur.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "Geste complet : repérage, action concrète, mise en relation, effet observable (elle reste jusqu'à la fin)." },
+                { "pieceId": 2, "motifResistance": "Témoignage spontané d'un tiers professionnel, portant précisément sur la précocité de l'attention." },
+                { "pieceId": 3, "motifResistance": "La vigilance s'inscrit dans la durée (d'hier à ce soir) et vise l'autonomie de l'adolescente." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Trois pièces favorables, le risque d'auto-célébration est réel au soir d'un succès. La pièce 2 est inattaquable (source externe) ; la pièce 1 est concrète et datée ; la pièce 3 reste auto-rapportée.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "e", "motifAttaque": "Le récit valorise l'apprenante, mais le geste est précis, situé et son effet vérifiable par les présents.", "verdictAttaque": "attaque non recevable, pièce confirmée" },
+                { "pieceId": 2, "attaqueDominante": "g", "motifAttaque": "Un remerciement peut être une politesse ; celui-ci décrit un fait précis (voir avant la main levée), ce qui le sort du compliment convenu.", "verdictAttaque": "attaque non recevable, pièce confirmée" },
+                { "pieceId": 3, "attaqueDominante": "f", "motifAttaque": "La vigilance sur Lina n'est corroborée par personne d'autre dans la feuille.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.78, "raisonnement": "Deux pièces confirmées dont une observation tierce : la sollicitude active est établie au plus haut niveau de confiance du corpus de trois jours." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.78, "nombrePreuves": 2, "nombreIndices": 1,
+            "motif": "Geste d'inclusion complet et témoignage externe convergent ; la vigilance sur Lina corrobore la constance du soin.",
+            "prescription": "Continuer à collecter les retours de tiers (enseignants, habitants) qui objectivent l'attention portée aux personnes." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+            { "pieceId": 2, "type": "observation tierce", "role": "preuve décisive" },
+            { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] },
+        { "code": "2.02", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Documenter un échange où ce qui est dit correspond à ce qui est ressenti, y compris quand c'est inconfortable." } },
+        { "code": "2.06", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Décrire une situation où un code culturel différent du sien a été perçu et pris en compte." } }
+      ],
+      "auditPole": { "competencesTotales": 3, "courtCircuits": 2, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": {
+        "portraitPole": "Au soir du vernissage, le pôle COEUR atteint sa densité maximale des trois jours : le soin se déploie sur trois temporalités (l'instant avec Mme Berthier, la veille avec Lina, l'avant-hier avec Naël) et reçoit sa première corroboration externe.",
+        "emergencesPole": "La sollicitude de l'apprenante commence à être vue par d'autres : le témoignage de l'enseignante transforme une pratique discrète en compétence attestée.",
+        "territoiresDenses": [
+          { "competence": "2.01 Intelligence Émotionnelle & Sollicitude Active", "description": "Inclusion d'une visiteuse isolée et vigilance maintenue sur une adolescente d'un jour à l'autre.", "extraitVerbatim": "je lui ai apporté une chaise et je l'ai présentée au groupe de la chorale", "ceQueCaDit": "Le soin est devenu un réflexe organisateur : il s'exerce même au milieu d'un événement public à conduire." }
+        ],
+        "territoiresNonVisites": "La communication authentique reste le territoire en jachère du pôle : la conversation avec Karim est encore devant elle.",
+        "pistes": [
+          "Provoquer la conversation différée avec Karim et la documenter, quel qu'en soit le résultat."
+        ],
+        "rapportCompletMarkdown": "## Pôle COEUR — 7 janvier 2026\n\nDensité maximale du pôle : inclusion de Mme Berthier, vigilance sur Lina, et première corroboration externe (le message de l'enseignante sur Naël). Le soin s'exerce même au milieu d'un événement public à conduire.\n\n**Piste** : provoquer la conversation différée avec Karim et la documenter."
+      }
+    },
+    {
+      "poleNum": "3",
+      "passagesSaillants": [
+        { "pid": 5, "extraitVerbatim": "le micro a lâché au début de la visite ; j'ai fait asseoir tout le monde plus près et j'ai continué à voix nue, en jouant des silences", "contexte": "Panne technique au début de la visite publique : reconfiguration immédiate de l'espace et du registre vocal.", "auteur": "apprenant", "feuille": "2026-01-07" },
+        { "pid": 6, "extraitVerbatim": "Quarante personnes, dont l'adjointe à la culture : j'ai senti le trac se transformer en énergie dès la première salle.", "contexte": "Prise de parole devant un public nombreux avec enjeu institutionnel.", "auteur": "apprenant", "feuille": "2026-01-07" },
+        { "pid": 7, "extraitVerbatim": "J'ai improvisé le passage sur les commerces disparus quand j'ai vu les anciens hocher la tête.", "contexte": "Improvisation d'un segment de visite en réponse aux réactions du public.", "auteur": "apprenant", "feuille": "2026-01-07" }
+      ],
+      "competences": [
+        { "code": "3.04", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Documenter un choix de sélection ou de mise en forme motivé par un critère de qualité." } },
+        { "code": "3.07", "courtCircuit": false,
+          "pieces": [
+            { "pid": 5, "numero": 1, "contexte": "Gestion en direct d'une panne de micro : l'espace est reconfiguré, la voix et les silences deviennent le dispositif." },
+            { "pid": 6, "numero": 2, "contexte": "Transformation du trac en énergie devant quarante personnes et une élue." },
+            { "pid": 7, "numero": 3, "contexte": "Improvisation d'un segment en lisant les réactions du public (les anciens qui hochent la tête)." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : conduire une visite prévue n'est pas de la performance live. La pièce 1 renverse la présomption à elle seule : la panne oblige à une présence nue, assumée et mise en scène.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "L'imprévu technique est converti en dispositif scénique (proximité, voix nue, silences joués)." },
+                { "pieceId": 2, "motifResistance": "Le trac est nommé et transformé, signe d'un rapport travaillé au public." },
+                { "pieceId": 3, "motifResistance": "L'improvisation répond à une lecture en temps réel de la salle." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Le récit d'une soirée réussie invite à l'emphase. La pièce 1 tient : l'incident est invérifiable mais le détail technique (« en jouant des silences ») relève du geste de métier, pas de la formule. Les pièces 2 et 3 restent auto-rapportées.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "e", "motifAttaque": "Le succès de la reconfiguration est rapporté par l'intéressée, mais la précision du geste scénique écarte la pose rétrospective.", "verdictAttaque": "attaque non recevable, pièce confirmée" },
+                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "La transformation du trac est un ressenti sans corroboration externe.", "verdictAttaque": "pièce affaiblie mais retenue" },
+                { "pieceId": 3, "attaqueDominante": "f", "motifAttaque": "L'effet de l'improvisation sur le public n'est pas documenté au-delà des hochements de tête.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.74, "raisonnement": "La gestion de la panne constitue une preuve de présence scénique ; le trac transformé et l'improvisation corroborent. La performance live est établie." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.74, "nombrePreuves": 1, "nombreIndices": 2,
+            "motif": "La conversion de la panne de micro en dispositif scénique est décisive ; trac transformé et improvisation corroborent.",
+            "prescription": "Recueillir un retour de spectateur (habitant, collègue) sur un prochain moment de conduite publique." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
+            { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": null
+    },
+    {
+      "poleNum": "4",
+      "passagesSaillants": [
+        { "pid": 8, "extraitVerbatim": "À 17h, la pluie menaçait : j'ai tranché pour rapatrier la lecture en salle, quitte à perdre la déambulation.", "contexte": "Décision prise seule sous contrainte de temps et d'incertitude météo, avec renoncement assumé.", "auteur": "apprenant", "feuille": "2026-01-07" },
+        { "pid": 9, "extraitVerbatim": "On ne saura jamais si c'était le bon choix, et je m'en accommode.", "contexte": "Rapport explicite à l'incertitude résiduelle après la décision.", "auteur": "apprenant", "feuille": "2026-01-07" }
+      ],
+      "competences": [
+        { "code": "4.05", "courtCircuit": false,
+          "pieces": [
+            { "pid": 8, "numero": 1, "contexte": "Décision tranchée seule à 17h sous incertitude, avec coût explicite (perdre la déambulation)." },
+            { "pid": 9, "numero": 2, "contexte": "Acceptation de l'invérifiabilité du contrefactuel, contrastée avec le réflexe antérieur de déléguer à Karim." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : une décision météo est banale. Ce qui résiste, c'est le rapport à la décision : trancher seule, nommer le coût, renoncer au contrefactuel — et le contraste daté avec « six mois plus tôt ».",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "La décision est datée, coûteuse et assumée seule, sans délégation vers le directeur." },
+                { "pieceId": 2, "motifResistance": "L'incertitude résiduelle est explicitement tolérée plutôt que niée." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "« Je m'en accommode » pourrait être une élégance de plume. Les deux pièces restent des indices convergents : l'enjeu de la décision est modeste, mais le rapport à l'incertitude est articulé avec une précision inhabituelle.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "b", "motifAttaque": "L'enjeu (une averse) reste limité ; la compétence demanderait une décision à plus forte incertitude.", "verdictAttaque": "pièce affaiblie mais retenue" },
+                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "L'accommodement déclaré n'est vérifiable que par la suite du carnet.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.58, "raisonnement": "Décision assumée et incertitude tolérée, sur un enjeu modeste : faisceau d'indices suffisant, sans preuve décisive." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.58, "nombrePreuves": 0, "nombreIndices": 2,
+            "motif": "Décision tranchée seule et incertitude résiduelle explicitement acceptée, sur un enjeu encore modeste.",
+            "prescription": "Documenter une décision à plus fort enjeu (programmation, budget) et le traitement du doute qui l'accompagne." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] },
+        { "code": "4.06", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Relater une situation où dire ou faire ce qui est juste avait un coût personnel — la conversation avec Karim en serait une." } }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": null
+    },
+    {
+      "poleNum": "5",
+      "passagesSaillants": [
+        { "pid": 10, "extraitVerbatim": "Troisième soir que j'écris : je vois maintenant que mes journées réussies sont celles où j'ai renoncé à quelque chose.", "contexte": "Constat réflexif transversal tiré de la relecture des trois feuilles du carnet.", "auteur": "apprenant", "feuille": "2026-01-07" },
+        { "pid": 11, "extraitVerbatim": "Relire lundi m'a aidée à préparer mercredi. Le carnet devient un outil, pas un devoir.", "contexte": "Usage instrumental explicite du journal : la relecture nourrit la préparation.", "auteur": "apprenant", "feuille": "2026-01-07" }
+      ],
+      "competences": [
+        { "code": "5.01", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Raconter un imprévu ou un échec et la manière dont le travail a continué malgré lui." } },
+        { "code": "5.03", "courtCircuit": false,
+          "pieces": [
+            { "pid": 10, "numero": 1, "contexte": "Généralisation réflexive construite sur trois jours d'écriture : le lien entre réussite et renoncement." },
+            { "pid": 11, "numero": 2, "contexte": "Boucle relecture-préparation attestée : lundi relu a servi mercredi." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : trois soirs d'écriture peuvent n'être qu'une discipline de stage. Les deux pièces résistent : le carnet produit une loi personnelle (pièce 1) et un usage opérationnel (pièce 2).",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "Le constat relie des éléments épars des trois feuilles en un motif : c'est une opération narrative, pas un résumé." },
+                { "pieceId": 2, "motifResistance": "L'utilité de la relecture est attestée par un effet concret sur la préparation du vernissage." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "« Le carnet devient un outil » est exactement ce qu'un stagiaire croit devoir écrire. La pièce 1 tient par sa précision contre-intuitive (réussir = renoncer) ; la pièce 2 est plus déclarative.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "e", "motifAttaque": "La formule pourrait plaire au correcteur, mais son contenu contre-intuitif et étayé par les trois jours écarte la complaisance.", "verdictAttaque": "attaque non recevable, pièce confirmée" },
+                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "L'aide apportée par la relecture n'est pas détaillée (qu'a-t-elle changé concrètement ?).", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.75, "raisonnement": "La narration réflexive boucle sur elle-même et produit du sens neuf : preuve et indice convergent sur une pratique désormais instrumentée." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.75, "nombrePreuves": 1, "nombreIndices": 1,
+            "motif": "Constat réflexif transversal contre-intuitif (preuve), corroboré par l'usage opérationnel de la relecture.",
+            "prescription": "Mettre la loi personnelle à l'épreuve : noter la prochaine journée réussie et vérifier ce qui y a été abandonné." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
+            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": null
+    },
+    {
+      "poleNum": "6",
+      "passagesSaillants": [
+        { "pid": 12, "extraitVerbatim": "Au comité d'habitants, j'ai proposé un tour de parole en reformulant chaque idée au tableau avant d'ouvrir le débat.", "contexte": "Animation du comité d'habitants après le vernissage : cadre de parole et reformulation systématique.", "auteur": "apprenant", "feuille": "2026-01-07" },
+        { "pid": 13, "extraitVerbatim": "Mme Diallo et M. Vergne se coupaient la parole ; j'ai posé la règle du bâton de parole, en riant, et ça a tenu.", "contexte": "Régulation légère d'un conflit de parole entre deux habitants pendant la réunion.", "auteur": "apprenant", "feuille": "2026-01-07" }
+      ],
+      "competences": [
+        { "code": "6.05", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Documenter comment les habitants pèsent réellement sur les décisions (choix du printemps, budget, programmation)." } },
+        { "code": "6.07", "courtCircuit": false,
+          "pieces": [
+            { "pid": 12, "numero": 1, "contexte": "Dispositif de facilitation : tour de parole et reformulation au tableau avant débat." },
+            { "pid": 13, "numero": 2, "contexte": "Régulation d'une interférence entre deux habitants par une règle posée avec humour, et respectée." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : proposer un tour de parole est à la portée de tout animateur. Les pièces résistent modérément : le dispositif est complet (cadre, reformulation, régulation) et débouche sur trois décisions collectives.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "La reformulation au tableau avant débat est un choix de méthode qui rend les idées publiques et discutables." },
+                { "pieceId": 2, "motifResistance": "La règle posée avec légèreté tient jusqu'au bout de la réunion, ce qui suppose une autorité de facilitation acceptée." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "« Ça a tenu » et « trois idées » sont des mesures de succès auto-décernées. Les deux pièces restent des indices : première réunion documentée, sans regard extérieur.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "b", "motifAttaque": "Un dispositif utilisé une fois ne démontre pas une pratique de gouvernance installée.", "verdictAttaque": "pièce affaiblie mais retenue" },
+                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "Le respect de la règle est rapporté par la seule facilitatrice.", "verdictAttaque": "pièce affaiblie mais retenue" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.55, "raisonnement": "Un dispositif de facilitation complet et une régulation réussie, sur une seule occurrence : présence établie de justesse, par faisceau d'indices." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.55, "nombrePreuves": 0, "nombreIndices": 2,
+            "motif": "Dispositif de facilitation cohérent (cadre, reformulation, régulation) sur une première occurrence documentée.",
+            "prescription": "Documenter les prochaines réunions du comité : la facilitation se prouve dans la répétition et la délégation progressive." },
+          "tracesRetenues": [
+            { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
+            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": null
+    },
+    {
+      "poleNum": "7",
+      "passagesSaillants": [
+        { "pid": 14, "extraitVerbatim": "Les deux ados co-guides ont mené la salle des portraits ; je suis restée en retrait, je n'ai soufflé qu'une seule fois.", "contexte": "Délégation réelle d'un segment de la visite publique à deux adolescents formés la veille.", "auteur": "apprenant", "feuille": "2026-01-07" },
+        { "pid": 15, "extraitVerbatim": "Avant la visite, je leur ai fait répéter non pas le texte, mais les questions qu'ils poseraient au public.", "contexte": "Choix de préparation : entraîner les co-guides à questionner plutôt qu'à réciter.", "auteur": "apprenant", "feuille": "2026-01-07" }
+      ],
+      "competences": [
+        { "code": "7.01", "courtCircuit": false,
+          "pieces": [
+            { "pid": 14, "numero": 1, "contexte": "Retrait effectif pendant la conduite par les ados : une seule intervention sur toute la salle des portraits." },
+            { "pid": 15, "numero": 2, "contexte": "Préparation maïeutique : répéter les questions à poser au public plutôt que le texte à réciter." }
+          ],
+          "pedagogue": {
+            "presomptionAbsence": {
+              "raisonnement": "Je présume l'absence : faire guider des ados peut être un gadget de vernissage. La pièce 2 renverse la présomption : le choix de répéter des questions plutôt qu'un texte est un parti pris pédagogique explicite, que la pièce 1 met à l'épreuve du réel.",
+              "piecesQuiResistent": [
+                { "pieceId": 1, "motifResistance": "Le retrait est quantifié (« je n'ai soufflé qu'une seule fois ») et tenu en situation publique à enjeu." },
+                { "pieceId": 2, "motifResistance": "La préparation vise la capacité de questionnement des ados, pas la restitution — cœur de la maïeutique." }
+              ]
+            },
+            "presomptionSycophantie": {
+              "raisonnement": "Le succès de Lina (« la plus belle relance de la soirée ») pourrait enjoliver l'ensemble. La pièce 2 tient : le protocole de préparation est décrit avant son résultat. La pièce 1 est corroborée par le déroulement public de la soirée.",
+              "examenPieces": [
+                { "pieceId": 1, "attaqueDominante": "f", "motifAttaque": "Le compte des interventions est auto-rapporté, mais la scène s'est déroulée devant témoins.", "verdictAttaque": "pièce affaiblie mais retenue" },
+                { "pieceId": 2, "attaqueDominante": "e", "motifAttaque": "Le dispositif pourrait être raconté pour flatter la posture d'accompagnante ; sa précision méthodologique (répéter des questions) écarte la pose.", "verdictAttaque": "attaque non recevable, pièce confirmée" }
+              ]
+            },
+            "conclusionAdversariale": { "confianceFinale": 0.8, "raisonnement": "Un parti pris maïeutique explicite en préparation, tenu ensuite en situation publique : preuve et indice convergent, c'est la compétence la plus nette de la feuille." }
+          },
+          "verdict": { "statut": "présence établie", "confiance": 0.8, "nombrePreuves": 1, "nombreIndices": 1,
+            "motif": "Préparation centrée sur le questionnement (preuve) et retrait tenu pendant la conduite publique (indice).",
+            "prescription": "Confier aux ados la préparation de la prochaine visite de bout en bout et documenter ce qu'ils modifient." },
+          "tracesRetenues": [
+            { "pieceId": 2, "type": "trace concrète", "role": "preuve décisive" },
+            { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" }
+          ] },
+        { "code": "7.03", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
+          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "raison": "aucune pièce extraite par le Greffier",
+            "prescriptionMinimale": "Garder trace des outils produits (déroulés de visite, règles de réunion) et de leurs révisions successives." } }
+      ],
+      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "rapport": {
+        "portraitPole": "Le pôle FLAMBEAU se déploie au moment le plus exposé : la transmission passe de la classe (lundi) à l'espace public (mercredi), avec deux adolescents mis en position de guides réels.",
+        "emergencesPole": "La posture maïeutique devient méthode : répéter des questions plutôt qu'un texte est un choix de conception, plus seulement un réflexe d'animation.",
+        "territoiresDenses": [
+          { "competence": "7.01 Maïeutique & Facilitation d'Apprentissage", "description": "Préparation et accompagnement des deux ados co-guides jusqu'à la conduite publique.", "extraitVerbatim": "je leur ai fait répéter non pas le texte, mais les questions qu'ils poseraient au public", "ceQueCaDit": "Transmettre, pour l'apprenante, c'est équiper l'autre pour questionner — pas lui déléguer une récitation." }
+        ],
+        "territoiresNonVisites": "La documentation vivante reste absente : les déroulés, règles et outils inventés ces trois jours n'existent encore que dans le carnet.",
+        "pistes": [
+          "Transformer les outils improvisés (déroulé de visite, règles de réunion) en documents partagés et versionnés avec l'équipe."
+        ],
+        "rapportCompletMarkdown": "## Pôle FLAMBEAU — 7 janvier 2026\n\nLa transmission passe à l'espace public : deux ados co-guides préparés par les questions (pas par le texte), un retrait tenu pendant la visite. La maïeutique devient méthode.\n\n**Piste** : transformer les outils improvisés en documents partagés avec l'équipe."
+      }
+    }
+  ],
+  "kairos": {
+    "kairos": {
+      "apprenant": {
+        "portrait": "Sur cette feuille de vernissage, Maya apparaît comme une organisatrice du soin : elle conduit un événement public tout en gardant un œil sur chaque personne fragile, et convertit chaque imprévu (micro, pluie, coupures de parole) en dispositif.",
+        "formeProfil": "Le profil de la journée est en étoile autour du pôle COEUR, avec des pointes nettes vers FLAMBEAU (co-guides) et MAIN (performance live) ; TETE reste le pôle le plus prudent, avec un doute consigné mais non résolu.",
+        "ceQuiRelieLesPoles": "Un même geste traverse les pôles : renoncer à quelque chose (le micro, la déambulation, le premier rôle) pour que quelque chose de plus important ait lieu. La formule du carnet — les journées réussies sont celles où l'on a renoncé — relie la décision, la scène et la transmission.",
+        "ceQuiEmergeEntreLesLignes": "La conversation évitée avec Karim revient en fin de feuille comme une dette nommée : le courage managérial est le prochain seuil, et l'apprenante le sait.",
+        "invitationsPourLaSuite": [
+          "Boucler la vérification de la photo du lavoir et consigner le résultat, pour installer la méthode critique.",
+          "Provoquer la conversation avec Karim sur le créneau du mardi et la documenter, quelle qu'en soit l'issue.",
+          "Transformer les outils improvisés (déroulé, bâton de parole) en documentation partagée avec l'équipe."
+        ],
+        "syntheseCompleteMarkdown": "## Kairos — 7 janvier 2026\n\nJournée de vernissage : Maya conduit l'événement en organisatrice du soin, convertit les imprévus en dispositifs, et fait monter deux ados en position de guides. Le fil des trois jours se noue dans sa propre formule : les journées réussies sont celles où l'on a renoncé à quelque chose.\n\n**Invitations** : boucler la vérification du lavoir ; parler à Karim ; documenter les outils improvisés."
+      }
+    },
+    "emergencesCrossPoles": {
+      "connexionsTransversales": [
+        {
+          "titre": "Le soin comme méthode de conduite",
+          "description": "La vigilance sur les personnes (Lina, Mme Berthier) et la mise en capacité des ados co-guides procèdent du même geste : conduire l'événement en s'effaçant au profit des autres, jusque dans la facilitation du comité d'habitants.",
+          "codesRelies": ["2.01", "7.01", "6.07"],
+          "piecesCommunes": [4, 14]
+        }
+      ],
+      "noeudsConceptuels": [
+        {
+          "nom": "Renoncement fécond",
+          "description": "La déambulation sacrifiée, le micro abandonné, le premier rôle laissé aux ados : la feuille noue décision sous incertitude, performance et transmission autour du renoncement assumé, que le carnet érige en loi personnelle.",
+          "codesRelies": ["4.05", "3.07", "7.01", "5.03"]
+        }
+      ],
+      "competencesOrphelines": [
+        {
+          "titre": "Médiation par le récit de quartier",
+          "description": "Faire raconter le quartier par ses habitants et ses adolescents — collecte, mise en récit, restitution publique — fonctionne dans la feuille comme une compétence à part entière, qui ne se réduit à aucun code du référentiel.",
+          "extraitsPortfolio": [
+            "J'ai improvisé le passage sur les commerces disparus quand j'ai vu les anciens hocher la tête.",
+            "On est sortis avec trois idées pour le printemps, dont la collecte de récits sonores."
+          ],
+          "enRelationAvecCodes": ["5.03", "2.09", "3.02"]
+        }
+      ]
+    }
+  }
+}
