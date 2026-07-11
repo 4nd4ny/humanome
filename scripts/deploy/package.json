@@ -1,0 +1,11 @@
+{
+  "name": "humanome-deploy",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "description": "FTPS deployment to OVH shared hosting (ADR-008): manifest-based delta sync",
+  "dependencies": {
+    "basic-ftp": "^5.0.5"
+  }
+}
