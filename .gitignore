@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Builds
+dist/
+web/dist/
+*.local
+
+# Environments & secrets — never commit
+.env
+.env.*
+!.env.example
+.env.deploy
+*.key
+api-key*.txt
+secrets/
+
+# Golden Prompt — private by design (cahier §7)
+assets-existants/golden-prompt/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Test artifacts
+coverage/
+playwright-report/
+test-results/
+
+# PHP
+composer.phar
+.phpunit.result.cache
