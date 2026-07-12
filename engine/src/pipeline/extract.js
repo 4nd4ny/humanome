@@ -256,7 +256,9 @@ pistes [1..7 chaînes], rapportCompletMarkdown (rapport complet en Markdown)}.
 
 # Format de sortie
 
-Réponds UNIQUEMENT par un objet JSON strict (aucun texte avant ou après, pas de bloc de code),
+Réponds UNIQUEMENT par un objet JSON strict et COMPACT — une seule ligne, sans indentation
+ni retours à la ligne (l'indentation gaspille ton budget de sortie) ; aucun texte avant ou
+après, pas de bloc de code —,
 exactement au gabarit suivant — competences DOIT contenir les ${codes.length} codes
 ${codes.join(', ')} dans cet ordre :
 
@@ -346,7 +348,9 @@ ${referentielBloc(referentiel)}
 
 # Format de sortie
 
-Réponds UNIQUEMENT par un objet JSON strict (aucun texte avant ou après, pas de bloc de code),
+Réponds UNIQUEMENT par un objet JSON strict et COMPACT — une seule ligne, sans indentation
+ni retours à la ligne (l'indentation gaspille ton budget de sortie) ; aucun texte avant ou
+après, pas de bloc de code —,
 exactement au gabarit :
 
 {

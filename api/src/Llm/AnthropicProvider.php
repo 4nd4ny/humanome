@@ -39,6 +39,11 @@ final class AnthropicProvider
         $payload = [
             'model' => $model,
             'max_tokens' => $maxTokens,
+            // Some models reason by default; thinking tokens count against
+            // max_tokens while never reaching the text blocks we extract —
+            // observed live: 6144 output tokens for 5444 chars of truncated
+            // text. The demo needs the whole budget as text.
+            'thinking' => ['type' => 'disabled'],
             'messages' => [['role' => 'user', 'content' => $prompt]],
         ];
         if ($system !== null && $system !== '') {
