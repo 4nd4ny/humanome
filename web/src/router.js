@@ -40,6 +40,8 @@ export function isValidIsoDate(value) {
  *   | {name: 'essayer'}
  *   | {name: 'portfolio'}
  *   | {name: 'account'}
+ *   | {name: 'espace', section: string | null}
+ *   | {name: 'share', token: string}
  *   | {name: 'not-found', hash: string}}
  */
 export function parseHash(hash) {
@@ -53,6 +55,15 @@ export function parseHash(hash) {
   if (path === '/essayer') return { name: 'essayer' }
   if (path === '/portfolio') return { name: 'portfolio' }
   if (path === '/compte') return { name: 'account' }
+
+  // Espace apprenant (P8) : #/espace, #/espace/formation, #/espace/formation/<chapitre>…
+  if (path === '/espace') return { name: 'espace', section: null }
+  const espaceMatch = /^\/espace\/(.+)$/.exec(path)
+  if (espaceMatch) return { name: 'espace', section: decodeURIComponent(espaceMatch[1]) }
+
+  // Lien de partage employeur (P8) : #/partage/<token>
+  const shareMatch = /^\/partage\/([A-Za-z0-9_-]{10,})$/.exec(path)
+  if (shareMatch) return { name: 'share', token: shareMatch[1] }
 
   if (path === '/referentiel') return { name: 'referentiel', code: null }
   const refMatch = /^\/referentiel\/([^/]+)$/.exec(path)

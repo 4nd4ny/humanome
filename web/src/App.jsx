@@ -8,6 +8,8 @@ import ReferentielView from './views/ReferentielView.jsx'
 import EssayerView from './views/EssayerView.jsx'
 import PortfolioView from './views/PortfolioView.jsx'
 import AccountView from './views/AccountView.jsx'
+import EspaceView from './views/EspaceView.jsx'
+import ShareView from './views/ShareView.jsx'
 
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
@@ -98,6 +100,12 @@ export default function App({ lib }) {
     case 'account':
       view = <AccountView />
       break
+    case 'espace':
+      view = <EspaceView section={route.section} lib={lib} />
+      break
+    case 'share':
+      view = <ShareView token={route.token} lib={lib} />
+      break
     case 'not-found':
       view = (
         <div className="not-found">
@@ -123,6 +131,7 @@ export default function App({ lib }) {
         <nav aria-label="Navigation principale">
           <a href="#/merge">Cartographie</a>
           <a href="#/portfolio">Portfolio</a>
+          <a href="#/espace">Espace</a>
           <a href="#/referentiel">Référentiel</a>
           <a href="#/essayer">Essayer</a>
           <a href="#/compte">Compte</a>
