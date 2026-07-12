@@ -69,6 +69,12 @@ body {
   letter-spacing: 0.01em;
 }
 
+.app-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+}
+
 .app-header nav a {
   color: var(--ink-soft);
   text-decoration: none;
@@ -625,6 +631,284 @@ body {
 .not-found {
   padding: 2rem 0;
   text-align: center;
+}
+
+/* ---------- Référentiel public (P4.4) ---------- */
+
+.referentiel {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.ref-header h1 {
+  margin: 0.5rem 0 0.5rem;
+}
+
+.ref-version {
+  margin: 0 0 1rem;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+}
+
+.ref-loading,
+.account-loading {
+  color: var(--ink-faint);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* Bandeau sobre vers l'espace participatif Decidim (cahier §3.5). */
+.ref-decidim {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin: 1rem 0 1.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+.ref-decidim p {
+  flex: 1 1 22rem;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.ref-search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 1.25rem 0 0.35rem;
+}
+
+.ref-search label {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.ref-search input {
+  max-width: 26rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 1rem;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.ref-count {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+.ref-pole {
+  margin: 1rem 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--pole-color, var(--line));
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.ref-pole-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.ref-pole-count {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.ref-competences {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ref-competence {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+}
+
+.ref-competence-code {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--pole-color, var(--accent));
+  text-decoration: none;
+}
+
+.ref-competence-code:hover,
+.ref-competence-code:focus-visible {
+  text-decoration: underline;
+}
+
+/* Permalien actif : surbrillance de la ligne visée. */
+.ref-competence-focus {
+  background: #eff6ff;
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+/* ---------- Espace compte (#/compte) ---------- */
+
+.account {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.account-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.account-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.account-form input,
+.account-danger input {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 1rem;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.field-hint {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.account-notice {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.account-unavailable {
+  padding: 0.9rem 1.1rem;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink-soft);
+}
+
+.account-profile {
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.account-profile h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.account-profile dl {
+  margin: 0 0 1rem;
+}
+
+.account-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.3rem 0;
+}
+
+.account-row + .account-row {
+  border-top: 1px solid var(--line);
+}
+
+.account-row dt {
+  color: var(--ink-soft);
+}
+
+.account-row dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+/* Zone de danger RGPD : suppression = purge réelle (cahier §6.3). */
+.account-danger {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  padding: 1.1rem;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  background: var(--danger-bg);
+}
+
+.account-danger h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--danger);
+}
+
+.account-danger p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.account-danger label {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.button-danger {
+  align-self: flex-start;
+  border-color: #fecaca;
+  color: var(--danger);
+}
+
+.button-danger:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.button-danger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* ---------- Mobile (< 768px) : onglets + tactile (cahier §1) ---------- */

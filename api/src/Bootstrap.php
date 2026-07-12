@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Humanome;
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Factory\AppFactory;
 
+/**
+ * Application factory. Routes are modular: each file in src/routes/<module>.php
+ * returns a closure `function (Slim\App $app): void` and is loaded here by
+ * sorted glob(). New modules (auth.php, referentiel.php, ...) plug in by
+ * dropping a file — Bootstrap itself never changes.
+ */
 final class Bootstrap
 {
     public static function createApp(): App
@@ -21,19 +25,48 @@ final class Bootstrap
         $app = AppFactory::create();
         $app->setBasePath('/api');
         $app->addRoutingMiddleware();
-        $app->addErrorMiddleware(self::env('APP_ENV', 'production') === 'dev', true, true);
+        $app->addErrorMiddleware(Env::get('APP_ENV', 'production') === 'dev', true, true);
 
-        $app->get('/health', function (Request $request, Response $response): Response {
-            $payload = [
-                'status' => 'ok',
-                'version' => self::env('APP_VERSION', 'dev'),
-            ];
-            $response->getBody()->write(json_encode($payload, JSON_THROW_ON_ERROR));
-
-            return $response->withHeader('Content-Type', 'application/json');
-        });
+        foreach (self::routeFiles() as $file) {
+            /** @var callable(App): void $register */
+            $register = require $file;
+            $register($app);
+        }
 
         return $app;
+    }
+
+    /**
+     * Application version: APP_VERSION env, else the VERSION file at the
+     * release root (releases/<ts>/VERSION, ADR-008), else "dev".
+     */
+    public static function version(): string
+    {
+        $version = Env::get('APP_VERSION');
+        if ($version !== '') {
+            return $version;
+        }
+
+        // Release layout: <release>/VERSION next to src/ (ADR-008); repo has none.
+        foreach ([dirname(__DIR__) . '/VERSION', dirname(__DIR__, 2) . '/VERSION'] as $versionFile) {
+            if (is_file($versionFile)) {
+                $content = trim((string) file_get_contents($versionFile));
+                if ($content !== '') {
+                    return $content;
+                }
+            }
+        }
+
+        return 'dev';
+    }
+
+    /** @return list<string> */
+    private static function routeFiles(): array
+    {
+        $files = glob(__DIR__ . '/routes/*.php') ?: [];
+        sort($files, SORT_STRING);
+
+        return $files;
     }
 
     /**
@@ -42,22 +75,16 @@ final class Bootstrap
     private static function envDir(): ?string
     {
         $candidates = [
-            dirname(__DIR__, 3) . '/app/shared', // OVH: releases/<ts>/api/src -> ~/app/shared
-            dirname(__DIR__),                    // dev: api/.env
+            Env::get('HUMANOME_SHARED_DIR'), // set by the www/api front controller (ADR-008)
+            dirname(__DIR__, 3) . '/shared', // OVH: ~/app/releases/<ts>/src -> ~/app/shared
+            dirname(__DIR__),                // dev: api/.env
         ];
         foreach ($candidates as $dir) {
-            if (is_file($dir . '/.env')) {
+            if ($dir !== '' && is_file($dir . '/.env')) {
                 return $dir;
             }
         }
 
         return null;
-    }
-
-    private static function env(string $key, string $default): string
-    {
-        $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
-
-        return is_string($value) && $value !== '' ? $value : $default;
     }
 }

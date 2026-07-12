@@ -23,10 +23,14 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: 'humanome.xyz' })).toBeDefined()
     expect(screen.getByText(/Explorer la cartographie de démonstration/)).toBeDefined()
 
-    // En-tête : marque -> #/ et lien vers la vue merge
+    // En-tête : marque -> #/ et liens de navigation principaux
     const brand = screen.getByText('humanome.xyz', { selector: 'a' })
     expect(brand.getAttribute('href')).toBe('#/')
     expect(screen.getByRole('link', { name: 'Cartographie' }).getAttribute('href')).toBe('#/merge')
+    expect(screen.getByRole('link', { name: 'Référentiel' }).getAttribute('href')).toBe(
+      '#/referentiel',
+    )
+    expect(screen.getByRole('link', { name: 'Compte' }).getAttribute('href')).toBe('#/compte')
 
     // Pied de page : mention RESPIRE/Harmonia + lien participer
     expect(screen.getByText(/écosystème RESPIRE, Harmonia Éducation/)).toBeDefined()
@@ -45,6 +49,33 @@ describe('App', () => {
     expect(screen.getByText('59')).toBeDefined() // les 59 feuilles du corpus réel
     expect(screen.getByText(/Touchez un secteur du diagramme/)).toBeDefined()
     expect(document.querySelectorAll('rect.heatmap-day')).toHaveLength(59)
+  })
+
+  it('route #/referentiel -> arbre public (repli embarqué sans réseau)', async () => {
+    window.location.hash = '#/'
+    render(<App lib={fakeLib} />)
+
+    setHash('#/referentiel')
+
+    // Sans serveur (fetch relatif impossible en test), le référentiel embarqué
+    // RESPIRE v7 est servi : les 7 pôles sont rendus.
+    expect(
+      await screen.findByRole('heading', { name: 'Référentiel de compétences' }),
+    ).toBeDefined()
+    expect(await screen.findByText('TETE — Penser & Comprendre')).toBeDefined()
+    expect(document.querySelectorAll('.ref-pole')).toHaveLength(7)
+    expect(document.querySelectorAll('.ref-competence')).toHaveLength(61)
+  })
+
+  it('route #/compte sans API -> message copie statique, sans erreur non gérée', async () => {
+    window.location.hash = '#/'
+    render(<App lib={fakeLib} />)
+
+    setHash('#/compte')
+
+    expect((await screen.findByRole('status')).textContent).toContain(
+      'indisponible sur cette copie statique',
+    )
   })
 
   it('route invalide -> page introuvable avec retour accueil', () => {

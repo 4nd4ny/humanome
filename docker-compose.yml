@@ -12,6 +12,7 @@ services:
       DB_NAME: humanome
       DB_USER: humanome
       DB_PASSWORD: humanome_dev
+      MIGRATE_TOKEN: dev_migrate_token
     depends_on:
       mysql:
         condition: service_healthy

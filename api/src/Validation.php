@@ -68,7 +68,19 @@ final class Validation
 
     private static function defaultSchemasDir(): string
     {
-        return dirname(__DIR__, 2) . '/schemas';
+        // Repo layout (api/src -> <repo>/schemas) vs deployed release layout
+        // (<release>/src -> <release>/schemas, ADR-008).
+        $candidates = [
+            dirname(__DIR__) . '/schemas',
+            dirname(__DIR__, 2) . '/schemas',
+        ];
+        foreach ($candidates as $dir) {
+            if (is_dir($dir)) {
+                return $dir;
+            }
+        }
+
+        return $candidates[1];
     }
 
     /**

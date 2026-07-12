@@ -23,5 +23,6 @@ final class HealthTest extends TestCase
         $body = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
         self::assertSame('ok', $body['status']);
         self::assertArrayHasKey('version', $body);
+        self::assertContains($body['db'], ['ok', 'unconfigured', 'error']);
     }
 }

@@ -2,9 +2,21 @@
 
 ## En cours
 
-- **M3 (P3+P4)** : base de données, comptes/rôles, module référentiel.
+- **M4 (P5)** : moteur de cartographie JS (rétro-ingénierie avec oracles).
 
 ## Fait
+
+- 2026-07-12 — **M3 terminé (P3+P4) : API en production.** 5 migrations MySQL (users/roles/
+  sessions PDO/rate_limits/referentiel_versions/prompt_*/cartographies opt-in datée/share_links/
+  training_progress/user_api_keys/audit_events, purge RGPD par FK), auth complète (ARGON2ID,
+  anti-énumération, CSRF double-submit, rate-limit progressif, RequireRole), module référentiel
+  versionné (import v7 idempotent hash-vérifié, brouillon→publication immuable, diff, export
+  statique), front #/referentiel (arbre+recherche+permaliens+Decidim) et #/compte (RGPD),
+  audit sécurité adversarial passé (1 défaut latent corrigé + 9 tests). Déploiement par releases
+  ADR-008 opérationnel : 3 off-by-one de layout corrigés (migrations/schemas/VERSION),
+  route POST /api/admin/import-referentiel ajoutée (pas de SSH). Prod vérifiée : migrations
+  idempotentes, referentiel v7.0.0 servi par l'API, parcours register→me→purge RGPD→401,
+  health db:ok versionné. Tests : PHP 89/89, web 147/147, corpus 68/68.
 
 - 2026-07-12 — **M2 terminé (P2) : humanome.xyz EN LIGNE.** Visualisation unifiée déployée
   (https://humanome.xyz) : vue Merge (sunburst porté à parité stricte 331/331 paths contre le

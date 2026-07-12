@@ -13,6 +13,10 @@ mkdir -p "$stage"
 cp -R "$repo/api/src" "$stage/src"
 cp -R "$repo/api/public" "$stage/public"
 cp "$repo/api/composer.json" "$repo/api/composer.lock" "$stage/"
+
+# JSON Schemas: the dual-runtime validation contract (P1) ships with the release
+mkdir -p "$stage/schemas"
+cp "$repo/schemas/"*.schema.json "$stage/schemas/"
 if [ -d "$repo/api/config" ]; then cp -R "$repo/api/config" "$stage/config"; fi
 if [ -d "$repo/scripts/migrations" ]; then
   mkdir -p "$stage/scripts"

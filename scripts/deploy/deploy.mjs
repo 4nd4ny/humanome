@@ -176,6 +176,18 @@ async function deployApi(env) {
     const body = await res.text()
     console.log(`migrate: HTTP ${res.status} ${body.slice(0, 300)}`)
     if (!res.ok) throw new Error('migration endpoint failed')
+
+    // Seed/refresh the published referentiel (idempotent server-side)
+    const refPath = join(repoRoot, 'web/public/data/referentiel/respire-v7.json')
+    if (statSync(refPath, { throwIfNoEntry: false })?.isFile()) {
+      const imp = await fetch(`${base}/api/admin/import-referentiel`, {
+        method: 'POST',
+        headers: { 'X-Migrate-Token': env.MIGRATE_TOKEN, 'Content-Type': 'application/json' },
+        body: readFileSync(refPath, 'utf8'),
+      })
+      console.log(`import-referentiel: HTTP ${imp.status} ${(await imp.text()).slice(0, 200)}`)
+      if (!imp.ok) throw new Error('referentiel import failed')
+    }
   } else {
     console.warn('MIGRATE_TOKEN not set in .env.deploy — skipping remote migrations')
   }

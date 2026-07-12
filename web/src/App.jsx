@@ -4,6 +4,8 @@ import { getDemoMerge, getReferentiel, loadDay } from './data/load.js'
 import HomeView from './views/HomeView.jsx'
 import MergeView from './views/MergeView.jsx'
 import DayView from './views/DayView.jsx'
+import ReferentielView from './views/ReferentielView.jsx'
+import AccountView from './views/AccountView.jsx'
 
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
@@ -82,6 +84,12 @@ export default function App({ lib }) {
         />
       )
       break
+    case 'referentiel':
+      view = <ReferentielView focusCode={route.code} />
+      break
+    case 'account':
+      view = <AccountView />
+      break
     case 'not-found':
       view = (
         <div className="not-found">
@@ -106,6 +114,8 @@ export default function App({ lib }) {
         </a>
         <nav aria-label="Navigation principale">
           <a href="#/merge">Cartographie</a>
+          <a href="#/referentiel">Référentiel</a>
+          <a href="#/compte">Compte</a>
         </nav>
       </header>
       <main className="app-main">{view}</main>

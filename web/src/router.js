@@ -5,6 +5,9 @@
 //   #/merge                 chronological (merge) view
 //   #/jour/<iso>            day view, <iso> = AAAA-MM-JJ
 //   #/jour/<iso>?focus=<c>  idem with a competence code highlighted
+//   #/referentiel           public referentiel (7 pôles -> 61 compétences)
+//   #/referentiel/<code>    idem, permalink to one competence (scroll + highlight)
+//   #/compte                account area (session checked when the route mounts)
 
 const ISO_DATE_RE = /^(\d{4})-(\d{2})-(\d{2})$/
 
@@ -31,6 +34,8 @@ export function isValidIsoDate(value) {
  * @returns {{name: 'home'}
  *   | {name: 'merge'}
  *   | {name: 'day', date: string, focus: string | null}
+ *   | {name: 'referentiel', code: string | null}
+ *   | {name: 'account'}
  *   | {name: 'not-found', hash: string}}
  */
 export function parseHash(hash) {
@@ -41,6 +46,11 @@ export function parseHash(hash) {
 
   if (path === '' || path === '/') return { name: 'home' }
   if (path === '/merge') return { name: 'merge' }
+  if (path === '/compte') return { name: 'account' }
+
+  if (path === '/referentiel') return { name: 'referentiel', code: null }
+  const refMatch = /^\/referentiel\/([^/]+)$/.exec(path)
+  if (refMatch) return { name: 'referentiel', code: decodeURIComponent(refMatch[1]) }
 
   const dayMatch = /^\/jour\/([^/]+)$/.exec(path)
   if (dayMatch) {
@@ -62,6 +72,15 @@ export function parseHash(hash) {
  */
 export function dayHash(date, focus = null) {
   return `#/jour/${date}${focus ? `?focus=${encodeURIComponent(focus)}` : ''}`
+}
+
+/**
+ * Builds the canonical hash for the public referentiel view.
+ * @param {string | null} [code] competence code to permalink (e.g. '1.01')
+ * @returns {string} '#/referentiel' or '#/referentiel/<code>'
+ */
+export function referentielHash(code = null) {
+  return code ? `#/referentiel/${encodeURIComponent(code)}` : '#/referentiel'
 }
 
 /** @returns {ReturnType<typeof parseHash>} route for the current location hash */

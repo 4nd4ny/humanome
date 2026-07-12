@@ -1,5 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { currentRoute, dayHash, isValidIsoDate, parseHash, subscribe } from './router.js'
+import {
+  currentRoute,
+  dayHash,
+  isValidIsoDate,
+  parseHash,
+  referentielHash,
+  subscribe,
+} from './router.js'
 
 afterEach(() => {
   window.location.hash = ''
@@ -71,6 +78,31 @@ describe('parseHash', () => {
     expect(parseHash('#/inconnu')).toEqual({ name: 'not-found', hash: '/inconnu' })
     expect(parseHash('#/merge/extra').name).toBe('not-found')
     expect(parseHash('#/jour/2026-03-15/extra').name).toBe('not-found')
+  })
+})
+
+describe('routes référentiel et compte (P4.4)', () => {
+  it('route vers le référentiel public, sans ou avec code permalié', () => {
+    expect(parseHash('#/referentiel')).toEqual({ name: 'referentiel', code: null })
+    expect(parseHash('#/referentiel/1.01')).toEqual({ name: 'referentiel', code: '1.01' })
+    expect(parseHash('#/referentiel/7.09')).toEqual({ name: 'referentiel', code: '7.09' })
+  })
+
+  it('décode un code encodé et rejette les segments supplémentaires', () => {
+    expect(parseHash('#/referentiel/a%2Fb').code).toBe('a/b')
+    expect(parseHash('#/referentiel/').name).toBe('not-found')
+    expect(parseHash('#/referentiel/1.01/extra').name).toBe('not-found')
+  })
+
+  it('route vers le compte', () => {
+    expect(parseHash('#/compte')).toEqual({ name: 'account' })
+    expect(parseHash('#/compte/extra').name).toBe('not-found')
+  })
+
+  it('referentielHash est l’inverse de parseHash', () => {
+    expect(referentielHash()).toBe('#/referentiel')
+    expect(referentielHash('1.01')).toBe('#/referentiel/1.01')
+    expect(parseHash(referentielHash('4.07'))).toEqual({ name: 'referentiel', code: '4.07' })
   })
 })
 
