@@ -133,10 +133,16 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
   ajv + validation par pôle) ; kairos volumineux (→ bornes de longueur + kairosOptional :
   dégradation gracieuse à null avec note UI) ; timeouts (→ curl 150 s, le LB OVH suit ;
   8192 tokens de budget). Config prod (env ~/app/shared/.env) : Sonnet 5, 8192 tokens,
-  40 req/h/IP, PoW 16 bits, budget 15 $/jour (les compteurs de la journée de test sont
-  consommés ; ramener à 5-10 $ selon usage réel).
-  Backlog M5 : panneau pôle sans rapport (dégradé) affiche l'état vide — afficher audit +
-  passages ; envisager le schéma JSON complet dans le tool input_schema pour ancrer kairos.
+  40 req/h/IP, PoW 16 bits, budget **8 $/jour**.
+  **DÉCISION DE COÛT à trancher par l'utilisateur** (écart au cahier §3.1/§5 qui visait Haiku
+  bon marché) : un run démo = 8 appels Sonnet ≈ 1 $+, donc le plafond 8 $/jour coupe après
+  ~6-8 visiteurs/jour. Testé le 2026-07-12 : **Haiku + tool_use forcé ne suffit PAS** (JSON
+  valide mais structure incomplète — `competences` absent ; Haiku ne suit pas la structure
+  adverse profonde). Options : (a) garder Sonnet + plafond bas (actuel) ; (b) monter le budget ;
+  (c) **piste non testée prometteuse** : mettre le SCHÉMA COMPLET du pôle dans `input_schema`
+  du tool (décodage contraint) pour forcer la structure → pourrait rendre Haiku (bien moins cher)
+  viable. Backlog M5 : (c) ci-dessus ; panneau pôle sans rapport (dégradé) affiche l'état vide
+  — afficher audit + passages à la place.
 
 - 2026-07-12 — **M4 terminé (P5) : moteur complet, gate de parité franchie** (rapport :
   docs/rapport-parite-moteur.md). Étage A (merge numérique) : PARITÉ 100 % — 132 618 valeurs
