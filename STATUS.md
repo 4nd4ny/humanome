@@ -1,13 +1,24 @@
 # STATUS — journal de bord
 
-## En cours
+## État : v1.0.0 — EN PRODUCTION
 
-- **v1.0.0 — code complet et intégré.** Reste au chef d'orchestre : déploiement final
-  (static + api), pose du tag `git` **v1.0.0** (la version est estampillée au déploiement
-  depuis `git describe`), cron OVH (worker-tick + maintenance), attribution des rôles admin,
-  publication GitHub. Liste détaillée en fin de fichier (« Actions manuelles restantes »).
+Les 14 prompts P0→P13 sont appliqués, intégrés, déployés sur https://humanome.xyz et
+vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichier.
 
 ## Fait
+
+- 2026-07-12 — **P13 finalisé : v1.0.0 déployée et taguée.** Le chantier D du workflow M9
+  (déploiement/clone/status) ayant échoué en cours de flux, complété à la main : `GET /api/status`
+  (santé publique version/db/démo/worker, cacheable 30 s, sans secret, testé) ; commandes
+  `deploy.mjs releases` et `rollback` (repointage de `current.txt`, exercées en prod) ;
+  `scripts/backup/backup-db.mjs` + restauration **testée en round-trip sur Docker** (dump → base
+  neuve → 29 tables) ; `INSTALL.md` (clone déployable), `README.md` (vitrine AGPL-3.0),
+  `api/.env.example`, `docs/deploiement.md`, `docs/backup-restore.md`. Historique git scanné :
+  aucun secret réel (seuls des placeholders EXEMPLE). Déploiement final : migration 010 en prod
+  (10/10), `/api/status` sain, en-têtes API stricts (CSP `default-src 'none'`, X-Frame DENY),
+  CSP front avec jetons sandbox, page /confidentialite rendue. **Contrainte OVH consignée**
+  (vérifiée au panel) : offre gratuite → PAS de cron ; masse/maintenance par endpoints externes,
+  rien ne casse sans cron. Suites finales : PHP 308/308, web 439/439, engine 214/214, e2e 5/5.
 
 - 2026-07-12 — **M9 terminé (P12+P13) : admin, RGPD transverse, durcissement — v1.0.0 INTÉGRÉE.**
   Clôture qualité : les 4 chantiers M9 (A administration, B RGPD transverse, C durcissement,
