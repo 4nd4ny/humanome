@@ -176,13 +176,33 @@ export function createDemoProvider({ fetchFn, onPhase } = {}) {
     },
   })
 
+  // One retry on TRANSIENT upstream failures (5xx/network) with a fresh
+  // challenge: an 8-call run should not die on a single gateway hiccup.
+  // Never retried: 429 (demo quota — hammering it would be abuse) nor 4xx.
+  const complete = async (args) => {
+    try {
+      return await provider.complete(args)
+    } catch (error) {
+      const status = httpInfo(error)?.status ?? null
+      // 503 is NOT transient here: the demo API uses it for « épuisée/désactivée ».
+      const transient = status === null || [500, 502, 504, 529].includes(status)
+      if (!transient || args?.signal?.aborted || isAbortError(error)) throw error
+      onPhase?.('retry')
+      await new Promise((resolve) => setTimeout(resolve, UPSTREAM_RETRY_DELAY_MS))
+      return provider.complete(args)
+    }
+  }
+
   return {
-    provider,
+    provider: { ...provider, complete },
     async prime(signal) {
       solvedQueue.push(await obtainSolved(signal))
     },
   }
 }
+
+/** Pause before the single retry on a transient upstream failure. */
+export const UPSTREAM_RETRY_DELAY_MS = 2500
 
 /** Walks the `cause` chain looking for an HTTP status / Retry-After delay. */
 function httpInfo(error) {

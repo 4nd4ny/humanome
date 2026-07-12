@@ -162,6 +162,57 @@ describe('createDemoProvider', () => {
     // 1 GET défi + 1 POST, pas de martèlement du quota.
     expect(fetchFn).toHaveBeenCalledTimes(2)
   })
+
+  it('réessaie UNE fois un 504 amont transitoire, avec un défi frais', async () => {
+    vi.useFakeTimers()
+    try {
+      let calls = 0
+      const { fetchFn, posts } = makeFetch({
+        difficultyBits: 0,
+        llm: () =>
+          ++calls === 1
+            ? jsonResponse(504, { error: 'Le fournisseur LLM est injoignable' })
+            : jsonResponse(200, {
+                text: 'ok',
+                usage: { inputTokens: 1, outputTokens: 1 },
+                model: 'demo',
+              }),
+      })
+      const { provider } = createDemoProvider({ fetchFn })
+
+      const pending = provider.complete({ model: 'demo', prompt: 'a' })
+      await vi.advanceTimersByTimeAsync(10_000)
+      const result = await pending
+
+      expect(result.text).toBe('ok')
+      expect(posts).toHaveLength(2)
+      // défi frais au second essai (les défis sont one-time côté serveur)
+      expect(posts[1].challenge).not.toBe(posts[0].challenge)
+    } finally {
+      vi.useRealTimers()
+    }
+  })
+
+  it('un second 5xx après le retry unique est propagé (pas de boucle)', async () => {
+    vi.useFakeTimers()
+    try {
+      const { fetchFn, posts } = makeFetch({
+        difficultyBits: 0,
+        llm: () => jsonResponse(502, { error: 'bad gateway' }),
+      })
+      const { provider } = createDemoProvider({ fetchFn })
+
+      const pending = provider.complete({ model: 'demo', prompt: 'a' }).catch((e) => e)
+      await vi.advanceTimersByTimeAsync(10_000)
+      const error = await pending
+
+      expect(error).toBeInstanceOf(ProviderError)
+      expect(error.status).toBe(502)
+      expect(posts).toHaveLength(2)
+    } finally {
+      vi.useRealTimers()
+    }
+  })
 })
 
 describe('describeDemoError (messages P6.4)', () => {
