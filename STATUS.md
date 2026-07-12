@@ -2,9 +2,21 @@
 
 ## En cours
 
-- **M2 (P2)** : visualisation unifiée + premier déploiement humanome.xyz.
+- **M3 (P3+P4)** : base de données, comptes/rôles, module référentiel.
 
 ## Fait
+
+- 2026-07-12 — **M2 terminé (P2) : humanome.xyz EN LIGNE.** Visualisation unifiée déployée
+  (https://humanome.xyz) : vue Merge (sunburst porté à parité stricte 331/331 paths contre le
+  rendu original — divergence d'1 ulp de Math.cos/sin V8 résolue par arrondi correct BigInt),
+  vue Journée reconstruite depuis extracted/ (verdicts, blocs adversariaux, traces, exclus,
+  ?focus=), heatmap chrono cliquable, réécriture des 1262 liens du corpus vers les routes hash,
+  DOMPurify durci (aucune requête externe possible depuis le HTML narratif), drag & drop JSON
+  validé ajv, responsive 360px (onglets une-main ; fix minmax(0,1fr)), CSS print, a11y clavier.
+  Bundle IIFE file://-compatible. Déployé par manifeste SHA-256 (65 fichiers), HTTPS forcé,
+  CSP/HSTS actifs, smoke en ligne OK (deep-link jour + data lazy + console propre).
+  Tests : 112/112. Limitation vérifiée : le FTP OVH clusterNNN ne supporte pas AUTH TLS →
+  transfert en FTP simple (documenté).
 
 - 2026-07-12 — **M1 terminé (P0+P1)**. P0 : CLAUDE.md, ADR-001..009 (relus adversarialement),
   inventaire-assets, docker php8.2+mysql8, /api/health, web Vite+React, engine ESM, AGPL-3.0.
