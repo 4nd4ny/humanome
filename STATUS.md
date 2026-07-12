@@ -7,6 +7,18 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-12 — **Post-v1.0.0 : deux défauts détectés puis corrigés (au lieu de simplement journalisés).**
+  (1) **Crash de la vue diff du promptologue** : `DiffView` attendait une forme française fictive
+  (`ajoutes/retires/modifies`, `from/to` en chaînes) que le serveur n'émet jamais — `PackageDiff.php`
+  renvoie des clés anglaises, `from/to` en objets `{version}`, lignes `{op,line,text}` ; rendre
+  `{diff.from}` (objet) plantait React et vidait l'atelier. Vue réécrite pour consommer la forme
+  RÉELLE ; le test unitaire nourrit désormais cette forme (il propait la fiction et masquait le bug),
+  l'e2e clique le vrai bouton « Diff contre X » et vérifie le rendu. (2) **Portabilité RGPD des
+  cartographies de masse** (art. 15/20) : un apprenant ne pouvait pas récupérer les documents produits
+  pour lui par un établissement (accès réservé au rôle établissement). Ajout de
+  `GET /api/mes-documents-masse` (rôle apprenant, accès survivant au départ de la cohorte) + intégration
+  à l'export « un clic ». Déployé (v1.0.0-2). Tests : PHP 311, web 440, engine 214, e2e vert.
+
 - 2026-07-12 — **P13 finalisé : v1.0.0 déployée et taguée.** Le chantier D du workflow M9
   (déploiement/clone/status) ayant échoué en cours de flux, complété à la main : `GET /api/status`
   (santé publique version/db/démo/worker, cacheable 30 s, sans secret, testé) ; commandes
