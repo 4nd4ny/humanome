@@ -9,6 +9,7 @@
 
 import { useEffect, useState } from 'react'
 import { ApiUnavailableError, fetchMe } from '../api/client.js'
+import CohorteSection from './espace/CohorteSection.jsx'
 import DashboardSection from './espace/DashboardSection.jsx'
 import FormationSection from './espace/FormationSection.jsx'
 import RunWizard from '../components/RunWizard.jsx'
@@ -16,7 +17,7 @@ import RunWizard from '../components/RunWizard.jsx'
 /**
  * @param {object} props
  * @param {string | null} props.section segment après #/espace (pré-câblé) :
- *   null | 'formation' | 'formation/<chapitre>' | 'nouveau-run'
+ *   null | 'formation' | 'formation/<chapitre>' | 'nouveau-run' | 'cohortes'
  * @param {object} [props.lib] lib sunburst (App) — visionneuse « Voir » du tableau de bord
  * @param {object} [props.deps] coutures de test : {fetchMeFn, portfolioStore,
  *   trainingStore, cartographiesPanel, getReferentiel, runWizardDeps}
@@ -68,6 +69,16 @@ export default function EspaceView({ section, lib, deps = {} }) {
     )
   } else if (section === 'nouveau-run') {
     body = <RunWizard session={session} deps={deps.runWizardDeps ?? {}} />
+  } else if (section === 'cohortes') {
+    // Mes cohortes (P11) : rejoindre par code avec consentement explicite,
+    // déposer son portfolio local dans la cohorte, quitter.
+    body = (
+      <CohorteSection
+        session={session}
+        portfolioStore={deps.portfolioStore}
+        fetchFn={deps.fetchFn}
+      />
+    )
   } else {
     body = (
       <div>

@@ -154,6 +154,33 @@ describe('EspaceView — tableau de bord (#/espace)', () => {
     render(<EspaceView section="inconnue" deps={{ fetchMeFn: anonyme }} />)
     expect((await screen.findByRole('alert')).textContent).toContain('inconnue')
   })
+
+  it('carte « Mes cohortes » (P11) : présente sur le tableau de bord, lien #/espace/cohortes', async () => {
+    render(
+      <EspaceView
+        section={null}
+        deps={{
+          fetchMeFn: anonyme,
+          portfolioStore: await seededPortfolios(),
+          trainingStore: fakeTrainingStore(),
+          cartographiesPanel: FakePanel,
+        }}
+      />,
+    )
+    const card = await screen.findByTestId('dashboard-cohortes')
+    expect(card.textContent).toContain('consentement explicite')
+    expect(screen.getByRole('link', { name: 'Gérer mes cohortes' }).getAttribute('href')).toBe(
+      '#/espace/cohortes',
+    )
+  })
+
+  it('#/espace/cohortes : dispatch vers la section cohortes (P11)', async () => {
+    render(<EspaceView section="cohortes" deps={{ fetchMeFn: anonyme }} />)
+    // Anonyme : la section cohortes invite à se connecter (la jointure exige un compte).
+    expect((await screen.findByTestId('cohortes-anonyme')).textContent).toContain(
+      'connectez-vous',
+    )
+  })
 })
 
 describe('EspaceView — formation (#/espace/formation)', () => {

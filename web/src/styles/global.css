@@ -2296,3 +2296,117 @@ body {
 .retro-disparue td {
   background: #fef2f2;
 }
+
+/* --- Espace établissement (P11) + cohortes apprenant ---------------------- */
+
+.etab-reserve p[role='alert'],
+.cohortes .load-error {
+  margin-top: 0.5rem;
+}
+
+.etab-create-form,
+.cohorte-join-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.cohorte-join-form {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.etab-create-form input,
+.cohorte-join-form input[type='text'],
+.etab-config-form input,
+.etab-cohorte select,
+.cohorte-depot select {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: inherit;
+}
+
+.etab-config-form fieldset {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  margin: 0 0 0.75rem;
+}
+
+.etab-config-form fieldset label {
+  display: block;
+  margin: 0.25rem 0;
+}
+
+.etab-config-endpoint,
+.etab-config-budget {
+  margin-bottom: 0.75rem;
+}
+
+.etab-config-endpoint label,
+.etab-config-budget label {
+  display: block;
+  margin: 0.4rem 0 0.15rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.etab-config-endpoint input {
+  width: min(28rem, 100%);
+}
+
+.etab-run-estimate {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.etab-run-progress table td {
+  text-align: center;
+}
+
+.etab-run-erreurs ul {
+  margin: 0.25rem 0 0.75rem;
+}
+
+.etab-membre-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0;
+}
+
+.cohorte-consent {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid #b45309;
+  border-radius: 8px;
+  background: var(--card);
+  max-width: 44rem;
+}
+
+.cohorte-consent label {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.cohorte-liste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cohorte-liste > li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cohorte-depot {
+  margin: 0.4rem 0;
+}

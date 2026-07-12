@@ -2,9 +2,39 @@
 
 ## En cours
 
-- **M8 (P11)** : établissements B2B et cartographie de masse.
+- **M8 (P11)** : terminé et vérifié en local — COMMIT À FAIRE (non commité sur
+  consigne de session), puis déploiement.
 
 ## Fait
+
+- 2026-07-12 — **M8 terminé (P11) : établissements B2B et cartographie de masse, INTÉGRÉ.**
+  API (chantier A) : cohortes + codes d'invitation, consentement explicite à deux étages
+  (rejoindre `{"consentement": true}` 422 sinon, dépôt de portfolio = opt-in serveur),
+  config LLM/budget (clé endpoint sodium, jeton worker sha256), runs de masse (versions
+  figées), file `mass_jobs` (checkpoint PAR PÔLE, bail 5 min, GET_LOCK, écritures
+  conditionnelles), tick borné < 50 s (`php scripts/worker.php` + POST /api/admin/worker-tick),
+  coupe-circuit budget AVANT chaque appel, purge RGPD par FK. Front (chantier B) :
+  #/etablissement (cohortes, config, lancement en 2 temps avec estimation, avancement
+  poll 5 s, vue membre = MERGE CÔTÉ CLIENT par le moteur) ; #/espace/cohortes (consentement,
+  dépôt, quitter). Runner Node (chantier C) : même file via /api/worker/*, zéro dépendance.
+  **Intégration : DoD P11 rejouée HORS PHPUnit** (scripts/dev/dod-p11.sh, preuves) :
+  20 apprenants × 3 journées → run de 60 jobs par ticks CLI mock (5 appels/tick),
+  interruption à 24/60 (39 ticks/195 appels), reprise 58 ticks/285 appels → 60 done,
+  **480 appels exactement (0 double-appel)**, coût cohérent (spent_usd = Σ jobs = tableau
+  = 12.808770 $), 120/120 documents valides (ajv moteur) ; plafond abaissé en cours de
+  2e run → budget_exceeded propre, réactivation par hausse ; runner Node --once (mock
+  injecté) draine 60 jobs via l'API. **Frictions d'intégration corrigées** : contrat
+  /api/worker/jobs (référentiel COMPLET partagé au niveau réponse + referentielVersion
+  + provider, le runner tel que livré ne pouvait PAS fonctionner contre l'API) ;
+  page cohorte établissement (crash React : avancement objet rendu tel quel ; membres
+  sans détail de dépôt → run inlançable ; statuts pending/error ≠ queued/failed ;
+  run 'running' ≠ 'active') ; GET /api/cohortes manquant (liste apprenant) ; enveloppe
+  {membre, documents} ; tarifs famille claude-* moteur alignés sur Pricing.php ;
+  WORKER_TICK_MAX_CALLS (tick CLI bornable). Vérifié en navigateur : avancement en
+  direct pendant une boucle de ticks (28/60 → 60/60 done), merge client (10/61
+  compétences, vues jour), parcours apprenant 21e (inscription → consentement coché →
+  dépôt « Journal de Maya »). Suites : PHP 274/274 (2213 assertions), web 422/422,
+  engine 214/214, runner 25/25, e2e 4/4, build OK.
 
 - 2026-07-12 — **M7 terminé (P9+P10) : espaces cartographe et promptologue EN PRODUCTION.**
   P9 : invitations à usage unique, file de relecture, annotations par compétence, révisions

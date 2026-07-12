@@ -32,8 +32,13 @@ export const PRICING_DISCLAIMER =
  */
 export const MODEL_PRICING_USD_PER_MTOK = Object.freeze({
   'claude-haiku-4-5': { input: 1, output: 5 },
+  // Family prefixes mirror api/src/Llm/Pricing.php (billing basis of the
+  // mass worker, M8): intermediate variants (claude-sonnet-4-5…) resolve
+  // to their family rates instead of falling out of the table.
+  'claude-sonnet': { input: 3, output: 15 },
   'claude-sonnet-4-6': { input: 3, output: 15 },
   'claude-sonnet-5': { input: 3, output: 15 },
+  'claude-opus': { input: 5, output: 25 },
   'gpt-4o-mini': { input: 0.15, output: 0.6 },
   'gpt-4o': { input: 2.5, output: 10 },
   'gemini-2.5-flash': { input: 0.3, output: 2.5 },

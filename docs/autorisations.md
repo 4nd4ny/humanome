@@ -151,13 +151,38 @@ anonymisées (`accepted_by` SET NULL).
 | Version par défaut proposée aux apprenants | POST | `promptologue` (proposition) + `admin` (validation) |
 | Comparaison au Golden Prompt | POST | `promptologue` — si autorisée par `admin` (§7) |
 
-### P11 — Établissements (cahier §3.7)
+### P11 — Établissements et masse (cahier §3.7, §4.9, §7) — **implémenté en M8**
 
-| Route | Méthode | Accès |
-|---|---|---|
-| Cohortes, codes d'invitation | GET/POST | `etablissement` — ses propres cohortes |
-| Cartographies de ses élèves | GET | `etablissement` — consentement visible, ses élèves uniquement |
-| Budget, fournisseur LLM, suivi de masse | GET/PUT | `etablissement` — son propre compte |
+Principes d'accès (docs/plan-masse.md §6-7) : « sa cohorte » = cohorte dont
+`etablissement_id` = utilisateur de la session ; tout id étranger répond le
+**même 404** qu'un id inexistant. Le consentement de l'apprenant est à DEUX
+étages : rejoindre la cohorte (consentement explicite `{"consentement": true}`
+dans le corps + texte affiché — « l'établissement verra les cartographies
+produites dans ce cadre ») puis **déposer son portfolio** (opt-in de fait au
+traitement serveur : seuls les déposants sont enfilés). Quitter la cohorte
+retire le consentement : adhésion + dépôt purgés, jobs en attente annulés ;
+les documents produits restent à l'apprenant et sortent du champ de
+l'établissement (l'accès exige l'adhésion active).
+
+| Route | Méthode | Accès | Garde |
+|---|---|---|---|
+| `/api/etablissement/cohortes` | POST/GET | `etablissement` | Rôle (+ CSRF sur POST) ; code d'invitation 10 caractères A-Z2-9 |
+| `/api/etablissement/cohortes/{id}` | GET | `etablissement`, propriétaire | Membres : `consentAt`, dépôt, avancement jobs — jamais de contenu de portfolio |
+| `/api/etablissement/cohortes/{id}` | DELETE | `etablissement`, propriétaire | + CSRF ; purge réelle en cascade (membres, dépôts, runs, jobs) |
+| `/api/cohortes` | GET | `apprenant` | Ses propres adhésions uniquement (consentement daté, établissement, état du dépôt) — jamais le code d'invitation |
+| `/api/cohortes/{code}/rejoindre` | POST | `apprenant` | Rôle + CSRF ; **422 sans `{"consentement": true}`** ; `consent_at` horodaté ; re-jointure idempotente (200, consentement d'origine conservé) ; audit `cohorte_joined` (ids) |
+| `/api/cohortes/{id}/portfolio` | POST | `apprenant`, **membre consenti** | Rôle + CSRF + adhésion (404 sinon) ; segments journaliers validés (dates ISO uniques, 4 Mo max) ; re-dépôt = remplacement ; audit = compteurs seulement (§6.5) |
+| `/api/cohortes/{id}/quitter` | DELETE | `apprenant`, membre | + CSRF ; retrait du consentement (voir principes) ; audit `cohorte_quit` |
+| `/api/etablissement/config` | PUT/GET | `etablissement`, son compte | + CSRF sur PUT ; clé endpoint chiffrée sodium (AD-4), **jamais relue** (`hasApiKey`) ; hausse du plafond = réactivation des jobs `budget_exceeded` |
+| `/api/etablissement/worker-token` | POST | `etablissement`, son compte | + CSRF ; jeton en clair **une seule fois** (`no-store`), stocké sha256 |
+| `/api/etablissement/cohortes/{id}/runs` | POST | `etablissement`, propriétaire | + CSRF ; versions paquet/référentiel **publiées** figées sur le run ; enfile (membre consenti AYANT déposé × journée) ; audit `mass_run_created` (compteurs) |
+| `/api/etablissement/runs/{runId}` | GET | `etablissement`, propriétaire | Jobs par statut, coût cumulé, erreurs (jamais de contenu) |
+| `/api/etablissement/runs/{runId}/annuler` | POST | `etablissement`, propriétaire | + CSRF ; jobs non terminaux → `cancelled` (écritures worker conditionnelles : l'annulation gagne) |
+| `/api/etablissement/membres/{userId}/documents` | GET | `etablissement` | Documents jour `done` de SES cohortes, **adhésion active exigée** ; 404 homogène (membre inconnu, étranger, parti, ou rien de produit) |
+| `/api/worker/jobs` | GET | **Machine** (runner de l'établissement) | Jeton `X-Worker-Token` (haché en base), hors rôles et hors CSRF (aucune session, donc aucun crédit ambiant) ; réserve avec bail 5 min, jobs de SON établissement uniquement ; refus si plafond consommé |
+| `/api/worker/jobs/{id}/checkpoint` | POST | Machine, son job | Jeton ; persiste l'avancement par pôle + renouvelle le bail ; 409 si le job n'est plus `running` |
+| `/api/worker/jobs/{id}/result` | POST | Machine, son job | Jeton ; document **re-validé au schéma côté serveur**, coût déclaré borné, `spent_usd` incrémenté ; 409 en rejeu |
+| `/api/admin/worker-tick` | POST | Technique (ADR-008) | Jeton `X-Migrate-Token` ; un tick borné, réponse = compteurs uniquement |
 
 ### P12 — Administration (cahier §3.8, §4.10)
 

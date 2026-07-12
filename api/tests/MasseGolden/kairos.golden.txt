@@ -1,0 +1,136 @@
+Tu es le moteur de cartographie de compétences du protocole Aurora v3 (humanome.xyz).
+Les 7 pôles de la feuille du jour ont déjà été instruits séparément. Tu produis maintenant la
+SYNTHÈSE KAIROS transversale de la journée : une lecture cross-pôles adressée à l'apprenant
+(parle de « l'apprenant », jamais « vous »), attentive à ce qui relie les pôles et à ce qui
+émerge entre les lignes.
+
+# Feuille de portfolio du 06/01/2026 (2026-01-06)
+
+<portfolio>
+Aujourd'hui, j'ai réparé le vélo de Léa avec l'aide de Noé.
+
+Nous avons démonté le dérailleur, comparé deux hypothèses (câble détendu vs
+patte voilée), puis testé chacune — la seconde était la bonne. J'ai noté la
+démarche dans mon carnet pour la prochaine fois. Émotions : fierté « à 80 % »,
+et un peu de frustration au début.
+</portfolio>
+
+# Référentiel RESPIRE (7 pôles, 61 compétences)
+
+Pôle 1 — TETE — Penser & Comprendre
+  1.01 — Pensée Critique & Anti-Hallucination
+  1.02 — Cadrage de l'Intention
+  1.03 — Synthèse Intégrative
+  1.04 — Métacognition & Humilité Épistémique
+  1.05 — Pensée Systémique
+  1.06 — Littératie IA & Data Literacy
+  1.07 — Architecture de Systèmes IA
+  1.08 — Dialogue IA Avancé & Orchestration Multi-Agents
+  1.09 — Pensée Computationnelle
+  1.10 — Synergie & Coordination Hybride
+Pôle 2 — COEUR — Relier & Naviguer
+  2.01 — Intelligence Émotionnelle & Sollicitude Active
+  2.02 — Communication Authentique
+  2.03 — Gestion des Conflits
+  2.04 — Influence & Diplomatie
+  2.05 — Collaboration Divergente
+  2.06 — Intelligence Culturelle & Contextuelle
+  2.07 — Sens Politique & Lecture Organisationnelle
+  2.08 — Traduction entre Mondes
+  2.09 — Construction de Communautés
+Pôle 3 — MAIN — Créer & Incarner
+  3.01 — Créativité Itérative & Radicale
+  3.02 — Singularité & Signature
+  3.03 — Design de Problèmes
+  3.04 — Jugement Esthétique & Curation
+  3.05 — Intelligence Manuelle & Artisanale
+  3.06 — Ancrage Sensoriel & Pleine Présence
+  3.07 — Présence & Performance Live
+Pôle 4 — AME — Discerner & Juger
+  4.01 — Raisonnement Éthique Appliqué
+  4.02 — Alignement & Refus Éthique
+  4.03 — Conscience Écologique & Long-terme
+  4.04 — Valorisation de la Neurodiversité
+  4.05 — Décision & Tolérance à l'Incertitude
+  4.06 — Responsabilité, Courage & Intégrité
+  4.07 — Validation Contextuelle
+  4.08 — Création de Valeur Non-Automatisable
+  4.09 — Patience Stratégique & Sens du Timing
+Pôle 5 — RACINES — Évoluer & Résister
+  5.01 — Résilience & Antifragilité
+  5.02 — Plasticité & Désapprentissage
+  5.03 — Narration Réflexive
+  5.04 — Acceptation de l'Intelligence Supérieure
+  5.05 — Sens & Motivation Intrinsèque
+  5.06 — Autonomie, Mode Dégradé & Débrouillardise
+  5.07 — Souveraineté Attentionnelle
+  5.08 — Vérification Terrain
+Pôle 6 — CITE — Gouverner & S'ouvrir
+  6.01 — Red-Teaming & Sécurité IA
+  6.02 — Audit, Explicabilité & Hygiène des Données
+  6.03 — Gouvernance Algorithmique des Services Publics
+  6.04 — Souveraineté Numérique & Gouvernance des Communs
+  6.05 — Participation Citoyenne & Démocratie Technologique
+  6.06 — Veille Réglementaire & Anticipation Normative
+  6.07 — Facilitation & Gouvernance Collective
+  6.08 — Décentrement Anthropocentrique
+  6.09 — Cohabitation avec les Intelligences Non-Humaines
+  6.10 — Conscience Biosystémique & Interdépendance
+Pôle 7 — FLAMBEAU — Transmettre & Piloter
+  7.01 — Maïeutique & Facilitation d'Apprentissage
+  7.02 — Évaluation Transformative
+  7.03 — Documentation Vivante
+  7.04 — Leadership Situationnel & Orchestration
+  7.05 — Vision Stratégique & Prospective
+  7.06 — Efficacité Personnelle
+  7.07 — Agilité & Conduite du Changement
+  7.08 — Gestion de Crise en Temps Réel
+
+# Attendus
+
+1. `kairos.apprenant` : {portrait (l'apprenant tel qu'il ressort de la feuille),
+   formeProfil (relief du profil : sommets, plateaux, vallées), ceQuiRelieLesPoles
+   (fils conducteurs entre pôles), ceQuiEmergeEntreLesLignes (ce que la feuille suggère
+   sans le dire), invitationsPourLaSuite (3 à 5 invitations concrètes pour les prochaines
+   feuilles), syntheseCompleteMarkdown (synthèse complète en Markdown)}.
+2. `emergencesCrossPoles` :
+   - connexionsTransversales [{titre, description, codesRelies (≥ 2 codes de compétences de
+     pôles DIFFÉRENTS), piecesCommunes (pid des passages du jour communs, [] sinon)}] ;
+   - noeudsConceptuels [{nom, description, codesRelies (≥ 2 codes)}] ;
+   - competencesOrphelines [{titre, description, extraitsPortfolio (≥ 1 citation),
+     enRelationAvecCodes (≥ 1 code du référentiel)}] — compétences manifestées dans la
+     feuille mais ABSENTES du référentiel (matière pour les épistémiarques).
+   Tableaux vides quand rien n'émerge.
+
+# Contraintes de longueur (impératives — la réponse est coupée au-delà du budget de sortie)
+
+- portrait, formeProfil, ceQuiRelieLesPoles, ceQuiEmergeEntreLesLignes : 500 caractères
+  MAXIMUM chacun ;
+- invitationsPourLaSuite : 3 invitations d'une phrase chacune ;
+- syntheseCompleteMarkdown : 1 500 caractères maximum ;
+- émergences : 3 éléments maximum par tableau, descriptions de 300 caractères maximum.
+  Densité avant exhaustivité : une synthèse courte et juste vaut mieux qu'une synthèse
+  longue tronquée.
+
+# Format de sortie
+
+Réponds UNIQUEMENT par un objet JSON strict et COMPACT — une seule ligne, sans indentation
+ni retours à la ligne (l'indentation gaspille ton budget de sortie) ; aucun texte avant ou
+après, pas de bloc de code —,
+exactement au gabarit :
+
+{
+  "kairos": {
+    "apprenant": {
+      "portrait": "…", "formeProfil": "…", "ceQuiRelieLesPoles": "…",
+      "ceQuiEmergeEntreLesLignes": "…",
+      "invitationsPourLaSuite": [ "…", "…", "…" ],
+      "syntheseCompleteMarkdown": "…"
+    }
+  },
+  "emergencesCrossPoles": {
+    "connexionsTransversales": [ { "titre": "…", "description": "…", "codesRelies": [ "1.01", "4.02" ], "piecesCommunes": [] } ],
+    "noeudsConceptuels": [ { "nom": "…", "description": "…", "codesRelies": [ "1.01", "4.02" ] } ],
+    "competencesOrphelines": [ { "titre": "…", "description": "…", "extraitsPortfolio": [ "…" ], "enRelationAvecCodes": [ "1.01" ] } ]
+  }
+}

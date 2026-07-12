@@ -49,6 +49,12 @@ describe('table de prix (indicative, ordres de grandeur 2026)', () => {
     expect(getModelPricing('claude-haiku-4-5-20251001')).toEqual(
       MODEL_PRICING_USD_PER_MTOK['claude-haiku-4-5']
     )
+    // Variantes intermédiaires : résolues au tarif de la FAMILLE (parité
+    // avec api/src/Llm/Pricing.php, base de facturation du worker M8).
+    expect(getModelPricing('claude-sonnet-4-5')).toEqual(
+      MODEL_PRICING_USD_PER_MTOK['claude-sonnet']
+    )
+    expect(getModelPricing('claude-opus-4-6')).toEqual(MODEL_PRICING_USD_PER_MTOK['claude-opus'])
   })
 
   it('les modèles locaux (ollama) sont à coût marginal nul', () => {

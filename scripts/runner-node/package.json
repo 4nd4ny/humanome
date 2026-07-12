@@ -1,0 +1,17 @@
+{
+  "name": "humanome-runner-node",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "description": "Runner CLI de cartographie de masse (ADR-005) : consomme la file de jobs via l'API humanome.xyz et exécute l'extraction avec le moteur engine/ contre le LLM de l'établissement. Node >= 20 (fetch natif), zéro dépendance — vitest est réutilisé depuis engine/node_modules pour les tests.",
+  "bin": {
+    "humanome-runner": "./runner.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "../../engine/node_modules/.bin/vitest run"
+  }
+}

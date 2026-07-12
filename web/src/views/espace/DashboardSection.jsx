@@ -164,6 +164,20 @@ export default function DashboardSection({
         )}
       </section>
 
+      <section className="espace-bloc" aria-label="Mes cohortes">
+        <h2>Mes cohortes</h2>
+        <p data-testid="dashboard-cohortes">
+          Votre établissement vous a transmis un code d’invitation ? Rejoignez sa cohorte (avec
+          votre consentement explicite) et déposez-y votre portfolio pour la cartographie de
+          masse.
+        </p>
+        <p>
+          <a className="button" href="#/espace/cohortes">
+            Gérer mes cohortes
+          </a>
+        </p>
+      </section>
+
       <section className="espace-bloc" aria-label="Ma formation">
         <h2>Ma formation</h2>
         <p data-testid="dashboard-formation">
