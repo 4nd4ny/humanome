@@ -10,6 +10,8 @@ import PortfolioView from './views/PortfolioView.jsx'
 import AccountView from './views/AccountView.jsx'
 import EspaceView from './views/EspaceView.jsx'
 import ShareView from './views/ShareView.jsx'
+import CartographeView from './views/CartographeView.jsx'
+import PromptologueView from './views/PromptologueView.jsx'
 
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
@@ -105,6 +107,12 @@ export default function App({ lib }) {
       break
     case 'share':
       view = <ShareView token={route.token} lib={lib} />
+      break
+    case 'cartographe':
+      view = <CartographeView section={route.section} lib={lib} />
+      break
+    case 'promptologue':
+      view = <PromptologueView section={route.section} lib={lib} />
       break
     case 'not-found':
       view = (

@@ -2,9 +2,24 @@
 
 ## En cours
 
-- **M6 (P8)** : espace apprenant complet.
+- **M7 (P9+P10)** : espaces cartographe et promptologue.
 
 ## Fait
+
+- 2026-07-12 — **M6 terminé (P8) : espace apprenant complet, EN PRODUCTION.** API : cartographies
+  (stockage opt-in daté, liste sans document), liens de partage (token 128 bits haché, Argon2id,
+  404 homogène anti-énumération, révocation, rate-limit), formation trackée, clés API personnelles
+  chiffrées sodium (AD-4), prompt-packages publiés + paquet par défaut aurora-v3-reconstruit@1.0.0
+  généré depuis les gabarits RÉELS du moteur (import idempotent par hash, endpoint admin).
+  Front : dashboard (#/espace, fonctionne aussi anonyme/local), formation Markdown embarquée
+  (parseur maison + DOMPurify, progression locale→serveur), assistant de run 5 étapes (paquet,
+  fournisseur clé perso/service humanome, estimation, exécution avec checkpoints IndexedDB et
+  REPRISE réelle), panneau cartographies (confidentialité, opt-in serveur RGPD explicite,
+  partage+révocation, visionneuse), ShareView lecture seule, export/import archive validée au
+  schéma. **E2E Playwright DoD vert** (compte→portfolio→run mock 24 appels→partage en contexte
+  privé→export validé→suppression→404). Audit : 1 faible corrigée (no-store sur révélation de
+  clé). PHP 182/182, web 299/299. Smoke prod : parcours complet vérifié en ligne.
+  Backlog : titre « Mes cartographies » dupliqué (cosmétique) ; récits narratifs du merge en P10.
 
 - 2026-07-12 — **M5 terminé (P6+P7) : démo LLM publique VALIDÉE EN PRODUCTION** (run complet
   réel : collage → PoW → 7 pôles Sonnet → visualisation Journée interactive sur humanome.xyz/#/essayer).

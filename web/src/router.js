@@ -65,6 +65,20 @@ export function parseHash(hash) {
   const shareMatch = /^\/partage\/([A-Za-z0-9_-]{10,})$/.exec(path)
   if (shareMatch) return { name: 'share', token: shareMatch[1] }
 
+  // Espace cartographe (P9) : #/cartographe[/<section>]
+  if (path === '/cartographe') return { name: 'cartographe', section: null }
+  const cartographeMatch = /^\/cartographe\/(.+)$/.exec(path)
+  if (cartographeMatch) {
+    return { name: 'cartographe', section: decodeURIComponent(cartographeMatch[1]) }
+  }
+
+  // Atelier promptologue (P10) : #/promptologue[/<section>]
+  if (path === '/promptologue') return { name: 'promptologue', section: null }
+  const promptologueMatch = /^\/promptologue\/(.+)$/.exec(path)
+  if (promptologueMatch) {
+    return { name: 'promptologue', section: decodeURIComponent(promptologueMatch[1]) }
+  }
+
   if (path === '/referentiel') return { name: 'referentiel', code: null }
   const refMatch = /^\/referentiel\/([^/]+)$/.exec(path)
   if (refMatch) return { name: 'referentiel', code: decodeURIComponent(refMatch[1]) }
