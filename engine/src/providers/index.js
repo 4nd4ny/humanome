@@ -201,7 +201,11 @@ export function createProvider(config = {}) {
             inputTokens: data.usage?.inputTokens ?? 0,
             outputTokens: data.usage?.outputTokens ?? 0
           },
-          model: data.model ?? model
+          model: data.model ?? model,
+          // 'max_tokens' = truncated generation (relayed by the proxy when
+          // the upstream exposes it); consumers use it to fail loudly rather
+          // than parse a fragment.
+          stopReason: data.stopReason || null
         }
       }
     }

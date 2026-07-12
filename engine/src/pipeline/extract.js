@@ -237,6 +237,18 @@ compteurs COHÉRENTS avec tes verdicts.
 [{competence, description, extraitVerbatim, ceQueCaDit}], territoiresNonVisites,
 pistes [1..7 chaînes], rapportCompletMarkdown (rapport complet en Markdown)}.
 
+# Contraintes de longueur (impératives — la réponse est coupée au-delà du budget de sortie)
+
+- Le COURT-CIRCUIT est la forme compacte OBLIGATOIRE pour toute compétence sans pièce :
+  ne développe le pédagogue QUE pour les compétences réellement documentées par la feuille.
+- raisonnements, motifs, contextes, motifsAttaque, motifResistance : 1 à 2 phrases chacun ;
+- extraitVerbatim : 150 caractères maximum (coupe avec « … ») ;
+- rapport : portraitPole, emergencesPole, territoiresNonVisites en 400 caractères maximum
+  chacun ; territoiresDenses et pistes : 3 éléments maximum ; rapportCompletMarkdown :
+  1 000 caractères maximum.
+  Densité avant exhaustivité : une instruction courte et juste vaut mieux qu'une
+  instruction longue tronquée.
+
 # Format de sortie
 
 Réponds UNIQUEMENT par un objet JSON strict (aucun texte avant ou après, pas de bloc de code),
@@ -474,6 +486,31 @@ export function parseExtractionResponse(text) {
 // --- Extraction complète d'une journée ----------------------------------------
 
 /**
+ * Recomputes the pole audit counters from the verdicts themselves (LLM-emitted
+ * counters drift easily; the source data is authoritative). Semantics verified
+ * against the real corpus: nonEtablies counts EVERY « présence non établie »
+ * verdict, court-circuits included (sums to competencesTotales with the two
+ * other statuses).
+ *
+ * @param {Array<object>} competences
+ * @returns {{competencesTotales: number, competencesNonCourtCircuit: number,
+ *   presencesEtablies: number, renvoisCartographe: number, nonEtablies: number,
+ *   courtCircuits: number}}
+ */
+export function computeAuditPole(competences) {
+  const count = (fn) => competences.filter(fn).length
+  const courtCircuits = count((c) => c.courtCircuit === true)
+  return {
+    competencesTotales: competences.length,
+    competencesNonCourtCircuit: competences.length - courtCircuits,
+    presencesEtablies: count((c) => c.verdict?.statut === 'présence établie'),
+    renvoisCartographe: count((c) => c.verdict?.statut === 'renvoi au cartographe'),
+    nonEtablies: count((c) => c.verdict?.statut === 'présence non établie'),
+    courtCircuits,
+  }
+}
+
+/**
  * Extraction complète d'une journée : 7 appels pôle + 1 appel kairos, puis
  * assemblage et validation ajv du document `cartographie-jour`.
  *
@@ -529,6 +566,13 @@ export async function extractDay({
     let pole
     try {
       const res = await provider.complete({ model, prompt, maxTokens, temperature, signal })
+      if (res.stopReason === 'max_tokens') {
+        // Fail loudly: a truncated response parses into a FRAGMENT (typically
+        // one inner competence object) and poisons the final document.
+        throw new Error(
+          'réponse tronquée (budget de sortie atteint) — réduisez le texte de la journée',
+        )
+      }
       pole = parseExtractionResponse(res.text)
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err)
@@ -537,6 +581,12 @@ export async function extractDay({
     if (pole === null) {
       throw new Error(`extractDay : pôle ${num} (${date}) — réponse null, objet pôle attendu`)
     }
+    if (!Array.isArray(pole.competences)) {
+      // Typical signature of a fragment extracted from a broken response.
+      throw new Error(
+        `extractDay : pôle ${num} (${date}) — réponse sans tableau competences (objet ${Object.keys(pole).slice(0, 5).join('/')})`,
+      )
+    }
     // Réparation minimale : poleNum normalisé en chaîne, injecté si absent.
     pole.poleNum = pole.poleNum === undefined ? String(num) : String(pole.poleNum)
     if (pole.poleNum !== String(num)) {
@@ -544,6 +594,11 @@ export async function extractDay({
         `extractDay : pôle ${num} (${date}) — poleNum incohérent dans la réponse (« ${pole.poleNum} »)`,
       )
     }
+    // Compteurs d'audit recalculés (déterministes) : les compteurs produits
+    // par le modèle dérivent facilement ; la donnée source fait foi.
+    pole.auditPole = computeAuditPole(pole.competences)
+    if (!Array.isArray(pole.passagesSaillants)) pole.passagesSaillants = []
+    if (pole.rapport === undefined) pole.rapport = null
     poles.push(pole)
     done += 1
     onProgress?.({ step: 'pole', poleNum: num, done, total })
@@ -554,6 +609,9 @@ export async function extractDay({
   try {
     const prompt = buildKairosExtractionPrompt({ referentiel, dayText, date })
     const res = await provider.complete({ model, prompt, maxTokens, temperature, signal })
+    if (res.stopReason === 'max_tokens') {
+      throw new Error('réponse kairos tronquée (budget de sortie atteint)')
+    }
     kairos = parseExtractionResponse(res.text)
   } catch (err) {
     // Les 7 documents de pôle portent la valeur ; le schéma accepte

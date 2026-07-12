@@ -6,152 +6,402 @@
     {
       "poleNum": "1",
       "passagesSaillants": [
-        { "pid": 1, "extraitVerbatim": "la légende datait la halle de 1932 ; la fiche des archives municipales dit 1928. J'ai corrigé le cartel et noté la source.", "contexte": "Vérification spontanée d'une légende de photographie contre la source primaire avant le vernissage, correction et sourçage.", "auteur": "apprenant", "feuille": "2026-01-06" }
+        {
+          "pid": 1,
+          "extraitVerbatim": "la légende datait la halle de 1932 ; la fiche des archives municipales dit 1928. J'ai corrigé le cartel et noté la source.",
+          "contexte": "Vérification spontanée d'une légende de photographie contre la source primaire avant le vernissage, correction et sourçage.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        }
       ],
       "competences": [
-        { "code": "1.01", "courtCircuit": false,
+        {
+          "code": "1.01",
+          "courtCircuit": false,
           "pieces": [
-            { "pid": 1, "numero": 1, "contexte": "Doute méthodique appliqué à un cartel de l'exposition : confrontation à la source d'archives, correction effective et citation de la source." }
+            {
+              "pid": 1,
+              "numero": 1,
+              "contexte": "Doute méthodique appliqué à un cartel de l'exposition : confrontation à la source d'archives, correction effective et citation de la source."
+            }
           ],
           "pedagogue": {
             "presomptionAbsence": {
               "raisonnement": "Je présume la pensée critique absente : corriger une date peut être une consigne reçue. La pièce résiste car l'initiative, la confrontation à la source primaire et le sourçage viennent de l'apprenante, qui en mesure l'enjeu (le crédit de l'expo).",
               "piecesQuiResistent": [
-                { "pieceId": 1, "motifResistance": "Cycle complet de vérification en acte : doute, source consultée, correction, source citée, enjeu explicité." }
+                {
+                  "pieceId": 1,
+                  "motifResistance": "Cycle complet de vérification en acte : doute, source consultée, correction, source citée, enjeu explicité."
+                }
               ]
             },
             "presomptionSycophantie": {
               "raisonnement": "Le récit d'une « petite victoire invisible » pourrait se donner le beau rôle. L'attaque échoue : la trace est matérielle (cartel corrigé, source notée) et vérifiable par des tiers.",
               "examenPieces": [
-                { "pieceId": 1, "attaqueDominante": "e", "motifAttaque": "L'épisode valorise l'apprenante, mais le geste laisse une trace matérielle indépendante du récit.", "verdictAttaque": "attaque non recevable, pièce confirmée" }
+                {
+                  "pieceId": 1,
+                  "attaqueDominante": "e",
+                  "motifAttaque": "L'épisode valorise l'apprenante, mais le geste laisse une trace matérielle indépendante du récit.",
+                  "verdictAttaque": "attaque non recevable, pièce confirmée"
+                }
               ]
             },
-            "conclusionAdversariale": { "confianceFinale": 0.62, "raisonnement": "Une pièce unique mais complète : la vérification est menée jusqu'au sourçage. La confiance reste modérée faute de second épisode dans la feuille." }
+            "conclusionAdversariale": {
+              "confianceFinale": 0.62,
+              "raisonnement": "Une pièce unique mais complète : la vérification est menée jusqu'au sourçage. La confiance reste modérée faute de second épisode dans la feuille."
+            }
           },
-          "verdict": { "statut": "présence établie", "confiance": 0.62, "nombrePreuves": 1, "nombreIndices": 0,
+          "verdict": {
+            "statut": "présence établie",
+            "confiance": 0.62,
+            "nombrePreuves": 1,
+            "nombreIndices": 0,
             "motif": "Vérification complète d'une information contre la source primaire, avec correction matérielle et sourçage.",
-            "prescription": "Documenter aussi les vérifications qui n'aboutissent pas à une erreur, pour montrer la régularité de la méthode." },
+            "prescription": "Documenter aussi les vérifications qui n'aboutissent pas à une erreur, pour montrer la régularité de la méthode."
+          },
           "tracesRetenues": [
-            { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" }
-          ] },
-        { "code": "1.03", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            {
+              "pieceId": 1,
+              "type": "trace concrète",
+              "role": "preuve décisive"
+            }
+          ]
+        },
+        {
+          "code": "1.03",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Documenter un travail de mise en relation de sources ou d'idées hétérogènes en un ensemble cohérent." } }
+            "prescriptionMinimale": "Documenter un travail de mise en relation de sources ou d'idées hétérogènes en un ensemble cohérent."
+          }
+        }
       ],
-      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "auditPole": {
+        "competencesTotales": 2,
+        "courtCircuits": 1,
+        "competencesNonCourtCircuit": 1,
+        "presencesEtablies": 1,
+        "nonEtablies": 1,
+        "renvoisCartographe": 0
+      },
       "rapport": null
     },
     {
       "poleNum": "2",
       "passagesSaillants": [
-        { "pid": 2, "extraitVerbatim": "Lina est sortie au bord des larmes ; je l'ai rejointe dans le couloir, on a parlé cinq minutes, puis elle est revenue d'elle-même.", "contexte": "Gestion d'une adolescente blessée par une moquerie pendant l'atelier : accompagnement individuel, retour volontaire.", "auteur": "apprenant", "feuille": "2026-01-06" },
-        { "pid": 3, "extraitVerbatim": "Sofiane provoque, mais j'ai remarqué qu'il provoque surtout quand on parle de son immeuble.", "contexte": "Hypothèse de lecture sur le comportement d'un adolescent provocateur, au-delà de la sanction.", "auteur": "apprenant", "feuille": "2026-01-06" },
-        { "pid": 4, "extraitVerbatim": "J'ai terminé l'atelier par un tour de « météo intérieure », et cette fois tout le monde a joué le jeu.", "contexte": "Rituel de clôture émotionnelle de l'atelier, avec participation de tout le groupe y compris l'élève provocateur.", "auteur": "apprenant", "feuille": "2026-01-06" },
-        { "pid": 5, "extraitVerbatim": "devant le groupe, j'ai dit que tout allait bien alors que j'étais en colère contre moi-même", "contexte": "Aveu d'un écart entre le ressenti et ce qui est exprimé face au groupe.", "auteur": "apprenant", "feuille": "2026-01-06" },
-        { "pid": 6, "extraitVerbatim": "avec Karim, je n'arrive pas encore à dire les choses simplement : je tourne autour", "contexte": "Constat lucide d'une difficulté à communiquer directement avec le directeur.", "auteur": "apprenant", "feuille": "2026-01-06" },
-        { "pid": 7, "extraitVerbatim": "le grand-père de Yusuf ne me serre pas la main ; je le salue désormais de la tête, main sur le cœur, comme il le fait", "contexte": "Ajustement du salut aux codes culturels d'un grand-parent, adopté dans la durée.", "auteur": "apprenant", "feuille": "2026-01-06" },
-        { "pid": 8, "extraitVerbatim": "j'ai fait traduire la consigne de l'atelier en trois langues par les ados eux-mêmes", "contexte": "Mobilisation du plurilinguisme des adolescents comme ressource de l'atelier.", "auteur": "apprenant", "feuille": "2026-01-06" }
+        {
+          "pid": 2,
+          "extraitVerbatim": "Lina est sortie au bord des larmes ; je l'ai rejointe dans le couloir, on a parlé cinq minutes, puis elle est revenue d'elle-même.",
+          "contexte": "Gestion d'une adolescente blessée par une moquerie pendant l'atelier : accompagnement individuel, retour volontaire.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        },
+        {
+          "pid": 3,
+          "extraitVerbatim": "Sofiane provoque, mais j'ai remarqué qu'il provoque surtout quand on parle de son immeuble.",
+          "contexte": "Hypothèse de lecture sur le comportement d'un adolescent provocateur, au-delà de la sanction.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        },
+        {
+          "pid": 4,
+          "extraitVerbatim": "J'ai terminé l'atelier par un tour de « météo intérieure », et cette fois tout le monde a joué le jeu.",
+          "contexte": "Rituel de clôture émotionnelle de l'atelier, avec participation de tout le groupe y compris l'élève provocateur.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        },
+        {
+          "pid": 5,
+          "extraitVerbatim": "devant le groupe, j'ai dit que tout allait bien alors que j'étais en colère contre moi-même",
+          "contexte": "Aveu d'un écart entre le ressenti et ce qui est exprimé face au groupe.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        },
+        {
+          "pid": 6,
+          "extraitVerbatim": "avec Karim, je n'arrive pas encore à dire les choses simplement : je tourne autour",
+          "contexte": "Constat lucide d'une difficulté à communiquer directement avec le directeur.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        },
+        {
+          "pid": 7,
+          "extraitVerbatim": "le grand-père de Yusuf ne me serre pas la main ; je le salue désormais de la tête, main sur le cœur, comme il le fait",
+          "contexte": "Ajustement du salut aux codes culturels d'un grand-parent, adopté dans la durée.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        },
+        {
+          "pid": 8,
+          "extraitVerbatim": "j'ai fait traduire la consigne de l'atelier en trois langues par les ados eux-mêmes",
+          "contexte": "Mobilisation du plurilinguisme des adolescents comme ressource de l'atelier.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        }
       ],
       "competences": [
-        { "code": "2.01", "courtCircuit": false,
+        {
+          "code": "2.01",
+          "courtCircuit": false,
           "pieces": [
-            { "pid": 2, "numero": 1, "contexte": "Accompagnement d'une adolescente en détresse : sortie repérée, échange bref, retour volontaire dans le groupe." },
-            { "pid": 3, "numero": 2, "contexte": "Lecture émotionnelle d'un comportement provocateur, cherchant la cause plutôt que la sanction." },
-            { "pid": 4, "numero": 3, "contexte": "Dispositif rituel de météo intérieure qui institutionnalise l'attention aux émotions du groupe." }
+            {
+              "pid": 2,
+              "numero": 1,
+              "contexte": "Accompagnement d'une adolescente en détresse : sortie repérée, échange bref, retour volontaire dans le groupe."
+            },
+            {
+              "pid": 3,
+              "numero": 2,
+              "contexte": "Lecture émotionnelle d'un comportement provocateur, cherchant la cause plutôt que la sanction."
+            },
+            {
+              "pid": 4,
+              "numero": 3,
+              "contexte": "Dispositif rituel de météo intérieure qui institutionnalise l'attention aux émotions du groupe."
+            }
           ],
           "pedagogue": {
             "presomptionAbsence": {
               "raisonnement": "Je présume l'absence : gérer un incident n'est pas encore de la sollicitude active. Les trois pièces résistent, chacune sur un registre différent : intervention, lecture, dispositif.",
               "piecesQuiResistent": [
-                { "pieceId": 1, "motifResistance": "L'intervention est mesurée (cinq minutes, pas de dramatisation) et son effet est observable : le retour volontaire." },
-                { "pieceId": 2, "motifResistance": "L'hypothèse sur Sofiane déplace le regard de la faute vers le besoin, signature d'une lecture émotionnelle." },
-                { "pieceId": 3, "motifResistance": "Le rituel de clôture étend la sollicitude au groupe entier, y compris au provocateur." }
+                {
+                  "pieceId": 1,
+                  "motifResistance": "L'intervention est mesurée (cinq minutes, pas de dramatisation) et son effet est observable : le retour volontaire."
+                },
+                {
+                  "pieceId": 2,
+                  "motifResistance": "L'hypothèse sur Sofiane déplace le regard de la faute vers le besoin, signature d'une lecture émotionnelle."
+                },
+                {
+                  "pieceId": 3,
+                  "motifResistance": "Le rituel de clôture étend la sollicitude au groupe entier, y compris au provocateur."
+                }
               ]
             },
             "presomptionSycophantie": {
               "raisonnement": "Le récit pourrait maquiller une gestion hasardeuse en finesse relationnelle : l'apprenante avoue ne pas savoir si ne pas punir était juste. Cet aveu même désarme l'attaque sur la pièce 1 ; les pièces 2 et 3 restent des indices.",
               "examenPieces": [
-                { "pieceId": 1, "attaqueDominante": "e", "motifAttaque": "Le doute exprimé sur sa propre décision (« je ne sais pas si c'était le bon choix ») écarte l'hypothèse d'un récit complaisant.", "verdictAttaque": "attaque non recevable, pièce confirmée" },
-                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "L'hypothèse sur l'immeuble n'est pas encore vérifiée auprès de l'intéressé.", "verdictAttaque": "pièce affaiblie mais retenue" },
-                { "pieceId": 3, "attaqueDominante": "b", "motifAttaque": "Un rituel peut tourner à vide ; la participation de tous, cette fois, reste déclarative.", "verdictAttaque": "pièce affaiblie mais retenue" }
+                {
+                  "pieceId": 1,
+                  "attaqueDominante": "e",
+                  "motifAttaque": "Le doute exprimé sur sa propre décision (« je ne sais pas si c'était le bon choix ») écarte l'hypothèse d'un récit complaisant.",
+                  "verdictAttaque": "attaque non recevable, pièce confirmée"
+                },
+                {
+                  "pieceId": 2,
+                  "attaqueDominante": "f",
+                  "motifAttaque": "L'hypothèse sur l'immeuble n'est pas encore vérifiée auprès de l'intéressé.",
+                  "verdictAttaque": "pièce affaiblie mais retenue"
+                },
+                {
+                  "pieceId": 3,
+                  "attaqueDominante": "b",
+                  "motifAttaque": "Un rituel peut tourner à vide ; la participation de tous, cette fois, reste déclarative.",
+                  "verdictAttaque": "pièce affaiblie mais retenue"
+                }
               ]
             },
-            "conclusionAdversariale": { "confianceFinale": 0.75, "raisonnement": "Trois registres convergents (intervention, lecture, dispositif) dont une pièce confirmée sans réserve : la sollicitude active structure la pratique de la journée." }
+            "conclusionAdversariale": {
+              "confianceFinale": 0.75,
+              "raisonnement": "Trois registres convergents (intervention, lecture, dispositif) dont une pièce confirmée sans réserve : la sollicitude active structure la pratique de la journée."
+            }
           },
-          "verdict": { "statut": "présence établie", "confiance": 0.75, "nombrePreuves": 1, "nombreIndices": 2,
+          "verdict": {
+            "statut": "présence établie",
+            "confiance": 0.75,
+            "nombrePreuves": 1,
+            "nombreIndices": 2,
             "motif": "Intervention auprès de Lina confirmée comme preuve, corroborée par la lecture de Sofiane et le rituel de météo intérieure.",
-            "prescription": "Vérifier l'hypothèse sur Sofiane (échange avec lui ou avec l'équipe) et noter l'évolution du rituel sur plusieurs séances." },
+            "prescription": "Vérifier l'hypothèse sur Sofiane (échange avec lui ou avec l'équipe) et noter l'évolution du rituel sur plusieurs séances."
+          },
           "tracesRetenues": [
-            { "pieceId": 1, "type": "trace concrète", "role": "preuve décisive" },
-            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" },
-            { "pieceId": 3, "type": "déclaration étayée", "role": "indice corroboratif" }
-          ] },
-        { "code": "2.02", "courtCircuit": false,
+            {
+              "pieceId": 1,
+              "type": "trace concrète",
+              "role": "preuve décisive"
+            },
+            {
+              "pieceId": 2,
+              "type": "déclaration étayée",
+              "role": "indice corroboratif"
+            },
+            {
+              "pieceId": 3,
+              "type": "déclaration étayée",
+              "role": "indice corroboratif"
+            }
+          ]
+        },
+        {
+          "code": "2.02",
+          "courtCircuit": false,
           "pieces": [
-            { "pid": 5, "numero": 1, "contexte": "Écart assumé entre le ressenti (colère contre soi) et le discours tenu au groupe (« tout va bien »)." },
-            { "pid": 6, "numero": 2, "contexte": "Lucidité sur la difficulté à parler simplement au directeur, sans passage à l'acte." }
+            {
+              "pid": 5,
+              "numero": 1,
+              "contexte": "Écart assumé entre le ressenti (colère contre soi) et le discours tenu au groupe (« tout va bien »)."
+            },
+            {
+              "pid": 6,
+              "numero": 2,
+              "contexte": "Lucidité sur la difficulté à parler simplement au directeur, sans passage à l'acte."
+            }
           ],
           "pedagogue": {
             "presomptionAbsence": {
               "raisonnement": "Je présume l'absence, et les pièces vont plutôt dans mon sens : elles documentent un déficit de communication authentique. Ce qui résiste, c'est la lucidité de l'aveu, qui est déjà une forme d'authenticité — mais envers le carnet, pas envers les personnes.",
               "piecesQuiResistent": [
-                { "pieceId": 1, "motifResistance": "Nommer précisément l'écart entre ressenti et discours est le premier geste de la compétence, même si l'écart demeure." },
-                { "pieceId": 2, "motifResistance": "Le diagnostic (« je tourne autour ») est exact et daté, ce qui prépare un travail réel." }
+                {
+                  "pieceId": 1,
+                  "motifResistance": "Nommer précisément l'écart entre ressenti et discours est le premier geste de la compétence, même si l'écart demeure."
+                },
+                {
+                  "pieceId": 2,
+                  "motifResistance": "Le diagnostic (« je tourne autour ») est exact et daté, ce qui prépare un travail réel."
+                }
               ]
             },
             "presomptionSycophantie": {
               "raisonnement": "Ici le risque n'est pas l'embellissement mais l'inverse : une sévérité qui vaudrait quitus. Les deux pièces tiennent comme indices d'une compétence en construction, aucune ne montre la compétence en acte.",
               "examenPieces": [
-                { "pieceId": 1, "attaqueDominante": "d", "motifAttaque": "L'aveu au carnet ne dit pas si l'apprenante saura être authentique en situation ; la pièce ne prouve que la conscience de l'écart.", "verdictAttaque": "pièce affaiblie mais retenue" },
-                { "pieceId": 2, "attaqueDominante": "d", "motifAttaque": "Constat sans tentative : rien ne montre encore un effort de formulation directe envers Karim.", "verdictAttaque": "pièce affaiblie mais retenue" }
+                {
+                  "pieceId": 1,
+                  "attaqueDominante": "d",
+                  "motifAttaque": "L'aveu au carnet ne dit pas si l'apprenante saura être authentique en situation ; la pièce ne prouve que la conscience de l'écart.",
+                  "verdictAttaque": "pièce affaiblie mais retenue"
+                },
+                {
+                  "pieceId": 2,
+                  "attaqueDominante": "d",
+                  "motifAttaque": "Constat sans tentative : rien ne montre encore un effort de formulation directe envers Karim.",
+                  "verdictAttaque": "pièce affaiblie mais retenue"
+                }
               ]
             },
-            "conclusionAdversariale": { "confianceFinale": 0.5, "raisonnement": "La conscience de l'écart est réelle et précise, mais la compétence n'est pas montrée en acte : entre absence et émergence, l'arbitrage revient au cartographe." }
+            "conclusionAdversariale": {
+              "confianceFinale": 0.5,
+              "raisonnement": "La conscience de l'écart est réelle et précise, mais la compétence n'est pas montrée en acte : entre absence et émergence, l'arbitrage revient au cartographe."
+            }
           },
-          "verdict": { "statut": "renvoi au cartographe", "confiance": 0.5, "nombrePreuves": 0, "nombreIndices": 2,
+          "verdict": {
+            "statut": "renvoi au cartographe",
+            "confiance": 0.5,
+            "nombrePreuves": 0,
+            "nombreIndices": 2,
             "motif": "Deux indices d'une authenticité réflexive (envers le carnet) sans acte de communication authentique en situation : cas limite à arbitrer.",
-            "prescription": "Documenter une situation où l'écart ressenti/discours a été réduit en direct, même imparfaitement." },
+            "prescription": "Documenter une situation où l'écart ressenti/discours a été réduit en direct, même imparfaitement."
+          },
           "tracesRetenues": [
-            { "pieceId": 1, "type": "déclaration étayée", "role": "indice corroboratif" },
-            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
-          ] },
-        { "code": "2.06", "courtCircuit": false,
+            {
+              "pieceId": 1,
+              "type": "déclaration étayée",
+              "role": "indice corroboratif"
+            },
+            {
+              "pieceId": 2,
+              "type": "déclaration étayée",
+              "role": "indice corroboratif"
+            }
+          ]
+        },
+        {
+          "code": "2.06",
+          "courtCircuit": false,
           "pieces": [
-            { "pid": 7, "numero": 1, "contexte": "Adaptation durable du salut aux codes du grand-père de Yusuf, apprise par observation." },
-            { "pid": 8, "numero": 2, "contexte": "Valorisation du plurilinguisme des adolescents : la traduction devient une contribution à l'atelier." }
+            {
+              "pid": 7,
+              "numero": 1,
+              "contexte": "Adaptation durable du salut aux codes du grand-père de Yusuf, apprise par observation."
+            },
+            {
+              "pid": 8,
+              "numero": 2,
+              "contexte": "Valorisation du plurilinguisme des adolescents : la traduction devient une contribution à l'atelier."
+            }
           ],
           "pedagogue": {
             "presomptionAbsence": {
               "raisonnement": "Je présume l'absence : la courtoisie n'est pas l'intelligence culturelle. Les deux pièces résistent car elles montrent une observation des codes et leur intégration dans la pratique, pas un simple respect de façade.",
               "piecesQuiResistent": [
-                { "pieceId": 1, "motifResistance": "Le salut est appris du geste de l'autre (« comme il le fait ») et adopté dans la durée (« désormais »)." },
-                { "pieceId": 2, "motifResistance": "Les langues des familles passent du statut d'obstacle à celui de ressource visible de l'atelier." }
+                {
+                  "pieceId": 1,
+                  "motifResistance": "Le salut est appris du geste de l'autre (« comme il le fait ») et adopté dans la durée (« désormais »)."
+                },
+                {
+                  "pieceId": 2,
+                  "motifResistance": "Les langues des familles passent du statut d'obstacle à celui de ressource visible de l'atelier."
+                }
               ]
             },
             "presomptionSycophantie": {
               "raisonnement": "Ces gestes pourraient être des anecdotes décoratives de tolérance. L'attaque est affaiblie par leur caractère concret et répétable, mais aucun des deux n'engage une situation interculturelle complexe.",
               "examenPieces": [
-                { "pieceId": 1, "attaqueDominante": "b", "motifAttaque": "Un salut adapté reste un geste ponctuel, dont la portée relationnelle n'est pas documentée au-delà.", "verdictAttaque": "pièce affaiblie mais retenue" },
-                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "La fierté des ados est rapportée par l'apprenante seule ; l'effet sur les familles n'est pas décrit.", "verdictAttaque": "pièce affaiblie mais retenue" }
+                {
+                  "pieceId": 1,
+                  "attaqueDominante": "b",
+                  "motifAttaque": "Un salut adapté reste un geste ponctuel, dont la portée relationnelle n'est pas documentée au-delà.",
+                  "verdictAttaque": "pièce affaiblie mais retenue"
+                },
+                {
+                  "pieceId": 2,
+                  "attaqueDominante": "f",
+                  "motifAttaque": "La fierté des ados est rapportée par l'apprenante seule ; l'effet sur les familles n'est pas décrit.",
+                  "verdictAttaque": "pièce affaiblie mais retenue"
+                }
               ]
             },
-            "conclusionAdversariale": { "confianceFinale": 0.6, "raisonnement": "Deux indices convergents d'une attention réelle aux codes culturels, intégrée à la pratique ; il manque une situation complexe pour porter la confiance plus haut." }
+            "conclusionAdversariale": {
+              "confianceFinale": 0.6,
+              "raisonnement": "Deux indices convergents d'une attention réelle aux codes culturels, intégrée à la pratique ; il manque une situation complexe pour porter la confiance plus haut."
+            }
           },
-          "verdict": { "statut": "présence établie", "confiance": 0.6, "nombrePreuves": 0, "nombreIndices": 2,
+          "verdict": {
+            "statut": "présence établie",
+            "confiance": 0.6,
+            "nombrePreuves": 0,
+            "nombreIndices": 2,
             "motif": "Faisceau d'indices : codes culturels observés puis intégrés à la pratique (salut, plurilinguisme), sans situation complexe documentée.",
-            "prescription": "Documenter une situation interculturelle où les codes entrent en tension et demandent un arbitrage." },
+            "prescription": "Documenter une situation interculturelle où les codes entrent en tension et demandent un arbitrage."
+          },
           "tracesRetenues": [
-            { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
-            { "pieceId": 2, "type": "trace concrète", "role": "indice corroboratif" }
-          ] }
+            {
+              "pieceId": 1,
+              "type": "trace concrète",
+              "role": "indice corroboratif"
+            },
+            {
+              "pieceId": 2,
+              "type": "trace concrète",
+              "role": "indice corroboratif"
+            }
+          ]
+        }
       ],
-      "auditPole": { "competencesTotales": 3, "courtCircuits": 0, "competencesNonCourtCircuit": 3, "presencesEtablies": 2, "nonEtablies": 0, "renvoisCartographe": 1 },
+      "auditPole": {
+        "competencesTotales": 3,
+        "courtCircuits": 0,
+        "competencesNonCourtCircuit": 3,
+        "presencesEtablies": 2,
+        "nonEtablies": 0,
+        "renvoisCartographe": 1
+      },
       "rapport": {
         "portraitPole": "Journée charnière pour le pôle COEUR : un conflit entre adolescents traversé sans casse, des codes culturels intégrés à la pratique, et une lucidité neuve sur les limites de sa propre authenticité.",
         "emergencesPole": "La sollicitude se double d'une lecture : l'apprenante ne réagit plus seulement aux émotions, elle cherche ce qu'elles signifient (l'immeuble de Sofiane).",
         "territoiresDenses": [
-          { "competence": "2.01 Intelligence Émotionnelle & Sollicitude Active", "description": "Gestion de l'incident Lina/Sofiane sur trois registres : intervention, hypothèse, rituel.", "extraitVerbatim": "je l'ai rejointe dans le couloir, on a parlé cinq minutes, puis elle est revenue d'elle-même", "ceQueCaDit": "L'intervention vise l'autonomie de l'autre (revenir d'elle-même), pas la restauration de l'ordre." }
+          {
+            "competence": "2.01 Intelligence Émotionnelle & Sollicitude Active",
+            "description": "Gestion de l'incident Lina/Sofiane sur trois registres : intervention, hypothèse, rituel.",
+            "extraitVerbatim": "je l'ai rejointe dans le couloir, on a parlé cinq minutes, puis elle est revenue d'elle-même",
+            "ceQueCaDit": "L'intervention vise l'autonomie de l'autre (revenir d'elle-même), pas la restauration de l'ordre."
+          }
         ],
         "territoiresNonVisites": "La gestion des conflits comme compétence propre reste à documenter : l'incident est traversé, mais la médiation entre Lina et Sofiane n'a pas eu lieu.",
         "pistes": [
@@ -165,31 +415,83 @@
       "poleNum": "3",
       "passagesSaillants": [],
       "competences": [
-        { "code": "3.04", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+        {
+          "code": "3.04",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Documenter un choix de sélection ou de mise en forme motivé par un critère de qualité." } },
-        { "code": "3.07", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "prescriptionMinimale": "Documenter un choix de sélection ou de mise en forme motivé par un critère de qualité."
+          }
+        },
+        {
+          "code": "3.07",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Décrire un moment d'animation en public : posture, voix, gestion des imprévus." } }
+            "prescriptionMinimale": "Décrire un moment d'animation en public : posture, voix, gestion des imprévus."
+          }
+        }
       ],
-      "auditPole": { "competencesTotales": 2, "courtCircuits": 2, "competencesNonCourtCircuit": 0, "presencesEtablies": 0, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "auditPole": {
+        "competencesTotales": 2,
+        "courtCircuits": 2,
+        "competencesNonCourtCircuit": 0,
+        "presencesEtablies": 0,
+        "nonEtablies": 2,
+        "renvoisCartographe": 0
+      },
       "rapport": null
     },
     {
       "poleNum": "4",
       "passagesSaillants": [
-        { "pid": 9, "extraitVerbatim": "J'aurais dû dire à Karim que le créneau du mardi ne convient pas aux familles ; je ne l'ai pas fait. Je me raconte que c'est du tact, mais c'est de l'évitement.", "contexte": "Aveu d'un renoncement à porter un désaccord auprès du directeur, requalifié par l'apprenante elle-même en évitement.", "auteur": "apprenant", "feuille": "2026-01-06" }
+        {
+          "pid": 9,
+          "extraitVerbatim": "J'aurais dû dire à Karim que le créneau du mardi ne convient pas aux familles ; je ne l'ai pas fait. Je me raconte que c'est du tact, mais c'est de l'évitement.",
+          "contexte": "Aveu d'un renoncement à porter un désaccord auprès du directeur, requalifié par l'apprenante elle-même en évitement.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        }
       ],
       "competences": [
-        { "code": "4.05", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+        {
+          "code": "4.05",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Documenter une décision prise sans disposer de toutes les informations, et ce qu'on a fait du doute résiduel." } },
-        { "code": "4.06", "courtCircuit": false,
+            "prescriptionMinimale": "Documenter une décision prise sans disposer de toutes les informations, et ce qu'on a fait du doute résiduel."
+          }
+        },
+        {
+          "code": "4.06",
+          "courtCircuit": false,
           "pieces": [
-            { "pid": 9, "numero": 1, "contexte": "Reconnaissance honnête d'un défaut de courage : le désaccord sur le créneau du mardi n'a pas été porté au directeur." }
+            {
+              "pid": 9,
+              "numero": 1,
+              "contexte": "Reconnaissance honnête d'un défaut de courage : le désaccord sur le créneau du mardi n'a pas été porté au directeur."
+            }
           ],
           "pedagogue": {
             "presomptionAbsence": {
@@ -199,66 +501,165 @@
             "presomptionSycophantie": {
               "raisonnement": "La pièce n'est pas complaisante — elle est même à charge. Mais une trace d'évitement, si honnête soit-elle, ne peut établir la responsabilité et le courage en acte.",
               "examenPieces": [
-                { "pieceId": 1, "attaqueDominante": "d", "motifAttaque": "La pièce atteste l'intégrité du regard sur soi, pas le courage en situation : l'acte manque.", "verdictAttaque": "pièce disqualifiée" }
+                {
+                  "pieceId": 1,
+                  "attaqueDominante": "d",
+                  "motifAttaque": "La pièce atteste l'intégrité du regard sur soi, pas le courage en situation : l'acte manque.",
+                  "verdictAttaque": "pièce disqualifiée"
+                }
               ]
             },
-            "conclusionAdversariale": { "confianceFinale": 0.25, "raisonnement": "La seule pièce disponible documente un renoncement ; l'honnêteté du constat annonce peut-être la compétence, mais ne l'établit pas." }
+            "conclusionAdversariale": {
+              "confianceFinale": 0.25,
+              "raisonnement": "La seule pièce disponible documente un renoncement ; l'honnêteté du constat annonce peut-être la compétence, mais ne l'établit pas."
+            }
           },
-          "verdict": { "statut": "présence non établie", "confiance": 0.75, "nombrePreuves": 0, "nombreIndices": 0,
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 0.75,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "motif": "L'unique pièce, disqualifiée comme trace de compétence, documente un évitement reconnu : la présence ne peut être établie ce jour.",
-            "prescription": "Relater la conversation avec Karim quand elle aura lieu, quel qu'en soit le résultat : c'est l'acte qui compte, pas l'issue." },
-          "tracesRetenues": [] }
+            "prescription": "Relater la conversation avec Karim quand elle aura lieu, quel qu'en soit le résultat : c'est l'acte qui compte, pas l'issue."
+          },
+          "tracesRetenues": []
+        }
       ],
-      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 0, "nonEtablies": 1, "renvoisCartographe": 0 },
+      "auditPole": {
+        "competencesTotales": 2,
+        "courtCircuits": 1,
+        "competencesNonCourtCircuit": 1,
+        "presencesEtablies": 0,
+        "nonEtablies": 2,
+        "renvoisCartographe": 0
+      },
       "rapport": null
     },
     {
       "poleNum": "5",
       "passagesSaillants": [
-        { "pid": 10, "extraitVerbatim": "L'atelier partait en vrille : j'ai cassé le grand cercle et reformé trois petits groupes, chacun autour d'une photo.", "contexte": "Réorganisation à chaud d'un atelier qui échappait à son animatrice.", "auteur": "apprenant", "feuille": "2026-01-06" },
-        { "pid": 11, "extraitVerbatim": "Ce qui m'aurait mise en panique en septembre m'a presque amusée aujourd'hui.", "contexte": "Comparaison explicite avec son état de septembre face au même type d'imprévu.", "auteur": "apprenant", "feuille": "2026-01-06" }
+        {
+          "pid": 10,
+          "extraitVerbatim": "L'atelier partait en vrille : j'ai cassé le grand cercle et reformé trois petits groupes, chacun autour d'une photo.",
+          "contexte": "Réorganisation à chaud d'un atelier qui échappait à son animatrice.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        },
+        {
+          "pid": 11,
+          "extraitVerbatim": "Ce qui m'aurait mise en panique en septembre m'a presque amusée aujourd'hui.",
+          "contexte": "Comparaison explicite avec son état de septembre face au même type d'imprévu.",
+          "auteur": "apprenant",
+          "feuille": "2026-01-06"
+        }
       ],
       "competences": [
-        { "code": "5.01", "courtCircuit": false,
+        {
+          "code": "5.01",
+          "courtCircuit": false,
           "pieces": [
-            { "pid": 10, "numero": 1, "contexte": "Rebond opérationnel immédiat face à un atelier qui dérape : changement de dispositif plutôt que rappel à l'ordre." },
-            { "pid": 11, "numero": 2, "contexte": "Mesure du chemin parcouru : ce qui provoquait la panique devient presque un jeu." }
+            {
+              "pid": 10,
+              "numero": 1,
+              "contexte": "Rebond opérationnel immédiat face à un atelier qui dérape : changement de dispositif plutôt que rappel à l'ordre."
+            },
+            {
+              "pid": 11,
+              "numero": 2,
+              "contexte": "Mesure du chemin parcouru : ce qui provoquait la panique devient presque un jeu."
+            }
           ],
           "pedagogue": {
             "presomptionAbsence": {
               "raisonnement": "Je présume l'absence : improviser n'est pas être résilient. Les deux pièces résistent ensemble : le rebond est concret et la comparaison temporelle documente une transformation du rapport à l'adversité.",
               "piecesQuiResistent": [
-                { "pieceId": 1, "motifResistance": "Le rebond passe par une décision de structure (casser le cercle), pas par le contrôle : l'imprévu est utilisé, non subi." },
-                { "pieceId": 2, "motifResistance": "La comparaison septembre/janvier trace une trajectoire de robustesse croissante." }
+                {
+                  "pieceId": 1,
+                  "motifResistance": "Le rebond passe par une décision de structure (casser le cercle), pas par le contrôle : l'imprévu est utilisé, non subi."
+                },
+                {
+                  "pieceId": 2,
+                  "motifResistance": "La comparaison septembre/janvier trace une trajectoire de robustesse croissante."
+                }
               ]
             },
             "presomptionSycophantie": {
               "raisonnement": "« Presque amusée » pourrait être une coquetterie de récit. Les deux pièces restent des indices : le rebond a fonctionné une fois, la trajectoire est auto-déclarée.",
               "examenPieces": [
-                { "pieceId": 1, "attaqueDominante": "b", "motifAttaque": "Un seul épisode de rebond réussi ne fait pas une résilience installée.", "verdictAttaque": "pièce affaiblie mais retenue" },
-                { "pieceId": 2, "attaqueDominante": "f", "motifAttaque": "La progression depuis septembre n'est étayée par aucun épisode de septembre dans le corpus.", "verdictAttaque": "pièce affaiblie mais retenue" }
+                {
+                  "pieceId": 1,
+                  "attaqueDominante": "b",
+                  "motifAttaque": "Un seul épisode de rebond réussi ne fait pas une résilience installée.",
+                  "verdictAttaque": "pièce affaiblie mais retenue"
+                },
+                {
+                  "pieceId": 2,
+                  "attaqueDominante": "f",
+                  "motifAttaque": "La progression depuis septembre n'est étayée par aucun épisode de septembre dans le corpus.",
+                  "verdictAttaque": "pièce affaiblie mais retenue"
+                }
               ]
             },
-            "conclusionAdversariale": { "confianceFinale": 0.64, "raisonnement": "Un rebond concret et une trajectoire déclarée cohérente : faisceau d'indices suffisant pour établir la présence, sans preuve décisive." }
+            "conclusionAdversariale": {
+              "confianceFinale": 0.64,
+              "raisonnement": "Un rebond concret et une trajectoire déclarée cohérente : faisceau d'indices suffisant pour établir la présence, sans preuve décisive."
+            }
           },
-          "verdict": { "statut": "présence établie", "confiance": 0.64, "nombrePreuves": 0, "nombreIndices": 2,
+          "verdict": {
+            "statut": "présence établie",
+            "confiance": 0.64,
+            "nombrePreuves": 0,
+            "nombreIndices": 2,
             "motif": "Rebond opérationnel face au dérapage de l'atelier, corroboré par la mesure du chemin parcouru depuis septembre.",
-            "prescription": "Tenir la comparaison dans le temps : noter les prochains imprévus et la réaction pour objectiver la trajectoire." },
+            "prescription": "Tenir la comparaison dans le temps : noter les prochains imprévus et la réaction pour objectiver la trajectoire."
+          },
           "tracesRetenues": [
-            { "pieceId": 1, "type": "trace concrète", "role": "indice corroboratif" },
-            { "pieceId": 2, "type": "déclaration étayée", "role": "indice corroboratif" }
-          ] },
-        { "code": "5.03", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            {
+              "pieceId": 1,
+              "type": "trace concrète",
+              "role": "indice corroboratif"
+            },
+            {
+              "pieceId": 2,
+              "type": "déclaration étayée",
+              "role": "indice corroboratif"
+            }
+          ]
+        },
+        {
+          "code": "5.03",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Poursuivre la relecture du carnet en revenant sur les questions laissées ouvertes les jours précédents." } }
+            "prescriptionMinimale": "Poursuivre la relecture du carnet en revenant sur les questions laissées ouvertes les jours précédents."
+          }
+        }
       ],
-      "auditPole": { "competencesTotales": 2, "courtCircuits": 1, "competencesNonCourtCircuit": 1, "presencesEtablies": 1, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "auditPole": {
+        "competencesTotales": 2,
+        "courtCircuits": 1,
+        "competencesNonCourtCircuit": 1,
+        "presencesEtablies": 1,
+        "nonEtablies": 1,
+        "renvoisCartographe": 0
+      },
       "rapport": {
         "portraitPole": "Le pôle RACINES se montre par la robustesse : un atelier qui dérape est réorganisé à chaud, et l'apprenante mesure elle-même le chemin parcouru depuis septembre.",
         "emergencesPole": "Le rapport à l'imprévu bascule du subi au presque ludique : c'est la définition même d'une antifragilité naissante.",
         "territoiresDenses": [
-          { "competence": "5.01 Résilience & Antifragilité", "description": "Réorganisation immédiate de l'atelier en petits groupes face au dérapage.", "extraitVerbatim": "j'ai cassé le grand cercle et reformé trois petits groupes, chacun autour d'une photo", "ceQueCaDit": "La réponse à la crise est structurelle et créative, pas disciplinaire : l'adversité devient matériau." }
+          {
+            "competence": "5.01 Résilience & Antifragilité",
+            "description": "Réorganisation immédiate de l'atelier en petits groupes face au dérapage.",
+            "extraitVerbatim": "j'ai cassé le grand cercle et reformé trois petits groupes, chacun autour d'une photo",
+            "ceQueCaDit": "La réponse à la crise est structurelle et créative, pas disciplinaire : l'adversité devient matériau."
+          }
         ],
         "territoiresNonVisites": "La narration réflexive, très présente la veille, ne laisse pas de trace nouvelle dans cette feuille dense en action.",
         "pistes": [
@@ -271,32 +672,90 @@
       "poleNum": "6",
       "passagesSaillants": [],
       "competences": [
-        { "code": "6.05", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+        {
+          "code": "6.05",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Documenter une action qui associe des habitants ou des citoyens à une décision qui les concerne." } },
-        { "code": "6.07", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "prescriptionMinimale": "Documenter une action qui associe des habitants ou des citoyens à une décision qui les concerne."
+          }
+        },
+        {
+          "code": "6.07",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Décrire l'animation d'un collectif : cadre posé, circulation de la parole, décisions collectives." } }
+            "prescriptionMinimale": "Décrire l'animation d'un collectif : cadre posé, circulation de la parole, décisions collectives."
+          }
+        }
       ],
-      "auditPole": { "competencesTotales": 2, "courtCircuits": 2, "competencesNonCourtCircuit": 0, "presencesEtablies": 0, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "auditPole": {
+        "competencesTotales": 2,
+        "courtCircuits": 2,
+        "competencesNonCourtCircuit": 0,
+        "presencesEtablies": 0,
+        "nonEtablies": 2,
+        "renvoisCartographe": 0
+      },
       "rapport": null
     },
     {
       "poleNum": "7",
       "passagesSaillants": [],
       "competences": [
-        { "code": "7.01", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+        {
+          "code": "7.01",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Documenter un moment où l'apprentissage d'autrui a été facilité par des questions plutôt que par des réponses." } },
-        { "code": "7.03", "courtCircuit": true, "pieces": [], "pedagogue": null, "tracesRetenues": [],
-          "verdict": { "statut": "présence non établie", "confiance": 1, "nombrePreuves": 0, "nombreIndices": 0,
+            "prescriptionMinimale": "Documenter un moment où l'apprentissage d'autrui a été facilité par des questions plutôt que par des réponses."
+          }
+        },
+        {
+          "code": "7.03",
+          "courtCircuit": true,
+          "pieces": [],
+          "pedagogue": null,
+          "tracesRetenues": [],
+          "verdict": {
+            "statut": "présence non établie",
+            "confiance": 1,
+            "nombrePreuves": 0,
+            "nombreIndices": 0,
             "raison": "aucune pièce extraite par le Greffier",
-            "prescriptionMinimale": "Garder trace des outils produits (notes, supports d'atelier) et de leurs révisions successives." } }
+            "prescriptionMinimale": "Garder trace des outils produits (notes, supports d'atelier) et de leurs révisions successives."
+          }
+        }
       ],
-      "auditPole": { "competencesTotales": 2, "courtCircuits": 2, "competencesNonCourtCircuit": 0, "presencesEtablies": 0, "nonEtablies": 0, "renvoisCartographe": 0 },
+      "auditPole": {
+        "competencesTotales": 2,
+        "courtCircuits": 2,
+        "competencesNonCourtCircuit": 0,
+        "presencesEtablies": 0,
+        "nonEtablies": 2,
+        "renvoisCartographe": 0
+      },
       "rapport": null
     }
   ],

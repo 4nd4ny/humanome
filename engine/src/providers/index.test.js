@@ -284,7 +284,8 @@ describe('transport proxy', () => {
     expect(result).toEqual({
       text: 'Réponse via proxy.',
       usage: { inputTokens: 100, outputTokens: 25 },
-      model: 'claude-haiku-4-5'
+      model: 'claude-haiku-4-5',
+      stopReason: null
     })
   })
 

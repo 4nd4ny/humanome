@@ -84,6 +84,10 @@ final class AnthropicProvider
                 'outputTokens' => (int) ($data['usage']['output_tokens'] ?? 0),
             ],
             'model' => (string) ($data['model'] ?? $model),
+            // Relayed so clients can distinguish a truncated generation
+            // ('max_tokens') from a natural stop — silent truncation produced
+            // unparseable or fragmentary JSON downstream.
+            'stopReason' => (string) ($data['stop_reason'] ?? ''),
         ];
     }
 

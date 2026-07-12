@@ -266,17 +266,32 @@ describe('extractDay', () => {
   })
 
   it('rejette un document final invalide au schéma avec le détail ajv', async () => {
+    // auditPole étant recalculé par extractDay, l'invalidité doit porter sur
+    // une donnée NON réparable : un statut de verdict hors énumération.
     const provider = createMockProvider({
       responses: ({ prompt }) => {
         const num = poleOfPrompt(prompt)
         if (num === null) return 'null'
         const pole = minimalPoleResponse(num)
-        if (num === 4) delete pole.auditPole
+        if (num === 4) pole.competences[0].verdict.statut = 'présence miraculeuse'
         return JSON.stringify(pole)
       },
     })
     await expect(extractDay({ dayText: DAY_TEXT, date: DATE, referentiel, provider }))
-      .rejects.toThrow(/invalide au schéma cartographie-jour.*auditPole/s)
+      .rejects.toThrow(/invalide au schéma cartographie-jour/s)
+  })
+
+  it('rejette explicitement une génération tronquée (stopReason max_tokens)', async () => {
+    const provider = {
+      complete: async () => ({
+        text: '{"poleNum": "1", "competences": [',
+        usage: { inputTokens: 10, outputTokens: 4096 },
+        model: 'mock',
+        stopReason: 'max_tokens',
+      }),
+    }
+    await expect(extractDay({ dayText: DAY_TEXT, date: DATE, referentiel, provider }))
+      .rejects.toThrow(/tronquée/)
   })
 
   it('exige provider, referentiel, dayText et date', async () => {
