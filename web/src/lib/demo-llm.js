@@ -185,7 +185,12 @@ export function createDemoProvider({ fetchFn, onPhase } = {}) {
     } catch (error) {
       const status = httpInfo(error)?.status ?? null
       // 503 is NOT transient here: the demo API uses it for « épuisée/désactivée ».
-      const transient = status === null || [500, 502, 504, 529].includes(status)
+      // A rejected proof of work (expired/reused — e.g. after heavy tab
+      // throttling) is recoverable too: the wrapper takes a FRESH challenge
+      // on every attempt anyway.
+      const powRejected = /défi/i.test(collectMessages(error))
+      const transient =
+        status === null || [500, 502, 504, 529].includes(status) || powRejected
       if (!transient || args?.signal?.aborted || isAbortError(error)) throw error
       onPhase?.('retry')
       await new Promise((resolve) => setTimeout(resolve, UPSTREAM_RETRY_DELAY_MS))
@@ -203,6 +208,15 @@ export function createDemoProvider({ fetchFn, onPhase } = {}) {
 
 /** Pause before the single retry on a transient upstream failure. */
 export const UPSTREAM_RETRY_DELAY_MS = 2500
+
+/** Concatenates the messages of the whole `cause` chain (for text matching). */
+function collectMessages(error) {
+  const parts = []
+  for (let err = error; err; err = err.cause) {
+    if (typeof err.message === 'string') parts.push(err.message)
+  }
+  return parts.join(' | ')
+}
 
 /** Walks the `cause` chain looking for an HTTP status / Retry-After delay. */
 function httpInfo(error) {

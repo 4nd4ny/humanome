@@ -29,7 +29,10 @@ use Humanome\Env;
  */
 final class PowChallenge
 {
-    public const TTL_SECONDS = 120;
+    // Generous TTL: solving takes ~1-3 s on a focused tab, but browsers
+    // throttle background tabs hard — a user switching tabs mid-run must not
+    // see their challenges expire (observed live). Challenges stay one-time-use.
+    public const TTL_SECONDS = 300;
 
     public const OK = 'ok';
     public const INVALID = 'invalid';   // malformed or bad HMAC
