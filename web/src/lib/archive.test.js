@@ -126,6 +126,35 @@ describe('exportArchive', () => {
     expect(archive.account.email).toBe('maya@exemple.fr')
     expect(archive.promptPackages[0].id).toBe('aurora-demo')
   })
+
+  it('inclut les cartographies de masse de l’apprenant (RGPD art. 15/20)', async () => {
+    // Le document produit par un établissement vit côté serveur, pas dans le
+    // carto-store local : l’export « un clic » doit tout de même le récupérer.
+    const { cartoStore, portfolioStore } = makeStores()
+    const { archive, counts } = await exportArchive({
+      cartoStore,
+      portfolioStore,
+      ...offlineDeps(),
+      getMassDocuments: async () => [
+        {
+          jobId: 7,
+          runId: 3,
+          cohorteId: 1,
+          cohorte: 'Terminale B',
+          date: '2026-01-05',
+          promptPackage: { id: 'aurora-v3-reconstruit', version: '1.0.0' },
+          referentiel: { id: 'respire', version: '7.0.0' },
+          document: dayFixture,
+        },
+      ],
+      download: () => {},
+    })
+    expect(validateDocument('archive-export', archive).valid).toBe(true)
+    expect(counts.cartographies).toBe(1)
+    expect(archive.cartographies[0].id).toBe('masse-3-7')
+    expect(archive.cartographies[0].type).toBe('jour')
+    expect(archive.cartographies[0].runMeta.modele).toContain('Terminale B')
+  })
 })
 
 describe('importArchive', () => {

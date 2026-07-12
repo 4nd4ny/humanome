@@ -123,13 +123,21 @@ lui-même** n'est pas offerte par l'archive « un clic ».
     WHERE j.user_id = :apprenant_id AND j.status = 'done';
    ```
 
-   Ce n'est **pas un bug de purge** (la donnée disparaît bien à la suppression
-   du compte) et **pas** un manquement à l'effacement. C'est une **lacune de
-   portabilité** : un point d'accès apprenant (`GET /api/mes-documents-masse`,
-   ou l'intégration au store cartographies pour l'inclure à l'archive) reste à
-   ajouter. Hors périmètre du chantier B (ne touche ni le module établissement
-   ni le routage) — **signalé** pour le backlog M9/P13. Une fois ajouté, la
-   colonne export de `mass_jobs` passerait de `aucun` à `local`/`via`.
+   Ce n'était **pas un bug de purge** (la donnée disparaît bien à la suppression
+   du compte) et **pas** un manquement à l'effacement, mais une **lacune de
+   portabilité** (art. 15/20).
+
+   **✅ Corrigé (2026-07-12).** Ajout de `GET /api/mes-documents-masse`
+   (`RequireRole 'apprenant'`, api/src/routes/etablissement.php) : l'apprenant
+   récupère ses propres documents de masse `status='done'` avec leur traçabilité
+   (cohorte, prompt-package, référentiel), **y compris après avoir quitté la
+   cohorte** (art. 15 : l'accès à ses propres données ne dépend pas de
+   l'adhésion — l'établissement, lui, perd l'accès). Ces documents entrent
+   désormais dans l'archive d'export « un clic » (web/src/lib/archive.js,
+   `defaultGetMassDocuments` → `cartographies[]`). Tests :
+   `api/tests/MasseLearnerAccessTest.php` (accès, survie au départ, cas vide) et
+   `web/src/lib/archive.test.js` (inclusion + archive valide au schéma). La
+   colonne export de `mass_jobs` passe donc de `aucun` à **`via /api/mes-documents-masse`**.
 
 ## (c) Minimisation des journaux (cahier §6.5)
 

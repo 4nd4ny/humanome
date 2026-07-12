@@ -88,6 +88,42 @@ async function defaultGetPromptPackages(fetchFn) {
   }
 }
 
+/**
+ * The learner's OWN mass cartographies produced by an establishment cohort
+ * (RGPD accès/portabilité, art. 15/20). They live server-side, not in the
+ * local carto-store, so the one-click export would miss them without this.
+ * Read-only; [] for anonymous users or on any failure.
+ */
+async function defaultGetMassDocuments(fetchFn) {
+  const options = fetchFn ? { fetchFn } : undefined
+  try {
+    const { documents } = await apiFetch('mes-documents-masse', options)
+    return Array.isArray(documents) ? documents : []
+  } catch {
+    return []
+  }
+}
+
+/** Maps a /mes-documents-masse entry to the archive `cartographies[]` shape. */
+function toArchiveMassCartography(entry, exportedAt) {
+  return {
+    id: `masse-${entry.runId}-${entry.jobId}`,
+    type: 'jour',
+    document: entry.document,
+    promptPackageId: entry.promptPackage?.id ?? UNKNOWN_ID,
+    promptPackageVersion: entry.promptPackage?.version ?? UNKNOWN_VERSION,
+    referentielId: entry.referentiel?.id ?? UNKNOWN_ID,
+    referentielVersion: entry.referentiel?.version ?? UNKNOWN_VERSION,
+    // runMeta n'accepte que {modele, dateRun, tokens?, coutEstime?} (schéma,
+    // additionalProperties false) : la provenance cohorte tient dans « modele »
+    // faute d'exposer le modèle exact de l'établissement à l'apprenant.
+    runMeta: {
+      modele: `cartographie de masse — cohorte « ${entry.cohorte ?? '?'} »`,
+      dateRun: exportedAt,
+    },
+  }
+}
+
 /** Maps a portfolio-store record to the archive `portfolios[]` shape. */
 function toArchivePortfolio(record) {
   const segmentation = (record.segments ?? [])
@@ -179,13 +215,18 @@ export async function exportArchive(options = {}) {
   const nowDate = (options.now ?? (() => new Date()))()
   const exportedAt = nowDate.toISOString()
 
-  const [account, portfolios, entries, referentiel, promptPackages] = await Promise.all([
-    getAccount(),
-    portfolioStore.list(),
-    cartoStore.listCartographies(),
-    getReferentiel(),
-    getPromptPackages(),
-  ])
+  const getMassDocuments =
+    options.getMassDocuments ?? (() => defaultGetMassDocuments(options.fetchFn))
+
+  const [account, portfolios, entries, referentiel, promptPackages, massDocuments] =
+    await Promise.all([
+      getAccount(),
+      portfolioStore.list(),
+      cartoStore.listCartographies(),
+      getReferentiel(),
+      getPromptPackages(),
+      getMassDocuments(),
+    ])
   const referentielDoc = referentiel?.doc ?? referentiel ?? null
 
   const archive = {
@@ -196,9 +237,15 @@ export async function exportArchive(options = {}) {
     portfolios: portfolios.map(toArchivePortfolio),
     referentiels: referentielDoc ? [referentielDoc] : [],
     promptPackages,
-    cartographies: entries
-      .filter((entry) => entry.document != null)
-      .map((entry) => toArchiveCartography(entry, referentielDoc, exportedAt)),
+    cartographies: [
+      ...entries
+        .filter((entry) => entry.document != null)
+        .map((entry) => toArchiveCartography(entry, referentielDoc, exportedAt)),
+      // Cartographies de masse produites par un établissement (art. 15/20).
+      ...massDocuments
+        .filter((entry) => entry.document != null)
+        .map((entry) => toArchiveMassCartography(entry, exportedAt)),
+    ],
     audit: [],
   }
 

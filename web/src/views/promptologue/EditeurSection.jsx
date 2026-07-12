@@ -14,20 +14,44 @@ import { useEffect, useMemo, useState } from 'react'
 import { validateDocument } from '@engine/validation.js'
 import { normalizeDraftEntry } from './api.js'
 
-/** Rendu tolérant d'une liste de lignes de diff (chaînes « + … » / « - … »). */
+// Le diff est rendu D'APRÈS LA FORME RÉELLE renvoyée par le serveur
+// (api/src/Packages/PackageDiff.php), pas une forme française fictive :
+//   from/to        : { version }            (objets, jamais des chaînes)
+//   prompts        : { added, removed, modified: [{ role, nom, texte, variables }] }
+//   code           : { entrypoint: {from,to}|null, orchestration: <lignes>|null }
+//   metadata       : { <clé>: { from, to } }
+//   lignes de diff : [{ op: 'add'|'del', line, text }]
+// (Un objet rendu tel quel comme enfant React faisait planter l'atelier.)
+
+/** Étiquette lisible d'un prompt du diff. */
+function promptLabel(p) {
+  if (typeof p === 'string') return p
+  if (p && typeof p === 'object') return `${p.role ?? ''} — ${p.nom ?? ''}`.replace(/^ — /, '')
+  return String(p)
+}
+
+/** Convertit une valeur scalaire potentiellement objet en texte affichable. */
+function asText(v) {
+  if (v === null || v === undefined) return '—'
+  if (typeof v === 'object') return JSON.stringify(v)
+  return String(v)
+}
+
+/** Rendu d'une liste de lignes de diff serveur [{op, line, text}]. */
 function DiffLines({ lines }) {
-  const items = (Array.isArray(lines) ? lines : []).map((line) => {
-    if (typeof line === 'string') return line
-    if (line && typeof line === 'object') {
-      const marker = line.op ?? line.type ?? line.t ?? ' '
-      const text = line.ligne ?? line.line ?? line.texte ?? JSON.stringify(line)
+  const rows = (Array.isArray(lines) ? lines : []).map((row) => {
+    if (typeof row === 'string') return row
+    if (row && typeof row === 'object') {
+      const marker = row.op === 'add' ? '+' : row.op === 'del' ? '-' : ' '
+      const text = row.text ?? row.texte ?? row.ligne ?? row.line ?? JSON.stringify(row)
       return `${marker} ${text}`
     }
-    return String(line)
+    return String(row)
   })
+  if (rows.length === 0) return null
   return (
     <pre className="promptologue-diff-lines">
-      {items.map((line, i) => (
+      {rows.map((line, i) => (
         <span
           key={i}
           className={
@@ -42,44 +66,104 @@ function DiffLines({ lines }) {
   )
 }
 
-/** Section du diff serveur : listes ajoutés/retirés/modifiés, repli JSON brut. */
-function DiffSection({ title, value }) {
-  if (value === undefined || value === null) return null
-  const known =
-    typeof value === 'object' &&
-    !Array.isArray(value) &&
-    ('ajoutes' in value || 'retires' in value || 'modifies' in value)
+/** Section Prompts : ajoutés / retirés / modifiés (avec diff de texte). */
+function PromptsSection({ prompts }) {
+  if (!prompts || typeof prompts !== 'object') return null
+  const added = prompts.added ?? []
+  const removed = prompts.removed ?? []
+  const modified = prompts.modified ?? []
+  if (added.length === 0 && removed.length === 0 && modified.length === 0) return null
   return (
     <section className="promptologue-diff-section">
-      <h4>{title}</h4>
-      {known ? (
-        <>
-          {(value.ajoutes ?? []).length > 0 ? (
-            <p>
-              Ajoutés :{' '}
-              {(value.ajoutes ?? []).map((e) => (typeof e === 'string' ? e : `${e.role ?? ''} — ${e.nom ?? JSON.stringify(e)}`)).join(' ; ')}
-            </p>
-          ) : null}
-          {(value.retires ?? []).length > 0 ? (
-            <p>
-              Retirés :{' '}
-              {(value.retires ?? []).map((e) => (typeof e === 'string' ? e : `${e.role ?? ''} — ${e.nom ?? JSON.stringify(e)}`)).join(' ; ')}
-            </p>
-          ) : null}
-          {(value.modifies ?? []).map((entry, i) => (
-            <div key={i}>
-              <p>
-                Modifié : {typeof entry === 'string' ? entry : `${entry.role ?? ''} — ${entry.nom ?? ''}`}
-              </p>
-              {entry && typeof entry === 'object' && entry.diff ? <DiffLines lines={entry.diff} /> : null}
-            </div>
-          ))}
-        </>
-      ) : Array.isArray(value) ? (
-        <DiffLines lines={value} />
-      ) : (
-        <pre className="promptologue-diff-lines">{JSON.stringify(value, null, 2)}</pre>
-      )}
+      <h4>Prompts</h4>
+      {added.length > 0 ? <p>Ajoutés : {added.map(promptLabel).join(' ; ')}</p> : null}
+      {removed.length > 0 ? <p>Retirés : {removed.map(promptLabel).join(' ; ')}</p> : null}
+      {modified.map((entry, i) => (
+        <div key={i} className="promptologue-diff-modified">
+          <p>Modifié : {promptLabel(entry)}</p>
+          {entry?.texte ? <DiffLines lines={entry.texte} /> : null}
+          {entry?.variables ? <VariablesDiff variables={entry.variables} /> : null}
+        </div>
+      ))}
+    </section>
+  )
+}
+
+/** Diff des variables d'un prompt : { added, removed, modified: [{nom, changes}] }. */
+function VariablesDiff({ variables }) {
+  if (!variables || typeof variables !== 'object') return null
+  const added = variables.added ?? []
+  const removed = variables.removed ?? []
+  const modified = variables.modified ?? []
+  if (added.length === 0 && removed.length === 0 && modified.length === 0) return null
+  return (
+    <div className="promptologue-diff-variables">
+      {added.length > 0 ? (
+        <p>Variables ajoutées : {added.map((v) => v.nom ?? asText(v)).join(', ')}</p>
+      ) : null}
+      {removed.length > 0 ? (
+        <p>Variables retirées : {removed.map((v) => v.nom ?? asText(v)).join(', ')}</p>
+      ) : null}
+      {modified.map((v, i) => (
+        <p key={i}>
+          Variable « {v.nom} » :{' '}
+          {Object.entries(v.changes ?? {})
+            .map(([field, ch]) => `${field} ${asText(ch.from)} → ${asText(ch.to)}`)
+            .join(' ; ')}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+/** Section Code d'orchestration : entrypoint + diff de texte. */
+function CodeSection({ code }) {
+  if (!code || typeof code !== 'object') return null
+  const { entrypoint, orchestration } = code
+  if (!entrypoint && !orchestration) return null
+  return (
+    <section className="promptologue-diff-section">
+      <h4>Code d'orchestration</h4>
+      {entrypoint ? (
+        <p>
+          Point d'entrée : {asText(entrypoint.from)} → {asText(entrypoint.to)}
+        </p>
+      ) : null}
+      {orchestration ? <DiffLines lines={orchestration} /> : null}
+    </section>
+  )
+}
+
+/** Section Métadonnées : { <clé>: { from, to } }. */
+function MetadataSection({ metadata }) {
+  if (!metadata || typeof metadata !== 'object') return null
+  const keys = Object.keys(metadata)
+  if (keys.length === 0) return null
+  return (
+    <section className="promptologue-diff-section">
+      <h4>Métadonnées</h4>
+      {keys.map((key) => (
+        <p key={key}>
+          {key} : {asText(metadata[key]?.from)} → {asText(metadata[key]?.to)}
+        </p>
+      ))}
+    </section>
+  )
+}
+
+/** Champs de premier niveau modifiés : { <champ>: { from, to } }. */
+function FieldsSection({ fields }) {
+  if (!fields || typeof fields !== 'object') return null
+  const keys = Object.keys(fields)
+  if (keys.length === 0) return null
+  return (
+    <section className="promptologue-diff-section">
+      <h4>Champs</h4>
+      {keys.map((key) => (
+        <p key={key}>
+          {key} : {asText(fields[key]?.from)} → {asText(fields[key]?.to)}
+        </p>
+      ))}
     </section>
   )
 }
@@ -87,20 +171,19 @@ function DiffSection({ title, value }) {
 /** Diff structurel complet renvoyé par GET /api/prompt-packages/{id}/diff. */
 export function DiffView({ diff }) {
   if (!diff || typeof diff !== 'object') return null
-  const rest = { ...diff }
-  for (const key of ['prompts', 'variables', 'code', 'metadata', 'from', 'to']) delete rest[key]
+  // from/to sont des objets { version } côté serveur — jamais rendus tels quels.
+  const fromVersion = asText(diff.from?.version ?? diff.from)
+  const toVersion = asText(diff.to?.version ?? diff.to)
   return (
     <div className="promptologue-diff" data-testid="promptologue-diff">
       <h3>
-        Diff {diff.from ?? ''} → {diff.to ?? ''}
+        Diff {fromVersion} → {toVersion}
       </h3>
-      <DiffSection title="Prompts" value={diff.prompts} />
-      <DiffSection title="Variables" value={diff.variables} />
-      <DiffSection title="Code d'orchestration" value={diff.code} />
-      <DiffSection title="Métadonnées" value={diff.metadata} />
-      {Object.keys(rest).length > 0 ? (
-        <pre className="promptologue-diff-lines">{JSON.stringify(rest, null, 2)}</pre>
-      ) : null}
+      {diff.identical ? <p>Les deux versions sont identiques.</p> : null}
+      <FieldsSection fields={diff.fields} />
+      <PromptsSection prompts={diff.prompts} />
+      <CodeSection code={diff.code} />
+      <MetadataSection metadata={diff.metadata} />
     </div>
   )
 }

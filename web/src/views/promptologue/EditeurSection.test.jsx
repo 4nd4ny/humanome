@@ -19,19 +19,34 @@ function fakeApi(overrides = {}) {
     })),
     saveDraft: vi.fn(async () => ({ ok: true })),
     publishDraft: vi.fn(async () => ({ ok: true })),
+    // Forme RÉELLE renvoyée par le serveur (api/src/Packages/PackageDiff.php) :
+    // from/to sont des objets {version}, les clés sont anglaises, les lignes
+    // sont {op, line, text}. Le test reproduit EXACTEMENT cette forme pour ne
+    // plus masquer le crash « Objects are not valid as a React child ».
     diff: vi.fn(async () => ({
-      from: '1.0.0',
-      to: '1.1.0',
+      packageId: 'aurora-demo',
+      from: { version: '1.0.0' },
+      to: { version: '1.1.0' },
+      identical: false,
+      fields: {},
       prompts: {
-        ajoutes: [],
-        retires: [],
-        modifies: [
-          { role: 'kairos', nom: 'Synthèse transversale de la journée', diff: ['- ancien', '+ nouveau'] },
+        added: [],
+        removed: [],
+        modified: [
+          {
+            role: 'kairos',
+            nom: 'Synthèse transversale de la journée',
+            texte: [
+              { op: 'del', line: 3, text: 'ancien texte' },
+              { op: 'add', line: 3, text: 'nouveau texte' },
+            ],
+            variables: null,
+          },
         ],
       },
-      code: ['- vieux code', '+ nouveau code'],
-      variables: { ajoutes: ['verdicts_json'], retires: [], modifies: [] },
-      metadata: {},
+      code: { entrypoint: null, orchestration: null },
+      metadata: { auteur: { from: 'A', to: 'B' } },
+      summary: { promptsModified: 1 },
     })),
     ...overrides,
   }
@@ -162,8 +177,13 @@ describe('EditeurSection — diff contre la version d’origine', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Diff contre 1.0.0' }))
     const diffBlock = await screen.findByTestId('promptologue-diff')
     expect(api.diff).toHaveBeenCalledWith('aurora-demo', '1.0.0', '1.1.0')
+    // En-tête : versions extraites des objets {version}, pas rendues telles quelles.
+    expect(diffBlock.textContent).toContain('Diff 1.0.0 → 1.1.0')
     expect(diffBlock.textContent).toContain('kairos')
-    expect(diffBlock.textContent).toContain('+ nouveau')
-    expect(diffBlock.textContent).toContain('- vieux code')
+    // Lignes {op,text} : marqueur + texte (et non le numéro de ligne).
+    expect(diffBlock.textContent).toContain('- ancien texte')
+    expect(diffBlock.textContent).toContain('+ nouveau texte')
+    // Métadonnées {from,to} rendues lisiblement, sans planter.
+    expect(diffBlock.textContent).toContain('auteur')
   })
 })

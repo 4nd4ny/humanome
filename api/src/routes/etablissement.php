@@ -231,6 +231,44 @@ return function (App $app): void {
         return $response->withStatus(204);
     }))->add($apprenant);
 
+    // GET /api/mes-documents-masse — the learner's OWN mass cartography day
+    // documents (RGPD accès/portabilité, art. 15/20). The B2B endpoint above
+    // only lets the establishment read them; a learner had no way to retrieve
+    // or export the documents produced for them in a cohort. Returns their
+    // documents regardless of current membership (art. 15 = access to data
+    // held about oneself; leaving a cohort must not erase one's own copy).
+    $app->get('/mes-documents-masse', $wrap(function (Request $request, Response $response) use ($json): Response {
+        $userId = (int) $request->getAttribute('userId');
+
+        $stmt = Db::get()->prepare(
+            'SELECT j.id, j.run_id, j.day_date, j.document, r.cohorte_id, c.nom AS cohorte_nom,
+                    r.prompt_package_slug, r.prompt_package_semver,
+                    r.referentiel_id, r.referentiel_semver
+               FROM mass_jobs j
+               JOIN mass_runs r ON r.id = j.run_id
+               JOIN cohortes c ON c.id = r.cohorte_id
+              WHERE j.user_id = ? AND j.status = "done"
+              ORDER BY j.day_date, j.id'
+        );
+        $stmt->execute([$userId]);
+
+        $documents = [];
+        foreach ($stmt->fetchAll() as $row) {
+            $documents[] = [
+                'jobId' => (int) $row['id'],
+                'runId' => (int) $row['run_id'],
+                'cohorteId' => (int) $row['cohorte_id'],
+                'cohorte' => (string) $row['cohorte_nom'],
+                'date' => (string) $row['day_date'],
+                'promptPackage' => ['id' => (string) $row['prompt_package_slug'], 'version' => (string) $row['prompt_package_semver']],
+                'referentiel' => ['id' => (string) $row['referentiel_id'], 'version' => (string) $row['referentiel_semver']],
+                'document' => json_decode((string) $row['document'], true),
+            ];
+        }
+
+        return $json($response, ['documents' => $documents]);
+    }))->add($apprenant);
+
     // ==================================================================
     // LLM / budget configuration (role etablissement)
     // ==================================================================

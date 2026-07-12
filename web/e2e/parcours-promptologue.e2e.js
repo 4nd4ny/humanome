@@ -170,23 +170,19 @@ test('parcours promptologue : brouillon, diff, publication, banc A/B, isolation 
     ).toBeVisible()
   })
 
-  await test.step('Diff structurel serveur : versions publiées comparables (API, contrat M7)', async () => {
-    // Le diff serveur ne compare que des versions PUBLIÉES ; on vérifie le
-    // CONTRAT au niveau API (200 + structure). La vue promptologue du diff
-    // (EditeurSection.DiffView) N'EST PAS exercée ici : elle attend une forme
-    // FRANÇAISE (ajoutes/retires/modifies, from/to chaînes) alors que le
-    // serveur (PackageDiff.php) renvoie une forme ANGLAISE (added/removed/
-    // modified) avec from/to objets {version} — rendre {diff.from} (objet)
-    // fait planter React (« Objects are not valid as a React child »). Bug
-    // d'intégration P10 signalé au chantier front (hors périmètre e2e).
-    const res = await page.request.get(
-      `/api/prompt-packages/${PKG}/diff/${fromVersion}/${newVersion}`,
-    )
-    expect(res.ok()).toBe(true)
-    const diff = await res.json()
-    expect(diff.from?.version ?? diff.from).toBe(fromVersion)
-    expect(diff.to?.version ?? diff.to).toBe(newVersion)
-    expect(diff).toHaveProperty('prompts')
+  await test.step('Diff structurel : la VUE promptologue rend le diff serveur réel', async () => {
+    // La version vient d'être publiée : les deux versions comparées sont
+    // publiées, le bouton « Diff contre X » de l'éditeur exerce donc la vraie
+    // DiffView (EditeurSection). On vérifie le RENDU, pas seulement l'API :
+    // c'est le test qui attrapait le crash « Objects are not valid as a React
+    // child » (from/to objets {version}, clés anglaises). Corrigé : la vue
+    // consomme désormais la forme réelle du serveur.
+    await page.getByRole('button', { name: `Diff contre ${fromVersion}` }).click()
+    const diffBlock = page.getByTestId('promptologue-diff')
+    await expect(diffBlock).toBeVisible()
+    await expect(diffBlock).toContainText(`Diff ${fromVersion} → ${newVersion}`)
+    // La ligne ajoutée (sentinelle) apparaît dans le diff de texte du gabarit.
+    await expect(diffBlock).toContainText(SENTINELLE)
   })
 
   await test.step('Banc d’essai : A/B ancienne vs nouvelle version sur la fixture (mock)', async () => {
