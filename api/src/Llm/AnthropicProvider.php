@@ -46,8 +46,16 @@ final class AnthropicProvider
             'thinking' => ['type' => 'disabled'],
             // No temperature: rejected as deprecated by current models
             // (« `temperature` is deprecated for this model », observed live).
-            // Stochastic malformations are handled by the engine's single
-            // parse retry instead.
+            // Forced generic tool use: the API's constrained decoding
+            // GUARANTEES syntactically valid JSON — free-text generations
+            // showed a high malformation rate live (key emitted without its
+            // value, twice on the same pole). The tool input becomes `text`.
+            'tools' => [[
+                'name' => 'emettre_document',
+                'description' => 'Émet le document JSON strict demandé par la consigne.',
+                'input_schema' => ['type' => 'object'],
+            ]],
+            'tool_choice' => ['type' => 'tool', 'name' => 'emettre_document'],
             'messages' => [['role' => 'user', 'content' => $prompt]],
         ];
         if ($system !== null && $system !== '') {
@@ -79,9 +87,19 @@ final class AnthropicProvider
             throw new UpstreamException(502, 'réponse amont non-JSON');
         }
 
+        // Forced tool use: the parsed JSON document arrives as the tool_use
+        // input — re-serialized compactly for the {text} contract. Text
+        // blocks remain the fallback (models without tool support, tests).
         $text = '';
         foreach ((array) ($data['content'] ?? []) as $block) {
-            if (\is_array($block) && ($block['type'] ?? '') === 'text') {
+            if (!\is_array($block)) {
+                continue;
+            }
+            if (($block['type'] ?? '') === 'tool_use' && \array_key_exists('input', $block)) {
+                $text = json_encode($block['input'], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+                break;
+            }
+            if (($block['type'] ?? '') === 'text') {
                 $text .= (string) ($block['text'] ?? '');
             }
         }
