@@ -44,6 +44,9 @@ final class AnthropicProvider
             // observed live: 6144 output tokens for 5444 chars of truncated
             // text. The demo needs the whole budget as text.
             'thinking' => ['type' => 'disabled'],
+            // Low temperature: strict-JSON extraction, fewer stochastic
+            // malformations (observed live: a key emitted without its value).
+            'temperature' => 0.2,
             'messages' => [['role' => 'user', 'content' => $prompt]],
         ];
         if ($system !== null && $system !== '') {

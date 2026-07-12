@@ -570,38 +570,49 @@ export async function extractDay({
   let done = 0
   const poles = []
 
-  for (const num of poleNums) {
-    const prompt = buildExtractionPrompt({ referentiel, poleNum: num, dayText, date })
-    let pole
-    try {
-      const res = await provider.complete({ model, prompt, maxTokens, temperature, signal })
-      if (res.stopReason === 'max_tokens') {
-        // Fail loudly: a truncated response parses into a FRAGMENT (typically
-        // one inner competence object) and poisons the final document.
-        throw new Error(
-          'réponse tronquée (budget de sortie atteint) — réduisez le texte de la journée',
-        )
-      }
-      pole = parseExtractionResponse(res.text)
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err)
-      throw new Error(`extractDay : pôle ${num} (${date}) — ${message}`, { cause: err })
+  // Une génération LLM peut être défectueuse de façon STOCHASTIQUE (JSON
+  // malformé, fragment, troncature) : un second essai propre suffit presque
+  // toujours. Jamais plus d'un retry — au-delà, l'échec est structurel.
+  const attemptPole = async (num, prompt) => {
+    const res = await provider.complete({ model, prompt, maxTokens, temperature, signal })
+    if (res.stopReason === 'max_tokens') {
+      // Fail loudly: a truncated response parses into a FRAGMENT (typically
+      // one inner competence object) and poisons the final document.
+      throw new Error(
+        'réponse tronquée (budget de sortie atteint) — réduisez le texte de la journée',
+      )
     }
+    const pole = parseExtractionResponse(res.text)
     if (pole === null) {
-      throw new Error(`extractDay : pôle ${num} (${date}) — réponse null, objet pôle attendu`)
+      throw new Error('réponse null, objet pôle attendu')
     }
     if (!Array.isArray(pole.competences)) {
       // Typical signature of a fragment extracted from a broken response.
       throw new Error(
-        `extractDay : pôle ${num} (${date}) — réponse sans tableau competences (objet ${Object.keys(pole).slice(0, 5).join('/')})`,
+        `réponse sans tableau competences (objet ${Object.keys(pole).slice(0, 5).join('/')})`,
       )
     }
     // Réparation minimale : poleNum normalisé en chaîne, injecté si absent.
     pole.poleNum = pole.poleNum === undefined ? String(num) : String(pole.poleNum)
     if (pole.poleNum !== String(num)) {
-      throw new Error(
-        `extractDay : pôle ${num} (${date}) — poleNum incohérent dans la réponse (« ${pole.poleNum} »)`,
-      )
+      throw new Error(`poleNum incohérent dans la réponse (« ${pole.poleNum} »)`)
+    }
+    return pole
+  }
+
+  for (const num of poleNums) {
+    const prompt = buildExtractionPrompt({ referentiel, poleNum: num, dayText, date })
+    let pole
+    for (let attempt = 1; ; attempt++) {
+      try {
+        pole = await attemptPole(num, prompt)
+        break
+      } catch (err) {
+        if (attempt >= 2 || signal?.aborted) {
+          const message = err instanceof Error ? err.message : String(err)
+          throw new Error(`extractDay : pôle ${num} (${date}) — ${message}`, { cause: err })
+        }
+      }
     }
     // Compteurs d'audit recalculés (déterministes) : les compteurs produits
     // par le modèle dérivent facilement ; la donnée source fait foi.
@@ -613,25 +624,34 @@ export async function extractDay({
     onProgress?.({ step: 'pole', poleNum: num, done, total })
   }
 
-  let kairos
-  let kairosSkipped = false
-  try {
+  const attemptKairos = async () => {
     const prompt = buildKairosExtractionPrompt({ referentiel, dayText, date })
     const res = await provider.complete({ model, prompt, maxTokens, temperature, signal })
     if (res.stopReason === 'max_tokens') {
       throw new Error('réponse kairos tronquée (budget de sortie atteint)')
     }
-    kairos = parseExtractionResponse(res.text)
-  } catch (err) {
-    // Les 7 documents de pôle portent la valeur ; le schéma accepte
-    // kairos: null. En mode kairosOptional (démo publique), un échec de la
-    // synthèse transversale dégrade le résultat au lieu de perdre le run.
-    if (!kairosOptional || signal?.aborted) {
-      const message = err instanceof Error ? err.message : String(err)
-      throw new Error(`extractDay : kairos (${date}) — ${message}`, { cause: err })
+    return parseExtractionResponse(res.text)
+  }
+
+  let kairos
+  let kairosSkipped = false
+  for (let attempt = 1; ; attempt++) {
+    try {
+      kairos = await attemptKairos()
+      break
+    } catch (err) {
+      if (attempt < 2 && !signal?.aborted) continue // un seul retry stochastique
+      // Les 7 documents de pôle portent la valeur ; le schéma accepte
+      // kairos: null. En mode kairosOptional (démo publique), un échec de la
+      // synthèse transversale dégrade le résultat au lieu de perdre le run.
+      if (!kairosOptional || signal?.aborted) {
+        const message = err instanceof Error ? err.message : String(err)
+        throw new Error(`extractDay : kairos (${date}) — ${message}`, { cause: err })
+      }
+      kairos = null
+      kairosSkipped = true
+      break
     }
-    kairos = null
-    kairosSkipped = true
   }
   done += 1
   onProgress?.({ step: 'kairos', poleNum: null, done, total, skipped: kairosSkipped })
