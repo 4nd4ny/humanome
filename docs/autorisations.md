@@ -67,7 +67,7 @@ session ; un id étranger répond `404` exactement comme un id inexistant
 | `/api/cartographies/{id}/share` | POST | `apprenant`, propriétaire | Rôle + propriété + CSRF ; jeton stocké haché (sha256), mdp en `password_hash` ; audit `share_created` (ids seulement) |
 | `/api/cartographies/{id}/shares` | GET | `apprenant`, propriétaire | Rôle + propriété ; jamais le jeton en clair |
 | `/api/shares/{shareId}` | DELETE | `apprenant`, propriétaire | Rôle + propriété + CSRF ; révocation (`revoked_at`) ; audit `share_revoked` |
-| `/api/share/{token}` | POST (mdp) | **Public** (employeur, §3.6 — pas de compte) | Rate-limit IP (buckets hachés, /64 IPv6 via `ClientIp`) ; 404 homogène inconnu/expiré/révoqué (anti-énumération, vérif factice du mdp) ; 403 mauvais mdp ; `garantie: null` jusqu'à P9. Si le navigateur porte une session, le SPA joint son jeton CSRF comme partout |
+| `/api/share/{token}` | POST (mdp) | **Public** (employeur, §3.6 — pas de compte) | Rate-limit IP (buckets hachés, /64 IPv6 via `ClientIp`) ; 404 homogène inconnu/expiré/révoqué (anti-énumération, vérif factice du mdp) ; 403 mauvais mdp ; depuis P9, `garantie` = état figé `{par, date, revisionId}` ou `null`, et le document servi est **celui de la révision garantie** quand `revisionId` est présent (§8). Si le navigateur porte une session, le SPA joint son jeton CSRF comme partout |
 | `/api/training/progress` | GET/PUT | Connecté (tout rôle), sa propre progression | Session (+ CSRF sur PUT) |
 | `/api/keys` | PUT | Connecté, ses propres clés | Session + CSRF ; chiffrement sodium `crypto_secretbox`, nonce par entrée, clé maîtresse `SODIUM_MASTER_KEY` (hors webroot) ; 503 explicite si non configurée |
 | `/api/keys` | GET | Connecté, ses propres clés | Session ; `[{provider, createdAt}]`, **jamais** la clé |
@@ -108,14 +108,38 @@ moment du prompt correspondant.
   §6.1) : pas de routes `/api/account/export|import` en v1 — l'archive se
   construit côté client depuis le portfolio local + les cartographies.
 
-### P9 — Espace cartographe (cahier §3.3)
+### P9 — Espace cartographe (cahier §3.3, §8) — **implémenté en M7**
 
-| Route | Méthode | Accès |
-|---|---|---|
-| `/api/cartographe/queue` (cartos « partagées avec mon cartographe ») | GET | `cartographe` — apprenants rattachés uniquement |
-| Rattachement apprenant ↔ cartographe (invitation/acceptation) | POST | `apprenant` (invite ou accepte) + `cartographe` |
-| Annotations, propositions de correction | POST/PUT | `cartographe` — cartographies partagées avec lui |
-| « Valider et garantir » (signature horodatée) | POST | `cartographe` — jamais automatique (§8) |
+Principe d'accès : « cartographe lié » = lien `cartographe_links` créé par
+l'acceptation d'un code d'invitation émis par l'apprenant, **et** cartographie
+en visibilité `cartographe` ou `publique` (l'apprenant reste maître : un
+retour à `privee` coupe l'accès immédiatement). Tout refus (id inconnu,
+apprenant non lié, visibilité `privee`) répond le **même 404** (pas d'oracle
+d'existence). Codes d'invitation : 10 caractères A-Z2-9, 30 jours, usage
+unique, homogènes en 404 (inconnu = expiré = déjà utilisé = auto-lien).
+
+| Route | Méthode | Accès | Garde |
+|---|---|---|---|
+| `/api/cartographe/invitations` | POST | `apprenant` | Rôle + CSRF ; plafond de 10 codes en attente (429 au-delà) → 201 `{code, expiresAt}` |
+| `/api/cartographe/invitations` | GET | `apprenant` | Rôle ; ses codes avec statut (`en_attente`/`acceptee`/`expiree`) |
+| `/api/cartographe/invitations/{code}/accept` | POST | `cartographe` | Rôle + CSRF ; 404 homogène ; auto-lien refusé ; idempotent sur lien existant ; audit `invitation_accepted` (ids seulement) |
+| `/api/cartographe/apprentis` | GET | `cartographe` | Rôle ; ses apprenants liés |
+| `/api/cartographe/cartographies` | GET | `cartographe` | Rôle ; file des cartos des apprenants liés, visibilité `cartographe`/`publique` ; métadonnées, **jamais** le document |
+| `/api/cartographe/cartographies/{id}` | GET | `cartographe` lié | Rôle + lien + visibilité ; document + annotations + révisions (méta) + garantie |
+| `/api/cartographies/{id}/annotations` | POST/GET | Propriétaire **ou** `cartographe` lié | Accès résolu par `Links::access()` (+ CSRF sur POST) ; `{competenceCode, type: commentaire\|hallucination\|oubli, texte}` |
+| `/api/annotations/{annotationId}` | DELETE | **Auteur seul** | + CSRF ; annotation étrangère = 404 comme inexistante |
+| `/api/cartographies/{id}/revisions` | POST | Propriétaire **ou** `cartographe` lié | + CSRF ; document **validé au schéma serveur** (`Validation.php`, type identique à la carto, 422 sinon) ; une nouvelle révision **retire la garantie** en place (§8, audit `garantie_retiree`) |
+| `/api/cartographies/{id}/revisions` | GET | Propriétaire **ou** `cartographe` lié | Métadonnées seulement |
+| `/api/revisions/{revisionId}` | GET | Propriétaire **ou** `cartographe` lié | Document ; l'accès suit la cartographie parente |
+| `/api/cartographies/{id}/garantie` | POST | `cartographe` **lié uniquement** | + CSRF ; jamais le propriétaire (on ne garantit pas sa propre carto, §8 — 404), jamais automatique ; fige `{par, date, revisionId?}` ; 409 si déjà garantie par un **autre** cartographe (une signature humaine ne s'écrase pas en silence) ; re-pose par le même = remplacement ; audit `garantie_posee` |
+| `/api/cartographies/{id}/garantie` | DELETE | Le cartographe **signataire** | + CSRF ; toujours possible (c'est son nom) même si la visibilité a changé ; audit `garantie_retiree` |
+
+Purge RGPD (migration 008) : suppression du compte **apprenant** → cascade
+cartographies → annotations/révisions/garanties + invitations + liens ;
+suppression du compte **cartographe** → liens, ses annotations et sa garantie
+purgés, les révisions restent à l'apprenant **anonymisées** (`author_id` SET
+NULL — le document corrigé est une donnée de l'apprenant), invitations
+anonymisées (`accepted_by` SET NULL).
 
 ### P10 — Espace promptologue (cahier §3.4)
 
@@ -163,9 +187,17 @@ Marketplace employeur (bibliothèque payante des cartographies consenties,
   `api/src/Packages/` ; migration `scripts/migrations/007_cartographies_run_meta.sql` ;
   paquet par défaut `scripts/build-default-prompt-package.mjs` +
   `scripts/import-prompt-packages.php`.
+- P9 (M7) : routes `api/src/routes/{cartographe,annotations}.php` (+ garantie
+  dans `share.php`) ; domaine `api/src/Cartographe/` (`Invitations`, `Links`,
+  `Annotations`, `Revisions`, `Garanties`) ; migration
+  `scripts/migrations/008_cartographe_garanties_settings.sql`.
 - Tests : `api/tests/AuthRoutesTest.php`, `AuthCsrfTest.php`,
   `AuthRateLimitTest.php`, `AuthRequireRoleTest.php`,
   `AuthAccountDeletionTest.php` ; P8 : `CartographiesTest.php`,
   `CartographiesCsrfTest.php` (matrice CSRF + exemption `/api/llm`),
   `CartographiesPurgeTest.php` (purge RGPD croisée avec 004/005),
-  `ShareTest.php`, `TrainingTest.php`, `KeysTest.php`, `PackagesTest.php`.
+  `ShareTest.php`, `TrainingTest.php`, `KeysTest.php`, `PackagesTest.php` ;
+  P9 : `CartographeInvitationsTest.php`, `CartographeQueueTest.php`,
+  `AnnotationsTest.php`, `CartographeRevisionsTest.php`,
+  `CartographeGarantieTest.php` (partage public avec garantie),
+  `CartographePurgeTest.php` (purge RGPD croisée avec 008).

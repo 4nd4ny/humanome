@@ -159,6 +159,15 @@ par `scripts/extract-referentiel.mjs`.
    scripts/convert/extracted-to-day-json.mjs && node
    scripts/extract-referentiel.mjs`. Un artefact bogué se corrige dans le
    convertisseur, jamais dans le JSON produit.
+7. **`PUT /api/prompt-packages/drafts/{draftId}` accepte deux formes de corps**
+   (friction M7 constatée à l'intégration) : la notation `{document}` du
+   contrat M7 a été lue « enveloppe `{"document": …}` » côté front (analogie
+   avec `POST /api/cartographies/{id}/revisions {document, note}`) et
+   « le corps EST le document » côté API (analogie avec l'import admin). Les
+   deux implémentations étant testées et livrées, la route désambiguïse au
+   lieu de renommer : si le corps porte une clé `document` objet, c'est
+   l'enveloppe (un prompt-package valide n'a jamais de champ `document`
+   objet) ; sinon le corps est le document nu. Réponses inchangées.
 
 ## 5. Note d'outillage
 

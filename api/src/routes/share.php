@@ -24,6 +24,7 @@ declare(strict_types=1);
 use Humanome\Auth\Audit;
 use Humanome\Auth\RateLimiter;
 use Humanome\Auth\Users;
+use Humanome\Cartographe\Garanties;
 use Humanome\Cartographies\CartographyRepository;
 use Humanome\ClientIp;
 use Humanome\Db;
@@ -148,10 +149,12 @@ return function (App $app): void {
 
     // ------------------------------------------------------------------
     // POST /api/share/{token} — PUBLIC consultation (no session, §3.6).
-    // {password} -> 200 {titre, type, document, garantie: null}
+    // {password} -> 200 {titre, type, document, garantie}
     // 404 unknown/expired/revoked (single homogeneous answer), 403 wrong
-    // password. `garantie` lands with P9 (cartographe signature) — the field
-    // is present and null so consumers can already bind to it.
+    // password. `garantie` (P9) is the frozen cartographe signature
+    // {par, date, revisionId} or null; when it pins a revision, the SERVED
+    // document is that guaranteed revision (cahier §8: what is presented as
+    // guaranteed is exactly what was signed).
     // ------------------------------------------------------------------
     $app->post('/share/{token}', $wrap(function (Request $request, Response $response, array $args) use ($json, $publicAttemptsPerHour): Response {
         $pdo = Db::get();
@@ -191,11 +194,18 @@ return function (App $app): void {
             return $json($response, ['error' => 'Mot de passe incorrect'], 403);
         }
 
+        // P9: standing garantie of the shared cartography. When it freezes a
+        // revision, serve THAT document — never a later modification (§8).
+        $garanti = (new Garanties($pdo))->forShareLink((int) $row['id']);
+        $document = $garanti !== null && $garanti['revisionDocument'] !== null
+            ? $garanti['revisionDocument']
+            : ($row['document'] === null ? null : json_decode((string) $row['document'], true));
+
         return $json($response, [
             'titre' => (string) $row['titre'],
             'type' => (string) $row['type'],
-            'document' => $row['document'] === null ? null : json_decode((string) $row['document'], true),
-            'garantie' => null, // P9: signature « garantie par » du cartographe
+            'document' => $document,
+            'garantie' => $garanti === null ? null : $garanti['garantie'],
         ]);
     }));
 };

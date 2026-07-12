@@ -1,27 +1,69 @@
-// Formation apprenant « mode expert » (P8.2, cahier §4.6).
+// Formation multi-parcours (P8.2 puis M7, cahier §4.6).
 //
-// #/espace/formation            -> liste des chapitres + progression
-// #/espace/formation/<chapitre> -> chapitre rendu (md.js + DOMPurify) + case
-//                                  « chapitre terminé »
+// #/<espace>/formation            -> liste des chapitres + progression
+// #/<espace>/formation/<chapitre> -> chapitre rendu (md.js + DOMPurify) + case
+//                                    « chapitre terminé »
+// où <espace> dépend du parcours : espace (apprenant), cartographe,
+// promptologue — FORMATION_BASE_HASH (formation-content.js).
 //
-// Progression : connectée -> PUT api/training/progress ; anonyme ->
-// localStorage 'humanome-training', migré vers le serveur à la connexion
-// (createTrainingStore.load).
+// Progression : connectée -> PUT api/training/progress (avec `parcours`) ;
+// anonyme -> localStorage 'humanome-training', migrée vers le serveur à la
+// connexion (createTrainingStore.load).
 
 import { useEffect, useMemo, useState } from 'react'
 import { renderMarkdown } from '../../lib/md.js'
 import { createTrainingStore } from '../../lib/training-store.js'
-import { getChapter, listChapters, rewriteChapterLink } from './formation-content.js'
+import {
+  FORMATION_BASE_HASH,
+  getChapter,
+  listChapters,
+  rewriteChapterLink,
+} from './formation-content.js'
+
+// Titre + chapeau de la page « liste des chapitres » de chaque parcours.
+const PARCOURS_INTROS = {
+  apprenant: {
+    titre: 'Formation apprenant — mode expert',
+    chapeau:
+      'Comment bien rédiger son portfolio réflexif pour obtenir une bonne cartographie : ' +
+      'le moteur ne voit que ce que vous avez écrit, et le protocole adversarial qui l’anime ' +
+      'est volontairement exigeant.',
+  },
+  cartographe: {
+    titre: 'Formation cartographe',
+    chapeau:
+      'Le cartographe est le garde-fou humain : jamais de cartographie 100 % automatisée ' +
+      'présentée comme validée. Rôle, méthode de relecture, micro-classes RESPIRE ' +
+      '(5-6 élèves en cartographie mutuelle), annotation, correction et garantie.',
+  },
+  promptologue: {
+    titre: 'Formation promptologue',
+    chapeau:
+      'Concevoir, tester et versionner les prompts (et leur code) qui produisent les ' +
+      'cartographies : prompt engineering appliqué, genèse du prompt de base, bancs d’essai.',
+  },
+}
 
 /**
  * @param {object} props
  * @param {string | null} props.chapter slug du chapitre ouvert (null = liste)
  * @param {boolean} props.connected session authentifiée ?
+ * @param {'apprenant'|'cartographe'|'promptologue'} [props.parcours='apprenant']
  * @param {object} [props.trainingStore] store injectable (tests)
  */
-export default function FormationSection({ chapter, connected, trainingStore }) {
-  const store = useMemo(() => trainingStore ?? createTrainingStore(), [trainingStore])
-  const chapters = useMemo(() => listChapters(), [])
+export default function FormationSection({
+  chapter,
+  connected,
+  parcours = 'apprenant',
+  trainingStore,
+}) {
+  const store = useMemo(
+    () => trainingStore ?? createTrainingStore({ parcours }),
+    [trainingStore, parcours],
+  )
+  const chapters = useMemo(() => listChapters(parcours), [parcours])
+  const base = FORMATION_BASE_HASH[parcours] ?? FORMATION_BASE_HASH.apprenant
+  const intro = PARCOURS_INTROS[parcours] ?? PARCOURS_INTROS.apprenant
   const [done, setDone] = useState(() => new Set())
   const [source, setSource] = useState(null) // 'serveur' | 'local' | null
   const [error, setError] = useState(null)
@@ -56,17 +98,17 @@ export default function FormationSection({ chapter, connected, trainingStore }) 
     }
   }
 
-  const current = chapter ? getChapter(chapter) : null
+  const current = chapter ? getChapter(chapter, parcours) : null
 
   if (chapter && !current) {
     return (
       <section className="espace-formation" aria-label="Formation">
-        <h2>Formation apprenant</h2>
+        <h2>{intro.titre}</h2>
         <p role="alert" className="load-error">
           Chapitre introuvable : « {chapter} ».
         </p>
         <p>
-          <a href="#/espace/formation">Retour à la liste des chapitres</a>
+          <a href={base}>Retour à la liste des chapitres</a>
         </p>
       </section>
     )
@@ -76,12 +118,14 @@ export default function FormationSection({ chapter, connected, trainingStore }) 
     const index = chapters.findIndex((c) => c.slug === current.slug)
     const previous = index > 0 ? chapters[index - 1] : null
     const next = index < chapters.length - 1 ? chapters[index + 1] : null
-    const html = renderMarkdown(current.raw, { rewriteLink: rewriteChapterLink })
+    const html = renderMarkdown(current.raw, {
+      rewriteLink: (href) => rewriteChapterLink(href, parcours),
+    })
     const checkboxId = `formation-done-${current.slug}`
     return (
       <section className="espace-formation" aria-label="Formation">
         <p>
-          <a href="#/espace/formation">← Tous les chapitres</a>
+          <a href={base}>← Tous les chapitres</a>
         </p>
         {/* Markdown embarqué au build, rendu par md.js puis DOMPurify (ADR-007). */}
         <article
@@ -113,12 +157,8 @@ export default function FormationSection({ chapter, connected, trainingStore }) 
           </p>
         ) : null}
         <nav className="formation-nav" aria-label="Navigation entre chapitres">
-          {previous ? (
-            <a href={`#/espace/formation/${previous.slug}`}>← {previous.titre}</a>
-          ) : (
-            <span />
-          )}{' '}
-          {next ? <a href={`#/espace/formation/${next.slug}`}>{next.titre} →</a> : null}
+          {previous ? <a href={`${base}/${previous.slug}`}>← {previous.titre}</a> : <span />}{' '}
+          {next ? <a href={`${base}/${next.slug}`}>{next.titre} →</a> : null}
         </nav>
       </section>
     )
@@ -129,12 +169,8 @@ export default function FormationSection({ chapter, connected, trainingStore }) 
 
   return (
     <section className="espace-formation" aria-label="Formation">
-      <h2>Formation apprenant — mode expert</h2>
-      <p>
-        Comment bien rédiger son portfolio réflexif pour obtenir une bonne cartographie :
-        le moteur ne voit que ce que vous avez écrit, et le protocole adversarial qui l’anime
-        est volontairement exigeant.
-      </p>
+      <h2>{intro.titre}</h2>
+      <p>{intro.chapeau}</p>
       <p data-testid="formation-progress" role="status">
         Progression : {doneCount} / {chapters.length} chapitres terminés ({percent} %)
         {source === 'serveur' ? ' — synchronisée avec votre compte' : ''}
@@ -156,7 +192,7 @@ export default function FormationSection({ chapter, connected, trainingStore }) 
                 checked={done.has(c.slug)}
                 onChange={(event) => toggle(c.slug, event.target.checked)}
               />{' '}
-              <a href={`#/espace/formation/${c.slug}`}>{c.titre}</a>
+              <a href={`${base}/${c.slug}`}>{c.titre}</a>
             </li>
           )
         })}

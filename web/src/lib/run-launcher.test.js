@@ -102,9 +102,36 @@ describe('fetchPromptPackages', () => {
     const apiFetchFn = vi.fn(async () => {
       throw new ApiUnavailableError()
     })
-    const { packages, origin } = await fetchPromptPackages({ apiFetchFn })
+    const { packages, origin, defaut } = await fetchPromptPackages({ apiFetchFn })
     expect(origin).toBe('embarque')
     expect(packages).toEqual([BUILTIN_PACKAGE])
+    expect(defaut).toBeNull()
+  })
+
+  it('préfère GET api/prompt-packages/default et MARQUE la version par défaut (M7)', async () => {
+    const apiFetchFn = vi.fn(async (path) => {
+      if (path === 'prompt-packages/default') return { id: 'aurora-lab', version: '2.0.0' }
+      return [
+        { id: 'aurora-lab', version: '1.0.0' },
+        { id: 'aurora-lab', version: '2.0.0' },
+      ]
+    })
+    const { packages, defaut } = await fetchPromptPackages({ apiFetchFn })
+    expect(apiFetchFn).toHaveBeenCalledWith('prompt-packages/default')
+    expect(defaut).toEqual({ id: 'aurora-lab', version: '2.0.0' })
+    expect(packages.find((p) => p.version === '2.0.0').defaut).toBe(true)
+    expect(packages.find((p) => p.version === '1.0.0').defaut).toBeUndefined()
+  })
+
+  it('endpoint default absent (API pré-M7) : comportement M6 inchangé', async () => {
+    const apiFetchFn = vi.fn(async (path) => {
+      if (path === 'prompt-packages/default') throw new Error('404')
+      return [{ id: 'aurora-lab', version: '2.0.0' }]
+    })
+    const { packages, defaut } = await fetchPromptPackages({ apiFetchFn })
+    expect(defaut).toBeNull()
+    expect(packages[0]).toEqual(BUILTIN_PACKAGE)
+    expect(packages[1].defaut).toBeUndefined()
   })
 })
 

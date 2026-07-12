@@ -114,19 +114,37 @@ export async function fetchKeyFromServer(provider, { apiFetchFn = apiFetch } = {
 /**
  * Versions de prompts proposables : le paquet embarqué (toujours), puis les
  * paquets publiés par l'API (GET api/prompt-packages) quand elle répond.
- * @returns {Promise<{packages: object[], origin: 'api'|'embarque'}>}
+ *
+ * M7 (P10.5) : la version par défaut est pilotée par le serveur — on PRÉFÈRE
+ * GET api/prompt-packages/default ({id, version}, repli serveur : plus récente
+ * publiée) et on marque le paquet correspondant (`defaut: true`). Endpoint
+ * absent (API pré-M7) : comportement M6 inchangé.
+ *
+ * @returns {Promise<{packages: object[], origin: 'api'|'embarque',
+ *   defaut: {id: string, version: string} | null}>}
  */
 export async function fetchPromptPackages({ apiFetchFn = apiFetch } = {}) {
   try {
+    let defaut = null
+    try {
+      const data = await apiFetchFn('prompt-packages/default')
+      if (typeof data?.id === 'string' && typeof data?.version === 'string') {
+        defaut = { id: data.id, version: data.version }
+      }
+    } catch {
+      /* endpoint absent ou en échec : pas de défaut serveur */
+    }
     const list = await apiFetchFn('prompt-packages')
-    const published = (Array.isArray(list) ? list : []).filter(
-      (p) => typeof p?.id === 'string' && typeof p?.version === 'string',
-    )
+    const published = (Array.isArray(list) ? list : [])
+      .filter((p) => typeof p?.id === 'string' && typeof p?.version === 'string')
+      .map((p) =>
+        defaut && p.id === defaut.id && p.version === defaut.version ? { ...p, defaut: true } : p,
+      )
     // Le paquet embarqué reste en tête : c'est lui que le moteur exécute (v1).
     const rest = published.filter((p) => !(p.id === BUILTIN_PACKAGE.id && p.version === BUILTIN_PACKAGE.version))
-    return { packages: [BUILTIN_PACKAGE, ...rest], origin: 'api' }
+    return { packages: [BUILTIN_PACKAGE, ...rest], origin: 'api', defaut }
   } catch {
-    return { packages: [BUILTIN_PACKAGE], origin: 'embarque' }
+    return { packages: [BUILTIN_PACKAGE], origin: 'embarque', defaut: null }
   }
 }
 
