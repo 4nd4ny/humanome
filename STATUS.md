@@ -2,12 +2,14 @@
 
 ## En cours
 
-- **M8 (P11)** : terminé et vérifié en local — COMMIT À FAIRE (non commité sur
-  consigne de session), puis déploiement.
+- **M9 (P12+P13)** : administration, RGPD transverse, durcissement, production finale v1.0.0.
 
 ## Fait
 
-- 2026-07-12 — **M8 terminé (P11) : établissements B2B et cartographie de masse, INTÉGRÉ.**
+- 2026-07-12 — **M8 terminé (P11) : établissements B2B et cartographie de masse, EN PRODUCTION.**
+  Déployé (migration 009 en prod, worker-tick opérationnel). Audit : 1 SSRF medium corrigé
+  (réassertion du fournisseur après réservation du job). Cron OVH worker à configurer en M9
+  (POST /api/admin/worker-tick ou php scripts/worker.php).
   API (chantier A) : cohortes + codes d'invitation, consentement explicite à deux étages
   (rejoindre `{"consentement": true}` 422 sinon, dépôt de portfolio = opt-in serveur),
   config LLM/budget (clé endpoint sodium, jeton worker sha256), runs de masse (versions

@@ -84,6 +84,14 @@ export function parseHash(hash) {
   const etabMatch = /^\/etablissement\/(.+)$/.exec(path)
   if (etabMatch) return { name: 'etablissement', section: decodeURIComponent(etabMatch[1]) }
 
+  // Administration (P12) : #/admin[/<section>]
+  if (path === '/admin') return { name: 'admin', section: null }
+  const adminMatch = /^\/admin\/(.+)$/.exec(path)
+  if (adminMatch) return { name: 'admin', section: decodeURIComponent(adminMatch[1]) }
+
+  // Confidentialité / page RGPD publique (P12)
+  if (path === '/confidentialite') return { name: 'confidentialite' }
+
   if (path === '/referentiel') return { name: 'referentiel', code: null }
   const refMatch = /^\/referentiel\/([^/]+)$/.exec(path)
   if (refMatch) return { name: 'referentiel', code: decodeURIComponent(refMatch[1]) }

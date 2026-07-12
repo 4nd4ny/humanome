@@ -13,6 +13,8 @@ import ShareView from './views/ShareView.jsx'
 import CartographeView from './views/CartographeView.jsx'
 import PromptologueView from './views/PromptologueView.jsx'
 import EtablissementView from './views/EtablissementView.jsx'
+import AdminView from './views/AdminView.jsx'
+import ConfidentialiteView from './views/ConfidentialiteView.jsx'
 
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
@@ -118,6 +120,12 @@ export default function App({ lib }) {
     case 'etablissement':
       view = <EtablissementView section={route.section} lib={lib} />
       break
+    case 'admin':
+      view = <AdminView section={route.section} lib={lib} />
+      break
+    case 'confidentialite':
+      view = <ConfidentialiteView />
+      break
     case 'not-found':
       view = (
         <div className="not-found">
@@ -153,6 +161,7 @@ export default function App({ lib }) {
       <footer className="app-footer">
         <p>
           Cartographie de compétences humaines — écosystème RESPIRE, Harmonia Éducation ·{' '}
+          <a href="#/confidentialite">Confidentialité</a> ·{' '}
           <a href="https://participer.harmonia.education" rel="noreferrer">
             participer.harmonia.education
           </a>
