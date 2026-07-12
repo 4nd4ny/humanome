@@ -273,7 +273,27 @@ describe('extractDay', () => {
         const num = poleOfPrompt(prompt)
         if (num === null) return 'null'
         const pole = minimalPoleResponse(num)
-        if (num === 4) pole.competences[0].verdict.statut = 'présence miraculeuse'
+        if (num === 4) {
+          // Compétence INSTRUITE (pièce + pédagogue complet) au statut hors
+          // énumération : non réparable par normalizeCompetences.
+          const c = pole.competences[0]
+          c.pieces = [{ pid: 1, numero: 1, contexte: 'x' }]
+          c.courtCircuit = false
+          c.pedagogue = {
+            presomptionAbsence: { raisonnement: 'x', piecesQuiResistent: [] },
+            presomptionSycophantie: { raisonnement: 'x', examenPieces: [] },
+            conclusionAdversariale: { raisonnement: 'x', confianceFinale: 0.5 },
+          }
+          c.tracesRetenues = []
+          c.verdict = {
+            statut: 'présence miraculeuse',
+            nombrePreuves: 0,
+            nombreIndices: 0,
+            confiance: 0.5,
+            motif: 'x',
+            prescription: 'x',
+          }
+        }
         return JSON.stringify(pole)
       },
     })
