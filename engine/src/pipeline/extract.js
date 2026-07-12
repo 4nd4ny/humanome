@@ -317,6 +317,16 @@ ${referentielBloc(referentiel)}
      feuille mais ABSENTES du référentiel (matière pour les épistémiarques).
    Tableaux vides quand rien n'émerge.
 
+# Contraintes de longueur (impératives — la réponse est coupée au-delà du budget de sortie)
+
+- portrait, formeProfil, ceQuiRelieLesPoles, ceQuiEmergeEntreLesLignes : 500 caractères
+  MAXIMUM chacun ;
+- invitationsPourLaSuite : 3 invitations d'une phrase chacune ;
+- syntheseCompleteMarkdown : 1 500 caractères maximum ;
+- émergences : 3 éléments maximum par tableau, descriptions de 300 caractères maximum.
+  Densité avant exhaustivité : une synthèse courte et juste vaut mieux qu'une synthèse
+  longue tronquée.
+
 # Format de sortie
 
 Réponds UNIQUEMENT par un objet JSON strict (aucun texte avant ou après, pas de bloc de code),
@@ -480,9 +490,13 @@ export function parseExtractionResponse(text) {
  * @param {number} [params.maxTokens] budget de sortie par appel
  * @param {number} [params.temperature]
  * @param {AbortSignal} [params.signal]
+ * @param {boolean} [params.kairosOptional=false] quand vrai, un échec de la
+ *   synthèse kairos DÉGRADE le document (kairos: null, accepté par le schéma)
+ *   au lieu de faire échouer le run entier — utilisé par la démo publique où
+ *   les 7 documents de pôle sont la valeur principale
  * @param {(progress: {step: 'pole'|'kairos', poleNum: number|null,
- *   done: number, total: number}) => void} [params.onProgress] appelé après
- *   chaque appel réussi (done = appels terminés, total = 8)
+ *   done: number, total: number, skipped?: boolean}) => void} [params.onProgress]
+ *   appelé après chaque appel réussi (done = appels terminés, total = 8)
  * @returns {Promise<object>} document `cartographie-jour` validé
  * @throws {Error} appel/parse en échec (contexte pôle + date dans le message),
  *   ou document final invalide au schéma
@@ -496,6 +510,7 @@ export async function extractDay({
   maxTokens,
   temperature,
   signal,
+  kairosOptional = false,
   onProgress,
 } = {}) {
   requireReferentiel(referentiel)
@@ -535,16 +550,24 @@ export async function extractDay({
   }
 
   let kairos
+  let kairosSkipped = false
   try {
     const prompt = buildKairosExtractionPrompt({ referentiel, dayText, date })
     const res = await provider.complete({ model, prompt, maxTokens, temperature, signal })
     kairos = parseExtractionResponse(res.text)
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
-    throw new Error(`extractDay : kairos (${date}) — ${message}`, { cause: err })
+    // Les 7 documents de pôle portent la valeur ; le schéma accepte
+    // kairos: null. En mode kairosOptional (démo publique), un échec de la
+    // synthèse transversale dégrade le résultat au lieu de perdre le run.
+    if (!kairosOptional || signal?.aborted) {
+      const message = err instanceof Error ? err.message : String(err)
+      throw new Error(`extractDay : kairos (${date}) — ${message}`, { cause: err })
+    }
+    kairos = null
+    kairosSkipped = true
   }
   done += 1
-  onProgress?.({ step: 'kairos', poleNum: null, done, total })
+  onProgress?.({ step: 'kairos', poleNum: null, done, total, skipped: kairosSkipped })
 
   const document = {
     schemaVersion: '1.0.0',

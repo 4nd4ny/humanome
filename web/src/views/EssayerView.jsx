@@ -92,6 +92,7 @@ export default function EssayerView({ lib, fetchFn }) {
       const { provider, prime } = createDemoProvider({ fetchFn, onPhase: setCallPhase })
       // La première preuve de travail est résolue AVANT le premier appel LLM.
       await prime(controller.signal)
+      let kairosSkipped = false
       const doc = await extractDay({
         dayText: text.trim(),
         date,
@@ -100,9 +101,20 @@ export default function EssayerView({ lib, fetchFn }) {
         model: DEMO_MODEL,
         maxTokens: DEMO_MAX_TOKENS,
         signal: controller.signal,
-        onProgress: ({ done }) => setDoneCalls(done),
+        // Les 7 pôles portent la valeur de la démo : un échec de la synthèse
+        // transversale dégrade le résultat au lieu de perdre le run.
+        kairosOptional: true,
+        onProgress: ({ done, skipped }) => {
+          setDoneCalls(done)
+          if (skipped) kairosSkipped = true
+        },
       })
       setResult(doc)
+      setNotice(
+        kairosSkipped
+          ? 'La synthèse transversale (kairos) n’a pas pu être produite cette fois : les 7 pôles ci-dessous sont complets.'
+          : null,
+      )
       setPhase('done')
     } catch (err) {
       setPhase('edit')
@@ -136,6 +148,7 @@ export default function EssayerView({ lib, fetchFn }) {
             <strong>Démo :</strong> ce résultat n’est pas conservé — il disparaîtra si vous
             rechargez ou quittez la page. Vous pouvez le générer en PDF via « Imprimer ».
           </p>
+          {notice ? <p className="demo-banner-note">{notice}</p> : null}
           <p className="demo-banner-actions">
             <button type="button" className="button" onClick={() => window.print()}>
               Imprimer

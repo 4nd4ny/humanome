@@ -202,8 +202,46 @@ describe('extractDay', () => {
     expect(doc.poles.map((p) => p.poleNum)).toEqual(['1', '2', '3', '4', '5', '6', '7'])
     expect(doc.kairos).toBeNull()
     expect(progress).toHaveLength(8)
-    expect(progress.at(-1)).toEqual({ step: 'kairos', poleNum: null, done: 8, total: 8 })
+    expect(progress.at(-1)).toEqual({
+      step: 'kairos',
+      poleNum: null,
+      done: 8,
+      total: 8,
+      skipped: false,
+    })
     expect(progress.map((p) => p.done)).toEqual([1, 2, 3, 4, 5, 6, 7, 8])
+  })
+
+  it('kairosOptional : un kairos imparsable dégrade en kairos null au lieu d’échouer', async () => {
+    const brokenKairos = ({ prompt }) => {
+      const num = poleOfPrompt(prompt)
+      if (num === null) return '```json { "kairos": { tronqué…' // réponse coupée
+      return JSON.stringify(minimalPoleResponse(num))
+    }
+
+    // Sans l'option : le run échoue (comportement historique conservé).
+    await expect(
+      extractDay({
+        dayText: DAY_TEXT,
+        date: DATE,
+        referentiel,
+        provider: createMockProvider({ responses: brokenKairos }),
+      }),
+    ).rejects.toThrow(/kairos/)
+
+    // Avec l'option : document valide, kairos null, progression marquée skipped.
+    const progress = []
+    const doc = await extractDay({
+      dayText: DAY_TEXT,
+      date: DATE,
+      referentiel,
+      provider: createMockProvider({ responses: brokenKairos }),
+      kairosOptional: true,
+      onProgress: (p) => progress.push(p),
+    })
+    expect(doc.poles).toHaveLength(7)
+    expect(doc.kairos).toBeNull()
+    expect(progress.at(-1).skipped).toBe(true)
   })
 
   it('contextualise une réponse imparsable (pôle + date)', async () => {
