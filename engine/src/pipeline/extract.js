@@ -761,7 +761,17 @@ export async function extractDay({
     if (res.stopReason === 'max_tokens') {
       throw new Error('réponse kairos tronquée (budget de sortie atteint)')
     }
-    return parseExtractionResponse(res.text)
+    const parsed = parseExtractionResponse(res.text)
+    // Validation immédiate contre les pôles déjà validés : un kairos
+    // incomplet doit échouer ICI (retry puis dégradation kairosOptional),
+    // pas à la validation finale du document.
+    const probe = { schemaVersion: '1.0.0', kind: 'cartographie-jour', date, poles, kairos: parsed }
+    const { valid, errors } = validateDocument('cartographie-jour', probe)
+    if (!valid) {
+      const detail = errors.slice(0, 3).map((e) => `${e.path} ${e.message}`).join(' ; ')
+      throw new Error(`kairos invalide au schéma (${errors.length} erreur(s) : ${detail})`)
+    }
+    return parsed
   }
 
   let kairos
