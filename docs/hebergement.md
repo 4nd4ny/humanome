@@ -6,7 +6,7 @@
 |---|---|
 | Version PHP | **8.2** (`.ovhconfig` : `app.engine.version=8.2`, `container.image=stable64`) — conforme à la cible ADR-002 |
 | Version MySQL | **8.0.46** (vérifié le 2026-07-12 par sonde PDO exécutée sur le cluster humanome.xyz). Base OVH mutualisée existante, hébergée sur un autre hébergement OVH (`example123.mysql.db`), **joignable depuis humanome.xyz**, charset serveur utf8mb4 — conforme ADR-002. PHP webroot vérifié : 8.2.29. Credentials hors repo (`cahier des charges/mysql.txt` côté poste de travail → `.env` local et `~/app/shared/.env` serveur) |
-| Accès cron | À vérifier dans le panel OVH au moment de M3/M8 (les mutualisés OVH incluent des tâches planifiées) |
+| Accès cron | **NON disponible** sur cette offre (vérifié dans le panel OVH le 2026-07-12 : « Ce service n'est pas accessible pour l'offre Hébergement gratuit 100M »). humanome.xyz est sur une offre **Hébergement gratuit 100 Mo** (hosting-free-100m). Conséquence : masse (P11) et maintenance (P12) se déclenchent par endpoints externes `POST /api/admin/worker-tick` et `/api/admin/maintenance` — aucun cron requis pour la correction (compteurs démo par jour UTC, expiration des liens appliquée à la lecture). Voir docs/deploiement.md § Tâches planifiées |
 | Accès SSH/SFTP | **FTP uniquement** testé et fonctionnel (`ftp.clusterNNN.hosting.ovh.net`). SSH non fourni dans les accès. **FTPS non supporté par ce cluster** (AUTH TLS/SSL → « 500 This security scheme is not implemented », vérifié le 2026-07-12) → transferts en FTP simple, `FTP_SECURE=false` dans `.env.deploy` |
 | Domaine pointé | **Oui** : humanome.xyz → 51.91.236.255 (clusterNNN), Apache répond, webroot `www/` vide |
 

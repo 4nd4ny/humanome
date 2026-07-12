@@ -45,6 +45,50 @@ return function (App $app): void {
         ]);
     });
 
+    // Public status page (P13.6). Slightly richer than /health: demo + worker
+    // state for a dashboard. No secret; cacheable 30 s. Never fails: every
+    // sub-probe degrades to a diagnostic string.
+    $app->get('/status', function (Request $request, Response $response) use ($json): Response {
+        $version = Bootstrap::version();
+        $db = 'unconfigured';
+        $demo = ['enabled' => false, 'remainingToday' => null];
+        $worker = ['lastActivityAt' => null, 'queued' => null];
+
+        if (Db::isConfigured()) {
+            try {
+                $pdo = Db::get();
+                $pdo->query('SELECT 1');
+                $db = 'ok';
+
+                $config = \Humanome\Llm\DemoConfig::load();
+                $demo['enabled'] = $config->enabled;
+                if ($config->enabled) {
+                    $usage = new \Humanome\Llm\UsageCounters($pdo);
+                    $demo['remainingToday'] = !$usage->isExhausted(
+                        $config->dailyGlobalTokens,
+                        $config->dailyBudgetUsd,
+                    );
+                }
+
+                // Worker health without a tick journal (ADR-005): most recent
+                // job activity as a proxy, plus the current queue depth.
+                $worker['lastActivityAt'] = $pdo
+                    ->query('SELECT MAX(updated_at) FROM mass_jobs')
+                    ->fetchColumn() ?: null;
+                $worker['queued'] = (int) $pdo
+                    ->query("SELECT COUNT(*) FROM mass_jobs WHERE status = 'queued'")
+                    ->fetchColumn();
+            } catch (\Throwable) {
+                $db = 'error';
+            }
+        }
+
+        return $json(
+            $response->withHeader('Cache-Control', 'public, max-age=30'),
+            ['status' => 'ok', 'version' => $version, 'db' => $db, 'demo' => $demo, 'worker' => $worker],
+        );
+    });
+
     // Remote migrations for FTP-only hosting (ADR-008). Token lives in
     // ~/app/shared/.env; the deploy script sends it as a header — never in
     // a query string, never logged.

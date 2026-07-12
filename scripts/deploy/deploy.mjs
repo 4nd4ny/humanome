@@ -214,11 +214,95 @@ async function deployApi(env) {
   console.log('api deploy done')
 }
 
+/** Lists the remote API releases, oldest first (name-sorted == time-sorted). */
+async function listReleases(client) {
+  const entries = await client.list('app/releases').catch(() => [])
+  return entries
+    .filter((e) => e.isDirectory)
+    .map((e) => e.name)
+    .sort()
+}
+
+/** Prints the remote releases and which one current.txt points at. */
+async function releasesCommand(env) {
+  const client = new Client(30_000)
+  try {
+    await client.access({
+      host: env.FTP_HOST,
+      user: env.FTP_USER,
+      password: env.FTP_PASSWORD,
+      secure: env.FTP_SECURE !== 'false',
+      secureOptions: { rejectUnauthorized: true },
+    })
+    await client.cd('/')
+    const releases = await listReleases(client)
+    let current = ''
+    try {
+      const chunks = []
+      const sink = new Writable({
+        write(c, _e, cb) {
+          chunks.push(c)
+          cb()
+        },
+      })
+      await client.downloadTo(sink, 'app/current.txt')
+      current = Buffer.concat(chunks).toString('utf8').trim()
+    } catch {
+      current = '(none)'
+    }
+    console.log(`current: ${current}`)
+    for (const r of releases) console.log(`  ${'releases/' + r === current ? '* ' : '  '}${r}`)
+  } finally {
+    client.close()
+  }
+}
+
+/**
+ * Rolls the API back to the previous release: rewrites current.txt to the
+ * release before the active one (code-only rollback; migrations are
+ * forward-only expand/contract, ADR-008). The front (www/) is separate — its
+ * hashed assets from previous releases are still present until pruned.
+ */
+async function rollbackApi(env) {
+  const client = new Client(30_000)
+  try {
+    await client.access({
+      host: env.FTP_HOST,
+      user: env.FTP_USER,
+      password: env.FTP_PASSWORD,
+      secure: env.FTP_SECURE !== 'false',
+      secureOptions: { rejectUnauthorized: true },
+    })
+    await client.cd('/')
+    const releases = await listReleases(client)
+    if (releases.length < 2) {
+      throw new Error(`need >= 2 releases to roll back, found ${releases.length}`)
+    }
+    const target = releases[releases.length - 2] // the one before the newest
+    await client.uploadFrom(Readable.from(`releases/${target}\n`), 'app/current.txt')
+    console.log(`rolled back: current.txt -> releases/${target}`)
+  } finally {
+    client.close()
+  }
+
+  const base = env.SITE_URL ?? 'https://humanome.xyz'
+  const health = await fetch(`${base}/api/health`)
+  console.log(`health after rollback: HTTP ${health.status} ${(await health.text()).slice(0, 200)}`)
+}
+
 async function main() {
   const targetName = process.argv[2]
   const dryRun = process.argv.includes('--dry-run')
   if (targetName === 'api') {
     await deployApi(loadEnvDeploy())
+    return
+  }
+  if (targetName === 'releases') {
+    await releasesCommand(loadEnvDeploy())
+    return
+  }
+  if (targetName === 'rollback') {
+    await rollbackApi(loadEnvDeploy())
     return
   }
   const target = TARGETS[targetName]
