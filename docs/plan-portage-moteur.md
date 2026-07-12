@@ -57,7 +57,18 @@ carto_merge.json + narratifs  →  carto-data.js → document cartographie-merge
    de prompt* est testée (B1).
 2. Étage C : prompts d'extraction réécrits (les originaux n'existent pas dans les assets) —
    qualité validée par schéma + banc d'essai P10, pas par diff.
-3. Horodatages/context volatile de `carto_merge.json` (`date_construction`) : exclus du diff.
+3. Horodatages/context volatile de `carto_merge.json` (`date_construction`) : exclus du diff,
+   ainsi que la recopie brute `feuilles{}` (redondante, cf. docs/contrats.md).
+4. *Appris à l'exécution (M4, cf. rapport-parite-moteur.md §3)* — cas indécidables sur le
+   corpus, choix documentés :
+   - seuil de tendance des pôles : coupure exacte indécidable dans (12.0, 13.04] sur les
+     7 exemples ; **12 retenu** (cas limite réel : pôle 7, écart 12.0 → régulière) ;
+   - `decrescendo` jamais observé : libellés déduits par symétrie ;
+   - « renvoi au cartographe » jamais observé en statut final cumulé : règle de
+     déclenchement indécidable, statut final binaire implémenté ;
+   - une seule compétence rendue (non observé) : pas de quintiles → niveau 3 neutre.
+   À l'inverse, l'hypothèse « archetype possiblement sortie LLM » est levée : l'archétype
+   est **entièrement déterministe** (arbre retrouvé, vérifié 54/54).
 
 ## Ordre d'exécution M4
 

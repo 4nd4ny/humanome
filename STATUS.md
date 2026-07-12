@@ -2,9 +2,21 @@
 
 ## En cours
 
-- **M4 (P5)** : moteur de cartographie JS (rétro-ingénierie avec oracles).
+- **M5 (P6+P7)** : proxy LLM + démo publique « Essayer » + module portfolio.
 
 ## Fait
+
+- 2026-07-12 — **M4 terminé (P5) : moteur complet, gate de parité franchie** (rapport :
+  docs/rapport-parite-moteur.md). Étage A (merge numérique) : PARITÉ 100 % — 132 618 valeurs
+  comparées à l'oracle, formules retrouvées jusqu'à l'arrondi demi-pair Python (pythonRound).
+  Étage B1 : 69/69 prompts narratifs identiques au byte près. Étage B2 : 100 % — quintiles
+  exclusifs Python retrouvés, **archétype déterministe retrouvé (arbre à médiane par pôle,
+  54/54)**, feedback HTML octet à octet. Étage C (extraction) recréé sans oracle (typologie
+  d'attaques a..h retrouvée dans le corpus) = v1 du prompt-package par défaut (P10).
+  Providers ×6 (2 transports, retry, estimate/coûts), runs/checkpoints/reprise (IndexedDB
+  injectable), consistance multi-run, bout-en-bout mock 3 jours avec interruption/reprise.
+  Revue adversariale : 3 bugs réels corrigés (dont corruption silencieuse du parseur JSON).
+  Tests engine 182/182 ; squelettes de formation ×3 parcours livrés (§4.6).
 
 - 2026-07-12 — **M3 terminé (P3+P4) : API en production.** 5 migrations MySQL (users/roles/
   sessions PDO/rate_limits/referentiel_versions/prompt_*/cartographies opt-in datée/share_links/
