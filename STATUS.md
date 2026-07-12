@@ -2,9 +2,22 @@
 
 ## En cours
 
-- **M7 (P9+P10)** : espaces cartographe et promptologue.
+- **M8 (P11)** : établissements B2B et cartographie de masse.
 
 ## Fait
+
+- 2026-07-12 — **M7 terminé (P9+P10) : espaces cartographe et promptologue EN PRODUCTION.**
+  P9 : invitations à usage unique, file de relecture, annotations par compétence, révisions
+  validées au schéma avec historique, GARANTIE humaine (révision figée servie par le lien de
+  partage public, retirée automatiquement à toute nouvelle révision — §8), comparaison côte à
+  côte, rapport de consistance multi-run lisible, purge RGPD asymétrique (révisions anonymisées).
+  P10 : éditeur brouillon→publication immuable (semver strict, diff structurel ligne à ligne),
+  proposition/validation de version par défaut, régénération rétrospective, banc d'essai
+  (multi-run, A/B avec rapport téléchargeable), SANDBOX iframe origine opaque + worker blob +
+  pont postMessage (quota 16 appels, timeout) avec **isolation réseau DÉMONTRÉE en vrai Chromium**
+  (spec e2e dédiée), docs/securite-prompts.md, outillage admin grant-role (audité).
+  E2E 4/4, PHP 234/234, web 395/395. Rôles en prod : à attribuer via POST /api/admin/grant-role
+  (X-Migrate-Token) en attendant l'UI admin P12.
 
 - 2026-07-12 — **M6 terminé (P8) : espace apprenant complet, EN PRODUCTION.** API : cartographies
   (stockage opt-in daté, liste sans document), liens de partage (token 128 bits haché, Argon2id,

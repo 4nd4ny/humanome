@@ -79,6 +79,11 @@ export function parseHash(hash) {
     return { name: 'promptologue', section: decodeURIComponent(promptologueMatch[1]) }
   }
 
+  // Espace établissement (P11) : #/etablissement[/<section>]
+  if (path === '/etablissement') return { name: 'etablissement', section: null }
+  const etabMatch = /^\/etablissement\/(.+)$/.exec(path)
+  if (etabMatch) return { name: 'etablissement', section: decodeURIComponent(etabMatch[1]) }
+
   if (path === '/referentiel') return { name: 'referentiel', code: null }
   const refMatch = /^\/referentiel\/([^/]+)$/.exec(path)
   if (refMatch) return { name: 'referentiel', code: decodeURIComponent(refMatch[1]) }

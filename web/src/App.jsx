@@ -12,6 +12,7 @@ import EspaceView from './views/EspaceView.jsx'
 import ShareView from './views/ShareView.jsx'
 import CartographeView from './views/CartographeView.jsx'
 import PromptologueView from './views/PromptologueView.jsx'
+import EtablissementView from './views/EtablissementView.jsx'
 
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
@@ -113,6 +114,9 @@ export default function App({ lib }) {
       break
     case 'promptologue':
       view = <PromptologueView section={route.section} lib={lib} />
+      break
+    case 'etablissement':
+      view = <EtablissementView section={route.section} lib={lib} />
       break
     case 'not-found':
       view = (
