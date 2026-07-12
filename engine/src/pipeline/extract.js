@@ -555,6 +555,62 @@ export function normalizeCompetences(competences) {
   return competences
 }
 
+/**
+ * Targeted degradation of a pole from ajv error paths (probe validation):
+ * only SAFE moves the schema explicitly allows — nullable blocks go null
+ * (pedagogue, rapport), malformed array items are dropped. Anything else is
+ * left for the caller to fail loudly on.
+ *
+ * @param {object} pole
+ * @param {Array<{path: string}>} errors ajv errors (paths like
+ *   /poles/0/competences/3/pedagogue/... — pole index is ignored, the probe
+ *   clones a single pole)
+ */
+function degradeInvalidBlocks(pole, errors) {
+  const dropByParent = new Map() // "competences.3.tracesRetenues" -> Set(indexes)
+  for (const { path } of errors) {
+    const parts = path.split('/').filter(Boolean).slice(2) // drop "poles/<i>"
+    if (parts[0] === 'rapport') {
+      pole.rapport = null
+      continue
+    }
+    if (parts[0] === 'passagesSaillants' && /^\d+$/.test(parts[1] ?? '')) {
+      const key = 'passagesSaillants'
+      if (!dropByParent.has(key)) dropByParent.set(key, new Set())
+      dropByParent.get(key).add(Number(parts[1]))
+      continue
+    }
+    if (parts[0] === 'competences' && /^\d+$/.test(parts[1] ?? '')) {
+      const comp = pole.competences?.[Number(parts[1])]
+      if (!comp) continue
+      const field = parts[2]
+      if (field === 'pedagogue') {
+        comp.pedagogue = null
+      } else if (
+        (field === 'tracesRetenues' || field === 'pieces')
+        && /^\d+$/.test(parts[3] ?? '')
+      ) {
+        const key = `competences.${parts[1]}.${field}`
+        if (!dropByParent.has(key)) dropByParent.set(key, new Set())
+        dropByParent.get(key).add(Number(parts[3]))
+      }
+    }
+  }
+  for (const [key, indexes] of dropByParent) {
+    const segments = key.split('.')
+    const target = segments.length === 1
+      ? pole
+      : pole.competences[Number(segments[1])]
+    const field = segments.length === 1 ? segments[0] : segments[2]
+    if (Array.isArray(target?.[field])) {
+      target[field] = target[field].filter((_, i) => !indexes.has(i))
+    }
+  }
+  // Re-enforce the corpus invariants after surgery (a competence whose last
+  // piece was dropped becomes a court-circuit again, etc.).
+  if (Array.isArray(pole.competences)) normalizeCompetences(pole.competences)
+}
+
 export function computeAuditPole(competences) {
   const count = (fn) => competences.filter(fn).length
   const courtCircuits = count((c) => c.courtCircuit === true)
@@ -648,20 +704,31 @@ export async function extractDay({
     }
     // Invariants du corpus imposés déterministiquement (les glissements
     // sémantiques du modèle sont fréquents : CC avec pédagogue, pédagogue
-    // incomplet…), puis validation structurelle DU PÔLE pour que l'unique
-    // retry s'applique au bon appel plutôt qu'au document final.
+    // incomplet…), puis validation structurelle DU PÔLE — avec une passe de
+    // dégradation ciblée sur les blocs OPTIONNELS incomplets (le schéma les
+    // accepte à null : pedagogue, rapport) avant de déclarer l'échec, pour
+    // que l'unique retry s'applique au bon appel.
     normalizeCompetences(pole.competences)
-    pole.auditPole = computeAuditPole(pole.competences)
     if (!Array.isArray(pole.passagesSaillants)) pole.passagesSaillants = []
     if (pole.rapport === undefined) pole.rapport = null
-    const probe = {
-      schemaVersion: '1.0.0',
-      kind: 'cartographie-jour',
-      date,
-      poles: Array.from({ length: 7 }, (_, i) => ({ ...pole, poleNum: String(i + 1) })),
-      kairos: null,
+
+    const validatePole = () => {
+      pole.auditPole = computeAuditPole(pole.competences)
+      const probe = {
+        schemaVersion: '1.0.0',
+        kind: 'cartographie-jour',
+        date,
+        poles: Array.from({ length: 7 }, (_, i) => ({ ...pole, poleNum: String(i + 1) })),
+        kairos: null,
+      }
+      return validateDocument('cartographie-jour', probe)
     }
-    const { valid, errors } = validateDocument('cartographie-jour', probe)
+
+    let { valid, errors } = validatePole()
+    if (!valid) {
+      degradeInvalidBlocks(pole, errors)
+      ;({ valid, errors } = validatePole())
+    }
     if (!valid) {
       const detail = errors.slice(0, 3).map((e) => `${e.path} ${e.message}`).join(' ; ')
       throw new Error(`objet pôle invalide au schéma (${errors.length} erreur(s) : ${detail})`)
