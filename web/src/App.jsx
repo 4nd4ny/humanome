@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { currentRoute, dayHash, navigate, subscribe } from './router.js'
 import { getDemoMerge, getReferentiel, loadDay } from './data/load.js'
+import { fetchMe } from './api/client.js'
+import { navGroups } from './nav.js'
+import Help from './help/Help.jsx'
 import HomeView from './views/HomeView.jsx'
 import MergeView from './views/MergeView.jsx'
 import DayView from './views/DayView.jsx'
@@ -23,12 +26,42 @@ import ConfidentialiteView from './views/ConfidentialiteView.jsx'
  *
  * @param {{lib?: object}} props sunburst lib module (injecté dans les tests)
  */
-export default function App({ lib }) {
+export default function App({ lib, fetchMeFn = fetchMe }) {
   const [route, setRoute] = useState(currentRoute)
   const [userMerge, setUserMerge] = useState(null)
   const [userDays, setUserDays] = useState(() => new Map())
+  // Session au niveau du shell : sert UNIQUEMENT à adapter la navigation au
+  // rôle (item 3). Les vues gardent leur propre garde (défense en profondeur).
+  // roles = [] pour un visiteur ou une copie statique — la nav « Découvrir »
+  // reste toujours affichée.
+  const [roles, setRoles] = useState([])
+  const [helpOpen, setHelpOpen] = useState(false)
 
   useEffect(() => subscribe(setRoute), [])
+
+  // Rafraîchit les rôles au démarrage et à chaque changement de session
+  // (événement émis par login/logout/register/suppression, api/client.js).
+  useEffect(() => {
+    let alive = true
+    const refresh = () => {
+      fetchMeFn()
+        .then(({ user }) => {
+          if (alive) setRoles(Array.isArray(user?.roles) ? user.roles : [])
+        })
+        .catch(() => {
+          if (alive) setRoles([])
+        })
+    }
+    refresh()
+    window.addEventListener('humanome:auth', refresh)
+    return () => {
+      alive = false
+      window.removeEventListener('humanome:auth', refresh)
+    }
+  }, [fetchMeFn])
+
+  // L'aide se ferme quand on change de rubrique.
+  useEffect(() => setHelpOpen(false), [route.name])
 
   // Impression : une cartographie = un document. Les navigateurs ne rendent
   // pas le contenu des <details> fermés ; on les ouvre le temps de
@@ -142,20 +175,42 @@ export default function App({ lib }) {
       view = <HomeView onUserDocument={handleUserDocument} />
   }
 
+  const groups = navGroups({ roles })
+  const authenticated = roles.length > 0
+
   return (
     <div className="app">
       <header className="app-header">
         <a className="app-brand" href="#/">
           humanome.xyz
         </a>
-        <nav aria-label="Navigation principale">
-          <a href="#/merge">Cartographie</a>
-          <a href="#/portfolio">Portfolio</a>
-          <a href="#/espace">Espace</a>
-          <a href="#/referentiel">Référentiel</a>
-          <a href="#/essayer">Essayer</a>
-          <a href="#/compte">Compte</a>
+        <nav className="app-nav" aria-label="Navigation principale">
+          {groups.map((group) => (
+            <span className="app-nav-group" key={group.family} aria-label={group.family}>
+              {group.items.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  aria-current={route.name === item.route ? 'page' : undefined}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </span>
+          ))}
         </nav>
+        <div className="app-header-actions">
+          <Help
+            route={route.name}
+            session={{ roles }}
+            open={helpOpen}
+            onToggle={() => setHelpOpen((v) => !v)}
+            onClose={() => setHelpOpen(false)}
+          />
+          <a className="app-account" href="#/compte" aria-current={route.name === 'account' ? 'page' : undefined}>
+            {authenticated ? 'Mon compte' : 'Se connecter'}
+          </a>
+        </div>
       </header>
       <main className="app-main">{view}</main>
       <footer className="app-footer">

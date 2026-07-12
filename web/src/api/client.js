@@ -54,6 +54,17 @@ export function resetApiClient() {
   csrfToken = null
 }
 
+/**
+ * Notifies the app shell that the session changed (login/register/logout/
+ * delete), so the role-adaptive navigation refreshes WITHOUT a full reload.
+ * No-op outside a browser (tests).
+ */
+export function notifyAuthChanged() {
+  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+    window.dispatchEvent(new Event('humanome:auth'))
+  }
+}
+
 /** @returns {string | null} current in-memory CSRF token (tests/debug) */
 export function getCsrfToken() {
   return csrfToken
@@ -172,17 +183,21 @@ export async function fetchMe(options) {
 }
 
 /** @returns {Promise<object>} {user, csrfToken} on success */
-export function login({ email, password }, options) {
-  return apiFetch('auth/login', { ...options, method: 'POST', body: { email, password } })
+export async function login({ email, password }, options) {
+  const result = await apiFetch('auth/login', { ...options, method: 'POST', body: { email, password } })
+  notifyAuthChanged()
+  return result
 }
 
 /** @returns {Promise<object>} {user, csrfToken} on success */
-export function register({ email, password, displayName }, options) {
-  return apiFetch('auth/register', {
+export async function register({ email, password, displayName }, options) {
+  const result = await apiFetch('auth/register', {
     ...options,
     method: 'POST',
     body: { email, password, displayName },
   })
+  notifyAuthChanged()
+  return result
 }
 
 /** Ends the session; the in-memory CSRF token is dropped either way. */
@@ -191,6 +206,7 @@ export async function logout(options) {
     return await apiFetch('auth/logout', { ...options, method: 'POST' })
   } finally {
     csrfToken = null
+    notifyAuthChanged()
   }
 }
 
@@ -198,5 +214,6 @@ export async function logout(options) {
 export async function deleteAccount(options) {
   const result = await apiFetch('auth/account', { ...options, method: 'DELETE' })
   csrfToken = null
+  notifyAuthChanged()
   return result
 }

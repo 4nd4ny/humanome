@@ -53,10 +53,10 @@ body {
 
 .app-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.75rem 1.25rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.6rem 1.25rem;
   border-bottom: 1px solid var(--line);
   background: var(--card);
 }
@@ -69,21 +69,177 @@ body {
   letter-spacing: 0.01em;
 }
 
-.app-header nav {
+/* Navigation adaptée au rôle : liens groupés par famille, un fin séparateur
+   entre « Découvrir » et « Mon travail ». */
+.app-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1rem;
+  align-items: center;
+  gap: 0.3rem 0.5rem;
+  flex: 1;
 }
 
-.app-header nav a {
+.app-nav-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.15rem;
+}
+
+.app-nav-group + .app-nav-group {
+  padding-left: 0.6rem;
+  margin-left: 0.3rem;
+  border-left: 1px solid var(--line);
+}
+
+.app-nav a {
   color: var(--ink-soft);
   text-decoration: none;
   font-size: 0.95rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 8px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
 }
 
-.app-header nav a:hover,
+.app-nav a:hover,
 .app-brand:hover {
   color: var(--accent);
+}
+
+.app-nav a[aria-current='page'] {
+  color: var(--accent-strong);
+  background: #eff6ff;
+  font-weight: 600;
+}
+
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.app-account {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.app-account:hover,
+.app-account[aria-current='page'] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Aide contextuelle « ? » ---------- */
+
+.help-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.help-button:hover,
+.help-button[aria-expanded='true'] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.help-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4.5rem 1rem 1rem;
+  z-index: 50;
+}
+
+.help-panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 1.25rem 1.5rem 1.5rem;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.18);
+}
+
+.help-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.help-panel-head h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.help-close {
+  border: none;
+  background: transparent;
+  color: var(--ink-faint);
+  font-size: 1.2rem;
+  cursor: pointer;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.help-close:hover {
+  color: var(--ink);
+}
+
+.help-intro {
+  color: var(--ink-soft);
+  margin: 0.5rem 0 1rem;
+}
+
+.help-points {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  color: var(--ink);
+}
+
+.help-points li {
+  margin-bottom: 0.5rem;
+}
+
+.help-foot {
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+@media print {
+  .app-nav,
+  .app-header-actions,
+  .help-overlay {
+    display: none;
+  }
 }
 
 .app-main {
