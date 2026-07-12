@@ -230,6 +230,9 @@ return function (App $app): void {
             'text' => $result['text'],
             'usage' => $result['usage'],
             'model' => $result['model'],
+            // 'max_tokens' = truncated generation: the engine fails loudly on
+            // it instead of parsing a fragmentary JSON.
+            'stopReason' => $result['stopReason'] ?? '',
         ]);
     });
 

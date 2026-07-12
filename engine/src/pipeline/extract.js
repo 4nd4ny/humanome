@@ -241,6 +241,11 @@ pistes [1..7 chaînes], rapportCompletMarkdown (rapport complet en Markdown)}.
 
 - Le COURT-CIRCUIT est la forme compacte OBLIGATOIRE pour toute compétence sans pièce :
   ne développe le pédagogue QUE pour les compétences réellement documentées par la feuille.
+- AU PLUS 5 compétences instruites en examen adversarial complet : les mieux documentées.
+  Toute autre compétence ayant pourtant des pièces passe en forme brève : pieces conservées,
+  pedagogue null, tracesRetenues [], verdict {statut "renvoi au cartographe", nombrePreuves 0,
+  nombreIndices 0, confiance 0.4, motif "Dossier ouvert mais non instruit dans cette passe —
+  arbitrage humain demandé.", prescription brève}.
 - raisonnements, motifs, contextes, motifsAttaque, motifResistance : 1 à 2 phrases chacun ;
 - extraitVerbatim : 150 caractères maximum (coupe avec « … ») ;
 - rapport : portraitPole, emergencesPole, territoiresNonVisites en 400 caractères maximum
