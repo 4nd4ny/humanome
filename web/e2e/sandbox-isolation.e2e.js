@@ -15,7 +15,42 @@
 // empêche la requête de sortir. On teste donc explicitement le no-cors : s'il
 // « réussit » (réponse opaque), l'isolation réseau est une illusion.
 
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { test, expect } from '@playwright/test'
+
+/**
+ * CSP de PRODUCTION lue depuis web/public/.htaccess — pas une copie retapée :
+ * le test doit échouer si quelqu'un édite la vraie CSP et casse la sandbox
+ * (c'est LA régression gardée). Un srcdoc hérite de la CSP de la page parente,
+ * donc appliquer cette CSP sur le document parent reproduit fidèlement la prod.
+ */
+function productionCsp() {
+  const htaccess = readFileSync(fileURLToPath(new URL('../public/.htaccess', import.meta.url)), 'utf8')
+  const m = htaccess.match(/Header always set Content-Security-Policy\s+"([^"]+)"/)
+  if (!m) throw new Error('CSP de production introuvable dans web/public/.htaccess')
+  return m[1]
+}
+
+/** Injecte une CSP réelle sur le document parent (héritée par le srcdoc). */
+async function applyCsp(page, csp) {
+  await page.route('**/*', async (route) => {
+    const req = route.request()
+    if (req.resourceType() === 'document' && req.frame() === page.mainFrame()) {
+      const resp = await route.fetch()
+      await route.fulfill({ response: resp, headers: { ...resp.headers(), 'content-security-policy': csp } })
+      return
+    }
+    await route.continue()
+  })
+}
+
+/** Paquet bénin : retourne un document sans jamais appeler le LLM. */
+const BENIGN_ORCHESTRATION = [
+  'export async function run(ctx) {',
+  '  return { kind: "cartographie-jour", date: ctx.date, _benign: true };',
+  '}',
+].join('\n')
 
 /**
  * Exécute un module d'orchestration hostile dans la VRAIE sandbox et renvoie ce
@@ -134,6 +169,57 @@ test('sandbox promptologue : un paquet hostile ne peut ni exfiltrer ni s’écha
   await test.step('secrets et hôte inaccessibles : origine opaque + scope worker', () => {
     expect(r.self_origin, 'origine non opaque : same-origin possible').toBe('null')
     expect(r.localStorage_type, 'localStorage exposé (origine non opaque ?)').toBe('undefined')
+    expect(r.localStorage_read).toMatch(/^blocked:/)
+    expect(r.window_type).toBe('undefined')
+    expect(r.document_type).toBe('undefined')
+    expect(r.parent_type).toBe('undefined')
+  })
+})
+
+// Le test ci-dessus tourne contre le dev-server (aucune CSP) : il prouve que la
+// CSP FIGÉE du srcdoc (default-src 'none') suffit à contenir le worker. Mais en
+// PRODUCTION le srcdoc hérite AUSSI de la CSP de la page (web/public/.htaccess).
+// Ce second test applique la VRAIE CSP de prod sur le document parent et vérifie
+// les DEUX faces du durcissement P12.3 :
+//   (a) la CSP ne CASSE PAS la sandbox — un paquet bénin atteint 'result'
+//       (régression réelle : sans le hash du srcdoc + blob: + worker-src, le
+//       bootstrap inline et l'import blob du worker sont refusés) ;
+//   (b) l'isolation tient toujours — le paquet hostile reste contenu, donc
+//       blob:/worker-src n'ont pas ouvert de brèche.
+// (Portée : Chromium, comme toute la validation sandbox — voir securite-checklist A05.)
+test('sandbox promptologue : fonctionne ET reste isolée SOUS la CSP de production', async ({ page }) => {
+  await applyCsp(page, productionCsp())
+  await page.goto('/')
+
+  await test.step('(a) la CSP de prod ne casse pas la sandbox (bénin -> result)', async () => {
+    const doc = await runHostilePackage(page, BENIGN_ORCHESTRATION)
+    expect(doc.error, `sandbox cassée par la CSP de production : ${doc.error}`).toBeUndefined()
+    expect(doc.kind, 'le paquet bénin doit produire son document sous la CSP de prod').toBe(
+      'cartographie-jour',
+    )
+    expect(doc._benign).toBe(true)
+  })
+
+  await test.step('(b) un paquet hostile reste totalement contenu sous la CSP de prod', async () => {
+    const doc = await runHostilePackage(page, HOSTILE_ORCHESTRATION)
+    expect(doc.error, `la sandbox a échoué avant le rapport : ${doc.error}`).toBeUndefined()
+    const r = doc.results
+    // Réseau : rien ne sort (no-cors = discriminant).
+    expect(r.fetch_nocors_get).toMatch(/^blocked:/)
+    expect(r.fetch_nocors_post).toMatch(/^blocked:/)
+    expect(r.fetch_cors).toMatch(/^blocked:/)
+    expect(r.xhr).toMatch(/^blocked:/)
+    expect(r.websocket).toMatch(/^blocked:/)
+    expect(r.eventsource).toMatch(/^blocked:/)
+    expect(r.dynamic_import_remote).toMatch(/^blocked:/)
+    expect(r.importscripts_remote).toMatch(/^blocked:/)
+    expect(r.importscripts_data).toMatch(/^blocked:/)
+    expect(r.beacon).toMatch(/^blocked:/)
+    // Le canal blob: du module doit toujours marcher (CSP précise, pas déni aveugle).
+    expect(r.importscripts_blob).toMatch(/^REACHABLE:blob=1/)
+    // Secrets et hôte hors de portée.
+    expect(r.self_origin).toBe('null')
+    expect(r.localStorage_type).toBe('undefined')
     expect(r.localStorage_read).toMatch(/^blocked:/)
     expect(r.window_type).toBe('undefined')
     expect(r.document_type).toBe('undefined')

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Humanome;
 
+use Humanome\Middleware\SecurityHeaders;
 use Slim\App;
 use Slim\Factory\AppFactory;
 
@@ -32,6 +33,12 @@ final class Bootstrap
             $register = require $file;
             $register($app);
         }
+
+        // Added LAST on purpose: in Slim the last-added middleware runs first
+        // (outermost), so SecurityHeaders decorates EVERY response on the way
+        // out — including the 401/403 short-circuited by inner guards and the
+        // 404/500 synthesised by the error middleware (P12.3).
+        $app->add(new SecurityHeaders());
 
         return $app;
     }

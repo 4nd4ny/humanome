@@ -236,4 +236,49 @@ return function (App $app): void {
 
         return $json($response, ['id' => $id, 'version' => $version, 'status' => 'default']);
     });
+
+    // ------------------------------------------------------------------
+    // POST /api/admin/maintenance — periodic housekeeping (P12.2, cahier §6),
+    // production entry point for the OVH cron (no shell scripts ship to the
+    // release, ADR-008 — same model as POST /api/admin/worker-tick). Idempotent.
+    //
+    // Purges dead share links past their 30-day grace window (expiry policy)
+    // and resets the public-demo counters (drops past UTC days — today's live
+    // row is kept so the daily budget breaker stays intact — plus expired PoW
+    // challenges). Counters only, never any content (§6.5).
+    //
+    // The SQL is kept in sync with scripts/maintenance.php Maintenance::run()
+    // (that class is the source of truth; this file must stay self-contained
+    // for the release). Both are covered by tests asserting the same effects.
+    // Recommended frequency: DAILY.
+    // ------------------------------------------------------------------
+    $app->post('/admin/maintenance', function (Request $request, Response $response) use ($json, $adminGate): Response {
+        if (($denied = $adminGate($request, $response)) !== null) {
+            return $denied;
+        }
+
+        try {
+            $pdo = Db::get();
+
+            $links = $pdo->query(
+                'DELETE FROM share_links
+                  WHERE (expires_at IS NOT NULL AND expires_at < (NOW() - INTERVAL 30 DAY))
+                     OR (revoked_at IS NOT NULL AND revoked_at < (NOW() - INTERVAL 30 DAY))'
+            );
+            $shareLinksPurged = $links->rowCount();
+
+            $demoDaysPruned = $pdo->query('DELETE FROM llm_usage_daily WHERE usage_date < UTC_DATE()')->rowCount();
+            $powChallengesPruned = $pdo->query('DELETE FROM llm_pow_challenges WHERE expires_at < UNIX_TIMESTAMP()')->rowCount();
+        } catch (\Throwable $e) {
+            error_log('[maintenance] ' . $e->getMessage());
+
+            return $json($response, ['error' => 'Maintenance failed, see server log'], 500);
+        }
+
+        return $json($response, [
+            'shareLinksPurged' => $shareLinksPurged,
+            'demoDaysPruned' => $demoDaysPruned,
+            'powChallengesPruned' => $powChallengesPruned,
+        ]);
+    });
 };

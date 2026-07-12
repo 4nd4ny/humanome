@@ -1,0 +1,99 @@
+// Appels de l'API d'administration (P12.1 — chantier M9). Toutes les fonctions
+// passent par apiFetch (cookies de session + X-CSRF-Token sur les mutations,
+// messages d'erreur français) et acceptent un `fetchFn` injectable (tests,
+// même pattern que etablissement-api.js). L'API est SESSION admin
+// (RequireRole::any('admin')), jamais le jeton de déploiement.
+
+import { apiFetch } from '../../api/client.js'
+
+// --- 1. Rôles ----------------------------------------------------------------
+
+/** GET api/admin/users?query=&page= -> {users, total, page, pageSize} */
+export async function listUsers({ query = '', page = 1 } = {}, fetchFn) {
+  const params = new URLSearchParams()
+  if (query) params.set('query', query)
+  if (page && page > 1) params.set('page', String(page))
+  const suffix = params.toString() ? `?${params.toString()}` : ''
+  const data = await apiFetch(`admin/users${suffix}`, { fetchFn })
+  return {
+    users: Array.isArray(data?.users) ? data.users : [],
+    total: Number(data?.total ?? 0),
+    page: Number(data?.page ?? 1),
+    pageSize: Number(data?.pageSize ?? 20),
+  }
+}
+
+/** POST api/admin/users/{id}/roles {role} */
+export function grantRole(userId, role, fetchFn) {
+  return apiFetch(`admin/users/${userId}/roles`, { method: 'POST', body: { role }, fetchFn })
+}
+
+/** DELETE api/admin/users/{id}/roles/{role} */
+export function revokeRole(userId, role, fetchFn) {
+  return apiFetch(`admin/users/${userId}/roles/${encodeURIComponent(role)}`, {
+    method: 'DELETE',
+    fetchFn,
+  })
+}
+
+// --- 2. Golden Prompt --------------------------------------------------------
+
+/** GET api/admin/golden -> [{id, packageId, description, versions, grants}] */
+export async function fetchGolden(fetchFn) {
+  const data = await apiFetch('admin/golden', { fetchFn })
+  return Array.isArray(data) ? data : []
+}
+
+/** POST api/admin/golden {document} -> {status, id, version} */
+export function importGolden(document, fetchFn) {
+  return apiFetch('admin/golden', { method: 'POST', body: { document }, fetchFn })
+}
+
+/** POST api/admin/golden/{id}/grant {userId} -> {status, id, userId} */
+export function grantGolden(id, userId, fetchFn) {
+  return apiFetch(`admin/golden/${encodeURIComponent(id)}/grant`, {
+    method: 'POST',
+    body: { userId },
+    fetchFn,
+  })
+}
+
+// --- 3. Réglages plateforme --------------------------------------------------
+
+/** GET api/admin/settings -> {defaultPackage, demo, worker, config} */
+export function fetchSettings(fetchFn) {
+  return apiFetch('admin/settings', { fetchFn })
+}
+
+/** POST api/admin/settings/default-package {id, version} */
+export function setDefaultPackage(id, version, fetchFn) {
+  return apiFetch('admin/settings/default-package', {
+    method: 'POST',
+    body: { id, version },
+    fetchFn,
+  })
+}
+
+/** GET api/prompt-packages -> versions publiées (pour choisir le défaut). */
+export async function listPublishedPackages(fetchFn) {
+  const data = await apiFetch('prompt-packages', { fetchFn })
+  return Array.isArray(data) ? data : []
+}
+
+/** Les 7 rôles du référentiel §2 attribuables (le visiteur = absence de session). */
+export const ASSIGNABLE_ROLES = [
+  'apprenant',
+  'cartographe',
+  'promptologue',
+  'epistemiarque',
+  'employeur',
+  'etablissement',
+  'admin',
+]
+
+/** @param {string} iso @returns {string} date française courte ('—' si vide) */
+export function frDate(iso) {
+  if (typeof iso !== 'string' || iso === '') return '—'
+  const date = new Date(iso)
+  return Number.isNaN(date.getTime()) ? iso : date.toLocaleDateString('fr-FR')
+}

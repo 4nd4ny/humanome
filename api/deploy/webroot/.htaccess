@@ -2,3 +2,28 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
+
+# Security headers for the API surface (P12.3).
+#
+# The Slim SecurityHeaders middleware is the source of truth (it also covers
+# docker/dev, where no front .htaccess sits in front of the API). This block is
+# a DEFENSIVE override for OVH only: the static-front www/.htaccess uses
+# "Header always set", and Apache cascades a parent directory's headers into
+# www/api/, where they would replace the PHP-set values for the SAME header
+# names. Re-setting the API values in this (more specific) child .htaccess makes
+# Apache and PHP agree on the tight API policy instead of leaking the wider
+# front CSP / SAMEORIGIN onto JSON responses.
+#
+# NOTE (unverifiable before deploy): Apache's Header-vs-PHP precedence and the
+# parent->child cascade cannot be exercised by the test suite (docker serves the
+# API without the front .htaccess). Smoke-check the LIVE API headers after
+# deploy: `curl -sI https://humanome.xyz/api/health` must show CSP
+# "default-src 'none'..." and X-Frame-Options DENY, not the front values.
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "no-referrer"
+  Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), usb=(), xr-spatial-tracking=()"
+  Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>

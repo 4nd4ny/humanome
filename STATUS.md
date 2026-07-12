@@ -2,9 +2,48 @@
 
 ## En cours
 
-- **M9 (P12+P13)** : administration, RGPD transverse, durcissement, production finale v1.0.0.
+- **v1.0.0 — code complet et intégré.** Reste au chef d'orchestre : déploiement final
+  (static + api), pose du tag `git` **v1.0.0** (la version est estampillée au déploiement
+  depuis `git describe`), cron OVH (worker-tick + maintenance), attribution des rôles admin,
+  publication GitHub. Liste détaillée en fin de fichier (« Actions manuelles restantes »).
 
 ## Fait
+
+- 2026-07-12 — **M9 terminé (P12+P13) : admin, RGPD transverse, durcissement — v1.0.0 INTÉGRÉE.**
+  Clôture qualité : les 4 chantiers M9 (A administration, B RGPD transverse, C durcissement,
+  D déploiement) fusionnés sans friction. **Suites toutes vertes ENSEMBLE** : PHP **307/307**
+  (2470 assertions), web **439/439** (54 fichiers), engine **214/214**, runner **25/25**,
+  e2e **5/5**, `npm run build` OK. **Parcours clone déployable rejoué sur instance vierge**
+  (`docker compose down -v` → `up -d`) : migration DEPUIS ZÉRO par l'endpoint de prod
+  `POST /api/admin/migrate` → **10/10 migrations appliquées dans l'ordre, 0 collision**
+  (010 se pose proprement sur 009) ; imports idempotents (référentiel 7.0.0 + prompt-package
+  `aurora-v3-reconstruit@1.0.0`) ; `GET /api/health` → `status ok, db ok, version` ; parcours
+  minimal register→me→logout→login→logout OK (compte id 1 rôle `apprenant`, logout gardé CSRF —
+  403 sans jeton, 401 après logout). **Checklist sécurité re-vérifiée** (`docs/securite-checklist.md`),
+  5 items à risque sondés et CONFIRMÉS : (1) **IDOR** — `CartographyRepository` scope
+  `AND user_id = ?` sur toute lecture/écriture (404, pas la ressource) ; (2) **CSRF** —
+  middleware global `$app->add(new CsrfMiddleware())` (auth.php), double-submit `hash_equals`,
+  exemptions exactes (migrate/login/register/llm), les routes admin SESSION en héritent
+  (403 empirique) ; (3) **CSP-sandbox** — le vrai bloqueur était le **hash du `<script>` inline
+  du srcdoc** (pas `frame-src`) ; garde anti-dérive `csp-hash.test.js` (recalcul depuis
+  `buildSrcdoc()`) + e2e `sandbox-isolation` jouant la **CSP de prod réelle** lue dans
+  `.htaccess` (bénin→result ET hostile contenu) — les deux verts ; (4) **secrets historique** —
+  `git log --all` propre, seul `.env.deploy.example` versionné, toute occurrence `sk-ant-*`
+  est un EXEMPLE/fixture, `.env.deploy` gitignoré ; (5) **purge RGPD complète** — `purge()` =
+  `DELETE FROM users` s'appuyant sur les cascades FK (pas de liste de tables en dur qui
+  dériverait) ; **`golden_grants` (ajoutée en A après le code de suppression) couverte** —
+  preuve empirique : grant présent → `DELETE` user → grant cascade-supprimé, paquet conservé.
+  Cohérence multi-agents de `system.php` vérifiée : `/api/status` n'existe pas (santé =
+  `/api/health`) ; `/admin/maintenance` inline == `scripts/maintenance.php Maintenance::run()`
+  (mêmes 3 DELETE, testés) ; **aucune collision de route** admin session (`/admin/users`,
+  `/admin/golden`, `/admin/settings/*`) vs outillage jeton (`/admin/grant-role`,
+  `/admin/default-package`, `/admin/maintenance`). `SecurityHeaders` câblé en dernier
+  (le plus externe → décore 401/403/404). Chantier A : API admin session
+  (`RequireRole::any('admin')` + CSRF), Golden = `is_private=1` + `golden_grants` (invisible
+  aux 5 chemins de lecture de `PromptPackageRepository`). Chantier B : `content/legal/`,
+  `docs/rgpd-registre.md` (10 traitements), `scripts/rgpd-audit.php`. Chantier C : CSP front
+  corrigée (`script-src` + hash srcdoc + `blob:` + `worker-src blob:`), `SecurityHeaders`,
+  audits deps (composer 0 advisory, `npm audit --omit=dev` 0).
 
 - 2026-07-12 — **M8 terminé (P11) : établissements B2B et cartographie de masse, EN PRODUCTION.**
   Déployé (migration 009 en prod, worker-tick opérationnel). Audit : 1 SSRF medium corrigé
@@ -145,30 +184,66 @@
   Plus de création via panel nécessaire. **Vérifié le jour même par sonde PDO éphémère
   depuis le cluster humanome.xyz : joignable, MySQL 8.0.46, utf8mb4, PHP webroot 8.2.29.**
 
-## Prochaines étapes
+## Actions manuelles restantes (chef d'orchestre — clôture v1.0.0)
 
-1. P0 : CLAUDE.md ✅, ADR-001..009, docker-compose, api/health, web Vite, inventaire assets.
-2. P1 : schémas JSON + convertisseurs (carto-data→merge-json, extracted→day-json,
-   extract-referentiel) + fixtures + validation double runtime (ajv + PHP).
-3. M2 : fusion visualisation (P2) + premier déploiement.
+1. **Déploiement final** : `cd web && npm run build` (fait, à refaire si diff), puis
+   `node scripts/deploy/deploy.mjs static` (www/) ; `scripts/deploy/stage-api.sh` puis
+   `node scripts/deploy/deploy.mjs api` (releases + `current.txt` + `POST /api/admin/migrate`
+   + imports + smoke `/api/health`). Credentials dans `.env.deploy` (gitignoré).
+2. **Tag `v1.0.0`** : `git tag -a v1.0.0 -m "humanome.xyz v1.0.0"` (+ `git push --tags` après
+   publication GitHub). La version affichée par `/api/health` est estampillée au déploiement
+   depuis `git describe` (via `stage-api.sh` → fichier `VERSION`) : **tagger AVANT de stager l'API**.
+3. **Cron OVH** (ADR-005/008, aucun script shell déployé — endpoints à jeton) :
+   - worker de masse — `POST /api/admin/worker-tick` (X-Migrate-Token), ticks courts, ~toutes
+     les 1–5 min tant qu'il y a des jobs (voir `docs/plan-masse.md`) ;
+   - maintenance RGPD — `POST /api/admin/maintenance` (X-Migrate-Token), **quotidien**
+     (purge liens de partage > 30 j, reset compteurs démo, PoW expirés).
+4. **Rôles admin/privilégiés à créer** : aucun compte n'est admin par défaut (le 1er inscrit
+   est `apprenant`, `admin` n'est pas un super-rôle implicite). Attribuer via
+   `POST /api/admin/grant-role {email, role}` (X-Migrate-Token) — au moins un `admin`, puis
+   les `cartographe`/`promptologue`/`epistemiarque` selon les personnes. L'UI admin
+   (#/admin) prend le relais une fois un premier admin créé.
+5. **Publication GitHub** (reportée depuis M1) : créer le dépôt, `git push` (+ tags).
+   Sauvegarde intermédiaire : `git bundle create ../humanome-backup.bundle --all`.
+6. **Smokes post-déploiement** (`docs/securite-checklist.md` §« après déploiement ») :
+   `curl -sI https://humanome.xyz/api/health` → en-têtes API (CSP `default-src 'none'`,
+   `X-Frame-Options: DENY`, HSTS, `Referrer-Policy`, `Permissions-Policy`) ; ouvrir
+   #/promptologue et lancer le banc d'essai sur un paquet publié → **zéro violation CSP**
+   en console (preuve que la correction sandbox tient en prod réelle) ; ramener le budget
+   démo quotidien à 5–10 $ selon usage (compteurs de test consommés en M5).
+
+## Backlog post-v1 (hors périmètre v1.0.0)
+
+- **Marketplace employeur payante** (mise en relation apprenants↔employeurs monétisée).
+- **Portfolio multimédia** (au-delà du texte : images, audio, vidéo).
+- **Open-data recherche** (jeux de données anonymisés pour la recherche).
+- **Promptagogue** (rôle/atelier pédagogique autour des prompts).
+- **Régénération de masse** (rejeu rétrospectif d'une nouvelle version de prompt-package
+  sur une cohorte entière).
+- **GPU local** (inférence LLM auto-hébergée, hors API tierce).
+- **OAuth Google Docs** (import portfolio authentifié, au-delà du `gdoc-text` public actuel).
+- **i18n** (internationalisation de l'UI, aujourd'hui français uniquement).
 
 ## Dettes techniques / décisions en attente
 
-- Publication GitHub reportée (backlog) — sauvegarde par git bundle en attendant.
-- Golden Prompt : non fourni, hors git par design.
+- Golden Prompt : non fourni, hors git par design (`assets-existants/golden-prompt/` gitignoré).
 - Pipeline Python amont absent : moteur rétro-conçu en M4 avec oracles
   (`intermediate/carto_merge.json`, `intermediate/prompts/`).
+- Bundle front monolithique (~1,58 Mo / 331 Ko gzip) : avertissement de taille Vite
+  informatif, non bloquant — code-splitting à envisager (backlog outillage).
+- `npm audit` complet : 5 findings **outillage de dev uniquement** (vite/vitest/esbuild),
+  non déployés, non exploitables en prod (cf. checklist A06) — bump majeur reporté au backlog.
 
 ## Jalons
 
 | Jalon | Contenu | État |
 |---|---|---|
-| M1 | P0 fondations + P1 schémas/convertisseurs | en cours |
-| M2 | P2 visualisation unifiée + 1er déploiement | à faire |
-| M3 | P3 BDD/comptes + P4 référentiel | à faire |
-| M4 | P5 moteur (parité oracle) | à faire |
-| M5 | P6 démo LLM + P7 portfolio | à faire |
-| M6 | P8 espace apprenant | à faire |
-| M7 | P9 cartographe + P10 promptologue | à faire |
-| M8 | P11 masse B2B | à faire |
-| M9 | P12 durcissement + P13 prod v1.0.0 | à faire |
+| M1 | P0 fondations + P1 schémas/convertisseurs | ✅ terminé |
+| M2 | P2 visualisation unifiée + 1er déploiement | ✅ en production |
+| M3 | P3 BDD/comptes + P4 référentiel | ✅ en production |
+| M4 | P5 moteur (parité oracle) | ✅ terminé |
+| M5 | P6 démo LLM + P7 portfolio | ✅ en production |
+| M6 | P8 espace apprenant | ✅ en production |
+| M7 | P9 cartographe + P10 promptologue | ✅ en production |
+| M8 | P11 masse B2B | ✅ en production |
+| M9 | P12 durcissement + P13 prod v1.0.0 | ✅ intégré — déploiement + tag v1.0.0 par le chef d'orchestre |

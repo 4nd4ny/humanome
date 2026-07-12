@@ -11,7 +11,41 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Strict-Transport-Security "max-age=31536000"
-  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+  # Deny every powerful browser feature — the app uses none of them.
+  Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), usb=(), xr-spatial-tracking=()"
+
+  # Content-Security-Policy — one physical line (Apache).
+  #   default-src 'self'        base rule: only our own origin.
+  #   img-src 'self' data:      inline data: images (small SVG/PNG in the build).
+  #   style-src 'self' 'unsafe-inline'  React/Vite inline <style> and style=.
+  #   script-src 'self' ...     see the two sandbox additions below.
+  #   connect-src 'self'        fetch/XHR/WebSocket only to our API.
+  #   worker-src blob:          see the sandbox note below.
+  #   object-src 'none'; base-uri 'self'; frame-ancestors 'self'
+  #
+  # PROMPTOLOGUE SANDBOX (P10.3) — two additions verified end-to-end against
+  # this exact CSP (web/e2e/sandbox-isolation.e2e.js). A prompt-package runs in
+  # a srcdoc iframe (sandbox="allow-scripts", opaque origin) that spawns a blob
+  # Web Worker. A srcdoc document INHERITS this parent CSP, so WITHOUT these two
+  # tokens the sandbox is dead in production (the iframe bootstrap and the
+  # worker's blob module are refused) — the real bug this hardening fixed:
+  #   1. 'sha256-7Ll8/Q7scy4XeEgF5GUsqHX5nPQqrnsVFr+cbzr/yEc='
+  #      hash of the FROZEN inline bootstrap in buildSrcdoc() (protocol.js).
+  #      Kept in sync by web/src/lib/sandbox/csp-hash.test.js — a srcdoc edit
+  #      that changes the hash fails that test loudly instead of silently
+  #      re-breaking production.
+  #   2. blob:  the worker source AND the package ESM import() are blob: URLs;
+  #      the worker inherits this script-src, so blob: is required here.
+  #      This top-level blob: is NOT what contains the untrusted code — the
+  #      opaque origin + the srcdoc's own "default-src 'none'" meta CSP are
+  #      (they block all network egress from the worker). See A05 in
+  #      docs/securite-checklist.md and docs/securite-prompts.md.
+  #   worker-src blob: is the spec-correct directive to allow the blob worker.
+  #   (Current Chromium governs worker creation via script-src, so it is
+  #   belt-and-suspenders today; it future-proofs the worker-src fallback chain.)
+  #   frame-src is intentionally NOT widened: about:srcdoc is already permitted
+  #   by default-src 'self', and nothing frames blob:/data:.
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-7Ll8/Q7scy4XeEgF5GUsqHX5nPQqrnsVFr+cbzr/yEc=' blob:; connect-src 'self'; worker-src blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
 
   # Caching: hashed assets are immutable, entry points and data stay fresh
   <FilesMatch "\.(js|css|woff2?)$">

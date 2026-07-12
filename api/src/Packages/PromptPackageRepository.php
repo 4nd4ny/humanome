@@ -98,6 +98,13 @@ final class PromptPackageRepository
      * Published versions, for the run launcher (M6 contract: id = the stable
      * package slug, one entry per published version).
      *
+     * PRIVATE packages (Golden Prompt, migration 010) are excluded here and in
+     * EVERY public read path below (findPublished, latestPublishedAnyPackage,
+     * isPublished) AND in the draft-fork source lookup (createDraft): a private
+     * package must never be listed, served, defaulted, proposed, run or forked
+     * by anyone — access is granted case by case through golden_grants
+     * (api/src/Admin/GoldenRepository.php, cahier §3.4/§7).
+     *
      * @return list<array{id: string, version: string, description: string|null, publishedAt: string|null}>
      */
     public function listPublished(): array
@@ -106,7 +113,7 @@ final class PromptPackageRepository
             'SELECT pp.slug, pv.semver, pp.description, pv.published_at
                FROM prompt_versions pv
                JOIN prompt_packages pp ON pp.id = pv.package_id
-              WHERE pv.status = "published"
+              WHERE pv.status = "published" AND pp.is_private = 0
               ORDER BY pp.slug, pv.published_at, pv.id'
         );
 
@@ -131,7 +138,7 @@ final class PromptPackageRepository
             'SELECT pv.content
                FROM prompt_versions pv
                JOIN prompt_packages pp ON pp.id = pv.package_id
-              WHERE pp.slug = ? AND pv.semver = ? AND pv.status = "published"'
+              WHERE pp.slug = ? AND pv.semver = ? AND pv.status = "published" AND pp.is_private = 0'
         );
         $stmt->execute([$slug, $semver]);
         $content = $stmt->fetchColumn();
@@ -155,7 +162,7 @@ final class PromptPackageRepository
             'SELECT pp.slug, pv.semver
                FROM prompt_versions pv
                JOIN prompt_packages pp ON pp.id = pv.package_id
-              WHERE pv.status = "published"
+              WHERE pv.status = "published" AND pp.is_private = 0
               ORDER BY pv.published_at DESC, pv.id DESC
               LIMIT 1'
         );
@@ -173,7 +180,7 @@ final class PromptPackageRepository
             'SELECT 1
                FROM prompt_versions pv
                JOIN prompt_packages pp ON pp.id = pv.package_id
-              WHERE pp.slug = ? AND pv.semver = ? AND pv.status = "published"'
+              WHERE pp.slug = ? AND pv.semver = ? AND pv.status = "published" AND pp.is_private = 0'
         );
         $stmt->execute([$slug, $semver]);
 
@@ -195,11 +202,14 @@ final class PromptPackageRepository
             throw new InvalidPackageException(['/version' => ['Version semver invalide']]);
         }
 
+        // A PRIVATE (Golden) package is never a valid fork source, whatever the
+        // requester's own drafts — it is excluded from the lookup so it answers
+        // null (homogeneous 404) exactly like an unknown version.
         $stmt = $this->pdo->prepare(
             'SELECT pv.package_id, pv.status, pv.created_by, pv.content
                FROM prompt_versions pv
                JOIN prompt_packages pp ON pp.id = pv.package_id
-              WHERE pp.slug = ? AND pv.semver = ?'
+              WHERE pp.slug = ? AND pv.semver = ? AND pp.is_private = 0'
         );
         $stmt->execute([$slug, $fromSemver]);
         $source = $stmt->fetch();

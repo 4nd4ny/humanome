@@ -1,0 +1,68 @@
+// Administration (P12.1) : garde de rôle. Sans rôle admin, l'espace est
+// remplacé par l'explication ; l'admin voit l'accueil et les sections. La
+// copie statique (API absente) dégrade proprement.
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import AdminView from './AdminView.jsx'
+import { ApiUnavailableError, resetApiClient } from '../api/client.js'
+
+afterEach(() => {
+  cleanup()
+  resetApiClient()
+})
+
+const anonyme = async () => ({ user: null })
+const apprenant = async () => ({ user: { id: 2, email: 'a@b.fr', displayName: 'Maya', roles: ['apprenant'] } })
+const admin = async () => ({ user: { id: 1, email: 'root@b.fr', displayName: 'Root', roles: ['admin'] } })
+
+function jsonResponse(status, data) {
+  return {
+    ok: status >= 200 && status < 300,
+    status,
+    headers: { get: (n) => (n.toLowerCase() === 'content-type' ? 'application/json' : null) },
+    json: async () => data,
+  }
+}
+
+describe('AdminView — garde de rôle', () => {
+  it('montre l’explication du rôle à un visiteur anonyme', async () => {
+    render(<AdminView section={null} deps={{ fetchMeFn: anonyme }} />)
+    await screen.findByTestId('admin-reserve')
+    expect(screen.getByText(/réservé à l’administration/i)).toBeTruthy()
+    expect(screen.getByText(/Connectez-vous/i)).toBeTruthy()
+  })
+
+  it('refuse un compte sans rôle admin', async () => {
+    render(<AdminView section="roles" deps={{ fetchMeFn: apprenant }} />)
+    await screen.findByTestId('admin-reserve')
+    // La section rôles ne doit pas s’afficher.
+    expect(screen.queryByText(/Comptes et rôles/i)).toBeNull()
+  })
+
+  it('dégrade proprement quand l’API est absente (copie statique)', async () => {
+    const fetchMeFn = async () => {
+      throw new ApiUnavailableError()
+    }
+    render(<AdminView section={null} deps={{ fetchMeFn }} />)
+    await screen.findByText(/copie statique du site/i)
+  })
+
+  it('affiche l’accueil et les sections pour un admin', async () => {
+    render(<AdminView section={null} deps={{ fetchMeFn: admin }} />)
+    await screen.findByTestId('admin-connecte')
+    expect(screen.getByRole('link', { name: /Rôles/i })).toBeTruthy()
+    expect(screen.getByRole('link', { name: /Golden Prompt/i })).toBeTruthy()
+  })
+
+  it('rend la section rôles pour un admin', async () => {
+    const fetchFn = vi.fn(async () => jsonResponse(200, { users: [], total: 0, page: 1, pageSize: 20 }))
+    render(<AdminView section="roles" deps={{ fetchMeFn: admin, fetchFn }} />)
+    await screen.findByRole('heading', { name: /Comptes et rôles/i })
+    expect(fetchFn).toHaveBeenCalled()
+  })
+
+  it('signale une section inconnue', async () => {
+    render(<AdminView section="inconnue" deps={{ fetchMeFn: admin }} />)
+    await screen.findByText(/Section inconnue/i)
+  })
+})
