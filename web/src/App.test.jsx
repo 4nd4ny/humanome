@@ -30,6 +30,7 @@ describe('App', () => {
     expect(screen.getByRole('link', { name: 'Référentiel' }).getAttribute('href')).toBe(
       '#/referentiel',
     )
+    expect(screen.getByRole('link', { name: 'Essayer' }).getAttribute('href')).toBe('#/essayer')
     expect(screen.getByRole('link', { name: 'Compte' }).getAttribute('href')).toBe('#/compte')
 
     // Pied de page : mention RESPIRE/Harmonia + lien participer
@@ -65,6 +66,38 @@ describe('App', () => {
     expect(await screen.findByText('TETE — Penser & Comprendre')).toBeDefined()
     expect(document.querySelectorAll('.ref-pole')).toHaveLength(7)
     expect(document.querySelectorAll('.ref-competence')).toHaveLength(61)
+  })
+
+  it('route #/essayer -> page de démonstration publique (P6)', async () => {
+    window.location.hash = '#/'
+    render(<App lib={fakeLib} />)
+
+    setHash('#/essayer')
+
+    expect(
+      screen.getByRole('heading', { name: 'Essayer avec votre propre texte' }),
+    ).toBeDefined()
+    expect(screen.getByLabelText('Texte à cartographier')).toBeDefined()
+    expect(screen.getByRole('button', { name: 'Cartographier ce texte' })).toBeDefined()
+  })
+
+  it('route #/portfolio -> module portfolio, bandeau local-first (P7)', async () => {
+    window.location.hash = '#/'
+    render(<App lib={fakeLib} />)
+
+    setHash('#/portfolio')
+
+    expect(screen.getByRole('heading', { name: 'Portfolio' })).toBeDefined()
+    expect((await screen.findByRole('note')).textContent).toContain(
+      'Vos textes ne quittent pas ce navigateur.',
+    )
+    // jsdom n'a pas d'IndexedDB : la vue le signale proprement, sans crash.
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      'Stockage local indisponible',
+    )
+    expect(screen.getByRole('link', { name: 'Portfolio' }).getAttribute('href')).toBe(
+      '#/portfolio',
+    )
   })
 
   it('route #/compte sans API -> message copie statique, sans erreur non gérée', async () => {

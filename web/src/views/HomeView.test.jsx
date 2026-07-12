@@ -24,6 +24,9 @@ describe('HomeView', () => {
         'href',
       ),
     ).toBe('#/merge')
+    expect(
+      screen.getByRole('link', { name: 'Essayer avec votre propre texte' }).getAttribute('href'),
+    ).toBe('#/essayer')
     expect(screen.getByRole('button', { name: 'Charger ma cartographie (JSON)' })).toBeDefined()
     expect(screen.getByText(/vos fichiers ne quittent pas votre navigateur/i)).toBeDefined()
   })

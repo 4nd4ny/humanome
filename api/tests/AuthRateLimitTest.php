@@ -54,6 +54,29 @@ final class AuthRateLimitTest extends AuthTestBase
         self::assertSame(200, $this->login('bucket-a@example.org', self::PASSWORD)->getStatusCode());
     }
 
+    public function testLoginRateLimitCannotBeBypassedByRotatingWithinAnIpv6_64(): void
+    {
+        // Register over the default IPv4 (separate register limiter), then
+        // brute-force over IPv6. A whole /64 is one routine allocation: the
+        // limiter must key the login bucket per /64, not per full address.
+        $this->register('victim6@example.org');
+        $this->cookieSid = null;
+
+        $this->clientIp = '2001:db8:0:5::1';
+        for ($i = 1; $i <= 5; $i++) {
+            self::assertSame(401, $this->login('victim6@example.org', 'wrong')->getStatusCode(), "attempt $i");
+        }
+        self::assertSame(429, $this->login('victim6@example.org', self::PASSWORD)->getStatusCode());
+
+        // Same /64, different interface id (the rotation trick): still blocked.
+        $this->clientIp = '2001:db8:0:5:ffff:ffff:ffff:ffff';
+        self::assertSame(429, $this->login('victim6@example.org', self::PASSWORD)->getStatusCode());
+
+        // A genuinely different /64 is a different client: fresh bucket.
+        $this->clientIp = '2001:db8:0:6::1';
+        self::assertSame(200, $this->login('victim6@example.org', self::PASSWORD)->getStatusCode());
+    }
+
     public function testSuccessfulLoginResetsTheCounter(): void
     {
         $this->register('resets@example.org');

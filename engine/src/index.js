@@ -67,3 +67,11 @@ export { buildMergeDocument } from './pipeline/merge-document.js'
 
 // --- Consistance multi-run ---------------------------------------------------
 export { compareRuns, statutDistance } from './consistency.js'
+
+// --- Portfolio — segmentation en journées (P7) -------------------------------
+export {
+  segmentText,
+  mergeSegments,
+  splitSegment,
+  toArchiveSegmentation
+} from './portfolio/segment.js'

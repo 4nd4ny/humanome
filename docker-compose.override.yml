@@ -1,0 +1,7 @@
+# Dev-local overrides (auto-loaded by `docker compose up`) — NOT deployed.
+# M5 integration: run the public demo proxy against the mock provider
+# (schemas/fixtures/) so no ANTHROPIC_API_KEY is needed locally.
+services:
+  php:
+    environment:
+      DEMO_PROVIDER: mock

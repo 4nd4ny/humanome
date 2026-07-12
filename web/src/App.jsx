@@ -5,6 +5,8 @@ import HomeView from './views/HomeView.jsx'
 import MergeView from './views/MergeView.jsx'
 import DayView from './views/DayView.jsx'
 import ReferentielView from './views/ReferentielView.jsx'
+import EssayerView from './views/EssayerView.jsx'
+import PortfolioView from './views/PortfolioView.jsx'
 import AccountView from './views/AccountView.jsx'
 
 /**
@@ -87,6 +89,12 @@ export default function App({ lib }) {
     case 'referentiel':
       view = <ReferentielView focusCode={route.code} />
       break
+    case 'essayer':
+      view = <EssayerView lib={lib} />
+      break
+    case 'portfolio':
+      view = <PortfolioView />
+      break
     case 'account':
       view = <AccountView />
       break
@@ -114,7 +122,9 @@ export default function App({ lib }) {
         </a>
         <nav aria-label="Navigation principale">
           <a href="#/merge">Cartographie</a>
+          <a href="#/portfolio">Portfolio</a>
           <a href="#/referentiel">Référentiel</a>
+          <a href="#/essayer">Essayer</a>
           <a href="#/compte">Compte</a>
         </nav>
       </header>

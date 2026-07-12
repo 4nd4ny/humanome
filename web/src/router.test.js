@@ -99,6 +99,16 @@ describe('routes référentiel et compte (P4.4)', () => {
     expect(parseHash('#/compte/extra').name).toBe('not-found')
   })
 
+  it('route vers la démo publique « Essayer » (P6)', () => {
+    expect(parseHash('#/essayer')).toEqual({ name: 'essayer' })
+    expect(parseHash('#/essayer/extra').name).toBe('not-found')
+  })
+
+  it('route vers le module portfolio (P7)', () => {
+    expect(parseHash('#/portfolio')).toEqual({ name: 'portfolio' })
+    expect(parseHash('#/portfolio/extra').name).toBe('not-found')
+  })
+
   it('referentielHash est l’inverse de parseHash', () => {
     expect(referentielHash()).toBe('#/referentiel')
     expect(referentielHash('1.01')).toBe('#/referentiel/1.01')

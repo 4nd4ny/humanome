@@ -7,6 +7,8 @@
 //   #/jour/<iso>?focus=<c>  idem with a competence code highlighted
 //   #/referentiel           public referentiel (7 pôles -> 61 compétences)
 //   #/referentiel/<code>    idem, permalink to one competence (scroll + highlight)
+//   #/essayer               public live demo: paste a text, map it (P6, cahier §3.1)
+//   #/portfolio             portfolio module: local-only texts, day segmentation (P7)
 //   #/compte                account area (session checked when the route mounts)
 
 const ISO_DATE_RE = /^(\d{4})-(\d{2})-(\d{2})$/
@@ -35,6 +37,8 @@ export function isValidIsoDate(value) {
  *   | {name: 'merge'}
  *   | {name: 'day', date: string, focus: string | null}
  *   | {name: 'referentiel', code: string | null}
+ *   | {name: 'essayer'}
+ *   | {name: 'portfolio'}
  *   | {name: 'account'}
  *   | {name: 'not-found', hash: string}}
  */
@@ -46,6 +50,8 @@ export function parseHash(hash) {
 
   if (path === '' || path === '/') return { name: 'home' }
   if (path === '/merge') return { name: 'merge' }
+  if (path === '/essayer') return { name: 'essayer' }
+  if (path === '/portfolio') return { name: 'portfolio' }
   if (path === '/compte') return { name: 'account' }
 
   if (path === '/referentiel') return { name: 'referentiel', code: null }

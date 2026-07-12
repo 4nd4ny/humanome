@@ -44,6 +44,9 @@ export default function HomeView({ onUserDocument }) {
           <a className="button button-primary" href="#/merge">
             Explorer la cartographie de démonstration
           </a>
+          <a className="button" href="#/essayer">
+            Essayer avec votre propre texte
+          </a>
           <button
             type="button"
             className="button"

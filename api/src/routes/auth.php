@@ -14,6 +14,7 @@ use Humanome\Auth\Audit;
 use Humanome\Auth\RateLimiter;
 use Humanome\Auth\Session;
 use Humanome\Auth\Users;
+use Humanome\ClientIp;
 use Humanome\Db;
 use Humanome\Middleware\CsrfMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -37,6 +38,9 @@ return function (App $app): void {
     // client IP. Client-supplied forwarding headers (X-Forwarded-For, X-Real-IP,
     // ...) are attacker-controlled and MUST NOT feed the limiter — trusting them
     // would let anyone reset their own bucket by rotating a spoofed header.
+    // Buckets go through ClientIp::bucketIdentity: IPv6 is keyed per /64 so an
+    // abuser cannot rotate the interface id of a single allocation to dodge the
+    // limiter (register spam / login brute-force).
     $clientIp = fn (Request $request): string => (string) ($request->getServerParams()['REMOTE_ADDR']
         ?? $_SERVER['REMOTE_ADDR']
         ?? '');
@@ -77,7 +81,7 @@ return function (App $app): void {
         // No CSRF token exists for a visitor: abuse is contained per IP
         // instead (rate limit, counted before any validation).
         $limiter = new RateLimiter($pdo, 10, 3600);
-        $bucket = 'register:' . hash('sha256', $clientIp($request));
+        $bucket = 'register:' . hash('sha256', ClientIp::bucketIdentity($clientIp($request)));
         $attempts = $limiter->hit($bucket);
         if ($attempts > 10) {
             return $json($response, ['error' => 'Trop de tentatives, réessayez plus tard'], 429)
@@ -148,7 +152,7 @@ return function (App $app): void {
         }
 
         $limiter = new RateLimiter($pdo, 5, 900);
-        $bucket = 'login:' . hash('sha256', $clientIp($request) . '|' . $email);
+        $bucket = 'login:' . hash('sha256', ClientIp::bucketIdentity($clientIp($request)) . '|' . $email);
         if ($limiter->isBlocked($bucket)) {
             // Blocked attempts still count: the delay keeps growing.
             $attempts = $limiter->hit($bucket);
