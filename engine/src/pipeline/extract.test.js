@@ -277,8 +277,10 @@ describe('extractDay', () => {
         return JSON.stringify(pole)
       },
     })
+    // Attrapé dès la validation par pôle (le retry unique s'applique au bon
+    // appel), le message reste contextualisé pôle + date.
     await expect(extractDay({ dayText: DAY_TEXT, date: DATE, referentiel, provider }))
-      .rejects.toThrow(/invalide au schéma cartographie-jour/s)
+      .rejects.toThrow(/pôle 4 .*invalide au schéma/s)
   })
 
   it('rejette explicitement une génération tronquée (stopReason max_tokens)', async () => {

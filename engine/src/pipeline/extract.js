@@ -506,6 +506,55 @@ export function parseExtractionResponse(text) {
  *   presencesEtablies: number, renvoisCartographe: number, nonEtablies: number,
  *   courtCircuits: number}}
  */
+/** Un bloc pédagogue est complet ssi ses trois étages requis sont présents. */
+function pedagogueComplet(p) {
+  return (
+    p !== null
+    && typeof p === 'object'
+    && typeof p.presomptionAbsence?.raisonnement === 'string'
+    && Array.isArray(p.presomptionAbsence?.piecesQuiResistent)
+    && typeof p.presomptionSycophantie?.raisonnement === 'string'
+    && Array.isArray(p.presomptionSycophantie?.examenPieces)
+    && typeof p.conclusionAdversariale?.raisonnement === 'string'
+    && typeof p.conclusionAdversariale?.confianceFinale === 'number'
+  )
+}
+
+/**
+ * Enforces the corpus invariants on each competence (deterministic repair of
+ * the semantic slips observed live) :
+ * - courtCircuit ⇔ aucune pièce (the data decides, not the model's flag) ;
+ * - court-circuit ⇒ pedagogue null, tracesRetenues [], verdict au profil CC
+ *   (statut non établie, confiance 1, raison constante, prescriptionMinimale) ;
+ * - pedagogue objet INCOMPLET (étage manquant) ⇒ null — un demi-examen ne
+ *   vaut rien ; le schéma n'accepte que complet ou null.
+ */
+export function normalizeCompetences(competences) {
+  for (const c of competences) {
+    if (!Array.isArray(c.pieces)) c.pieces = []
+    if (!Array.isArray(c.tracesRetenues)) c.tracesRetenues = []
+    c.courtCircuit = c.pieces.length === 0
+    if (c.courtCircuit) {
+      c.pedagogue = null
+      c.tracesRetenues = []
+      c.verdict = {
+        statut: 'présence non établie',
+        nombrePreuves: 0,
+        nombreIndices: 0,
+        confiance: 1,
+        raison: RAISON_COURT_CIRCUIT,
+        prescriptionMinimale:
+          c.verdict?.prescriptionMinimale
+          ?? c.verdict?.prescription
+          ?? 'Documenter cette compétence dans une prochaine feuille.',
+      }
+    } else if (c.pedagogue !== null && !pedagogueComplet(c.pedagogue ?? null)) {
+      c.pedagogue = null
+    }
+  }
+  return competences
+}
+
 export function computeAuditPole(competences) {
   const count = (fn) => competences.filter(fn).length
   const courtCircuits = count((c) => c.courtCircuit === true)
@@ -597,6 +646,26 @@ export async function extractDay({
     if (pole.poleNum !== String(num)) {
       throw new Error(`poleNum incohérent dans la réponse (« ${pole.poleNum} »)`)
     }
+    // Invariants du corpus imposés déterministiquement (les glissements
+    // sémantiques du modèle sont fréquents : CC avec pédagogue, pédagogue
+    // incomplet…), puis validation structurelle DU PÔLE pour que l'unique
+    // retry s'applique au bon appel plutôt qu'au document final.
+    normalizeCompetences(pole.competences)
+    pole.auditPole = computeAuditPole(pole.competences)
+    if (!Array.isArray(pole.passagesSaillants)) pole.passagesSaillants = []
+    if (pole.rapport === undefined) pole.rapport = null
+    const probe = {
+      schemaVersion: '1.0.0',
+      kind: 'cartographie-jour',
+      date,
+      poles: Array.from({ length: 7 }, (_, i) => ({ ...pole, poleNum: String(i + 1) })),
+      kairos: null,
+    }
+    const { valid, errors } = validateDocument('cartographie-jour', probe)
+    if (!valid) {
+      const detail = errors.slice(0, 3).map((e) => `${e.path} ${e.message}`).join(' ; ')
+      throw new Error(`objet pôle invalide au schéma (${errors.length} erreur(s) : ${detail})`)
+    }
     return pole
   }
 
@@ -614,11 +683,6 @@ export async function extractDay({
         }
       }
     }
-    // Compteurs d'audit recalculés (déterministes) : les compteurs produits
-    // par le modèle dérivent facilement ; la donnée source fait foi.
-    pole.auditPole = computeAuditPole(pole.competences)
-    if (!Array.isArray(pole.passagesSaillants)) pole.passagesSaillants = []
-    if (pole.rapport === undefined) pole.rapport = null
     poles.push(pole)
     done += 1
     onProgress?.({ step: 'pole', poleNum: num, done, total })
