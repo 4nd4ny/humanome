@@ -8,8 +8,11 @@
 // written last, so an interrupted deploy is re-run safely.
 //
 // Usage:
-//   node scripts/deploy/deploy.mjs static          # web/dist + web/public/data -> www/
+//   node scripts/deploy/deploy.mjs static          # web/dist -> www/ (manifest delta sync)
 //   node scripts/deploy/deploy.mjs static --dry-run
+//   node scripts/deploy/deploy.mjs api             # build/api-release -> app/releases/<ts>/
+//                                                  # + www/api/ front controller + current.txt
+//                                                  # + POST /api/admin/migrate + health smoke
 import { createHash } from 'node:crypto'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve, posix } from 'node:path'
@@ -101,12 +104,100 @@ async function ensureRemoteDir(client, knownDirs, remoteFilePath) {
   knownDirs.add(dir)
 }
 
+async function uploadTree(client, localDir, remoteRoot) {
+  const knownDirs = new Set()
+  const files = walkFiles(localDir)
+  let done = 0
+  for (const rel of files) {
+    const remotePath = posix.join(remoteRoot, rel.split('/').join(posix.sep))
+    await ensureRemoteDir(client, knownDirs, remotePath)
+    await client.uploadFrom(join(localDir, rel), remotePath)
+    done += 1
+    if (done % 25 === 0 || done === files.length) console.log(`  uploaded ${done}/${files.length}`)
+  }
+}
+
+const KEEP_RELEASES = 3
+
+async function deployApi(env) {
+  const stage = join(repoRoot, 'build/api-release')
+  if (!statSync(stage, { throwIfNoEntry: false })?.isDirectory()) {
+    throw new Error('build/api-release missing — run scripts/deploy/stage-api.sh first')
+  }
+  const version = readFileSync(join(stage, 'VERSION'), 'utf8').trim()
+  const ts = new Date()
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace('T', '-')
+    .slice(0, 15)
+  const releaseName = `${ts}-${version.replace(/[^A-Za-z0-9._-]/g, '_')}`
+
+  const client = new Client(30_000)
+  try {
+    await client.access({
+      host: env.FTP_HOST,
+      user: env.FTP_USER,
+      password: env.FTP_PASSWORD,
+      secure: env.FTP_SECURE !== 'false',
+      secureOptions: { rejectUnauthorized: true },
+    })
+    await client.cd('/')
+
+    console.log(`uploading release ${releaseName} (${version})`)
+    await uploadTree(client, stage, `app/releases/${releaseName}`)
+    await uploadTree(client, join(repoRoot, 'api/deploy/webroot'), 'www/api')
+
+    // Pointer written last: the new release only becomes live once fully uploaded.
+    await client.uploadFrom(Readable.from(`releases/${releaseName}\n`), 'app/current.txt')
+    console.log(`current.txt -> releases/${releaseName}`)
+
+    // Prune old releases (keep the most recent KEEP_RELEASES, name-sorted = time-sorted)
+    const entries = await client.list('app/releases')
+    const releases = entries
+      .filter((e) => e.isDirectory)
+      .map((e) => e.name)
+      .sort()
+    for (const old of releases.slice(0, Math.max(0, releases.length - KEEP_RELEASES))) {
+      console.log(`  pruning app/releases/${old}`)
+      await client.removeDir(`app/releases/${old}`)
+      await client.cd('/')
+    }
+  } finally {
+    client.close()
+  }
+
+  // Migrations + smoke over HTTPS
+  const base = env.SITE_URL ?? 'https://humanome.xyz'
+  if (env.MIGRATE_TOKEN) {
+    const res = await fetch(`${base}/api/admin/migrate`, {
+      method: 'POST',
+      headers: { 'X-Migrate-Token': env.MIGRATE_TOKEN },
+    })
+    const body = await res.text()
+    console.log(`migrate: HTTP ${res.status} ${body.slice(0, 300)}`)
+    if (!res.ok) throw new Error('migration endpoint failed')
+  } else {
+    console.warn('MIGRATE_TOKEN not set in .env.deploy — skipping remote migrations')
+  }
+  const health = await fetch(`${base}/api/health`)
+  const healthBody = await health.text()
+  console.log(`health: HTTP ${health.status} ${healthBody.slice(0, 300)}`)
+  if (!health.ok || !healthBody.includes('"ok"')) throw new Error('health smoke failed')
+  console.log('api deploy done')
+}
+
 async function main() {
   const targetName = process.argv[2]
   const dryRun = process.argv.includes('--dry-run')
+  if (targetName === 'api') {
+    await deployApi(loadEnvDeploy())
+    return
+  }
   const target = TARGETS[targetName]
   if (!target) {
-    console.error(`Unknown target "${targetName}". Available: ${Object.keys(TARGETS).join(', ')}`)
+    console.error(
+      `Unknown target "${targetName}". Available: ${Object.keys(TARGETS).join(', ')}, api`,
+    )
     process.exit(2)
   }
 

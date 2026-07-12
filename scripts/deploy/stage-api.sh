@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Stages a PHP release for deployment (ADR-008): copies api/ sources, installs
+# production dependencies with the php:8.2 Docker image, stamps VERSION.
+# Output: build/api-release/ (flat, ready to upload as app/releases/<ts>/).
+set -euo pipefail
+
+repo="$(cd "$(dirname "$0")/../.." && pwd)"
+stage="$repo/build/api-release"
+
+rm -rf "$stage"
+mkdir -p "$stage"
+
+cp -R "$repo/api/src" "$stage/src"
+cp -R "$repo/api/public" "$stage/public"
+cp "$repo/api/composer.json" "$repo/api/composer.lock" "$stage/"
+if [ -d "$repo/api/config" ]; then cp -R "$repo/api/config" "$stage/config"; fi
+if [ -d "$repo/scripts/migrations" ]; then
+  mkdir -p "$stage/scripts"
+  cp -R "$repo/scripts/migrations" "$stage/scripts/migrations"
+  cp "$repo/scripts/migrate.php" "$stage/scripts/migrate.php" 2>/dev/null || true
+fi
+
+git -C "$repo" describe --always --dirty 2>/dev/null > "$stage/VERSION" || echo "unknown" > "$stage/VERSION"
+
+# Production vendor/ via the same PHP image as the dev stack (no local composer)
+docker run --rm -v "$stage":/app -w /app humanome-php \
+  composer install --no-dev --optimize-autoloader --no-interaction --quiet
+
+echo "staged release $(cat "$stage/VERSION") in $stage ($(find "$stage" -type f | wc -l | tr -d ' ') files)"
