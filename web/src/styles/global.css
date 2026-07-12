@@ -1,5 +1,29 @@
+/* humanome.xyz — feuille de style de la visualisation unifiée (P2).
+   CSS pur, sobre : palette neutre (ardoise), accents portés par les couleurs
+   des pôles présentes dans les données. */
+
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
+  --ink: #1e293b;
+  --ink-soft: #475569;
+  /* Contraste >= 4.5:1 sur --card et --paper (WCAG AA texte courant). */
+  --ink-faint: #64748b;
+  --paper: #f8fafc;
+  --card: #ffffff;
+  --line: #e2e8f0;
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --danger: #b91c1c;
+  --danger-bg: #fef2f2;
+}
+
+/* Focus clavier visible partout (liens, boutons, résumés dépliables). */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
 }
 
 * {
@@ -8,4 +32,794 @@
 
 body {
   margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.55;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- En-tête / pied de page ---------- */
+
+.app-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+
+.app-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.app-header nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.app-header nav a:hover,
+.app-brand:hover {
+  color: var(--accent);
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.app-footer {
+  border-top: 1px solid var(--line);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  background: var(--card);
+}
+
+.app-footer a {
+  color: var(--ink-soft);
+}
+
+/* ---------- Boutons ---------- */
+
+.button {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.button-primary:hover {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.button-disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ---------- Accueil ---------- */
+
+.home {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.home-title {
+  font-size: 2.2rem;
+  margin: 0 0 1rem;
+}
+
+.home-lead {
+  color: var(--ink-soft);
+  margin: 0.5rem 0;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.dropzone {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 2px dashed var(--line);
+  border-radius: 12px;
+  color: var(--ink-soft);
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dropzone-active {
+  border-color: var(--accent);
+  background: #eff6ff;
+}
+
+.privacy-note {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.load-error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 0.95rem;
+}
+
+.load-error ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+/* ---------- Statistiques d'en-tête ---------- */
+
+.stat-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.stat-badge {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  min-width: 9rem;
+}
+
+.stat-badge-value {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.stat-badge-label {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+/* ---------- Barre d'outils des vues (onglets mobiles + impression) ---------- */
+
+.view-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+/* Onglets Diagramme / Détails : n'existent visuellement que sous 768px. */
+.view-tabs {
+  display: none;
+  flex: 1;
+  gap: 0.5rem;
+}
+
+.view-tab {
+  flex: 1;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink-soft);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.view-tab-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Disposition 2 zones ---------- */
+
+.view-layout {
+  display: grid;
+  /* minmax(0, …) partout : sans lui, la piste vaut minmax(auto, …) et le
+     min-content d'un enfant large (heatmap 59 colonnes) force la piste
+     au-delà du viewport sur mobile. */
+  grid-template-columns: minmax(300px, 46%) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 820px) {
+  .view-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.diagram-zone {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+@media (max-width: 820px) {
+  .diagram-zone {
+    position: static;
+  }
+}
+
+.hover-overlay {
+  min-height: 1.4em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.diagram-placeholder {
+  color: var(--ink-faint);
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.sunburst {
+  width: 100%;
+  height: auto;
+  max-width: 620px;
+  /* Tactile : tap net, pas de zoom double-tap ni de halo de tap. */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sunburst path {
+  transition: opacity 0.2s, stroke-width 0.2s;
+}
+
+.sunburst .sector,
+.sunburst .renvoi-sector {
+  cursor: pointer;
+  outline: none;
+}
+
+.sunburst .sector:hover,
+.sunburst .sector:focus-visible {
+  stroke: #fff;
+  stroke-width: 2;
+  opacity: 1 !important;
+}
+
+.sunburst .renvoi-sector:hover,
+.sunburst .renvoi-sector:focus-visible {
+  opacity: 1 !important;
+}
+
+/* Focus clavier sur les secteurs : liseré sombre par-dessus l'état hover. */
+.sunburst .sector:focus-visible,
+.sunburst .renvoi-sector:focus-visible {
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+
+/* Dimming des secteurs non sélectionnés (comme l'original). */
+.sunburst .dimmed {
+  opacity: 0.25;
+}
+
+.sunburst-center {
+  cursor: pointer;
+  outline: none;
+}
+
+.sunburst-center:focus-visible {
+  stroke: var(--accent-strong);
+  stroke-width: 2;
+}
+
+/* ---------- Panneau détails ---------- */
+
+.panel-zone {
+  min-width: 0;
+}
+
+.details-panel {
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  overflow-wrap: break-word;
+}
+
+.details-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.details-description {
+  margin: 0 0 0.75rem;
+  color: var(--ink-soft);
+}
+
+.details-meta {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+}
+
+.details-archetype {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.details-hint {
+  color: var(--ink-faint);
+  font-size: 0.95rem;
+}
+
+.profile-summary {
+  margin: 0.75rem 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+}
+
+.profile-summary .stat-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.3rem 0;
+}
+
+.profile-summary .stat-line + .stat-line {
+  border-top: 1px solid var(--line);
+}
+
+.profile-summary dt {
+  color: var(--ink-soft);
+}
+
+.profile-summary dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---------- HTML narratif (corpus hérité) ---------- */
+
+.narrative {
+  font-size: 0.95rem;
+}
+
+.narrative h3,
+.narrative h4 {
+  margin: 1.1rem 0 0.4rem;
+}
+
+.narrative a {
+  color: var(--accent);
+}
+
+.narrative .verdict-badge,
+.verdict-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--line);
+  color: var(--ink-soft);
+}
+
+.verdict-badge.etablie {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.verdict-badge.renvoi {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.verdict-badge.non-etablie {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.narrative .score-summary {
+  display: block;
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Heatmap calendrier ---------- */
+
+.heatmap {
+  margin: 0;
+  max-width: 100%;
+  overflow-x: auto; /* défile horizontalement plutôt que déborder */
+  -webkit-overflow-scrolling: touch;
+}
+
+.heatmap-grid {
+  display: block;
+}
+
+.heatmap-caption {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.4rem;
+}
+
+.heatmap-month {
+  font-size: 9px;
+  fill: var(--ink-faint);
+}
+
+.heatmap-day {
+  cursor: pointer;
+}
+
+.heatmap-day:hover,
+.heatmap-day:focus {
+  stroke: var(--ink);
+  stroke-width: 1;
+  outline: none;
+}
+
+/* ---------- Vue journée ---------- */
+
+.day-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.day-badge {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.day-nav-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.verdict-block {
+  margin-bottom: 0.75rem;
+}
+
+.verdict-stats {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.pedagogue h3,
+.traces h3,
+.pole-rapport h3 {
+  font-size: 1rem;
+  margin: 1rem 0 0.4rem;
+}
+
+.pedagogue-block {
+  margin: 0.4rem 0;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.pedagogue-block summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.traces ul,
+.pole-rapport ul,
+.passages ul,
+.exclus ul {
+  margin: 0.4rem 0;
+  padding-left: 1.25rem;
+}
+
+.trace-contexte,
+.exclus-raison {
+  color: var(--ink-soft);
+}
+
+.passages {
+  margin-top: 1rem;
+}
+
+.passages summary,
+.exclus summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.exclus {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  font-size: 0.92rem;
+}
+
+.exclus h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.not-found {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* ---------- Mobile (< 768px) : onglets + tactile (cahier §1) ---------- */
+
+@media (max-width: 767px) {
+  .app-main {
+    padding: 0.75rem 0.75rem 5.5rem; /* place pour la barre d'onglets fixée en bas */
+  }
+
+  /* Onglets Diagramme / Détails + Imprimer, fixés en bas : utilisables au
+     pouce, à une main. Les deux zones restent dans le DOM, la CSS masque
+     l'inactive. */
+  .view-toolbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    margin: 0;
+    padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom));
+    background: var(--card);
+    border-top: 1px solid var(--line);
+  }
+
+  .view-tabs {
+    display: flex;
+  }
+
+  .view-layout[data-tab='diagramme'] .panel-zone {
+    display: none;
+  }
+
+  .view-layout[data-tab='details'] .diagram-zone {
+    display: none;
+  }
+
+  /* Zones tactiles >= 44px (boutons, onglets, navigation entre jours). */
+  .button,
+  .print-button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Le sunburst prend toute la largeur du conteneur (viewBox -> vectoriel). */
+  .sunburst {
+    max-width: 100%;
+  }
+
+  /* Heatmap : cellules agrandies (~24px) et défilement horizontal au doigt. */
+  .heatmap {
+    width: 100%;
+  }
+
+  .heatmap-grid {
+    height: 246px;
+    width: auto;
+  }
+
+  /* Taille de police >= 14px : remonte les corps de texte < 0.875rem. */
+  .stat-badge-label,
+  .verdict-badge,
+  .narrative .verdict-badge,
+  .heatmap-caption,
+  .privacy-note,
+  .narrative .score-summary,
+  .app-footer {
+    font-size: 0.875rem;
+  }
+
+  .narrative,
+  .hover-overlay {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Impression (esprit du bloc print de l'original, l.644) ----------
+   Une cartographie = un document : sunburst pleine largeur, puis le panneau
+   détails de la sélection (ou la synthèse kairos en vue merge). Chrome et
+   navigation masqués, fonds blancs, liens sans soulignement bleu, les
+   <details> sont ouverts par App (beforeprint) et dépliés ici en secours. */
+
+@media print {
+  :root {
+    --paper: #fff;
+    --card: #fff;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  .app-header,
+  .app-footer,
+  .app-header nav,
+  .day-nav,
+  .view-toolbar,
+  .heatmap,
+  .hover-overlay,
+  .home-actions,
+  .dropzone,
+  .diagram-placeholder {
+    display: none !important;
+  }
+
+  .app-main {
+    max-width: none;
+    padding: 0;
+  }
+
+  /* Neutralise les onglets mobiles : tout est imprimé. */
+  .view-layout,
+  .view-layout[data-tab='diagramme'] .panel-zone,
+  .view-layout[data-tab='details'] .diagram-zone {
+    display: block !important;
+  }
+
+  .diagram-zone {
+    position: static;
+    border: none;
+    padding: 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .sunburst {
+    display: block;
+    width: 100%;
+    max-width: 16cm;
+    margin: 0 auto;
+  }
+
+  .sunburst path {
+    transition: none;
+  }
+
+  .panel-zone {
+    margin-top: 0.75cm;
+  }
+
+  .details-panel,
+  .exclus,
+  .pedagogue-block,
+  .profile-summary,
+  .stat-badge {
+    border: none;
+    padding: 0;
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .exclus {
+    margin-top: 0.5cm;
+  }
+
+  /* Liens : texte noir, sans soulignement bleu (le lecteur papier ne clique pas). */
+  a,
+  .narrative a,
+  .app-main a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Détails dépliés à l'impression (secours CSS si beforeprint n'a pas agi). */
+  details > summary {
+    list-style: none;
+    cursor: default;
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details::details-content {
+    content-visibility: visible !important;
+    display: block !important;
+  }
+
+  /* Pagination propre. */
+  h2,
+  h3,
+  h4,
+  .details-title {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .verdict-block,
+  .pedagogue-block,
+  .profile-summary .stat-line,
+  blockquote,
+  li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 }

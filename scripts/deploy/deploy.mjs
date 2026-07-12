@@ -20,14 +20,12 @@ import { Readable, Writable } from 'node:stream'
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 const TARGETS = {
-  // First milestone: fully static site in the webroot.
+  // First milestone: fully static site in the webroot. Vite copies web/public/
+  // (including data/ and .htaccess) into web/dist at build time.
   static: {
     remoteRoot: 'www',
     manifestPath: 'www/.deploy-manifest.json',
-    sources: [
-      { localDir: 'web/dist', remotePrefix: '' },
-      { localDir: 'web/public/data', remotePrefix: 'data' },
-    ],
+    sources: [{ localDir: 'web/dist', remotePrefix: '' }],
   },
 }
 
