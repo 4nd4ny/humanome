@@ -1535,3 +1535,351 @@ body {
     page-break-inside: avoid;
   }
 }
+
+/* ---------- Espace apprenant : mes cartographies (P8, chantier C) ----------
+   Liste locale (IndexedDB) ; la copie serveur (opt-in §6.2) porte le badge
+   « copie serveur » et débloque le partage par lien + mot de passe. */
+
+.carto-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 860px;
+}
+
+.carto-panel-intro,
+.carto-empty {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.notice-info {
+  margin: 0;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.notice-error {
+  margin: 0;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: var(--danger-bg);
+  font-size: 0.92rem;
+  color: var(--danger);
+}
+
+.carto-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.carto-item {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.carto-item-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.carto-type,
+.carto-date {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+.badge-serveur {
+  padding: 0.1rem 0.55rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--accent-strong);
+  background: var(--paper);
+  white-space: nowrap;
+}
+
+.carto-item-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.carto-visibility {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.carto-visibility select {
+  margin-left: 0.3rem;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.carto-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+/* Bloc opt-in RGPD : la copie serveur est une décision explicite (§6.2). */
+.carto-optin {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.carto-optin p {
+  margin: 0 0 0.6rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.carto-optin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---------- Dialogue de partage employeur (lien + mot de passe, §3.6) ---------- */
+
+.share-dialog {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.share-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.share-dialog-head h3,
+.share-dialog h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.share-dialog-hint,
+.share-dialog-empty {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.share-dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 420px;
+}
+
+.share-dialog-form label {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.share-dialog-form input {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.share-dialog-form button {
+  align-self: flex-start;
+}
+
+.share-dialog-created {
+  padding: 0.6rem 0.8rem;
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.share-dialog-created p {
+  margin: 0 0 0.4rem;
+  font-size: 0.9rem;
+}
+
+.share-url {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 0.15rem 0.35rem;
+  border-radius: 6px;
+  background: var(--paper);
+  font-size: 0.85rem;
+}
+
+.share-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.share-links li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  font-size: 0.9rem;
+}
+
+.share-link-revoked {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* ---------- Mes données : export / import d'archive (ADR-006, §6.1/§6.3) ---------- */
+
+.mes-donnees {
+  margin-top: 0.4rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.mes-donnees h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.mes-donnees p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.mes-donnees-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---------- Vue partage public #/partage/<token> (P8.5) ---------- */
+
+.share-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.share-view h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.share-banner {
+  margin: 0;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--card);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.share-garantie {
+  margin: 0;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  background: #f0fdf4;
+  font-size: 0.9rem;
+  color: #166534;
+}
+
+.share-unlock {
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.share-unlock h1 {
+  font-size: 1.25rem;
+}
+
+.share-unlock p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.share-unlock label {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.share-unlock input {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.share-unlock button {
+  align-self: flex-start;
+}
+
+.share-unlock [role='alert'] {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--danger);
+}

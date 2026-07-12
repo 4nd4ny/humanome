@@ -1,7 +1,10 @@
 # Dev-local overrides (auto-loaded by `docker compose up`) — NOT deployed.
 # M5 integration: run the public demo proxy against the mock provider
 # (schemas/fixtures/) so no ANTHROPIC_API_KEY is needed locally.
+# M6 integration: a full 3-day wizard run through the proxy costs 24 calls ;
+# the production per-IP quota (20/h) blocks it mid-run — raised in DEV ONLY.
 services:
   php:
     environment:
       DEMO_PROVIDER: mock
+      DEMO_PER_IP_PER_HOUR: 500

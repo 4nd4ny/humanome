@@ -188,6 +188,22 @@ async function deployApi(env) {
       console.log(`import-referentiel: HTTP ${imp.status} ${(await imp.text()).slice(0, 200)}`)
       if (!imp.ok) throw new Error('referentiel import failed')
     }
+
+    // Seed/refresh the published default prompt packages (idempotent by hash)
+    const packagesDir = join(repoRoot, 'build/prompt-packages')
+    if (statSync(packagesDir, { throwIfNoEntry: false })?.isDirectory()) {
+      for (const file of readdirSync(packagesDir).filter((f) => f.endsWith('.json'))) {
+        const imp = await fetch(`${base}/api/admin/import-prompt-package`, {
+          method: 'POST',
+          headers: { 'X-Migrate-Token': env.MIGRATE_TOKEN, 'Content-Type': 'application/json' },
+          body: readFileSync(join(packagesDir, file), 'utf8'),
+        })
+        console.log(
+          `import-prompt-package ${file}: HTTP ${imp.status} ${(await imp.text()).slice(0, 160)}`,
+        )
+        if (!imp.ok) throw new Error(`prompt package import failed (${file})`)
+      }
+    }
   } else {
     console.warn('MIGRATE_TOKEN not set in .env.deploy — skipping remote migrations')
   }

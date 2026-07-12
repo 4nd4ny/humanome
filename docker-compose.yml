@@ -13,6 +13,10 @@ services:
       DB_USER: humanome
       DB_PASSWORD: humanome_dev
       MIGRATE_TOKEN: dev_migrate_token
+      # Dev-only master key for the encrypted per-user LLM API keys (AD-4,
+      # sodium crypto_secretbox, 64 hex chars = 32 bytes). Production keeps
+      # its own key in ~/app/shared/.env (outside the webroot) — NEVER this one.
+      SODIUM_MASTER_KEY: 700f815485d7975c031ac0989030cecb3b99993ff1fad27dae9a6a54aa2a0d32
     depends_on:
       mysql:
         condition: service_healthy

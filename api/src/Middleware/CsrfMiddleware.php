@@ -31,11 +31,19 @@ final class CsrfMiddleware implements MiddlewareInterface
      * /api/admin/migrate carries its own bearer token (ADR-008); login and
      * register cannot hold a CSRF token yet (the token is delivered by the
      * session they open) and are rate-limited instead.
+     *
+     * /api/llm (M6): the demo proxy is a visitor route already fenced by its
+     * own guards (single-use proof of work, honeypot, per-IP and daily
+     * quotas — routes/llm.php). A logged-in user must be able to call it
+     * exactly like a visitor, without a CSRF header; the exemption is safe
+     * because the route grants nothing based on the session (no per-account
+     * state read or written). Documented in docs/autorisations.md.
      */
     private const EXEMPT_PATHS = [
         '/api/admin/migrate',
         '/api/auth/login',
         '/api/auth/register',
+        '/api/llm',
     ];
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

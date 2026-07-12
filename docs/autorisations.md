@@ -26,10 +26,17 @@ $app->post('/referentiel/versions', $handler)
 6. **CSRF** (P3.3, `api/src/Middleware/CsrfMiddleware.php`) : toute méthode
    mutante (POST/PUT/PATCH/DELETE) sur `/api/**` exige l'en-tête
    `X-CSRF-Token` égal au jeton de session (double-submit, `hash_equals`).
-   Exceptions : `/api/admin/migrate` (jeton propre, ADR-008) et
-   `login`/`register` (pas encore de session porteuse de jeton ; protégés par
-   rate-limit). Le jeton est délivré par `GET /api/auth/me` et à l'ouverture de
-   session (réponses de `login` et `register`).
+   Exceptions : `/api/admin/migrate` et `/api/admin/import-*` (jeton propre
+   `X-Migrate-Token`, ADR-008), `login`/`register` (pas encore de session
+   porteuse de jeton ; protégés par rate-limit), et `POST /api/llm` (M6) :
+   route visiteur déjà défendue par ses propres gardes (preuve de travail à
+   usage unique, honeypot, quotas IP/horaire et budget quotidien — P6) ; un
+   utilisateur connecté doit pouvoir l'appeler exactement comme un visiteur,
+   sans en-tête CSRF. Exemption sûre : la route ne lit ni n'écrit AUCUN état
+   de compte (la session n'y confère rien), donc un tir forgé cross-site n'y
+   gagne rien de plus qu'un tir anonyme. Le jeton est délivré par
+   `GET /api/auth/me` et à l'ouverture de session (réponses de `login` et
+   `register`).
 
 ## Routes actuelles (P0–P3)
 
@@ -42,6 +49,32 @@ $app->post('/referentiel/versions', $handler)
 | `/api/auth/logout` | POST | Tout utilisateur connecté | Session + CSRF |
 | `/api/auth/me` | GET | Tout utilisateur connecté | Session (401 sinon) |
 | `/api/auth/account` | DELETE | Tout utilisateur connecté (son propre compte) | Session + CSRF ; purge réelle + audit anonymisé (§6.3) |
+
+## Routes actuelles (P8 — M6) : espace apprenant
+
+Toutes les routes mutantes passent le CSRF global (sauf exemptions du
+principe 6). « Propriétaire » = `user_id` de la ressource = utilisateur de la
+session ; un id étranger répond `404` exactement comme un id inexistant
+(pas d'oracle d'existence).
+
+| Route | Méthode | Accès | Garde |
+|---|---|---|---|
+| `/api/cartographies` | POST | `apprenant` | Rôle + CSRF ; **le POST est l'opt-in stockage serveur** (`opt_in_at = NOW()` posé par l'INSERT, §6.2) |
+| `/api/cartographies` | GET | `apprenant` | Rôle ; liste de métadonnées, **jamais** le document |
+| `/api/cartographies/{id}` | GET | `apprenant`, propriétaire | Rôle + propriété ; document inclus |
+| `/api/cartographies/{id}` | PATCH | `apprenant`, propriétaire | Rôle + propriété + CSRF ; titre/visibilité uniquement |
+| `/api/cartographies/{id}` | DELETE | `apprenant`, propriétaire | Rôle + propriété + CSRF ; purge réelle (ligne + share_links par FK) |
+| `/api/cartographies/{id}/share` | POST | `apprenant`, propriétaire | Rôle + propriété + CSRF ; jeton stocké haché (sha256), mdp en `password_hash` ; audit `share_created` (ids seulement) |
+| `/api/cartographies/{id}/shares` | GET | `apprenant`, propriétaire | Rôle + propriété ; jamais le jeton en clair |
+| `/api/shares/{shareId}` | DELETE | `apprenant`, propriétaire | Rôle + propriété + CSRF ; révocation (`revoked_at`) ; audit `share_revoked` |
+| `/api/share/{token}` | POST (mdp) | **Public** (employeur, §3.6 — pas de compte) | Rate-limit IP (buckets hachés, /64 IPv6 via `ClientIp`) ; 404 homogène inconnu/expiré/révoqué (anti-énumération, vérif factice du mdp) ; 403 mauvais mdp ; `garantie: null` jusqu'à P9. Si le navigateur porte une session, le SPA joint son jeton CSRF comme partout |
+| `/api/training/progress` | GET/PUT | Connecté (tout rôle), sa propre progression | Session (+ CSRF sur PUT) |
+| `/api/keys` | PUT | Connecté, ses propres clés | Session + CSRF ; chiffrement sodium `crypto_secretbox`, nonce par entrée, clé maîtresse `SODIUM_MASTER_KEY` (hors webroot) ; 503 explicite si non configurée |
+| `/api/keys` | GET | Connecté, ses propres clés | Session ; `[{provider, createdAt}]`, **jamais** la clé |
+| `/api/keys/{provider}` | GET | Connecté, **propriétaire authentifié seulement** | Session ; renvoie la clé déchiffrée — synchronisation AD-4 : le run s'exécute dans le navigateur (ADR-001) et a besoin de la clé côté client |
+| `/api/keys/{provider}` | DELETE | Connecté, ses propres clés | Session + CSRF ; suppression réelle |
+| `/api/prompt-packages`, `/api/prompt-packages/{id}/{version}` | GET | Public (comme le référentiel) | — ; versions **publiées** uniquement : un paquet publié est un artefact de méthode, sans donnée d'apprenant (la matrice P10 ci-dessous garde « connecté » pour l'atelier complet) |
+| `/api/admin/import-prompt-package` | POST | Technique (script de déploiement, ADR-008) | Jeton `MIGRATE_TOKEN` dédié, hors rôles ; import idempotent par hash |
 
 ## Routes prévues (P4–P12) — matrice cible
 
@@ -64,17 +97,16 @@ moment du prompt correspondant.
 |---|---|---|
 | `/api/llm` (proxy plateforme) | POST | Visiteur et connectés — garde-fous anti-abus (quotas IP/global, preuve de travail), pas de rôle |
 
-### P8 — Espace apprenant (cahier §3.2, §6)
+### P8 — Espace apprenant (cahier §3.2, §6) — **implémenté en M6**, voir la matrice « Routes actuelles (P8) » ci-dessus
 
-| Route | Méthode | Accès |
-|---|---|---|
-| `/api/cartographies` (opt-in stockage serveur) | GET/POST/PUT/DELETE | `apprenant` — propriétaire uniquement |
-| `/api/cartographies/{id}/share` (lien + mdp) | POST/DELETE | `apprenant` — propriétaire uniquement |
-| `/api/share/{token}` (consultation employeur) | GET/POST (mdp) | Public — protégé par le mot de passe du lien, pas par un compte (§3.6) |
-| `/api/account/export` (archive pivot AD-6) | GET | Connecté — son propre compte |
-| `/api/account/import` | POST | Connecté — son propre compte |
-| `/api/training/progress` | GET/PUT | Connecté — sa propre progression (contenu de formation public en lecture, §4.6) |
-| `/api/account/api-keys` (clés chiffrées, AD-4) | GET/PUT/DELETE | Connecté — ses propres clés |
+Écarts au prévisionnel, actés par le contrat d'API M6 :
+- l'édition d'une cartographie est un `PATCH` (titre/visibilité), pas un `PUT` ;
+- la révocation d'un lien est `DELETE /api/shares/{shareId}` (le lien a sa
+  propre identité), pas un DELETE sur `/cartographies/{id}/share` ;
+- les clés vivent sous `/api/keys` (et non `/api/account/api-keys`) ;
+- l'archive export/import (AD-6) reste **locale au navigateur** (client-first,
+  §6.1) : pas de routes `/api/account/export|import` en v1 — l'archive se
+  construit côté client depuis le portfolio local + les cartographies.
 
 ### P9 — Espace cartographe (cahier §3.3)
 
@@ -126,6 +158,14 @@ Marketplace employeur (bibliothèque payante des cartographies consenties,
 - Garde : `api/src/Middleware/RequireRole.php` ; CSRF :
   `api/src/Middleware/CsrfMiddleware.php` ; routes :
   `api/src/routes/auth.php`.
+- P8 (M6) : routes `api/src/routes/{cartographies,share,training,keys,packages}.php` ;
+  domaine `api/src/Cartographies/`, `api/src/Share/`, `api/src/Keys/`,
+  `api/src/Packages/` ; migration `scripts/migrations/007_cartographies_run_meta.sql` ;
+  paquet par défaut `scripts/build-default-prompt-package.mjs` +
+  `scripts/import-prompt-packages.php`.
 - Tests : `api/tests/AuthRoutesTest.php`, `AuthCsrfTest.php`,
   `AuthRateLimitTest.php`, `AuthRequireRoleTest.php`,
-  `AuthAccountDeletionTest.php`.
+  `AuthAccountDeletionTest.php` ; P8 : `CartographiesTest.php`,
+  `CartographiesCsrfTest.php` (matrice CSRF + exemption `/api/llm`),
+  `CartographiesPurgeTest.php` (purge RGPD croisée avec 004/005),
+  `ShareTest.php`, `TrainingTest.php`, `KeysTest.php`, `PackagesTest.php`.

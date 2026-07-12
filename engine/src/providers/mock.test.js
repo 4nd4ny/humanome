@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { createMockProvider } from './mock.js'
 
 describe('createMockProvider', () => {
@@ -54,10 +54,25 @@ describe('createMockProvider', () => {
   })
 
   it('latence simulée optionnelle (et annulable via signal)', async () => {
-    const mock = createMockProvider({ latencyMs: 1 })
-    const before = Date.now()
-    await mock.complete({ model: 'm', prompt: 'p' })
-    expect(Date.now() - before).toBeGreaterThanOrEqual(1)
+    // Fake timers : mesurer 1 ms à l'horloge murale est non déterministe
+    // (setTimeout peut se résoudre dans le même tick de Date.now — flake
+    // constatée sous charge CPU pendant l'intégration M6).
+    vi.useFakeTimers()
+    try {
+      const mock = createMockProvider({ latencyMs: 50 })
+      let resolved = false
+      const withLatency = mock.complete({ model: 'm', prompt: 'p' }).then((r) => {
+        resolved = true
+        return r
+      })
+      await vi.advanceTimersByTimeAsync(49)
+      expect(resolved).toBe(false)
+      await vi.advanceTimersByTimeAsync(1)
+      await withLatency
+      expect(resolved).toBe(true)
+    } finally {
+      vi.useRealTimers()
+    }
 
     const slow = createMockProvider({ latencyMs: 60000 })
     const controller = new AbortController()

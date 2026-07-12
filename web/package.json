@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:dist": "node scripts/smoke-dist.mjs",
+    "test:e2e": "playwright test",
     "validate:corpus": "node ../scripts/validate-corpus.mjs"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@testing-library/react": "^16.1.0",
     "@vitejs/plugin-react": "^4.3.4",
     "jsdom": "^25.0.1",
