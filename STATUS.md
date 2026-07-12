@@ -2,9 +2,31 @@
 
 ## En cours
 
-- **M5 (P6+P7)** : proxy LLM + démo publique « Essayer » + module portfolio.
+- **M6 (P8)** : espace apprenant complet.
 
 ## Fait
+
+- 2026-07-12 — **M5 terminé (P6+P7) : démo LLM publique VALIDÉE EN PRODUCTION** (run complet
+  réel : collage → PoW → 7 pôles Sonnet → visualisation Journée interactive sur humanome.xyz/#/essayer).
+  P6 : proxy /api/llm (provider/model/plafonds imposés serveur, clé jamais exposée), garde-fous
+  tous VÉRIFIÉS EN LIGNE (honeypot, PoW HMAC one-time — rejeu 429, quota IP/h — 429 vécu,
+  coupe-circuit budget quotidien — 503 vécu, plafond d'entrée), gdoc-text anti-SSRF, page
+  Essayer (progression par pôle, annulation, zéro persistance). P7 : portfolio client-first
+  (coller/.txt/.md/Google Docs, segmentation en journées testée ×30, IndexedDB, ADR-010
+  repli éditeur — Sqilium est une app Rails non intégrable). Audit abuseur : faille ÉLEVÉE
+  corrigée (rotation IPv6 /64 → buckets par préfixe, aussi appliqué à l'auth).
+  **Fiabilisation LLM apprise en prod** (~20 runs de debug, chaque échec = un correctif) :
+  thinking par défaut du modèle mange le budget (→ thinking disabled) ; JSON indenté double
+  le coût (→ compact monoligne exigé) ; malformations stochastiques (→ tool_use forcé =
+  JSON garanti par l'API + retry unique par appel) ; glissements sémantiques (→ normalisation
+  déterministe des invariants du corpus + dégradation ciblée pilotée par les chemins d'erreur
+  ajv + validation par pôle) ; kairos volumineux (→ bornes de longueur + kairosOptional :
+  dégradation gracieuse à null avec note UI) ; timeouts (→ curl 150 s, le LB OVH suit ;
+  8192 tokens de budget). Config prod (env ~/app/shared/.env) : Sonnet 5, 8192 tokens,
+  40 req/h/IP, PoW 16 bits, budget 15 $/jour (les compteurs de la journée de test sont
+  consommés ; ramener à 5-10 $ selon usage réel).
+  Backlog M5 : panneau pôle sans rapport (dégradé) affiche l'état vide — afficher audit +
+  passages ; envisager le schéma JSON complet dans le tool input_schema pour ancrer kairos.
 
 - 2026-07-12 — **M4 terminé (P5) : moteur complet, gate de parité franchie** (rapport :
   docs/rapport-parite-moteur.md). Étage A (merge numérique) : PARITÉ 100 % — 132 618 valeurs
