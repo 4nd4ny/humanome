@@ -66,10 +66,22 @@ révèlent pas le contenu des gabarits, qui porte la valeur.
 - Tables `twin9_credits` (solde en **micro-USD** par compte) et
   `twin9_credit_events` (recharges et débits, avec tokens réels et modèle —
   compteurs uniquement, jamais de contenu).
-- **Débit par appel** : tokens réels renvoyés par l'API Anthropic ×
-  tarif du modèle × **marge** (configurable admin, défaut ×1,5). Refus
-  d'appel si solde insuffisant (le client sait s'arrêter proprement et
-  reprendre après recharge).
+- **Débit par appel** : réservation ATOMIQUE du pire-cas avant l'appel
+  (revue de sécurité, finding A), réconciliée ensuite aux tokens réels
+  renvoyés par l'API Anthropic × tarif du modèle × **marge** (configurable
+  admin ; **défaut ×1,10 — décision du propriétaire, 2026-07-13** : les +10 %
+  couvrent les frais PayPal et participent à l'hébergement OVH, au nom de
+  domaine et au budget Haiku de la démo gratuite ; les packs démarrent à
+  10 USD car le frais FIXE PayPal pèserait ~9 % d'un pack de 5 USD à lui
+  seul). Refus d'appel si solde insuffisant (le client s'arrête proprement
+  et reprend après recharge).
+- **Factures récapitulatives et suivi** (demande du propriétaire) :
+  agrégation déterministe du grand-livre par mois — numéro stable
+  `HUM-TW9-{AAAAMM}-{compte}`, consommation nette par modèle, recharges
+  PayPal, ajustements — pour les particuliers ET les comptes établissement
+  (même grand-livre). `GET /api/twin9/facture`, `GET /api/twin9/depenses`
+  (tableau de bord quotas/dépenses), `GET /api/twin9/admin/comptes`
+  (surveillance admin). Rendu imprimable côté front.
 - **PayPal Orders v2 en redirection** (pas de SDK JS → pas d'assouplissement
   CSP ; pas de webhook nécessaire au MVP) : `POST /api/twin9/credit/paypal/creer`
   (montant d'un pack) → URL d'approbation PayPal → retour sur
