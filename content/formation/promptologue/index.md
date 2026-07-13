@@ -2,7 +2,7 @@
 parcours: promptologue
 titre: "Formation promptologue"
 description: "Prompt engineering appliqué à la cartographie : concevoir, versionner, tester et sécuriser des prompt-packages."
-statut: squelette
+statut: complet
 ---
 
 # Formation promptologue
@@ -15,9 +15,9 @@ puis prouver sur banc d'essai que la nouvelle version fait mieux que la
 précédente. Ce parcours part de la logique du prompt de base (le protocole
 adversarial Greffier / pédagogue), enseigne le cycle de vie d'un
 prompt-package (brouillon, publication immuable, semver, changelog), les
-bancs d'essai (A/B, consistance multi-run), la comparaison au Golden Prompt,
-et se termine par ce qui n'est pas négociable : la sécurité d'un code qui
-s'exécute chez les utilisateurs.
+bancs d'essai (A/B, consistance multi-run), le positionnement face à l'étalon
+interne (le Golden Prompt), et se termine par ce qui n'est pas négociable : la
+sécurité d'un code qui s'exécute chez les utilisateurs.
 
 Le parcours est public en lecture ; votre progression par chapitre est
 rattachée à votre compte (cahier des charges, §4.6).
@@ -35,5 +35,6 @@ rattachée à votre compte (cahier des charges, §4.6).
 
 ---
 
-*Ce document est un squelette de contenu (plan et introductions) prévu par le
-plan de construction (P10) ; le contenu final des sections reste à rédiger.*
+*Les six chapitres de ce parcours sont rédigés (contenu complet). Les
+parcours, routes et libellés cités renvoient à l'atelier promptologue réel
+(`#/promptologue`).*

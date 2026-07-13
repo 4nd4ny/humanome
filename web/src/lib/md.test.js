@@ -44,6 +44,21 @@ describe('mdToHtml — sous-ensemble Markdown', () => {
     const html = mdToHtml('> **Objectifs**\n>\n> - premier')
     expect(html.startsWith('<blockquote>')).toBe(true)
     expect(html).toContain('<strong>Objectifs</strong>')
+    // La liste à l'intérieur de la citation doit rester une VRAIE liste, pas
+    // être fusionnée dans le paragraphe qui précède (motif des chapitres de
+    // formation : « Objectifs d'apprentissage » suivis d'une liste à puces).
+    expect(html).toContain('<ul><li>premier</li></ul>')
+  })
+
+  it('rend une liste multi-items à l’intérieur d’une citation (motif « Objectifs d’apprentissage »)', () => {
+    const html = mdToHtml(
+      '> **Objectifs d’apprentissage**\n>\n> À l’issue de ce chapitre, vous saurez :\n> - un\n> - deux\n> - trois',
+    )
+    expect(html).toBe(
+      '<blockquote><p><strong>Objectifs d’apprentissage</strong></p>' +
+        '<p>À l’issue de ce chapitre, vous saurez :</p>' +
+        '<ul><li>un</li><li>deux</li><li>trois</li></ul></blockquote>',
+    )
   })
 
   it('fusionne les lignes consécutives en un paragraphe', () => {

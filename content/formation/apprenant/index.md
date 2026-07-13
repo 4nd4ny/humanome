@@ -2,7 +2,7 @@
 parcours: apprenant
 titre: "Formation apprenant — mode expert"
 description: "Comment bien rédiger son portfolio réflexif pour obtenir une bonne cartographie."
-statut: squelette
+statut: complet
 ---
 
 # Formation apprenant — mode expert
@@ -31,5 +31,6 @@ rattachée à votre compte (cahier des charges, §4.6).
 
 ---
 
-*Ce document est un squelette de contenu (plan et introductions) prévu par le
-plan de construction (P8) ; le contenu final des sections reste à rédiger.*
+*Les six chapitres de ce parcours sont rédigés et complets. Le parcours est
+public en lecture ; cochez « Chapitre terminé » au fil de votre progression pour
+la suivre depuis votre espace apprenant.*

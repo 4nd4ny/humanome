@@ -2,7 +2,7 @@
 parcours: cartographe
 titre: "Formation cartographe"
 description: "Rôle, méthode de relecture, garantie humaine : devenir le garde-fou d'une cartographie assistée par IA."
-statut: squelette
+statut: complet
 ---
 
 # Formation cartographe
@@ -31,8 +31,3 @@ rattachée à votre compte (cahier des charges, §4.6).
 | 4 | [Les micro-classes RESPIRE](04-les-micro-classes-respire.md) | 5-6 élèves en cartographie mutuelle : le dispositif d'apprentissage du regard cartographique. |
 | 5 | [Annoter, corriger, garantir](05-annoter-corriger-garantir.md) | Les trois gestes de l'espace cartographe et la portée de la signature horodatée. |
 | 6 | [Comparer des versions, lire la consistance](06-comparer-versions-et-consistance.md) | Deux prompts, N runs : distinguer une compétence fragile d'un prompt instable. |
-
----
-
-*Ce document est un squelette de contenu (plan et introductions) prévu par le
-plan de construction (P9) ; le contenu final des sections reste à rédiger.*

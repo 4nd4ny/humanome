@@ -77,6 +77,51 @@ function inline(s, { rewriteLink } = {}) {
   return out
 }
 
+/** @param {string} t ligne déjà trim() @returns {boolean} item de liste «-»/«*» */
+const isItem = (t) => /^[-*]\s+/.test(t)
+
+/**
+ * Rend le corps d'une citation (lignes déjà dépouillées de leur « > ») :
+ * mêmes règles que le niveau racine (paragraphes + listes), mais imbriquées
+ * dans le `<blockquote>` — sans quoi une liste à puces à l'intérieur d'une
+ * citation (ex. les « Objectifs d'apprentissage ») se retrouve fusionnée en
+ * un seul paragraphe (voir tests).
+ * @param {string[]} quoteLines lignes du bloc, « > » déjà retiré
+ * @param {{rewriteLink?: (href: string) => string}} options
+ * @returns {string} HTML brut, sans l'enveloppe <blockquote>
+ */
+function blockquoteBody(quoteLines, options) {
+  const out = []
+  let i = 0
+  while (i < quoteLines.length) {
+    const t = quoteLines[i].trim()
+    if (t === '') {
+      i += 1
+      continue
+    }
+    if (isItem(t)) {
+      out.push('<ul>')
+      while (i < quoteLines.length) {
+        const line = quoteLines[i].trim()
+        if (line === '' || !isItem(line)) break
+        out.push(`<li>${inline(line.replace(/^[-*]\s+/, ''), options)}</li>`)
+        i += 1
+      }
+      out.push('</ul>')
+      continue
+    }
+    const para = []
+    while (i < quoteLines.length) {
+      const line = quoteLines[i].trim()
+      if (line === '' || isItem(line)) break
+      para.push(line)
+      i += 1
+    }
+    out.push(`<p>${inline(para.join(' '), options)}</p>`)
+  }
+  return out.join('')
+}
+
 /**
  * Convertit un Markdown (sans front-matter) en HTML NON assaini.
  * Interne : les appelants passent par renderMarkdown (DOMPurify).
@@ -87,7 +132,6 @@ function inline(s, { rewriteLink } = {}) {
  */
 export function mdToHtml(md, options = {}) {
   const lines = String(md ?? '').replace(/\r\n/g, '\n').split('\n')
-  const isItem = (t) => /^[-*]\s+/.test(t)
   const out = []
   let i = 0
 
@@ -112,15 +156,7 @@ export function mdToHtml(md, options = {}) {
         quote.push(lines[i].trim().replace(/^>\s?/, ''))
         i += 1
       }
-      // Lignes du bloc regroupées ; les lignes vides («>» seul) séparent des
-      // paragraphes internes.
-      const paragraphs = quote
-        .join('\n')
-        .split(/\n{2,}|\n(?=\s*$)/)
-        .map((p) => p.split('\n').map((l) => l.trim()).filter(Boolean).join(' '))
-        .filter(Boolean)
-        .map((p) => `<p>${inline(p, options)}</p>`)
-      out.push(`<blockquote>${paragraphs.join('')}</blockquote>`)
+      out.push(`<blockquote>${blockquoteBody(quote, options)}</blockquote>`)
       continue
     }
 
