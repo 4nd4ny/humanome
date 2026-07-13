@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   currentRoute,
   dayHash,
+  guidesHash,
   isValidIsoDate,
   parseHash,
   referentielHash,
@@ -113,6 +114,33 @@ describe('routes référentiel et compte (P4.4)', () => {
     expect(referentielHash()).toBe('#/referentiel')
     expect(referentielHash('1.01')).toBe('#/referentiel/1.01')
     expect(parseHash(referentielHash('4.07'))).toEqual({ name: 'referentiel', code: '4.07' })
+  })
+})
+
+describe('routes du hub des guides', () => {
+  it('route vers l’accueil du hub, un parcours, un chapitre', () => {
+    expect(parseHash('#/guides')).toEqual({ name: 'guides', parcours: null, chapter: null })
+    expect(parseHash('#/guides/visiteur')).toEqual({
+      name: 'guides',
+      parcours: 'visiteur',
+      chapter: null,
+    })
+    expect(parseHash('#/guides/employeur/02-lire-un-sunburst')).toEqual({
+      name: 'guides',
+      parcours: 'employeur',
+      chapter: '02-lire-un-sunburst',
+    })
+  })
+
+  it('guidesHash est l’inverse de parseHash', () => {
+    expect(guidesHash()).toBe('#/guides')
+    expect(guidesHash('apprenant')).toBe('#/guides/apprenant')
+    expect(guidesHash('apprenant', '01-intro')).toBe('#/guides/apprenant/01-intro')
+    expect(parseHash(guidesHash('cartographe', '03-methode'))).toEqual({
+      name: 'guides',
+      parcours: 'cartographe',
+      chapter: '03-methode',
+    })
   })
 })
 

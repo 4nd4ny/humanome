@@ -242,6 +242,89 @@ body {
   }
 }
 
+/* ---------- Hub des guides / manuels ---------- */
+
+.guides-lede {
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin: 0.25rem 0 1.5rem;
+}
+
+.guides-family {
+  margin-bottom: 1.75rem;
+}
+
+.guides-family h2 {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+.guides-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.9rem;
+}
+
+.guides-card a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.guides-card a:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.guides-card-audience {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+}
+
+.guides-card-titre {
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.guides-card-pitch {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.guides-card-cta {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 0.2rem;
+}
+
+.guides-breadcrumb {
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+  margin: 0 0 1rem;
+}
+
+.guides-espace-link {
+  margin-top: 1.5rem;
+}
+
 .app-main {
   flex: 1;
   width: 100%;

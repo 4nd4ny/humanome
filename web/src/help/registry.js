@@ -144,6 +144,18 @@ const BASE = {
       '« Golden Prompt » : import privé, autorisation d’accès au cas par cas.',
     ],
   },
+  guides: {
+    titre: 'Guides & prise en main',
+    intro:
+      'Un manuel par profil d’utilisateur : ce que vous pouvez faire sur humanome.xyz et par où ' +
+      'passer pour le faire. Tous les guides sont en accès libre ; choisissez celui qui correspond ' +
+      'à votre rôle.',
+    points: [
+      'Visiteur, apprenant, employeur, établissement, cartographe, épistémiarque, promptologue : chacun a son parcours.',
+      'Votre progression est cochée chapitre par chapitre (rattachée à votre compte si vous êtes connecté).',
+      'Si vous avez un rôle, votre espace dédié propose la même formation avec votre suivi.',
+    ],
+  },
   confidentialite: {
     titre: 'Confidentialité',
     intro:

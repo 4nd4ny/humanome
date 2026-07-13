@@ -23,6 +23,7 @@ export const DISCOVER_ITEMS = [
   { href: '#/merge', label: 'Cartographie', route: 'merge' },
   { href: '#/essayer', label: 'Essayer', route: 'essayer' },
   { href: '#/referentiel', label: 'Référentiel', route: 'referentiel' },
+  { href: '#/guides', label: 'Guides', route: 'guides' },
 ]
 
 /**

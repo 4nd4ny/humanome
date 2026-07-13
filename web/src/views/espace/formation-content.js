@@ -15,8 +15,24 @@
 import { parseFrontMatter } from '../../lib/md.js'
 
 // Chemins relatifs depuis web/src/views/espace/ vers la racine du monorepo.
+// import.meta.glob exige des motifs LITTÉRAUX : un glob par parcours.
 const FILES_BY_PARCOURS = {
+  visiteur: import.meta.glob('../../../../content/formation/visiteur/*.md', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  }),
   apprenant: import.meta.glob('../../../../content/formation/apprenant/*.md', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  }),
+  employeur: import.meta.glob('../../../../content/formation/employeur/*.md', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  }),
+  etablissement: import.meta.glob('../../../../content/formation/etablissement/*.md', {
     query: '?raw',
     import: 'default',
     eager: true,
@@ -26,21 +42,129 @@ const FILES_BY_PARCOURS = {
     import: 'default',
     eager: true,
   }),
+  epistemiarque: import.meta.glob('../../../../content/formation/epistemiarque/*.md', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  }),
   promptologue: import.meta.glob('../../../../content/formation/promptologue/*.md', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  }),
+  admin: import.meta.glob('../../../../content/formation/admin/*.md', {
     query: '?raw',
     import: 'default',
     eager: true,
   }),
 }
 
-/** Parcours de formation disponibles (cahier §4.6). */
+/** Parcours de formation disponibles (cahier §4.6 + hub Guides). */
 export const FORMATION_PARCOURS = Object.freeze(Object.keys(FILES_BY_PARCOURS))
 
-/** Base du hash de route de chaque parcours (routing pré-câblé, ADR-009). */
+/**
+ * Base du hash de route de chaque parcours dans les ESPACES de rôle (routing
+ * pré-câblé, ADR-009). Le hub public #/guides passe, lui, `baseHash` en prop
+ * (voir guidesBaseHash) ; ces bases-ci ne concernent que les espaces connectés.
+ */
 export const FORMATION_BASE_HASH = Object.freeze({
   apprenant: '#/espace/formation',
   cartographe: '#/cartographe/formation',
   promptologue: '#/promptologue/formation',
+})
+
+/** Base de hash d'un parcours dans le hub public des guides. */
+export function guidesBaseHash(parcours) {
+  return `#/guides/${parcours}`
+}
+
+/**
+ * Métadonnées d'affichage des parcours dans le hub public (item : manuels de
+ * prise en main par rôle). `famille` regroupe les cartes ; `ordre` les trie.
+ * `espace` = lien vers l'espace de rôle connecté quand il existe (sinon null).
+ * @type {Record<string, {titre: string, audience: string, pitch: string, famille: string, ordre: number, espace: string | null}>}
+ */
+export const FORMATION_META = Object.freeze({
+  visiteur: {
+    titre: 'Découvrir humanome.xyz',
+    audience: 'Visiteur — aucun compte requis',
+    pitch:
+      'Comprendre ce qu’est une cartographie de compétences humaines, explorer la démonstration ' +
+      'et essayer l’outil sur votre propre texte.',
+    famille: 'Découvrir',
+    ordre: 10,
+    espace: null,
+  },
+  apprenant: {
+    titre: 'Construire sa cartographie',
+    audience: 'Apprenant',
+    pitch:
+      'Rédiger un portfolio réflexif exploitable, lancer sa cartographie, la relire, la partager, ' +
+      'maîtriser sa confidentialité.',
+    famille: 'Votre cartographie',
+    ordre: 20,
+    espace: '#/espace/formation',
+  },
+  employeur: {
+    titre: 'Lire une cartographie partagée',
+    audience: 'Employeur / recruteur',
+    pitch:
+      'Ouvrir une cartographie qu’un candidat vous a partagée, la lire correctement, comprendre ce ' +
+      'que « garantie par un cartographe » signifie — et ses limites.',
+    famille: 'Votre cartographie',
+    ordre: 30,
+    espace: null,
+  },
+  cartographe: {
+    titre: 'Relire et garantir',
+    audience: 'Cartographe',
+    pitch:
+      'Le garde-fou humain : accepter des apprentis, relire, annoter, corriger et garantir des ' +
+      'cartographies, animer des micro-classes RESPIRE.',
+    famille: 'Encadrer',
+    ordre: 40,
+    espace: '#/cartographe/formation',
+  },
+  etablissement: {
+    titre: 'Cartographier une cohorte',
+    audience: 'Établissement de formation (B2B)',
+    pitch:
+      'Créer des cohortes avec consentement, configurer le budget LLM, lancer une cartographie de ' +
+      'masse et lire les résultats dans le respect du RGPD.',
+    famille: 'Encadrer',
+    ordre: 50,
+    espace: null,
+  },
+  epistemiarque: {
+    titre: 'Faire évoluer le référentiel',
+    audience: 'Épistémiarque',
+    pitch:
+      'La gouvernance collective des 61 compétences RESPIRE : proposer, débattre et versionner le ' +
+      'référentiel qui fonde toutes les cartographies.',
+    famille: 'Faire évoluer',
+    ordre: 60,
+    espace: null,
+  },
+  promptologue: {
+    titre: 'Concevoir les prompts',
+    audience: 'Promptologue',
+    pitch:
+      'Concevoir, tester et versionner les paquets de prompts (et leur code) qui produisent les ' +
+      'cartographies : prompt engineering appliqué, bancs d’essai, Golden Prompt.',
+    famille: 'Faire évoluer',
+    ordre: 70,
+    espace: '#/promptologue/formation',
+  },
+  admin: {
+    titre: 'Administrer la plateforme',
+    audience: 'Administrateur',
+    pitch:
+      'Rôles des comptes, Golden Prompt, réglages de la démo publique et exploitation serveur ' +
+      '(déploiement, sauvegarde, RGPD).',
+    famille: 'Administrer',
+    ordre: 80,
+    espace: '#/admin',
+  },
 })
 
 /** @param {string} path @returns {string} slug = nom de fichier sans .md */
@@ -97,16 +221,18 @@ export function getChapter(slug, parcours = 'apprenant') {
 
 /**
  * Réécrit les liens internes des chapitres (« 02-….md » ->
- * « #/<espace du parcours>/formation/02-… ») ; les autres href sont laissés
- * intacts.
+ * « <base>/02-… ») ; les autres href sont laissés intacts. `base` par défaut =
+ * l'espace de rôle du parcours ; le hub public passe `#/guides/<parcours>`.
  * @param {string} href
- * @param {'apprenant'|'cartographe'|'promptologue'} [parcours='apprenant']
+ * @param {string} [parcours='apprenant']
+ * @param {string} [base] base de hash cible (défaut : FORMATION_BASE_HASH[parcours])
  * @returns {string}
  */
-export function rewriteChapterLink(href, parcours = 'apprenant') {
+export function rewriteChapterLink(href, parcours = 'apprenant', base) {
+  const target = base ?? FORMATION_BASE_HASH[parcours]
   const match = /^(?:\.\/)?([0-9][0-9a-z-]*)\.md$/.exec(String(href ?? ''))
-  if (match && getChapter(match[1], parcours)) {
-    return `${FORMATION_BASE_HASH[parcours]}/${match[1]}`
+  if (target && match && getChapter(match[1], parcours)) {
+    return `${target}/${match[1]}`
   }
   return href
 }

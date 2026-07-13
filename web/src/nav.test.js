@@ -6,7 +6,13 @@ describe('navGroups', () => {
     const groups = navGroups({ roles: [] })
     expect(groups).toHaveLength(1)
     expect(groups[0].family).toBe('Découvrir')
-    expect(groups[0].items.map((i) => i.href)).toEqual(['#/', '#/merge', '#/essayer', '#/referentiel'])
+    expect(groups[0].items.map((i) => i.href)).toEqual([
+      '#/',
+      '#/merge',
+      '#/essayer',
+      '#/referentiel',
+      '#/guides',
+    ])
   })
 
   it('un apprenant gagne « Mon espace » et « Mon portfolio »', () => {

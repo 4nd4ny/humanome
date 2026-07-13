@@ -22,12 +22,24 @@ import {
 
 // Titre + chapeau de la page « liste des chapitres » de chaque parcours.
 const PARCOURS_INTROS = {
+  visiteur: {
+    titre: 'Découvrir humanome.xyz',
+    chapeau:
+      'Aucun compte requis. Comprendre ce qu’est une cartographie de compétences humaines, ' +
+      'explorer la démonstration sur données réelles, puis essayer l’outil sur votre propre texte.',
+  },
   apprenant: {
     titre: 'Formation apprenant — mode expert',
     chapeau:
       'Comment bien rédiger son portfolio réflexif pour obtenir une bonne cartographie : ' +
       'le moteur ne voit que ce que vous avez écrit, et le protocole adversarial qui l’anime ' +
       'est volontairement exigeant.',
+  },
+  employeur: {
+    titre: 'Lire une cartographie partagée',
+    chapeau:
+      'Un candidat vous a partagé sa cartographie. Comment l’ouvrir, la lire correctement, ' +
+      'comprendre la garantie d’un cartographe — et les limites d’un tel document.',
   },
   cartographe: {
     titre: 'Formation cartographe',
@@ -36,11 +48,29 @@ const PARCOURS_INTROS = {
       'présentée comme validée. Rôle, méthode de relecture, micro-classes RESPIRE ' +
       '(5-6 élèves en cartographie mutuelle), annotation, correction et garantie.',
   },
+  etablissement: {
+    titre: 'Formation établissement',
+    chapeau:
+      'Cartographier ses classes en masse : cohortes rejointes par consentement explicite, ' +
+      'configuration du budget LLM, lancement et suivi d’un run, lecture des résultats, RGPD.',
+  },
+  epistemiarque: {
+    titre: 'Formation épistémiarque',
+    chapeau:
+      'La gouvernance collective du référentiel RESPIRE (61 compétences, 7 pôles) : proposer, ' +
+      'débattre et versionner le socle qui fonde toutes les cartographies.',
+  },
   promptologue: {
     titre: 'Formation promptologue',
     chapeau:
       'Concevoir, tester et versionner les prompts (et leur code) qui produisent les ' +
       'cartographies : prompt engineering appliqué, genèse du prompt de base, bancs d’essai.',
+  },
+  admin: {
+    titre: 'Administrer la plateforme',
+    chapeau:
+      'Panorama de l’administration humanome.xyz et renvoi vers la documentation d’exploitation ' +
+      '(rôles, Golden Prompt, réglages démo, déploiement, sauvegarde, RGPD).',
   },
 }
 
@@ -48,13 +78,16 @@ const PARCOURS_INTROS = {
  * @param {object} props
  * @param {string | null} props.chapter slug du chapitre ouvert (null = liste)
  * @param {boolean} props.connected session authentifiée ?
- * @param {'apprenant'|'cartographe'|'promptologue'} [props.parcours='apprenant']
+ * @param {string} [props.parcours='apprenant']
+ * @param {string} [props.baseHash] base de hash de route (défaut : espace de rôle) ;
+ *   le hub public #/guides passe `#/guides/<parcours>`
  * @param {object} [props.trainingStore] store injectable (tests)
  */
 export default function FormationSection({
   chapter,
   connected,
   parcours = 'apprenant',
+  baseHash,
   trainingStore,
 }) {
   const store = useMemo(
@@ -62,7 +95,7 @@ export default function FormationSection({
     [trainingStore, parcours],
   )
   const chapters = useMemo(() => listChapters(parcours), [parcours])
-  const base = FORMATION_BASE_HASH[parcours] ?? FORMATION_BASE_HASH.apprenant
+  const base = baseHash ?? FORMATION_BASE_HASH[parcours] ?? FORMATION_BASE_HASH.apprenant
   const intro = PARCOURS_INTROS[parcours] ?? PARCOURS_INTROS.apprenant
   const [done, setDone] = useState(() => new Set())
   const [source, setSource] = useState(null) // 'serveur' | 'local' | null
@@ -119,7 +152,7 @@ export default function FormationSection({
     const previous = index > 0 ? chapters[index - 1] : null
     const next = index < chapters.length - 1 ? chapters[index + 1] : null
     const html = renderMarkdown(current.raw, {
-      rewriteLink: (href) => rewriteChapterLink(href, parcours),
+      rewriteLink: (href) => rewriteChapterLink(href, parcours, base),
     })
     const checkboxId = `formation-done-${current.slug}`
     return (

@@ -78,8 +78,8 @@ export default function Help({ route, session, open, onToggle, onClose }) {
               </ul>
             ) : null}
             <p className="help-foot">
-              Besoin d’aide plus poussée ? Les parcours de <a href="#/espace/formation">formation</a>{' '}
-              détaillent chaque rôle.
+              Besoin d’aide plus poussée ? Les <a href="#/guides">guides de prise en main</a>{' '}
+              détaillent chaque rôle, pas à pas.
             </p>
           </div>
         </div>

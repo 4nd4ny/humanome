@@ -92,6 +92,18 @@ export function parseHash(hash) {
   // Confidentialité / page RGPD publique (P12)
   if (path === '/confidentialite') return { name: 'confidentialite' }
 
+  // Hub public des guides / manuels de formation : #/guides,
+  // #/guides/<parcours>, #/guides/<parcours>/<chapitre> (lisible par tous).
+  if (path === '/guides') return { name: 'guides', parcours: null, chapter: null }
+  const guidesMatch = /^\/guides\/([a-z]+)(?:\/(.+))?$/.exec(path)
+  if (guidesMatch) {
+    return {
+      name: 'guides',
+      parcours: guidesMatch[1],
+      chapter: guidesMatch[2] ? decodeURIComponent(guidesMatch[2]) : null,
+    }
+  }
+
   if (path === '/referentiel') return { name: 'referentiel', code: null }
   const refMatch = /^\/referentiel\/([^/]+)$/.exec(path)
   if (refMatch) return { name: 'referentiel', code: decodeURIComponent(refMatch[1]) }
@@ -125,6 +137,17 @@ export function dayHash(date, focus = null) {
  */
 export function referentielHash(code = null) {
   return code ? `#/referentiel/${encodeURIComponent(code)}` : '#/referentiel'
+}
+
+/**
+ * Builds the canonical hash for the public guides hub.
+ * @param {string | null} [parcours] parcours id (e.g. 'visiteur')
+ * @param {string | null} [chapter] chapter slug
+ * @returns {string} '#/guides', '#/guides/<parcours>' or '#/guides/<parcours>/<chapter>'
+ */
+export function guidesHash(parcours = null, chapter = null) {
+  if (!parcours) return '#/guides'
+  return chapter ? `#/guides/${parcours}/${chapter}` : `#/guides/${parcours}`
 }
 
 /** @returns {ReturnType<typeof parseHash>} route for the current location hash */

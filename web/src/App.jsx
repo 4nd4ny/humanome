@@ -18,6 +18,7 @@ import PromptologueView from './views/PromptologueView.jsx'
 import EtablissementView from './views/EtablissementView.jsx'
 import AdminView from './views/AdminView.jsx'
 import ConfidentialiteView from './views/ConfidentialiteView.jsx'
+import GuidesView from './views/GuidesView.jsx'
 
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
@@ -158,6 +159,9 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       break
     case 'confidentialite':
       view = <ConfidentialiteView />
+      break
+    case 'guides':
+      view = <GuidesView parcours={route.parcours} chapter={route.chapter} />
       break
     case 'not-found':
       view = (
