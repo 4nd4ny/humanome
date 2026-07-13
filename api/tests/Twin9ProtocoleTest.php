@@ -232,9 +232,12 @@ final class Twin9ProtocoleTest extends CartographeTestCase
         $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
 
         $config = self::json($this->as_($admin, 'GET', '/api/twin9/admin/config'));
-        self::assertSame(1.5, $config['marge']);
+        // Margin default 1.1 (owner decision: +10 % covers PayPal fees +
+        // hosting/domain/free-demo Haiku); packs start at 10 USD so the PayPal
+        // FIXED fee stays well below the margin.
+        self::assertSame(1.1, $config['marge']);
         self::assertFalse($config['enabled']);
-        self::assertSame([5, 10, 20], array_column($config['packs'], 'montant_usd'));
+        self::assertSame([10, 20, 50], array_column($config['packs'], 'montant_usd'));
         self::assertSame([1, 5], $config['modeles']['claude-haiku-4-5-20251001']['prix_usd_mtok']);
         self::assertSame(['taggers', 'rapide'], $config['modeles']['claude-haiku-4-5-20251001']['etages']);
         self::assertSame(['taggers', 'rapide', 'tribunal'], $config['modeles']['claude-sonnet-5']['etages']);
@@ -258,7 +261,7 @@ final class Twin9ProtocoleTest extends CartographeTestCase
             $response = $this->as_($admin, 'PUT', '/api/twin9/admin/config', $invalid);
             self::assertSame(422, $response->getStatusCode(), json_encode($invalid));
         }
-        self::assertSame(1.5, self::json($this->as_($admin, 'GET', '/api/twin9/admin/config'))['marge']);
+        self::assertSame(1.1, self::json($this->as_($admin, 'GET', '/api/twin9/admin/config'))['marge']);
 
         // Valid partial update persists.
         $response = $this->as_($admin, 'PUT', '/api/twin9/admin/config', ['marge' => 2.5]);

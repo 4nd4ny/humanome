@@ -27,6 +27,9 @@ declare(strict_types=1);
  *   POST /api/twin9/appel                  proxied LLM call, debit or private key
  *   GET  /api/twin9/meta                   public offer + own balance (no content)
  *   GET  /api/twin9/credit                 balance + last ledger events
+ *   GET  /api/twin9/facture?annee=&mois=   monthly recap invoice (own account)
+ *   GET  /api/twin9/depenses               spend tracking per month (own account)
+ *   GET  /api/twin9/admin/comptes          admin: balances/totals of all accounts
  *   POST /api/twin9/credit/paypal/creer    {pack_index} -> {approve_url, order_id}
  *   POST /api/twin9/credit/paypal/capturer {order_id} -> {solde_microusd}
  *
@@ -47,6 +50,7 @@ use Humanome\Middleware\RequireRole;
 use Humanome\Packages\SettingsRepository;
 use Humanome\Twin9\AnthropicCaller;
 use Humanome\Twin9\CreditService;
+use Humanome\Twin9\FactureService;
 use Humanome\Twin9\LeakFilter;
 use Humanome\Twin9\PayPalClient;
 use Humanome\Twin9\ProtocoleRepository;
@@ -360,7 +364,9 @@ return function (App $app): void {
                 ->appeler($modele, null, $prompt, $maxTokens);
         } catch (\Throwable $e) {
             if ($reserve > 0) {
-                $credits->adjust($userId, $reserve, $etape . ' (remboursement échec)');
+                // Carry the model so the per-model invoice split stays exact
+                // (FactureService nets reservations against their refunds).
+                $credits->adjust($userId, $reserve, $etape . ' (remboursement échec)', $modele);
             }
             throw $e;
         }
@@ -474,6 +480,52 @@ return function (App $app): void {
             ], $credits->events($userId, 50)),
         ]);
     }));
+
+    // ------------------------------------------------------------------
+    // GET /api/twin9/facture?annee=&mois= — monthly recap invoice of the
+    // prepaid usage (owner request: individuals AND établissement accounts,
+    // same ledger). Deterministic aggregation, stable number — the front
+    // renders it as a printable document. Own account only.
+    // ------------------------------------------------------------------
+    $app->get('/twin9/facture', $wrap(function (Request $request, Response $response) use ($json, $sessionUserId): Response {
+        $userId = $sessionUserId();
+        if ($userId === null) {
+            return $json($response, ['error' => 'Authentification requise'], 401);
+        }
+        $query = $request->getQueryParams();
+        $annee = (int) ($query['annee'] ?? 0);
+        $mois = (int) ($query['mois'] ?? 0);
+        if ($annee < 2026 || $annee > 2100 || $mois < 1 || $mois > 12) {
+            return $json($response, ['error' => 'Période invalide (annee, mois requis)'], 422);
+        }
+
+        return $json($response, (new FactureService(Db::get()))->facture($userId, $annee, $mois));
+    }));
+
+    // ------------------------------------------------------------------
+    // GET /api/twin9/depenses — spend tracking per month (12 last), the data
+    // behind the quota/spend dashboard. Own account only.
+    // ------------------------------------------------------------------
+    $app->get('/twin9/depenses', $wrap(function (Request $request, Response $response) use ($json, $sessionUserId): Response {
+        $userId = $sessionUserId();
+        if ($userId === null) {
+            return $json($response, ['error' => 'Authentification requise'], 401);
+        }
+        $credits = new CreditService(Db::get());
+
+        return $json($response, [
+            'solde_microusd' => $credits->balance($userId),
+            'mois' => (new FactureService(Db::get()))->depensesParMois($userId),
+        ]);
+    }));
+
+    // ------------------------------------------------------------------
+    // GET /api/twin9/admin/comptes — admin oversight: balances and lifetime
+    // totals of every account with ledger activity (support + établissements).
+    // ------------------------------------------------------------------
+    $app->get('/twin9/admin/comptes', $wrap(function (Request $request, Response $response) use ($json): Response {
+        return $json($response, ['comptes' => (new FactureService(Db::get()))->comptes()]);
+    }))->add($admin);
 
     // ------------------------------------------------------------------
     // POST /api/twin9/credit/paypal/creer {pack_index} — create the PayPal

@@ -143,13 +143,15 @@ final class Twin9PayPalTest extends CartographeTestCase
         self::assertSame('Basic ' . base64_encode(self::CLIENT_ID . ':' . self::SECRET), $oauth['headers']['authorization']);
         self::assertSame('grant_type=client_credentials', $oauth['body']);
 
-        // Order: pack 0 = 5 USD (defaults), redirect URLs on #/compte/credit.
+        // Order: pack 0 = 10 USD (defaults — packs start at 10 USD so the
+        // PayPal FIXED fee stays well under the 10 % margin), redirect URLs
+        // on #/compte/credit.
         $create = $this->http->requests[1];
         self::assertSame('https://api-m.sandbox.paypal.com/v2/checkout/orders', $create['url']);
         self::assertSame('Bearer A21.test-access-token', $create['headers']['authorization']);
         $payload = json_decode((string) $create['body'], true);
         self::assertSame('CAPTURE', $payload['intent']);
-        self::assertSame(['currency_code' => 'USD', 'value' => '5.00'], $payload['purchase_units'][0]['amount']);
+        self::assertSame(['currency_code' => 'USD', 'value' => '10.00'], $payload['purchase_units'][0]['amount']);
         self::assertSame('https://humanome.xyz/#/compte/credit?paypal=retour', $payload['application_context']['return_url']);
         self::assertSame('https://humanome.xyz/#/compte/credit?paypal=annule', $payload['application_context']['cancel_url']);
     }

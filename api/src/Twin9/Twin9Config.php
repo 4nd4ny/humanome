@@ -46,11 +46,17 @@ final class Twin9Config
     public static function defaults(): array
     {
         return [
-            'marge' => 1.5,
+            // Owner decision (2026-07-13): +10 % over Anthropic list prices —
+            // covers the PayPal fees and contributes to the OVH hosting, the
+            // domain, and the Haiku budget of the free public demo. NOTE the
+            // PayPal FIXED fee (≈ 0.30-0.49 USD per capture) weighs ~9 % of a
+            // 5 USD pack on its own: small packs barely break even, which is
+            // why the default packs start at 10 USD (see 'packs' below).
+            'marge' => 1.1,
             'packs' => [
-                ['montant_usd' => 5, 'libelle' => 'Pack découverte — 5 $'],
-                ['montant_usd' => 10, 'libelle' => 'Pack standard — 10 $'],
-                ['montant_usd' => 20, 'libelle' => 'Pack intensif — 20 $'],
+                ['montant_usd' => 10, 'libelle' => 'Pack découverte — 10 $'],
+                ['montant_usd' => 20, 'libelle' => 'Pack standard — 20 $'],
+                ['montant_usd' => 50, 'libelle' => 'Pack intensif — 50 $'],
             ],
             'modeles' => [
                 'claude-haiku-4-5-20251001' => [

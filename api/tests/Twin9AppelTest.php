@@ -189,13 +189,15 @@ final class Twin9AppelTest extends CartographeTestCase
         self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
         $body = self::json($response);
 
-        // Real cost: ceil(1000×3×1.5) + ceil(200×15×1.5) micro-USD (defaults:
-        // claude-sonnet-5 list [3, 15] USD/Mtok, margin 1.5). No `fuites` field
-        // is ever returned to the client (security finding B — tuning oracle).
+        // Real cost: ceil(1000×3×1.1) + ceil(200×15×1.1) micro-USD (defaults:
+        // claude-sonnet-5 list [3, 15] USD/Mtok, margin 1.1 — owner decision:
+        // +10 % covers PayPal fees + hosting/domain/free-demo Haiku). Float
+        // math makes each side 3300.0000000000005 → ceil 3301. No `fuites`
+        // field is ever returned to the client (finding B — tuning oracle).
         self::assertSame('Réponse fictive du modèle.', $body['sortie']);
         self::assertSame(1000, $body['tokens_in']);
         self::assertSame(200, $body['tokens_out']);
-        self::assertSame(9000, $body['cout_microusd']);
+        self::assertSame(6602, $body['cout_microusd']);
         self::assertArrayNotHasKey('fuites', $body, 'the leak count is never exposed');
         self::assertSame('end_turn', $body['stop_reason']);
 
@@ -203,7 +205,7 @@ final class Twin9AppelTest extends CartographeTestCase
         // atomically BEFORE the call, then reconciled to the real cost after.
         // Whatever the reserve, the NET charge is exactly the real cost.
         $credits = new CreditService(Db::get());
-        self::assertSame(4_991_000, $credits->balance($this->user['id']));
+        self::assertSame(4_993_398, $credits->balance($this->user['id']));
         $events = $credits->events($this->user['id']); // most recent first
         // The reserve debit is present, tagged, and never lost.
         $reserve = array_values(array_filter(
@@ -354,10 +356,10 @@ final class Twin9AppelTest extends CartographeTestCase
             'longueur_gabarit' => mb_strlen(self::FAKE_GABARIT),
             'variables' => ['TEXTE_JOURNEE', 'PRENOM'],
         ]], $body['etapes']);
-        // Margined prices only (list [3, 15] × 1.5), margin itself absent.
-        self::assertSame([4.5, 22.5], $body['modeles']['claude-sonnet-5']['prix_usd_mtok']);
+        // Margined prices only (list [3, 15] × 1.1), margin itself absent.
+        self::assertSame([3.3, 16.5], $body['modeles']['claude-sonnet-5']['prix_usd_mtok']);
         self::assertArrayNotHasKey('marge', $body);
-        self::assertSame([5, 10, 20], array_column($body['packs'], 'montant_usd'));
+        self::assertSame([10, 20, 50], array_column($body['packs'], 'montant_usd'));
         self::assertFalse($body['paypalConfigured']);
         self::assertSame(2_500_000, $body['solde_microusd']);
         self::assertFalse($body['cle_privee_disponible']);
