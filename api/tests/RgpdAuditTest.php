@@ -28,7 +28,7 @@ final class RgpdAuditTest extends MasseTestCase
 {
     /**
      * Expected ON DELETE rule of every foreign key REFERENCING users, from the
-     * migrations 001-009. CASCADE = real erasure; SET NULL = documented
+     * migrations 001-011. CASCADE = real erasure; SET NULL = documented
      * anonymisation of collective/immutable or trace data (registre §3,§10 +
      * the referentiel/prompt note).
      *
@@ -53,6 +53,8 @@ final class RgpdAuditTest extends MasseTestCase
         'mass_runs.etablissement_id' => 'CASCADE',
         'mass_jobs.user_id' => 'CASCADE',
         'golden_grants.user_id' => 'CASCADE', // migration 010 (P12.1 admin)
+        'twin9_credits.user_id' => 'CASCADE', // migration 011 (T3a, registre §11)
+        'twin9_credit_events.user_id' => 'CASCADE', // migration 011 (T3a, registre §11)
         // --- documented anonymisation (SET NULL) ---
         'audit_events.user_id' => 'SET NULL',
         'referentiel_versions.created_by' => 'SET NULL',
@@ -60,6 +62,8 @@ final class RgpdAuditTest extends MasseTestCase
         'cartographe_invitations.accepted_by' => 'SET NULL',
         'cartography_revisions.author_id' => 'SET NULL',
         'golden_grants.granted_by' => 'SET NULL', // migration 010 (P12.1 admin)
+        'twin9_protocole.updated_by' => 'SET NULL', // migration 011 (T3a): platform template survives its editor
+        'twin9_protocole_versions.created_by' => 'SET NULL', // migration 011 (T3a)
     ];
 
     public function testAucuneColonneUtilisateurSansCleEtrangere(): void

@@ -147,6 +147,19 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Tables | `audit_events`. |
 | Sort à la suppression | `user_id` SET NULL (anonymisation légitime, pas un oubli de purge). |
 
+## 11. Crédit prépayé Twin_v9
+
+| Élément | Détail |
+|---|---|
+| Finalité | Facturer l'usage de la clé API plateforme pour les runs Twin_v9 (ADR-010 §3) : solde prépayé, recharges PayPal, débit par appel. |
+| Personnes concernées | Titulaires de compte utilisant Twin_v9. |
+| Données | **Compteurs uniquement** : solde en micro-USD (`twin9_credits`), journal des mouvements (`twin9_credit_events` : montant, étiquette d'étape, modèle, tokens réels, identifiant d'ordre PayPal). **Aucune donnée bancaire** (le paiement se fait chez PayPal), aucun contenu de portfolio ni de prompt. |
+| Base légale | **b** (exécution du service prépayé demandé par la personne). |
+| Durée | Vie du compte. |
+| Destinataires | PayPal (paiement chez eux ; nous ne recevons que l'id d'ordre, le montant, l'état). |
+| Tables | `twin9_credits`, `twin9_credit_events`. |
+| Sort à la suppression | CASCADE (le solde et son journal appartiennent à la personne). |
+
 ---
 
 ## Référentiel et système de prompts (donnée non personnelle)
@@ -159,3 +172,9 @@ personne est `created_by` (l'auteur épistémiarque/promptologue), passée en
 **SET NULL** à la suppression de son compte : la version publiée survit
 anonymisée, ce qui est cohérent avec son caractère immuable et collectif. Ce
 n'est donc pas un traitement de données personnelles d'apprenant.
+
+Il en va de même des gabarits Twin_v9 (`twin9_protocole`,
+`twin9_protocole_versions`, migration 011) : contenu de plateforme
+confidentiel (ADR-010), sans donnée personnelle. Les colonnes `updated_by` /
+`created_by` (l'administrateur éditeur) passent en **SET NULL** à la
+suppression de son compte, comme `golden_grants.granted_by`.
