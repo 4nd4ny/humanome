@@ -2566,3 +2566,380 @@ body {
 .cohorte-depot {
   margin: 0.4rem 0;
 }
+
+/* ---------- Administration (P12.1 + chantier A) ----------
+   Nav d'onglets et accueil en cartes mobile-friendly (cibles >= 44px),
+   section démo éditable (interrupteur + champs bornés + badges d'origine).
+   Palette existante uniquement (--accent / --ink / --line). */
+
+.admin {
+  max-width: 60rem;
+}
+
+/* Onglets : pastilles à grande cible tactile, défilement horizontal sur
+   petit écran, section active clairement marquée (aria-current). */
+.admin-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.75rem 0 1.25rem;
+  padding-bottom: 0.25rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-tabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.95rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.admin-tabs a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.admin-tabs a[aria-current='page'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.admin-tabs .admin-tabs-home {
+  color: var(--ink-soft);
+}
+
+/* Accueil : cartes cliquables plutôt qu'une simple liste. */
+.admin-home ul {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.admin-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-height: 44px;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.admin-card:hover {
+  border-color: var(--accent);
+}
+
+.admin-card strong {
+  font-size: 1.05rem;
+}
+
+.admin-card:hover strong {
+  color: var(--accent);
+}
+
+.admin-card span {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.admin-reserve {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--card);
+  max-width: 44rem;
+}
+
+.admin-message {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--card);
+  max-width: 44rem;
+}
+
+.admin-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 44rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.admin-table tr:last-child th,
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table th[scope='row'] {
+  color: var(--ink-soft);
+  font-weight: 500;
+  width: 55%;
+}
+
+/* --- Démo publique éditable (chantier A) --- */
+
+.admin-demo {
+  margin: 1rem 0 1.75rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  max-width: 44rem;
+}
+
+/* Le geste smartphone : grand interrupteur, cible >= 44px, un seul clic. */
+.admin-demo-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 56px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.admin-demo-toggle:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.admin-demo-toggle-track {
+  flex: none;
+  position: relative;
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--ink-faint);
+  transition: background 0.15s ease;
+}
+
+.admin-demo-toggle.is-on .admin-demo-toggle-track {
+  background: var(--accent);
+}
+
+.admin-demo-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s ease;
+}
+
+.admin-demo-toggle.is-on .admin-demo-toggle-thumb {
+  transform: translateX(22px);
+}
+
+.admin-demo-toggle.is-off .admin-demo-toggle-label strong {
+  color: var(--danger);
+}
+
+.admin-demo-toggle.is-on .admin-demo-toggle-label strong {
+  color: var(--accent-strong);
+}
+
+.admin-demo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.admin-field {
+  display: grid;
+  grid-template-columns: minmax(11rem, 1fr) 2fr;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+}
+
+.admin-field label {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.admin-field-input {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.admin-field-input input,
+.admin-field-input select {
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  max-width: 100%;
+}
+
+.admin-field-input input[type='number'] {
+  width: 9rem;
+}
+
+.admin-field-input input[type='text'] {
+  flex: 1 1 14rem;
+}
+
+.admin-field-bounds {
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Badge d'origine de la valeur effective (base / env / fichier / défaut). */
+.admin-source {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  background: var(--paper);
+  white-space: nowrap;
+}
+
+.admin-source-base {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  background: #eff6ff;
+}
+
+.admin-source-env {
+  border-color: #b45309;
+  color: #b45309;
+  background: #fffbeb;
+}
+
+.admin-demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.admin-demo-actions button {
+  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin-demo-actions button:hover {
+  background: var(--accent-strong);
+}
+
+.admin-demo-actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.admin-demo-actions .admin-button-secondary {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.admin-demo-actions .admin-button-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--card);
+}
+
+.admin-default-package {
+  margin-bottom: 1.5rem;
+}
+
+.admin-default-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-default-form label {
+  flex-basis: 100%;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.admin-default-form select,
+.admin-default-form button {
+  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.admin-default-form button {
+  cursor: pointer;
+}
+
+.admin-default-form button:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.admin-default-form button:disabled {
+  opacity: 0.5;
+}
+
+/* Petit écran : champs empilés, onglets qui défilent, cartes pleine largeur. */
+@media (max-width: 640px) {
+  .admin-field {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-table th[scope='row'] {
+    width: auto;
+  }
+
+  .admin-demo-actions button {
+    flex: 1 1 auto;
+  }
+}

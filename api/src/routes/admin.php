@@ -20,12 +20,16 @@ declare(strict_types=1);
  *                 POST /admin/golden/{id}/grant {userId}
  *   3. Réglages   GET  /admin/settings
  *                 POST /admin/settings/default-package {id, version}
+ *                 GET  /admin/demo-config
+ *                 PUT  /admin/demo-config {champs partiels}
+ *                 DELETE /admin/demo-config              (reset -> env/fichier)
  *
  * `admin` is NOT an implicit super-role elsewhere (docs/autorisations.md):
  * these routes are the ONLY admin surface.
  */
 
 use Humanome\Admin\AdminException;
+use Humanome\Admin\DemoConfigService;
 use Humanome\Admin\GoldenRepository;
 use Humanome\Admin\PlatformStatus;
 use Humanome\Admin\UserDirectory;
@@ -184,6 +188,38 @@ return function (App $app): void {
             (int) $request->getAttribute('userId'),
             $id,
             $version,
+        );
+
+        return $json($response, $result);
+    }))->add($admin);
+
+    // GET /api/admin/demo-config — effective public-demo settings + per-field
+    // origin (base/env/fichier/defaut). Never returns the API key (boolean).
+    $app->get('/admin/demo-config', $wrap(function (Request $request, Response $response) use ($json): Response {
+        return $json($response, (new DemoConfigService(Db::get()))->read());
+    }))->add($admin);
+
+    // PUT /api/admin/demo-config {champs partiels} — validate and merge into
+    // settings.demo_overrides (base > env > fichier > defaut). Immediate
+    // effect on the public demo, no redeploy (chantier A: on/off d'un geste).
+    $app->put('/admin/demo-config', $wrap(function (Request $request, Response $response) use ($json, $parseBody): Response {
+        $body = $parseBody($request);
+        if (!\is_array($body)) {
+            return $json($response, ['error' => 'Corps JSON invalide : objet attendu'], 400);
+        }
+
+        $result = (new DemoConfigService(Db::get()))->update(
+            (int) $request->getAttribute('userId'),
+            $body,
+        );
+
+        return $json($response, $result);
+    }))->add($admin);
+
+    // DELETE /api/admin/demo-config — drop every override, back to env/fichier.
+    $app->delete('/admin/demo-config', $wrap(function (Request $request, Response $response) use ($json): Response {
+        $result = (new DemoConfigService(Db::get()))->reset(
+            (int) $request->getAttribute('userId'),
         );
 
         return $json($response, $result);

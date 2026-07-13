@@ -7,6 +7,30 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-13 — **Phase UX post-v1 (demande utilisateur, 6 points) : trois chantiers livrés.**
+  **(B) Navigation adaptée au rôle + aide contextuelle.** `web/src/nav.js` = source unique
+  rôle → sections, groupées par famille (« Découvrir » pour tous ; « Mon travail » selon les
+  rôles de la session, rafraîchie sans rechargement via l'événement `humanome:auth`). Bouton
+  « ? » dans l'en-tête : aide par rubrique et par rôle (`web/src/help/`). En-tête restylé
+  (rubrique courante marquée, cibles 44px).
+  **(A) Réglages démo éditables depuis l'admin (smartphone).** Couche d'overrides en base
+  (`settings.demo_overrides`) prioritaire dans `DemoConfig::load()` (base > env > fichier >
+  défaut, fail-safe DB) ; API session admin `GET/PUT/DELETE /api/admin/demo-config` (validation
+  bornée 422, audit sans valeurs, clé API jamais exposée — env uniquement ; provider non
+  éditable). UI Réglages : grand interrupteur activer/désactiver (un clic, effet immédiat sur
+  POST /api/llm — vérifié en dev : OFF → challenge refusé → ON → reset), modèle (menu +
+  champ libre), 7 champs bornés avec badge d'origine (base/env/fichier/défaut). Nav admin
+  refondue (accueil en cartes, onglets pastilles, mobile-friendly).
+  **(C) Timeline animée de la cartographie.** `web/src/lib/sunburst/as-of.js` reconstruit la
+  carte cumulée à toute date (règles verbatim du moteur, seuils de quintile FIXES calculés sur
+  le doc final → la dernière trame == merge.json publié, 0 écart, parité 331 intacte) ;
+  `TimelinePlayer` (lecture/pause/vitesse/scrubber accessible, arrêt en fin de plage, pause
+  auto à la sélection d'un secteur, prefers-reduced-motion) câblé dans MergeView à côté de la
+  heatmap ; compteur cumulé « N compétences sur la carte » + score du jour. Vérifié en
+  navigateur : la démo se construit de 11 → 54 compétences sur les 59 feuilles. Idées reprises
+  des prototypes `temporal-progression`/`cartography-viewer` (lecteur, scrubber, pivot).
+  Tests : PHP 320, web 480, engine 214. Déployé (static + api).
+
 - 2026-07-12 — **Post-v1.0.0 : deux défauts détectés puis corrigés (au lieu de simplement journalisés).**
   (1) **Crash de la vue diff du promptologue** : `DiffView` attendait une forme française fictive
   (`ajoutes/retires/modifies`, `from/to` en chaînes) que le serveur n'émet jamais — `PackageDiff.php`

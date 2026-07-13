@@ -74,6 +74,32 @@ export function setDefaultPackage(id, version, fetchFn) {
   })
 }
 
+// --- 3bis. Démo publique (chantier A : éditable, effet immédiat) -------------
+// Contrat avec routes/admin.php :
+//   GET    api/admin/demo-config -> {effective, sources, allowedModels, apiKeyConfigured}
+//   PUT    api/admin/demo-config {champs partiels} -> même forme (422 hors bornes)
+//   DELETE api/admin/demo-config -> même forme (retour env/fichier)
+
+/** GET api/admin/demo-config */
+export function fetchDemoConfig(fetchFn) {
+  return apiFetch('admin/demo-config', { fetchFn })
+}
+
+/** PUT api/admin/demo-config {champs partiels} */
+export function saveDemoConfig(patch, fetchFn) {
+  return apiFetch('admin/demo-config', { method: 'PUT', body: patch, fetchFn })
+}
+
+/** DELETE api/admin/demo-config — supprime les overrides (retour env/fichier). */
+export function resetDemoConfig(fetchFn) {
+  return apiFetch('admin/demo-config', { method: 'DELETE', fetchFn })
+}
+
+/** Le geste smartphone : PUT {enabled} seul (allumer/éteindre la démo). */
+export function toggleDemo(enabled, fetchFn) {
+  return saveDemoConfig({ enabled: Boolean(enabled) }, fetchFn)
+}
+
 /** GET api/prompt-packages -> versions publiées (pour choisir le défaut). */
 export async function listPublishedPackages(fetchFn) {
   const data = await apiFetch('prompt-packages', { fetchFn })

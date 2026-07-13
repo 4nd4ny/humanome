@@ -1,0 +1,110 @@
+/* Lecteur de timeline (chantier C) — importé par TimelinePlayer.jsx.
+   NE PAS fusionner dans global.css (édité en parallèle par l'agent admin). */
+
+.timeline-player {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  margin: 0.75rem 0;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  background: rgba(248, 250, 252, 0.7);
+}
+
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.timeline-controls button {
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0 0.5rem;
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.timeline-controls button:hover:not(:disabled) {
+  background: #eef2ff;
+  border-color: #6366f1;
+}
+
+.timeline-controls button:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+.timeline-controls button[aria-pressed='true'] {
+  background: #eef2ff;
+  border-color: #6366f1;
+}
+
+.timeline-controls button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.timeline-speed {
+  margin-left: auto;
+  height: 2.2rem;
+  padding: 0 0.4rem;
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.timeline-scrubber {
+  width: 100%;
+  accent-color: #6366f1;
+  cursor: pointer;
+}
+
+.timeline-status {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.timeline-date {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: #1e293b;
+}
+
+.timeline-counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Région aria-live : lisible par les lecteurs d'écran, invisible à l'écran. */
+.timeline-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-controls button,
+  .timeline-player * {
+    transition: none !important;
+  }
+}

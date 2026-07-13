@@ -3,7 +3,9 @@ import Sunburst from '../components/Sunburst.jsx'
 import DetailsPanel from '../components/DetailsPanel.jsx'
 import HeatmapCalendar from '../components/HeatmapCalendar.jsx'
 import StatBadges from '../components/StatBadges.jsx'
+import TimelinePlayer from '../components/TimelinePlayer.jsx'
 import ViewToolbar from '../components/ViewToolbar.jsx'
+import { finalThresholds, mergeDocAsOf } from '../lib/sunburst/as-of.js'
 import { NIVEAU_LABELS, useDiagramSize, useSunburstLib } from './view-helpers.js'
 
 /** Resolves a sector meta against the merge document. */
@@ -70,18 +72,61 @@ export default function MergeView({ mergeDoc, referentiel, lib: injectedLib }) {
   // zones restent dans le DOM, pour le desktop et pour l'impression).
   const [activeTab, setActiveTab] = useState('diagramme')
 
+  // Timeline (chantier C) : une trame par feuille (0..N-1), vue finale par
+  // défaut (dernière trame = document publié tel quel, parité garantie).
+  const feuilles = mergeDoc?.feuilles ?? []
+  const lastFrame = Math.max(0, feuilles.length - 1)
+  const [frameIndex, setFrameIndex] = useState(lastFrame)
+  const frame = Math.min(Math.max(0, frameIndex), lastFrame)
+
   function handleSelect(meta) {
     setSelectedMeta(meta)
     if (meta) setActiveTab('details') // tap = sélection -> détail lisible à une main
   }
 
-  const layout = useMemo(() => {
+  // Seuils de niveau FIXES, calculés une seule fois sur le document final
+  // (la dernière trame reproduit exactement le merge publié, et les niveaux
+  // ne scintillent pas au fil des trames).
+  const thresholds = useMemo(() => (mergeDoc ? finalThresholds(mergeDoc) : []), [mergeDoc])
+
+  // Les N documents cumulés (cascade de useMemo : docs -> arbres -> layout).
+  // La DERNIÈRE trame est le document d'origine lui-même : trame 58 == vue
+  // actuelle, à l'identique (parité 331).
+  const frameDocs = useMemo(() => {
+    if (!mergeDoc || feuilles.length === 0) return null
+    return feuilles.map((f, i) =>
+      i === feuilles.length - 1 ? mergeDoc : mergeDocAsOf(mergeDoc, f.iso ?? f.date, { thresholds }),
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mergeDoc, thresholds])
+
+  const trees = useMemo(() => {
     if (!lib || !mergeDoc) return null
-    return lib.layoutSunburst(lib.buildMergeTree(mergeDoc), { size })
-  }, [lib, mergeDoc, size])
+    if (!frameDocs) return [lib.buildMergeTree(mergeDoc)]
+    return frameDocs.map((doc) => lib.buildMergeTree(doc))
+  }, [lib, mergeDoc, frameDocs])
+
+  const layout = useMemo(() => {
+    if (!trees) return null
+    const tree = trees[Math.min(frame, trees.length - 1)]
+    return tree ? lib.layoutSunburst(tree, { size }) : null
+  }, [lib, trees, frame, size])
+
+  // Nb de compétences SUR LA CARTE par trame (cumul monotone 11 -> 54) : le
+  // compteur qui accompagne la construction du diagramme, compté sur les
+  // documents de trame déjà précalculés (coût nul, indépendant de la lib).
+  const cumulativeCounts = useMemo(() => {
+    if (!frameDocs) return []
+    return frameDocs.map((doc) =>
+      (doc?.domains ?? []).reduce((n, domain) => n + (domain.competences?.length ?? 0), 0),
+    )
+  }, [frameDocs])
 
   const totalCompetences = referentiel?.competences?.length ?? 61
-  const selection = useMemo(() => findMergeNode(mergeDoc, selectedMeta), [mergeDoc, selectedMeta])
+  // Quand frameIndex < dernière trame, la sélection se résout dans le document
+  // de la trame courante (agrégats cumulés à cette date), sinon dans le final.
+  const frameDoc = frameDocs ? frameDocs[frame] : mergeDoc
+  const selection = useMemo(() => findMergeNode(frameDoc, selectedMeta), [frameDoc, selectedMeta])
 
   let panel
   if (selection?.kind === 'competence') {
@@ -164,6 +209,19 @@ export default function MergeView({ mergeDoc, referentiel, lib: injectedLib }) {
               {libError ? libError.message : 'Préparation du diagramme…'}
             </p>
           )}
+          {feuilles.length > 1 && trees ? (
+            <TimelinePlayer
+              feuilles={feuilles}
+              frameIndex={frame}
+              onFrameChange={setFrameIndex}
+              evolution={mergeDoc?.profilMeta?.evolution_globale ?? []}
+              cumulative={cumulativeCounts}
+              // Lecture en pause dès qu'un secteur est sélectionné ou survolé :
+              // le re-render à chaque trame perdrait le focus et la lecture
+              // du panneau de détails.
+              suspended={selectedMeta != null || hoveredMeta != null}
+            />
+          ) : null}
           <HeatmapCalendar
             feuilles={mergeDoc?.feuilles ?? []}
             evolution={mergeDoc?.profilMeta?.evolution_globale ?? []}

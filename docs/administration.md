@@ -105,8 +105,9 @@ avec le paquet ou le compte purgé) ; `granted_by` en SET NULL (l'admin peut
 ## 3. Réglages plateforme
 
 Section `#/admin/reglages`. `GET /api/admin/settings` renvoie un instantané
-(affichage), et `POST /api/admin/settings/default-package {id, version}` est la
-seule écriture de la section.
+(affichage), `POST /api/admin/settings/default-package {id, version}` valide le
+paquet par défaut, et la **démo publique s'édite** via `/api/admin/demo-config`
+(chantier A).
 
 - **Version de prompt par défaut** (réutilise `settings.default_prompt_package`,
   P10) : le promptologue **propose** (`propose-default`), l'administrateur
@@ -114,13 +115,44 @@ seule écriture de la section.
   jamais devenir le défaut, 404 sinon). L'instantané expose la valeur stockée,
   la proposition en attente, et la résolution effective (défaut = dernier
   publié non-privé). Audit : `default_package_set`.
-- **Plafonds démo** : l'UI **affiche** les valeurs effectives (`GET` →
-  `config/demo.php` + variables `DEMO_*`). En v1 la démo se règle **par
-  environnement** (documenté) ; l'UI ne les édite pas (`editableInUi: false`).
+- **Démo publique — éditable, effet immédiat** (chantier A) : les réglages
+  sont stockés dans `settings["demo_overrides"]` et **gagnent sur tout le
+  reste** (`base > env DEMO_* > config/demo.php > défauts codés`), sans
+  redéploiement. Cas d'usage : activer/désactiver la démo d'un geste depuis
+  un smartphone (grand interrupteur en tête de section). Fail-safe : base
+  absente ou injoignable → retour silencieux à env/fichier (la démo ne tombe
+  jamais à cause de cette couche).
 - **État du worker de masse** : dérivé de `mass_jobs` — « jobs en file »
   (en attente + en cours), compte par statut, runs actifs, et **dernière
   activité** (`MAX(updated_at)`, approximation du « dernier tick » : les ticks
   ADR-005 ne tiennent pas de journal, ils ne renvoient que des compteurs).
+
+### API démo publique (session admin + CSRF)
+
+| Méthode | Route | Effet |
+|---|---|---|
+| `GET` | `/api/admin/demo-config` | `{effective, sources, allowedModels, apiKeyConfigured}`. |
+| `PUT` | `/api/admin/demo-config` `{champs partiels}` | Valide (bornes ci-dessous, 422 sinon) et **fusionne** dans `demo_overrides`. Renvoie le nouvel état. Audit : `demo_config_updated` (noms de champs seulement). |
+| `DELETE` | `/api/admin/demo-config` | Supprime `demo_overrides` (retour env/fichier). Audit : `demo_config_reset`. |
+
+- `effective` : valeurs réellement appliquées par le proxy (`enabled`, `provider`,
+  `model`, `maxTokensPerRequest`, `maxInputChars`, `perIpPerHour`,
+  `dailyGlobalTokens`, `dailyBudgetUsd`, `powDifficultyBits`,
+  `upstreamTimeoutSeconds`).
+- `sources` : origine de chaque valeur — `base` (réglage admin), `env`,
+  `fichier` (`config/demo.php`) ou `defaut`. L'UI l'affiche en badge.
+- **Bornes** (422 hors bornes ou type invalide) : `maxTokensPerRequest`
+  256–16000 ; `dailyBudgetUsd` 0–1000 ; `perIpPerHour` 1–1000 ;
+  `powDifficultyBits` 8–24 ; `dailyGlobalTokens` 10000–50000000 ;
+  `upstreamTimeoutSeconds` 10–300 ; `maxInputChars` 1000–200000 ; `model`
+  non vide (lettres/chiffres/points/tirets, ≤ 100 caractères).
+- `allowedModels` : liste blanche Anthropic proposée en menu déroulant ; l'UI
+  offre aussi « autre… » (texte libre) — un nouveau modèle est utilisable le
+  jour de sa sortie, sans redéploiement.
+- **Non éditables, volontairement** : `provider` (la démo utilise la clé
+  plateforme Anthropic ; `mock` = dev uniquement) et `ANTHROPIC_API_KEY`
+  (environnement serveur exclusivement — l'API ne renvoie que le booléen
+  `apiKeyConfigured`, jamais la valeur).
 
 ---
 
@@ -154,6 +186,11 @@ les entrées secrètes, `GET /api/admin/settings` et l'UI n'exposent que l'état
 - PHP : `AdminUsersTest` (liste/recherche/pagination, grant/revoke, garde de
   rôle 401/403, anti-verrouillage, audit), `AdminGoldenTest` (import privé,
   **non-exposition sur les 5 chemins publics**, grant promptologue, audit),
-  `AdminSettingsTest` (instantané, défaut publié/non-privé, secrets masqués).
+  `AdminSettingsTest` (instantané, défaut publié/non-privé, secrets masqués),
+  `AdminDemoConfigTest` (précédence base > env > fichier, PUT partiel + effet
+  sur `DemoConfig::load()`, bornes 422, DELETE/reset, toggle `enabled`, garde
+  401/403, clé API jamais exposée).
 - Web : `AdminView.test.jsx` (garde de rôle), `admin/RolesSection.test.jsx`
-  (tableau, attribution, retrait, anti-verrouillage).
+  (tableau, attribution, retrait, anti-verrouillage),
+  `admin/ReglagesSection.test.jsx` (interrupteur démo, modèle menu + texte
+  libre, PUT partiel, 422, badges d'origine, réinitialisation).

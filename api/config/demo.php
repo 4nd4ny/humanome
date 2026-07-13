@@ -11,9 +11,29 @@ declare(strict_types=1);
  * et plafond de tokens — les valeurs envoyées par le client sont ignorées
  * (protection du budget).
  *
+ * PRÉCÉDENCE (chantier A) : depuis que la démo est éditable depuis l'admin
+ * (#/admin/reglages, PUT /api/admin/demo-config), les réglages stockés en
+ * base (settings["demo_overrides"]) gagnent sur TOUT le reste :
+ *
+ *   base (settings.demo_overrides) > env (DEMO_*) > ce fichier > défauts codés
+ *
+ * Effet immédiat, sans redéploiement (cas d'usage : activer/désactiver la
+ * démo d'un geste depuis un smartphone). Fail-safe : si la base est absente
+ * ou injoignable, la couche « base » est ignorée en silence et la démo
+ * retombe sur env/fichier. DELETE /api/admin/demo-config supprime tous les
+ * overrides (retour à env/fichier).
+ *
+ * Deux exceptions, volontaires :
+ *   - `provider` n'est PAS éditable depuis l'admin (env/fichier uniquement) :
+ *     la démo utilise la clé plateforme Anthropic, et 'mock' est un mode de
+ *     dev — le rendre commutable depuis une UI web serait un piège budget/
+ *     sécurité.
+ *   - ANTHROPIC_API_KEY reste EXCLUSIVEMENT en environnement : jamais en
+ *     base, jamais renvoyée par l'API (seulement un booléen « configurée »).
+ *
  * Chaque clé est surchargeable par variable d'environnement (~/app/shared/.env
  * en production, docker-compose.yml en dev) — la variable, si non vide, gagne
- * sur la valeur ci-dessous :
+ * sur la valeur ci-dessous (mais perd face à un override en base) :
  *
  *   enabled            DEMO_ENABLED              Interrupteur général de la démo.
  *                                                false -> POST /api/llm répond 503.

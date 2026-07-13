@@ -22,7 +22,7 @@ import ConfigSection from './admin/ConfigSection.jsx'
 const SECTIONS = [
   { id: 'roles', label: 'Rôles', hint: 'Comptes et attribution des rôles' },
   { id: 'golden', label: 'Golden Prompt', hint: 'Import privé et autorisations' },
-  { id: 'reglages', label: 'Réglages', hint: 'Paquet par défaut, démo, worker' },
+  { id: 'reglages', label: 'Réglages', hint: 'Démo publique, paquet par défaut, worker' },
   { id: 'config', label: 'Configuration serveur', hint: 'Variables versionnables' },
 ]
 
@@ -40,14 +40,17 @@ function RoleExplanation() {
   )
 }
 
-/** Accueil : liste des sections (le routing hash pré-câblé fait le reste). */
+/**
+ * Accueil : cartes cliquables vers les sections, grandes cibles tactiles
+ * (>= 44px, utilisables au pouce) — le routing hash pré-câblé fait le reste.
+ */
 function AdminHome() {
   return (
     <nav className="admin-home" aria-label="Sections d’administration">
       <ul>
         {SECTIONS.map((s) => (
           <li key={s.id}>
-            <a href={`#/admin/${s.id}`}>
+            <a className="admin-card" href={`#/admin/${s.id}`}>
               <strong>{s.label}</strong>
               <span>{s.hint}</span>
             </a>
@@ -142,7 +145,12 @@ export default function AdminView({ section, deps = {} }) {
         </a>
       </h1>
       {isAdmin && section !== null ? (
+        // Onglets mobile-friendly : cibles >= 44px, section active marquée
+        // (aria-current stylé), défilement horizontal si l'écran est étroit.
         <nav className="admin-tabs" aria-label="Sections d’administration">
+          <a href="#/admin" className="admin-tabs-home" aria-label="Accueil de l’administration">
+            Accueil
+          </a>
           {SECTIONS.map((s) => (
             <a key={s.id} href={`#/admin/${s.id}`} aria-current={section === s.id ? 'page' : undefined}>
               {s.label}
