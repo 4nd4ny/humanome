@@ -9,6 +9,12 @@ statut: complet
 
 Sur humanome.xyz, l'**épistémiarque** gouverne un référentiel : les 61 compétences RESPIRE, organisées en 7 pôles, qui servent à cartographier ce qu'un portfolio réflexif donne à voir. La **noésiologie** est une tout autre entreprise, portée par un site distinct : l'étude détaillée des fonctions de l'esprit lui-même — comment il perçoit, élabore, décide, se corrige. Les deux projets partagent la même maison (Harmonia Éducation) et le même écosystème (RESPIRE), mais ce ne sont pas le même travail, et ce guide ne prétend pas s'y substituer.
 
+## Pourquoi cela concerne votre portfolio réflexif
+
+Tout le moteur de humanome tient sur un présupposé : vous savez porter un regard réflexif sur ce que vous vivez, et le raconter. Ce n'est pas encore un réflexe chez tout le monde. Chez les jeunes apprenants en particulier, l'introspection et l'analyse métacognitive ne sont pas toujours un *habitus* — une disposition acquise, spontanée. On le constate en classe : accompagner ce développement est nécessaire. Chez certains, cela vient naturellement ; chez d'autres, c'est plus long, et comprendre *l'origine* de ce qui bloque aide justement à le dépasser.
+
+C'est précisément à cela que sert la noésiologie : aider chaque apprenant à atteindre au plus vite son potentiel intellectuel maximal. Une précision importante, dans les mots mêmes du projet : *nous ne prétendons pas rendre les élèves plus intelligents — nous prétendons réussir à les aider à se développer plus vite, au maximum de leurs capacités.* Si écrire un portfolio réflexif vous semble difficile — pas le vocabulaire, mais le geste même de vous observer penser — ce n'est pas un manque d'intelligence : c'est une compétence qui se développe, parfois avec de l'aide, et la noésiologie est faite pour ça.
+
 ## Un roman, un traité, une méthode
 
 C'est ainsi que le site se présente lui-même. Le projet naît d'un roman, *L'Émergence — Apprendre à l'ère des IA*, avant de se déployer en traité théorique et en méthode pratique. Il est publié sous le nom *De Humani Cerebri Fabrica*, à l'adresse [noesiology.education](https://noesiology.education), avec une image fondatrice assumée :
