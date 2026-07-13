@@ -21,7 +21,14 @@ import {
 import FormationSection from './espace/FormationSection.jsx'
 
 /** Ordre d'affichage des familles de cartes sur l'accueil. */
-const FAMILY_ORDER = ['Découvrir', 'Votre cartographie', 'Encadrer', 'Faire évoluer', 'Administrer']
+const FAMILY_ORDER = [
+  'Découvrir',
+  'Votre cartographie',
+  'Encadrer',
+  'Faire évoluer',
+  'Administrer',
+  'Écosystème RESPIRE',
+]
 
 /** Accueil du hub : cartes de parcours groupées par famille d'usage. */
 function GuidesHome() {

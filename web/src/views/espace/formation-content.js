@@ -57,6 +57,11 @@ const FILES_BY_PARCOURS = {
     import: 'default',
     eager: true,
   }),
+  noesiologie: import.meta.glob('../../../../content/formation/noesiologie/*.md', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  }),
 }
 
 /** Parcours de formation disponibles (cahier §4.6 + hub Guides). */
@@ -164,6 +169,16 @@ export const FORMATION_META = Object.freeze({
     famille: 'Administrer',
     ordre: 80,
     espace: '#/admin',
+  },
+  noesiologie: {
+    titre: 'La noésiologie : une discipline sœur',
+    audience: 'Tout public — projet distinct',
+    pitch:
+      'L’étude fine des fonctions de l’esprit, portée par un site à part (De Humani Cerebri ' +
+      'Fabrica / noesiology.education) : un court portail, pas une reproduction.',
+    famille: 'Écosystème RESPIRE',
+    ordre: 90,
+    espace: null,
   },
 })
 

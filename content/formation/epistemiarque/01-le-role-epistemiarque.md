@@ -75,6 +75,6 @@ Au quotidien, le travail se déroule en quatre gestes, que les chapitres suivant
 - **Connaître le socle.** Maîtriser les 7 pôles, les 61 compétences et la structure d'une compétence, pour parler juste et repérer les recouvrements — voir « [L'anatomie du référentiel](02-anatomie-du-referentiel.md) ».
 - **Faire remonter et instruire.** Recueillir les besoins de la société civile, des métiers et des écoles ; ouvrir et animer les débats sur l'espace participatif — voir « [Proposer et débattre](03-proposer-et-debattre.md) ».
 - **Versionner sans casser.** Décider d'une version, mesurer son impact sur les cartographies existantes, organiser leur régénération rétrospective — voir « [Versionner le référentiel](04-versionner-le-referentiel.md) ».
-- **Tenir la doctrine.** Savoir ce qui fait, ou non, une compétence humaine : c'est le socle théorique du rôle — voir « [Principes de noésiologie](05-principes-de-noesiologie.md) ».
+- **Tenir le critère.** Savoir ce qui fait, ou non, une compétence humaine : c'est le socle pratique du rôle — voir « [Ce qui fait une compétence humaine](05-principes-de-noesiologie.md) ».
 
 Ces chapitres se lisent dans l'ordre depuis le [hub des guides](#/guides). Le suivant ouvre le référentiel et le décortique compétence par compétence.

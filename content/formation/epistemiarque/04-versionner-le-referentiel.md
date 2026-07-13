@@ -82,4 +82,4 @@ Chaque version publiée doit s'accompagner d'une note — l'équivalent d'un cha
 - l'impact déclaré : rétro-compatible ou non, régénération rétrospective recommandée ou non ;
 - la `source` documentée qui alimente le champ homonyme de l'en-tête.
 
-Une version bien notée est une décision qu'on peut défendre publiquement. Reste la question de fond, celle qui décide au fond de tous ces débats : *qu'est-ce qui fait qu'une capacité mérite d'entrer dans ce référentiel ?* C'est le sujet du dernier chapitre, « [Principes de noésiologie](05-principes-de-noesiologie.md) ».
+Une version bien notée est une décision qu'on peut défendre publiquement. Reste la question de fond, celle qui décide au fond de tous ces débats : *qu'est-ce qui fait qu'une capacité mérite d'entrer dans ce référentiel ?* C'est le sujet du dernier chapitre, « [Ce qui fait une compétence humaine](05-principes-de-noesiologie.md) ».
