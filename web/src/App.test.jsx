@@ -1,11 +1,13 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, render, screen, waitFor, fireEvent, within } from '@testing-library/react'
 import App from './App.jsx'
+import { resetApiClient } from './api/client.js'
 import * as fakeLib from './test/fake-sunburst-lib.js'
 
 afterEach(() => {
   cleanup()
   window.location.hash = ''
+  resetApiClient()
 })
 
 /** Session anonyme par défaut (couture fetchMe injectée pour éviter le réseau). */
@@ -30,10 +32,10 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: 'humanome.xyz' })).toBeDefined()
     expect(screen.getByText(/Explorer la cartographie de démonstration/)).toBeDefined()
 
-    // En-tête : marque -> #/ et famille « Découvrir » (visible par tous).
-    // Scopé sur la nav : les tuiles de l'accueil reprennent les mêmes liens.
-    const brand = screen.getByText('humanome.xyz', { selector: 'a' })
-    expect(brand.getAttribute('href')).toBe('#/')
+    // En-tête : plus de marque ni de fond — seule la grappe d'actions (aide +
+    // menu) reste, épinglée. Famille « Découvrir » visible par tous.
+    expect(document.querySelector('.app-brand')).toBeNull()
+    expect(screen.queryByRole('link', { name: 'humanome.xyz' })).toBeNull()
     const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
     expect(
       nav.getByRole('link', { name: 'Cartographie (démonstration)' }).getAttribute('href'),
@@ -42,9 +44,10 @@ describe('App', () => {
       '#/referentiel',
     )
     expect(nav.getByRole('link', { name: /^Essayer/ }).getAttribute('href')).toBe('#/essayer')
-    // Anonyme : « Se connecter » (et pas les familles de travail).
+    // Anonyme : « Se connecter » (et pas les familles de travail, ni « Se déconnecter »).
     expect(nav.getByRole('link', { name: 'Se connecter' }).getAttribute('href')).toBe('#/compte')
     expect(screen.queryByRole('link', { name: 'Mon portfolio' })).toBeNull()
+    expect(nav.queryByRole('button', { name: 'Se déconnecter' })).toBeNull()
 
     expect(screen.getByText(/écosystème RESPIRE, Harmonia Éducation/)).toBeDefined()
     expect(
@@ -80,6 +83,56 @@ describe('App', () => {
     expect(nav.getByRole('link', { name: 'Crédit et factures' }).getAttribute('href')).toBe(
       '#/compte/credit',
     )
+    // Connecté -> « Se déconnecter » disponible dans le panneau.
+    expect(nav.getByRole('button', { name: 'Se déconnecter' })).toBeDefined()
+  })
+
+  it('la punaise épingle le panneau : il survit à un changement de route, Échap le referme', async () => {
+    window.location.hash = '#/'
+    renderApp()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Menu de navigation' }))
+    const menu = document.querySelector('.app-menu')
+    expect(menu.className).toContain('is-open')
+    expect(menu.className).not.toContain('is-pinned')
+
+    fireEvent.click(screen.getByRole('button', { name: 'Épingler le panneau ouvert' }))
+    expect(screen.getByRole('button', { name: 'Détacher le panneau' }).getAttribute('aria-pressed')).toBe(
+      'true',
+    )
+    expect(menu.className).toContain('is-pinned')
+
+    // La navigation ferme l'ouverture transitoire mais PAS l'épinglage.
+    setHash('#/referentiel')
+    expect(menu.className).toContain('is-pinned')
+
+    // Échap referme et désépingle dans tous les cas, et rend le focus au bouton.
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(menu.className).not.toContain('is-open')
+    expect(menu.className).not.toContain('is-pinned')
+    expect(document.activeElement).toBe(screen.getByRole('button', { name: 'Menu de navigation' }))
+  })
+
+  it('« Se déconnecter » ferme la session (dégradation gracieuse) et revient à l’accueil', async () => {
+    window.location.hash = '#/merge'
+    const fetchMeFn = vi
+      .fn()
+      .mockResolvedValueOnce({ user: { id: 1, roles: ['apprenant'] } }) // montage
+      .mockResolvedValue({ user: null }) // après l'événement humanome:auth du logout
+    renderApp(fetchMeFn)
+
+    const nav = within(
+      await screen.findByRole('navigation', { name: 'Navigation principale' }),
+    )
+    await waitFor(() => expect(nav.getByRole('button', { name: 'Se déconnecter' })).toBeDefined())
+
+    fireEvent.click(nav.getByRole('button', { name: 'Se déconnecter' }))
+
+    // Pas de serveur API en test : logout() dégrade gracieusement (comme
+    // AccountView) mais notifie quand même le changement de session.
+    await waitFor(() => expect(nav.getByRole('link', { name: 'Se connecter' })).toBeDefined())
+    expect(nav.queryByRole('button', { name: 'Se déconnecter' })).toBeNull()
+    expect(window.location.hash).toBe('#/')
   })
 
   it('le bouton « ? » ouvre l’aide contextuelle de la rubrique (item 4)', async () => {

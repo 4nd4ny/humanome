@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { currentRoute, dayHash, navigate, subscribe } from './router.js'
 import { getDemoMerge, getReferentiel, loadDay } from './data/load.js'
-import { fetchMe } from './api/client.js'
+import { fetchMe, logout } from './api/client.js'
 import { isCurrentItem, navGroups } from './nav.js'
 import Help from './help/Help.jsx'
 import HomeView from './views/HomeView.jsx'
@@ -22,6 +22,32 @@ import GuidesView from './views/GuidesView.jsx'
 import Twin9View from './views/Twin9View.jsx'
 import CreditView from './views/CreditView.jsx'
 
+/** Punaise : tête ronde + aiguille — bascule l'épinglage du panneau. */
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" aria-hidden="true">
+      <circle cx="10" cy="6" r="3.2" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M10 9.2v8.3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+/** Porte (cadre arrondi fermé) + flèche sortante — déconnexion. */
+function LogoutIcon() {
+  return (
+    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" aria-hidden="true">
+      <rect x="3.5" y="3.5" width="7" height="13" rx="1.4" stroke="currentColor" strokeWidth="1.4" />
+      <path
+        d="M9 10h7.5M13.2 6.8l3.3 3.2-3.3 3.2"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
  * embarquées + documents chargés localement par l'utilisateur (rien ne quitte
@@ -39,12 +65,22 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   // reste toujours affichée.
   const [roles, setRoles] = useState([])
   const [helpOpen, setHelpOpen] = useState(false)
-  // Menu « burger » : la navigation principale vit dans un panneau déroulant
-  // (web + mobile) pour libérer la barre. Ouverture épinglée au clic/tap ;
-  // survol (desktop) et focus clavier la révèlent de façon transitoire (CSS).
+  // Menu « burger » : la navigation principale vit dans un panneau qui glisse
+  // depuis le bord gauche de l'écran (web + mobile), pour libérer la barre.
+  // `menuOpen` = ouverture transitoire (clic/tap sur le bouton, ou survol
+  // desktop, ou focus clavier — ces deux derniers en CSS pur). `pinned` =
+  // épinglage explicite (icône punaise DANS le panneau) : reste ouvert quel
+  // que soit le survol, un clic extérieur ou un changement de route.
   const [menuOpen, setMenuOpen] = useState(false)
+  const [pinned, setPinned] = useState(false)
   const menuRef = useRef(null)
   const burgerRef = useRef(null)
+  // Lu (pas observé) par l'effet de changement de route ci-dessous : on veut
+  // la valeur la plus récente sans reprogrammer cet effet à chaque épinglage.
+  const pinnedRef = useRef(false)
+  useEffect(() => {
+    pinnedRef.current = pinned
+  }, [pinned])
 
   useEffect(() => subscribe(setRoute), [])
 
@@ -69,21 +105,27 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     }
   }, [fetchMeFn])
 
-  // L'aide et le menu se ferment quand on change de rubrique.
+  // L'aide se ferme quand on change de rubrique. Le menu aussi, SAUF s'il est
+  // épinglé (c'est tout le sens de la punaise : rester ouvert en naviguant).
   useEffect(() => setHelpOpen(false), [route.name])
-  useEffect(() => setMenuOpen(false), [route.name])
-
-  // Menu épinglé : Échap ferme et redonne le focus au bouton ; un clic hors du
-  // menu ferme aussi. (Le survol/focus rouvre de manière transitoire, CSS.)
   useEffect(() => {
-    if (!menuOpen) return undefined
+    if (!pinnedRef.current) setMenuOpen(false)
+  }, [route.name])
+
+  // Échap ferme et désépingle dans tous les cas, et redonne le focus au
+  // bouton. Un clic hors du panneau ferme la session transitoire — mais PAS
+  // le panneau épinglé, qui ne se referme que par la punaise ou Échap.
+  useEffect(() => {
+    if (!menuOpen && !pinned) return undefined
     const onKey = (event) => {
       if (event.key === 'Escape') {
         setMenuOpen(false)
+        setPinned(false)
         burgerRef.current?.focus()
       }
     }
     const onPointerDown = (event) => {
+      if (pinned) return
       if (menuRef.current && !menuRef.current.contains(event.target)) setMenuOpen(false)
     }
     document.addEventListener('keydown', onKey)
@@ -92,7 +134,20 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       document.removeEventListener('keydown', onKey)
       document.removeEventListener('pointerdown', onPointerDown)
     }
-  }, [menuOpen])
+  }, [menuOpen, pinned])
+
+  /** Fin de session : dégradation gracieuse sur copie statique (cf. AccountView). */
+  async function handleLogout() {
+    try {
+      await logout()
+    } catch {
+      // logout() rafraîchit déjà la session (finally -> notifyAuthChanged) même
+      // en échec réseau/API indisponible : rien de plus à faire ici.
+    }
+    setMenuOpen(false)
+    setPinned(false)
+    navigate('#/')
+  }
 
   // Impression : une cartographie = un document. Les navigateurs ne rendent
   // pas le contenu des <details> fermés ; on les ouvre le temps de
@@ -214,13 +269,11 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   }
 
   const groups = navGroups({ roles })
+  const authenticated = roles.length > 0
 
   return (
     <div className="app">
       <header className="app-header">
-        <a className="app-brand" href="#/">
-          humanome.xyz
-        </a>
         <div className="app-header-actions">
           <Help
             route={route.name}
@@ -229,16 +282,22 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
             onToggle={() => setHelpOpen((v) => !v)}
             onClose={() => setHelpOpen(false)}
           />
-          <div className={`app-menu${menuOpen ? ' is-open' : ''}`} ref={menuRef}>
+          <div
+            className={`app-menu${menuOpen ? ' is-open' : ''}${pinned ? ' is-pinned' : ''}`}
+            ref={menuRef}
+          >
             <button
               type="button"
               className="app-burger"
               ref={burgerRef}
-              aria-expanded={menuOpen}
+              aria-expanded={menuOpen || pinned}
               aria-controls="app-nav-panel"
               aria-haspopup="menu"
               aria-label="Menu de navigation"
-              onClick={() => setMenuOpen((v) => !v)}
+              onClick={() => {
+                setMenuOpen((v) => !v)
+                setHelpOpen(false)
+              }}
             >
               <span className="app-burger-bars" aria-hidden="true">
                 <span />
@@ -248,6 +307,19 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
               <span className="app-burger-text">Menu</span>
             </button>
             <div className="app-nav-panel" id="app-nav-panel">
+              <div className="app-nav-panel-head">
+                <span className="app-nav-panel-title">Menu</span>
+                <button
+                  type="button"
+                  className={`app-pin${pinned ? ' is-active' : ''}`}
+                  aria-pressed={pinned}
+                  aria-label={pinned ? 'Détacher le panneau' : 'Épingler le panneau ouvert'}
+                  title={pinned ? 'Détacher le panneau' : 'Épingler le panneau ouvert'}
+                  onClick={() => setPinned((v) => !v)}
+                >
+                  <PinIcon />
+                </button>
+              </div>
               <nav className="app-nav" aria-label="Navigation principale">
                 {groups.map((family) => (
                   // role=group : un div nu n'expose pas son aria-label aux
@@ -268,6 +340,14 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
                     ))}
                   </div>
                 ))}
+                {authenticated ? (
+                  <div className="app-nav-logout">
+                    <button type="button" className="app-logout-btn" onClick={handleLogout}>
+                      <LogoutIcon />
+                      Se déconnecter
+                    </button>
+                  </div>
+                ) : null}
               </nav>
             </div>
           </div>

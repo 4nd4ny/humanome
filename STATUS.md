@@ -7,6 +7,28 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-14 — **En-tête épuré : grappe d'actions flottante + tiroir de nav depuis la
+  gauche + épinglage + déconnexion rapide.** `.app-header` perd la marque et son fond
+  (coquille invisible, juste une réserve de hauteur) ; `.app-header-actions` (aide + burger)
+  passe en `position: fixed` (un `sticky` classique serait resté borné par la boîte quasi
+  vide de `.app-header`, qui n'a plus assez de hauteur propre pour offrir une plage
+  d'accroche — piège découvert et corrigé en vérifiant au navigateur, pas juste supposé).
+  Le panneau de nav (`.app-nav-panel`) passe d'un dropdown ancré sous le bouton à un tiroir
+  `position: fixed` pleine hauteur qui glisse depuis le **bord gauche de l'écran** (pas du
+  bouton, resté à droite) via `transform: translateX(-100%/0)`, toujours dans le DOM (pas de
+  `display:none`, a11y). Ajout d'une **icône punaise** dans l'en-tête du panneau
+  (`.app-nav-panel-head`) : épingle l'ouverture (`is-pinned`), qui résiste au survol perdu,
+  au clic extérieur et même à un changement de route (seule Échap ou la punaise referment) —
+  état `pinned` lu via ref dans l'effet de route pour ne pas le reprogrammer à chaque
+  épinglage. Ajout d'un bouton **« Se déconnecter »** (icône porte + flèche) en bas de
+  `app-nav`, visible seulement connecté, appelant le vrai `logout()` d'`api/client.js` avec
+  dégradation gracieuse (comme `AccountView`). `html { overflow-x: hidden }` pour clipper le
+  tiroir hors-écran sans élargir le scroll (attention : jamais sur `body` seul, bascule
+  implicite d'`overflow-y` en `auto` qui casse les contextes de scroll imbriqués). Vérifié au
+  navigateur : desktop (survol révèle, clic épingle, épinglage survit à une vraie navigation
+  intra-app, Échap referme + rend le focus), mobile (tap ouvre/ferme au tap extérieur),
+  actions flottantes visibles au défilement sans chevaucher le contenu. Tests web 537 verts.
+
 - 2026-07-14 — **Refonte de la navigation : 7 familles d'intention + landing « palais mental ».**
   Étude d'ergonomie complète (`docs/ergonomie-navigation.md` : mindmaps par persona, frictions
   confirmées + découvertes via 8 lentilles-persona multi-agents, 3 philosophies candidates,
