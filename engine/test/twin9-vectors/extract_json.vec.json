@@ -1,0 +1,250 @@
+[
+ {
+  "text": "```json\n{\"a\": 1, \"b\": [1, 2], \"\u00e9\": \"\u00e0\"}\n```",
+  "last": true,
+  "out": {
+   "a": 1,
+   "b": [
+    1,
+    2
+   ],
+   "\u00e9": "\u00e0"
+  }
+ },
+ {
+  "text": "```json\n{\"a\": 1, \"b\": [1, 2], \"\u00e9\": \"\u00e0\"}\n```",
+  "last": false,
+  "out": {
+   "a": 1,
+   "b": [
+    1,
+    2
+   ],
+   "\u00e9": "\u00e0"
+  }
+ },
+ {
+  "text": "avant ```\n{\"a\": 1,}\n``` apr\u00e8s",
+  "last": true,
+  "out": {
+   "a": 1
+  }
+ },
+ {
+  "text": "avant ```\n{\"a\": 1,}\n``` apr\u00e8s",
+  "last": false,
+  "out": {
+   "a": 1
+  }
+ },
+ {
+  "text": "un ```json\n{\"n\": 1}\n``` deux ```json\n{\"n\": 2}\n``` fin",
+  "last": true,
+  "out": {
+   "n": 2
+  }
+ },
+ {
+  "text": "un ```json\n{\"n\": 1}\n``` deux ```json\n{\"n\": 2}\n``` fin",
+  "last": false,
+  "out": {
+   "n": 1
+  }
+ },
+ {
+  "text": "```json\n{\"t\": \u201ctypo\u201d}\n```\nrien",
+  "last": true,
+  "out": {
+   "t": "typo"
+  }
+ },
+ {
+  "text": "```json\n{\"t\": \u201ctypo\u201d}\n```\nrien",
+  "last": false,
+  "out": {
+   "t": "typo"
+  }
+ },
+ {
+  "text": "prose {\"x\": {\"y\": 2, \"z\": [3, {\"w\": 4}]}} suite",
+  "last": true,
+  "out": {
+   "x": {
+    "y": 2,
+    "z": [
+     3,
+     {
+      "w": 4
+     }
+    ]
+   }
+  }
+ },
+ {
+  "text": "prose {\"x\": {\"y\": 2, \"z\": [3, {\"w\": 4}]}} suite",
+  "last": false,
+  "out": {
+   "x": {
+    "y": 2,
+    "z": [
+     3,
+     {
+      "w": 4
+     }
+    ]
+   }
+  }
+ },
+ {
+  "text": "il a dit \"bonjour\" puis {\"a\": 1} et {\"b\": 2}",
+  "last": true,
+  "out": {
+   "b": 2
+  }
+ },
+ {
+  "text": "il a dit \"bonjour\" puis {\"a\": 1} et {\"b\": 2}",
+  "last": false,
+  "out": {
+   "a": 1
+  }
+ },
+ {
+  "text": "l'\u00e9l\u00e8ve \u00e9crit \" et ensuite {\"a\": 1} sans fermer",
+  "last": true,
+  "out": null
+ },
+ {
+  "text": "l'\u00e9l\u00e8ve \u00e9crit \" et ensuite {\"a\": 1} sans fermer",
+  "last": false,
+  "out": null
+ },
+ {
+  "text": "```json {\"inline\": true} ```",
+  "last": true,
+  "out": {
+   "inline": true
+  }
+ },
+ {
+  "text": "```json {\"inline\": true} ```",
+  "last": false,
+  "out": {
+   "inline": true
+  }
+ },
+ {
+  "text": "[1, 2, 3]",
+  "last": true,
+  "out": null
+ },
+ {
+  "text": "[1, 2, 3]",
+  "last": false,
+  "out": null
+ },
+ {
+  "text": "{\"a\": \"x}y\", \"b\": 2}",
+  "last": true,
+  "out": {
+   "a": "x}y",
+   "b": 2
+  }
+ },
+ {
+  "text": "{\"a\": \"x}y\", \"b\": 2}",
+  "last": false,
+  "out": {
+   "a": "x}y",
+   "b": 2
+  }
+ },
+ {
+  "text": "```json  \n\n{\"a\": 2}\n```",
+  "last": true,
+  "out": {
+   "a": 2
+  }
+ },
+ {
+  "text": "```json  \n\n{\"a\": 2}\n```",
+  "last": false,
+  "out": {
+   "a": 2
+  }
+ },
+ {
+  "text": "texte {\"c\": [1, 2,],} fin",
+  "last": true,
+  "out": {
+   "c": [
+    1,
+    2
+   ]
+  }
+ },
+ {
+  "text": "texte {\"c\": [1, 2,],} fin",
+  "last": false,
+  "out": {
+   "c": [
+    1,
+    2
+   ]
+  }
+ },
+ {
+  "text": "aucun json ici",
+  "last": true,
+  "out": null
+ },
+ {
+  "text": "aucun json ici",
+  "last": false,
+  "out": null
+ },
+ {
+  "text": "{cass\u00e9} et {\"ok\": true}",
+  "last": true,
+  "out": {
+   "ok": true
+  }
+ },
+ {
+  "text": "{cass\u00e9} et {\"ok\": true}",
+  "last": false,
+  "out": {
+   "ok": true
+  }
+ },
+ {
+  "text": "```\npas du json\n``` puis {\"r\": 9}",
+  "last": true,
+  "out": {
+   "r": 9
+  }
+ },
+ {
+  "text": "```\npas du json\n``` puis {\"r\": 9}",
+  "last": false,
+  "out": {
+   "r": 9
+  }
+ },
+ {
+  "text": "{\"esc\": \"a\\\"b{c\", \"d\": 1}",
+  "last": true,
+  "out": {
+   "esc": "a\"b{c",
+   "d": 1
+  }
+ },
+ {
+  "text": "{\"esc\": \"a\\\"b{c\", \"d\": 1}",
+  "last": false,
+  "out": {
+   "esc": "a\"b{c",
+   "d": 1
+  }
+ }
+]

@@ -1,0 +1,30 @@
+[
+ {
+  "t": "<PORTFOLIO>x</PORTFOLIO>",
+  "out": "\u2039PORTFOLIO\u203ax\u2039/PORTFOLIO\u203a"
+ },
+ {
+  "t": "a </ fiches_pole > b < FICHE\t> c",
+  "out": "a \u2039/ fiches_pole \u203a b \u2039 FICHE\t\u203a c"
+ },
+ {
+  "t": "<PoRtFoLiO> et <AUTRE> et <fiche >",
+  "out": "\u2039PoRtFoLiO\u203a et <AUTRE> et \u2039fiche \u203a"
+ },
+ {
+  "t": "<FICHES_POLE><VERDICT_CALCULE>",
+  "out": "\u2039FICHES_POLE\u203a\u2039VERDICT_CALCULE\u203a"
+ },
+ {
+  "t": "<  PORTFOLIO >",
+  "out": "\u2039  PORTFOLIO \u203a"
+ },
+ {
+  "t": "sans balise <div> ni rien",
+  "out": "sans balise <div> ni rien"
+ },
+ {
+  "t": "",
+  "out": ""
+ }
+]

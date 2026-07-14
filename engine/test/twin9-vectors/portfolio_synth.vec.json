@@ -1,0 +1,153 @@
+[
+ {
+  "content": "Pr\u00e9ambule ignor\u00e9 avant le premier titre.\n\n### 12.3.24 \u2014 matin\nPremi\u00e8re journ\u00e9e, texte assez court.\n\n## 12.03.2024 (soir)\nM\u00eame jour : l'id re\u00e7oit le suffixe _b.\n\n### 2024-03-11\nJourn\u00e9e ISO ant\u00e9rieure, elle doit remonter au tri.\r\nAvec une ligne CRLF pour tester les fins de ligne.\r\n\n#### Pas un s\u00e9parateur (h4)\n\n### 5.3.124\nAnn\u00e9e \u00e0 trois chiffres : 2000 + 124.\n",
+  "filename": "Mon Portfolio (\u00e9l\u00e8ve) v2.final.md",
+  "journal_id": "Mon_Portfolio_l_ve_v2_final",
+  "raw_md5": "070300155ade99dc09da8ff6c707027b",
+  "feuilles": [
+   {
+    "id": "2024-03-11",
+    "date": "2024-03-11",
+    "titre": "2024-03-11",
+    "start": 161,
+    "end": 308,
+    "texte": "### 2024-03-11\nJourn\u00e9e ISO ant\u00e9rieure, elle doit remonter au tri.\nAvec une ligne CRLF pour tester les fins de ligne.\n\n#### Pas un s\u00e9parateur (h4)"
+   },
+   {
+    "id": "2024-03-12",
+    "date": "2024-03-12",
+    "titre": "12.3.24",
+    "start": 42,
+    "end": 100,
+    "texte": "### 12.3.24 \u2014 matin\nPremi\u00e8re journ\u00e9e, texte assez court."
+   },
+   {
+    "id": "2024-03-12_b",
+    "date": "2024-03-12",
+    "titre": "12.03.2024",
+    "start": 100,
+    "end": 161,
+    "texte": "## 12.03.2024 (soir)\nM\u00eame jour : l'id re\u00e7oit le suffixe _b."
+   },
+   {
+    "id": "2124-03-05",
+    "date": "2124-03-05",
+    "titre": "5.3.124",
+    "start": 308,
+    "end": 357,
+    "texte": "### 5.3.124\nAnn\u00e9e \u00e0 trois chiffres : 2000 + 124."
+   }
+  ],
+  "sentences": [],
+  "feuilles_block": "\u2550\u2550\u2550 Feuille : 2024-03-11 \u2550\u2550\u2550\n### 2024-03-11\nJourn\u00e9e ISO ant\u00e9rieure, elle doit remonter au tri.\nAvec une ligne CRLF pour tester les fins de ligne.\n\n#### Pas un s\u00e9parateur (h4)\n\n\u2550\u2550\u2550 Feuille : 2024-03-12 \u2550\u2550\u2550\n### 12.3.24 \u2014 matin\nPremi\u00e8re journ\u00e9e, texte assez court.\n\n\u2550\u2550\u2550 Feuille : 2024-03-12_b \u2550\u2550\u2550\n## 12.03.2024 (soir)\nM\u00eame jour : l'id re\u00e7oit le suffixe _b.\n\n\u2550\u2550\u2550 Feuille : 2124-03-05 \u2550\u2550\u2550\n### 5.3.124\nAnn\u00e9e \u00e0 trois chiffres : 2000 + 124.\n"
+ },
+ {
+  "content": "# Journal (h1 ignor\u00e9)\n\n## Semaine 1\nContenu de la premi\u00e8re semaine.\n\n### D\u00e9tail important\nSous-partie compt\u00e9e comme feuille.\n\n## Semaine 2\nContenu de la deuxi\u00e8me semaine.\n",
+  "filename": "SYNTH-hebdo.md",
+  "journal_id": "SYNTH-hebdo",
+  "raw_md5": "642cf5b5cd54517c9ea49059c1186635",
+  "feuilles": [
+   {
+    "id": "F01",
+    "date": null,
+    "titre": "Semaine 1",
+    "start": 23,
+    "end": 69,
+    "texte": "## Semaine 1\nContenu de la premi\u00e8re semaine."
+   },
+   {
+    "id": "F02",
+    "date": null,
+    "titre": "D\u00e9tail important",
+    "start": 69,
+    "end": 126,
+    "texte": "### D\u00e9tail important\nSous-partie compt\u00e9e comme feuille."
+   },
+   {
+    "id": "F03",
+    "date": null,
+    "titre": "Semaine 2",
+    "start": 126,
+    "end": 171,
+    "texte": "## Semaine 2\nContenu de la deuxi\u00e8me semaine."
+   }
+  ],
+  "sentences": [],
+  "feuilles_block": "\u2550\u2550\u2550 Feuille : F01 \u2550\u2550\u2550\n## Semaine 1\nContenu de la premi\u00e8re semaine.\n\n\u2550\u2550\u2550 Feuille : F02 \u2550\u2550\u2550\n### D\u00e9tail important\nSous-partie compt\u00e9e comme feuille.\n\n\u2550\u2550\u2550 Feuille : F03 \u2550\u2550\u2550\n## Semaine 2\nContenu de la deuxi\u00e8me semaine.\n"
+ },
+ {
+  "content": "## Unique titre\nUn seul marqueur : fallback feuille unique.\n",
+  "filename": "unique.md",
+  "journal_id": "unique",
+  "raw_md5": "ce2b90bfaadd93f4eefe4a367f00174a",
+  "feuilles": [
+   {
+    "id": "F01",
+    "date": null,
+    "titre": "unique",
+    "start": 0,
+    "end": 60,
+    "texte": "## Unique titre\nUn seul marqueur : fallback feuille unique."
+   }
+  ],
+  "sentences": [],
+  "feuilles_block": "\u2550\u2550\u2550 Feuille : F01 \u2550\u2550\u2550\n## Unique titre\nUn seul marqueur : fallback feuille unique.\n"
+ },
+ {
+  "content": "# Grand titre h1\nTexte sans s\u00e9parateur reconnu.\n#### h4\nSuite.\n",
+  "filename": "sans_titres.md",
+  "journal_id": "sans_titres",
+  "raw_md5": "a79aabdb791930d78891682c0a0a940d",
+  "feuilles": [
+   {
+    "id": "F01",
+    "date": null,
+    "titre": "sans_titres",
+    "start": 0,
+    "end": 63,
+    "texte": "# Grand titre h1\nTexte sans s\u00e9parateur reconnu.\n#### h4\nSuite."
+   }
+  ],
+  "sentences": [],
+  "feuilles_block": "\u2550\u2550\u2550 Feuille : F01 \u2550\u2550\u2550\n# Grand titre h1\nTexte sans s\u00e9parateur reconnu.\n#### h4\nSuite.\n"
+ },
+ {
+  "content": "### 1.1.24\n# Ligne titre ignor\u00e9e pourtant longue xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nLigne trop courte pour compter.\nCette premi\u00e8re phrase d\u00e9passe largement les soixante caract\u00e8res requis, c'est certain ! Courte suite. Et voici une seconde phrase valide, elle aussi assez longue pour \u00eatre retenue au final ? Une interminable phrase tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s longue qui d\u00e9passe le plafond des quatre cents caract\u00e8res et sera donc exclue du d\u00e9compte.\n### 2.1.24\nUne autre journ\u00e9e \ud83c\udf1f avec une unique phrase suffisamment d\u00e9velopp\u00e9e pour figurer ici.\n",
+  "filename": "phrases.md",
+  "journal_id": "phrases",
+  "raw_md5": "72bf9af2fd92b211078ba2d4c0be8708",
+  "feuilles": [
+   {
+    "id": "2024-01-01",
+    "date": "2024-01-01",
+    "titre": "1.1.24",
+    "start": 0,
+    "end": 848,
+    "texte": "### 1.1.24\n# Ligne titre ignor\u00e9e pourtant longue xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nLigne trop courte pour compter.\nCette premi\u00e8re phrase d\u00e9passe largement les soixante caract\u00e8res requis, c'est certain ! Courte suite. Et voici une seconde phrase valide, elle aussi assez longue pour \u00eatre retenue au final ? Une interminable phrase tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s longue qui d\u00e9passe le plafond des quatre cents caract\u00e8res et sera donc exclue du d\u00e9compte."
+   },
+   {
+    "id": "2024-01-02",
+    "date": "2024-01-02",
+    "titre": "2.1.24",
+    "start": 848,
+    "end": 944,
+    "texte": "### 2.1.24\nUne autre journ\u00e9e \ud83c\udf1f avec une unique phrase suffisamment d\u00e9velopp\u00e9e pour figurer ici."
+   }
+  ],
+  "sentences": [
+   [
+    "2024-01-01",
+    "Cette premi\u00e8re phrase d\u00e9passe largement les soixante caract\u00e8res requis, c'est certain !"
+   ],
+   [
+    "2024-01-01",
+    "Et voici une seconde phrase valide, elle aussi assez longue pour \u00eatre retenue au final ?"
+   ],
+   [
+    "2024-01-02",
+    "Une autre journ\u00e9e \ud83c\udf1f avec une unique phrase suffisamment d\u00e9velopp\u00e9e pour figurer ici."
+   ]
+  ],
+  "feuilles_block": "\u2550\u2550\u2550 Feuille : 2024-01-01 \u2550\u2550\u2550\n### 1.1.24\n# Ligne titre ignor\u00e9e pourtant longue xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nLigne trop courte pour compter.\nCette premi\u00e8re phrase d\u00e9passe largement les soixante caract\u00e8res requis, c'est certain ! Courte suite. Et voici une seconde phrase valide, elle aussi assez longue pour \u00eatre retenue au final ? Une interminable phrase tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s tr\u00e8s longue qui d\u00e9passe le plafond des quatre cents caract\u00e8res et sera donc exclue du d\u00e9compte.\n\n\u2550\u2550\u2550 Feuille : 2024-01-02 \u2550\u2550\u2550\n### 2.1.24\nUne autre journ\u00e9e \ud83c\udf1f avec une unique phrase suffisamment d\u00e9velopp\u00e9e pour figurer ici.\n"
+ }
+]

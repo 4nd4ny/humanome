@@ -75,3 +75,9 @@ export {
   splitSegment,
   toArchiveSegmentation
 } from './portfolio/segment.js'
+
+// --- Twin_v9 — orchestrateur (portage JS, parité mock bit-à-bit CPython, ADR-010) ---
+// Package ESM sans DOM ni fs : `twin9.executerTwin9({...})` enchaîne tout le
+// pipeline (découpage → journées → merge → scan → second ressort → relectures →
+// sorties) et renvoie {cartoEvolutive, profilIpsatif, statuts, metrics, etat}.
+export * as twin9 from './twin9/index.js'

@@ -1,0 +1,72 @@
+[
+ {
+  "text": "A={$A} B={$B} A2={$A} C={$C}",
+  "vars": {
+   "A": "x$& $1",
+   "B": null
+  },
+  "strict": false,
+  "out": "A=x$& $1 B=None A2=x$& $1 C={$C}",
+  "warn": "Variables non r\u00e9solues : C",
+  "err": null
+ },
+ {
+  "text": "{$X}{$Y}{$Z}",
+  "vars": {
+   "X": true,
+   "Y": 3,
+   "Z": 2.5
+  },
+  "strict": false,
+  "out": "True32.5",
+  "warn": null,
+  "err": null
+ },
+ {
+  "text": "val={$V}",
+  "vars": {
+   "V": "{$V} litt\u00e9ral"
+  },
+  "strict": false,
+  "out": "val={$V} litt\u00e9ral",
+  "warn": null,
+  "err": null
+ },
+ {
+  "text": "{$MANQUE} et {$AUSSI} et {$MANQUE}",
+  "vars": {},
+  "strict": false,
+  "out": "{$MANQUE} et {$AUSSI} et {$MANQUE}",
+  "warn": "Variables non r\u00e9solues : AUSSI, MANQUE",
+  "err": null
+ },
+ {
+  "text": "{$MANQUE}",
+  "vars": {},
+  "strict": true,
+  "out": null,
+  "warn": null,
+  "err": "Variables non r\u00e9solues : MANQUE"
+ },
+ {
+  "text": "{$a} {$A1} {$1A} {$_OK}",
+  "vars": {
+   "_OK": "oui",
+   "a": "non"
+  },
+  "strict": false,
+  "out": "{$a} {$A1} {$1A} oui",
+  "warn": "Variables non r\u00e9solues : A1",
+  "err": null
+ },
+ {
+  "text": "rien",
+  "vars": {
+   "A": 1
+  },
+  "strict": false,
+  "out": "rien",
+  "warn": null,
+  "err": null
+ }
+]

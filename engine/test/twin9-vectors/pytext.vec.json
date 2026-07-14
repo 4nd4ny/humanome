@@ -1,0 +1,118 @@
+{
+ "strip": [
+  {
+   "s": "   x\ty\u001c",
+   "chars": null,
+   "out": "x\ty"
+  },
+  {
+   "s": "  bonjour  ",
+   "chars": null,
+   "out": "bonjour"
+  },
+  {
+   "s": "\u001c\u001d\u001e\u001f\u0085 zut \u3000 ",
+   "chars": null,
+   "out": "zut"
+  },
+  {
+   "s": "\u00a0\u202f\u2028 mixte \u2029",
+   "chars": null,
+   "out": "mixte"
+  },
+  {
+   "s": "\u00ab\u00bb\"' test \u00ab\u00bb\"'",
+   "chars": "\u00ab\u00bb\"' ",
+   "out": "test"
+  },
+  {
+   "s": "__a_b__",
+   "chars": "_",
+   "out": "a_b"
+  },
+  {
+   "s": "",
+   "chars": null,
+   "out": ""
+  },
+  {
+   "s": "  ",
+   "chars": null,
+   "out": ""
+  }
+ ],
+ "lstrip": [
+  {
+   "s": "###   Titre # interne",
+   "chars": "# ",
+   "out": "Titre # interne"
+  },
+  {
+   "s": "## 12.03.24 \u2014 matin",
+   "chars": "# ",
+   "out": "12.03.24 \u2014 matin"
+  }
+ ],
+ "rstrip": [
+  {
+   "s": "  fin  \t",
+   "chars": null,
+   "out": "  fin"
+  }
+ ],
+ "splitlines": [
+  {
+   "s": "a\nb\r\nc\rd\u001ce f\u0085g\u000bh\fi j",
+   "out": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e f",
+    "g",
+    "h",
+    "i j"
+   ]
+  },
+  {
+   "s": "fin\n",
+   "out": [
+    "fin"
+   ]
+  },
+  {
+   "s": "\n\na\n",
+   "out": [
+    "",
+    "",
+    "a"
+   ]
+  },
+  {
+   "s": "sans saut",
+   "out": [
+    "sans saut"
+   ]
+  },
+  {
+   "s": "",
+   "out": []
+  },
+  {
+   "s": "x\r\n\r\ny",
+   "out": [
+    "x",
+    "",
+    "y"
+   ]
+  },
+  {
+   "s": "l1\u2028l2\u2029l3",
+   "out": [
+    "l1",
+    "l2",
+    "l3"
+   ]
+  }
+ ]
+}

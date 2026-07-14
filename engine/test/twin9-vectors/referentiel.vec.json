@@ -1,0 +1,242 @@
+{
+ "fake_fiche": "# P\u00f4le 3 \u2014 MAIN : Cr\u00e9er & Incarner (factice)\n\nPr\u00e9ambule invent\u00e9 du p\u00f4le, deux lignes,\navec des espaces finaux.  \n\n## 3.01 \u2014 Alpha factice\n\n**Essence** : premi\u00e8re comp\u00e9tence invent\u00e9e.\nManifestations : a, b, c.\n\n## 3.02 \u2014 B\u00e9ta factice  \n\nTexte de la deuxi\u00e8me fiche.\n\n### Sous-titre qui ne s\u00e9pare pas\n\n## 3.9 \u2014 pas un code valide\n\n## 3.03 \u2014 Gamma \u2014 avec tiret interne\n\nDerni\u00e8re fiche.\n",
+ "pole": {
+  "num": 3,
+  "nom": "MAIN \u2014 Cr\u00e9er & Incarner",
+  "header": "# P\u00f4le 3 \u2014 MAIN : Cr\u00e9er & Incarner (factice)\n\nPr\u00e9ambule invent\u00e9 du p\u00f4le, deux lignes,\navec des espaces finaux.  \n\n",
+  "competences": [
+   {
+    "code": "3.01",
+    "nom": "Alpha factice",
+    "fiche_md": "## 3.01 \u2014 Alpha factice\n\n**Essence** : premi\u00e8re comp\u00e9tence invent\u00e9e.\nManifestations : a, b, c."
+   },
+   {
+    "code": "3.02",
+    "nom": "B\u00e9ta factice",
+    "fiche_md": "## 3.02 \u2014 B\u00e9ta factice  \n\nTexte de la deuxi\u00e8me fiche.\n\n### Sous-titre qui ne s\u00e9pare pas\n\n## 3.9 \u2014 pas un code valide"
+   },
+   {
+    "code": "3.03",
+    "nom": "Gamma \u2014 avec tiret interne",
+    "fiche_md": "## 3.03 \u2014 Gamma \u2014 avec tiret interne\n\nDerni\u00e8re fiche."
+   }
+  ]
+ },
+ "fiche_complete": "# P\u00f4le 3 \u2014 MAIN : Cr\u00e9er & Incarner (factice)\n\nPr\u00e9ambule invent\u00e9 du p\u00f4le, deux lignes,\navec des espaces finaux.\n\n## 3.01 \u2014 Alpha factice\n\n**Essence** : premi\u00e8re comp\u00e9tence invent\u00e9e.\nManifestations : a, b, c.\n\n---\n\n## 3.02 \u2014 B\u00e9ta factice  \n\nTexte de la deuxi\u00e8me fiche.\n\n### Sous-titre qui ne s\u00e9pare pas\n\n## 3.9 \u2014 pas un code valide\n\n---\n\n## 3.03 \u2014 Gamma \u2014 avec tiret interne\n\nDerni\u00e8re fiche.\n",
+ "ordre": [
+  2,
+  0,
+  1
+ ],
+ "fiche_complete_ordre": "# P\u00f4le 3 \u2014 MAIN : Cr\u00e9er & Incarner (factice)\n\nPr\u00e9ambule invent\u00e9 du p\u00f4le, deux lignes,\navec des espaces finaux.\n\n## 3.03 \u2014 Gamma \u2014 avec tiret interne\n\nDerni\u00e8re fiche.\n\n---\n\n## 3.01 \u2014 Alpha factice\n\n**Essence** : premi\u00e8re comp\u00e9tence invent\u00e9e.\nManifestations : a, b, c.\n\n---\n\n## 3.02 \u2014 B\u00e9ta factice  \n\nTexte de la deuxi\u00e8me fiche.\n\n### Sous-titre qui ne s\u00e9pare pas\n\n## 3.9 \u2014 pas un code valide\n",
+ "competence_302": {
+  "code": "3.02",
+  "nom": "B\u00e9ta factice",
+  "fiche_md": "## 3.02 \u2014 B\u00e9ta factice  \n\nTexte de la deuxi\u00e8me fiche.\n\n### Sous-titre qui ne s\u00e9pare pas\n\n## 3.9 \u2014 pas un code valide"
+ },
+ "pole_noms": {
+  "1": "T\u00caTE \u2014 Penser & Comprendre",
+  "2": "C\u0152UR \u2014 Relier & Naviguer",
+  "3": "MAIN \u2014 Cr\u00e9er & Incarner",
+  "4": "\u00c2ME \u2014 Discerner & Juger",
+  "5": "RACINES \u2014 \u00c9voluer & R\u00e9sister",
+  "6": "CIT\u00c9 \u2014 Gouverner & S'ouvrir",
+  "7": "FLAMBEAU \u2014 Transmettre & Piloter"
+ },
+ "pole_nom_fallback": "P\u00f4le 9",
+ "permutations": [
+  {
+   "n": 10,
+   "seed": "fiche|gpt#1|P1",
+   "out": [
+    9,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ]
+  },
+  {
+   "n": 9,
+   "seed": "fiche|gpt#1|P2",
+   "out": [
+    1,
+    0,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2
+   ]
+  },
+  {
+   "n": 7,
+   "seed": "fiche|mockA#1|P3",
+   "out": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    0,
+    1
+   ]
+  },
+  {
+   "n": 9,
+   "seed": "fiche|claude#2|P4",
+   "out": [
+    4,
+    3,
+    2,
+    1,
+    0,
+    8,
+    7,
+    6,
+    5
+   ]
+  },
+  {
+   "n": 8,
+   "seed": "fiche|mockB#2|P5",
+   "out": [
+    7,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "n": 10,
+   "seed": "fiche|x|P6",
+   "out": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    0
+   ]
+  },
+  {
+   "n": 8,
+   "seed": "fiche|x|P7",
+   "out": [
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    0,
+    7
+   ]
+  },
+  {
+   "n": 0,
+   "seed": "vide",
+   "out": []
+  },
+  {
+   "n": 1,
+   "seed": "seul",
+   "out": [
+    0
+   ]
+  },
+  {
+   "n": 61,
+   "seed": "global|1",
+   "out": [
+    60,
+    59,
+    58,
+    57,
+    56,
+    55,
+    54,
+    53,
+    52,
+    51,
+    50,
+    49,
+    48,
+    47,
+    46,
+    45,
+    44,
+    43,
+    42,
+    41,
+    40,
+    39,
+    38,
+    37,
+    36,
+    35,
+    34,
+    33,
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    20,
+    19,
+    18,
+    17,
+    16,
+    15,
+    14,
+    13,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    0
+   ]
+  },
+  {
+   "n": 5,
+   "seed": 42,
+   "out": [
+    3,
+    2,
+    1,
+    0,
+    4
+   ]
+  }
+ ]
+}

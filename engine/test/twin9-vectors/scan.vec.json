@@ -1,0 +1,522 @@
+{
+ "resoudre_journees": {
+  "jours": [
+   {
+    "id": "A",
+    "date": "2026-03-01",
+    "texte": "ta"
+   },
+   {
+    "id": "B",
+    "date": "2026-03-01",
+    "texte": "tb"
+   },
+   {
+    "id": "C",
+    "date": "2026-03-02",
+    "texte": "tc"
+   }
+  ],
+  "refs": [
+   "2026-03-01",
+   "C",
+   "A",
+   "inconnu",
+   "2026-03-02"
+  ],
+  "out": "[\n  \"A\",\n  \"C\"\n]\n"
+ },
+ "cle_obs": [
+  {
+   "o": {
+    "type": "graine-referentiel",
+    "code": "1.01",
+    "titre": "X"
+   },
+   "out": "[\n  \"graine\",\n  \"1.01\"\n]\n"
+  },
+  {
+   "o": {
+    "type": "graine-referentiel",
+    "titre": "X"
+   },
+   "out": "[\n  \"graine\",\n  null\n]\n"
+  },
+  {
+   "o": {
+    "type": "hors-referentiel",
+    "titre": "  Titre Mixte  "
+   },
+   "out": "[\n  \"hors-referentiel\",\n  \"titre mixte\"\n]\n"
+  },
+  {
+   "o": {
+    "type": "continuite",
+    "titre": null
+   },
+   "out": "[\n  \"continuite\",\n  \"\"\n]\n"
+  }
+ ],
+ "reprise": {
+  "poles": [
+   {
+    "num": 1,
+    "header": "# Pôle 1\n\n",
+    "competences": [
+     {
+      "code": "1.01",
+      "nom": "Analyse critique",
+      "fiche_md": "## 1.01 — Analyse critique\n\nFiche 1.01."
+     },
+     {
+      "code": "1.03",
+      "nom": "Synthèse écrite",
+      "fiche_md": "## 1.03 — Synthèse écrite\n\nFiche 1.03."
+     },
+     {
+      "code": "1.05",
+      "nom": "Curiosité méthodique",
+      "fiche_md": "## 1.05 — Curiosité méthodique\n\nFiche 1.05."
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "header": "# Pôle 4\n\n",
+    "competences": [
+     {
+      "code": "4.03",
+      "nom": "Discernement éthique",
+      "fiche_md": "## 4.03 — Discernement éthique\n\nFiche 4.03."
+     },
+     {
+      "code": "4.07",
+      "nom": "Débat contradictoire",
+      "fiche_md": "## 4.07 — Débat contradictoire\n\nFiche 4.07."
+     }
+    ]
+   }
+  ],
+  "cartos": [
+   {
+    "journee": "J01",
+    "date": "2026-01-05",
+    "titre": "Prototype",
+    "authenticite": "authentique",
+    "premiere_impression": "Impression rapide.\n## Question spontanée\nComment mesures-tu ?",
+    "segments": [
+     {
+      "comps": [
+       "1.01"
+      ],
+      "heat": {
+       "__f__": 0.9
+      }
+     },
+     {
+      "comps": [
+       "1.01",
+       "1.03"
+      ],
+      "heat": {
+       "__f__": 0.72
+      }
+     }
+    ],
+    "verdicts": {
+     "1.01": {
+      "statut": "présence établie",
+      "etage": "leger-direct",
+      "confiance": {
+       "__f__": 0.9
+      },
+      "score_preuves": 3,
+      "score_indices": 2,
+      "traces_probantes": [
+       {
+        "extrait": "L'élève a présenté son prototype de four solaire devant la classe entière du matin.",
+        "date": null
+       }
+      ],
+      "prescription": {
+       "pour_apprenant": "Continue ainsi.",
+       "pour_cartographe": null
+      }
+     },
+     "1.03": {
+      "statut": "présence non établie",
+      "etage": "tribunal-court-circuit",
+      "confiance": {
+       "__f__": 0.3
+      },
+      "motif": "dossier vide",
+      "prescription": {
+       "pour_apprenant": "Documente davantage."
+      }
+     },
+     "4.03": {
+      "statut": "renvoi au cartographe",
+      "etage": "tribunal",
+      "confiance": {
+       "__f__": 0.5
+      },
+      "motif": "désaccord",
+      "prescription": {
+       "pour_apprenant": "À revoir ensemble.",
+       "pour_cartographe": "La pièce P1 relève-t-elle de 4.03 ?"
+      },
+      "dossier_cartographe": {
+       "motif": "désaccord jury",
+       "desaccord": "1 contre 1",
+       "pieges_envisages": [
+        "récit performatif"
+       ],
+       "citations": [
+        "extrait litigieux"
+       ]
+      },
+      "jury": {
+       "positions_finales": {
+        "Linguiste": "détection",
+        "Historien": "contestation"
+       },
+       "second_tour": true,
+       "relance_par": "Linguiste"
+      }
+     }
+    },
+    "etablies": [
+     "1.01"
+    ],
+    "renvois": [
+     "4.03"
+    ],
+    "graines": [
+     {
+      "code": "4.07",
+      "nom": "Débat contradictoire",
+      "journee": "J01",
+      "date": null,
+      "source": "leger-ecarte",
+      "detail": null,
+      "extrait": "Un débat sur l'orientation.",
+      "question": "As-tu remarqué ?"
+     },
+     {
+      "code": "1.05",
+      "nom": "Curiosité méthodique",
+      "journee": "J01",
+      "date": null,
+      "source": "leger-ecarte",
+      "detail": null,
+      "extrait": "Une curiosité isolée.",
+      "question": "As-tu remarqué ?"
+     }
+    ],
+    "consensus": {},
+    "legers": {},
+    "validations": {},
+    "spans_ecartes": [],
+    "calques": [],
+    "rejets": [],
+    "alertes_injection": [
+     "injection suspecte"
+    ]
+   },
+   {
+    "journee": "J02",
+    "date": "2026-01-12",
+    "titre": "Éthique",
+    "authenticite": "produite",
+    "premiere_impression": "Texte produit.",
+    "segments": [
+     {
+      "comps": [
+       "1.01"
+      ],
+      "heat": {
+       "__f__": 0.55
+      }
+     }
+    ],
+    "verdicts": {
+     "1.01": {
+      "statut": "présence établie",
+      "etage": "leger-direct",
+      "confiance": {
+       "__f__": 0.8
+      },
+      "score_preuves": 2,
+      "score_indices": 3,
+      "traces_probantes": [
+       {
+        "extrait": "L'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin.",
+        "date": null
+       }
+      ],
+      "prescription": {
+       "pour_apprenant": "Continue ainsi.",
+       "pour_cartographe": null
+      }
+     },
+     "4.07": {
+      "statut": "présence non établie",
+      "etage": "minoritaire",
+      "confiance": {
+       "__f__": 0.4
+      }
+     },
+     "4.03": {
+      "statut": "renvoi au cartographe",
+      "etage": "tribunal",
+      "confiance": {
+       "__f__": 0.45
+      },
+      "motif": "doute",
+      "prescription": {
+       "pour_apprenant": "Malheureusement à revoir.",
+       "pour_cartographe": "Question plus récente pour 4.03 ?"
+      }
+     }
+    },
+    "etablies": [
+     "1.01"
+    ],
+    "renvois": [
+     "4.03"
+    ],
+    "graines": [
+     {
+      "code": "4.07",
+      "nom": "Débat contradictoire",
+      "journee": "J02",
+      "date": null,
+      "source": "leger-ecarte",
+      "detail": null,
+      "extrait": "Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.",
+      "question": "As-tu remarqué ?"
+     },
+     {
+      "code": "1.05",
+      "nom": "Curiosité méthodique",
+      "journee": "J02",
+      "date": null,
+      "source": "leger-ecarte",
+      "detail": null,
+      "extrait": "curiosité méthodique de l'équipe.",
+      "question": "As-tu remarqué ?"
+     }
+    ],
+    "consensus": {},
+    "legers": {},
+    "validations": {},
+    "spans_ecartes": [],
+    "calques": [],
+    "rejets": [],
+    "alertes_injection": []
+   },
+   {
+    "journee": "J03",
+    "date": "2026-01-19",
+    "titre": "Synthèse",
+    "authenticite": "authentique",
+    "premiere_impression": null,
+    "segments": [
+     {
+      "comps": [
+       "1.03"
+      ],
+      "heat": {
+       "__f__": 0.6
+      }
+     }
+    ],
+    "verdicts": {
+     "1.03": {
+      "statut": "présence établie",
+      "etage": "leger-direct",
+      "confiance": {
+       "__f__": 0.7
+      },
+      "score_preuves": 2,
+      "score_indices": 1,
+      "traces_probantes": [
+       {
+        "extrait": "L'élève a repris la synthèse écrite de la veille pour la corriger point par point.",
+        "date": null
+       }
+      ],
+      "prescription": {
+       "pour_apprenant": "Continue ainsi.",
+       "pour_cartographe": null
+      }
+     },
+     "1.05": {
+      "statut": "présence non établie",
+      "etage": "non-détectée",
+      "confiance": {
+       "__f__": 0.1
+      }
+     }
+    },
+    "etablies": [
+     "1.03"
+    ],
+    "renvois": [],
+    "graines": [
+     {
+      "code": "4.07",
+      "nom": "Débat contradictoire",
+      "journee": "J03",
+      "date": null,
+      "source": "leger-ecarte",
+      "detail": null,
+      "extrait": "argumentant calmement ses choix.",
+      "question": "As-tu remarqué ?"
+     },
+     {
+      "code": "1.05",
+      "nom": "Curiosité méthodique",
+      "journee": "J03",
+      "date": null,
+      "source": "leger-ecarte",
+      "detail": null,
+      "extrait": "La curiosité méthodique de l'équipe a permis de tester une configuration inattendue.",
+      "question": "As-tu remarqué ?"
+     }
+    ],
+    "consensus": {},
+    "legers": {},
+    "validations": {},
+    "spans_ecartes": [],
+    "calques": [],
+    "rejets": [],
+    "alertes_injection": []
+   }
+  ],
+  "textes": {
+   "J01": "# Journal du premier jour\nNote copiée : <script>alert('x')</script> collée par erreur.\nL'élève a présenté son prototype de four solaire devant la classe entière du matin.\nEnsuite l'équipe a mesuré patiemment l'angle des miroirs avec un rapporteur artisanal.\nLe soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\n",
+   "J02": "# Journal du deuxième jour\nLa discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\nL'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin.\nUn débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\n",
+   "J03": "# Journal du troisième jour\nL'élève a repris la synthèse écrite de la veille pour la corriger point par point.\nLa curiosité méthodique de l'équipe a permis de tester une configuration inattendue.\nChacun a présenté ses conclusions devant le groupe en argumentant calmement ses choix.\n"
+  },
+  "config": {
+   "merge": {
+    "second_ressort": true,
+    "seuil_faisceau_journees": 2,
+    "relectures": true,
+    "rapporteur": true,
+    "max_histoires": 12
+   },
+   "scan_global": {
+    "retour_max_caracteres": 30000
+   },
+   "jury": {
+    "mode": "socle4+1"
+   },
+   "backend_tribunal": {
+    "kind": "mock",
+    "model": "mock-lourd"
+   }
+  },
+  "salt": "vecms",
+  "date": "2026-02-01",
+  "journal_id": "plant-merge",
+  "run2_scan_resume": "{\n  \"version\": \"scan-v1\",\n  \"orphelines\": [\n    {\n      \"type\": \"hors-referentiel\",\n      \"titre\": \"Cartographie personnelle du temps (mock)\",\n      \"description\": \"Un système de repérage temporel propre revient sur toute la période (mock).\",\n      \"codes\": [],\n      \"codesLesPlusProches\": [\n        \"1.01\"\n      ],\n      \"pourquoiHorsReferentiel\": \"Aucune des 61 ne couvre ce geste (mock).\",\n      \"hypotheseFalsifiable\": \"Si les prochaines journées n'en portent aucune trace, l'hypothèse tombe (mock).\",\n      \"testEntretien\": \"Peux-tu montrer comment tu organises tes dates ? (mock)\",\n      \"issues\": [\n        \"retrouvée\"\n      ],\n      \"extraits_ancres\": [\n        {\n          \"journee\": \"J01\",\n          \"date\": \"2026-01-05\",\n          \"verbatim\": \"Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\",\n          \"span\": [\n            258,\n            342\n          ],\n          \"ratio\": 1.0\n        },\n        {\n          \"journee\": \"J01\",\n          \"date\": \"2026-01-05\",\n          \"verbatim\": \"L'élève a présenté son prototype de four solaire devant la classe entière du matin.\",\n          \"span\": [\n            87,\n            170\n          ],\n          \"ratio\": 1.0\n        }\n      ],\n      \"graines\": [],\n      \"scan_date\": \"2026-02-01\",\n      \"cle\": [\n        \"hors-referentiel\",\n        \"cartographie personnelle du temps (mock)\"\n      ]\n    }\n  ],\n  \"continuites\": [\n    {\n      \"type\": \"continuite\",\n      \"titre\": \"Le fil du projet long (mock)\",\n      \"description\": \"Le même chantier traverse les journées, invisible au jour le jour (mock).\",\n      \"codes\": [\n        \"1.03\"\n      ],\n      \"codesLesPlusProches\": null,\n      \"pourquoiHorsReferentiel\": null,\n      \"hypotheseFalsifiable\": null,\n      \"testEntretien\": null,\n      \"issues\": [\n        \"retrouvée\"\n      ],\n      \"extraits_ancres\": [\n        {\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"verbatim\": \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\",\n          \"span\": [\n            201,\n            288\n          ],\n          \"ratio\": 1.0\n        },\n        {\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"verbatim\": \"La discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\",\n          \"span\": [\n            27,\n            113\n          ],\n          \"ratio\": 1.0\n        }\n      ],\n      \"graines\": [\n        {\n          \"code\": \"1.03\",\n          \"nom\": \"Synthèse écrite\",\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"source\": \"scan-global\",\n          \"detail\": null,\n          \"extrait\": \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\",\n          \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n        },\n        {\n          \"code\": \"1.03\",\n          \"nom\": \"Synthèse écrite\",\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"source\": \"scan-global\",\n          \"detail\": null,\n          \"extrait\": \"La discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\",\n          \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n        }\n      ],\n      \"scan_date\": \"2026-02-01\",\n      \"cle\": [\n        \"continuite\",\n        \"le fil du projet long (mock)\"\n      ]\n    }\n  ],\n  \"graines_versees\": 4,\n  \"non_retrouvees\": 0,\n  \"rejets_ancrage\": 0\n}\n",
+  "run2_scan_global_json": "{\n  \"version\": \"scan-v1\",\n  \"journal_id\": \"plant-merge\",\n  \"date\": \"2026-02-01\",\n  \"n_journees\": 3,\n  \"condenses_repris\": 3,\n  \"passe_globale_rejouee\": false,\n  \"arpentage_brut\": {\n    \"observationsHorsReferentiel\": [\n      {\n        \"titre\": \"Cartographie personnelle du temps (mock)\",\n        \"description\": \"Un système de repérage temporel propre revient sur toute la période (mock).\",\n        \"journeesCitees\": [\n          \"J01\",\n          \"J02\"\n        ],\n        \"indices\": [\n          \"Note copiée : <script>alert('x')</script> collée par erreur.\",\n          \"La discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\"\n        ],\n        \"pourquoiHorsReferentiel\": \"Aucune des 61 ne couvre ce geste (mock).\",\n        \"hypotheseFalsifiable\": \"Si les prochaines journées n'en portent aucune trace, l'hypothèse tombe (mock).\",\n        \"testEntretien\": \"Peux-tu montrer comment tu organises tes dates ? (mock)\",\n        \"codesLesPlusProches\": [\n          \"1.01\"\n        ]\n      }\n    ],\n    \"continuites\": [\n      {\n        \"titre\": \"Le fil du projet long (mock)\",\n        \"description\": \"Le même chantier traverse les journées, invisible au jour le jour (mock).\",\n        \"journeesCitees\": [\n          \"J01\",\n          \"J02\"\n        ],\n        \"indices\": [\n          \"Note copiée : <script>alert('x')</script> collée par erreur.\",\n          \"La discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\"\n        ],\n        \"codesRelies\": [\n          \"1.03\"\n        ]\n      }\n    ],\n    \"grainesReferentiel\": [\n      {\n        \"code\": \"1.05\",\n        \"journeesCitees\": [\n          \"J01\",\n          \"J02\"\n        ],\n        \"indices\": [\n          \"Note copiée : <script>alert('x')</script> collée par erreur.\",\n          \"La discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\"\n        ],\n        \"pourquoiInvisibleAuJour\": \"Chaque occurrence est trop ténue isolément (mock).\"\n      }\n    ]\n  },\n  \"observations\": [\n    {\n      \"type\": \"hors-referentiel\",\n      \"titre\": \"Cartographie personnelle du temps (mock)\",\n      \"description\": \"Un système de repérage temporel propre revient sur toute la période (mock).\",\n      \"codes\": [],\n      \"codesLesPlusProches\": [\n        \"1.01\"\n      ],\n      \"pourquoiHorsReferentiel\": \"Aucune des 61 ne couvre ce geste (mock).\",\n      \"hypotheseFalsifiable\": \"Si les prochaines journées n'en portent aucune trace, l'hypothèse tombe (mock).\",\n      \"testEntretien\": \"Peux-tu montrer comment tu organises tes dates ? (mock)\",\n      \"issues\": [\n        \"retrouvée\"\n      ],\n      \"extraits_ancres\": [\n        {\n          \"journee\": \"J01\",\n          \"date\": \"2026-01-05\",\n          \"verbatim\": \"Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\",\n          \"span\": [\n            258,\n            342\n          ],\n          \"ratio\": 1.0\n        },\n        {\n          \"journee\": \"J01\",\n          \"date\": \"2026-01-05\",\n          \"verbatim\": \"L'élève a présenté son prototype de four solaire devant la classe entière du matin.\",\n          \"span\": [\n            87,\n            170\n          ],\n          \"ratio\": 1.0\n        }\n      ],\n      \"graines\": [],\n      \"scan_date\": \"2026-02-01\",\n      \"cle\": [\n        \"hors-referentiel\",\n        \"cartographie personnelle du temps (mock)\"\n      ]\n    },\n    {\n      \"type\": \"continuite\",\n      \"titre\": \"Le fil du projet long (mock)\",\n      \"description\": \"Le même chantier traverse les journées, invisible au jour le jour (mock).\",\n      \"codes\": [\n        \"1.03\"\n      ],\n      \"codesLesPlusProches\": null,\n      \"pourquoiHorsReferentiel\": null,\n      \"hypotheseFalsifiable\": null,\n      \"testEntretien\": null,\n      \"issues\": [\n        \"retrouvée\"\n      ],\n      \"extraits_ancres\": [\n        {\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"verbatim\": \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\",\n          \"span\": [\n            201,\n            288\n          ],\n          \"ratio\": 1.0\n        },\n        {\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"verbatim\": \"La discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\",\n          \"span\": [\n            27,\n            113\n          ],\n          \"ratio\": 1.0\n        }\n      ],\n      \"graines\": [\n        {\n          \"code\": \"1.03\",\n          \"nom\": \"Synthèse écrite\",\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"source\": \"scan-global\",\n          \"detail\": null,\n          \"extrait\": \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\",\n          \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n        },\n        {\n          \"code\": \"1.03\",\n          \"nom\": \"Synthèse écrite\",\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"source\": \"scan-global\",\n          \"detail\": null,\n          \"extrait\": \"La discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\",\n          \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n        }\n      ],\n      \"scan_date\": \"2026-02-01\",\n      \"cle\": [\n        \"continuite\",\n        \"le fil du projet long (mock)\"\n      ]\n    },\n    {\n      \"type\": \"graine-referentiel\",\n      \"titre\": \"1.05\",\n      \"description\": \"Chaque occurrence est trop ténue isolément (mock).\",\n      \"codes\": [\n        \"1.05\"\n      ],\n      \"codesLesPlusProches\": null,\n      \"pourquoiHorsReferentiel\": null,\n      \"hypotheseFalsifiable\": null,\n      \"testEntretien\": null,\n      \"issues\": [\n        \"retrouvée\"\n      ],\n      \"extraits_ancres\": [\n        {\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"verbatim\": \"L'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin.\",\n          \"span\": [\n            114,\n            200\n          ],\n          \"ratio\": 1.0\n        },\n        {\n          \"journee\": \"J01\",\n          \"date\": \"2026-01-05\",\n          \"verbatim\": \"Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\",\n          \"span\": [\n            258,\n            342\n          ],\n          \"ratio\": 1.0\n        }\n      ],\n      \"graines\": [\n        {\n          \"code\": \"1.05\",\n          \"nom\": \"Curiosité méthodique\",\n          \"journee\": \"J02\",\n          \"date\": \"2026-01-12\",\n          \"source\": \"scan-global\",\n          \"detail\": null,\n          \"extrait\": \"L'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin.\",\n          \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n        },\n        {\n          \"code\": \"1.05\",\n          \"nom\": \"Curiosité méthodique\",\n          \"journee\": \"J01\",\n          \"date\": \"2026-01-05\",\n          \"source\": \"scan-global\",\n          \"detail\": null,\n          \"extrait\": \"Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\",\n          \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n        }\n      ],\n      \"scan_date\": \"2026-02-01\",\n      \"cle\": [\n        \"graine\",\n        null\n      ]\n    }\n  ],\n  \"non_retrouvees\": [],\n  \"parametres\": {\n    \"retour_max_caracteres\": 30000\n  }\n}\n",
+  "run2_incidents": "{}\n",
+  "run2_comps": "{\n  \"1.01\": {\n    \"code\": \"1.01\",\n    \"nom\": \"Analyse critique\",\n    \"pole\": 1,\n    \"statut_temporel\": \"présence consolidée\",\n    \"trajectoire\": \"en sommeil\",\n    \"attestations\": [\n      {\n        \"jour_index\": 0,\n        \"journee\": \"J01\",\n        \"date\": \"2026-01-05\",\n        \"etage\": \"leger-direct\",\n        \"confiance\": 0.9,\n        \"score_preuves\": 3,\n        \"score_indices\": 2,\n        \"citations\": [\n          \"L'élève a présenté son prototype de four solaire devant la classe entière du matin.\"\n        ]\n      },\n      {\n        \"jour_index\": 1,\n        \"journee\": \"J02\",\n        \"date\": \"2026-01-12\",\n        \"etage\": \"leger-direct\",\n        \"confiance\": 0.8,\n        \"score_preuves\": 2,\n        \"score_indices\": 3,\n        \"citations\": [\n          \"L'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin.\"\n        ]\n      }\n    ],\n    \"signaux\": [],\n    \"heat_timeline\": [\n      0.9,\n      0.55,\n      0.0\n    ],\n    \"cumul_preuves\": 5,\n    \"cumul_indices\": 5,\n    \"confiance_moyenne\": 0.85,\n    \"score_cumule\": 9.25,\n    \"graines\": [],\n    \"graines_recurrentes\": false,\n    \"faisceau\": null\n  },\n  \"1.03\": {\n    \"code\": \"1.03\",\n    \"nom\": \"Synthèse écrite\",\n    \"pole\": 1,\n    \"statut_temporel\": \"présence établie (à confirmer)\",\n    \"trajectoire\": \"émergence récente\",\n    \"attestations\": [\n      {\n        \"jour_index\": 2,\n        \"journee\": \"J03\",\n        \"date\": \"2026-01-19\",\n        \"etage\": \"leger-direct\",\n        \"confiance\": 0.7,\n        \"score_preuves\": 2,\n        \"score_indices\": 1,\n        \"citations\": [\n          \"L'élève a repris la synthèse écrite de la veille pour la corriger point par point.\"\n        ]\n      }\n    ],\n    \"signaux\": [\n      {\n        \"jour_index\": 0,\n        \"journee\": \"J01\",\n        \"type\": \"instruite\"\n      }\n    ],\n    \"heat_timeline\": [\n      0.72,\n      0.0,\n      0.6\n    ],\n    \"cumul_preuves\": 2,\n    \"cumul_indices\": 1,\n    \"confiance_moyenne\": 0.7,\n    \"score_cumule\": 2.7,\n    \"graines\": [\n      {\n        \"code\": \"1.03\",\n        \"nom\": \"Synthèse écrite\",\n        \"journee\": \"J02\",\n        \"date\": \"2026-01-12\",\n        \"source\": \"scan-global\",\n        \"detail\": null,\n        \"extrait\": \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\",\n        \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n      },\n      {\n        \"code\": \"1.03\",\n        \"nom\": \"Synthèse écrite\",\n        \"journee\": \"J02\",\n        \"date\": \"2026-01-12\",\n        \"source\": \"scan-global\",\n        \"detail\": null,\n        \"extrait\": \"La discussion éthique sur le partage des tâches a duré toute la matinée sans trancher.\",\n        \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n      }\n    ],\n    \"graines_recurrentes\": false,\n    \"faisceau\": null\n  },\n  \"1.05\": {\n    \"code\": \"1.05\",\n    \"nom\": \"Curiosité méthodique\",\n    \"pole\": 1,\n    \"statut_temporel\": \"renvoi au cartographe\",\n    \"trajectoire\": \"stable absente\",\n    \"attestations\": [],\n    \"signaux\": [\n      {\n        \"jour_index\": null,\n        \"journee\": \"second-ressort\",\n        \"type\": \"faisceau-renvoi\"\n      }\n    ],\n    \"heat_timeline\": [\n      0.0,\n      0.0,\n      0.0\n    ],\n    \"cumul_preuves\": 0,\n    \"cumul_indices\": 0,\n    \"confiance_moyenne\": 0.0,\n    \"score_cumule\": 0.0,\n    \"graines\": [\n      {\n        \"code\": \"1.05\",\n        \"nom\": \"Curiosité méthodique\",\n        \"journee\": \"J01\",\n        \"date\": null,\n        \"source\": \"leger-ecarte\",\n        \"detail\": null,\n        \"extrait\": \"Une curiosité isolée.\",\n        \"question\": \"As-tu remarqué ?\"\n      },\n      {\n        \"code\": \"1.05\",\n        \"nom\": \"Curiosité méthodique\",\n        \"journee\": \"J02\",\n        \"date\": null,\n        \"source\": \"leger-ecarte\",\n        \"detail\": null,\n        \"extrait\": \"curiosité méthodique de l'équipe.\",\n        \"question\": \"As-tu remarqué ?\"\n      },\n      {\n        \"code\": \"1.05\",\n        \"nom\": \"Curiosité méthodique\",\n        \"journee\": \"J03\",\n        \"date\": null,\n        \"source\": \"leger-ecarte\",\n        \"detail\": null,\n        \"extrait\": \"La curiosité méthodique de l'équipe a permis de tester une configuration inattendue.\",\n        \"question\": \"As-tu remarqué ?\"\n      },\n      {\n        \"code\": \"1.05\",\n        \"nom\": \"Curiosité méthodique\",\n        \"journee\": \"J02\",\n        \"date\": \"2026-01-12\",\n        \"source\": \"scan-global\",\n        \"detail\": null,\n        \"extrait\": \"L'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin.\",\n        \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n      },\n      {\n        \"code\": \"1.05\",\n        \"nom\": \"Curiosité méthodique\",\n        \"journee\": \"J01\",\n        \"date\": \"2026-01-05\",\n        \"source\": \"scan-global\",\n        \"detail\": null,\n        \"extrait\": \"Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\",\n        \"question\": \"La lecture du portfolio entier a relié ceci que le découpage en journées avait dispersé — qu'en dis-tu ?\"\n      }\n    ],\n    \"graines_recurrentes\": true,\n    \"faisceau\": {\n      \"statut\": \"renvoi au cartographe\",\n      \"confiance\": 0.5,\n      \"motif\": \"détection et contestation subsistent après le second tour\",\n      \"prescription\": {\n        \"pour_apprenant\": \"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\",\n        \"pour_cartographe\": \"Question à explorer en entretien : la pièce P1 relève-t-elle de 1.05 ? (mock)\"\n      },\n      \"traces\": [],\n      \"jury\": {\n        \"mode\": \"socle4+1\",\n        \"personas\": {\n          \"version\": \"personas-v1\",\n          \"empreinte\": \"1ec337d3a2ef\"\n        },\n        \"detections\": [\n          \"Linguiste\"\n        ],\n        \"contestations\": [\n          \"Pédagogue\"\n        ],\n        \"abstentions\": [\n          \"Historien\",\n          \"Sociologue\",\n          \"Ingénieur\",\n          \"Portraitiste\"\n        ],\n        \"second_tour\": true,\n        \"relance_par\": \"Pédagogue\",\n        \"composition\": [\n          \"Linguiste\",\n          \"Historien\",\n          \"Pédagogue\",\n          \"Sociologue\",\n          \"Ingénieur\",\n          \"Portraitiste\"\n        ],\n        \"positions_r1\": {\n          \"Linguiste\": \"détection\",\n          \"Historien\": \"abstention\",\n          \"Pédagogue\": \"contestation\",\n          \"Sociologue\": \"abstention\",\n          \"Ingénieur\": \"abstention\",\n          \"Portraitiste\": \"abstention\"\n        },\n        \"positions_finales\": {\n          \"Linguiste\": \"détection\",\n          \"Historien\": \"abstention\",\n          \"Pédagogue\": \"contestation\",\n          \"Sociologue\": \"abstention\",\n          \"Ingénieur\": \"abstention\",\n          \"Portraitiste\": \"abstention\"\n        },\n        \"pieges_nommes\": [\n          \"récit performatif (déclaration sans acte)\"\n        ],\n        \"consensus\": false,\n        \"dissidences\": [\n          \"Pédagogue : contestation (récit performatif (déclaration sans acte))\"\n        ]\n      },\n      \"gardien\": {\n        \"support\": {\n          \"constat\": \"neutre\"\n        },\n        \"raisonnement\": {\n          \"drapeau\": false\n        }\n      },\n      \"dossier_cartographe\": {\n        \"motif\": \"détection et contestation subsistent après le second tour\",\n        \"desaccord\": \"détections : Linguiste — contestations : Pédagogue\",\n        \"pieges_envisages\": [\n          \"récit performatif (déclaration sans acte)\"\n        ],\n        \"citations\": [\n          \"Une curiosité isolée.\",\n          \"Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\",\n          \"curiosité méthodique de l'équipe.\"\n        ]\n      },\n      \"deliberation\": {\n        \"greffier_md\": \"# Dossier de faisceau — 1.05 Curiosité méthodique\\n\\nPièces réunies mécaniquement sur la période 2026-01-05 → 2026-01-19 : signaux individuellement trop faibles pour la carte, conservés parce qu'ils reviennent. La question à instruire : forment-ils ENSEMBLE un faisceau probant ?\\n\\n### Pièces extraites\\n\\n#### Pièce 1\\n- **Extrait** : « Une curiosité isolée. »\\n- **Date** : J01\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 2\\n- **Extrait** : « Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance. »\\n- **Date** : 2026-01-05\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : scan-global)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 3\\n- **Extrait** : « curiosité méthodique de l'équipe. »\\n- **Date** : J02\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 4\\n- **Extrait** : « L'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin. »\\n- **Date** : 2026-01-12\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : scan-global)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 5\\n- **Extrait** : « La curiosité méthodique de l'équipe a permis de tester une configuration inattendue. »\\n- **Date** : J03\\n- **Localisation** : journée J03\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\",\n        \"arene\": {\n          \"accusation_md\": \"# Accusation — 1.05 Curiosité méthodique\\n\\n## Thèse\\nLes pièces P1-P3 montrent des actes datés.\\n\\n## Arguments\\n### Argument 1 — Acte documenté\\nPièces : P1. L'acte décrit correspond aux manifestations de la fiche.\\n\\n## Auto-évaluation de la force du dossier\\nmodérée — dossier réel mais étroit.\",\n          \"defense_md\": \"# Défense — 1.05 Curiosité méthodique\\n\\n## Position générale\\nLe dossier est étroit.\\n\\n## Attaques\\n### Attaque 1 — Insuffisance probatoire — vise Argument 1 / Pièces P2, P3\\nDeux pièces sont déclaratives, sans dispositif.\\n\\n## Ce que la Défense concède\\nP1 décrit un acte réel.\\n\\n## Conclusion\\nContestation partielle : la présence repose sur P1 seule.\",\n          \"replique_md\": \"# Réplique — 1.05 Curiosité méthodique\\n\\n### Réponse à l'Attaque 1\\npartiellement concédée — P2 reste un indice, P3 est abandonnée.\\n\\n## État final du réquisitoire\\nP1 (preuve) + P2 (indice) tiennent.\",\n          \"briefing_md\": \"# Briefing juré — 1.05 Curiosité méthodique\\n\\n## Ce que soutient l'Accusation\\nP1 acte daté ; P2 indice.\\n\\n## Ce que soutient la Défense\\nP2-P3 déclaratives.\\n\\n## Issue de la réplique\\nP3 abandonnée.\\n\\n## Points de convergence\\nP1 est un acte réel.\\n\\n## Questions à trancher par le jury\\n1. P1 suffit-elle seule ? (P1)\\n2. P2 est-elle étayée ? (P2)\"\n        },\n        \"jures\": {\n          \"Linguiste\": {\n            \"r1_md\": \"# Juré Linguiste — 1.05 Curiosité méthodique\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Linguiste — 1.05 Curiosité méthodique\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Historien\": {\n            \"r1_md\": \"# Juré Historien — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Historien — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"abstention\",\n            \"position_finale\": \"abstention\",\n            \"pieces\": [],\n            \"piege\": null\n          },\n          \"Pédagogue\": {\n            \"r1_md\": \"# Juré Pédagogue — 1.05 Curiosité méthodique\\n\\n**Position** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": null,\n            \"position_r1\": \"contestation\",\n            \"position_finale\": \"contestation\",\n            \"pieces\": [\n              2,\n              3\n            ],\n            \"piege\": \"récit performatif (déclaration sans acte)\"\n          },\n          \"Sociologue\": {\n            \"r1_md\": \"# Juré Sociologue — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Sociologue — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"abstention\",\n            \"position_finale\": \"abstention\",\n            \"pieces\": [],\n            \"piege\": null\n          },\n          \"Ingénieur\": {\n            \"r1_md\": \"# Juré Ingénieur — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Ingénieur — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"abstention\",\n            \"position_finale\": \"abstention\",\n            \"pieces\": [],\n            \"piege\": null\n          },\n          \"Portraitiste\": {\n            \"r1_md\": \"# Juré Portraitiste — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Portraitiste — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"abstention\",\n            \"position_finale\": \"abstention\",\n            \"pieces\": [],\n            \"piege\": null\n          }\n        },\n        \"relance_md\": \"# Relance — Pédagogue — 1.05 Curiosité méthodique\\n\\n**Position maintenue** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## L'argument qui justifie la réouverture\\nMon angle éclaire P1 autrement (mock).\\n\\n## Questions précises aux autres jurés\\n1. P1 décrit-elle un acte daté ? (P1)\\n2. P2 est-elle étayée ? (P2)\",\n        \"relance_par\": \"Pédagogue\",\n        \"gardiens\": {\n          \"support_md\": \"# Gardien du support — 1.05 Curiosité méthodique\\n\\n**Constat** : neutre\\n\\n## Motif\\nConstat sur le canal écrit, pas sur l'élève (mock).\",\n          \"raisonnement_md\": \"# Gardien du raisonnement — 1.05 Curiosité méthodique\\n\\n**Drapeau** : aucun\\n\\n## Motif\\nLe raisonnement du collège tient (mock).\"\n        },\n        \"president_md\": \"# Président — 1.05 Curiosité méthodique\\n\\n## Délibération\\n### Synthèse des positions\\n(récit mock du porte-parole — le statut calculé est : renvoi au cartographe)\\n\\n## Prescription\\n\\n```json\\n{\\\"prescription\\\": {\\\"pour_apprenant\\\": \\\"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\\\", \\\"pour_cartographe\\\": \\\"Question à explorer en entretien : la pièce P1 relève-t-elle de 1.05 ? (mock)\\\"}}\\n```\"\n      }\n    }\n  },\n  \"4.03\": {\n    \"code\": \"4.03\",\n    \"nom\": \"Discernement éthique\",\n    \"pole\": 4,\n    \"statut_temporel\": \"renvoi au cartographe\",\n    \"trajectoire\": \"frontière persistante\",\n    \"attestations\": [],\n    \"signaux\": [\n      {\n        \"jour_index\": 0,\n        \"journee\": \"J01\",\n        \"type\": \"renvoi\"\n      },\n      {\n        \"jour_index\": 1,\n        \"journee\": \"J02\",\n        \"type\": \"renvoi\"\n      }\n    ],\n    \"heat_timeline\": [\n      0.0,\n      0.0,\n      0.0\n    ],\n    \"cumul_preuves\": 0,\n    \"cumul_indices\": 0,\n    \"confiance_moyenne\": 0.0,\n    \"score_cumule\": 0.0,\n    \"graines\": [],\n    \"graines_recurrentes\": false,\n    \"faisceau\": null\n  },\n  \"4.07\": {\n    \"code\": \"4.07\",\n    \"nom\": \"Débat contradictoire\",\n    \"pole\": 4,\n    \"statut_temporel\": \"renvoi au cartographe\",\n    \"trajectoire\": \"signal isolé\",\n    \"attestations\": [],\n    \"signaux\": [\n      {\n        \"jour_index\": 1,\n        \"journee\": \"J02\",\n        \"type\": \"minoritaire\"\n      },\n      {\n        \"jour_index\": null,\n        \"journee\": \"second-ressort\",\n        \"type\": \"faisceau-renvoi\"\n      }\n    ],\n    \"heat_timeline\": [\n      0.0,\n      0.0,\n      0.0\n    ],\n    \"cumul_preuves\": 0,\n    \"cumul_indices\": 0,\n    \"confiance_moyenne\": 0.0,\n    \"score_cumule\": 0.0,\n    \"graines\": [\n      {\n        \"code\": \"4.07\",\n        \"nom\": \"Débat contradictoire\",\n        \"journee\": \"J01\",\n        \"date\": null,\n        \"source\": \"leger-ecarte\",\n        \"detail\": null,\n        \"extrait\": \"Un débat sur l'orientation.\",\n        \"question\": \"As-tu remarqué ?\"\n      },\n      {\n        \"code\": \"4.07\",\n        \"nom\": \"Débat contradictoire\",\n        \"journee\": \"J02\",\n        \"date\": null,\n        \"source\": \"leger-ecarte\",\n        \"detail\": null,\n        \"extrait\": \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\",\n        \"question\": \"As-tu remarqué ?\"\n      },\n      {\n        \"code\": \"4.07\",\n        \"nom\": \"Débat contradictoire\",\n        \"journee\": \"J03\",\n        \"date\": null,\n        \"source\": \"leger-ecarte\",\n        \"detail\": null,\n        \"extrait\": \"argumentant calmement ses choix.\",\n        \"question\": \"As-tu remarqué ?\"\n      }\n    ],\n    \"graines_recurrentes\": true,\n    \"faisceau\": {\n      \"statut\": \"renvoi au cartographe\",\n      \"confiance\": 0.5,\n      \"motif\": \"drapeau du gardien du raisonnement\",\n      \"prescription\": {\n        \"pour_apprenant\": \"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\",\n        \"pour_cartographe\": \"Question à explorer en entretien : la pièce P1 relève-t-elle de 4.07 ? (mock)\"\n      },\n      \"traces\": [],\n      \"jury\": {\n        \"mode\": \"socle4+1\",\n        \"personas\": {\n          \"version\": \"personas-v1\",\n          \"empreinte\": \"1ec337d3a2ef\"\n        },\n        \"detections\": [\n          \"Linguiste\",\n          \"Historien\",\n          \"Pédagogue\",\n          \"Sociologue\",\n          \"Éthicien\",\n          \"Portraitiste\"\n        ],\n        \"contestations\": [],\n        \"abstentions\": [],\n        \"second_tour\": true,\n        \"relance_par\": \"Historien\",\n        \"composition\": [\n          \"Linguiste\",\n          \"Historien\",\n          \"Pédagogue\",\n          \"Sociologue\",\n          \"Éthicien\",\n          \"Portraitiste\"\n        ],\n        \"positions_r1\": {\n          \"Linguiste\": \"détection\",\n          \"Historien\": \"contestation\",\n          \"Pédagogue\": \"détection\",\n          \"Sociologue\": \"détection\",\n          \"Éthicien\": \"détection\",\n          \"Portraitiste\": \"détection\"\n        },\n        \"positions_finales\": {\n          \"Linguiste\": \"détection\",\n          \"Historien\": \"détection\",\n          \"Pédagogue\": \"détection\",\n          \"Sociologue\": \"détection\",\n          \"Éthicien\": \"détection\",\n          \"Portraitiste\": \"détection\"\n        },\n        \"pieges_nommes\": [],\n        \"consensus\": true,\n        \"dissidences\": []\n      },\n      \"gardien\": {\n        \"support\": {\n          \"constat\": \"neutre\"\n        },\n        \"raisonnement\": {\n          \"drapeau\": true\n        }\n      },\n      \"dossier_cartographe\": {\n        \"motif\": \"drapeau du gardien du raisonnement\",\n        \"desaccord\": \"détections : Linguiste, Historien, Pédagogue, Sociologue, Éthicien, Portraitiste — contestations : aucune\",\n        \"pieges_envisages\": [],\n        \"citations\": [\n          \"Un débat sur l'orientation.\",\n          \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\"\n        ]\n      },\n      \"deliberation\": {\n        \"greffier_md\": \"# Dossier de faisceau — 4.07 Débat contradictoire\\n\\nPièces réunies mécaniquement sur la période 2026-01-05 → 2026-01-19 : signaux individuellement trop faibles pour la carte, conservés parce qu'ils reviennent. La question à instruire : forment-ils ENSEMBLE un faisceau probant ?\\n\\n### Pièces extraites\\n\\n#### Pièce 1\\n- **Extrait** : « Un débat sur l'orientation. »\\n- **Date** : J01\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 2\\n- **Extrait** : « Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible. »\\n- **Date** : J02\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 3\\n- **Extrait** : « argumentant calmement ses choix. »\\n- **Date** : J03\\n- **Localisation** : journée J03\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\",\n        \"arene\": {\n          \"accusation_md\": \"# Accusation — 4.07 Débat contradictoire\\n\\n## Thèse\\nLes pièces P1-P3 montrent des actes datés.\\n\\n## Arguments\\n### Argument 1 — Acte documenté\\nPièces : P1. L'acte décrit correspond aux manifestations de la fiche.\\n\\n## Auto-évaluation de la force du dossier\\nmodérée — dossier réel mais étroit.\",\n          \"defense_md\": \"# Défense — 4.07 Débat contradictoire\\n\\n## Position générale\\nLe dossier est étroit.\\n\\n## Attaques\\n### Attaque 1 — Insuffisance probatoire — vise Argument 1 / Pièces P2, P3\\nDeux pièces sont déclaratives, sans dispositif.\\n\\n## Ce que la Défense concède\\nP1 décrit un acte réel.\\n\\n## Conclusion\\nContestation partielle : la présence repose sur P1 seule.\",\n          \"replique_md\": \"# Réplique — 4.07 Débat contradictoire\\n\\n### Réponse à l'Attaque 1\\npartiellement concédée — P2 reste un indice, P3 est abandonnée.\\n\\n## État final du réquisitoire\\nP1 (preuve) + P2 (indice) tiennent.\",\n          \"briefing_md\": \"# Briefing juré — 4.07 Débat contradictoire\\n\\n## Ce que soutient l'Accusation\\nP1 acte daté ; P2 indice.\\n\\n## Ce que soutient la Défense\\nP2-P3 déclaratives.\\n\\n## Issue de la réplique\\nP3 abandonnée.\\n\\n## Points de convergence\\nP1 est un acte réel.\\n\\n## Questions à trancher par le jury\\n1. P1 suffit-elle seule ? (P1)\\n2. P2 est-elle étayée ? (P2)\"\n        },\n        \"jures\": {\n          \"Linguiste\": {\n            \"r1_md\": \"# Juré Linguiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Linguiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Historien\": {\n            \"r1_md\": \"# Juré Historien — 4.07 Débat contradictoire\\n\\n**Position** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": null,\n            \"position_r1\": \"contestation\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Pédagogue\": {\n            \"r1_md\": \"# Juré Pédagogue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Pédagogue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Sociologue\": {\n            \"r1_md\": \"# Juré Sociologue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Sociologue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Éthicien\": {\n            \"r1_md\": \"# Juré Éthicien — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Éthicien — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Portraitiste\": {\n            \"r1_md\": \"# Juré Portraitiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Portraitiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          }\n        },\n        \"relance_md\": \"# Relance — Historien — 4.07 Débat contradictoire\\n\\n**Position maintenue** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## L'argument qui justifie la réouverture\\nMon angle éclaire P1 autrement (mock).\\n\\n## Questions précises aux autres jurés\\n1. P1 décrit-elle un acte daté ? (P1)\\n2. P2 est-elle étayée ? (P2)\",\n        \"relance_par\": \"Historien\",\n        \"gardiens\": {\n          \"support_md\": \"# Gardien du support — 4.07 Débat contradictoire\\n\\n**Constat** : neutre\\n\\n## Motif\\nConstat sur le canal écrit, pas sur l'élève (mock).\",\n          \"raisonnement_md\": \"# Gardien du raisonnement — 4.07 Débat contradictoire\\n\\n**Drapeau** : vice de raisonnement\\n\\n## Motif\\nUne position croit l'élève sur parole (mock).\"\n        },\n        \"president_md\": \"# Président — 4.07 Débat contradictoire\\n\\n## Délibération\\n### Synthèse des positions\\n(récit mock du porte-parole — le statut calculé est : renvoi au cartographe)\\n\\n## Prescription\\n\\n```json\\n{\\\"prescription\\\": {\\\"pour_apprenant\\\": \\\"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\\\", \\\"pour_cartographe\\\": \\\"Question à explorer en entretien : la pièce P1 relève-t-elle de 4.07 ? (mock)\\\"}}\\n```\"\n      }\n    }\n  }\n}\n",
+  "run2_sr_out": "{\n  \"1.05\": {\n    \"code\": \"1.05\",\n    \"nom\": \"Curiosité méthodique\",\n    \"dossier_vide\": false,\n    \"statut\": \"renvoi au cartographe\",\n    \"score_preuves\": \"R\",\n    \"score_indices\": \"R\",\n    \"confiance\": 0.5,\n    \"jury\": {\n      \"mode\": \"socle4+1\",\n      \"personas\": {\n        \"version\": \"personas-v1\",\n        \"empreinte\": \"1ec337d3a2ef\"\n      },\n      \"detections\": [\n        \"Linguiste\"\n      ],\n      \"contestations\": [\n        \"Pédagogue\"\n      ],\n      \"abstentions\": [\n        \"Historien\",\n        \"Sociologue\",\n        \"Ingénieur\",\n        \"Portraitiste\"\n      ],\n      \"second_tour\": true,\n      \"relance_par\": \"Pédagogue\",\n      \"composition\": [\n        \"Linguiste\",\n        \"Historien\",\n        \"Pédagogue\",\n        \"Sociologue\",\n        \"Ingénieur\",\n        \"Portraitiste\"\n      ],\n      \"positions_r1\": {\n        \"Linguiste\": \"détection\",\n        \"Historien\": \"abstention\",\n        \"Pédagogue\": \"contestation\",\n        \"Sociologue\": \"abstention\",\n        \"Ingénieur\": \"abstention\",\n        \"Portraitiste\": \"abstention\"\n      },\n      \"positions_finales\": {\n        \"Linguiste\": \"détection\",\n        \"Historien\": \"abstention\",\n        \"Pédagogue\": \"contestation\",\n        \"Sociologue\": \"abstention\",\n        \"Ingénieur\": \"abstention\",\n        \"Portraitiste\": \"abstention\"\n      },\n      \"pieges_nommes\": [\n        \"récit performatif (déclaration sans acte)\"\n      ],\n      \"consensus\": false,\n      \"dissidences\": [\n        \"Pédagogue : contestation (récit performatif (déclaration sans acte))\"\n      ]\n    },\n    \"traces_probantes\": [],\n    \"prescription\": {\n      \"pour_apprenant\": \"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\",\n      \"pour_cartographe\": \"Question à explorer en entretien : la pièce P1 relève-t-elle de 1.05 ? (mock)\"\n    },\n    \"gardien\": {\n      \"support\": {\n        \"constat\": \"neutre\"\n      },\n      \"raisonnement\": {\n        \"drapeau\": false\n      }\n    },\n    \"motif_regle\": \"détection et contestation subsistent après le second tour\",\n    \"dossier_cartographe\": {\n      \"motif\": \"détection et contestation subsistent après le second tour\",\n      \"desaccord\": \"détections : Linguiste — contestations : Pédagogue\",\n      \"pieges_envisages\": [\n        \"récit performatif (déclaration sans acte)\"\n      ],\n      \"citations\": [\n        \"Une curiosité isolée.\",\n        \"Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\",\n        \"curiosité méthodique de l'équipe.\"\n      ]\n    },\n    \"deliberation\": {\n      \"greffier_md\": \"# Dossier de faisceau — 1.05 Curiosité méthodique\\n\\nPièces réunies mécaniquement sur la période 2026-01-05 → 2026-01-19 : signaux individuellement trop faibles pour la carte, conservés parce qu'ils reviennent. La question à instruire : forment-ils ENSEMBLE un faisceau probant ?\\n\\n### Pièces extraites\\n\\n#### Pièce 1\\n- **Extrait** : « Une curiosité isolée. »\\n- **Date** : J01\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 2\\n- **Extrait** : « Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance. »\\n- **Date** : 2026-01-05\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : scan-global)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 3\\n- **Extrait** : « curiosité méthodique de l'équipe. »\\n- **Date** : J02\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 4\\n- **Extrait** : « L'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin. »\\n- **Date** : 2026-01-12\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : scan-global)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 5\\n- **Extrait** : « La curiosité méthodique de l'équipe a permis de tester une configuration inattendue. »\\n- **Date** : J03\\n- **Localisation** : journée J03\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\",\n      \"arene\": {\n        \"accusation_md\": \"# Accusation — 1.05 Curiosité méthodique\\n\\n## Thèse\\nLes pièces P1-P3 montrent des actes datés.\\n\\n## Arguments\\n### Argument 1 — Acte documenté\\nPièces : P1. L'acte décrit correspond aux manifestations de la fiche.\\n\\n## Auto-évaluation de la force du dossier\\nmodérée — dossier réel mais étroit.\",\n        \"defense_md\": \"# Défense — 1.05 Curiosité méthodique\\n\\n## Position générale\\nLe dossier est étroit.\\n\\n## Attaques\\n### Attaque 1 — Insuffisance probatoire — vise Argument 1 / Pièces P2, P3\\nDeux pièces sont déclaratives, sans dispositif.\\n\\n## Ce que la Défense concède\\nP1 décrit un acte réel.\\n\\n## Conclusion\\nContestation partielle : la présence repose sur P1 seule.\",\n        \"replique_md\": \"# Réplique — 1.05 Curiosité méthodique\\n\\n### Réponse à l'Attaque 1\\npartiellement concédée — P2 reste un indice, P3 est abandonnée.\\n\\n## État final du réquisitoire\\nP1 (preuve) + P2 (indice) tiennent.\",\n        \"briefing_md\": \"# Briefing juré — 1.05 Curiosité méthodique\\n\\n## Ce que soutient l'Accusation\\nP1 acte daté ; P2 indice.\\n\\n## Ce que soutient la Défense\\nP2-P3 déclaratives.\\n\\n## Issue de la réplique\\nP3 abandonnée.\\n\\n## Points de convergence\\nP1 est un acte réel.\\n\\n## Questions à trancher par le jury\\n1. P1 suffit-elle seule ? (P1)\\n2. P2 est-elle étayée ? (P2)\"\n      },\n      \"jures\": {\n        \"Linguiste\": {\n          \"r1_md\": \"# Juré Linguiste — 1.05 Curiosité méthodique\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Linguiste — 1.05 Curiosité méthodique\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"détection\",\n          \"position_finale\": \"détection\",\n          \"pieces\": [\n            1,\n            2\n          ],\n          \"piege\": null\n        },\n        \"Historien\": {\n          \"r1_md\": \"# Juré Historien — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Historien — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"abstention\",\n          \"position_finale\": \"abstention\",\n          \"pieces\": [],\n          \"piege\": null\n        },\n        \"Pédagogue\": {\n          \"r1_md\": \"# Juré Pédagogue — 1.05 Curiosité méthodique\\n\\n**Position** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": null,\n          \"position_r1\": \"contestation\",\n          \"position_finale\": \"contestation\",\n          \"pieces\": [\n            2,\n            3\n          ],\n          \"piege\": \"récit performatif (déclaration sans acte)\"\n        },\n        \"Sociologue\": {\n          \"r1_md\": \"# Juré Sociologue — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Sociologue — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"abstention\",\n          \"position_finale\": \"abstention\",\n          \"pieces\": [],\n          \"piege\": null\n        },\n        \"Ingénieur\": {\n          \"r1_md\": \"# Juré Ingénieur — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Ingénieur — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"abstention\",\n          \"position_finale\": \"abstention\",\n          \"pieces\": [],\n          \"piege\": null\n        },\n        \"Portraitiste\": {\n          \"r1_md\": \"# Juré Portraitiste — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Portraitiste — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"abstention\",\n          \"position_finale\": \"abstention\",\n          \"pieces\": [],\n          \"piege\": null\n        }\n      },\n      \"relance_md\": \"# Relance — Pédagogue — 1.05 Curiosité méthodique\\n\\n**Position maintenue** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## L'argument qui justifie la réouverture\\nMon angle éclaire P1 autrement (mock).\\n\\n## Questions précises aux autres jurés\\n1. P1 décrit-elle un acte daté ? (P1)\\n2. P2 est-elle étayée ? (P2)\",\n      \"relance_par\": \"Pédagogue\",\n      \"gardiens\": {\n        \"support_md\": \"# Gardien du support — 1.05 Curiosité méthodique\\n\\n**Constat** : neutre\\n\\n## Motif\\nConstat sur le canal écrit, pas sur l'élève (mock).\",\n        \"raisonnement_md\": \"# Gardien du raisonnement — 1.05 Curiosité méthodique\\n\\n**Drapeau** : aucun\\n\\n## Motif\\nLe raisonnement du collège tient (mock).\"\n      },\n      \"president_md\": \"# Président — 1.05 Curiosité méthodique\\n\\n## Délibération\\n### Synthèse des positions\\n(récit mock du porte-parole — le statut calculé est : renvoi au cartographe)\\n\\n## Prescription\\n\\n```json\\n{\\\"prescription\\\": {\\\"pour_apprenant\\\": \\\"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\\\", \\\"pour_cartographe\\\": \\\"Question à explorer en entretien : la pièce P1 relève-t-elle de 1.05 ? (mock)\\\"}}\\n```\"\n    },\n    \"etage\": \"faisceau\"\n  },\n  \"4.07\": {\n    \"code\": \"4.07\",\n    \"nom\": \"Débat contradictoire\",\n    \"dossier_vide\": false,\n    \"statut\": \"renvoi au cartographe\",\n    \"score_preuves\": \"R\",\n    \"score_indices\": \"R\",\n    \"confiance\": 0.5,\n    \"jury\": {\n      \"mode\": \"socle4+1\",\n      \"personas\": {\n        \"version\": \"personas-v1\",\n        \"empreinte\": \"1ec337d3a2ef\"\n      },\n      \"detections\": [\n        \"Linguiste\",\n        \"Historien\",\n        \"Pédagogue\",\n        \"Sociologue\",\n        \"Éthicien\",\n        \"Portraitiste\"\n      ],\n      \"contestations\": [],\n      \"abstentions\": [],\n      \"second_tour\": true,\n      \"relance_par\": \"Historien\",\n      \"composition\": [\n        \"Linguiste\",\n        \"Historien\",\n        \"Pédagogue\",\n        \"Sociologue\",\n        \"Éthicien\",\n        \"Portraitiste\"\n      ],\n      \"positions_r1\": {\n        \"Linguiste\": \"détection\",\n        \"Historien\": \"contestation\",\n        \"Pédagogue\": \"détection\",\n        \"Sociologue\": \"détection\",\n        \"Éthicien\": \"détection\",\n        \"Portraitiste\": \"détection\"\n      },\n      \"positions_finales\": {\n        \"Linguiste\": \"détection\",\n        \"Historien\": \"détection\",\n        \"Pédagogue\": \"détection\",\n        \"Sociologue\": \"détection\",\n        \"Éthicien\": \"détection\",\n        \"Portraitiste\": \"détection\"\n      },\n      \"pieges_nommes\": [],\n      \"consensus\": true,\n      \"dissidences\": []\n    },\n    \"traces_probantes\": [],\n    \"prescription\": {\n      \"pour_apprenant\": \"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\",\n      \"pour_cartographe\": \"Question à explorer en entretien : la pièce P1 relève-t-elle de 4.07 ? (mock)\"\n    },\n    \"gardien\": {\n      \"support\": {\n        \"constat\": \"neutre\"\n      },\n      \"raisonnement\": {\n        \"drapeau\": true\n      }\n    },\n    \"motif_regle\": \"drapeau du gardien du raisonnement\",\n    \"dossier_cartographe\": {\n      \"motif\": \"drapeau du gardien du raisonnement\",\n      \"desaccord\": \"détections : Linguiste, Historien, Pédagogue, Sociologue, Éthicien, Portraitiste — contestations : aucune\",\n      \"pieges_envisages\": [],\n      \"citations\": [\n        \"Un débat sur l'orientation.\",\n        \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\"\n      ]\n    },\n    \"deliberation\": {\n      \"greffier_md\": \"# Dossier de faisceau — 4.07 Débat contradictoire\\n\\nPièces réunies mécaniquement sur la période 2026-01-05 → 2026-01-19 : signaux individuellement trop faibles pour la carte, conservés parce qu'ils reviennent. La question à instruire : forment-ils ENSEMBLE un faisceau probant ?\\n\\n### Pièces extraites\\n\\n#### Pièce 1\\n- **Extrait** : « Un débat sur l'orientation. »\\n- **Date** : J01\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 2\\n- **Extrait** : « Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible. »\\n- **Date** : J02\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 3\\n- **Extrait** : « argumentant calmement ses choix. »\\n- **Date** : J03\\n- **Localisation** : journée J03\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\",\n      \"arene\": {\n        \"accusation_md\": \"# Accusation — 4.07 Débat contradictoire\\n\\n## Thèse\\nLes pièces P1-P3 montrent des actes datés.\\n\\n## Arguments\\n### Argument 1 — Acte documenté\\nPièces : P1. L'acte décrit correspond aux manifestations de la fiche.\\n\\n## Auto-évaluation de la force du dossier\\nmodérée — dossier réel mais étroit.\",\n        \"defense_md\": \"# Défense — 4.07 Débat contradictoire\\n\\n## Position générale\\nLe dossier est étroit.\\n\\n## Attaques\\n### Attaque 1 — Insuffisance probatoire — vise Argument 1 / Pièces P2, P3\\nDeux pièces sont déclaratives, sans dispositif.\\n\\n## Ce que la Défense concède\\nP1 décrit un acte réel.\\n\\n## Conclusion\\nContestation partielle : la présence repose sur P1 seule.\",\n        \"replique_md\": \"# Réplique — 4.07 Débat contradictoire\\n\\n### Réponse à l'Attaque 1\\npartiellement concédée — P2 reste un indice, P3 est abandonnée.\\n\\n## État final du réquisitoire\\nP1 (preuve) + P2 (indice) tiennent.\",\n        \"briefing_md\": \"# Briefing juré — 4.07 Débat contradictoire\\n\\n## Ce que soutient l'Accusation\\nP1 acte daté ; P2 indice.\\n\\n## Ce que soutient la Défense\\nP2-P3 déclaratives.\\n\\n## Issue de la réplique\\nP3 abandonnée.\\n\\n## Points de convergence\\nP1 est un acte réel.\\n\\n## Questions à trancher par le jury\\n1. P1 suffit-elle seule ? (P1)\\n2. P2 est-elle étayée ? (P2)\"\n      },\n      \"jures\": {\n        \"Linguiste\": {\n          \"r1_md\": \"# Juré Linguiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Linguiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"détection\",\n          \"position_finale\": \"détection\",\n          \"pieces\": [\n            1,\n            2\n          ],\n          \"piege\": null\n        },\n        \"Historien\": {\n          \"r1_md\": \"# Juré Historien — 4.07 Débat contradictoire\\n\\n**Position** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": null,\n          \"position_r1\": \"contestation\",\n          \"position_finale\": \"détection\",\n          \"pieces\": [\n            1,\n            2\n          ],\n          \"piege\": null\n        },\n        \"Pédagogue\": {\n          \"r1_md\": \"# Juré Pédagogue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Pédagogue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"détection\",\n          \"position_finale\": \"détection\",\n          \"pieces\": [\n            1,\n            2\n          ],\n          \"piege\": null\n        },\n        \"Sociologue\": {\n          \"r1_md\": \"# Juré Sociologue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Sociologue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"détection\",\n          \"position_finale\": \"détection\",\n          \"pieces\": [\n            1,\n            2\n          ],\n          \"piege\": null\n        },\n        \"Éthicien\": {\n          \"r1_md\": \"# Juré Éthicien — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Éthicien — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"détection\",\n          \"position_finale\": \"détection\",\n          \"pieces\": [\n            1,\n            2\n          ],\n          \"piege\": null\n        },\n        \"Portraitiste\": {\n          \"r1_md\": \"# Juré Portraitiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"r2_md\": \"# Second tour — Portraitiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n          \"position_r1\": \"détection\",\n          \"position_finale\": \"détection\",\n          \"pieces\": [\n            1,\n            2\n          ],\n          \"piege\": null\n        }\n      },\n      \"relance_md\": \"# Relance — Historien — 4.07 Débat contradictoire\\n\\n**Position maintenue** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## L'argument qui justifie la réouverture\\nMon angle éclaire P1 autrement (mock).\\n\\n## Questions précises aux autres jurés\\n1. P1 décrit-elle un acte daté ? (P1)\\n2. P2 est-elle étayée ? (P2)\",\n      \"relance_par\": \"Historien\",\n      \"gardiens\": {\n        \"support_md\": \"# Gardien du support — 4.07 Débat contradictoire\\n\\n**Constat** : neutre\\n\\n## Motif\\nConstat sur le canal écrit, pas sur l'élève (mock).\",\n        \"raisonnement_md\": \"# Gardien du raisonnement — 4.07 Débat contradictoire\\n\\n**Drapeau** : vice de raisonnement\\n\\n## Motif\\nUne position croit l'élève sur parole (mock).\"\n      },\n      \"president_md\": \"# Président — 4.07 Débat contradictoire\\n\\n## Délibération\\n### Synthèse des positions\\n(récit mock du porte-parole — le statut calculé est : renvoi au cartographe)\\n\\n## Prescription\\n\\n```json\\n{\\\"prescription\\\": {\\\"pour_apprenant\\\": \\\"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\\\", \\\"pour_cartographe\\\": \\\"Question à explorer en entretien : la pièce P1 relève-t-elle de 4.07 ? (mock)\\\"}}\\n```\"\n    },\n    \"etage\": \"faisceau\"\n  }\n}\n",
+  "run2_etat_faisceaux": "{\n  \"1.05\": {\n    \"empreinte\": \"566d97bf30\",\n    \"verdict\": {\n      \"code\": \"1.05\",\n      \"nom\": \"Curiosité méthodique\",\n      \"dossier_vide\": false,\n      \"statut\": \"renvoi au cartographe\",\n      \"score_preuves\": \"R\",\n      \"score_indices\": \"R\",\n      \"confiance\": 0.5,\n      \"jury\": {\n        \"mode\": \"socle4+1\",\n        \"personas\": {\n          \"version\": \"personas-v1\",\n          \"empreinte\": \"1ec337d3a2ef\"\n        },\n        \"detections\": [\n          \"Linguiste\"\n        ],\n        \"contestations\": [\n          \"Pédagogue\"\n        ],\n        \"abstentions\": [\n          \"Historien\",\n          \"Sociologue\",\n          \"Ingénieur\",\n          \"Portraitiste\"\n        ],\n        \"second_tour\": true,\n        \"relance_par\": \"Pédagogue\",\n        \"composition\": [\n          \"Linguiste\",\n          \"Historien\",\n          \"Pédagogue\",\n          \"Sociologue\",\n          \"Ingénieur\",\n          \"Portraitiste\"\n        ],\n        \"positions_r1\": {\n          \"Linguiste\": \"détection\",\n          \"Historien\": \"abstention\",\n          \"Pédagogue\": \"contestation\",\n          \"Sociologue\": \"abstention\",\n          \"Ingénieur\": \"abstention\",\n          \"Portraitiste\": \"abstention\"\n        },\n        \"positions_finales\": {\n          \"Linguiste\": \"détection\",\n          \"Historien\": \"abstention\",\n          \"Pédagogue\": \"contestation\",\n          \"Sociologue\": \"abstention\",\n          \"Ingénieur\": \"abstention\",\n          \"Portraitiste\": \"abstention\"\n        },\n        \"pieges_nommes\": [\n          \"récit performatif (déclaration sans acte)\"\n        ],\n        \"consensus\": false,\n        \"dissidences\": [\n          \"Pédagogue : contestation (récit performatif (déclaration sans acte))\"\n        ]\n      },\n      \"traces_probantes\": [],\n      \"prescription\": {\n        \"pour_apprenant\": \"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\",\n        \"pour_cartographe\": \"Question à explorer en entretien : la pièce P1 relève-t-elle de 1.05 ? (mock)\"\n      },\n      \"gardien\": {\n        \"support\": {\n          \"constat\": \"neutre\"\n        },\n        \"raisonnement\": {\n          \"drapeau\": false\n        }\n      },\n      \"motif_regle\": \"détection et contestation subsistent après le second tour\",\n      \"dossier_cartographe\": {\n        \"motif\": \"détection et contestation subsistent après le second tour\",\n        \"desaccord\": \"détections : Linguiste — contestations : Pédagogue\",\n        \"pieges_envisages\": [\n          \"récit performatif (déclaration sans acte)\"\n        ],\n        \"citations\": [\n          \"Une curiosité isolée.\",\n          \"Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance.\",\n          \"curiosité méthodique de l'équipe.\"\n        ]\n      },\n      \"deliberation\": {\n        \"greffier_md\": \"# Dossier de faisceau — 1.05 Curiosité méthodique\\n\\nPièces réunies mécaniquement sur la période 2026-01-05 → 2026-01-19 : signaux individuellement trop faibles pour la carte, conservés parce qu'ils reviennent. La question à instruire : forment-ils ENSEMBLE un faisceau probant ?\\n\\n### Pièces extraites\\n\\n#### Pièce 1\\n- **Extrait** : « Une curiosité isolée. »\\n- **Date** : J01\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 2\\n- **Extrait** : « Le soir chacun a rédigé une synthèse honnête des erreurs commises pendant la séance. »\\n- **Date** : 2026-01-05\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : scan-global)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 3\\n- **Extrait** : « curiosité méthodique de l'équipe. »\\n- **Date** : J02\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 4\\n- **Extrait** : « L'élève a documenté chaque étape du montage dans un carnet daté avec beaucoup de soin. »\\n- **Date** : 2026-01-12\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : scan-global)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 5\\n- **Extrait** : « La curiosité méthodique de l'équipe a permis de tester une configuration inattendue. »\\n- **Date** : J03\\n- **Localisation** : journée J03\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\",\n        \"arene\": {\n          \"accusation_md\": \"# Accusation — 1.05 Curiosité méthodique\\n\\n## Thèse\\nLes pièces P1-P3 montrent des actes datés.\\n\\n## Arguments\\n### Argument 1 — Acte documenté\\nPièces : P1. L'acte décrit correspond aux manifestations de la fiche.\\n\\n## Auto-évaluation de la force du dossier\\nmodérée — dossier réel mais étroit.\",\n          \"defense_md\": \"# Défense — 1.05 Curiosité méthodique\\n\\n## Position générale\\nLe dossier est étroit.\\n\\n## Attaques\\n### Attaque 1 — Insuffisance probatoire — vise Argument 1 / Pièces P2, P3\\nDeux pièces sont déclaratives, sans dispositif.\\n\\n## Ce que la Défense concède\\nP1 décrit un acte réel.\\n\\n## Conclusion\\nContestation partielle : la présence repose sur P1 seule.\",\n          \"replique_md\": \"# Réplique — 1.05 Curiosité méthodique\\n\\n### Réponse à l'Attaque 1\\npartiellement concédée — P2 reste un indice, P3 est abandonnée.\\n\\n## État final du réquisitoire\\nP1 (preuve) + P2 (indice) tiennent.\",\n          \"briefing_md\": \"# Briefing juré — 1.05 Curiosité méthodique\\n\\n## Ce que soutient l'Accusation\\nP1 acte daté ; P2 indice.\\n\\n## Ce que soutient la Défense\\nP2-P3 déclaratives.\\n\\n## Issue de la réplique\\nP3 abandonnée.\\n\\n## Points de convergence\\nP1 est un acte réel.\\n\\n## Questions à trancher par le jury\\n1. P1 suffit-elle seule ? (P1)\\n2. P2 est-elle étayée ? (P2)\"\n        },\n        \"jures\": {\n          \"Linguiste\": {\n            \"r1_md\": \"# Juré Linguiste — 1.05 Curiosité méthodique\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Linguiste — 1.05 Curiosité méthodique\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Historien\": {\n            \"r1_md\": \"# Juré Historien — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Historien — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"abstention\",\n            \"position_finale\": \"abstention\",\n            \"pieces\": [],\n            \"piege\": null\n          },\n          \"Pédagogue\": {\n            \"r1_md\": \"# Juré Pédagogue — 1.05 Curiosité méthodique\\n\\n**Position** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": null,\n            \"position_r1\": \"contestation\",\n            \"position_finale\": \"contestation\",\n            \"pieces\": [\n              2,\n              3\n            ],\n            \"piege\": \"récit performatif (déclaration sans acte)\"\n          },\n          \"Sociologue\": {\n            \"r1_md\": \"# Juré Sociologue — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Sociologue — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"abstention\",\n            \"position_finale\": \"abstention\",\n            \"pieces\": [],\n            \"piege\": null\n          },\n          \"Ingénieur\": {\n            \"r1_md\": \"# Juré Ingénieur — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Ingénieur — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"abstention\",\n            \"position_finale\": \"abstention\",\n            \"pieces\": [],\n            \"piege\": null\n          },\n          \"Portraitiste\": {\n            \"r1_md\": \"# Juré Portraitiste — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Portraitiste — 1.05 Curiosité méthodique\\n\\n**Position** : abstention\\n**Pièces** : —\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"abstention\",\n            \"position_finale\": \"abstention\",\n            \"pieces\": [],\n            \"piege\": null\n          }\n        },\n        \"relance_md\": \"# Relance — Pédagogue — 1.05 Curiosité méthodique\\n\\n**Position maintenue** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## L'argument qui justifie la réouverture\\nMon angle éclaire P1 autrement (mock).\\n\\n## Questions précises aux autres jurés\\n1. P1 décrit-elle un acte daté ? (P1)\\n2. P2 est-elle étayée ? (P2)\",\n        \"relance_par\": \"Pédagogue\",\n        \"gardiens\": {\n          \"support_md\": \"# Gardien du support — 1.05 Curiosité méthodique\\n\\n**Constat** : neutre\\n\\n## Motif\\nConstat sur le canal écrit, pas sur l'élève (mock).\",\n          \"raisonnement_md\": \"# Gardien du raisonnement — 1.05 Curiosité méthodique\\n\\n**Drapeau** : aucun\\n\\n## Motif\\nLe raisonnement du collège tient (mock).\"\n        },\n        \"president_md\": \"# Président — 1.05 Curiosité méthodique\\n\\n## Délibération\\n### Synthèse des positions\\n(récit mock du porte-parole — le statut calculé est : renvoi au cartographe)\\n\\n## Prescription\\n\\n```json\\n{\\\"prescription\\\": {\\\"pour_apprenant\\\": \\\"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\\\", \\\"pour_cartographe\\\": \\\"Question à explorer en entretien : la pièce P1 relève-t-elle de 1.05 ? (mock)\\\"}}\\n```\"\n      },\n      \"etage\": \"faisceau\"\n    }\n  },\n  \"4.07\": {\n    \"empreinte\": \"717bcf2c53bc\",\n    \"verdict\": {\n      \"code\": \"4.07\",\n      \"nom\": \"Débat contradictoire\",\n      \"dossier_vide\": false,\n      \"statut\": \"renvoi au cartographe\",\n      \"score_preuves\": \"R\",\n      \"score_indices\": \"R\",\n      \"confiance\": 0.5,\n      \"jury\": {\n        \"mode\": \"socle4+1\",\n        \"personas\": {\n          \"version\": \"personas-v1\",\n          \"empreinte\": \"1ec337d3a2ef\"\n        },\n        \"detections\": [\n          \"Linguiste\",\n          \"Historien\",\n          \"Pédagogue\",\n          \"Sociologue\",\n          \"Éthicien\",\n          \"Portraitiste\"\n        ],\n        \"contestations\": [],\n        \"abstentions\": [],\n        \"second_tour\": true,\n        \"relance_par\": \"Historien\",\n        \"composition\": [\n          \"Linguiste\",\n          \"Historien\",\n          \"Pédagogue\",\n          \"Sociologue\",\n          \"Éthicien\",\n          \"Portraitiste\"\n        ],\n        \"positions_r1\": {\n          \"Linguiste\": \"détection\",\n          \"Historien\": \"contestation\",\n          \"Pédagogue\": \"détection\",\n          \"Sociologue\": \"détection\",\n          \"Éthicien\": \"détection\",\n          \"Portraitiste\": \"détection\"\n        },\n        \"positions_finales\": {\n          \"Linguiste\": \"détection\",\n          \"Historien\": \"détection\",\n          \"Pédagogue\": \"détection\",\n          \"Sociologue\": \"détection\",\n          \"Éthicien\": \"détection\",\n          \"Portraitiste\": \"détection\"\n        },\n        \"pieges_nommes\": [],\n        \"consensus\": true,\n        \"dissidences\": []\n      },\n      \"traces_probantes\": [],\n      \"prescription\": {\n        \"pour_apprenant\": \"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\",\n        \"pour_cartographe\": \"Question à explorer en entretien : la pièce P1 relève-t-elle de 4.07 ? (mock)\"\n      },\n      \"gardien\": {\n        \"support\": {\n          \"constat\": \"neutre\"\n        },\n        \"raisonnement\": {\n          \"drapeau\": true\n        }\n      },\n      \"motif_regle\": \"drapeau du gardien du raisonnement\",\n      \"dossier_cartographe\": {\n        \"motif\": \"drapeau du gardien du raisonnement\",\n        \"desaccord\": \"détections : Linguiste, Historien, Pédagogue, Sociologue, Éthicien, Portraitiste — contestations : aucune\",\n        \"pieges_envisages\": [],\n        \"citations\": [\n          \"Un débat sur l'orientation.\",\n          \"Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible.\"\n        ]\n      },\n      \"deliberation\": {\n        \"greffier_md\": \"# Dossier de faisceau — 4.07 Débat contradictoire\\n\\nPièces réunies mécaniquement sur la période 2026-01-05 → 2026-01-19 : signaux individuellement trop faibles pour la carte, conservés parce qu'ils reviennent. La question à instruire : forment-ils ENSEMBLE un faisceau probant ?\\n\\n### Pièces extraites\\n\\n#### Pièce 1\\n- **Extrait** : « Un débat sur l'orientation. »\\n- **Date** : J01\\n- **Localisation** : journée J01\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 2\\n- **Extrait** : « Un débat contradictoire a opposé deux hypothèses sur la meilleure orientation possible. »\\n- **Date** : J02\\n- **Localisation** : journée J02\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\\n#### Pièce 3\\n- **Extrait** : « argumentant calmement ses choix. »\\n- **Date** : J03\\n- **Localisation** : journée J03\\n- **Type** : signal de faisceau (source : leger-ecarte)\\n- **Vigilance** : signal faible — à instruire en constellation\\n\",\n        \"arene\": {\n          \"accusation_md\": \"# Accusation — 4.07 Débat contradictoire\\n\\n## Thèse\\nLes pièces P1-P3 montrent des actes datés.\\n\\n## Arguments\\n### Argument 1 — Acte documenté\\nPièces : P1. L'acte décrit correspond aux manifestations de la fiche.\\n\\n## Auto-évaluation de la force du dossier\\nmodérée — dossier réel mais étroit.\",\n          \"defense_md\": \"# Défense — 4.07 Débat contradictoire\\n\\n## Position générale\\nLe dossier est étroit.\\n\\n## Attaques\\n### Attaque 1 — Insuffisance probatoire — vise Argument 1 / Pièces P2, P3\\nDeux pièces sont déclaratives, sans dispositif.\\n\\n## Ce que la Défense concède\\nP1 décrit un acte réel.\\n\\n## Conclusion\\nContestation partielle : la présence repose sur P1 seule.\",\n          \"replique_md\": \"# Réplique — 4.07 Débat contradictoire\\n\\n### Réponse à l'Attaque 1\\npartiellement concédée — P2 reste un indice, P3 est abandonnée.\\n\\n## État final du réquisitoire\\nP1 (preuve) + P2 (indice) tiennent.\",\n          \"briefing_md\": \"# Briefing juré — 4.07 Débat contradictoire\\n\\n## Ce que soutient l'Accusation\\nP1 acte daté ; P2 indice.\\n\\n## Ce que soutient la Défense\\nP2-P3 déclaratives.\\n\\n## Issue de la réplique\\nP3 abandonnée.\\n\\n## Points de convergence\\nP1 est un acte réel.\\n\\n## Questions à trancher par le jury\\n1. P1 suffit-elle seule ? (P1)\\n2. P2 est-elle étayée ? (P2)\"\n        },\n        \"jures\": {\n          \"Linguiste\": {\n            \"r1_md\": \"# Juré Linguiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Linguiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Historien\": {\n            \"r1_md\": \"# Juré Historien — 4.07 Débat contradictoire\\n\\n**Position** : contestation\\n**Pièces** : P2, P3\\n**Piège visé** : récit performatif (déclaration sans acte)\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": null,\n            \"position_r1\": \"contestation\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Pédagogue\": {\n            \"r1_md\": \"# Juré Pédagogue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Pédagogue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Sociologue\": {\n            \"r1_md\": \"# Juré Sociologue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Sociologue — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Éthicien\": {\n            \"r1_md\": \"# Juré Éthicien — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Éthicien — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          },\n          \"Portraitiste\": {\n            \"r1_md\": \"# Juré Portraitiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"r2_md\": \"# Second tour — Portraitiste — 4.07 Débat contradictoire\\n\\n**Position** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## Raisonnement\\nDepuis mon angle (mock), P1 pèse le plus.\\n\\n## Ce que mon angle révèle que les autres pourraient manquer\\nUn détail de formulation (mock).\",\n            \"position_r1\": \"détection\",\n            \"position_finale\": \"détection\",\n            \"pieces\": [\n              1,\n              2\n            ],\n            \"piege\": null\n          }\n        },\n        \"relance_md\": \"# Relance — Historien — 4.07 Débat contradictoire\\n\\n**Position maintenue** : détection\\n**Pièces** : P1, P2\\n**Piège visé** : —\\n\\n## L'argument qui justifie la réouverture\\nMon angle éclaire P1 autrement (mock).\\n\\n## Questions précises aux autres jurés\\n1. P1 décrit-elle un acte daté ? (P1)\\n2. P2 est-elle étayée ? (P2)\",\n        \"relance_par\": \"Historien\",\n        \"gardiens\": {\n          \"support_md\": \"# Gardien du support — 4.07 Débat contradictoire\\n\\n**Constat** : neutre\\n\\n## Motif\\nConstat sur le canal écrit, pas sur l'élève (mock).\",\n          \"raisonnement_md\": \"# Gardien du raisonnement — 4.07 Débat contradictoire\\n\\n**Drapeau** : vice de raisonnement\\n\\n## Motif\\nUne position croit l'élève sur parole (mock).\"\n        },\n        \"president_md\": \"# Président — 4.07 Débat contradictoire\\n\\n## Délibération\\n### Synthèse des positions\\n(récit mock du porte-parole — le statut calculé est : renvoi au cartographe)\\n\\n## Prescription\\n\\n```json\\n{\\\"prescription\\\": {\\\"pour_apprenant\\\": \\\"Pour consolider ce dossier, une piste serait de documenter une nouvelle situation vécue (mock).\\\", \\\"pour_cartographe\\\": \\\"Question à explorer en entretien : la pièce P1 relève-t-elle de 4.07 ? (mock)\\\"}}\\n```\"\n      },\n      \"etage\": \"faisceau\"\n    }\n  }\n}\n"
+ },
+ "retour_lots": {
+  "jours": [
+   {
+    "id": "L1",
+    "date": null,
+    "texte": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   {
+    "id": "L2",
+    "date": null,
+    "texte": "yyyyyyyyyyyyyyyyyyyy"
+   },
+   {
+    "id": "L3",
+    "date": null,
+    "texte": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+   }
+  ],
+  "obs": {
+   "titre": "Test lots",
+   "description": "d",
+   "indices": [
+    "i1"
+   ],
+   "code": null
+  },
+  "max_c": 50,
+  "config": {
+   "merge": {
+    "second_ressort": true,
+    "seuil_faisceau_journees": 2,
+    "relectures": true,
+    "rapporteur": true,
+    "max_histoires": 12
+   },
+   "scan_global": {
+    "retour_max_caracteres": 50
+   },
+   "jury": {
+    "mode": "socle4+1"
+   },
+   "backend_tribunal": {
+    "kind": "mock",
+    "model": "mock-lourd"
+   }
+  },
+  "poles": [
+   {
+    "num": 1,
+    "header": "# Pôle 1\n\n",
+    "competences": [
+     {
+      "code": "1.01",
+      "nom": "Analyse critique",
+      "fiche_md": "## 1.01 — Analyse critique\n\nFiche 1.01."
+     },
+     {
+      "code": "1.03",
+      "nom": "Synthèse écrite",
+      "fiche_md": "## 1.03 — Synthèse écrite\n\nFiche 1.03."
+     },
+     {
+      "code": "1.05",
+      "nom": "Curiosité méthodique",
+      "fiche_md": "## 1.05 — Curiosité méthodique\n\nFiche 1.05."
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "header": "# Pôle 4\n\n",
+    "competences": [
+     {
+      "code": "4.03",
+      "nom": "Discernement éthique",
+      "fiche_md": "## 4.03 — Discernement éthique\n\nFiche 4.03."
+     },
+     {
+      "code": "4.07",
+      "nom": "Débat contradictoire",
+      "fiche_md": "## 4.07 — Débat contradictoire\n\nFiche 4.07."
+     }
+    ]
+   }
+  ],
+  "salt": "vecms",
+  "ancres": "[\n  {\n    \"journee\": \"L3\",\n    \"date\": null,\n    \"verbatim\": \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\",\n    \"span\": [\n      0,\n      60\n    ],\n    \"ratio\": 1.0\n  }\n]\n",
+  "issues": "[\n  \"non retrouvée\",\n  \"non retrouvée\",\n  \"retrouvée\"\n]\n",
+  "incidents": "{\n  \"scan_ancrage_rejets\": 1\n}\n",
+  "ancrage_stats": "{\n  \"arpenteur\": {\n    \"ancres\": 1,\n    \"rejets\": 1\n  }\n}\n"
+ }
+}
