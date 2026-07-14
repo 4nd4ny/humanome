@@ -60,3 +60,31 @@ export function resolve(text, variables, strict = false) {
 export function resolveContent(content, variables, strict = false) {
   return resolve(universalNewlines(content), variables, strict);
 }
+
+/**
+ * Variables CONFIDENTIELLES dérivées des fiches (ADR-010) : le client ne les
+ * envoie JAMAIS au serveur (côté client elles ne sont que des placeholders) —
+ * c'est le serveur qui les injecte au rendu, à partir des clés de lookup
+ * fournies par le moteur (CODE ; POLE_NUM + POLE_FICHES_ORDRE).
+ */
+export const VARS_FICHES = new Set(["COMPETENCE_FICHE", "POLE_FICHES"]);
+
+/**
+ * Sous-ensemble des variables à TRANSMETTRE AU SERVEUR pour un appel : l'état
+ * de run (code, pôle, texte, calques…), SANS les variables-fiches secrètes
+ * (le serveur les injecte). `extra` ajoute les clés de lookup nécessaires
+ * (ex. POLE_FICHES_ORDRE). Valeurs coercées en chaînes/nombres sûrs pour JSON.
+ * @param {Record<string, unknown>|Map<string, unknown>} variables
+ * @param {Record<string, unknown>} [extra]
+ * @returns {Record<string, unknown>}
+ */
+export function varsClient(variables, extra = null) {
+  const src = variables instanceof Map ? Object.fromEntries(variables) : variables;
+  /** @type {Record<string, unknown>} */
+  const out = {};
+  for (const key of Object.keys(src)) {
+    if (!VARS_FICHES.has(key)) out[key] = src[key];
+  }
+  if (extra) for (const key of Object.keys(extra)) out[key] = extra[key];
+  return out;
+}

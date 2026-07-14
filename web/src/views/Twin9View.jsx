@@ -43,9 +43,14 @@ function makeServerFactory({ modele, facturation, onDebit, makeBackend }) {
   return () => ({
     records: [],
     async call(prompt, opts = {}) {
+      // Le moteur porte le CHEMIN du gabarit (opts.gabarit, avec .md) et les
+      // VARIABLES d'état de run (opts.variables, SANS les fiches secrètes) —
+      // c'est ce que le serveur rend (ADR-010). En base les gabarits sont
+      // nommés sans .md. On n'envoie JAMAIS opts.meta (métadonnées internes du
+      // moteur) ni le prompt (vide en prod puisque les gabarits sont serveur).
       const { text } = await server.call(prompt, {
-        etape: opts.label,
-        variables: opts.meta ?? {},
+        etape: String(opts.gabarit ?? '').replace(/\.md$/, ''),
+        variables: opts.variables ?? {},
         etage: etageDeLabel(opts.label),
         ...(opts.maxTokens ? { maxTokens: opts.maxTokens } : {}),
       })

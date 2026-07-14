@@ -93,18 +93,28 @@ async function main() {
   // load_referentiel (the faithful source of the accented pole names) — the
   // importing host is a Python project, so python3 is available; best-effort
   // with a clear warning if not (the server keeps its previous structure).
+  // Two payloads from ONE python parse: the NON-secret structure (referentiel:
+  // num/nom + code/nom, served to the client) and the CONFIDENTIAL fiches
+  // (fiches: pole header + per-competence fiche_md, stored server-only and
+  // injected at render — the render-relocation fix, ADR-010). Neither is ever
+  // put in /meta's public view.
   let referentiel
+  let fiches
   try {
     const py = 'import json,os,sys; sys.path.insert(0, sys.argv[1]); '
       + 'from aurora.referentiel import load_referentiel; '
       + 'p=load_referentiel(os.path.join(sys.argv[1],"protocole","tagger")); '
-      + 'print(json.dumps([{"num":n,"nom":x.nom,"competences":'
-      + '[{"code":c["code"],"nom":c["nom"]} for c in x.competences]} '
-      + 'for n,x in sorted(p.items())], ensure_ascii=False))'
-    const out = execFileSync('python3', ['-c', py, twinDir], { encoding: 'utf8' })
-    referentiel = JSON.parse(out)
+      + 'print(json.dumps({'
+      + '"referentiel":[{"num":n,"nom":x.nom,"competences":'
+      + '[{"code":c["code"],"nom":c["nom"]} for c in x.competences]} for n,x in sorted(p.items())],'
+      + '"fiches":[{"num":n,"header":x.header,"competences":'
+      + '[{"code":c["code"],"fiche_md":c["fiche_md"]} for c in x.competences]} for n,x in sorted(p.items())]'
+      + '}, ensure_ascii=False))'
+    const out = JSON.parse(execFileSync('python3', ['-c', py, twinDir], { encoding: 'utf8' }))
+    referentiel = out.referentiel
+    fiches = out.fiches
   } catch (e) {
-    console.warn(`referentiel structure NOT extracted (python3?): ${e.message} — server keeps its current one`)
+    console.warn(`referentiel/fiches NOT extracted (python3?): ${e.message} — server keeps its current ones`)
   }
 
   console.log(`Twin_v9 dir: ${twinDir}`)
@@ -113,6 +123,7 @@ async function main() {
   }
   console.log(config ? `config keys: ${Object.keys(config).join(', ')}` : 'config.json absent')
   console.log(referentiel ? `referentiel: ${referentiel.length} pôles` : 'referentiel absent')
+  console.log(fiches ? `fiches: ${fiches.reduce((n, p) => n + p.competences.length, 0)} confidentielles` : 'fiches absentes')
 
   if (args.dryRun) {
     console.log('dry-run: nothing sent')
@@ -130,6 +141,7 @@ async function main() {
       files,
       ...(config ? { config } : {}),
       ...(referentiel ? { referentiel } : {}),
+      ...(fiches ? { fiches } : {}),
     }),
   })
   const body = await res.text()

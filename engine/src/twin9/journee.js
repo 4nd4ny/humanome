@@ -29,7 +29,7 @@
 
 import { ancrer, segments } from "./heatmap.js";
 import { permutation } from "./referentiel.js";
-import { resolveContent } from "./templates.js";
+import { resolveContent, varsClient } from "./templates.js";
 import {
   constituerDossier,
   infosPersonas,
@@ -162,6 +162,13 @@ async function tagCall(ctx, backend, entry, pole, jr, inc) {
     task: "tagger",
     meta,
     label: pyFormat("tag_%s_%s_P%d", entry.name, jr.id, pole.num),
+    // Rendu SERVEUR (ADR-010) : chemin du gabarit + variables d'état de run,
+    // SANS POLE_FICHES (fiche confidentielle) mais AVEC l'ordre permuté des
+    // codes, que le serveur applique pour assembler POLE_FICHES fidèlement.
+    gabarit: "tagger/1-tag-pole.md",
+    variables: varsClient(variables, {
+      POLE_FICHES_ORDRE: ordre.map((i) => pole.competences[i].code),
+    }),
   });
   const data = extractJson(raw);
   const isDict = typeof data === "object" && data !== null && !Array.isArray(data);
@@ -535,10 +542,11 @@ async function premiereImpression(ctx, jr, inc) {
   const path = pjoin(jdir, "10-premiere-impression.md");
   if (ctx.artefacts.exists(path)) return ctx.artefacts.readText(path);
   const [backendR, modeleR] = rapideDe(ctx);
-  const prompt = resolveContent(gabaritDe(ctx, "lourd/10-premiere-impression.md"), {
+  const variables = {
     JOURNEE: jr.id,
     PORTFOLIO: neutraliserBalises(jr.texte),
-  });
+  };
+  const prompt = resolveContent(gabaritDe(ctx, "lourd/10-premiere-impression.md"), variables);
   let out;
   try {
     out = await backendR.call(prompt, {
@@ -546,6 +554,8 @@ async function premiereImpression(ctx, jr, inc) {
       task: "premiere_impression",
       meta: { journee: jr.id },
       label: pyFormat("lecteur_%s_impression", jr.id),
+      gabarit: "lourd/10-premiere-impression.md",
+      variables: varsClient(variables),
     });
   } catch (e) {
     inc("premiere_impression_echec");
@@ -639,13 +649,14 @@ async function contreLecture(ctx, jr, comp, dossier, tdir, nPasses, inc) {
   if (ctx.artefacts.exists(path)) {
     out = ctx.artefacts.readText(path);
   } else {
-    const prompt = resolveContent(gabaritDe(ctx, "lourd/20c-contre-lecture.md"), {
+    const variables = {
       CODE: code,
       NOM: nom,
       PASSES: nPasses,
       COMPETENCE_FICHE: comp.fiche_md,
       DOSSIER: dossier,
-    });
+    };
+    const prompt = resolveContent(gabaritDe(ctx, "lourd/20c-contre-lecture.md"), variables);
     try {
       out = await backendR.call(prompt, {
         model: modeleR,
@@ -653,6 +664,8 @@ async function contreLecture(ctx, jr, comp, dossier, tdir, nPasses, inc) {
         task: "contre_lecture",
         meta: { code, nom },
         label: pyFormat("contre-lecture_%s_%s", jr.id, code),
+        gabarit: "lourd/20c-contre-lecture.md",
+        variables: varsClient(variables),
       });
     } catch (e) {
       inc("contre_lecture_echec");
@@ -710,14 +723,15 @@ export async function jugerLeger(ctx, jr, pole, comp, consEntry, inc) {
       out = ctx.artefacts.readText(path);
     } else {
       const [backendR, modeleR] = rapideDe(ctx);
-      const prompt = resolveContent(gabaritDe(ctx, "lourd/20b-juge-leger.md"), {
+      const variables = {
         CODE: code,
         NOM: nom,
         PASSE: k,
         PASSES: nPasses,
         COMPETENCE_FICHE: comp.fiche_md,
         DOSSIER: dossier,
-      });
+      };
+      const prompt = resolveContent(gabaritDe(ctx, "lourd/20b-juge-leger.md"), variables);
       try {
         out = await backendR.call(prompt, {
           model: modeleR,
@@ -725,6 +739,8 @@ export async function jugerLeger(ctx, jr, pole, comp, consEntry, inc) {
           task: "leger",
           meta: { code, nom, passe: k },
           label: pyFormat("leger_%s_%s_p%d", jr.id, code, k),
+          gabarit: "lourd/20b-juge-leger.md",
+          variables: varsClient(variables),
         });
       } catch (e) {
         inc("leger_echec");

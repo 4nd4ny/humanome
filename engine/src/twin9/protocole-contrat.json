@@ -1,0 +1,187 @@
+{
+ "_note": "Contrat NON SECRET (noms de variables uniquement, ADR-010 §2 résiduel) : pour chaque gabarit rendu par le serveur, ce sont les {$VAR} qu'il attend. Le moteur DOIT fournir toutes ces variables SAUF celles de 'injectees_serveur' (fiches confidentielles), injectées côté serveur.",
+ "injectees_serveur": [
+  "COMPETENCE_FICHE",
+  "POLE_FICHES"
+ ],
+ "gabarits": {
+  "lourd/10-premiere-impression": [
+   "JOURNEE",
+   "PORTFOLIO"
+  ],
+  "lourd/20-greffier": [
+   "CALQUES",
+   "CODE",
+   "COMPETENCE_FICHE",
+   "FEUILLES",
+   "NOM",
+   "POLE_NOM",
+   "POLE_NUM"
+  ],
+  "lourd/20b-juge-leger": [
+   "CODE",
+   "COMPETENCE_FICHE",
+   "DOSSIER",
+   "NOM",
+   "PASSE",
+   "PASSES"
+  ],
+  "lourd/20c-contre-lecture": [
+   "CODE",
+   "COMPETENCE_FICHE",
+   "DOSSIER",
+   "NOM",
+   "PASSES"
+  ],
+  "lourd/21a-accusation": [
+   "CODE",
+   "COMPETENCE_FICHE",
+   "DOSSIER",
+   "NOM"
+  ],
+  "lourd/21b-defense": [
+   "CODE",
+   "COMPETENCE_FICHE",
+   "DOSSIER",
+   "NOM",
+   "REQUISITOIRE"
+  ],
+  "lourd/22a-replique": [
+   "CODE",
+   "DOSSIER",
+   "NOM",
+   "PLAIDOIRIE",
+   "REQUISITOIRE"
+  ],
+  "lourd/22b-briefing": [
+   "CODE",
+   "NOM",
+   "PLAIDOIRIE",
+   "REPLIQUE",
+   "REQUISITOIRE"
+  ],
+  "lourd/23-jure": [
+   "BRIEFING",
+   "CODE",
+   "COMPETENCE_FICHE",
+   "DOSSIER",
+   "JURE_ANGLE",
+   "JURE_NOM",
+   "NOM",
+   "PREMIERE_IMPRESSION"
+  ],
+  "lourd/23b-relance": [
+   "CODE",
+   "DOSSIER",
+   "JURE_NOM",
+   "MA_POSITION",
+   "NOM"
+  ],
+  "lourd/23c-second-tour": [
+   "CODE",
+   "COMPETENCE_FICHE",
+   "DOSSIER",
+   "JURE_ANGLE",
+   "JURE_NOM",
+   "NOM",
+   "POSITION_RELANCEUR",
+   "PREMIERE_IMPRESSION",
+   "RELANCE",
+   "RELANCEUR_NOM"
+  ],
+  "lourd/24-president": [
+   "AVIS_JURES",
+   "CODE",
+   "DOSSIER",
+   "GARDIENS",
+   "NOM",
+   "PLAIDOIRIE",
+   "POLE_NUM",
+   "REPLIQUE",
+   "REQUISITOIRE",
+   "VERDICT_CALCULE"
+  ],
+  "lourd/25a-gardien-support": [
+   "AVIS_JURES",
+   "CODE",
+   "COMPETENCE_FICHE",
+   "DOSSIER",
+   "NOM",
+   "PREMIERE_IMPRESSION"
+  ],
+  "lourd/25b-gardien-raisonnement": [
+   "AVIS_JURES",
+   "CODE",
+   "COMPETENCE_FICHE",
+   "DOSSIER",
+   "NOM",
+   "PLAIDOIRIE",
+   "REQUISITOIRE"
+  ],
+  "merge/01-kairos-evolutif": [
+   "DATES_LISTE",
+   "DERNIERE_DATE",
+   "DONNEES",
+   "NB_JOURNEES",
+   "PREMIERE_DATE"
+  ],
+  "merge/02-pole-evolutif": [
+   "DERNIERE_DATE",
+   "DONNEES",
+   "NB_JOURNEES",
+   "POLE_NOM",
+   "POLE_NUM",
+   "PREMIERE_DATE"
+  ],
+  "merge/03-competence-evolution": [
+   "CODE",
+   "CONFIANCE_MOY",
+   "CUMUL_INDICES",
+   "CUMUL_PREUVES",
+   "DERNIERE_DATE",
+   "DONNEES",
+   "NB_JOURNEES",
+   "NB_JOURNEES_ETABLIES",
+   "NOM",
+   "POLE_NOM",
+   "POLE_NUM",
+   "PREMIERE_DATE",
+   "SCORE_CUMULE",
+   "STATUT_FINAL",
+   "TRAJECTOIRE"
+  ],
+  "merge/04-rapporteur": [
+   "DERNIERE_DATE",
+   "DONNEES",
+   "JOURNAL_ID",
+   "NB_JOURNEES",
+   "PREMIERE_DATE"
+  ],
+  "scan/00-condense-fidele": [
+   "DATE",
+   "JOURNEE_ID",
+   "TEXTE"
+  ],
+  "scan/01-arpenteur": [
+   "CONDENSES",
+   "DERNIERE_DATE",
+   "JOURNAL_ID",
+   "NB_JOURNEES",
+   "PREMIERE_DATE"
+  ],
+  "scan/02-retour-aux-sources": [
+   "DESCRIPTION",
+   "DOSSIER",
+   "INDICES",
+   "TITRE",
+   "TYPE"
+  ],
+  "tagger/1-tag-pole": [
+   "JOURNEE",
+   "POLE_FICHES",
+   "POLE_NOM",
+   "POLE_NUM",
+   "PORTFOLIO"
+  ]
+ }
+}

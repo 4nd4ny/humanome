@@ -24,7 +24,7 @@
 // Tous les index et longueurs sont en POINTS DE CODE.
 
 import { infosPersonas, jugerFaisceau } from "./tribunal.js";
-import { resolveContent } from "./templates.js";
+import { resolveContent, varsClient } from "./templates.js";
 import { empreinte, extractJson, log, logOk, logWarn } from "./util.js";
 import { pjoin } from "./artefacts.js";
 import { asNum, dictGet, entriesOf, pyIntOf, pyTruthy } from "./py/pyDict.js";
@@ -567,9 +567,11 @@ export function registreTenu(competences, maxLignes = 15) {
 }
 
 /** Appel résilient : une relecture perdue ≠ une fusion perdue. */
-async function appelRelecture(backend, prompt, task, meta, label, incidents) {
+async function appelRelecture(backend, prompt, task, meta, label, incidents, gabarit, variables) {
   try {
-    return pyStrip(await backend.call(prompt, { task, meta, label }));
+    return pyStrip(
+      await backend.call(prompt, { task, meta, label, gabarit, variables: varsClient(variables) }),
+    );
   } catch (e) {
     incr(incidents, "relecture_echec");
     logWarn(pyFormat("Relecture %s indisponible (%s)", label, strErr(e)));
@@ -728,6 +730,8 @@ export async function relectures(ctx, cartos, competences, backend) {
     {},
     "merge_kairos",
     ctx.incidents,
+    "merge/01-kairos-evolutif.md",
+    v,
   );
   /** @type {object|null} */
   let kairosStruct = null;
@@ -784,6 +788,8 @@ export async function relectures(ctx, cartos, competences, backend) {
       { pole: pole.num },
       pyFormat("merge_pole_P%d", pole.num),
       ctx.incidents,
+      "merge/02-pole-evolutif.md",
+      vp,
     );
     if (pyTruthy(raw)) out.poles.set(pyStr(pole.num), /** @type {string} */ (raw));
   }
@@ -831,6 +837,8 @@ export async function relectures(ctx, cartos, competences, backend) {
       { code: c.code },
       pyFormat("merge_comp_%s", c.code),
       ctx.incidents,
+      "merge/03-competence-evolution.md",
+      vc,
     );
     if (pyTruthy(raw)) out.histoires.set(c.code, cpSlice(/** @type {string} */ (raw), 0, 900));
   }
@@ -971,6 +979,8 @@ export async function relectures(ctx, cartos, competences, backend) {
       {},
       "merge_rapporteur",
       ctx.incidents,
+      "merge/04-rapporteur.md",
+      vr,
     );
     if (pyTruthy(raw)) {
       const data = extractJson(/** @type {string} */ (raw));

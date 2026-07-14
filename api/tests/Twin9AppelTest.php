@@ -9,6 +9,7 @@ use Humanome\Keys\KeyVault;
 use Humanome\Llm\LlmRuntime;
 use Humanome\Packages\SettingsRepository;
 use Humanome\Twin9\CreditService;
+use Humanome\Twin9\FicheStore;
 use Humanome\Twin9\ProtocoleRepository;
 use Humanome\Twin9\Twin9Config;
 use Psr\Http\Message\ResponseInterface;
@@ -44,7 +45,7 @@ final class Twin9AppelTest extends CartographeTestCase
         $pdo = Db::get();
         $pdo->exec('DELETE FROM twin9_protocole_versions');
         $pdo->exec('DELETE FROM twin9_protocole');
-        $pdo->exec("DELETE FROM settings WHERE name = 'twin9_config'");
+        $pdo->exec("DELETE FROM settings WHERE name IN ('twin9_config', 'twin9_fiches', 'twin9_referentiel')");
 
         TestDb::setEnv('ANTHROPIC_API_KEY', self::PLATFORM_KEY);
         TestDb::setEnv('SODIUM_MASTER_KEY', self::MASTER_KEY_HEX);
@@ -136,7 +137,8 @@ final class Twin9AppelTest extends CartographeTestCase
         self::assertSame(422, $this->appel(['modele' => 'modele-fantome'])->getStatusCode());
         self::assertSame(422, $this->appel(['facturation' => 'gratuit'])->getStatusCode());
         self::assertSame(422, $this->appel(['max_tokens' => 'beaucoup'])->getStatusCode());
-        self::assertSame(422, $this->appel(['variables' => ['PRENOM' => 'Ada', 'TEXTE_JOURNEE' => 42]])->getStatusCode());
+        // Scalars are fine (POLE_NUM=int, etc.) but a NESTED object is refused.
+        self::assertSame(422, $this->appel(['variables' => ['X' => ['imbriqué' => 1]]])->getStatusCode());
         self::assertSame([], $this->http->requests);
     }
 
@@ -318,6 +320,66 @@ final class Twin9AppelTest extends CartographeTestCase
         self::assertNotNull($audit);
         self::assertSame($this->user['id'], $audit['userId']);
         self::assertSame(['etape' => 'fictif/01-essai', 'fuites' => 1], $audit['details']);
+    }
+
+    // ==================================================================
+    // Fiche injection (ADR-010 render-relocation fix)
+    // ==================================================================
+
+    public function testServerInjectsConfidentialFicheVariablesAtRender(): void
+    {
+        // A template that uses the SECRET fiche vars; the client sends only the
+        // run-state lookup keys (CODE ; POLE_NUM + POLE_FICHES_ORDRE).
+        (new ProtocoleRepository(Db::get()))->put(
+            'fictif/greffier',
+            "Fiche compétence : {\$COMPETENCE_FICHE}\nFiches du pôle : {\$POLE_FICHES}\nCode {\$CODE}.",
+            null,
+        );
+        // FICTIONAL fiches stored server-side (never a real Twin_v9 fiche).
+        FicheStore::store(new SettingsRepository(Db::get()), [
+            ['num' => 1, 'header' => 'PRÉAMBULE FICTIF DU PÔLE 1', 'competences' => [
+                ['code' => '1.01', 'fiche_md' => 'FICHE SECRÈTE DE 1.01'],
+                ['code' => '1.02', 'fiche_md' => 'FICHE SECRÈTE DE 1.02'],
+            ]],
+        ]);
+        (new CreditService(Db::get()))->topup($this->user['id'], 5_000_000, 'PAYPAL-FICHE');
+        $this->queueAnthropic('Analyse rendue.', 300, 80);
+
+        $response = $this->as_($this->user, 'POST', '/api/twin9/appel', [
+            'etape' => 'fictif/greffier',
+            // NO COMPETENCE_FICHE / POLE_FICHES from the client — only lookups.
+            'variables' => ['CODE' => '1.01', 'POLE_NUM' => 1, 'POLE_FICHES_ORDRE' => ['1.02', '1.01']],
+            'modele' => 'claude-sonnet-5',
+            'etage' => 'rapide',
+            'facturation' => 'platform',
+        ]);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+
+        // The rendered prompt (server → upstream) carries the REAL fiches, in
+        // the client-provided order, with no unresolved variable.
+        $sent = json_decode((string) $this->http->requests[0]['body'], true)['messages'][0]['content'];
+        self::assertStringContainsString('FICHE SECRÈTE DE 1.01', $sent, 'COMPETENCE_FICHE injected from CODE');
+        self::assertStringContainsString('PRÉAMBULE FICTIF DU PÔLE 1', $sent, 'pole header injected');
+        // POLE_FICHES assembled in the SENT order (1.02 then 1.01).
+        self::assertStringContainsString(
+            "FICHE SECRÈTE DE 1.02\n\n---\n\nFICHE SECRÈTE DE 1.01",
+            $sent,
+            'POLE_FICHES reassembled in the client order',
+        );
+        self::assertStringNotContainsString('{$COMPETENCE_FICHE}', $sent, 'no unresolved fiche variable');
+    }
+
+    public function testFichesAreNeverExposedByMeta(): void
+    {
+        FicheStore::store(new SettingsRepository(Db::get()), [
+            ['num' => 1, 'header' => 'PRÉAMBULE SECRET', 'competences' => [
+                ['code' => '1.01', 'fiche_md' => 'FICHE ULTRA CONFIDENTIELLE'],
+            ]],
+        ]);
+        $raw = (string) $this->as_($this->user, 'GET', '/api/twin9/meta')->getBody();
+        self::assertStringNotContainsString('CONFIDENTIELLE', $raw);
+        self::assertStringNotContainsString('PRÉAMBULE SECRET', $raw);
+        self::assertStringNotContainsString('fiche_md', $raw);
     }
 
     // ==================================================================

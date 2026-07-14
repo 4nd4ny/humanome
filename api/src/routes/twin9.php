@@ -51,6 +51,7 @@ use Humanome\Packages\SettingsRepository;
 use Humanome\Twin9\AnthropicCaller;
 use Humanome\Twin9\CreditService;
 use Humanome\Twin9\FactureService;
+use Humanome\Twin9\FicheStore;
 use Humanome\Twin9\LeakFilter;
 use Humanome\Twin9\PayPalClient;
 use Humanome\Twin9\ProtocoleRepository;
@@ -275,9 +276,16 @@ return function (App $app): void {
             return $json($response, ['error' => 'Champ variables invalide : objet attendu'], 422);
         }
         foreach ($variables as $name => $value) {
-            if (!\is_string($value)) {
-                return $json($response, ['error' => 'Variable invalide (chaîne attendue) : ' . (string) $name], 422);
+            // Run-state variables are scalars (rendered as-is) or, for the fiche
+            // lookup key POLE_FICHES_ORDRE, a flat list of scalars. Objects and
+            // nested arrays are refused.
+            if (\is_scalar($value) || $value === null) {
+                continue;
             }
+            if (\is_array($value) && $value === array_filter($value, 'is_scalar')) {
+                continue;
+            }
+            return $json($response, ['error' => 'Variable invalide (scalaire ou liste attendu) : ' . (string) $name], 422);
         }
         $modele = \is_string($body['modele'] ?? null) ? $body['modele'] : '';
         $etage = \is_string($body['etage'] ?? null) ? $body['etage'] : '';
@@ -307,6 +315,13 @@ return function (App $app): void {
         }
 
         // --- Render (server-side, ADR-010 §1) ----------------------------
+        // Inject the CONFIDENTIAL fiche variables (COMPETENCE_FICHE, POLE_FICHES)
+        // the client can't hold — computed authoritatively from the run-state
+        // lookup keys (CODE ; POLE_NUM + POLE_FICHES_ORDRE) it provided. The
+        // injected values WIN over anything the client sent for those names.
+        $fiches = FicheStore::fromSettings(new SettingsRepository(Db::get()));
+        $variables = array_merge($variables, $fiches->injecter($variables));
+
         $repo = new ProtocoleRepository(Db::get());
         $rendered = $repo->render($etape, $variables); // Twin9Exception 404 if unknown
         if ($rendered['non_resolues'] !== []) {
@@ -646,6 +661,12 @@ return function (App $app): void {
             // client engine needs — stored apart from the validated admin config.
             if (\is_array($body['referentiel'] ?? null)) {
                 $config->setReferentiel($body['referentiel']);
+            }
+            // The CONFIDENTIAL fiches (pole headers + per-competence fiche_md),
+            // stored server-only (FicheStore) and injected at render — NEVER in
+            // /meta. Kept apart from the non-secret referentiel structure.
+            if (\is_array($body['fiches'] ?? null)) {
+                FicheStore::store(new SettingsRepository(Db::get()), $body['fiches']);
             }
         } catch (Twin9Exception $e) {
             return $json($response, ['error' => $e->getMessage()], $e->getStatusCode());

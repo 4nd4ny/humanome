@@ -30,7 +30,7 @@
 // Tous les index et troncatures sont en POINTS DE CODE.
 
 import { pjoin } from "./artefacts.js";
-import { resolveContent } from "./templates.js";
+import { resolveContent, varsClient } from "./templates.js";
 import { extractJson, findVerbatim, logWarn, neutraliserBalises, stableHash } from "./util.js";
 import { dictGet, pyTruthy } from "./py/pyDict.js";
 import { pyIntOf } from "./py/pyDict.js";
@@ -476,6 +476,10 @@ async function proces(backend, ctx, tdir, comp, baseVars, dossier, config, meta,
       task,
       meta: { ...meta, ...(metaExtra || {}) },
       label: pyFormat("%s_%s_%s", task, contexte, code),
+      // Rendu SERVEUR (ADR-010) : COMPETENCE_FICHE, quand le gabarit l'exige,
+      // est injectée serveur à partir de CODE (présent dans variables).
+      gabarit: "lourd/" + template,
+      variables: varsClient(variables),
     });
     ctx.artefacts.writeText(path, out);
     return out;
@@ -845,6 +849,8 @@ export async function constituerDossier(backend, ctx, tdir, pole, comp, journee,
       task: "greffier",
       meta: { code, nom, sentences },
       label: pyFormat("greffier_%s_%s", journee.id, code),
+      gabarit: "lourd/20-greffier.md",
+      variables: varsClient(baseVars),
     });
     ctx.artefacts.writeText(path, dossier);
   }

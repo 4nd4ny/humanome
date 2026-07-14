@@ -21,7 +21,7 @@
 // Tous les index et longueurs sont en POINTS DE CODE.
 
 import { sentencesDe, suspicion } from "./journee.js";
-import { resolveContent } from "./templates.js";
+import { resolveContent, varsClient } from "./templates.js";
 import {
   empreinte,
   extractJson,
@@ -94,9 +94,9 @@ function gabaritDe(ctx, rel) {
 }
 
 /** Appel résilient : une panne du scan ne casse jamais le pipeline. */
-async function appel(ctx, backend, prompt, task, meta, label) {
+async function appel(ctx, backend, prompt, task, meta, label, gabarit, variables) {
   try {
-    return await backend.call(prompt, { task, meta, label });
+    return await backend.call(prompt, { task, meta, label, gabarit, variables: varsClient(variables) });
   } catch (e) {
     inc(ctx, "scan_appel_echec");
     logWarn(pyFormat("Arpenteur : appel %s indisponible (%s)", label, strErr(e)));
@@ -138,11 +138,12 @@ async function condenser(ctx, jours, backend, etatScan) {
       reprises += 1;
       continue;
     }
-    const prompt = resolveContent(gabaritDe(ctx, "scan/00-condense-fidele.md"), {
+    const variables = {
       JOURNEE_ID: j.id,
       DATE: orElse(j.date, "-"),
       TEXTE: neutraliserBalises(j.texte),
-    });
+    };
+    const prompt = resolveContent(gabaritDe(ctx, "scan/00-condense-fidele.md"), variables);
     const raw = await appel(
       ctx,
       backend,
@@ -150,6 +151,8 @@ async function condenser(ctx, jours, backend, etatScan) {
       "condense",
       { journee: j.id, sentences: sentencesDe(j.texte, j.id) },
       pyFormat("condense_%s", j.id),
+      "scan/00-condense-fidele.md",
+      variables,
     );
     const data = raw ? extractJson(/** @type {string} */ (raw)) : null;
     const c = mGet(data || {}, "condense_fidele", null);
@@ -242,14 +245,15 @@ async function passeGlobale(ctx, jours, backend, etatScan) {
   const liste61 = polesDe(ctx)
     .flatMap((p) => p.competences.map((c) => pyFormat("- %s %s", c.code, c.nom)))
     .join("\n");
-  const prompt = resolveContent(gabaritDe(ctx, "scan/01-arpenteur.md"), {
+  const variables = {
     JOURNAL_ID: ctx.journal_id,
     PREMIERE_DATE: dates[0],
     DERNIERE_DATE: dates[dates.length - 1],
     NB_JOURNEES: jours.length,
     LISTE_61: liste61,
     CONDENSES: blocs.join("\n\n"),
-  });
+  };
+  const prompt = resolveContent(gabaritDe(ctx, "scan/01-arpenteur.md"), variables);
   const raw = await appel(
     ctx,
     backend,
@@ -261,6 +265,8 @@ async function passeGlobale(ctx, jours, backend, etatScan) {
       pepites,
     },
     "arpenteur_global",
+    "scan/01-arpenteur.md",
+    variables,
   );
   const data = raw ? extractJson(/** @type {string} */ (raw)) : null;
   const a = mGet(data || {}, "arpentage", null);
@@ -337,13 +343,14 @@ export async function retourAuxSources(ctx, obs, type_, cites, backend, labelBas
         pyFormat("#### Journée %s (%s)\n\n%s", j.id, orElse(j.date, "-"), neutraliserBalises(j.texte)),
       )
       .join("\n\n");
-    const prompt = resolveContent(gabaritDe(ctx, "scan/02-retour-aux-sources.md"), {
+    const variables = {
       TYPE: type_,
       TITRE: orElse(mGet(obs, "titre", null), orElse(mGet(obs, "code", null), "?")),
       DESCRIPTION: orElse(mGet(obs, "description", null), orElse(mGet(obs, "pourquoiInvisibleAuJour", null), "-")),
       INDICES: orElse(/** @type {unknown[]} */ (orElse(mGet(obs, "indices", null), [])).join(" ; "), "-"),
       DOSSIER: dossier,
-    });
+    };
+    const prompt = resolveContent(gabaritDe(ctx, "scan/02-retour-aux-sources.md"), variables);
     /** @type {unknown[]} */
     const sents = [];
     for (const j of lot) for (const s of sentencesDe(j.texte, j.id)) sents.push(s);
@@ -354,6 +361,8 @@ export async function retourAuxSources(ctx, obs, type_, cites, backend, labelBas
       "retour_sources",
       { jours: lot.map((j) => j.id), sentences: sents, titre: orElse(mGet(obs, "titre", null), mGet(obs, "code", null)) },
       pyFormat("retour_%s_l%d", labelBase, li + 1),
+      "scan/02-retour-aux-sources.md",
+      variables,
     );
     const data = raw ? extractJson(/** @type {string} */ (raw)) : null;
     const r = mGet(data || {}, "retour_aux_sources", null);
