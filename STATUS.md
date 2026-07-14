@@ -7,6 +7,27 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-13 — **Twin_v9 (le vrai Golden Prompt) porté et intégré (ADR-010).** Système
+  multi-agents Python (~4400 l., 29 gabarits, ~3000 appels/run) rendu opérationnel sur le
+  site. (T1) specs de portage bit-à-bit ; (T2) **portage JS `engine/src/twin9/` avec parité
+  OCTET-À-OCTET** contre 6 oracles mock Python (0 écart) ; (T3) serveur : gabarits secrets en
+  base, `POST /api/twin9/appel` (rendu serveur, base_url verrouillée, filtre anti-fuite),
+  crédits prépayés micro-USD + **PayPal en flux redirect**, **factures récapitulatives
+  mensuelles** + suivi dépenses (particuliers ET établissements), **marge +10 %** (couvre
+  PayPal/OVH/domaine/démo Haiku) ; (T4) front : run (consentement RGPD, **devis via run mock
+  navigateur avant paiement**, progression + reprise IndexedDB, résultats), crédit+factures
+  imprimables, éditeur admin des gabarits + table des comptes ; (T5) déployé (désactivé).
+  **Revue de sécurité adversariale** → 2 failles corrigées (course de solde/découvert ;
+  contournement du filtre anti-fuite). **Correctif majeur du raccord réel** (le portage rendait
+  les prompts côté client ; sur le site les gabarits + fiches confidentielles doivent rester
+  serveur) : le moteur envoie chemin+variables d'état, le serveur **injecte les fiches secrètes**
+  (`FicheStore`, jamais dans `/meta`) — bug invisible aux 903 tests mock, attrapé par un **test
+  de contrat hors-ligne** et **prouvé par un vrai appel Anthropic** (greffier réel, fiche injectée,
+  réserve→réconciliation = coût réel). Suites : PHP 373, engine 903, web 520. **Reste avant mise
+  en service (utilisateur)** : identifiants PayPal REST (fournis plus tard) ; import des gabarits
+  en prod (`scripts/twin9/import-protocole.mjs`, X-Migrate-Token) qui active la fonctionnalité —
+  décision délibérée de l'utilisateur. Source `Twin_v9/` + gabarits = confidentiels, gitignorés.
+
 - 2026-07-13 — **Phase UX post-v1 (demande utilisateur, 6 points) : trois chantiers livrés.**
   **(B) Navigation adaptée au rôle + aide contextuelle.** `web/src/nav.js` = source unique
   rôle → sections, groupées par famille (« Découvrir » pour tous ; « Mon travail » selon les
