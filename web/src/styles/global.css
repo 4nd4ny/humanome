@@ -15,6 +15,15 @@
   --accent-strong: #1d4ed8;
   --danger: #b91c1c;
   --danger-bg: #fef2f2;
+  /* Teintes des familles d'intention (plan du site, nav.js) — sémantiques :
+     elles aident à mémoriser « où vit quoi », en tuiles comme en TOC. */
+  --fam-decouvrir: #2563eb;
+  --fam-cartographie: #0f766e;
+  --fam-encadrer: #7c3aed;
+  --fam-piloter: #b45309;
+  --fam-evoluer: #be185d;
+  --fam-administrer: #475569;
+  --fam-compte: #15803d;
 }
 
 /* Focus clavier visible partout (liens, boutons, résumés dépliables). */
@@ -222,6 +231,7 @@ body {
   min-height: 44px;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .app-nav a:hover,
@@ -235,25 +245,247 @@ body {
   font-weight: 600;
 }
 
-.app-account {
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-top: 0.15rem;
-  padding: 0.5rem 0.75rem;
+/* Badge d'échelle de valeur (gratuit / standard / premium) — porté par les
+   items de nav.js, rendu dans le panneau burger et sur les tuiles. */
+.value-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.08rem 0.4rem;
+  border-radius: 999px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--ink-faint);
+  background: var(--paper);
+  margin-left: auto;
+  flex: 0 0 auto;
 }
 
-.app-account:hover,
-.app-account[aria-current='page'] {
+.value-badge-gratuit {
+  color: #0f766e;
+  border-color: #99f6e4;
+  background: #f0fdfa;
+}
+
+.value-badge-standard {
+  color: var(--accent-strong);
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.value-badge-premium {
+  color: #be185d;
+  border-color: #fbcfe8;
+  background: #fdf2f8;
+}
+
+.app-nav a .value-badge {
+  margin-left: auto;
+}
+
+/* ---------- Accueil : tuiles familles (plan du site par intention) ----------
+   Landing de profil (FamilyTiles.jsx) : une tuile par famille visible pour la
+   session ; le visiteur peut révéler la persona-bar pour explorer les profils.
+   Le survol / premier clic d'un lien remplit la div callout avec l'aide de la
+   rubrique (help/registry.js) ; le second clic ouvre. */
+
+.families-section {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.families-title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.families-reveal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.persona-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.chip {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  min-height: 40px;
+}
+
+.chip:hover {
   border-color: var(--accent);
   color: var(--accent);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.families-note {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.families {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 0.9rem;
+}
+
+.family {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Teinte de la famille : sémantique, reprise de nav.js via data-family. */
+  border-left: 4px solid var(--fam, var(--accent));
+}
+
+.family[data-family='decouvrir'] { --fam: var(--fam-decouvrir); }
+.family[data-family='cartographie'] { --fam: var(--fam-cartographie); }
+.family[data-family='encadrer'] { --fam: var(--fam-encadrer); }
+.family[data-family='piloter'] { --fam: var(--fam-piloter); }
+.family[data-family='evoluer'] { --fam: var(--fam-evoluer); }
+.family[data-family='administrer'] { --fam: var(--fam-administrer); }
+.family[data-family='compte'] { --fam: var(--fam-compte); }
+.family[data-family='partage'] { --fam: var(--fam-compte); }
+
+.family-head {
+  padding: 0.75rem 0.9rem 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.family-intent {
+  font-size: 0.76rem;
+  font-weight: 650;
+  color: var(--fam, var(--accent));
+}
+
+.family-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.family-audience {
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.family-note-text {
+  margin: 0;
+  padding: 0 0.9rem 0.9rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.routes {
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0.45rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.routes a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  text-decoration: none;
+  padding: 0.42rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  color: var(--ink);
+  min-height: 40px;
+}
+
+.routes a:hover,
+.routes a:focus-visible {
+  background: var(--paper);
+  border-color: var(--fam, var(--accent));
+}
+
+.routes a.route-armed {
+  background: var(--paper);
+  border-color: var(--fam, var(--accent));
+  box-shadow: inset 2px 0 0 var(--fam, var(--accent));
+}
+
+.route-label {
+  font-size: 0.93rem;
+  font-weight: 550;
+}
+
+.route-hint {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+/* Callout d'aide : reprend le contenu du bouton « ? » (help/registry.js). */
+.callout {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 0.8rem 1rem;
+  min-height: 4.2rem;
+}
+
+.callout-title {
+  margin: 0 0 0.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.callout-intro {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.callout-points {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+.callout-points li + li {
+  margin-top: 0.15rem;
+}
+
+.callout-hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-strong);
 }
 
 /* ---------- Aide contextuelle « ? » ---------- */

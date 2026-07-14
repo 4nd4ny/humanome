@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { act, cleanup, render, screen, waitFor, fireEvent } from '@testing-library/react'
+import { act, cleanup, render, screen, waitFor, fireEvent, within } from '@testing-library/react'
 import App from './App.jsx'
 import * as fakeLib from './test/fake-sunburst-lib.js'
 
@@ -30,16 +30,20 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: 'humanome.xyz' })).toBeDefined()
     expect(screen.getByText(/Explorer la cartographie de démonstration/)).toBeDefined()
 
-    // En-tête : marque -> #/ et sections « Découvrir » (visibles par tous).
+    // En-tête : marque -> #/ et famille « Découvrir » (visible par tous).
+    // Scopé sur la nav : les tuiles de l'accueil reprennent les mêmes liens.
     const brand = screen.getByText('humanome.xyz', { selector: 'a' })
     expect(brand.getAttribute('href')).toBe('#/')
-    expect(screen.getByRole('link', { name: 'Cartographie' }).getAttribute('href')).toBe('#/merge')
-    expect(screen.getByRole('link', { name: 'Référentiel' }).getAttribute('href')).toBe(
+    const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
+    expect(
+      nav.getByRole('link', { name: 'Cartographie (démonstration)' }).getAttribute('href'),
+    ).toBe('#/merge')
+    expect(nav.getByRole('link', { name: 'Référentiel' }).getAttribute('href')).toBe(
       '#/referentiel',
     )
-    expect(screen.getByRole('link', { name: 'Essayer' }).getAttribute('href')).toBe('#/essayer')
-    // Anonyme : « Se connecter » (et pas les sections de travail).
-    expect(screen.getByRole('link', { name: 'Se connecter' }).getAttribute('href')).toBe('#/compte')
+    expect(nav.getByRole('link', { name: /^Essayer/ }).getAttribute('href')).toBe('#/essayer')
+    // Anonyme : « Se connecter » (et pas les familles de travail).
+    expect(nav.getByRole('link', { name: 'Se connecter' }).getAttribute('href')).toBe('#/compte')
     expect(screen.queryByRole('link', { name: 'Mon portfolio' })).toBeNull()
 
     expect(screen.getByText(/écosystème RESPIRE, Harmonia Éducation/)).toBeDefined()
@@ -52,20 +56,30 @@ describe('App', () => {
     window.location.hash = '#/'
     renderApp(async () => ({ user: { id: 1, roles: ['apprenant', 'cartographe'] } }))
 
-    // La famille « Mon travail » apparaît après résolution de la session.
+    const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
+    // Les familles d'intention apparaissent après résolution de la session.
     await waitFor(() =>
-      expect(screen.getByRole('link', { name: 'Mon espace' }).getAttribute('href')).toBe('#/espace'),
+      expect(nav.getByRole('link', { name: 'Tableau de bord' }).getAttribute('href')).toBe(
+        '#/espace',
+      ),
     )
-    expect(screen.getByRole('link', { name: 'Mon portfolio' }).getAttribute('href')).toBe(
+    expect(nav.getByRole('link', { name: 'Mon portfolio' }).getAttribute('href')).toBe(
       '#/portfolio',
     )
-    expect(screen.getByRole('link', { name: 'Espace cartographe' }).getAttribute('href')).toBe(
+    expect(nav.getByRole('link', { name: 'Ma file de relecture' }).getAttribute('href')).toBe(
       '#/cartographe',
     )
-    // Pas de rôle admin -> pas de lien Administration.
-    expect(screen.queryByRole('link', { name: 'Administration' })).toBeNull()
-    // Connecté -> « Mon compte ».
-    expect(screen.getByRole('link', { name: 'Mon compte' }).getAttribute('href')).toBe('#/compte')
+    // Échelle de valeur badgée dans le panneau (friction n°1).
+    expect(nav.getByRole('link', { name: /Cartographier mes écrits/ }).getAttribute('href')).toBe(
+      '#/espace/nouveau-run',
+    )
+    // Pas de rôle admin -> pas de famille Administrer.
+    expect(nav.queryByRole('link', { name: 'Rôles et comptes' })).toBeNull()
+    // Connecté -> profil et crédit sous « Mon compte ».
+    expect(nav.getByRole('link', { name: 'Profil et rôles' }).getAttribute('href')).toBe('#/compte')
+    expect(nav.getByRole('link', { name: 'Crédit et factures' }).getAttribute('href')).toBe(
+      '#/compte/credit',
+    )
   })
 
   it('le bouton « ? » ouvre l’aide contextuelle de la rubrique (item 4)', async () => {

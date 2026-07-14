@@ -7,6 +7,33 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-14 — **Refonte de la navigation : 7 familles d'intention + landing « palais mental ».**
+  Étude d'ergonomie complète (`docs/ergonomie-navigation.md` : mindmaps par persona, frictions
+  confirmées + découvertes via 8 lentilles-persona multi-agents, 3 philosophies candidates,
+  synthèse) puis câblage validé par l'utilisateur. **(1) Burger accessible** : la nav quitte la
+  barre pour un panneau déroulant (survol desktop avec délai de grâce, clic épinglant web+mobile,
+  focus clavier via `:focus-within`, Échap/clic-extérieur ferment ; liens toujours dans le DOM,
+  masquage visuel seulement). **(2) `nav.js` réécrit** = source unique des 7 familles nommées par
+  le BUT (Découvrir · Ma cartographie · Encadrer et garantir · Piloter mon organisation · Faire
+  évoluer · Administrer · Mon compte), role-additives, items filtrés par rôle (l'épistémiarque a
+  enfin un domicile : « Édition du référentiel ») ; badges d'échelle de valeur
+  gratuit/standard/premium sur Essayer / Cartographier mes écrits / Analyse approfondie
+  (friction n°1) ; `isCurrentItem` route+section. **(3) Landing de profil**
+  (`components/FamilyTiles.jsx`) : tuiles des familles de la session teintées par famille
+  (`--fam-*`) ; visiteur = bouton « Voir les profils d'utilisateurs » révélant la persona-bar
+  (8 profils ; Employeur = carte explicative du lien de partage) ; **callout d'aide** : le
+  survol/focus d'un lien de tuile affiche le contenu du bouton « ? » (`help/registry.js` via
+  `parseHash`), le **1er clic sélectionne** (aria-live, Échap désarme, clics modifiés natifs),
+  le **2e clic ouvre** — la « table des matières interactive » en actes. Prototype TOC conservé
+  dans l'état (`docs/prototypes/plan-du-site-toc.html`). **Revue adversariale multi-agents du
+  diff avant commit : 17 findings confirmés, tous corrigés** — dont le survol qui reprend la
+  main sur un lien armé, l'armement par item (alias #/espace), la purge du callout au
+  changement de profil, `role=group` sur les familles du burger, contrastes AA (teal 700),
+  consignes clavier, et `help/registry.js` + tableau de bord alignés sur les nouveaux libellés
+  (fin de « Lancer un run »). Vérifié en navigateur (visiteur, aperçu Cartographe, survol,
+  deux-clics, navigation réelle, armé+survol post-correctif). Tests web 535. Non déployé
+  (front seulement, `npm run build` OK + deploy à la prochaine fenêtre).
+
 - 2026-07-13 — **Twin_v9 (le vrai Golden Prompt) porté et intégré (ADR-010).** Système
   multi-agents Python (~4400 l., 29 gabarits, ~3000 appels/run) rendu opérationnel sur le
   site. (T1) specs de portage bit-à-bit ; (T2) **portage JS `engine/src/twin9/` avec parité

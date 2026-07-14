@@ -1,14 +1,17 @@
 import { useRef, useState } from 'react'
 import { parseUserDocument } from '../data/load.js'
+import FamilyTiles from '../components/FamilyTiles.jsx'
 
 /**
- * Accueil : présentation sobre + accès à la démo + chargement local d'une
+ * Accueil : présentation sobre + tuiles du plan du site filtrées par la
+ * session (landing de profil, refonte 2026-07) + chargement local d'une
  * cartographie (drag & drop ou sélecteur de fichier). Les fichiers sont lus
  * et validés dans le navigateur, rien n'est envoyé nulle part (cahier §6).
  *
- * @param {{onUserDocument: (result: {kind: string, doc: object}) => void}} props
+ * @param {{onUserDocument: (result: {kind: string, doc: object}) => void,
+ *   roles?: string[]}} props
  */
-export default function HomeView({ onUserDocument }) {
+export default function HomeView({ onUserDocument, roles = [] }) {
   const [error, setError] = useState(null)
   const [dragging, setDragging] = useState(false)
   const inputRef = useRef(null)
@@ -56,6 +59,8 @@ export default function HomeView({ onUserDocument }) {
           </button>
         </p>
       </section>
+
+      <FamilyTiles roles={roles} />
 
       <section
         className={`dropzone${dragging ? ' dropzone-active' : ''}`}

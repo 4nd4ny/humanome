@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { currentRoute, dayHash, navigate, subscribe } from './router.js'
 import { getDemoMerge, getReferentiel, loadDay } from './data/load.js'
 import { fetchMe } from './api/client.js'
-import { navGroups } from './nav.js'
+import { isCurrentItem, navGroups } from './nav.js'
 import Help from './help/Help.jsx'
 import HomeView from './views/HomeView.jsx'
 import MergeView from './views/MergeView.jsx'
@@ -210,11 +210,10 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       )
       break
     default:
-      view = <HomeView onUserDocument={handleUserDocument} />
+      view = <HomeView onUserDocument={handleUserDocument} roles={roles} />
   }
 
   const groups = navGroups({ roles })
-  const authenticated = roles.length > 0
 
   return (
     <div className="app">
@@ -250,34 +249,25 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
             </button>
             <div className="app-nav-panel" id="app-nav-panel">
               <nav className="app-nav" aria-label="Navigation principale">
-                {groups.map((group) => (
-                  <div className="app-nav-group" key={group.family} aria-label={group.family}>
+                {groups.map((family) => (
+                  // role=group : un div nu n'expose pas son aria-label aux
+                  // lecteurs d'écran (nommage interdit sur role générique).
+                  <div className="app-nav-group" key={family.id} role="group" aria-label={family.label}>
                     <span className="app-nav-group-label" aria-hidden="true">
-                      {group.family}
+                      {family.label}
                     </span>
-                    {group.items.map((item) => (
+                    {family.items.map((item) => (
                       <a
-                        key={item.href}
+                        key={`${item.href} ${item.label}`}
                         href={item.href}
-                        aria-current={route.name === item.route ? 'page' : undefined}
+                        aria-current={isCurrentItem(item, route) ? 'page' : undefined}
                       >
                         {item.label}
+                        {item.badge ? <span className={`value-badge value-badge-${item.badge}`}>{item.badge}</span> : null}
                       </a>
                     ))}
                   </div>
                 ))}
-                <div className="app-nav-group app-nav-group-account" aria-label="Compte">
-                  <span className="app-nav-group-label" aria-hidden="true">
-                    Compte
-                  </span>
-                  <a
-                    className="app-account"
-                    href="#/compte"
-                    aria-current={route.name === 'account' ? 'page' : undefined}
-                  >
-                    {authenticated ? 'Mon compte' : 'Se connecter'}
-                  </a>
-                </div>
               </nav>
             </div>
           </div>

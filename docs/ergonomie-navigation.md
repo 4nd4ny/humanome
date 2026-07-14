@@ -279,6 +279,11 @@ mindmap
 
 ## 2. Simplifications proposées (organisation, **pas** fonctionnalités)
 
+> **État : câblé le 2026-07-14.** `web/src/nav.js` porte désormais les 7 familles d'intention
+> (source unique lue par le burger et par les tuiles de l'accueil, cf. §5bis). Les mouvements
+> M1–M6 et le nommage de M8 sont en production de code ; les améliorations de *flux* listées en
+> fin de section restent à considérer.
+
 Synthèse des 3 philosophies candidates en **une seule IA** : un **plan du site par intention**,
 role-additif, logé dans le burger. Huit mouvements, chacun réparant des frictions nommées.
 
@@ -484,8 +489,26 @@ Modifié : `web/src/App.jsx` et `web/src/styles/global.css`. Comportement (véri
   Aucun `hidden`/`aria-hidden` : les liens restent dans le DOM et l'ordre de tabulation ; le masquage
   est purement visuel (`opacity` + `pointer-events`) — donc tabuler dans la nav la **révèle**.
 
-Le panneau est, tel quel, la **première brique** de la TOC interactive : il suffira d'y injecter le
-regroupement par **intention** de §3.1 (aujourd'hui il reflète encore les 2 familles historiques).
+Le panneau porte désormais le regroupement par **intention** de §3.1 : `nav.js` est la source
+unique des 7 familles, et le burger comme les tuiles de l'accueil (§5bis) la consomment.
+
+## 5bis. La landing « palais mental » (câblée le 2026-07-14)
+
+L'accueil réutilise la grille de tuiles du prototype TOC (copie dans l'état :
+`docs/prototypes/plan-du-site-toc.html`) comme **landing de profil**
+(`web/src/components/FamilyTiles.jsx`) :
+
+- **Connecté** : les tuiles = les familles de **ses** rôles (« Vos espaces »), teintées par
+  famille (tokens `--fam-*`), avec badges d'échelle de valeur (gratuit / standard / premium).
+- **Visiteur** : la famille « Découvrir » + un bouton **« Voir les profils d'utilisateurs »** qui
+  révèle la persona-bar (8 profils, employeur compris) — chaque profil montre les familles qu'il
+  verrait connecté, pour faire comprendre la complexité du site sans compte. Le profil
+  « Employeur » affiche une carte explicative (lien de partage) au lieu de tuiles.
+- **Callout d'aide** : le survol (ou le focus) d'un lien de tuile affiche dans la div `callout`
+  le **même contenu que le bouton « ? »** (`help/registry.js`, résolu par route via `parseHash`).
+  Le **premier clic sélectionne** (aide affichée + lien marqué, `aria-live` sur le callout,
+  Échap désarme) ; le **second clic ouvre**. On lit avant d'entrer — c'est la TOC interactive
+  en actes.
 
 ---
 

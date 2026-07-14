@@ -74,7 +74,7 @@ const BASE = {
     points: [
       'Trois sources : collage direct, fichier .txt/.md, ou un Google Docs public.',
       'La segmentation en journées est automatique et ajustable (fusionner/scinder).',
-      'Depuis un portfolio, vous lancez une cartographie dans « Mon espace ».',
+      'Depuis un portfolio, vous lancez « Cartographier mes écrits » (Ma cartographie → Tableau de bord).',
     ],
   },
   espace: {
@@ -204,10 +204,16 @@ export function helpFor(route, session = {}) {
   // Astuce ciblée : sur l'accueil et la cartographie, rappeler à un rôle de
   // travail où se trouve son espace (ergonomie par famille, item 5).
   if ((route === 'home' || route === 'merge') && roles.includes('cartographe')) {
-    return withExtra(entry, 'Vous êtes cartographe : votre file de relecture est dans « Espace cartographe ».')
+    return withExtra(
+      entry,
+      'Vous êtes cartographe : « Ma file de relecture » est dans le menu, famille « Encadrer et garantir ».',
+    )
   }
   if ((route === 'home' || route === 'merge') && roles.includes('etablissement')) {
-    return withExtra(entry, 'Vous gérez un établissement : vos cohortes sont dans « Établissement ».')
+    return withExtra(
+      entry,
+      'Vous gérez un établissement : « Mes cohortes » est dans le menu, famille « Piloter mon organisation ».',
+    )
   }
   return entry
 }

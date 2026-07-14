@@ -126,7 +126,7 @@ export default function DashboardSection({
               <li key={p.id}>
                 <strong>{p.titre}</strong> — {p.segments?.length ?? 0} journée(s), modifié le{' '}
                 {frShortDate(p.updatedAt)}{' '}
-                <a href="#/espace/nouveau-run">Lancer un run</a>
+                <a href="#/espace/nouveau-run">Cartographier ces écrits</a>
               </li>
             ))}
           </ul>
@@ -141,7 +141,7 @@ export default function DashboardSection({
             Gérer mes portfolios
           </a>{' '}
           <a className="button button-primary" href="#/espace/nouveau-run">
-            Nouveau run de cartographie
+            Cartographier mes écrits
           </a>
         </p>
       </section>
