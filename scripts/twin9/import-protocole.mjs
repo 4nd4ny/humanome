@@ -20,6 +20,7 @@
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { execFileSync } from 'node:child_process'
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -87,11 +88,31 @@ async function main() {
     config = Object.fromEntries(CONFIG_KEYS.filter((k) => k in full).map((k) => [k, full[k]]))
   }
 
+  // Non-secret referentiel STRUCTURE (pole num/nom + competence code/nom) the
+  // client engine needs to assemble artefacts. Parsed by Twin_v9's own
+  // load_referentiel (the faithful source of the accented pole names) — the
+  // importing host is a Python project, so python3 is available; best-effort
+  // with a clear warning if not (the server keeps its previous structure).
+  let referentiel
+  try {
+    const py = 'import json,os,sys; sys.path.insert(0, sys.argv[1]); '
+      + 'from aurora.referentiel import load_referentiel; '
+      + 'p=load_referentiel(os.path.join(sys.argv[1],"protocole","tagger")); '
+      + 'print(json.dumps([{"num":n,"nom":x.nom,"competences":'
+      + '[{"code":c["code"],"nom":c["nom"]} for c in x.competences]} '
+      + 'for n,x in sorted(p.items())], ensure_ascii=False))'
+    const out = execFileSync('python3', ['-c', py, twinDir], { encoding: 'utf8' })
+    referentiel = JSON.parse(out)
+  } catch (e) {
+    console.warn(`referentiel structure NOT extracted (python3?): ${e.message} — server keeps its current one`)
+  }
+
   console.log(`Twin_v9 dir: ${twinDir}`)
   for (const [name, content] of Object.entries(files)) {
     console.log(`  ${name} (${Buffer.byteLength(content, 'utf8')} bytes)`)
   }
   console.log(config ? `config keys: ${Object.keys(config).join(', ')}` : 'config.json absent')
+  console.log(referentiel ? `referentiel: ${referentiel.length} pôles` : 'referentiel absent')
 
   if (args.dryRun) {
     console.log('dry-run: nothing sent')
@@ -105,7 +126,11 @@ async function main() {
   const res = await fetch(`${baseUrl}/api/admin/twin9/import`, {
     method: 'POST',
     headers: { 'X-Migrate-Token': token, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ files, ...(config ? { config } : {}) }),
+    body: JSON.stringify({
+      files,
+      ...(config ? { config } : {}),
+      ...(referentiel ? { referentiel } : {}),
+    }),
   })
   const body = await res.text()
   console.log(`import: HTTP ${res.status} ${body.slice(0, 300)}`)

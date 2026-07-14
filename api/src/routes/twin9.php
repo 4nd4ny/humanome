@@ -450,6 +450,9 @@ return function (App $app): void {
             'modeles' => $view['modeles'],
             'packs' => $view['packs'],
             'pipeline' => $view['pipeline'],
+            // Non-secret referentiel structure the client engine needs to
+            // assemble artefacts (codes/names + accented pole names).
+            'referentiel' => $config->referentiel(),
             'paypalConfigured' => $view['paypalConfigured'],
             'solde_microusd' => (new CreditService(Db::get()))->balance($userId),
             'cle_privee_disponible' => $clePrivee,
@@ -639,6 +642,11 @@ return function (App $app): void {
                 $update['pipeline'] = $body['config'];
             }
             $config->update($update);
+            // The non-secret referentiel structure (pole/competence names) the
+            // client engine needs — stored apart from the validated admin config.
+            if (\is_array($body['referentiel'] ?? null)) {
+                $config->setReferentiel($body['referentiel']);
+            }
         } catch (Twin9Exception $e) {
             return $json($response, ['error' => $e->getMessage()], $e->getStatusCode());
         } catch (\Throwable $e) {

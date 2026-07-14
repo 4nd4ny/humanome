@@ -31,6 +31,16 @@ final class Twin9Config
 {
     public const SETTING_KEY = 'twin9_config';
 
+    /**
+     * Referentiel STRUCTURE (pole num/nom + competence code/nom) the client
+     * engine needs to assemble artefacts — NOT secret (codes and names are the
+     * public RESPIRE referentiel; only the accented pole names differ from the
+     * static respire-v7.json, which is why we serve the exact structure the
+     * imported templates were parsed from). Stored under its own settings key,
+     * written by the import (X-Migrate-Token), never by the admin PUT.
+     */
+    public const REFERENTIEL_KEY = 'twin9_referentiel';
+
     public const ETAGES = ['taggers', 'rapide', 'tribunal'];
 
     private const MARGE_MIN = 1.0;
@@ -114,6 +124,50 @@ final class Twin9Config
         $this->settings->set(self::SETTING_KEY, $next);
 
         return $next;
+    }
+
+    /**
+     * The stored referentiel structure the client engine consumes, or [] if
+     * none imported yet. Shape: [{num:int, nom:string, competences:[{code, nom}]}].
+     *
+     * @return list<array<string, mixed>>
+     */
+    public function referentiel(): array
+    {
+        $stored = $this->settings->get(self::REFERENTIEL_KEY);
+
+        return \is_array($stored) && isset($stored['poles']) && \is_array($stored['poles'])
+            ? $stored['poles']
+            : [];
+    }
+
+    /**
+     * Store the referentiel structure (import only). Keeps ONLY the non-secret
+     * structure — num/nom of poles, code/nom of competences — dropping anything
+     * else (a fiche's body would be confidential and is never needed here).
+     *
+     * @param list<array<string, mixed>> $poles
+     */
+    public function setReferentiel(array $poles): void
+    {
+        $clean = [];
+        foreach ($poles as $p) {
+            if (!\is_array($p)) {
+                continue;
+            }
+            $comps = [];
+            foreach ((array) ($p['competences'] ?? []) as $c) {
+                if (\is_array($c) && isset($c['code'], $c['nom'])) {
+                    $comps[] = ['code' => (string) $c['code'], 'nom' => (string) $c['nom']];
+                }
+            }
+            $clean[] = [
+                'num' => (int) ($p['num'] ?? 0),
+                'nom' => (string) ($p['nom'] ?? ''),
+                'competences' => $comps,
+            ];
+        }
+        $this->settings->set(self::REFERENTIEL_KEY, ['poles' => $clean]);
     }
 
     public function isEnabled(): bool

@@ -95,6 +95,33 @@ final class Twin9ProtocoleTest extends CartographeTestCase
         self::assertSame(self::FAKE_GABARIT, (string) $versions[0]['content']);
     }
 
+    public function testImportStoresReferentielStructureServedByMeta(): void
+    {
+        // The import carries the non-secret referentiel structure (accented
+        // pole names + codes/names) the client engine needs; only the clean
+        // structure is kept and it surfaces through /api/twin9/meta.
+        $response = $this->request('POST', '/api/admin/twin9/import', [
+            'files' => ['fictif/01-essai' => self::FAKE_GABARIT],
+            'referentiel' => [
+                ['num' => 1, 'nom' => 'TÊTE — Penser & Comprendre', 'competences' => [
+                    ['code' => '1.01', 'nom' => 'Pensée Critique & Anti-Hallucination', 'fiche' => 'SECRET À NE PAS STOCKER'],
+                ]],
+                ['num' => 2, 'nom' => 'CŒUR — Relier & Naviguer', 'competences' => []],
+            ],
+        ], ['X-Migrate-Token' => self::TOKEN]);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+
+        $stored = (new Twin9Config(new SettingsRepository(Db::get())))->referentiel();
+        self::assertSame('TÊTE — Penser & Comprendre', $stored[0]['nom'], 'accented pole name kept');
+        self::assertSame('1.01', $stored[0]['competences'][0]['code']);
+        self::assertArrayNotHasKey('fiche', $stored[0]['competences'][0], 'only code/nom kept, never fiche text');
+
+        // Served to the client engine via meta.
+        $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
+        $meta = self::json($this->as_($admin, 'GET', '/api/twin9/meta'));
+        self::assertSame('CŒUR — Relier & Naviguer', $meta['referentiel'][1]['nom']);
+    }
+
     // ==================================================================
     // Admin routes: authz
     // ==================================================================
