@@ -54,7 +54,16 @@ export function parseHash(hash) {
   if (path === '/merge') return { name: 'merge' }
   if (path === '/essayer') return { name: 'essayer' }
   if (path === '/portfolio') return { name: 'portfolio' }
-  if (path === '/compte') return { name: 'account' }
+  if (path === '/compte') return { name: 'account', section: null }
+
+  // Espace compte : #/compte/credit = tableau de bord crédit Twin_v9 + factures.
+  const compteMatch = /^\/compte\/(.+)$/.exec(path)
+  if (compteMatch) return { name: 'account', section: decodeURIComponent(compteMatch[1]) }
+
+  // Twin_v9 — analyse approfondie payante (Golden Prompt, ADR-010) : #/twin9.
+  if (path === '/twin9') return { name: 'twin9', section: null }
+  const twin9Match = /^\/twin9\/(.+)$/.exec(path)
+  if (twin9Match) return { name: 'twin9', section: decodeURIComponent(twin9Match[1]) }
 
   // Espace apprenant (P8) : #/espace, #/espace/formation, #/espace/formation/<chapitre>…
   if (path === '/espace') return { name: 'espace', section: null }

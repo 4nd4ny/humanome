@@ -37,6 +37,7 @@ export const ROLE_SECTIONS = {
   apprenant: [
     { href: '#/espace', label: 'Mon espace', route: 'espace' },
     { href: '#/portfolio', label: 'Mon portfolio', route: 'portfolio' },
+    { href: '#/twin9', label: 'Analyse Twin_v9', route: 'twin9' },
   ],
   cartographe: [{ href: '#/cartographe', label: 'Espace cartographe', route: 'cartographe' }],
   promptologue: [{ href: '#/promptologue', label: 'Atelier promptologue', route: 'promptologue' }],

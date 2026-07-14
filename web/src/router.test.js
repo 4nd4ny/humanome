@@ -96,8 +96,14 @@ describe('routes référentiel et compte (P4.4)', () => {
   })
 
   it('route vers le compte', () => {
-    expect(parseHash('#/compte')).toEqual({ name: 'account' })
-    expect(parseHash('#/compte/extra').name).toBe('not-found')
+    expect(parseHash('#/compte')).toEqual({ name: 'account', section: null })
+    // #/compte/<section> (ex. credit = tableau de bord crédit Twin_v9)
+    expect(parseHash('#/compte/credit')).toEqual({ name: 'account', section: 'credit' })
+  })
+
+  it('route vers l’analyse Twin_v9', () => {
+    expect(parseHash('#/twin9')).toEqual({ name: 'twin9', section: null })
+    expect(parseHash('#/twin9/resultats')).toEqual({ name: 'twin9', section: 'resultats' })
   })
 
   it('route vers la démo publique « Essayer » (P6)', () => {

@@ -15,10 +15,10 @@ describe('navGroups', () => {
     ])
   })
 
-  it('un apprenant gagne « Mon espace » et « Mon portfolio »', () => {
+  it('un apprenant gagne « Mon espace », « Mon portfolio » et « Analyse Twin_v9 »', () => {
     const groups = navGroups({ roles: ['apprenant'] })
     expect(groups.map((g) => g.family)).toEqual(['Découvrir', 'Mon travail'])
-    expect(groups[1].items.map((i) => i.href)).toEqual(['#/espace', '#/portfolio'])
+    expect(groups[1].items.map((i) => i.href)).toEqual(['#/espace', '#/portfolio', '#/twin9'])
   })
 
   it('cumule les sections de plusieurs rôles sans doublon', () => {

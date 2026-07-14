@@ -19,6 +19,8 @@ import EtablissementView from './views/EtablissementView.jsx'
 import AdminView from './views/AdminView.jsx'
 import ConfidentialiteView from './views/ConfidentialiteView.jsx'
 import GuidesView from './views/GuidesView.jsx'
+import Twin9View from './views/Twin9View.jsx'
+import CreditView from './views/CreditView.jsx'
 
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
@@ -137,7 +139,11 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       view = <PortfolioView />
       break
     case 'account':
-      view = <AccountView />
+      // #/compte/credit -> tableau de bord crédit Twin_v9 + factures ; sinon compte.
+      view = route.section === 'credit' ? <CreditView lib={lib} /> : <AccountView />
+      break
+    case 'twin9':
+      view = <Twin9View section={route.section} lib={lib} />
       break
     case 'espace':
       view = <EspaceView section={route.section} lib={lib} />

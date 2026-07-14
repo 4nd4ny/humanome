@@ -156,6 +156,19 @@ const BASE = {
       'Si vous avez un rôle, votre espace dédié propose la même formation avec votre suivi.',
     ],
   },
+  twin9: {
+    titre: 'Analyse approfondie Twin_v9',
+    intro:
+      'L’analyse haut de gamme de votre portfolio : un collège de modèles surligne le texte, une ' +
+      'procédure calculée décide, rien n’est affirmé sans une citation exacte. Elle passe par notre ' +
+      'système de prompts et un modèle que vous choisissez — d’où un coût, payé d’avance.',
+    points: [
+      'Votre texte transite par notre serveur et par le fournisseur du modèle le temps de l’analyse ; il n’est pas conservé.',
+      'Le devis est calculé sur VOTRE portfolio avant tout paiement (nombre exact d’appels).',
+      'Rechargez votre crédit par PayPal, ou utilisez votre propre clé API — dans les deux cas notre système de prompts reste protégé.',
+      'Une facture récapitulative mensuelle est disponible dans « Mon compte ».',
+    ],
+  },
   confidentialite: {
     titre: 'Confidentialité',
     intro:
