@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { currentRoute, dayHash, navigate, subscribe } from './router.js'
 import { getDemoMerge, getReferentiel, loadDay } from './data/load.js'
 import { fetchMe } from './api/client.js'
@@ -39,6 +39,12 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   // reste toujours affichée.
   const [roles, setRoles] = useState([])
   const [helpOpen, setHelpOpen] = useState(false)
+  // Menu « burger » : la navigation principale vit dans un panneau déroulant
+  // (web + mobile) pour libérer la barre. Ouverture épinglée au clic/tap ;
+  // survol (desktop) et focus clavier la révèlent de façon transitoire (CSS).
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef(null)
+  const burgerRef = useRef(null)
 
   useEffect(() => subscribe(setRoute), [])
 
@@ -63,8 +69,30 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     }
   }, [fetchMeFn])
 
-  // L'aide se ferme quand on change de rubrique.
+  // L'aide et le menu se ferment quand on change de rubrique.
   useEffect(() => setHelpOpen(false), [route.name])
+  useEffect(() => setMenuOpen(false), [route.name])
+
+  // Menu épinglé : Échap ferme et redonne le focus au bouton ; un clic hors du
+  // menu ferme aussi. (Le survol/focus rouvre de manière transitoire, CSS.)
+  useEffect(() => {
+    if (!menuOpen) return undefined
+    const onKey = (event) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+        burgerRef.current?.focus()
+      }
+    }
+    const onPointerDown = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) setMenuOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [menuOpen])
 
   // Impression : une cartographie = un document. Les navigateurs ne rendent
   // pas le contenu des <details> fermés ; on les ouvre le temps de
@@ -194,21 +222,6 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
         <a className="app-brand" href="#/">
           humanome.xyz
         </a>
-        <nav className="app-nav" aria-label="Navigation principale">
-          {groups.map((group) => (
-            <span className="app-nav-group" key={group.family} aria-label={group.family}>
-              {group.items.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  aria-current={route.name === item.route ? 'page' : undefined}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </span>
-          ))}
-        </nav>
         <div className="app-header-actions">
           <Help
             route={route.name}
@@ -217,9 +230,57 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
             onToggle={() => setHelpOpen((v) => !v)}
             onClose={() => setHelpOpen(false)}
           />
-          <a className="app-account" href="#/compte" aria-current={route.name === 'account' ? 'page' : undefined}>
-            {authenticated ? 'Mon compte' : 'Se connecter'}
-          </a>
+          <div className={`app-menu${menuOpen ? ' is-open' : ''}`} ref={menuRef}>
+            <button
+              type="button"
+              className="app-burger"
+              ref={burgerRef}
+              aria-expanded={menuOpen}
+              aria-controls="app-nav-panel"
+              aria-haspopup="menu"
+              aria-label="Menu de navigation"
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <span className="app-burger-bars" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+              <span className="app-burger-text">Menu</span>
+            </button>
+            <div className="app-nav-panel" id="app-nav-panel">
+              <nav className="app-nav" aria-label="Navigation principale">
+                {groups.map((group) => (
+                  <div className="app-nav-group" key={group.family} aria-label={group.family}>
+                    <span className="app-nav-group-label" aria-hidden="true">
+                      {group.family}
+                    </span>
+                    {group.items.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        aria-current={route.name === item.route ? 'page' : undefined}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                ))}
+                <div className="app-nav-group app-nav-group-account" aria-label="Compte">
+                  <span className="app-nav-group-label" aria-hidden="true">
+                    Compte
+                  </span>
+                  <a
+                    className="app-account"
+                    href="#/compte"
+                    aria-current={route.name === 'account' ? 'page' : undefined}
+                  >
+                    {authenticated ? 'Mon compte' : 'Se connecter'}
+                  </a>
+                </div>
+              </nav>
+            </div>
+          </div>
         </div>
       </header>
       <main className="app-main">{view}</main>

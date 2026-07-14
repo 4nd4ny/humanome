@@ -69,37 +69,158 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* Navigation adaptée au rôle : liens groupés par famille, un fin séparateur
-   entre « Découvrir » et « Mon travail ». */
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+/* ---------- Menu « burger » (web + mobile) ----------
+   La navigation principale (Découvrir / Mon travail / Compte) vit dans un
+   panneau déroulant ancré en haut à droite, pour libérer la barre. Il est
+   révélé de trois façons complémentaires :
+     • clic/tap sur le bouton  -> état épinglé `.is-open` (web ET mobile) ;
+     • survol de la zone droite -> `@media (hover: hover)` (desktop seulement) ;
+     • focus clavier dans le panneau -> `.app-nav-panel:focus-within`.
+   La condition de focus porte sur le PANNEAU (pas sur `.app-menu`) : ainsi le
+   focus du bouton burger n'entre pas en conflit avec la fermeture au clic ou à
+   Échap (le bouton est hors du panneau). Aucune règle n'utilise
+   `hidden`/`visibility`/`aria-hidden` : les liens restent dans le DOM et dans
+   l'ordre de tabulation ; le masquage est purement visuel (opacity +
+   pointer-events), donc tabuler dans la nav la révèle. */
+.app-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.app-burger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.app-burger:hover,
+.app-menu.is-open .app-burger,
+.app-menu:focus-within .app-burger {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.app-burger-bars {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  width: 18px;
+}
+
+.app-burger-bars span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.app-nav-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  min-width: 260px;
+  max-width: min(92vw, 340px);
+  max-height: min(78vh, 640px);
+  overflow-y: auto;
+  padding: 0.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.16);
+  z-index: 60;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  /* Délai de grâce à la fermeture (survol) : passer du bouton au panneau, ou
+     frôler la barre de défilement, ne coupe pas le menu tout de suite. */
+  transition: opacity 0.16s ease 0.22s, transform 0.16s ease 0.22s;
+}
+
+/* Pont invisible bouton -> panneau : comble l'espace de 0.5rem pour que le
+   survol ne se rompe pas en passant de l'un à l'autre. */
+.app-nav-panel::before {
+  content: '';
+  position: absolute;
+  top: -0.6rem;
+  left: 0;
+  right: 0;
+  height: 0.6rem;
+}
+
+.app-menu.is-open .app-nav-panel,
+.app-nav-panel:focus-within {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+@media (hover: hover) {
+  .app-menu:hover .app-nav-panel {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.16s ease 0.08s, transform 0.16s ease 0.08s;
+  }
+}
+
+/* Navigation verticale dans le panneau, groupée par famille (Découvrir,
+   Mon travail, Compte) avec un intertitre discret par groupe. */
 .app-nav {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.3rem 0.5rem;
-  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.15rem;
 }
 
 .app-nav-group {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.2rem 0.15rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.1rem;
 }
 
 .app-nav-group + .app-nav-group {
-  padding-left: 0.6rem;
-  margin-left: 0.3rem;
-  border-left: 1px solid var(--line);
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--line);
+}
+
+.app-nav-group-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  padding: 0.15rem 0.55rem;
 }
 
 .app-nav a {
   color: var(--ink-soft);
   text-decoration: none;
-  font-size: 0.95rem;
-  padding: 0.3rem 0.55rem;
+  font-size: 0.98rem;
+  padding: 0.5rem 0.55rem;
   border-radius: 8px;
-  min-height: 40px;
-  display: inline-flex;
+  min-height: 44px;
+  display: flex;
   align-items: center;
 }
 
@@ -114,24 +235,19 @@ body {
   font-weight: 600;
 }
 
-.app-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: auto;
-}
-
 .app-account {
   color: var(--ink);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 600;
-  padding: 0.35rem 0.75rem;
+  margin-top: 0.15rem;
+  padding: 0.5rem 0.75rem;
   border: 1px solid var(--line);
   border-radius: 8px;
-  min-height: 40px;
-  display: inline-flex;
+  min-height: 44px;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .app-account:hover,
