@@ -84,6 +84,19 @@ Nous ne leur transmettons jamais votre mot de passe ni vos identifiants de
 compte, et nous ne stockons pas votre texte au-delà de ce que vous avez
 explicitement autorisé.
 
+### Analyse approfondie Twin_v9
+
+L'**analyse approfondie Twin_v9** est une exception au principe « tout reste dans
+le navigateur ». Contrairement aux analyses classiques (qui s'exécutent
+localement), Twin_v9 fait **transiter le texte de votre portfolio par notre
+serveur puis par le fournisseur du modèle choisi**, le temps de l'analyse. Ce
+texte n'est **pas conservé côté serveur** : les appels sont sans état, seuls des
+compteurs (nombre d'appels, tokens, modèle — jamais de contenu) sont journalisés
+pour la facturation. L'état de l'analyse et ses résultats restent en local dans
+votre navigateur. Chaque lancement requiert un **consentement explicite**. Pour
+des journaux d'élèves réels soumis à des exigences renforcées de protection des
+données, l'outil local (hors ligne) reste la réponse appropriée.
+
 ## Cookies
 
 - **Cookie de session** : strictement nécessaire, déposé uniquement lorsque vous êtes connecté, pour maintenir votre session authentifiée. Sans lui, vous ne pourriez pas rester connecté.

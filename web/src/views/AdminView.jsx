@@ -18,12 +18,14 @@ import RolesSection from './admin/RolesSection.jsx'
 import GoldenSection from './admin/GoldenSection.jsx'
 import ReglagesSection from './admin/ReglagesSection.jsx'
 import ConfigSection from './admin/ConfigSection.jsx'
+import Twin9Section from './admin/Twin9Section.jsx'
 
 const SECTIONS = [
   { id: 'roles', label: 'Rôles', hint: 'Comptes et attribution des rôles' },
   { id: 'golden', label: 'Golden Prompt', hint: 'Import privé et autorisations' },
   { id: 'reglages', label: 'Réglages', hint: 'Démo publique, paquet par défaut, worker' },
   { id: 'config', label: 'Configuration serveur', hint: 'Variables versionnables' },
+  { id: 'twin9', label: 'Twin_v9', hint: 'Golden Prompt, réglages, comptes' },
 ]
 
 /** Explication du rôle montrée à qui n'est pas administrateur. */
@@ -124,6 +126,8 @@ export default function AdminView({ section, deps = {} }) {
     body = <ReglagesSection fetchFn={deps.fetchFn} />
   } else if (section === 'config') {
     body = <ConfigSection fetchFn={deps.fetchFn} />
+  } else if (section === 'twin9') {
+    body = <Twin9Section fetchFn={deps.fetchFn} />
   } else {
     body = (
       <div>

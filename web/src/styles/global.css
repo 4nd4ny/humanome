@@ -3026,3 +3026,234 @@ body {
     flex: 1 1 auto;
   }
 }
+
+/* ==========================================================================
+   Twin_v9 — éditeur & supervision admin (chantier T4-ADMIN, ADR-010).
+   Tout est scopé sous .twin9-admin ; réutilise les .admin-* existants.
+   ========================================================================== */
+
+.twin9-admin .twin9-admin-bloc {
+  margin: 1.5rem 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.twin9-admin .twin9-admin-bloc:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.twin9-admin .twin9-admin-warning {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #b45309;
+  border-left: 4px solid #b45309;
+  border-radius: 8px;
+  background: #fffbeb;
+  color: #7c2d12;
+  max-width: 44rem;
+}
+
+.twin9-admin .twin9-admin-gabarits {
+  list-style: none;
+  margin: 0.8rem 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.twin9-admin .twin9-admin-gabarit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: left;
+  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.twin9-admin .twin9-admin-gabarit span {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+.twin9-admin .twin9-admin-gabarit:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.twin9-admin .twin9-admin-gabarit[aria-pressed='true'] {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  background: var(--paper);
+}
+
+.twin9-admin .twin9-admin-editeur {
+  margin-top: 1rem;
+  max-width: 44rem;
+}
+
+.twin9-admin .twin9-admin-textarea {
+  display: block;
+  width: 100%;
+  max-width: 44rem;
+  margin-top: 0.35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  resize: vertical;
+}
+
+.twin9-admin .twin9-admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.8rem 0;
+}
+
+.twin9-admin .twin9-admin-actions button,
+.twin9-admin .twin9-admin-bloc > button {
+  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.twin9-admin .twin9-admin-actions button:hover:not(:disabled),
+.twin9-admin .twin9-admin-bloc > button:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.twin9-admin button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.twin9-admin .twin9-admin-rendu {
+  margin-top: 1rem;
+  max-width: 44rem;
+}
+
+.twin9-admin .twin9-admin-rendu pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.twin9-admin .twin9-admin-banc {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+  max-width: 44rem;
+}
+
+.twin9-admin .twin9-admin-banc button {
+  align-self: flex-start;
+  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.twin9-admin .twin9-admin-banc button:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.twin9-admin .twin9-admin-packs,
+.twin9-admin .twin9-admin-modeles {
+  list-style: none;
+  margin: 0.6rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.twin9-admin .twin9-admin-pack,
+.twin9-admin .twin9-admin-modele {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  max-width: 44rem;
+}
+
+.twin9-admin .twin9-admin-pack > button,
+.twin9-admin .twin9-admin-modele > button {
+  align-self: flex-start;
+}
+
+.twin9-admin .twin9-admin-etages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  margin: 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.twin9-admin .twin9-admin-etages legend {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  padding: 0 0.3rem;
+}
+
+.twin9-admin .twin9-admin-etages label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+}
+
+.twin9-admin .twin9-admin-versions,
+.twin9-admin .twin9-admin-comptes {
+  margin-top: 0.8rem;
+}
+
+.twin9-admin .admin-email {
+  color: var(--ink-faint);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 640px) {
+  .twin9-admin .twin9-admin-gabarits {
+    flex-direction: column;
+  }
+
+  .twin9-admin .twin9-admin-gabarit {
+    width: 100%;
+  }
+}

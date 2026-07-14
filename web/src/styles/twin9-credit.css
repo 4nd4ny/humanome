@@ -1,0 +1,408 @@
+/* humanome.xyz — Crédit & factures Twin_v9 (chantier T4, ADR-010 §3).
+   CSS pur, sobre, aligné sur la palette neutre (ardoise) de global.css.
+   La règle @media print isole la facture SANS toucher au shell (App.jsx) :
+   tout est masqué, seul .facture-twin9 s'imprime (astuce visibility). */
+
+.twin9-credit {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 3rem;
+}
+
+.twin9-credit h1 {
+  margin-bottom: 0.5rem;
+}
+
+.twin9-credit section {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.twin9-credit h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem;
+}
+
+/* ---------- Solde ---------- */
+
+.credit-solde-montant {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+  margin: 0.25rem 0;
+  letter-spacing: -0.01em;
+}
+
+.credit-solde-note {
+  max-width: 42rem;
+}
+
+/* ---------- Bandeaux PayPal ---------- */
+
+.credit-paypal {
+  margin: 0.75rem 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.credit-paypal--ok {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.credit-paypal--info {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1e3a8a;
+}
+
+.credit-paypal--erreur {
+  background: var(--danger-bg);
+  border-color: #fecaca;
+  color: var(--danger);
+}
+
+/* ---------- Recharge / packs ---------- */
+
+.credit-indispo {
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  max-width: 42rem;
+}
+
+.credit-packs {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.75rem;
+}
+
+.credit-pack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.credit-pack-libelle {
+  font-weight: 600;
+}
+
+.credit-pack-montant {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.btn-primaire {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid var(--accent-strong);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-primaire:hover {
+  background: var(--accent-strong);
+}
+
+.btn-primaire:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* ---------- Dépenses : barres + table ---------- */
+
+.credit-barres {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 8rem;
+  padding: 0.5rem 0 0;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.credit-barre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 2rem;
+  flex: 1 0 auto;
+}
+
+.credit-barre-piste {
+  display: flex;
+  align-items: flex-end;
+  height: 6rem;
+  width: 1.4rem;
+  background: var(--paper);
+  border-radius: 4px 4px 0 0;
+}
+
+.credit-barre-valeur {
+  width: 100%;
+  background: var(--accent);
+  border-radius: 4px 4px 0 0;
+  min-height: 2px;
+}
+
+.credit-barre-label {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+/* ---------- Tables (dépenses, grand-livre, facture) ---------- */
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.credit-table,
+.facture-twin9 table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.credit-table th,
+.credit-table td,
+.facture-twin9 th,
+.facture-twin9 td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.credit-table thead th,
+.facture-twin9 thead th {
+  color: var(--ink-soft);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82rem;
+}
+
+.credit-kind {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border: 1px solid var(--line);
+}
+
+.credit-kind--topup {
+  background: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.credit-kind--debit {
+  background: var(--paper);
+  color: var(--ink-soft);
+}
+
+.credit-kind--adjust {
+  background: #fffbeb;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+/* ---------- Sélecteur de facture ---------- */
+
+.credit-facture-choix {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.75rem 0 1.25rem;
+  flex-wrap: wrap;
+}
+
+.credit-facture-choix select {
+  min-height: 44px;
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+/* ---------- Facture (document formel) ---------- */
+
+.facture-actions {
+  margin-bottom: 0.75rem;
+}
+
+.facture-twin9 {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.75rem;
+}
+
+.facture-entete {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.facture-emetteur {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.facture-emetteur strong {
+  font-size: 1.15rem;
+}
+
+.facture-emetteur span {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.facture-meta {
+  text-align: right;
+}
+
+.facture-titre {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+.facture-numero,
+.facture-periode {
+  margin: 0.15rem 0;
+  font-size: 0.92rem;
+}
+
+.facture-twin9 h3 {
+  font-size: 1rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.facture-client p {
+  margin: 0.1rem 0;
+}
+
+.facture-twin9 tfoot th,
+.facture-twin9 tfoot td {
+  font-weight: 700;
+  border-top: 2px solid var(--ink);
+  border-bottom: none;
+}
+
+.facture-totaux dl {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  margin: 1rem 0 0;
+}
+
+.facture-totaux dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  min-width: 18rem;
+}
+
+.facture-totaux dt {
+  color: var(--ink-soft);
+}
+
+.facture-totaux dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.facture-solde-fin {
+  border-top: 1px solid var(--line);
+  padding-top: 0.3rem;
+  font-size: 1.05rem;
+}
+
+.facture-solde-fin dt,
+.facture-solde-fin dd {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.facture-mentions {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-size: 0.82rem;
+}
+
+.facture-mentions p {
+  margin: 0.2rem 0;
+}
+
+.facture-vide {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* ---------- Impression : seule la facture s'imprime ---------- */
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .facture-twin9,
+  .facture-twin9 * {
+    visibility: visible;
+  }
+
+  .facture-twin9 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  /* Le bouton d'action reste hors de la feuille. */
+  .facture-actions {
+    display: none;
+  }
+}
