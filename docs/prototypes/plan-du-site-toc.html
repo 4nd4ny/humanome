@@ -1,0 +1,440 @@
+<title>Plan du site humanome.xyz — TOC interactive</title>
+<style>
+  :root {
+    --paper: #f5f7fb;
+    --card: #ffffff;
+    --card-2: #fbfcfe;
+    --ink: #1e293b;
+    --ink-soft: #475569;
+    --ink-faint: #64748b;
+    --line: #e2e8f0;
+    --accent: #2563eb;
+    --accent-strong: #1d4ed8;
+    --shadow: 0 1px 2px rgba(15,23,42,.04), 0 12px 32px rgba(15,23,42,.06);
+    /* Teintes d'intention (aident le palais mental — sémantiques, pas décoratives) */
+    --fam-decouvrir: #2563eb;
+    --fam-cartographie: #0d9488;
+    --fam-encadrer: #7c3aed;
+    --fam-piloter: #b45309;
+    --fam-evoluer: #be185d;
+    --fam-administrer: #475569;
+    --fam-compte: #15803d;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0b1120;
+      --card: #131c2e;
+      --card-2: #0f1830;
+      --ink: #e7edf6;
+      --ink-soft: #a9b6ca;
+      --ink-faint: #7d8ba3;
+      --line: #263449;
+      --accent: #60a5fa;
+      --accent-strong: #93c5fd;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px rgba(0,0,0,.35);
+      --fam-decouvrir: #60a5fa;
+      --fam-cartographie: #2dd4bf;
+      --fam-encadrer: #a78bfa;
+      --fam-piloter: #f59e0b;
+      --fam-evoluer: #f472b6;
+      --fam-administrer: #94a3b8;
+      --fam-compte: #4ade80;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f5f7fb; --card: #ffffff; --card-2: #fbfcfe; --ink: #1e293b; --ink-soft: #475569;
+    --ink-faint: #64748b; --line: #e2e8f0; --accent: #2563eb; --accent-strong: #1d4ed8;
+    --fam-decouvrir:#2563eb;--fam-cartographie:#0d9488;--fam-encadrer:#7c3aed;--fam-piloter:#b45309;
+    --fam-evoluer:#be185d;--fam-administrer:#475569;--fam-compte:#15803d;
+    --shadow: 0 1px 2px rgba(15,23,42,.04), 0 12px 32px rgba(15,23,42,.06);
+  }
+  :root[data-theme="dark"] {
+    --paper:#0b1120;--card:#131c2e;--card-2:#0f1830;--ink:#e7edf6;--ink-soft:#a9b6ca;
+    --ink-faint:#7d8ba3;--line:#263449;--accent:#60a5fa;--accent-strong:#93c5fd;
+    --fam-decouvrir:#60a5fa;--fam-cartographie:#2dd4bf;--fam-encadrer:#a78bfa;--fam-piloter:#f59e0b;
+    --fam-evoluer:#f472b6;--fam-administrer:#94a3b8;--fam-compte:#4ade80;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .wrap {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    padding: clamp(1rem, 3vw, 2.75rem);
+    max-width: 1040px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header.masthead { margin-bottom: 1.75rem; }
+  .eyebrow {
+    font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent-strong); font-weight: 700; margin: 0 0 .5rem;
+  }
+  h1 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.08; margin: 0 0 .55rem;
+    letter-spacing: -.02em; text-wrap: balance; font-weight: 800;
+  }
+  h1 .dim { color: var(--ink-faint); font-weight: 800; }
+  .lede { color: var(--ink-soft); font-size: 1.02rem; max-width: 64ch; margin: 0; }
+
+  section { margin-top: 2.5rem; }
+  h2 {
+    font-size: 1.18rem; letter-spacing: -.01em; margin: 0 0 .35rem; font-weight: 750;
+    display: flex; align-items: baseline; gap: .6rem;
+  }
+  h2 .num {
+    font-family: var(--mono); font-size: .82rem; color: var(--accent);
+    border: 1px solid var(--line); border-radius: 6px; padding: .05rem .4rem; font-weight: 600;
+  }
+  .section-hint { color: var(--ink-faint); font-size: .92rem; margin: 0 0 1.1rem; max-width: 62ch; }
+
+  /* Persona selector */
+  .persona-bar {
+    display: flex; flex-wrap: wrap; gap: .45rem; align-items: center;
+    padding: .85rem; background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; box-shadow: var(--shadow); position: sticky; top: .5rem; z-index: 5;
+  }
+  .persona-bar .pb-label {
+    font-size: .74rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 700; margin-right: .3rem;
+  }
+  .chip {
+    font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer;
+    padding: .4rem .8rem; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--card-2); color: var(--ink-soft); transition: all .15s ease;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip[aria-pressed="true"] {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+  }
+  :root[data-theme="dark"] .chip[aria-pressed="true"],
+  @media (prefers-color-scheme: dark) { }
+  .chip:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
+
+  .fov-note {
+    margin: .9rem 0 0; font-size: .9rem; color: var(--ink-soft);
+    display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+  }
+  .fov-note b { color: var(--ink); }
+
+  /* Families grid */
+  .families { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: 1rem; margin-top: 1.1rem; }
+  .family {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .family[hidden] { display: none; }
+  .family-head {
+    padding: .85rem 1rem .7rem; border-left: 4px solid var(--fam);
+    display: flex; flex-direction: column; gap: .15rem;
+  }
+  .family-name { font-weight: 750; font-size: 1.02rem; color: var(--ink); letter-spacing: -.01em; }
+  .family-intent { font-size: .78rem; color: var(--fam); font-weight: 650; letter-spacing: .01em; }
+  .family-roles {
+    font-size: .72rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .06em;
+    font-weight: 600; margin-top: .1rem;
+  }
+  .routes { list-style: none; margin: 0; padding: .3rem .6rem .7rem; display: flex; flex-direction: column; gap: .1rem; }
+  .routes li { margin: 0; }
+  .routes a {
+    display: flex; align-items: baseline; gap: .55rem; text-decoration: none;
+    padding: .42rem .55rem; border-radius: 9px; color: var(--ink); transition: background .12s ease;
+  }
+  .routes a:hover { background: color-mix(in srgb, var(--fam) 12%, transparent); }
+  .routes a:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 1px; }
+  .route-label { font-size: .93rem; font-weight: 550; flex: 1; }
+  .route-hash {
+    font-family: var(--mono); font-size: .74rem; color: var(--ink-faint);
+    white-space: nowrap; background: var(--card-2); border: 1px solid var(--line);
+    padding: .05rem .35rem; border-radius: 5px;
+  }
+  .badge {
+    font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+    padding: .08rem .38rem; border-radius: 999px; align-self: center;
+  }
+  .badge.free { background: color-mix(in srgb, var(--fam-cartographie) 16%, transparent); color: var(--fam-cartographie); }
+  .badge.std { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent-strong); }
+  .badge.prem { background: color-mix(in srgb, var(--fam-evoluer) 16%, transparent); color: var(--fam-evoluer); }
+  .badge.new { background: color-mix(in srgb, var(--fam-piloter) 18%, transparent); color: var(--fam-piloter); }
+
+  /* Diagrams */
+  .diagram-card {
+    background: #ffffff; border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); padding: 1rem; overflow-x: auto;
+  }
+  .diagram-card .mermaid { min-width: 560px; }
+  .diagram-caption { font-size: .82rem; color: var(--ink-faint); margin: .6rem .2rem 0; }
+
+  .callout {
+    margin-top: 1.1rem; padding: .9rem 1.05rem; border-radius: 12px;
+    background: color-mix(in srgb, var(--accent) 7%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
+    color: var(--ink-soft); font-size: .93rem;
+  }
+  .callout b { color: var(--ink); }
+
+  footer.foot { margin-top: 3rem; padding-top: 1.1rem; border-top: 1px solid var(--line);
+    color: var(--ink-faint); font-size: .84rem; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">Architecture de l'information · nouvelle organisation par intention</p>
+    <h1>Plan du site <span class="dim">humanome.xyz</span></h1>
+    <p class="lede">Table des matières interactive — prototype. Choisissez un profil : la barre
+      révèle exactement les familles qu'il voit (navigation additive par rôle). Chaque route est un
+      lien. C'est la maquette de la TOC cliquable, et le contenu-cible du panneau burger.</p>
+  </header>
+
+  <div class="persona-bar" role="group" aria-label="Choisir un profil utilisateur">
+    <span class="pb-label">Profil</span>
+    <button class="chip" aria-pressed="false" data-persona="visiteur">Visiteur</button>
+    <button class="chip" aria-pressed="true" data-persona="apprenant">Apprenant</button>
+    <button class="chip" aria-pressed="false" data-persona="cartographe">Cartographe</button>
+    <button class="chip" aria-pressed="false" data-persona="promptologue">Promptologue</button>
+    <button class="chip" aria-pressed="false" data-persona="epistemiarque">Épistémiarque</button>
+    <button class="chip" aria-pressed="false" data-persona="etablissement">Établissement</button>
+    <button class="chip" aria-pressed="false" data-persona="admin">Admin</button>
+  </div>
+  <p class="fov-note">Champ de vision : <b id="fov-count">3 familles</b><span id="fov-list"></span></p>
+
+  <section aria-label="Plan du site interactif">
+    <div class="families" id="families">
+
+      <article class="family" data-family="decouvrir" style="--fam: var(--fam-decouvrir)">
+        <div class="family-head">
+          <span class="family-intent">Découvrir</span>
+          <span class="family-name">Comprendre &amp; essayer</span>
+          <span class="family-roles">Tous · visiteur compris</span>
+        </div>
+        <ul class="routes">
+          <li><a href="https://humanome.xyz/#/" target="_blank" rel="noopener"><span class="route-label">Accueil</span><span class="route-hash">#/</span></a></li>
+          <li><a href="https://humanome.xyz/#/merge" target="_blank" rel="noopener"><span class="route-label">Cartographie — démonstration</span><span class="route-hash">#/merge</span></a></li>
+          <li><a href="https://humanome.xyz/#/essayer" target="_blank" rel="noopener"><span class="route-label">Essayer</span><span class="badge free">gratuit</span><span class="route-hash">#/essayer</span></a></li>
+          <li><a href="https://humanome.xyz/#/referentiel" target="_blank" rel="noopener"><span class="route-label">Référentiel — 7 pôles / 61 compétences</span><span class="route-hash">#/referentiel</span></a></li>
+          <li><a href="https://humanome.xyz/#/guides" target="_blank" rel="noopener"><span class="route-label">Guides — onboarding public</span><span class="route-hash">#/guides</span></a></li>
+        </ul>
+      </article>
+
+      <article class="family" data-family="cartographie" style="--fam: var(--fam-cartographie)">
+        <div class="family-head">
+          <span class="family-intent">Ma cartographie</span>
+          <span class="family-name">Construire &amp; partager la mienne</span>
+          <span class="family-roles">Apprenant</span>
+        </div>
+        <ul class="routes">
+          <li><a href="https://humanome.xyz/#/espace" target="_blank" rel="noopener"><span class="route-label">Tableau de bord</span><span class="route-hash">#/espace</span></a></li>
+          <li><a href="https://humanome.xyz/#/portfolio" target="_blank" rel="noopener"><span class="route-label">Mon portfolio — local, matière première</span><span class="route-hash">#/portfolio</span></a></li>
+          <li><a href="https://humanome.xyz/#/espace/nouveau-run" target="_blank" rel="noopener"><span class="route-label">Cartographier mes écrits</span><span class="badge std">standard</span><span class="route-hash">#/espace/nouveau-run</span></a></li>
+          <li><a href="https://humanome.xyz/#/twin9" target="_blank" rel="noopener"><span class="route-label">Analyse approfondie</span><span class="badge prem">premium</span><span class="route-hash">#/twin9</span></a></li>
+          <li><a href="https://humanome.xyz/#/espace" target="_blank" rel="noopener"><span class="route-label">Partager ma cartographie</span><span class="badge new">nouveau domicile</span><span class="route-hash">#/espace</span></a></li>
+        </ul>
+      </article>
+
+      <article class="family" data-family="encadrer" style="--fam: var(--fam-encadrer)">
+        <div class="family-head">
+          <span class="family-intent">Encadrer &amp; garantir</span>
+          <span class="family-name">Relire, corriger, garantir</span>
+          <span class="family-roles">Cartographe</span>
+        </div>
+        <ul class="routes">
+          <li><a href="https://humanome.xyz/#/cartographe" target="_blank" rel="noopener"><span class="route-label">Ma file de relecture</span><span class="route-hash">#/cartographe</span></a></li>
+          <li><a href="https://humanome.xyz/#/cartographe/comparer" target="_blank" rel="noopener"><span class="route-label">Comparer</span><span class="route-hash">#/cartographe/comparer</span></a></li>
+          <li><a href="https://humanome.xyz/#/cartographe/consistance" target="_blank" rel="noopener"><span class="route-label">Consistance — multi-run</span><span class="route-hash">#/cartographe/consistance</span></a></li>
+        </ul>
+      </article>
+
+      <article class="family" data-family="piloter" style="--fam: var(--fam-piloter)">
+        <div class="family-head">
+          <span class="family-intent">Piloter mon organisation</span>
+          <span class="family-name">Cartographier ses classes en masse</span>
+          <span class="family-roles">Établissement · B2B</span>
+        </div>
+        <ul class="routes">
+          <li><a href="https://humanome.xyz/#/etablissement" target="_blank" rel="noopener"><span class="route-label">Mes cohortes — budget, run de masse</span><span class="route-hash">#/etablissement</span></a></li>
+          <li><a href="https://humanome.xyz/#/etablissement" target="_blank" rel="noopener"><span class="route-label">Voir la cartographie d'un membre</span><span class="route-hash">#/etablissement/membre</span></a></li>
+        </ul>
+      </article>
+
+      <article class="family" data-family="evoluer" style="--fam: var(--fam-evoluer)">
+        <div class="family-head">
+          <span class="family-intent">Faire évoluer</span>
+          <span class="family-name">Prompts &amp; référentiel</span>
+          <span class="family-roles">Promptologue · Épistémiarque</span>
+        </div>
+        <ul class="routes">
+          <li><a href="https://humanome.xyz/#/promptologue" target="_blank" rel="noopener"><span class="route-label">Atelier de prompts — éditeur, banc d'essai, rétro</span><span class="route-hash">#/promptologue</span></a></li>
+          <li><a href="https://humanome.xyz/#/referentiel" target="_blank" rel="noopener"><span class="route-label">Édition du référentiel</span><span class="route-hash">#/referentiel</span></a></li>
+        </ul>
+      </article>
+
+      <article class="family" data-family="administrer" style="--fam: var(--fam-administrer)">
+        <div class="family-head">
+          <span class="family-intent">Administrer</span>
+          <span class="family-name">Gouvernance de la plateforme</span>
+          <span class="family-roles">Admin</span>
+        </div>
+        <ul class="routes">
+          <li><a href="https://humanome.xyz/#/admin/roles" target="_blank" rel="noopener"><span class="route-label">Rôles &amp; comptes</span><span class="route-hash">#/admin/roles</span></a></li>
+          <li><a href="https://humanome.xyz/#/admin/golden" target="_blank" rel="noopener"><span class="route-label">Golden Prompt</span><span class="route-hash">#/admin/golden</span></a></li>
+          <li><a href="https://humanome.xyz/#/admin/reglages" target="_blank" rel="noopener"><span class="route-label">Réglages</span><span class="route-hash">#/admin/reglages</span></a></li>
+          <li><a href="https://humanome.xyz/#/admin/config" target="_blank" rel="noopener"><span class="route-label">Configuration serveur</span><span class="route-hash">#/admin/config</span></a></li>
+          <li><a href="https://humanome.xyz/#/admin/twin9" target="_blank" rel="noopener"><span class="route-label">Supervision Twin_v9</span><span class="route-hash">#/admin/twin9</span></a></li>
+        </ul>
+      </article>
+
+      <article class="family" data-family="compte" style="--fam: var(--fam-compte)">
+        <div class="family-head">
+          <span class="family-intent">Mon compte</span>
+          <span class="family-name">Qui je suis &amp; ce que je paie</span>
+          <span class="family-roles">Ancre d'en-tête · tous</span>
+        </div>
+        <ul class="routes">
+          <li><a href="https://humanome.xyz/#/compte" target="_blank" rel="noopener"><span class="route-label">Profil &amp; rôles</span><span class="route-hash">#/compte</span></a></li>
+          <li><a href="https://humanome.xyz/#/compte/credit" target="_blank" rel="noopener"><span class="route-label">Crédit &amp; factures</span><span class="route-hash">#/compte/credit</span></a></li>
+          <li><a href="https://humanome.xyz/#/confidentialite" target="_blank" rel="noopener"><span class="route-label">Confidentialité — RGPD</span><span class="route-hash">#/confidentialite</span></a></li>
+        </ul>
+      </article>
+
+    </div>
+    <div class="callout">
+      <b>Navigation additive.</b> Chaque rôle ajoute <b>une seule</b> famille d'intention, nommée par
+      le <b>but</b> (« Ma file de relecture », pas « Espace cartographe »). Un visiteur ne voit que
+      « Découvrir » ; l'apprenant y ajoute « Ma cartographie » et « Mon compte » ; les rôles de
+      travail empilent leur famille — sans jamais faire grossir la barre au-delà de l'utile.
+    </div>
+  </section>
+
+  <section aria-label="Diagramme de l'architecture cible">
+    <h2><span class="num">cible</span> Le plan, en graphe</h2>
+    <p class="section-hint">Chaque nœud porte pour identifiant sa route hash — le graphe se convertit
+      directement en SVG cliquable, sans retravail.</p>
+    <div class="diagram-card">
+      <pre class="mermaid">
+flowchart TD
+  root["humanome.xyz"]
+  root --> DEC["Découvrir · tous"]
+  DEC --> d_home["#/ · Accueil"]
+  DEC --> d_merge["#/merge · Cartographie démo"]
+  DEC --> d_try["#/essayer · Essayer — gratuit"]
+  DEC --> d_ref["#/referentiel · Référentiel"]
+  DEC --> d_guides["#/guides · Guides"]
+  root --> CAR["Ma cartographie · apprenant"]
+  CAR --> c_dash["#/espace · Tableau de bord"]
+  CAR --> c_port["#/portfolio · Portfolio local"]
+  CAR --> c_run["#/espace/nouveau-run · Cartographier — standard"]
+  CAR --> c_twin["#/twin9 · Analyse approfondie — premium"]
+  CAR --> c_share["#/espace · Partager ma cartographie"]
+  root --> ENC["Encadrer et garantir · cartographe"]
+  ENC --> e_file["#/cartographe · Ma file de relecture"]
+  ENC --> e_cmp["#/cartographe/comparer · Comparer"]
+  ENC --> e_con["#/cartographe/consistance · Consistance"]
+  root --> PIL["Piloter mon organisation · établissement"]
+  PIL --> p_coh["#/etablissement · Mes cohortes"]
+  PIL --> p_mem["#/etablissement/membre · Voir un membre"]
+  root --> EVO["Faire évoluer · promptologue, épistémiarque"]
+  EVO --> v_pak["#/promptologue · Atelier de prompts"]
+  EVO --> v_ref["#/referentiel · Édition du référentiel"]
+  root --> ADM["Administrer · admin"]
+  ADM --> a_rol["#/admin/roles · Rôles et comptes"]
+  ADM --> a_gol["#/admin/golden · Golden Prompt"]
+  ADM --> a_reg["#/admin/reglages · Réglages"]
+  ADM --> a_cfg["#/admin/config · Config serveur"]
+  ADM --> a_t9["#/admin/twin9 · Supervision Twin_v9"]
+  root --> CPT["Mon compte · ancre d'en-tête"]
+  CPT --> m_prof["#/compte · Profil et rôles"]
+  CPT --> m_cred["#/compte/credit · Crédit et factures"]
+  CPT --> m_conf["#/confidentialite · Confidentialité"]
+      </pre>
+    </div>
+    <p class="diagram-caption">Architecture cible — 7 familles par intention, role-additives.</p>
+  </section>
+
+  <section aria-label="Diagramme de l'architecture actuelle">
+    <h2><span class="num">actuel</span> L'existant, pour comparaison</h2>
+    <p class="section-hint">Deux familles seulement (Découvrir / Mon travail fourre-tout) ; deux
+      personas sans domicile (employeur, épistémiarque).</p>
+    <div class="diagram-card">
+      <pre class="mermaid">
+mindmap
+  root((humanome.xyz))
+    Decouvrir["Découvrir · TOUS"]
+      dh["Accueil · /"]
+      dm["Cartographie · /merge"]
+      de["Essayer · /essayer"]
+      dr["Référentiel · /referentiel"]
+      dg["Guides · /guides"]
+    Travail["Mon travail · SELON RÔLES"]
+      Ap["apprenant · pour tous"]
+        ae["Mon espace · /espace"]
+        apf["Mon portfolio · /portfolio"]
+        at9["Analyse Twin_v9 · /twin9"]
+      Ca["cartographe · /cartographe"]
+      Pr["promptologue · /promptologue"]
+      Et["etablissement · /etablissement"]
+      Ad["admin · /admin"]
+    Transverse["En-tête · TOUS"]
+      mc["Mon compte · /compte"]
+      part["Partage employeur · /partage"]
+    Orphelins["Sans entrée dédiée"]
+      emp["Employeur"]
+      epi["Épistémiarque"]
+      </pre>
+    </div>
+    <p class="diagram-caption">Architecture actuelle (relevé du code).</p>
+  </section>
+
+  <footer class="foot">
+    Prototype de table des matières interactive · les liens pointent vers humanome.xyz (routeur hash).
+    En production, on utilisera des hrefs relatifs <code>#/…</code> et on surlignera la route courante.
+  </footer>
+</div>
+
+<script>
+  (function () {
+    // Persona -> familles visibles (navigation additive par rôle)
+    var VIEW = {
+      visiteur:      ["decouvrir"],
+      apprenant:     ["decouvrir", "cartographie", "compte"],
+      cartographe:   ["decouvrir", "cartographie", "encadrer", "compte"],
+      promptologue:  ["decouvrir", "cartographie", "evoluer", "compte"],
+      epistemiarque: ["decouvrir", "cartographie", "evoluer", "compte"],
+      etablissement: ["decouvrir", "cartographie", "piloter", "compte"],
+      admin:         ["decouvrir", "cartographie", "administrer", "compte"]
+    };
+    var LABELS = {
+      decouvrir: "Découvrir", cartographie: "Ma cartographie", encadrer: "Encadrer & garantir",
+      piloter: "Piloter mon organisation", evoluer: "Faire évoluer", administrer: "Administrer",
+      compte: "Mon compte"
+    };
+    var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+    var fams = Array.prototype.slice.call(document.querySelectorAll(".family"));
+    var fovCount = document.getElementById("fov-count");
+    var fovList = document.getElementById("fov-list");
+
+    function apply(persona) {
+      var visible = VIEW[persona] || VIEW.apprenant;
+      fams.forEach(function (f) {
+        f.hidden = visible.indexOf(f.getAttribute("data-family")) === -1;
+      });
+      chips.forEach(function (c) {
+        c.setAttribute("aria-pressed", c.getAttribute("data-persona") === persona ? "true" : "false");
+      });
+      fovCount.textContent = visible.length + (visible.length > 1 ? " familles" : " famille");
+      fovList.textContent = " — " + visible.map(function (k) { return LABELS[k]; }).join(" · ");
+    }
+    chips.forEach(function (c) {
+      c.addEventListener("click", function () { apply(c.getAttribute("data-persona")); });
+    });
+    apply("apprenant");
+  })();
+</script>
