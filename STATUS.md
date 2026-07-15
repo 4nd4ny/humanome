@@ -7,6 +7,13 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-15 — **Déployé en production : thème sombre + Twin6 (front + API).** Commit `0a4933b`
+  (feat twin6 + refinements Twin9 + renommage), release API `v1.0.0-24-g0a4933b`. `migrate`
+  n'a rien appliqué (`{"applied":[],"skipped":14}` — schéma prod déjà à jour). Vérifié en ligne :
+  `/api/health` `db:ok`, `POST /api/twin6/appel` sans session → **401** (route live + gardée),
+  paquet public `data/twin6/…` → 200, page `#/twin6-ouverte` rendue (gratuit clé perso / crédits),
+  thème sombre actif, 0 erreur console. Tests avant déploiement : PHP 382, engine 911, web 549.
+
 - 2026-07-15 — **Thème sombre + épingle du menu persistante.** (1) **Thème sombre** complet :
   tout `global.css` passe par des tokens sémantiques (`:root` = clair) ; deux blocs redéfinissent
   ces valeurs en sombre — `@media (prefers-color-scheme: dark) :root:not([data-theme='light'])`
