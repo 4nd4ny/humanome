@@ -7,8 +7,19 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
-- 2026-07-15 — **RÉARCHITECTURE : référentiel au grain COMPÉTENCE ATOMIQUE (migration 016). PAS
-  ENCORE DÉPLOYÉ.** Correction d'architecture demandée par l'utilisateur : les 61 compétences sont
+- 2026-07-15 — **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-26-g5ae20eb`, commit `5ae20eb`) —
+  éditeur épistémiarque (gouvernance 015) + référentiel v7.1 enrichi + **modèle compétence ATOMIQUE
+  (016)**, en un seul déploiement. `migrate` a appliqué **015 + 016** (skipped 14). Import référentiel :
+  7.0.0 unchanged, **7.1.0 imported** (hash `b246101c`). **seed-competences** : 61 importées, 7 pôles,
+  **gate de parité OK (`b246101c` === publié)**, lockfile 122. Smoke prod : `/api/competences` → **61**,
+  `/api/referentiel` → 7.1.0 + définitions, `/api/competences/1.01` → protocole passe_1/2/3, health db:ok ;
+  front statique déployé, `#/referentiel` affiche **RESPIRE v7.1 (61 compétences + définitions)**, 0 erreur
+  console. `deploy.mjs` N'A PAS touché `~/app/shared/.env`. `vendor/autoload.php` vérifié avant push (483
+  classmap). Reste (Option B, scopeLater) : brancher protocole→moteur + empreinteJournee (touche le golden
+  prompt Twin9 verrouillé) pour rendre l'enrichissement agissant en prod.
+
+- 2026-07-15 — **RÉARCHITECTURE : référentiel au grain COMPÉTENCE ATOMIQUE (migration 016).** Correction
+  d'architecture demandée par l'utilisateur : les 61 compétences sont
   des ENTITÉS ATOMIQUES éditées / versionnées / gouvernées / concurrentes INDÉPENDAMMENT (modèle des
   YAML fournis : chaque compétence porte identité + protocole passe_1/2/3 + enrichissements). Décision
   utilisateur : **Option A « éditorial d'abord »** — modèle atomique complet, moteur Twin9 FIGÉ.
