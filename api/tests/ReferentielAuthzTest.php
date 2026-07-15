@@ -27,6 +27,9 @@ final class ReferentielAuthzTest extends ReferentielTestCase
             'create draft' => ['POST', '/referentiel/drafts', ['from' => '7.0.0', 'semver' => '7.1.0']],
             'update draft' => ['PUT', '/referentiel/drafts/1', null],
             'publish draft' => ['POST', '/referentiel/drafts/1/publish', null],
+            'submit draft' => ['POST', '/referentiel/drafts/1/submit', null],
+            'withdraw draft' => ['POST', '/referentiel/drafts/1/withdraw', null],
+            'vote on proposal' => ['POST', '/referentiel/proposals/1/votes', ['vote' => 'pour']],
         ];
     }
 

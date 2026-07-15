@@ -159,6 +159,50 @@ return function (App $app): void {
         return $json($response, $result);
     });
 
+    // Seed du modèle de compétence ATOMIQUE (migration 016) depuis le corpus
+    // committé (scripts/data/competences-v7.json). Même modèle de confiance que
+    // /admin/migrate (deploy-script only, FTP-only). Idempotent + gate de parité.
+    $app->post('/admin/seed-competences', function (Request $request, Response $response) use ($json): Response {
+        $token = Env::get('MIGRATE_TOKEN');
+        if ($token === '') {
+            return $json($response, ['error' => 'Not found'], 404);
+        }
+        $given = $request->getHeaderLine('X-Migrate-Token');
+        if ($given === '' || !hash_equals($token, $given)) {
+            return $json($response, ['error' => 'Forbidden'], 403);
+        }
+        if (!Db::isConfigured()) {
+            return $json($response, ['error' => 'Database not configured'], 503);
+        }
+
+        // Corpus committé, résolu selon la disposition dépôt vs release (ADR-008).
+        $candidates = [
+            \dirname(__DIR__, 2) . '/scripts/data/competences-v7.json',
+            \dirname(__DIR__, 3) . '/scripts/data/competences-v7.json',
+        ];
+        $path = null;
+        foreach ($candidates as $candidate) {
+            if (is_file($candidate)) {
+                $path = $candidate;
+                break;
+            }
+        }
+        if ($path === null) {
+            return $json($response, ['error' => 'competences-v7.json introuvable dans le release'], 500);
+        }
+
+        try {
+            $rich = json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR)['competences'] ?? [];
+            $result = (new \Humanome\Referentiel\CompetenceSeeder(Db::get()))->seed($rich);
+        } catch (\Throwable $e) {
+            error_log('[seed-competences] ' . $e->getMessage());
+
+            return $json($response, ['error' => 'Seed failed: ' . $e->getMessage()], 500);
+        }
+
+        return $json($response, $result);
+    });
+
     // Shared gate for the admin tooling below — same trust model as
     // /admin/migrate (ADR-008, FTP-only hosting): the endpoint "does not
     // exist" (404) unless MIGRATE_TOKEN is configured, 403 on a wrong token,

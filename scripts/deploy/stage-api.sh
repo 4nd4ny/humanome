@@ -24,6 +24,12 @@ if [ -d "$repo/scripts/migrations" ]; then
   cp "$repo/scripts/migrate.php" "$stage/scripts/migrate.php" 2>/dev/null || true
 fi
 
+# Corpus du seed des compétences atomiques (POST /api/admin/seed-competences).
+if [ -d "$repo/scripts/data" ]; then
+  mkdir -p "$stage/scripts/data"
+  cp -R "$repo/scripts/data/." "$stage/scripts/data/"
+fi
+
 git -C "$repo" describe --always --dirty 2>/dev/null > "$stage/VERSION" || echo "unknown" > "$stage/VERSION"
 
 # Production vendor/ via the same PHP image as the dev stack (no local composer)

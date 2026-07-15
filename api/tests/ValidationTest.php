@@ -20,18 +20,18 @@ final class ValidationTest extends TestCase
         7 => ['FLAMBEAU — Transmettre & Piloter', '#f97316'],
     ];
 
-    public function testSupportsTheFiveDocumentKinds(): void
+    public function testSupportsTheDocumentKinds(): void
     {
         $kinds = Validation::SUPPORTED_KINDS;
         sort($kinds);
 
         self::assertSame(
-            ['archive-export', 'cartographie-jour', 'cartographie-merge', 'prompt-package', 'referentiel'],
+            ['archive-export', 'cartographie-jour', 'cartographie-merge', 'competence', 'prompt-package', 'referentiel'],
             $kinds,
         );
     }
 
-    public function testCompilesTheFiveSchemasCrossSchemaRefIncluded(): void
+    public function testCompilesTheSchemasCrossSchemaRefIncluded(): void
     {
         foreach (Validation::SUPPORTED_KINDS as $kind) {
             // an empty object is never a valid document, but validation must run

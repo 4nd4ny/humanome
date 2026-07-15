@@ -1603,9 +1603,19 @@ body {
 .ref-competence {
   display: flex;
   align-items: baseline;
-  gap: 0.7rem;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.7rem;
   padding: 0.35rem 0.5rem;
   border-radius: 8px;
+}
+
+/* Définition (RESPIRE v7.1) : passe à la ligne, alignée sous le nom. */
+.ref-competence-desc {
+  flex-basis: 100%;
+  margin-left: 3.2rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 .ref-competence-code {
@@ -3879,4 +3889,480 @@ body {
   .twin9-admin .twin9-admin-gabarit {
     width: 100%;
   }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Atelier épistémiarque (éditeur collaboratif du référentiel, cahier §3.5).
+   Édition → vote des membres → entérinement à la majorité. Tokens partagés
+   (thème clair/sombre géré par :root / [data-theme]).
+   ───────────────────────────────────────────────────────────────────────── */
+
+.epi {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.epi-header h1 {
+  margin-bottom: 0.25rem;
+}
+
+.epi-intro {
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.epi-block {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+
+.epi-block h2,
+.epi-block h3 {
+  margin-top: 0;
+}
+
+.epi-published {
+  border-left: 4px solid var(--accent);
+}
+
+.epi-hint,
+.epi-empty {
+  color: var(--ink-faint);
+  font-size: 0.92rem;
+}
+
+.epi-empty {
+  font-style: italic;
+}
+
+/* Listes brouillons / propositions */
+.epi-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.epi-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.epi-list-main {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.epi-list-title {
+  font-weight: 600;
+}
+
+.epi-small {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.7rem;
+}
+
+/* Formulaires */
+.epi-form,
+.epi-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.epi-form {
+  gap: 0.75rem;
+  max-width: 520px;
+}
+
+.epi-field {
+  margin: 0.75rem 0;
+}
+
+.epi-form label,
+.epi-field {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.epi-form input,
+.epi-field input,
+.epi-field textarea {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+}
+
+/* Statuts */
+.epi-status-draft,
+.epi-status-review {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.epi-status-draft {
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+.epi-status-review {
+  background: var(--warn-bg);
+  color: var(--warn-strong);
+  border: 1px solid var(--warn-border);
+}
+
+/* Édition des pôles */
+.epi-poles-edit,
+.epi-comps-edit {
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.epi-pole-edit,
+.epi-comp-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.epi-comp-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.epi-comp-desc {
+  margin-left: 3.2rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.epi-pole-num,
+.epi-comp-code {
+  flex: 0 0 auto;
+  min-width: 2.6rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--pole-color, var(--ink-soft));
+}
+
+.epi-comp-code {
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+}
+
+.epi-pole-name,
+.epi-comp-edit input {
+  flex: 1 1 auto;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+}
+
+.epi-pole-color {
+  flex: 0 0 auto;
+  width: 2.4rem;
+  height: 2.1rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+}
+
+.epi-comp-group {
+  margin: 0.75rem 0;
+}
+
+.epi-comp-group h4 {
+  margin: 0.5rem 0 0.25rem;
+}
+
+.epi-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.epi-submit {
+  border-left: 4px solid var(--warn-border);
+}
+
+.epi-primary {
+  background: var(--accent-solid);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.epi-primary:hover {
+  background: var(--accent-solid-hover);
+}
+
+/* Décompte / tally */
+.epi-tally {
+  border-left: 4px solid var(--accent);
+}
+
+.epi-tally-line {
+  margin: 0.25rem 0 0.6rem;
+}
+
+.epi-progress {
+  height: 12px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.epi-progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--ok);
+  transition: width 0.2s ease;
+}
+
+.epi-tally-counts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* Pastilles d'issue */
+.epi-chip {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.epi-chip-adopted {
+  background: var(--ok-bg);
+  color: var(--ok);
+  border-color: var(--ok-border);
+}
+
+.epi-chip-rejected {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+
+.epi-chip-pending {
+  background: var(--warn-bg);
+  color: var(--warn-strong);
+  border-color: var(--warn-border);
+}
+
+/* Votes exprimés */
+.epi-votes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.epi-vote {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.epi-vote-who {
+  font-weight: 600;
+}
+
+.epi-vote-choice {
+  font-size: 0.8rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+}
+
+.epi-vote-pour .epi-vote-choice {
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+
+.epi-vote-contre .epi-vote-choice {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.epi-vote-abstention .epi-vote-choice {
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+.epi-vote-comment {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* Boutons de vote */
+.epi-vote-buttons {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.epi-vote-pour {
+  border-color: var(--ok-border);
+  color: var(--ok);
+}
+
+.epi-vote-contre {
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+
+.epi-decision {
+  border-left: 4px solid var(--ok-border);
+}
+
+.epi-ok {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.epi-notice {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  color: var(--warn-strong);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.epi-breadcrumb {
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem;
+}
+
+.epi-diff-summary {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  color: var(--ink-soft);
+}
+
+.epi-diff-detail {
+  margin: 0.4rem 0;
+}
+
+.epi-diff-detail summary {
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.epi-link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--danger);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+
+@media (max-width: 640px) {
+  .epi-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Atelier épistémiarque — grain compétence atomique (ajouts 016). */
+.epi-comp-ver {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.epi-inline-error {
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.epi-listeditor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-start;
+}
+
+.epi-listeditor .epi-comp-edit-row {
+  width: 100%;
+}
+
+.epi-listeditor input {
+  flex: 1 1 auto;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+}
+
+.epi-change-list {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.epi-change-list li {
+  line-height: 1.5;
 }

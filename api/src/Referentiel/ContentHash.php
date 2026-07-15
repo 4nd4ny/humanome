@@ -14,6 +14,15 @@ use InvalidArgumentException;
  * (keys num, nom, couleur) and competences sorted by code (keys code, nom,
  * pole), compact separators, unescaped unicode and slashes.
  *
+ * The hash covers only the STRUCTURAL core (which poles/competences exist and
+ * how they are named/placed). OPTIONAL annotation fields — notably a
+ * competence's `description` (the épistémiarque-edited definition, RESPIRE
+ * v7.1+) — are PRESERVED by normalize() in the stored document but DELIBERATELY
+ * excluded from the hash: two versions with the same structure but different
+ * definitions share one contentHash, the semver carrying the editorial change.
+ * This keeps the hash byte-identical to the Node extractor and the pinned
+ * fixtures, so no engine oracle or Twin9 vector moves.
+ *
  * MySQL JSON columns reorder object keys, so documents are re-normalized
  * on every read/write instead of trusting stored key order.
  */
@@ -46,10 +55,15 @@ final class ContentHash
      */
     public static function normalize(array $doc): array
     {
+        // The hash is computed from the STRUCTURAL body only (canonicalBody
+        // strips each entry to its core keys), so it is unaffected by optional
+        // annotation fields such as competence descriptions.
         $body = self::canonicalBody($doc);
         $doc['contentHash'] = hash('sha256', self::encode($body));
-        $doc['poles'] = $body['poles'];
-        $doc['competences'] = $body['competences'];
+        // The STORED document, however, preserves those optional fields with a
+        // deterministic key order (core keys first, then extras sorted).
+        $doc['poles'] = self::canonicalEntries($doc['poles'], ['num', 'nom', 'couleur'], 'num');
+        $doc['competences'] = self::canonicalEntries($doc['competences'], ['code', 'nom', 'pole'], 'code');
 
         $normalized = [];
         foreach (self::DOCUMENT_KEYS as $key) {
@@ -59,6 +73,52 @@ final class ContentHash
         }
 
         return $normalized;
+    }
+
+    /**
+     * Canonical, order-insensitive form of a pole/competence list that PRESERVES
+     * optional extra keys (e.g. competence `description`) while keeping the core
+     * keys first in a fixed order. Deterministic regardless of input key order,
+     * so a stored document round-trips through MySQL's JSON key reordering.
+     *
+     * @param list<array<string, mixed>> $entries
+     * @param list<string> $coreKeys core keys, in canonical order
+     * @param 'num'|'code' $sortKey key the list is sorted by
+     * @return list<array<string, mixed>>
+     */
+    private static function canonicalEntries(array $entries, array $coreKeys, string $sortKey): array
+    {
+        $out = [];
+        foreach ($entries as $entry) {
+            if (!\is_array($entry)) {
+                // canonicalBody already validated hashable entries; be defensive.
+                $out[] = $entry;
+                continue;
+            }
+            $canonical = [];
+            foreach ($coreKeys as $key) {
+                if (\array_key_exists($key, $entry)) {
+                    $canonical[$key] = $entry[$key];
+                }
+            }
+            $extras = array_diff_key($entry, array_flip($coreKeys));
+            ksort($extras);
+            foreach ($extras as $key => $value) {
+                $canonical[$key] = $value;
+            }
+            $out[] = $canonical;
+        }
+
+        if ($sortKey === 'num') {
+            usort($out, static fn (array $a, array $b): int => ($a['num'] ?? 0) <=> ($b['num'] ?? 0));
+        } else {
+            usort($out, static fn (array $a, array $b): int => strcmp(
+                \is_string($a['code'] ?? null) ? $a['code'] : '',
+                \is_string($b['code'] ?? null) ? $b['code'] : '',
+            ));
+        }
+
+        return $out;
     }
 
     /**

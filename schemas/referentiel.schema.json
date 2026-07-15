@@ -104,6 +104,10 @@
             "minimum": 1,
             "maximum": 7,
             "description": "Numéro du pôle de rattachement (référence poles[].num). Cohérent avec le premier chiffre du code."
+          },
+          "description": {
+            "type": "string",
+            "description": "Définition lisible de la compétence, éditée par les épistémiarques et affichée dans le référentiel public. Champ FACULTATIF : les versions antérieures à l'enrichissement RESPIRE v7.1 n'en ont pas. Ce champ N'ENTRE PAS dans le hash de contenu (le hash reste l'identité STRUCTURELLE — quels pôles/compétences existent) : deux versions au même contenu structurel mais aux définitions différentes partagent le même contentHash, la version (semver) portant l'évolution rédactionnelle. Exemple : « Capacité à douter méthodiquement, évaluer la validité des sources et détecter les biais… »."
           }
         }
       }

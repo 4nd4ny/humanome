@@ -95,6 +95,18 @@ describe('routes référentiel et compte (P4.4)', () => {
     expect(parseHash('#/referentiel/1.01/extra').name).toBe('not-found')
   })
 
+  it('route vers l’atelier épistémiarque et ses sections (cahier §3.5)', () => {
+    expect(parseHash('#/epistemiarque')).toEqual({ name: 'epistemiarque', section: null })
+    expect(parseHash('#/epistemiarque/editer/5')).toEqual({
+      name: 'epistemiarque',
+      section: 'editer/5',
+    })
+    expect(parseHash('#/epistemiarque/proposition/8')).toEqual({
+      name: 'epistemiarque',
+      section: 'proposition/8',
+    })
+  })
+
   it('route vers le compte', () => {
     expect(parseHash('#/compte')).toEqual({ name: 'account', section: null })
     // #/compte/<section> (ex. credit = tableau de bord crédit Twin9)

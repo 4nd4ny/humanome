@@ -101,7 +101,7 @@ function defaultMessage(status) {
  * @throws {ApiError | ApiUnavailableError}
  */
 export async function apiFetch(path, options = {}) {
-  const { method = 'GET', body, fetchFn, protocol } = options
+  const { method = 'GET', body, fetchFn, protocol, headers: extraHeaders } = options
 
   if ((protocol ?? globalThis.location?.protocol) === 'file:') {
     throw new ApiUnavailableError()
@@ -113,6 +113,10 @@ export async function apiFetch(path, options = {}) {
   if (body !== undefined) headers['Content-Type'] = 'application/json'
   if (csrfToken !== null && method !== 'GET' && method !== 'HEAD') {
     headers['X-CSRF-Token'] = csrfToken
+  }
+  // En-têtes additionnels (ex. If-Match pour la concurrence optimiste).
+  if (extraHeaders && typeof extraHeaders === 'object') {
+    Object.assign(headers, extraHeaders)
   }
 
   let response

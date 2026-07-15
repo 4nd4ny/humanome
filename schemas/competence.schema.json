@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://humanome.xyz/schemas/competence.schema.json",
+  "title": "Compétence (entité atomique)",
+  "description": "Une compétence RESPIRE comme ENTITÉ ATOMIQUE, éditée/versionnée/gouvernée indépendamment (correction d'architecture 2026-07-15). Elle porte son IDENTITÉ, son PROTOCOLE de scan (passe_1/2/3) et ses ENRICHISSEMENTS (nourris par les retours humains). Structure dérivée des fichiers YAML de référence (referentiel/*/*.yaml). Le code/nom/pôle STRUCTUREL (porteur du hash de snapshot, parité moteur) vit dans les colonnes de competence_versions ; ce schéma valide le CONTENU RICHE. Volontairement PERMISSIF sur le protocole/enrichissements (rubrique riche et évolutive) ; strict sur l'identité porteuse.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["identite"],
+  "properties": {
+    "identite": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["code", "nom"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^\\d\\.\\d{2}$",
+          "description": "Code unique « P.NN » (identité stable de la compétence, invariante d'une version à l'autre)."
+        },
+        "nom": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Nom éditorial de la compétence. Le nom STRUCTUREL (porteur du hash) est la colonne nom ; ils coïncident tant que le nom n'a pas divergé éditorialement."
+        },
+        "categorie": { "type": "string", "description": "Pôle lisible, ex. « 1 — TÊTE »." },
+        "metaphore": { "type": "string", "description": "Métaphore du pôle, ex. « Penser & Comprendre »." },
+        "definition": { "type": "string", "description": "Définition lisible de la compétence." },
+        "marqueurs_fondamentaux": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Marqueurs observables caractéristiques."
+        },
+        "nature": { "type": "string", "description": "Nature dominante (cognitive, relationnelle…)." },
+        "observabilite": { "type": "string", "description": "Canal d'observation (textuelle…)." },
+        "argument_employeur": { "type": "string", "description": "Argument de valeur côté employeur." }
+      }
+    },
+    "protocole": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Protocole de scan PROPRE à la compétence (passe_1 balayage, passe_2 questionnement, passe_3 évaluation émergent→expert). Permissif : structure riche et évolutive. NON-AUTORITATIF côté moteur en l'état (le moteur scanne depuis les fiches P{num}.md) — voir docs/contrats.md."
+    },
+    "enrichissements": {
+      "description": "Enrichissements nourris par les retours humains (exemples, faux positifs additionnels, notes de cartographes…). Facultatif, croît dans le temps."
+    }
+  }
+}

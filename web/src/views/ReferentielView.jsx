@@ -52,7 +52,10 @@ export default function ReferentielView({ focusCode = null, load = loadPublished
       competences: (doc.competences ?? []).filter(
         (competence) =>
           competence.pole === pole.num &&
-          (folded === '' || fold(`${competence.code} ${competence.nom}`).includes(folded)),
+          (folded === '' ||
+            fold(`${competence.code} ${competence.nom} ${competence.description ?? ''}`).includes(
+              folded,
+            )),
       ),
     }))
   }, [doc, trimmedQuery])
@@ -146,6 +149,9 @@ export default function ReferentielView({ focusCode = null, load = loadPublished
                       {competence.code}
                     </a>
                     <span className="ref-competence-name">{competence.nom}</span>
+                    {competence.description ? (
+                      <span className="ref-competence-desc">{competence.description}</span>
+                    ) : null}
                   </li>
                 )
               })}

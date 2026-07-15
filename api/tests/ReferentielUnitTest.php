@@ -58,6 +58,34 @@ final class ReferentielUnitTest extends TestCase
         ContentHash::normalize(['poles' => 'oops', 'competences' => []]);
     }
 
+    public function testDescriptionsArePreservedButDoNotChangeTheHash(): void
+    {
+        // Enrichment invariant (RESPIRE v7.1, E1): adding competence definitions
+        // must NOT move the content hash — the fixture's byte-parity with the
+        // Node extractor and the engine oracles depends on it.
+        $plain = self::respireDocument();
+        $enriched = $plain;
+        foreach ($enriched['competences'] as $i => $competence) {
+            $enriched['competences'][$i]['description'] = 'Définition de ' . $competence['code'];
+        }
+
+        self::assertSame(
+            ContentHash::compute($plain),
+            ContentHash::compute($enriched),
+            'La description ne doit pas entrer dans le hash structurel',
+        );
+        self::assertSame($plain['contentHash'], ContentHash::compute($enriched));
+
+        // ...yet the description survives normalization, in canonical key order
+        // (core keys first, extras after), whatever the input order.
+        $scrambled = $enriched;
+        $scrambled['competences'][0] = array_reverse($scrambled['competences'][0], true);
+        $normalized = ContentHash::normalize($scrambled);
+        $first = $normalized['competences'][0];
+        self::assertSame(['code', 'nom', 'pole', 'description'], array_keys($first));
+        self::assertSame('Définition de ' . $first['code'], $first['description']);
+    }
+
     public function testSemverPrecedence(): void
     {
         self::assertTrue(Semver::greaterThan('7.1.0', '7.0.0'));

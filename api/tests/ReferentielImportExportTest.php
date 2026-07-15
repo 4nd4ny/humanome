@@ -89,7 +89,8 @@ final class ReferentielImportExportTest extends ReferentielTestCase
         self::importRespire();
         $repo = self::repo();
         $draft = $repo->createDraft(self::RESPIRE, '7.0.0', '7.1.0', 'RESPIRE v7.1 (test)');
-        $repo->publish($draft['id'], 'Version de test export');
+        // Publication now requires a majority vote of the épistémiarque members.
+        self::adoptAndPublish($draft['id'], 'Version de test export');
         // Drafts must NOT be exported.
         $repo->createDraft(self::RESPIRE, '7.0.0', '7.2.0', 'Brouillon non publié');
 

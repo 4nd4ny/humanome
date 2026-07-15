@@ -91,6 +91,14 @@ export function parseHash(hash) {
     return { name: 'promptologue', section: decodeURIComponent(promptologueMatch[1]) }
   }
 
+  // Atelier épistémiarque (cahier §3.5) : #/epistemiarque[/<section>]
+  // (editer/<id>, proposition/<id>) — éditeur collaboratif du référentiel.
+  if (path === '/epistemiarque') return { name: 'epistemiarque', section: null }
+  const epistemiarqueMatch = /^\/epistemiarque\/(.+)$/.exec(path)
+  if (epistemiarqueMatch) {
+    return { name: 'epistemiarque', section: decodeURIComponent(epistemiarqueMatch[1]) }
+  }
+
   // Espace établissement (P11) : #/etablissement[/<section>]
   if (path === '/etablissement') return { name: 'etablissement', section: null }
   const etabMatch = /^\/etablissement\/(.+)$/.exec(path)

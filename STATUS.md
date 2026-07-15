@@ -7,6 +7,93 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-15 — **RÉARCHITECTURE : référentiel au grain COMPÉTENCE ATOMIQUE (migration 016). PAS
+  ENCORE DÉPLOYÉ.** Correction d'architecture demandée par l'utilisateur : les 61 compétences sont
+  des ENTITÉS ATOMIQUES éditées / versionnées / gouvernées / concurrentes INDÉPENDAMMENT (modèle des
+  YAML fournis : chaque compétence porte identité + protocole passe_1/2/3 + enrichissements). Décision
+  utilisateur : **Option A « éditorial d'abord »** — modèle atomique complet, moteur Twin9 FIGÉ.
+  Tests avant déploiement : **PHP 430, engine 911 (parité oracles INTACTE), web 562**, vérifié bout-en-bout
+  au navigateur (proposer→éditer→CAS→voter→entériner ; 1.01 passée à v1.1.0 pendant que les 60 autres
+  restent à v1.0.0 — indépendance prouvée). 0 erreur console.
+  - **Migration 016 (additive)** : `competence_versions` (append-only par (code,semver), contenu riche
+    JSON, nom/pôle STRUCTURELS porteurs du hash, `content_hash` = jeton CAS interne), `competence_votes`
+    (miroir 015), `referentiel_snapshot_competences` (lockfile release↔version de compétence),
+    `referentiel_poles`. `referentiel_versions` (003) CONSERVÉ comme couche de COMPOSITION (snapshot que
+    le moteur consomme / que les cartographies épinglent — INCHANGÉ). Gouvernance document (015) conservée
+    mais supersédée. Registre RGPD étendu (`competence_versions.created_by/submitted_by` SET NULL,
+    `competence_votes.user_id` CASCADE).
+  - **Deux hashes qui ne se mélangent jamais** : hash STRUCTUREL du snapshot = `ContentHash::compute`
+    INCHANGÉ (`SnapshotAssembler` réassemble {poles,competences:{code,nom,pole}} et **appelle**
+    ContentHash, aucune ré-implémentation) → **corps assemblé === publié `b246101c…` PROUVÉ** (gate de
+    parité, aucun oracle/vecteur Twin9 ne bouge). `content_hash` par compétence = hash du contenu riche,
+    PHP-interne (aucune parité Node).
+  - **Concurrence PAR COMPÉTENCE (résout le lost update)** : `CompetenceRepository::updateDraft` fait un
+    compare-and-swap ATOMIQUE dans le WHERE (`content_hash = :expectedHash AND status='draft'`) — en-tête
+    `If-Match` côté API (428 si absent, 409 si périmé), gestion du no-op idempotent via re-findById.
+    Deux épistémiarques sur deux compétences différentes = ZÉRO conflit.
+  - **Gouvernance PAR COMPÉTENCE** : helpers purs `Electorate` + `MajorityTally` extraits (ReferentielGovernance
+    délègue, non-régression verte) ; `CompetenceGovernance` (submit/withdraw/castVote/tally par
+    competence_version_id) ; une compétence entérinée à la majorité pendant qu'une autre reste en débat.
+  - **Coupe de release** : `ReferentielRepository::cutReleaseFromDocument` (assemble → gate complétude
+    61/7 + semver strict, SANS second vote — déjà entériné par compétence) + lockfile.
+  - **Schéma** `competence.schema.json` (identité/protocole/enrichissements, permissif) ajouté à
+    Validation (PHP seul ; le moteur JS ne valide pas les compétences).
+  - **Seed reproductible** : 61 YAML → `scripts/data/competences-v7.json` (converti PyYAML, committé) →
+    `CompetenceSeeder` (partagé CLI `scripts/seed-competences.php` + endpoint `POST /api/admin/seed-competences`,
+    MIGRATE_TOKEN, FTP-only). Lockfile WRITE-ONCE (INSERT IGNORE : un re-seed ne réécrit pas l'historique).
+    `stage-api.sh` copie `scripts/data/` ; `deploy.mjs` applique 016 + importe référentiel + seed compétences.
+  - **Routes** `api/src/routes/competences.php` (lectures publiques + cycle par compétence, mutations sous
+    RoleGuard, vote membre-only). **Front** `EpistemiarqueView` réécrit au grain compétence : 61 par pôle,
+    éditeur RICHE (identité + marqueurs + signaux passe_1 + enrichissements) avec CAS/If-Match, page de vote
+    par compétence (diff, décompte, entérinement), coupe de release.
+  - **scopeLater (Option B, non fait, touche le prompt verrouillé prod)** : brancher le protocole des
+    compétences sur le moteur (générer les fiches `P{num}.md`) + `empreinteJournee` pour qu'un enrichissement
+    déclenche un re-scan en PROD → impose de régénérer TOUS les oracles/vecteurs Twin9 + bump `VERSION_PROTOCOLE`.
+    Tant que non fait : l'enrichissement d'un protocole est GOUVERNÉ et VERSIONNÉ mais n'AGIT PAS encore sur
+    les cartographies de production. Export statique par compétence (ressource riche) non fait non plus.
+  - **⚠️ À DÉPLOYER par l'utilisateur** : `deploy.mjs` (migration 016 + seed compétences via endpoint). Idem
+    caveat précédent sur la page publique statique (déployer depuis ce working tree ou régénérer).
+
+- 2026-07-15 — **Éditeur collaboratif des épistémiarques + gouvernance par vote (cahier §3.5)
+  + référentiel enrichi des définitions (RESPIRE v7.1). PAS ENCORE DÉPLOYÉ.** Tests avant
+  déploiement : PHP 401, engine 911, web 563 (verts).
+  - **Gouvernance (migration 015)** : une édition du référentiel est un BROUILLON ; sa soumission
+    ouvre un VOTE (statut `review`, déjà dans l'enum 003) ; elle n'est ENTÉRINÉE (publiée) qu'à la
+    **majorité des membres épistémiarques** (`floor(N/2)+1` de l'électorat courant — abstentions et
+    non-votants rendent le passage plus dur). Table `referentiel_votes` (1 bulletin/membre, upsert,
+    purge RGPD en cascade), colonnes `submitted_at/by` + `decidim_url` sur `referentiel_versions`.
+    Classe `ReferentielGovernance` (submit/withdraw/castVote/tally/électorat). `updateDraft` refuse
+    d'éditer une proposition en vote (gel — sinon les votes seraient invalidés) ; `publish` gate sur
+    `review` + majorité ; N=0 → publication bloquée (message clair) ; majorité `contre` → `rejected`.
+    Vote réservé au rôle `epistemiarque` (un admin facilite mais n'est pas de l'électorat). Registre
+    RGPD (`RgpdAuditTest`) mis à jour : `referentiel_votes.user_id` CASCADE, `submitted_by` SET NULL.
+  - **Routes** : `GET/POST` drafts+`{id}`, `…/submit`, `…/withdraw`, `GET proposals[/{id}]` (diff+tally+votes),
+    `POST proposals/{id}/votes`. Toutes les mutations derrière `RoleGuard` (`ReferentielAuthzTest` étendu).
+  - **Vue `EpistemiarqueView`** (`#/epistemiarque[/editer|proposition/<id>]`) : atelier (version en
+    vigueur, brouillons, propositions au vote), éditeur (noms/couleurs pôles, noms+**définitions**
+    compétences), page de vote (diff, décompte + barre de progression, boutons pour/contre/abstention +
+    commentaire, lien Decidim, bouton « Entériner » actif à la majorité, retrait). Nav « Édition du
+    référentiel » repointée `#/referentiel`→`#/epistemiarque`. Vérifié au navigateur bout-en-bout :
+    créer → éditer → soumettre → voter (1 membre, seuil 1) → entériner → 7.1.0 en vigueur, 0 erreur console.
+  - **Référentiel enrichi (RESPIRE v7.1, E1)** : les 61 définitions fournies par les épistémiarques
+    (`../referentiel/referentiel_liste.txt`) commitées in-repo (`scripts/data/referentiel-v7-definitions.json`),
+    `scripts/enrich-referentiel.mjs` produit `respire-v7.1.0.json` (champ `description` facultatif).
+    **Invariant clé** : `description` N'ENTRE PAS dans le hash (ContentHash inchangé sur le corps
+    structurel) → 7.1.0 porte le **même contentHash que 7.0.0**, fixture et oracles engine intacts
+    (911 verts = preuve de parité). Schéma étendu (description optionnelle) ; `ContentHash::normalize`
+    préserve les clés extra en ordre canonique. `deploy.mjs` importe désormais 7.0.0 **et** 7.1.0.
+    Vue publique `#/referentiel` affiche les définitions (cherchables). Limite notée : le diff est
+    aveugle aux changements de définition seule (hors hash) — acceptable en v1.
+  - **⚠️ À DÉPLOYER par l'utilisateur** — `deploy.mjs` importe 7.1.0 en BASE (atelier connecté) mais
+    la page PUBLIQUE `#/referentiel` lit les fichiers STATIQUES `web/public/data/referentiel/` (gitignorés,
+    générés). Déployer depuis CE working tree (les fichiers 7.1.0 y sont déjà présents) OU, sur un clone
+    frais, régénérer d'abord dans l'ordre :
+    `node scripts/extract-referentiel.mjs` → `node scripts/enrich-referentiel.mjs` →
+    (import DB via `deploy.mjs api`) → `docker compose run --rm -w /var/www/html php php scripts/export-referentiel-static.php`
+    → `cd web && npm run build` → `node scripts/deploy/deploy.mjs static`. Sinon l'atelier montre v7.1
+    mais la page publique reste v7.0 (sans définitions). Un compte au moins doit porter le rôle
+    `epistemiarque` pour entériner de futures éditions (électorat = comptes portant ce rôle).
+
 - 2026-07-15 — **Déployé en production : thème sombre + Twin6 (front + API).** Commit `0a4933b`
   (feat twin6 + refinements Twin9 + renommage), release API `v1.0.0-24-g0a4933b`. `migrate`
   n'a rien appliqué (`{"applied":[],"skipped":14}` — schéma prod déjà à jour). Vérifié en ligne :

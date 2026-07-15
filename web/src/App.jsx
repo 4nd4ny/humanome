@@ -16,6 +16,7 @@ import EspaceView from './views/EspaceView.jsx'
 import ShareView from './views/ShareView.jsx'
 import CartographeView from './views/CartographeView.jsx'
 import PromptologueView from './views/PromptologueView.jsx'
+import EpistemiarqueView from './views/EpistemiarqueView.jsx'
 import EtablissementView from './views/EtablissementView.jsx'
 import AdminView from './views/AdminView.jsx'
 import ConfidentialiteView from './views/ConfidentialiteView.jsx'
@@ -298,6 +299,9 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       break
     case 'promptologue':
       view = <PromptologueView section={route.section} lib={lib} />
+      break
+    case 'epistemiarque':
+      view = <EpistemiarqueView section={route.section} lib={lib} />
       break
     case 'etablissement':
       view = <EtablissementView section={route.section} lib={lib} />

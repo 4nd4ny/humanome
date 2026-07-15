@@ -12,7 +12,7 @@ const fixture = {
     { num: 2, nom: 'COEUR — Relier', couleur: '#10b981' },
   ],
   competences: [
-    { code: '1.01', nom: 'Pensée Critique', pole: 1 },
+    { code: '1.01', nom: 'Pensée Critique', pole: 1, description: 'Douter méthodiquement des sources.' },
     { code: '1.02', nom: 'Synthèse Intégrative', pole: 1 },
     { code: '2.01', nom: 'Communication Authentique', pole: 2 },
   ],
@@ -36,6 +36,9 @@ describe('ReferentielView', () => {
     expect(screen.getByText('COEUR — Relier')).toBeDefined()
     expect(screen.getByText('Pensée Critique')).toBeDefined()
     expect(screen.getByText('Communication Authentique')).toBeDefined()
+
+    // La définition (RESPIRE v7.1) est affichée quand elle est présente.
+    expect(screen.getByText('Douter méthodiquement des sources.')).toBeDefined()
 
     // Couleur du pôle portée par la variable CSS de la section.
     const sections = document.querySelectorAll('.ref-pole')

@@ -177,17 +177,32 @@ async function deployApi(env) {
     console.log(`migrate: HTTP ${res.status} ${body.slice(0, 300)}`)
     if (!res.ok) throw new Error('migration endpoint failed')
 
-    // Seed/refresh the published referentiel (idempotent server-side)
-    const refPath = join(repoRoot, 'web/public/data/referentiel/respire-v7.json')
-    if (statSync(refPath, { throwIfNoEntry: false })?.isFile()) {
+    // Seed/refresh the published referentiel versions (idempotent server-side).
+    // 7.0.0 = structure (extract-referentiel.mjs) ; 7.1.0 = même structure
+    // enrichie des définitions (enrich-referentiel.mjs). Importées dans l'ordre
+    // semver croissant. La 7.1.0 est facultative : absente, seule 7.0.0 est servie.
+    const refFiles = ['respire-v7.json', 'respire-v7.1.0.json']
+    for (const refFile of refFiles) {
+      const refPath = join(repoRoot, 'web/public/data/referentiel', refFile)
+      if (!statSync(refPath, { throwIfNoEntry: false })?.isFile()) continue
       const imp = await fetch(`${base}/api/admin/import-referentiel`, {
         method: 'POST',
         headers: { 'X-Migrate-Token': env.MIGRATE_TOKEN, 'Content-Type': 'application/json' },
         body: readFileSync(refPath, 'utf8'),
       })
-      console.log(`import-referentiel: HTTP ${imp.status} ${(await imp.text()).slice(0, 200)}`)
-      if (!imp.ok) throw new Error('referentiel import failed')
+      console.log(`import-referentiel ${refFile}: HTTP ${imp.status} ${(await imp.text()).slice(0, 200)}`)
+      if (!imp.ok) throw new Error(`referentiel import failed (${refFile})`)
     }
+
+    // Seed du modèle de compétence ATOMIQUE (migration 016) depuis le corpus
+    // committé côté serveur (scripts/data/competences-v7.json). Idempotent +
+    // gate de parité : échoue si le corps assemblé ≠ snapshot publié.
+    const seed = await fetch(`${base}/api/admin/seed-competences`, {
+      method: 'POST',
+      headers: { 'X-Migrate-Token': env.MIGRATE_TOKEN },
+    })
+    console.log(`seed-competences: HTTP ${seed.status} ${(await seed.text()).slice(0, 200)}`)
+    if (!seed.ok) throw new Error('competence seed failed')
 
     // Seed/refresh the published default prompt packages (idempotent by hash)
     const packagesDir = join(repoRoot, 'build/prompt-packages')

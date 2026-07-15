@@ -17,6 +17,7 @@ use Humanome\Db;
 use Humanome\Referentiel\ConflictException;
 use Humanome\Referentiel\InvalidDocumentException;
 use Humanome\Referentiel\ReferentielDiff;
+use Humanome\Referentiel\ReferentielGovernance;
 use Humanome\Referentiel\ReferentielRepository;
 use Humanome\Referentiel\RoleGuard;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -67,6 +68,7 @@ return function (App $app): void {
     };
 
     $repo = static fn (): ReferentielRepository => new ReferentielRepository(Db::get());
+    $governance = static fn (): ReferentielGovernance => new ReferentielGovernance(Db::get());
 
     // Authorization guard for EVERY mutating referentiel route (authz matrix,
     // docs/autorisations.md). RoleGuard is the intentional, load-bearing guard
@@ -80,6 +82,10 @@ return function (App $app): void {
     // which offers the same 401/403 contract for routes built on the Session
     // object rather than the raw $_SESSION array.)
     $epistemiarque = RoleGuard::any('epistemiarque', 'admin');
+    // Casting a ballot is a MEMBER action: only the épistémiarque role votes
+    // (an admin who is not also épistémiarque facilitates but does not vote,
+    // and is not part of the electorate the majority is computed against).
+    $member = RoleGuard::any('epistemiarque');
 
     // ------------------------------------------------------------ public reads
 
@@ -196,4 +202,154 @@ return function (App $app): void {
             return $json($response, ['id' => $version['id']] + ReferentielRepository::metadata($version));
         }
     ))->add($epistemiarque);
+
+    // -------------------------------------------- collaborative governance (§3.5)
+    // An épistémiarque edit is a DRAFT; submitting it opens a vote (status
+    // 'review'); it is entérinée (published) only once a MAJORITY of the current
+    // épistémiarque members has voted "pour". Decidim threads back the debate.
+
+    /** Attach the live tally to a version payload when it is under vote. */
+    $withTally = static function (array $version) use ($governance): array {
+        $payload = ['id' => $version['id']] + ReferentielRepository::metadata($version);
+        if ($version['status'] === 'review') {
+            $payload['tally'] = $governance()->tally($version['id']);
+        }
+
+        return $payload;
+    };
+
+    // Editable versions (drafts + proposals) — the workbench list.
+    $app->get('/referentiel/drafts', $wrap(
+        function (Request $request, Response $response) use ($json, $repo, $withTally): Response {
+            $versions = $repo()->editableVersions(ReferentielRepository::DEFAULT_REFERENTIEL_ID);
+
+            return $json($response, array_map($withTally, $versions));
+        }
+    ))->add($epistemiarque);
+
+    // One editable version WITH content — the editor loads a draft to edit it.
+    $app->get('/referentiel/drafts/{id:[0-9]+}', $wrap(
+        function (Request $request, Response $response, array $args) use ($json, $repo, $governance): Response {
+            $version = $repo()->findById((int) $args['id']);
+            if ($version === null || $version['status'] === 'published') {
+                return $json($response, ['error' => 'Unknown draft'], 404);
+            }
+            $payload = ['id' => $version['id']]
+                + ReferentielRepository::metadata($version)
+                + ['content' => $version['content']];
+            if ($version['status'] === 'review') {
+                $payload['tally'] = $governance()->tally($version['id']);
+                $payload['votes'] = $governance()->votes($version['id']);
+            }
+
+            return $json($response, $payload);
+        }
+    ))->add($epistemiarque);
+
+    // Submit a draft for a vote: draft -> review (content frozen).
+    $app->post('/referentiel/drafts/{id:[0-9]+}/submit', $wrap(
+        function (Request $request, Response $response, array $args) use ($json, $parseBody, $governance, $withTally): Response {
+            $body = $parseBody($request);
+            if ($body === null) {
+                return $json($response, ['error' => 'Invalid JSON body'], 400);
+            }
+            $decidimUrl = isset($body['decidimUrl']) && \is_string($body['decidimUrl'])
+                ? $body['decidimUrl']
+                : null;
+            $userId = $_SESSION['user_id'] ?? null;
+
+            $version = $governance()->submit(
+                (int) $args['id'],
+                $decidimUrl,
+                \is_int($userId) ? $userId : (\is_string($userId) && ctype_digit($userId) ? (int) $userId : null),
+            );
+            if ($version === null) {
+                return $json($response, ['error' => 'Unknown draft'], 404);
+            }
+
+            return $json($response, $withTally($version));
+        }
+    ))->add($epistemiarque);
+
+    // Withdraw a proposal: review -> draft (ballots wiped).
+    $app->post('/referentiel/drafts/{id:[0-9]+}/withdraw', $wrap(
+        function (Request $request, Response $response, array $args) use ($json, $governance, $withTally): Response {
+            $version = $governance()->withdraw((int) $args['id']);
+            if ($version === null) {
+                return $json($response, ['error' => 'Unknown draft'], 404);
+            }
+
+            return $json($response, $withTally($version));
+        }
+    ))->add($epistemiarque);
+
+    // Proposals currently open for a vote, with their tally.
+    $app->get('/referentiel/proposals', $wrap(
+        function (Request $request, Response $response) use ($json, $repo, $governance): Response {
+            $proposals = array_filter(
+                $repo()->editableVersions(ReferentielRepository::DEFAULT_REFERENTIEL_ID),
+                static fn (array $v): bool => $v['status'] === 'review',
+            );
+
+            return $json($response, array_values(array_map(
+                static fn (array $v): array => ['id' => $v['id']]
+                    + ReferentielRepository::metadata($v)
+                    + ['tally' => $governance()->tally($v['id'])],
+                $proposals,
+            )));
+        }
+    ))->add($epistemiarque);
+
+    // One proposal in full: content, diff vs the latest published version,
+    // tally and the ballots cast (with their comments).
+    $app->get('/referentiel/proposals/{id:[0-9]+}', $wrap(
+        function (Request $request, Response $response, array $args) use ($json, $repo, $governance): Response {
+            $repository = $repo();
+            $version = $repository->findById((int) $args['id']);
+            if ($version === null || $version['status'] !== 'review') {
+                return $json($response, ['error' => 'Unknown proposal'], 404);
+            }
+            $latest = $repository->latestPublished($version['referentielId']);
+            $diff = $latest !== null
+                ? ReferentielDiff::compute($latest['content'], $version['content'])
+                : null;
+
+            return $json($response, ['id' => $version['id']]
+                + ReferentielRepository::metadata($version)
+                + [
+                    'content' => $version['content'],
+                    'baseVersion' => $latest !== null ? $latest['semver'] : null,
+                    'diff' => $diff,
+                    'tally' => $governance()->tally($version['id']),
+                    'votes' => $governance()->votes($version['id']),
+                ]);
+        }
+    ))->add($epistemiarque);
+
+    // Cast (or change) a member's ballot on a proposal. Members only.
+    $app->post('/referentiel/proposals/{id:[0-9]+}/votes', $wrap(
+        function (Request $request, Response $response, array $args) use ($json, $parseBody, $governance): Response {
+            $body = $parseBody($request);
+            if ($body === null) {
+                return $json($response, ['error' => 'Invalid JSON body'], 400);
+            }
+            $vote = $body['vote'] ?? null;
+            if (!\is_string($vote)) {
+                return $json($response, ['error' => 'Field "vote" is required'], 422);
+            }
+            $comment = isset($body['comment']) && \is_string($body['comment']) ? $body['comment'] : null;
+            $userId = $_SESSION['user_id'] ?? null;
+            $userId = \is_int($userId) ? $userId : (\is_string($userId) && ctype_digit($userId) ? (int) $userId : null);
+            if ($userId === null) {
+                return $json($response, ['error' => 'Authentication required'], 401);
+            }
+
+            $tally = $governance()->castVote((int) $args['id'], $userId, $vote, $comment);
+            if ($tally === null) {
+                return $json($response, ['error' => 'Unknown proposal'], 404);
+            }
+
+            return $json($response, ['tally' => $tally]);
+        }
+    ))->add($member);
 };

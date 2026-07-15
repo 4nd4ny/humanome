@@ -129,6 +129,21 @@ final class ReferentielApiTest extends ReferentielTestCase
         // Content hash recomputed server-side on every write.
         self::assertSame(ContentHash::compute($edited), $updatedBody['contentHash']);
 
+        // 2b. Open a vote and approve it. The single logged-in épistémiarque is
+        //     the whole electorate (threshold 1), so one "pour" entérine.
+        $submitted = $this->request('POST', "/referentiel/drafts/{$draftId}/submit", [
+            'decidimUrl' => 'https://participer.harmonia.education/processes/referentiel',
+        ]);
+        self::assertSame(200, $submitted->getStatusCode());
+        self::assertSame('review', self::body($submitted)['status']);
+
+        // A frozen proposal can no longer be edited (votes would be invalidated).
+        self::assertSame(409, $this->request('PUT', "/referentiel/drafts/{$draftId}", $edited)->getStatusCode());
+
+        $voted = $this->request('POST', "/referentiel/proposals/{$draftId}/votes", ['vote' => 'pour']);
+        self::assertSame(200, $voted->getStatusCode());
+        self::assertTrue(self::body($voted)['tally']['reached']);
+
         // 3. Publish with a release note.
         $published = $this->request('POST', "/referentiel/drafts/{$draftId}/publish", [
             'releaseNote' => 'Version de test P4 : renommage, déplacement, remplacement',
@@ -177,7 +192,7 @@ final class ReferentielApiTest extends ReferentielTestCase
         ], $diff['summary']);
     }
 
-    public function testPublishIsRefusedWhenSemverIsNotStrictlyIncreasing(): void
+    public function testSubmitIsRefusedWhenSemverIsNotStrictlyIncreasing(): void
     {
         self::importRespire();
         self::loginAs(self::createUser('epistemiarque'));
@@ -189,10 +204,30 @@ final class ReferentielApiTest extends ReferentielTestCase
         self::assertSame(201, $created->getStatusCode());
         $draftId = self::body($created)['id'];
 
-        $response = $this->request('POST', "/referentiel/drafts/{$draftId}/publish");
+        // The semver rule is enforced up front: a stale proposal cannot even
+        // open a vote, so members never deliberate on an unpublishable version.
+        $response = $this->request('POST', "/referentiel/drafts/{$draftId}/submit");
 
         self::assertSame(409, $response->getStatusCode());
         self::assertStringContainsString('strictly increasing', self::body($response)['error']);
+        self::assertSame('draft', self::repo()->findById($draftId)['status']);
+    }
+
+    public function testPublishIsRefusedForADraftNeverSubmittedForVote(): void
+    {
+        self::importRespire();
+        self::loginAs(self::createUser('epistemiarque'));
+
+        $draftId = self::body($this->request('POST', '/referentiel/drafts', [
+            'from' => '7.0.0',
+            'semver' => '7.1.0',
+        ]))['id'];
+
+        // No vote was opened: publication is gated on a majority decision.
+        $response = $this->request('POST', "/referentiel/drafts/{$draftId}/publish");
+
+        self::assertSame(409, $response->getStatusCode());
+        self::assertStringContainsString('submitted for a vote', self::body($response)['error']);
         self::assertSame('draft', self::repo()->findById($draftId)['status']);
     }
 

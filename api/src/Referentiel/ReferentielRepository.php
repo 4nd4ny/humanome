@@ -48,6 +48,25 @@ final class ReferentielRepository
         return $rows;
     }
 
+    /**
+     * Editable versions (drafts + proposals under vote), newest first.
+     * The épistémiarque workbench lists these; published versions are read
+     * through the public endpoints.
+     *
+     * @return list<array<string, mixed>>
+     */
+    public function editableVersions(string $referentielId): array
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT * FROM referentiel_versions
+             WHERE referentiel_id = ? AND status IN ('draft','review')
+             ORDER BY id DESC"
+        );
+        $stmt->execute([$referentielId]);
+
+        return array_map($this->mapRow(...), $stmt->fetchAll());
+    }
+
     public function findPublished(string $referentielId, string $semver): ?array
     {
         $stmt = $this->pdo->prepare(
@@ -141,6 +160,70 @@ final class ReferentielRepository
         ];
     }
 
+    /**
+     * Coupe de RELEASE depuis un document assemblé (SnapshotAssembler) : les
+     * changements ayant DÉJÀ été entérinés PAR COMPÉTENCE, il n'y a pas de
+     * second vote. Gate de COMPLÉTUDE (validateDocument = schéma 61/7 + intégrité
+     * inter-entités) + semver STRICTEMENT croissant. Publie la release immuable
+     * et peuple le lockfile (provenance des versions de compétence composées).
+     *
+     * @param array<string, mixed> $doc document assemblé (contentHash déjà calculé)
+     * @return array{status:'imported', id:int, semver:string, contentHash:string}
+     */
+    public function cutReleaseFromDocument(array $doc): array
+    {
+        $normalized = $this->validateDocument($doc);
+        $referentielId = $normalized['id'];
+        $semver = $normalized['version'];
+
+        $stmt = $this->pdo->prepare('SELECT id FROM referentiel_versions WHERE referentiel_id = ? AND semver = ?');
+        $stmt->execute([$referentielId, $semver]);
+        if ($stmt->fetch() !== false) {
+            throw new ConflictException(sprintf('Version %s of referentiel "%s" already exists', $semver, $referentielId));
+        }
+        foreach ($this->publishedVersions($referentielId) as $published) {
+            if (!Semver::greaterThan($semver, $published['semver'])) {
+                throw new ConflictException(sprintf(
+                    'Semver must be strictly increasing: %s is not greater than published %s',
+                    $semver,
+                    $published['semver'],
+                ));
+            }
+        }
+
+        $this->pdo->beginTransaction();
+        try {
+            $insert = $this->pdo->prepare(
+                'INSERT INTO referentiel_versions
+                    (referentiel_id, semver, label, status, content, content_hash, release_note, published_at)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, NOW())'
+            );
+            $insert->execute([
+                $referentielId, $semver, $normalized['label'], 'published',
+                ContentHash::encode($normalized), $normalized['contentHash'],
+                'Coupe de release depuis les compétences atomiques publiées',
+            ]);
+            $snapshotId = (int) $this->pdo->lastInsertId();
+
+            $lock = $this->pdo->prepare(
+                'INSERT INTO referentiel_snapshot_competences
+                    (snapshot_version_id, competence_code, competence_version_id, content_hash)
+                 VALUES (?, ?, ?, ?)'
+            );
+            foreach ((new CompetenceRepository($this->pdo))->latestPublishedByCode() as $code => $cv) {
+                $lock->execute([$snapshotId, $code, $cv['id'], $cv['contentHash']]);
+            }
+            $this->pdo->commit();
+        } catch (\Throwable $e) {
+            if ($this->pdo->inTransaction()) {
+                $this->pdo->rollBack();
+            }
+            throw $e;
+        }
+
+        return ['status' => 'imported', 'id' => $snapshotId, 'semver' => $semver, 'contentHash' => $normalized['contentHash']];
+    }
+
     // ----------------------------------------------------------------- drafts
 
     /**
@@ -223,6 +306,14 @@ final class ReferentielRepository
                 'Published versions are immutable: create a new draft instead'
             );
         }
+        if ($row['status'] === 'review') {
+            // A proposal open for a vote is frozen: editing it would silently
+            // invalidate the ballots already cast. Withdraw it first (which
+            // clears the votes) to reopen editing.
+            throw new ConflictException(
+                'This proposal is open for a vote: withdraw it before editing.'
+            );
+        }
 
         $normalized = $this->validateDocument($content);
 
@@ -285,6 +376,18 @@ final class ReferentielRepository
             $row = $this->mapRow($raw);
             if ($row['status'] === 'published') {
                 throw new ConflictException('This version is already published (published versions are immutable)');
+            }
+            // Governance gate (cahier §3.5): a proposal is entérinée only after
+            // a MAJORITY of the current épistémiarque members has approved it.
+            // A draft that was never submitted for a vote cannot be published.
+            if ($row['status'] !== 'review') {
+                throw new ConflictException(
+                    'A proposal must be submitted for a vote before it can be published.'
+                );
+            }
+            $tally = (new ReferentielGovernance($this->pdo))->tally($id);
+            if (!$tally['reached']) {
+                throw new ConflictException(MajorityMessage::forTally($tally));
             }
 
             $normalized = $this->validateDocument($row['content']);
@@ -411,6 +514,11 @@ final class ReferentielRepository
             'releaseNote' => $row['release_note'],
             'createdAt' => $row['created_at'],
             'publishedAt' => $row['published_at'],
+            'submittedAt' => $row['submitted_at'] ?? null,
+            'submittedBy' => isset($row['submitted_by']) && $row['submitted_by'] !== null
+                ? (int) $row['submitted_by']
+                : null,
+            'decidimUrl' => $row['decidim_url'] ?? null,
             'content' => $content,
         ];
     }
@@ -422,6 +530,7 @@ final class ReferentielRepository
     public static function metadata(array $version): array
     {
         return [
+            'id' => $version['id'] ?? null,
             'referentielId' => $version['referentielId'],
             'semver' => $version['semver'],
             'label' => $version['label'],
@@ -429,6 +538,8 @@ final class ReferentielRepository
             'contentHash' => $version['contentHash'],
             'releaseNote' => $version['releaseNote'],
             'publishedAt' => $version['publishedAt'],
+            'submittedAt' => $version['submittedAt'] ?? null,
+            'decidimUrl' => $version['decidimUrl'] ?? null,
         ];
     }
 }

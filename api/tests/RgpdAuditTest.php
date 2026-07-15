@@ -57,9 +57,14 @@ final class RgpdAuditTest extends MasseTestCase
         'twin9_credit_events.user_id' => 'CASCADE', // migration 011 (T3a, registre §11)
         'twin9_paypal_orders.user_id' => 'CASCADE', // migration 012 (durcissement 2026-07-15 : lien order→user)
         'twin9_paypal_captures.user_id' => 'CASCADE', // migration 013 (remboursement à la demande)
+        'referentiel_votes.user_id' => 'CASCADE', // migration 015 (gouvernance : le vote d'un membre purgé disparaît)
+        'competence_votes.user_id' => 'CASCADE', // migration 016 (vote par compétence : idem)
         // --- documented anonymisation (SET NULL) ---
         'audit_events.user_id' => 'SET NULL',
         'referentiel_versions.created_by' => 'SET NULL',
+        'referentiel_versions.submitted_by' => 'SET NULL', // migration 015 (proposant anonymisé, la proposition survit)
+        'competence_versions.created_by' => 'SET NULL', // migration 016 (auteur anonymisé, la version survit)
+        'competence_versions.submitted_by' => 'SET NULL', // migration 016 (proposant anonymisé)
         'prompt_versions.created_by' => 'SET NULL',
         'cartographe_invitations.accepted_by' => 'SET NULL',
         'cartography_revisions.author_id' => 'SET NULL',

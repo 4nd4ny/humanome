@@ -23,6 +23,7 @@ final class Validation
     /** Document kinds supported (one schemas/<kind>.schema.json file each). */
     public const SUPPORTED_KINDS = [
         'referentiel',
+        'competence',
         'prompt-package',
         'cartographie-jour',
         'cartographie-merge',

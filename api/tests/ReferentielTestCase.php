@@ -7,6 +7,7 @@ namespace Humanome\Tests;
 use Humanome\Bootstrap;
 use Humanome\Db;
 use Humanome\MigrationRunner;
+use Humanome\Referentiel\ReferentielGovernance;
 use Humanome\Referentiel\ReferentielRepository;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -31,6 +32,7 @@ abstract class ReferentielTestCase extends TestCase
     {
         TestDb::overrideEnv();
         $pdo = Db::get();
+        $pdo->exec('DELETE FROM referentiel_votes');
         $pdo->exec('DELETE FROM referentiel_versions');
         $pdo->exec('DELETE FROM user_roles');
         $pdo->exec('DELETE FROM users');
@@ -46,6 +48,27 @@ abstract class ReferentielTestCase extends TestCase
     protected static function repo(): ReferentielRepository
     {
         return new ReferentielRepository(Db::get());
+    }
+
+    protected static function governance(): ReferentielGovernance
+    {
+        return new ReferentielGovernance(Db::get());
+    }
+
+    /**
+     * Drive a draft through the full governance flow to publication: ensure an
+     * épistémiarque member exists, open a vote, approve it (single-member
+     * majority), then publish. Mirrors what the UI does across several clicks.
+     *
+     * @return array<string, mixed> the published version
+     */
+    protected static function adoptAndPublish(int $draftId, string $releaseNote, ?int $memberId = null): array
+    {
+        $memberId ??= self::createUser('epistemiarque');
+        self::governance()->submit($draftId, null, $memberId);
+        self::governance()->castVote($draftId, $memberId, 'pour', null);
+
+        return self::repo()->publish($draftId, $releaseNote);
     }
 
     /** @return array<string, mixed> the real extracted RESPIRE v7 document */
