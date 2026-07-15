@@ -4,7 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="humanome.xyz — cartographie de compétences humaines (écosystème RESPIRE, Harmonia Éducation)" />
+    <meta name="color-scheme" content="light dark" />
     <title>humanome.xyz — Cartographie de compétences humaines</title>
+    <!-- Anti-FOUC : applique le choix de thème stocké AVANT le premier paint.
+         Sans choix explicite, on ne pose rien : la media query prefers-color-scheme
+         gouverne (le site suit le système). -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('humanome-theme')
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t)
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

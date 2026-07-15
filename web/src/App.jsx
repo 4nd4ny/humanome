@@ -3,6 +3,7 @@ import { currentRoute, dayHash, navigate, subscribe } from './router.js'
 import { getDemoMerge, getReferentiel, loadDay } from './data/load.js'
 import { fetchMe, logout } from './api/client.js'
 import { isCurrentItem, navGroups } from './nav.js'
+import { applyTheme, resolvedTheme, subscribeSystemTheme } from './lib/theme.js'
 import Help from './help/Help.jsx'
 import HomeView from './views/HomeView.jsx'
 import MergeView from './views/MergeView.jsx'
@@ -20,6 +21,7 @@ import AdminView from './views/AdminView.jsx'
 import ConfidentialiteView from './views/ConfidentialiteView.jsx'
 import GuidesView from './views/GuidesView.jsx'
 import Twin9View from './views/Twin9View.jsx'
+import Twin6OuverteView from './views/Twin6OuverteView.jsx'
 import CreditView from './views/CreditView.jsx'
 
 /** Punaise : tête ronde + aiguille — bascule l'épinglage du panneau. */
@@ -28,6 +30,35 @@ function PinIcon() {
     <svg viewBox="0 0 20 20" width="18" height="18" fill="none" aria-hidden="true">
       <circle cx="10" cy="6" r="3.2" stroke="currentColor" strokeWidth="1.4" />
       <path d="M10 9.2v8.3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+/** Soleil — affiché en thème CLAIR (cliquer passe au sombre). */
+function SunIcon() {
+  return (
+    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" aria-hidden="true">
+      <circle cx="10" cy="10" r="3.6" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M10 1.6v2.2M10 16.2v2.2M18.4 10h-2.2M3.8 10H1.6M15.9 4.1l-1.6 1.6M5.7 14.3l-1.6 1.6M15.9 15.9l-1.6-1.6M5.7 5.7 4.1 4.1"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+/** Croissant de lune — affiché en thème SOMBRE (cliquer passe au clair). */
+function MoonIcon() {
+  return (
+    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" aria-hidden="true">
+      <path
+        d="M16.5 11.8A6.6 6.6 0 0 1 8.2 3.5a6.6 6.6 0 1 0 8.3 8.3Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }
@@ -72,7 +103,15 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   // épinglage explicite (icône punaise DANS le panneau) : reste ouvert quel
   // que soit le survol, un clic extérieur ou un changement de route.
   const [menuOpen, setMenuOpen] = useState(false)
-  const [pinned, setPinned] = useState(false)
+  // Épinglage persistant (localStorage) : le panneau « docké » survit aux
+  // rechargements. Lu paresseusement pour ne pas dépendre du réseau/DOM en test.
+  const [pinned, setPinned] = useState(() => {
+    try {
+      return localStorage.getItem('humanome-menu-pinned') === '1'
+    } catch {
+      return false
+    }
+  })
   const menuRef = useRef(null)
   const burgerRef = useRef(null)
   // Lu (pas observé) par l'effet de changement de route ci-dessous : on veut
@@ -80,7 +119,24 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   const pinnedRef = useRef(false)
   useEffect(() => {
     pinnedRef.current = pinned
+    try {
+      if (pinned) localStorage.setItem('humanome-menu-pinned', '1')
+      else localStorage.removeItem('humanome-menu-pinned')
+    } catch {
+      /* stockage indisponible : l'épinglage reste valable pour la session */
+    }
   }, [pinned])
+
+  // Thème clair / sombre. `theme` = thème EFFECTIF affiché ; la bascule pose un
+  // choix explicite persistant. Sans choix, on suit le système (et on réagit à
+  // ses changements tant que l'utilisateur n'a rien décidé).
+  const [theme, setTheme] = useState(resolvedTheme)
+  useEffect(() => subscribeSystemTheme(setTheme), [])
+  function toggleTheme() {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    applyTheme(next)
+  }
 
   useEffect(() => subscribe(setRoute), [])
 
@@ -222,11 +278,14 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       view = <PortfolioView />
       break
     case 'account':
-      // #/compte/credit -> tableau de bord crédit Twin_v9 + factures ; sinon compte.
+      // #/compte/credit -> tableau de bord crédit Twin9 + factures ; sinon compte.
       view = route.section === 'credit' ? <CreditView lib={lib} /> : <AccountView />
       break
     case 'twin9':
       view = <Twin9View section={route.section} lib={lib} />
+      break
+    case 'twin6ouverte':
+      view = <Twin6OuverteView lib={lib} />
       break
     case 'espace':
       view = <EspaceView section={route.section} lib={lib} />
@@ -272,9 +331,18 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   const authenticated = roles.length > 0
 
   return (
-    <div className="app">
+    <div className={`app${pinned ? ' is-menu-docked' : ''}`}>
       <header className="app-header">
         <div className="app-header-actions">
+          <button
+            type="button"
+            className="app-theme-toggle"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre'}
+            title={theme === 'dark' ? 'Thème clair' : 'Thème sombre'}
+          >
+            {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+          </button>
           <Help
             route={route.name}
             session={{ roles }}

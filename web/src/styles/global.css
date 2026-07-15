@@ -2,21 +2,71 @@
    CSS pur, sobre : palette neutre (ardoise), accents portés par les couleurs
    des pôles présentes dans les données. */
 
+/* ================= THÈME : tokens clair (défaut) =================
+   Toute la couleur du site passe par ces variables. Le thème sombre ne
+   redéfinit QUE ces valeurs (plus bas), le reste de la feuille les consomme.
+   Contraste visé >= 4.5:1 pour le texte courant sur --card et --paper. */
 :root {
   color-scheme: light;
+
+  /* Encres */
   --ink: #1e293b;
   --ink-soft: #475569;
-  /* Contraste >= 4.5:1 sur --card et --paper (WCAG AA texte courant). */
   --ink-faint: #64748b;
+
+  /* Surfaces */
   --paper: #f8fafc;
   --card: #ffffff;
+  --surface-2: #f1f5f9;
   --line: #e2e8f0;
+
+  /* Accent : --accent/--accent-strong servent au TEXTE, bordures, focus ;
+     --accent-solid(-hover) aux REMPLISSAGES pleins (texte blanc dessus). */
   --accent: #2563eb;
   --accent-strong: #1d4ed8;
+  --accent-solid: #2563eb;
+  --accent-solid-hover: #1d4ed8;
+
+  /* Statuts sémantiques : fg / fond / fond appuyé / bordure */
   --danger: #b91c1c;
+  --danger-strong: #991b1b;
   --danger-bg: #fef2f2;
-  /* Teintes des familles d'intention (plan du site, nav.js) — sémantiques :
-     elles aident à mémoriser « où vit quoi », en tuiles comme en TOC. */
+  --danger-border: #fecaca;
+  --ok: #166534;
+  --ok-bg: #f0fdf4;
+  --ok-bg-strong: #dcfce7;
+  --ok-border: #bbf7d0;
+  --warn: #92400e;
+  --warn-strong: #7c2d12;
+  --warn-bg: #fffbeb;
+  --warn-bg-strong: #fef3c7;
+  --warn-border: #fde68a;
+  --info-bg: #eff6ff;
+  --info-border: #bfdbfe;
+
+  /* Échelle de valeur (badges gratuit / premium ; standard = accent) */
+  --gratuit-fg: #0f766e;
+  --gratuit-bg: #f0fdfa;
+  --gratuit-border: #99f6e4;
+  --premium-fg: #be185d;
+  --premium-bg: #fdf2f8;
+  --premium-border: #fbcfe8;
+
+  /* Ombres & voile modal */
+  --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 12px 40px rgba(15, 23, 42, 0.18);
+  --shadow-panel: 10px 0 32px rgba(15, 23, 42, 0.16);
+  --overlay: rgba(15, 23, 42, 0.35);
+
+  /* Surface de la VISUALISATION : reste CLAIRE dans les deux thèmes. Le
+     sunburst (dégradé central, secteurs gris allant jusqu'au noir, anneaux)
+     est conçu sur fond clair ; on l'encadre en « panneau graphique » pour ne
+     pas réécrire la géométrie du moteur. */
+  --viz-surface: #ffffff;
+  --viz-ink: #1e293b;
+  --viz-ink-soft: #475569;
+
+  /* Familles d'intention (nav.js) — sémantiques (aident le palais mental). */
   --fam-decouvrir: #2563eb;
   --fam-cartographie: #0f766e;
   --fam-encadrer: #7c3aed;
@@ -24,6 +74,113 @@
   --fam-evoluer: #be185d;
   --fam-administrer: #475569;
   --fam-compte: #15803d;
+}
+
+/* ================= THÈME : tokens sombre =================
+   Appliqués (a) automatiquement si le système est sombre ET que l'utilisateur
+   n'a pas explicitement choisi « clair », (b) toujours si l'utilisateur a
+   choisi « sombre ». Le sélecteur :not([data-theme='light']) laisse le choix
+   explicite « clair » gagner même sous un système sombre. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --ink: #e7edf6;
+    --ink-soft: #adb9cd;
+    --ink-faint: #7f8da7;
+    --paper: #0b1120;
+    --card: #141d31;
+    --surface-2: #1c2740;
+    --line: #2b3b58;
+    --accent: #60a5fa;
+    --accent-strong: #93c5fd;
+    --accent-solid: #2563eb;
+    --accent-solid-hover: #1d4ed8;
+    --danger: #f87171;
+    --danger-strong: #fca5a5;
+    --danger-bg: #2a1416;
+    --danger-border: #5b2a2c;
+    --ok: #4ade80;
+    --ok-bg: #0f2a1c;
+    --ok-bg-strong: #143726;
+    --ok-border: #235640;
+    --warn: #fcd34d;
+    --warn-strong: #fde3a3;
+    --warn-bg: #2a1f08;
+    --warn-bg-strong: #3a2c0c;
+    --warn-border: #5a4514;
+    --info-bg: #14243f;
+    --info-border: #294268;
+    --gratuit-fg: #2dd4bf;
+    --gratuit-bg: #0a2e29;
+    --gratuit-border: #14564d;
+    --premium-fg: #f472b6;
+    --premium-bg: #2c1122;
+    --premium-border: #59223f;
+    --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 14px 44px rgba(0, 0, 0, 0.55);
+    --shadow-panel: 10px 0 34px rgba(0, 0, 0, 0.55);
+    --overlay: rgba(2, 6, 23, 0.62);
+    --viz-surface: #ffffff;
+    --viz-ink: #1e293b;
+    --viz-ink-soft: #475569;
+    --fam-decouvrir: #60a5fa;
+    --fam-cartographie: #2dd4bf;
+    --fam-encadrer: #a78bfa;
+    --fam-piloter: #fbbf24;
+    --fam-evoluer: #f472b6;
+    --fam-administrer: #94a3b8;
+    --fam-compte: #4ade80;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ink: #e7edf6;
+  --ink-soft: #adb9cd;
+  --ink-faint: #7f8da7;
+  --paper: #0b1120;
+  --card: #141d31;
+  --surface-2: #1c2740;
+  --line: #2b3b58;
+  --accent: #60a5fa;
+  --accent-strong: #93c5fd;
+  --accent-solid: #2563eb;
+  --accent-solid-hover: #1d4ed8;
+  --danger: #f87171;
+  --danger-strong: #fca5a5;
+  --danger-bg: #2a1416;
+  --danger-border: #5b2a2c;
+  --ok: #4ade80;
+  --ok-bg: #0f2a1c;
+  --ok-bg-strong: #143726;
+  --ok-border: #235640;
+  --warn: #fcd34d;
+  --warn-strong: #fde3a3;
+  --warn-bg: #2a1f08;
+  --warn-bg-strong: #3a2c0c;
+  --warn-border: #5a4514;
+  --info-bg: #14243f;
+  --info-border: #294268;
+  --gratuit-fg: #2dd4bf;
+  --gratuit-bg: #0a2e29;
+  --gratuit-border: #14564d;
+  --premium-fg: #f472b6;
+  --premium-bg: #2c1122;
+  --premium-border: #59223f;
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 14px 44px rgba(0, 0, 0, 0.55);
+  --shadow-panel: 10px 0 34px rgba(0, 0, 0, 0.55);
+  --overlay: rgba(2, 6, 23, 0.62);
+  --viz-surface: #ffffff;
+  --viz-ink: #1e293b;
+  --viz-ink-soft: #475569;
+  --fam-decouvrir: #60a5fa;
+  --fam-cartographie: #2dd4bf;
+  --fam-encadrer: #a78bfa;
+  --fam-piloter: #fbbf24;
+  --fam-evoluer: #f472b6;
+  --fam-administrer: #94a3b8;
+  --fam-compte: #4ade80;
 }
 
 /* Focus clavier visible partout (liens, boutons, résumés dépliables). */
@@ -88,6 +245,35 @@ body {
   top: 0.6rem;
   right: 1.25rem;
   z-index: 60;
+}
+
+/* Bascule de thème : même gabarit rond que le bouton d'aide « ? ». */
+.app-theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.app-theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Menu « docké » (épinglé) : sur grand écran, on décale le contenu pour que le
+   tiroir de gauche ne le recouvre pas — il devient une vraie barre latérale.
+   Sous ce seuil, le tiroir reste en superposition (on peut le détacher). */
+@media (min-width: 921px) {
+  .app.is-menu-docked .app-main {
+    padding-left: min(88vw, 320px);
+  }
 }
 
 /* ---------- Menu « burger » (web + mobile) ----------
@@ -157,7 +343,7 @@ body {
   padding: 0.6rem 0.5rem 1rem;
   background: var(--card);
   border-right: 1px solid var(--line);
-  box-shadow: 10px 0 32px rgba(15, 23, 42, 0.16);
+  box-shadow: var(--shadow-panel);
   z-index: 65;
   overflow-y: auto;
   transform: translateX(-100%);
@@ -225,8 +411,8 @@ body {
 }
 
 .app-pin.is-active {
-  background: #eff6ff;
-  border-color: #bfdbfe;
+  background: var(--info-bg);
+  border-color: var(--info-border);
   color: var(--accent-strong);
 }
 
@@ -283,7 +469,7 @@ body {
 
 .app-nav a[aria-current='page'] {
   color: var(--accent-strong);
-  background: #eff6ff;
+  background: var(--info-bg);
   font-weight: 600;
 }
 
@@ -339,21 +525,21 @@ body {
 }
 
 .value-badge-gratuit {
-  color: #0f766e;
-  border-color: #99f6e4;
-  background: #f0fdfa;
+  color: var(--gratuit-fg);
+  border-color: var(--gratuit-border);
+  background: var(--gratuit-bg);
 }
 
 .value-badge-standard {
   color: var(--accent-strong);
-  border-color: #bfdbfe;
-  background: #eff6ff;
+  border-color: var(--info-border);
+  background: var(--info-bg);
 }
 
 .value-badge-premium {
-  color: #be185d;
-  border-color: #fbcfe8;
-  background: #fdf2f8;
+  color: var(--premium-fg);
+  border-color: var(--premium-border);
+  background: var(--premium-bg);
 }
 
 .app-nav a .value-badge {
@@ -411,7 +597,7 @@ body {
 }
 
 .chip[aria-pressed='true'] {
-  background: var(--accent);
+  background: var(--accent-solid);
   border-color: var(--accent);
   color: #fff;
 }
@@ -592,7 +778,7 @@ body {
 .help-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.35);
+  background: var(--overlay);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -609,7 +795,7 @@ body {
   max-height: 80vh;
   overflow-y: auto;
   padding: 1.25rem 1.5rem 1.5rem;
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.18);
+  box-shadow: var(--shadow-md);
 }
 
 .help-panel-head {
@@ -712,7 +898,7 @@ body {
 
 .guides-card a:hover {
   border-color: var(--accent);
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  box-shadow: var(--shadow-sm);
 }
 
 .guides-card-audience {
@@ -791,13 +977,13 @@ body {
 }
 
 .button-primary {
-  background: var(--accent);
+  background: var(--accent-solid);
   border-color: var(--accent);
   color: #fff;
 }
 
 .button-primary:hover {
-  background: #1d4ed8;
+  background: var(--accent-solid-hover);
   color: #fff;
 }
 
@@ -845,7 +1031,7 @@ body {
 
 .dropzone-active {
   border-color: var(--accent);
-  background: #eff6ff;
+  background: var(--info-bg);
 }
 
 .privacy-note {
@@ -868,7 +1054,7 @@ body {
 .load-error {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
-  border: 1px solid #fecaca;
+  border: 1px solid var(--danger-border);
   border-radius: 8px;
   background: var(--danger-bg);
   color: var(--danger);
@@ -943,7 +1129,7 @@ body {
 }
 
 .view-tab-active {
-  background: var(--accent);
+  background: var(--accent-solid);
   border-color: var(--accent);
   color: #fff;
 }
@@ -966,6 +1152,9 @@ body {
   }
 }
 
+/* Le diagramme vit sur une surface CLAIRE dans les deux thèmes (--viz-*) :
+   le sunburst est conçu pour un fond clair (secteurs gris jusqu'au noir,
+   dégradé central pâle). En sombre, c'est un « panneau graphique » encadré. */
 .diagram-zone {
   position: sticky;
   top: 1rem;
@@ -976,7 +1165,8 @@ body {
   padding: 1rem;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--card);
+  background: var(--viz-surface);
+  color: var(--viz-ink);
 }
 
 @media (max-width: 820px) {
@@ -989,12 +1179,12 @@ body {
   min-height: 1.4em;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--ink-soft);
+  color: var(--viz-ink-soft);
   text-align: center;
 }
 
 .diagram-placeholder {
-  color: var(--ink-faint);
+  color: var(--viz-ink-soft);
   padding: 3rem 1rem;
   text-align: center;
 }
@@ -1033,7 +1223,9 @@ body {
 /* Focus clavier sur les secteurs : liseré sombre par-dessus l'état hover. */
 .sunburst .sector:focus-visible,
 .sunburst .renvoi-sector:focus-visible {
-  stroke: var(--ink);
+  /* --viz-ink (sombre dans les deux thèmes) : le sunburst est sur surface
+     claire ; --ink deviendrait clair en thème sombre = liseré invisible. */
+  stroke: var(--viz-ink);
   stroke-width: 2.5;
 }
 
@@ -1048,7 +1240,10 @@ body {
 }
 
 .sunburst-center:focus-visible {
-  stroke: var(--accent-strong);
+  /* --viz-ink (sombre partout) et non --accent-strong : le centre est sur la
+     surface claire de la viz ; en sombre --accent-strong (#93c5fd) sur blanc
+     tombe à ~1.8:1 — anneau de focus invisible (comme les secteurs, corrigés). */
+  stroke: var(--viz-ink);
   stroke-width: 2;
 }
 
@@ -1147,18 +1342,18 @@ body {
 }
 
 .verdict-badge.etablie {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--ok-bg-strong);
+  color: var(--ok);
 }
 
 .verdict-badge.renvoi {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--warn-bg-strong);
+  color: var(--warn);
 }
 
 .verdict-badge.non-etablie {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--surface-2);
+  color: var(--ink-soft);
 }
 
 .narrative .score-summary {
@@ -1181,15 +1376,18 @@ body {
   display: block;
 }
 
+/* Le heatmap vit DANS .diagram-zone (surface claire --viz-*) : ses textes et
+   liserés utilisent l'encre de viz (sombre dans les deux thèmes), sinon ils
+   deviendraient clairs — donc invisibles sur fond clair — en thème sombre. */
 .heatmap-caption {
   font-size: 0.85rem;
-  color: var(--ink-faint);
+  color: var(--viz-ink-soft);
   margin-bottom: 0.4rem;
 }
 
 .heatmap-month {
   font-size: 9px;
-  fill: var(--ink-faint);
+  fill: var(--viz-ink-soft);
 }
 
 .heatmap-day {
@@ -1198,7 +1396,7 @@ body {
 
 .heatmap-day:hover,
 .heatmap-day:focus {
-  stroke: var(--ink);
+  stroke: var(--viz-ink);
   stroke-width: 1;
   outline: none;
 }
@@ -1424,7 +1622,7 @@ body {
 
 /* Permalien actif : surbrillance de la ligne visée. */
 .ref-competence-focus {
-  background: #eff6ff;
+  background: var(--info-bg);
   outline: 2px solid var(--accent);
   outline-offset: -1px;
 }
@@ -1478,10 +1676,10 @@ body {
 
 .account-notice {
   padding: 0.6rem 0.9rem;
-  border: 1px solid #bbf7d0;
+  border: 1px solid var(--ok-border);
   border-radius: 8px;
-  background: #f0fdf4;
-  color: #166534;
+  background: var(--ok-bg);
+  color: var(--ok);
 }
 
 .account-unavailable {
@@ -1537,7 +1735,7 @@ body {
   gap: 0.6rem;
   margin-top: 1.5rem;
   padding: 1.1rem;
-  border: 1px solid #fecaca;
+  border: 1px solid var(--danger-border);
   border-radius: 12px;
   background: var(--danger-bg);
 }
@@ -1561,7 +1759,7 @@ body {
 
 .button-danger {
   align-self: flex-start;
-  border-color: #fecaca;
+  border-color: var(--danger-border);
   color: var(--danger);
 }
 
@@ -2231,7 +2429,7 @@ body {
 .notice-error {
   margin: 0;
   padding: 0.55rem 0.8rem;
-  border: 1px solid #fecaca;
+  border: 1px solid var(--danger-border);
   border-radius: 8px;
   background: var(--danger-bg);
   font-size: 0.92rem;
@@ -2496,11 +2694,11 @@ body {
 .share-garantie {
   margin: 0;
   padding: 0.45rem 0.9rem;
-  border: 1px solid #bbf7d0;
+  border: 1px solid var(--ok-border);
   border-radius: 8px;
-  background: #f0fdf4;
+  background: var(--ok-bg);
   font-size: 0.9rem;
-  color: #166534;
+  color: var(--ok);
 }
 
 .share-unlock {
@@ -2667,15 +2865,15 @@ body {
 }
 
 .annotation-type-hallucination {
-  border-color: #fecaca;
-  background: #fef2f2;
-  color: #991b1b;
+  border-color: var(--danger-border);
+  background: var(--danger-bg);
+  color: var(--danger-strong);
 }
 
 .annotation-type-oubli {
-  border-color: #fde68a;
-  background: #fffbeb;
-  color: #92400e;
+  border-color: var(--warn-border);
+  background: var(--warn-bg);
+  color: var(--warn);
 }
 
 .annotation-meta {
@@ -2721,9 +2919,9 @@ body {
 
 .cartographe-garantie-confirm {
   padding: 0.8rem 1rem;
-  border: 1px solid #fde68a;
+  border: 1px solid var(--warn-border);
   border-radius: 10px;
-  background: #fffbeb;
+  background: var(--warn-bg);
 }
 
 .cartographe-comparer-selecteurs {
@@ -2756,12 +2954,12 @@ body {
 }
 
 .compare-divergent {
-  background: #fffbeb;
+  background: var(--warn-bg);
 }
 
 .compare-champ-divergent {
   font-weight: 600;
-  background: #fef3c7;
+  background: var(--warn-bg-strong);
 }
 
 .cartographe-consistance-file,
@@ -2776,7 +2974,7 @@ body {
 }
 
 .cartographe-consistance-table tr[data-stable='false'] {
-  background: #fffbeb;
+  background: var(--warn-bg);
 }
 
 @media (max-width: 767px) {
@@ -2830,8 +3028,8 @@ body {
   margin-left: 0.35rem;
   padding: 0.1rem 0.4rem;
   border-radius: 6px;
-  background: #dcfce7;
-  color: #166534;
+  background: var(--ok-bg-strong);
+  color: var(--ok);
   font-size: 0.8rem;
 }
 
@@ -2926,13 +3124,13 @@ body {
 }
 
 .promptologue-diff-lines .diff-add {
-  color: #166534;
-  background: #f0fdf4;
+  color: var(--ok);
+  background: var(--ok-bg);
 }
 
 .promptologue-diff-lines .diff-del {
-  color: #991b1b;
-  background: #fef2f2;
+  color: var(--danger-strong);
+  background: var(--danger-bg);
 }
 
 .promptologue-cle {
@@ -2954,11 +3152,11 @@ body {
 }
 
 .retro-nouvelle td {
-  background: #f0fdf4;
+  background: var(--ok-bg);
 }
 
 .retro-disparue td {
-  background: #fef2f2;
+  background: var(--danger-bg);
 }
 
 /* --- Espace établissement (P11) + cohortes apprenant ---------------------- */
@@ -3048,7 +3246,7 @@ body {
 .cohorte-consent {
   padding: 0.6rem 0.8rem;
   border: 1px solid var(--line);
-  border-left: 4px solid #b45309;
+  border-left: 4px solid var(--fam-piloter);
   border-radius: 8px;
   background: var(--card);
   max-width: 44rem;
@@ -3115,7 +3313,7 @@ body {
 }
 
 .admin-tabs a[aria-current='page'] {
-  background: var(--accent);
+  background: var(--accent-solid);
   border-color: var(--accent);
   color: #fff;
   font-weight: 600;
@@ -3256,7 +3454,7 @@ body {
 }
 
 .admin-demo-toggle.is-on .admin-demo-toggle-track {
-  background: var(--accent);
+  background: var(--accent-solid);
 }
 
 .admin-demo-toggle-thumb {
@@ -3348,13 +3546,13 @@ body {
 .admin-source-base {
   border-color: var(--accent);
   color: var(--accent-strong);
-  background: #eff6ff;
+  background: var(--info-bg);
 }
 
 .admin-source-env {
-  border-color: #b45309;
-  color: #b45309;
-  background: #fffbeb;
+  border-color: var(--fam-piloter);
+  color: var(--fam-piloter);
+  background: var(--warn-bg);
 }
 
 .admin-demo-actions {
@@ -3370,7 +3568,7 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   border: 1px solid var(--accent);
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #fff;
   cursor: pointer;
 }
@@ -3453,7 +3651,7 @@ body {
 }
 
 /* ==========================================================================
-   Twin_v9 — éditeur & supervision admin (chantier T4-ADMIN, ADR-010).
+   Twin9 — éditeur & supervision admin (chantier T4-ADMIN, ADR-010).
    Tout est scopé sous .twin9-admin ; réutilise les .admin-* existants.
    ========================================================================== */
 
@@ -3470,11 +3668,11 @@ body {
 
 .twin9-admin .twin9-admin-warning {
   padding: 0.6rem 0.9rem;
-  border: 1px solid #b45309;
-  border-left: 4px solid #b45309;
+  border: 1px solid var(--fam-piloter);
+  border-left: 4px solid var(--fam-piloter);
   border-radius: 8px;
-  background: #fffbeb;
-  color: #7c2d12;
+  background: var(--warn-bg);
+  color: var(--warn-strong);
   max-width: 44rem;
 }
 

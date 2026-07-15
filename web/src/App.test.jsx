@@ -8,6 +8,13 @@ afterEach(() => {
   cleanup()
   window.location.hash = ''
   resetApiClient()
+  // Le thème et l'épinglage persistent en localStorage : on repart propre.
+  try {
+    localStorage.clear()
+  } catch {
+    /* jsdom sans localStorage : rien à nettoyer */
+  }
+  document.documentElement.removeAttribute('data-theme')
 })
 
 /** Session anonyme par défaut (couture fetchMe injectée pour éviter le réseau). */
