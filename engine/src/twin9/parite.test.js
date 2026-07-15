@@ -1,4 +1,4 @@
-// PORTE DE PARITÉ de l'orchestrateur Twin_v9 (index.js) contre les oracles
+// PORTE DE PARITÉ de l'orchestrateur Twin9 (index.js) contre les oracles
 // mock CPython (engine/test/twin9-oracles/, ADR-010, gitignoré). Chaque oracle
 // est un run `twin9.py --mock --sans-etat --salt <sel>` FIGÉ : pour chacun on
 // rejoue executerTwin9 en mock avec le MÊME sel et les MÊMES options, puis on
@@ -121,7 +121,7 @@ function comparerJson(nom, objJs, texteOracle) {
 
 const oraclesPresents = existsSync(ORA);
 
-describe.skipIf(!oraclesPresents)("Twin_v9 — porte de parité orchestrateur (mock CPython)", () => {
+describe.skipIf(!oraclesPresents)("Twin9 — porte de parité orchestrateur (mock CPython)", () => {
   // Entrées communes (contrat d'entrée committé à la racine des oracles).
   const config = oraclesPresents ? JSON.parse(readFileSync(join(ORA, "config.json"), "utf-8")) : null;
   const models = oraclesPresents ? JSON.parse(readFileSync(join(ORA, "models.json"), "utf-8")) : null;
@@ -215,7 +215,7 @@ describe.skipIf(!oraclesPresents)("Twin_v9 — porte de parité orchestrateur (m
 
 // Garde-fou méta : si le dossier d'oracles existe mais qu'AUCUN oracle attendu
 // n'y figure, c'est probablement une régression de génération — on le signale.
-describe.skipIf(!oraclesPresents)("Twin_v9 — oracles présents", () => {
+describe.skipIf(!oraclesPresents)("Twin9 — oracles présents", () => {
   it("au moins un oracle de parité est disponible", () => {
     const dirs = readdirSync(ORA, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
     expect(dirs.some((d) => ORACLES.some((o) => o.dir === d))).toBe(true);

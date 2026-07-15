@@ -1,5 +1,5 @@
 // Égalité PROFONDE de Python (opérateur ==) pour les valeurs JSON-like qui
-// circulent dans Twin_v9 (graines, observations) : `gr not in liste` de
+// circulent dans Twin9 (graines, observations) : `gr not in liste` de
 // merge3.py / scan9.py compare les dicts clé par clé, récursivement.
 // Sémantique numérique de Python : True == 1 == 1.0 (bool et PyFloat
 // participent au même axe numérique) ; NaN != NaN ; None == None.

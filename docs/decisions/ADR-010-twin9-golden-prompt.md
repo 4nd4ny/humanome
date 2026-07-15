@@ -1,10 +1,10 @@
-# ADR-010 — Twin_v9 : Golden Prompt opérationnel, secret des gabarits, prépaiement
+# ADR-010 — Twin9 : Golden Prompt opérationnel, secret des gabarits, prépaiement
 
 Date : 2026-07-13 · Statut : accepté
 
 ## Contexte
 
-Le propriétaire fournit **Twin_v9** (dossier local `Twin_v9/`, hors dépôt) : le
+Le propriétaire fournit **Twin9** (dossier local `Twin9/`, hors dépôt) : le
 véritable Golden Prompt de la plateforme. Ce n'est pas un « paquet de prompts »
 au sens P10 mais un **système multi-agents complet** en Python : collège de
 modèles taggeurs (N modèles × 7 pôles), ancrage verbatim des citations,
@@ -52,7 +52,7 @@ Exigences du propriétaire :
 |---|---|
 | Lire le gabarit dans le trafic client | Impossible : rendu serveur, la réponse ne contient que la sortie du modèle |
 | Le faire réciter par le modèle (injection via le portfolio) | Consignes anti-injection déjà présentes dans les gabarits (v8) + **filtre anti-fuite serveur** : toute sous-chaîne longue (≥ 12 mots consécutifs) commune entre gabarit rendu et sortie est expurgée avant renvoi, événement d'audit compté |
-| Clé privée pointée vers un serveur attaquant (base_url) | **base_url verrouillée** : `api.anthropic.com` uniquement, non configurable par l'utilisateur ; la clé privée est stockée chiffrée (libsodium, ADR-004) et utilisée **côté serveur** — jamais d'appel LLM depuis le navigateur pour Twin_v9 |
+| Clé privée pointée vers un serveur attaquant (base_url) | **base_url verrouillée** : `api.anthropic.com` uniquement, non configurable par l'utilisateur ; la clé privée est stockée chiffrée (libsodium, ADR-004) et utilisée **côté serveur** — jamais d'appel LLM depuis le navigateur pour Twin9 |
 | Lire les gabarits dans le dépôt | Le dossier source `golden-twin9/` est **gitignoré** (comme `golden-prompt/`) ; en production les gabarits vivent en base (`twin9_protocole`), importés par `POST /api/admin/twin9/import` (X-Migrate-Token) |
 | Promptologue via l'atelier P10 | Les routes twin9 admin exigent le rôle **admin** ; l'atelier promptologue n'expose rien de twin9 |
 | Fuite par messages d'erreur | Les erreurs de rendu/appel renvoient des messages génériques, jamais le gabarit |
@@ -100,13 +100,13 @@ révèlent pas le contenu des gabarits, qui porte la valeur.
 L'utilisateur peut enregistrer sa clé Anthropic (chiffrée ADR-004). Les appels
 suivent EXACTEMENT le même chemin serveur (gabarits en base, filtre anti-fuite,
 base_url verrouillée) — seule la facturation change (aucun débit). Le mode
-« roster multi-fournisseurs » de Twin_v9 (OpenAI, Ollama…) n'est PAS exposé en
+« roster multi-fournisseurs » de Twin9 (OpenAI, Ollama…) n'est PAS exposé en
 v1 : Anthropic uniquement (passes multiples pour la stabilité mono-famille,
-mécanisme prévu par Twin_v9). Ollama/local n'a pas de sens sur ce site.
+mécanisme prévu par Twin9). Ollama/local n'a pas de sens sur ce site.
 
 ### 5. RGPD/nLPD
 
-Twin_v9 sur le site implique que le texte du portfolio **transite** par notre
+Twin9 sur le site implique que le texte du portfolio **transite** par notre
 serveur et par Anthropic (contrairement aux runs P8 côté client). Parades :
 consentement explicite par run (écran dédié), aucun stockage serveur du texte
 (l'endpoint est sans état ; état persistant et artefacts restent en IndexedDB
@@ -127,7 +127,7 @@ L'admin voit les gabarits — c'est son rôle ; personne d'autre.
 ## Conséquences
 
 - Deux « golden » coexistent : l'import P12 existant (paquet aurora-v3, façon
-  P10) reste pour l'atelier promptologue ; Twin_v9 est un système à part,
+  P10) reste pour l'atelier promptologue ; Twin9 est un système à part,
   admin-only, avec son propre stockage et ses propres routes.
 - Le portage JS est validé par **parité mock** : `python3 twin9.py --mock
   --salt X --sans-etat` est l'oracle ; le moteur JS en mode mock doit

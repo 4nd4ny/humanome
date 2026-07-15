@@ -52,9 +52,9 @@ describe('AdminView — garde de rôle', () => {
     await screen.findByTestId('admin-connecte')
     expect(screen.getByRole('link', { name: /Rôles/i })).toBeTruthy()
     // Nom accessible complet (label + hint) pour lever l'ambiguïté avec la
-    // carte Twin_v9 dont le hint mentionne aussi « Golden Prompt ».
+    // carte Twin9 dont le hint mentionne aussi « Golden Prompt ».
     expect(screen.getByRole('link', { name: /Golden Prompt Import privé/i })).toBeTruthy()
-    expect(screen.getByRole('link', { name: /Twin_v9/i })).toBeTruthy()
+    expect(screen.getByRole('link', { name: /Twin9/i })).toBeTruthy()
   })
 
   it('rend la section rôles pour un admin', async () => {

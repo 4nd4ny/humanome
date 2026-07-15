@@ -603,7 +603,7 @@ Puis pour `sorted(par_pole.items())` (tri numérique des numéros de pôle) :
 {
   "journal_id": str,
   "date": str,
-  "version": "Twin_v9",
+  "version": "Twin9",
   "personas": {"version": "personas-v1", "empreinte": hex-str},   // §1.9
   "jury_mode": str,        // str(config.jury.mode, défaut "socle4+1")
   "periode": {"debut": dates[0], "fin": dates[-1], "n_journees": len(cartos)},
@@ -645,7 +645,7 @@ Liste `L` de lignes, fichier final = `"\n".join(L) + "\n"`.
 **En-tête** :
 ```
 # Cartographie évolutive — {journal_id}
-*Twin_v9 — {date} — {n} journées ({dates[0]} → {dates[-1]})*
+*Twin9 — {date} — {n} journées ({dates[0]} → {dates[-1]})*
 <vide>
 {_PROCEDURE}
 ---

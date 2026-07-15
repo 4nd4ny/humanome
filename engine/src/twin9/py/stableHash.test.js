@@ -1,4 +1,4 @@
-// Vecteurs générés par CPython 3.14.3 (util.stable_hash de Twin_v9) puis figés
+// Vecteurs générés par CPython 3.14.3 (util.stable_hash de Twin9) puis figés
 // ici — script : engine/test/twin9-vectors/gen_vectors.py ; jamais de python à l'exécution.
 import { describe, expect, it } from "vitest";
 import { stableHash } from "./stableHash.js";

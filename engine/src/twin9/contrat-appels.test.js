@@ -29,7 +29,7 @@ const lire = (p) => readFileSync(join(ORA, p), "utf8");
 
 const INJECTEES = new Set(contrat.injectees_serveur);
 
-describe.skipIf(!dispo)("Twin_v9 — contrat des appels (variables ⊆ fournies ∪ injectées serveur)", () => {
+describe.skipIf(!dispo)("Twin9 — contrat des appels (variables ⊆ fournies ∪ injectées serveur)", () => {
   it("chaque gabarit reçoit toutes ses variables (aucune fiche vide envoyée)", async () => {
     const referentiel = JSON.parse(lire("referentiel.json"));
     const config = JSON.parse(lire("config.json"));

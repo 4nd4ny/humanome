@@ -211,6 +211,135 @@ final class CreditService
         ], $stmt->fetchAll());
     }
 
+    /**
+     * Bind a freshly created PayPal order to its creator (durcissement, revue
+     * 2026-07-15). INSERT IGNORE: a replayed /creer keeps the first owner.
+     */
+    public function recordPaypalOrder(int $userId, string $paypalOrderId): void
+    {
+        if (trim($paypalOrderId) === '') {
+            throw new \InvalidArgumentException('recordPaypalOrder() requires an order id');
+        }
+        $this->pdo->prepare(
+            'INSERT IGNORE INTO twin9_paypal_orders (paypal_order_id, user_id) VALUES (?, ?)'
+        )->execute([$paypalOrderId, $userId]);
+    }
+
+    /**
+     * Recorded owner of a PayPal order, or null if the order was never created
+     * through /creer. /capturer refuses to credit anyone but the owner.
+     */
+    public function paypalOrderOwner(string $paypalOrderId): ?int
+    {
+        $stmt = $this->pdo->prepare('SELECT user_id FROM twin9_paypal_orders WHERE paypal_order_id = ?');
+        $stmt->execute([$paypalOrderId]);
+        $owner = $stmt->fetchColumn();
+
+        return $owner === false ? null : (int) $owner;
+    }
+
+    /**
+     * Record a PayPal capture so its funds can be refunded later (a refund goes
+     * against a capture, not an order). INSERT IGNORE: replayed capture is a no-op.
+     */
+    public function recordCapture(int $userId, string $captureId, string $paypalOrderId, int $microusd): void
+    {
+        if (trim($captureId) === '' || $microusd <= 0) {
+            return; // no capture id / non-positive amount → simply not refundable
+        }
+        $this->pdo->prepare(
+            'INSERT IGNORE INTO twin9_paypal_captures
+             (capture_id, user_id, paypal_order_id, montant_microusd) VALUES (?, ?, ?, ?)'
+        )->execute([$captureId, $userId, $paypalOrderId, $microusd]);
+    }
+
+    /**
+     * Captures that still have refundable room, most recent first.
+     *
+     * @return list<array{capture_id: string, room_microusd: int, rembourse_microusd: int}>
+     *   rembourse_microusd is the amount ALREADY refunded (a monotonic offset,
+     *   used to build a collision-proof PayPal-Request-Id per refunded portion).
+     */
+    public function refundableCaptures(int $userId): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT capture_id, montant_microusd, rembourse_microusd
+             FROM twin9_paypal_captures
+             WHERE user_id = ? AND montant_microusd > rembourse_microusd
+             ORDER BY created_at DESC, capture_id DESC'
+        );
+        $stmt->execute([$userId]);
+
+        return array_map(static fn (array $r): array => [
+            'capture_id' => (string) $r['capture_id'],
+            'room_microusd' => (int) $r['montant_microusd'] - (int) $r['rembourse_microusd'],
+            'rembourse_microusd' => (int) $r['rembourse_microusd'],
+        ], $stmt->fetchAll());
+    }
+
+    /**
+     * Maximum the user may be refunded now: min(current balance, sum of capture
+     * rooms). A non-PayPal balance (e.g. an admin credit) is NOT refundable, and
+     * spent funds are already out of the balance.
+     */
+    public function soldeRemboursable(int $userId): int
+    {
+        $room = 0;
+        foreach ($this->refundableCaptures($userId) as $c) {
+            $room += $c['room_microusd'];
+        }
+
+        return max(0, min($this->balance($userId), $room));
+    }
+
+    /**
+     * Apply ONE capture refund atomically — call ONLY after PayPal confirmed it:
+     * conditional balance debit (never negative), bump the capture's refunded
+     * amount, and write a 'refund' ledger event. Idempotency at PayPal is the
+     * caller's job (PayPal-Request-Id). Throws SoldeInsuffisantException if the
+     * balance moved underneath (concurrent spend).
+     *
+     * @return int the new balance in micro-USD
+     */
+    public function appliquerRemboursement(int $userId, string $captureId, int $microusd): int
+    {
+        if ($microusd <= 0) {
+            throw new \InvalidArgumentException('refund amount must be > 0 micro-USD');
+        }
+
+        $this->pdo->beginTransaction();
+        try {
+            $stmt = $this->pdo->prepare(
+                'UPDATE twin9_credits
+                 SET balance_microusd = balance_microusd - ?
+                 WHERE user_id = ? AND balance_microusd >= ?'
+            );
+            $stmt->execute([$microusd, $userId, $microusd]);
+            if ($stmt->rowCount() === 0) {
+                $this->pdo->rollBack();
+
+                throw new SoldeInsuffisantException($this->balance($userId), $microusd);
+            }
+            $this->pdo->prepare(
+                'UPDATE twin9_paypal_captures
+                 SET rembourse_microusd = rembourse_microusd + ?
+                 WHERE capture_id = ? AND user_id = ?'
+            )->execute([$microusd, $captureId, $userId]);
+            $this->insertEvent($userId, 'refund', -$microusd, 'Remboursement PayPal', null, null, null, null);
+            $newBalance = $this->lockedBalance($userId);
+            $this->pdo->commit();
+        } catch (SoldeInsuffisantException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            if ($this->pdo->inTransaction()) {
+                $this->pdo->rollBack();
+            }
+            throw $e;
+        }
+
+        return $newBalance;
+    }
+
     private function upsertBalance(int $userId, int $delta): void
     {
         $this->pdo->prepare(

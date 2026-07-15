@@ -119,7 +119,7 @@ function reprStr(s) {
 }
 
 /**
- * Formatage « % » de Python — sous-ensemble utilisé par Twin_v9 :
+ * Formatage « % » de Python — sous-ensemble utilisé par Twin9 :
  * %s, %d, %i, %x, %f avec flags «-» et «0», largeur et précision
  * (ex. "%7.1f", "%-5s", "%02d", "%04d-%02d-%02d", "F%02d", "%x"), et %%.
  * @param {string} fmt

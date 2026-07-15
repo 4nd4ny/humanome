@@ -1,4 +1,4 @@
-// Vecteurs générés par CPython 3.14.3 (aurora/templates.py de Twin_v9 :
+// Vecteurs générés par CPython 3.14.3 (aurora/templates.py de Twin9 :
 // resolve avec str() Python, warning et mode strict) puis figés ici — script :
 // engine/test/twin9-vectors/gen_noyau_vectors.py ; jamais de python à
 // l'exécution.

@@ -64,7 +64,7 @@ mindmap
         aco["Mes cohortes · /espace/cohortes"]
         afo["Formation · /espace/formation"]
         apf["Mon portfolio · /portfolio"]
-        at9["Analyse Twin_v9 · /twin9"]
+        at9["Analyse Twin9 · /twin9"]
       Ca["cartographe"]
         cf["Espace cartographe · file · /cartographe"]
         crel["Relecture · /cartographe/relecture/id"]
@@ -85,7 +85,7 @@ mindmap
         adg["Golden Prompt · /admin/golden"]
         adre["Réglages · /admin/reglages"]
         adc["Config serveur · /admin/config"]
-        adt["Twin_v9 · /admin/twin9"]
+        adt["Twin9 · /admin/twin9"]
     Transverse["En-tête et transverse · TOUS"]
       mc["Mon compte · /compte"]
       mcr["Crédit et factures · /compte/credit"]
@@ -105,13 +105,13 @@ niveau 1, sa tâche n°1, sa friction-titre et le verdict « se repère-t-il auj
 | Persona | Voit au niveau 1 | Tâche n°1 | Friction-titre | Verdict |
 |---|---|---|---|---|
 | **Visiteur** | Découvrir (5) + Se connecter | Comprendre en 30 s + essayer sans compte | « Cartographie » ouvre une vue **vide** ; aucune entrée « comprendre » ; « Essayer » ne dit pas *gratuit/sans compte* | ❌ se perd |
-| **Apprenant** (cœur de cible) | Découvrir + Mon espace / Mon portfolio / Analyse Twin_v9 + Mon compte | Alimenter le portfolio → cartographier → partager | **Partager sa cartographie n'a aucun domicile de menu** ; 3 portes « cartographier » ; 3 « Mon… » | ❌ |
+| **Apprenant** (cœur de cible) | Découvrir + Mon espace / Mon portfolio / Analyse Twin9 + Mon compte | Alimenter le portfolio → cartographier → partager | **Partager sa cartographie n'a aucun domicile de menu** ; 3 portes « cartographier » ; 3 « Mon… » | ❌ |
 | **Employeur** | Header générique au-dessus de la vue partagée | Lire une cartographie **garantie**, vite | Tout clic dans le header **démonte** la vue partagée et **redemande le mot de passe** ; sceau de garantie absent/discret | ❌ |
-| **Cartographe** | Mon espace/portfolio/Twin_v9 **puis** Espace cartographe (4ᵉ) | Ouvrir sa file, relire, garantir, enchaîner | File **enterrée** en 4ᵉ position, mal nommée ; pas de « valider & suivant » ni de registre de garanties | ⚠️ par tolérance |
+| **Cartographe** | Mon espace/portfolio/Twin9 **puis** Espace cartographe (4ᵉ) | Ouvrir sa file, relire, garantir, enchaîner | File **enterrée** en 4ᵉ position, mal nommée ; pas de « valider & suivant » ni de registre de garanties | ⚠️ par tolérance |
 | **Promptologue** | idem + Atelier promptologue | Éditer/versionner un paquet, tester A/B | **L'Éditeur n'est pas dans la sous-nav** ; démarrage à froid impossible ; boucle publier/défaut fuit vers l'Admin invisible | ⚠️ en partie |
 | **Épistémiarque** | Découvrir + 3 « Mon… » apprenant (rien à lui) | Faire évoluer le référentiel | **Invisible dans l'IA** : aucune entrée ; `/referentiel` est en **lecture seule** ; vrai poste = Decidim, hors-app | ❌ |
 | **Établissement** (B2B) | 3 « Mon… » apprenant + Établissement | Surveiller budget + runs de masse, lire membre par membre | **Budget** enfoui dans un formulaire ; run de masse au 3ᵉ niveau ; « Mes cohortes » = sens **inversé** (rejoindre vs gérer) | ⚠️ |
-| **Admin** | 3 « Mon… » apprenant + Administration | Rôles, Golden Prompt, réglages, Twin_v9 | Golden Prompt à **deux domiciles** ; collision de nom « Twin_v9 » (analyse conso vs onglet admin) ; gouvernance noyée dans « Mon travail » apprenant | ⚠️ onglets ok, périmètres flous |
+| **Admin** | 3 « Mon… » apprenant + Administration | Rôles, Golden Prompt, réglages, Twin9 | Golden Prompt à **deux domiciles** ; collision de nom « Twin9 » (analyse conso vs onglet admin) ; gouvernance noyée dans « Mon travail » apprenant | ⚠️ onglets ok, périmètres flous |
 
 Et le « palais mental » proprement dit — **une carte par profil** : ce que chaque persona voit
 *aujourd'hui*, ses points de douleur inscrits sur les nœuds (`⚠`/`MANQUE`/`PIÈGE`).
@@ -142,7 +142,7 @@ mindmap
     t["Mon travail"]
       t1["Mon espace · /espace · tableau de bord"]
       t2["Mon portfolio · /portfolio · redondant avec le bloc du dashboard"]
-      t3["Analyse Twin_v9 · /twin9 · premium"]
+      t3["Analyse Twin9 · /twin9 · premium"]
     cc["Mon compte · /compte"]
       cc1["Crédit · /compte/credit · niché"]
     x["MANQUE · partager sa cartographie · aucun domicile"]
@@ -171,7 +171,7 @@ mindmap
     d["Découvrir"]
     t["Mon travail"]
       a["3 entrées apprenant · bruit"]
-        a1["Mon espace · Mon portfolio · Analyse Twin_v9"]
+        a1["Mon espace · Mon portfolio · Analyse Twin9"]
       cg["Espace cartographe · /cartographe · en 4e position"]
         cg1["File de relecture · nommée seulement au 2e niveau"]
         cg2["Relecture · /cartographe/relecture/id"]
@@ -219,7 +219,7 @@ mindmap
         e2["Budget · enfoui dans un formulaire"]
         e3["Run de masse · au 3e niveau"]
         e4["Membre · via bouton Documents"]
-    cc["Mon compte · Crédit Twin_v9 différent du budget établissement"]
+    cc["Mon compte · Crédit Twin9 différent du budget établissement"]
     x["MANQUE · budget à vue · tableau de bord des runs · formation en contexte"]
 ```
 
@@ -234,8 +234,8 @@ mindmap
         ad1["Rôles · /admin/roles"]
         ad2["Golden Prompt · deux domiciles"]
         ad3["Réglages · Config · frontière floue"]
-        ad4["Twin_v9 · collision de nom avec /twin9 conso"]
-    cc["Crédit Twin_v9 hors de l'espace Admin"]
+        ad4["Twin9 · collision de nom avec /twin9 conso"]
+    cc["Crédit Twin9 hors de l'espace Admin"]
 ```
 
 ### 1.5 Frictions — les 5 confirmées + les principales découvertes
@@ -244,11 +244,11 @@ mindmap
 
 | # | Friction | Qui elle touche |
 |---|---|---|
-| 1 | Triple échelle « cartographier mon texte » (Essayer / Lancer un run / Twin_v9), libellés **non alignés sur la valeur** | visiteur, apprenant, promptologue, établissement, admin |
+| 1 | Triple échelle « cartographier mon texte » (Essayer / Lancer un run / Twin9), libellés **non alignés sur la valeur** | visiteur, apprenant, promptologue, établissement, admin |
 | 2 | **« Mon portfolio »** au niveau 1 alors qu'il est l'**étape d'entrée** d'un run (le tableau de bord l'expose déjà) | apprenant |
 | 3 | **« Guides » duplique** les onglets « Formation » internes (même markdown, deux domiciles) | apprenant, cartographe, promptologue, établissement, admin |
 | 4 | **Trois « Mon… »** (espace / compte / portfolio) — frontière travail/compte/entrée floue | apprenant, cartographe, établissement |
-| 5 | **`/compte/credit`** couplé à Twin_v9 mais **niché** sous le compte | apprenant, promptologue, établissement, admin |
+| 5 | **`/compte/credit`** couplé à Twin9 mais **niché** sous le compte | apprenant, promptologue, établissement, admin |
 
 **Découvertes par les lentilles-persona (la chair du problème) :**
 
@@ -268,7 +268,7 @@ mindmap
 - **[HAUTE] Établissement** : le **budget** (sa contrainte n°1) n'a aucune tuile à vue ; le
   **run de masse** est au 3ᵉ niveau ; « Mes cohortes » désigne deux choses **opposées** selon le
   rôle (rejoindre / gérer) — et il porte les deux.
-- **[MOYENNE] Admin** : « Golden Prompt » et « Twin_v9 » vivent chacun à **deux endroits** ;
+- **[MOYENNE] Admin** : « Golden Prompt » et « Twin9 » vivent chacun à **deux endroits** ;
   collision de nom entre l'analyse consommateur `/twin9` (qu'il porte aussi) et l'onglet
   d'administration `/admin/twin9`.
 - **[HAUTE] Visiteur/apprenant** : le libellé **« Cartographie »** est ambigu (le concept ? la
@@ -299,7 +299,7 @@ vous visez est réel ; la tension est mise sur la table, pas dissimulée.
 ### M2 — Consolider l'échelle de valeur « Cartographier un texte » *(friction 1)*
 Un seul groupe, **ordonné par valeur croissante**, libellé par la valeur et non par l'objet technique :
 `Essayer — gratuit, sans compte` → `Cartographier mes écrits — standard` (ex-« Lancer un run ») →
-`Analyse approfondie — premium` (Twin_v9). Badges *gratuit / standard / premium*. L'échelle se lit
+`Analyse approfondie — premium` (Twin9). Badges *gratuit / standard / premium*. L'échelle se lit
 d'un coup d'œil au lieu d'être éclatée sur trois profondeurs et trois rôles.
 
 ### M3 — Rétrograder « Mon portfolio » *(friction 2)*
@@ -315,7 +315,7 @@ Dissoudre les trois « Mon… » : **« Ma cartographie »** = ce que je *produi
 qui je *suis* et ce que je *paie*. « Mon compte » redevient une **ancre d'en-tête** distincte.
 
 ### M6 — Promouvoir « Crédit & factures » *(friction 5)*
-Sous-entrée **visible** de Mon compte **ET** lien contextuel depuis la page Twin_v9 (le lieu de
+Sous-entrée **visible** de Mon compte **ET** lien contextuel depuis la page Twin9 (le lieu de
 dépense). Découvrable depuis l'identité **et** depuis le point de consommation, sans dupliquer la route.
 
 ### M7 — Donner un domicile aux orphelins *(frictions découvertes)*
@@ -330,7 +330,7 @@ dépense). Découvrable depuis l'identité **et** depuis le point de consommatio
 - « Espace cartographe » → **« Ma file de relecture »** (la tâche n°1 nommée au niveau 1).
 - Établissement : **budget à vue**, **« Voir la cartographie »** (pas « Documents ») ; distinguer
   **« Rejoindre une cohorte »** (apprenant) de **« Gérer mes cohortes »** (établissement).
-- Admin : Golden Prompt à **un seul** domicile ; onglet « Twin_v9 » → **« Supervision Twin_v9 »**
+- Admin : Golden Prompt à **un seul** domicile ; onglet « Twin9 » → **« Supervision Twin9 »**
   (lève la collision avec l'analyse consommateur) ; gouvernance dans sa **propre** famille.
 - Promptologue : **« Éditeur »** et **« Nouveau paquet »** entrent dans la sous-nav de l'atelier.
 
@@ -386,7 +386,7 @@ flowchart TD
   ADM --> a_gol["#/admin/golden · Golden Prompt"]
   ADM --> a_reg["#/admin/reglages · Réglages"]
   ADM --> a_cfg["#/admin/config · Configuration serveur"]
-  ADM --> a_t9["#/admin/twin9 · Supervision Twin_v9"]
+  ADM --> a_t9["#/admin/twin9 · Supervision Twin9"]
 
   root --> CPT["Mon compte · tous — ancre d'en-tête"]
   CPT --> m_prof["#/compte · Profil et rôles"]
@@ -442,7 +442,7 @@ flowchart TD
 |---|---|
 | 2 familles : Découvrir / Mon travail (fourre-tout) | 7 familles **par intention**, role-additives |
 | Rôles empilés pêle-mêle dans « Mon travail » | 1 famille = 1 but ; l'entrée du rôle est **nommée par sa tâche** |
-| « Lancer un run », « Espace cartographe », « Twin_v9 » (objets/rôles) | « Cartographier mes écrits », « Ma file de relecture », « Analyse approfondie » (buts) |
+| « Lancer un run », « Espace cartographe », « Twin9 » (objets/rôles) | « Cartographier mes écrits », « Ma file de relecture », « Analyse approfondie » (buts) |
 | Portfolio, formation, crédit **dupliqués** ou **nichés** | portfolio = étape ; formation = 1 domicile ; crédit = promu + contextualisé |
 | Employeur & épistémiarque **sans domicile** | employeur = vue partagée assainie ; épistémiarque = « Faire évoluer » |
 

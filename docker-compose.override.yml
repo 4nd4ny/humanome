@@ -9,6 +9,6 @@ services:
       DEMO_PROVIDER: mock
       DEMO_PER_IP_PER_HOUR: 500
       # Passthrough (VALUE stays in the shell, never here) — lets the local
-      # Twin_v9 real-call smoke reach Anthropic: `ANTHROPIC_API_KEY=… docker
+      # Twin9 real-call smoke reach Anthropic: `ANTHROPIC_API_KEY=… docker
       # compose up -d`. Empty by default, so the demo mock is unaffected.
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}

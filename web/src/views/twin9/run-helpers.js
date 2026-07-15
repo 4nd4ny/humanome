@@ -1,4 +1,4 @@
-// Logique pure du parcours Twin_v9 (ADR-010) — SANS React, SANS réseau, testée
+// Logique pure du parcours Twin9 (ADR-010) — SANS React, SANS réseau, testée
 // à part. Rassemble : dérivation du roster mono-famille, mapping étape→étage,
 // calcul du DEVIS à partir des métriques mock, et reconstruction de la liste des
 // journées depuis carto_evolutive.json (qui, par contrat, ne porte PAS de tableau

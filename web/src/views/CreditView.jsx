@@ -1,4 +1,4 @@
-// Crédit & factures Twin_v9 (chantier T4, ADR-010 §3) — #/compte/credit.
+// Crédit & factures Twin9 (chantier T4, ADR-010 §3) — #/compte/credit.
 //
 // Tableau de bord du crédit prépayé : solde, recharge PayPal (flux redirect),
 // suivi des dépenses mensuelles, grand-livre (compteurs uniquement, RGPD
@@ -25,6 +25,7 @@ import {
   fetchFacture,
   creerRecharge,
   capturerRecharge,
+  rembourserSolde,
   formatUsd,
 } from '../api/twin9.js'
 import FactureTwin9 from './twin9/FactureTwin9.jsx'
@@ -135,6 +136,8 @@ export default function CreditView({ deps = {} }) {
 
   const [factureSel, setFactureSel] = useState('') // « AAAA-MM » ou ''
   const [facture, setFacture] = useState({ status: 'idle', data: null, erreur: '' })
+  // Remboursement du solde À LA DEMANDE (jamais auto). idle|confirm|busy|done|error.
+  const [refund, setRefund] = useState({ status: 'idle', message: '', erreur: '' })
 
   const captureRef = useRef(false)
 
@@ -247,6 +250,21 @@ export default function CreditView({ deps = {} }) {
     }
   }
 
+  async function rembourser() {
+    setRefund({ status: 'busy', message: '', erreur: '' })
+    try {
+      const res = await rembourserSolde(callOpts)
+      setData((prev) => ({ ...prev, solde: res.solde_microusd ?? 0 }))
+      setRefund({
+        status: 'done',
+        message: `Remboursement de ${formatUsd(res.rembourse_microusd ?? 0)} envoyé vers PayPal.`,
+        erreur: '',
+      })
+    } catch (error) {
+      setRefund({ status: 'error', message: '', erreur: messageErreur(error) })
+    }
+  }
+
   async function chargerFacture(valeur) {
     setFactureSel(valeur)
     if (!valeur) {
@@ -286,7 +304,7 @@ export default function CreditView({ deps = {} }) {
     return (
       <CreditShell>
         <p role="status" className="privacy-note">
-          Le crédit prépayé Twin_v9 est rattaché à votre compte.{' '}
+          Le crédit prépayé Twin9 est rattaché à votre compte.{' '}
           <a href="#/compte">Connectez-vous</a> pour consulter votre solde, recharger et
           générer vos factures.
         </p>
@@ -350,10 +368,36 @@ export default function CreditView({ deps = {} }) {
               {formatUsd(data.solde)}
             </p>
             <p className="credit-solde-note privacy-note">
-              Crédit prépayé, en micro-dollars. Chaque appel Twin_v9 le débite au coût réel des
+              Crédit prépayé, en micro-dollars. Chaque appel Twin9 le débite au coût réel des
               tokens (majoration de service incluse) ; seuls des compteurs sont conservés, jamais
               votre contenu.
             </p>
+
+            {/* Remboursement À LA DEMANDE (jamais automatique) — la plupart des
+                gens gardent leur solde pour la prochaine cartographie. */}
+            {(data.solde > 0 && data.paypalConfigured) || refund.status === 'done' ? (
+              <div className="credit-refund">
+                {refund.status === 'done' ? (
+                  <p role="status" className="credit-refund-ok">{refund.message}</p>
+                ) : refund.status === 'confirm' ? (
+                  <div className="credit-refund-confirm">
+                    <p>Rembourser votre solde restant ({formatUsd(data.solde)}) vers PayPal ? Vous pourrez recharger à tout moment.</p>
+                    <button type="button" className="btn-primaire" onClick={rembourser}>Confirmer le remboursement</button>{' '}
+                    <button type="button" onClick={() => setRefund({ status: 'idle', message: '', erreur: '' })}>Annuler</button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    className="credit-refund-lien"
+                    disabled={refund.status === 'busy'}
+                    onClick={() => setRefund({ status: 'confirm', message: '', erreur: '' })}
+                  >
+                    {refund.status === 'busy' ? 'Remboursement en cours…' : 'Se faire rembourser le solde restant'}
+                  </button>
+                )}
+                {refund.status === 'error' ? <p role="alert" className="credit-refund-erreur">{refund.erreur}</p> : null}
+              </div>
+            ) : null}
           </section>
 
           {/* 2. RECHARGE PayPal */}
@@ -363,7 +407,7 @@ export default function CreditView({ deps = {} }) {
               <p role="status" className="credit-indispo" data-testid="recharge-indispo">
                 La recharge par carte (PayPal) est indisponible pour le moment.{' '}
                 {data.clePriveeDisponible
-                  ? 'Votre clé Anthropic privée enregistrée reste utilisable : les appels Twin_v9 ne débitent alors aucun crédit.'
+                  ? 'Votre clé Anthropic privée enregistrée reste utilisable : les appels Twin9 ne débitent alors aucun crédit.'
                   : 'Vous pouvez aussi enregistrer votre propre clé Anthropic (aucun débit de crédit) depuis votre compte.'}
               </p>
             ) : data.packs.length === 0 ? (

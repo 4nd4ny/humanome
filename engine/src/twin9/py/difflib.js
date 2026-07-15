@@ -15,7 +15,7 @@
 export class SequenceMatcher {
   /**
    * SequenceMatcher(isjunk=None, a, b, autojunk) — isjunk non porté (jamais
-   * utilisé par Twin_v9).
+   * utilisé par Twin9).
    * @param {string|string[]} a
    * @param {string|string[]} b
    * @param {{ autojunk?: boolean }} [opts]

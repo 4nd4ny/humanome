@@ -1,4 +1,4 @@
-// Section « Twin_v9 » de l'administration (ADR-010 §2/§6) — le SEUL endroit du
+// Section « Twin9 » de l'administration (ADR-010 §2/§6) — le SEUL endroit du
 // front où le CONTENU d'un gabarit du Golden Prompt est visible, et seulement
 // pour le rôle admin (la garde vit dans AdminView ; les promptologues n'y
 // accèdent PAS). Quatre blocs :
@@ -330,6 +330,8 @@ function BancEssaiBloc({ protocoles, fetchFn }) {
 function draftFromConfig(config) {
   return {
     marge: config?.marge === undefined ? '' : String(config.marge),
+    margeTwin6: config?.marge_twin6 === undefined ? '' : String(config.marge_twin6),
+    clePersoOuverte: Boolean(config?.twin9_cle_perso_ouverte),
     packs: (config?.packs ?? []).map((p) => ({
       montant_usd: String(p.montant_usd),
       libelle: p.libelle,
@@ -344,7 +346,7 @@ function draftFromConfig(config) {
 }
 
 /**
- * Réglages Twin_v9 : marge (1..5), packs (montant + libellé, ajout/suppression),
+ * Réglages Twin9 : marge (1..5), packs (montant + libellé, ajout/suppression),
  * offre de modèles (id, prix [in, out], étages). Enregistrer envoie un DIFF de
  * clés de haut niveau (le serveur fusionne puis valide la config complète ;
  * 422 hors bornes affiché tel quel).
@@ -413,6 +415,14 @@ function ReglagesBloc({ config, fetchFn, onSaved }) {
     if (!Number.isFinite(marge)) return { error: 'Marge invalide : nombre attendu.' }
     if (marge !== config.marge) patch.marge = marge
 
+    const margeTwin6 = Number.parseFloat(String(draft.margeTwin6).replace(',', '.'))
+    if (!Number.isFinite(margeTwin6)) return { error: 'Marge Twin6 invalide : nombre attendu.' }
+    if (margeTwin6 !== config.marge_twin6) patch.marge_twin6 = margeTwin6
+
+    if (Boolean(draft.clePersoOuverte) !== Boolean(config.twin9_cle_perso_ouverte)) {
+      patch.twin9_cle_perso_ouverte = Boolean(draft.clePersoOuverte)
+    }
+
     const nextPacks = draft.packs.map((p) => ({
       montant_usd: Number.parseFloat(String(p.montant_usd).replace(',', '.')),
       libelle: p.libelle.trim(),
@@ -456,7 +466,7 @@ function ReglagesBloc({ config, fetchFn, onSaved }) {
     try {
       const next = await saveTwin9Config(patch, { fetchFn })
       onSaved(next)
-      setMessage('Réglages Twin_v9 enregistrés.')
+      setMessage('Réglages Twin9 enregistrés.')
     } catch (err) {
       setError(
         err instanceof ApiError || err instanceof ApiUnavailableError
@@ -473,7 +483,7 @@ function ReglagesBloc({ config, fetchFn, onSaved }) {
       <h3>Réglages</h3>
 
       <div className="admin-field">
-        <label htmlFor="twin9-marge">Marge (multiplicateur sur les prix Anthropic)</label>
+        <label htmlFor="twin9-marge">Contribution Twin9 (multiplicateur sur les prix Anthropic)</label>
         <div className="admin-field-input">
           <input
             id="twin9-marge"
@@ -489,9 +499,45 @@ function ReglagesBloc({ config, fetchFn, onSaved }) {
           <span className="admin-field-bounds">1 – 5</span>
         </div>
       </div>
+      <div className="admin-field">
+        <label htmlFor="twin9-marge-twin6">Contribution Twin6 (cartographie ouverte)</label>
+        <div className="admin-field-input">
+          <input
+            id="twin9-marge-twin6"
+            type="number"
+            inputMode="decimal"
+            min="1"
+            max="5"
+            step="0.01"
+            value={draft.margeTwin6}
+            disabled={busy}
+            onChange={(event) => setDraft((prev) => ({ ...prev, margeTwin6: event.target.value }))}
+          />
+          <span className="admin-field-bounds">1 – 5</span>
+        </div>
+      </div>
       <p className="privacy-note">
-        Par défaut <strong>×1,10</strong> (+10 %) : couvre les frais PayPal et participe à
-        l’hébergement OVH, au nom de domaine et au budget Haiku de la démo gratuite.
+        Par défaut <strong>Twin9 ×1,20</strong> (+20 %, R&amp;D du Golden Prompt propriétaire) et{' '}
+        <strong>Twin6 ×1,10</strong> (+10 %, couverture des frais : PayPal, hébergement OVH, domaine,
+        budget Haiku de la démo). « Contribution », jamais « surtaxe ».
+      </p>
+
+      <div className="admin-field admin-field-toggle">
+        <label htmlFor="twin9-promo">
+          <input
+            id="twin9-promo"
+            type="checkbox"
+            checked={draft.clePersoOuverte}
+            disabled={busy}
+            onChange={(event) => setDraft((prev) => ({ ...prev, clePersoOuverte: event.target.checked }))}
+          />{' '}
+          Promo : Twin9 gratuit avec la clé perso de l’utilisateur
+        </label>
+      </div>
+      <p className="privacy-note">
+        Fenêtre promotionnelle : quand c’est coché, un utilisateur peut lancer Twin9{' '}
+        <strong>gratuitement avec sa propre clé API</strong> — pour goûter la qualité avant d’acheter
+        des crédits. Décoché (défaut), Twin9 s’utilise uniquement avec nos crédits (+20 %).
       </p>
 
       <h4>Packs de recharge (PayPal)</h4>
@@ -730,7 +776,7 @@ export default function Twin9Section({ fetchFn }) {
   }, [fetchFn])
 
   if (status === 'loading') {
-    return <p role="status">Chargement de Twin_v9…</p>
+    return <p role="status">Chargement de Twin9…</p>
   }
   if (status === 'error') {
     return (
@@ -742,7 +788,7 @@ export default function Twin9Section({ fetchFn }) {
 
   return (
     <section className="admin-twin9 twin9-admin">
-      <h2>Twin_v9 — Golden Prompt</h2>
+      <h2>Twin9 — Golden Prompt</h2>
       <GabaritsBloc protocoles={protocoles} fetchFn={fetchFn} onSaved={reloadProtocoles} />
       <BancEssaiBloc protocoles={protocoles} fetchFn={fetchFn} />
       {config ? <ReglagesBloc config={config} fetchFn={fetchFn} onSaved={setConfig} /> : null}

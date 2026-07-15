@@ -83,7 +83,7 @@ const FACTURE = {
   total_consomme_microusd: 5_500_000,
   total_recharges_microusd: 10_000_000,
   solde_fin_periode_microusd: 4_500_000,
-  mentions: ['Crédit prépayé consommé sur humanome.xyz (système Twin_v9).'],
+  mentions: ['Crédit prépayé consommé sur humanome.xyz (système Twin9).'],
 }
 
 const alice = { email: 'alice@exemple.fr', displayName: 'Alice', roles: ['apprenant'] }
@@ -153,6 +153,31 @@ describe('CreditView — solde et chargement', () => {
     expect(screen.getByText('Suivi des dépenses (12 derniers mois)')).toBeDefined()
     // Deux barres (2 mois) rendues.
     expect(document.querySelectorAll('.credit-barre').length).toBe(2)
+  })
+})
+
+describe('CreditView — remboursement à la demande', () => {
+  it('rembourse le solde en deux étapes (bouton → confirmer)', async () => {
+    const deps = renderCredit({
+      overrides: { 'twin9/credit/rembourser': json(200, { rembourse_microusd: 4_500_000, solde_microusd: 0 }) },
+    })
+    await screen.findByTestId('credit-solde')
+
+    // Étape 1 : le bouton (solde > 0 et PayPal configuré).
+    fireEvent.click(screen.getByRole('button', { name: 'Se faire rembourser le solde restant' }))
+    // Étape 2 : confirmation explicite (mouvement d'argent).
+    fireEvent.click(screen.getByRole('button', { name: 'Confirmer le remboursement' }))
+
+    await screen.findByText(/Remboursement de .*vers PayPal/)
+    const call = deps.fetchFn.mock.calls.find(([u]) => String(u).includes('credit/rembourser'))
+    expect(call).toBeTruthy()
+    expect(call[1].method).toBe('POST')
+  })
+
+  it('cache le remboursement quand le solde est nul', async () => {
+    renderCredit({ overrides: { 'twin9/credit': json(200, { ...CREDIT, solde_microusd: 0 }) } })
+    await screen.findByTestId('credit-solde')
+    expect(screen.queryByRole('button', { name: 'Se faire rembourser le solde restant' })).toBeNull()
   })
 })
 

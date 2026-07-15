@@ -84,11 +84,11 @@ Nous ne leur transmettons jamais votre mot de passe ni vos identifiants de
 compte, et nous ne stockons pas votre texte au-delà de ce que vous avez
 explicitement autorisé.
 
-### Analyse approfondie Twin_v9
+### Analyse approfondie Twin9
 
-L'**analyse approfondie Twin_v9** est une exception au principe « tout reste dans
+L'**analyse approfondie Twin9** est une exception au principe « tout reste dans
 le navigateur ». Contrairement aux analyses classiques (qui s'exécutent
-localement), Twin_v9 fait **transiter le texte de votre portfolio par notre
+localement), Twin9 fait **transiter le texte de votre portfolio par notre
 serveur puis par le fournisseur du modèle choisi**, le temps de l'analyse. Ce
 texte n'est **pas conservé côté serveur** : les appels sont sans état, seuls des
 compteurs (nombre d'appels, tokens, modèle — jamais de contenu) sont journalisés

@@ -24,6 +24,7 @@ describe('navGroups (sept familles d’intention)', () => {
       'Tableau de bord',
       'Mon portfolio',
       'Cartographier mes écrits',
+      'Cartographie ouverte',
       'Analyse approfondie',
       'Partager ma cartographie',
     ])
@@ -31,6 +32,7 @@ describe('navGroups (sept familles d’intention)', () => {
     const badges = Object.fromEntries(carto.items.filter((i) => i.badge).map((i) => [i.label, i.badge]))
     expect(badges).toEqual({
       'Cartographier mes écrits': 'standard',
+      'Cartographie ouverte': 'gratuit',
       'Analyse approfondie': 'premium',
     })
   })

@@ -14,7 +14,7 @@ use Humanome\Twin9\Twin9Config;
  * X-Migrate-Token import.
  *
  * SECRECY IMPERATIVE (ADR-010): every template used here is a MADE-UP test
- * fixture — no real Twin_v9 content may ever appear in tests, fixtures,
+ * fixture — no real Twin9 content may ever appear in tests, fixtures,
  * error messages or logs.
  */
 final class Twin9ProtocoleTest extends CartographeTestCase
@@ -136,7 +136,7 @@ final class Twin9ProtocoleTest extends CartographeTestCase
         self::assertSame(401, $this->request('GET', '/api/twin9/admin/protocole')->getStatusCode());
         self::assertSame(401, $this->request('GET', '/api/twin9/admin/config')->getStatusCode());
 
-        // Promptologue: 403 — the Golden Twin_v9 templates are admin-only
+        // Promptologue: 403 — the Golden Twin9 templates are admin-only
         // (ADR-010 §2), including the content read.
         $promptologue = $this->registerAs('promptologue@example.org', 'Promteur', ['promptologue']);
         self::assertSame(403, $this->as_($promptologue, 'GET', '/api/twin9/admin/protocole')->getStatusCode());
@@ -259,10 +259,12 @@ final class Twin9ProtocoleTest extends CartographeTestCase
         $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
 
         $config = self::json($this->as_($admin, 'GET', '/api/twin9/admin/config'));
-        // Margin default 1.1 (owner decision: +10 % covers PayPal fees +
-        // hosting/domain/free-demo Haiku); packs start at 10 USD so the PayPal
-        // FIXED fee stays well below the margin.
-        self::assertSame(1.1, $config['marge']);
+        // Contribution per protocole (owner decision 2026-07-15): Twin9 +20 %
+        // (proprietary R&D), Twin6 +10 % (open, cost recovery); packs start at
+        // 10 USD so the PayPal FIXED fee stays well below the margin.
+        self::assertSame(1.2, $config['marge']);
+        self::assertSame(1.1, $config['marge_twin6']);
+        self::assertFalse($config['twin9_cle_perso_ouverte']); // promo closed by default
         self::assertFalse($config['enabled']);
         self::assertSame([10, 20, 50], array_column($config['packs'], 'montant_usd'));
         self::assertSame([1, 5], $config['modeles']['claude-haiku-4-5-20251001']['prix_usd_mtok']);
@@ -275,6 +277,9 @@ final class Twin9ProtocoleTest extends CartographeTestCase
             ['marge' => 0.5],
             ['marge' => 5.1],
             ['marge' => 'deux'],
+            ['marge_twin6' => 0.5],
+            ['marge_twin6' => 5.1],
+            ['twin9_cle_perso_ouverte' => 'oui'],
             ['packs' => []],
             ['packs' => [['montant_usd' => 0.5, 'libelle' => 'trop petit']]],
             ['packs' => [['montant_usd' => 150, 'libelle' => 'trop gros']]],
@@ -288,12 +293,14 @@ final class Twin9ProtocoleTest extends CartographeTestCase
             $response = $this->as_($admin, 'PUT', '/api/twin9/admin/config', $invalid);
             self::assertSame(422, $response->getStatusCode(), json_encode($invalid));
         }
-        self::assertSame(1.1, self::json($this->as_($admin, 'GET', '/api/twin9/admin/config'))['marge']);
+        self::assertSame(1.2, self::json($this->as_($admin, 'GET', '/api/twin9/admin/config'))['marge']);
 
-        // Valid partial update persists.
-        $response = $this->as_($admin, 'PUT', '/api/twin9/admin/config', ['marge' => 2.5]);
+        // Valid partial update persists (incl. the promo toggle).
+        $response = $this->as_($admin, 'PUT', '/api/twin9/admin/config', ['marge' => 2.5, 'twin9_cle_perso_ouverte' => true]);
         self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
-        self::assertSame(2.5, self::json($this->as_($admin, 'GET', '/api/twin9/admin/config'))['marge']);
+        $after = self::json($this->as_($admin, 'GET', '/api/twin9/admin/config'));
+        self::assertSame(2.5, $after['marge']);
+        self::assertTrue($after['twin9_cle_perso_ouverte']);
     }
 
     public function testPublicViewAppliesMarginAndPaypalFlag(): void

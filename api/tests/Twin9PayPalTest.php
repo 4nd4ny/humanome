@@ -160,8 +160,15 @@ final class Twin9PayPalTest extends CartographeTestCase
     // Capture: credit, idempotence, refusal cases
     // ==================================================================
 
+    /** The order was created by this user (recorded at /creer, ownership binding). */
+    private function seedOrder(string $orderId): void
+    {
+        (new CreditService(Db::get()))->recordPaypalOrder($this->user['id'], $orderId);
+    }
+
     public function testCapturerCreditsCapturedAmountIdempotently(): void
     {
+        $this->seedOrder('ORDER-7');
         $this->queueToken();
         $this->queueCaptureCompleted('ORDER-7', '10.00');
 
@@ -203,6 +210,7 @@ final class Twin9PayPalTest extends CartographeTestCase
 
     public function testCapturerNotApprovedAnswers422(): void
     {
+        $this->seedOrder('ORDER-9');
         $this->queueToken();
         $this->http->queueResponse(['status' => 422, 'body' => json_encode([
             'name' => 'UNPROCESSABLE_ENTITY',
@@ -215,6 +223,23 @@ final class Twin9PayPalTest extends CartographeTestCase
         self::assertSame(0, (new CreditService(Db::get()))->balance($this->user['id']));
     }
 
+    public function testCapturerRejectsOrderNotOwnedByCaller(): void
+    {
+        // Order created by another account; the current user must NOT be able to
+        // capture it and credit themselves (2026-07-15 review, misattribution).
+        $mallory = $this->registerAs('mallory@example.org', 'Mallory', ['apprenant']);
+        (new CreditService(Db::get()))->recordPaypalOrder($mallory['id'], 'ORDER-FOREIGN');
+
+        $response = $this->as_($this->user, 'POST', '/api/twin9/credit/paypal/capturer', ['order_id' => 'ORDER-FOREIGN']);
+        self::assertSame(403, $response->getStatusCode(), (string) $response->getBody());
+        self::assertSame([], $this->http->requests, 'nothing reaches PayPal for a foreign order');
+        self::assertSame(0, (new CreditService(Db::get()))->balance($this->user['id']));
+
+        // An entirely unknown order (never created via /creer) is refused too.
+        $unknown = $this->as_($this->user, 'POST', '/api/twin9/credit/paypal/capturer', ['order_id' => 'ORDER-UNKNOWN']);
+        self::assertSame(403, $unknown->getStatusCode());
+    }
+
     public function testCapturerValidatesOrderId(): void
     {
         foreach ([[], ['order_id' => ''], ['order_id' => 'pas valide !'], ['order_id' => str_repeat('A', 65)]] as $body) {
@@ -222,6 +247,51 @@ final class Twin9PayPalTest extends CartographeTestCase
             self::assertSame(422, $response->getStatusCode(), json_encode($body));
         }
         self::assertSame([], $this->http->requests);
+    }
+
+    // ==================================================================
+    // Refund on request (POST /api/twin9/credit/rembourser)
+    // ==================================================================
+
+    public function testRembourserRendLeSoldeContreLaCapture(): void
+    {
+        // A $10 top-up was captured (CAP-R), then $3 spent → balance $7.
+        $credits = new CreditService(Db::get());
+        $credits->recordCapture($this->user['id'], 'CAP-R', 'ORDER-R', 10_000_000);
+        $credits->topup($this->user['id'], 10_000_000, 'ORDER-R', 'Recharge PayPal');
+        $credits->debit($this->user['id'], 3_000_000, 'twin6/cartographie', 'claude-sonnet-5');
+        self::assertSame(7_000_000, $credits->balance($this->user['id']));
+
+        // PayPal: OAuth token then a COMPLETED refund.
+        $this->queueToken();
+        $this->http->queueResponse(['status' => 201, 'body' => json_encode(['id' => 'REF-1', 'status' => 'COMPLETED'], JSON_THROW_ON_ERROR)]);
+
+        $response = $this->as_($this->user, 'POST', '/api/twin9/credit/rembourser', []);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+        $body = self::json($response);
+        self::assertSame(7_000_000, $body['rembourse_microusd']); // $7.00 refunded
+        self::assertSame(0, $body['solde_microusd']);
+
+        // Refund hit the right capture with the right 2-decimal amount + idempotency key.
+        $refund = $this->http->requests[1]; // [0] = OAuth token
+        self::assertSame('https://api-m.sandbox.paypal.com/v2/payments/captures/CAP-R/refund', $refund['url']);
+        self::assertSame('rf-' . $this->user['id'] . '-CAP-R-0', $refund['headers']['paypal-request-id']);
+        self::assertSame(['value' => '7.00', 'currency_code' => 'USD'], json_decode((string) $refund['body'], true)['amount']);
+
+        // Ledger: a 'refund' event, capture marked refunded.
+        $events = $credits->events($this->user['id']);
+        self::assertSame('refund', $events[0]['kind']);
+        self::assertSame(-7_000_000, $events[0]['amount_microusd']);
+        self::assertSame(0, $credits->soldeRemboursable($this->user['id']));
+    }
+
+    public function testRembourserRefuseSansSoldeRemboursable(): void
+    {
+        // Admin credit is NOT PayPal-funded → not refundable (no capture room).
+        (new CreditService(Db::get()))->adjust($this->user['id'], 5_000_000, 'crédit promo admin');
+        $response = $this->as_($this->user, 'POST', '/api/twin9/credit/rembourser', []);
+        self::assertSame(422, $response->getStatusCode());
+        self::assertSame([], $this->http->requests, 'no PayPal call when nothing is refundable');
     }
 
     // ==================================================================

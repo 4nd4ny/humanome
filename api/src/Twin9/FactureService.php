@@ -135,7 +135,7 @@ final class FactureService
             'total_recharges_microusd' => $totalRecharges,
             'solde_fin_periode_microusd' => $soldeFin,
             'mentions' => [
-                'Crédit prépayé consommé sur humanome.xyz (système Twin_v9).',
+                'Crédit prépayé consommé sur humanome.xyz (système Twin9).',
                 'Les prix incluent la majoration de service couvrant les frais '
                     . 'de paiement et l’infrastructure de la plateforme.',
                 'Paiements traités par PayPal — aucune donnée bancaire n’est '

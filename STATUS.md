@@ -7,6 +7,23 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-15 — **Thème sombre + épingle du menu persistante.** (1) **Thème sombre** complet :
+  tout `global.css` passe par des tokens sémantiques (`:root` = clair) ; deux blocs redéfinissent
+  ces valeurs en sombre — `@media (prefers-color-scheme: dark) :root:not([data-theme='light'])`
+  (suit le système) et `:root[data-theme='dark']` (choix explicite qui prime). ~50 couleurs
+  codées en dur tokenisées (statuts ok/warn/danger/info, badges, ombres, voile) via script
+  protégeant les lignes de définition. La **visualisation** (sunburst + heatmap + timeline) reste
+  sur une surface CLAIRE `--viz-surface` dans les deux thèmes (panneau graphique encadré : la
+  géométrie du moteur — secteurs gris jusqu'au noir, dégradé central pâle — n'a pas à être
+  réécrite) ; ses textes/liserés utilisent `--viz-ink*` (sombres partout). Bouton **bascule
+  soleil/lune** dans la grappe d'actions ; script **anti-FOUC** dans `index.html` (pose
+  `data-theme` avant le paint si un choix est stocké) ; util `src/lib/theme.js` (localStorage,
+  `matchMedia` gardé, abonnement au système tant qu'aucun choix). (2) **Épingle du menu** :
+  l'épinglage (punaise du panneau) est désormais **persisté** (`localStorage`) et, sur grand écran
+  (≥ 921 px), **docke** le tiroir en décalant `.app-main` pour ne pas masquer le contenu.
+  Vérifié au navigateur en clair ET sombre (accueil, merge/viz encadrée, journée, menu, badges,
+  toggle, persistance) ; revue adversariale contraste ; tests web 549+.
+
 - 2026-07-14 — **En-tête épuré : grappe d'actions flottante + tiroir de nav depuis la
   gauche + épinglage + déconnexion rapide.** `.app-header` perd la marque et son fond
   (coquille invisible, juste une réserve de hauteur) ; `.app-header-actions` (aide + burger)
@@ -56,7 +73,7 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
   deux-clics, navigation réelle, armé+survol post-correctif). Tests web 535. Non déployé
   (front seulement, `npm run build` OK + deploy à la prochaine fenêtre).
 
-- 2026-07-13 — **Twin_v9 (le vrai Golden Prompt) porté et intégré (ADR-010).** Système
+- 2026-07-13 — **Twin9 (le vrai Golden Prompt) porté et intégré (ADR-010).** Système
   multi-agents Python (~4400 l., 29 gabarits, ~3000 appels/run) rendu opérationnel sur le
   site. (T1) specs de portage bit-à-bit ; (T2) **portage JS `engine/src/twin9/` avec parité
   OCTET-À-OCTET** contre 6 oracles mock Python (0 écart) ; (T3) serveur : gabarits secrets en
@@ -75,7 +92,7 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
   réserve→réconciliation = coût réel). Suites : PHP 373, engine 903, web 520. **Reste avant mise
   en service (utilisateur)** : identifiants PayPal REST (fournis plus tard) ; import des gabarits
   en prod (`scripts/twin9/import-protocole.mjs`, X-Migrate-Token) qui active la fonctionnalité —
-  décision délibérée de l'utilisateur. Source `Twin_v9/` + gabarits = confidentiels, gitignorés.
+  décision délibérée de l'utilisateur. Source `Twin9/` + gabarits = confidentiels, gitignorés.
 
 - 2026-07-13 — **Phase UX post-v1 (demande utilisateur, 6 points) : trois chantiers livrés.**
   **(B) Navigation adaptée au rôle + aide contextuelle.** `web/src/nav.js` = source unique

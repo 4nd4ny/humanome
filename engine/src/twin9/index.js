@@ -1,4 +1,4 @@
-// Port de twin9.py `executer()` — l'ORCHESTRATEUR du pipeline Twin_v9.
+// Port de twin9.py `executer()` — l'ORCHESTRATEUR du pipeline Twin9.
 // Enchaîne les modules du package dans l'ordre STRICT de twin9.py, SANS
 // argparse, SANS système de fichiers et SANS API Node : le moteur tourne en
 // navigateur. Parité bit-à-bit avec le mode mock Python (spec-contrats.md §9 =

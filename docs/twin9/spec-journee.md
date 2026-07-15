@@ -1,4 +1,4 @@
-# Spec de portage — `aurora/journee.py` + `aurora/heatmap.py` (Twin_v9)
+# Spec de portage — `aurora/journee.py` + `aurora/heatmap.py` (Twin9)
 
 > Contrat de portage JavaScript. Objectif : parité **bit-à-bit** avec le Python en mode
 > mock (`--salt`). Toute divergence d'itération, d'arrondi, de formule ou de format de

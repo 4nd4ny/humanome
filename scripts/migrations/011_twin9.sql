@@ -1,4 +1,4 @@
--- 011 — T3a (ADR-010): Twin_v9 server foundations — secret prompt templates
+-- 011 — T3a (ADR-010): Twin9 server foundations — secret prompt templates
 -- stored in DATABASE (never in the repo, never sent to the browser) and the
 -- prepaid credit ledger (PayPal top-ups, per-call debits).
 --

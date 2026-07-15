@@ -1,4 +1,4 @@
-// Section « Twin_v9 » (chantier T4-ADMIN, ADR-010) : le SEUL endroit du front
+// Section « Twin9 » (chantier T4-ADMIN, ADR-010) : le SEUL endroit du front
 // où le contenu d'un gabarit est visible, réservé au rôle admin. On vérifie les
 // quatre blocs (liste + édition/versionnage, banc d'essai, réglages bornés,
 // table des comptes), la dépêche depuis AdminView, et la garde de rôle.
@@ -42,7 +42,9 @@ const PROTOCOLES = {
 }
 
 const CONFIG = {
-  marge: 1.1,
+  marge: 1.2,
+  marge_twin6: 1.1,
+  twin9_cle_perso_ouverte: false,
   packs: [{ montant_usd: 10, libelle: 'Pack découverte — 10 $' }],
   modeles: {
     'modele-fictif-a': { prix_usd_mtok: [1, 5], etages: ['taggers', 'rapide'] },
@@ -180,11 +182,28 @@ describe('Twin9Section — réglages', () => {
       },
     })
 
-    fireEvent.change(screen.getByLabelText(/Marge/), { target: { value: '9' } })
+    fireEvent.change(screen.getByLabelText(/Contribution Twin9/), { target: { value: '9' } })
     fireEvent.click(screen.getByRole('button', { name: 'Enregistrer les réglages' }))
 
     const alert = await screen.findByRole('alert')
     expect(alert.textContent).toMatch(/hors bornes/)
+  })
+
+  it('permet d’activer la promo (Twin9 gratuit en clé perso) via un diff', async () => {
+    let putBody = null
+    await renderReady({
+      ...baseRoutes,
+      'PUT api/twin9/admin/config': (init) => {
+        putBody = JSON.parse(init.body)
+        return jsonResponse(200, { ...CONFIG, twin9_cle_perso_ouverte: true })
+      },
+    })
+
+    fireEvent.click(screen.getByLabelText(/Twin9 gratuit avec la clé perso/))
+    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer les réglages' }))
+
+    await screen.findByText('Réglages Twin9 enregistrés.')
+    expect(putBody).toEqual({ twin9_cle_perso_ouverte: true })
   })
 
   it('signale quand il n’y a rien à enregistrer (aucun PUT)', async () => {
@@ -213,7 +232,7 @@ describe('Twin9Section — réglages', () => {
     fireEvent.change(libelles[libelles.length - 1], { target: { value: 'Pack test' } })
     fireEvent.click(screen.getByRole('button', { name: 'Enregistrer les réglages' }))
 
-    await screen.findByText('Réglages Twin_v9 enregistrés.')
+    await screen.findByText('Réglages Twin9 enregistrés.')
     expect(putBody).toEqual({
       packs: [
         { montant_usd: 10, libelle: 'Pack découverte — 10 $' },
@@ -238,17 +257,17 @@ describe('AdminView — dépêche twin9 et garde de rôle', () => {
   const admin = async () => ({ user: { id: 1, email: 'root@b.fr', displayName: 'Root', roles: ['admin'] } })
   const apprenant = async () => ({ user: { id: 2, email: 'a@b.fr', displayName: 'Maya', roles: ['apprenant'] } })
 
-  it('rend la section Twin_v9 pour un admin', async () => {
+  it('rend la section Twin9 pour un admin', async () => {
     const fetchFn = routedFetch(baseRoutes)
     render(<AdminView section="twin9" deps={{ fetchMeFn: admin, fetchFn }} />)
-    await screen.findByRole('heading', { name: /Twin_v9 — Golden Prompt/ })
+    await screen.findByRole('heading', { name: /Twin9 — Golden Prompt/ })
     expect(fetchFn).toHaveBeenCalled()
   })
 
-  it('ne montre RIEN de Twin_v9 à un non-admin', async () => {
+  it('ne montre RIEN de Twin9 à un non-admin', async () => {
     render(<AdminView section="twin9" deps={{ fetchMeFn: apprenant }} />)
     await screen.findByTestId('admin-reserve')
-    expect(screen.queryByText(/Twin_v9 — Golden Prompt/)).toBeNull()
+    expect(screen.queryByText(/Twin9 — Golden Prompt/)).toBeNull()
     expect(screen.queryByText(/Contenu confidentiel/i)).toBeNull()
   })
 })

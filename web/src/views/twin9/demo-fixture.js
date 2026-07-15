@@ -1,4 +1,4 @@
-// Jeu de démonstration Twin_v9 — permet de dérouler TOUT le parcours (devis,
+// Jeu de démonstration Twin9 — permet de dérouler TOUT le parcours (devis,
 // run mock complet, résultats) SANS serveur ni LLM (moteur en mode mock, ADR-010
 // §3). Rien ici n'est confidentiel : référentiel réduit fictif, portfolio fictif,
 // réglages de pipeline non secrets (les GABARITS restent côté serveur et ne sont
@@ -64,7 +64,7 @@ pour vérifier que chaque affirmation renvoyait à une trace concrète.
 
 /**
  * Réglages de pipeline non secrets pour la démonstration (mêmes clés que le
- * config.json de Twin_v9 ; en production ils viennent de meta.pipeline, édités
+ * config.json de Twin9 ; en production ils viennent de meta.pipeline, édités
  * par l'admin). Le mock ignore les gabarits : seuls le routage et les étages
  * comptent.
  */

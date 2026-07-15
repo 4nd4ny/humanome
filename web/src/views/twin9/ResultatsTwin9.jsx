@@ -1,4 +1,4 @@
-// Rendu des résultats d'un run Twin_v9 depuis carto_evolutive.json (contrat
+// Rendu des résultats d'un run Twin9 depuis carto_evolutive.json (contrat
 // DONNEES.md). Le narratif (synthèse kairos, rapport du Rapporteur, histoires)
 // est du markdown produit par le modèle : il PASSE par renderMarkdown (mini
 // parseur maison + DOMPurify, ADR-007) avant tout dangerouslySetInnerHTML — aucun
@@ -50,7 +50,7 @@ export default function ResultatsTwin9({ carto, cartoStr, demonstration = false,
   const nomFichier = `carto_evolutive_${carto.journal_id ?? 'twin9'}.json`
 
   return (
-    <section className="twin9-resultats" aria-label="Résultats de l’analyse Twin_v9">
+    <section className="twin9-resultats" aria-label="Résultats de l’analyse Twin9">
       {demonstration ? (
         <p role="note" className="twin9-demo-banner" data-testid="resultats-demo">
           Démonstration à <strong>données fictives</strong> — ceci n’est pas l’analyse d’un
@@ -59,7 +59,7 @@ export default function ResultatsTwin9({ carto, cartoStr, demonstration = false,
       ) : null}
 
       <header className="twin9-resultats-tete">
-        <h2>Cartographie évolutive — {carto.journal_id ?? 'Twin_v9'}</h2>
+        <h2>Cartographie évolutive — {carto.journal_id ?? 'Twin9'}</h2>
         <p className="twin9-resultats-meta">
           {periode.n_journees != null ? `${periode.n_journees} journée(s)` : null}
           {periode.debut ? ` · du ${periode.debut} au ${periode.fin ?? periode.debut}` : null}

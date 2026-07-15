@@ -1,6 +1,6 @@
-# Spec de portage Twin_v9 — CONTRATS EXTERNES
+# Spec de portage Twin9 — CONTRATS EXTERNES
 
-> Contrat du porteur JavaScript. Source : `Twin_v9/` (Python, LECTURE SEULE).
+> Contrat du porteur JavaScript. Source : `Twin9/` (Python, LECTURE SEULE).
 > Couvre : PROTOCOLE.md, l'inventaire des gabarits `protocole/**/*.md`, `config.json`,
 > `models.json`, le contrat viewer `window.CARTO9` (DONNEES.md + carto_evolutive.html),
 > les invariants de `tests/tests.py`, `bench9.py`, et l'orchestrateur `twin9.py` (`executer()`,

@@ -1,4 +1,4 @@
-// Substitut navigateur du système de fichiers de Twin_v9 (journee.py écrit
+// Substitut navigateur du système de fichiers de Twin9 (journee.py écrit
 // caches LLM, calques et carto_jour.json sur disque) : un STORE INJECTABLE
 // à sémantique Python. Deux magasins :
 //   - artefacts : chemins POSIX → texte (caches .md) ou VALEUR JSON (les

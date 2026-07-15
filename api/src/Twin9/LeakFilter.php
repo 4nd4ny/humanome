@@ -18,17 +18,23 @@ namespace Humanome\Twin9;
  *     marks are dropped, so « m-o-t-.-m-o-t » interpolation and zero-width /
  *     combining-mark tricks no longer break the run.
  * Any shared run of >= MIN_CARS normalized characters between the CONFIDENTIAL
- * template (rendered with EMPTY variables) and the output is redacted.
+ * material and the output is redacted. The caller builds the index from the
+ * template rendered with the learner's variables EMPTY but the confidential
+ * FICHES INJECTED (routes/twin9.php, 2026-07-15 review) — so the fiche bodies
+ * are backstopped, while the learner's own payload (journal text the model
+ * legitimately quotes back) never enters the index and is never redacted.
  *
- * What is NOT indexed: the template is rendered with empty variables, so the
- * learner's own payload (journal text the model legitimately quotes back) never
- * enters the index and is never redacted.
- *
- * Residual (documented, ADR-010 §2): cross-SCRIPT homoglyphs (e.g. Cyrillic
- * « а » for Latin « a ») are not folded by NFKC and could still slip a
- * character past this backstop — which is why the in-template instructions,
- * not this filter, are the primary control, and the leak COUNT is never
- * returned to the client (it would be a tuning oracle).
+ * Residuals (documented, ADR-010 §2 — this is a backstop, NOT the control):
+ *   - cross-SCRIPT homoglyphs (e.g. Cyrillic « а » for Latin « a ») are not
+ *     folded by NFKC and could slip a character past the run matcher;
+ *   - any CONTENT-PRESERVING TRANSFORM (Base64, ROT13, reversal, spelling-out,
+ *     translation) changes the character stream and thus evades a substring
+ *     matcher entirely (2026-07-15 adversarial review). Defeating arbitrary
+ *     encodings is not achievable with a verbatim filter — which is precisely
+ *     why the in-template anti-injection instructions are the PRIMARY control,
+ *     and the leak COUNT is never returned (it would be a tuning oracle).
+ * The OPEN Twin6 protocole carries no secret, so it runs WITHOUT this filter;
+ * only the confidential Twin9 path is filtered.
  *
  * Redaction splices the ORIGINAL output by byte offsets: everything outside a
  * redacted run (formatting, JSON syntax, the user's quotes) survives untouched.

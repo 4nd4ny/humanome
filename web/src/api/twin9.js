@@ -1,5 +1,5 @@
-// Client de l'API Twin_v9 (ADR-010) — le SEUL point où le front parle au
-// serveur Twin_v9. Les gabarits restent côté serveur : le front n'envoie que
+// Client de l'API Twin9 (ADR-010) — le SEUL point où le front parle au
+// serveur Twin9. Les gabarits restent côté serveur : le front n'envoie que
 // {etape, variables} et ne reçoit que la sortie du modèle (déjà filtrée).
 //
 // apiFetch (api/client.js) gère la session (cookie), le CSRF et la dégradation
@@ -78,6 +78,19 @@ export function capturerRecharge(orderId, options) {
     ...options,
     method: 'POST',
     body: { order_id: orderId },
+  })
+}
+
+/**
+ * Rembourse le solde inutilisé À LA DEMANDE (jamais automatique) vers PayPal.
+ * Sans montant : rembourse tout le solde remboursable. -> {rembourse_microusd,
+ * solde_microusd}.
+ */
+export function rembourserSolde(options) {
+  return apiFetch('twin9/credit/rembourser', {
+    ...options,
+    method: 'POST',
+    body: {},
   })
 }
 

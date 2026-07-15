@@ -1,4 +1,4 @@
-// Sémantiques de chaînes Python (CPython 3) nécessaires au noyau Twin_v9 :
+// Sémantiques de chaînes Python (CPython 3) nécessaires au noyau Twin9 :
 // str.isspace()/strip()/splitlines(), classe regex \s Python, universal
 // newlines, et index par POINTS DE CODE (sémantique len/slice Python — les
 // offsets persistés dans les artefacts sont en points de code, pas en unités

@@ -103,11 +103,12 @@ final class PayPalClient
     /**
      * Capture an approved order (server-to-server, after the redirect back).
      *
-     * @return array{status: string, montant_usd: string} status 'COMPLETED'
-     *               and the CAPTURED amount (PayPal's figure — never a
-     *               client-provided one) on success. An order PayPal reports
-     *               as already captured resolves through getOrder() so a
-     *               replayed capture converges on the same answer.
+     * @return array{status: string, montant_usd: string, capture_id: string}
+     *               status 'COMPLETED', the CAPTURED amount (PayPal's figure —
+     *               never a client-provided one), and the CAPTURE id (needed to
+     *               refund later — refunds go against a capture, not an order).
+     *               An order PayPal reports as already captured resolves through
+     *               getOrder() so a replayed capture converges on the same answer.
      *
      * @throws Twin9Exception 422 when the buyer has not approved the order
      */
@@ -125,6 +126,7 @@ final class PayPalClient
             return [
                 'status' => (string) ($body['status'] ?? ''),
                 'montant_usd' => self::capturedAmount($body),
+                'capture_id' => self::captureId($body),
             ];
         }
 
@@ -149,7 +151,7 @@ final class PayPalClient
     /**
      * Read an order (already-captured replay path).
      *
-     * @return array{status: string, montant_usd: string}
+     * @return array{status: string, montant_usd: string, capture_id: string}
      */
     public function getOrder(string $orderId): array
     {
@@ -158,6 +160,52 @@ final class PayPalClient
         return [
             'status' => (string) ($body['status'] ?? ''),
             'montant_usd' => self::capturedAmount($body),
+            'capture_id' => self::captureId($body),
+        ];
+    }
+
+    /**
+     * Refund part (or all) of a capture (ADR-010 §3, remboursement à la demande).
+     * Idempotent via PayPal-Request-Id: replaying the SAME (capture, amount)
+     * request never moves money twice. Refunds go to the buyer's original
+     * PayPal funding source.
+     *
+     * @param string $captureId  the capture to refund against
+     * @param string $amountUsd  PayPal decimal string, e.g. '7.30'
+     * @param string $requestId  deterministic idempotency key
+     * @return array{status: string, refund_id: string}
+     * @throws Twin9Exception 502 on a PayPal error
+     */
+    public function refundCapture(string $captureId, string $amountUsd, string $requestId): array
+    {
+        $token = $this->accessToken();
+        $payload = json_encode(
+            ['amount' => ['value' => $amountUsd, 'currency_code' => 'USD']],
+            JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES,
+        );
+        try {
+            $response = $this->http->request(
+                'POST',
+                $this->baseUrl . '/v2/payments/captures/' . rawurlencode($captureId) . '/refund',
+                [
+                    'authorization' => 'Bearer ' . $token,
+                    'content-type' => 'application/json',
+                    'paypal-request-id' => $requestId,
+                ],
+                $payload,
+                $this->timeoutSeconds,
+            );
+        } catch (HttpClientException) {
+            throw new Twin9Exception('Le service PayPal est injoignable, réessayez plus tard.', 502);
+        }
+        if ($response['status'] < 200 || $response['status'] >= 300) {
+            throw new Twin9Exception('Le remboursement PayPal a échoué, réessayez plus tard.', 502);
+        }
+        $body = self::decode($response['body']);
+
+        return [
+            'status' => (string) ($body['status'] ?? ''),
+            'refund_id' => (string) ($body['id'] ?? ''),
         ];
     }
 
@@ -261,5 +309,15 @@ final class PayPalClient
             ?? '0';
 
         return \is_string($value) ? $value : '0';
+    }
+
+    /** Capture id of a capture/order body (''  when absent). */
+    private static function captureId(array $body): string
+    {
+        $unit = (array) (((array) ($body['purchase_units'] ?? []))[0] ?? []);
+        $capture = (array) ((((array) (((array) ($unit['payments'] ?? []))['captures'] ?? []))[0]) ?? []);
+        $id = $capture['id'] ?? '';
+
+        return \is_string($id) ? $id : '';
     }
 }

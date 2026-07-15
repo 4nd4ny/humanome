@@ -8,7 +8,7 @@ use Humanome\Env;
 use Humanome\Packages\SettingsRepository;
 
 /**
- * Twin_v9 platform configuration, persisted as JSON in the `settings` table
+ * Twin9 platform configuration, persisted as JSON in the `settings` table
  * (key 'twin9_config', SettingsRepository) — ADR-010 §3/§6.
  *
  * Shape (all keys optional in storage, defaults below):
@@ -19,7 +19,7 @@ use Humanome\Packages\SettingsRepository;
  *   enabled   bool — false until the templates have been imported
  *   appels_par_minute  int, per-user rate limit of POST /api/twin9/appel
  *             (1..600, default 30 — T3b)
- *   pipeline  free-form Twin_v9 protocol settings imported from config.json
+ *   pipeline  free-form Twin9 protocol settings imported from config.json
  *             (seuils_consensus, jury, juge_leger, merge, scan_global) — the
  *             ALGORITHM's knobs, not secret (ADR-010 §2 residual), consumed
  *             by the JS engine.
@@ -56,13 +56,21 @@ final class Twin9Config
     public static function defaults(): array
     {
         return [
-            // Owner decision (2026-07-13): +10 % over Anthropic list prices —
-            // covers the PayPal fees and contributes to the OVH hosting, the
-            // domain, and the Haiku budget of the free public demo. NOTE the
-            // PayPal FIXED fee (≈ 0.30-0.49 USD per capture) weighs ~9 % of a
-            // 5 USD pack on its own: small packs barely break even, which is
-            // why the default packs start at 10 USD (see 'packs' below).
-            'marge' => 1.1,
+            // Owner decision (2026-07-15): CONTRIBUTION per protocole. Twin9 is
+            // the proprietary Golden Prompt (R&D) → +20 %; Twin6 is open source
+            // → +10 % (operational cost recovery: PayPal fee + OVH/domain +
+            // Haiku demo). `marge` is the Twin9 rate (the /appel path is Twin9);
+            // `marge_twin6` the open-cartography rate. Both « contribution »,
+            // never « surtaxe ». The PayPal FIXED fee (≈ 0.30-0.49 USD/capture)
+            // is why packs start at 10 USD (see 'packs').
+            'marge' => 1.2,
+            'marge_twin6' => 1.1,
+            // PROMO (owner idea 2026-07-15): when true, a run with the user's
+            // OWN API key may use Twin9 for FREE (no contribution) — a
+            // promotional window to let people feel the quality before buying
+            // tokens. Off by default: Twin9 own-key is otherwise refused (the
+            // proprietary prompt only travels via our metered/credited path).
+            'twin9_cle_perso_ouverte' => false,
             'packs' => [
                 ['montant_usd' => 10, 'libelle' => 'Pack découverte — 10 $'],
                 ['montant_usd' => 20, 'libelle' => 'Pack standard — 20 $'],
@@ -180,9 +188,23 @@ final class Twin9Config
         $this->update(['enabled' => $enabled]);
     }
 
-    public function marge(): float
+    /** Contribution margin for a protocole: twin6 → marge_twin6, else twin9 marge. */
+    public function marge(string $protocole = 'twin9'): float
     {
-        return (float) $this->read()['marge'];
+        $config = $this->read();
+
+        return $protocole === 'twin6'
+            ? (float) $config['marge_twin6']
+            : (float) $config['marge'];
+    }
+
+    /**
+     * PROMO flag: may a run with the user's OWN API key use Twin9 for free?
+     * Off by default (Twin9 own-key refused); an admin opens it for a window.
+     */
+    public function clePersoOuverte(): bool
+    {
+        return (bool) $this->read()['twin9_cle_perso_ouverte'];
     }
 
     public function appelsParMinute(): int
@@ -240,7 +262,7 @@ final class Twin9Config
      * per token and would overbill fractional prices by up to 33 %).
      * USD/Mtok × tokens = micro-USD exactly (1e6/1e6). Null: unknown model.
      */
-    public function coutMicrousd(string $modelId, int $tokensIn, int $tokensOut): ?int
+    public function coutMicrousd(string $modelId, int $tokensIn, int $tokensOut, string $protocole = 'twin9'): ?int
     {
         $config = $this->read();
         $modele = $config['modeles'][$modelId] ?? null;
@@ -248,7 +270,7 @@ final class Twin9Config
             return null;
         }
         [$in, $out] = $modele['prix_usd_mtok'];
-        $marge = (float) $config['marge'];
+        $marge = $protocole === 'twin6' ? (float) $config['marge_twin6'] : (float) $config['marge'];
 
         return (int) ceil($tokensIn * (float) $in * $marge)
             + (int) ceil($tokensOut * (float) $out * $marge);
@@ -275,19 +297,22 @@ final class Twin9Config
     /**
      * WORST-CASE reservation in micro-USD, held atomically BEFORE the call
      * (security review finding A — closes the balance race + unbounded
-     * overdraft). Over-estimates BOTH sides so the real cost can only be lower:
-     *   - input tokens ≈ ceil(chars / 3) (denser than the chars/4 rule of
-     *     thumb, to cover French/multibyte tokenization),
+     * overdraft). Over-estimates BOTH sides so the real cost can ONLY be lower,
+     * which makes the post-call reconciliation a pure REFUND (never a further
+     * debit that could drive the balance negative — 2026-07-15 review):
+     *   - input tokens = prompt BYTE length. A BPE tokenizer never emits more
+     *     tokens than there are UTF-8 bytes (worst case = 1-token-per-byte
+     *     fallback), so bytes is a HARD upper bound on real input_tokens —
+     *     unlike the former ceil(chars/3), which dense/multibyte prompts could
+     *     exceed and thus overdraw on reconciliation.
      *   - output tokens = max_tokens (the full ceiling the model may emit).
      * The route debits this conditionally (no overdraft → 402 if the balance
      * can't cover it), then reconciles down to the real cost after the call.
      * Null: unknown model.
      */
-    public function reserveMicrousd(string $modelId, int $promptChars, int $maxTokens): ?int
+    public function reserveMicrousd(string $modelId, int $promptBytes, int $maxTokens, string $protocole = 'twin9'): ?int
     {
-        $tokensIn = (int) ceil(max(0, $promptChars) / 3);
-
-        return $this->coutMicrousd($modelId, $tokensIn, max(0, $maxTokens));
+        return $this->coutMicrousd($modelId, max(0, $promptBytes), max(0, $maxTokens), $protocole);
     }
 
     /**
@@ -302,16 +327,17 @@ final class Twin9Config
         $config = $this->read();
         $marge = (float) $config['marge'];
 
+        $margeTwin6 = (float) $config['marge_twin6'];
         $modeles = [];
+        $modelesTwin6 = [];
         foreach ($config['modeles'] as $modelId => $modele) {
             [$in, $out] = $modele['prix_usd_mtok'];
             $modeles[$modelId] = [
                 'etages' => $modele['etages'],
-                'prix_usd_mtok' => [
-                    round((float) $in * $marge, 4),
-                    round((float) $out * $marge, 4),
-                ],
+                'prix_usd_mtok' => [round((float) $in * $marge, 4), round((float) $out * $marge, 4)],
             ];
+            // Twin6 (open cartography) prices at its own +10 % contribution.
+            $modelesTwin6[$modelId] = [round((float) $in * $margeTwin6, 4), round((float) $out * $margeTwin6, 4)];
         }
 
         return [
@@ -319,6 +345,9 @@ final class Twin9Config
             'paypalConfigured' => Env::get('PAYPAL_CLIENT_ID') !== '',
             'packs' => $config['packs'],
             'modeles' => $modeles,
+            'modeles_twin6' => $modelesTwin6,
+            // Promo state: when true, Twin9 is usable free with one's own key.
+            'twin9_cle_perso_ouverte' => (bool) $config['twin9_cle_perso_ouverte'],
             'pipeline' => $config['pipeline'],
         ];
     }
@@ -326,12 +355,17 @@ final class Twin9Config
     /** @param array<string, mixed> $config */
     private static function validate(array $config): void
     {
-        $marge = $config['marge'];
-        if (!\is_int($marge) && !\is_float($marge)) {
-            throw new Twin9Exception('Marge invalide : nombre attendu', 422);
+        foreach (['marge' => 'Marge', 'marge_twin6' => 'Marge Twin6'] as $key => $label) {
+            $m = $config[$key];
+            if (!\is_int($m) && !\is_float($m)) {
+                throw new Twin9Exception($label . ' invalide : nombre attendu', 422);
+            }
+            if ((float) $m < self::MARGE_MIN || (float) $m > self::MARGE_MAX) {
+                throw new Twin9Exception($label . ' hors bornes (entre 1 et 5)', 422);
+            }
         }
-        if ((float) $marge < self::MARGE_MIN || (float) $marge > self::MARGE_MAX) {
-            throw new Twin9Exception('Marge hors bornes (entre 1 et 5)', 422);
+        if (!\is_bool($config['twin9_cle_perso_ouverte'])) {
+            throw new Twin9Exception('Champ twin9_cle_perso_ouverte invalide : booléen attendu', 422);
         }
 
         if (!\is_array($config['packs']) || $config['packs'] === [] || !array_is_list($config['packs'])) {

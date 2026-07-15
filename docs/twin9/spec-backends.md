@@ -1,6 +1,6 @@
-# Spec de portage JS — `aurora/backends.py` (Twin_v9)
+# Spec de portage JS — `aurora/backends.py` (Twin9)
 
-Source : `Twin_v9/aurora/backends.py` (675 lignes, couverture intégrale).
+Source : `Twin9/aurora/backends.py` (675 lignes, couverture intégrale).
 Objectif : reproduction **bit-à-bit** du comportement, en particulier du `MockBackend`
 qui sert d'oracle de parité (mode `--salt`).
 

@@ -7,14 +7,14 @@ namespace Humanome\Twin9;
 use PDO;
 
 /**
- * Store of the CONFIDENTIAL Twin_v9 prompt templates (ADR-010).
+ * Store of the CONFIDENTIAL Twin9 prompt templates (ADR-010).
  *
  * Templates live in the `twin9_protocole` table, keyed by a hierarchical
  * name ('lourd/20-greffier'). Every overwrite archives the previous content
  * into `twin9_protocole_versions` (per-name counter) so the admin editor can
  * roll back.
  *
- * Placeholders use the exact Twin_v9 Python syntax: {$VAR} where VAR matches
+ * Placeholders use the exact Twin9 Python syntax: {$VAR} where VAR matches
  * [A-Z_][A-Z0-9_]* (templates.py). Rendering is NON-STRICT like the Python:
  * unknown placeholders are left verbatim and reported, never an error that
  * could leak template content.
@@ -24,7 +24,7 @@ use PDO;
  */
 final class ProtocoleRepository
 {
-    /** Same extraction regex as Twin_v9 templates.py: {$VAR}. */
+    /** Same extraction regex as Twin9 templates.py: {$VAR}. */
     public const VARIABLE_PATTERN = '/\{\$([A-Z_][A-Z0-9_]*)\}/';
 
     /** Hierarchical name: segments of [a-z0-9_-], '/'-separated. */
@@ -156,7 +156,7 @@ final class ProtocoleRepository
 
     /**
      * Render a template: every {$VAR} present in $vars is substituted, the
-     * absent ones are LEFT VERBATIM (non-strict, like Twin_v9 templates.py)
+     * absent ones are LEFT VERBATIM (non-strict, like Twin9 templates.py)
      * and reported in 'non_resolues'. Single-pass substitution (strtr):
      * placeholder-looking text inside a VALUE is never re-substituted.
      *

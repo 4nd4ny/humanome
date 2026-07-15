@@ -1,4 +1,4 @@
-// Persistance locale du run Twin_v9 courant (ADR-010 §5) — permet de proposer
+// Persistance locale du run Twin9 courant (ADR-010 §5) — permet de proposer
 // une REPRISE après interruption/rechargement. Réutilise l'adaptateur IndexedDB
 // de P7 (lib/portfolio-store.js) : même discipline d'ouverture paresseuse, zéro
 // I/O à l'import, testable via un adaptateur mémoire injecté.

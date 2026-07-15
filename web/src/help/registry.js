@@ -157,7 +157,7 @@ const BASE = {
     ],
   },
   twin9: {
-    titre: 'Analyse approfondie Twin_v9',
+    titre: 'Analyse approfondie Twin9',
     intro:
       'L’analyse haut de gamme de votre portfolio : un collège de modèles surligne le texte, une ' +
       'procédure calculée décide, rien n’est affirmé sans une citation exacte. Elle passe par notre ' +
@@ -167,6 +167,19 @@ const BASE = {
       'Le devis est calculé sur VOTRE portfolio avant tout paiement (nombre exact d’appels).',
       'Rechargez votre crédit par PayPal, ou utilisez votre propre clé API — dans les deux cas notre système de prompts reste protégé.',
       'Une facture récapitulative mensuelle est disponible dans « Mon compte ».',
+    ],
+  },
+  twin6ouverte: {
+    titre: 'Cartographie ouverte Twin6',
+    intro:
+      'Une cartographie de vos compétences open source : un scan par pôle RESPIRE (Greffier, ' +
+      'Pédagogue adversarial, Rapporteur) puis une synthèse Kairos, sur votre portfolio entier. ' +
+      'Le pendant gratuit de l’analyse approfondie Twin9.',
+    points: [
+      'Gratuite avec votre propre clé API : le calcul se fait dans votre navigateur, la clé n’en sort pas.',
+      'Ou avec nos crédits : seul le coût réel du modèle, majoré de 10 % de contribution, est débité.',
+      'Les prompts sont publics et téléchargeables (AGPL) : vous pouvez les réutiliser partout.',
+      'Le résultat s’affiche dans le même diagramme évolutif que les autres cartographies.',
     ],
   },
   confidentialite: {

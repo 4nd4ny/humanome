@@ -1,4 +1,4 @@
-// Analyse approfondie Twin_v9 (Golden Prompt, ADR-010) — #/twin9.
+// Analyse approfondie Twin9 (Golden Prompt, ADR-010) — #/twin9.
 //
 // Vue à états : garde de session → consentement RGPD → saisie (portfolio,
 // modèle, facturation) → DEVIS (moteur en mode mock, 0 LLM) → LANCEMENT (réel,
@@ -262,9 +262,9 @@ export default function Twin9View({ section = null, deps = {} }) {
 
   return (
     <div className="twin9 twin9-run">
-      <h1>Analyse approfondie Twin_v9</h1>
+      <h1>Analyse approfondie Twin9</h1>
       <p className="twin9-intro">
-        Twin_v9 est le « Golden Prompt » de la plateforme : un système multi-agents (collège de
+        Twin9 est le « Golden Prompt » de la plateforme : un système multi-agents (collège de
         lecteurs, instruction rapide, tribunal adversarial) qui instruit chaque compétence sur
         preuves ancrées. Un run enchaîne plusieurs milliers d’appels au modèle.
       </p>
@@ -277,7 +277,7 @@ export default function Twin9View({ section = null, deps = {} }) {
           {session.status !== 'authenticated' ? (
             <div className="twin9-garde" role="status" data-testid="twin9-garde-session">
               <p>
-                L’analyse Twin_v9 nécessite un compte. <a href="#/compte">Connectez-vous</a> pour
+                L’analyse Twin9 nécessite un compte. <a href="#/compte">Connectez-vous</a> pour
                 l’utiliser.
               </p>
               <button type="button" className="twin9-lien-demo" onClick={() => setMode('demo')}>
@@ -286,7 +286,7 @@ export default function Twin9View({ section = null, deps = {} }) {
             </div>
           ) : meta.status === 'disabled' ? (
             <p role="status" className="twin9-garde" data-testid="twin9-indisponible">
-              L’analyse Twin_v9 est momentanément indisponible.
+              L’analyse Twin9 est momentanément indisponible.
             </p>
           ) : meta.status === 'unavailable' ? (
             <div className="twin9-garde" role="status" data-testid="twin9-indisponible">
@@ -354,7 +354,7 @@ export default function Twin9View({ section = null, deps = {} }) {
                 data-testid="twin9-consentement"
               />{' '}
               Je comprends que, contrairement aux analyses classiques (qui restent dans mon
-              navigateur), l’analyse Twin_v9 fait <strong>transiter le texte de mon portfolio</strong>{' '}
+              navigateur), l’analyse Twin9 fait <strong>transiter le texte de mon portfolio</strong>{' '}
               par le serveur humanome.xyz et par le fournisseur du modèle, le temps de l’analyse.
               Rien n’est conservé côté serveur. Voir la{' '}
               <a href="#/confidentialite">politique de confidentialité</a>.

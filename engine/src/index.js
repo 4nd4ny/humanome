@@ -76,8 +76,12 @@ export {
   toArchiveSegmentation
 } from './portfolio/segment.js'
 
-// --- Twin_v9 — orchestrateur (portage JS, parité mock bit-à-bit CPython, ADR-010) ---
+// --- Twin9 — orchestrateur (portage JS, parité mock bit-à-bit CPython, ADR-010) ---
 // Package ESM sans DOM ni fs : `twin9.executerTwin9({...})` enchaîne tout le
 // pipeline (découpage → journées → merge → scan → second ressort → relectures →
 // sorties) et renvoie {cartoEvolutive, profilIpsatif, statuts, metrics, etat}.
 export * as twin9 from './twin9/index.js'
+
+// Twin6 — « Cartographie ouverte » : pipeline open source (7 scan-pole + kairos),
+// pendant gratuit de Twin9, mappé vers cartographie-merge (ADR-010 / chantier Twin6).
+export * as twin6 from './twin6/index.js'

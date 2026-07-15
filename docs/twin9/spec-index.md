@@ -1,4 +1,4 @@
-# Spec-index — Portage JS de Twin_v9 : vue d'ensemble
+# Spec-index — Portage JS de Twin9 : vue d'ensemble
 
 > Porte d'entrée des 6 specs de portage. Objectif global : parité **bit-à-bit**
 > avec le Python en mode mock (`--salt`) — le mock est l'oracle.

@@ -1,6 +1,6 @@
-# Spec de portage — `aurora/tribunal9.py` (Twin_v9 → JavaScript)
+# Spec de portage — `aurora/tribunal9.py` (Twin9 → JavaScript)
 
-> Source : `/Twin_v9/aurora/tribunal9.py` (691 lignes, portage INTÉGRAL).
+> Source : `/Twin9/aurora/tribunal9.py` (691 lignes, portage INTÉGRAL).
 > Contrat : parité bit-à-bit avec le Python en mode mock (`--salt`).
 > Les prompts `protocole/lourd/*.md` sont CONFIDENTIELS : ils ne sont jamais
 > recopiés ici — on les référence par nom de fichier, variables de gabarit

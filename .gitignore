@@ -20,8 +20,8 @@ secrets/
 # Golden Prompt — private by design (cahier §7)
 assets-existants/golden-prompt/
 
-# Twin_v9 — les GABARITS sont confidentiels (ADR-010) : jamais dans le dépôt.
-# Source locale : ../Twin_v9 (hors repo). Oracles de parité générés à la
+# Twin9 — les GABARITS sont confidentiels (ADR-010) : jamais dans le dépôt.
+# Source locale : ../Twin9 (hors repo). Oracles de parité générés à la
 # demande (scripts/twin9/gen-oracles.sh) dans engine/test/twin9-oracles/.
 golden-twin9/
 engine/test/twin9-oracles/

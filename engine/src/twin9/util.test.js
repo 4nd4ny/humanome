@@ -1,4 +1,4 @@
-// Vecteurs générés par CPython 3.14.3 (aurora/util.py de Twin_v9 : extract_json,
+// Vecteurs générés par CPython 3.14.3 (aurora/util.py de Twin9 : extract_json,
 // neutraliser_balises, find_verbatim, stable_hash, empreinte) puis figés ici —
 // script : engine/test/twin9-vectors/gen_noyau_vectors.py ; jamais de python à
 // l'exécution. Les ratios de find_verbatim sont des doubles IEEE comparés

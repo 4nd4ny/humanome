@@ -1,4 +1,4 @@
-# Spec noyau — portage JS de Twin_v9 (aurora/util.py, templates.py, portfolio.py, referentiel.py)
+# Spec noyau — portage JS de Twin9 (aurora/util.py, templates.py, portfolio.py, referentiel.py)
 
 Contrat de portage bit-à-bit. Le mode mock déterministe (`--salt`) sert d'oracle de
 parité : toute divergence (arrondi, ordre d'itération, format de chaîne hashée)

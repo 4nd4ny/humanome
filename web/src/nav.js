@@ -64,7 +64,8 @@ export const FAMILIES = [
         section: 'nouveau-run',
         badge: 'standard',
       },
-      { href: '#/twin9', label: 'Analyse approfondie', route: 'twin9', badge: 'premium', hint: 'Twin_v9' },
+      { href: '#/twin6-ouverte', label: 'Cartographie ouverte', route: 'twin6ouverte', badge: 'gratuit', hint: 'Twin6 — open source' },
+      { href: '#/twin9', label: 'Analyse approfondie', route: 'twin9', badge: 'premium', hint: 'Twin9' },
       { href: '#/espace', label: 'Partager ma cartographie', hint: 'lien protégé par mot de passe' },
     ],
   },
@@ -135,7 +136,7 @@ export const FAMILIES = [
       { href: '#/admin/golden', label: 'Golden Prompt', route: 'admin', section: 'golden' },
       { href: '#/admin/reglages', label: 'Réglages', route: 'admin', section: 'reglages' },
       { href: '#/admin/config', label: 'Configuration serveur', route: 'admin', section: 'config' },
-      { href: '#/admin/twin9', label: 'Supervision Twin_v9', route: 'admin', section: 'twin9' },
+      { href: '#/admin/twin9', label: 'Supervision Twin9', route: 'admin', section: 'twin9' },
     ],
   },
   // La famille « compte » est construite par navGroups (items selon session).

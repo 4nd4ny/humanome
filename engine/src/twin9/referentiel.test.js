@@ -1,4 +1,4 @@
-// Vecteurs générés par CPython 3.14.3 (aurora/referentiel.py de Twin_v9 :
+// Vecteurs générés par CPython 3.14.3 (aurora/referentiel.py de Twin9 :
 // parse_pole, fiche_complete, permutation, POLE_NOMS) puis figés ici — script :
 // engine/test/twin9-vectors/gen_noyau_vectors.py ; jamais de python à
 // l'exécution. La fiche testée est FACTICE (inventée, même format) : les vraies

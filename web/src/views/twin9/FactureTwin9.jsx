@@ -1,4 +1,4 @@
-// Facture récapitulative Twin_v9 — document formel imprimable (ADR-010 §3).
+// Facture récapitulative Twin9 — document formel imprimable (ADR-010 §3).
 //
 // Rend la sortie déterministe de GET /api/twin9/facture (FactureService) : un
 // document que l'apprenant OU l'établissement peut imprimer/exporter en PDF via

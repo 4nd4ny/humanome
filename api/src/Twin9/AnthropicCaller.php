@@ -8,7 +8,7 @@ use Humanome\Llm\HttpClient;
 use Humanome\Llm\HttpClientException;
 
 /**
- * Server-side Anthropic Messages API call for Twin_v9 (T3b, ADR-010 §1/§2).
+ * Server-side Anthropic Messages API call for Twin9 (T3b, ADR-010 §1/§2).
  *
  * Same upstream conventions as Llm\AnthropicProvider (raw HTTP over the
  * injectable HttpClient, x-api-key header only, thinking disabled so the
@@ -18,7 +18,7 @@ use Humanome\Llm\HttpClientException;
  *     pointée vers un serveur attaquant » : no constructor parameter, no env
  *     override, nothing the user (or an admin setting) can redirect. Tests
  *     inject a fake at the HttpClient seam (LlmRuntime), never a URL.
- *   * No forced tool use: the Twin_v9 templates specify their own output
+ *   * No forced tool use: the Twin9 templates specify their own output
  *     formats and the JS engine parses the model text verbatim, like the
  *     Python reference does.
  *
@@ -31,7 +31,7 @@ use Humanome\Llm\HttpClientException;
  */
 final class AnthropicCaller
 {
-    /** LOCKED (ADR-010 §2): the ONLY upstream Twin_v9 calls may reach. */
+    /** LOCKED (ADR-010 §2): the ONLY upstream Twin9 calls may reach. */
     public const BASE_URL = 'https://api.anthropic.com';
     public const API_VERSION = '2023-06-01';
 
@@ -57,7 +57,7 @@ final class AnthropicCaller
             'model' => $model,
             'max_tokens' => $maxTokens,
             // Thinking tokens count against max_tokens without reaching the
-            // text blocks (observed live on the P6 demo) — the Twin_v9 steps
+            // text blocks (observed live on the P6 demo) — the Twin9 steps
             // need the whole budget as parseable text.
             'thinking' => ['type' => 'disabled'],
             'messages' => [['role' => 'user', 'content' => $prompt]],

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Twin_v9 server routes (T3a admin surface + T3b user surface, ADR-010).
+ * Twin9 server routes (T3a admin surface + T3b user surface, ADR-010).
  *
  * The templates stored in twin9_protocole are the platform's industrial
  * secret: this file is the ONLY place where their content leaves the
@@ -61,6 +61,13 @@ use Humanome\Twin9\Twin9Exception;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
+
+/** Per-user cap on the PayPal endpoints (2026-07-15 review) — each spends live
+ * PayPal creds. Guarded define(): route files are require'd once per app
+ * instance, and the test suite builds several apps in one process. */
+if (!defined('PAYPAL_PAR_MINUTE')) {
+    define('PAYPAL_PAR_MINUTE', 20);
+}
 
 return function (App $app): void {
     $json = function (Response $response, mixed $payload, int $status = 200): Response {
@@ -224,9 +231,13 @@ return function (App $app): void {
     };
 
     // Total request payload bound for /api/twin9/appel (413 beyond). One
-    // Twin_v9 step carries at most a day's text + a few artefacts; 300 Ko is
+    // Twin9 step carries at most a day's text + a few artefacts; 300 Ko is
     // ample and keeps rendering/leak-filtering cheap on shared hosting.
     $appelMaxPayloadBytes = 307200;
+
+    // Twin6 (open cartography) carries the WHOLE portfolio in every scan-pole
+    // prompt (7 calls re-read it), so its billed proxy accepts a larger body.
+    $twin6MaxPayloadBytes = 2_000_000;
 
     // PayPal redirect targets (ADR-010 §3). No webhook at the MVP: the FRONT
     // calls /capturer when PayPal redirects back — the capture is idempotent
@@ -249,7 +260,7 @@ return function (App $app): void {
     $app->post('/twin9/appel', $wrap(function (Request $request, Response $response) use ($json, $parseBody, $sessionUserId, $appelMaxPayloadBytes): Response {
         $config = new Twin9Config(new SettingsRepository(Db::get()));
         if (!$config->isEnabled()) {
-            return $json($response, ['error' => 'Twin_v9 non disponible'], 503);
+            return $json($response, ['error' => 'Twin9 non disponible'], 503);
         }
         $userId = $sessionUserId();
         if ($userId === null) {
@@ -305,6 +316,17 @@ return function (App $app): void {
         if (!\in_array($facturation, ['platform', 'cle_privee'], true)) {
             return $json($response, ['error' => 'Champ facturation invalide (platform ou cle_privee)'], 422);
         }
+        // Own-key Twin9 is refused unless the PROMO window is open (owner toggle,
+        // 2026-07-15): the proprietary Golden Prompt only travels via our
+        // metered/credited path (+20 % contribution), except during a
+        // promotional period meant to let people feel the quality before buying
+        // tokens. /appel serves ONLY Twin9, so no protocole discriminator is
+        // needed here. (Twin6, open source, has its own free/own-key path.)
+        if ($facturation === 'cle_privee' && !$config->clePersoOuverte()) {
+            return $json($response, [
+                'error' => 'Twin9 s’utilise avec nos crédits. L’usage avec votre propre clé n’est pas ouvert pour le moment.',
+            ], 403);
+        }
 
         // --- Per-user rate limit (rate_limits table, fixed 1-min window) --
         $limiter = new RateLimiter(Db::get(), $config->appelsParMinute(), 60);
@@ -348,7 +370,10 @@ return function (App $app): void {
             // race → 402) and caps a series at what was actually reserved —
             // no read-then-compare gap, no unbounded overdraft. The real cost
             // (always ≤ reserve) is reconciled back after the call.
-            $reserve = max(1, (int) $config->reserveMicrousd($modele, mb_strlen($prompt), $maxTokens));
+            // BYTE length (not mb_strlen): a hard upper bound on real input
+            // tokens, so the reservation always covers the real cost and the
+            // reconciliation is a pure refund (2026-07-15 review, overdraft).
+            $reserve = max(1, (int) $config->reserveMicrousd($modele, strlen($prompt), $maxTokens));
             try {
                 $credits->debit($userId, $reserve, $etape . ' (réserve)', $modele);
             } catch (SoldeInsuffisantException $e) {
@@ -408,11 +433,19 @@ return function (App $app): void {
             }
         }
 
-        // --- Leak filter (ADR-010 §2): index built from the template with
-        // EMPTY variables, so quoting the user's own payload stays legal. --
+        // --- Leak filter (ADR-010 §2): index built from the template with the
+        // user's variables EMPTY (so quoting one's own payload stays legal) but
+        // the CONFIDENTIAL fiches INJECTED (2026-07-15 review, finding HIGH):
+        // COMPETENCE_FICHE / POLE_FICHES carry the secret fiche bodies at render
+        // time; leaving them empty in the index gave a verbatim recitation of a
+        // fiche zero backstop. Injecting them here indexes the fiche bodies so
+        // their recitation is redacted like any other template fragment.
         $gabaritVide = $repo->render(
             $etape,
-            array_fill_keys($repo->get($etape)['variables'] ?? [], ''),
+            array_merge(
+                array_fill_keys($repo->get($etape)['variables'] ?? [], ''),
+                $fiches->injecter($variables),
+            ),
         )['rendu'];
         $filtre = LeakFilter::redact($gabaritVide, $result['texte']);
         if ($filtre['fuites'] > 0) {
@@ -436,7 +469,100 @@ return function (App $app): void {
     }));
 
     // ------------------------------------------------------------------
-    // GET /api/twin9/meta — EVERYTHING the client ever sees of Twin_v9
+    // POST /api/twin6/appel — « Cartographie ouverte Twin6 » CREDITS path.
+    // Twin6 is OPEN SOURCE: the prompt is PUBLIC, so there is no template to
+    // render server-side, no confidential fiche to inject, and NO LeakFilter.
+    // The client (engine executerTwin6 with a proxy provider) sends a fully
+    // built prompt; we call Anthropic with the PLATFORM key and bill the
+    // prepaid balance at the Twin6 contribution (+10 %). Own-key Twin6 does NOT
+    // come here — it runs client-side with the user's own key (free).
+    // Response matches the engine proxy-provider contract {text, usage, model,
+    // stopReason} (providers/index.js).
+    // ------------------------------------------------------------------
+    $app->post('/twin6/appel', $wrap(function (Request $request, Response $response) use ($json, $parseBody, $sessionUserId, $twin6MaxPayloadBytes): Response {
+        $userId = $sessionUserId();
+        if ($userId === null) {
+            return $json($response, ['error' => 'Authentification requise'], 401);
+        }
+        $apiKey = Env::get('ANTHROPIC_API_KEY');
+        if ($apiKey === '') {
+            return $json($response, ['error' => 'Service indisponible'], 503);
+        }
+
+        $raw = (string) $request->getBody();
+        if (\strlen($raw) > $twin6MaxPayloadBytes) {
+            return $json($response, ['error' => 'Requête trop volumineuse (2 Mo maximum)'], 413);
+        }
+        $body = $parseBody($request);
+        if (!\is_array($body)) {
+            return $json($response, ['error' => 'Corps JSON invalide : objet attendu'], 400);
+        }
+
+        $config = new Twin9Config(new SettingsRepository(Db::get()));
+        $modele = \is_string($body['model'] ?? null) ? $body['model'] : '';
+        if (($config->modeles()[$modele] ?? null) === null) {
+            return $json($response, ['error' => 'Modèle non proposé'], 422);
+        }
+        $prompt = \is_string($body['prompt'] ?? null) ? $body['prompt'] : '';
+        if (trim($prompt) === '') {
+            return $json($response, ['error' => 'Champ requis : prompt'], 422);
+        }
+        $system = \is_string($body['system'] ?? null) ? $body['system'] : null;
+        $maxTokens = $body['max_tokens'] ?? $body['maxTokens'] ?? 8192;
+        if (!\is_int($maxTokens)) {
+            return $json($response, ['error' => 'Champ max_tokens invalide : entier attendu'], 422);
+        }
+        $maxTokens = max(256, min(16000, $maxTokens));
+
+        $limiter = new RateLimiter(Db::get(), $config->appelsParMinute(), 60);
+        $attempts = $limiter->hit('twin6:appel:' . $userId);
+        if ($attempts > $config->appelsParMinute()) {
+            return $json($response, ['error' => 'Rythme d’appels trop élevé, ralentissez.'], 429)
+                ->withHeader('Retry-After', (string) $limiter->retryAfter($attempts));
+        }
+
+        // Worst-case reservation at the TWIN6 margin (+10 %), atomic (no
+        // overdraft), reconciled to the real cost after — same discipline as
+        // /appel (security finding A), but priced with the 'twin6' protocole.
+        $credits = new CreditService(Db::get());
+        $promptBytes = \strlen($prompt) + ($system !== null ? \strlen($system) : 0);
+        $reserve = max(1, (int) $config->reserveMicrousd($modele, $promptBytes, $maxTokens, 'twin6'));
+        try {
+            $credits->debit($userId, $reserve, 'twin6/cartographie (réserve)', $modele);
+        } catch (SoldeInsuffisantException $e) {
+            return $json($response, [
+                'error' => 'Solde insuffisant',
+                'solde_microusd' => $e->getBalanceMicrousd(),
+                'requis_estime_microusd' => $reserve,
+            ], 402);
+        }
+
+        try {
+            $result = (new AnthropicCaller(LlmRuntime::httpClient(), $apiKey))
+                ->appeler($modele, $system, $prompt, $maxTokens);
+        } catch (\Throwable $e) {
+            $credits->adjust($userId, $reserve, 'twin6/cartographie (remboursement échec)', $modele);
+            throw $e;
+        }
+
+        $cout = (int) $config->coutMicrousd($modele, $result['tokens_in'], $result['tokens_out'], 'twin6');
+        $delta = $reserve - $cout;
+        if ($delta !== 0) {
+            $credits->adjust($userId, $delta, 'twin6/cartographie (réconciliation)', $modele, $result['tokens_in'], $result['tokens_out']);
+        }
+
+        // Engine proxy-provider contract. No leak filter: nothing is secret.
+        return $json($response, [
+            'text' => $result['texte'],
+            'usage' => ['inputTokens' => $result['tokens_in'], 'outputTokens' => $result['tokens_out']],
+            'model' => $modele,
+            'stopReason' => $result['stop_reason'],
+            'cout_microusd' => $cout,
+        ]);
+    }));
+
+    // ------------------------------------------------------------------
+    // GET /api/twin9/meta — EVERYTHING the client ever sees of Twin9
     // (ADR-010 §2 residual): step names, template lengths, variable names,
     // margined prices, packs, pipeline knobs, own balance. NEVER content.
     // ------------------------------------------------------------------
@@ -463,6 +589,9 @@ return function (App $app): void {
             'enabled' => $view['enabled'],
             'etapes' => $etapes,
             'modeles' => $view['modeles'],
+            'modeles_twin6' => $view['modeles_twin6'],
+            // Promo: when true, Twin9 is usable free with one's own key.
+            'twin9_cle_perso_ouverte' => $view['twin9_cle_perso_ouverte'],
             'packs' => $view['packs'],
             'pipeline' => $view['pipeline'],
             // Non-secret referentiel structure the client engine needs to
@@ -556,6 +685,13 @@ return function (App $app): void {
         if ($userId === null) {
             return $json($response, ['error' => 'Authentification requise'], 401);
         }
+        // Rate limit (2026-07-15 review, finding LOW): each call spends the
+        // platform's live PayPal credentials — cap the loop.
+        $rl = new RateLimiter(Db::get(), PAYPAL_PAR_MINUTE, 60);
+        if ($rl->hit('twin9:paypal:creer:' . $userId) > PAYPAL_PAR_MINUTE) {
+            return $json($response, ['error' => 'Trop de tentatives, réessayez plus tard.'], 429)
+                ->withHeader('Retry-After', (string) $rl->retryAfter(PAYPAL_PAR_MINUTE + 1));
+        }
         $paypal = PayPalClient::fromEnv(LlmRuntime::httpClient());
         if ($paypal === null) {
             return $json($response, ['error' => 'Recharge PayPal non configurée'], 503);
@@ -569,11 +705,18 @@ return function (App $app): void {
             return $json($response, ['error' => 'Pack inconnu'], 422);
         }
 
-        return $json($response, $paypal->createOrder(
+        $order = $paypal->createOrder(
             (float) $pack['montant_usd'],
             $paypalReturnUrl,
             $paypalCancelUrl,
-        ));
+        );
+        // Bind the order to its creator so /capturer can refuse anyone else
+        // (2026-07-15 review, finding MEDIUM — credit misattribution).
+        if (\is_array($order) && \is_string($order['order_id'] ?? null) && $order['order_id'] !== '') {
+            (new CreditService(Db::get()))->recordPaypalOrder($userId, $order['order_id']);
+        }
+
+        return $json($response, $order);
     }));
 
     // ------------------------------------------------------------------
@@ -586,6 +729,11 @@ return function (App $app): void {
         if ($userId === null) {
             return $json($response, ['error' => 'Authentification requise'], 401);
         }
+        $rl = new RateLimiter(Db::get(), PAYPAL_PAR_MINUTE, 60);
+        if ($rl->hit('twin9:paypal:capturer:' . $userId) > PAYPAL_PAR_MINUTE) {
+            return $json($response, ['error' => 'Trop de tentatives, réessayez plus tard.'], 429)
+                ->withHeader('Retry-After', (string) $rl->retryAfter(PAYPAL_PAR_MINUTE + 1));
+        }
         $paypal = PayPalClient::fromEnv(LlmRuntime::httpClient());
         if ($paypal === null) {
             return $json($response, ['error' => 'Recharge PayPal non configurée'], 503);
@@ -597,6 +745,16 @@ return function (App $app): void {
             return $json($response, ['error' => 'Champ requis : order_id'], 422);
         }
 
+        // Ownership (2026-07-15 review, finding MEDIUM): only the account that
+        // created the order (recorded at /creer) may capture it — a client can
+        // otherwise credit itself with someone else's approved order_id. A
+        // legitimate flow always recorded the order before the PayPal redirect,
+        // so an order absent from the binding table is refused too.
+        $credits = new CreditService(Db::get());
+        if ($credits->paypalOrderOwner($orderId) !== $userId) {
+            return $json($response, ['error' => 'Cet ordre de paiement ne vous appartient pas.'], 403);
+        }
+
         $capture = $paypal->captureOrder($orderId); // 422 FR si non approuvé
         if ($capture['status'] !== 'COMPLETED') {
             return $json($response, ['error' => 'Paiement non finalisé côté PayPal, réessayez.'], 422);
@@ -606,10 +764,80 @@ return function (App $app): void {
             return $json($response, ['error' => 'Montant PayPal invalide'], 502);
         }
 
-        $result = (new CreditService(Db::get()))
-            ->topup($userId, $microusd, $orderId, 'Recharge PayPal');
+        $result = $credits->topup($userId, $microusd, $orderId, 'Recharge PayPal');
+        // Record the CAPTURE (id + amount) so this top-up can be refunded on
+        // request later (a refund goes against a capture, not an order). Idempotent.
+        $credits->recordCapture($userId, (string) ($capture['capture_id'] ?? ''), $orderId, $microusd);
 
         return $json($response, ['solde_microusd' => $result['balance']]);
+    }));
+
+    // ------------------------------------------------------------------
+    // POST /api/twin9/credit/rembourser {montant_microusd?} — refund unused
+    // balance ON REQUEST (never automatic: by default users keep their balance
+    // for next time). Refunds against the user's own captures, most recent
+    // first, in whole cents (µUSD dust below one cent stays as balance), each
+    // capped at its remaining room. Idempotent per portion (PayPal-Request-Id).
+    // ------------------------------------------------------------------
+    $app->post('/twin9/credit/rembourser', $wrap(function (Request $request, Response $response) use ($json, $parseBody, $sessionUserId): Response {
+        $userId = $sessionUserId();
+        if ($userId === null) {
+            return $json($response, ['error' => 'Authentification requise'], 401);
+        }
+        $rl = new RateLimiter(Db::get(), PAYPAL_PAR_MINUTE, 60);
+        if ($rl->hit('twin9:rembourser:' . $userId) > PAYPAL_PAR_MINUTE) {
+            return $json($response, ['error' => 'Trop de tentatives, réessayez plus tard.'], 429)
+                ->withHeader('Retry-After', (string) $rl->retryAfter(PAYPAL_PAR_MINUTE + 1));
+        }
+        $paypal = PayPalClient::fromEnv(LlmRuntime::httpClient());
+        if ($paypal === null) {
+            return $json($response, ['error' => 'Remboursement PayPal non configuré'], 503);
+        }
+
+        $credits = new CreditService(Db::get());
+        $remboursable = $credits->soldeRemboursable($userId);
+        if ($remboursable <= 0) {
+            return $json($response, ['error' => 'Aucun solde remboursable pour le moment.'], 422);
+        }
+        $body = $parseBody($request);
+        $demande = \is_array($body) && \is_int($body['montant_microusd'] ?? null)
+            ? $body['montant_microusd']
+            : $remboursable;
+        $aRembourser = max(1, min($demande, $remboursable));
+
+        $totalRembourse = 0;
+        $reste = $aRembourser;
+        foreach ($credits->refundableCaptures($userId) as $c) {
+            if ($reste <= 0) {
+                break;
+            }
+            // Whole cents only (PayPal refunds in 2-decimal USD); sub-cent dust stays.
+            $partCents = intdiv(min($c['room_microusd'], $reste), 10_000);
+            if ($partCents <= 0) {
+                continue;
+            }
+            $partMicrousd = $partCents * 10_000;
+            $usd = number_format($partCents / 100, 2, '.', '');
+            // Idempotency key unique per refunded portion (offset = amount already
+            // refunded from this capture): a retry of a failed portion replays the
+            // SAME id (PayPal moves money once); the next portion gets a new id.
+            $requestId = 'rf-' . $userId . '-' . $c['capture_id'] . '-' . $c['rembourse_microusd'];
+            $refund = $paypal->refundCapture($c['capture_id'], $usd, $requestId);
+            if (!\in_array($refund['status'] ?? '', ['COMPLETED', 'PENDING'], true)) {
+                return $json($response, [
+                    'error' => 'Le remboursement PayPal n’a pas abouti, réessayez plus tard.',
+                    'rembourse_microusd' => $totalRembourse,
+                ], 502);
+            }
+            $credits->appliquerRemboursement($userId, $c['capture_id'], $partMicrousd);
+            $totalRembourse += $partMicrousd;
+            $reste -= $partMicrousd;
+        }
+
+        return $json($response, [
+            'rembourse_microusd' => $totalRembourse,
+            'solde_microusd' => $credits->balance($userId),
+        ]);
     }));
 
     // ==================================================================

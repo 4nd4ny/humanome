@@ -55,6 +55,8 @@ final class RgpdAuditTest extends MasseTestCase
         'golden_grants.user_id' => 'CASCADE', // migration 010 (P12.1 admin)
         'twin9_credits.user_id' => 'CASCADE', // migration 011 (T3a, registre §11)
         'twin9_credit_events.user_id' => 'CASCADE', // migration 011 (T3a, registre §11)
+        'twin9_paypal_orders.user_id' => 'CASCADE', // migration 012 (durcissement 2026-07-15 : lien order→user)
+        'twin9_paypal_captures.user_id' => 'CASCADE', // migration 013 (remboursement à la demande)
         // --- documented anonymisation (SET NULL) ---
         'audit_events.user_id' => 'SET NULL',
         'referentiel_versions.created_by' => 'SET NULL',

@@ -20,7 +20,7 @@ use Psr\Http\Message\ResponseInterface;
  * leak filter, real-cost debit or private key) and GET /api/twin9/meta.
  *
  * SECRECY IMPERATIVE (ADR-010): every template here is a MADE-UP fixture —
- * no real Twin_v9 content in tests, ever. The upstream is the fake
+ * no real Twin9 content in tests, ever. The upstream is the fake
  * HttpClient (LlmRuntime seam): no network call happens in the suite.
  */
 final class Twin9AppelTest extends CartographeTestCase
@@ -107,7 +107,7 @@ final class Twin9AppelTest extends CartographeTestCase
         (new Twin9Config(new SettingsRepository(Db::get())))->setEnabled(false);
         $response = $this->appel();
         self::assertSame(503, $response->getStatusCode());
-        self::assertSame('Twin_v9 non disponible', self::json($response)['error']);
+        self::assertSame('Twin9 non disponible', self::json($response)['error']);
         self::assertSame([], $this->http->requests, 'no upstream call');
     }
 
@@ -191,15 +191,15 @@ final class Twin9AppelTest extends CartographeTestCase
         self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
         $body = self::json($response);
 
-        // Real cost: ceil(1000×3×1.1) + ceil(200×15×1.1) micro-USD (defaults:
-        // claude-sonnet-5 list [3, 15] USD/Mtok, margin 1.1 — owner decision:
-        // +10 % covers PayPal fees + hosting/domain/free-demo Haiku). Float
-        // math makes each side 3300.0000000000005 → ceil 3301. No `fuites`
-        // field is ever returned to the client (finding B — tuning oracle).
+        // Real cost: ceil(1000×3×1.2) + ceil(200×15×1.2) micro-USD (defaults:
+        // claude-sonnet-5 list [3, 15] USD/Mtok, Twin9 contribution 1.2 — owner
+        // decision 2026-07-15: +20 % funds the R&D of the proprietary Golden
+        // Prompt). = 3600 + 3600 = 7200. No `fuites` field is ever returned to
+        // the client (finding B — tuning oracle).
         self::assertSame('Réponse fictive du modèle.', $body['sortie']);
         self::assertSame(1000, $body['tokens_in']);
         self::assertSame(200, $body['tokens_out']);
-        self::assertSame(6602, $body['cout_microusd']);
+        self::assertSame(7200, $body['cout_microusd']);
         self::assertArrayNotHasKey('fuites', $body, 'the leak count is never exposed');
         self::assertSame('end_turn', $body['stop_reason']);
 
@@ -207,7 +207,7 @@ final class Twin9AppelTest extends CartographeTestCase
         // atomically BEFORE the call, then reconciled to the real cost after.
         // Whatever the reserve, the NET charge is exactly the real cost.
         $credits = new CreditService(Db::get());
-        self::assertSame(4_993_398, $credits->balance($this->user['id']));
+        self::assertSame(4_992_800, $credits->balance($this->user['id'])); // 5_000_000 − 7200
         $events = $credits->events($this->user['id']); // most recent first
         // The reserve debit is present, tagged, and never lost.
         $reserve = array_values(array_filter(
@@ -256,8 +256,21 @@ final class Twin9AppelTest extends CartographeTestCase
     // Private key (ADR-010 §4): same path, zero debit
     // ==================================================================
 
+    public function testClePriveeRefusedWhenPromoClosed(): void
+    {
+        // Default: own-key Twin9 is refused (403) — the Golden Prompt only
+        // travels via our credited path outside a promotional window.
+        (new KeyVault(Db::get(), KeyVault::masterKeyFromEnv()))->store($this->user['id'], 'anthropic', 'sk-ant-user');
+        $response = $this->appel(['facturation' => 'cle_privee']);
+        self::assertSame(403, $response->getStatusCode(), (string) $response->getBody());
+        self::assertSame([], $this->http->requests, 'no upstream call when own-key Twin9 is closed');
+    }
+
     public function testClePriveeUsesUserKeyAndNeverDebits(): void
     {
+        // Own-key Twin9 works ONLY when the promo window is open.
+        (new Twin9Config(new SettingsRepository(Db::get())))->update(['twin9_cle_perso_ouverte' => true]);
+
         // No stored key: explicit 409, no upstream call.
         $response = $this->appel(['facturation' => 'cle_privee']);
         self::assertSame(409, $response->getStatusCode());
@@ -335,7 +348,7 @@ final class Twin9AppelTest extends CartographeTestCase
             "Fiche compétence : {\$COMPETENCE_FICHE}\nFiches du pôle : {\$POLE_FICHES}\nCode {\$CODE}.",
             null,
         );
-        // FICTIONAL fiches stored server-side (never a real Twin_v9 fiche).
+        // FICTIONAL fiches stored server-side (never a real Twin9 fiche).
         FicheStore::store(new SettingsRepository(Db::get()), [
             ['num' => 1, 'header' => 'PRÉAMBULE FICTIF DU PÔLE 1', 'competences' => [
                 ['code' => '1.01', 'fiche_md' => 'FICHE SECRÈTE DE 1.01'],
@@ -418,8 +431,11 @@ final class Twin9AppelTest extends CartographeTestCase
             'longueur_gabarit' => mb_strlen(self::FAKE_GABARIT),
             'variables' => ['TEXTE_JOURNEE', 'PRENOM'],
         ]], $body['etapes']);
-        // Margined prices only (list [3, 15] × 1.1), margin itself absent.
-        self::assertSame([3.3, 16.5], $body['modeles']['claude-sonnet-5']['prix_usd_mtok']);
+        // Twin9-margined prices only (list [3, 15] × 1.2), margin itself absent.
+        self::assertSame([3.6, 18], $body['modeles']['claude-sonnet-5']['prix_usd_mtok']); // 18.0 → 18 après JSON
+        // Twin6 (open) prices at its own +10 % contribution are exposed too.
+        self::assertSame([3.3, 16.5], $body['modeles_twin6']['claude-sonnet-5']);
+        self::assertFalse($body['twin9_cle_perso_ouverte']); // promo closed by default
         self::assertArrayNotHasKey('marge', $body);
         self::assertSame([10, 20, 50], array_column($body['packs'], 'montant_usd'));
         self::assertFalse($body['paypalConfigured']);

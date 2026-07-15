@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * matching must catch a recitation dressed up with punctuation, spacing or
  * compatibility homoglyphs, while never touching the learner's own payload.
  *
- * Templates here are FICTITIOUS — the real Twin_v9 prompts are confidential.
+ * Templates here are FICTITIOUS — the real Twin9 prompts are confidential.
  */
 final class Twin9LeakFilterTest extends TestCase
 {

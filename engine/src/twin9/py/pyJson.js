@@ -1,4 +1,4 @@
-// json.dumps de Python, octet-exact, pour les DEUX profils utilisés par Twin_v9
+// json.dumps de Python, octet-exact, pour les DEUX profils utilisés par Twin9
 // (vérifiés dans aurora/util.py) :
 //   - empreinte()  : json.dumps(parts, sort_keys=True, ensure_ascii=False,
 //                    default=str) → séparateurs PAR DÉFAUT ", " et ": "
