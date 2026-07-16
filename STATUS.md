@@ -24,7 +24,9 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
   - **Test** : `web/src/styles/fonts.test.js` (garde anti-régression : 4 @font-face + swap + pile corps
     + présence des woff2/licence + aucune origine tierce de police).
   - Suites **toutes vertes** : **PHP 501, engine 926 (+1 skip), web 737**, build web OK (fonts copiées
-    dans `dist/fonts/quattro/`). ⏳ Déploiement **static** au commit suivant.
+    dans `dist/fonts/quattro/`).
+  - **✅ DÉPLOYÉ EN PRODUCTION** (front **static**) : `GET /fonts/quattro/iAWriterQuattroS-Regular.woff2`
+    → **200**, header CSP prod contient bien `font-src 'self'`.
 
 - 2026-07-16 — **D6 (plan v1.1) — Profil : avatar et édition (dépend de D5).**
   Ajout d'une photo/avatar + modification de l'identifiant dans le profil (AD-D4).
