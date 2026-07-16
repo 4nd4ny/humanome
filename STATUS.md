@@ -7,6 +7,46 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-17 — **D9 (plan v1.1) — Assistant tuteur interactif (Haiku).** Un panneau « 💬 »
+  répond, pour n'importe quel visiteur, aux questions « par où passer sur le site ». Le prompt
+  système est construit CÔTÉ SERVEUR à partir d'un digest de la doc et du rôle (déterminé par la
+  SESSION, jamais par un champ client) ; **le portfolio n'est JAMAIS transmis** — seulement la
+  question et la rubrique courante. **Aucune conversation stockée côté serveur** (compteurs
+  anonymes) ; l'historique vit en `sessionStorage`, le temps de la session.
+  - **Backend** : `api/src/routes/tuteur.php` — `POST /tuteur` protégé par la MÊME preuve de travail
+    que la démo + honeypot + quota IP ; **budget propre** (circuit breaker quotidien sur une table
+    dédiée `tuteur_usage_daily`, `TUTEUR_BUDGET` = **1 $/jour** par défaut, Q3), modèle Haiku
+    (`TUTEUR_MODEL`). Migration `020_tuteur_usage.sql`. `UsageCounters` paramétré (table sur liste
+    blanche) pour ne pas toucher au compteur de la démo. `CsrfMiddleware` exempte `/api/tuteur`.
+  - **Digest** : `scripts/build-tuteur-digest.mjs` génère `scripts/data/tuteur-digest.md` depuis les
+    familles de `nav.js` + les frontmatters `content/` (9 parcours, ~6,2 Ko) ; **régénéré à chaque
+    `stage-api`** — comme les prompt-packages, seul le générateur est versionné (artefact gitignoré,
+    évite la dérive).
+  - **Front** : `web/src/components/TuteurPanel.jsx` + `web/src/lib/tuteur.js` (PoW puis POST, n'envoie
+    que question + rubrique), branché dans `App` après l'aide ; styles `.tuteur`. RGPD :
+    `content/legal/confidentialite.md` gagne un point « Assistant tuteur ».
+  - **Deux bugs attrapés par la vérification au navigateur** (là où MockProvider diverge du vrai
+    fournisseur) : (1) *nonce* — `solvePow` renvoie `{nonce, attempts}`, `tuteur.js` prenait l'objet
+    entier ; corrigé + mock de test rendu fidèle. (2) **`[]` en prod** — `AnthropicProvider::complete()`
+    **force l'usage d'outil** (JSON garanti pour la démo/Twin9) ; le tuteur héritait de ce mode et
+    Haiku renvoyait un document vide « [] » au lieu de prose. Corrigé par un paramètre
+    `forceJsonDocument` (défaut `true` = comportement démo/Twin9 inchangé ; `false` pour le tuteur =
+    **texte libre**). Rendu : le modèle produit quand même du Markdown léger (**gras**) ; le panneau
+    n'a **pas de parseur Markdown** (surface XSS réduite) → on retire les marqueurs inline
+    (`stripLightMarkdown` : `**`, `__`, backticks) CÔTÉ CLIENT, garanti quel que soit le modèle.
+  - **Tests** : `api/tests/TuteurTest.php` (8) — pas de fuite du prompt/clé, PoW requis, honeypot,
+    budget dédié distinct de la démo, visiteur **et** connecté, **le vrai chemin `AnthropicProvider`
+    renvoie de la prose ET la requête amont ne porte pas `tool_choice`** (le discriminant que le mock
+    masquait), **tarification Haiku non nulle** (le plafond dollar peut effectivement se déclencher).
+    Front : `tuteur.test.js` + `TuteurPanel.test.jsx` (dont le strip Markdown). Suites **toutes
+    vertes** : **PHP 515, engine 927, web 743**.
+  - **✅ DÉPLOYÉ EN PRODUCTION** (API `020` + static, puis 2 redéploiements API — correctifs prose et
+    texte brut — et 1 redéploiement static — strip Markdown) — API `v1.0.0-54`. **Vérifié en ligne**
+    depuis un état vidé : réponses en **prose française cohérente** citant les vraies routes du digest
+    (`#/merge`, `#/essayer`, `#/referentiel`, `#/guides/cartographe`, « 7 pôles et 61 compétences
+    RESPIRE ») ; le rendu ne montre **aucun marqueur Markdown** (vérifié : la sortie brute du modèle en
+    contient, le panneau les retire). `migrate` HTTP 200 (`020` appliqué), `health` HTTP 200.
+
 - 2026-07-16 — **D11 (plan v1.1) — Renommage Twin_v9 → Twin9 dans l'artefact moteur.**
   L'en-tête du rapport évolutif téléchargeable dit enfin « Twin9 » (dernier résidu du renommage global).
   - Source Python `../Twin_v9/aurora/merge3.py` (hors dépôt) : ligne d'en-tête `"*Twin_v9 — %s — %d
