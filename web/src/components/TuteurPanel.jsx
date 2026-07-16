@@ -8,6 +8,20 @@ import { askTuteur } from '../lib/tuteur.js'
 
 const STORAGE_KEY = 'humanome-tuteur'
 
+/**
+ * Le panneau rend du TEXTE SIMPLE (pas de parseur Markdown → surface XSS
+ * réduite). Le modèle produit parfois du Markdown léger (gras, code) : on retire
+ * juste les marqueurs inline pour ne pas afficher « **gras** » ou « `#/merge` »
+ * tels quels. On ne touche PAS aux marqueurs de liste ni au reste du texte.
+ * @param {string} text
+ */
+export function stripLightMarkdown(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/gs, '$1') // **gras**
+    .replace(/__(.+?)__/gs, '$1') // __gras__
+    .replace(/`([^`]+)`/g, '$1') // `code`
+}
+
 /** Historique de session (transitoire, jamais serveur). */
 function loadHistory() {
   try {
@@ -98,7 +112,7 @@ export default function TuteurPanel({ route = '', ask = askTuteur }) {
             ) : (
               messages.map((m, i) => (
                 <p key={i} className={`tuteur-msg tuteur-msg-${m.role}`}>
-                  {m.text}
+                  {m.role === 'assistant' ? stripLightMarkdown(m.text) : m.text}
                 </p>
               ))
             )}

@@ -2,7 +2,7 @@
 // historique sessionStorage, effacement. `ask` est injecté (aucun réseau).
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
-import TuteurPanel from './TuteurPanel.jsx'
+import TuteurPanel, { stripLightMarkdown } from './TuteurPanel.jsx'
 
 afterEach(cleanup)
 beforeEach(() => sessionStorage.clear())
@@ -51,6 +51,26 @@ describe('TuteurPanel', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Effacer' }))
     await waitFor(() => expect(JSON.parse(sessionStorage.getItem('humanome-tuteur'))).toEqual([]))
+  })
+
+  it('retire le Markdown léger de la réponse de l’assistant (rendu texte simple)', async () => {
+    const ask = vi.fn(async () => ({ text: 'Ouvre **`#/merge`** pour la démo, puis __#/essayer__.' }))
+    render(<TuteurPanel route="home" ask={ask} />)
+    fireEvent.click(screen.getByRole('button', { name: /Assistant/ }))
+    fireEvent.change(screen.getByLabelText(/Votre question/), { target: { value: 'Où voir la démo ?' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Envoyer' }))
+
+    const answer = await screen.findByText(/#\/merge/)
+    // Aucun marqueur Markdown résiduel affiché.
+    expect(answer.textContent).toBe('Ouvre #/merge pour la démo, puis #/essayer.')
+    expect(answer.textContent).not.toContain('**')
+    expect(answer.textContent).not.toContain('`')
+  })
+
+  it('stripLightMarkdown ne touche ni au texte simple ni aux marqueurs de liste', () => {
+    expect(stripLightMarkdown('Ouvre #/merge puis #/essayer.')).toBe('Ouvre #/merge puis #/essayer.')
+    // Les listes « 1. » / « - » ne sont pas des marqueurs inline : intactes.
+    expect(stripLightMarkdown('1. un\n2. deux')).toBe('1. un\n2. deux')
   })
 
   it('affiche une erreur claire si l’assistant échoue', async () => {
