@@ -38,7 +38,11 @@
     "protocole": {
       "type": "object",
       "additionalProperties": true,
-      "description": "Protocole de scan PROPRE à la compétence (passe_1 balayage, passe_2 questionnement, passe_3 évaluation émergent→expert). Permissif : structure riche et évolutive. NON-AUTORITATIF côté moteur en l'état (le moteur scanne depuis les fiches P{num}.md) — voir docs/contrats.md."
+      "description": "Protocole de scan STRUCTURÉ (passe_1 balayage, passe_2 questionnement, passe_3 évaluation émergent→expert). Vue éditoriale/structurée, permissive. Le contenu de scan AUTORITATIF côté moteur est le champ `fiche` (markdown)."
+    },
+    "fiche": {
+      "type": "string",
+      "description": "Fiche de scan markdown de la compétence — le contenu AUTORITATIF consommé par le moteur (Twin6 P*.md et Twin9 COMPETENCE_FICHE dérivent de là : SOURCE UNIQUE). Verbatim, y compris le séparateur `---` de fin le cas échéant (position-dépendant, requis pour la parité octet du prompt injecté). HORS hash structurel du snapshot (comme description/protocole) : deux versions au même {code,nom,pôle} mais fiche différente partagent le contentHash structurel, le semver portant l'évolution. Voir scripts/extract-fiches.mjs (parité octet prouvée)."
     },
     "enrichissements": {
       "description": "Enrichissements nourris par les retours humains (exemples, faux positifs additionnels, notes de cartographes…). Facultatif, croît dans le temps."

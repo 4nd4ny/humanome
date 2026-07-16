@@ -150,6 +150,64 @@ final class CompetenceRepository
         return ['status' => 'imported', 'id' => (int) $this->pdo->lastInsertId(), 'code' => $code, 'semver' => $semver];
     }
 
+    /**
+     * Réconciliation de bootstrap du contenu de la version de SEED (1.0.0).
+     * Contrairement à une édition gouvernée, le seed définit le contenu initial
+     * CANONIQUE : si la version de seed publiée existe avec le même
+     * {code,nom,pôle} structurel mais un contenu périmé (ex. avant l'existence
+     * du champ `fiche`), son contenu est BACKFILLÉ. Sûr : aucune cartographie
+     * n'épingle une version de compétence (elles épinglent les releases + les
+     * paquets de prompts). Le lockfile est rafraîchi (content_hash de provenance).
+     *
+     * @param array<string, mixed> $content
+     * @return array{status:'imported'|'unchanged'|'backfilled', id:int, code:string, semver:string}
+     */
+    public function reconcileSeed(
+        string $code,
+        string $nom,
+        int $pole,
+        array $content,
+        string $semver = '1.0.0',
+        ?string $releaseNote = null,
+    ): array {
+        $this->validateContent($code, $content);
+        $hash = CompetenceHash::compute($content);
+        $encoded = CompetenceHash::encode(CompetenceHash::canonical($content));
+
+        $stmt = $this->pdo->prepare(
+            'SELECT id, status, content_hash FROM competence_versions WHERE competence_code = ? AND semver = ?'
+        );
+        $stmt->execute([$code, $semver]);
+        $existing = $stmt->fetch();
+
+        if ($existing === false) {
+            $insert = $this->pdo->prepare(
+                'INSERT INTO competence_versions
+                    (competence_code, semver, pole, nom, status, content, content_hash, release_note, published_at)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())'
+            );
+            $insert->execute([$code, $semver, $pole, $nom, 'published', $encoded, $hash, $releaseNote]);
+
+            return ['status' => 'imported', 'id' => (int) $this->pdo->lastInsertId(), 'code' => $code, 'semver' => $semver];
+        }
+
+        $id = (int) $existing['id'];
+        if ($existing['content_hash'] === $hash) {
+            return ['status' => 'unchanged', 'id' => $id, 'code' => $code, 'semver' => $semver];
+        }
+
+        // Backfill : contenu périmé de la version de seed → réconcilié.
+        $this->pdo->prepare(
+            'UPDATE competence_versions SET nom = ?, pole = ?, content = ?, content_hash = ? WHERE id = ?'
+        )->execute([$nom, $pole, $encoded, $hash, $id]);
+        // Rafraîchit la provenance dans le lockfile des releases composées.
+        $this->pdo->prepare(
+            'UPDATE referentiel_snapshot_competences SET content_hash = ? WHERE competence_version_id = ?'
+        )->execute([$hash, $id]);
+
+        return ['status' => 'backfilled', 'id' => $id, 'code' => $code, 'semver' => $semver];
+    }
+
     // ----------------------------------------------------------------- drafts
 
     /**

@@ -204,6 +204,23 @@ async function deployApi(env) {
     console.log(`seed-competences: HTTP ${seed.status} ${(await seed.text()).slice(0, 200)}`)
     if (!seed.ok) throw new Error('competence seed failed')
 
+    // Régénère le setting confidentiel twin9_fiches DEPUIS LA BASE (source
+    // unique : competence.content.fiche + pole.header). Twin6, lui, dérive du
+    // corpus au build (web prebuild: generate-fiches + build-twin6-package).
+    // GARDE-FOU : sans FICHES_FORCE, un twin9_fiches prod ≠ généré renvoie 409
+    // et STOPPE le déploiement (au 1er déploiement, attendu = « unchanged »).
+    // Mettre FICHES_FORCE=1 UNIQUEMENT pour une évolution de fiche assumée.
+    const forceFiches = env.FICHES_FORCE === '1' || process.env.FICHES_FORCE === '1'
+    const genFiches = await fetch(`${base}/api/admin/generate-fiches`, {
+      method: 'POST',
+      headers: { 'X-Migrate-Token': env.MIGRATE_TOKEN, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ force: forceFiches }),
+    })
+    console.log(`generate-fiches: HTTP ${genFiches.status} ${(await genFiches.text()).slice(0, 300)}`)
+    if (!genFiches.ok) {
+      throw new Error('fiche generation blocked (twin9_fiches diff) — vérifier, puis FICHES_FORCE=1 si intentionnel')
+    }
+
     // Seed/refresh the published default prompt packages (idempotent by hash)
     const packagesDir = join(repoRoot, 'build/prompt-packages')
     if (statSync(packagesDir, { throwIfNoEntry: false })?.isDirectory()) {

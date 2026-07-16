@@ -26,10 +26,14 @@ final class CompetenceSeeder
 
     /**
      * @param array<string, array<string,mixed>> $rich contenu riche par code (competences-v7.json .competences)
-     * @return array{poles:int, imported:int, unchanged:int, parityHash:string, lockLinks:int}
+     * @param array{poleHeaders?: array<string,string>, fiches?: array<string,string>} $fiches
+     *        source unique des fiches de scan (fiches-v7.json) : en-têtes de pôle + fiche_md par code
+     * @return array{poles:int, imported:int, unchanged:int, backfilled:int, fiches:int, parityHash:string, lockLinks:int}
      */
-    public function seed(array $rich): array
+    public function seed(array $rich, array $fiches = []): array
     {
+        $poleHeaders = $fiches['poleHeaders'] ?? [];
+        $ficheByCode = $fiches['fiches'] ?? [];
         $refRepo = new ReferentielRepository($this->pdo);
         $published = $refRepo->publishedVersions(ReferentielRepository::DEFAULT_REFERENTIEL_ID);
         if ($published === []) {
@@ -46,33 +50,43 @@ final class CompetenceSeeder
             }
         }
 
-        // 1. pôles
+        // 1. pôles (+ en-tête markdown de fiche = source unique, migration 017)
         $poleStmt = $this->pdo->prepare(
-            'INSERT INTO referentiel_poles (num, nom, couleur) VALUES (?, ?, ?)
-             ON DUPLICATE KEY UPDATE nom = VALUES(nom), couleur = VALUES(couleur)'
+            'INSERT INTO referentiel_poles (num, nom, couleur, header) VALUES (?, ?, ?, ?)
+             ON DUPLICATE KEY UPDATE nom = VALUES(nom), couleur = VALUES(couleur), header = VALUES(header)'
         );
         foreach ($structuralDoc['poles'] as $pole) {
-            $poleStmt->execute([$pole['num'], $pole['nom'], $pole['couleur'] ?? null]);
+            $header = $poleHeaders[(string) $pole['num']] ?? null;
+            $poleStmt->execute([$pole['num'], $pole['nom'], $pole['couleur'] ?? null, $header]);
         }
 
-        // 2. compétences atomiques (nom/pôle STRUCTURELS = publié)
+        // 2. compétences atomiques (nom/pôle STRUCTURELS = publié ; contenu riche
+        //    + fiche de scan = SOURCE UNIQUE). reconcileSeed backfille les 1.0.0
+        //    publiées sans fiche (aucune carto n'épingle une compétence).
         $compRepo = new CompetenceRepository($this->pdo);
         $imported = 0;
         $unchanged = 0;
+        $backfilled = 0;
+        $fichesSeeded = 0;
         foreach ($structuralDoc['competences'] as $c) {
             $code = $c['code'];
             if (!isset($rich[$code])) {
                 throw new RuntimeException(sprintf('Contenu riche manquant pour %s', $code));
             }
-            $result = $compRepo->importPublishedCompetence(
+            $content = $rich[$code];
+            if (isset($ficheByCode[$code])) {
+                $content['fiche'] = $ficheByCode[$code];
+                $fichesSeeded++;
+            }
+            $result = $compRepo->reconcileSeed(
                 $code,
                 $c['nom'],
                 (int) $c['pole'],
-                $rich[$code],
+                $content,
                 '1.0.0',
-                'Seed initial depuis le corpus YAML RESPIRE v7',
+                'Seed initial depuis le corpus RESPIRE v7 (identité + protocole + fiche)',
             );
-            $result['status'] === 'imported' ? $imported++ : $unchanged++;
+            $result['status'] === 'imported' ? $imported++ : ($result['status'] === 'backfilled' ? $backfilled++ : $unchanged++);
         }
 
         // 3. GATE DE PARITÉ
@@ -110,6 +124,8 @@ final class CompetenceSeeder
             'poles' => \count($structuralDoc['poles']),
             'imported' => $imported,
             'unchanged' => $unchanged,
+            'backfilled' => $backfilled,
+            'fiches' => $fichesSeeded,
             'parityHash' => $assembledHash,
             'lockLinks' => $links,
         ];

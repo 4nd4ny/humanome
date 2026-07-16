@@ -191,9 +191,21 @@ return function (App $app): void {
             return $json($response, ['error' => 'competences-v7.json introuvable dans le release'], 500);
         }
 
+        $fichesCandidates = [
+            \dirname(__DIR__, 2) . '/scripts/data/fiches-v7.json',
+            \dirname(__DIR__, 3) . '/scripts/data/fiches-v7.json',
+        ];
+        $fiches = [];
+        foreach ($fichesCandidates as $candidate) {
+            if (is_file($candidate)) {
+                $fiches = json_decode((string) file_get_contents($candidate), true, 512, JSON_THROW_ON_ERROR);
+                break;
+            }
+        }
+
         try {
             $rich = json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR)['competences'] ?? [];
-            $result = (new \Humanome\Referentiel\CompetenceSeeder(Db::get()))->seed($rich);
+            $result = (new \Humanome\Referentiel\CompetenceSeeder(Db::get()))->seed($rich, $fiches);
         } catch (\Throwable $e) {
             error_log('[seed-competences] ' . $e->getMessage());
 
@@ -201,6 +213,90 @@ return function (App $app): void {
         }
 
         return $json($response, $result);
+    });
+
+    // Régénère le setting confidentiel twin9_fiches DEPUIS LA BASE (source
+    // unique : competence_versions.content.fiche + referentiel_poles.header) via
+    // FicheGenerator → FicheStore::store. Déterministe, byte-identique.
+    //
+    // GARDE-FOU (golden prompt live) : par défaut COMPARE l'actuel au généré et
+    // REFUSE un écrasement silencieux si ça diffère (409) — au 1er déploiement,
+    // ça DOIT rapporter « unchanged » ; un diff = la prod contredit le corpus,
+    // on s'arrête. Écriture seulement sur {"force":true} explicite. Même modèle
+    // de confiance que /admin/migrate (deploy-script only, FTP-only).
+    $app->post('/admin/generate-fiches', function (Request $request, Response $response) use ($json): Response {
+        $token = Env::get('MIGRATE_TOKEN');
+        if ($token === '') {
+            return $json($response, ['error' => 'Not found'], 404);
+        }
+        $given = $request->getHeaderLine('X-Migrate-Token');
+        if ($given === '' || !hash_equals($token, $given)) {
+            return $json($response, ['error' => 'Forbidden'], 403);
+        }
+        if (!Db::isConfigured()) {
+            return $json($response, ['error' => 'Database not configured'], 503);
+        }
+        $body = json_decode((string) $request->getBody(), true);
+        $force = \is_array($body) && ($body['force'] ?? false) === true;
+
+        try {
+            $pdo = Db::get();
+            $settings = new \Humanome\Packages\SettingsRepository($pdo);
+            $generated = (new \Humanome\Referentiel\FicheGenerator($pdo))->fichesStructure();
+
+            // Diff des OCTETS de fiche_md + en-têtes entre l'actuel et le généré.
+            $current = \Humanome\Twin9\FicheStore::fromSettings($settings);
+            $changed = [];
+            foreach ($generated as $pole) {
+                foreach ($pole['competences'] as $comp) {
+                    if ($current->competenceFiche($comp['code']) !== $comp['fiche_md']) {
+                        $changed[] = $comp['code'];
+                    }
+                }
+            }
+
+            if ($changed !== [] && !$force) {
+                return $json($response, [
+                    'status' => 'diff',
+                    'changed' => $changed,
+                    'error' => 'twin9_fiches courant ≠ généré depuis la base. Écrasement refusé : '
+                        . 'renvoyez {"force":true} après vérification (au 1er déploiement, attendu = aucun changement).',
+                ], 409);
+            }
+
+            \Humanome\Twin9\FicheStore::store($settings, $generated);
+
+            return $json($response, [
+                'status' => $changed === [] ? 'unchanged' : 'applied',
+                'poles' => \count($generated),
+                'competences' => array_sum(array_map(static fn (array $p): int => \count($p['competences']), $generated)),
+                'changed' => $changed,
+            ]);
+        } catch (\Throwable $e) {
+            error_log('[generate-fiches] ' . $e->getMessage());
+
+            return $json($response, ['error' => 'Generation failed: ' . $e->getMessage()], 500);
+        }
+    });
+
+    // Dump la SOURCE UNIQUE des fiches DEPUIS LA BASE, en forme CORPUS
+    // {poleHeaders, fiches} (inverse du seed). Permet de re-synchroniser
+    // scripts/data/fiches-v7.json après une édition dans l'atelier, pour que
+    // Twin6 (dérivé du corpus au build) reste aligné. Lecture seule.
+    $app->get('/admin/dump-fiches', function (Request $request, Response $response) use ($json): Response {
+        $token = Env::get('MIGRATE_TOKEN');
+        if ($token === '') {
+            return $json($response, ['error' => 'Not found'], 404);
+        }
+        $given = $request->getHeaderLine('X-Migrate-Token');
+        if ($given === '' || !hash_equals($token, $given)) {
+            return $json($response, ['error' => 'Forbidden'], 403);
+        }
+        if (!Db::isConfigured()) {
+            return $json($response, ['error' => 'Database not configured'], 503);
+        }
+
+        return $json($response, (new \Humanome\Referentiel\FicheGenerator(Db::get()))->corpus());
     });
 
     // Shared gate for the admin tooling below — same trust model as

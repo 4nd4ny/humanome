@@ -32,18 +32,26 @@ if (!is_file($richPath)) {
 }
 $rich = json_decode((string) file_get_contents($richPath), true, 512, JSON_THROW_ON_ERROR)['competences'] ?? [];
 
+$fiches = [];
+$fichesPath = $root . '/scripts/data/fiches-v7.json';
+if (is_file($fichesPath)) {
+    $fiches = json_decode((string) file_get_contents($fichesPath), true, 512, JSON_THROW_ON_ERROR);
+}
+
 try {
-    $r = (new CompetenceSeeder(Db::get()))->seed($rich);
+    $r = (new CompetenceSeeder(Db::get()))->seed($rich, $fiches);
 } catch (Throwable $e) {
     fwrite(STDERR, 'Seed échoué : ' . $e->getMessage() . "\n");
     exit(1);
 }
 
 printf(
-    "pôles %d · compétences %d importées / %d inchangées · gate parité OK (%s) · lockfile %d liens\nseed terminé.\n",
+    "pôles %d · compétences %d importées / %d inchangées / %d backfillées · fiches %d · gate parité OK (%s) · lockfile %d liens\nseed terminé.\n",
     $r['poles'],
     $r['imported'],
     $r['unchanged'],
+    $r['backfilled'],
+    $r['fiches'],
     substr($r['parityHash'], 0, 12) . '…',
     $r['lockLinks'],
 );

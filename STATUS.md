@@ -7,6 +7,58 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **SOURCE UNIQUE du référentiel : la compétence en base génère les fiches Twin6 + Twin9.
+  FAIT, NON COMMITÉ, NON DÉPLOYÉ.** Fin du triple-maintien des fiches de scan (Twin6 P*.md publics +
+  setting `twin9_fiches` + gabarits tagger, tous byte-identiques, `cmp` confirmé). Désormais **une seule
+  source** : `competence.content.fiche`. Tests : **PHP 432, engine 911 (parité INTACTE), web 569**, parité
+  octet prouvée à chaque niveau.
+  - **Découverte clé (analyse multi-agents)** : la prose des fiches N'EST PAS confidentielle (déjà publique
+    via Twin6, octet-identique au tagger Twin9) et **AUCUN oracle ne fige ses octets** (les vecteurs ne
+    portent que [num,code,nom] ; le moteur teste la logique d'assemblage avec des fiches factices). La
+    parité octet est donc une **cible auto-imposée** → gate dédié, pas un invariant existant.
+  - **Extraction + preuve** : `scripts/extract-fiches.mjs` découpe les P*.md via le VRAI `parsePole` du
+    moteur → `scripts/data/fiches-v7.json` (61 fiches + 7 en-têtes) et **prouve la régénération byte-exacte**
+    (règle b : `header + Σ fiche.join("\n\n") + "\n"`, ≠ ficheComplete runtime qui double le `---`).
+  - **Base = source** : schéma `competence.fiche` (hors hash structurel → `b246101c` intact) ; migration 017
+    `referentiel_poles.header` ; `CompetenceSeeder` injecte fiche + en-tête et **backfille** les 1.0.0
+    publiées sans fiche (`reconcileSeed` — sûr : aucune carto n'épingle une compétence).
+  - **Générateurs déterministes** : `FicheGenerator` (PHP) reconstruit les P*.md (règle b) + la structure
+    `twin9_fiches` depuis la base — `FicheParityTest` prouve **P*.md régénérés === fichiers d'or, octet pour
+    octet**. `scripts/generate-fiches.mjs` (JS) régénère les P*.md depuis le corpus.
+  - **Twin6 dérive du corpus** : `web` prebuild = `generate-fiches` + `build-twin6-package` → paquet
+    byte-identique. Les P*.md (gitignorés) redeviennent des ARTEFACTS ; le corpus committé est la source.
+  - **Twin9 dérive de la base** : endpoint `POST /api/admin/generate-fiches` (MIGRATE_TOKEN) régénère le
+    setting confidentiel `twin9_fiches` via FicheGenerator→FicheStore. Le réassemblage runtime POLE_FICHES
+    (avec `---` doublé) et COMPETENCE_FICHE restent **byte-identiques** (mêmes octets de fiche_md).
+  - **Confidentiel PRÉSERVÉ** (non touché) : les 29 gabarits d'enrobage (`twin9_protocole`, tagger/lourd/
+    merge) restent importés séparément par `import-protocole.mjs` (ils ne dérivent pas du référentiel) ;
+    `twin9_fiches` jamais exposé par `/meta` ; permutation anti-gaming intacte.
+  - **GARDE-FOU déploiement (revue advisor)** : `POST /admin/generate-fiches` COMPARE le `twin9_fiches`
+    courant au généré et **refuse un écrasement silencieux** (409) sans `{"force":true}` — au 1er déploiement
+    il DOIT rapporter « unchanged » (vérifié en dev) ; un diff = la prod contredit le corpus, on STOPPE.
+    `deploy.mjs` sans force par défaut ; `FICHES_FORCE=1` pour une évolution assumée. Round-trip testé sur la
+    règle RUNTIME (`FicheStore` → `poleFiches`, `---` doublé) que Twin9 envoie au LLM, pas seulement la règle P*.md.
+  - **Boucle FERMÉE (source unique vraie)** : `GET /admin/dump-fiches` + `scripts/dump-fiches.mjs` re-synchronisent
+    le corpus DEPUIS la base (byte-stable : dump === extract). Éditer `competence.fiche` dans l'atelier →
+    `dump-fiches` (BDD→corpus) → Twin6 au build ; `generate-fiches` (endpoint) → Twin9. Les deux dérivent de la
+    base. **FUTURE-ONLY** (cartos passées épinglent leur paquet). `stage-api.sh` embarque `scripts/data/`.
+    **À COMMITER/DÉPLOYER sur demande** (tenir le déploiement jusqu'à ce que le garde-fou rapporte « unchanged »).
+
+- 2026-07-15 — **Clé API privée dans le profil → Twin6 sur sa propre clé. FRONT-ONLY, NON COMMITÉ,
+  NON DÉPLOYÉ.** Le backend `/api/keys` (KeyVault sodium, migration 005, providers anthropic/openai/
+  google/openrouter/xai/ollama) existait déjà et est en prod — il manquait l'UI et le câblage.
+  - `web/src/api/keys.js` (list/store/reveal/delete + `KEY_PROVIDERS`).
+  - `web/src/views/account/ApiKeysSection.jsx` : section « Clés API personnelles » dans le profil
+    (`#/compte`) — lister (provider + date, JAMAIS la clé), ajouter (select fournisseur + champ password,
+    chiffrée serveur opt-in RGPD, jamais réaffichée), supprimer. Câblée dans `AccountView`.
+  - `Twin6OuverteView` : voie « clé perso » — si une clé du fournisseur (anthropic) est enregistrée au
+    profil, propose « Utiliser ma clé enregistrée » (révélée à la demande via `revealKey`, no-store) sans
+    ressaisie ; sinon saisie manuelle + lien vers le profil.
+  - Vérifié au navigateur (dev) : clé stockée **chiffrée** (blob sodium, pas le clair), listée sans le
+    matériel, Twin6 propose la clé enregistrée, bouton « Lancer » actif sans ressaisie. Tests web 569 verts.
+  - **Note** : « Option B » de notre échange = déverrouillage Twin9 (protocole→moteur + oracles) ; cette
+    tâche est la clé-perso-Twin6, distincte. À committer/déployer sur demande.
+
 - 2026-07-15 — **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-26-g5ae20eb`, commit `5ae20eb`) —
   éditeur épistémiarque (gouvernance 015) + référentiel v7.1 enrichi + **modèle compétence ATOMIQUE
   (016)**, en un seul déploiement. `migrate` a appliqué **015 + 016** (skipped 14). Import référentiel :
