@@ -1,9 +1,11 @@
 # STATUS — journal de bord
 
-## État : v1.0.0 — EN PRODUCTION
+## État : v1.1.0 — EN PRODUCTION
 
-Les 14 prompts P0→P13 sont appliqués, intégrés, déployés sur https://humanome.xyz et
-vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichier.
+Les 14 prompts P0→P13 (v1.0) puis les 11 chantiers v1.1 (D1→D11) sont appliqués, intégrés,
+déployés sur https://humanome.xyz (`health` → `v1.1.0`) et vérifiés en ligne. Code public :
+https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Actions restantes
+(utilisateur) » en fin de fichier.
 
 ## Fait
 
@@ -31,12 +33,12 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
     docs `docs/**` + ADR), **83 entrées, 100 % des liens résolus**. La doc reste éditée en markdown
     dans le dépôt (source unique) ; GitBook n'en est qu'un rendu.
   - **README** : badges (site, licence AGPL-3.0, CI) + section « Documentation ».
-  - **⏳ RESTE À L'UTILISATEUR** (non automatisable ici) : 1) **ré-authentifier `gh`** (token du
-    trousseau invalide) puis **pousser** les **23 commits** d'avance sur `origin/main` (D1→D11 + D10) —
-    publier sur un dépôt public est une action explicite, distincte des déploiements prod autorisés ;
-    2) créer/associer l'**espace GitBook** et activer le **Git Sync** ; 3) renseigner l'URL GitBook
-    dans le README. (Aucun changement de code applicatif : suites inchangées vs D9 —
-    **PHP 515, engine 927, web 743**.)
+  - **✅ PUBLIÉ** (autorisation utilisateur 2026-07-17) : `git push origin main` (26 commits) +
+    **tag `v1.1.0`** sur **https://github.com/4nd4ny/humanome** (le push git passe par le trousseau
+    macOS, valide, indépendamment du token `gh`). Delta re-scanné avant push : propre.
+  - **⏳ RESTE À L'UTILISATEUR** : 1) créer/associer l'**espace GitBook** et activer le **Git Sync**
+    (pas d'API d'upload) ; 2) renseigner l'URL GitBook dans le README. (Aucun changement de code
+    applicatif : suites inchangées vs D9 — **PHP 515, engine 927, web 743**.)
 
 - 2026-07-17 — **D9 (plan v1.1) — Assistant tuteur interactif (Haiku).** Un panneau « 💬 »
   répond, pour n'importe quel visiteur, aux questions « par où passer sur le site ». Le prompt
