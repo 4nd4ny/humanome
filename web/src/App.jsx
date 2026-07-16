@@ -12,6 +12,7 @@ import ReferentielView from './views/ReferentielView.jsx'
 import EssayerView from './views/EssayerView.jsx'
 import PortfolioView from './views/PortfolioView.jsx'
 import AccountView from './views/AccountView.jsx'
+import Avatar from './components/Avatar.jsx'
 import EspaceView from './views/EspaceView.jsx'
 import ShareView from './views/ShareView.jsx'
 import CartographeView from './views/CartographeView.jsx'
@@ -97,6 +98,8 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   // roles = [] pour un visiteur ou une copie statique — la nav « Découvrir »
   // reste toujours affichée.
   const [roles, setRoles] = useState([])
+  // Identité minimale pour l'avatar de nav (D6) : {id, displayName, hasAvatar}.
+  const [sessionUser, setSessionUser] = useState(null)
   const [helpOpen, setHelpOpen] = useState(false)
   // Menu « burger » : la navigation principale vit dans un panneau qui glisse
   // depuis le bord gauche de l'écran (web + mobile), pour libérer la barre.
@@ -149,10 +152,18 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     const refresh = () => {
       fetchMeFn()
         .then(({ user }) => {
-          if (alive) setRoles(Array.isArray(user?.roles) ? user.roles : [])
+          if (!alive) return
+          setRoles(Array.isArray(user?.roles) ? user.roles : [])
+          setSessionUser(
+            user
+              ? { id: user.id, displayName: user.displayName, hasAvatar: Boolean(user.hasAvatar) }
+              : null,
+          )
         })
         .catch(() => {
-          if (alive) setRoles([])
+          if (!alive) return
+          setRoles([])
+          setSessionUser(null)
         })
     }
     refresh()
@@ -422,6 +433,18 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
                 ))}
                 {authenticated ? (
                   <div className="app-nav-logout">
+                    {/* D6 : avatar (ou initiales en repli) près de la déconnexion. */}
+                    <a href="#/compte" className="app-nav-identity" aria-label="Mon profil">
+                      <Avatar
+                        userId={sessionUser?.id}
+                        displayName={sessionUser?.displayName}
+                        hasAvatar={sessionUser?.hasAvatar}
+                        size={32}
+                      />
+                      {sessionUser?.displayName ? (
+                        <span className="app-nav-identity-name">{sessionUser.displayName}</span>
+                      ) : null}
+                    </a>
                     <button type="button" className="app-logout-btn" onClick={handleLogout}>
                       <LogoutIcon />
                       Se déconnecter

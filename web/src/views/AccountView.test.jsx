@@ -1,7 +1,15 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import AccountView from './AccountView.jsx'
 import { resetApiClient } from '../api/client.js'
+
+// D6 : le redimensionnement canvas n'existe pas en jsdom -> stub déterministe
+// (le vrai resizeAvatar est testé dans resize-image.test.js).
+vi.mock('../lib/resize-image.js', () => ({
+  resizeAvatar: vi.fn(async () => ({ base64: 'AAAA', mime: 'image/webp', bytes: 100 })),
+  AVATAR_SIZE: 256,
+  MAX_AVATAR_BYTES: 200 * 1024,
+}))
 
 afterEach(() => {
   cleanup()
@@ -225,6 +233,57 @@ describe('AccountView — connecté', () => {
 
     expect(await screen.findByRole('button', { name: 'Se connecter' })).toBeDefined()
     expect(screen.getByRole('status').textContent).toContain('déconnecté')
+  })
+
+  it('édite le nom affiché (PATCH) et affiche le nouveau (D6)', async () => {
+    const withId = { ...alice, id: 7 }
+    stubFetch(
+      jsonResponse(200, { user: withId, csrfToken: 'tok' }), // auth/me
+      jsonResponse(200, { user: { ...withId, displayName: 'Ada Lovelace' } }), // PATCH auth/me
+    )
+    render(<AccountView />)
+    await screen.findByText('alice@exemple.fr')
+
+    fireEvent.click(screen.getByRole('button', { name: 'Modifier' }))
+    fireEvent.change(screen.getByLabelText('Nom affiché'), { target: { value: 'Ada Lovelace' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
+
+    expect(await screen.findByText('Ada Lovelace')).toBeDefined()
+    expect(screen.getByRole('status').textContent).toContain('mis à jour')
+  })
+
+  it('sans avatar : initiales en repli ; téléverser une photo appelle PUT (D6)', async () => {
+    const withId = { ...alice, id: 7, hasAvatar: false }
+    stubFetch(
+      jsonResponse(200, { user: withId, csrfToken: 'tok' }), // auth/me
+      jsonResponse(200, { status: 'ok', mime: 'image/webp', size: 100 }), // PUT avatar
+    )
+    render(<AccountView />)
+    await screen.findByText('alice@exemple.fr')
+
+    // Repli initiales (au moins une pastille : profil + nav éventuelle).
+    expect(screen.getAllByTestId('avatar-initials').length).toBeGreaterThan(0)
+
+    const file = new File(['octets'], 'photo.png', { type: 'image/png' })
+    fireEvent.change(screen.getByLabelText('Choisir une photo de profil'), {
+      target: { files: [file] },
+    })
+    expect(await screen.findByText(/Photo de profil mise à jour/)).toBeDefined()
+  })
+
+  it('avec avatar : « Retirer la photo » appelle DELETE et revient aux initiales (D6)', async () => {
+    const withAvatar = { ...alice, id: 7, hasAvatar: true }
+    stubFetch(
+      jsonResponse(200, { user: withAvatar, csrfToken: 'tok' }), // auth/me
+      noContentResponse(), // DELETE avatar
+    )
+    render(<AccountView />)
+    await screen.findByText('alice@exemple.fr')
+    expect(screen.getAllByTestId('avatar-img').length).toBeGreaterThan(0)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Retirer la photo' }))
+    await waitFor(() => expect(screen.getByText(/Photo de profil retirée/)).toBeDefined())
+    expect(screen.getByText('Ajouter une photo')).toBeDefined()
   })
 
   it('suppression : bouton verrouillé tant que l’email exact n’est pas saisi, puis purge', async () => {

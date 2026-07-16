@@ -7,6 +7,27 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D6 (plan v1.1) — Profil : avatar et édition (dépend de D5).**
+  Ajout d'une photo/avatar + modification de l'identifiant dans le profil (AD-D4).
+  - **Migration 019** : `users.avatar` (MEDIUMBLOB NULL) + `users.avatar_mime` — avatar EN BASE (pas de
+    FTP), purge RGPD gratuite par la ligne `users`.
+  - **API** : `PATCH /auth/me {displayName}` (édition du nom) ; `PUT /auth/me/avatar {avatar (base64),
+    mime}` — le serveur **valide mime (JPEG/PNG/WebP) + magic number + taille ≤ 200 Ko** (jamais confiance
+    au client, `Media\AvatarValidator`) ; `DELETE /auth/me/avatar` (retrait indépendant) ;
+    `GET /users/{id}/avatar` (cache privé, 404 si absent). `/auth/me` expose `hasAvatar`. CSRF/session.
+  - **Front** : section « Profil » éditable (nom via Modifier/Enregistrer ; avatar : redimensionnement
+    canvas client ~256 px → ≤ 200 Ko WebP/JPEG `lib/resize-image.js`, aperçu, ajout/retrait). Composant
+    `Avatar` (image ou **initiales en repli**), affiché aussi dans le panneau de nav près de
+    « Se déconnecter ». **Vérifié au navigateur** bout-en-bout (repli initiales → upload PNG réel via
+    canvas → servi comme avatar → retrait → retour aux initiales), 0 erreur console.
+  - **RGPD** : `docs/rgpd-registre.md` §1 (photo = donnée personnelle, retrait indépendant + cascade).
+  - **Tests** : PHP (`AuthAvatarTest` : PATCH nom, PUT valide JPEG/PNG/WebP, refus mime/magic/taille/
+    base64, DELETE, GET 200/404, purge avec le compte, session requise, pas d'IDOR) ; web
+    (`Avatar` initiales/img, `resize-image` recadrage/encodage/plafond, `AccountView` édition nom +
+    upload + retrait).
+  - Suites **toutes vertes** : **PHP 501, engine 926 (+1 skip), web 733**, build web OK.
+    ⏳ Déploiement (API migration 019 + front) au commit suivant.
+
 - 2026-07-16 — **D5 (plan v1.1) — Inscription durcie : double email, activation par code à 4 chiffres.**
   Un compte n'est ACTIVÉ qu'après confirmation d'un code envoyé par email (AD-D3).
   - **Migration 018** : `users.email_verified_at` (NULL = non activé), `verification_code_hash`,

@@ -5,13 +5,18 @@ import {
   ApiUnavailableError,
   activate,
   deleteAccount,
+  deleteAvatar,
   fetchMe,
   login,
   logout,
   register,
   resendCode,
+  updateProfile,
+  uploadAvatar,
 } from '../api/client.js'
 import ApiKeysSection from './account/ApiKeysSection.jsx'
+import Avatar from '../components/Avatar.jsx'
+import { resizeAvatar } from '../lib/resize-image.js'
 
 const PASSWORD_MIN_LENGTH = 10
 
@@ -57,6 +62,13 @@ export default function AccountView({ initialActivation = null }) {
   // Zone de danger.
   const [confirmEmail, setConfirmEmail] = useState('')
   const [accountError, setAccountError] = useState(null)
+
+  // Édition de profil (D6) : nom affiché + avatar.
+  const [editingName, setEditingName] = useState(false)
+  const [nameDraft, setNameDraft] = useState('')
+  const [profileError, setProfileError] = useState(null)
+  const [profileNotice, setProfileNotice] = useState(null)
+  const [avatarVersion, setAvatarVersion] = useState(0) // casse le cache après MAJ
 
   useEffect(() => {
     let alive = true
@@ -214,6 +226,67 @@ export default function AccountView({ initialActivation = null }) {
     }
   }
 
+  // --- Édition de profil (D6) ---------------------------------------------
+
+  async function handleSaveName() {
+    setProfileError(null)
+    setProfileNotice(null)
+    const name = nameDraft.trim()
+    if (name === '') {
+      setProfileError('Le nom affiché est requis.')
+      return
+    }
+    setBusy(true)
+    try {
+      const data = await updateProfile({ displayName: name })
+      setUser((u) => ({ ...u, displayName: data.user?.displayName ?? name }))
+      setEditingName(false)
+      setProfileNotice('Nom affiché mis à jour.')
+    } catch (error) {
+      setProfileError(error instanceof ApiError ? error.message : 'Enregistrement impossible.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function handleAvatarFile(event) {
+    const file = event.target.files?.[0]
+    event.target.value = '' // permet de re-choisir le même fichier
+    if (!file) return
+    setProfileError(null)
+    setProfileNotice(null)
+    setBusy(true)
+    try {
+      const { base64, mime } = await resizeAvatar(file)
+      await uploadAvatar({ avatar: base64, mime })
+      setUser((u) => ({ ...u, hasAvatar: true }))
+      setAvatarVersion((v) => v + 1)
+      setProfileNotice('Photo de profil mise à jour.')
+    } catch (error) {
+      setProfileError(
+        error instanceof ApiError ? error.message : 'Image non prise en charge (JPEG, PNG ou WebP).',
+      )
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function handleAvatarDelete() {
+    setProfileError(null)
+    setProfileNotice(null)
+    setBusy(true)
+    try {
+      await deleteAvatar()
+      setUser((u) => ({ ...u, hasAvatar: false }))
+      setAvatarVersion((v) => v + 1)
+      setProfileNotice('Photo de profil retirée.')
+    } catch (error) {
+      setProfileError(error instanceof ApiError ? error.message : 'Suppression impossible.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   async function handleDelete() {
     setAccountError(null)
     setBusy(true)
@@ -262,6 +335,45 @@ export default function AccountView({ initialActivation = null }) {
         ) : null}
         <section className="account-profile" aria-label="Profil">
           <h2>Profil</h2>
+
+          <div className="account-avatar-block">
+            <Avatar
+              userId={user.id}
+              displayName={user.displayName}
+              hasAvatar={user.hasAvatar}
+              version={avatarVersion}
+              size={72}
+            />
+            <div className="account-avatar-actions">
+              <label className="button account-avatar-upload">
+                {user.hasAvatar ? 'Changer la photo' : 'Ajouter une photo'}
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={handleAvatarFile}
+                  disabled={busy}
+                  aria-label="Choisir une photo de profil"
+                  style={{ display: 'none' }}
+                />
+              </label>
+              {user.hasAvatar ? (
+                <button type="button" className="button" onClick={handleAvatarDelete} disabled={busy}>
+                  Retirer la photo
+                </button>
+              ) : null}
+            </div>
+          </div>
+          {profileNotice ? (
+            <p className="account-notice" role="status">
+              {profileNotice}
+            </p>
+          ) : null}
+          {profileError ? (
+            <p className="load-error" role="alert">
+              {profileError}
+            </p>
+          ) : null}
+
           <dl>
             <div className="account-row">
               <dt>Email</dt>
@@ -269,7 +381,49 @@ export default function AccountView({ initialActivation = null }) {
             </div>
             <div className="account-row">
               <dt>Nom affiché</dt>
-              <dd>{user.displayName}</dd>
+              <dd>
+                {editingName ? (
+                  <span className="account-name-edit">
+                    <input
+                      type="text"
+                      value={nameDraft}
+                      onChange={(event) => setNameDraft(event.target.value)}
+                      aria-label="Nom affiché"
+                      maxLength={190}
+                    />
+                    <button type="button" className="button" onClick={handleSaveName} disabled={busy}>
+                      Enregistrer
+                    </button>
+                    <button
+                      type="button"
+                      className="button"
+                      onClick={() => {
+                        setEditingName(false)
+                        setProfileError(null)
+                      }}
+                      disabled={busy}
+                    >
+                      Annuler
+                    </button>
+                  </span>
+                ) : (
+                  <span className="account-name-view">
+                    {user.displayName}{' '}
+                    <button
+                      type="button"
+                      className="button account-name-edit-btn"
+                      onClick={() => {
+                        setNameDraft(user.displayName ?? '')
+                        setEditingName(true)
+                        setProfileError(null)
+                        setProfileNotice(null)
+                      }}
+                    >
+                      Modifier
+                    </button>
+                  </span>
+                )}
+              </dd>
             </div>
             <div className="account-row">
               <dt>Rôles</dt>

@@ -68,6 +68,9 @@ return function (App $app): void {
         'email' => (string) $user['email'],
         'displayName' => (string) $user['display_name'],
         'roles' => Users::rolesOf($pdo, (int) $user['id']),
+        // D6 : le front sait s'il faut afficher l'avatar ou les initiales sans
+        // tenter un GET d'image qui échouerait (avatar_mime, léger, pas le blob).
+        'hasAvatar' => ($user['avatar_mime'] ?? null) !== null,
     ];
 
     // --- Vérification d'email (D5 / AD-D3) --------------------------------
@@ -376,6 +379,104 @@ return function (App $app): void {
             'user' => $userPayload($pdo, $user),
             'csrfToken' => Session::csrfToken(),
         ]);
+    });
+
+    // Session courante (utilisateur connecté) ou null — factorisé pour les
+    // routes de profil (D6). CSRF couvert par le middleware global (mutations).
+    $currentUserId = static function (): ?int {
+        if (!Db::isConfigured() || !Session::exists()) {
+            return null;
+        }
+        Session::start();
+
+        return Session::userId();
+    };
+
+    // ------------------------------------------------------------------
+    // PATCH /api/auth/me {displayName} — édition de l'identifiant en clair (D6).
+    // ------------------------------------------------------------------
+    $app->patch('/auth/me', function (Request $request, Response $response) use ($json, $userPayload, $currentUserId): Response {
+        $userId = $currentUserId();
+        if ($userId === null) {
+            return $json($response, ['error' => 'Authentification requise'], 401);
+        }
+        $pdo = Db::get();
+        $data = (array) ($request->getParsedBody() ?? []);
+        $displayName = \is_string($data['displayName'] ?? null) ? trim($data['displayName']) : '';
+        if ($displayName === '' || mb_strlen($displayName) > 190) {
+            return $json($response, ['error' => 'Validation échouée', 'fields' => ['displayName' => 'Le nom affiché est requis (190 caractères maximum)']], 422);
+        }
+
+        Users::updateDisplayName($pdo, $userId, $displayName);
+
+        return $json($response, ['user' => $userPayload($pdo, Users::findById($pdo, $userId) ?? [])]);
+    });
+
+    // ------------------------------------------------------------------
+    // PUT /api/auth/me/avatar {avatar (base64), mime} — pose l'avatar (D6).
+    // Le serveur VALIDE mime + magic number + taille (jamais confiance au client).
+    // ------------------------------------------------------------------
+    $app->put('/auth/me/avatar', function (Request $request, Response $response) use ($json, $currentUserId): Response {
+        $userId = $currentUserId();
+        if ($userId === null) {
+            return $json($response, ['error' => 'Authentification requise'], 401);
+        }
+        $data = (array) ($request->getParsedBody() ?? []);
+        $rawAvatar = \is_string($data['avatar'] ?? null) ? $data['avatar'] : '';
+        $mime = \is_string($data['mime'] ?? null) ? strtolower(trim($data['mime'])) : '';
+        // Tolère un data-URL « data:image/png;base64,… » comme du base64 nu.
+        if (preg_match('#^data:([^;,]+);base64,(.*)$#s', $rawAvatar, $m) === 1) {
+            if ($mime === '') {
+                $mime = strtolower(trim($m[1]));
+            }
+            $rawAvatar = $m[2];
+        }
+        $bytes = base64_decode(preg_replace('/\s+/', '', $rawAvatar) ?? '', true);
+        if ($bytes === false || $bytes === '') {
+            return $json($response, ['error' => 'Données d’image invalides (base64 attendu)'], 422);
+        }
+        $error = \Humanome\Media\AvatarValidator::validate($bytes, $mime);
+        if ($error !== null) {
+            return $json($response, ['error' => $error], 422);
+        }
+
+        Users::setAvatar(Db::get(), $userId, $bytes, $mime);
+
+        return $json($response, ['status' => 'ok', 'mime' => $mime, 'size' => \strlen($bytes)]);
+    });
+
+    // ------------------------------------------------------------------
+    // DELETE /api/auth/me/avatar — retrait indépendant de l'avatar (D6/RGPD).
+    // ------------------------------------------------------------------
+    $app->delete('/auth/me/avatar', function (Request $request, Response $response) use ($json, $currentUserId): Response {
+        $userId = $currentUserId();
+        if ($userId === null) {
+            return $json($response, ['error' => 'Authentification requise'], 401);
+        }
+        Users::deleteAvatar(Db::get(), $userId);
+
+        return $response->withStatus(204);
+    });
+
+    // ------------------------------------------------------------------
+    // GET /api/users/{id}/avatar — sert l'image (cache privé, 404 si absente).
+    // Public en LECTURE (une photo de profil n'est pas un secret) mais borné :
+    // seul l'octet-flux, pas d'énumération d'autres données.
+    // ------------------------------------------------------------------
+    $app->get('/users/{id:[0-9]+}/avatar', function (Request $request, Response $response, array $args) use ($json): Response {
+        if (!Db::isConfigured()) {
+            return $json($response, ['error' => 'Service indisponible'], 503);
+        }
+        $avatar = Users::getAvatar(Db::get(), (int) $args['id']);
+        if ($avatar === null) {
+            return $json($response, ['error' => 'Avatar introuvable'], 404);
+        }
+        $response->getBody()->write($avatar['bytes']);
+
+        return $response
+            ->withHeader('Content-Type', $avatar['mime'])
+            ->withHeader('Cache-Control', 'private, max-age=300')
+            ->withStatus(200);
     });
 
     // ------------------------------------------------------------------

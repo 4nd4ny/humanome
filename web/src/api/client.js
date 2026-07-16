@@ -236,6 +236,35 @@ export async function logout(options) {
   }
 }
 
+/** Édition de l'identifiant en clair (D6). @returns {Promise<object>} {user} */
+export async function updateProfile({ displayName }, options) {
+  const result = await apiFetch('auth/me', { ...options, method: 'PATCH', body: { displayName } })
+  notifyAuthChanged()
+  return result
+}
+
+/** Pose l'avatar (base64 + mime, D6). Le serveur re-valide magic number + taille. */
+export async function uploadAvatar({ avatar, mime }, options) {
+  const result = await apiFetch('auth/me/avatar', { ...options, method: 'PUT', body: { avatar, mime } })
+  notifyAuthChanged()
+  return result
+}
+
+/** Retire l'avatar (D6/RGPD). */
+export async function deleteAvatar(options) {
+  await apiFetch('auth/me/avatar', { ...options, method: 'DELETE' })
+  notifyAuthChanged()
+}
+
+/**
+ * URL (relative) de l'avatar d'un utilisateur — sert dans un <img src>.
+ * `version` (ex. horodatage) casse le cache après une mise à jour.
+ */
+export function avatarUrl(userId, version) {
+  const base = `api/users/${encodeURIComponent(userId)}/avatar`
+  return version ? `${base}?v=${encodeURIComponent(version)}` : base
+}
+
 /** RGPD account deletion (real purge server side, cahier §6.3). */
 export async function deleteAccount(options) {
   const result = await apiFetch('auth/account', { ...options, method: 'DELETE' })

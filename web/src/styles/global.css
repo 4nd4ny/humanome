@@ -481,6 +481,52 @@ body {
   border-top: 1px solid var(--line);
 }
 
+/* D6 — avatar + nom près de la déconnexion (panneau de nav). */
+.app-nav-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-nav-identity:hover {
+  background: var(--surface-2);
+}
+
+.app-nav-identity-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* D6 — pastille avatar : image carrée arrondie, ou initiales en repli. */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: none;
+  vertical-align: middle;
+}
+
+.avatar-img {
+  object-fit: cover;
+}
+
+.avatar-initials {
+  background: var(--accent-solid, #2563eb);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
 .app-logout-btn {
   display: flex;
   align-items: center;
@@ -1741,6 +1787,38 @@ body {
 .account-profile h2 {
   margin: 0 0 0.5rem;
   font-size: 1.05rem;
+}
+
+/* D6 — bloc avatar (photo + actions) en tête du profil. */
+.account-avatar-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.25rem 0 0.75rem;
+  flex-wrap: wrap;
+}
+
+.account-avatar-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.account-avatar-upload {
+  cursor: pointer;
+}
+
+.account-name-edit,
+.account-name-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.account-name-edit-btn {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.85rem;
 }
 
 .account-profile dl {

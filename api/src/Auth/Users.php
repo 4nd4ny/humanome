@@ -35,7 +35,7 @@ final class Users
     public static function findByEmail(PDO $pdo, string $email): ?array
     {
         $stmt = $pdo->prepare(
-            'SELECT id, email, password_hash, display_name, created_at,
+            'SELECT id, email, password_hash, display_name, created_at, avatar_mime,
                     email_verified_at, verification_code_hash, verification_expires_at, verification_attempts
              FROM users WHERE email = ? AND deleted_at IS NULL'
         );
@@ -49,7 +49,7 @@ final class Users
     public static function findById(PDO $pdo, int $id): ?array
     {
         $stmt = $pdo->prepare(
-            'SELECT id, email, password_hash, display_name, created_at,
+            'SELECT id, email, password_hash, display_name, created_at, avatar_mime,
                     email_verified_at, verification_code_hash, verification_expires_at, verification_attempts
              FROM users WHERE id = ? AND deleted_at IS NULL'
         );
@@ -111,6 +111,43 @@ final class Users
         $stmt->execute([$email, $passwordHash, $displayName]);
 
         return (int) $pdo->lastInsertId();
+    }
+
+    /** Met à jour le nom affiché (identifiant en clair, D6). */
+    public static function updateDisplayName(PDO $pdo, int $userId, string $displayName): void
+    {
+        $pdo->prepare('UPDATE users SET display_name = ? WHERE id = ? AND deleted_at IS NULL')
+            ->execute([$displayName, $userId]);
+    }
+
+    /** Pose l'avatar (octets déjà validés) + son mime (D6). */
+    public static function setAvatar(PDO $pdo, int $userId, string $bytes, string $mime): void
+    {
+        $stmt = $pdo->prepare('UPDATE users SET avatar = ?, avatar_mime = ? WHERE id = ? AND deleted_at IS NULL');
+        $stmt->bindParam(1, $bytes, PDO::PARAM_LOB);
+        $stmt->bindParam(2, $mime, PDO::PARAM_STR);
+        $stmt->bindValue(3, $userId, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    /** Efface l'avatar (suppression indépendante depuis le profil, D6/RGPD). */
+    public static function deleteAvatar(PDO $pdo, int $userId): void
+    {
+        $pdo->prepare('UPDATE users SET avatar = NULL, avatar_mime = NULL WHERE id = ? AND deleted_at IS NULL')
+            ->execute([$userId]);
+    }
+
+    /** @return array{bytes: string, mime: string}|null l'avatar servi par GET /users/{id}/avatar. */
+    public static function getAvatar(PDO $pdo, int $userId): ?array
+    {
+        $stmt = $pdo->prepare('SELECT avatar, avatar_mime FROM users WHERE id = ? AND deleted_at IS NULL');
+        $stmt->execute([$userId]);
+        $row = $stmt->fetch();
+        if ($row === false || $row['avatar'] === null || $row['avatar_mime'] === null) {
+            return null;
+        }
+
+        return ['bytes' => (string) $row['avatar'], 'mime' => (string) $row['avatar_mime']];
     }
 
     public static function assignRole(PDO $pdo, int $userId, string $role): void

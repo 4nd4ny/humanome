@@ -23,12 +23,12 @@ exécution du service/contrat, **f** = intérêt légitime.
 |---|---|
 | Finalité | Authentifier la personne, rattacher ses données à son profil, porter les rôles de l'écosystème (§2). |
 | Personnes concernées | Apprenants, cartographes, promptologues, épistémiarques, employeurs, établissements, administrateurs. |
-| Données | Email, nom affiché, empreinte de mot de passe (Argon2id — jamais le mot de passe en clair), rôles, date de création. |
-| Base légale | **b** (exécution du service dès la création de compte). |
-| Durée | Jusqu'à suppression du compte par la personne (effacement réel). |
-| Destinataires | Interne uniquement (aucun tiers). |
-| Tables | `users`, `roles`, `user_roles`, `sessions`. |
-| Sort à la suppression | `users` supprimé ; `user_roles`, `sessions` en CASCADE. |
+| Données | Email, nom affiché (éditable), **photo de profil / avatar (optionnelle, D6)**, empreinte de mot de passe (Argon2id — jamais le mot de passe en clair), rôles, date de création. |
+| Base légale | **b** (exécution du service dès la création de compte) ; **a** (consentement) pour la photo de profil, facultative. |
+| Durée | Jusqu'à suppression du compte par la personne (effacement réel). La photo peut être retirée indépendamment à tout moment depuis le profil. |
+| Destinataires | Interne uniquement (aucun tiers). La photo, servie par `GET /api/users/{id}/avatar`, est visible par qui dispose du lien (cache privé). |
+| Tables | `users` (dont `avatar` MEDIUMBLOB + `avatar_mime`, migration 019), `roles`, `user_roles`, `sessions`. |
+| Sort à la suppression | `users` supprimé (avatar inclus, colonnes de la ligne) ; `user_roles`, `sessions` en CASCADE. Retrait indépendant de la photo : `DELETE /api/auth/me/avatar`. |
 
 ### 1 bis. Vérification d'email à l'inscription (D5)
 
