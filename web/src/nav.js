@@ -29,7 +29,10 @@ export const ROLE_LABELS = {
  * - `badge` : échelle de valeur ('gratuit' | 'standard' | 'premium').
  * - `hint` : précision courte affichée sur les tuiles de l'accueil.
  * - `roles` (item) : restreint l'item à certains rôles DANS une famille
- *   multi-rôles (ex. « Faire évoluer » : promptologue + épistémiarque).
+ *   multi-rôles (ex. « Faire évoluer » : promptologue + épistémiarque) — au
+ *   moins UN des rôles suffit (disjonction).
+ * - `allRoles` (item) : restreint l'item à la CONJONCTION de rôles (TOUS
+ *   requis, ex. « Atelier Twin9 » : admin ∧ promptologue, AD-D2).
  *
  * Famille : { id, label, intent, audience, roles?, items }
  * - sans `roles`, la famille est visible par tous (Découvrir, Mon compte).
@@ -117,6 +120,15 @@ export const FAMILIES = [
         hint: 'éditeur, banc d’essai, rétrospective',
       },
       {
+        // Édition des gabarits du Golden Prompt Twin9 : les DEUX rôles requis
+        // (admin ∧ promptologue, AD-D2) — `allRoles` = conjonction.
+        href: '#/twin9-atelier',
+        label: 'Atelier Twin9',
+        route: 'twin9atelier',
+        allRoles: ['admin', 'promptologue'],
+        hint: 'gabarits du Golden Prompt — admin ∧ promptologue',
+      },
+      {
         href: '#/epistemiarque',
         label: 'Édition du référentiel',
         route: 'epistemiarque',
@@ -175,7 +187,9 @@ export function navGroups({ roles = [], authenticated = roles.length > 0 } = {})
   for (const family of FAMILIES) {
     if (family.roles && !family.roles.some((role) => roles.includes(role))) continue
     const items = family.items.filter(
-      (item) => !item.roles || item.roles.some((role) => roles.includes(role)),
+      (item) =>
+        (!item.roles || item.roles.some((role) => roles.includes(role))) &&
+        (!item.allRoles || item.allRoles.every((role) => roles.includes(role))),
     )
     if (items.length > 0) groups.push({ ...family, items })
   }

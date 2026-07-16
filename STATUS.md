@@ -7,6 +7,27 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D2 (plan v1.1) — Édition du Twin9 réservée aux administrateurs-promptologues.**
+  Décision AD-D2 : garde en **conjonction** admin ∧ promptologue, côté serveur ET front.
+  - **Serveur** : nouveau `RequireRole::all(...)` (les DEUX rôles requis). Toutes les routes de
+    CONTENU des gabarits Twin9 (`/twin9/admin/protocole**` en lecture/écriture/versions +
+    `/twin9/admin/tester`) passent en `all('admin','promptologue')` : un admin non-promptologue ne
+    voit plus le contenu (**403**), et le gabarit ne fuite jamais dans un refus. La SUPERVISION
+    (config, contribution, promo « Twin9 gratuit », comptes) reste `admin` seul.
+  - **Front** : l'éditeur des gabarits quitte l'admin pour une vue dédiée **`#/twin9-atelier`**
+    (`Twin9AtelierView`) sous la famille « Faire évoluer », visible seulement si la session porte
+    les deux rôles (nouvel attribut de nav `allRoles`, conjonction dans `navGroups`).
+    `#/admin/twin9` (`Twin9Section`) garde la supervision (réglages + comptes) et pointe vers
+    l'atelier. Le slider promo reste dans la supervision admin.
+  - **Sécurité inchangée** : le contenu reste du texte brut (jamais de HTML/markdown) ;
+    `/twin9/meta` et le filtre anti-fuite ne bougent pas.
+  - **Tests** : matrice de rôles PHP complète (aucun rôle / admin seul / promptologue seul / les deux)
+    sur chaque route de gabarits + garde supervision (`Twin9ProtocoleTest`) ; web
+    (`Twin9AtelierView.test.jsx` garde 2 rôles + édition/banc d'essai, `Twin9Section.test.jsx`
+    supervision seule, `nav.test.js` conjonction, aide `twin9atelier`). Doc : `docs/autorisations.md`.
+  - Suites **toutes vertes** : **PHP 487, engine 926 (+1 skip), web 711**, build web OK.
+    ⏳ Déploiement + smoke prod au commit suivant.
+
 - 2026-07-16 — **D1 (plan v1.1) — Twin6 forkable dans l'atelier promptologue.** Le protocole open
   source Twin6 est désormais un **paquet publié forkable** au même titre qu'`aurora-v3-reconstruit`,
   sans changer la page publique `#/twin6-ouverte` (qui sert toujours le JSON statique).

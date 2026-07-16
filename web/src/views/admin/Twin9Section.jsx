@@ -1,31 +1,16 @@
-// Section « Twin9 » de l'administration (ADR-010 §2/§6) — le SEUL endroit du
-// front où le CONTENU d'un gabarit du Golden Prompt est visible, et seulement
-// pour le rôle admin (la garde vit dans AdminView ; les promptologues n'y
-// accèdent PAS). Quatre blocs :
-//   1. Gabarits  : liste (métadonnées) -> édition du contenu -> enregistrement
-//                  versionné -> historique des versions.
-//   2. Banc d'essai : rendre un gabarit avec des variables d'exemple (aucun
-//                  appel LLM) -> {rendu, non_resolues}.
-//   3. Réglages  : marge, packs PayPal, offre de modèles -> PUT partiel (diff).
-//   4. Comptes   : supervision des comptes ayant une activité (soldes/cumuls).
+// Section « Twin9 » de l'administration (ADR-010, AD-D2) — SUPERVISION seule :
+//   1. Réglages  : marge Twin9/Twin6, promo « Twin9 gratuit clé perso », packs
+//                  PayPal, offre de modèles -> PUT partiel (diff). Décision
+//                  COMMERCIALE, admin seul.
+//   2. Comptes   : supervision des comptes ayant une activité (soldes/cumuls).
 //
-// Le contenu rendu (gabarit édité, rendu du banc d'essai) reste du TEXTE BRUT :
-// jamais de renderMarkdown/HTML — ce n'est pas du narratif, c'est un secret
-// industriel. React échappe le texte, on l'affiche tel quel dans <textarea>/<pre>.
+// L'ÉDITION DES GABARITS a quitté cette section : elle vit dans #/twin9-atelier
+// (Twin9AtelierView), réservée aux administrateurs-promptologues (les deux
+// rôles, AD-D2). Le contenu du Golden Prompt n'est plus jamais visible ici.
 
 import { useCallback, useEffect, useState } from 'react'
 import { ApiError, ApiUnavailableError } from '../../api/client.js'
-import {
-  fetchComptes,
-  fetchProtocole,
-  fetchProtocoleList,
-  fetchProtocoleVersions,
-  fetchTwin9Config,
-  formatUsd,
-  saveProtocole,
-  saveTwin9Config,
-  testerProtocole,
-} from '../../api/twin9.js'
+import { fetchComptes, fetchTwin9Config, formatUsd, saveTwin9Config } from '../../api/twin9.js'
 
 /** Étages connus (contrat serveur Twin9Config::ETAGES) — ordre canonique. */
 const ETAGES = ['taggers', 'rapide', 'tribunal']
@@ -37,294 +22,7 @@ function frDate(iso) {
   return Number.isNaN(date.getTime()) ? iso : date.toLocaleString('fr-FR')
 }
 
-// ---- 1. Gabarits -----------------------------------------------------------
-
-/**
- * Liste des gabarits (métadonnées seules) + éditeur du contenu. Cliquer un
- * gabarit charge son contenu (fetchProtocole) dans le <textarea> ; Enregistrer
- * versionne côté serveur (saveProtocole) ; « versions » liste l'historique.
- */
-function GabaritsBloc({ protocoles, fetchFn, onSaved }) {
-  const [selected, setSelected] = useState(null)
-  const [content, setContent] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [busy, setBusy] = useState(false)
-  const [message, setMessage] = useState(null)
-  const [error, setError] = useState(null)
-  const [versions, setVersions] = useState(null)
-
-  async function openGabarit(name) {
-    setSelected(name)
-    setLoading(true)
-    setContent('')
-    setMessage(null)
-    setError(null)
-    setVersions(null)
-    try {
-      const tpl = await fetchProtocole(name, { fetchFn })
-      setContent(tpl?.content ?? '')
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Chargement du gabarit impossible.')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  async function save() {
-    setBusy(true)
-    setMessage(null)
-    setError(null)
-    try {
-      const res = await saveProtocole(selected, content, { fetchFn })
-      setMessage(
-        res?.status === 'unchanged'
-          ? 'Contenu inchangé — aucune nouvelle version.'
-          : `Gabarit « ${selected} » enregistré (nouvelle version archivée).`,
-      )
-      onSaved()
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Enregistrement impossible.')
-    } finally {
-      setBusy(false)
-    }
-  }
-
-  async function loadVersions() {
-    setError(null)
-    try {
-      const res = await fetchProtocoleVersions(selected, { fetchFn })
-      setVersions(Array.isArray(res?.versions) ? res.versions : [])
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Historique indisponible.')
-    }
-  }
-
-  return (
-    <div className="twin9-admin-bloc">
-      <h3>Gabarits du Golden Prompt</h3>
-      <p className="twin9-admin-warning" role="note">
-        <strong>Contenu confidentiel — ne pas divulguer.</strong> Ces gabarits sont le secret
-        industriel de la plateforme (ADR-010) : ils ne sont visibles qu’ici, pour l’administration.
-      </p>
-
-      {protocoles.length === 0 ? (
-        <p>Aucun gabarit importé pour l’instant.</p>
-      ) : (
-        <ul className="twin9-admin-gabarits">
-          {protocoles.map((p) => (
-            <li key={p.name}>
-              <button
-                type="button"
-                className="twin9-admin-gabarit"
-                aria-pressed={selected === p.name}
-                onClick={() => openGabarit(p.name)}
-              >
-                <strong>{p.name}</strong>
-                <span>
-                  {p.longueur} caractères · {p.variables.length} variable
-                  {p.variables.length === 1 ? '' : 's'}
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {selected ? (
-        <div className="twin9-admin-editeur">
-          <h4>Édition : {selected}</h4>
-          {loading ? (
-            <p role="status">Chargement du contenu…</p>
-          ) : (
-            <>
-              <label htmlFor="twin9-gabarit-content">Contenu du gabarit (texte brut)</label>
-              <textarea
-                id="twin9-gabarit-content"
-                className="twin9-admin-textarea"
-                rows={16}
-                spellCheck={false}
-                value={content}
-                onChange={(event) => setContent(event.target.value)}
-              />
-              <div className="twin9-admin-actions">
-                <button type="button" disabled={busy || content.trim() === ''} onClick={save}>
-                  Enregistrer
-                </button>
-                <button
-                  type="button"
-                  className="admin-button-secondary"
-                  disabled={busy}
-                  onClick={loadVersions}
-                >
-                  Voir les versions
-                </button>
-              </div>
-            </>
-          )}
-
-          {message ? (
-            <p role="status" className="admin-message">
-              {message}
-            </p>
-          ) : null}
-          {error ? (
-            <p role="alert" className="load-error">
-              {error}
-            </p>
-          ) : null}
-
-          {versions ? (
-            versions.length === 0 ? (
-              <p>Aucune version antérieure archivée.</p>
-            ) : (
-              <table className="admin-table twin9-admin-versions">
-                <thead>
-                  <tr>
-                    <th scope="col">Version</th>
-                    <th scope="col">Longueur</th>
-                    <th scope="col">Variables</th>
-                    <th scope="col">Archivée le</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {versions.map((v) => (
-                    <tr key={v.version}>
-                      <td>{v.version}</td>
-                      <td>{v.longueur}</td>
-                      <td>{v.variables.length}</td>
-                      <td>{frDate(v.created_at)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )
-          ) : null}
-        </div>
-      ) : null}
-    </div>
-  )
-}
-
-// ---- 2. Banc d'essai -------------------------------------------------------
-
-/**
- * Rendre un gabarit avec des variables d'exemple (aucun appel LLM) : les champs
- * sont générés depuis les .variables du gabarit choisi ; testerProtocole renvoie
- * {rendu, non_resolues}. Le rendu est du texte brut réservé à l'admin.
- */
-function BancEssaiBloc({ protocoles, fetchFn }) {
-  const [name, setName] = useState('')
-  const [vars, setVars] = useState({})
-  const [result, setResult] = useState(null)
-  const [busy, setBusy] = useState(false)
-  const [error, setError] = useState(null)
-
-  const selected = protocoles.find((p) => p.name === name) ?? null
-
-  function choose(next) {
-    setName(next)
-    setResult(null)
-    setError(null)
-    const found = protocoles.find((p) => p.name === next)
-    const init = {}
-    for (const v of found?.variables ?? []) init[v] = ''
-    setVars(init)
-  }
-
-  async function run() {
-    setBusy(true)
-    setError(null)
-    setResult(null)
-    try {
-      setResult(await testerProtocole(name, vars, { fetchFn }))
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Test impossible.')
-    } finally {
-      setBusy(false)
-    }
-  }
-
-  return (
-    <div className="twin9-admin-bloc">
-      <h3>Banc d’essai</h3>
-      <p className="privacy-note">
-        Remplit un gabarit avec des variables d’exemple et affiche le rendu — <strong>aucun appel
-        LLM</strong>, aucun débit. Réservé à l’administration (le rendu contient le gabarit).
-      </p>
-
-      <div className="admin-field">
-        <label htmlFor="twin9-banc-gabarit">Gabarit</label>
-        <div className="admin-field-input">
-          <select
-            id="twin9-banc-gabarit"
-            value={name}
-            onChange={(event) => choose(event.target.value)}
-          >
-            <option value="">— choisir un gabarit —</option>
-            {protocoles.map((p) => (
-              <option key={p.name} value={p.name}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {selected ? (
-        <form
-          className="twin9-admin-banc"
-          onSubmit={(event) => {
-            event.preventDefault()
-            run()
-          }}
-        >
-          {selected.variables.length === 0 ? (
-            <p>Ce gabarit n’a aucune variable.</p>
-          ) : (
-            selected.variables.map((v) => (
-              <div className="admin-field" key={v}>
-                <label htmlFor={`twin9-var-${v}`}>{v}</label>
-                <div className="admin-field-input">
-                  <input
-                    id={`twin9-var-${v}`}
-                    type="text"
-                    value={vars[v] ?? ''}
-                    onChange={(event) =>
-                      setVars((prev) => ({ ...prev, [v]: event.target.value }))
-                    }
-                  />
-                </div>
-              </div>
-            ))
-          )}
-          <button type="submit" disabled={busy}>
-            Rendre le gabarit
-          </button>
-        </form>
-      ) : null}
-
-      {error ? (
-        <p role="alert" className="load-error">
-          {error}
-        </p>
-      ) : null}
-
-      {result ? (
-        <div className="twin9-admin-rendu">
-          <h4>Rendu</h4>
-          <pre data-testid="twin9-rendu">{result.rendu}</pre>
-          {Array.isArray(result.non_resolues) && result.non_resolues.length > 0 ? (
-            <p role="status" className="admin-message">
-              Variables non résolues : {result.non_resolues.join(', ')}
-            </p>
-          ) : null}
-        </div>
-      ) : null}
-    </div>
-  )
-}
-
-// ---- 3. Réglages -----------------------------------------------------------
+// ---- 1. Réglages -----------------------------------------------------------
 
 /** Brouillon (chaînes) depuis la config effective (admin shape). */
 function draftFromConfig(config) {
@@ -685,7 +383,7 @@ function ReglagesBloc({ config, fetchFn, onSaved }) {
   )
 }
 
-// ---- 4. Comptes ------------------------------------------------------------
+// ---- 2. Comptes ------------------------------------------------------------
 
 /** Supervision : tous les comptes ayant une activité, triés par le serveur. */
 function ComptesBloc({ comptes }) {
@@ -735,7 +433,6 @@ function ComptesBloc({ comptes }) {
  * @param {typeof fetch} [props.fetchFn] couture de test (injectée par AdminView)
  */
 export default function Twin9Section({ fetchFn }) {
-  const [protocoles, setProtocoles] = useState(null)
   const [config, setConfig] = useState(null)
   const [comptes, setComptes] = useState(null)
   const [status, setStatus] = useState('loading')
@@ -745,12 +442,10 @@ export default function Twin9Section({ fetchFn }) {
     setStatus('loading')
     setError(null)
     try {
-      const [pl, cfg, cp] = await Promise.all([
-        fetchProtocoleList({ fetchFn }),
+      const [cfg, cp] = await Promise.all([
         fetchTwin9Config({ fetchFn }),
         fetchComptes({ fetchFn }),
       ])
-      setProtocoles(Array.isArray(pl?.protocole) ? pl.protocole : [])
       setConfig(cfg ?? null)
       setComptes(Array.isArray(cp?.comptes) ? cp.comptes : [])
       setStatus('ready')
@@ -763,17 +458,6 @@ export default function Twin9Section({ fetchFn }) {
   useEffect(() => {
     load()
   }, [load])
-
-  // Rafraîchit la seule liste des gabarits (après enregistrement) sans toucher
-  // au brouillon des réglages en cours d'édition.
-  const reloadProtocoles = useCallback(async () => {
-    try {
-      const pl = await fetchProtocoleList({ fetchFn })
-      setProtocoles(Array.isArray(pl?.protocole) ? pl.protocole : [])
-    } catch {
-      // On garde la liste précédente : l'échec est déjà signalé par le bloc.
-    }
-  }, [fetchFn])
 
   if (status === 'loading') {
     return <p role="status">Chargement de Twin9…</p>
@@ -788,9 +472,12 @@ export default function Twin9Section({ fetchFn }) {
 
   return (
     <section className="admin-twin9 twin9-admin">
-      <h2>Twin9 — Golden Prompt</h2>
-      <GabaritsBloc protocoles={protocoles} fetchFn={fetchFn} onSaved={reloadProtocoles} />
-      <BancEssaiBloc protocoles={protocoles} fetchFn={fetchFn} />
+      <h2>Twin9 — supervision</h2>
+      <p className="privacy-note">
+        L’édition des gabarits du Golden Prompt a déménagé vers l’
+        <a href="#/twin9-atelier">atelier Twin9</a> (réservé aux administrateurs-promptologues).
+        Cette section garde la supervision commerciale : contribution, promo, packs, comptes.
+      </p>
       {config ? <ReglagesBloc config={config} fetchFn={fetchFn} onSaved={setConfig} /> : null}
       <ComptesBloc comptes={comptes} />
     </section>

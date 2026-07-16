@@ -65,6 +65,11 @@ export function parseHash(hash) {
   const twin9Match = /^\/twin9\/(.+)$/.exec(path)
   if (twin9Match) return { name: 'twin9', section: decodeURIComponent(twin9Match[1]) }
 
+  // Atelier Twin9 — édition des gabarits du Golden Prompt (admin ∧ promptologue,
+  // AD-D2) : #/twin9-atelier. Sous « Faire évoluer », distinct de la
+  // supervision #/admin/twin9.
+  if (path === '/twin9-atelier') return { name: 'twin9atelier', section: null }
+
   // Twin6 — cartographie ouverte (gratuite/open source) : #/twin6-ouverte.
   if (path === '/twin6-ouverte') return { name: 'twin6ouverte', section: null }
 

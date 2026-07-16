@@ -25,7 +25,7 @@ const SECTIONS = [
   { id: 'golden', label: 'Golden Prompt', hint: 'Import privé et autorisations' },
   { id: 'reglages', label: 'Réglages', hint: 'Démo publique, paquet par défaut, worker' },
   { id: 'config', label: 'Configuration serveur', hint: 'Variables versionnables' },
-  { id: 'twin9', label: 'Twin9', hint: 'Golden Prompt, réglages, comptes' },
+  { id: 'twin9', label: 'Twin9', hint: 'Supervision : contribution, promo, comptes' },
 ]
 
 /** Explication du rôle montrée à qui n'est pas administrateur. */

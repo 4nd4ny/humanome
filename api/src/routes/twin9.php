@@ -125,15 +125,22 @@ return function (App $app): void {
     };
 
     $admin = RequireRole::any('admin');
+    // AD-D2 : le CONTENU des gabarits Twin9 (lecture ET écriture, y compris le
+    // rendu du banc d'essai) exige la CONJONCTION admin ∧ promptologue. Un admin
+    // non-promptologue ne voit plus le contenu (403) ; la supervision (config,
+    // promo, comptes) reste admin seul. Le contenu ne transite JAMAIS vers un
+    // client sans les deux rôles.
+    $atelier = RequireRole::all('admin', 'promptologue');
 
     // ==================================================================
-    // 1. Templates (protocole) — admin only
+    // 1. Templates (protocole) — atelier : admin ∧ promptologue (AD-D2)
     // ==================================================================
 
-    // GET /api/twin9/admin/protocole — metadata list, NO content.
+    // GET /api/twin9/admin/protocole — metadata list (noms des gabarits :
+    // révèle la structure du protocole, gardé comme le contenu).
     $app->get('/twin9/admin/protocole', $wrap(function (Request $request, Response $response) use ($json): Response {
         return $json($response, ['protocole' => (new ProtocoleRepository(Db::get()))->list()]);
-    }))->add($admin);
+    }))->add($atelier);
 
     // GET /api/twin9/admin/protocole/{name}/versions — edit history.
     // Registered BEFORE the greedy {name:.+} routes (FastRoute matches in
@@ -146,10 +153,10 @@ return function (App $app): void {
         }
 
         return $json($response, ['name' => $name, 'versions' => $repo->versions($name)]);
-    }))->add($admin);
+    }))->add($atelier);
 
     // GET /api/twin9/admin/protocole/{name} — WITH content. This route is THE
-    // point where an administrator (and no one else) reads a template.
+    // point where an admin-promptologue (and no one else) reads a template.
     $app->get('/twin9/admin/protocole/{name:.+}', $wrap(function (Request $request, Response $response, array $args) use ($json): Response {
         $template = (new ProtocoleRepository(Db::get()))->get((string) $args['name']);
         if ($template === null) {
@@ -157,7 +164,7 @@ return function (App $app): void {
         }
 
         return $json($response, $template);
-    }))->add($admin);
+    }))->add($atelier);
 
     // PUT /api/twin9/admin/protocole/{name} {content} — edit (previous
     // content archived as a version). 422: empty or >= 256 Ko.
@@ -175,10 +182,10 @@ return function (App $app): void {
         );
 
         return $json($response, $result);
-    }))->add($admin);
+    }))->add($atelier);
 
     // ==================================================================
-    // 2. Configuration — admin only
+    // 2. Configuration — admin only (supervision commerciale, AD-D2)
     // ==================================================================
 
     // GET /api/twin9/admin/config — effective config (admin shape: raw list
@@ -199,7 +206,8 @@ return function (App $app): void {
     }))->add($admin);
 
     // ==================================================================
-    // 3. Test bench — admin only, rendering WITHOUT any LLM call
+    // 3. Test bench — atelier : admin ∧ promptologue (le rendu CONTIENT le
+    //    gabarit), rendering WITHOUT any LLM call
     // ==================================================================
 
     // POST /api/twin9/admin/tester {name, variables{}} -> {rendu, non_resolues}
@@ -212,7 +220,7 @@ return function (App $app): void {
         }
 
         return $json($response, (new ProtocoleRepository(Db::get()))->render($name, $variables));
-    }))->add($admin);
+    }))->add($atelier);
 
     // ==================================================================
     // 4. User surface (T3b) — any logged-in user, ADR-010 §1/§3/§4.

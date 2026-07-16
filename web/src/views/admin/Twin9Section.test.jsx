@@ -1,12 +1,8 @@
-// Section « Twin9 » (chantier T4-ADMIN, ADR-010) : le SEUL endroit du front
-// où le contenu d'un gabarit est visible, réservé au rôle admin. On vérifie les
-// quatre blocs (liste + édition/versionnage, banc d'essai, réglages bornés,
-// table des comptes), la dépêche depuis AdminView, et la garde de rôle.
-//
-// Les gabarits de test sont FICTIFS (noms plats -> pas d'encodage %2F dans les
-// clés de route) : jamais un vrai prompt.
+// Section « Twin9 » de l'admin (AD-D2) — SUPERVISION seule : réglages
+// (contribution, promo, packs, modèles) + comptes. L'édition des gabarits a
+// déménagé vers #/twin9-atelier (voir Twin9AtelierView.test.jsx).
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import Twin9Section from './Twin9Section.jsx'
 import AdminView from '../AdminView.jsx'
 import { resetApiClient } from '../../api/client.js'
@@ -32,13 +28,6 @@ function routedFetch(routes) {
     if (!handler) throw new Error(`route non mockée : ${key}`)
     return typeof handler === 'function' ? handler(init) : handler
   })
-}
-
-const PROTOCOLES = {
-  protocole: [
-    { name: 'gabarit-alpha', longueur: 1200, variables: ['TEXTE_JOURNEE', 'PIECES'], updated_at: '2026-07-10 09:00:00' },
-    { name: 'gabarit-beta', longueur: 640, variables: [], updated_at: '2026-07-09 08:00:00' },
-  ],
 }
 
 const CONFIG = {
@@ -69,106 +58,28 @@ const COMPTES = {
 }
 
 const baseRoutes = {
-  'GET api/twin9/admin/protocole': () => jsonResponse(200, PROTOCOLES),
   'GET api/twin9/admin/config': jsonResponse(200, CONFIG),
   'GET api/twin9/admin/comptes': jsonResponse(200, COMPTES),
 }
 
-/** Attend la fin du chargement initial (la liste des gabarits est rendue). */
+/** Attend la fin du chargement initial (les réglages sont rendus). */
 async function renderReady(routes) {
   const fetchFn = routedFetch(routes)
   render(<Twin9Section fetchFn={fetchFn} />)
-  await screen.findByRole('button', { name: /gabarit-alpha/ })
+  await screen.findByRole('heading', { name: 'Réglages' })
   return fetchFn
 }
 
-describe('Twin9Section — gabarits (liste + édition + versionnage)', () => {
-  it('liste les gabarits avec leurs métadonnées et l’avertissement de confidentialité', async () => {
-    await renderReady(baseRoutes)
-    expect(screen.getByText(/Contenu confidentiel/i)).toBeTruthy()
-    expect(screen.getByRole('button', { name: /gabarit-alpha/ })).toBeTruthy()
-    expect(screen.getByRole('button', { name: /gabarit-beta/ })).toBeTruthy()
-    expect(screen.getByText(/1200 caractères · 2 variables/)).toBeTruthy()
-  })
-
-  it('charge le contenu, l’édite et enregistre (PUT versionné)', async () => {
-    let putBody = null
-    const fetchFn = await renderReady({
-      ...baseRoutes,
-      'GET api/twin9/admin/protocole/gabarit-alpha': jsonResponse(200, {
-        name: 'gabarit-alpha',
-        content: 'CONTENU FICTIF {$TEXTE_JOURNEE}',
-        variables: ['TEXTE_JOURNEE', 'PIECES'],
-        updated_at: '2026-07-10 09:00:00',
-      }),
-      'PUT api/twin9/admin/protocole/gabarit-alpha': (init) => {
-        putBody = JSON.parse(init.body)
-        return jsonResponse(200, { name: 'gabarit-alpha', variables: ['TEXTE_JOURNEE'], status: 'updated' })
-      },
-    })
-
-    fireEvent.click(screen.getByRole('button', { name: /gabarit-alpha/ }))
-    const textarea = await screen.findByLabelText(/Contenu du gabarit/)
-    expect(textarea.value).toBe('CONTENU FICTIF {$TEXTE_JOURNEE}')
-
-    fireEvent.change(textarea, { target: { value: 'CONTENU FICTIF MODIFIÉ' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
-
-    await screen.findByText(/nouvelle version archivée/)
-    expect(putBody).toEqual({ content: 'CONTENU FICTIF MODIFIÉ' })
-    // Le contenu confidentiel n'est pas rendu en HTML : c'est du texte brut.
-    expect(textarea.tagName).toBe('TEXTAREA')
-  })
-
-  it('affiche l’historique des versions à la demande', async () => {
-    await renderReady({
-      ...baseRoutes,
-      'GET api/twin9/admin/protocole/gabarit-alpha': jsonResponse(200, {
-        name: 'gabarit-alpha',
-        content: 'CONTENU FICTIF',
-        variables: [],
-        updated_at: '2026-07-10 09:00:00',
-      }),
-      'GET api/twin9/admin/protocole/gabarit-alpha/versions': jsonResponse(200, {
-        name: 'gabarit-alpha',
-        versions: [{ version: 2, longueur: 900, variables: [], created_at: '2026-07-05 10:00:00' }],
-      }),
-    })
-
-    fireEvent.click(screen.getByRole('button', { name: /gabarit-alpha/ }))
-    await screen.findByLabelText(/Contenu du gabarit/)
-    fireEvent.click(screen.getByRole('button', { name: /Voir les versions/ }))
-
-    // La table des versions apparaît (métadonnées seules : version + longueur).
-    await screen.findByText('900') // longueur de la version archivée
-    const cells = screen.getAllByRole('cell')
-    expect(cells.some((c) => c.textContent === '2')).toBe(true) // numéro de version
-  })
-})
-
-describe('Twin9Section — banc d’essai', () => {
-  it('génère les champs de variables et affiche le rendu (aucun appel LLM)', async () => {
-    let postBody = null
-    await renderReady({
-      ...baseRoutes,
-      'POST api/twin9/admin/tester': (init) => {
-        postBody = JSON.parse(init.body)
-        return jsonResponse(200, { rendu: 'RENDU FICTIF DU GABARIT', non_resolues: [] })
-      },
-    })
-
-    fireEvent.change(screen.getByLabelText('Gabarit'), { target: { value: 'gabarit-alpha' } })
-    // Les champs sont générés depuis les variables du gabarit choisi.
-    const champ = await screen.findByLabelText('TEXTE_JOURNEE')
-    expect(screen.getByLabelText('PIECES')).toBeTruthy()
-    fireEvent.change(champ, { target: { value: 'exemple' } })
-
-    fireEvent.click(screen.getByRole('button', { name: 'Rendre le gabarit' }))
-
-    const rendu = await screen.findByTestId('twin9-rendu')
-    expect(rendu.textContent).toBe('RENDU FICTIF DU GABARIT')
-    expect(rendu.tagName).toBe('PRE') // texte brut, jamais du HTML
-    expect(postBody).toEqual({ name: 'gabarit-alpha', variables: { TEXTE_JOURNEE: 'exemple', PIECES: '' } })
+describe('Twin9Section — supervision seule (plus d’édition de gabarits)', () => {
+  it('NE charge PAS les gabarits et ne montre aucun contenu confidentiel', async () => {
+    const fetchFn = await renderReady(baseRoutes)
+    // Aucun appel à la liste des gabarits (déplacée dans l'atelier).
+    const calls = fetchFn.mock.calls.map((c) => c[0])
+    expect(calls.some((u) => String(u).includes('admin/protocole'))).toBe(false)
+    expect(screen.queryByText(/Gabarits du Golden Prompt/)).toBeNull()
+    expect(screen.queryByText(/Contenu confidentiel/i)).toBeNull()
+    // Un lien pointe vers l'atelier.
+    expect(screen.getByRole('link', { name: /atelier Twin9/i })).toBeTruthy()
   })
 })
 
@@ -204,12 +115,6 @@ describe('Twin9Section — réglages', () => {
 
     await screen.findByText('Réglages Twin9 enregistrés.')
     expect(putBody).toEqual({ twin9_cle_perso_ouverte: true })
-  })
-
-  it('signale quand il n’y a rien à enregistrer (aucun PUT)', async () => {
-    await renderReady(baseRoutes) // aucun PUT mocké : il ne doit pas partir
-    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer les réglages' }))
-    await screen.findByText('Aucune modification à enregistrer.')
   })
 
   it('ajoute un pack et l’envoie dans le diff', async () => {
@@ -253,21 +158,21 @@ describe('Twin9Section — comptes (supervision)', () => {
   })
 })
 
-describe('AdminView — dépêche twin9 et garde de rôle', () => {
+describe('AdminView — dépêche twin9 (supervision) et garde de rôle', () => {
   const admin = async () => ({ user: { id: 1, email: 'root@b.fr', displayName: 'Root', roles: ['admin'] } })
   const apprenant = async () => ({ user: { id: 2, email: 'a@b.fr', displayName: 'Maya', roles: ['apprenant'] } })
 
-  it('rend la section Twin9 pour un admin', async () => {
+  it('rend la supervision Twin9 pour un admin (sans contenu de gabarit)', async () => {
     const fetchFn = routedFetch(baseRoutes)
     render(<AdminView section="twin9" deps={{ fetchMeFn: admin, fetchFn }} />)
-    await screen.findByRole('heading', { name: /Twin9 — Golden Prompt/ })
+    await screen.findByRole('heading', { name: /Twin9 — supervision/ })
+    expect(screen.queryByText(/Contenu confidentiel/i)).toBeNull()
     expect(fetchFn).toHaveBeenCalled()
   })
 
   it('ne montre RIEN de Twin9 à un non-admin', async () => {
     render(<AdminView section="twin9" deps={{ fetchMeFn: apprenant }} />)
     await screen.findByTestId('admin-reserve')
-    expect(screen.queryByText(/Twin9 — Golden Prompt/)).toBeNull()
-    expect(screen.queryByText(/Contenu confidentiel/i)).toBeNull()
+    expect(screen.queryByText(/Twin9 — supervision/)).toBeNull()
   })
 })

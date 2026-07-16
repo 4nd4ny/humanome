@@ -126,39 +126,76 @@ final class Twin9ProtocoleTest extends CartographeTestCase
     // Admin routes: authz
     // ==================================================================
 
-    public function testRoutesRequireAdminRole(): void
+    /** admin ∧ promptologue — les DEUX rôles requis pour éditer les gabarits (AD-D2). */
+    private function registerAsAtelier(): array
     {
-        $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
-        $this->as_($admin, 'PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => self::FAKE_GABARIT]);
+        return $this->registerAs('atelier@example.org', 'Admin Prompto', ['admin', 'promptologue']);
+    }
 
-        // Visitor (no session): 401 everywhere.
+    /**
+     * AD-D2 — matrice de rôles COMPLÈTE sur les routes de gabarits Twin9 : le
+     * CONTENU (lecture ET écriture, versions, banc d'essai) exige la
+     * CONJONCTION admin ∧ promptologue ; la SUPERVISION (config, comptes) reste
+     * admin seul. Le gabarit ne fuite JAMAIS dans un refus.
+     */
+    public function testTemplateRoutesRequireAdminAndPromptologue(): void
+    {
+        // Un atelier (admin ∧ promptologue) sème un gabarit fictif.
+        $atelier = $this->registerAsAtelier();
+        self::assertSame(
+            200,
+            $this->as_($atelier, 'PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => self::FAKE_GABARIT])->getStatusCode(),
+        );
+
+        // Routes de CONTENU des gabarits (les deux rôles requis).
+        $contentRoutes = [
+            ['GET', '/api/twin9/admin/protocole', null],
+            ['GET', '/api/twin9/admin/protocole/fictif/01-essai', null],
+            ['GET', '/api/twin9/admin/protocole/fictif/01-essai/versions', null],
+            ['PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => 'x {$A}']],
+            ['POST', '/api/twin9/admin/tester', ['name' => 'fictif/01-essai']],
+        ];
+
+        // 1. Visiteur (aucune session) -> 401 partout.
         $this->cookieSid = null;
-        self::assertSame(401, $this->request('GET', '/api/twin9/admin/protocole')->getStatusCode());
-        self::assertSame(401, $this->request('GET', '/api/twin9/admin/config')->getStatusCode());
+        foreach ($contentRoutes as [$method, $path, $body]) {
+            self::assertSame(401, $this->request($method, $path, $body)->getStatusCode(), "$method $path (visiteur)");
+        }
 
-        // Promptologue: 403 — the Golden Twin9 templates are admin-only
-        // (ADR-010 §2), including the content read.
+        // 2. Promptologue SEUL -> 403 sur tout le contenu, aucun fragment fuité.
         $promptologue = $this->registerAs('promptologue@example.org', 'Promteur', ['promptologue']);
-        self::assertSame(403, $this->as_($promptologue, 'GET', '/api/twin9/admin/protocole')->getStatusCode());
-        $read = $this->as_($promptologue, 'GET', '/api/twin9/admin/protocole/fictif/01-essai');
-        self::assertSame(403, $read->getStatusCode());
-        self::assertStringNotContainsString('FICTIF', (string) $read->getBody(), 'no template fragment in the refusal');
-        self::assertSame(403, $this->as_($promptologue, 'PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => 'x {$A}'])->getStatusCode());
+        foreach ($contentRoutes as [$method, $path, $body]) {
+            $resp = $this->as_($promptologue, $method, $path, $body);
+            self::assertSame(403, $resp->getStatusCode(), "$method $path (promptologue seul)");
+            self::assertStringNotContainsString('FICTIF', (string) $resp->getBody(), 'no template fragment in the refusal');
+            self::assertStringNotContainsString('updated_at', (string) $resp->getBody(), 'no metadata in the refusal');
+        }
+
+        // 3. Admin SEUL (non-promptologue) -> 403 sur le contenu des gabarits
+        //    (le changement AD-D2 : un admin ne voit plus le contenu), aucun leak.
+        $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
+        foreach ($contentRoutes as [$method, $path, $body]) {
+            $resp = $this->as_($admin, $method, $path, $body);
+            self::assertSame(403, $resp->getStatusCode(), "$method $path (admin seul)");
+            self::assertStringNotContainsString('FICTIF', (string) $resp->getBody(), 'no template fragment in the refusal');
+        }
+
+        // 4. Admin ∧ promptologue -> 200 sur le contenu.
+        foreach ($contentRoutes as [$method, $path, $body]) {
+            $resp = $this->as_($atelier, $method, $path, $body);
+            self::assertSame(200, $resp->getStatusCode(), "$method $path (admin ∧ promptologue) : " . (string) $resp->getBody());
+        }
+
+        // SUPERVISION (config) : reste admin seul — l'admin seul PASSE, le
+        // promptologue seul est refusé, et un refus n'ouvre pas la promo.
+        self::assertSame(200, $this->as_($admin, 'GET', '/api/twin9/admin/config')->getStatusCode());
         self::assertSame(403, $this->as_($promptologue, 'GET', '/api/twin9/admin/config')->getStatusCode());
-        self::assertSame(403, $this->as_($promptologue, 'POST', '/api/twin9/admin/tester', ['name' => 'fictif/01-essai'])->getStatusCode());
-
-        // Exigence 3 (twin9-integration) — the two remaining admin routes:
-        // the version history (metadata of the confidential templates) and the
-        // config WRITE (a promptologue must NOT be able to open the promo).
-        $versions = $this->as_($promptologue, 'GET', '/api/twin9/admin/protocole/fictif/01-essai/versions');
-        self::assertSame(403, $versions->getStatusCode());
-        self::assertStringNotContainsString('updated_at', (string) $versions->getBody(), 'no metadata in the refusal');
-        self::assertStringNotContainsString('FICTIF', (string) $versions->getBody(), 'no template fragment in the refusal');
-
         $putConfig = $this->as_($promptologue, 'PUT', '/api/twin9/admin/config', ['twin9_cle_perso_ouverte' => true]);
         self::assertSame(403, $putConfig->getStatusCode());
-        $config = new Twin9Config(new SettingsRepository(Db::get()));
-        self::assertFalse($config->clePersoOuverte(), 'the refused PUT must not have opened the promo');
+        self::assertFalse(
+            (new Twin9Config(new SettingsRepository(Db::get())))->clePersoOuverte(),
+            'the refused PUT must not have opened the promo',
+        );
     }
 
     // ==================================================================
@@ -167,7 +204,7 @@ final class Twin9ProtocoleTest extends CartographeTestCase
 
     public function testPutExtractsVariablesAndListsWithoutContent(): void
     {
-        $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
+        $admin = $this->registerAsAtelier();
 
         $put = $this->as_($admin, 'PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => self::FAKE_GABARIT]);
         self::assertSame(200, $put->getStatusCode(), (string) $put->getBody());
@@ -196,7 +233,7 @@ final class Twin9ProtocoleTest extends CartographeTestCase
 
     public function testPutValidation(): void
     {
-        $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
+        $admin = $this->registerAsAtelier();
 
         self::assertSame(422, $this->as_($admin, 'PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => ''])->getStatusCode());
         self::assertSame(422, $this->as_($admin, 'PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => '   '])->getStatusCode());
@@ -208,7 +245,7 @@ final class Twin9ProtocoleTest extends CartographeTestCase
 
     public function testEditArchivesVersions(): void
     {
-        $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
+        $admin = $this->registerAsAtelier();
         $name = 'fictif/01-essai';
 
         $this->as_($admin, 'PUT', '/api/twin9/admin/protocole/' . $name, ['content' => 'V1 fictif {$A}']);
@@ -236,7 +273,7 @@ final class Twin9ProtocoleTest extends CartographeTestCase
 
     public function testTesterRendersAndReportsUnresolved(): void
     {
-        $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
+        $admin = $this->registerAsAtelier();
         $this->as_($admin, 'PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => self::FAKE_GABARIT]);
 
         $response = $this->as_($admin, 'POST', '/api/twin9/admin/tester', [

@@ -22,6 +22,7 @@ import AdminView from './views/AdminView.jsx'
 import ConfidentialiteView from './views/ConfidentialiteView.jsx'
 import GuidesView from './views/GuidesView.jsx'
 import Twin9View from './views/Twin9View.jsx'
+import Twin9AtelierView from './views/Twin9AtelierView.jsx'
 import Twin6OuverteView from './views/Twin6OuverteView.jsx'
 import CreditView from './views/CreditView.jsx'
 
@@ -284,6 +285,9 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       break
     case 'twin9':
       view = <Twin9View section={route.section} lib={lib} />
+      break
+    case 'twin9atelier':
+      view = <Twin9AtelierView roles={roles} />
       break
     case 'twin6ouverte':
       view = <Twin6OuverteView lib={lib} />

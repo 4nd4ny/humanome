@@ -70,6 +70,22 @@ describe('navGroups (sept familles d’intention)', () => {
     ])
   })
 
+  it('« Atelier Twin9 » n’apparaît qu’avec les DEUX rôles admin ∧ promptologue (AD-D2)', () => {
+    // Promptologue seul : pas d'atelier Twin9 (manque admin).
+    const promptologueSeul = navGroups({ roles: ['promptologue'] })
+    expect(promptologueSeul.find((g) => g.id === 'evoluer').items.map((i) => i.label)).toEqual([
+      'Atelier de prompts',
+    ])
+    // Admin seul : pas de famille « Faire évoluer » du tout (ni promptologue ni épistémiarque).
+    const adminSeul = navGroups({ roles: ['admin'] })
+    expect(adminSeul.find((g) => g.id === 'evoluer')).toBeUndefined()
+    // Admin ∧ promptologue : l'atelier Twin9 apparaît.
+    const adminPromptologue = navGroups({ roles: ['admin', 'promptologue'] })
+    const items = adminPromptologue.find((g) => g.id === 'evoluer').items.map((i) => i.label)
+    expect(items).toContain('Atelier Twin9')
+    expect(items).toContain('Atelier de prompts')
+  })
+
   it('connecté, la famille compte expose profil, crédit et confidentialité', () => {
     const groups = navGroups({ roles: ['apprenant'] })
     const compte = groups.find((g) => g.id === 'compte')

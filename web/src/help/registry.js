@@ -182,6 +182,19 @@ const BASE = {
       'Une facture récapitulative mensuelle est disponible dans « Mon compte ».',
     ],
   },
+  twin9atelier: {
+    titre: 'Atelier Twin9 (gabarits du Golden Prompt)',
+    intro:
+      'L’édition des gabarits du Golden Prompt Twin9 — le secret industriel de la plateforme. ' +
+      'Réservée aux administrateurs-promptologues (les DEUX rôles) : on y lit, édite et rend les ' +
+      'gabarits, mais aucun appel LLM n’y est fait.',
+    points: [
+      'Accès réservé à admin ∧ promptologue : le contenu des gabarits ne transite jamais vers un autre profil.',
+      'Chaque enregistrement archive une version : l’historique est consultable.',
+      'Le banc d’essai rend un gabarit avec des variables d’exemple, sans aucun débit ni appel au modèle.',
+      'La supervision commerciale (contribution, promo, comptes) reste dans #/admin/twin9 (administrateur).',
+    ],
+  },
   twin6ouverte: {
     titre: 'Cartographie ouverte Twin6',
     intro:

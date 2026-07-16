@@ -191,6 +191,16 @@ l'établissement (l'accès exige l'adhésion active).
 | Golden Prompt (import, autorisations d'accès) | GET/POST | `admin` |
 | Clés plateforme, plafonds démo, config | GET/PUT | `admin` |
 | Attribution / révocation des rôles | POST/DELETE | `admin` |
+| **Gabarits Twin9 — CONTENU** (`/api/twin9/admin/protocole**`, `/api/twin9/admin/tester`) | GET/PUT/POST | **`admin` ∧ `promptologue`** (les DEUX rôles, `RequireRole::all`, AD-D2) |
+| Twin9 supervision (config, contribution, promo, comptes) | GET/PUT | `admin` |
+
+> **AD-D2.** L'édition des gabarits du Golden Prompt Twin9 (lecture ET écriture du
+> contenu, versions, banc d'essai de rendu) exige la **conjonction** admin ∧
+> promptologue : un administrateur non-promptologue n'en voit plus le contenu
+> (403). La supervision commerciale (contribution, promo « Twin9 gratuit »,
+> comptes) reste `admin` seul. Front : l'éditeur vit sous « Faire évoluer » →
+> `#/twin9-atelier` (visible seulement avec les deux rôles) ; `#/admin/twin9`
+> garde la supervision.
 
 ### Backlog (hors v1, annexe B du plan)
 
