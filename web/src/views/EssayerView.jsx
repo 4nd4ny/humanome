@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { extractDay } from '@engine/pipeline/extract.js'
 import DayView from './DayView.jsx'
 import { loadPublishedReferentiel } from '../data/referentiel.js'
+import { downloadJson } from '../lib/download-json.js'
 import {
   DEMO_MAX_TOKENS,
   DEMO_MODEL,
@@ -152,6 +153,14 @@ export default function EssayerView({ lib, fetchFn }) {
           <p className="demo-banner-actions">
             <button type="button" className="button" onClick={() => window.print()}>
               Imprimer
+            </button>
+            <button
+              type="button"
+              className="button"
+              data-testid="essayer-export"
+              onClick={() => downloadJson(result, `cartographie-jour-${runDate ?? 'essai'}.json`)}
+            >
+              Exporter le JSON
             </button>
             <button type="button" className="button" onClick={restart}>
               Cartographier un autre texte

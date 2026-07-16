@@ -7,6 +7,26 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D4 (plan v1.1) — Visualisation : thème sombre, synchro heatmap, responsive, export JSON.**
+  Quatre défauts corrigés, **vérifiés au navigateur** (#/merge, démo 59 feuilles).
+  1. **Thème sombre** : `.timeline-controls button` et `.timeline-speed` avaient `background:#fff`
+     SANS `color` → glyphe clair (color-scheme:dark) invisible. Corrigé avec tokens sémantiques
+     (`--viz-surface`/`--viz-ink`, explicites sur les deux). Vérifié : glyphes ⏮◀▶▶▶⏭ nets en sombre.
+  2. **Synchro** : `HeatmapCalendar` gagne une prop `currentDate` (date de la trame courante, fournie
+     par `MergeView`) : les feuilles postérieures passent « à venir » (inertes), celle du jour courant
+     surlignée. Vérifié : feuille 1/59 → 1 posée + 58 à venir ; dernière trame → tout posé.
+  3. **Responsive** : le SVG passe en `viewBox` + `width:100%` + `preserveAspectRatio:xMidYMid meet`
+     (max-width = taille naturelle, conteneur `overflow-x:auto`). Vérifié à 360 px : heatmap 238 px,
+     ne déborde pas.
+  4. **Export JSON** : util UNIQUE `web/src/lib/download-json.js` (factorisé depuis Twin9) ; bouton
+     « Exporter le JSON » ajouté à `EssayerView` (cartographie-jour) et `Twin6OuverteView` (run.doc) ;
+     `ResultatsTwin9` réutilise l'util (fin de la triplication).
+  - **Tests** : `HeatmapCalendar` (currentDate, à venir, fluidité SVG), `download-json` (objet/chaîne,
+     no-op SSR), `EssayerView`/`Twin6OuverteView` (bouton + nom + type du blob), `TimelinePlayer`
+     non-régression. Vérif navigateur documentée (sombre + 360 px + heatmap qui se remplit), 0 erreur console.
+  - Suites **toutes vertes** : **PHP 487, engine 926 (+1 skip), web 719**, build web OK.
+    (Front-only : déploiement **static** seul.) ⏳ Déploiement au commit suivant.
+
 - 2026-07-16 — **D3 (plan v1.1) — Présenter l'offre employeur (moteur de recherche de compétences).**
   Présentation SEULE (AD-D6 : le moteur reste au backlog marketplace) : les tuiles employeur parlent
   enfin de l'offre payante à venir.

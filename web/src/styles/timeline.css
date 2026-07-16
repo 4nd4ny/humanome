@@ -25,7 +25,11 @@
   padding: 0 0.5rem;
   border: 1px solid rgba(100, 116, 139, 0.45);
   border-radius: 8px;
-  background: #fff;
+  /* D4 — thème sombre : la surface (blanche dans les deux thèmes) ET la couleur
+     du glyphe DOIVENT être explicites. Sans `color`, en sombre le glyphe hérite
+     d'une couleur claire (color-scheme:dark) -> blanc sur blanc, invisible. */
+  background: var(--viz-surface, #fff);
+  color: var(--viz-ink, #1e293b);
   font-size: 0.95rem;
   line-height: 1;
   cursor: pointer;
@@ -58,7 +62,9 @@
   padding: 0 0.4rem;
   border: 1px solid rgba(100, 116, 139, 0.45);
   border-radius: 8px;
-  background: #fff;
+  /* D4 — même correctif que les boutons : surface + couleur explicites. */
+  background: var(--viz-surface, #fff);
+  color: var(--viz-ink, #1e293b);
   font: inherit;
   font-size: 0.85rem;
 }

@@ -225,6 +225,10 @@ export default function MergeView({ mergeDoc, referentiel, lib: injectedLib }) {
           <HeatmapCalendar
             feuilles={mergeDoc?.feuilles ?? []}
             evolution={mergeDoc?.profilMeta?.evolution_globale ?? []}
+            // D4 — synchro : la heatmap se construit avec la carte pendant
+            // l'animation. À la dernière trame (défaut), currentDate = dernière
+            // feuille -> tout est visible ; sans timeline, pas de synchro.
+            currentDate={feuilles.length > 1 ? (feuilles[frame]?.iso ?? feuilles[frame]?.date ?? null) : null}
           />
         </div>
         <div className="panel-zone">{panel}</div>

@@ -6,6 +6,7 @@
 
 import { renderMarkdown } from '../../lib/md.js'
 import { formatUsd } from '../../api/twin9.js'
+import { downloadJson } from '../../lib/download-json.js'
 import { journeesDepuisCarto } from './run-helpers.js'
 
 /** Bloc markdown assaini (null si vide). */
@@ -13,20 +14,6 @@ function Markdown({ md, className }) {
   const texte = typeof md === 'string' ? md.trim() : ''
   if (!texte) return null
   return <div className={className} dangerouslySetInnerHTML={{ __html: renderMarkdown(texte) }} />
-}
-
-/** Déclenche le téléchargement du JSON canonique (bytes = carto_evolutive.json). */
-function telecharger(cartoStr, nom) {
-  if (typeof document === 'undefined' || typeof URL?.createObjectURL !== 'function') return
-  const blob = new Blob([cartoStr], { type: 'application/json' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = nom
-  document.body.appendChild(a)
-  a.click()
-  a.remove()
-  URL.revokeObjectURL(url)
 }
 
 /**
@@ -37,7 +24,7 @@ function telecharger(cartoStr, nom) {
  * @param {boolean} [props.demonstration] true = données fictives (mode démo)
  * @param {(str: string, nom: string) => void} [props.onExport] couture de test
  */
-export default function ResultatsTwin9({ carto, cartoStr, demonstration = false, onExport = telecharger }) {
+export default function ResultatsTwin9({ carto, cartoStr, demonstration = false, onExport = downloadJson }) {
   if (!carto) return null
   const apprenant = carto.kairos?.kairos?.apprenant ?? null
   const rapport = carto.rapport ?? null
@@ -171,5 +158,3 @@ export default function ResultatsTwin9({ carto, cartoStr, demonstration = false,
     </section>
   )
 }
-
-export { telecharger }

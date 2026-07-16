@@ -30,6 +30,7 @@ import {
 import { executerTwin6 } from '@engine/twin6/index.js'
 import MergeView from './MergeView.jsx'
 import { useSunburstLib } from './view-helpers.js'
+import { downloadJson } from '../lib/download-json.js'
 
 function messageErreur(error) {
   if (error instanceof ApiUnavailableError) return error.message
@@ -346,6 +347,16 @@ export default function Twin6OuverteView({ lib: injectedLib, deps = {} }) {
         <div className="twin6-resultat">
           <p className="twin6-succes" role="status">
             Cartographie ouverte terminée{run.cout > 0 ? ` — ${formatUsd(run.cout)} de contribution` : ' (avec votre clé)'}.
+          </p>
+          <p className="twin6-resultat-actions">
+            <button
+              type="button"
+              className="button"
+              data-testid="twin6-export"
+              onClick={() => downloadJson(run.doc, `cartographie-twin6-${run.doc?.journalId ?? run.doc?.source?.journal_id ?? 'ouverte'}.json`)}
+            >
+              Exporter le JSON
+            </button>
           </p>
           <MergeView mergeDoc={run.doc} referentiel={res.offer.referentiel} lib={lib} />
         </div>

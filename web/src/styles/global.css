@@ -1419,6 +1419,19 @@ body {
   outline: none;
 }
 
+/* D4 — responsive : le SVG (viewBox + width:100% + preserveAspectRatio) se met
+   à l'échelle de la largeur disponible ; à 360 px la démo tient sans déborder. */
+.heatmap-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* D4 — synchro timeline : la feuille de la trame courante est surlignée. */
+.heatmap-day-current {
+  stroke: var(--accent-solid, #2563eb);
+  stroke-width: 2;
+}
+
 /* ---------- Vue journée ---------- */
 
 .day-nav {

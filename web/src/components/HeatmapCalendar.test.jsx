@@ -82,4 +82,46 @@ describe('HeatmapCalendar', () => {
     const { container } = render(<HeatmapCalendar feuilles={[]} />)
     expect(container.querySelector('svg')).toBe(null)
   })
+
+  it('SVG fluide (D4) : viewBox + width 100% + preserveAspectRatio, largeur max bornée', () => {
+    const { container } = render(<HeatmapCalendar feuilles={feuilles} evolution={evolution} />)
+    const svg = container.querySelector('svg.heatmap-grid')
+    expect(svg.getAttribute('viewBox')).toMatch(/^0 0 \d+ \d+$/)
+    expect(svg.getAttribute('width')).toBe('100%')
+    expect(svg.getAttribute('preserveAspectRatio')).toBe('xMidYMid meet')
+    // Bornée à sa taille naturelle (ne grossit pas au-delà) + hauteur fluide.
+    expect(svg.style.maxWidth).toMatch(/px$/)
+    expect(svg.style.height).toBe('auto')
+  })
+
+  describe('synchro timeline (currentDate, D4)', () => {
+    it('sans currentDate : toutes les feuilles sont posées et cliquables', () => {
+      const { container } = render(<HeatmapCalendar feuilles={feuilles} evolution={evolution} />)
+      expect(container.querySelectorAll('rect.heatmap-day')).toHaveLength(3)
+      expect(container.querySelectorAll('rect[data-future="true"]')).toHaveLength(0)
+    })
+
+    it('currentDate au milieu : les feuilles postérieures passent « à venir » (inertes)', () => {
+      const { container } = render(
+        <HeatmapCalendar feuilles={feuilles} evolution={evolution} currentDate="2026-01-07" />,
+      )
+      // Posées : 05 et 07 ; à venir : 19 (plus cliquable).
+      expect(container.querySelector('rect[data-iso="2026-01-05"]')).not.toBeNull()
+      expect(container.querySelector('rect[data-iso="2026-01-07"]')).not.toBeNull()
+      expect(container.querySelector('rect[data-iso="2026-01-19"]')).toBeNull()
+      const future = container.querySelectorAll('rect[data-future="true"]')
+      expect(future.length).toBeGreaterThanOrEqual(1) // au moins la feuille du 19
+      // La feuille de la trame courante est surlignée.
+      const current = container.querySelector('rect[data-current="true"]')
+      expect(current.getAttribute('data-iso')).toBe('2026-01-07')
+    })
+
+    it('currentDate = dernière feuille : tout redevient posé (fin de plage)', () => {
+      const { container } = render(
+        <HeatmapCalendar feuilles={feuilles} evolution={evolution} currentDate="2026-01-19" />,
+      )
+      expect(container.querySelectorAll('rect.heatmap-day')).toHaveLength(3)
+      expect(container.querySelectorAll('rect[data-future="true"]')).toHaveLength(0)
+    })
+  })
 })

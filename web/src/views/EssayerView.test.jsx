@@ -128,6 +128,32 @@ describe('EssayerView — orchestration du moteur réel', () => {
     const [y, m, d] = localIsoToday().split('-')
     expect(screen.getByTestId('day-badge').textContent).toContain(`${d}/${m}/${y}`)
 
+    // D4 — export JSON : bouton présent, télécharge la cartographie-jour du run.
+    const exportBtn = screen.getByTestId('essayer-export')
+    expect(exportBtn.textContent).toContain('Exporter le JSON')
+    const anchors = []
+    const origClick = HTMLAnchorElement.prototype.click
+    const origCreate = URL.createObjectURL
+    const origRevoke = URL.revokeObjectURL
+    URL.createObjectURL = vi.fn((blob) => {
+      anchors.push({ blob })
+      return 'blob:mock'
+    })
+    URL.revokeObjectURL = vi.fn()
+    HTMLAnchorElement.prototype.click = function () {
+      anchors[anchors.length - 1].download = this.download
+    }
+    try {
+      fireEvent.click(exportBtn)
+      expect(anchors).toHaveLength(1)
+      expect(anchors[0].download).toBe(`cartographie-jour-${localIsoToday()}.json`)
+      expect(anchors[0].blob.type).toBe('application/json')
+    } finally {
+      HTMLAnchorElement.prototype.click = origClick
+      URL.createObjectURL = origCreate
+      URL.revokeObjectURL = origRevoke
+    }
+
     // Orchestration : 8 appels LLM, un défi one-time NEUF par appel.
     expect(posts).toHaveLength(8)
     expect(issued).toHaveLength(8)

@@ -71,9 +71,12 @@ export function scoreLevel(score, maxScore) {
  *   feuilles: Array<{iso: string, label?: string}>, // mergeDoc.feuilles
  *   evolution?: Array<{date: string, score_total: number}>, // profilMeta.evolution_globale
  *   onPickDay?: (iso: string) => void, // default: navigate to #/jour/<iso>
+ *   currentDate?: string | null, // D4 : synchro timeline — au-delà de cette date
+ *     (ISO), les cellules passent en état « à venir » ; celle du jour courant est
+ *     surlignée. null (défaut) = tout visible (hors animation / fin de plage).
  * }} props
  */
-export default function HeatmapCalendar({ feuilles, evolution = [], onPickDay }) {
+export default function HeatmapCalendar({ feuilles, evolution = [], onPickDay, currentDate = null }) {
   if (!feuilles || feuilles.length === 0) return null
 
   const scoreByDate = new Map(evolution.map((e) => [e.date, e.score_total]))
@@ -84,70 +87,92 @@ export default function HeatmapCalendar({ feuilles, evolution = [], onPickDay })
   const width = LEFT + weeks.length * STEP
   const height = TOP + 7 * STEP
   const pick = onPickDay ?? ((iso) => navigate(dayHash(iso)))
+  // Synchro timeline : une date > currentDate n'est pas encore « posée ».
+  const sync = typeof currentDate === 'string' && currentDate !== ''
 
   return (
     <figure className="heatmap">
       <figcaption className="heatmap-caption">
         {feuilles.length} feuilles de portfolio — cliquez sur un jour pour ouvrir sa cartographie
       </figcaption>
-      <svg
-        className="heatmap-grid"
-        viewBox={`0 0 ${width} ${height}`}
-        width={width}
-        height={height}
-        role="group"
-        aria-label="Calendrier des feuilles de portfolio"
-      >
-        {months.map(({ label, week }) => (
-          <text key={`${label}-${week}`} x={LEFT + week * STEP} y={11} className="heatmap-month">
-            {label}
-          </text>
-        ))}
-        {['lun.', 'mer.', 'ven.'].map((label, i) => (
-          <text key={label} x={0} y={TOP + (i * 2 + 1) * STEP - 4} className="heatmap-month">
-            {label}
-          </text>
-        ))}
-        {weeks.map((week, wi) =>
-          week.map((iso, di) => {
-            const active = activeDates.has(iso)
-            const score = scoreByDate.get(iso) ?? 0
-            const level = scoreLevel(score, maxScore)
-            const x = LEFT + wi * STEP
-            const y = TOP + di * STEP
-            if (!active) {
+      <div className="heatmap-scroll">
+        <svg
+          className="heatmap-grid"
+          viewBox={`0 0 ${width} ${height}`}
+          width="100%"
+          preserveAspectRatio="xMidYMid meet"
+          style={{ maxWidth: `${width}px`, height: 'auto' }}
+          role="group"
+          aria-label="Calendrier des feuilles de portfolio"
+        >
+          {months.map(({ label, week }) => (
+            <text key={`${label}-${week}`} x={LEFT + week * STEP} y={11} className="heatmap-month">
+              {label}
+            </text>
+          ))}
+          {['lun.', 'mer.', 'ven.'].map((label, i) => (
+            <text key={label} x={0} y={TOP + (i * 2 + 1) * STEP - 4} className="heatmap-month">
+              {label}
+            </text>
+          ))}
+          {weeks.map((week, wi) =>
+            week.map((iso, di) => {
+              const active = activeDates.has(iso)
+              // « à venir » ne concerne que les FEUILLES (cellules actives) pas
+              // encore atteintes : les cases vides restent des cases vides.
+              const future = sync && active && iso > currentDate
+              const isCurrent = sync && active && iso === currentDate
+              const score = scoreByDate.get(iso) ?? 0
+              const level = scoreLevel(score, maxScore)
+              const x = LEFT + wi * STEP
+              const y = TOP + di * STEP
+              // Vide, ou active MAIS pas encore atteinte par l'animation :
+              // cellule inerte, couleur « à venir » (la carte se construit).
+              if (!active || future) {
+                return (
+                  <rect
+                    key={iso}
+                    x={x}
+                    y={y}
+                    width={CELL}
+                    height={CELL}
+                    rx="2"
+                    fill={EMPTY_COLOR}
+                    className={future ? 'heatmap-future' : undefined}
+                    data-future={future ? 'true' : undefined}
+                  />
+                )
+              }
               return (
-                <rect key={iso} x={x} y={y} width={CELL} height={CELL} rx="2" fill={EMPTY_COLOR} />
+                <rect
+                  key={iso}
+                  x={x}
+                  y={y}
+                  width={CELL}
+                  height={CELL}
+                  rx="2"
+                  fill={LEVEL_COLORS[level]}
+                  className={isCurrent ? 'heatmap-day heatmap-day-current' : 'heatmap-day'}
+                  data-iso={iso}
+                  data-current={isCurrent ? 'true' : undefined}
+                  role="link"
+                  tabIndex={0}
+                  aria-label={`Journée du ${frenchDate(iso)}`}
+                  onClick={() => pick(iso)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault() // Espace ne doit pas faire défiler la page
+                      pick(iso)
+                    }
+                  }}
+                >
+                  <title>{`${frenchDate(iso)} — score ${Math.round(score * 10) / 10}`}</title>
+                </rect>
               )
-            }
-            return (
-              <rect
-                key={iso}
-                x={x}
-                y={y}
-                width={CELL}
-                height={CELL}
-                rx="2"
-                fill={LEVEL_COLORS[level]}
-                className="heatmap-day"
-                data-iso={iso}
-                role="link"
-                tabIndex={0}
-                aria-label={`Journée du ${frenchDate(iso)}`}
-                onClick={() => pick(iso)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault() // Espace ne doit pas faire défiler la page
-                    pick(iso)
-                  }
-                }}
-              >
-                <title>{`${frenchDate(iso)} — score ${Math.round(score * 10) / 10}`}</title>
-              </rect>
-            )
-          }),
-        )}
-      </svg>
+            }),
+          )}
+        </svg>
+      </div>
     </figure>
   )
 }

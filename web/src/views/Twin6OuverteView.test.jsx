@@ -97,6 +97,32 @@ describe('Twin6OuverteView', () => {
     // Résultat rendu (le sunburst réutilise MergeView).
     expect(await screen.findByText(/Cartographie ouverte terminée/)).toBeDefined()
     expect(screen.getByText('Feuilles de portfolio')).toBeDefined()
+
+    // D4 — export JSON : bouton présent, télécharge la cartographie-merge du run.
+    const exportBtn = screen.getByTestId('twin6-export')
+    expect(exportBtn.textContent).toContain('Exporter le JSON')
+    const anchors = []
+    const origClick = HTMLAnchorElement.prototype.click
+    const origCreate = URL.createObjectURL
+    const origRevoke = URL.revokeObjectURL
+    URL.createObjectURL = vi.fn((blob) => {
+      anchors.push({ blob })
+      return 'blob:mock'
+    })
+    URL.revokeObjectURL = vi.fn()
+    HTMLAnchorElement.prototype.click = function () {
+      anchors[anchors.length - 1].download = this.download
+    }
+    try {
+      fireEvent.click(exportBtn)
+      expect(anchors).toHaveLength(1)
+      expect(anchors[0].download).toBe('cartographie-twin6-ouverte.json')
+      expect(anchors[0].blob.type).toBe('application/json')
+    } finally {
+      HTMLAnchorElement.prototype.click = origClick
+      URL.createObjectURL = origCreate
+      URL.revokeObjectURL = origRevoke
+    }
   })
 
   it('exige une clé API quand la voie « clé perso » est choisie', async () => {
