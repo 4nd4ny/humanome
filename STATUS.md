@@ -21,8 +21,11 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
     **débusqué un résidu réel** : les identifiants OVH nommés dans une vieille entrée `STATUS.md`
     (méta-référence à la purge) — neutralisés.
   - **Hook** `.githooks/pre-commit` (activé : `git config core.hooksPath .githooks`) + **CI**
-    `.github/workflows/publiable.yml` (garde-fou + suites moteur et front). Le hook s'est déclenché et
-    a bloqué/validé les commits de cette session (vérifié en direct).
+    `.github/workflows/publiable.yml` (garde-fou + suite moteur). Le hook s'est déclenché et a
+    bloqué/validé les commits de cette session (vérifié en direct). La suite **front** est
+    volontairement hors CI : ses fixtures importent des données **générées** (`web/public/data/**`,
+    gitignorées, chaîne convert/generate multi-étapes — vérifié en clean-room qu'elle échoue sur un
+    checkout nu) ; elle tourne en local, comme la suite **PHP** (Docker). Pas de CI rouge au 1ᵉʳ push.
   - **GitBook** : `.gitbook.yaml` (root `./`, readme, summary) + `SUMMARY.md` **généré** par
     `scripts/build-gitbook-summary.mjs` depuis l'arbre de doc (9 parcours `content/formation/**` +
     docs `docs/**` + ADR), **83 entrées, 100 % des liens résolus**. La doc reste éditée en markdown
