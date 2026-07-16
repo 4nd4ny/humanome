@@ -7,6 +7,22 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D11 (plan v1.1) — Renommage Twin_v9 → Twin9 dans l'artefact moteur.**
+  L'en-tête du rapport évolutif téléchargeable dit enfin « Twin9 » (dernier résidu du renommage global).
+  - Source Python `../Twin_v9/aurora/merge3.py` (hors dépôt) : ligne d'en-tête `"*Twin_v9 — %s — %d
+    journées …"` → `"*Twin9 — …"` (SEULE cette ligne ; le champ `version:"Twin_v9"` de
+    carto_evolutive.json reste GELÉ, contrat de parité).
+  - `engine/src/twin9/merge.js` : même chaîne → « Twin9 ».
+  - Vecteur figé `merge.vec.json` **régénéré depuis le Python renommé**
+    (`python3 engine/test/twin9-vectors/gen_merge_scan_vectors.py`) : seule la ligne d'en-tête de
+    `rapport_evolutif_md` change, `scan.vec.json` **inchangé** (pas de hand-édition d'oracle). Régénération
+    documentée dans `merge.test.js`.
+  - `renommage.test.js` : `it.skip` « en-tête dit Twin9 » **réactivé** (passe), ligne d'en-tête **retirée**
+    de la liste blanche du lint (ne reste que le champ version gelé).
+  - **Parité CPython INTACTE** (`parite.test.js`, 6 oracles, `plant01` bit-à-bit) ; `merge.vec` à jour.
+  - Suites : **engine 927 (plus de skip)**, PHP 507, web 737 ; build front OK (le bundle porte « Twin9 — »).
+  - **✅ DÉPLOYÉ EN PRODUCTION** (front **static**, le moteur est bundlé côté client) : app 200.
+
 - 2026-07-16 — **D8 (plan v1.1) — Audit adversarial des paiements et crédits.** Audit OFFENSIF du
   système de crédits prépayés Twin9/Twin6 (8 angles, un test par angle). **Verdict : aucune
   vulnérabilité** — les défenses posées au durcissement #29 tiennent. Rien à corriger, donc **rien à

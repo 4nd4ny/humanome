@@ -8,6 +8,12 @@
 // indent=2) + "\n" de CPython (profil write_json — comparée à
 // pyJsonDumpsWriteJson), soit une chaîne markdown brute. Les floats d'entrée
 // sont marqués {"__f__": x} et hydratés en PyFloat par pyf().
+//
+// RÉGÉNÉRATION (plan v1.1, D11) : merge.vec.json a été régénéré depuis le Python
+// ../Twin_v9 après renommage de l'en-tête du rapport « Twin_v9 → Twin9 » (seule
+// la ligne d'en-tête de rapport_evolutif_md change ; scan.vec.json inchangé, et
+// le champ version reste « Twin_v9 », contrat de parité gelé). Commande :
+//   python3 test/twin9-vectors/gen_merge_scan_vectors.py
 
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";

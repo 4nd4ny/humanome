@@ -75,14 +75,13 @@ async function produireSorties() {
 }
 
 describe("renommage Twin_v9 → Twin9 (exigence 8) — artefacts utilisateur", () => {
-  // REPORTÉ (plan v1.1, chantier D11) : renommer l'en-tête du rapport évolutif
-  // impose de régénérer le vecteur figé merge.vec.json (rapport_evolutif_md)
-  // DEPUIS le source Python ../Twin_v9 renommé, pas de hand-éditer le vecteur
-  // (ce qui en ferait un oracle mensonger). La parité CPython réelle
-  // (parite.test.js, 6 oracles) NE compare PAS cet en-tête — seul le vecteur
-  // local le gèle. Tant que la régénération n'est pas faite, ce test reste en
-  // attente pour ne pas figer un demi-renommage. Voir plan-prompts-v1.1 D11.
-  it.skip("l'en-tête du rapport évolutif (ligne 2) dit « Twin9 », jamais « Twin_v9 »", async () => {
+  // FAIT (plan v1.1, chantier D11) : l'en-tête du rapport évolutif dit « Twin9 ».
+  // Le source Python ../Twin_v9 a été renommé (aurora/merge3.py, ligne d'en-tête
+  // seulement) ET le vecteur figé merge.vec.json a été régénéré DEPUIS ce Python
+  // (gen_merge_scan_vectors.py) — pas de hand-édition d'oracle. La parité CPython
+  // réelle (parite.test.js, 6 oracles) NE compare PAS cet en-tête ; le champ
+  // version reste « Twin_v9 » (contrat de parité gelé, cf. test suivant).
+  it("l'en-tête du rapport évolutif (ligne 2) dit « Twin9 », jamais « Twin_v9 »", async () => {
     const sorties = await produireSorties();
     const lignes = sorties.rapportEvolutifMd.split("\n");
     // L'en-tête (merge.js, ecrireSorties) est un artefact markdown remis à
@@ -114,16 +113,13 @@ function collecter(dir, garder, acc = []) {
 
 describe("renommage Twin_v9 → Twin9 (exigence 8) — lint statique des sources livrées", () => {
   const RACINE = join(HERE, "..", "..", "..");
-  // Occurrences AUTORISÉES (toute autre chaîne « Twin_v9 » dans du code livré,
-  // moteur ou UI hors tests, est un résidu de renommage à corriger) :
-  //  1. le champ de contrat de parité GELÉ, comparé bit-à-bit aux oracles
-  //     CPython (cf. test « carto_evolutive.json conserve version === Twin_v9 ») ;
-  //  2. l'en-tête du rapport évolutif — renommage REPORTÉ (plan v1.1 D11) : il
-  //     exige de régénérer le vecteur merge.vec.json depuis le Python renommé,
-  //     pas un demi-renommage. Retirer de la liste une fois D11 fait.
+  // Occurrence AUTORISÉE (toute autre chaîne « Twin_v9 » dans du code livré,
+  // moteur ou UI hors tests, est un résidu de renommage à corriger) : le SEUL
+  // champ de contrat de parité GELÉ, comparé bit-à-bit aux oracles CPython
+  // (cf. test « carto_evolutive.json conserve version === Twin_v9 »). L'en-tête
+  // du rapport, elle, a été renommée en « Twin9 » (D11 fait).
   const LISTE_BLANCHE = [
     /^\s*version: "Twin_v9",\s*$/,
-    /^\s*"\*Twin_v9 — %s — %d journées \(%s → %s\)\*",\s*$/,
   ];
   const estAutorisee = (ligne) => LISTE_BLANCHE.some((re) => re.test(ligne));
 

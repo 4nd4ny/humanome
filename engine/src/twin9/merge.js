@@ -1196,7 +1196,7 @@ export function ecrireSorties(ctx, cartos, competences, rel, roster) {
   const L = [
     pyFormat("# Cartographie évolutive — %s", ctx.journal_id),
     pyFormat(
-      "*Twin_v9 — %s — %d journées (%s → %s)*",
+      "*Twin9 — %s — %d journées (%s → %s)*",
       ctx.date,
       cartos.length,
       dates[0],
