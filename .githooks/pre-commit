@@ -1,0 +1,17 @@
+#!/bin/sh
+# Garde-fou de publication (D10) — refuse un commit qui introduirait un résidu
+# non publiable (secret en clair, .env réel, cache .pyc, gabarit Twin9, chemin
+# local absolu, identifiant OVH réel). Le dépôt est miroité en PUBLIC sur GitHub.
+#
+# Activation (une fois par clone) :  git config core.hooksPath .githooks
+# Contournement ponctuel et assumé :  git commit --no-verify
+#
+# Le même script tourne en CI (.github/workflows/publiable.yml).
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit : node introuvable — garde-fou de publication non exécuté." >&2
+  echo "            installe Node ou committe avec --no-verify en connaissance de cause." >&2
+  exit 1
+fi
+
+exec node "$(git rev-parse --show-toplevel)/scripts/check-publiable.mjs"

@@ -258,7 +258,7 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 - 2026-07-16 — **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-33`, `/api/health` ok, `migrate` skipped 17,
   seed/référentiel/fiches tous « unchanged » — le garde-fou fiches confirme qu'aucun contenu confidentiel
   n'a bougé ; front `index-DEyhdUY0.js` servi). **Historique git PURGÉ** avant publication
-  (`git filter-repo`) : le `.pyc` fuyant un chemin local et les identifiants OVH `harmong927`/`cluster129`
+  (`git filter-repo`) : le `.pyc` fuyant un chemin local et les identifiants OVH réels (hôte/cluster)
   retirés de **tout** l'historique (vérifié : 0 occurrence sur `git rev-list --all`) ; tag `v1.0.0` conservé,
   69 commits réécrits, sauvegarde `../humanome-backup.bundle` rafraîchie. **✅ PUBLIÉ OPEN SOURCE**
   sur **https://github.com/4nd4ny/humanome** (public, AGPL-3.0, `main` + tag `v1.0.0`) : 1463 fichiers,

@@ -1,0 +1,53 @@
+name: publiable
+
+# Garde-fou de publication (D10) : à chaque push/PR, on vérifie qu'aucun résidu
+# non publiable (secret, .env réel, gabarit Twin9, chemin local, identifiant OVH)
+# n'entre dans le miroir public, puis on rejoue les suites Node (moteur + front).
+# Les tests PHP tournent en local via Docker (php:8.2) — hors CI publique ici.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check-publiable:
+    name: Résidus non publiables
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Garde-fou de publication
+        run: node scripts/check-publiable.mjs
+
+  engine:
+    name: Tests moteur
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+        working-directory: engine
+      - run: npm test
+        working-directory: engine
+
+  web:
+    name: Tests front
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Le front importe le moteur par sa SOURCE (@engine -> ../engine/src) ;
+      # celle-ci dépend d'ajv : installer aussi les deps du moteur.
+      - run: npm ci
+        working-directory: engine
+      - run: npm ci
+        working-directory: web
+      - run: npm test
+        working-directory: web
