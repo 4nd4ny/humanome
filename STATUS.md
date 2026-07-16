@@ -7,6 +7,25 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D3 (plan v1.1) — Présenter l'offre employeur (moteur de recherche de compétences).**
+  Présentation SEULE (AD-D6 : le moteur reste au backlog marketplace) : les tuiles employeur parlent
+  enfin de l'offre payante à venir.
+  - **FamilyTiles** : la carte persona employeur gagne un second volet « Rechercher des profils
+    (à venir) » — abonnement payant qui finance l'accès gratuit à l'API pour les pays émergents, tarif
+    **1 USD/cartographie remontée dégressif à partir de 10/100/1000**, facturation forfaitaire avant les
+    recherches ajustée le mois suivant (crédits restants reportés), appel à manifestation d'intérêt
+    (`mailto:contact@humanome.xyz`, constante `CONTACT_EMPLOYEUR`). Badge « à venir », aucune promesse
+    de disponibilité immédiate.
+  - **Aide** : entrée `employeur` dédiée (modèle tarifaire en clair + financement pays émergents).
+  - **Formation** : nouveau chapitre `content/formation/employeur/05-offre-recherche-de-profils.md`
+    (auto-globbé, statut complet, ordre 5).
+  - **Doc source de vérité** : `docs/offre-employeur.md` (pricing versionné ; taux dégressifs marqués
+    INDICATIFS — le plan ne fixe que base 1 USD + seuils 10/100/1000, pas les taux exacts, pas d'invention).
+  - **Tests web** : volet + tarif + contact + « à venir » sans promesse immédiate (`FamilyTiles`),
+    chapitre présent et complet (`formation-content`), traçabilité aide (`registry`).
+  - Suites **toutes vertes** : **PHP 487, engine 926 (+1 skip), web 712**, build web OK.
+    (Pas de changement API/moteur : déploiement **static** seul.) ⏳ Déploiement au commit suivant.
+
 - 2026-07-16 — **D2 (plan v1.1) — Édition du Twin9 réservée aux administrateurs-promptologues.**
   Décision AD-D2 : garde en **conjonction** admin ∧ promptologue, côté serveur ET front.
   - **Serveur** : nouveau `RequireRole::all(...)` (les DEUX rôles requis). Toutes les routes de

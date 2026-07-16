@@ -58,6 +58,28 @@ describe('FamilyTiles — landing de profil', () => {
     expect(t.queryByText('Découvrir')).toBeNull()
   })
 
+  it('visiteur : le profil Employeur présente l’offre de recherche À VENIR (tarif + contact)', () => {
+    render(<FamilyTiles roles={[]} />)
+    const t = tiles()
+    fireEvent.click(t.getByRole('button', { name: 'Voir les profils d’utilisateurs' }))
+    fireEvent.click(t.getByRole('button', { name: 'Employeur' }))
+
+    // Second volet : le moteur de recherche de profils.
+    expect(t.getByText('Rechercher des profils')).toBeDefined()
+    // Modèle tarifaire en clair + financement des pays émergents.
+    expect(t.getByText(/1 USD/)).toBeDefined()
+    expect(t.getByText(/dégressif à partir de 10, 100 et\s+1000/)).toBeDefined()
+    expect(t.getByText(/pays émergents/)).toBeDefined()
+    // Contact factorisé (constante), en mailto.
+    const contact = t.getByRole('link', { name: 'contact@humanome.xyz' })
+    expect(contact.getAttribute('href')).toMatch(/^mailto:contact@humanome\.xyz/)
+
+    // AUCUNE promesse de disponibilité immédiate : c'est une offre « à venir ».
+    const section = screen.getByRole('region', { name: 'Plan du site' })
+    expect(within(section).getAllByText(/à venir/i).length).toBeGreaterThan(0)
+    expect(section.textContent).not.toMatch(/disponible (dès )?maintenant|disponible aujourd’hui/i)
+  })
+
   it('le survol d’un lien remplit le callout avec l’aide de la rubrique (« ? »)', () => {
     render(<FamilyTiles roles={[]} />)
     const t = tiles()

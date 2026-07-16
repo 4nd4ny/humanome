@@ -182,6 +182,20 @@ const BASE = {
       'Une facture récapitulative mensuelle est disponible dans « Mon compte ».',
     ],
   },
+  employeur: {
+    titre: 'Employeur : lire un profil, et bientôt en chercher',
+    intro:
+      'Aujourd’hui, un candidat vous partage sa cartographie (lien + mot de passe) : c’est le canal ' +
+      'individuel, sur invitation. Une offre complémentaire est EN PRÉPARATION — un moteur de recherche ' +
+      'de compétences sur les profils PUBLIÉS par les utilisateurs consentants, sur abonnement payant.',
+    points: [
+      'À venir (pas encore disponible) : rien n’est promis quant à la date.',
+      'L’abonnement finance l’accès gratuit à l’API pour les pays émergents.',
+      'Tarif : 1 USD par cartographie remontée, dégressif à partir de 10, 100 et 1000.',
+      'Facturation forfaitaire en début de mois, ajustée le mois suivant sur la consommation réelle (crédits restants reportés).',
+      'Manifestez votre intérêt à contact@humanome.xyz.',
+    ],
+  },
   twin9atelier: {
     titre: 'Atelier Twin9 (gabarits du Golden Prompt)',
     intro:

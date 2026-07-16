@@ -15,6 +15,14 @@ import { helpFor } from '../help/registry.js'
 import { navigate, parseHash } from '../router.js'
 
 /**
+ * Adresse de contact pour les employeurs intéressés par le moteur de recherche
+ * de profils (offre À VENIR, présentation seulement — AD-D6). Question ouverte
+ * Q2 : `contact@humanome.xyz` par défaut. Source de vérité du modèle tarifaire :
+ * docs/offre-employeur.md.
+ */
+export const CONTACT_EMPLOYEUR = 'contact@humanome.xyz'
+
+/**
  * Profils explorables par un visiteur. `roles` reflète la réalité des comptes
  * (tout compte porte « apprenant » en plus de son rôle de travail) ; employeur
  * n'a pas de compte — il reçoit un lien de partage — d'où son cas spécial.
@@ -149,16 +157,51 @@ export default function FamilyTiles({ roles = [] }) {
       ) : null}
 
       {!authenticated && reveal && persona === 'employeur' ? (
-        <div className="family family-note-card" data-family="partage">
-          <div className="family-head">
-            <span className="family-intent">Lire une cartographie partagée</span>
-            <span className="family-name">Employeur / recruteur</span>
-            <span className="family-audience">Sans compte — sur invitation</span>
+        <div className="families" data-persona="employeur">
+          <div className="family family-note-card" data-family="partage">
+            <div className="family-head">
+              <span className="family-intent">Lire une cartographie partagée</span>
+              <span className="family-name">Employeur / recruteur</span>
+              <span className="family-audience">Sans compte — sur invitation</span>
+            </div>
+            <p className="family-note-text">
+              {helpFor('share', {}).intro} L’apprenant vous transmet ce lien (et son mot de passe)
+              depuis son espace : il n’y a pas de page à chercher ici.
+            </p>
           </div>
-          <p className="family-note-text">
-            {helpFor('share', {}).intro} L’apprenant vous transmet ce lien (et son mot de passe)
-            depuis son espace : il n’y a pas de page à chercher ici.
-          </p>
+
+          <div className="family family-note-card" data-family="recherche-profils">
+            <div className="family-head">
+              <span className="family-intent">Rechercher des profils</span>
+              <span className="family-name">
+                Moteur de compétences <span className="value-badge value-badge-avenir">à venir</span>
+              </span>
+              <span className="family-audience">Sur abonnement — en préparation</span>
+            </div>
+            <p className="family-note-text">
+              Une offre <strong>à venir</strong> (pas encore disponible) : moyennant un abonnement
+              payant — qui <strong>finance l’accès gratuit à l’API pour les pays émergents</strong> —
+              vous pourrez rechercher des compétences dans les <strong>profils publiés</strong> par
+              les utilisateurs consentants.
+            </p>
+            <ul className="family-note-list">
+              <li>
+                <strong>1 USD</strong> par cartographie remontée, dégressif à partir de 10, 100 et
+                1000.
+              </li>
+              <li>
+                Facturation forfaitaire <strong>avant</strong> les recherches, ajustée le mois suivant
+                sur la consommation réelle (les crédits restants sont reportés).
+              </li>
+            </ul>
+            <p className="family-note-text">
+              Intéressé ? Écrivez-nous à{' '}
+              <a href={`mailto:${CONTACT_EMPLOYEUR}?subject=${encodeURIComponent('Intérêt — moteur de recherche de profils')}`}>
+                {CONTACT_EMPLOYEUR}
+              </a>{' '}
+              pour manifester votre intérêt.
+            </p>
+          </div>
         </div>
       ) : (
         <div className="families">
