@@ -7,8 +7,13 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
-- 2026-07-16 — **Vérification systématique A_VERIFIER + jeux de tests + correctifs. NON DÉPLOYÉ,
-  COMMITÉ EN LOCAL (push GitHub en attente d'un jeton — cf. « Actions manuelles »).**
+- 2026-07-16 — **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-33`, `/api/health` ok, `migrate` skipped 17,
+  seed/référentiel/fiches tous « unchanged » — le garde-fou fiches confirme qu'aucun contenu confidentiel
+  n'a bougé ; front `index-DEyhdUY0.js` servi). **Historique git PURGÉ** avant publication
+  (`git filter-repo`) : le `.pyc` fuyant un chemin local et les identifiants OVH `harmong927`/`cluster129`
+  retirés de **tout** l'historique (vérifié : 0 occurrence sur `git rev-list --all`) ; tag `v1.0.0` conservé,
+  69 commits réécrits, sauvegarde `../humanome-backup.bundle` rafraîchie. **Push GitHub : en attente d'un
+  jeton** (seul point bloquant — cf. « Actions manuelles »). Détail des correctifs ci-dessous.
   Vérification multi-agents (13 domaines, lecture seule) de tout ce qui avait été demandé dans les
   sessions précédentes ; la plupart est **réellement implémenté et désormais couvert par des tests
   dédiés** (~40 fichiers de tests écrits/étendus). Défauts détectés **corrigés** (pas seulement
