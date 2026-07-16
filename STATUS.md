@@ -26,7 +26,11 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
     (`Twin9AtelierView.test.jsx` garde 2 rôles + édition/banc d'essai, `Twin9Section.test.jsx`
     supervision seule, `nav.test.js` conjonction, aide `twin9atelier`). Doc : `docs/autorisations.md`.
   - Suites **toutes vertes** : **PHP 487, engine 926 (+1 skip), web 711**, build web OK.
-    ⏳ Déploiement + smoke prod au commit suivant.
+  - **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-38-gce6cea9`) : migrate skipped 17,
+    référentiel/seed/fiches « unchanged », paquets « unchanged », health ok, front redéployé. Smoke
+    prod : routes de contenu gabarits (`GET /twin9/admin/protocole`, `POST /twin9/admin/tester`) →
+    **401** non authentifié (garde `RequireRole::all` vivante) ; app 200. La distinction admin-seul
+    (403) vs admin ∧ promptologue (200) est couverte par la matrice PHP.
 
 - 2026-07-16 — **D1 (plan v1.1) — Twin6 forkable dans l'atelier promptologue.** Le protocole open
   source Twin6 est désormais un **paquet publié forkable** au même titre qu'`aurora-v3-reconstruit`,
