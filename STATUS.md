@@ -24,7 +24,9 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
   - **Tests web** : volet + tarif + contact + « à venir » sans promesse immédiate (`FamilyTiles`),
     chapitre présent et complet (`formation-content`), traçabilité aide (`registry`).
   - Suites **toutes vertes** : **PHP 487, engine 926 (+1 skip), web 712**, build web OK.
-    (Pas de changement API/moteur : déploiement **static** seul.) ⏳ Déploiement au commit suivant.
+  - **✅ DÉPLOYÉ EN PRODUCTION** (front **static** seul, pas de changement API/moteur) : app 200.
+    Le volet employeur est rendu côté client (accueil → « Voir les profils » → « Employeur ») —
+    vérifié par le test composant `FamilyTiles`.
 
 - 2026-07-16 — **D2 (plan v1.1) — Édition du Twin9 réservée aux administrateurs-promptologues.**
   Décision AD-D2 : garde en **conjonction** admin ∧ promptologue, côté serveur ET front.
