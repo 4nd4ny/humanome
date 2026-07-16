@@ -30,9 +30,13 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
     « Partir du Twin6 ».
   - **Doc** : `docs/contrats.md` §8 (sémantique de version immuable, réservation, exécution déléguée).
   - Suites **toutes vertes** : **PHP 487, engine 926 (+1 skip = D11), web 709**, build web OK.
-    ⏳ Déploiement + smoke prod (`GET /api/prompt-packages` doit lister `twin6-ouverte` `reserved:true`)
-    au commit suivant. Vérif UI interactive du fork couverte par les tests composant (session promptologue
-    requise pour une confirmation live en prod).
+  - **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-36-gd52fcd0`) : `migrate` skipped 17,
+    référentiel/seed/fiches **« unchanged »** (garde-fou confirme : aucun contenu confidentiel bougé),
+    `import-prompt-package twin6-ouverte` → **`imported`** (aurora `unchanged`), health ok. Smoke prod :
+    `GET /api/prompt-packages` → `twin6-ouverte reserved:true` ; le doc publié est `kind:prompt-package`
+    (10 prompts, marqueur `(twin6)`) ; la page statique `data/twin6/twin6-ouverte-1.0.0.json` répond
+    **200 inchangée** ; app 200. Vérif UI interactive du fork couverte par les tests composant (une
+    session promptologue en prod donnerait la confirmation live).
 
 - 2026-07-16 — **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-33`, `/api/health` ok, `migrate` skipped 17,
   seed/référentiel/fiches tous « unchanged » — le garde-fou fiches confirme qu'aucun contenu confidentiel
