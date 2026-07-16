@@ -32,10 +32,17 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
     web (`AccountView` : double-saisie bloquée, parcours activation, login-403→activation, lien #/activer).
     Rayon d'impact des tests géré : `register()` (helper) = inscription+activation via `MemoryMailer`.
   - Suites **toutes vertes** : **PHP 495, engine 926 (+1 skip), web 723**, build web OK.
-    ⏳ Déploiement (API migration 018 + front) au commit suivant.
-    **Action utilisateur restante (Q1)** : vérifier SPF/DKIM et l'expéditeur `no-reply@humanome.xyz` au
-    panel OVH — je ne peux pas lire la boîte de réception d'un compte jetable ; le smoke prod confirmera
-    seulement que `register` renvoie « pending » et crée un compte non activé (l'`mail()` n'a pas erré).
+  - **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-44-g05580cd`) : **migration 018 appliquée**
+    (`{"applied":["018_email_verification.sql"]}` — backfill des comptes prod existants), health ok,
+    référentiel/fiches/paquets « unchanged », front redéployé. **Smoke prod** (compte jetable) :
+    `register` → **201 `pending_activation`** (pas de session) ; `login` du compte non activé → **403**
+    (garde `email_not_verified` vivante) ; `activate` code faux → **401** générique (anti-énumération) ;
+    app 200. L'`mail()` n'a pas erré (register 201).
+  - ⚠️ **ACTION UTILISATEUR RESTANTE (Q1)** : vérifier **SPF/DKIM** et l'expéditeur
+    `no-reply@humanome.xyz` au **panel OVH** — je ne peux pas lire la boîte d'un compte jetable, donc
+    la RÉCEPTION réelle de l'email reste à confirmer côté toi. (`MAIL_FROM` prend le défaut :
+    `~/app/shared/.env` prod NON modifié.) Un compte de smoke non activé (@example.org) subsiste en base
+    (inoffensif, inutilisable) — purge possible plus tard.
 
 - 2026-07-16 — **D4 (plan v1.1) — Visualisation : thème sombre, synchro heatmap, responsive, export JSON.**
   Quatre défauts corrigés, **vérifiés au navigateur** (#/merge, démo 59 feuilles).
