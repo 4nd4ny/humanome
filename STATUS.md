@@ -12,8 +12,10 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
   n'a bougé ; front `index-DEyhdUY0.js` servi). **Historique git PURGÉ** avant publication
   (`git filter-repo`) : le `.pyc` fuyant un chemin local et les identifiants OVH `harmong927`/`cluster129`
   retirés de **tout** l'historique (vérifié : 0 occurrence sur `git rev-list --all`) ; tag `v1.0.0` conservé,
-  69 commits réécrits, sauvegarde `../humanome-backup.bundle` rafraîchie. **Push GitHub : en attente d'un
-  jeton** (seul point bloquant — cf. « Actions manuelles »). Détail des correctifs ci-dessous.
+  69 commits réécrits, sauvegarde `../humanome-backup.bundle` rafraîchie. **✅ PUBLIÉ OPEN SOURCE**
+  sur **https://github.com/4nd4ny/humanome** (public, AGPL-3.0, `main` + tag `v1.0.0`) : 1463 fichiers,
+  vérifié sans aucun fichier confidentiel (golden/twin9-oracles/gabarits/.pyc/.env absents),
+  `.env.example` en placeholders seulement. Détail des correctifs ci-dessous.
   Vérification multi-agents (13 domaines, lecture seule) de tout ce qui avait été demandé dans les
   sessions précédentes ; la plupart est **réellement implémenté et désormais couvert par des tests
   dédiés** (~40 fichiers de tests écrits/étendus). Défauts détectés **corrigés** (pas seulement
