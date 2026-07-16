@@ -30,6 +30,13 @@ if [ -d "$repo/scripts/data" ]; then
   cp -R "$repo/scripts/data/." "$stage/scripts/data/"
 fi
 
+# Regenerate the PUBLISHED prompt packages imported by `deploy.mjs api`
+# (build/prompt-packages/*.json, hash-idempotent server-side): the default
+# aurora package (P8) and the forkable Twin6 package (D1/AD-D1). Both derive
+# deterministically from committed sources — re-running is a no-op on the server.
+node "$repo/scripts/build-default-prompt-package.mjs"
+node "$repo/scripts/build-twin6-prompt-package.mjs"
+
 git -C "$repo" describe --always --dirty 2>/dev/null > "$stage/VERSION" || echo "unknown" > "$stage/VERSION"
 
 # Production vendor/ via the same PHP image as the dev stack (no local composer)

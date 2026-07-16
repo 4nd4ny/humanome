@@ -50,8 +50,16 @@ export default function AccueilSection({ api }) {
     setBusy(true)
     setNotice(null)
     try {
-      const { fromId, fromVersion, version } = creation
-      const data = await api.createDraft({ fromId, fromVersion, version })
+      const { fromId, fromVersion, version, reserved, toId } = creation
+      if (reserved && (!toId || toId.trim() === '')) {
+        throw new Error('Ce paquet est réservé : donnez un nouveau nom à votre copie.')
+      }
+      const data = await api.createDraft({
+        fromId,
+        fromVersion,
+        version,
+        toId: reserved ? toId.trim() : undefined,
+      })
       const draftId = data?.draftId
       if (draftId === undefined || draftId === null) {
         throw new Error('Réponse inattendue de l’API (draftId manquant).')
@@ -62,6 +70,18 @@ export default function AccueilSection({ api }) {
     } finally {
       setBusy(false)
     }
+  }
+
+  /** Présélectionne un fork (avec renommage si le paquet est réservé). */
+  function startCreation(pkg) {
+    setNotice(null)
+    setCreation({
+      fromId: pkg.id,
+      fromVersion: pkg.version,
+      version: suggestNextVersion(pkg.version),
+      reserved: pkg.reserved === true,
+      toId: pkg.reserved === true ? `${pkg.id}-ma-copie` : '',
+    })
   }
 
   async function proposeDefault(pkg) {
@@ -84,12 +104,32 @@ export default function AccueilSection({ api }) {
   const isDefault = (p) =>
     state.defaut !== null && p.id === state.defaut.id && p.version === state.defaut.version
 
+  // Dernière version publiée de twin6-ouverte (paquet réservé forkable, D1).
+  const twin6 = state.published
+    .filter((p) => p.id === 'twin6-ouverte')
+    .slice(-1)[0]
+
   return (
     <div className="promptologue-accueil">
       {notice ? (
         <p role={notice.kind === 'error' ? 'alert' : 'status'} className={notice.kind === 'error' ? 'load-error' : 'account-notice'}>
           {notice.text}
         </p>
+      ) : null}
+
+      {twin6 ? (
+        <section aria-label="Partir du Twin6" className="promptologue-encart-twin6">
+          <h2>Partir du Twin6</h2>
+          <p>
+            La « Cartographie ouverte Twin6 » (protocole open source) est publiée ici comme paquet
+            forkable. Créez-en <strong>votre copie</strong> pour la retravailler et la tester au banc
+            d’essai — vous choisissez un nouveau nom (le nom <code>twin6-ouverte</code> reste réservé
+            au référentiel source).
+          </p>
+          <button type="button" onClick={() => startCreation(twin6)}>
+            Partir du Twin6 ({twin6.version})
+          </button>
+        </section>
       ) : null}
 
       <section aria-label="Paquets publiés">
@@ -115,20 +155,12 @@ export default function AccueilSection({ api }) {
                   <td>
                     {p.version}{' '}
                     {isDefault(p) ? <strong className="promptologue-defaut">par défaut</strong> : null}
+                    {p.reserved ? <span className="promptologue-reserved"> réservé</span> : null}
                   </td>
                   <td>{p.description ?? ''}</td>
                   <td className="promptologue-actions">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setCreation({
-                          fromId: p.id,
-                          fromVersion: p.version,
-                          version: suggestNextVersion(p.version),
-                        })
-                      }
-                    >
-                      Nouvelle version
+                    <button type="button" onClick={() => startCreation(p)}>
+                      {p.reserved ? 'Forker (copie)' : 'Nouvelle version'}
                     </button>{' '}
                     {!isDefault(p) ? (
                       <button type="button" onClick={() => proposeDefault(p)}>
@@ -153,6 +185,16 @@ export default function AccueilSection({ api }) {
             <p>
               Nouveau brouillon depuis <code>{creation.fromId}</code>@{creation.fromVersion} :
             </p>
+            {creation.reserved ? (
+              <label>
+                Nom de votre copie (identifiant, kebab-case){' '}
+                <input
+                  value={creation.toId}
+                  onChange={(event) => setCreation({ ...creation, toId: event.target.value })}
+                  aria-label="Nom du paquet copié"
+                />
+              </label>
+            ) : null}{' '}
             <label>
               Version (semver, strictement croissante pour ce paquet){' '}
               <input

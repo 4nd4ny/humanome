@@ -8,10 +8,60 @@
 
 import { extractDay } from '@engine/pipeline/extract.js'
 import { compareRuns } from '@engine/consistency.js'
+import { executerTwin6 } from '@engine/twin6/index.js'
 import { runPackageInSandbox, usesEngineOrchestration } from '../../lib/sandbox/index.js'
 
 export const STATUT_ETABLIE = 'présence établie'
 export const STATUT_RENVOI = 'renvoi au cartographe'
+
+/**
+ * Paquet « Cartographie ouverte Twin6 » (ou un fork) : l'orchestration porte le
+ * marqueur engine://…(twin6). Son exécution n'est PAS une extraction par jour
+ * (aurora) mais un run Twin6 sur le portfolio ENTIER (7 scan-pole + kairos ->
+ * cartographie-merge), comme la page publique #/twin6-ouverte (D1/AD-D1).
+ * @param {object} pkg prompt-package (complet ou métadonnées)
+ * @returns {boolean}
+ */
+export function usesTwin6Engine(pkg) {
+  const orchestration = pkg?.code?.orchestration
+  return typeof orchestration === 'string' && orchestration.includes('(twin6)')
+}
+
+/**
+ * Extrait les gabarits Twin6 (scanPole, kairos, fiches{1..7}) des prompts[] d'un
+ * paquet Twin6, dans la forme attendue par executerTwin6.
+ * @param {{prompts: Array<{role: string, texte: string}>}} pkg
+ * @returns {{scanPole: string, kairos: string, fiches: Record<string, string>}}
+ */
+export function extractTwin6Templates(pkg) {
+  const byRole = {}
+  for (const p of pkg?.prompts ?? []) {
+    if (p && typeof p.role === 'string' && typeof p.texte === 'string') byRole[p.role] = p.texte
+  }
+  const scanPole = byRole['twin6-scan-pole']
+  const kairos = byRole['twin6-kairos']
+  const fiches = {}
+  for (let n = 1; n <= 7; n += 1) {
+    const t = byRole[`twin6-fiche-${n}`]
+    if (typeof t === 'string') fiches[String(n)] = t
+  }
+  if (!scanPole || !kairos || Object.keys(fiches).length === 0) {
+    throw new Error(
+      'Paquet Twin6 incomplet : gabarits twin6-scan-pole, twin6-kairos et twin6-fiche-1..7 attendus.',
+    )
+  }
+  return { scanPole, kairos, fiches }
+}
+
+/**
+ * Assemble un portfolio markdown (feuilles `### AAAA-MM-JJ`) depuis les journées
+ * du banc d'essai — Twin6 tourne sur le portfolio entier, pas jour par jour.
+ * @param {Array<{iso: string, texte: string}>} dayGroups
+ * @returns {string}
+ */
+export function dayGroupsToPortfolio(dayGroups) {
+  return (dayGroups ?? []).map((g) => `### ${g.iso}\n\n${g.texte}`).join('\n\n')
+}
 
 /**
  * Résumé structurel d'un document cartographie-jour : codes par statut.
@@ -76,7 +126,42 @@ export async function runVersionOnDays({
   onProgress,
   extractDayFn = extractDay,
   sandboxRunner = runPackageInSandbox,
+  executerTwin6Fn = executerTwin6,
 } = {}) {
+  // Twin6 (ou un fork) : run sur le portfolio ENTIER -> cartographie-merge.
+  if (usesTwin6Engine(pkg)) {
+    const startedAt = Date.now()
+    const templates = extractTwin6Templates(pkg)
+    const portfolio = dayGroupsToPortfolio(dayGroups)
+    let calls = 0
+    const { document } = await executerTwin6Fn({
+      portfolio,
+      templates,
+      referentiel,
+      provider,
+      model,
+      options: {
+        maxTokens,
+        signal,
+        onProgress: (p) => {
+          if (p?.phase === 'scan-pole' || p?.phase === 'kairos') {
+            calls = (p.done ?? 0) + 1
+            onProgress?.({ iso: '', position: calls, total: p.total ?? 8, calls })
+          }
+        },
+      },
+    })
+    return {
+      pkg: { id: pkg.id, version: pkg.version },
+      engine: true,
+      twin6: true,
+      mergeDoc: document,
+      days: [],
+      llmCalls: calls || 8,
+      durationMs: Date.now() - startedAt,
+    }
+  }
+
   const engine = usesEngineOrchestration(pkg)
   const startedAt = Date.now()
   const days = []

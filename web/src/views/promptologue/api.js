@@ -29,11 +29,14 @@ export function createPromptologueApi(apiFetchFn = apiFetch) {
     /** GET api/prompt-packages/drafts/{draftId} — UN brouillon AVEC document. */
     getDraft: (draftId) => apiFetchFn(`prompt-packages/drafts/${e(draftId)}`),
 
-    /** POST api/prompt-packages/drafts — nouvelle version depuis une publiée. */
-    createDraft: ({ fromId, fromVersion, version }) =>
+    /**
+     * POST api/prompt-packages/drafts — nouvelle version depuis une publiée.
+     * `toId` (nouveau nom) requis pour forker un paquet réservé (twin6-ouverte).
+     */
+    createDraft: ({ fromId, fromVersion, version, toId }) =>
       apiFetchFn('prompt-packages/drafts', {
         method: 'POST',
-        body: { fromId, fromVersion, version },
+        body: toId ? { fromId, fromVersion, version, toId } : { fromId, fromVersion, version },
       }),
 
     /** PUT api/prompt-packages/drafts/{draftId} — enregistre le document. */
@@ -52,6 +55,9 @@ export function createPromptologueApi(apiFetchFn = apiFetch) {
 
     /** GET api/prompt-packages/{id}/diff/{v1}/{v2} — diff structurel. */
     diff: (id, v1, v2) => apiFetchFn(`prompt-packages/${e(id)}/diff/${e(v1)}/${e(v2)}`),
+
+    /** GET …/drafts/{draftId}/diff-origin — diff du fork renommé contre son original. */
+    diffDraftOrigin: (draftId) => apiFetchFn(`prompt-packages/drafts/${e(draftId)}/diff-origin`),
 
     /** POST api/prompt-packages/{id}/{version}/propose-default. */
     proposeDefault: (id, version) =>

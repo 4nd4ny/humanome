@@ -10,9 +10,12 @@ import {
   buildAbReport,
   buildMultiRunReport,
   compareCodes,
+  dayGroupsToPortfolio,
+  extractTwin6Templates,
   reportDataUrl,
   runVersionOnDays,
   summarizeDocument,
+  usesTwin6Engine,
 } from './bench.js'
 import { fixtureDayGroups, FIXTURE_LABEL } from './BancEssaiSection.jsx'
 
@@ -81,6 +84,71 @@ describe('runVersionOnDays — routage moteur embarqué vs sandbox', () => {
       dayText: 'Journée 1.',
       date: '2026-01-05',
     })
+  })
+})
+
+describe('runVersionOnDays — branche Twin6 (portfolio entier -> merge)', () => {
+  const twin6Pkg = {
+    id: 'twin6-ouverte',
+    version: '1.0.0',
+    prompts: [
+      { role: 'twin6-scan-pole', texte: 'SCAN ${POLE}' },
+      { role: 'twin6-kairos', texte: 'KAIROS' },
+      ...[1, 2, 3, 4, 5, 6, 7].map((n) => ({ role: `twin6-fiche-${n}`, texte: `FICHE ${n}` })),
+    ],
+    code: { orchestration: '// engine://humanome-engine@0.1.0 (twin6)\n', entrypoint: 'executerTwin6' },
+  }
+
+  it('usesTwin6Engine détecte le marqueur (twin6), pas un paquet aurora', () => {
+    expect(usesTwin6Engine(twin6Pkg)).toBe(true)
+    expect(usesTwin6Engine(BUILTIN_PACKAGE)).toBe(false)
+    expect(usesTwin6Engine(pkgFixture)).toBe(false)
+  })
+
+  it('extractTwin6Templates lit scanPole/kairos/fiches depuis prompts[]', () => {
+    const t = extractTwin6Templates(twin6Pkg)
+    expect(t.scanPole).toBe('SCAN ${POLE}')
+    expect(t.kairos).toBe('KAIROS')
+    expect(Object.keys(t.fiches)).toEqual(['1', '2', '3', '4', '5', '6', '7'])
+    expect(t.fiches['3']).toBe('FICHE 3')
+  })
+
+  it('extractTwin6Templates rejette un paquet Twin6 incomplet', () => {
+    expect(() => extractTwin6Templates({ prompts: [{ role: 'twin6-kairos', texte: 'K' }] })).toThrow(
+      /incomplet/,
+    )
+  })
+
+  it('dayGroupsToPortfolio assemble des feuilles ### AAAA-MM-JJ', () => {
+    const portfolio = dayGroupsToPortfolio(DAYS)
+    expect(portfolio).toBe('### 2026-01-05\n\nJournée 1.\n\n### 2026-01-06\n\nJournée 2.')
+  })
+
+  it('exécute executerTwin6 sur le portfolio entier et renvoie un résultat merge', async () => {
+    const mergeDoc = { kind: 'cartographie-merge', periode: { nbFeuilles: 2 } }
+    const executerTwin6Fn = vi.fn(async () => ({ document: mergeDoc }))
+    const extractDayFn = vi.fn()
+    const sandboxRunner = vi.fn()
+    const result = await runVersionOnDays({
+      pkg: twin6Pkg,
+      dayGroups: DAYS,
+      referentiel: referentielFixture,
+      provider: { complete: async () => ({ text: '{}' }) },
+      model: 'test',
+      executerTwin6Fn,
+      extractDayFn,
+      sandboxRunner,
+    })
+    expect(executerTwin6Fn).toHaveBeenCalledTimes(1)
+    expect(extractDayFn).not.toHaveBeenCalled()
+    expect(sandboxRunner).not.toHaveBeenCalled()
+    const arg = executerTwin6Fn.mock.calls[0][0]
+    expect(arg.portfolio).toContain('### 2026-01-05')
+    expect(arg.templates.scanPole).toBe('SCAN ${POLE}')
+    expect(result.twin6).toBe(true)
+    expect(result.engine).toBe(true)
+    expect(result.mergeDoc).toBe(mergeDoc)
+    expect(result.days).toEqual([])
   })
 })
 

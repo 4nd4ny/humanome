@@ -306,6 +306,17 @@ export default function EditeurSection({ api, draftId }) {
     }
   }
 
+  // Fork renommé (paquet réservé, ex. twin6-ouverte) : diff du brouillon COURANT
+  // contre son original, même s'ils vivent sous des ids différents (D1).
+  async function loadForkDiff() {
+    setNotice(null)
+    try {
+      setDiff(await api.diffDraftOrigin(draftId))
+    } catch (err) {
+      setNotice({ kind: 'error', text: err?.message ?? 'Le diff contre l’original est indisponible.' })
+    }
+  }
+
   if (state.status === 'loading') return <p role="status">Chargement du brouillon…</p>
   if (state.status === 'error') {
     return (
@@ -537,7 +548,11 @@ export default function EditeurSection({ api, draftId }) {
         <button type="button" onClick={() => setPublishing({ changelog: '' })} disabled={busy}>
           Publier…
         </button>{' '}
-        {originVersion ? (
+        {doc.metadata?.forkedFrom?.id ? (
+          <button type="button" onClick={loadForkDiff}>
+            Diff contre l’original {doc.metadata.forkedFrom.id}@{doc.metadata.forkedFrom.version}
+          </button>
+        ) : originVersion ? (
           <button type="button" onClick={loadDiff}>
             Diff contre {originVersion}
           </button>

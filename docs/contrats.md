@@ -169,6 +169,31 @@ par `scripts/extract-referentiel.mjs`.
    l'enveloppe (un prompt-package valide n'a jamais de champ `document`
    objet) ; sinon le corps est le document nu. Réponses inchangées.
 
+8. **Twin6 dans l'atelier : paquet PUBLIÉ « twin6-ouverte », immuable, réservé
+   (D1/AD-D1).** Le protocole open source Twin6 alimente DEUX artefacts depuis
+   un SEUL corpus (`web/public/data/twin6/prompts/*.md`) : le paquet statique
+   public servi par `#/twin6-ouverte` (`scripts/build-twin6-package.mjs`) et un
+   document `prompt-package` importé publié en base
+   (`scripts/build-twin6-prompt-package.mjs`, `build/prompt-packages/`), forkable
+   dans l'atelier promptologue au même titre qu'`aurora-v3-reconstruit`. Les
+   textes scan-pole / kairos / fiches P1..P7 sont **byte-identiques** entre les
+   deux (source unique, prouvé par `twin6-prompt-package.test.js`).
+   - **Sémantique de version.** Une version publiée de `twin6-ouverte` est
+     **immuable** : une évolution du référentiel/corpus produit
+     `twin6-ouverte@1.1.0`, etc. (jamais une réécriture de `1.0.0`). L'import est
+     idempotent par hash de contenu ; un contenu DIFFÉRENT sous un couple
+     (id, version) existant est un 409.
+   - **Réservation.** `metadata.reserved: true` marque le paquet comme propriété
+     du **pipeline source-unique**. Un promptologue ne peut pas republier sous le
+     nom `twin6-ouverte` : `POST /api/prompt-packages/drafts` exige alors un
+     `toId` (nouveau nom de paquet, slug frais) — le fork est SA copie, publiée
+     sous son propre nom. Le drapeau `reserved` remonte dans
+     `GET /api/prompt-packages` pour piloter l'UI.
+   - **Exécution déléguée au moteur.** `code.orchestration` porte le marqueur
+     `engine://…(twin6)` : le banc d'essai et `#/twin6-ouverte` appellent
+     `executerTwin6` sur le portfolio **entier** (7 scan-pôle + kairos →
+     `cartographie-merge`), jamais l'extraction par jour d'aurora.
+
 ## 5. Note d'outillage
 
 `engine/src/validation.js` importe les schémas en imports JSON « nus »

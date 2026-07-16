@@ -27,10 +27,16 @@ import {
   reportDataUrl,
   runVersionOnDays,
   summarizeDocument,
+  usesTwin6Engine,
 } from './bench.js'
 import fixtureRaw from '../../../../schemas/fixtures/portfolio-3-jours.md?raw'
 
 export const FIXTURE_LABEL = 'Fixture embarquée : Maya, 3 journées'
+
+/** Twin6 produit une cartographie-merge globale (pas des documents par jour). */
+export const TWIN6_MODE_NOTE =
+  'Les paquets Twin6 produisent une cartographie globale (merge) sur le portfolio entier : ' +
+  'seul le mode « Run simple » est disponible (les modes multi-run et A/B comparent des documents par jour).'
 
 /** Journées de la fixture embarquée (segmentation du moteur). */
 export function fixtureDayGroups() {
@@ -187,6 +193,7 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
         setResult({ mode: 'simple', label, run })
       } else if (mode === 'multi') {
         const pkg = await resolvePackage(selA)
+        if (usesTwin6Engine(pkg)) throw new Error(TWIN6_MODE_NOTE)
         const runs = []
         for (let i = 0; i < nRuns; i++) {
           setRunning({ text: `Run ${i + 1}/${nRuns}…` })
@@ -204,6 +211,7 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
         })
       } else {
         const [pkgA, pkgB] = await Promise.all([resolvePackage(selA), resolvePackage(selB)])
+        if (usesTwin6Engine(pkgA) || usesTwin6Engine(pkgB)) throw new Error(TWIN6_MODE_NOTE)
         setRunning({ text: 'Exécution de la version A…' })
         const runA = await runFn({ ...baseParams, pkg: pkgA })
         setRunning({ text: 'Exécution de la version B…' })
@@ -373,6 +381,7 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
 
 function SimpleResult({ result }) {
   const { run, label } = result
+  if (run.twin6) return <Twin6Result run={run} label={label} />
   return (
     <section aria-label="Résultat du run" data-testid="banc-simple">
       <h3>
@@ -405,6 +414,32 @@ function SimpleResult({ result }) {
           })}
         </tbody>
       </table>
+    </section>
+  )
+}
+
+function Twin6Result({ run, label }) {
+  const doc = run.mergeDoc ?? {}
+  const nbFeuilles = doc.periode?.nbFeuilles ?? doc.feuilles?.length ?? 0
+  const nbCompetences = (doc.domains ?? []).reduce(
+    (sum, d) => sum + (d.competences?.length ?? 0),
+    0,
+  )
+  return (
+    <section aria-label="Résultat du run Twin6" data-testid="banc-twin6">
+      <h3>
+        {run.pkg.id}@{run.pkg.version} sur « {label} » — cartographie ouverte (Twin6)
+      </h3>
+      <p>
+        {nbFeuilles} feuille(s), {nbCompetences} compétence(s) cartographiée(s),{' '}
+        {run.llmCalls} appel(s) LLM, {Math.round(run.durationMs / 1000)} s — run sur le portfolio
+        entier (7 scan-pôle + kairos), mappé en cartographie globale.
+      </p>
+      <p>
+        <a href={reportDataUrl(doc)} download={`twin6-${run.pkg.id}-${run.pkg.version}.json`}>
+          Télécharger la cartographie (JSON)
+        </a>
+      </p>
     </section>
   )
 }

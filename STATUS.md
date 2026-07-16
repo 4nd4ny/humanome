@@ -7,6 +7,33 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D1 (plan v1.1) — Twin6 forkable dans l'atelier promptologue.** Le protocole open
+  source Twin6 est désormais un **paquet publié forkable** au même titre qu'`aurora-v3-reconstruit`,
+  sans changer la page publique `#/twin6-ouverte` (qui sert toujours le JSON statique).
+  - **Import** : `scripts/build-twin6-prompt-package.mjs` construit un document `prompt-package`
+    (scan-pole + kairos + méga-prompt + 7 fiches en `prompts[]` éditables, `code.orchestration` avec
+    marqueur `engine://…(twin6)`) depuis le **même corpus** que le paquet statique. `stage-api.sh`
+    régénère les deux paquets (aurora + twin6) avant chaque `deploy.mjs api` (import idempotent par hash).
+  - **Byte-identité prouvée** : `twin6-prompt-package.test.js` — scan-pole/kairos/fiches du paquet
+    importé === paquet statique (source unique, aucune dérive).
+  - **Réservation + fork-with-rename** : `metadata.reserved: true` marque le paquet comme propriété du
+    pipeline source-unique ; `POST /prompt-packages/drafts` d'un paquet réservé **exige** un `toId`
+    (nouveau nom, slug frais) → le fork est SA copie, publiable sous son propre nom. Le fork mémorise son
+    origine (`metadata.forkedFrom`). Garde-fou aussi dans `publishDraft`. `GET /prompt-packages` expose
+    le drapeau `reserved` (via `JSON_EXTRACT`, sans migration).
+  - **Diff fork ↔ original** : la route de diff existante ne compare que des versions **publiées du même
+    id** ; nouvelle route `GET /prompt-packages/drafts/{id}/diff-origin` compare le brouillon (fork) à son
+    original (`forkedFrom`) même sous des ids différents — owner-scopé. Bouton dédié dans l'éditeur.
+  - **Banc d'essai** : branche Twin6 (`usesTwin6Engine`/`extractTwin6Templates`) → `executerTwin6` sur le
+    **portfolio entier** (7 scan-pôle + kairos → `cartographie-merge`), jamais l'extraction aurora par
+    jour ; modes multi-run/A-B réservés aux paquets par jour. Accueil de l'atelier : encart
+    « Partir du Twin6 ».
+  - **Doc** : `docs/contrats.md` §8 (sémantique de version immuable, réservation, exécution déléguée).
+  - Suites **toutes vertes** : **PHP 487, engine 926 (+1 skip = D11), web 709**, build web OK.
+    ⏳ Déploiement + smoke prod (`GET /api/prompt-packages` doit lister `twin6-ouverte` `reserved:true`)
+    au commit suivant. Vérif UI interactive du fork couverte par les tests composant (session promptologue
+    requise pour une confirmation live en prod).
+
 - 2026-07-16 — **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-33`, `/api/health` ok, `migrate` skipped 17,
   seed/référentiel/fiches tous « unchanged » — le garde-fou fiches confirme qu'aucun contenu confidentiel
   n'a bougé ; front `index-DEyhdUY0.js` servi). **Historique git PURGÉ** avant publication

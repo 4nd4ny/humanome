@@ -105,12 +105,18 @@ final class PromptPackageRepository
      * by anyone — access is granted case by case through golden_grants
      * (api/src/Admin/GoldenRepository.php, cahier §3.4/§7).
      *
-     * @return list<array{id: string, version: string, description: string|null, publishedAt: string|null}>
+     * `reserved` (metadata.reserved of the stored content) marks packages owned
+     * by the source-unique pipeline (twin6-ouverte, D1/AD-D1): a promptologue
+     * fork of a reserved package must be renamed before publication — the front
+     * uses this flag to require a new id on « Nouvelle version ».
+     *
+     * @return list<array{id: string, version: string, description: string|null, publishedAt: string|null, reserved: bool}>
      */
     public function listPublished(): array
     {
         $stmt = $this->pdo->query(
-            'SELECT pp.slug, pv.semver, pp.description, pv.published_at
+            'SELECT pp.slug, pv.semver, pp.description, pv.published_at,
+                    JSON_UNQUOTE(JSON_EXTRACT(pv.content, \'$.metadata.reserved\')) AS reserved
                FROM prompt_versions pv
                JOIN prompt_packages pp ON pp.id = pv.package_id
               WHERE pv.status = "published" AND pp.is_private = 0
@@ -124,6 +130,7 @@ final class PromptPackageRepository
             'publishedAt' => $row['published_at'] === null
                 ? null
                 : str_replace(' ', 'T', (string) $row['published_at']),
+            'reserved' => ($row['reserved'] ?? null) === 'true',
         ], $stmt->fetchAll());
     }
 
@@ -194,9 +201,15 @@ final class PromptPackageRepository
      * package, or one of the author's OWN drafts (a foreign draft answers
      * null exactly like an unknown version — no existence oracle).
      *
+     * RESERVED source (metadata.reserved, source-unique pipeline — twin6-ouverte,
+     * D1/AD-D1): the fork is the promptologue's OWN copy — it must be renamed to
+     * a NEW package (`$toId`, a slug that does not yet exist) so it can never be
+     * republished under the reserved name. `$toId` is ignored for a non-reserved
+     * source (the id stays invariant, existing behaviour).
+     *
      * @return array<string, mixed>|null null when the source version is unknown
      */
-    public function createDraft(string $slug, string $fromSemver, string $newSemver, int $userId): ?array
+    public function createDraft(string $slug, string $fromSemver, string $newSemver, int $userId, ?string $toId = null): ?array
     {
         if (!Semver::isValid($newSemver)) {
             throw new InvalidPackageException(['/version' => ['Version semver invalide']]);
@@ -218,19 +231,33 @@ final class PromptPackageRepository
             return null;
         }
 
-        $exists = $this->pdo->prepare(
-            'SELECT 1 FROM prompt_versions WHERE package_id = ? AND semver = ?'
-        );
-        $exists->execute([(int) $source['package_id'], $newSemver]);
-        if ($exists->fetchColumn() !== false) {
-            throw new PackageConflictException(sprintf(
-                'Version %s of prompt package "%s" already exists',
-                $newSemver,
-                $slug,
-            ));
+        $doc = json_decode((string) $source['content'], true, 512, JSON_THROW_ON_ERROR);
+        $reserved = \is_array($doc['metadata'] ?? null) && ($doc['metadata']['reserved'] ?? false) === true;
+
+        if ($reserved) {
+            // Fork-with-rename: land the copy in a fresh package the promptologue owns.
+            $targetPackageId = $this->packageForReservedFork($slug, $toId, $userId);
+            $doc['id'] = $toId;
+            unset($doc['metadata']['reserved']); // the copy is not pipeline-owned
+            // Lineage: the renamed fork remembers its origin so the atelier can
+            // diff « le fork » contre « l'original » (plan D1, point 2) even
+            // though they now live under different package ids.
+            $doc['metadata']['forkedFrom'] = ['id' => $slug, 'version' => $fromSemver];
+        } else {
+            $targetPackageId = (int) $source['package_id'];
+            $exists = $this->pdo->prepare(
+                'SELECT 1 FROM prompt_versions WHERE package_id = ? AND semver = ?'
+            );
+            $exists->execute([$targetPackageId, $newSemver]);
+            if ($exists->fetchColumn() !== false) {
+                throw new PackageConflictException(sprintf(
+                    'Version %s of prompt package "%s" already exists',
+                    $newSemver,
+                    $slug,
+                ));
+            }
         }
 
-        $doc = json_decode((string) $source['content'], true, 512, JSON_THROW_ON_ERROR);
         $doc['version'] = $newSemver;
         if (isset($doc['metadata']) && \is_array($doc['metadata'])) {
             unset($doc['metadata']['publieLe']); // a draft is not published
@@ -242,19 +269,62 @@ final class PromptPackageRepository
             $this->pdo->prepare(
                 'INSERT INTO prompt_versions (package_id, semver, status, content, created_by)
                  VALUES (?, ?, "draft", ?, ?)'
-            )->execute([(int) $source['package_id'], $newSemver, self::encode($doc), $userId]);
+            )->execute([$targetPackageId, $newSemver, self::encode($doc), $userId]);
         } catch (\PDOException $e) {
             if ($e->getCode() === '23000') { // race on uq_prompt_versions
                 throw new PackageConflictException(sprintf(
                     'Version %s of prompt package "%s" already exists',
                     $newSemver,
-                    $slug,
+                    (string) $doc['id'],
                 ));
             }
             throw $e;
         }
 
         return $this->findDraft((int) $this->pdo->lastInsertId(), $userId);
+    }
+
+    /**
+     * Resolves the target package for a fork of a RESERVED source: `$toId` is
+     * required, must be a fresh slug (no existing package of that name — the
+     * copy starts a package the promptologue owns) and must differ from the
+     * reserved source. Creates and returns the new package id.
+     */
+    private function packageForReservedFork(string $sourceSlug, ?string $toId, int $userId): int
+    {
+        if (!\is_string($toId) || trim($toId) === '') {
+            throw new InvalidPackageException([
+                '/toId' => [sprintf(
+                    'Le paquet « %s » est réservé : forkez-le sous un nouveau nom (toId requis).',
+                    $sourceSlug,
+                )],
+            ]);
+        }
+        $toId = trim($toId);
+        if ($toId === $sourceSlug) {
+            throw new InvalidPackageException([
+                '/toId' => [sprintf('Le nom du fork doit différer de « %s » (paquet réservé).', $sourceSlug)],
+            ]);
+        }
+        if (preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $toId) !== 1 || \strlen($toId) > 64) {
+            throw new InvalidPackageException([
+                '/toId' => ['Identifiant de paquet invalide (kebab-case, ≤ 64 caractères : a-z, 0-9, tirets).'],
+            ]);
+        }
+
+        $existing = $this->pdo->prepare('SELECT id FROM prompt_packages WHERE slug = ?');
+        $existing->execute([$toId]);
+        if ($existing->fetchColumn() !== false) {
+            throw new PackageConflictException(sprintf(
+                'Un paquet nommé « %s » existe déjà — choisissez un autre nom pour votre copie.',
+                $toId,
+            ));
+        }
+
+        $this->pdo->prepare('INSERT INTO prompt_packages (slug, description) VALUES (?, ?)')
+            ->execute([$toId, null]);
+
+        return (int) $this->pdo->lastInsertId();
     }
 
     /**
@@ -426,6 +496,14 @@ final class PromptPackageRepository
             }
 
             $doc = json_decode((string) $row['content'], true, 512, JSON_THROW_ON_ERROR);
+            // Defence in depth: a reserved package (source-unique pipeline) is
+            // owned by the import path — it never gets promptologue drafts
+            // (createDraft renames forks of reserved sources). Refuse anyway.
+            if (\is_array($doc['metadata'] ?? null) && ($doc['metadata']['reserved'] ?? false) === true) {
+                throw new PackageConflictException(
+                    'Ce paquet est réservé au pipeline source-unique : forkez-le sous un nouveau nom.'
+                );
+            }
             // Deterministic changelog: drop any pre-existing entry for this
             // version, then append the publication entry.
             $entries = array_values(array_filter(

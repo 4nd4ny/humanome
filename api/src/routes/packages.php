@@ -105,8 +105,10 @@ return function (App $app): void {
     // ==================================================================
 
     // ------------------------------------------------------------------
-    // POST /api/prompt-packages/drafts {fromId, fromVersion, version}
-    // (promptologue) — new draft forked from an existing version.
+    // POST /api/prompt-packages/drafts {fromId, fromVersion, version, toId?}
+    // (promptologue) — new draft forked from an existing version. `toId`
+    // (nouveau nom de paquet) est REQUIS pour forker un paquet réservé
+    // (source-unique, ex. twin6-ouverte) et ignoré sinon (D1/AD-D1).
     // ------------------------------------------------------------------
     $app->post('/prompt-packages/drafts', $wrap(function (Request $request, Response $response) use ($json, $parseBody, $userId): Response {
         $body = $parseBody($request);
@@ -116,6 +118,7 @@ return function (App $app): void {
         $fromId = $body['fromId'] ?? null;
         $fromVersion = $body['fromVersion'] ?? null;
         $version = $body['version'] ?? null;
+        $toId = $body['toId'] ?? null;
         if (!\is_string($fromId) || $fromId === ''
             || !\is_string($fromVersion) || $fromVersion === ''
             || !\is_string($version) || $version === '') {
@@ -125,7 +128,7 @@ return function (App $app): void {
         }
 
         $draft = (new PromptPackageRepository(Db::get()))
-            ->createDraft($fromId, $fromVersion, $version, $userId());
+            ->createDraft($fromId, $fromVersion, $version, $userId(), \is_string($toId) ? $toId : null);
         if ($draft === null) {
             return $json($response, ['error' => 'Version source introuvable'], 404);
         }
@@ -155,6 +158,30 @@ return function (App $app): void {
         }
 
         return $json($response, $draft);
+    }))->add($promptologue);
+
+    // ------------------------------------------------------------------
+    // GET /api/prompt-packages/drafts/{draftId}/diff-origin — diff structurel
+    // du brouillon (fork renommé) contre SON original (metadata.forkedFrom).
+    // Owner-scoped (findDraft) : « le diff fonctionne entre le fork et
+    // l'original » (plan D1) même quand ils vivent sous des ids différents.
+    // ------------------------------------------------------------------
+    $app->get('/prompt-packages/drafts/{draftId:[0-9]+}/diff-origin', $wrap(function (Request $request, Response $response, array $args) use ($json, $userId): Response {
+        $repo = new PromptPackageRepository(Db::get());
+        $draft = $repo->findDraft((int) $args['draftId'], $userId());
+        if ($draft === null) {
+            return $json($response, ['error' => 'Brouillon introuvable'], 404);
+        }
+        $forked = $draft['document']['metadata']['forkedFrom'] ?? null;
+        if (!\is_array($forked) || !\is_string($forked['id'] ?? null) || !\is_string($forked['version'] ?? null)) {
+            return $json($response, ['error' => 'Ce brouillon n’a pas d’original de référence (ce n’est pas un fork renommé).'], 422);
+        }
+        $origin = $repo->findPublished($forked['id'], $forked['version']);
+        if ($origin === null) {
+            return $json($response, ['error' => 'Version d’origine introuvable (n’est plus publiée).'], 409);
+        }
+
+        return $json($response, PackageDiff::compute($origin, $draft['document']));
     }))->add($promptologue);
 
     // ------------------------------------------------------------------

@@ -105,6 +105,38 @@ describe('EditeurSection — chargement et édition', () => {
   })
 })
 
+describe('EditeurSection — diff d’un fork renommé contre son original (D1)', () => {
+  function forkApi() {
+    const doc = structuredClone({ ...pkgFixture, id: 'mon-twin6', version: '1.0.0' })
+    doc.metadata = { ...doc.metadata, forkedFrom: { id: 'twin6-ouverte', version: '1.0.0' } }
+    return fakeApi({
+      getDraft: vi.fn(async () => ({ draftId: 42, document: doc })),
+      diffDraftOrigin: vi.fn(async () => ({
+        packageId: 'mon-twin6',
+        from: { version: '1.0.0' },
+        to: { version: '1.0.0' },
+        identical: false,
+        fields: {},
+        prompts: { added: [], removed: [], modified: [] },
+        code: { entrypoint: null, orchestration: null },
+        metadata: {},
+      })),
+    })
+  }
+
+  it('propose « Diff contre l’original » et appelle diffDraftOrigin', async () => {
+    const api = forkApi()
+    render(<EditeurSection api={api} draftId="42" />)
+    await screen.findByText('mon-twin6')
+    const button = screen.getByRole('button', {
+      name: /Diff contre l’original twin6-ouverte@1\.0\.0/,
+    })
+    fireEvent.click(button)
+    await waitFor(() => expect(api.diffDraftOrigin).toHaveBeenCalledWith('42'))
+    expect(await screen.findByTestId('promptologue-diff')).toBeTruthy()
+  })
+})
+
 describe('EditeurSection — Valider (validation client au schéma)', () => {
   it('document conforme : message de validité', async () => {
     await renderEditor()
