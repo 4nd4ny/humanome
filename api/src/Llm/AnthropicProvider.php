@@ -29,12 +29,18 @@ final class AnthropicProvider
     /**
      * Same result contract as the engine providers (engine/src/providers):
      *
+     * @param bool $forceJsonDocument When true (default), forces generic tool
+     *   use so the reply is a GUARANTEED-valid JSON document (cartographie
+     *   demo/Twin9). When false, the model answers in FREE TEXT — required by
+     *   the tutor assistant (D9), which wants prose, not a JSON document (a
+     *   forced empty-schema tool otherwise yields « [] »).
+     *
      * @return array{text: string, usage: array{inputTokens: int, outputTokens: int}, model: string}
      *
      * @throws UpstreamException   on non-2xx upstream status
      * @throws HttpClientException on network failure
      */
-    public function complete(string $model, ?string $system, string $prompt, int $maxTokens): array
+    public function complete(string $model, ?string $system, string $prompt, int $maxTokens, bool $forceJsonDocument = true): array
     {
         $payload = [
             'model' => $model,
@@ -46,18 +52,20 @@ final class AnthropicProvider
             'thinking' => ['type' => 'disabled'],
             // No temperature: rejected as deprecated by current models
             // (« `temperature` is deprecated for this model », observed live).
+            'messages' => [['role' => 'user', 'content' => $prompt]],
+        ];
+        if ($forceJsonDocument) {
             // Forced generic tool use: the API's constrained decoding
             // GUARANTEES syntactically valid JSON — free-text generations
             // showed a high malformation rate live (key emitted without its
             // value, twice on the same pole). The tool input becomes `text`.
-            'tools' => [[
+            $payload['tools'] = [[
                 'name' => 'emettre_document',
                 'description' => 'Émet le document JSON strict demandé par la consigne.',
                 'input_schema' => ['type' => 'object'],
-            ]],
-            'tool_choice' => ['type' => 'tool', 'name' => 'emettre_document'],
-            'messages' => [['role' => 'user', 'content' => $prompt]],
-        ];
+            ]];
+            $payload['tool_choice'] = ['type' => 'tool', 'name' => 'emettre_document'];
+        }
         if ($system !== null && $system !== '') {
             $payload['system'] = $system;
         }

@@ -176,8 +176,10 @@ return function (App $app): void {
                 if ($apiKey === '') {
                     return $json($response, ['error' => 'Service indisponible'], 503);
                 }
+                // forceJsonDocument:false -> réponse en TEXTE LIBRE (prose), pas
+                // un document JSON. Sinon l'outil forcé renverrait « [] ».
                 $result = (new AnthropicProvider(LlmRuntime::httpClient(), $apiKey, $config->upstreamTimeoutSeconds))
-                    ->complete($TUTEUR_MODEL, $system, $question, $TUTEUR_MAX_TOKENS);
+                    ->complete($TUTEUR_MODEL, $system, $question, $TUTEUR_MAX_TOKENS, false);
             }
         } catch (UpstreamException $e) {
             if ($e->status === 429) {

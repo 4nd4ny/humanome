@@ -95,6 +95,33 @@ final class TuteurTest extends LlmTestCase
         self::assertSame(0, (int) self::$pdo->query('SELECT COALESCE(SUM(requests),0) FROM llm_usage_daily')->fetchColumn());
     }
 
+    public function testRealProviderAnswersInProseNotAForcedJsonDocument(): void
+    {
+        // Chemin RÉEL (AnthropicProvider), celui de la prod — pas MockProvider.
+        // Le tuteur veut de la PROSE. En mode démo/Twin9, l'outil JSON forcé
+        // (schéma vide) fait renvoyer « [] » à Haiku : c'est le bug observé au
+        // navigateur en prod. On bascule le provider sur anthropic et on relit
+        // la requête amont via le client HTTP factice.
+        TestDb::setEnv('DEMO_PROVIDER', 'anthropic');
+        $this->http->queueResponse([
+            'status' => 200,
+            'body' => self::anthropicBody('Commencez par #/essayer pour coller votre texte.'),
+        ]);
+
+        $response = $this->ask('Par où commencer ?');
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+        $body = self::json($response);
+        self::assertSame('Commencez par #/essayer pour coller votre texte.', $body['text']);
+        self::assertNotSame('[]', $body['text']);
+
+        // Garde-fou de régression : la requête amont NE force PAS d'outil JSON
+        // (sinon la réponse serait un document vide, pas de la prose).
+        $sent = json_decode((string) $this->http->requests[0]['body'], true);
+        self::assertIsArray($sent);
+        self::assertArrayNotHasKey('tool_choice', $sent);
+        self::assertArrayNotHasKey('tools', $sent);
+    }
+
     public function testConfiguredHaikuModelHasNonZeroPriceSoTheDollarCapCanTrip(): void
     {
         // Le plafond dollar (TUTEUR_BUDGET) ne peut freiner que si le modèle
