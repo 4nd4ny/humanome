@@ -26,7 +26,9 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
     (`Avatar` initiales/img, `resize-image` recadrage/encodage/plafond, `AccountView` édition nom +
     upload + retrait).
   - Suites **toutes vertes** : **PHP 501, engine 926 (+1 skip), web 733**, build web OK.
-    ⏳ Déploiement (API migration 019 + front) au commit suivant.
+  - **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-46-g4b5cb3d`) : migration 019 appliquée, health ok,
+    front redéployé. Smoke prod : `GET /users/{id}/avatar` → **404** (route vivante, colonne avatar OK) ;
+    `PATCH /auth/me` non authentifié → **401**.
 
 - 2026-07-16 — **D5 (plan v1.1) — Inscription durcie : double email, activation par code à 4 chiffres.**
   Un compte n'est ACTIVÉ qu'après confirmation d'un code envoyé par email (AD-D3).
