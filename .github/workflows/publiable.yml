@@ -1,9 +1,16 @@
 name: publiable
 
-# Garde-fou de publication (D10) : à chaque push/PR, on vérifie qu'aucun résidu
-# non publiable (secret, .env réel, gabarit Twin9, chemin local, identifiant OVH)
-# n'entre dans le miroir public, puis on rejoue les suites Node (moteur + front).
-# Les tests PHP tournent en local via Docker (php:8.2) — hors CI publique ici.
+# CI de publication (D10). À chaque push/PR :
+#  - `check-publiable` : garde-fou (aucun secret / .env / gabarit Twin9 / chemin
+#    local / identifiant OVH ne doit entrer dans le miroir public) ;
+#  - `engine` : suite du moteur (vecteurs figés versionnés, autonome).
+#
+# Volontairement PAS dans cette CI :
+#  - la suite FRONT : ses fixtures importent des données GÉNÉRÉES
+#    (web/public/data/**, gitignorées, dérivées d'assets-existants via une
+#    chaîne convert/generate multi-étapes) — elle tourne en local ;
+#  - la suite PHP : nécessite Docker (php:8.2) + MySQL — elle tourne en local
+#    (`docker compose run --rm php composer test`).
 
 on:
   push:
@@ -19,6 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - name: Garde-fou de publication
         run: node scripts/check-publiable.mjs
 
@@ -34,20 +44,3 @@ jobs:
         working-directory: engine
       - run: npm test
         working-directory: engine
-
-  web:
-    name: Tests front
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      # Le front importe le moteur par sa SOURCE (@engine -> ../engine/src) ;
-      # celle-ci dépend d'ajv : installer aussi les deps du moteur.
-      - run: npm ci
-        working-directory: engine
-      - run: npm ci
-        working-directory: web
-      - run: npm test
-        working-directory: web
