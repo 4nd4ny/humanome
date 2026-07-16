@@ -25,7 +25,8 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
      no-op SSR), `EssayerView`/`Twin6OuverteView` (bouton + nom + type du blob), `TimelinePlayer`
      non-régression. Vérif navigateur documentée (sombre + 360 px + heatmap qui se remplit), 0 erreur console.
   - Suites **toutes vertes** : **PHP 487, engine 926 (+1 skip), web 719**, build web OK.
-    (Front-only : déploiement **static** seul.) ⏳ Déploiement au commit suivant.
+  - **✅ DÉPLOYÉ EN PRODUCTION** (front **static** seul) : app 200. Comportement visuel vérifié au
+    navigateur en local (le prod sert le même bundle).
 
 - 2026-07-16 — **D3 (plan v1.1) — Présenter l'offre employeur (moteur de recherche de compétences).**
   Présentation SEULE (AD-D6 : le moteur reste au backlog marketplace) : les tuiles employeur parlent
