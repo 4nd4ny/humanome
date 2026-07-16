@@ -51,7 +51,7 @@ return [
         'APP_VERSION' => $value('APP_VERSION', '', 'Version déployée ; à défaut, lue dans le fichier VERSION de la release (ADR-008).'),
     ],
     'database' => [
-        'DB_HOST' => $value('DB_HOST', 'mysql', 'Hôte MySQL (OVH : example123.mysql.db).'),
+        'DB_HOST' => $value('DB_HOST', 'mysql', 'Hôte MySQL (OVH mutualisé : <compte>.mysql.db).'),
         'DB_PORT' => $value('DB_PORT', '3306', 'Port MySQL.'),
         'DB_NAME' => $value('DB_NAME', '', 'Nom de la base.'),
         'DB_USER' => $value('DB_USER', '', 'Utilisateur MySQL (non secret ; le mot de passe l\'est).'),

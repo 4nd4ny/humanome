@@ -4,7 +4,7 @@
 // is overkill; instead this connects with the `mysql` CLI when present, else
 // prints guidance). Primary backups are OVH's automatic ones; this is an
 // OFF-OVH safety copy the operator can run from any machine that can reach the
-// database host (example123.mysql.db).
+// database host (OVH mutualisé : <compte>.mysql.db).
 //
 // Usage:
 //   node scripts/backup/backup-db.mjs                 # dump -> backups/humanome-<ts>.sql
