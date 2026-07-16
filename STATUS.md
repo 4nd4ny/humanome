@@ -7,8 +7,16 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
-- 2026-07-16 — **SOURCE UNIQUE du référentiel : la compétence en base génère les fiches Twin6 + Twin9.
-  FAIT, NON COMMITÉ, NON DÉPLOYÉ.** Fin du triple-maintien des fiches de scan (Twin6 P*.md publics +
+- 2026-07-16 — **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-29-g625a4ad`, commits `131326b` clé API profil
+  + `625a4ad` source unique fiches). `migrate` → **017** (skipped 16). Seed : **61 compétences backfillées**
+  avec fiche + 7 en-têtes, gate structurel OK (`b246101c`). **`generate-fiches` → `"unchanged"` (garde-fou) :
+  le `twin9_fiches` généré depuis la base est BYTE-IDENTIQUE au golden prompt live — la prod CONFIRME la parité.**
+  Front redéployé (prebuild régénère P*.md + paquet Twin6 byte-identique). Smoke prod : `/api/keys`→401 (live),
+  `/api/competences/1.01` porte sa **fiche**, paquet Twin6 servi (7 fiches), app 200, référentiel 7.1.0. `deploy.mjs`
+  n'a pas touché `~/app/shared/.env` ; `vendor/autoload.php` vérifié. Édition d'une fiche → `dump-fiches` (BDD→corpus)
+  pour Twin6, `generate-fiches` (endpoint) pour Twin9 ; FUTURE-ONLY.
+
+- 2026-07-16 — **SOURCE UNIQUE du référentiel : la compétence en base génère les fiches Twin6 + Twin9.** Fin du triple-maintien des fiches de scan (Twin6 P*.md publics +
   setting `twin9_fiches` + gabarits tagger, tous byte-identiques, `cmp` confirmé). Désormais **une seule
   source** : `competence.content.fiche`. Tests : **PHP 432, engine 911 (parité INTACTE), web 569**, parité
   octet prouvée à chaque niveau.
