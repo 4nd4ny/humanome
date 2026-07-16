@@ -2,6 +2,43 @@
    CSS pur, sobre : palette neutre (ardoise), accents portés par les couleurs
    des pôles présentes dans les données. */
 
+/* ================= TYPOGRAPHIE : iA Writer Quattro (D7 / AD-D5) =================
+   Police auto-hébergée sous licence SIL OFL 1.1 (fichiers + licence dans
+   web/public/fonts/quattro/, copiés tels quels dans le build). On ne charge
+   QUE les 4 graisses utilisées (Regular/Italic/Bold/BoldItalic, ~172 Ko woff2
+   au total, hors bundle JS). font-display:swap : le texte s'affiche tout de
+   suite en repli système puis bascule (FOUT accepté, pas de FOIT).
+   La pile MONOSPACE reste système (ui-monospace) : iA Writer Mono n'est pas
+   embarquée en v1.1 (choix : éviter ~170 Ko de plus pour du code/technique). */
+@font-face {
+  font-family: 'iA Writer Quattro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/quattro/iAWriterQuattroS-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'iA Writer Quattro';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/quattro/iAWriterQuattroS-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'iA Writer Quattro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/quattro/iAWriterQuattroS-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'iA Writer Quattro';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/quattro/iAWriterQuattroS-BoldItalic.woff2') format('woff2');
+}
+
 /* ================= THÈME : tokens clair (défaut) =================
    Toute la couleur du site passe par ces variables. Le thème sombre ne
    redéfinit QUE ces valeurs (plus bas), le reste de la feuille les consomme.
@@ -205,7 +242,9 @@ html {
 
 body {
   margin: 0;
+  /* D7 — corps en iA Writer Quattro (auto-hébergée), repli système. */
   font-family:
+    'iA Writer Quattro',
     system-ui,
     -apple-system,
     'Segoe UI',

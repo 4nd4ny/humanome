@@ -7,6 +7,25 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D7 (plan v1.1) — Typographie iA Writer Quattro (auto-hébergée).**
+  Toute la police du site passe à **iA Writer Quattro** (AD-D5), auto-hébergée.
+  - **Fichiers** : 4 graisses woff2 (Regular/Italic/Bold/BoldItalic, ~172 Ko au total) + licence
+    **SIL OFL 1.1** (`OFL.txt`) dans `web/public/fonts/quattro/` (récupérées de `iaolo/iA-Fonts`,
+    copiées telles quelles dans le build). Seules les graisses utilisées sont chargées ; hors bundle JS.
+  - **CSS** : `@font-face` (4, `font-display:swap` → FOUT accepté, pas de FOIT) + pile corps
+    `'iA Writer Quattro', system-ui, …`. Pile **monospace inchangée** (système `ui-monospace`) :
+    iA Writer Mono non embarquée en v1.1 (choix noté en commentaire).
+  - **CSP** : ajout explicite de `font-src 'self'` dans `web/public/.htaccess` (les polices même-origine
+    étaient déjà couvertes par `default-src 'self'` — explicite pour la clarté/défense) ;
+    `docs/securite-checklist.md` mis à jour.
+  - **Vérifié au navigateur** : `document.fonts.check()` = **true**, body en iA Writer Quattro, les 2
+    woff2 (Regular/Bold) → **200** (aucun blocage CSP), rendu appliqué partout, 0 erreur console.
+    L'impression hérite de la police (aucune surcharge `@media print`).
+  - **Test** : `web/src/styles/fonts.test.js` (garde anti-régression : 4 @font-face + swap + pile corps
+    + présence des woff2/licence + aucune origine tierce de police).
+  - Suites **toutes vertes** : **PHP 501, engine 926 (+1 skip), web 737**, build web OK (fonts copiées
+    dans `dist/fonts/quattro/`). ⏳ Déploiement **static** au commit suivant.
+
 - 2026-07-16 — **D6 (plan v1.1) — Profil : avatar et édition (dépend de D5).**
   Ajout d'une photo/avatar + modification de l'identifiant dans le profil (AD-D4).
   - **Migration 019** : `users.avatar` (MEDIUMBLOB NULL) + `users.avatar_mime` — avatar EN BASE (pas de

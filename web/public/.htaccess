@@ -20,6 +20,8 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   #   style-src 'self' 'unsafe-inline'  React/Vite inline <style> and style=.
   #   script-src 'self' ...     see the two sandbox additions below.
   #   connect-src 'self'        fetch/XHR/WebSocket only to our API.
+  #   font-src 'self'           self-hosted iA Writer Quattro woff2 (D7). Explicit
+  #                             (default-src already covers it) — clarté + défense.
   #   worker-src blob:          see the sandbox note below.
   #   object-src 'none'; base-uri 'self'; frame-ancestors 'self'
   #
@@ -45,7 +47,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   #   belt-and-suspenders today; it future-proofs the worker-src fallback chain.)
   #   frame-src is intentionally NOT widened: about:srcdoc is already permitted
   #   by default-src 'self', and nothing frames blob:/data:.
-  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-7Ll8/Q7scy4XeEgF5GUsqHX5nPQqrnsVFr+cbzr/yEc=' blob:; connect-src 'self'; worker-src blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-7Ll8/Q7scy4XeEgF5GUsqHX5nPQqrnsVFr+cbzr/yEc=' blob:; connect-src 'self'; font-src 'self'; worker-src blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
 
   # Caching: hashed assets are immutable, entry points and data stay fresh
   <FilesMatch "\.(js|css|woff2?)$">

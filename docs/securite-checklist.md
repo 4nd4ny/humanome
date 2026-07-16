@@ -99,7 +99,9 @@ Dernière revue : M9 (2026-07-12).
   authentifiée renvoyant 401, **et** sur un 404).
 - **CSP du front** (`web/public/.htaccess`) : `default-src 'self'`, pas de
   `'unsafe-eval'`, `object-src 'none'`, `base-uri 'self'`, `frame-ancestors 'self'`,
-  `connect-src 'self'`, Permissions-Policy restrictive (ajoutée en M9).
+  `connect-src 'self'`, `font-src 'self'` (polices iA Writer Quattro auto-hébergées,
+  D7 — explicite bien que `default-src 'self'` les couvre déjà ; aucune origine
+  tierce de police), Permissions-Policy restrictive (ajoutée en M9).
   **Correction de régression M9 (bug réel)** : la CSP de prod cassait
   *silencieusement* la sandbox promptologue (P10). Un iframe `srcdoc` **hérite de la
   CSP de la page parente** ; `script-src 'self'` refusait donc le bootstrap inline
