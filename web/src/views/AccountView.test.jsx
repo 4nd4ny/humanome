@@ -22,13 +22,18 @@ function noContentResponse() {
   return { ok: true, status: 204, headers: { get: () => null }, json: async () => null }
 }
 
-/** Installe un fetch global factice et le retourne (AccountView utilise le client réel). */
+/** Installe un fetch global factice et le retourne (AccountView utilise le client réel).
+ *  Les appels GET api/keys (section « Clés API » du profil) sont routés HORS de la
+ *  file ordonnée : ils renvoient une liste vide, sans consommer les réponses d'auth. */
 function stubFetch(...responses) {
-  const fetchFn = vi.fn()
-  for (const response of responses) {
-    if (response instanceof Error) fetchFn.mockRejectedValueOnce(response)
-    else fetchFn.mockResolvedValueOnce(response)
-  }
+  let i = 0
+  const fetchFn = vi.fn((url) => {
+    if (typeof url === 'string' && url.includes('api/keys')) {
+      return Promise.resolve(jsonResponse(200, []))
+    }
+    const response = responses[i++]
+    return response instanceof Error ? Promise.reject(response) : Promise.resolve(response)
+  })
   vi.stubGlobal('fetch', fetchFn)
   return fetchFn
 }
@@ -159,10 +164,11 @@ describe('AccountView — connecté', () => {
     await screen.findByRole('button', { name: 'Se connecter' }) // retour anonyme
     expect(screen.getByRole('status').textContent).toContain('purgées')
 
-    const [url, init] = fetchFn.mock.calls[1]
-    expect(url).toBe('api/auth/account')
-    expect(init.method).toBe('DELETE')
-    expect(init.headers['X-CSRF-Token']).toBe('tok')
+    // Cible l'appel de purge (les appels api/keys de la section Clés API décalent les index).
+    const purge = fetchFn.mock.calls.find(([url]) => url === 'api/auth/account')
+    expect(purge).toBeDefined()
+    expect(purge[1].method).toBe('DELETE')
+    expect(purge[1].headers['X-CSRF-Token']).toBe('tok')
   })
 })
 

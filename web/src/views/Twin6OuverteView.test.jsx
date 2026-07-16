@@ -48,7 +48,9 @@ function baseDeps(over = {}) {
     loadPackage: async () => PKG,
     fetchOffer: async () => OFFER,
     makeCreditsProvider: () => ({ name: 'twin6-credits', complete: async () => ({}) }),
-    makeOwnKeyProvider: () => ({ name: 'anthropic', complete: async () => ({}) }),
+    makeOwnKeyProvider: vi.fn(() => ({ name: 'anthropic', complete: async () => ({}) })),
+    listKeys: async () => [], // par défaut : aucune clé enregistrée
+    revealKey: vi.fn(async () => ({ apiKey: 'sk-ant-stored-key' })),
     runEngine: vi.fn(async () => ({ document: MERGE_DOC, calls: new Array(8).fill(0) })),
     now: () => new Date('2026-07-15T00:00:00Z'),
     lib: fakeLib,
@@ -105,5 +107,27 @@ describe('Twin6OuverteView', () => {
     expect(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' })).toHaveProperty('disabled', true)
     fireEvent.change(screen.getByLabelText('Clé API Anthropic'), { target: { value: 'sk-ant-user' } })
     expect(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' })).toHaveProperty('disabled', false)
+  })
+
+  it('propose et lance sur la clé enregistrée au profil (sans ressaisie)', async () => {
+    const deps = baseDeps({ listKeys: async () => [{ provider: 'anthropic', createdAt: '2026-07-15' }] })
+    render(<Twin6OuverteView deps={deps} />)
+    await screen.findByLabelText(/Votre portfolio/)
+    fireEvent.change(screen.getByLabelText(/Votre portfolio/), {
+      target: { value: 'Un portfolio suffisamment long pour être analysé, avec du contenu réflexif réel.' },
+    })
+    fireEvent.click(screen.getByRole('radio', { name: /Avec ma propre clé API/ }))
+
+    // Le choix « clé enregistrée » est proposé et présélectionné : aucun champ à saisir,
+    // le bouton est actif immédiatement.
+    expect(await screen.findByRole('radio', { name: /clé Anthropic enregistrée/ })).toHaveProperty('checked', true)
+    expect(screen.queryByLabelText('Clé API Anthropic')).toBeNull()
+    expect(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' })).toHaveProperty('disabled', false)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' }))
+    // La clé est révélée à la demande et passée au provider own-key.
+    await waitFor(() => expect(deps.revealKey).toHaveBeenCalledWith('anthropic', expect.anything()))
+    await waitFor(() => expect(deps.makeOwnKeyProvider).toHaveBeenCalled())
+    expect(deps.makeOwnKeyProvider.mock.calls[0][0]).toMatchObject({ apiKey: 'sk-ant-stored-key' })
   })
 })

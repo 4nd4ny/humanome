@@ -4366,3 +4366,102 @@ body {
 .epi-change-list li {
   line-height: 1.5;
 }
+
+/* Clés API personnelles (profil #/compte) + choix clé enregistrée Twin6. */
+.account-keys {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+
+.account-keys-intro {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.account-keys-list {
+  list-style: none;
+  margin: 0.75rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.account-keys-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.account-keys-provider {
+  font-weight: 600;
+}
+
+.account-keys-date {
+  color: var(--ink-faint);
+  font-size: 0.88rem;
+  margin-right: auto;
+}
+
+.account-keys-delete {
+  background: none;
+  border: 1px solid var(--danger-border);
+  color: var(--danger);
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.account-keys-empty {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.account-keys-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.account-keys-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.account-keys-form select,
+.account-keys-form input {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+}
+
+.account-keys-ok {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.twin6-cleperso {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}

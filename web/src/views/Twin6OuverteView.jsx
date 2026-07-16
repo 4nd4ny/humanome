@@ -17,6 +17,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { ApiUnavailableError, fetchMe } from '../api/client.js'
+import { listKeys as listKeysApi, revealKey as revealKeyApi } from '../api/keys.js'
 import { formatUsd } from '../api/twin9.js'
 import {
   TWIN6_PACKAGE_URL,
@@ -47,15 +48,20 @@ export default function Twin6OuverteView({ lib: injectedLib, deps = {} }) {
   const fetchOffer = deps.fetchOffer ?? fetchTwin6Offer
   const creditsFactory = deps.makeCreditsProvider ?? makeCreditsProvider
   const ownKeyFactory = deps.makeOwnKeyProvider ?? makeOwnKeyProvider
+  const listKeys = deps.listKeys ?? listKeysApi
+  const revealKey = deps.revealKey ?? revealKeyApi
   const now = deps.now ?? (() => new Date())
   const callOpts = deps.fetchFn ? { fetchFn: deps.fetchFn } : {}
 
+  const OWN_KEY_PROVIDER = 'anthropic'
   const [session, setSession] = useState({ status: 'loading', user: null })
   const [res, setRes] = useState({ status: 'loading', pkg: null, offer: null, message: '' })
   const [portfolio, setPortfolio] = useState('')
   const [model, setModel] = useState('')
   const [voie, setVoie] = useState('credits') // 'credits' | 'cle_perso'
   const [apiKey, setApiKey] = useState('')
+  const [savedProviders, setSavedProviders] = useState([]) // clés perso enregistrées au profil
+  const [useSavedKey, setUseSavedKey] = useState(false)
   const [run, setRun] = useState({ status: 'idle', done: 0, total: 8, phase: '', doc: null, cout: 0, error: '' })
   const { lib } = useSunburstLib(deps.lib ?? injectedLib)
   const running = useRef(false)
@@ -89,13 +95,34 @@ export default function Twin6OuverteView({ lib: injectedLib, deps = {} }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session.status])
 
+  // Clés perso enregistrées au profil : si l'utilisateur en a une pour le
+  // fournisseur, on lui propose de lancer dessus sans la ressaisir.
+  useEffect(() => {
+    if (session.status !== 'authenticated') return undefined
+    let alive = true
+    listKeys(callOpts)
+      .then((list) => {
+        if (!alive) return
+        const providers = Array.isArray(list) ? list.map((k) => k.provider) : []
+        setSavedProviders(providers)
+        if (providers.includes(OWN_KEY_PROVIDER)) setUseSavedKey(true)
+      })
+      .catch(() => alive && setSavedProviders([]))
+    return () => {
+      alive = false
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session.status])
+
+  const hasSavedKey = savedProviders.includes(OWN_KEY_PROVIDER)
   const modeles = res.offer?.modeles ?? {}
   const portfolioPret = portfolio.trim().length > 40
+  const clePersoPrete = (useSavedKey && hasSavedKey) || apiKey.trim() !== ''
   const peutLancer =
     res.status === 'ready' &&
     !!model &&
     portfolioPret &&
-    (voie === 'credits' || apiKey.trim() !== '') &&
+    (voie === 'credits' || clePersoPrete) &&
     run.status !== 'running'
 
   async function lancer() {
@@ -103,13 +130,20 @@ export default function Twin6OuverteView({ lib: injectedLib, deps = {} }) {
     running.current = true
     setRun({ status: 'running', done: 0, total: 8, phase: 'scan-pole', doc: null, cout: 0, error: '' })
     try {
-      const provider =
-        voie === 'cle_perso'
-          ? ownKeyFactory({ provider: 'anthropic', apiKey: apiKey.trim(), ...callOpts })
-          : creditsFactory({
-              onCout: (c) => setRun((r) => ({ ...r, cout: r.cout + (Number(c) || 0) })),
-              ...callOpts,
-            })
+      let provider
+      if (voie === 'cle_perso') {
+        // Clé enregistrée au profil (révélée à la demande, no-store) OU saisie.
+        const key =
+          useSavedKey && hasSavedKey
+            ? (await revealKey(OWN_KEY_PROVIDER, callOpts)).apiKey
+            : apiKey.trim()
+        provider = ownKeyFactory({ provider: OWN_KEY_PROVIDER, apiKey: key, ...callOpts })
+      } else {
+        provider = creditsFactory({
+          onCout: (c) => setRun((r) => ({ ...r, cout: r.cout + (Number(c) || 0) })),
+          ...callOpts,
+        })
+      }
 
       const out = await runEngine({
         portfolio,
@@ -214,14 +248,45 @@ export default function Twin6OuverteView({ lib: injectedLib, deps = {} }) {
               Avec ma propre clé API (gratuit — la clé reste dans mon navigateur)
             </label>
             {voie === 'cle_perso' ? (
-              <input
-                type="password"
-                aria-label="Clé API Anthropic"
-                placeholder="sk-ant-…"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                autoComplete="off"
-              />
+              <div className="twin6-cleperso">
+                {hasSavedKey ? (
+                  <>
+                    <label>
+                      <input
+                        type="radio"
+                        name="cleperso"
+                        checked={useSavedKey}
+                        onChange={() => setUseSavedKey(true)}
+                      />{' '}
+                      Utiliser ma clé Anthropic enregistrée dans mon profil
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="cleperso"
+                        checked={!useSavedKey}
+                        onChange={() => setUseSavedKey(false)}
+                      />{' '}
+                      Saisir une autre clé
+                    </label>
+                  </>
+                ) : (
+                  <p className="twin6-hint">
+                    Astuce : <a href="#/compte">enregistrez votre clé dans votre profil</a> pour ne
+                    plus la ressaisir.
+                  </p>
+                )}
+                {!(hasSavedKey && useSavedKey) ? (
+                  <input
+                    type="password"
+                    aria-label="Clé API Anthropic"
+                    placeholder="sk-ant-…"
+                    value={apiKey}
+                    onChange={(e) => setApiKey(e.target.value)}
+                    autoComplete="off"
+                  />
+                ) : null}
+              </div>
             ) : null}
           </fieldset>
 

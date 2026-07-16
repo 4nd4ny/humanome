@@ -9,6 +9,7 @@ import {
   logout,
   register,
 } from '../api/client.js'
+import ApiKeysSection from './account/ApiKeysSection.jsx'
 
 const PASSWORD_MIN_LENGTH = 10
 
@@ -205,6 +206,7 @@ export default function AccountView() {
             Se déconnecter
           </button>
         </section>
+        <ApiKeysSection />
         <section className="account-danger" aria-label="Zone de danger">
           <h2>Zone de danger</h2>
           <p>
