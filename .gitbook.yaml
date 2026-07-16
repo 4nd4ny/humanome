@@ -1,0 +1,9 @@
+# Configuration GitBook (D10). GitBook (Git Sync) lit ces deux fichiers depuis
+# le dépôt : la doc reste donc éditée EN MARKDOWN dans le dépôt (source unique),
+# GitBook n'en est qu'un rendu publié. Le sommaire est généré par
+# scripts/build-gitbook-summary.mjs (à relancer quand la doc bouge).
+root: ./
+
+structure:
+  readme: README.md
+  summary: SUMMARY.md

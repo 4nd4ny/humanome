@@ -2,6 +2,10 @@
 
 **Cartographier les compétences humaines, à partir d'un portfolio réflexif.**
 
+[![Site](https://img.shields.io/badge/site-humanome.xyz-2ea44f)](https://humanome.xyz)
+[![Licence AGPL-3.0](https://img.shields.io/badge/licence-AGPL--3.0-blue)](LICENSE)
+[![CI publiable](https://github.com/4nd4ny/humanome/actions/workflows/publiable.yml/badge.svg)](https://github.com/4nd4ny/humanome/actions/workflows/publiable.yml)
+
 humanome.xyz (contraction de *human* + *genome*) est un artifact numérique de
 l'écosystème scolaire **RESPIRE** (Harmonia Éducation). Il permet à quiconque —
 y compris une personne n'ayant qu'un smartphone — de faire reconnaître et
@@ -50,6 +54,25 @@ PHP 8.2 + Slim 4 + PDO + MySQL 8 · front Vite + React 18 · moteur ESM sans DOM
 hébergement OVH mutualisé (déploiement FTP par releases, sans SSH). Détails et
 justifications : [`docs/decisions/`](docs/decisions/) (ADR) et
 [`docs/cahier-des-charges.md`](docs/cahier-des-charges.md).
+
+## Documentation
+
+Toute la documentation vit **en markdown dans ce dépôt** (source unique) et est
+publiée en ligne via **GitBook** (Git Sync) :
+
+- **Manuels par rôle** (visiteur, apprenant, cartographe, employeur,
+  établissement, promptologue, épistémiarque, admin) :
+  [`content/formation/`](content/formation/).
+- **Documentation technique & exploitation** (cahier des charges, hébergement,
+  déploiement, RGPD, sécurité, tests) : [`docs/`](docs/).
+- **Décisions d'architecture** : [`docs/decisions/`](docs/decisions/) (ADR).
+
+Le sommaire GitBook ([`SUMMARY.md`](SUMMARY.md), config
+[`.gitbook.yaml`](.gitbook.yaml)) est généré par
+`node scripts/build-gitbook-summary.mjs` — à relancer quand la doc change.
+
+> Espace GitBook publié : _à renseigner après activation du Git Sync_
+> (voir la procédure côté mainteneur).
 
 ## Développer / installer
 
