@@ -6,6 +6,8 @@ namespace Humanome\Tests;
 
 use Humanome\Bootstrap;
 use Humanome\DbSessionHandler;
+use Humanome\Mail\MailerFactory;
+use Humanome\Mail\MemoryMailer;
 use Humanome\MigrationRunner;
 use PDO;
 use PHPUnit\Framework\TestCase;
@@ -30,6 +32,9 @@ abstract class AuthTestBase extends TestCase
 
     protected string $clientIp = '203.0.113.10';
 
+    /** Mailer de test (capture les codes de vérification, D5). */
+    protected MemoryMailer $mailer;
+
     public static function setUpBeforeClass(): void
     {
         self::$pdo = TestDb::fresh();
@@ -47,10 +52,14 @@ abstract class AuthTestBase extends TestCase
         TestDb::overrideEnv();
         $this->cookieSid = null;
         self::$pdo->exec('DELETE FROM rate_limits');
+        // Mailer de test injecté (D5) : les envois sont capturés, pas expédiés.
+        $this->mailer = new MemoryMailer();
+        MailerFactory::setOverride($this->mailer);
     }
 
     protected function tearDown(): void
     {
+        MailerFactory::setOverride(null);
         if (session_status() === PHP_SESSION_ACTIVE) {
             session_abort();
         }
@@ -110,16 +119,55 @@ abstract class AuthTestBase extends TestCase
         return json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * Inscription BRUTE (D5) : appelle uniquement /auth/register (compte NON
+     * activé, pas de session). Renvoie la réponse « pending » (201) ou l'erreur.
+     * La double saisie email est satisfaite par défaut (emailConfirm = email).
+     */
+    protected function registerPending(
+        string $email = 'ada@example.org',
+        string $password = self::PASSWORD,
+        string $displayName = 'Ada',
+        ?string $emailConfirm = null,
+    ): ResponseInterface {
+        $this->cookieSid = null;
+
+        return $this->request('POST', '/api/auth/register', [
+            'email' => $email,
+            'emailConfirm' => $emailConfirm ?? $email,
+            'password' => $password,
+            'displayName' => $displayName,
+        ]);
+    }
+
+    protected function activate(string $email, string $code): ResponseInterface
+    {
+        return $this->request('POST', '/api/auth/activate', ['email' => $email, 'code' => $code]);
+    }
+
+    /** Le dernier code à 4 chiffres capturé par le Mailer de test. */
+    protected function lastCode(): string
+    {
+        return $this->mailer->lastCode();
+    }
+
+    /**
+     * Inscription + activation (D5) : rend un compte UTILISABLE (session
+     * ouverte), comme l'ancien /auth/register. Renvoie la réponse d'activation
+     * ({user, csrfToken}, session posée) ; si l'inscription échoue (validation,
+     * doublon…), renvoie la réponse d'inscription telle quelle.
+     */
     protected function register(
         string $email = 'ada@example.org',
         string $password = self::PASSWORD,
         string $displayName = 'Ada',
     ): ResponseInterface {
-        return $this->request('POST', '/api/auth/register', [
-            'email' => $email,
-            'password' => $password,
-            'displayName' => $displayName,
-        ]);
+        $registered = $this->registerPending($email, $password, $displayName);
+        if ($registered->getStatusCode() !== 201) {
+            return $registered;
+        }
+
+        return $this->activate($email, $this->lastCode());
     }
 
     protected function login(string $email, string $password): ResponseInterface

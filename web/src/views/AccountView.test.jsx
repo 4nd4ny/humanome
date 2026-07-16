@@ -88,11 +88,96 @@ describe('AccountView — non connecté', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Inscription' }))
     fireEvent.change(screen.getByLabelText('Nom affiché'), { target: { value: 'Alice' } })
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'a@b.fr' } })
+    fireEvent.change(screen.getByLabelText(/Confirmez l’email/), { target: { value: 'a@b.fr' } })
     fireEvent.change(screen.getByLabelText(/Mot de passe/), { target: { value: 'court' } })
     fireEvent.click(screen.getByRole('button', { name: 'Créer mon compte' }))
 
     expect((await screen.findByRole('alert')).textContent).toContain('au moins 10 caractères')
     expect(fetchFn).toHaveBeenCalledTimes(1) // auth/me seulement, pas d'appel réseau inutile
+  })
+
+  it('bloque une double saisie d’email divergente SANS appel réseau (D5)', async () => {
+    const fetchFn = stubFetch(jsonResponse(401, { error: 'Authentification requise' }))
+    render(<AccountView />)
+    await screen.findByRole('button', { name: 'Se connecter' })
+
+    fireEvent.click(screen.getByRole('button', { name: 'Inscription' }))
+    fireEvent.change(screen.getByLabelText('Nom affiché'), { target: { value: 'Alice' } })
+    fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'a@b.fr' } })
+    fireEvent.change(screen.getByLabelText(/Confirmez l’email/), { target: { value: 'autre@b.fr' } })
+    fireEvent.change(screen.getByLabelText(/Mot de passe/), { target: { value: 'motdepasse-long' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Créer mon compte' }))
+
+    expect((await screen.findByRole('alert')).textContent).toContain('ne correspondent pas')
+    expect(fetchFn).toHaveBeenCalledTimes(1) // auth/me seulement
+
+    // Insensible à la casse : Alice@B.FR == a... non, même adresse en casse différente PASSE.
+    fireEvent.change(screen.getByLabelText(/Confirmez l’email/), { target: { value: 'A@B.fr' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Créer mon compte' }))
+    // Plus d'erreur de correspondance : l'appel réseau part (le stub n'a plus de
+    // réponse -> le client tombera en erreur générique, peu importe ici).
+    expect(fetchFn.mock.calls.length).toBeGreaterThan(1)
+  })
+
+  it('inscription -> écran d’activation, code accepté -> connecté (D5)', async () => {
+    stubFetch(
+      jsonResponse(401, { error: 'Authentification requise' }), // auth/me
+      jsonResponse(201, { status: 'pending_activation', email: 'alice@exemple.fr' }), // register
+      jsonResponse(200, { user: alice, csrfToken: 'tok' }), // activate
+    )
+    render(<AccountView />)
+    await screen.findByRole('button', { name: 'Se connecter' })
+
+    fireEvent.click(screen.getByRole('button', { name: 'Inscription' }))
+    fireEvent.change(screen.getByLabelText('Nom affiché'), { target: { value: 'Alice' } })
+    fireEvent.change(screen.getByLabelText('Email'), { target: { value: alice.email } })
+    fireEvent.change(screen.getByLabelText(/Confirmez l’email/), { target: { value: alice.email } })
+    fireEvent.change(screen.getByLabelText(/Mot de passe/), { target: { value: 'motdepasse-long' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Créer mon compte' }))
+
+    // Écran d'activation : le compte n'est PAS connecté, on attend le code.
+    expect(await screen.findByRole('heading', { name: 'Activer votre compte' })).toBeDefined()
+    expect(screen.getByText(/code de confirmation à 4 chiffres/)).toBeDefined()
+
+    fireEvent.change(screen.getByLabelText(/Code de confirmation/), { target: { value: '4242' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Activer mon compte' }))
+
+    expect(await screen.findByText('alice@exemple.fr')).toBeDefined()
+    expect(screen.getByText('Apprenant')).toBeDefined()
+  })
+
+  it('login d’un compte non activé -> écran d’activation + renvoi du code (D5)', async () => {
+    stubFetch(
+      jsonResponse(401, { error: 'Authentification requise' }), // auth/me
+      jsonResponse(403, {
+        error: 'Compte non activé : confirmez votre email avec le code reçu.',
+        code: 'email_not_verified',
+        email: 'alice@exemple.fr',
+      }), // login
+      jsonResponse(200, { status: 'ok', message: 'Si un compte…' }), // resend
+    )
+    render(<AccountView />)
+    await screen.findByRole('button', { name: 'Se connecter' })
+
+    fireEvent.change(screen.getByLabelText('Email'), { target: { value: alice.email } })
+    fireEvent.change(screen.getByLabelText(/Mot de passe/), { target: { value: 'motdepasse!' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Se connecter' }))
+
+    expect(await screen.findByRole('heading', { name: 'Activer votre compte' })).toBeDefined()
+    // L'email est pré-rempli depuis le formulaire de connexion.
+    expect(screen.getByLabelText('Email').value).toBe(alice.email)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Renvoyer le code' }))
+    expect((await screen.findByRole('status')).textContent).toContain('nouveau code')
+  })
+
+  it('arrivée par le lien #/activer : email et code pré-remplis (D5)', async () => {
+    stubFetch(jsonResponse(401, { error: 'Authentification requise' }))
+    render(<AccountView initialActivation={{ email: 'alice@exemple.fr', code: '4242' }} />)
+
+    expect(await screen.findByRole('heading', { name: 'Activer votre compte' })).toBeDefined()
+    expect(screen.getByLabelText('Email').value).toBe('alice@exemple.fr')
+    expect(screen.getByLabelText(/Code de confirmation/).value).toBe('4242')
   })
 
   it('connexion réussie -> profil affiché', async () => {

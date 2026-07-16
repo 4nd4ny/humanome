@@ -30,6 +30,19 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Tables | `users`, `roles`, `user_roles`, `sessions`. |
 | Sort à la suppression | `users` supprimé ; `user_roles`, `sessions` en CASCADE. |
 
+### 1 bis. Vérification d'email à l'inscription (D5)
+
+| Élément | Détail |
+|---|---|
+| Finalité | Confirmer que l'adresse email appartient bien à la personne qui s'inscrit (un compte n'est activé qu'après confirmation d'un code à 4 chiffres envoyé par email). |
+| Personnes concernées | Toute personne créant un compte. |
+| Données | Email (destinataire du message), empreinte du code de confirmation (hash — jamais le code en clair en base), date d'expiration, compteur d'essais, date de vérification. |
+| Base légale | **b** (mesure précontractuelle : sécuriser la création du compte demandé). |
+| Durée | Code : 30 minutes (expiration), effacé dès l'activation. `email_verified_at` : durée de vie du compte. |
+| Destinataires | Transport email : `mail()` de l'hébergeur OVH (l'email transite par l'infrastructure OVH, sous-traitant d'hébergement déjà au registre). Aucun service d'emailing tiers. |
+| Tables | Colonnes `users.email_verified_at`, `users.verification_code_hash`, `users.verification_expires_at`, `users.verification_attempts` (migration 018). |
+| Sort à la suppression | Colonnes de la ligne `users` : purge en même temps que le compte (aucune table séparée). |
+
 ## 2. Portfolios (journal réflexif)
 
 | Élément | Détail |

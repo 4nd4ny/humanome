@@ -16,6 +16,8 @@ use Humanome\Auth\Session;
 use Humanome\Auth\Users;
 use Humanome\ClientIp;
 use Humanome\Db;
+use Humanome\Env;
+use Humanome\Mail\MailerFactory;
 use Humanome\Middleware\CsrfMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -68,11 +70,46 @@ return function (App $app): void {
         'roles' => Users::rolesOf($pdo, (int) $user['id']),
     ];
 
+    // --- Vérification d'email (D5 / AD-D3) --------------------------------
+    // Code à 4 chiffres, hashé en base, expiration 30 min, 5 essais max. Le
+    // VRAI garde-fou du code court est le rate-limit du RENVOI (chaque renvoi
+    // régénère le code et rouvre les 5 essais) : 5 × (renvois/heure) reste très
+    // en-deçà de 10^4. Anti-énumération : mêmes réponses que le compte existe ou non.
+    $CODE_TTL_SECONDS = 1800; // 30 minutes
+    $MAX_CODE_ATTEMPTS = 5;
+
+    /** Génère un code à 4 chiffres, le pose (hashé + expiration) et l'envoie par email. */
+    $sendVerification = function (\PDO $pdo, int $userId, string $email) use ($CODE_TTL_SECONDS): void {
+        $code = str_pad((string) random_int(0, 9999), 4, '0', STR_PAD_LEFT);
+        $expiresAt = date('Y-m-d H:i:s', time() + $CODE_TTL_SECONDS);
+        Users::setVerificationCode($pdo, $userId, Users::hashPassword($code), $expiresAt);
+
+        $site = rtrim(Env::get('SITE_URL', 'https://humanome.xyz'), '/');
+        $link = $site . '/#/activer?email=' . rawurlencode($email) . '&code=' . $code;
+        $subject = 'humanome.xyz — activez votre compte';
+        $body = implode("\n", [
+            'Bonjour,',
+            '',
+            'Bienvenue sur humanome.xyz. Pour activer votre compte, votre code de confirmation est :',
+            '',
+            '    ' . $code,
+            '',
+            'Vous pouvez aussi cliquer ce lien — il vous connecte sans ressaisir votre mot de passe :',
+            $link,
+            '',
+            'Ce code expire dans 30 minutes. Si vous n\'êtes pas à l\'origine de cette inscription, ignorez ce message.',
+            '',
+            '— L\'équipe humanome.xyz',
+        ]);
+        MailerFactory::default()->send($email, $subject, $body);
+    };
+
     // ------------------------------------------------------------------
-    // POST /api/auth/register — {email, password, displayName}
-    // Default role: apprenant (cahier §3.2). Opens a session.
+    // POST /api/auth/register — {email, emailConfirm, password, displayName}
+    // Default role: apprenant (cahier §3.2). NE crée PAS de session : le compte
+    // est NON activé jusqu'à /auth/activate (D5). Double saisie de l'email.
     // ------------------------------------------------------------------
-    $app->post('/auth/register', function (Request $request, Response $response) use ($json, $clientIp, $credentials, $userPayload): Response {
+    $app->post('/auth/register', function (Request $request, Response $response) use ($json, $clientIp, $credentials, $sendVerification): Response {
         if (!Db::isConfigured()) {
             return $json($response, ['error' => 'Service indisponible'], 503);
         }
@@ -89,10 +126,15 @@ return function (App $app): void {
         }
 
         ['email' => $email, 'password' => $password, 'displayName' => $displayName] = $credentials($request);
+        $data = (array) ($request->getParsedBody() ?? []);
+        // Double saisie : comparaison insensible à la casse (collage autorisé).
+        $emailConfirm = \is_string($data['emailConfirm'] ?? null) ? mb_strtolower(trim($data['emailConfirm'])) : '';
 
         $errors = [];
         if ($email === '' || filter_var($email, FILTER_VALIDATE_EMAIL) === false || mb_strlen($email) > 255) {
             $errors['email'] = 'Adresse email invalide';
+        } elseif ($emailConfirm !== $email) {
+            $errors['emailConfirm'] = 'Les deux adresses email ne correspondent pas';
         }
         if (mb_strlen($password) < 10) {
             $errors['password'] = 'Le mot de passe doit contenir au moins 10 caractères';
@@ -115,6 +157,7 @@ return function (App $app): void {
             $userId = Users::create($pdo, $email, Users::hashPassword($password), $displayName);
             Users::assignRole($pdo, $userId, 'apprenant');
             Audit::record($pdo, $userId, Audit::ACCOUNT_CREATED);
+            $sendVerification($pdo, $userId, $email); // code posé + email envoyé
             $pdo->commit();
         } catch (\PDOException $e) {
             if ($pdo->inTransaction()) {
@@ -126,13 +169,114 @@ return function (App $app): void {
             throw $e;
         }
 
-        $csrfToken = Session::openForUser($userId);
-        $user = Users::findById($pdo, $userId);
+        // PAS de session : le compte n'est activé qu'après confirmation du code.
+        return $json($response, [
+            'status' => 'pending_activation',
+            'email' => $email,
+            'message' => 'Un code de confirmation à 4 chiffres vous a été envoyé par email.',
+        ], 201);
+    });
+
+    // ------------------------------------------------------------------
+    // POST /api/auth/activate — {email, code}
+    // Active le compte (email_verified_at) ET ouvre la session (« premier
+    // login qui confirme »). Anti-énumération : réponse générique. Code court :
+    // 5 essais max/compte + rate-limit IP + expiration (D5).
+    // ------------------------------------------------------------------
+    $app->post('/auth/activate', function (Request $request, Response $response) use ($json, $clientIp, $userPayload, $MAX_CODE_ATTEMPTS): Response {
+        if (!Db::isConfigured()) {
+            return $json($response, ['error' => 'Service indisponible'], 503);
+        }
+        $pdo = Db::get();
+
+        $data = (array) ($request->getParsedBody() ?? []);
+        $email = \is_string($data['email'] ?? null) ? mb_strtolower(trim($data['email'])) : '';
+        $code = \is_string($data['code'] ?? null) ? trim($data['code']) : '';
+        if ($email === '' || preg_match('/^\d{4}$/', $code) !== 1) {
+            return $json($response, ['error' => 'Email et code à 4 chiffres requis'], 422);
+        }
+
+        // Rate-limit IP : borne le brute-force du code court, tous comptes confondus.
+        $limiter = new RateLimiter($pdo, 20, 900);
+        $bucket = 'activate:' . hash('sha256', ClientIp::bucketIdentity($clientIp($request)));
+        if ($limiter->isBlocked($bucket)) {
+            $limiter->hit($bucket);
+
+            return $json($response, ['error' => 'Trop de tentatives, réessayez plus tard'], 429)
+                ->withHeader('Retry-After', (string) $limiter->retryAfter($limiter->attempts($bucket)));
+        }
+        $limiter->hit($bucket);
+
+        $genericError = ['error' => 'Code invalide ou expiré'];
+        $user = Users::findByEmail($pdo, $email);
+        // Anti-énumération : même réponse si le compte est inconnu, déjà activé,
+        // sans code, expiré, sur-tenté ou si le code est faux.
+        if ($user === null
+            || Users::isVerified($user)
+            || ($user['verification_code_hash'] ?? null) === null
+            || (int) ($user['verification_attempts'] ?? 0) >= $MAX_CODE_ATTEMPTS
+            || strtotime((string) ($user['verification_expires_at'] ?? '1970-01-01')) < time()) {
+            return $json($response, $genericError, 401);
+        }
+
+        if (!password_verify($code, (string) $user['verification_code_hash'])) {
+            Users::bumpVerificationAttempts($pdo, (int) $user['id']);
+
+            return $json($response, $genericError, 401);
+        }
+
+        // Code valide : active + ouvre la session (premier login qui confirme).
+        Users::markVerified($pdo, (int) $user['id']);
+        $csrfToken = Session::openForUser((int) $user['id']);
+        $fresh = Users::findById($pdo, (int) $user['id']);
 
         return $json($response, [
-            'user' => $userPayload($pdo, $user ?? []),
+            'user' => $userPayload($pdo, $fresh ?? $user),
             'csrfToken' => $csrfToken,
-        ], 201);
+        ]);
+    });
+
+    // ------------------------------------------------------------------
+    // POST /api/auth/resend — {email}
+    // Renvoie un code (régénéré, essais remis à 0). C'est le VRAI garde-fou du
+    // code court : rate-limit STRICT par compte ET par IP. Anti-énumération :
+    // réponse générique quel que soit l'état du compte (D5).
+    // ------------------------------------------------------------------
+    $app->post('/auth/resend', function (Request $request, Response $response) use ($json, $clientIp, $sendVerification): Response {
+        if (!Db::isConfigured()) {
+            return $json($response, ['error' => 'Service indisponible'], 503);
+        }
+        $pdo = Db::get();
+
+        $data = (array) ($request->getParsedBody() ?? []);
+        $email = \is_string($data['email'] ?? null) ? mb_strtolower(trim($data['email'])) : '';
+
+        $generic = ['status' => 'ok', 'message' => 'Si un compte non activé existe pour cette adresse, un nouveau code a été envoyé.'];
+        if ($email === '' || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            return $json($response, $generic);
+        }
+
+        // Rate-limit STRICT : 3 renvois/heure/compte, 10 renvois/heure/IP.
+        $ipLimiter = new RateLimiter($pdo, 10, 3600);
+        $ipBucket = 'resend:ip:' . hash('sha256', ClientIp::bucketIdentity($clientIp($request)));
+        $acctLimiter = new RateLimiter($pdo, 3, 3600);
+        $acctBucket = 'resend:acct:' . hash('sha256', $email);
+        if ($ipLimiter->isBlocked($ipBucket) || $acctLimiter->isBlocked($acctBucket)) {
+            $ipLimiter->hit($ipBucket);
+            $acctLimiter->hit($acctBucket);
+
+            return $json($response, ['error' => 'Trop de demandes de code, réessayez plus tard'], 429)
+                ->withHeader('Retry-After', (string) $ipLimiter->retryAfter($ipLimiter->attempts($ipBucket)));
+        }
+        $ipLimiter->hit($ipBucket);
+        $acctLimiter->hit($acctBucket);
+
+        $user = Users::findByEmail($pdo, $email);
+        if ($user !== null && !Users::isVerified($user)) {
+            $sendVerification($pdo, (int) $user['id'], $email);
+        }
+
+        return $json($response, $generic);
     });
 
     // ------------------------------------------------------------------
@@ -167,6 +311,17 @@ return function (App $app): void {
             $limiter->hit($bucket);
 
             return $json($response, ['error' => 'Identifiants invalides'], 401);
+        }
+
+        // Compte non activé (email non confirmé, D5) : 403 explicite + le front
+        // propose de renvoyer le code. On ne consomme PAS le rate-limit (le mot
+        // de passe est bon) et on n'ouvre PAS de session.
+        if (!Users::isVerified($user)) {
+            return $json($response, [
+                'error' => 'Compte non activé : confirmez votre email avec le code reçu.',
+                'code' => 'email_not_verified',
+                'email' => (string) $user['email'],
+            ], 403);
         }
 
         $limiter->reset($bucket);

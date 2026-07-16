@@ -65,6 +65,17 @@ export function parseHash(hash) {
   const twin9Match = /^\/twin9\/(.+)$/.exec(path)
   if (twin9Match) return { name: 'twin9', section: decodeURIComponent(twin9Match[1]) }
 
+  // Activation d'email par code (D5) : #/activer?email=…&code=XXXX (le lien du
+  // mail de confirmation). email/code pré-remplissent l'écran d'activation.
+  if (path === '/activer') {
+    const params = new URLSearchParams(query)
+    return {
+      name: 'activer',
+      email: params.get('email') ?? '',
+      code: params.get('code') ?? '',
+    }
+  }
+
   // Atelier Twin9 — édition des gabarits du Golden Prompt (admin ∧ promptologue,
   // AD-D2) : #/twin9-atelier. Sous « Faire évoluer », distinct de la
   // supervision #/admin/twin9.

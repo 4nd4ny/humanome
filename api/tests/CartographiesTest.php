@@ -22,8 +22,9 @@ final class CartographiesTest extends AuthTestBase
         self::$pdo->exec('DELETE FROM prompt_packages');
         self::$pdo->exec('DELETE FROM referentiel_versions');
 
+        // register() = inscription + activation (D5) : réponse d'activation (200).
         $response = $this->register('maya@example.org', self::PASSWORD, 'Maya');
-        self::assertSame(201, $response->getStatusCode());
+        self::assertSame(200, $response->getStatusCode());
         $this->csrf = (string) self::json($response)['csrfToken'];
     }
 

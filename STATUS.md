@@ -7,6 +7,36 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D5 (plan v1.1) — Inscription durcie : double email, activation par code à 4 chiffres.**
+  Un compte n'est ACTIVÉ qu'après confirmation d'un code envoyé par email (AD-D3).
+  - **Migration 018** : `users.email_verified_at` (NULL = non activé), `verification_code_hash`,
+    `verification_expires_at`, `verification_attempts` (+ index). **Backfill** : les comptes existants
+    (dont la prod) sont réputés vérifiés (`email_verified_at = created_at`).
+  - **Service Mailer** (`api/src/Mail/`) : interface + `PhpMailMailer` (`mail()` OVH, expéditeur
+    `MAIL_FROM` défaut **no-reply@humanome.xyz** — pas de modif de `~/app/shared/.env`) + `MemoryMailer`
+    (fake de test) + `MailerFactory` (couture d'injection). Mail français : lien
+    `#/activer?email=…&code=XXXX` + code en clair, expiration 30 min.
+  - **API** : `register` = double saisie email (insensible casse), crée le compte **NON activé**, envoie
+    le code, **n'ouvre pas de session** (201 `pending_activation`). `POST /auth/activate {email, code}`
+    active + ouvre la session (« premier login qui confirme »). `login` d'un compte non activé → **403**
+    `email_not_verified`. `POST /auth/resend` régénère le code. **Sécurité du code court** : 5 essais
+    max/compte, expiration, rate-limit IP sur activate ; le VRAI garde-fou = **renvoi strictement
+    limité** (3/h/compte + 10/h/IP). **Anti-énumération** : réponses génériques (compte inconnu / déjà
+    activé / code faux → même 401 ; resend → « ok » générique).
+  - **Front** : formulaire d'inscription avec email ×2 + identifiant + mot de passe ; écran d'activation
+    (saisie du code, renvoi, retour) ; route `#/activer` qui pré-remplit email + code depuis le lien.
+    **Vérifié au navigateur** bout-en-bout (inscription → écran d'activation → code → connecté).
+  - **RGPD** : `docs/rgpd-registre.md` §1 bis (nouveau traitement, purge par cascade `users`).
+  - **Tests** : PHP (`AuthActivationTest` : login bloqué, code faux ×5 + verrou, expiration, renvoi +
+    rate-limit, anti-énumération, backfill ; `AuthRoutesTest` : pending + activate + double-email) ;
+    web (`AccountView` : double-saisie bloquée, parcours activation, login-403→activation, lien #/activer).
+    Rayon d'impact des tests géré : `register()` (helper) = inscription+activation via `MemoryMailer`.
+  - Suites **toutes vertes** : **PHP 495, engine 926 (+1 skip), web 723**, build web OK.
+    ⏳ Déploiement (API migration 018 + front) au commit suivant.
+    **Action utilisateur restante (Q1)** : vérifier SPF/DKIM et l'expéditeur `no-reply@humanome.xyz` au
+    panel OVH — je ne peux pas lire la boîte de réception d'un compte jetable ; le smoke prod confirmera
+    seulement que `register` renvoie « pending » et crée un compte non activé (l'`mail()` n'a pas erré).
+
 - 2026-07-16 — **D4 (plan v1.1) — Visualisation : thème sombre, synchro heatmap, responsive, export JSON.**
   Quatre défauts corrigés, **vérifiés au navigateur** (#/merge, démo 59 feuilles).
   1. **Thème sombre** : `.timeline-controls button` et `.timeline-speed` avaient `background:#fff`

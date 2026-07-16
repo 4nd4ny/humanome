@@ -35,7 +35,8 @@ final class Users
     public static function findByEmail(PDO $pdo, string $email): ?array
     {
         $stmt = $pdo->prepare(
-            'SELECT id, email, password_hash, display_name, created_at
+            'SELECT id, email, password_hash, display_name, created_at,
+                    email_verified_at, verification_code_hash, verification_expires_at, verification_attempts
              FROM users WHERE email = ? AND deleted_at IS NULL'
         );
         $stmt->execute([$email]);
@@ -48,13 +49,58 @@ final class Users
     public static function findById(PDO $pdo, int $id): ?array
     {
         $stmt = $pdo->prepare(
-            'SELECT id, email, password_hash, display_name, created_at
+            'SELECT id, email, password_hash, display_name, created_at,
+                    email_verified_at, verification_code_hash, verification_expires_at, verification_attempts
              FROM users WHERE id = ? AND deleted_at IS NULL'
         );
         $stmt->execute([$id]);
         $row = $stmt->fetch();
 
         return $row === false ? null : $row;
+    }
+
+    /** True quand le compte a confirmé son email (email_verified_at non NULL). */
+    public static function isVerified(?array $user): bool
+    {
+        return \is_array($user) && ($user['email_verified_at'] ?? null) !== null;
+    }
+
+    /**
+     * Pose (ou renouvelle) le code de vérification : hash + expiration, et
+     * REMET le compteur d'essais à 0 (D5 — chaque renvoi rouvre les 5 essais).
+     */
+    public static function setVerificationCode(PDO $pdo, int $userId, string $codeHash, string $expiresAt): void
+    {
+        $pdo->prepare(
+            'UPDATE users
+                SET verification_code_hash = ?, verification_expires_at = ?, verification_attempts = 0
+              WHERE id = ?'
+        )->execute([$codeHash, $expiresAt, $userId]);
+    }
+
+    /** +1 essai de code ; renvoie le nouveau total. */
+    public static function bumpVerificationAttempts(PDO $pdo, int $userId): int
+    {
+        $pdo->prepare('UPDATE users SET verification_attempts = verification_attempts + 1 WHERE id = ?')
+            ->execute([$userId]);
+        $stmt = $pdo->prepare('SELECT verification_attempts FROM users WHERE id = ?');
+        $stmt->execute([$userId]);
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    /**
+     * Active le compte (premier login qui confirme) : pose email_verified_at et
+     * efface le code (usage unique).
+     */
+    public static function markVerified(PDO $pdo, int $userId): void
+    {
+        $pdo->prepare(
+            'UPDATE users
+                SET email_verified_at = NOW(),
+                    verification_code_hash = NULL, verification_expires_at = NULL, verification_attempts = 0
+              WHERE id = ?'
+        )->execute([$userId]);
     }
 
     public static function create(PDO $pdo, string $email, string $passwordHash, string $displayName): int

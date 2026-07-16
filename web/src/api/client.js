@@ -160,7 +160,11 @@ export async function apiFetch(path, options = {}) {
       typeof data.error === 'string' && data.error !== ''
         ? data.error
         : (data.error?.message ?? data.message ?? null)
-    const code = typeof data.error === 'object' ? (data.error?.code ?? null) : null
+    // `code` machine : soit imbriqué dans error {message, code}, soit au premier
+    // niveau ({error: '…', code: 'email_not_verified'}, cf. login D5).
+    const code =
+      (typeof data.error === 'object' ? (data.error?.code ?? null) : null) ??
+      (typeof data.code === 'string' ? data.code : null)
     const error = new ApiError(serverMessage ?? defaultMessage(response.status), response.status, code)
     error.serverMessage = serverMessage
     error.fields = data.fields && typeof data.fields === 'object' ? data.fields : null
@@ -193,15 +197,33 @@ export async function login({ email, password }, options) {
   return result
 }
 
-/** @returns {Promise<object>} {user, csrfToken} on success */
-export async function register({ email, password, displayName }, options) {
-  const result = await apiFetch('auth/register', {
+/**
+ * Inscription (D5) : ne crée PAS de session. Réponse « pending_activation » ;
+ * l'activation par code (activate) ouvre la session ensuite.
+ * @returns {Promise<object>} {status, email, message}
+ */
+export async function register({ email, emailConfirm, password, displayName }, options) {
+  return apiFetch('auth/register', {
     ...options,
     method: 'POST',
-    body: { email, password, displayName },
+    body: { email, emailConfirm: emailConfirm ?? email, password, displayName },
   })
+}
+
+/**
+ * Activation par code à 4 chiffres (D5) — ouvre la session (« premier login qui
+ * confirme »).
+ * @returns {Promise<object>} {user, csrfToken}
+ */
+export async function activate({ email, code }, options) {
+  const result = await apiFetch('auth/activate', { ...options, method: 'POST', body: { email, code } })
   notifyAuthChanged()
   return result
+}
+
+/** Renvoi d'un code de vérification (D5) — réponse générique (anti-énumération). */
+export async function resendCode({ email }, options) {
+  return apiFetch('auth/resend', { ...options, method: 'POST', body: { email } })
 }
 
 /** Ends the session; the in-memory CSRF token is dropped either way. */

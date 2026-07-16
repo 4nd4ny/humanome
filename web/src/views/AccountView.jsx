@@ -3,11 +3,13 @@ import {
   API_UNAVAILABLE_MESSAGE,
   ApiError,
   ApiUnavailableError,
+  activate,
   deleteAccount,
   fetchMe,
   login,
   logout,
   register,
+  resendCode,
 } from '../api/client.js'
 import ApiKeysSection from './account/ApiKeysSection.jsx'
 
@@ -31,19 +33,26 @@ const ROLE_LABELS = {
  * (connexion / inscription), connecté (profil + déconnexion + zone de danger
  * RGPD avec purge réelle, cahier §6.3).
  */
-export default function AccountView() {
+export default function AccountView({ initialActivation = null }) {
   const [status, setStatus] = useState('loading') // loading | unavailable | anonymous | authenticated
   const [unavailableMessage, setUnavailableMessage] = useState(API_UNAVAILABLE_MESSAGE)
   const [user, setUser] = useState(null)
   const [notice, setNotice] = useState(null)
 
   // Formulaires anonymes.
-  const [mode, setMode] = useState('login') // login | register
-  const [email, setEmail] = useState('')
+  const [mode, setMode] = useState(
+    initialActivation && initialActivation.email ? 'activate' : 'login',
+  ) // login | register | activate
+  const [email, setEmail] = useState(initialActivation?.email ?? '')
+  const [emailConfirm, setEmailConfirm] = useState('') // double saisie (D5)
   const [password, setPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [formError, setFormError] = useState(null)
   const [busy, setBusy] = useState(false)
+
+  // Activation par code (D5).
+  const [activationEmail, setActivationEmail] = useState(initialActivation?.email ?? '')
+  const [code, setCode] = useState(initialActivation?.code ?? '')
 
   // Zone de danger.
   const [confirmEmail, setConfirmEmail] = useState('')
@@ -82,6 +91,15 @@ export default function AccountView() {
     setAccountError(null)
   }
 
+  /** Bascule vers l'écran d'activation par code (D5). */
+  function goToActivation(targetEmail, message) {
+    setActivationEmail(targetEmail)
+    setMode('activate')
+    setPassword('')
+    setFormError(null)
+    setNotice(message ?? null)
+  }
+
   async function handleSubmit(event) {
     event.preventDefault()
     setFormError(null)
@@ -90,6 +108,10 @@ export default function AccountView() {
     const cleanEmail = email.trim()
     if (cleanEmail === '') {
       setFormError('Indiquez votre adresse email.')
+      return
+    }
+    if (mode === 'register' && emailConfirm.trim().toLowerCase() !== cleanEmail.toLowerCase()) {
+      setFormError('Les deux adresses email ne correspondent pas.')
       return
     }
     if (mode === 'register' && displayName.trim() === '') {
@@ -107,16 +129,72 @@ export default function AccountView() {
 
     setBusy(true)
     try {
-      const data =
-        mode === 'login'
-          ? await login({ email: cleanEmail, password })
-          : await register({ email: cleanEmail, password, displayName: displayName.trim() })
-      setUser(data.user ?? { email: cleanEmail, displayName: displayName.trim(), roles: [] })
+      if (mode === 'register') {
+        await register({
+          email: cleanEmail,
+          emailConfirm: emailConfirm.trim(),
+          password,
+          displayName: displayName.trim(),
+        })
+        // Compte NON activé : on passe à l'écran de saisie du code (D5).
+        goToActivation(
+          cleanEmail,
+          'Compte créé ! Un code de confirmation à 4 chiffres vous a été envoyé par email.',
+        )
+        return
+      }
+      const data = await login({ email: cleanEmail, password })
+      setUser(data.user ?? { email: cleanEmail, roles: [] })
       setStatus('authenticated')
-      setNotice(mode === 'register' ? 'Compte créé, bienvenue !' : null)
       setPassword('')
     } catch (error) {
+      // Login d'un compte non activé -> écran d'activation + renvoi possible.
+      if (mode === 'login' && error instanceof ApiError && error.code === 'email_not_verified') {
+        goToActivation(
+          cleanEmail,
+          'Ce compte n’est pas encore activé. Saisissez le code reçu par email (ou demandez-en un nouveau).',
+        )
+        return
+      }
       setFormError(submitErrorMessage(error, mode))
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function handleActivate(event) {
+    event.preventDefault()
+    setFormError(null)
+    setNotice(null)
+    const cleanCode = code.trim()
+    if (!/^\d{4}$/.test(cleanCode)) {
+      setFormError('Saisissez le code à 4 chiffres reçu par email.')
+      return
+    }
+    setBusy(true)
+    try {
+      const data = await activate({ email: activationEmail.trim(), code: cleanCode })
+      setUser(data.user ?? { email: activationEmail.trim(), roles: [] })
+      setStatus('authenticated')
+      setNotice('Compte activé, bienvenue !')
+    } catch (error) {
+      setFormError(
+        error instanceof ApiError ? error.message : 'Le code est invalide ou expiré. Réessayez.',
+      )
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function handleResend() {
+    setFormError(null)
+    setNotice(null)
+    setBusy(true)
+    try {
+      await resendCode({ email: activationEmail.trim() })
+      setNotice('Si un compte non activé existe pour cette adresse, un nouveau code vient d’être envoyé.')
+    } catch (error) {
+      setFormError(error instanceof ApiError ? error.message : 'Envoi impossible. Réessayez plus tard.')
     } finally {
       setBusy(false)
     }
@@ -244,6 +322,69 @@ export default function AccountView() {
     )
   }
 
+  // Anonyme, écran d'activation (D5) : saisie du code à 4 chiffres reçu par
+  // email — ou arrivée par le lien #/activer qui pré-remplit email + code.
+  if (mode === 'activate') {
+    return (
+      <div className="account">
+        <h1>Activer votre compte</h1>
+        {notice ? (
+          <p className="account-notice" role="status">
+            {notice}
+          </p>
+        ) : null}
+        <form className="account-form" onSubmit={handleActivate} noValidate>
+          <label>
+            Email
+            <input
+              type="email"
+              value={activationEmail}
+              onChange={(event) => setActivationEmail(event.target.value)}
+              autoComplete="email"
+            />
+          </label>
+          <label>
+            Code de confirmation (4 chiffres)
+            <input
+              type="text"
+              inputMode="numeric"
+              pattern="\d{4}"
+              maxLength={4}
+              value={code}
+              onChange={(event) => setCode(event.target.value)}
+              autoComplete="one-time-code"
+            />
+            <span className="field-hint">
+              Le code vous a été envoyé par email ; il expire au bout de 30 minutes.
+            </span>
+          </label>
+          {formError ? (
+            <p className="load-error" role="alert">
+              {formError}
+            </p>
+          ) : null}
+          <button type="submit" className="button button-primary" disabled={busy}>
+            Activer mon compte
+          </button>{' '}
+          <button type="button" className="button" disabled={busy} onClick={handleResend}>
+            Renvoyer le code
+          </button>{' '}
+          <button
+            type="button"
+            className="button"
+            onClick={() => {
+              setMode('login')
+              setFormError(null)
+              setNotice(null)
+            }}
+          >
+            Retour à la connexion
+          </button>
+        </form>
+      </div>
+    )
+  }
+
   // Anonyme : connexion / inscription.
   return (
     <div className="account">
@@ -296,6 +437,21 @@ export default function AccountView() {
             autoComplete="email"
           />
         </label>
+        {mode === 'register' ? (
+          <label>
+            Confirmez l’email
+            <input
+              type="email"
+              value={emailConfirm}
+              onChange={(event) => setEmailConfirm(event.target.value)}
+              autoComplete="email"
+            />
+            <span className="field-hint">
+              Saisissez la même adresse (le collage est autorisé) : elle recevra le code
+              d’activation.
+            </span>
+          </label>
+        ) : null}
         <label>
           Mot de passe
           <input

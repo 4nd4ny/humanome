@@ -43,6 +43,10 @@ final class CsrfMiddleware implements MiddlewareInterface
         '/api/admin/migrate',
         '/api/auth/login',
         '/api/auth/register',
+        // Activation d'email (D5) : routes de visiteur, avant toute session —
+        // aucun token CSRF possible (comme login/register).
+        '/api/auth/activate',
+        '/api/auth/resend',
         '/api/llm',
     ];
 

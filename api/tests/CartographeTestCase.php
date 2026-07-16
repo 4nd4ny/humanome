@@ -31,8 +31,10 @@ abstract class CartographeTestCase extends AuthTestBase
     protected function registerAs(string $email, string $name, array $roles = ['apprenant']): array
     {
         $this->cookieSid = null;
+        // register() = inscription + activation (D5) : le compte est utilisable,
+        // la session est ouverte par /auth/activate (200, {user, csrfToken}).
         $response = $this->register($email, self::PASSWORD, $name);
-        self::assertSame(201, $response->getStatusCode(), 'register ' . $email);
+        self::assertSame(200, $response->getStatusCode(), 'register+activate ' . $email);
         $body = self::json($response);
 
         $userId = (int) $body['user']['id'];

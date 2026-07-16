@@ -279,6 +279,10 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     case 'portfolio':
       view = <PortfolioView />
       break
+    case 'activer':
+      // Lien du mail de confirmation (D5) : pré-remplit l'écran d'activation.
+      view = <AccountView initialActivation={{ email: route.email, code: route.code }} />
+      break
     case 'account':
       // #/compte/credit -> tableau de bord crédit Twin9 + factures ; sinon compte.
       view = route.section === 'credit' ? <CreditView lib={lib} /> : <AccountView />
