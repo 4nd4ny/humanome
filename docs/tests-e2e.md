@@ -149,7 +149,8 @@ utilisateurs : l'atelier et sa sandbox sont une pièce de sécurité (cahier §3
 3. **Publication** d'une version (semver strictement croissant, changelog,
    immuable).
 4. **Diff structurel** vérifié au niveau **API** (`GET …/diff/{v1}/{v2}`,
-   versions publiées uniquement) — voir la limite connue ci-dessous.
+   versions publiées uniquement). Le rendu UI du diff est désormais corrigé
+   (voir la note ci-dessous) et couvert par un test de contrat partagé.
 5. **Banc d'essai A/B** ancienne vs nouvelle version sur la fixture (mock) :
    rapport comparatif affiché (totaux, par journée, lien de téléchargement).
 6. **Isolation sandbox** : un brouillon dont le code tente
@@ -193,15 +194,20 @@ passent.
   (`DEMO_DAILY_GLOBAL_TOKENS`, 503). Remède dev : `TRUNCATE rate_limits,
   llm_usage_daily, llm_pow_challenges;` (comme pour `rate_limits` en P8).
 
-### Limite connue / bug d'intégration signalé (P10 diff UI)
+### Note historique — diff UI promptologue (corrigé)
 
-La vue promptologue du diff (`EditeurSection.jsx` → `DiffView`) attend une
-forme **française** (`ajoutes`/`retires`/`modifies`, `from`/`to` en chaînes),
-alors que le serveur `PackageDiff.php` renvoie une forme **anglaise**
-(`added`/`removed`/`modified`) avec `from`/`to` en **objets** `{version}`.
-Rendre `{diff.from}` (un objet) fait planter React (« Objects are not valid as
-a React child (found: object with keys {version}) »), constaté en trace. Le
-spec promptologue **n'exerce donc pas** l'UI du diff (hors DoD P10 e2e) et
-vérifie le **contrat au niveau API** à la place. À corriger côté front
-(mapping des clés serveur) ou côté serveur (aligner les clés sur le front) —
-hors périmètre e2e.
+Un bug d'intégration avait été signalé ici : `DiffView` (`EditeurSection.jsx`)
+attendait une forme **française** fictive (`ajoutes`/`retires`/`modifies`,
+`from`/`to` en chaînes) alors que le serveur `PackageDiff.php` renvoie la forme
+**anglaise réelle** (`added`/`removed`/`modified`, `from`/`to` en **objets**
+`{version}`) — rendre `{diff.from}` (un objet) plantait React et vidait
+l'atelier.
+
+**Corrigé.** `DiffView` consomme désormais la forme RÉELLE du serveur, et une
+**fixture partagée** (`schemas/fixtures/diff/prompt-package-diff-exemple.json`,
+générée depuis la vraie sortie de `PackageDiff::compute`) est vérifiée des deux
+côtés : `api/tests/PackagesDiffTest.php` fige la forme émise par le serveur
+(`compute()` + la route HTTP), et `web/src/views/promptologue/DiffView.test.jsx`
+la rend. Renommer une clé d'un côté casse le test de l'autre — le contrat ne
+peut plus dériver en silence. Le spec e2e continue de vérifier le contrat au
+niveau API (le rendu détaillé est couvert par le test de composant).

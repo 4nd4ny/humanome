@@ -54,6 +54,43 @@ d'attribuer ou de retirer les **rôles du référentiel §2** (`apprenant`,
   l'administrateur de la session (contrairement à l'outillage jeton, qui laisse
   l'acteur nul).
 
+### Amorçage : créer le premier administrateur
+
+L'UI d'administration (`#/admin`) exige déjà un compte `admin` en session ;
+mais **aucun compte n'est admin par défaut** (le premier inscrit reçoit
+`apprenant`, et `admin` n'est pas un super-rôle implicite). Le tout premier
+administrateur se crée donc **hors navigateur**, avec l'outillage de
+déploiement à jeton `X-Migrate-Token` (le même que les migrations, ADR-008).
+
+1. Créer d'abord le compte normalement sur le site (inscription → e-mail +
+   mot de passe).
+2. Attribuer le rôle `admin` à cet e-mail. Le jeton `MIGRATE_TOKEN` est celui
+   de `~/app/shared/.env` en production (jamais dans le dépôt ; en local, il est
+   dans `.env.deploy`) :
+
+   ```bash
+   curl -X POST https://humanome.xyz/api/admin/grant-role \
+     -H "X-Migrate-Token: $MIGRATE_TOKEN" \
+     -H "Content-Type: application/json" \
+     -d '{"email":"vous@exemple.org","role":"admin"}'
+   ```
+
+   Réponses : `{"status":"granted"}` (attribué), `{"status":"unchanged"}` (déjà
+   en place), `404` (compte inconnu — vérifier l'inscription), `403` (mauvais
+   jeton), `422` (rôle inconnu).
+3. Se **reconnecter** : la rubrique `#/admin` apparaît (les rôles sont relus à
+   chaque requête, mais la nav du client se recalcule à la connexion).
+
+Les rôles suivants (`cartographe`, `promptologue`, `epistemiarque`,
+`etablissement`, et d'autres `admin`) se donnent de la même façon en changeant
+`role`, **ou**, une fois un premier admin en place, depuis l'UI
+`#/admin/roles` (section 1 ci-dessus) — plus besoin du jeton.
+
+> Sécurité : cette route existe pour l'amorçage d'un hébergement **sans SSH**.
+> Elle n'expose jamais d'e-mail dans l'audit (seuls l'identifiant cible et le
+> nom du rôle). Ne partagez pas `MIGRATE_TOKEN` ; il donne aussi accès aux
+> migrations et aux imports.
+
 ---
 
 ## 2. Golden Prompt (cahier §7)
