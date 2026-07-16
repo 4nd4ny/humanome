@@ -301,6 +301,117 @@ body {
   flex: 0 0 auto;
 }
 
+/* D9 — Assistant tuteur : bouton (même gabarit rond) + panneau flottant. */
+.tuteur {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.tuteur-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.tuteur-toggle:hover {
+  border-color: var(--accent);
+}
+
+.tuteur-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: min(360px, 92vw);
+  max-height: min(70vh, 560px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: var(--shadow-md);
+  z-index: 60;
+}
+
+.tuteur-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tuteur-close {
+  border: none;
+  background: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.tuteur-disclaimer {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.tuteur-thread {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 3rem;
+}
+
+.tuteur-empty {
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+}
+
+.tuteur-msg {
+  margin: 0;
+  padding: 0.45rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  white-space: pre-wrap;
+}
+
+.tuteur-msg-user {
+  align-self: flex-end;
+  background: var(--accent-solid);
+  color: #fff;
+}
+
+.tuteur-msg-assistant {
+  align-self: flex-start;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.tuteur-typing {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.tuteur-form {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.tuteur-form input {
+  flex: 1 1 8rem;
+  min-width: 0;
+}
+
 .app-theme-toggle:hover {
   border-color: var(--accent);
   color: var(--accent);

@@ -14,16 +14,26 @@ use PDO;
  */
 final class UsageCounters
 {
-    public function __construct(private readonly PDO $pdo)
-    {
+    /**
+     * @param string $table compteurs de la démo publique (défaut, inchangé) ou
+     *   d'un autre proxy à budget propre — ex. `tuteur_usage_daily` (D9). Valeur
+     *   d'une allowlist codée en dur : jamais une entrée client.
+     */
+    public function __construct(
+        private readonly PDO $pdo,
+        private readonly string $table = 'llm_usage_daily',
+    ) {
+        if (!\in_array($this->table, ['llm_usage_daily', 'tuteur_usage_daily'], true)) {
+            throw new \InvalidArgumentException('UsageCounters: table inconnue');
+        }
     }
 
     /** @return array{requests: int, inputTokens: int, outputTokens: int, estimatedCostUsd: float} */
     public function today(?int $now = null): array
     {
         $stmt = $this->pdo->prepare(
-            'SELECT requests, input_tokens, output_tokens, estimated_cost_usd
-             FROM llm_usage_daily WHERE usage_date = ?'
+            "SELECT requests, input_tokens, output_tokens, estimated_cost_usd
+             FROM {$this->table} WHERE usage_date = ?"
         );
         $stmt->execute([self::day($now)]);
         $row = $stmt->fetch();
@@ -40,13 +50,13 @@ final class UsageCounters
     public function record(int $inputTokens, int $outputTokens, float $estimatedCostUsd, ?int $now = null): void
     {
         $this->pdo->prepare(
-            'INSERT INTO llm_usage_daily (usage_date, requests, input_tokens, output_tokens, estimated_cost_usd)
+            "INSERT INTO {$this->table} (usage_date, requests, input_tokens, output_tokens, estimated_cost_usd)
              VALUES (?, 1, ?, ?, ?)
              ON DUPLICATE KEY UPDATE
                 requests = requests + 1,
                 input_tokens = input_tokens + VALUES(input_tokens),
                 output_tokens = output_tokens + VALUES(output_tokens),
-                estimated_cost_usd = estimated_cost_usd + VALUES(estimated_cost_usd)'
+                estimated_cost_usd = estimated_cost_usd + VALUES(estimated_cost_usd)"
         )->execute([self::day($now), $inputTokens, $outputTokens, $estimatedCostUsd]);
     }
 

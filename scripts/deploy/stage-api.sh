@@ -24,7 +24,11 @@ if [ -d "$repo/scripts/migrations" ]; then
   cp "$repo/scripts/migrate.php" "$stage/scripts/migrate.php" 2>/dev/null || true
 fi
 
-# Corpus du seed des compétences atomiques (POST /api/admin/seed-competences).
+# Digest de doc de l'assistant tuteur (D9) — régénéré avant la copie de data.
+node "$repo/scripts/build-tuteur-digest.mjs"
+
+# Corpus du seed des compétences atomiques (POST /api/admin/seed-competences)
+# + digest tuteur (tuteur-digest.md).
 if [ -d "$repo/scripts/data" ]; then
   mkdir -p "$stage/scripts/data"
   cp -R "$repo/scripts/data/." "$stage/scripts/data/"

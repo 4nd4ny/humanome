@@ -48,6 +48,9 @@ final class CsrfMiddleware implements MiddlewareInterface
         '/api/auth/activate',
         '/api/auth/resend',
         '/api/llm',
+        // Assistant tuteur (D9) : proxy Haiku protégé par PoW (pas de token CSRF
+        // possible pour un visiteur ; sans effet de bord sur l'état du compte).
+        '/api/tuteur',
     ];
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

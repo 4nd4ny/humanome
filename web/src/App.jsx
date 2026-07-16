@@ -13,6 +13,7 @@ import EssayerView from './views/EssayerView.jsx'
 import PortfolioView from './views/PortfolioView.jsx'
 import AccountView from './views/AccountView.jsx'
 import Avatar from './components/Avatar.jsx'
+import TuteurPanel from './components/TuteurPanel.jsx'
 import EspaceView from './views/EspaceView.jsx'
 import ShareView from './views/ShareView.jsx'
 import CartographeView from './views/CartographeView.jsx'
@@ -373,6 +374,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
             onToggle={() => setHelpOpen((v) => !v)}
             onClose={() => setHelpOpen(false)}
           />
+          <TuteurPanel route={route.name} />
           <div
             className={`app-menu${menuOpen ? ' is-open' : ''}${pinned ? ' is-pinned' : ''}`}
             ref={menuRef}

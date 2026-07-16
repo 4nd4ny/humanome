@@ -46,6 +46,11 @@ build/
 backups/
 web/.claude/
 
+# Digest de doc de l'assistant tuteur : généré (build-tuteur-digest.mjs),
+# régénéré à chaque stage-api — comme les prompt-packages, on ne versionne
+# que le générateur, pas l'artefact (évite la dérive avec nav.js/content).
+scripts/data/tuteur-digest.md
+
 # Python (générateurs de vecteurs) — jamais versionner les caches compilés
 # (ils embarquent le chemin absolu local de la machine qui les a produits).
 __pycache__/

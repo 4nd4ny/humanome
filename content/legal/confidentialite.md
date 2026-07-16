@@ -76,6 +76,7 @@ L'analyse d'un portfolio fait appel à un **modèle de langage (LLM)**. Selon le
 mode d'usage, le texte transmis et le destinataire changent :
 
 - **Démonstration publique** : le proxy de la plateforme transmet le texte que vous collez à **Anthropic** (modèle Claude) pour produire la démonstration. Aucune donnée n'est conservée côté serveur au-delà de compteurs anonymes.
+- **Assistant tuteur** : l'assistant (bouton « 💬 ») transmet à **Anthropic** (modèle Claude Haiku) **uniquement votre question et la rubrique que vous consultez** — jamais votre portfolio ni vos cartographies. **Aucune conversation n'est stockée côté serveur** (compteurs anonymes seulement) ; l'historique n'existe que dans votre navigateur, le temps de la session.
 - **Clé personnelle** : si vous enregistrez votre propre clé d'API, **vous choisissez** votre fournisseur (Anthropic, OpenAI, Google, etc.). Le texte est transmis au fournisseur que vous avez sélectionné, sous votre propre relation contractuelle avec lui.
 - **Établissement** : le traitement utilise soit la **clé de l'établissement**, soit la clé de la plateforme, selon la configuration choisie par l'établissement ; le texte est transmis au fournisseur correspondant.
 
