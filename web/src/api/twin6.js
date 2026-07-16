@@ -114,5 +114,8 @@ export async function fetchTwin6Offer(options) {
     modeles: meta.modeles_twin6 ?? {},
     twin9PromoOuverte: Boolean(meta.twin9_cle_perso_ouverte),
     referentiel: Array.isArray(meta.referentiel) ? meta.referentiel : [],
+    // Solde prépayé du compte : sert de garde-fou avant un run sur crédits
+    // (on ne lance pas si le solde ne couvre pas le poids du portfolio).
+    solde_microusd: Number(meta.solde_microusd ?? 0),
   }
 }

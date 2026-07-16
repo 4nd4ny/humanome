@@ -7,6 +7,37 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **Vérification systématique A_VERIFIER + jeux de tests + correctifs. NON DÉPLOYÉ,
+  COMMITÉ EN LOCAL (push GitHub en attente d'un jeton — cf. « Actions manuelles »).**
+  Vérification multi-agents (13 domaines, lecture seule) de tout ce qui avait été demandé dans les
+  sessions précédentes ; la plupart est **réellement implémenté et désormais couvert par des tests
+  dédiés** (~40 fichiers de tests écrits/étendus). Défauts détectés **corrigés** (pas seulement
+  journalisés) :
+  - **Packs de recharge** `Twin9Config` : la grille demandée 10/20/50/**100/200/500** USD (`PACK_MAX_USD`
+    100 → 500). Tests préexistants alignés (`Twin9AppelTest`, `Twin9ProtocoleTest` : borne « trop gros »
+    150 → 750).
+  - **Réécriture d'historique au re-seed** (bug source-unique) : `CompetenceRepository::reconcileSeed`
+    ne backfille plus une version de seed **dépassée par une édition gouvernée** (garde `Semver::greaterThan`)
+    — la diff 1.0.0 → 1.1.0 reste visible (`FicheParityTest`).
+  - **Éditeur de fiche épistémiarque** : `EditeurSection` expose enfin le champ `content.fiche`
+    (source unique) — la chaîne « édition d'une fiche dans l'atelier → Twin6/Twin9 » est bouclée côté UI.
+  - **Garde-fou crédits Twin6** : `Twin6OuverteView` bloque un run sur NOTRE clé si le solde ne couvre
+    pas le poids du portfolio (heuristique utilisateur ~1 ko = 1 USD) ; `fetchTwin6Offer` propage
+    `solde_microusd`.
+  - **Promo Twin9 côté front** : `Twin9View` consulte `meta.twin9_cle_perso_ouverte` (le backend
+    l'implémentait déjà : refus 403 hors promo) — bandeau promo + option « clé privée » proposée
+    seulement quand la promo est ouverte.
+  - **Aide contextuelle** `epistemiarque` (rubrique sans entrée dédiée) ; **libellé** grand-livre
+    `refund` → « Remboursement » (`CreditView`).
+  - **Pré-publication** : suppression d'un `.pyc` versionné (fuite de chemin local) + `__pycache__/`/`*.pyc`
+    gitignorés ; `api/.env.example` re-placeholderisé (identifiants OVH réels retirés du template public).
+  - **Reporté au plan v1.1 (D11)** : renommage `Twin_v9 → Twin9` dans l'en-tête de `rapport_evolutif.md`
+    (moteur) — impose de régénérer le vecteur figé `merge.vec.json` depuis le Python renommé, pas de
+    hand-éditer le vecteur (la parité CPython réelle ne compare pas cet en-tête). Test `renommage.test.js`
+    en `it.skip` documenté + ligne d'en-tête en liste blanche du lint. **Reportés aussi** (feature/plan) :
+    assistant tuteur Haiku (D9), GitBook (D10) — voir `cahier des charges/plan-prompts-v1.1-developpement.md`.
+  - Suites **toutes vertes** : **PHP 481, engine 926 (+1 skip = D11), web 696**, build web OK.
+
 - 2026-07-16 — **✅ DÉPLOYÉ EN PRODUCTION** (release `v1.0.0-29-g625a4ad`, commits `131326b` clé API profil
   + `625a4ad` source unique fiches). `migrate` → **017** (skipped 16). Seed : **61 compétences backfillées**
   avec fiche + 7 en-têtes, gate structurel OK (`b246101c`). **`generate-fiches` → `"unchanged"` (garde-fou) :

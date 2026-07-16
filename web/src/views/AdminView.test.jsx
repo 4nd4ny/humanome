@@ -1,8 +1,10 @@
 // Administration (P12.1) : garde de rôle. Sans rôle admin, l'espace est
 // remplacé par l'explication ; l'admin voit l'accueil et les sections. La
-// copie statique (API absente) dégrade proprement.
+// copie statique (API absente) dégrade proprement. Nav refondue (chantier A,
+// mobile-friendly) : accueil en cartes + onglets-pastilles sur les pages de
+// section (aria-current='page', lien Accueil).
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import AdminView from './AdminView.jsx'
 import { ApiUnavailableError, resetApiClient } from '../api/client.js'
 
@@ -67,5 +69,57 @@ describe('AdminView — garde de rôle', () => {
   it('signale une section inconnue', async () => {
     render(<AdminView section="inconnue" deps={{ fetchMeFn: admin }} />)
     await screen.findByText(/Section inconnue/i)
+  })
+
+  it('affiche les onglets-pastilles sur une page de section (nav mobile-friendly)', async () => {
+    // Données minimales pour que ReglagesSection finisse son chargement.
+    const routes = {
+      'GET api/admin/settings': jsonResponse(200, {
+        defaultPackage: { stored: null, proposal: null, effective: null },
+        worker: { jobsInQueue: 0, byStatus: {}, activeRuns: 0, lastActivity: null },
+        config: {},
+      }),
+      'GET api/prompt-packages': jsonResponse(200, []),
+      'GET api/admin/demo-config': jsonResponse(200, {
+        effective: {
+          enabled: true,
+          provider: 'anthropic',
+          model: 'claude-haiku-4-5-20251001',
+          maxTokensPerRequest: 2048,
+          maxInputChars: 20000,
+          perIpPerHour: 20,
+          dailyGlobalTokens: 2000000,
+          dailyBudgetUsd: 5,
+          powDifficultyBits: 20,
+          upstreamTimeoutSeconds: 60,
+        },
+        sources: {},
+        allowedModels: ['claude-haiku-4-5-20251001'],
+        apiKeyConfigured: true,
+      }),
+    }
+    const fetchFn = vi.fn(async (url, init = {}) => {
+      const key = `${init.method ?? 'GET'} ${url}`
+      if (!routes[key]) throw new Error(`route non mockée : ${key}`)
+      return routes[key]
+    })
+
+    render(<AdminView section="reglages" deps={{ fetchMeFn: admin, fetchFn }} />)
+    await screen.findByRole('heading', { name: /Réglages plateforme/i })
+
+    // Les onglets : nav dédiée, section active marquée aria-current='page'.
+    const nav = screen.getByRole('navigation', { name: /Sections d.administration/i })
+    const active = within(nav).getByRole('link', { name: 'Réglages' })
+    expect(active.getAttribute('aria-current')).toBe('page')
+    expect(active.getAttribute('href')).toBe('#/admin/reglages')
+
+    // Lien Accueil (retour aux cartes) + les 5 sections, toutes présentes.
+    const home = within(nav).getByRole('link', { name: /Accueil de l.administration/i })
+    expect(home.getAttribute('href')).toBe('#/admin')
+    for (const label of ['Rôles', 'Golden Prompt', 'Réglages', 'Configuration serveur', 'Twin9']) {
+      expect(within(nav).getByRole('link', { name: label })).toBeTruthy()
+    }
+    // Un onglet inactif ne porte pas aria-current.
+    expect(within(nav).getByRole('link', { name: 'Rôles' }).getAttribute('aria-current')).toBeNull()
   })
 })

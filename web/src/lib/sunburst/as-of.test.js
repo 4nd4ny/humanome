@@ -5,6 +5,7 @@
 import { readFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
 
+import { quantilesExclusive } from '@engine/pipeline/merge-document.js'
 import { buildMergeTree } from './build-tree.js'
 import { buildMergeTreeAsOf, finalThresholds, mergeDocAsOf } from './as-of.js'
 
@@ -159,5 +160,112 @@ describe('trames intermédiaires', () => {
         expect(domain.id).toBe(ref.d.id)
       }
     }
+  })
+})
+
+// --- Cas ajoutés (jeu de tests timeline animée) -----------------------------
+// Traçabilité : « seuils de quintile FIXES sur le doc final » (anti-
+// scintillement des niveaux pendant l'animation) — le cœur de la spec, prouvé
+// sur un document synthétique où des quintiles recalculés PAR TRAME donneraient
+// d'autres niveaux ; plus le cas dégénéré (1 compétence -> niveau 3) traversé
+// via mergeDocAsOf, et l'omission de l'option thresholds (recalcul interne).
+
+const ETABLIE = 'présence établie'
+const D1 = '2026-01-05'
+const D2 = '2026-02-01'
+
+/**
+ * Compétence synthétique : chaque feuille apporte `preuves` preuves et aucune
+ * indice (score de la feuille == preuves, donc score_moyen_par_feuille final
+ * == moyenne des preuves — des valeurs exactes, faciles à raisonner).
+ */
+function syntheticComp(code, finalScoreMoyen, sheets) {
+  return {
+    id: `${code} — Compétence ${code}`,
+    code,
+    statut: ETABLIE,
+    description: `Compétence ${code}`,
+    feedback: `<p>Feedback ${code}.</p>`,
+    points: sheets.length,
+    niveau: 3,
+    score_moyen_par_feuille: finalScoreMoyen,
+    parFeuille: sheets.map(({ date, preuves }) => ({
+      date,
+      statut: ETABLIE,
+      preuves,
+      indices: 0,
+      confiance: 0.5,
+      score: preuves,
+    })),
+  }
+}
+
+describe('seuils FIXES du document final (anti-scintillement)', () => {
+  // A et B sont établies à D1 (scores moyens 1 et 2), C/D/E seulement à D2
+  // (scores moyens 3, 4, 5) : la population finale est [1..5].
+  const doc = {
+    kind: 'cartographie-merge',
+    domains: [
+      {
+        id: 'POLE — Synthétique',
+        color: '#2563eb',
+        competences: [
+          syntheticComp('A', 1, [{ date: D1, preuves: 1 }]),
+          syntheticComp('B', 2, [{ date: D1, preuves: 2 }]),
+          syntheticComp('C', 3, [{ date: D2, preuves: 3 }]),
+          syntheticComp('D', 4, [{ date: D2, preuves: 4 }]),
+          syntheticComp('E', 5, [{ date: D2, preuves: 5 }]),
+        ],
+      },
+    ],
+  }
+
+  it('les trames intermédiaires utilisent les seuils FINAUX, pas des quintiles recalculés par trame', () => {
+    const th = finalThresholds(doc)
+    expect(th).toEqual([1.2, 2.4, 3.6, 4.8]) // quintiles exclusifs de [1..5]
+
+    const frame = mergeDocAsOf(doc, D1, { thresholds: th })
+    const byCode = new Map(frame.domains[0].competences.map((c) => [c.code, c]))
+    expect([...byCode.keys()]).toEqual(['A', 'B'])
+    // Seuils FIXES du final : A (1) sous tous les seuils -> niveau 1 ;
+    // B (2) ne dépasse que le premier -> niveau 2.
+    expect(byCode.get('A').niveau).toBe(1)
+    expect(byCode.get('B').niveau).toBe(2)
+
+    // Contre-modèle : des quintiles recalculés sur la POPULATION DE LA TRAME
+    // ([1, 2]) attribueraient d'AUTRES niveaux aux deux compétences — le
+    // comportement anti-scintillement est donc observable, pas un hasard.
+    const perFrame = quantilesExclusive([1, 2], 5)
+    const recomputed = (v) => 1 + perFrame.filter((t) => v >= t).length
+    expect(recomputed(1)).not.toBe(byCode.get('A').niveau)
+    expect(recomputed(2)).not.toBe(byCode.get('B').niveau)
+  })
+
+  it('cas dégénéré via mergeDocAsOf : une seule compétence -> niveau 3 sur toutes les trames', () => {
+    const single = {
+      kind: 'cartographie-merge',
+      domains: [
+        {
+          id: 'POLE — Synthétique',
+          color: '#2563eb',
+          competences: [
+            syntheticComp('A', 2.5, [
+              { date: D1, preuves: 2 },
+              { date: D2, preuves: 3 },
+            ]),
+          ],
+        },
+      ],
+    }
+    expect(finalThresholds(single)).toEqual([])
+    for (const iso of [D1, D2]) {
+      const frame = mergeDocAsOf(single, iso) // sans seuils précalculés
+      expect(frame.domains[0].competences[0].niveau).toBe(3)
+    }
+  })
+
+  it('option thresholds omise : mergeDocAsOf recalcule les seuils finaux en interne (même résultat)', () => {
+    const mid = feuilles[Math.floor(feuilles.length / 2)]
+    expect(mergeDocAsOf(mergeDoc, mid)).toEqual(mergeDocAsOf(mergeDoc, mid, { thresholds }))
   })
 })

@@ -232,3 +232,109 @@ describe('App', () => {
     )
   })
 })
+
+// Traçabilité — refonte ergonomie/navigation : bascule de thème persistée qui
+// prime sur le système (point 9), épinglage PERSISTÉ en localStorage + dock du
+// contenu (point 3), clic extérieur qui ferme le tiroir transitoire mais pas
+// l'épinglé, panneau TOUJOURS dans le DOM (point 2), aria-current sur la
+// rubrique courante (point 6).
+describe('App — thème, épinglage persistant, clic extérieur (refonte ergonomie)', () => {
+  it('la bascule de thème pose data-theme sur <html>, persiste le choix et inverse son libellé', () => {
+    window.location.hash = '#/'
+    renderApp()
+
+    // jsdom n'a pas de matchMedia : le système est réputé clair (défaut sûr).
+    const toggle = screen.getByRole('button', { name: 'Passer au thème sombre' })
+    fireEvent.click(toggle)
+
+    // Le choix explicite est posé sur <html> ET persisté : il PRIME désormais
+    // sur le thème système (anti-FOUC au prochain chargement).
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
+    expect(localStorage.getItem('humanome-theme')).toBe('dark')
+
+    const back = screen.getByRole('button', { name: 'Passer au thème clair' })
+    fireEvent.click(back)
+    expect(document.documentElement.getAttribute('data-theme')).toBe('light')
+    expect(localStorage.getItem('humanome-theme')).toBe('light')
+    expect(screen.getByRole('button', { name: 'Passer au thème sombre' })).toBeDefined()
+  })
+
+  it('la punaise persiste l’épinglage en localStorage et docke le contenu (is-menu-docked)', () => {
+    window.location.hash = '#/'
+    renderApp()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Menu de navigation' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Épingler le panneau ouvert' }))
+
+    expect(localStorage.getItem('humanome-menu-pinned')).toBe('1')
+    expect(document.querySelector('.app').className).toContain('is-menu-docked')
+
+    // Détacher efface la clé et retire le dock.
+    fireEvent.click(screen.getByRole('button', { name: 'Détacher le panneau' }))
+    expect(localStorage.getItem('humanome-menu-pinned')).toBeNull()
+    expect(document.querySelector('.app').className).not.toContain('is-menu-docked')
+  })
+
+  it('un remontage avec l’épinglage stocké restaure le panneau épinglé et docké', () => {
+    localStorage.setItem('humanome-menu-pinned', '1')
+    window.location.hash = '#/'
+    renderApp()
+
+    expect(
+      screen.getByRole('button', { name: 'Détacher le panneau' }).getAttribute('aria-pressed'),
+    ).toBe('true')
+    expect(document.querySelector('.app-menu').className).toContain('is-pinned')
+    expect(document.querySelector('.app').className).toContain('is-menu-docked')
+  })
+
+  it('un clic extérieur ferme le menu transitoire mais PAS le menu épinglé', () => {
+    window.location.hash = '#/'
+    renderApp()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Menu de navigation' }))
+    const menu = document.querySelector('.app-menu')
+    expect(menu.className).toContain('is-open')
+
+    fireEvent.pointerDown(document.body)
+    expect(menu.className).not.toContain('is-open')
+
+    // Épinglé : le clic extérieur ne referme pas (seuls punaise et Échap le font).
+    fireEvent.click(screen.getByRole('button', { name: 'Menu de navigation' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Épingler le panneau ouvert' }))
+    fireEvent.pointerDown(document.body)
+    expect(menu.className).toContain('is-pinned')
+    expect(
+      screen.getByRole('button', { name: 'Détacher le panneau' }).getAttribute('aria-pressed'),
+    ).toBe('true')
+  })
+
+  it('menu fermé, les liens du panneau restent dans le DOM et focusables (a11y, jamais display:none)', () => {
+    window.location.hash = '#/'
+    renderApp()
+
+    const menu = document.querySelector('.app-menu')
+    expect(menu.className).not.toContain('is-open')
+
+    // Le masquage est purement visuel (translateX) : les liens sont présents
+    // et dans l'ordre de tabulation — tabuler dans la nav la révèle.
+    const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
+    const link = nav.getByRole('link', { name: 'Référentiel' })
+    link.focus()
+    expect(document.activeElement).toBe(link)
+  })
+
+  it('aria-current="page" suit la rubrique courante dans le panneau', () => {
+    window.location.hash = '#/'
+    renderApp()
+
+    const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
+    expect(nav.getByRole('link', { name: 'Accueil' }).getAttribute('aria-current')).toBe('page')
+    expect(nav.getByRole('link', { name: 'Référentiel' }).getAttribute('aria-current')).toBeNull()
+
+    setHash('#/referentiel')
+    expect(nav.getByRole('link', { name: 'Référentiel' }).getAttribute('aria-current')).toBe(
+      'page',
+    )
+    expect(nav.getByRole('link', { name: 'Accueil' }).getAttribute('aria-current')).toBeNull()
+  })
+})

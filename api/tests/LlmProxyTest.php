@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Humanome\Tests;
 
+use Humanome\Llm\DemoConfig;
 use Humanome\Llm\HttpClientException;
 use Humanome\Llm\UsageCounters;
+use Humanome\Packages\SettingsRepository;
 
 /**
  * POST /api/llm: proxy contract (engine 'proxy' transport), server-imposed
@@ -244,5 +246,68 @@ final class LlmProxyTest extends LlmTestCase
             ['enabled' => false, 'remainingToday' => false],
             self::json($this->request('GET', '/api/llm/status')),
         );
+    }
+
+    /**
+     * Effet immédiat de bout en bout (chantier A) : l'override en base
+     * (settings.demo_overrides, posé depuis l'admin) pilote RÉELLEMENT le
+     * proxy public — enabled=false bloque status/challenge/POST dès la
+     * requête suivante, sans redéploiement, et enabled=true rallume tout.
+     */
+    public function testDatabaseOverrideDisablesDemoImmediately(): void
+    {
+        $settings = new SettingsRepository(self::$pdo);
+        try {
+            // État initial : démo en marche (env DEMO_ENABLED=1).
+            self::assertSame(200, $this->request('GET', '/api/llm/challenge')->getStatusCode());
+
+            // L'admin coupe l'interrupteur (override base > env).
+            $settings->set(DemoConfig::OVERRIDES_KEY, ['enabled' => false]);
+
+            // Toute requête suivante voit la démo éteinte, immédiatement.
+            self::assertSame(
+                ['enabled' => false, 'remainingToday' => false],
+                self::json($this->request('GET', '/api/llm/status')),
+            );
+            self::assertSame(503, $this->request('GET', '/api/llm/challenge')->getStatusCode());
+            self::assertSame(503, $this->request('POST', '/api/llm', ['prompt' => 'Bonjour'])->getStatusCode());
+
+            // Rallumage avant la présentation : la démo répond à nouveau.
+            $settings->set(DemoConfig::OVERRIDES_KEY, ['enabled' => true]);
+            self::assertTrue(self::json($this->request('GET', '/api/llm/status'))['enabled']);
+            self::assertSame(200, $this->postLlm()->getStatusCode());
+        } finally {
+            $settings->delete(DemoConfig::OVERRIDES_KEY);
+        }
+    }
+
+    /**
+     * Effet immédiat, volet modèle/plafond : l'override base (base > env)
+     * atteint le fournisseur amont — la requête Anthropic sort avec le modèle
+     * et le max_tokens overridés, pas ceux de l'env ni du fichier.
+     */
+    public function testDatabaseOverrideModelReachesProvider(): void
+    {
+        $settings = new SettingsRepository(self::$pdo);
+        try {
+            // L'env impose haiku + 512 tokens ; la base doit gagner.
+            TestDb::setEnv('DEMO_PROVIDER', 'anthropic');
+            $settings->set(DemoConfig::OVERRIDES_KEY, [
+                'model' => 'claude-opus-4-8',
+                'maxTokensPerRequest' => 4096,
+            ]);
+            $this->http->queueResponse(['status' => 200, 'body' => self::anthropicBody(model: 'claude-opus-4-8')]);
+
+            $response = $this->postLlm();
+
+            self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+            self::assertCount(1, $this->http->requests);
+            $payload = json_decode((string) $this->http->requests[0]['body'], true, 512, JSON_THROW_ON_ERROR);
+            self::assertSame('claude-opus-4-8', $payload['model']); // base > env (haiku)
+            self::assertSame(4096, $payload['max_tokens']); // base > env (512)
+            self::assertSame('claude-opus-4-8', self::json($response)['model']);
+        } finally {
+            $settings->delete(DemoConfig::OVERRIDES_KEY);
+        }
     }
 }

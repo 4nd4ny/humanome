@@ -196,4 +196,42 @@ describe('TimelinePlayer', () => {
     )
     expect(container.firstChild).toBe(null)
   })
+
+  // Cas ajoutés (jeu de tests timeline animée) : l'ANNONCE de fin de plage
+  // (l'arrêt seul était testé) et le réarmement du timer quand la vitesse
+  // change PENDANT la lecture.
+
+  it('fin de plage : annonce aria-live « Fin de la lecture : … » avec le cumul de la dernière feuille', () => {
+    render(<Host initial={0} />)
+    fireEvent.click(playButton())
+    const live = document.querySelector('[aria-live="polite"]')
+    expect(live.textContent).toBe('') // rien pendant la lecture
+    act(() => vi.advanceTimersByTime(400)) // -> 1
+    act(() => vi.advanceTimersByTime(400)) // -> 2
+    expect(live.textContent).toBe('')
+    act(() => vi.advanceTimersByTime(400)) // -> 3 (dernière trame) : arrêt + annonce
+    expect(playButton().getAttribute('aria-pressed')).toBe('false')
+    expect(live.textContent).toBe(
+      'Fin de la lecture : 19/01/2026 — 23 compétences sur la carte',
+    )
+  })
+
+  it('changement de vitesse PENDANT la lecture : le timer est réarmé à la nouvelle cadence', () => {
+    const onChange = vi.fn()
+    render(<Host initial={0} onChange={onChange} />)
+    fireEvent.click(playButton())
+    act(() => vi.advanceTimersByTime(400))
+    expect(onChange).toHaveBeenLastCalledWith(1)
+    // Passage en Rapide (150 ms) en cours de lecture : la lecture continue…
+    fireEvent.change(screen.getByRole('combobox', { name: 'Vitesse de lecture' }), {
+      target: { value: '150' },
+    })
+    expect(playButton().getAttribute('aria-pressed')).toBe('true')
+    // … et le tick suivant survient à 150 ms (pas 400).
+    act(() => vi.advanceTimersByTime(150))
+    expect(onChange).toHaveBeenLastCalledWith(2)
+    expect(onChange).toHaveBeenCalledTimes(2)
+    act(() => vi.advanceTimersByTime(150))
+    expect(onChange).toHaveBeenLastCalledWith(3)
+  })
 })

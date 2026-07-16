@@ -146,6 +146,19 @@ final class Twin9ProtocoleTest extends CartographeTestCase
         self::assertSame(403, $this->as_($promptologue, 'PUT', '/api/twin9/admin/protocole/fictif/01-essai', ['content' => 'x {$A}'])->getStatusCode());
         self::assertSame(403, $this->as_($promptologue, 'GET', '/api/twin9/admin/config')->getStatusCode());
         self::assertSame(403, $this->as_($promptologue, 'POST', '/api/twin9/admin/tester', ['name' => 'fictif/01-essai'])->getStatusCode());
+
+        // Exigence 3 (twin9-integration) — the two remaining admin routes:
+        // the version history (metadata of the confidential templates) and the
+        // config WRITE (a promptologue must NOT be able to open the promo).
+        $versions = $this->as_($promptologue, 'GET', '/api/twin9/admin/protocole/fictif/01-essai/versions');
+        self::assertSame(403, $versions->getStatusCode());
+        self::assertStringNotContainsString('updated_at', (string) $versions->getBody(), 'no metadata in the refusal');
+        self::assertStringNotContainsString('FICTIF', (string) $versions->getBody(), 'no template fragment in the refusal');
+
+        $putConfig = $this->as_($promptologue, 'PUT', '/api/twin9/admin/config', ['twin9_cle_perso_ouverte' => true]);
+        self::assertSame(403, $putConfig->getStatusCode());
+        $config = new Twin9Config(new SettingsRepository(Db::get()));
+        self::assertFalse($config->clePersoOuverte(), 'the refused PUT must not have opened the promo');
     }
 
     // ==================================================================
@@ -266,7 +279,7 @@ final class Twin9ProtocoleTest extends CartographeTestCase
         self::assertSame(1.1, $config['marge_twin6']);
         self::assertFalse($config['twin9_cle_perso_ouverte']); // promo closed by default
         self::assertFalse($config['enabled']);
-        self::assertSame([10, 20, 50], array_column($config['packs'], 'montant_usd'));
+        self::assertSame([10, 20, 50, 100, 200, 500], array_column($config['packs'], 'montant_usd'));
         self::assertSame([1, 5], $config['modeles']['claude-haiku-4-5-20251001']['prix_usd_mtok']);
         self::assertSame(['taggers', 'rapide'], $config['modeles']['claude-haiku-4-5-20251001']['etages']);
         self::assertSame(['taggers', 'rapide', 'tribunal'], $config['modeles']['claude-sonnet-5']['etages']);
@@ -282,7 +295,7 @@ final class Twin9ProtocoleTest extends CartographeTestCase
             ['twin9_cle_perso_ouverte' => 'oui'],
             ['packs' => []],
             ['packs' => [['montant_usd' => 0.5, 'libelle' => 'trop petit']]],
-            ['packs' => [['montant_usd' => 150, 'libelle' => 'trop gros']]],
+            ['packs' => [['montant_usd' => 750, 'libelle' => 'trop gros']]],
             ['packs' => [['montant_usd' => 5, 'libelle' => '']]],
             ['modeles' => []],
             ['modeles' => ['m' => ['prix_usd_mtok' => [0, 5], 'etages' => ['taggers']]]],

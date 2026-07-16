@@ -212,6 +212,42 @@ describe('CreditView — recharge PayPal', () => {
   })
 })
 
+describe('CreditView — grand-livre : libellés des types d’événements', () => {
+  // Traçabilité — exigence utilisateur (credits-paypal, points 4 et 5) : le
+  // suivi des quotas/dépenses doit rester lisible, y compris après un
+  // remboursement. ROUGE-PRODUIT aujourd'hui : libelleKind (CreditView.jsx)
+  // ne connaît pas le kind 'refund' et affiche la valeur brute « refund » au
+  // lieu de « Remboursement ».
+  it('affiche « Remboursement » pour un événement kind=refund', async () => {
+    renderCredit({
+      overrides: {
+        'twin9/credit': json(200, {
+          ...CREDIT,
+          evenements: [
+            {
+              kind: 'refund',
+              montant_microusd: -2_000_000,
+              label: 'Remboursement PayPal',
+              model: null,
+              tokens_in: null,
+              tokens_out: null,
+              date: '2026-07-10T09:00:00',
+            },
+            ...CREDIT.evenements,
+          ],
+        }),
+      },
+    })
+    await screen.findByTestId('credit-solde')
+
+    const kindCell = document.querySelector('.credit-kind--refund')
+    expect(kindCell).toBeTruthy()
+    expect(kindCell.textContent).toBe('Remboursement')
+    // Le montant remboursé reste signé négatif (il quitte le solde).
+    expect(screen.getByText('-2,00 $')).toBeDefined()
+  })
+})
+
 describe('CreditView — retour PayPal', () => {
   it('capture au retour (?paypal=retour&token=…) et affiche le nouveau solde', async () => {
     window.location.hash = '#/compte/credit?paypal=retour&token=ORDER-XYZ'
@@ -234,6 +270,27 @@ describe('CreditView — retour PayPal', () => {
 
     const captures = deps.fetchFn.mock.calls.filter(([u]) => String(u).includes('paypal/capturer'))
     expect(captures.length).toBe(1)
+  })
+
+  // Exigence utilisateur (credits-paypal, point 7 — anti-IDOR) : si la capture
+  // au retour est refusée par le serveur (ordre d'un autre compte → 403), le
+  // bandeau d'erreur est explicite et AUCUN succès/crédit n'est affiché.
+  it('capture refusée au retour (403 propriété) : bandeau d’alerte, aucun crédit affiché', async () => {
+    window.location.hash = '#/compte/credit?paypal=retour&token=ORDER-FOREIGN'
+    renderCredit({
+      overrides: {
+        'twin9/credit/paypal/capturer': json(403, { error: 'Cet ordre de paiement ne vous appartient pas.' }),
+      },
+    })
+
+    const alerte = await screen.findByRole('alert')
+    expect(alerte.textContent).toContain('Recharge non confirmée')
+    expect(alerte.textContent).toContain('Cet ordre de paiement ne vous appartient pas.')
+    expect(screen.queryByTestId('paypal-succes')).toBeNull()
+    // Le solde affiché reste celui du serveur (aucun crédit fantôme).
+    expect((await screen.findByTestId('credit-solde')).textContent).toBe('4,50 $')
+    // Les paramètres PayPal sont retirés : pas de re-tentative au re-rendu.
+    expect(window.location.hash).toBe('#/compte/credit')
   })
 
   it('message neutre sur annulation (?paypal=annule), aucun débit', async () => {

@@ -108,6 +108,29 @@ final class KeysTest extends AuthTestBase
         self::assertSame(422, $this->putKey('anthropic', "avec\ncontrole")->getStatusCode(), 'control chars');
     }
 
+    /**
+     * Guard branch 401: every /api/keys route requires a session. The master
+     * key IS configured here (setUp), so a failure cannot be confused with
+     * the 503 « stockage non configuré » branch. Without a session cookie the
+     * CSRF middleware passes through (no ambient credentials) — the guard
+     * itself must answer 401.
+     */
+    public function testAuthenticationRequiredWithoutSession(): void
+    {
+        foreach ([
+            ['GET', '/api/keys', null],
+            ['PUT', '/api/keys', ['provider' => 'anthropic', 'apiKey' => self::API_KEY]],
+            ['GET', '/api/keys/anthropic', null],
+            ['DELETE', '/api/keys/anthropic', null],
+        ] as [$method, $path, $body]) {
+            $this->cookieSid = null; // anonymous browser: no session cookie
+
+            $response = $this->request($method, $path, $body);
+            self::assertSame(401, $response->getStatusCode(), $method . ' ' . $path);
+            self::assertSame('Authentification requise', self::json($response)['error']);
+        }
+    }
+
     public function testMissingMasterKeyIsAnExplicit503EverywhereOnKeys(): void
     {
         $this->putKey(); // stored while configured

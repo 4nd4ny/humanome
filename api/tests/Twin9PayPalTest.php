@@ -294,6 +294,217 @@ final class Twin9PayPalTest extends CartographeTestCase
         self::assertSame([], $this->http->requests, 'no PayPal call when nothing is refundable');
     }
 
+    private function queueRefund(string $refundId, string $status = 'COMPLETED', int $httpStatus = 201): void
+    {
+        $this->http->queueResponse([
+            'status' => $httpStatus,
+            'body' => json_encode(['id' => $refundId, 'status' => $status], JSON_THROW_ON_ERROR),
+        ]);
+    }
+
+    /** Fige created_at d'une capture (l'ordre « plus récente d'abord » devient déterministe). */
+    private static function setCaptureDate(string $captureId, string $date): void
+    {
+        Db::get()->prepare('UPDATE twin9_paypal_captures SET created_at = ? WHERE capture_id = ?')
+            ->execute([$date, $captureId]);
+    }
+
+    // Exigence utilisateur (credits-paypal, point 5) : remboursement des crédits
+    // non utilisés SUR DEMANDE, y compris PARTIEL. La clé d'idempotence PayPal
+    // est décalée par le montant déjà remboursé (rf-{uid}-{capture}-{offset}) :
+    // un second remboursement partiel de la même capture ne rejoue jamais la
+    // même portion.
+    public function testRembourserPartielPuisSecondPartielAvecCleDecalee(): void
+    {
+        $credits = new CreditService(Db::get());
+        $credits->recordCapture($this->user['id'], 'CAP-P', 'ORDER-P', 10_000_000);
+        $credits->topup($this->user['id'], 10_000_000, 'ORDER-P', 'Recharge PayPal');
+
+        // Remboursement partiel de 2,50 $ (montant demandé par le client).
+        $this->queueToken();
+        $this->queueRefund('REF-P1');
+        $response = $this->as_($this->user, 'POST', '/api/twin9/credit/rembourser', ['montant_microusd' => 2_500_000]);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+        $body = self::json($response);
+        self::assertSame(2_500_000, $body['rembourse_microusd']);
+        self::assertSame(7_500_000, $body['solde_microusd']);
+
+        $refund = $this->http->requests[1]; // [0] = OAuth token
+        self::assertSame('https://api-m.sandbox.paypal.com/v2/payments/captures/CAP-P/refund', $refund['url']);
+        self::assertSame('rf-' . $this->user['id'] . '-CAP-P-0', $refund['headers']['paypal-request-id']);
+        self::assertSame(['value' => '2.50', 'currency_code' => 'USD'], json_decode((string) $refund['body'], true)['amount']);
+
+        // Second remboursement partiel : la clé d'idempotence est DÉCALÉE du
+        // montant déjà remboursé — pas de collision avec la première portion.
+        $this->queueToken();
+        $this->queueRefund('REF-P2');
+        $second = $this->as_($this->user, 'POST', '/api/twin9/credit/rembourser', ['montant_microusd' => 1_000_000]);
+        self::assertSame(200, $second->getStatusCode(), (string) $second->getBody());
+        self::assertSame(1_000_000, self::json($second)['rembourse_microusd']);
+        self::assertSame(6_500_000, self::json($second)['solde_microusd']);
+
+        $refund2 = $this->http->requests[3];
+        self::assertSame('rf-' . $this->user['id'] . '-CAP-P-2500000', $refund2['headers']['paypal-request-id']);
+        self::assertSame('1.00', json_decode((string) $refund2['body'], true)['amount']['value']);
+
+        // Grand-livre : deux événements 'refund' négatifs, capture décomptée.
+        $credits = new CreditService(Db::get());
+        $kinds = array_column($credits->events($this->user['id']), 'kind');
+        self::assertSame(2, \count(array_keys($kinds, 'refund', true)));
+        self::assertSame(6_500_000, $credits->soldeRemboursable($this->user['id']));
+    }
+
+    // Exigence (point 5) : la répartition d'un remboursement couvre PLUSIEURS
+    // captures, la plus récente d'abord, chacune bornée par sa « room ».
+    public function testRembourserRepartitSurPlusieursCapturesPlusRecenteDabord(): void
+    {
+        $credits = new CreditService(Db::get());
+        $credits->recordCapture($this->user['id'], 'CAP-OLD', 'ORDER-OLD', 10_000_000);
+        $credits->topup($this->user['id'], 10_000_000, 'ORDER-OLD', 'Recharge PayPal');
+        $credits->recordCapture($this->user['id'], 'CAP-RECENT', 'ORDER-RECENT', 3_000_000);
+        $credits->topup($this->user['id'], 3_000_000, 'ORDER-RECENT', 'Recharge PayPal');
+        self::setCaptureDate('CAP-OLD', '2026-07-01 10:00:00');
+        self::setCaptureDate('CAP-RECENT', '2026-07-02 10:00:00');
+
+        // 5 $ demandés : 3 $ sur la capture récente (room épuisée), 2 $ sur l'ancienne.
+        $this->queueToken();
+        $this->queueRefund('REF-M1');
+        $this->queueToken();
+        $this->queueRefund('REF-M2');
+        $response = $this->as_($this->user, 'POST', '/api/twin9/credit/rembourser', ['montant_microusd' => 5_000_000]);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+        self::assertSame(5_000_000, self::json($response)['rembourse_microusd']);
+        self::assertSame(8_000_000, self::json($response)['solde_microusd']);
+
+        $premier = $this->http->requests[1];
+        self::assertStringContainsString('/captures/CAP-RECENT/refund', $premier['url']);
+        self::assertSame('3.00', json_decode((string) $premier['body'], true)['amount']['value']);
+        $deuxieme = $this->http->requests[3];
+        self::assertStringContainsString('/captures/CAP-OLD/refund', $deuxieme['url']);
+        self::assertSame('2.00', json_decode((string) $deuxieme['body'], true)['amount']['value']);
+    }
+
+    // Les remboursements PayPal se font en centimes ENTIERS : une « room » de
+    // 9 999 µUSD (< 1 centime) ne déclenche AUCUN appel PayPal et laisse le
+    // solde intact (la poussière reste du crédit).
+    public function testRembourserIgnoreLaPoussiereSousLeCentime(): void
+    {
+        $credits = new CreditService(Db::get());
+        $credits->recordCapture($this->user['id'], 'CAP-DUST', 'ORDER-DUST', 9_999);
+        $credits->topup($this->user['id'], 9_999, 'ORDER-DUST', 'Recharge PayPal');
+
+        $response = $this->as_($this->user, 'POST', '/api/twin9/credit/rembourser', []);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+        self::assertSame(0, self::json($response)['rembourse_microusd']);
+        self::assertSame(9_999, self::json($response)['solde_microusd']);
+        self::assertSame([], $this->http->requests, 'aucun appel PayPal pour moins d’un centime');
+    }
+
+    // Échec PayPal EN COURS de boucle multi-captures : la réponse est 502 avec
+    // le montant PARTIEL déjà remboursé, et le grand-livre ne débite QUE les
+    // portions confirmées par PayPal (cohérence ledger ↔ argent réellement parti).
+    public function testRembourserEchecPayPalEnCoursDeBoucleResteCoherent(): void
+    {
+        $credits = new CreditService(Db::get());
+        $credits->recordCapture($this->user['id'], 'CAP-OLD', 'ORDER-OLD', 10_000_000);
+        $credits->topup($this->user['id'], 10_000_000, 'ORDER-OLD', 'Recharge PayPal');
+        $credits->recordCapture($this->user['id'], 'CAP-RECENT', 'ORDER-RECENT', 3_000_000);
+        $credits->topup($this->user['id'], 3_000_000, 'ORDER-RECENT', 'Recharge PayPal');
+        self::setCaptureDate('CAP-OLD', '2026-07-01 10:00:00');
+        self::setCaptureDate('CAP-RECENT', '2026-07-02 10:00:00');
+
+        // 1re portion (3 $) confirmée ; la 2e revient en 2xx mais non aboutie.
+        $this->queueToken();
+        $this->queueRefund('REF-OK');
+        $this->queueToken();
+        $this->queueRefund('REF-KO', 'FAILED');
+
+        $response = $this->as_($this->user, 'POST', '/api/twin9/credit/rembourser', ['montant_microusd' => 5_000_000]);
+        self::assertSame(502, $response->getStatusCode(), (string) $response->getBody());
+        self::assertSame(3_000_000, self::json($response)['rembourse_microusd'], 'partiel exact');
+
+        // Seule la portion confirmée est débitée : solde 13 - 3 = 10 $, UN seul
+        // événement refund, et la room restante = capture ancienne intacte.
+        $credits = new CreditService(Db::get());
+        self::assertSame(10_000_000, $credits->balance($this->user['id']));
+        $kinds = array_column($credits->events($this->user['id']), 'kind');
+        self::assertSame(1, \count(array_keys($kinds, 'refund', true)));
+        self::assertSame(10_000_000, $credits->soldeRemboursable($this->user['id']));
+    }
+
+    // ==================================================================
+    // Rate-limit des routes PayPal (2026-07-15 review — chaque appel dépense
+    // les identifiants PayPal live : 20/min/utilisateur)
+    // ==================================================================
+
+    /** Sature le compteur du bucket pour la fenêtre courante ET la suivante
+     * (pas de flaky au changement de minute). Limite = PAYPAL_PAR_MINUTE (20). */
+    private function saturateRateLimit(string $bucket): void
+    {
+        $window = intdiv(time(), 60) * 60;
+        $stmt = Db::get()->prepare(
+            'INSERT INTO rate_limits (bucket, window_start, counter) VALUES (?, ?, 20)
+             ON DUPLICATE KEY UPDATE counter = 20'
+        );
+        foreach ([$window, $window + 60] as $w) {
+            $stmt->execute([$bucket, $w]);
+        }
+    }
+
+    public function testRoutesPaypalSontRateLimitees(): void
+    {
+        $uid = $this->user['id'];
+        foreach ([
+            ['twin9:paypal:creer:' . $uid, '/api/twin9/credit/paypal/creer', ['pack_index' => 0]],
+            ['twin9:paypal:capturer:' . $uid, '/api/twin9/credit/paypal/capturer', ['order_id' => 'ORDER-RL']],
+            ['twin9:rembourser:' . $uid, '/api/twin9/credit/rembourser', []],
+        ] as [$bucket, $path, $body]) {
+            $this->saturateRateLimit($bucket);
+            $response = $this->as_($this->user, 'POST', $path, $body);
+            self::assertSame(429, $response->getStatusCode(), $path);
+            self::assertNotSame('', $response->getHeaderLine('Retry-After'), $path);
+        }
+        self::assertSame([], $this->http->requests, 'rien n’atteint PayPal au-delà de la limite');
+    }
+
+    // ==================================================================
+    // Packs de recharge exigés : 10/20/50/100/200/500 USD
+    // ==================================================================
+
+    // Exigence utilisateur (credits-paypal, point 1) : « recharges
+    // 10/20/50/100/200/500 USD via PayPal ». Les défauts n'offrent que
+    // 10/20/50 — ce test exprime l'offre EXIGÉE (rouge tant que
+    // Twin9Config::defaults() ne liste pas les six packs).
+    public function testPacksParDefautCouvrentLesSixMontantsExiges(): void
+    {
+        $response = $this->as_($this->user, 'GET', '/api/twin9/meta');
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+        self::assertSame(
+            [10, 20, 50, 100, 200, 500],
+            array_column(self::json($response)['packs'], 'montant_usd'),
+            'l’offre de recharge doit proposer les packs 10/20/50/100/200/500 USD',
+        );
+    }
+
+    // Exigence (point 1) : même par configuration admin, un pack de 500 USD
+    // doit être possible. Aujourd'hui PACK_MAX_USD = 100.0 (Twin9Config) le
+    // refuse en 422 — rouge tant que la borne n'est pas portée à 500.
+    public function testAdminPeutConfigurerLesPacks200Et500(): void
+    {
+        $admin = $this->registerAs('admin@example.org', 'Root Admin', ['admin']);
+        $packs = [
+            ['montant_usd' => 100, 'libelle' => 'Pack établissement — 100 $'],
+            ['montant_usd' => 200, 'libelle' => 'Pack établissement — 200 $'],
+            ['montant_usd' => 500, 'libelle' => 'Pack établissement — 500 $'],
+        ];
+        $response = $this->as_($admin, 'PUT', '/api/twin9/admin/config', ['packs' => $packs]);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+
+        // Et l'offre publique les sert.
+        $meta = $this->as_($this->user, 'GET', '/api/twin9/meta');
+        self::assertSame([100, 200, 500], array_column(self::json($meta)['packs'], 'montant_usd'));
+    }
+
     // ==================================================================
     // GET /api/twin9/credit — ledger page
     // ==================================================================

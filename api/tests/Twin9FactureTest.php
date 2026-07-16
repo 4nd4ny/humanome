@@ -115,6 +115,69 @@ final class Twin9FactureTest extends CartographeTestCase
         self::assertSame(1, $body['mois'][0]['appels']);
     }
 
+    // Exigence utilisateur (credits-paypal, point 4) : « factures
+    // récapitulatives mensuelles […] pour particuliers ET établissements ».
+    // Un compte de rôle 'etablissement' passe par le MÊME chemin et obtient le
+    // même document déterministe (numéro stable, régénération identique).
+    public function testFactureEtablissementMemeDocumentDeterministe(): void
+    {
+        $etab = $this->registerAs('lycee@example.org', 'Lycée Ada Lovelace', ['etablissement']);
+        $credits = new CreditService(Db::get());
+        $credits->topup($etab['id'], 50_000_000, 'ORDER-ETAB-1', 'Pack intensif — 50 $');
+        $credits->debit($etab['id'], 120_000, 'twin6/cartographie', 'claude-sonnet-5', 9000, 1200);
+
+        $now = new \DateTimeImmutable('now');
+        $periode = 'annee=' . $now->format('Y') . '&mois=' . $now->format('n');
+        $response = $this->as_($etab, 'GET', '/api/twin9/facture?' . $periode);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+        $facture = self::json($response);
+
+        self::assertSame(
+            sprintf('HUM-TW9-%s-%d', $now->format('Ym'), $etab['id']),
+            $facture['numero'],
+            'numéro stable, propre au compte établissement',
+        );
+        self::assertSame('Lycée Ada Lovelace', $facture['client']['nom']);
+        self::assertSame(50_000_000, $facture['total_recharges_microusd']);
+        self::assertSame(120_000, $facture['total_consomme_microusd']);
+        self::assertNotEmpty($facture['mentions']);
+
+        // Régénération : document identique (agrégation déterministe).
+        $again = self::json($this->as_($etab, 'GET', '/api/twin9/facture?' . $periode));
+        self::assertSame($facture, $again);
+    }
+
+    // Comportement FIGÉ (phase de vérification credits-paypal) : un événement
+    // kind='refund' (remboursement PayPal du solde, point 5) n'apparaît dans
+    // AUCUNE des trois listes de la facture — ni consommation (kind debit/
+    // adjust-réconciliation), ni recharges (kind topup), ni ajustements — mais
+    // il EST répercuté dans le solde de fin de période (somme signée de tout).
+    // La facture reste donc honnête : le remboursement ne gonfle jamais la
+    // consommation facturée. Si ce choix évolue (ligne « remboursements »
+    // dédiée), ce test doit être mis à jour EN MÊME TEMPS que FactureService.
+    public function testRemboursementNApparaitQueDansLeSoldeDeFinDePeriode(): void
+    {
+        $userId = $this->user['id'];
+        $this->credits->recordCapture($userId, 'CAP-FA1', 'ORDER-FA1', 10_000_000);
+        $this->credits->topup($userId, 10_000_000, 'ORDER-FA1', 'Recharge PayPal');
+        $this->simulateCall(30_000, 7_000, 'lourd/20-greffier', 'claude-sonnet-5', 1000, 200);
+        $this->credits->appliquerRemboursement($userId, 'CAP-FA1', 4_000_000);
+
+        $now = new \DateTimeImmutable('now');
+        $facture = (new FactureService(Db::get()))->facture($userId, (int) $now->format('Y'), (int) $now->format('n'));
+
+        // Consommation nette : le run seulement — PAS le remboursement.
+        self::assertSame(7_000, $facture['total_consomme_microusd']);
+        self::assertSame(10_000_000, $facture['total_recharges_microusd']);
+        self::assertSame([], $facture['ajustements'], 'le refund n’est pas un ajustement admin');
+        foreach ($facture['lignes'] as $ligne) {
+            self::assertGreaterThan(0, $ligne['consomme_microusd']);
+        }
+
+        // Mais le solde de fin de période le reflète : 10 - 0,007 - 4 = 5,993 $.
+        self::assertSame(10_000_000 - 7_000 - 4_000_000, $facture['solde_fin_periode_microusd']);
+    }
+
     public function testAdminComptesIsAdminOnlyAndAggregates(): void
     {
         // A promptologue is refused like anyone else (403).

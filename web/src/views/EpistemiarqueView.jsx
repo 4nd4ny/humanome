@@ -429,6 +429,15 @@ function EditeurSection({ api, draftId }) {
     setDoc((d) => ({ ...d, enrichissements: value }))
     setDirty(true)
   }
+  // SOURCE UNIQUE (demande 2026-07-16) : la fiche de scan (competence.content.fiche)
+  // est la source dont Twin6 (P*.md au build) et Twin9 (twin9_fiches par endpoint)
+  // dérivent. L'éditer ici est le point de départ de la chaîne : saveDraft envoie
+  // tout `doc`, donc `doc.fiche` est persisté ; l'entérinement puis dump-fiches /
+  // generate-fiches propagent aux prompts (FUTURE-ONLY, cf. STATUS.md).
+  function setFiche(value) {
+    setDoc((d) => ({ ...d, fiche: value }))
+    setDirty(true)
+  }
 
   async function save() {
     setBusy(true)
@@ -536,6 +545,24 @@ function EditeurSection({ api, draftId }) {
           value={typeof doc.enrichissements === 'string' ? doc.enrichissements : ''}
           onChange={(e) => setEnrichissements(e.target.value)}
         />
+      </section>
+
+      <section className="epi-block">
+        <h3>Fiche de scan (source unique)</h3>
+        <p className="epi-hint">
+          Le texte de référence de la compétence, injecté dans les prompts de cartographie. C’est LA
+          source : Twin6 et Twin9 en dérivent automatiquement (les cartographies futures uniquement ;
+          les précédentes gardent leur version épinglée).
+        </p>
+        <label className="epi-field">
+          Fiche de scan
+          <textarea
+            className="epi-comp-desc"
+            rows={12}
+            value={typeof doc.fiche === 'string' ? doc.fiche : ''}
+            onChange={(e) => setFiche(e.target.value)}
+          />
+        </label>
       </section>
 
       <div className="epi-actions">

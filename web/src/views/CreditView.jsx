@@ -100,6 +100,8 @@ function libelleKind(kind) {
       return 'Débit'
     case 'adjust':
       return 'Ajustement'
+    case 'refund':
+      return 'Remboursement'
     default:
       return kind ?? '—'
   }

@@ -41,6 +41,17 @@ function horodatage(now) {
   return now.toISOString().slice(0, 19)
 }
 
+/**
+ * Poids d'un portfolio en USD (heuristique utilisateur : ~1 ko = 1 USD), utilisée
+ * comme garde-fou de solde AVANT un run sur crédits. Au moins 1 $ (tout run coûte).
+ * Le coût réel dépend du modèle et est réconcilié après le run ; c'est un plancher.
+ */
+function poidsEstimeUsd(texte) {
+  const octets =
+    typeof TextEncoder !== 'undefined' ? new TextEncoder().encode(texte).length : texte.length
+  return Math.max(1, Math.ceil(octets / 1024))
+}
+
 export default function Twin6OuverteView({ lib: injectedLib, deps = {} }) {
   const fetchMeFn = deps.fetchMeFn ?? fetchMe
   const runEngine = deps.runEngine ?? executerTwin6
@@ -127,6 +138,24 @@ export default function Twin6OuverteView({ lib: injectedLib, deps = {} }) {
 
   async function lancer() {
     if (!peutLancer || running.current) return
+    // Garde-fou crédits (demande utilisateur) : ne lancer sur NOTRE clé que si le
+    // solde prépayé couvre le poids du portfolio. Heuristique ~1 ko = 1 USD (le
+    // coût réel est réconcilié après le run). Sur clé perso, aucun débit → pas de
+    // garde. Bloque AVANT tout appel facturable, avec un message vers la recharge.
+    if (voie === 'credits') {
+      const requisMicro = poidsEstimeUsd(portfolio) * 1_000_000
+      const solde = Number(res.offer?.solde_microusd ?? 0)
+      if (solde < requisMicro) {
+        setRun((r) => ({
+          ...r,
+          status: 'error',
+          error:
+            `Solde insuffisant pour ce portfolio (~${poidsEstimeUsd(portfolio)} $ estimés, ` +
+            `solde ${(solde / 1_000_000).toFixed(2)} $). Rechargez votre crédit ou utilisez votre propre clé API.`,
+        }))
+        return
+      }
+    }
     running.current = true
     setRun({ status: 'running', done: 0, total: 8, phase: 'scan-pole', doc: null, cout: 0, error: '' })
     try {

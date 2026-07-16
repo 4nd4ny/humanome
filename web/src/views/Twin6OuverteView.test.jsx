@@ -1,6 +1,7 @@
 import { afterEach, describe, it, expect, vi } from 'vitest'
 import { cleanup, render, screen, fireEvent, waitFor } from '@testing-library/react'
 import Twin6OuverteView from './Twin6OuverteView.jsx'
+import { ApiError } from '../api/client.js'
 import * as fakeLib from '../test/fake-sunburst-lib.js'
 
 afterEach(cleanup)
@@ -40,6 +41,9 @@ const OFFER = {
   modeles: { 'claude-sonnet-5': [3.3, 16.5] },
   twin9PromoOuverte: false,
   referentiel: [{ num: 1, nom: 'TÊTE — Penser & Comprendre', competences: [{ code: '1.01', nom: 'Pensée' }] }],
+  // Compte financé par défaut : un run sur crédits réussit (le garde-fou de
+  // solde ne bloque pas). Le test « solde insuffisant » abaisse ce solde à 1 USD.
+  solde_microusd: 100_000_000,
 }
 
 function baseDeps(over = {}) {
@@ -129,5 +133,128 @@ describe('Twin6OuverteView', () => {
     await waitFor(() => expect(deps.revealKey).toHaveBeenCalledWith('anthropic', expect.anything()))
     await waitFor(() => expect(deps.makeOwnKeyProvider).toHaveBeenCalled())
     expect(deps.makeOwnKeyProvider.mock.calls[0][0]).toMatchObject({ apiKey: 'sk-ant-stored-key' })
+  })
+
+  // Exigence : « sinon saisie manuelle + lien vers le profil » — sans clé
+  // enregistrée, la vue guide vers #/compte pour enregistrer sa clé.
+  it('sans clé enregistrée : saisie manuelle + lien « enregistrez votre clé » vers #/compte', async () => {
+    render(<Twin6OuverteView deps={baseDeps()} />) // listKeys → [] par défaut
+    await screen.findByLabelText(/Votre portfolio/)
+    fireEvent.click(screen.getByRole('radio', { name: /Avec ma propre clé API/ }))
+
+    const link = screen.getByRole('link', { name: /enregistrez votre clé dans votre profil/ })
+    expect(link.getAttribute('href')).toBe('#/compte')
+    // La saisie manuelle reste possible, et l'option « clé enregistrée » n'est pas proposée.
+    expect(screen.getByLabelText('Clé API Anthropic')).toBeDefined()
+    expect(screen.queryByRole('radio', { name: /clé Anthropic enregistrée/ })).toBeNull()
+  })
+
+  // Exigence : la clé enregistrée est révélée « à la demande » UNIQUEMENT —
+  // si l'utilisateur choisit de saisir une autre clé, revealKey ne doit pas être appelé.
+  it('« Saisir une autre clé » : lance sur la clé saisie, sans jamais révéler la clé du profil', async () => {
+    const deps = baseDeps({ listKeys: async () => [{ provider: 'anthropic', createdAt: '2026-07-15' }] })
+    render(<Twin6OuverteView deps={deps} />)
+    await screen.findByLabelText(/Votre portfolio/)
+    fireEvent.change(screen.getByLabelText(/Votre portfolio/), {
+      target: { value: 'Un portfolio suffisamment long pour être analysé, avec du contenu réflexif réel.' },
+    })
+    fireEvent.click(screen.getByRole('radio', { name: /Avec ma propre clé API/ }))
+
+    fireEvent.click(await screen.findByRole('radio', { name: /Saisir une autre clé/ }))
+    fireEvent.change(screen.getByLabelText('Clé API Anthropic'), { target: { value: 'sk-ant-autre-cle' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' }))
+
+    await waitFor(() => expect(deps.makeOwnKeyProvider).toHaveBeenCalled())
+    expect(deps.makeOwnKeyProvider.mock.calls[0][0]).toMatchObject({ apiKey: 'sk-ant-autre-cle' })
+    expect(deps.revealKey).not.toHaveBeenCalled()
+  })
+
+  // Traçabilité — exigence utilisateur (credits-paypal, point 3) : « clé API
+  // personnelle = usage GRATUIT (aucun débit de crédits) pour Twin6 ». La voie
+  // cle_perso ne doit JAMAIS construire le provider crédités ni toucher
+  // /api/twin6/appel : le moteur tourne dans le navigateur sur la clé de
+  // l'utilisateur, rien ne nous est dû.
+  it('voie clé perso : le provider crédités n’est jamais construit et /api/twin6/appel n’est jamais appelé', async () => {
+    const fetchFn = vi.fn(async () => {
+      throw new Error('aucun fetch ne doit partir sur la voie clé perso')
+    })
+    const makeCreditsProvider = vi.fn(() => ({ name: 'twin6-credits', complete: async () => ({}) }))
+    const deps = baseDeps({ makeCreditsProvider, fetchFn })
+    render(<Twin6OuverteView deps={deps} />)
+
+    await screen.findByLabelText(/Votre portfolio/)
+    fireEvent.change(screen.getByLabelText(/Votre portfolio/), {
+      target: { value: 'Un portfolio suffisamment long pour être analysé, avec du contenu réflexif réel.' },
+    })
+    fireEvent.click(screen.getByRole('radio', { name: /Avec ma propre clé API/ }))
+    fireEvent.change(screen.getByLabelText('Clé API Anthropic'), { target: { value: 'sk-ant-user' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' }))
+
+    await waitFor(() => expect(deps.runEngine).toHaveBeenCalledTimes(1))
+    // Gratuité prouvée : provider own-key construit, provider crédités jamais.
+    expect(deps.makeOwnKeyProvider).toHaveBeenCalled()
+    expect(makeCreditsProvider).not.toHaveBeenCalled()
+    // Et aucun appel réseau facturable n'est parti (dont /api/twin6/appel).
+    const urls = fetchFn.mock.calls.map(([u]) => String(u))
+    expect(urls.filter((u) => u.includes('twin6/appel'))).toEqual([])
+    expect(await screen.findByText(/Cartographie ouverte terminée/)).toBeDefined()
+    // Voie gratuite : le libellé de fin ne mentionne aucune contribution débitée.
+    expect(screen.getByText(/avec votre clé/)).toBeDefined()
+  })
+
+  // Traçabilité — exigence utilisateur (credits-paypal, point 6) : garde-fou de
+  // lancement — « n'accepter de lancer une cartographie sur NOTRE clé que si
+  // les crédits restants couvrent le poids du portfolio (heuristique ~1 ko =
+  // 1 USD) ». ROUGE-PRODUIT aujourd'hui : la voie crédits de Twin6 ne vérifie
+  // PAS le solde avant de lancer — un run de 8 appels peut mourir en plein
+  // milieu sur un 402. Comportement exigé : avec un portfolio de ~3 ko
+  // (≈ 3 USD par l'heuristique) et un solde de 1 USD, le lancement est bloqué
+  // AVANT tout appel, avec un message qui renvoie vers la recharge.
+  it('voie crédits : solde insuffisant pour le poids du portfolio → lancement bloqué avant tout appel', async () => {
+    const deps = baseDeps({
+      // L'offre expose le solde prépayé (comme /api/twin9/meta le fournit déjà).
+      fetchOffer: async () => ({ ...OFFER, solde_microusd: 1_000_000 }), // 1 USD
+    })
+    render(<Twin6OuverteView deps={deps} />)
+
+    await screen.findByLabelText(/Votre portfolio/)
+    // ~3 ko de portfolio ≈ 3 USD par l'heuristique 1 ko = 1 USD > solde (1 USD).
+    const gros = `### 2026-01-05\n---\n${'Une journée détaillée avec des traces concrètes et datées. '.repeat(50)}`
+    expect(gros.length).toBeGreaterThan(2900)
+    fireEvent.change(screen.getByLabelText(/Votre portfolio/), { target: { value: gros } })
+
+    // Voie crédits (défaut). Tenter de lancer : le garde-fou doit bloquer.
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' }))
+
+    // Le moteur n'est JAMAIS lancé (aucun appel facturable ne part), et
+    // l'utilisateur voit pourquoi (solde/crédit à recharger).
+    expect(await screen.findByText(/solde insuffisant|rechargez|recharger/i)).toBeDefined()
+    expect(deps.runEngine).not.toHaveBeenCalled()
+  })
+
+  // Clé supprimée entre-temps (ou serveur en erreur) : le run échoue proprement
+  // (role=alert), le moteur n'est pas lancé, et l'utilisateur peut réessayer.
+  it('échec de revealKey : erreur affichée (role=alert) et bouton de nouveau cliquable', async () => {
+    const deps = baseDeps({
+      listKeys: async () => [{ provider: 'anthropic', createdAt: '2026-07-15' }],
+      revealKey: vi.fn(async () => {
+        throw new ApiError('Aucune clé enregistrée pour ce fournisseur', 404)
+      }),
+    })
+    render(<Twin6OuverteView deps={deps} />)
+    await screen.findByLabelText(/Votre portfolio/)
+    fireEvent.change(screen.getByLabelText(/Votre portfolio/), {
+      target: { value: 'Un portfolio suffisamment long pour être analysé, avec du contenu réflexif réel.' },
+    })
+    fireEvent.click(screen.getByRole('radio', { name: /Avec ma propre clé API/ }))
+    expect(await screen.findByRole('radio', { name: /clé Anthropic enregistrée/ })).toHaveProperty('checked', true)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' }))
+
+    const alert = await screen.findByRole('alert')
+    expect(alert.textContent).toContain('Aucune clé enregistrée pour ce fournisseur')
+    expect(deps.runEngine).not.toHaveBeenCalled()
+    // Le verrou de lancement est relâché : l'utilisateur peut relancer.
+    expect(screen.getByRole('button', { name: 'Lancer la cartographie ouverte' })).toHaveProperty('disabled', false)
   })
 })

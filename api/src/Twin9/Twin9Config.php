@@ -46,7 +46,7 @@ final class Twin9Config
     private const MARGE_MIN = 1.0;
     private const MARGE_MAX = 5.0;
     private const PACK_MIN_USD = 1.0;
-    private const PACK_MAX_USD = 100.0;
+    private const PACK_MAX_USD = 500.0;
 
     public function __construct(private readonly SettingsRepository $settings)
     {
@@ -71,10 +71,17 @@ final class Twin9Config
             // tokens. Off by default: Twin9 own-key is otherwise refused (the
             // proprietary prompt only travels via our metered/credited path).
             'twin9_cle_perso_ouverte' => false,
+            // Owner choice (2026-07-16): recharge grid 10/20/50/100/200/500 USD
+            // (« Pas d'abonnement, mais une recharge de 10$ 20$ 50$ 100$ 200$
+            // 500$ le cas échéant »). No subscription; a large portfolio can
+            // need a 200–500 USD run, hence the high packs and PACK_MAX_USD.
             'packs' => [
                 ['montant_usd' => 10, 'libelle' => 'Pack découverte — 10 $'],
                 ['montant_usd' => 20, 'libelle' => 'Pack standard — 20 $'],
                 ['montant_usd' => 50, 'libelle' => 'Pack intensif — 50 $'],
+                ['montant_usd' => 100, 'libelle' => 'Pack pro — 100 $'],
+                ['montant_usd' => 200, 'libelle' => 'Pack cohorte — 200 $'],
+                ['montant_usd' => 500, 'libelle' => 'Pack établissement — 500 $'],
             ],
             'modeles' => [
                 'claude-haiku-4-5-20251001' => [

@@ -401,6 +401,12 @@ export default function Twin9View({ section = null, deps = {} }) {
             {!demonstration ? (
               <fieldset className="twin9-facturation">
                 <legend>Facturation</legend>
+                {metaData?.twin9_cle_perso_ouverte ? (
+                  <p className="twin9-promo" role="note">
+                    Promotion en cours : Twin9 est ouvert gratuitement avec votre propre clé API —
+                    l’occasion d’apprécier la qualité de l’analyse approfondie avant d’acheter des crédits.
+                  </p>
+                ) : null}
                 <label>
                   <input
                     type="radio"
@@ -410,7 +416,10 @@ export default function Twin9View({ section = null, deps = {} }) {
                   />{' '}
                   Crédit plateforme — solde : <strong>{formatUsd(solde)}</strong>
                 </label>
-                {metaData?.cle_privee_disponible ? (
+                {/* Voie clé privée proposée seulement pendant la promo (le serveur
+                    refuse 403 tout run cle_privee hors promo) ET si une clé est
+                    enregistrée au profil. */}
+                {metaData?.cle_privee_disponible && metaData?.twin9_cle_perso_ouverte ? (
                   <label>
                     <input
                       type="radio"

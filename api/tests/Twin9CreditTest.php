@@ -121,6 +121,102 @@ final class Twin9CreditTest extends CartographeTestCase
         self::assertNull($events[0]['paypal_order_id']);
     }
 
+    public function testTopupRejectsBlankPaypalOrderId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->credits->topup($this->user['id'], 1_000_000, '   ');
+    }
+
+    // ==================================================================
+    // Remboursement à la demande — côté ledger (exigences credits-paypal,
+    // points 5 et 7 : remboursement possible sur demande, système de crédits
+    // non hackable : débit conditionnel, jamais de découvert).
+    // ==================================================================
+
+    public function testAppliquerRemboursementDebiteConditionnellementEtDecompteLaCapture(): void
+    {
+        $userId = $this->user['id'];
+        $this->credits->recordCapture($userId, 'CAP-L1', 'ORDER-L1', 10_000_000);
+        $this->credits->topup($userId, 10_000_000, 'ORDER-L1', 'Recharge PayPal');
+
+        // Succès : solde débité, événement 'refund' négatif, capture décomptée.
+        self::assertSame(6_000_000, $this->credits->appliquerRemboursement($userId, 'CAP-L1', 4_000_000));
+        $events = $this->credits->events($userId);
+        self::assertSame('refund', $events[0]['kind']);
+        self::assertSame(-4_000_000, $events[0]['amount_microusd']);
+        self::assertSame('Remboursement PayPal', $events[0]['label']);
+        $captures = $this->credits->refundableCaptures($userId);
+        self::assertSame(6_000_000, $captures[0]['room_microusd']);
+        self::assertSame(4_000_000, $captures[0]['rembourse_microusd']);
+        self::assertSame(6_000_000, $this->credits->soldeRemboursable($userId));
+
+        // Montants non positifs rejetés avant toute écriture.
+        try {
+            $this->credits->appliquerRemboursement($userId, 'CAP-L1', 0);
+            self::fail('expected InvalidArgumentException');
+        } catch (\InvalidArgumentException) {
+        }
+
+        // FENÊTRE RÉSIDUELLE DOCUMENTÉE (gap sécurité mineur, phase de
+        // vérification credits-paypal) : la route /rembourser exécute le
+        // remboursement CHEZ PAYPAL avant ce débit local. Si une dépense
+        // concurrente a réduit le solde entre soldeRemboursable() et ici, le
+        // débit conditionnel refuse (aucun découvert, aucun événement, le
+        // compteur rembourse_microusd n'avance pas) — mais l'argent a déjà
+        // quitté PayPal : incohérence ledger/PayPal à corriger côté produit
+        // (réserver le solde AVANT l'appel PayPal, schéma réserve→réconciliation).
+        $this->credits->debit($userId, 5_500_000, 'twin9/depense-concurrente', 'claude-sonnet-5');
+        self::assertSame(500_000, $this->credits->balance($userId));
+        $avant = \count($this->credits->events($userId));
+        try {
+            $this->credits->appliquerRemboursement($userId, 'CAP-L1', 600_000);
+            self::fail('expected SoldeInsuffisantException');
+        } catch (SoldeInsuffisantException $e) {
+            self::assertSame(500_000, $e->getBalanceMicrousd());
+        }
+        self::assertSame(500_000, $this->credits->balance($userId), 'solde intact');
+        self::assertCount($avant, $this->credits->events($userId), 'aucun événement fantôme');
+        self::assertSame(
+            4_000_000,
+            $this->credits->refundableCaptures($userId)[0]['rembourse_microusd'],
+            'le compteur remboursé n’avance pas : un retry rejouera la même PayPal-Request-Id',
+        );
+    }
+
+    public function testRecordCaptureEstIdempotentEtIgnoreLesEntreesInvalides(): void
+    {
+        $userId = $this->user['id'];
+
+        // Rejeu de la même capture : une seule room, jamais doublée.
+        $this->credits->recordCapture($userId, 'CAP-I1', 'ORDER-I1', 10_000_000);
+        $this->credits->recordCapture($userId, 'CAP-I1', 'ORDER-I1', 10_000_000);
+        $captures = $this->credits->refundableCaptures($userId);
+        self::assertCount(1, $captures);
+        self::assertSame(10_000_000, $captures[0]['room_microusd']);
+
+        // capture_id vide / montant non positif : simplement non remboursable.
+        $this->credits->recordCapture($userId, '   ', 'ORDER-I2', 5_000_000);
+        $this->credits->recordCapture($userId, 'CAP-I3', 'ORDER-I3', 0);
+        $this->credits->recordCapture($userId, 'CAP-I4', 'ORDER-I4', -1_000_000);
+        self::assertCount(1, $this->credits->refundableCaptures($userId));
+    }
+
+    public function testSoldeRemboursableEstBorneParLeSoldeEtParLesCaptures(): void
+    {
+        $userId = $this->user['id'];
+        $this->credits->recordCapture($userId, 'CAP-B1', 'ORDER-B1', 5_000_000);
+        $this->credits->topup($userId, 5_000_000, 'ORDER-B1', 'Recharge PayPal');
+
+        // Crédit admin AU-DESSUS des captures : non remboursable (pas de room PayPal).
+        $this->credits->adjust($userId, 3_000_000, 'geste commercial');
+        self::assertSame(8_000_000, $this->credits->balance($userId));
+        self::assertSame(5_000_000, $this->credits->soldeRemboursable($userId), 'borné par les captures');
+
+        // Solde dépensé SOUS les rooms : borné par le solde.
+        $this->credits->debit($userId, 6_000_000, 'twin9/gros-run', 'claude-sonnet-5');
+        self::assertSame(2_000_000, $this->credits->soldeRemboursable($userId), 'borné par le solde');
+    }
+
     public function testLedgerIsCountersOnly(): void
     {
         // Guard for the RGPD/secrecy imperative: the events table schema has

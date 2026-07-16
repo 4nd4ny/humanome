@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Humanome\Tests;
 
+use Humanome\Db;
+use Humanome\Env;
 use Humanome\Llm\DemoConfig;
+use Humanome\Packages\SettingsRepository;
 
 /**
  * Chantier A — public-demo settings editable from the admin session API
@@ -213,5 +216,130 @@ final class AdminDemoConfigTest extends AdminTestCase
         TestDb::setEnv('ANTHROPIC_API_KEY', self::API_KEY);
         $data = self::json($this->as_($admin, 'GET', '/api/admin/demo-config'));
         self::assertTrue($data['apiKeyConfigured']);
+    }
+
+    /**
+     * Fail-safe : si la base est absente (non configurée) ou injoignable,
+     * DemoConfig::load() ne lève rien et retombe en silence sur env/fichier —
+     * la démo publique ne répond jamais 500 à cause de la couche « base ».
+     */
+    public function testLoadFailsSafeWhenDatabaseIsGone(): void
+    {
+        $admin = $this->registerAdmin();
+        $this->as_($admin, 'PUT', '/api/admin/demo-config', ['model' => 'claude-opus-4-8']);
+        self::assertSame('base', DemoConfig::load()->sources['model']);
+
+        $originalHost = Env::get('DB_HOST');
+
+        // 1. Base non configurée (DB_HOST vide) : couche base ignorée,
+        //    retour aux valeurs fichier (env DEMO_* vidé dans setUp).
+        TestDb::setEnv('DB_HOST', '');
+        $config = DemoConfig::load(); // ne doit lever aucune exception
+        self::assertSame('claude-haiku-4-5-20251001', $config->model);
+        self::assertSame('fichier', $config->sources['model']);
+        self::assertNotContains('base', $config->sources);
+
+        // 2. Base configurée mais injoignable (hôte inexistant) : même
+        //    dégradation silencieuse (catch \Throwable dans databaseOverrides).
+        TestDb::setEnv('DB_HOST', 'mysql-injoignable.invalid');
+        Db::reset(); // force une vraie tentative de connexion au prochain get()
+        $config = DemoConfig::load(); // ne doit lever aucune exception
+        self::assertSame('claude-haiku-4-5-20251001', $config->model);
+        self::assertSame('fichier', $config->sources['model']);
+        self::assertNotContains('base', $config->sources);
+
+        // 3. Base de retour : l'override réapparaît, rien n'a été perdu.
+        TestDb::setEnv('DB_HOST', $originalHost);
+        TestDb::overrideEnv();
+        $config = DemoConfig::load();
+        self::assertSame('claude-opus-4-8', $config->model);
+        self::assertSame('base', $config->sources['model']);
+    }
+
+    /**
+     * CSRF sur CES routes précisément : une session admin valide mais sans
+     * X-CSRF-Token -> 403 et AUCUNE mutation (le harnais as_() envoie
+     * toujours le jeton, d'où ce test direct sans en-tête).
+     */
+    public function testMutationWithoutCsrfTokenIsForbidden(): void
+    {
+        $admin = $this->registerAdmin();
+
+        // Un override légitime posé avec le jeton, comme état préalable.
+        $this->as_($admin, 'PUT', '/api/admin/demo-config', ['model' => 'claude-opus-4-8']);
+        self::assertSame('claude-opus-4-8', DemoConfig::load()->model);
+
+        // PUT avec le cookie de session admin mais SANS X-CSRF-Token.
+        $this->cookieSid = $admin['sid'];
+        $put = $this->request('PUT', '/api/admin/demo-config', ['enabled' => false]);
+        self::assertSame(403, $put->getStatusCode(), (string) $put->getBody());
+
+        // La mutation n'a pas eu lieu : enabled inchangé (jamais « base »).
+        $config = DemoConfig::load();
+        self::assertTrue($config->enabled);
+        self::assertNotSame('base', $config->sources['enabled']);
+
+        // DELETE sans jeton : 403 et l'override posé avant reste en place.
+        $this->cookieSid = $admin['sid'];
+        $delete = $this->request('DELETE', '/api/admin/demo-config');
+        self::assertSame(403, $delete->getStatusCode());
+        self::assertSame('claude-opus-4-8', DemoConfig::load()->model);
+    }
+
+    /**
+     * Défense en profondeur : une clé 'provider' insérée DIRECTEMENT dans
+     * settings.demo_overrides (tampering, ancien client) est ignorée par
+     * DemoConfig::load() — le fournisseur ne se pilote jamais depuis la base,
+     * tandis que les overrides légitimes voisins restent pris en compte.
+     */
+    public function testProviderInjectedInDatabaseIsIgnored(): void
+    {
+        (new SettingsRepository(self::$pdo))->set(DemoConfig::OVERRIDES_KEY, [
+            'provider' => 'mock',
+            'enabled' => false,
+        ]);
+
+        $config = DemoConfig::load();
+        self::assertSame('anthropic', $config->provider); // fichier, pas la base
+        self::assertSame('fichier', $config->sources['provider']);
+        // …le champ légitime du même override est, lui, bien honoré.
+        self::assertFalse($config->enabled);
+        self::assertSame('base', $config->sources['enabled']);
+
+        // Le GET admin raconte la même vérité.
+        $admin = $this->registerAdmin();
+        $data = self::json($this->as_($admin, 'GET', '/api/admin/demo-config'));
+        self::assertSame('anthropic', $data['effective']['provider']);
+        self::assertSame('fichier', $data['sources']['provider']);
+    }
+
+    /**
+     * Audit sans valeurs (§6.5) : le JSON `details` brut de l'événement
+     * demo_config_updated contient les NOMS de champs, jamais les valeurs
+     * soumises (ni l'identifiant de modèle, ni un plafond numérique).
+     */
+    public function testAuditNeverContainsValues(): void
+    {
+        $admin = $this->registerAdmin();
+
+        $put = $this->as_($admin, 'PUT', '/api/admin/demo-config', [
+            'model' => 'claude-opus-4-8',
+            'maxTokensPerRequest' => 4096,
+        ]);
+        self::assertSame(200, $put->getStatusCode(), (string) $put->getBody());
+
+        $stmt = self::$pdo->prepare(
+            "SELECT details FROM audit_events WHERE type = 'demo_config_updated' ORDER BY id DESC LIMIT 1"
+        );
+        $stmt->execute();
+        $raw = (string) $stmt->fetchColumn();
+        self::assertNotSame('', $raw);
+
+        // Les noms de champs, oui…
+        self::assertStringContainsString('model', $raw);
+        self::assertStringContainsString('maxTokensPerRequest', $raw);
+        // …les valeurs soumises, jamais.
+        self::assertStringNotContainsString('claude-opus-4-8', $raw);
+        self::assertStringNotContainsString('4096', $raw);
     }
 }

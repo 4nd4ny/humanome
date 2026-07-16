@@ -111,6 +111,19 @@ const BASE = {
       'Comparez deux cartographies, lisez un rapport de consistance multi-run.',
     ],
   },
+  epistemiarque: {
+    titre: 'Édition du référentiel',
+    intro:
+      'Vous éditez collectivement le référentiel des 61 compétences. Chaque compétence est une ' +
+      'entité atomique : elle évolue, se versionne et se vote indépendamment des autres, sans jamais ' +
+      'écraser le travail d’un autre épistémiarque.',
+    points: [
+      'Proposez une édition (identité, marqueurs, protocole, enrichissements) : elle part en brouillon.',
+      'La soumettre ouvre un vote ; elle n’est entérinée qu’à la majorité des membres épistémiarques.',
+      'Les débats de fond avec la société civile se tiennent sur l’espace participatif Decidim.',
+      'Une compétence entérinée passe à la version suivante ; la coupe de release fige un référentiel complet.',
+    ],
+  },
   promptologue: {
     titre: 'Atelier promptologue',
     intro:

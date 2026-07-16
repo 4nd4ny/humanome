@@ -180,6 +180,65 @@ describe('EpistemiarqueView — éditeur riche d’une compétence', () => {
   })
 })
 
+// ─────────────────────────────────────────────────────── fiche de scan
+// SOURCE UNIQUE des fiches (exigence 2026-07-16) : competence.content.fiche en
+// base est LA source dont Twin6 (P*.md au build) et Twin9 (twin9_fiches par
+// endpoint) se régénèrent. Le POINT DE DÉPART de cette chaîne est « l'édition
+// d'une fiche dans l'atelier » : l'éditeur doit exposer la fiche ET, quand on
+// ne la touche pas, la faire repartir VERBATIM dans saveDraft (byte-parité).
+
+const FICHE_MD =
+  '## 2.01 — Écoute\n\n**Essence** — Écouter vraiment, sans reformuler trop vite.\n\n---'
+
+function contentAvecFiche() {
+  return { ...content('2.01', 'Écoute'), fiche: FICHE_MD }
+}
+
+function apiAvecFiche() {
+  return fakeApi({
+    getDraft: vi.fn(async () => ({
+      id: 10,
+      code: '2.01',
+      nom: 'Écoute',
+      semver: '1.1.0',
+      status: 'draft',
+      contentHash: 'basehash000',
+      content: contentAvecFiche(),
+    })),
+  })
+}
+
+describe('EpistemiarqueView — fiche de scan (source unique du référentiel)', () => {
+  it('expose la fiche de scan en édition et l’envoie dans saveDraft (doc.fiche)', async () => {
+    // ROUGE-PRODUIT tant que EditeurSection n'expose aucun champ fiche : sans
+    // lui, la chaîne « édition atelier → régénérations Twin6 + Twin9 » ne peut
+    // pas démarrer depuis l'UI (seule une écriture API directe le permet).
+    const api = apiAvecFiche()
+    render(<EpistemiarqueView section="editer/10" deps={{ fetchMeFn: epistemiarque, api }} />)
+    await screen.findByLabelText('Définition')
+    const fiche = screen.getByLabelText(/fiche de scan/i)
+    expect(fiche.value).toBe(FICHE_MD)
+    const editee = FICHE_MD.replace('Écouter vraiment', 'Écouter activement')
+    fireEvent.change(fiche, { target: { value: editee } })
+    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
+    await waitFor(() => expect(api.saveDraft).toHaveBeenCalled())
+    expect(api.saveDraft.mock.calls[0][1].fiche).toBe(editee)
+  })
+
+  it('sans toucher la fiche : content.fiche repart VERBATIM dans saveDraft (préservation par clonage)', async () => {
+    const api = apiAvecFiche()
+    render(<EpistemiarqueView section="editer/10" deps={{ fetchMeFn: epistemiarque, api }} />)
+    const def = await screen.findByLabelText('Définition')
+    fireEvent.change(def, { target: { value: 'Nouvelle définition' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
+    await waitFor(() => expect(api.saveDraft).toHaveBeenCalled())
+    // Byte-parité : la fiche non éditée doit survivre au cycle chargement →
+    // clonage → enregistrement sans la moindre altération (séparateur ---
+    // final compris, position-dépendant pour la régénération des P*.md).
+    expect(api.saveDraft.mock.calls[0][1].fiche).toBe(FICHE_MD)
+  })
+})
+
 describe('EpistemiarqueView — vote par compétence', () => {
   it('affiche le décompte, le changement proposé et vote', async () => {
     const api = fakeApi()

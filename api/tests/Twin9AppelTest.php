@@ -296,6 +296,34 @@ final class Twin9AppelTest extends CartographeTestCase
         self::assertSame('sk-ant-user-private-key', $this->http->requests[0]['headers']['x-api-key']);
     }
 
+    public function testPromoOpenDoesNotWeakenPlatformBilling(): void
+    {
+        // Exigences 4 et 6 (twin9-integration): the promotional window ONLY
+        // opens the own-key lane — the credited platform lane keeps its full
+        // 402 gate, worst-case reserve and real-cost reconciliation.
+        (new Twin9Config(new SettingsRepository(Db::get())))->update(['twin9_cle_perso_ouverte' => true]);
+
+        // Unfunded platform call: still refused BEFORE any upstream call.
+        $response = $this->appel();
+        self::assertSame(402, $response->getStatusCode(), (string) $response->getBody());
+        self::assertSame([], $this->http->requests, 'promo must not bypass the 402 gate');
+
+        // Funded platform call: full debit at real token cost, platform key.
+        (new CreditService(Db::get()))->topup($this->user['id'], 5_000_000, 'PAYPAL-PROMO-PLATFORM');
+        $this->queueAnthropic('Réponse facturée malgré la promo.', 1000, 200);
+        $response = $this->appel(['max_tokens' => 50]);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+        $body = self::json($response);
+        self::assertSame(7200, $body['cout_microusd'], 'same real cost as outside the promo (3600 + 3600)');
+
+        $credits = new CreditService(Db::get());
+        self::assertSame(4_992_800, $credits->balance($this->user['id']), 'the platform lane is NOT free during the promo');
+        $labels = array_column($credits->events($this->user['id']), 'label');
+        self::assertNotEmpty(array_filter($labels, static fn (string $l): bool => str_contains($l, 'réserve')), 'worst-case reserve still applied');
+        self::assertNotEmpty(array_filter($labels, static fn (string $l): bool => str_contains($l, 'réconciliation')), 'reconciliation still applied');
+        self::assertSame(self::PLATFORM_KEY, $this->http->requests[0]['headers']['x-api-key'], 'platform key, never the user key');
+    }
+
     // ==================================================================
     // Leak filter (ADR-010 §2)
     // ==================================================================
@@ -437,7 +465,7 @@ final class Twin9AppelTest extends CartographeTestCase
         self::assertSame([3.3, 16.5], $body['modeles_twin6']['claude-sonnet-5']);
         self::assertFalse($body['twin9_cle_perso_ouverte']); // promo closed by default
         self::assertArrayNotHasKey('marge', $body);
-        self::assertSame([10, 20, 50], array_column($body['packs'], 'montant_usd'));
+        self::assertSame([10, 20, 50, 100, 200, 500], array_column($body['packs'], 'montant_usd'));
         self::assertFalse($body['paypalConfigured']);
         self::assertSame(2_500_000, $body['solde_microusd']);
         self::assertFalse($body['cle_privee_disponible']);

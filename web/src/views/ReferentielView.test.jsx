@@ -77,6 +77,21 @@ describe('ReferentielView', () => {
     expect(screen.getByRole('status').textContent).toContain('3 compétences')
   })
 
+  it('filtre aussi par la DESCRIPTION (définitions v7.1.0), insensible aux accents', async () => {
+    await renderView()
+    const input = screen.getByLabelText('Rechercher une compétence')
+
+    // « methodiquement » (sans accent) n'apparaît QUE dans la description de
+    // 1.01 — ni dans son code ni dans son nom : le champ description participe
+    // bien au filtre de la recherche publique.
+    fireEvent.change(input, { target: { value: 'methodiquement' } })
+    expect(screen.getByText('Pensée Critique')).toBeDefined()
+    expect(screen.queryByText('Synthèse Intégrative')).toBe(null)
+    expect(screen.queryByText('Communication Authentique')).toBe(null)
+    expect(screen.queryByText('COEUR — Relier')).toBe(null) // pôle vide masqué
+    expect(screen.getByRole('status').textContent).toContain('1 compétence sur 3')
+  })
+
   it('expose un permalien #/referentiel/<code> par compétence', async () => {
     await renderView()
     expect(screen.getByRole('link', { name: '1.02' }).getAttribute('href')).toBe(

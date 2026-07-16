@@ -198,6 +198,45 @@ describe('ReglagesSection — démo publique éditable', () => {
     await screen.findByText('Aucune modification à enregistrer.')
   })
 
+  it('affiche « absente » quand la clé API n’est pas configurée (jamais de valeur)', async () => {
+    const fetchFn = routedFetch({
+      ...baseRoutes,
+      'GET api/admin/demo-config': jsonResponse(200, { ...DEMO, apiKeyConfigured: false }),
+    })
+    await renderReady(fetchFn)
+
+    // Seulement l'état : « absente » — jamais une valeur de clé.
+    expect(screen.getByText('absente')).toBeTruthy()
+    expect(screen.queryByText('configurée')).toBeNull()
+  })
+
+  it('refuse d’enregistrer un champ numérique vide (erreur client, aucun PUT)', async () => {
+    const fetchFn = routedFetch(baseRoutes) // aucun PUT mocké : il ne doit pas partir
+    await renderReady(fetchFn)
+
+    fireEvent.change(screen.getByLabelText('Tokens max par requête'), { target: { value: '' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
+
+    const alert = await screen.findByRole('alert')
+    expect(alert.textContent).toMatch(/Champ vide : Tokens max par requête/)
+    // Aucune mutation n'est partie vers l'API.
+    expect(fetchFn.mock.calls.some(([, init]) => (init?.method ?? 'GET') === 'PUT')).toBe(false)
+  })
+
+  it('refuse un modèle libre vide via « autre… » (erreur client, aucun PUT)', async () => {
+    const fetchFn = routedFetch(baseRoutes) // aucun PUT mocké : il ne doit pas partir
+    await renderReady(fetchFn)
+
+    fireEvent.change(screen.getByLabelText('Modèle'), { target: { value: '__autre__' } })
+    const libre = await screen.findByLabelText('Identifiant de modèle libre')
+    fireEvent.change(libre, { target: { value: '   ' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
+
+    const alert = await screen.findByRole('alert')
+    expect(alert.textContent).toBe('Le modèle ne peut pas être vide.')
+    expect(fetchFn.mock.calls.some(([, init]) => (init?.method ?? 'GET') === 'PUT')).toBe(false)
+  })
+
   it('réinitialise les overrides (DELETE, retour env/fichier)', async () => {
     const fetchFn = routedFetch({
       ...baseRoutes,

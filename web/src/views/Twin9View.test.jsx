@@ -157,6 +157,166 @@ describe('Twin9View — reprise après solde épuisé (402)', () => {
   })
 })
 
+// Traçabilité — exigence utilisateur (credits-paypal, point 6) : garde-fou de
+// lancement — « n'accepter de lancer une cartographie sur NOTRE clé que si les
+// crédits restants couvrent le poids du portfolio ». L'implémentation actuelle
+// passe par le DEVIS (run mock déterministe × fourchettes de tokens par étage) :
+// lancement BLOQUÉ si le solde ne couvre pas l'estimation basse, avertissement
+// si le solde couvre la basse mais pas la haute, et le mode démonstration reste
+// lançable même à solde nul (aucun débit).
+// Chiffres : prix margé [3.3, 16.5] $/Mtok, tagging = étage taggers, fourchette
+// in [1200, 2800] / out [300, 900] tokens (run-helpers ETAGE_TOKENS) → pour
+// 2 appels : bas = 2×(1200×3.3 + 300×16.5) = 17 820 µUSD,
+//            haut = 2×(2800×3.3 + 900×16.5) = 48 180 µUSD.
+describe('Twin9View — garde-fou de lancement (solde vs devis)', () => {
+  const devisDeuxAppels = () =>
+    vi.fn().mockResolvedValue({ metrics: { par_etape: { tagging: { appels: 2 } } }, cartoEvolutive: {} })
+
+  async function estimerAvecSolde(solde) {
+    const runEngine = devisDeuxAppels()
+    monter({ runEngine, fetchMetaFn: vi.fn().mockResolvedValue({ ...META_PRETE, solde_microusd: solde }) })
+    fireEvent.change(await screen.findByTestId('twin9-portfolio'), {
+      target: { value: 'Un portfolio de démonstration suffisamment long pour dépasser le seuil de saisie.' },
+    })
+    fireEvent.click(screen.getByTestId('twin9-consentement'))
+    fireEvent.click(screen.getByTestId('twin9-estimer'))
+    await screen.findByTestId('twin9-devis')
+  }
+
+  it('solde sous l’estimation basse : alerte « solde insuffisant » + bouton Lancer désactivé', async () => {
+    await estimerAvecSolde(10_000) // < 17 820 µUSD (estimation basse)
+    const alerte = screen.getByTestId('twin9-solde-insuffisant')
+    expect(alerte.textContent).toMatch(/Solde insuffisant/i)
+    // Le garde-fou renvoie vers la recharge plutôt que de laisser mourir le run.
+    expect(alerte.querySelector('a[href="#/compte/credit"]')).toBeTruthy()
+    expect(screen.getByTestId('twin9-lancer').disabled).toBe(true)
+  })
+
+  it('solde entre estimation basse et haute : avertissement mais lancement permis', async () => {
+    await estimerAvecSolde(20_000) // 17 820 ≤ solde < 48 180 µUSD
+    expect(screen.queryByTestId('twin9-solde-insuffisant')).toBeNull()
+    expect(screen.getByText(/couvre l’estimation basse mais pas la haute/i)).toBeTruthy()
+    expect(screen.getByTestId('twin9-lancer').disabled).toBe(false)
+  })
+
+  it('solde au-dessus de l’estimation haute : aucun message, lancement permis', async () => {
+    await estimerAvecSolde(5_000_000)
+    expect(screen.queryByTestId('twin9-solde-insuffisant')).toBeNull()
+    expect(screen.queryByText(/couvre l’estimation basse/i)).toBeNull()
+    expect(screen.getByTestId('twin9-lancer').disabled).toBe(false)
+  })
+
+  it('mode démonstration : lancement permis même à solde nul (aucun débit)', async () => {
+    // DEMO_META porte solde_microusd: 0 — la démonstration tourne en local,
+    // sans appel réseau ni débit : le garde-fou ne doit pas la bloquer.
+    const runEngine = devisDeuxAppels()
+    monter({
+      runEngine,
+      section: 'demo',
+      fetchMeFn: vi.fn().mockResolvedValue({ user: null }), // même anonyme
+    })
+    fireEvent.click(await screen.findByTestId('twin9-consentement'))
+    fireEvent.click(screen.getByTestId('twin9-estimer'))
+    await screen.findByTestId('twin9-devis')
+
+    expect(screen.queryByTestId('twin9-solde-insuffisant')).toBeNull()
+    const lancer = screen.getByTestId('twin9-lancer')
+    expect(lancer.textContent).toContain('démonstration')
+    expect(lancer.disabled).toBe(false)
+  })
+})
+
+// Traçabilité — exigences utilisateur (twin9-integration, points 5 et 6) :
+// « avec une clé API personnelle, Twin9 est IMPOSSIBLE » hors promo, et le
+// réglage admin « Twin9 gratuit pendant une période promotionnelle »
+// (twin9_cle_perso_ouverte, renvoyé par /api/twin9/meta) doit piloter l'OFFRE
+// visible côté utilisateur : option clé perso masquée promo fermée, bandeau
+// promotionnel annoncé promo ouverte. La garde serveur (403) existe et est
+// testée côté API ; ici on prouve que l'UI ne promet pas ce que le serveur
+// refusera, et annonce la promo quand elle existe.
+describe('Twin9View — offre clé perso pilotée par la promo (twin9_cle_perso_ouverte)', () => {
+  const META_CLE_STOCKEE = { ...META_PRETE, cle_privee_disponible: true }
+
+  it('promo FERMÉE : l’option « Ma clé privée » n’est pas proposée (ou est désactivée) même avec une clé stockée', async () => {
+    monter({
+      fetchMetaFn: vi.fn().mockResolvedValue({ ...META_CLE_STOCKEE, twin9_cle_perso_ouverte: false }),
+    })
+    await screen.findByTestId('twin9-portfolio')
+
+    // Le serveur refusera 403 tout run cle_privee hors promo : l'UI ne doit
+    // pas proposer une option vouée au refus (ou doit la désactiver).
+    const radio = screen.queryByRole('radio', { name: /clé privée/i })
+    expect(radio === null || radio.disabled).toBe(true)
+    // Et aucun bandeau promotionnel hors promo.
+    expect(screen.queryByText(/promotion/i)).toBeNull()
+  })
+
+  it('promo OUVERTE : option proposée + bandeau promotionnel, et parcours devis→run complet en cle_privee', async () => {
+    const runEngine = vi
+      .fn()
+      // devis (mock: true)
+      .mockResolvedValueOnce({ metrics: { par_etape: { tagging: { appels: 5 } } }, cartoEvolutive: {} })
+      // run réel : carto rendable
+      .mockResolvedValueOnce({ etat: {}, metrics: {}, cartoEvolutive: CARTO_FIXTURE })
+    monter({
+      runEngine,
+      fetchMetaFn: vi.fn().mockResolvedValue({ ...META_CLE_STOCKEE, twin9_cle_perso_ouverte: true }),
+    })
+
+    fireEvent.change(await screen.findByTestId('twin9-portfolio'), {
+      target: { value: 'Un portfolio de démonstration suffisamment long pour dépasser le seuil de saisie.' },
+    })
+
+    // Le public doit savoir que Twin9 est essayable gratuitement : bandeau.
+    expect(screen.getByText(/promotion/i)).toBeTruthy()
+    const radio = screen.getByRole('radio', { name: /clé privée/i })
+    expect(radio.disabled).toBeFalsy()
+    fireEvent.click(radio)
+
+    fireEvent.click(screen.getByTestId('twin9-consentement'))
+    fireEvent.click(screen.getByTestId('twin9-estimer'))
+    const devis = await screen.findByTestId('twin9-devis')
+    expect(devis.textContent).toMatch(/clé privée/i)
+    expect(devis.textContent).toMatch(/aucun débit/i)
+
+    fireEvent.click(screen.getByTestId('twin9-lancer'))
+    // Le run aboutit et les résultats se rendent (parcours complet).
+    expect(await screen.findByText(/Exporter le JSON/)).toBeTruthy()
+    expect(runEngine).toHaveBeenCalledTimes(2)
+  })
+
+  it('run cle_privee refusé 403 par le serveur (promo refermée entre-temps) : erreur affichée, run arrêté proprement', async () => {
+    const refus = 'Twin9 s’utilise avec nos crédits. L’usage avec votre propre clé n’est pas ouvert pour le moment.'
+    const runEngine = vi
+      .fn()
+      .mockResolvedValueOnce({ metrics: { par_etape: { tagging: { appels: 5 } } }, cartoEvolutive: {} })
+      .mockRejectedValueOnce(new ApiError(refus, 403))
+    monter({
+      runEngine,
+      fetchMetaFn: vi.fn().mockResolvedValue({ ...META_CLE_STOCKEE, twin9_cle_perso_ouverte: true }),
+    })
+
+    fireEvent.change(await screen.findByTestId('twin9-portfolio'), {
+      target: { value: 'Un portfolio de démonstration suffisamment long pour dépasser le seuil de saisie.' },
+    })
+    const radio = screen.getByRole('radio', { name: /clé privée/i })
+    fireEvent.click(radio)
+    fireEvent.click(screen.getByTestId('twin9-consentement'))
+    fireEvent.click(screen.getByTestId('twin9-estimer'))
+    await screen.findByTestId('twin9-devis')
+
+    fireEvent.click(screen.getByTestId('twin9-lancer'))
+
+    // Le message SERVEUR est montré tel quel (rôle alert), le run est arrêté :
+    // ni pause « rechargez » (réservée au 402), ni progression, ni débit affiché.
+    const alerte = await screen.findByRole('alert')
+    expect(alerte.textContent).toContain(refus)
+    expect(screen.queryByTestId('twin9-pause')).toBeNull()
+    expect(screen.queryByTestId('twin9-progression')).toBeNull()
+    expect(screen.queryByText(/appels effectués/)).toBeNull()
+  })
+})
+
 describe('ResultatsTwin9 — rendu depuis carto_evolutive figé', () => {
   it('rend la synthèse, le rapport, le profil, les journées et l’export', () => {
     const onExport = vi.fn()

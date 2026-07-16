@@ -1,0 +1,97 @@
+{
+    "packageId": "aurora-demo",
+    "from": {
+        "version": "1.0.0"
+    },
+    "to": {
+        "version": "2.0.0"
+    },
+    "identical": false,
+    "fields": {
+        "description": {
+            "from": "Paquet d'exemple minimal pour les tests de schéma : un prompt d'extraction par pôle et un prompt de synthèse kairos, avec une orchestration réduite à l'enchaînement des deux appels. Fictif : ne produit pas une cartographie complète du protocole Aurora.",
+            "to": "Deuxième itération : extraction affinée, prompt kairos remplacé par un prompt merge."
+        }
+    },
+    "prompts": {
+        "added": [
+            {
+                "role": "merge",
+                "nom": "Fusion chronologique multi-jours"
+            }
+        ],
+        "removed": [
+            {
+                "role": "kairos",
+                "nom": "Synthèse transversale de la journée"
+            }
+        ],
+        "modified": [
+            {
+                "role": "extraction-pole",
+                "nom": "Extraction des traces d'un pôle",
+                "texte": [
+                    {
+                        "op": "del",
+                        "line": 8,
+                        "text": "- Cite les passages verbatim, sans reformuler ni inventer."
+                    },
+                    {
+                        "op": "add",
+                        "line": 8,
+                        "text": "- Cite les passages verbatim, sans reformuler ni inventer, avec leur position dans la feuille."
+                    }
+                ],
+                "variables": {
+                    "added": [
+                        "consignes_additionnelles"
+                    ],
+                    "removed": [],
+                    "modified": [
+                        {
+                            "nom": "date_feuille",
+                            "changes": {
+                                "description": {
+                                    "from": "Date de la feuille de portfolio en cours de cartographie (segmentation du portfolio).",
+                                    "to": "Date de la feuille de portfolio cartographiée, au format ISO (AAAA-MM-JJ)."
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "code": {
+        "entrypoint": {
+            "from": "run",
+            "to": "main"
+        },
+        "orchestration": [
+            {
+                "op": "add",
+                "line": 27,
+                "text": "// v2 : passe de fusion ajoutée."
+            },
+            {
+                "op": "add",
+                "line": 28,
+                "text": ""
+            }
+        ]
+    },
+    "metadata": {
+        "licence": {
+            "from": "CC-BY-SA-4.0",
+            "to": "CC-BY-4.0"
+        }
+    },
+    "summary": {
+        "fieldsChanged": 1,
+        "promptsAdded": 1,
+        "promptsRemoved": 1,
+        "promptsModified": 1,
+        "codeChanged": true,
+        "metadataChanged": true
+    }
+}

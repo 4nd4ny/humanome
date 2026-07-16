@@ -196,6 +196,24 @@ final class CompetenceRepository
             return ['status' => 'unchanged', 'id' => $id, 'code' => $code, 'semver' => $semver];
         }
 
+        // Garde anti-réécriture d'historique : le backfill n'est légitime que
+        // tant que la version de seed est la DERNIÈRE publiée (bootstrap : ex.
+        // 1.0.0 publiée avant l'existence du champ `fiche`). Si une édition
+        // GOUVERNÉE l'a dépassée (ex. 1.1.0 publiée à la majorité, puis corpus
+        // re-synchronisé par dump-fiches), la version de seed est de l'histoire
+        // FIGÉE : la backfiller effacerait la diff 1.0.0 → 1.1.0. On la laisse
+        // intacte (les versions publiées sont immuables). Le nouveau contenu du
+        // corpus vit déjà dans la version gouvernée, pas dans le seed.
+        $published = $this->pdo->prepare(
+            "SELECT semver FROM competence_versions WHERE competence_code = ? AND status = 'published'"
+        );
+        $published->execute([$code]);
+        foreach ($published->fetchAll(\PDO::FETCH_COLUMN) as $publishedSemver) {
+            if (Semver::greaterThan((string) $publishedSemver, $semver)) {
+                return ['status' => 'unchanged', 'id' => $id, 'code' => $code, 'semver' => $semver];
+            }
+        }
+
         // Backfill : contenu périmé de la version de seed → réconcilié.
         $this->pdo->prepare(
             'UPDATE competence_versions SET nom = ?, pole = ?, content = ?, content_hash = ? WHERE id = ?'

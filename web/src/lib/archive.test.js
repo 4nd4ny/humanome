@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { validateDocument } from '@engine/validation.js'
 import archiveFixture from '../../../schemas/fixtures/archive-export-exemple.json'
 import dayFixture from '../../../schemas/fixtures/cartographie-jour-2026-01-05.json'
@@ -154,6 +154,99 @@ describe('exportArchive', () => {
     expect(archive.cartographies[0].id).toBe('masse-3-7')
     expect(archive.cartographies[0].type).toBe('jour')
     expect(archive.cartographies[0].runMeta.modele).toContain('Terminale B')
+  })
+
+  // Exigence RGPD art. 15/20 — chemin réseau RÉEL de l'export « un clic » :
+  // ExportSection.jsx appelle exportArchive SANS override getMassDocuments,
+  // c'est donc defaultGetMassDocuments (apiFetch('mes-documents-masse')) qui
+  // tourne en production. On l'exerce ici via le fetchFn injecté, au lieu du
+  // seul getMassDocuments injecté du test précédent.
+  describe('defaultGetMassDocuments (chemin réseau réel)', () => {
+    /** Réponse JSON minimale compatible apiFetch (pattern client.test.js). */
+    function jsonResponse(status, data) {
+      return {
+        ok: status >= 200 && status < 300,
+        status,
+        headers: { get: (name) => (name.toLowerCase() === 'content-type' ? 'application/json' : null) },
+        json: async () => data,
+      }
+    }
+
+    it('récupère GET api/mes-documents-masse et inclut les documents dans l’archive', async () => {
+      const { cartoStore, portfolioStore } = makeStores()
+      const fetchFn = vi.fn().mockResolvedValue(
+        jsonResponse(200, {
+          documents: [
+            {
+              jobId: 7,
+              runId: 3,
+              cohorteId: 1,
+              cohorte: 'Terminale B',
+              date: '2026-01-05',
+              promptPackage: { id: 'aurora-v3-reconstruit', version: '1.0.0' },
+              referentiel: { id: 'respire', version: '7.0.0' },
+              document: dayFixture,
+            },
+          ],
+        }),
+      )
+
+      const { archive, counts } = await exportArchive({
+        cartoStore,
+        portfolioStore,
+        ...offlineDeps(), // getAccount/getReferentiel/getPromptPackages neutralisés :
+        fetchFn, //          seul defaultGetMassDocuments passe par le réseau
+        download: () => {},
+      })
+
+      expect(fetchFn).toHaveBeenCalledTimes(1)
+      expect(fetchFn.mock.calls[0][0]).toBe('api/mes-documents-masse')
+      expect(validateDocument('archive-export', archive).valid).toBe(true)
+      expect(counts.cartographies).toBe(1)
+      expect(archive.cartographies[0].id).toBe('masse-3-7')
+      expect(archive.cartographies[0].type).toBe('jour')
+      expect(archive.cartographies[0].document).toEqual(dayFixture)
+      expect(archive.cartographies[0].runMeta.modele).toContain('Terminale B')
+    })
+
+    it('dégrade en [] quand le réseau échoue : l’export local aboutit quand même', async () => {
+      // Hors-ligne / copie statique : la portabilité locale (art. 20) ne doit
+      // jamais être bloquée par l'absence de l'API — dégradation silencieuse.
+      const { cartoStore, portfolioStore } = makeStores()
+      await cartoStore.saveCartography({ type: 'jour', titre: 'Locale', document: dayFixture })
+      const fetchFn = vi.fn().mockRejectedValue(new TypeError('réseau coupé'))
+
+      const { archive, counts } = await exportArchive({
+        cartoStore,
+        portfolioStore,
+        ...offlineDeps(),
+        fetchFn,
+        download: () => {},
+      })
+
+      expect(validateDocument('archive-export', archive).valid).toBe(true)
+      expect(counts.cartographies).toBe(1) // la cartographie locale, rien de masse
+      expect(archive.cartographies.some((c) => String(c.id).startsWith('masse-'))).toBe(false)
+    })
+
+    it('dégrade en [] pour un visiteur non connecté (401)', async () => {
+      const { cartoStore, portfolioStore } = makeStores()
+      const fetchFn = vi
+        .fn()
+        .mockResolvedValue(jsonResponse(401, { error: 'Authentification requise' }))
+
+      const { archive, counts } = await exportArchive({
+        cartoStore,
+        portfolioStore,
+        ...offlineDeps(),
+        fetchFn,
+        download: () => {},
+      })
+
+      expect(validateDocument('archive-export', archive).valid).toBe(true)
+      expect(counts.cartographies).toBe(0)
+      expect(archive.cartographies).toEqual([])
+    })
   })
 })
 
