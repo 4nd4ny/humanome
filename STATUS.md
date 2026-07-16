@@ -7,6 +7,19 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-16 — **D8 (plan v1.1) — Audit adversarial des paiements et crédits.** Audit OFFENSIF du
+  système de crédits prépayés Twin9/Twin6 (8 angles, un test par angle). **Verdict : aucune
+  vulnérabilité** — les défenses posées au durcissement #29 tiennent. Rien à corriger, donc **rien à
+  déployer** (test + doc seulement). Détail (sobre, sans exploitation) dans `docs/securite-checklist.md`
+  § « Audit adversarial paiements & crédits (D8) ».
+  - Nouveau `api/tests/Twin9SecurityAuditTest.php` (6 tests, 28 assertions) confirmant les variantes
+    non encore explicitement couvertes : montant crédité = capture PayPal (jamais le pack ni un champ
+    client, angle 3) ; débit atomique anti-découvert (4) ; remboursement d'autrui refusé, plafonné à la
+    room, jamais négatif (5) ; grand-livre/factures cadrés par session, pas d'IDOR (8). Angles 1/2/5
+    (déjà) `Twin9PayPalTest`, 6 `LlmPowTest`/`LlmProxyTest`, 7 `Twin9AppelTest`.
+  - Suites **toutes vertes** : **PHP 507, engine 926 (+1 skip), web 737**. (Pas de déploiement : aucun
+    changement de code de production.)
+
 - 2026-07-16 — **D7 (plan v1.1) — Typographie iA Writer Quattro (auto-hébergée).**
   Toute la police du site passe à **iA Writer Quattro** (AD-D5), auto-hébergée.
   - **Fichiers** : 4 graisses woff2 (Regular/Italic/Bold/BoldItalic, ~172 Ko au total) + licence

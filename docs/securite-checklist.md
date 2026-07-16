@@ -220,6 +220,26 @@ Dernière revue : M9 (2026-07-12).
 
 ---
 
+## Audit adversarial paiements & crédits (D8) · **Fait — aucune faille**
+
+Audit offensif du système de crédits prépayés Twin9/Twin6 (huit angles d'attaque,
+un test par angle). **Verdict global : aucune vulnérabilité — les défenses posées
+en durcissement #29 tiennent.** Tests probants (résumé sobre, sans détail
+d'exploitation) :
+
+| # | Angle d'attaque | Verdict | Test |
+|---|---|---|---|
+| 1 | **Rejeu de capture** (même `order_id` capturé N fois) | Bloqué : `topup` idempotent par la clé UNIQUE `twin9_credit_events.paypal_order_id` (3 captures → 1 seul événement). | `Twin9PayPalTest::testCapturerCreditsCapturedAmountIdempotently` |
+| 2 | **Confusion de comptes** (ordre de A capturé par B) | Bloqué (403) : binding `twin9_paypal_orders` — `paypalOrderOwner ≠ session` refusé, ordre inconnu refusé aussi. | `Twin9PayPalTest::testCapturerRejectsOrderNotOwnedByCaller` |
+| 3 | **Montant falsifié** (pack demandé ≠ montant crédité) | Bloqué : le crédit dérive du **montant CONFIRMÉ par PayPal** (`capture.amount.value`), jamais du pack ni d'un champ client (les champs pirates `montant_usd`/`solde_microusd` sont ignorés). | `Twin9SecurityAuditTest::testCreditDerivesFromCapturedAmountNotRequestedPack` |
+| 4 | **Découvert** (débit > solde, course, adjust négatif) | Bloqué : `debit` = UPDATE conditionnel atomique (`balance >= amount`) → le perdant de la course lève `SoldeInsuffisant`, solde intact, aucun événement. `adjust` (correction admin) n'est exposé par aucune route à montant client. | `Twin9SecurityAuditTest::testDebitCannotOverdrawBalance`, `Twin9CreditTest` |
+| 5 | **Remboursement** (> capturé, rejoué, d'un autre compte, run en cours) | Bloqué : `refundableCaptures` cadré par `user_id` (pas de refund d'autrui), plafonné par la « room » de chaque capture, idempotence PayPal par `PayPal-Request-Id` décalé, débit ledger conditionnel (jamais négatif), confirmation PayPal AVANT le débit. | `Twin9SecurityAuditTest::testUserCannotRefundAnotherAccountsCapture/testRefundCannotExceedCaptureRoom/testRefundLedgerDebitCannotGoNegative`, `Twin9PayPalTest` (partiel, poussière, échec mid-boucle) |
+| 6 | **Démo Haiku** (PoW rejoué, rotation IPv6 /64, quota, budget) | Bloqué : PoW one-time (honeypot + nonce), buckets IP par /64 (`ClientIp::bucketIdentity`), quota horaire + budget quotidien serveur, clé jamais exposée. Les proxys crédités Twin6/Twin9 (`/appel`) exigent une session + un solde — aucun mode démo à contourner. | `LlmPowTest`, `LlmProxyTest`, `ClientIpTest` |
+| 7 | **Facturation** (marge contournée, provider spoofé, taille annoncée) | Bloqué : coût = `coutMicrousd(config.marge, tokens RÉELS de la réponse LLM)` ; réserve = `reserveMicrousd(octets réels du prompt, maxTokens)` — tout est calculé **serveur**, aucun champ client n'influence la marge ni le coût. | `Twin9AppelTest`, `Twin9CreditTest` |
+| 8 | **IDOR généralisé** (crédits/factures/documents) | Bloqué : chaque route lit `userId` de la **session** (jamais un id client) — `GET /twin9/credit`, `/twin9/facture`, `/twin9/depenses` sont cadrés par `sessionUserId()` ; un compte ne voit ni le solde ni la facture d'autrui. | `Twin9SecurityAuditTest::testLedgerAndInvoicesAreSessionScopedNoIdor` |
+
+---
+
 ## À faire après déploiement (chef d'orchestre)
 
 1. **Smoke des en-têtes API en prod** : `curl -sI https://humanome.xyz/api/health` →
