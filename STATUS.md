@@ -7,6 +7,34 @@ vérifiés en ligne. Voir « Actions restantes (utilisateur) » en fin de fichie
 
 ## Fait
 
+- 2026-07-17 — **D10 (plan v1.1) — Garde-fou de publication + structure GitBook (parties
+  autonomes).** Le dépôt est déjà public (`4nd4ny/humanome`, historique purgé au jalon précédent) ;
+  cette session en industrialise la publiabilité et prépare GitBook. Les actions restantes sont
+  **côté utilisateur** (voir plus bas).
+  - **Garde-fou automatisé** `scripts/check-publiable.mjs` : refuse, dans les fichiers **suivis**,
+    (a) un répertoire de gabarit Twin9 (`golden-twin9/`, `twin9-oracles/`, `golden-prompt/`),
+    (b) un `.env` réel ou un `.pyc`/`__pycache__`, (c) un secret en clair (forme de clé `sk-ant-`,
+    `PAYPAL_SECRET`, `*_PASSWORD`), (d) un chemin local absolu (`/Users/…`), (e) un identifiant OVH
+    réel (hôte/cluster). Placeholders et fixtures sur liste blanche (`EXEMPLE`, `change-me`, `_dev`,
+    répertoires de test) ; la règle mot de passe s'assouplit dans les tests mais clé/OVH/chemin
+    restent actifs partout. **Validé par un canari** (4 types détectés sur 4). Le garde-fou a d'ailleurs
+    **débusqué un résidu réel** : les identifiants OVH nommés dans une vieille entrée `STATUS.md`
+    (méta-référence à la purge) — neutralisés.
+  - **Hook** `.githooks/pre-commit` (activé : `git config core.hooksPath .githooks`) + **CI**
+    `.github/workflows/publiable.yml` (garde-fou + suites moteur et front). Le hook s'est déclenché et
+    a bloqué/validé les commits de cette session (vérifié en direct).
+  - **GitBook** : `.gitbook.yaml` (root `./`, readme, summary) + `SUMMARY.md` **généré** par
+    `scripts/build-gitbook-summary.mjs` depuis l'arbre de doc (9 parcours `content/formation/**` +
+    docs `docs/**` + ADR), **83 entrées, 100 % des liens résolus**. La doc reste éditée en markdown
+    dans le dépôt (source unique) ; GitBook n'en est qu'un rendu.
+  - **README** : badges (site, licence AGPL-3.0, CI) + section « Documentation ».
+  - **⏳ RESTE À L'UTILISATEUR** (non automatisable ici) : 1) **ré-authentifier `gh`** (token du
+    trousseau invalide) puis **pousser** les **23 commits** d'avance sur `origin/main` (D1→D11 + D10) —
+    publier sur un dépôt public est une action explicite, distincte des déploiements prod autorisés ;
+    2) créer/associer l'**espace GitBook** et activer le **Git Sync** ; 3) renseigner l'URL GitBook
+    dans le README. (Aucun changement de code applicatif : suites inchangées vs D9 —
+    **PHP 515, engine 927, web 743**.)
+
 - 2026-07-17 — **D9 (plan v1.1) — Assistant tuteur interactif (Haiku).** Un panneau « 💬 »
   répond, pour n'importe quel visiteur, aux questions « par où passer sur le site ». Le prompt
   système est construit CÔTÉ SERVEUR à partir d'un digest de la doc et du rôle (déterminé par la
