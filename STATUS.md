@@ -9,6 +9,22 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **Menu au survol persistant + réglette du bord gauche (demande utilisateur).**
+  Le va-et-vient bouton (droite) ↔ panneau (gauche) était pénible : l'aperçu au survol
+  (CSS pur, grâce de 0,32 s) se rétractait pendant la traversée de l'écran. L'ouverture au
+  survol passe en JS (`App.jsx`, souris uniquement — `pointerType !== 'touch'`) : ouverture
+  différée de 150 ms (filtre les passages), **grâce de traversée de 1,6 s** après avoir quitté
+  le déclencheur, annulée en entrant dans le panneau ; en ressortant du panneau, fermeture
+  après 350 ms. Une ouverture née du survol se referme donc seule ; née d'un clic, elle attend
+  clic extérieur/Échap/route comme avant (un clic sur le bouton pendant l'aperçu CONFIRME au
+  lieu de refermer). **Réglette `.app-menu-edge`** : fine bande toujours visible au bord gauche
+  (3 px d'accent, cible de survol 12 px, `hover: hover` seulement, aria-hidden) qui ouvre le
+  panneau sans aller chercher le bouton. L'ancienne règle `.app-menu:hover` et le délai CSS
+  sont retirés (source unique : l'état React) ; `:focus-within` clavier inchangé. Au passage,
+  `vite.config.js` honore `PORT` (plusieurs serveurs dev en parallèle, défaut 5173 inchangé).
+  Vérifié navigateur (survol bouton → panneau ouvert pendant la traversée → fermeture en
+  sortie ; survol du bord gauche → ouverture). Suites : web **813** (+4).
+
 - 2026-07-17 — **D14sexies — Vues préconfigurées par persona + tutoriels de l'interface V3.**
   - **Cinq vues** dans le sélecteur *Mode* : {Simplifié, Employeur, Apprenant, Cartographe, Expert}.
     Chacune est un préréglage de panneaux ET de disposition de tuiles déduit du rôle dans

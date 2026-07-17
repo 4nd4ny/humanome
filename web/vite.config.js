@@ -52,6 +52,8 @@ export default defineConfig({
     },
   },
   server: {
+    // PORT env honoré (plusieurs serveurs dev en parallèle) ; défaut Vite sinon.
+    port: Number(process.env.PORT) || 5173,
     fs: {
       // Allow the dev server to serve engine/ and schemas/ (outside web/).
       allow: [repoRoot],

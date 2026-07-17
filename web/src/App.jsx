@@ -84,6 +84,15 @@ function LogoutIcon() {
   )
 }
 
+/* Délais du menu au survol (souris). Le bouton est à droite, le panneau à
+   gauche : après avoir quitté le déclencheur, le panneau reste ouvert le
+   temps de TRAVERSER l'écran (grâce longue) ; une fois la souris passée dans
+   le panneau puis ressortie, la grâce redevient courte. L'ouverture est
+   légèrement différée pour filtrer les simples passages de souris. */
+const MENU_HOVER_OPEN_MS = 150
+const MENU_HOVER_TRAVEL_MS = 1600
+const MENU_HOVER_CLOSE_MS = 350
+
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
  * embarquées + documents chargés localement par l'utilisateur (rien ne quitte
@@ -133,6 +142,67 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       /* stockage indisponible : l'épinglage reste valable pour la session */
     }
   }, [pinned])
+
+  // Ouverture au survol (souris) : survoler le bouton Menu OU la réglette du
+  // bord gauche ouvre le panneau via l'état — et non plus en CSS pur — pour
+  // qu'il RESTE ouvert pendant la traversée de l'écran (bouton à droite,
+  // panneau à gauche : le va-et-vient était la friction n°1 de ce menu).
+  // `hoverOpenedRef` distingue cette ouverture d'un clic : née du survol, elle
+  // se referme seule quand la souris quitte le panneau (ou n'y arrive pas
+  // dans la grâce de traversée) ; née d'un clic, elle attend clic
+  // extérieur/Échap/changement de route comme avant.
+  const hoverOpenedRef = useRef(false)
+  const hoverTimersRef = useRef({ open: 0, close: 0 })
+
+  function clearHoverTimers() {
+    window.clearTimeout(hoverTimersRef.current.open)
+    window.clearTimeout(hoverTimersRef.current.close)
+  }
+
+  function scheduleHoverClose(delay) {
+    if (!hoverOpenedRef.current || pinnedRef.current) return
+    window.clearTimeout(hoverTimersRef.current.close)
+    hoverTimersRef.current.close = window.setTimeout(() => {
+      hoverOpenedRef.current = false
+      setMenuOpen(false)
+    }, delay)
+  }
+
+  /** Entrée sur un déclencheur (bouton Menu, réglette) : ouverture différée. */
+  function handleHoverTriggerEnter(event) {
+    if (event.pointerType === 'touch') return
+    window.clearTimeout(hoverTimersRef.current.close)
+    if (menuOpen || pinned) return
+    window.clearTimeout(hoverTimersRef.current.open)
+    hoverTimersRef.current.open = window.setTimeout(() => {
+      hoverOpenedRef.current = true
+      setMenuOpen(true)
+    }, MENU_HOVER_OPEN_MS)
+  }
+
+  /** Sortie d'un déclencheur : grâce de traversée (entrer dans le panneau l'annule). */
+  function handleHoverTriggerLeave(event) {
+    if (event.pointerType === 'touch') return
+    window.clearTimeout(hoverTimersRef.current.open)
+    scheduleHoverClose(MENU_HOVER_TRAVEL_MS)
+  }
+
+  function handlePanelPointerEnter(event) {
+    if (event.pointerType === 'touch') return
+    window.clearTimeout(hoverTimersRef.current.close)
+  }
+
+  function handlePanelPointerLeave(event) {
+    if (event.pointerType === 'touch') return
+    scheduleHoverClose(MENU_HOVER_CLOSE_MS)
+  }
+
+  // Fermé par un autre chemin (clic extérieur, Échap, route) : l'ouverture
+  // n'est plus « née du survol ». Timers purgés au démontage.
+  useEffect(() => {
+    if (!menuOpen) hoverOpenedRef.current = false
+  }, [menuOpen])
+  useEffect(() => clearHoverTimers, [])
 
   // Thème clair / sombre. `theme` = thème EFFECTIF affiché ; la bascule pose un
   // choix explicite persistant. Sans choix, on suit le système (et on réagit à
@@ -392,6 +462,18 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
             className={`app-menu${menuOpen ? ' is-open' : ''}${pinned ? ' is-pinned' : ''}`}
             ref={menuRef}
           >
+            {/* Réglette du bord gauche : rappel visuel permanent du tiroir,
+                ouverture au survol sans aller chercher le bouton (souris
+                uniquement — masquée en CSS pour les pointeurs sans survol).
+                Simple affordance : pas focusable, le bouton reste l'accès
+                clavier/tactile. */}
+            <div
+              className="app-menu-edge"
+              aria-hidden="true"
+              title="Ouvrir le menu"
+              onPointerEnter={handleHoverTriggerEnter}
+              onPointerLeave={handleHoverTriggerLeave}
+            />
             <button
               type="button"
               className="app-burger"
@@ -400,9 +482,19 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
               aria-controls="app-nav-panel"
               aria-haspopup="menu"
               aria-label="Menu de navigation"
+              onPointerEnter={handleHoverTriggerEnter}
+              onPointerLeave={handleHoverTriggerLeave}
               onClick={() => {
-                setMenuOpen((v) => !v)
+                clearHoverTimers()
                 setHelpOpen(false)
+                if (hoverOpenedRef.current) {
+                  // Le panneau n'était qu'en aperçu (survol) : le clic
+                  // CONFIRME l'ouverture au lieu de la refermer.
+                  hoverOpenedRef.current = false
+                  setMenuOpen(true)
+                } else {
+                  setMenuOpen((v) => !v)
+                }
               }}
             >
               <span className="app-burger-bars" aria-hidden="true">
@@ -412,7 +504,12 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
               </span>
               <span className="app-burger-text">Menu</span>
             </button>
-            <div className="app-nav-panel" id="app-nav-panel">
+            <div
+              className="app-nav-panel"
+              id="app-nav-panel"
+              onPointerEnter={handlePanelPointerEnter}
+              onPointerLeave={handlePanelPointerLeave}
+            >
               <div className="app-nav-panel-head">
                 <span className="app-nav-panel-title">Menu</span>
                 <button

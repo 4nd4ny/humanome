@@ -342,3 +342,93 @@ describe('App — thème, épinglage persistant, clic extérieur (refonte ergono
     expect(nav.getByRole('link', { name: 'Accueil' }).getAttribute('aria-current')).toBeNull()
   })
 })
+
+// Ouverture au SURVOL (souris) : le survol du bouton Menu ou de la réglette du
+// bord gauche ouvre le panneau via l'état (App.jsx), avec une grâce longue le
+// temps de traverser l'écran — le bouton est à droite, le panneau à gauche.
+// Les délais (150/1600/350 ms) sont ceux des constantes MENU_HOVER_* d'App.jsx.
+describe('App — menu au survol (bouton + réglette du bord gauche)', () => {
+  function renderWithFakeTimers() {
+    vi.useFakeTimers()
+    window.location.hash = '#/'
+    renderApp()
+    return {
+      menu: document.querySelector('.app-menu'),
+      burger: screen.getByRole('button', { name: 'Menu de navigation' }),
+      panel: document.querySelector('.app-nav-panel'),
+    }
+  }
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('survol du bouton : ouverture différée, persistance pendant la traversée, fermeture en quittant le panneau', () => {
+    const { menu, burger, panel } = renderWithFakeTimers()
+
+    // L'ouverture est différée (filtre les simples passages de souris).
+    fireEvent.pointerOver(burger)
+    expect(menu.className).not.toContain('is-open')
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
+
+    // La souris quitte le bouton : le panneau RESTE ouvert pendant la traversée…
+    fireEvent.pointerOut(burger)
+    act(() => vi.advanceTimersByTime(800))
+    expect(menu.className).toContain('is-open')
+
+    // …entrer dans le panneau annule la fermeture différée…
+    fireEvent.pointerOver(panel)
+    act(() => vi.advanceTimersByTime(5000))
+    expect(menu.className).toContain('is-open')
+
+    // …et en ressortir referme (courte grâce) une ouverture née du survol.
+    fireEvent.pointerOut(panel)
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+  })
+
+  it('sans jamais atteindre le panneau, la grâce de traversée expire et referme', () => {
+    const { menu, burger } = renderWithFakeTimers()
+
+    fireEvent.pointerOver(burger)
+    act(() => vi.advanceTimersByTime(200))
+    fireEvent.pointerOut(burger)
+    expect(menu.className).toContain('is-open')
+
+    act(() => vi.advanceTimersByTime(2000))
+    expect(menu.className).not.toContain('is-open')
+  })
+
+  it('la réglette du bord gauche ouvre au survol ; un clic sur le bouton CONFIRME l’aperçu (ne referme pas)', () => {
+    const { menu, burger } = renderWithFakeTimers()
+    const edge = document.querySelector('.app-menu-edge')
+    expect(edge).not.toBeNull()
+    // Affordance purement visuelle : hors de l'arbre d'accessibilité.
+    expect(edge.getAttribute('aria-hidden')).toBe('true')
+
+    fireEvent.pointerOver(edge)
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
+
+    // Clic pendant l'aperçu : bascule en ouverture explicite (reste ouvert,
+    // et la sortie du panneau ne referme plus).
+    fireEvent.click(burger)
+    expect(menu.className).toContain('is-open')
+    fireEvent.pointerOut(document.querySelector('.app-nav-panel'))
+    act(() => vi.advanceTimersByTime(5000))
+    expect(menu.className).toContain('is-open')
+  })
+
+  it('un survol tactile (pointerType touch) n’ouvre pas le panneau', () => {
+    const { menu, burger } = renderWithFakeTimers()
+
+    // jsdom n'a pas PointerEvent : on pose pointerType sur un Event nu, que
+    // React relaie tel quel dans l'événement synthétique.
+    const touchOver = new window.Event('pointerover', { bubbles: true })
+    touchOver.pointerType = 'touch'
+    fireEvent(burger, touchOver)
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+  })
+})

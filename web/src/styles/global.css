@@ -430,9 +430,12 @@ body {
    Le déclencheur (bouton) reste à sa place, en haut à droite ; le panneau,
    lui, glisse depuis le bord GAUCHE de l'écran (tiroir plein hauteur), une
    disposition choisie côté produit — indépendante de la position du bouton.
-   Il est révélé de trois façons complémentaires :
+   Il est révélé de quatre façons complémentaires :
      • clic/tap sur le bouton   -> `.is-open` (transitoire, web ET mobile) ;
-     • survol du bouton         -> `@media (hover: hover)` (desktop, aperçu) ;
+     • survol du bouton         -> `.is-open` aussi, posé par App.jsx : le
+       panneau doit RESTER ouvert le temps de traverser l'écran jusqu'à lui,
+       une persistance que le CSS seul ne sait pas offrir (délais dans App) ;
+     • survol de la réglette `.app-menu-edge` (bord gauche) -> idem ;
      • focus clavier du panneau -> `.app-nav-panel:focus-within`.
    Icône punaise DANS le panneau -> `.is-pinned` : reste ouvert quel que soit
    le survol, un clic extérieur ou un changement de route (seule Échap ou la
@@ -498,10 +501,9 @@ body {
   overflow-y: auto;
   transform: translateX(-100%);
   pointer-events: none;
-  /* Délai de grâce à la fermeture (survol) : le temps de traverser l'écran
-     du bouton (à droite) jusqu'au panneau (à gauche) sans le voir se
-     rétracter ; entrer dedans (ou épingler) annule ce délai. */
-  transition: transform 0.2s ease 0.32s;
+  /* Les grâces de fermeture au survol sont gérées par App.jsx (traversée de
+     l'écran, sortie du panneau) : plus de délai côté CSS. */
+  transition: transform 0.2s ease;
 }
 
 .app-menu.is-open .app-nav-panel,
@@ -509,14 +511,32 @@ body {
 .app-nav-panel:focus-within {
   transform: translateX(0);
   pointer-events: auto;
-  transition: transform 0.2s ease;
+}
+
+/* Réglette du bord gauche : fine bande TOUJOURS visible (3px d'accent sur une
+   cible de survol de 12px) qui rappelle le tiroir et l'ouvre au survol, sans
+   traverser l'écran jusqu'au bouton. Souris uniquement : sans survol
+   (tactile), elle n'existe pas — le bouton Menu reste l'accès. Sous le
+   panneau (z-index) : recouverte dès qu'il est ouvert ou épinglé. */
+.app-menu-edge {
+  display: none;
 }
 
 @media (hover: hover) {
-  .app-menu:hover .app-nav-panel {
-    transform: translateX(0);
-    pointer-events: auto;
-    transition: transform 0.2s ease;
+  .app-menu-edge {
+    display: block;
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 12px;
+    z-index: 64;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--accent) 3px, transparent 3px);
+    opacity: 0.22;
+    transition: opacity 0.15s ease;
+  }
+
+  .app-menu-edge:hover {
+    opacity: 0.6;
   }
 }
 
