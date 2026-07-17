@@ -88,20 +88,77 @@
   min-width: 14rem;
 }
 
-/* --- Disposition --- */
+/* --- Disposition ---
+   Mode SIMPLIFIÉ : disposition simple, bornée en largeur pour rester lisible
+   sur un grand moniteur. Mode EXPERT : grille de tuiles pleine largeur. */
 .v3-layout {
   display: grid;
-  grid-template-columns: minmax(230px, 1fr) minmax(320px, 2fr) minmax(280px, 1.4fr);
+  grid-template-columns: minmax(320px, 2fr) minmax(280px, 1.2fr);
   gap: 0.75rem;
   align-items: start;
+  max-width: 1500px;
+  margin: 0 auto;
 }
-.v3-mode-simplified .v3-layout { grid-template-columns: minmax(320px, 2fr) minmax(280px, 1.2fr); }
 .v3-mode-simplified .v3-tree { display: none; }
-.v3-mode-simplified .v3-layout > .v3-center { grid-column: 1; }
 @media (max-width: 900px) {
-  .v3-layout, .v3-mode-simplified .v3-layout { grid-template-columns: 1fr; }
+  .v3-layout { grid-template-columns: 1fr; }
 }
 .v3-center, .v3-side { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+
+/* --- Grille de tuiles (mode expert) ---
+   Colonnes calculées par ResizeObserver (~340 px/colonne, 1 à 12) : téléphone
+   portrait = 1, paysage/tablette = 2-3, moniteur = 4+, 4K/8K jusqu'à 12.
+   Chaque tuile occupe l'empan choisi (1×1 … pleine largeur) ; son contenu
+   défile à l'intérieur. Cibles tactiles ≥ 44 px sur la barre de tuile. */
+.v3-tile-grid {
+  display: grid;
+  grid-auto-rows: 236px;
+  grid-auto-flow: dense;
+  gap: 0.75rem;
+}
+.v3-tile {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--v3-border);
+  border-radius: 8px;
+  background: var(--v3-surface);
+  overflow: hidden;
+}
+.v3-tile-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--v3-surface-2);
+  border-bottom: 1px solid var(--v3-border);
+  flex: none;
+}
+.v3-tile-handle {
+  cursor: grab;
+  font-size: 1.05rem;
+  padding: 0.35rem 0.4rem;
+  color: var(--v3-muted);
+  touch-action: none;
+  user-select: none;
+}
+.v3-tile-handle:active { cursor: grabbing; }
+.v3-tile-label { flex: 1; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.v3-tile-bar button { min-width: 40px; min-height: 40px; background: none; border: none; cursor: pointer; color: var(--v3-text); border-radius: 4px; }
+.v3-tile-bar button:hover { background: var(--v3-surface); }
+.v3-tile-size select { min-height: 40px; }
+.v3-tile-content { flex: 1; overflow: auto; min-height: 0; }
+.v3-tile-content > .v3-panel,
+.v3-tile-content > .v3-share-details { border: none; border-radius: 0; height: 100%; }
+.v3-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
 .v3-panel {
   background: var(--v3-surface);

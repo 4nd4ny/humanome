@@ -9,6 +9,23 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D14ter — Mode expert V3 : pleine largeur + grille de tuiles éditable (demande
+  utilisateur ; anticipe la « personnalisation avancée » V3.1 §25.2).**
+  - **Pleine largeur** : les routes V3 (`#/cartographie`, `#/merge` démo) échappent au plafond de
+    1240 px (`.app-main--full`) ; le mode simplifié reste borné à 1500 px centré pour la lisibilité.
+  - **Grille de tuiles (mode expert)** : chaque panneau devient une tuile **réordonnable** (glisser-
+    déposer par poignée ⠿ + boutons ◀ ▶ pour tactile et clavier — le DnD HTML5 n'existe pas au doigt)
+    et **redimensionnable** par tailles prédéterminées (1×1, 2×1, 1×2, 2×2, 1×3, 3×1, 3×2, 2×3, 3×3,
+    pleine largeur ×1/×2). **Colonnes adaptées à l'espace** (~340 px/colonne, bornées 1–12) :
+    téléphone portrait 1, paysage 2, tablette 2-3, moniteur 3-4, 2560 px → 7, 4K → 11, 8K → 12
+    (plafonné). Empans bornés aux colonnes disponibles au rendu ; contenu défilant dans la tuile ;
+    cibles tactiles ≥ 40 px. `ResizeObserver` + repli `window.resize` (RO muet observé dans certains
+    panes embarqués). Disposition persistée en préférence de présentation (`localStorage`, §14.4 —
+    jamais dans les données d'évaluation).
+  - Vérifié navigateur : 11 tuiles en expert, redimensionnement 3×3 du soleil appliqué et persisté,
+    réordonnancement par boutons, 1 colonne à 375 px / 2 à 812 px paysage / 7 à 2560 px, aucun
+    débordement horizontal. Suites : web **805** (+7 : logique et composant de la grille).
+
 - 2026-07-17 — **D14bis — Soleil V3 : look carto-phone + disposition ADDITIVE (décisions utilisateur).**
   Deux retouches demandées après livraison, la seconde étant un **écart assumé à la spec §11.1** :
   - **Look carto-phone** (`prototype cartographies/carto-phone.html`) : deux couronnes (familles

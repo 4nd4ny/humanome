@@ -4746,3 +4746,9 @@ body {
   gap: 0.4rem;
   margin-top: 0.4rem;
 }
+
+/* Interface V3 (#/cartographie) : la grille de tuiles utilise toute la
+   largeur disponible — le plafond de 1240 px ne s'applique pas ici. */
+.app-main--full {
+  max-width: none;
+}

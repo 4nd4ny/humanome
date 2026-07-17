@@ -22,6 +22,7 @@ import {
   inspectDay, setPlayhead, play, pause, effectiveExpandedTreeNodeIds, ALL_PANELS,
 } from '../core/state.js'
 import { TreePanel, SunPanel, HeatmapPanel, TimelineBar, PortfolioPanel, LegendPanel, StatsPanel } from './panels.jsx'
+import { TileGrid } from './tile-grid.jsx'
 import { WhyRadiusDialog, ComparePanel, ImportReportPanel, ArbitragePanel, JsonEditorPanel } from './tools.jsx'
 import { ShareBuilder, EmployerView } from './share-ui.jsx'
 import '../v3.css'
@@ -30,6 +31,23 @@ const PANEL_LABELS = {
   tree: 'Arbre', sun: 'Soleil', heatmap: 'Heatmap', timeline: 'Timeline', legend: 'Légende',
   stats: 'Indicateurs', comparison: 'Comparaison', portfolio: 'Portfolio',
   importAudit: 'Audit d’import', jsonEditor: 'Éditeur JSON', shareInspector: 'Partage',
+}
+
+const TILES_STORAGE_KEY = 'humanome-v3-tiles-expert'
+
+/** Tailles par défaut des tuiles du mode expert (l × h sur la grille). */
+const DEFAULT_TILE_SIZES = {
+  tree: { w: 1, h: 3 },
+  sun: { w: 2, h: 2 },
+  heatmap: { w: 2, h: 1 },
+  timeline: { w: 99, h: 1 }, // pleine largeur
+  comparison: { w: 2, h: 1 },
+  stats: { w: 1, h: 1 },
+  legend: { w: 1, h: 1 },
+  portfolio: { w: 2, h: 2 },
+  importAudit: { w: 1, h: 2 },
+  jsonEditor: { w: 2, h: 2 },
+  shareInspector: { w: 2, h: 2 },
 }
 
 /** Charge le corpus de démonstration (59 journées réelles du site). */
@@ -58,6 +76,24 @@ export default function V3View({ deps = {} }) {
   const [why, setWhy] = useState(null)
   const [status, setStatus] = useState('Chargement du référentiel…')
   const fileRef = useRef(null)
+
+  // Disposition des tuiles du mode expert : préférence de présentation (§14.4),
+  // persistée à part des données d'évaluation.
+  const [tileLayout, setTileLayout] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(TILES_STORAGE_KEY)) ?? { order: [], sizes: {} }
+    } catch {
+      return { order: [], sizes: {} }
+    }
+  })
+  const saveTileLayout = useCallback((layout) => {
+    setTileLayout(layout)
+    try {
+      localStorage.setItem(TILES_STORAGE_KEY, JSON.stringify(layout))
+    } catch {
+      /* stockage indisponible : la disposition reste en mémoire */
+    }
+  }, [])
 
   // Référentiel versionné (obligatoire, §6.3) puis corpus de démonstration.
   useEffect(() => {
@@ -337,22 +373,26 @@ export default function V3View({ deps = {} }) {
           <EmployerView snapshot={previewSnapshot} isPreview />
         </div>
       ) : (
-        <div className="v3-layout">
-          {rendered.has('tree') ? (
-            <TreePanel
-              referential={referential}
-              snapshot={snapshot}
-              uiState={{ ...ui, effectiveExpanded: effectiveExpandedTreeNodeIds(ui) }}
-              onToggleBranch={toggleBranch}
-              onSelectScope={(id) => doSelectScope(ui.activeScopeNodeId === id ? id : id)}
-              onSelectLeaf={(code, date) => {
-                doSelectScope(`comp-${code}`)
-                setUi((s) => inspectDay(s, { day: date, source: 'tree', pinnedCompetencyIds: [code] }))
-              }}
-            />
-          ) : null}
-          <div className="v3-center">
-            {rendered.has('sun') ? (
+        <V3Panels
+          rendered={rendered}
+          interfaceMode={ui.interfaceMode}
+          tileLayout={tileLayout}
+          onTileLayout={saveTileLayout}
+          panels={{
+            tree: rendered.has('tree') ? (
+              <TreePanel
+                referential={referential}
+                snapshot={snapshot}
+                uiState={{ ...ui, effectiveExpanded: effectiveExpandedTreeNodeIds(ui) }}
+                onToggleBranch={toggleBranch}
+                onSelectScope={(id) => doSelectScope(id)}
+                onSelectLeaf={(code, date) => {
+                  doSelectScope(`comp-${code}`)
+                  setUi((s) => inspectDay(s, { day: date, source: 'tree', pinnedCompetencyIds: [code] }))
+                }}
+              />
+            ) : null,
+            sun: rendered.has('sun') ? (
               <SunPanel
                 referential={referential}
                 snapshot={snapshot}
@@ -363,8 +403,8 @@ export default function V3View({ deps = {} }) {
                 onWhy={setWhy}
                 onHover={(code) => setUi((s) => ({ ...s, hoverPreview: code }))}
               />
-            ) : null}
-            {rendered.has('heatmap') ? (
+            ) : null,
+            heatmap: rendered.has('heatmap') ? (
               <HeatmapPanel
                 snapshot={snapshot}
                 uiState={ui}
@@ -374,8 +414,8 @@ export default function V3View({ deps = {} }) {
                 onSetPlayhead={(date) => setUi((s) => setPlayhead(s, date))}
                 onChangeYear={(y) => setUi((s) => ({ ...s, visibleHeatmapPeriod: y }))}
               />
-            ) : null}
-            {rendered.has('timeline') ? (
+            ) : null,
+            timeline: rendered.has('timeline') ? (
               <TimelineBar
                 snapshot={snapshot}
                 uiState={ui}
@@ -393,8 +433,8 @@ export default function V3View({ deps = {} }) {
                 }}
                 onSpeed={(speed) => setUi((s) => ({ ...s, playback: { ...s.playback, speed } }))}
               />
-            ) : null}
-            {rendered.has('comparison') ? (
+            ) : null,
+            comparison: rendered.has('comparison') ? (
               <ComparePanel
                 snapshot={snapshot}
                 uiState={ui}
@@ -402,12 +442,10 @@ export default function V3View({ deps = {} }) {
                 onSetBaseline={(day, mode) => setUi((s) => ({ ...s, baselineDay: day, comparisonMode: mode }))}
                 onClearBaseline={() => setUi((s) => ({ ...s, baselineDay: null, comparisonMode: null }))}
               />
-            ) : null}
-          </div>
-          <div className="v3-side">
-            {rendered.has('stats') ? <StatsPanel snapshot={snapshot} /> : null}
-            {rendered.has('legend') ? <LegendPanel referential={referential} reinforced={reinforced} /> : null}
-            {rendered.has('portfolio') ? (
+            ) : null,
+            stats: rendered.has('stats') ? <StatsPanel snapshot={snapshot} /> : null,
+            legend: rendered.has('legend') ? <LegendPanel referential={referential} reinforced={reinforced} /> : null,
+            portfolio: rendered.has('portfolio') ? (
               <PortfolioPanel
                 snapshot={snapshot}
                 master={master}
@@ -421,22 +459,22 @@ export default function V3View({ deps = {} }) {
                 onPin={(pinned) => setUi((s) => ({ ...s, inspection: { ...s.inspection, portfolioPinned: pinned } }))}
                 onSelectScope={doSelectScope}
               />
-            ) : null}
-            {rendered.has('importAudit') ? (
+            ) : null,
+            importAudit: rendered.has('importAudit') ? (
               <>
                 <ImportReportPanel report={report} />
                 <ArbitragePanel master={master} onChooseVariant={(dayId, variantId) => setMaster((m) => chooseVariant(m, dayId, variantId))} />
               </>
-            ) : null}
-            {rendered.has('jsonEditor') ? (
+            ) : null,
+            jsonEditor: rendered.has('jsonEditor') ? (
               <JsonEditorPanel master={master} onApply={(candidate) => {
                 const res = applyExpertJson(master, candidate)
                 if (res.ok) setMaster(res.master)
                 return res
               }} />
-            ) : null}
-            {rendered.has('shareInspector') || ui.interfaceMode === 'simplified' ? (
-              <details className="v3-panel" open={rendered.has('shareInspector')}>
+            ) : null,
+            shareInspector: rendered.has('shareInspector') || ui.interfaceMode === 'simplified' ? (
+              <details className="v3-panel v3-share-details" open={rendered.has('shareInspector')}>
                 <summary>Préparer un partage</summary>
                 <ShareBuilder
                   master={master}
@@ -446,10 +484,11 @@ export default function V3View({ deps = {} }) {
                   onPreview={(snap) => setPreviewSnapshot(snap)}
                 />
               </details>
-            ) : null}
-          </div>
-        </div>
+            ) : null,
+          }}
+        />
       )}
+
 
       {why ? (
         <WhyRadiusDialog
@@ -484,6 +523,46 @@ export default function V3View({ deps = {} }) {
             ))}
         </tbody>
       </table>
+    </div>
+  )
+}
+
+/**
+ * Dispose les panneaux selon le mode : GRILLE DE TUILES éditable en expert
+ * (glisser-déposer + tailles prédéterminées, colonnes adaptées à la largeur —
+ * téléphone, tablette, moniteur 4K/8K), disposition simple bornée en simplifié.
+ */
+function V3Panels({ rendered, interfaceMode, tileLayout, onTileLayout, panels }) {
+  if (interfaceMode === 'expert') {
+    const tiles = Object.entries(panels)
+      .filter(([, node]) => node !== null)
+      .map(([id, node]) => ({ id, label: PANEL_LABELS[id] ?? id, node }))
+    return (
+      <TileGrid
+        tiles={tiles}
+        layout={tileLayout}
+        onLayoutChange={onTileLayout}
+        defaultSizes={DEFAULT_TILE_SIZES}
+      />
+    )
+  }
+  return (
+    <div className="v3-layout">
+      {panels.tree}
+      <div className="v3-center">
+        {panels.sun}
+        {panels.heatmap}
+        {panels.timeline}
+        {panels.comparison}
+      </div>
+      <div className="v3-side">
+        {panels.stats}
+        {panels.legend}
+        {panels.portfolio}
+        {panels.importAudit}
+        {panels.jsonEditor}
+        {panels.shareInspector}
+      </div>
     </div>
   )
 }

@@ -471,7 +471,10 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
           </div>
         </div>
       </header>
-      <main className="app-main">{view}</main>
+      {/* L'interface V3 occupe toute la largeur disponible (grille de tuiles). */}
+      <main className={`app-main${route.name === 'cartographie' || (route.name === 'merge' && !userMerge) ? ' app-main--full' : ''}`}>
+        {view}
+      </main>
       <footer className="app-footer">
         <p>
           Cartographie de compétences humaines — écosystème RESPIRE, Harmonia Éducation ·{' '}
