@@ -102,10 +102,17 @@ function sectorPath(cx, cy, r0, r1, a0, a1) {
 // familles à l'intérieur, compétences à l'extérieur —, bandes grises graduées
 // de référence derrière chaque secteur, cercles pointillés concentriques,
 // séparateurs clairs, atténuation (grisée) des secteurs non survolés, centre
-// en dégradé doux cliquable. L'ENCODAGE reste celui de la spec V3 (§11.1) :
-// angle FIXE et égal par compétence, rayon = journées documentées (log2) —
-// jamais un niveau de maîtrise. Les bandes grises sont une ÉCHELLE graphique
-// (un horizon), pas des paliers de compétence.
+// en dégradé doux cliquable.
+//
+// ÉCART ASSUMÉ à la spec §11.1 (décision utilisateur 2026-07-17) : seules les
+// compétences DOCUMENTÉES à la tête de lecture occupent un angle — montrer les
+// 61 emplacements exposait les manques, contre l'esprit ipsatif. Les angles
+// restent égaux entre secteurs visibles (familles contiguës par code) et les
+// nouveaux secteurs S'AJOUTENT au fil de la lecture temporelle. Le rayon reste
+// celui de la spec : journées documentées (log2), jamais un niveau. Le filtre
+// n'enlève pas un secteur : il l'atténue (la disposition ne dépend que de la
+// tête de lecture). Les bandes grises sont une ÉCHELLE graphique, pas des
+// paliers de compétence.
 const GRAY_BANDS = ['#000000', '#1f2937', '#374151', '#6b7280', '#cbd5e1'] // carto-phone grayLevels
 
 export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectScope, onClearScope, onWhy, onHover }) {
@@ -116,30 +123,41 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
   const rMax = size * 0.48
   const famWidth = (rMax - r0) * 0.22 // couronne intérieure des familles
   const rFam = r0 + famWidth
-  const comps = referential.competencies
 
   // Cadrage radial optionnel (sunViewportNodeId) : zoom sans effet filtrant (§13.2).
   const viewFamily = uiState.sunViewportNodeId?.startsWith('family-')
     ? Number(uiState.sunViewportNodeId.slice(7))
     : null
-  const visible = viewFamily ? comps.filter((c) => c.familyNum === viewFamily) : comps
+
+  // Seules les compétences documentées À LA TÊTE DE LECTURE sont disposées :
+  // l'animation depuis le passé AJOUTE les secteurs, elle ne remplit pas des
+  // cases préexistantes. (sunValues borne déjà count par playheadDay.)
+  const visible = useMemo(
+    () =>
+      referential.competencies.filter(
+        (c) =>
+          (snapshot.sun.get(c.code)?.count ?? 0) > 0 &&
+          (!viewFamily || c.familyNum === viewFamily),
+      ),
+    [referential, snapshot, viewFamily],
+  )
   const vSlot = TAU / Math.max(1, visible.length)
   const angleOf = (i) => -Math.PI / 2 + i * vSlot
 
   // Couronne des familles : l'angle d'une famille = somme des emplacements de
-  // ses compétences (contiguës, triées par code — règle V3 §11.1).
+  // ses compétences VISIBLES (contiguës, triées par code). Une famille sans
+  // compétence documentée n'apparaît pas encore.
   const familyArcs = useMemo(() => {
     const arcs = []
     let start = 0
     for (const f of referential.families) {
-      if (viewFamily && f.num !== viewFamily) continue
       const count = visible.filter((c) => c.familyNum === f.num).length
       if (count === 0) continue
       arcs.push({ family: f, a0: angleOf(start), a1: angleOf(start + count) })
       start += count
     }
     return arcs
-  }, [referential, visible, viewFamily]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [referential, visible]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const inspectedCodes = useMemo(() => {
     if (!uiState.inspection?.day) return new Set()
@@ -221,7 +239,9 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
           )
         })}
 
-        {/* Couronne des compétences (extérieure) — rayon = journées documentées. */}
+        {/* Couronne des compétences (extérieure) — rayon = journées documentées.
+            Le filtre ATTÉNUE les secteurs hors portée, il ne les retire pas :
+            la disposition ne dépend que de la tête de lecture. */}
         {visible.map((c, i) => {
           const family = referential.familyByNum.get(c.familyNum)
           const a0 = angleOf(i)
@@ -234,30 +254,29 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
             uiState.activeScopeNodeId === `comp-${c.code}` ||
             uiState.activeScopeNodeId === family.id
           const inspected = inspectedCodes.has(c.code)
+          const dimmed = isDimmed(c.code, c.familyNum) || !inScope
           return (
             <g key={c.code}>
               {value?.futureCount ? (
                 <path d={sectorPath(cx, cy, rFam, rFam + (rMax - rFam) * Math.min(1, proportion + 0.08), a0, a1)} className="v3-sector-future" />
               ) : null}
-              {proportion > 0 && inScope ? (
-                <path
-                  d={sectorPath(cx, cy, rFam, r1, a0, a1)}
-                  className={`v3-sector${inspected ? ' v3-halo' : ''}${isDimmed(c.code, c.familyNum) ? ' v3-dimmed' : ''}${reinforced ? ` v3-pattern-${family.pattern}` : ''}`}
-                  fill={family.color}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`${c.code} ${c.name} : ${value.count} journée${value.count > 1 ? 's' : ''} documentée${value.count > 1 ? 's' : ''}. Entrée : filtrer. w : pourquoi ce rayon ?`}
-                  onClick={() => onSelectScope(`comp-${c.code}`)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') onSelectScope(`comp-${c.code}`)
-                    if (e.key === 'w') onWhy(c.code)
-                  }}
-                  onMouseEnter={() => onHover(c.code)}
-                  onMouseLeave={() => onHover(null)}
-                  onFocus={() => onHover(c.code)}
-                  onBlur={() => onHover(null)}
-                />
-              ) : null}
+              <path
+                d={sectorPath(cx, cy, rFam, r1, a0, a1)}
+                className={`v3-sector${inspected ? ' v3-halo' : ''}${dimmed ? ' v3-dimmed' : ''}${reinforced ? ` v3-pattern-${family.pattern}` : ''}`}
+                fill={family.color}
+                tabIndex={0}
+                role="button"
+                aria-label={`${c.code} ${c.name} : ${value.count} journée${value.count > 1 ? 's' : ''} documentée${value.count > 1 ? 's' : ''}. Entrée : filtrer. w : pourquoi ce rayon ?`}
+                onClick={() => onSelectScope(`comp-${c.code}`)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') onSelectScope(`comp-${c.code}`)
+                  if (e.key === 'w') onWhy(c.code)
+                }}
+                onMouseEnter={() => onHover(c.code)}
+                onMouseLeave={() => onHover(null)}
+                onFocus={() => onHover(c.code)}
+                onBlur={() => onHover(null)}
+              />
             </g>
           )
         })}
@@ -265,11 +284,17 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
         {/* Centre dégradé cliquable : rétablit « toutes les compétences ». */}
         <circle cx={cx} cy={cy} r={r0} className="v3-sun-center" fill="url(#v3-center-gradient)" onClick={onClearScope} role="button" aria-label="Toutes les compétences" tabIndex={-1} />
       </svg>
-      <p className="v3-sun-note">
-        Rayon = journées documentées (métrique {snapshot.metric.id}) ; les bandes grises sont l’échelle,
-        pas des niveaux. L’angle est fixe par compétence ; l’absence de preuve n’est jamais « faible » —
-        elle est « non documentée dans ce périmètre ».
-      </p>
+      {visible.length === 0 ? (
+        <p role="status" className="v3-sun-note">
+          Aucune observation documentée à cette date : les secteurs apparaîtront au fil de la lecture.
+        </p>
+      ) : (
+        <p className="v3-sun-note">
+          Rayon = journées documentées (métrique {snapshot.metric.id}) ; les bandes grises sont
+          l’échelle, pas des niveaux. Seules les compétences documentées apparaissent — les nouvelles
+          s’ajoutent au fil de la lecture temporelle.
+        </p>
+      )}
     </section>
   )
 }

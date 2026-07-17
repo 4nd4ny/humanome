@@ -9,6 +9,24 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D14bis — Soleil V3 : look carto-phone + disposition ADDITIVE (décisions utilisateur).**
+  Deux retouches demandées après livraison, la seconde étant un **écart assumé à la spec §11.1** :
+  - **Look carto-phone** (`prototype cartographies/carto-phone.html`) : deux couronnes (familles
+    colorées à l'intérieur, compétences à l'extérieur), cinq bandes grises graduées de référence
+    (l'échelle du prototype, opacité 0,4 clair / 0,3 sombre), cercles pointillés concentriques,
+    séparateurs clairs, **atténuation grisée** des secteurs non survolés, centre en dégradé doux
+    cliquable (proportions 8 % / 48 % du prototype). Rayon inchangé = journées documentées (log2).
+  - **Disposition additive** : seules les compétences DOCUMENTÉES à la tête de lecture occupent un
+    angle — montrer les 61 emplacements exposait les manques, contre l'esprit ipsatif (« l'écart à la
+    spec §11.1/§13.2 est un choix produit explicite », décision utilisateur du 2026-07-17). Les angles
+    restent égaux entre secteurs visibles (familles contiguës) ; **l'animation depuis le passé AJOUTE
+    les secteurs** (vérifié navigateur : 11 secteurs à la 1ʳᵉ journée → 40 après dix journées → 54 à
+    l'état complet) ; une famille sans compétence documentée n'apparaît pas encore ; le filtre
+    n'enlève pas un secteur, il l'atténue (la disposition ne dépend que de la tête de lecture) ;
+    état vide expliqué (« les secteurs apparaîtront au fil de la lecture »).
+  - Suites : web **798** ; l'arbre et le tableau accessible continuent de lister tout le référentiel
+    (la navigation reste complète, seul le SOLEIL est additif).
+
 - 2026-07-17 — **D14 (v1.2) — Interface de cartographie ipsative V3 (périmètre initial §25.1).**
   Implémente `prototype cartographies/specifications-fonctionnelles-interface-v3.md` et **remplace
   l'interface de consultation existante** : `#/cartographie` (nouvelle route, nav mise à jour) et
