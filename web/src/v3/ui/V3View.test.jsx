@@ -68,7 +68,7 @@ describe('V3View', () => {
     render(<V3View deps={deps()} />)
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
     // Filtre depuis le soleil (un secteur documenté).
-    const sector = document.querySelector('.v3-sector')
+    const sector = document.querySelector('.v3-sector:not(.v3-sector-family)')
     fireEvent.click(sector)
     const bar = screen.getByRole('toolbar', { name: 'Barre de contexte' })
     expect(bar.textContent).toContain('Filtre : comp-')
@@ -81,7 +81,7 @@ describe('V3View', () => {
   it('« Pourquoi ce rayon ? » (touche w) montre la métrique et les journées exactes (AC-SYNC-05)', async () => {
     render(<V3View deps={deps()} />)
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
-    const sector = document.querySelector('.v3-sector')
+    const sector = document.querySelector('.v3-sector:not(.v3-sector-family)')
     fireEvent.keyDown(sector, { key: 'w' })
     const dialog = await screen.findByRole('dialog', { name: /Pourquoi ce rayon/ })
     expect(dialog.textContent).toContain('documented-days-v1')

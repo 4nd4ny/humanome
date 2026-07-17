@@ -98,14 +98,25 @@ function sectorPath(cx, cy, r0, r1, a0, a1) {
   return `M ${p(r0, a0)} A ${r0} ${r0} 0 ${large} 1 ${p(r0, a1)} L ${p(r1, a1)} A ${r1} ${r1} 0 ${large} 0 ${p(r1, a0)} Z`
 }
 
+// Look repris de carto-phone.html (choix utilisateur) : deux couronnes —
+// familles à l'intérieur, compétences à l'extérieur —, bandes grises graduées
+// de référence derrière chaque secteur, cercles pointillés concentriques,
+// séparateurs clairs, atténuation (grisée) des secteurs non survolés, centre
+// en dégradé doux cliquable. L'ENCODAGE reste celui de la spec V3 (§11.1) :
+// angle FIXE et égal par compétence, rayon = journées documentées (log2) —
+// jamais un niveau de maîtrise. Les bandes grises sont une ÉCHELLE graphique
+// (un horizon), pas des paliers de compétence.
+const GRAY_BANDS = ['#000000', '#1f2937', '#374151', '#6b7280', '#cbd5e1'] // carto-phone grayLevels
+
 export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectScope, onClearScope, onWhy, onHover }) {
   const size = 420
   const cx = size / 2
   const cy = size / 2
-  const r0 = 44
-  const rMax = size / 2 - 8
+  const r0 = size * 0.08 // centre (proportions carto-phone : 8 % / 48 %)
+  const rMax = size * 0.48
+  const famWidth = (rMax - r0) * 0.22 // couronne intérieure des familles
+  const rFam = r0 + famWidth
   const comps = referential.competencies
-  const slot = TAU / Math.max(1, comps.length)
 
   // Cadrage radial optionnel (sunViewportNodeId) : zoom sans effet filtrant (§13.2).
   const viewFamily = uiState.sunViewportNodeId?.startsWith('family-')
@@ -113,12 +124,34 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
     : null
   const visible = viewFamily ? comps.filter((c) => c.familyNum === viewFamily) : comps
   const vSlot = TAU / Math.max(1, visible.length)
+  const angleOf = (i) => -Math.PI / 2 + i * vSlot
+
+  // Couronne des familles : l'angle d'une famille = somme des emplacements de
+  // ses compétences (contiguës, triées par code — règle V3 §11.1).
+  const familyArcs = useMemo(() => {
+    const arcs = []
+    let start = 0
+    for (const f of referential.families) {
+      if (viewFamily && f.num !== viewFamily) continue
+      const count = visible.filter((c) => c.familyNum === f.num).length
+      if (count === 0) continue
+      arcs.push({ family: f, a0: angleOf(start), a1: angleOf(start + count) })
+      start += count
+    }
+    return arcs
+  }, [referential, visible, viewFamily]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const inspectedCodes = useMemo(() => {
     if (!uiState.inspection?.day) return new Set()
-    const codes = snapshot.competenciesByDate.get(uiState.inspection.day)
-    return codes ?? new Set()
+    return snapshot.competenciesByDate.get(uiState.inspection.day) ?? new Set()
   }, [uiState.inspection, snapshot])
+
+  const hovered = uiState.hoverPreview
+  const isDimmed = (code, familyNum) => {
+    if (!hovered) return false
+    if (hovered === code) return false
+    return !(hovered.startsWith('family-') && Number(hovered.slice(7)) === familyNum)
+  }
 
   return (
     <section className="v3-panel v3-sun" aria-label="Soleil des compétences">
@@ -135,14 +168,67 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
         ) : null}
       </div>
       <svg viewBox={`0 0 ${size} ${size}`} role="img" aria-label="Diagramme radial : rayon = journées documentées par compétence (la liste équivalente est dans l’arbre et le tableau)">
-        <circle cx={cx} cy={cy} r={r0 - 6} className="v3-sun-center" onClick={onClearScope} role="button" aria-label="Toutes les compétences" tabIndex={-1} />
+        <defs>
+          <radialGradient id="v3-center-gradient">
+            <stop offset="70%" className="v3-center-stop" />
+            <stop offset="100%" className="v3-center-stop-edge" />
+          </radialGradient>
+        </defs>
+
+        {/* Cercles de référence pointillés (look carto-phone). */}
+        {[rFam, rFam + (rMax - rFam) * 0.25, rFam + (rMax - rFam) * 0.5, rFam + (rMax - rFam) * 0.75, rMax].map((r) => (
+          <circle key={r} cx={cx} cy={cy} r={r} className="v3-sun-ring" />
+        ))}
+
+        {/* Bandes grises graduées derrière chaque compétence : échelle radiale
+            de référence (horizon graphique, pas un déficit ni des niveaux). */}
+        {visible.map((c, i) => {
+          const a0 = angleOf(i)
+          const a1 = a0 + vSlot * 0.96
+          return (
+            <g key={`bands-${c.code}`} aria-hidden="true">
+              {GRAY_BANDS.map((gray, b) => (
+                <path
+                  key={b}
+                  d={sectorPath(cx, cy, rFam + ((rMax - rFam) * b) / 5, rFam + ((rMax - rFam) * (b + 1)) / 5, a0, a1)}
+                  fill={gray}
+                  className="v3-sun-band"
+                />
+              ))}
+            </g>
+          )
+        })}
+
+        {/* Couronne des familles (intérieure). */}
+        {familyArcs.map(({ family, a0, a1 }) => {
+          const isScope = uiState.activeScopeNodeId === family.id
+          return (
+            <path
+              key={family.id}
+              d={sectorPath(cx, cy, r0, rFam, a0, a1 - vSlot * 0.04)}
+              fill={family.color}
+              className={`v3-sector v3-sector-family${isDimmed(family.id, family.num) ? ' v3-dimmed' : ''}${isScope ? ' v3-scope' : ''}`}
+              tabIndex={0}
+              role="button"
+              aria-label={`Famille ${family.name}. Entrée : filtrer cette famille.`}
+              onClick={() => onSelectScope(family.id)}
+              onKeyDown={(e) => e.key === 'Enter' && onSelectScope(family.id)}
+              onMouseEnter={() => onHover(family.id)}
+              onMouseLeave={() => onHover(null)}
+              onFocus={() => onHover(family.id)}
+              onBlur={() => onHover(null)}
+            />
+          )
+        })}
+
+        {/* Couronne des compétences (extérieure) — rayon = journées documentées. */}
         {visible.map((c, i) => {
           const family = referential.familyByNum.get(c.familyNum)
-          const a0 = -Math.PI / 2 + i * vSlot
+          const a0 = angleOf(i)
           const a1 = a0 + vSlot * 0.96
           const value = snapshot.sun.get(c.code)
           const proportion = value?.proportion ?? 0
-          const r1 = r0 + (rMax - r0) * proportion
+          const r1 = rFam + (rMax - rFam) * proportion
           const inScope =
             uiState.activeScopeNodeId === null ||
             uiState.activeScopeNodeId === `comp-${c.code}` ||
@@ -150,15 +236,13 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
           const inspected = inspectedCodes.has(c.code)
           return (
             <g key={c.code}>
-              {/* Contour référentiel neutre : l'emplacement existe toujours (§13.2). */}
-              <path d={sectorPath(cx, cy, r0, rMax, a0, a1)} className="v3-sector-ghost" />
               {value?.futureCount ? (
-                <path d={sectorPath(cx, cy, r0, r0 + (rMax - r0) * Math.min(1, proportion + 0.08), a0, a1)} className="v3-sector-future" />
+                <path d={sectorPath(cx, cy, rFam, rFam + (rMax - rFam) * Math.min(1, proportion + 0.08), a0, a1)} className="v3-sector-future" />
               ) : null}
               {proportion > 0 && inScope ? (
                 <path
-                  d={sectorPath(cx, cy, r0, r1, a0, a1)}
-                  className={`v3-sector${inspected ? ' v3-halo' : ''}${reinforced ? ` v3-pattern-${family.pattern}` : ''}`}
+                  d={sectorPath(cx, cy, rFam, r1, a0, a1)}
+                  className={`v3-sector${inspected ? ' v3-halo' : ''}${isDimmed(c.code, c.familyNum) ? ' v3-dimmed' : ''}${reinforced ? ` v3-pattern-${family.pattern}` : ''}`}
                   fill={family.color}
                   tabIndex={0}
                   role="button"
@@ -177,10 +261,14 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
             </g>
           )
         })}
+
+        {/* Centre dégradé cliquable : rétablit « toutes les compétences ». */}
+        <circle cx={cx} cy={cy} r={r0} className="v3-sun-center" fill="url(#v3-center-gradient)" onClick={onClearScope} role="button" aria-label="Toutes les compétences" tabIndex={-1} />
       </svg>
       <p className="v3-sun-note">
-        Rayon = journées documentées (métrique {snapshot.metric.id}). L’angle est fixe par compétence ;
-        l’absence de preuve n’est jamais « faible » — elle est « non documentée dans ce périmètre ».
+        Rayon = journées documentées (métrique {snapshot.metric.id}) ; les bandes grises sont l’échelle,
+        pas des niveaux. L’angle est fixe par compétence ; l’absence de preuve n’est jamais « faible » —
+        elle est « non documentée dans ce périmètre ».
       </p>
     </section>
   )
