@@ -146,7 +146,11 @@ const BASE = {
       'Le code d’un paquet s’exécute en bac à sable isolé chez les utilisateurs.',
     points: [
       'Créez un brouillon depuis une version publiée, éditez les gabarits, publiez (version immuable).',
-      'Le banc d’essai compare deux versions (A/B) et mesure la consistance multi-run.',
+      'Le banc d’essai compare deux versions (A/B — fournisseurs LLM et référentiels au choix par branche), ' +
+        'mesure la consistance multi-run, et confronte un run à une référence JSON importée.',
+      'Périmètre au choix : tout le journal, une journée ou une période ; référentiel entier, un pôle ou une seule compétence.',
+      'Le diff de compétences montre les traces de délibération du jury (greffier, pédagogue, verdict) des deux côtés.',
+      'Le carnet du banc (méta-page markdown) garde vos configurations emblématiques, rechargeables en un clic.',
       'La rétrospective rejoue une cartographie avec un référentiel plus récent.',
     ],
   },

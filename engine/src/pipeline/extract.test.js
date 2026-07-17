@@ -11,6 +11,7 @@ import {
   buildKairosExtractionPrompt,
   extractDay,
   parseExtractionResponse,
+  restreindreReferentiel,
 } from './extract.js'
 
 const referentiel = JSON.parse(
@@ -321,5 +322,125 @@ describe('extractDay', () => {
     await expect(extractDay({ dayText: DAY_TEXT, date: DATE, provider: workingMock() })).rejects.toThrow(/referentiel/)
     await expect(extractDay({ dayText: '', date: DATE, referentiel, provider: workingMock() })).rejects.toThrow(/dayText/)
     await expect(extractDay({ dayText: DAY_TEXT, date: 'demain', referentiel, provider: workingMock() })).rejects.toThrow(/AAAA-MM-JJ/)
+  })
+})
+
+describe('restreindreReferentiel', () => {
+  it('périmètre vide -> document d’origine, partiel false', () => {
+    expect(restreindreReferentiel(referentiel)).toEqual({ referentiel, partiel: false })
+    expect(restreindreReferentiel(referentiel, {})).toEqual({ referentiel, partiel: false })
+    expect(restreindreReferentiel(referentiel, { poles: [], competences: [] }))
+      .toEqual({ referentiel, partiel: false })
+  })
+
+  it('une compétence -> son pôle seul, partiel true', () => {
+    const { referentiel: r, partiel } = restreindreReferentiel(referentiel, {
+      competences: ['3.04'],
+    })
+    expect(partiel).toBe(true)
+    expect(r.poles.map((p) => p.num)).toEqual([3])
+    expect(r.competences).toHaveLength(1)
+    expect(r.competences[0].code).toBe('3.04')
+    // Le document d'origine n'est pas muté.
+    expect(referentiel.competences.length).toBeGreaterThan(1)
+  })
+
+  it('un pôle -> toutes ses compétences, partiel true', () => {
+    const attendu = referentiel.competences.filter((c) => c.pole === 5)
+    const { referentiel: r, partiel } = restreindreReferentiel(referentiel, { poles: [5] })
+    expect(partiel).toBe(true)
+    expect(r.poles.map((p) => p.num)).toEqual([5])
+    expect(r.competences).toEqual(attendu)
+  })
+
+  it('périmètre sans aucune compétence retenue -> erreur explicite', () => {
+    expect(() => restreindreReferentiel(referentiel, { competences: ['9.99'] }))
+      .toThrow(/périmètre vide/)
+    // Intersection vide : compétence du pôle 3 filtrée sur le pôle 1.
+    expect(() => restreindreReferentiel(referentiel, { poles: [1], competences: ['3.04'] }))
+      .toThrow(/périmètre vide/)
+  })
+})
+
+describe('extractDay — périmètre restreint', () => {
+  function workingMock() {
+    return createMockProvider({
+      responses: ({ prompt }) => {
+        const kairos = prompt.includes('SYNTHÈSE KAIROS')
+        if (kairos) return 'null'
+        const num = Number(prompt.match(/# Pôle (\d) — /)[1])
+        // Ne répond QUE les compétences listées dans le prompt (périmètre).
+        const codes = [...prompt.matchAll(/^ {2}(\d\.\d\d) — /gm)].map((m) => m[1])
+        const comps = referentiel.competences.filter((c) => codes.includes(c.code))
+        const base = minimalPoleResponse(num)
+        base.competences = base.competences.filter((c) => codes.includes(c.code))
+        base.auditPole = {
+          competencesTotales: comps.length,
+          courtCircuits: comps.length,
+          competencesNonCourtCircuit: 0,
+          presencesEtablies: 0,
+          renvoisCartographe: 0,
+          nonEtablies: comps.length,
+        }
+        return JSON.stringify(base)
+      },
+    })
+  }
+
+  it('une compétence -> 1 seul appel (pas de kairos), document partiel marqué', async () => {
+    const provider = workingMock()
+    const progress = []
+    const doc = await extractDay({
+      dayText: DAY_TEXT,
+      date: DATE,
+      referentiel,
+      provider,
+      perimetre: { competences: ['3.04'] },
+      onProgress: (p) => progress.push(p),
+    })
+    expect(provider.callCount).toBe(1)
+    expect(doc.kind).toBe('cartographie-jour')
+    expect(doc.poles).toHaveLength(1)
+    expect(doc.poles[0].poleNum).toBe('3')
+    expect(doc.poles[0].competences.map((c) => c.code)).toEqual(['3.04'])
+    expect(doc.kairos).toBeNull()
+    expect(doc.perimetre).toEqual({ partiel: true, poles: [3], competences: ['3.04'] })
+    expect(progress).toEqual([{ step: 'pole', poleNum: 3, done: 1, total: 1 }])
+  })
+
+  it('un pôle -> ses compétences instruites, prompt limité au périmètre', async () => {
+    const provider = workingMock()
+    const doc = await extractDay({
+      dayText: DAY_TEXT,
+      date: DATE,
+      referentiel,
+      provider,
+      perimetre: { poles: [5] },
+    })
+    expect(provider.callCount).toBe(1)
+    const attendus = referentiel.competences
+      .filter((c) => c.pole === 5)
+      .map((c) => c.code)
+      .sort()
+    expect(doc.poles[0].competences.map((c) => c.code).sort()).toEqual(attendus)
+    expect(doc.perimetre.partiel).toBe(true)
+    // Le prompt envoyé ne liste QUE les compétences du pôle 5.
+    const prompt = provider.calls[0].prompt
+    expect(prompt).toContain('5.01')
+    expect(prompt).not.toContain('1.01')
+  })
+
+  it('périmètre couvrant tout le référentiel -> comportement complet inchangé', async () => {
+    const provider = workingMock()
+    const doc = await extractDay({
+      dayText: DAY_TEXT,
+      date: DATE,
+      referentiel,
+      provider,
+      perimetre: { poles: [1, 2, 3, 4, 5, 6, 7] },
+    })
+    expect(provider.callCount).toBe(8) // 7 pôles + kairos
+    expect(doc.poles).toHaveLength(7)
+    expect(doc.perimetre).toBeUndefined()
   })
 })

@@ -7,15 +7,23 @@ import pkgFixture from '../../../../schemas/fixtures/prompt-package-exemple.json
 import referentielFixture from '../../../../schemas/fixtures/referentiel-respire-v7.json'
 import { BUILTIN_PACKAGE } from '../../lib/run-launcher.js'
 import {
+  TWIN6_PERIMETRE_NOTE,
   buildAbReport,
+  buildCompetenceDiff,
   buildMultiRunReport,
+  buildRunReport,
   compareCodes,
   dayGroupsToPortfolio,
+  detectReferentielEnDur,
+  extractCompetenceDetail,
   extractTwin6Templates,
+  filterDayGroups,
+  normalizeReferenceImport,
   reportDataUrl,
   runVersionOnDays,
   summarizeDocument,
   usesTwin6Engine,
+  validatePartialJour,
 } from './bench.js'
 import { fixtureDayGroups, FIXTURE_LABEL } from './BancEssaiSection.jsx'
 
@@ -239,5 +247,389 @@ describe('fixture de portfolio embarquée', () => {
   it('les documents jour fixtures couvrent les mêmes dates (cohérence corpus)', () => {
     expect(jourFixture.date).toBe('2026-01-05')
     expect(jour2Fixture.date).toBe('2026-01-06')
+  })
+})
+
+describe('filterDayGroups — périmètre du journal', () => {
+  const groups = [
+    { iso: '2026-01-05', texte: 'a' },
+    { iso: '2026-01-06', texte: 'b' },
+    { iso: '2026-01-08', texte: 'c' },
+  ]
+
+  it('tout / une journée / une période (bornes incluses)', () => {
+    expect(filterDayGroups(groups)).toEqual(groups)
+    expect(filterDayGroups(groups, { type: 'tous' })).toEqual(groups)
+    expect(filterDayGroups(groups, { type: 'jour', jour: '2026-01-06' })).toEqual([groups[1]])
+    expect(filterDayGroups(groups, { type: 'periode', du: '2026-01-06', au: '2026-01-08' }))
+      .toEqual([groups[1], groups[2]])
+    // Bornes vides = ouvertes.
+    expect(filterDayGroups(groups, { type: 'periode', du: '', au: '2026-01-05' }))
+      .toEqual([groups[0]])
+  })
+
+  it('période inversée ou sélection vide -> erreur explicite', () => {
+    expect(() => filterDayGroups(groups, { type: 'periode', du: '2026-01-08', au: '2026-01-05' }))
+      .toThrow(/Période invalide/)
+    expect(() => filterDayGroups(groups, { type: 'jour', jour: '2026-02-01' }))
+      .toThrow(/Aucune journée/)
+    expect(() => filterDayGroups(groups, { type: 'inconnu' })).toThrow(/inconnue/)
+  })
+})
+
+describe('detectReferentielEnDur', () => {
+  it('paquet embarqué et paquet sandbox « propre » -> pas d’alerte', () => {
+    expect(detectReferentielEnDur(BUILTIN_PACKAGE).enDur).toBe(false)
+    // La fixture exemple itère referentiel.poles/competences dans son orchestration.
+    expect(detectReferentielEnDur(pkgFixture).enDur).toBe(false)
+  })
+
+  it('marqueur Twin6 -> fiches embarquées signalées', () => {
+    const det = detectReferentielEnDur({ code: { orchestration: 'engine://scan(twin6)' } })
+    expect(det.enDur).toBe(true)
+    expect(det.motif).toContain('Twin6')
+  })
+
+  it('fiche de compétences en toutes lettres dans un gabarit -> alerte', () => {
+    const det = detectReferentielEnDur({
+      prompts: [{ role: 'x', nom: 'x', texte: '## 1.01 — Pensée Critique\n\nCritères…' }],
+      code: { orchestration: 'export async function run({ referentiel }) {}' },
+    })
+    expect(det.enDur).toBe(true)
+    expect(det.motif).toContain('en dur')
+  })
+
+  it('orchestration sandbox qui ignore son paramètre referentiel -> alerte', () => {
+    const det = detectReferentielEnDur({
+      prompts: [{ role: 'x', nom: 'x', texte: 'Analyse la feuille.' }],
+      code: { orchestration: 'export async function run({ providers }) { return {} }' },
+    })
+    expect(det.enDur).toBe(true)
+    expect(det.motif).toContain('referentiel')
+  })
+})
+
+describe('extractCompetenceDetail — traces du jury', () => {
+  it('résout pièces, extraits verbatim, pédagogue et verdict', () => {
+    const detail = extractCompetenceDetail(jourFixture, '2.01')
+    expect(detail.statut).toBe('présence établie')
+    expect(detail.poleNum).toBe('2')
+    expect(detail.pieces).toHaveLength(2)
+    // L'extrait verbatim vient de passagesSaillants (résolution par pid).
+    expect(detail.pieces[0].extraitVerbatim).toContain('Naël')
+    expect(detail.pedagogue.presomptionAbsence.piecesQuiResistent).toHaveLength(2)
+    expect(detail.verdict.motif).toBeTruthy()
+  })
+
+  it('code absent du document -> null', () => {
+    expect(extractCompetenceDetail(jourFixture, '9.99')).toBeNull()
+  })
+})
+
+describe('buildCompetenceDiff — écarts avec traces des deux côtés', () => {
+  it('compétence établie en A seulement : statuts et détails des deux côtés', () => {
+    const docB = structuredClone(jourFixture)
+    for (const pole of docB.poles) {
+      for (const comp of pole.competences) {
+        if (comp.code === '2.01') comp.verdict.statut = 'présence non établie'
+      }
+    }
+    const diff = buildCompetenceDiff(
+      { days: [{ iso: '2026-01-05', document: jourFixture }] },
+      { days: [{ iso: '2026-01-05', document: docB }] },
+    )
+    expect(diff.parJour).toHaveLength(1)
+    const jour = diff.parJour[0]
+    expect(jour.communes).toEqual(['3.04', '5.03', '7.01'])
+    expect(jour.seulementB).toEqual([])
+    expect(jour.seulementA).toHaveLength(1)
+    const entry = jour.seulementA[0]
+    expect(entry.code).toBe('2.01')
+    expect(entry.statutA).toBe('présence établie')
+    expect(entry.statutB).toBe('présence non établie')
+    expect(entry.detailA.pieces).toHaveLength(2)
+    expect(entry.detailB.pedagogue).toBeTruthy()
+  })
+
+  it('journées disjointes : union des jours, détail absent = null', () => {
+    const diff = buildCompetenceDiff(
+      { days: [{ iso: '2026-01-05', document: jourFixture }] },
+      { days: [{ iso: '2026-01-06', document: jour2Fixture }] },
+    )
+    expect(diff.parJour.map((j) => j.iso)).toEqual(['2026-01-05', '2026-01-06'])
+    const j5 = diff.parJour[0]
+    expect(j5.seulementA.length).toBeGreaterThan(0)
+    expect(j5.seulementA[0].detailB).toBeNull()
+    expect(j5.seulementA[0].statutB).toBeNull()
+  })
+})
+
+describe('normalizeReferenceImport', () => {
+  it('document cartographie-jour seul', () => {
+    const run = normalizeReferenceImport(structuredClone(jourFixture))
+    expect(run.reference).toBe(true)
+    expect(run.days).toEqual([{ iso: '2026-01-05', document: expect.any(Object) }])
+    expect(run.pkg.id).toBe('reference-importee')
+    expect(run.llmCalls).toBe(0)
+  })
+
+  it('tableau de documents, trié par date', () => {
+    const run = normalizeReferenceImport([structuredClone(jour2Fixture), structuredClone(jourFixture)])
+    expect(run.days.map((d) => d.iso)).toEqual(['2026-01-05', '2026-01-06'])
+  })
+
+  it('un export du banc (buildRunReport) se réimporte tel quel', () => {
+    const report = buildRunReport({
+      portfolioLabel: 'Maya',
+      run: {
+        pkg: { id: 'aurora-demo', version: '1.0.0' },
+        days: [{ iso: '2026-01-05', document: structuredClone(jourFixture) }],
+        llmCalls: 8,
+        durationMs: 2000,
+      },
+      config: { modele: 'demo' },
+      now: () => '2026-07-17T00:00:00.000Z',
+    })
+    expect(report.kind).toBe('rapport-run-banc')
+    const run = normalizeReferenceImport(structuredClone(report))
+    expect(run.pkg).toEqual({ id: 'aurora-demo', version: '1.0.0' })
+    expect(run.days.map((d) => d.iso)).toEqual(['2026-01-05'])
+    expect(run.label).toContain('Maya')
+  })
+
+  it('documents invalides, dates en double, formes inconnues -> erreurs', () => {
+    expect(() => normalizeReferenceImport({ kind: 'cartographie-jour', date: '2026-01-05', poles: [] }))
+      .toThrow(/invalide au schéma/)
+    expect(() =>
+      normalizeReferenceImport([structuredClone(jourFixture), structuredClone(jourFixture)]),
+    ).toThrow(/en double/)
+    expect(() => normalizeReferenceImport({ nimporte: 'quoi' })).toThrow(/non reconnu/)
+    expect(() => normalizeReferenceImport('texte')).toThrow(/illisible/)
+    expect(() => normalizeReferenceImport({ days: [] })).toThrow(/vide/)
+  })
+
+  it('document à périmètre partiel VALIDE accepté (sonde tolérante, marqueur retiré)', () => {
+    const partiel = {
+      schemaVersion: '1.0.0',
+      kind: 'cartographie-jour',
+      date: '2026-01-05',
+      poles: [structuredClone(jourFixture.poles[1])],
+      kairos: null,
+      perimetre: { partiel: true, poles: [2], competences: ['2.01'] },
+    }
+    const run = normalizeReferenceImport(partiel)
+    expect(run.days[0].document.poles).toHaveLength(1)
+  })
+
+  it('le marqueur perimetre.partiel ne DÉSACTIVE PAS la validation (JSON forgé refusé)', () => {
+    // Un fichier hostile pose le marqueur pour faire passer un objet arbitraire :
+    // la sonde tolérante doit quand même valider la structure des pôles.
+    const forge = {
+      schemaVersion: '1.0.0',
+      kind: 'cartographie-jour',
+      date: '2026-01-05',
+      poles: [{ poleNum: '2', competences: [{ code: '2.01', pieces: [{ contexte: { a: 1 } }] }] }],
+      kairos: null,
+      perimetre: { partiel: true },
+    }
+    expect(() => normalizeReferenceImport(forge)).toThrow(/invalide au schéma/)
+  })
+})
+
+describe('validatePartialJour — sonde de validation à moins de 7 pôles', () => {
+  it('document partiel valide via la sonde ; document complet inchangé', () => {
+    const partiel = {
+      schemaVersion: '1.0.0',
+      kind: 'cartographie-jour',
+      date: '2026-01-05',
+      poles: [structuredClone(jourFixture.poles[1])],
+      kairos: null,
+    }
+    expect(validatePartialJour('cartographie-jour', partiel).valid).toBe(true)
+    expect(validatePartialJour('cartographie-jour', structuredClone(jourFixture)).valid).toBe(true)
+    // Un pôle structurellement invalide reste refusé.
+    const casse = { ...partiel, poles: [{ poleNum: '2' }] }
+    expect(validatePartialJour('cartographie-jour', casse).valid).toBe(false)
+  })
+
+  it('le marqueur perimetre (hors schéma) est retiré avant la sonde', () => {
+    const partiel = {
+      schemaVersion: '1.0.0',
+      kind: 'cartographie-jour',
+      date: '2026-01-05',
+      poles: [structuredClone(jourFixture.poles[1])],
+      kairos: null,
+      perimetre: { partiel: true, poles: [2], competences: ['2.01'] },
+    }
+    expect(validatePartialJour('cartographie-jour', partiel).valid).toBe(true)
+  })
+
+  it('PLUS de 7 pôles : validation stricte (refusé), jamais tronqué par la sonde', () => {
+    const huit = structuredClone(jourFixture)
+    huit.poles.push(structuredClone(huit.poles[0]))
+    const { valid, errors } = validatePartialJour('cartographie-jour', huit)
+    expect(valid).toBe(false)
+    expect(JSON.stringify(errors)).toContain('7')
+  })
+})
+
+describe('runVersionOnDays — périmètre restreint et température', () => {
+  const perimetre = { competences: ['2.01'] }
+
+  it('moteur : le périmètre est transmis à extractDay', async () => {
+    const extractDayFn = vi.fn(async ({ date }) => ({ ...structuredClone(jourFixture), date }))
+    await runVersionOnDays({
+      pkg: BUILTIN_PACKAGE,
+      dayGroups: [DAYS[0]],
+      referentiel: referentielFixture,
+      provider: { complete: async () => ({ text: '' }) },
+      model: 'test',
+      perimetre,
+      extractDayFn,
+      sandboxRunner: vi.fn(),
+    })
+    expect(extractDayFn.mock.calls[0][0].perimetre).toEqual(perimetre)
+  })
+
+  it('sandbox : référentiel restreint + validation tolérante injectés, document MARQUÉ partiel', async () => {
+    const sandboxRunner = vi.fn(async () => ({
+      document: structuredClone(jourFixture),
+      llmCalls: 3,
+    }))
+    const result = await runVersionOnDays({
+      pkg: { ...structuredClone(pkgFixture), id: 'custom', version: '0.1.0' },
+      dayGroups: [DAYS[0]],
+      referentiel: referentielFixture,
+      provider: { complete: async () => ({ text: '' }) },
+      model: 'test',
+      perimetre,
+      extractDayFn: vi.fn(),
+      sandboxRunner,
+    })
+    const args = sandboxRunner.mock.calls[0][0]
+    expect(args.referentiel.competences.map((c) => c.code)).toEqual(['2.01'])
+    expect(args.referentiel.poles.map((p) => p.num)).toEqual([2])
+    expect(args.validateFn).toBe(validatePartialJour)
+    // Même marqueur que le moteur : sans lui, l'export du run ne se
+    // réimporterait pas comme référence (validation stricte 7 pôles).
+    expect(result.days[0].document.perimetre).toEqual({
+      partiel: true,
+      poles: [2],
+      competences: ['2.01'],
+    })
+  })
+
+  it('run sandbox partiel exporté (buildRunReport) -> réimportable comme référence', async () => {
+    const partialDoc = {
+      schemaVersion: '1.0.0',
+      kind: 'cartographie-jour',
+      date: '2026-01-05',
+      poles: [structuredClone(jourFixture.poles[1])],
+      kairos: null,
+    }
+    const run = await runVersionOnDays({
+      pkg: { ...structuredClone(pkgFixture), id: 'custom', version: '0.1.0' },
+      dayGroups: [DAYS[0]],
+      referentiel: referentielFixture,
+      provider: { complete: async () => ({ text: '' }) },
+      model: 'test',
+      perimetre,
+      extractDayFn: vi.fn(),
+      sandboxRunner: vi.fn(async () => ({ document: partialDoc, llmCalls: 1 })),
+    })
+    const report = buildRunReport({
+      portfolioLabel: 'Maya',
+      run,
+      now: () => '2026-07-17T00:00:00.000Z',
+    })
+    const reimport = normalizeReferenceImport(JSON.parse(JSON.stringify(report)))
+    expect(reimport.days[0].document.perimetre.partiel).toBe(true)
+  })
+
+  it('Twin6 + périmètre restreint -> refus explicite (référentiel en dur)', async () => {
+    const pkg = {
+      id: 'twin6-ouverte',
+      version: '1.0.0',
+      code: { orchestration: 'engine://scan(twin6)' },
+      prompts: [],
+    }
+    await expect(
+      runVersionOnDays({
+        pkg,
+        dayGroups: DAYS,
+        referentiel: referentielFixture,
+        provider: { complete: async () => ({ text: '' }) },
+        model: 'test',
+        perimetre,
+      }),
+    ).rejects.toThrow(TWIN6_PERIMETRE_NOTE)
+  })
+
+  it('température : chaque appel provider la porte (enveloppe uniforme)', async () => {
+    const complete = vi.fn(async () => ({ text: '' }))
+    const extractDayFn = vi.fn(async ({ provider, date }) => {
+      await provider.complete({ model: 'test', prompt: 'p' })
+      return { ...structuredClone(jourFixture), date }
+    })
+    await runVersionOnDays({
+      pkg: BUILTIN_PACKAGE,
+      dayGroups: [DAYS[0]],
+      referentiel: referentielFixture,
+      provider: { complete },
+      model: 'test',
+      temperature: 0,
+      extractDayFn,
+      sandboxRunner: vi.fn(),
+    })
+    expect(complete).toHaveBeenCalledWith(expect.objectContaining({ temperature: 0 }))
+  })
+})
+
+describe('buildAbReport — union des journées des deux côtés', () => {
+  it('les journées présentes seulement côté B figurent dans parJour (référence plus large)', () => {
+    const a = {
+      pkg: { id: 'a', version: '1.0.0' },
+      days: [{ iso: '2026-01-05', document: structuredClone(jourFixture) }],
+      llmCalls: 8,
+      durationMs: 1000,
+    }
+    const b = {
+      pkg: { id: 'ref', version: 'import' },
+      days: [
+        { iso: '2026-01-05', document: structuredClone(jourFixture) },
+        { iso: '2026-01-06', document: structuredClone(jour2Fixture) },
+      ],
+      llmCalls: 0,
+      durationMs: 0,
+    }
+    const report = buildAbReport({ portfolioLabel: 'Maya', a, b, now: () => 'T' })
+    expect(report.parJour.map((j) => j.iso)).toEqual(['2026-01-05', '2026-01-06'])
+    expect(report.portfolio.jours).toEqual(['2026-01-05', '2026-01-06'])
+    // Cohérence interne : etabliesTotal de B = somme des lignes parJour côté b.
+    const sommeLignes = report.parJour.reduce((s, j) => s + j.b.etablies.length, 0)
+    expect(report.versions.b.etabliesTotal).toBe(sommeLignes)
+  })
+})
+
+describe('buildAbReport — configurations par branche', () => {
+  it('embarque la configuration de chaque branche dans le rapport', () => {
+    const run = (id) => ({
+      pkg: { id, version: '1.0.0' },
+      days: [{ iso: '2026-01-05', document: structuredClone(jourFixture) }],
+      llmCalls: 8,
+      durationMs: 2000,
+    })
+    const report = buildAbReport({
+      portfolioLabel: 'Maya',
+      a: run('a'),
+      b: run('b'),
+      configs: {
+        a: { fournisseur: 'anthropic', modele: 'claude-sonnet-5', referentiel: '7.0.0' },
+        b: { fournisseur: 'openai', modele: 'gpt-4o-mini', referentiel: '8.0.0' },
+      },
+      now: () => '2026-07-17T00:00:00.000Z',
+    })
+    expect(report.configurations.a.modele).toBe('claude-sonnet-5')
+    expect(report.configurations.b.fournisseur).toBe('openai')
   })
 })

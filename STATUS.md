@@ -9,6 +9,52 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D15 — Refonte du banc d'essai promptologue (demande utilisateur).**
+  Le banc (P10.4) passe d'un comparateur sommaire à un banc paramétrable complet :
+  - **Périmètre du journal** : tout le portfolio, UNE journée, ou une période [du..au]
+    (`filterDayGroups`), journées listées depuis la fixture ou le portfolio local.
+  - **Périmètre du référentiel** : entier, un pôle, ou UNE compétence — nouvelle option
+    `perimetre` d'`extractDay` (moteur : `restreindreReferentiel`, kairos omis en partiel,
+    document marqué `perimetre.partiel` — le schéma exige 7 pôles, validation par sonde) ;
+    sandbox : référentiel filtré + `validatePartialJour` (sonde ; stricte dès 7 pôles) ;
+    Twin6 : refus explicite (référentiel en dur). Vérifié en navigateur : 1 compétence ×
+    1 journée = 1 appel LLM au lieu de 24.
+  - **Version du référentiel par branche** (API `referentiel/versions`, déjà exposée aux
+    promptologues) + détection des paquets à **référentiel en dur** (marqueur twin6, fiches
+    « ## X.YY — » inline, orchestration ignorant son paramètre `referentiel`) — alerte
+    pré-run (drapeau `reserved`, présomption sur le nom sinon) et alerte définitive au run.
+  - **Fournisseur/modèle LLM PAR BRANCHE** en A/B (`ProviderPicker` ×2) + température
+    (virgule décimale acceptée), pour comparer les LLM entre eux à prompt constant.
+  - **Mode « Vs référence importée »** : un JSON de référence (document jour, tableau, ou
+    export du banc — `buildRunReport` est réimportable tel quel) comparé au run généré ;
+    le marqueur `perimetre.partiel` d'un fichier importé ne court-circuite PAS la
+    validation (sonde tolérante systématique — revue adversariale).
+  - **Diff de compétences avec traces du jury** (`CompetenceDiff`) : établies d'un côté
+    et pas de l'autre, dépliables sur la délibération DES DEUX côtés — pièces du greffier
+    avec extraits verbatim résolus (pid→passagesSaillants), présomptions du pédagogue
+    (attaques a..h nommées depuis `ATTAQUES`), traces retenues, verdict motivé.
+  - **Carnet du banc** (méta-page, `carnet.js`) : markdown éditable rendu via
+    `renderMarkdown` (DOMPurify), **configurations emblématiques** nommées rechargeables
+    en un clic (instantané complet du banc, clés API JAMAIS persistées — `sanitizeConfig`),
+    export/import JSON. Chargement avec réserves signalées si une référence a disparu
+    (brouillon supprimé, portfolio effacé, version retirée → replis sûrs).
+  - **Estimations honnêtes** : `estimateRun` paramétrable (`callsPerDay`, `mergeCalls`) —
+    le banc estime ce qu'il exécute vraiment (pôles retenus, 0 récit de fusion) ; en
+    périmètre restreint l'écart était d'un facteur ~77 (vérifié navigateur : 0.02 $ vs
+    1.71 $ affichés avant).
+  - Robustesse (revue adversariale 25 agents, 20 constats confirmés TOUS corrigés) :
+    verrou synchrone anti double-clic, résultat précédent conservé jusqu'au succès
+    suivant, interruption volontaire = statut neutre + rapport partiel des runs multi
+    achevés, pré-vol du périmètre sur les DEUX référentiels en A/B double-référentiel,
+    `name` sur tous les groupes radio (a11y), progression Twin6 « Phase i/8 » et
+    multi-run préfixée « Run i/n », portfolio sans journée datée signalé à la sélection.
+  - Rapports enrichis (`configurations` par branche dans le rapport A/B, union des
+    journées des deux côtés), aide contextuelle mise à jour (help/registry).
+  - Vérifié navigateur (compte promptologue dev, mock) : run restreint, A/B
+    moteur-vs-sandbox avec périmètre, carnet persistant restaurant toute la configuration
+    après rechargement, zéro erreur console. Suites : moteur **945**, web **870** (+50),
+    build de production OK. NON déployé (autorisation par chantier).
+
 - 2026-07-17 — **Bord gauche fiabilisé : déclenchement GÉOMÉTRIQUE (retour utilisateur).**
   L'utilisateur signalait que le bord gauche n'ouvrait pas le menu. Deux causes distinctes :
   (1) son serveur de dev ne tournait plus (page en cache navigateur = ancien code) — HMR

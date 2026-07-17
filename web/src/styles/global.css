@@ -3475,6 +3475,101 @@ body {
   background: var(--danger-bg);
 }
 
+/* --- Banc d'essai refondu (D15) : carnet, alertes, diff avec jury --------- */
+
+.banc-carnet {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  background: var(--card);
+}
+
+.banc-carnet > summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.banc-carnet-texte {
+  margin: 0.75rem 0;
+}
+
+.banc-carnet-configs {
+  padding-left: 1.25rem;
+}
+
+.banc-carnet-configs li {
+  margin: 0.35rem 0;
+}
+
+.banc-carnet-actions input {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: inherit;
+}
+
+.banc-alerte {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+
+.banc-diff-groupe h4 {
+  margin: 0.75rem 0 0.25rem;
+}
+
+.banc-diff-competence {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+  margin: 0.35rem 0;
+}
+
+.banc-diff-competence > summary {
+  cursor: pointer;
+}
+
+.banc-diff-cotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.banc-jury {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  background: var(--paper);
+}
+
+.banc-jury h5 {
+  margin: 0 0 0.4rem;
+}
+
+.banc-jury ul {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.1rem;
+}
+
+.banc-jury-etape {
+  margin: 0.4rem 0 0.2rem;
+}
+
+.banc-jury-vide {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.banc-jury-verbatim {
+  margin: 0.25rem 0 0.25rem 0.5rem;
+  padding-left: 0.6rem;
+  border-left: 3px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
 /* --- Espace établissement (P11) + cohortes apprenant ---------------------- */
 
 .etab-reserve p[role='alert'],

@@ -1,14 +1,17 @@
-// Banc d'essai promptologue (P10.4) — logique pure, sans React.
+// Banc d'essai promptologue (P10.4, refondu D15) — logique pure, sans React.
 //
 // Exécution d'UNE version (publiée ou MON brouillon) sur un portfolio de test :
 //   - paquet « moteur » (orchestration engine://) -> extractDay direct ;
 //   - paquet avec code d'orchestration personnalisé -> sandbox (P10.3).
-// Multi-run de consistance (engine compareRuns) et comparaison A/B avec
-// rapport JSON téléchargeable.
+// Multi-run de consistance (engine compareRuns), comparaison A/B (fournisseur,
+// modèle et référentiel PAR BRANCHE), comparaison contre une référence JSON
+// importée, périmètre restreint (journées choisies, pôle ou compétence unique),
+// diff de compétences avec traces de délibération du jury.
 
-import { extractDay } from '@engine/pipeline/extract.js'
+import { extractDay, restreindreReferentiel } from '@engine/pipeline/extract.js'
 import { compareRuns } from '@engine/consistency.js'
 import { executerTwin6 } from '@engine/twin6/index.js'
+import { validateDocument } from '@engine/validation.js'
 import { runPackageInSandbox, usesEngineOrchestration } from '../../lib/sandbox/index.js'
 
 export const STATUT_ETABLIE = 'présence établie'
@@ -64,6 +67,89 @@ export function dayGroupsToPortfolio(dayGroups) {
 }
 
 /**
+ * Filtre les journées du portfolio selon la sélection du banc : tout le
+ * journal, UNE journée précise, ou une période [du..au] (bornes incluses,
+ * bornes vides = ouvertes).
+ *
+ * @param {Array<{iso: string, texte: string}>} dayGroups
+ * @param {{type: 'tous'|'jour'|'periode', jour?: string, du?: string, au?: string}} [selection]
+ * @returns {Array<{iso: string, texte: string}>} sous-ensemble non vide
+ */
+export function filterDayGroups(dayGroups, selection = { type: 'tous' }) {
+  const groups = dayGroups ?? []
+  const type = selection?.type ?? 'tous'
+  let kept
+  if (type === 'tous') {
+    kept = [...groups]
+  } else if (type === 'jour') {
+    kept = groups.filter((g) => g.iso === selection.jour)
+  } else if (type === 'periode') {
+    if (selection.du && selection.au && selection.du > selection.au) {
+      throw new Error('Période invalide : la date de début est postérieure à la date de fin.')
+    }
+    const du = selection.du || '0000-00-00'
+    const au = selection.au || '9999-99-99'
+    kept = groups.filter((g) => g.iso >= du && g.iso <= au)
+  } else {
+    throw new Error(`Sélection de journées inconnue : « ${type} ».`)
+  }
+  if (kept.length === 0) {
+    throw new Error('Aucune journée du portfolio ne correspond à la sélection.')
+  }
+  return kept
+}
+
+/**
+ * Détecte les paquets dont les gabarits ou l'orchestration embarquent le
+ * référentiel EN DUR : le choix d'une version du référentiel sur le banc n'a
+ * alors pas (ou peu) d'effet sur le contenu réellement instruit.
+ *
+ * Heuristiques : marqueur Twin6 (fiches P1..P7 inline), fiches de compétences
+ * en toutes lettres dans les gabarits (« ## X.YY — … »), orchestration sandbox
+ * qui n'utilise jamais son paramètre `referentiel`.
+ *
+ * @param {object} pkg prompt-package (complet)
+ * @returns {{enDur: boolean, motif: string|null}}
+ */
+export function detectReferentielEnDur(pkg) {
+  if (!pkg || typeof pkg !== 'object') return { enDur: false, motif: null }
+  if (pkg.builtin === true) return { enDur: false, motif: null }
+  if (usesTwin6Engine(pkg)) {
+    return {
+      enDur: true,
+      motif:
+        'paquet Twin6 : les fiches P1..P7 (compétences en toutes lettres) sont embarquées '
+        + 'dans les gabarits — le référentiel choisi ne sert qu’à lister les pôles.',
+    }
+  }
+  const ficheInline = (pkg.prompts ?? []).some(
+    (p) => typeof p?.texte === 'string' && /^##? \d\.\d\d — /m.test(p.texte),
+  )
+  if (ficheInline) {
+    return {
+      enDur: true,
+      motif:
+        'des gabarits du paquet contiennent des fiches de compétences en dur (« ## X.YY — … ») : '
+        + 'la version du référentiel choisie ne pilote pas leur contenu.',
+    }
+  }
+  const orchestration = pkg.code?.orchestration
+  if (
+    typeof orchestration === 'string'
+    && !orchestration.includes('engine://')
+    && !orchestration.includes('referentiel')
+  ) {
+    return {
+      enDur: true,
+      motif:
+        'l’orchestration du paquet n’utilise jamais son paramètre `referentiel` : les compétences '
+        + 'instruites sont figées dans le code ou les gabarits.',
+    }
+  }
+  return { enDur: false, motif: null }
+}
+
+/**
  * Résumé structurel d'un document cartographie-jour : codes par statut.
  * @param {object} doc document cartographie-jour
  * @returns {{etablies: string[], renvois: string[], nonEtablies: string[]}}
@@ -99,6 +185,216 @@ export function compareCodes(a, b) {
 }
 
 /**
+ * Détail de la délibération du jury pour UNE compétence d'un document
+ * cartographie-jour : pièces du greffier (extraits verbatim résolus via
+ * passagesSaillants), présomptions du pédagogue (absence puis sycophantie,
+ * attaques a..h), traces retenues, verdict motivé.
+ *
+ * @param {object} document cartographie-jour
+ * @param {string} code code compétence (ex. « 3.04 »)
+ * @returns {{code: string, poleNum: string, statut: string|null,
+ *   courtCircuit: boolean, pieces: Array, pedagogue: object|null,
+ *   tracesRetenues: Array, verdict: object|null} | null}
+ */
+export function extractCompetenceDetail(document, code) {
+  for (const pole of document?.poles ?? []) {
+    const comp = (pole.competences ?? []).find((c) => c?.code === code)
+    if (!comp) continue
+    const passages = new Map((pole.passagesSaillants ?? []).map((p) => [p.pid, p]))
+    const pieces = (comp.pieces ?? []).map((piece) => ({
+      ...piece,
+      extraitVerbatim: passages.get(piece.pid)?.extraitVerbatim ?? null,
+    }))
+    return {
+      code,
+      poleNum: pole.poleNum,
+      statut: comp.verdict?.statut ?? null,
+      courtCircuit: comp.courtCircuit === true,
+      pieces,
+      pedagogue: comp.pedagogue ?? null,
+      tracesRetenues: comp.tracesRetenues ?? [],
+      verdict: comp.verdict ?? null,
+    }
+  }
+  return null
+}
+
+/**
+ * Diff de compétences entre deux runs : par journée, compétences établies d'un
+ * côté et pas de l'autre (et inversement), chacune accompagnée du détail de
+ * délibération du jury DES DEUX côtés (pour comprendre ce qui a conduit au
+ * choix). Les deux runs peuvent couvrir des journées différentes (référence
+ * importée partielle) : le diff porte l'union des journées.
+ *
+ * @param {{days: Array<{iso: string, document: object}>}} a
+ * @param {{days: Array<{iso: string, document: object}>}} b
+ * @returns {{parJour: Array<{iso: string, communes: string[],
+ *   seulementA: Array<{code, statutA, statutB, detailA, detailB}>,
+ *   seulementB: Array<{code, statutA, statutB, detailA, detailB}>}>}}
+ */
+export function buildCompetenceDiff(a, b) {
+  const daysA = a?.days ?? []
+  const daysB = b?.days ?? []
+  const isos = [...new Set([...daysA.map((d) => d.iso), ...daysB.map((d) => d.iso)])].sort()
+  const parJour = isos.map((iso) => {
+    const docA = daysA.find((d) => d.iso === iso)?.document ?? null
+    const docB = daysB.find((d) => d.iso === iso)?.document ?? null
+    const vide = { etablies: [], renvois: [], nonEtablies: [] }
+    const resumeA = docA ? summarizeDocument(docA) : vide
+    const resumeB = docB ? summarizeDocument(docB) : vide
+    const diff = compareCodes(resumeA.etablies, resumeB.etablies)
+    const entry = (code) => {
+      const detailA = docA ? extractCompetenceDetail(docA, code) : null
+      const detailB = docB ? extractCompetenceDetail(docB, code) : null
+      return {
+        code,
+        statutA: detailA?.statut ?? null,
+        statutB: detailB?.statut ?? null,
+        detailA,
+        detailB,
+      }
+    }
+    return {
+      iso,
+      communes: diff.communes,
+      seulementA: diff.seulementA.map(entry),
+      seulementB: diff.seulementB.map(entry),
+    }
+  })
+  return { parJour }
+}
+
+/**
+ * Rapport d'un run simple, sérialisable et RÉIMPORTABLE comme référence
+ * (normalizeReferenceImport reconnaît sa forme {days: [{iso, document}]}).
+ *
+ * @param {object} params {portfolioLabel, run, config?, now?}
+ * @returns {object} rapport JSON
+ */
+export function buildRunReport({ portfolioLabel, run, config = {}, now = () => new Date().toISOString() }) {
+  return {
+    kind: 'rapport-run-banc',
+    genereLe: now(),
+    portfolio: { label: portfolioLabel, jours: run.days.map((d) => d.iso) },
+    pkg: run.pkg,
+    config,
+    llmCalls: run.llmCalls,
+    durationMs: run.durationMs,
+    days: run.days,
+  }
+}
+
+/**
+ * Normalise un JSON de référence importé en pseudo-run comparable
+ * (mêmes champs que runVersionOnDays). Formes acceptées :
+ *   - un document cartographie-jour seul ;
+ *   - un tableau de documents cartographie-jour ;
+ *   - un export du banc {days: [{iso, document}]} (rapport-run-banc).
+ * Chaque document complet est validé au schéma ; les documents à périmètre
+ * partiel (marqueur perimetre.partiel) sont acceptés sans validation stricte
+ * (le schéma exige 7 pôles).
+ *
+ * @param {object|Array} json contenu du fichier importé
+ * @param {{validateFn?: typeof validateDocument}} [deps]
+ * @returns {{pkg: {id, version}, reference: true, engine: null,
+ *   days: Array<{iso, document}>, llmCalls: 0, durationMs: 0, label: string}}
+ */
+export function normalizeReferenceImport(json, { validateFn = validateDocument } = {}) {
+  if (json === null || typeof json !== 'object') {
+    throw new Error('JSON de référence illisible : objet ou tableau attendu.')
+  }
+  let days
+  let label
+  if (Array.isArray(json)) {
+    days = json.map((doc) => ({ iso: doc?.date, document: doc }))
+    label = `Référence importée (${days.length} journée(s))`
+  } else if (json.kind === 'cartographie-jour') {
+    days = [{ iso: json.date, document: json }]
+    label = `Référence importée (${json.date})`
+  } else if (Array.isArray(json.days)) {
+    days = json.days.map((d) => ({ iso: d?.iso ?? d?.document?.date, document: d?.document }))
+    label = json.portfolio?.label
+      ? `Référence : ${json.portfolio.label}`
+      : `Référence importée (${days.length} journée(s))`
+  } else {
+    throw new Error(
+      'JSON de référence non reconnu : document cartographie-jour, tableau de documents, '
+      + 'ou export du banc ({days: [{iso, document}]}) attendus.',
+    )
+  }
+  if (days.length === 0) {
+    throw new Error('JSON de référence vide : aucune journée à comparer.')
+  }
+  const seen = new Set()
+  for (const { iso, document } of days) {
+    if (typeof iso !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) {
+      throw new Error('JSON de référence : chaque journée doit porter une date AAAA-MM-JJ.')
+    }
+    if (document?.kind !== 'cartographie-jour') {
+      throw new Error(`JSON de référence : la journée ${iso} ne porte pas un document cartographie-jour.`)
+    }
+    if (seen.has(iso)) throw new Error(`JSON de référence : date en double (${iso}).`)
+    seen.add(iso)
+    // Le marqueur perimetre.partiel vient du FICHIER importé : il ne doit pas
+    // désactiver la validation (un JSON forgé y échapperait), il bascule
+    // seulement vers la sonde tolérante (< 7 pôles, marqueur retiré).
+    const { valid, errors } =
+      document.perimetre?.partiel === true
+        ? validatePartialJour('cartographie-jour', document)
+        : validateFn('cartographie-jour', document)
+    if (!valid) {
+      const detail = errors.slice(0, 3).map((e) => `${e.path} ${e.message}`).join(' ; ')
+      throw new Error(
+        `JSON de référence : document du ${iso} invalide au schéma `
+        + `(${errors.length} erreur(s) : ${detail}).`,
+      )
+    }
+  }
+  days = [...days].sort((x, y) => (x.iso < y.iso ? -1 : 1))
+  const pkgId = typeof json.pkg?.id === 'string' ? json.pkg.id : 'reference-importee'
+  const pkgVersion = typeof json.pkg?.version === 'string' ? json.pkg.version : 'import'
+  return {
+    pkg: { id: pkgId, version: pkgVersion },
+    reference: true,
+    engine: null,
+    days,
+    llmCalls: 0,
+    durationMs: 0,
+    label,
+  }
+}
+
+/** Note affichée quand un périmètre restreint est demandé sur un paquet Twin6. */
+export const TWIN6_PERIMETRE_NOTE =
+  'Périmètre restreint indisponible pour les paquets Twin6 : leurs fiches embarquent le '
+  + 'référentiel en dur et le run produit une cartographie globale (merge) qui exige les 7 pôles.'
+
+/**
+ * Validation tolérante au périmètre partiel : le schéma cartographie-jour
+ * exige exactement 7 pôles ; un document restreint est validé via une sonde
+ * (pôles dupliqués/renumérotés 1..7), comme extractDay le fait pour chaque
+ * pôle. Le marqueur `perimetre` (hors schéma, additionalProperties: false)
+ * est retiré avant la sonde. Au-delà de 7 pôles, la validation STRICTE
+ * s'applique (un document à pôles dupliqués doit être refusé, pas tronqué).
+ * @param {string} kind @param {object} doc
+ * @returns {{valid: boolean, errors: Array}}
+ */
+export function validatePartialJour(kind, doc) {
+  if (kind !== 'cartographie-jour' || !Array.isArray(doc?.poles)) {
+    return validateDocument(kind, doc)
+  }
+  const { perimetre: _marqueur, ...rest } = doc
+  if (rest.poles.length === 0 || rest.poles.length >= 7) {
+    return validateDocument(kind, rest)
+  }
+  const pad = Array.from({ length: 7 }, (_, i) => ({
+    ...rest.poles[Math.min(i, rest.poles.length - 1)],
+    poleNum: String(i + 1),
+  }))
+  return validateDocument(kind, { ...rest, poles: pad, kairos: rest.kairos ?? null })
+}
+
+/**
  * Exécute une version d'un paquet sur les journées données (séquentiel).
  *
  * @param {object} params
@@ -108,6 +404,10 @@ export function compareCodes(a, b) {
  * @param {{complete: Function}} params.provider
  * @param {string} params.model
  * @param {number} [params.maxTokens]
+ * @param {{poles?: number[], competences?: string[]}} [params.perimetre]
+ *   périmètre restreint (moteur : extractDay ; sandbox : référentiel filtré +
+ *   validation tolérante ; Twin6 : refusé, référentiel en dur)
+ * @param {number} [params.temperature] température passée à chaque appel LLM
  * @param {AbortSignal} [params.signal]
  * @param {(info: {iso: string, position: number, total: number, calls: number}) => void} [params.onProgress]
  * @param {typeof extractDay} [params.extractDayFn] couture de test
@@ -119,17 +419,33 @@ export async function runVersionOnDays({
   pkg,
   dayGroups,
   referentiel,
-  provider,
+  provider: rawProvider,
   model,
   maxTokens,
+  perimetre,
+  temperature,
   signal,
   onProgress,
   extractDayFn = extractDay,
   sandboxRunner = runPackageInSandbox,
   executerTwin6Fn = executerTwin6,
 } = {}) {
+  // Température : injectée au niveau du provider pour couvrir uniformément les
+  // trois chemins (moteur, sandbox, Twin6).
+  const provider =
+    temperature === undefined || temperature === null
+      ? rawProvider
+      : { complete: (params) => rawProvider.complete({ ...params, temperature }) }
+
+  // Périmètre restreint : calculé UNE fois ici pour router (le moteur refait
+  // son propre filtrage via l'option perimetre d'extractDay).
+  const restriction = perimetre
+    ? restreindreReferentiel(referentiel, perimetre)
+    : { referentiel, partiel: false }
+
   // Twin6 (ou un fork) : run sur le portfolio ENTIER -> cartographie-merge.
   if (usesTwin6Engine(pkg)) {
+    if (restriction.partiel) throw new Error(TWIN6_PERIMETRE_NOTE)
     const startedAt = Date.now()
     const templates = extractTwin6Templates(pkg)
     const portfolio = dayGroupsToPortfolio(dayGroups)
@@ -146,7 +462,9 @@ export async function runVersionOnDays({
         onProgress: (p) => {
           if (p?.phase === 'scan-pole' || p?.phase === 'kairos') {
             calls = (p.done ?? 0) + 1
-            onProgress?.({ iso: '', position: calls, total: p.total ?? 8, calls })
+            // phase transmise : le run Twin6 porte sur le portfolio ENTIER,
+            // l'UI ne doit pas afficher une progression « par jour ».
+            onProgress?.({ iso: '', position: calls, total: p.total ?? 8, calls, phase: p.phase })
           }
         },
       },
@@ -181,6 +499,7 @@ export async function runVersionOnDays({
         provider,
         model,
         maxTokens,
+        perimetre,
         signal,
         kairosOptional: true,
         onProgress: () => {
@@ -193,15 +512,32 @@ export async function runVersionOnDays({
         pkg,
         dayText: texte,
         date: iso,
-        referentiel,
+        // Sandbox : le périmètre passe par le référentiel restreint ; les
+        // paquets « propres » itèrent referentiel.poles/competences et ne
+        // produisent donc que le périmètre. Le schéma exigeant 7 pôles, la
+        // validation devient tolérante (sonde) sur périmètre partiel.
+        referentiel: restriction.referentiel,
         provider,
         model,
         maxTokens,
         signal,
+        ...(restriction.partiel ? { validateFn: validatePartialJour } : {}),
         onLlmCall: ({ calls }) => report(llmCalls + calls),
       })
       llmCalls += result.llmCalls
       document = result.document
+      // Même marqueur que le moteur (extractDay) : sans lui, l'export du run
+      // ne se réimporterait pas comme référence (validation stricte 7 pôles).
+      if (restriction.partiel && document && typeof document === 'object') {
+        document = {
+          ...document,
+          perimetre: {
+            partiel: true,
+            poles: restriction.referentiel.poles.map((p) => Number(p.num)),
+            competences: restriction.referentiel.competences.map((c) => c.code).sort(),
+          },
+        }
+      }
     }
     days.push({ iso, document })
   }
@@ -254,14 +590,31 @@ export function buildMultiRunReport(runs) {
  * @param {{pkg: object, days: Array, llmCalls: number, durationMs: number}} params.a
  * @param {{pkg: object, days: Array, llmCalls: number, durationMs: number}} params.b
  * @param {{a: object|null, b: object|null}} [params.estimates] sorties buildEstimate
+ * @param {{a: object|null, b: object|null}} [params.configs] configuration par
+ *   branche (fournisseur, modèle, version du référentiel…) — traçabilité du rapport
  * @param {() => string} [params.now] horloge injectable
  * @returns {object} rapport JSON
  */
-export function buildAbReport({ portfolioLabel, a, b, estimates = {}, now = () => new Date().toISOString() }) {
-  const parJour = a.days.map(({ iso, document }) => {
+export function buildAbReport({
+  portfolioLabel,
+  a,
+  b,
+  estimates = {},
+  configs = {},
+  now = () => new Date().toISOString(),
+}) {
+  // Union des journées des deux côtés : une référence importée (ou un run
+  // restreint) peut couvrir des jours absents de l'autre branche — les totaux
+  // (etabliesTotal) sommant TOUTES les journées, parJour doit faire de même.
+  const isos = [
+    ...new Set([...a.days.map((d) => d.iso), ...b.days.map((d) => d.iso)]),
+  ].sort()
+  const vide = { etablies: [], renvois: [], nonEtablies: [] }
+  const parJour = isos.map((iso) => {
+    const docA = a.days.find((d) => d.iso === iso)?.document
     const docB = b.days.find((d) => d.iso === iso)?.document
-    const resumeA = summarizeDocument(document)
-    const resumeB = docB ? summarizeDocument(docB) : { etablies: [], renvois: [], nonEtablies: [] }
+    const resumeA = docA ? summarizeDocument(docA) : vide
+    const resumeB = docB ? summarizeDocument(docB) : vide
     const diff = compareCodes(resumeA.etablies, resumeB.etablies)
     return { iso, a: resumeA, b: resumeB, ...diff }
   })
@@ -277,8 +630,12 @@ export function buildAbReport({ portfolioLabel, a, b, estimates = {}, now = () =
   return {
     kind: 'rapport-ab-prompt-packages',
     genereLe: now(),
-    portfolio: { label: portfolioLabel, jours: a.days.map((d) => d.iso) },
+    portfolio: { label: portfolioLabel, jours: isos },
     versions: { a: totals(a), b: totals(b) },
+    configurations: {
+      a: configs.a ?? null,
+      b: configs.b ?? null,
+    },
     estimations: {
       a: estimates.a ?? null,
       b: estimates.b ?? null,

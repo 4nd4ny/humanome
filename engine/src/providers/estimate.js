@@ -86,6 +86,10 @@ export const MERGE_NARRATIVE_CALLS = 69
  * @param {string} params.model model id (looked up in the price table)
  * @param {number} [params.outputTokensPerCall=1000]
  * @param {number} [params.secondsPerCall=20]
+ * @param {number} [params.callsPerDay=CALLS_PER_DAY] override for runs that
+ *   do not follow the full 7-poles + kairos protocol (restricted perimeter)
+ * @param {number} [params.mergeCalls=MERGE_NARRATIVE_CALLS] override for runs
+ *   that never generate merge narratives (bench day-extraction runs: 0)
  * @returns {{tokensIn: number, tokensOut: number, costUsd: number,
  *   durationMin: number, totalCalls: number, disclaimer: string}}
  */
@@ -96,7 +100,9 @@ export function estimateRun(params = {}) {
     promptOverheadChars = 0,
     model,
     outputTokensPerCall = 1000,
-    secondsPerCall = 20
+    secondsPerCall = 20,
+    callsPerDay = CALLS_PER_DAY,
+    mergeCalls = MERGE_NARRATIVE_CALLS
   } = params
   if (!Number.isFinite(days) || days < 0) {
     throw new TypeError('estimateRun(): "days" doit être un nombre >= 0')
@@ -112,11 +118,11 @@ export function estimateRun(params = {}) {
     )
   }
 
-  const dayCalls = days * CALLS_PER_DAY
-  const totalCalls = dayCalls + MERGE_NARRATIVE_CALLS
+  const dayCalls = days * callsPerDay
+  const totalCalls = dayCalls + mergeCalls
   const tokensIn =
     dayCalls * tokensFromChars(avgDayChars + promptOverheadChars)
-    + MERGE_NARRATIVE_CALLS * tokensFromChars(promptOverheadChars)
+    + mergeCalls * tokensFromChars(promptOverheadChars)
   const tokensOut = totalCalls * outputTokensPerCall
   const costUsd =
     Math.round(((tokensIn * pricing.input) / 1e6 + (tokensOut * pricing.output) / 1e6) * 100) / 100

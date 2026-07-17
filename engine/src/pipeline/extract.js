@@ -119,6 +119,44 @@ function requireDay(dayText, date) {
   }
 }
 
+/**
+ * Restreint un référentiel à un périmètre : liste de pôles et/ou de codes de
+ * compétences (banc d'essai promptologue — cartographier UNE compétence ou UN
+ * pôle sans payer les 7 appels). Les pôles conservés sont ceux qui portent au
+ * moins une compétence retenue.
+ *
+ * @param {object} referentiel document référentiel complet
+ * @param {{poles?: Array<number|string>, competences?: string[]}} [perimetre]
+ * @returns {{referentiel: object, partiel: boolean}} copie restreinte (ou le
+ *   document d'origine si le périmètre est vide) ; `partiel` = vrai si au
+ *   moins une compétence ou un pôle a été écarté
+ */
+export function restreindreReferentiel(referentiel, perimetre = {}) {
+  requireReferentiel(referentiel)
+  const codes = Array.isArray(perimetre?.competences) && perimetre.competences.length > 0
+    ? new Set(perimetre.competences.map(String))
+    : null
+  const poleNums = Array.isArray(perimetre?.poles) && perimetre.poles.length > 0
+    ? new Set(perimetre.poles.map(Number))
+    : null
+  if (codes === null && poleNums === null) return { referentiel, partiel: false }
+
+  const competences = referentiel.competences.filter(
+    (c) =>
+      (codes === null || codes.has(String(c.code)))
+      && (poleNums === null || poleNums.has(Number(c.pole))),
+  )
+  if (competences.length === 0) {
+    throw new Error('restreindreReferentiel : périmètre vide (aucune compétence retenue)')
+  }
+  const keptPoles = new Set(competences.map((c) => Number(c.pole)))
+  const poles = referentiel.poles.filter((p) => keptPoles.has(Number(p.num)))
+  const partiel =
+    competences.length < referentiel.competences.length
+    || poles.length < referentiel.poles.length
+  return { referentiel: { ...referentiel, poles, competences }, partiel }
+}
+
 function attaquesBloc() {
   return Object.entries(ATTAQUES)
     .map(([lettre, { nom, description }]) => `  ${lettre} — ${nom} : ${description}`)
@@ -655,23 +693,31 @@ export function computeAuditPole(competences) {
 export async function extractDay({
   dayText,
   date,
-  referentiel,
+  referentiel: referentielComplet,
   provider,
   model = 'default',
   maxTokens,
   temperature,
   signal,
   kairosOptional = false,
+  perimetre,
   onProgress,
 } = {}) {
-  requireReferentiel(referentiel)
+  requireReferentiel(referentielComplet)
   requireDay(dayText, date)
   if (typeof provider?.complete !== 'function') {
     throw new TypeError('extractDay : provider avec complete() requis')
   }
 
+  // Périmètre restreint (banc d'essai) : seuls les pôles retenus sont
+  // instruits ; le kairos transversal — synthèse de la journée ENTIÈRE sur le
+  // référentiel entier — n'a pas de sens sur un périmètre partiel, il est omis.
+  const { referentiel, partiel } = perimetre
+    ? restreindreReferentiel(referentielComplet, perimetre)
+    : { referentiel: referentielComplet, partiel: false }
+
   const poleNums = [...referentiel.poles].map((p) => p.num).sort((a, b) => a - b)
-  const total = poleNums.length + 1
+  const total = poleNums.length + (partiel ? 0 : 1)
   let done = 0
   const poles = []
 
@@ -753,6 +799,24 @@ export async function extractDay({
     poles.push(pole)
     done += 1
     onProgress?.({ step: 'pole', poleNum: num, done, total })
+  }
+
+  // Périmètre partiel : pas de kairos, et pas de validation du document
+  // COMPLET (le schéma cartographie-jour exige exactement 7 pôles) — chaque
+  // pôle a déjà été validé structurellement via la sonde de validatePole.
+  if (partiel) {
+    return {
+      schemaVersion: '1.0.0',
+      kind: 'cartographie-jour',
+      date,
+      poles,
+      kairos: null,
+      perimetre: {
+        partiel: true,
+        poles: poleNums.map(Number),
+        competences: referentiel.competences.map((c) => c.code).sort(),
+      },
+    }
   }
 
   const attemptKairos = async () => {

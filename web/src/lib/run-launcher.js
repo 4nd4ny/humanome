@@ -177,12 +177,14 @@ export function computeDayGroups(segments) {
  * estimés sur le modèle de référence, coût null (affiché « inconnu »).
  *
  * @param {{dayGroups: Array<{iso: string, texte: string}>, referentiel: object,
- *   model: string}} params
+ *   model: string, callsPerDay?: number, mergeCalls?: number}} params
+ *   callsPerDay/mergeCalls : surcharges du protocole complet (banc d'essai à
+ *   périmètre restreint : n pôles retenus sans kairos, 0 récit de fusion)
  * @returns {{tokensIn: number, tokensOut: number, costUsd: number|null,
  *   durationMin: number, totalCalls: number, disclaimer: string,
  *   days: number, avgDayChars: number, model: string}}
  */
-export function buildEstimate({ dayGroups, referentiel, model }) {
+export function buildEstimate({ dayGroups, referentiel, model, callsPerDay, mergeCalls }) {
   const days = dayGroups.length
   const totalChars = dayGroups.reduce((sum, g) => sum + g.texte.length, 0)
   const avgDayChars = days > 0 ? Math.round(totalChars / days) : 0
@@ -198,6 +200,8 @@ export function buildEstimate({ dayGroups, referentiel, model }) {
     avgDayChars,
     promptOverheadChars,
     model: pricing ? model : SERVICE_ESTIMATION_MODEL,
+    ...(callsPerDay !== undefined ? { callsPerDay } : {}),
+    ...(mergeCalls !== undefined ? { mergeCalls } : {}),
   })
   return {
     ...estimate,
