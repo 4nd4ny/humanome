@@ -267,6 +267,56 @@ final class Twin9ProtocoleTest extends CartographeTestCase
         self::assertSame(404, $this->as_($admin, 'GET', '/api/twin9/admin/protocole/fictif/inconnu/versions')->getStatusCode());
     }
 
+    public function testVersionContentAndRestoreNeverRewriteHistory(): void
+    {
+        // D13 (ADR-010 §6 « retour arrière ») : lecture d'une version archivée
+        // puis restauration NON destructive (le vivant est archivé d'abord).
+        $admin = $this->registerAsAtelier();
+        $name = 'fictif/01-essai';
+
+        $this->as_($admin, 'PUT', '/api/twin9/admin/protocole/' . $name, ['content' => 'V1 fictif {$A}']);
+        $this->as_($admin, 'PUT', '/api/twin9/admin/protocole/' . $name, ['content' => 'V2 fictif {$B}']);
+
+        // Contenu d'une version archivée (v1 = l'ancien vivant).
+        $v1 = self::json($this->as_($admin, 'GET', '/api/twin9/admin/protocole/' . $name . '/versions/1'));
+        self::assertSame('V1 fictif {$A}', $v1['content']);
+        self::assertSame(['A'], $v1['variables']);
+        self::assertSame(404, $this->as_($admin, 'GET', '/api/twin9/admin/protocole/' . $name . '/versions/9')->getStatusCode());
+
+        // Restauration de v1 : le vivant redevient V1, l'ex-vivant (V2) est archivé.
+        $restore = self::json($this->as_($admin, 'POST', '/api/twin9/admin/protocole/' . $name . '/restore', ['version' => 1]));
+        self::assertSame('updated', $restore['status']);
+        self::assertSame(1, $restore['restored_from']);
+        $live = self::json($this->as_($admin, 'GET', '/api/twin9/admin/protocole/' . $name));
+        self::assertSame('V1 fictif {$A}', $live['content']);
+        // Historique COMPLET : v1 (l'original) + v2 (l'ex-vivant V2) — rien d'écrasé.
+        $versions = self::json($this->as_($admin, 'GET', '/api/twin9/admin/protocole/' . $name . '/versions'));
+        self::assertSame([2, 1], array_column($versions['versions'], 'version'));
+
+        // Restaurer une version identique au vivant : no-op annoncé, pas de version en plus.
+        $noop = self::json($this->as_($admin, 'POST', '/api/twin9/admin/protocole/' . $name . '/restore', ['version' => 1]));
+        self::assertSame('unchanged', $noop['status']);
+        self::assertSame(2, (int) Db::get()->query('SELECT COUNT(*) FROM twin9_protocole_versions')->fetchColumn());
+
+        // Validation : version manquante/invalide -> 422 ; gabarit inconnu -> 404.
+        self::assertSame(422, $this->as_($admin, 'POST', '/api/twin9/admin/protocole/' . $name . '/restore', [])->getStatusCode());
+        self::assertSame(404, $this->as_($admin, 'POST', '/api/twin9/admin/protocole/fictif/inconnu/restore', ['version' => 1])->getStatusCode());
+    }
+
+    public function testVersionAndRestoreRequireBothRoles(): void
+    {
+        // Même garde conjonctive que le contenu vivant : un admin SEUL n'a pas
+        // accès au contenu archivé et ne peut pas restaurer.
+        $atelier = $this->registerAsAtelier();
+        $name = 'fictif/01-essai';
+        $this->as_($atelier, 'PUT', '/api/twin9/admin/protocole/' . $name, ['content' => 'V1 fictif']);
+        $this->as_($atelier, 'PUT', '/api/twin9/admin/protocole/' . $name, ['content' => 'V2 fictif']);
+
+        $adminSeul = $this->registerAs('admin-seul@example.org', 'Admin Seul', ['admin']);
+        self::assertSame(403, $this->as_($adminSeul, 'GET', '/api/twin9/admin/protocole/' . $name . '/versions/1')->getStatusCode());
+        self::assertSame(403, $this->as_($adminSeul, 'POST', '/api/twin9/admin/protocole/' . $name . '/restore', ['version' => 1])->getStatusCode());
+    }
+
     // ==================================================================
     // Rendering (tester bench) — missing variables stay verbatim
     // ==================================================================

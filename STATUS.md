@@ -9,6 +9,26 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D13 (v1.2) — Restauration des versions de gabarit Twin9 (retour arrière).**
+  L'archivage automatique existait (chaque écrasement versionne l'ancien contenu) mais le « retour
+  arrière » promis par ADR-010 §6 n'était pas implémenté : l'historique n'exposait que des métadonnées,
+  sans lecture ni restauration. C'est fait — et **jamais destructif**.
+  - **Repository** : `ProtocoleRepository::version(name, v)` (contenu d'une version archivée) et
+    `restore(name, v, userId)` — la restauration passe par `put()` : le vivant est archivé D'ABORD,
+    puis le contenu archivé redevient vivant. L'histoire reste complète (l'état pré-restauration est
+    lui-même récupérable) ; restaurer un contenu identique au vivant = no-op annoncé.
+  - **Routes** (garde conjonctive admin ∧ promptologue, comme le contenu vivant) :
+    `GET /twin9/admin/protocole/{name}/versions/{version}` (lecture) et
+    `POST /twin9/admin/protocole/{name}/restore {version}` (422 version manquante, 404 inconnue).
+  - **Atelier** (`#/twin9-atelier`) : colonne Actions dans l'historique — « Voir » (aperçu texte brut
+    de la version archivée, jamais de HTML) et « Restaurer » (recharge l'éditeur + l'historique).
+  - **Tests** : PHP (restauration non destructive + no-op + validations + garde de rôles : un admin
+    SEUL → 403 sur lecture ET restauration), web (parcours Voir/Restaurer complet). Suites **toutes
+    vertes : PHP 518, engine 938, web 751**.
+  - **Vérifié au navigateur** (compte atelier dédié, gabarit FICTIF créé pour l'occasion puis purgé) :
+    v2 vivante → « Voir » montre la v1 archivée → « Restaurer » → le vivant redevient v1, message
+    français, historique à 2 versions (v1 originale + v2 ex-vivante) — rien d'écrasé.
+
 - 2026-07-17 — **D12 (v1.2) — Résultat Twin9 dans le sunburst évolutif + stockage opt-in RGPD.**
   Le résultat d'une analyse approfondie (carto_evolutive.json) n'était rendu que dans sa vue dédiée
   (jauges + narratifs) ; il alimente désormais **le même sunburst évolutif** que toute cartographie,

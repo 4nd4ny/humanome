@@ -16,7 +16,9 @@ import { ApiError, ApiUnavailableError } from '../api/client.js'
 import {
   fetchProtocole,
   fetchProtocoleList,
+  fetchProtocoleVersion,
   fetchProtocoleVersions,
+  restoreProtocoleVersion,
   saveProtocole,
   testerProtocole,
 } from '../api/twin9.js'
@@ -43,6 +45,7 @@ function GabaritsBloc({ protocoles, fetchFn, onSaved }) {
   const [message, setMessage] = useState(null)
   const [error, setError] = useState(null)
   const [versions, setVersions] = useState(null)
+  const [apercu, setApercu] = useState(null) // {version, content} — version archivée en lecture
 
   async function openGabarit(name) {
     setSelected(name)
@@ -51,6 +54,7 @@ function GabaritsBloc({ protocoles, fetchFn, onSaved }) {
     setMessage(null)
     setError(null)
     setVersions(null)
+    setApercu(null)
     try {
       const tpl = await fetchProtocole(name, { fetchFn })
       setContent(tpl?.content ?? '')
@@ -87,6 +91,41 @@ function GabaritsBloc({ protocoles, fetchFn, onSaved }) {
       setVersions(Array.isArray(res?.versions) ? res.versions : [])
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'Historique indisponible.')
+    }
+  }
+
+  // D13 — lecture d'une version archivée (aperçu texte brut, jamais de HTML).
+  async function voirVersion(version) {
+    setError(null)
+    try {
+      const res = await fetchProtocoleVersion(selected, version, { fetchFn })
+      setApercu({ version, content: res?.content ?? '' })
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Version indisponible.')
+    }
+  }
+
+  // D13 — restauration : jamais destructive (le vivant est archivé d'abord).
+  async function restaurer(version) {
+    setBusy(true)
+    setMessage(null)
+    setError(null)
+    try {
+      const res = await restoreProtocoleVersion(selected, version, { fetchFn })
+      setMessage(
+        res?.status === 'unchanged'
+          ? `La version ${version} est identique au gabarit vivant — rien à restaurer.`
+          : `Version ${version} restaurée comme gabarit vivant (l’état précédent est archivé).`,
+      )
+      setApercu(null)
+      const tpl = await fetchProtocole(selected, { fetchFn })
+      setContent(tpl?.content ?? '')
+      await loadVersions()
+      onSaved()
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Restauration impossible.')
+    } finally {
+      setBusy(false)
     }
   }
 
@@ -176,6 +215,7 @@ function GabaritsBloc({ protocoles, fetchFn, onSaved }) {
                     <th scope="col">Longueur</th>
                     <th scope="col">Variables</th>
                     <th scope="col">Archivée le</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -185,11 +225,48 @@ function GabaritsBloc({ protocoles, fetchFn, onSaved }) {
                       <td>{v.longueur}</td>
                       <td>{v.variables.length}</td>
                       <td>{frDate(v.created_at)}</td>
+                      <td>
+                        <button
+                          type="button"
+                          className="admin-button-secondary"
+                          disabled={busy}
+                          onClick={() => voirVersion(v.version)}
+                        >
+                          Voir
+                        </button>{' '}
+                        <button
+                          type="button"
+                          className="admin-button-secondary"
+                          disabled={busy}
+                          onClick={() => restaurer(v.version)}
+                        >
+                          Restaurer
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             )
+          ) : null}
+
+          {apercu ? (
+            <div className="twin9-admin-apercu">
+              <h5>
+                Version {apercu.version} (archivée, lecture seule) —{' '}
+                <button
+                  type="button"
+                  className="admin-button-secondary"
+                  disabled={busy}
+                  onClick={() => restaurer(apercu.version)}
+                >
+                  Restaurer cette version
+                </button>
+              </h5>
+              <pre className="twin9-admin-rendu" data-testid="twin9-apercu-version">
+                {apercu.content}
+              </pre>
+            </div>
           ) : null}
         </div>
       ) : null}

@@ -98,6 +98,50 @@ describe('Twin9AtelierView — édition et banc d’essai', () => {
     expect(textarea.tagName).toBe('TEXTAREA')
   })
 
+  it('versions : « Voir » montre le contenu archivé, « Restaurer » repose la version (D13)', async () => {
+    let restoreBody = null
+    let liveContent = 'CONTENU V2 (vivant)'
+    await renderAtelier({
+      ...baseRoutes,
+      'GET api/twin9/admin/protocole/gabarit-alpha': () =>
+        jsonResponse(200, { name: 'gabarit-alpha', content: liveContent, variables: [] }),
+      'GET api/twin9/admin/protocole/gabarit-alpha/versions': () =>
+        jsonResponse(200, {
+          name: 'gabarit-alpha',
+          versions: [{ version: 1, longueur: 10, variables: [], created_at: '2026-07-10 09:00:00' }],
+        }),
+      'GET api/twin9/admin/protocole/gabarit-alpha/versions/1': jsonResponse(200, {
+        name: 'gabarit-alpha',
+        version: 1,
+        content: 'CONTENU V1 (archivé)',
+        variables: [],
+        created_at: '2026-07-10 09:00:00',
+      }),
+      'POST api/twin9/admin/protocole/gabarit-alpha/restore': (init) => {
+        restoreBody = JSON.parse(init.body)
+        liveContent = 'CONTENU V1 (archivé)' // le vivant devient la version restaurée
+        return jsonResponse(200, { name: 'gabarit-alpha', variables: [], status: 'updated', restored_from: 1 })
+      },
+    })
+
+    fireEvent.click(screen.getByRole('button', { name: /gabarit-alpha/ }))
+    await screen.findByLabelText(/Contenu du gabarit/)
+    fireEvent.click(screen.getByRole('button', { name: 'Voir les versions' }))
+    await screen.findByRole('button', { name: 'Voir' })
+
+    // « Voir » : contenu archivé en LECTURE (texte brut, <pre>).
+    fireEvent.click(screen.getByRole('button', { name: 'Voir' }))
+    const apercu = await screen.findByTestId('twin9-apercu-version')
+    expect(apercu.textContent).toBe('CONTENU V1 (archivé)')
+    expect(apercu.tagName).toBe('PRE')
+
+    // « Restaurer » : POST {version}, l'éditeur recharge le vivant restauré.
+    fireEvent.click(screen.getByRole('button', { name: 'Restaurer' }))
+    await screen.findByText(/restaurée comme gabarit vivant/)
+    expect(restoreBody).toEqual({ version: 1 })
+    expect((await screen.findByLabelText(/Contenu du gabarit/)).value).toBe('CONTENU V1 (archivé)')
+  })
+
   it('banc d’essai : rendu du gabarit en texte brut (aucun appel LLM)', async () => {
     let postBody = null
     await renderAtelier({

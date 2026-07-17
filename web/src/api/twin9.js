@@ -116,6 +116,20 @@ export function fetchProtocoleVersions(name, options) {
   return apiFetch(`twin9/admin/protocole/${encodeURIComponent(name)}/versions`, options)
 }
 
+/** Une version ARCHIVÉE avec son contenu (D13 — lecture avant restauration). */
+export function fetchProtocoleVersion(name, version, options) {
+  return apiFetch(`twin9/admin/protocole/${encodeURIComponent(name)}/versions/${version}`, options)
+}
+
+/** Restaure une version archivée comme gabarit vivant (D13 — jamais destructif). */
+export function restoreProtocoleVersion(name, version, options) {
+  return apiFetch(`twin9/admin/protocole/${encodeURIComponent(name)}/restore`, {
+    ...options,
+    method: 'POST',
+    body: { version },
+  })
+}
+
 export function fetchTwin9Config(options) {
   return apiFetch('twin9/admin/config', options)
 }

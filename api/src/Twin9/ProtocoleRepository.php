@@ -155,6 +155,55 @@ final class ProtocoleRepository
     }
 
     /**
+     * One ARCHIVED version WITH its content (atelier-only exposure, D13 —
+     * same confidentiality as get(): the routes guard it admin ∧ promptologue).
+     *
+     * @return array{name: string, version: int, content: string, variables: list<string>, created_at: string}|null
+     */
+    public function version(string $name, int $version): ?array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT name, version, content, variables, created_at
+             FROM twin9_protocole_versions WHERE name = ? AND version = ?'
+        );
+        $stmt->execute([$name, $version]);
+        $row = $stmt->fetch();
+        if ($row === false) {
+            return null;
+        }
+
+        return [
+            'name' => (string) $row['name'],
+            'version' => (int) $row['version'],
+            'content' => (string) $row['content'],
+            'variables' => self::decodeVariables((string) $row['variables']),
+            'created_at' => (string) $row['created_at'],
+        ];
+    }
+
+    /**
+     * Restores an archived version as the LIVE template (D13, ADR-010 §6
+     * « retour arrière »). NEVER rewrites history: a restore is just a new
+     * edit whose content comes from the archive — put() archives the current
+     * live content first, so the pre-restore state stays recoverable too.
+     * Restoring content identical to the live template is a no-op.
+     *
+     * @return array{name: string, variables: list<string>, status: 'created'|'updated'|'unchanged', restored_from: int}
+     */
+    public function restore(string $name, int $version, ?int $userId): array
+    {
+        if ($this->get($name) === null) {
+            throw new Twin9Exception('Gabarit introuvable', 404);
+        }
+        $archived = $this->version($name, $version);
+        if ($archived === null) {
+            throw new Twin9Exception('Version introuvable', 404);
+        }
+
+        return $this->put($name, $archived['content'], $userId) + ['restored_from' => $version];
+    }
+
+    /**
      * Render a template: every {$VAR} present in $vars is substituted, the
      * absent ones are LEFT VERBATIM (non-strict, like Twin9 templates.py)
      * and reported in 'non_resolues'. Single-pass substitution (strtr):

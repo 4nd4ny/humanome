@@ -155,6 +155,38 @@ return function (App $app): void {
         return $json($response, ['name' => $name, 'versions' => $repo->versions($name)]);
     }))->add($atelier);
 
+    // GET /api/twin9/admin/protocole/{name}/versions/{version} — one ARCHIVED
+    // version WITH content (D13 : lecture avant restauration). Même garde que
+    // le contenu vivant.
+    $app->get('/twin9/admin/protocole/{name:.+}/versions/{version:[0-9]+}', $wrap(function (Request $request, Response $response, array $args) use ($json): Response {
+        $archived = (new ProtocoleRepository(Db::get()))->version((string) $args['name'], (int) $args['version']);
+        if ($archived === null) {
+            return $json($response, ['error' => 'Version introuvable'], 404);
+        }
+
+        return $json($response, $archived);
+    }))->add($atelier);
+
+    // POST /api/twin9/admin/protocole/{name}/restore {version} — restaure une
+    // version archivée comme gabarit VIVANT (D13, ADR-010 §6). Jamais
+    // destructif : le contenu courant est archivé d'abord (put()), l'histoire
+    // reste complète. Restaurer un contenu identique au vivant = no-op.
+    $app->post('/twin9/admin/protocole/{name:.+}/restore', $wrap(function (Request $request, Response $response, array $args) use ($json, $parseBody): Response {
+        $body = $parseBody($request);
+        $version = \is_array($body) && \is_int($body['version'] ?? null) ? $body['version'] : 0;
+        if ($version < 1) {
+            return $json($response, ['error' => 'Champ requis : version (entier >= 1)'], 422);
+        }
+
+        $result = (new ProtocoleRepository(Db::get()))->restore(
+            (string) $args['name'],
+            $version,
+            (int) $request->getAttribute('userId'),
+        );
+
+        return $json($response, $result);
+    }))->add($atelier);
+
     // GET /api/twin9/admin/protocole/{name} — WITH content. This route is THE
     // point where an admin-promptologue (and no one else) reads a template.
     $app->get('/twin9/admin/protocole/{name:.+}', $wrap(function (Request $request, Response $response, array $args) use ($json): Response {
