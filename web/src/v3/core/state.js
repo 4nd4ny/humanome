@@ -24,11 +24,28 @@ const AUDIENCE_PANELS = {
   employer: new Set(['tree', 'sun', 'heatmap', 'timeline', 'legend', 'stats', 'portfolio']),
 }
 
-/** Panneaux par mode de présentation (§14.1-2). */
+/**
+ * Panneaux par mode de présentation (§14.1-2, étendu le 2026-07-17 : vues
+ * préconfigurées par persona — un mode reste un NIVEAU DE PRÉSENTATION,
+ * jamais un niveau d'autorisation §4, l'audience borne toujours).
+ *
+ * - employeur   : lire les forces et leurs preuves — soleil, indicateurs,
+ *                 preuves, préparation du partage (se mettre dans les yeux
+ *                 du destinataire) ;
+ * - apprenant   : explorer, comprendre, annoter, se comparer à soi-même ;
+ * - cartographe : relire et garantir — arbre complet, provenance, file de
+ *                 revue, audit d'import et arbitrage des variantes ;
+ * - expert      : tout, y compris l'éditeur JSON.
+ */
 const MODE_PANELS = {
   simplified: new Set(['tree', 'sun', 'heatmap', 'timeline', 'legend', 'stats', 'comparison', 'portfolio']),
+  employeur: new Set(['sun', 'stats', 'legend', 'portfolio', 'heatmap', 'timeline', 'shareInspector']),
+  apprenant: new Set(['tree', 'sun', 'heatmap', 'timeline', 'legend', 'stats', 'comparison', 'portfolio', 'shareInspector']),
+  cartographe: new Set(['tree', 'sun', 'heatmap', 'timeline', 'legend', 'stats', 'comparison', 'portfolio', 'importAudit']),
   expert: new Set(ALL_PANELS),
 }
+
+export const INTERFACE_MODES = ['simplified', 'employeur', 'apprenant', 'cartographe', 'expert']
 
 /**
  * Capacités du FORMAT visualisé : la précision temporelle restreint heatmap et
@@ -63,9 +80,21 @@ export function renderedPanels(visiblePanels, available) {
 
 /** Préréglages initiaux de visibilité par mode (§14.4 : premier accès). */
 export function defaultVisiblePanels(interfaceMode) {
-  return interfaceMode === 'expert'
-    ? new Set(ALL_PANELS)
-    : new Set(['sun', 'heatmap', 'timeline', 'legend', 'stats'])
+  switch (interfaceMode) {
+    case 'expert':
+      return new Set(ALL_PANELS)
+    case 'employeur':
+      // Lire les forces choisies et leurs preuves, préparer le partage.
+      return new Set(['sun', 'stats', 'legend', 'portfolio', 'shareInspector'])
+    case 'apprenant':
+      // Explorer, comprendre, se comparer à soi-même, annoter les preuves.
+      return new Set(['sun', 'heatmap', 'timeline', 'comparison', 'portfolio', 'stats', 'legend'])
+    case 'cartographe':
+      // Relire et garantir : provenance, file de revue, audit, arbitrage.
+      return new Set(['tree', 'portfolio', 'importAudit', 'sun', 'heatmap', 'stats'])
+    default:
+      return new Set(['sun', 'heatmap', 'timeline', 'legend', 'stats'])
+  }
 }
 
 /** État fonctionnel initial (spec §12). */
@@ -84,7 +113,7 @@ export function initialState({ audience = 'learner', interfaceMode = 'simplified
     sunViewportNodeId: null, // cadrage radial sans effet sur le filtre
     interfaceMode,
     visiblePanels: defaultVisiblePanels(interfaceMode),
-    panelOverridesByMode: { simplified: null, expert: null },
+    panelOverridesByMode: Object.fromEntries(INTERFACE_MODES.map((m) => [m, null])),
     printSections: null, // choisies à l'impression, distinctes de visiblePanels
     surfaceTheme: 'system',
     colorVisionSupport: 'standard',

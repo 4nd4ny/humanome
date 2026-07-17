@@ -78,6 +78,32 @@ describe('V3View', () => {
     expect(bar.textContent).toContain('Filtre : comp-') // état conservé
   })
 
+  it('vues préconfigurées : cinq modes, panneaux et grille adaptés au persona', async () => {
+    localStorage.clear()
+    render(<V3View deps={deps()} />)
+    await screen.findByRole('toolbar', { name: 'Barre de contexte' })
+    const mode = screen.getByLabelText(/Mode/)
+    expect([...mode.options].map((o) => o.textContent)).toEqual([
+      'Simplifié', 'Employeur', 'Apprenant', 'Cartographe', 'Expert',
+    ])
+
+    // Cartographe : grille de tuiles avec arbre + audit d'import, sans éditeur JSON.
+    fireEvent.change(mode, { target: { value: 'cartographe' } })
+    await screen.findByRole('navigation', { name: 'Référentiel de compétences' })
+    expect(document.querySelector('.v3-tile-grid')).not.toBeNull()
+    expect(screen.getByLabelText('Rapport d’import')).toBeTruthy()
+    expect(screen.queryByLabelText('Éditeur JSON expert')).toBeNull()
+
+    // Employeur : soleil + partage, PAS d'audit d'import (hors de sa vue).
+    fireEvent.change(mode, { target: { value: 'employeur' } })
+    expect(await screen.findByText('Préparer un partage')).toBeTruthy()
+    expect(screen.queryByLabelText('Rapport d’import')).toBeNull()
+    expect(screen.queryByRole('navigation', { name: 'Référentiel de compétences' })).toBeNull()
+
+    // Le mode choisi est mémorisé (préférence de présentation).
+    expect(JSON.parse(localStorage.getItem('humanome-v3-presentation')).interfaceMode).toBe('employeur')
+  })
+
   it('les titres « Référentiel » et « Journées » réinitialisent leur sélection', async () => {
     // localStorage peut porter le mode expert d'un test précédent : on force
     // un état propre puis on passe en expert (arbre + heatmap visibles).

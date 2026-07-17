@@ -18,7 +18,7 @@ import { newShareProject, setLinkShared } from '../core/share.js'
 import { openShareSnapshot } from '../core/reimport.js'
 import { inventoryZip } from '../core/zip.js'
 import {
-  initialState, availablePanels, renderedPanels, switchMode, selectScope, clearScope,
+  initialState, availablePanels, renderedPanels, switchMode, selectScope, clearScope, INTERFACE_MODES,
   inspectDay, setPlayhead, play, pause, effectiveExpandedTreeNodeIds, ALL_PANELS,
 } from '../core/state.js'
 import { TreePanel, SunPanel, HeatmapPanel, TimelineBar, PortfolioPanel, LegendPanel, StatsPanel } from './panels.jsx'
@@ -33,8 +33,64 @@ const PANEL_LABELS = {
   importAudit: 'Audit d’import', jsonEditor: 'Éditeur JSON', shareInspector: 'Partage',
 }
 
-const TILES_STORAGE_KEY = 'humanome-v3-tiles-expert'
 const PRESENTATION_STORAGE_KEY = 'humanome-v3-presentation'
+const tilesStorageKey = (mode) => `humanome-v3-tiles-${mode}`
+
+/** Libellés des vues préconfigurées (demande utilisateur 2026-07-17). */
+const MODE_LABELS = {
+  simplified: 'Simplifié',
+  employeur: 'Employeur',
+  apprenant: 'Apprenant',
+  cartographe: 'Cartographe',
+  expert: 'Expert',
+}
+
+/**
+ * Dispositions de tuiles par vue préconfigurée : ordre + tailles adaptés aux
+ * objectifs du persona (l'utilisateur peut ensuite tout réorganiser, la
+ * disposition est mémorisée PAR VUE).
+ */
+const DEFAULT_TILE_LAYOUTS = {
+  // Lire les forces et leurs preuves, préparer un partage : le soleil et les
+  // preuves dominent, le constructeur de partage à portée de main.
+  employeur: {
+    order: ['sun', 'stats', 'legend', 'portfolio', 'shareInspector', 'heatmap', 'timeline'],
+    sizes: {
+      sun: { w: 2, h: 2 }, stats: { w: 1, h: 1 }, legend: { w: 1, h: 1 },
+      portfolio: { w: 2, h: 2 }, shareInspector: { w: 1, h: 2 },
+      heatmap: { w: 2, h: 1 }, timeline: { w: 99, h: 1 },
+    },
+  },
+  // Explorer et se comparer à soi-même : soleil + heatmap + lecture temporelle,
+  // portfolio large pour lire les preuves et exercer le droit de réponse.
+  apprenant: {
+    order: ['sun', 'stats', 'legend', 'heatmap', 'comparison', 'timeline', 'portfolio', 'tree', 'shareInspector'],
+    sizes: {
+      sun: { w: 2, h: 2 }, stats: { w: 1, h: 1 }, legend: { w: 1, h: 1 },
+      heatmap: { w: 2, h: 1 }, comparison: { w: 1, h: 1 }, timeline: { w: 99, h: 1 },
+      portfolio: { w: 99, h: 2 }, tree: { w: 1, h: 3 }, shareInspector: { w: 2, h: 2 },
+    },
+  },
+  // Relire et garantir : arbre et portfolio côte à côte (provenance + revue),
+  // audit d'import et arbitrage bien visibles.
+  cartographe: {
+    order: ['tree', 'portfolio', 'importAudit', 'sun', 'heatmap', 'stats', 'comparison', 'timeline', 'legend'],
+    sizes: {
+      tree: { w: 1, h: 3 }, portfolio: { w: 2, h: 3 }, importAudit: { w: 1, h: 2 },
+      sun: { w: 2, h: 2 }, heatmap: { w: 2, h: 1 }, stats: { w: 1, h: 1 },
+      comparison: { w: 2, h: 1 }, timeline: { w: 99, h: 1 }, legend: { w: 1, h: 1 },
+    },
+  },
+  expert: {
+    order: [],
+    sizes: {
+      tree: { w: 1, h: 3 }, sun: { w: 2, h: 2 }, heatmap: { w: 2, h: 1 },
+      timeline: { w: 99, h: 1 }, comparison: { w: 2, h: 1 }, stats: { w: 1, h: 1 },
+      legend: { w: 1, h: 1 }, portfolio: { w: 2, h: 2 }, importAudit: { w: 1, h: 2 },
+      jsonEditor: { w: 2, h: 2 }, shareInspector: { w: 2, h: 2 },
+    },
+  },
+}
 
 /** Restaure les préférences de présentation (§14.4) — mode et panneaux par mode. */
 function initialUiState() {
@@ -46,31 +102,15 @@ function initialUiState() {
   }
   const state = initialState({
     audience: 'learner',
-    interfaceMode: saved?.interfaceMode === 'expert' ? 'expert' : 'simplified',
+    interfaceMode: INTERFACE_MODES.includes(saved?.interfaceMode) ? saved.interfaceMode : 'simplified',
   })
   if (Array.isArray(saved?.visiblePanels)) state.visiblePanels = new Set(saved.visiblePanels)
   if (saved?.overrides) {
-    state.panelOverridesByMode = {
-      simplified: Array.isArray(saved.overrides.simplified) ? new Set(saved.overrides.simplified) : null,
-      expert: Array.isArray(saved.overrides.expert) ? new Set(saved.overrides.expert) : null,
-    }
+    state.panelOverridesByMode = Object.fromEntries(
+      INTERFACE_MODES.map((m) => [m, Array.isArray(saved.overrides[m]) ? new Set(saved.overrides[m]) : null]),
+    )
   }
   return state
-}
-
-/** Tailles par défaut des tuiles du mode expert (l × h sur la grille). */
-const DEFAULT_TILE_SIZES = {
-  tree: { w: 1, h: 3 },
-  sun: { w: 2, h: 2 },
-  heatmap: { w: 2, h: 1 },
-  timeline: { w: 99, h: 1 }, // pleine largeur
-  comparison: { w: 2, h: 1 },
-  stats: { w: 1, h: 1 },
-  legend: { w: 1, h: 1 },
-  portfolio: { w: 2, h: 2 },
-  importAudit: { w: 1, h: 2 },
-  jsonEditor: { w: 2, h: 2 },
-  shareInspector: { w: 2, h: 2 },
 }
 
 /** Charge le corpus de démonstration (59 journées réelles du site). */
@@ -100,23 +140,30 @@ export default function V3View({ deps = {} }) {
   const [status, setStatus] = useState('Chargement du référentiel…')
   const fileRef = useRef(null)
 
-  // Disposition des tuiles du mode expert : préférence de présentation (§14.4),
-  // persistée à part des données d'évaluation.
-  const [tileLayout, setTileLayout] = useState(() => {
+  // Dispositions de tuiles PAR VUE : préférence de présentation (§14.4),
+  // persistée à part des données d'évaluation. Premier accès à une vue =
+  // préréglage du persona ; ensuite, sa dernière disposition.
+  const [tileLayouts, setTileLayouts] = useState({})
+  const tileLayout = useMemo(() => {
+    const mode = ui.interfaceMode
+    if (tileLayouts[mode]) return tileLayouts[mode]
     try {
-      return JSON.parse(localStorage.getItem(TILES_STORAGE_KEY)) ?? { order: [], sizes: {} }
+      const saved = JSON.parse(localStorage.getItem(tilesStorageKey(mode)))
+      if (saved) return saved
     } catch {
-      return { order: [], sizes: {} }
+      /* stockage indisponible */
     }
-  })
+    return DEFAULT_TILE_LAYOUTS[mode] ?? { order: [], sizes: {} }
+  }, [tileLayouts, ui.interfaceMode])
   const saveTileLayout = useCallback((layout) => {
-    setTileLayout(layout)
+    const mode = ui.interfaceMode
+    setTileLayouts((prev) => ({ ...prev, [mode]: layout }))
     try {
-      localStorage.setItem(TILES_STORAGE_KEY, JSON.stringify(layout))
+      localStorage.setItem(tilesStorageKey(mode), JSON.stringify(layout))
     } catch {
       /* stockage indisponible : la disposition reste en mémoire */
     }
-  }, [])
+  }, [ui.interfaceMode])
 
   // Mémorise mode + panneaux par mode (préférence de présentation §14.4) :
   // revenir sur la vue restaure expert/simplifié tel quel. renderedPanels
@@ -346,8 +393,9 @@ export default function V3View({ deps = {} }) {
         <label>
           Mode{' '}
           <select value={ui.interfaceMode} onChange={(e) => setUi((s) => switchMode(s, e.target.value))}>
-            <option value="simplified">Simplifié</option>
-            <option value="expert">Expert</option>
+            {INTERFACE_MODES.map((m) => (
+              <option key={m} value={m}>{MODE_LABELS[m]}</option>
+            ))}
           </select>
         </label>
         <label>
@@ -580,7 +628,10 @@ export default function V3View({ deps = {} }) {
  * téléphone, tablette, moniteur 4K/8K), disposition simple bornée en simplifié.
  */
 function V3Panels({ rendered, interfaceMode, tileLayout, onTileLayout, panels }) {
-  if (interfaceMode === 'expert') {
+  // Toutes les vues préconfigurées (employeur, apprenant, cartographe, expert)
+  // utilisent la grille de tuiles éditable ; seul « simplifié » garde la
+  // disposition fixe bornée.
+  if (interfaceMode !== 'simplified') {
     const tiles = Object.entries(panels)
       .filter(([, node]) => node !== null)
       .map(([id, node]) => ({ id, label: PANEL_LABELS[id] ?? id, node }))
@@ -589,7 +640,7 @@ function V3Panels({ rendered, interfaceMode, tileLayout, onTileLayout, panels })
         tiles={tiles}
         layout={tileLayout}
         onLayoutChange={onTileLayout}
-        defaultSizes={DEFAULT_TILE_SIZES}
+        defaultSizes={DEFAULT_TILE_LAYOUTS[interfaceMode]?.sizes ?? {}}
       />
     )
   }

@@ -9,6 +9,26 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D14sexies — Vues préconfigurées par persona + tutoriels de l'interface V3.**
+  - **Cinq vues** dans le sélecteur *Mode* : {Simplifié, Employeur, Apprenant, Cartographe, Expert}.
+    Chacune est un préréglage de panneaux ET de disposition de tuiles déduit du rôle dans
+    l'écosystème : *Employeur* (lire les forces et leurs preuves : soleil, indicateurs, légende,
+    portfolio, partage), *Apprenant* (explorer et se comparer à soi : soleil, heatmap, timeline,
+    comparaison, portfolio pleine largeur), *Cartographe* (relire et garantir : arbre + portfolio
+    côte à côte, audit d'import + arbitrage, soleil de contrôle — sans éditeur JSON), *Expert*
+    (tout). Un mode reste un NIVEAU DE PRÉSENTATION (§4) : l'audience borne toujours ; la
+    disposition de tuiles est mémorisée PAR VUE (`humanome-v3-tiles-<mode>`), le mode choisi est
+    restauré au retour.
+  - **Tutoriels dans les guides** (`#/guides`) : trois nouveaux chapitres structurés en BESOINS
+    LOGICIELS par persona — ce que chacun doit voir et pourquoi, panneau par panneau :
+    `apprenant/07` (explorer, « Pourquoi ce rayon ? », droit de réponse, comparaison ipsative,
+    partage), `employeur/06` (résumé des forces, preuves contextualisées, provenance/récence, ce
+    que la vue ne montre JAMAIS par conception, bon usage en entretien), `cartographe/07`
+    (provenance, anomalies à 4 gravités, arbitrage des variantes, file de revue, méthode de
+    relecture). `SUMMARY.md` (GitBook) régénéré : 86 entrées.
+  - Vérifié navigateur : les 5 vues rendent leurs panneaux respectifs, le mode est mémorisé, le
+    chapitre apprenant se charge dans `#/guides`. Suites : web **809** (+1).
+
 - 2026-07-17 — **D14quinquies — Titres-boutons de réinitialisation (arbre et heatmap).**
   Le soleil se réinitialisait déjà (clic hors du disque ou au centre) ; l'arbre et la heatmap n'avaient
   pas d'équivalent. Pour économiser l'espace (demande utilisateur), les titres `h3` **« Référentiel »**
