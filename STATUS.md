@@ -9,7 +9,20 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
-- 2026-07-18 — **Panneau de monitoring admin (`#/admin/monitoring`) — demande utilisateur. PAS ENCORE DÉPLOYÉ (attente feu vert).**
+- 2026-07-18 — **Panneau de monitoring admin ✅ DÉPLOYÉ EN PROD (autorisé par l'utilisateur, release `v1.1.0-20-g471d7cd`).**
+  - API + front déployés, aucune migration (`applied:[]`), gates référentiel/golden « unchanged ».
+    Smoke : health ok, `/api/admin/monitoring` et `?role=` → 401 sans session, front servi.
+  - **GeoIP pays ACTIF** : « IP to Country Lite » db-ip (édition 2026-07, 8 182 135 octets,
+    licence CC BY 4.0) déposée dans `~/app/shared/dbip-country-lite.mmdb` + `GEOIP_DB=dbip-country-lite.mmdb`
+    ajouté au `.env` prod par download→merge→upload COMPLET (1007→1039 octets, relu à l'identique ;
+    copie de sauvegarde `backup-manuel/app/shared/.env` mise à jour). `GEOIP_DB` relatif = résolu
+    contre le dossier du `.env` (`Bootstrap::envDir()` public, commit `471d7cd`). Validé en local
+    contre le vrai fichier (8.8.8.8→US, 90.15.0.1→FR, IPv6 OVH→FR). Décision utilisateur : pays
+    OUI, IP brute NON (RGPD) — le réseau tronqué /24 + les rate-limits suffisent à la défense.
+  - Le journal des connexions démarre maintenant : premières entrées à la prochaine connexion
+    (pays visible dès celle-ci). Rafraîchir la base db-ip de temps en temps (mensuelle).
+
+- 2026-07-18 — **Panneau de monitoring admin (`#/admin/monitoring`) — demande utilisateur. Détail du chantier :**
   - **Backend** : `GET /api/admin/monitoring?days=1..365` (`Admin\Monitoring`, RequireRole admin,
     lecture seule) — utilisateurs (total, actifs < 15 min via `sessions`, inscriptions/jour, par
     rôle), cartographies (volumes, partages actifs, consultations), finances (soldes `twin9_credits`,
@@ -37,11 +50,8 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
     (réseau /24, pays « — » sans MMDB), graphiques clair/sombre. NB : le volet de prévisualisation
     ne peint que le haut de page (bug du volet, contrôlé sur `#/referentiel` intact) — vérification
     par remontée des blocs.
-  - **Reste côté admin/déploiement** : (1) feu vert puis `stage-api.sh` + `deploy.mjs api` +
-    `deploy.mjs static` (aucune migration) ; (2) pour le PAYS des connexions : déposer une base
-    « IP to Country Lite » (db-ip.com, ~10 Mo, format MMDB) dans `~/app/shared/` et ajouter
-    `GEOIP_DB=...` au `.env` prod (download→merge→upload, JAMAIS d'append) — sans elle le panneau
-    fonctionne, pays « — ».
+  - ~~Reste côté admin/déploiement~~ → FAIT le 2026-07-18 (voir l'entrée au-dessus) : déployé
+    avec la base pays db-ip installée et active.
 
 - 2026-07-17 — **Tranche de panneau visible au bord + fermeture au clic de lien (demandes utilisateur).**
   - **Poignée visible** : sur pointeur à survol, le panneau fermé ne sort plus entièrement de
