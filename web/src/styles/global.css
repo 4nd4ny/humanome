@@ -515,25 +515,49 @@ body {
   pointer-events: auto;
 }
 
-/* Réglette du bord gauche : fine bande TOUJOURS visible (3px d'accent sur
-   12px de large — largeur à tenir en phase avec MENU_EDGE_ZONE_PX dans
-   App.jsx) qui rappelle le tiroir. PUREMENT décorative : pointer-events:none,
-   le déclenchement est géométrique (veille pointermove dans App.jsx), donc
-   insensible aux recouvrements et au cas « souris déjà sur le bord au
-   chargement ». `.is-hot` (posé par la veille) remplace :hover. Souris
-   uniquement : sans survol (tactile), elle n'existe pas — le bouton Menu
-   reste l'accès. Recouverte par le panneau (z-index) dès qu'il est ouvert. */
+/* Poignée du bord gauche (pointeurs à survol, écrans >= 768px) : le panneau
+   fermé ne sort PAS entièrement de l'écran — il laisse une TRANCHE de 10px
+   visible (fond carte + ombre), que l'approche du bord (veille géométrique
+   d'App.jsx, zone de 12px) fait glisser vers la droite jusqu'à visibilité
+   complète. La spécificité des règles d'ouverture ci-dessus (2 classes)
+   l'emporte sur ce repos. Sous 768px la `.view-toolbar` basse occupe le coin
+   gauche : pas de tranche (la veille, elle, reste active). Au tactile, pas
+   de survol : panneau hors écran, le bouton Menu fait l'accès. */
+@media (hover: hover) and (min-width: 768px) {
+  .app-nav-panel {
+    transform: translateX(calc(10px - 100%));
+  }
+}
+
+/* Miroir CSS de MENU_EDGE_BLOCKERS (App.jsx) : surface bloquante ouverte
+   (aide modale, éditeur de portfolio plein écran, toutes deux z-50 SOUS le
+   panneau z-65) -> la tranche au repos rentre complètement, elle ne doit pas
+   rester peinte par-dessus. Les :not() laissent l'état ouvert/épinglé
+   tranquille (comportement d'avant : le panneau OUVERT prime, pré-existant). */
+body:has([aria-modal='true'], .portfolio-editor-fullscreen)
+  .app-menu:not(.is-open):not(.is-pinned)
+  .app-nav-panel {
+  transform: translateX(-100%);
+}
+
+/* Réglette d'accent posée SUR la tranche : fine ligne (3px) qui signale la
+   poignée. PUREMENT décorative : pointer-events:none, le déclenchement est
+   géométrique (veille pointermove dans App.jsx), donc insensible aux
+   recouvrements et au cas « souris déjà sur le bord au chargement ».
+   `.is-hot` (posé par la veille) remplace :hover — elle s'illumine à
+   l'approche, puis s'efface quand le panneau est révélé (ouvert, épinglé ou
+   focus clavier). Sans survol (tactile), elle n'existe pas. */
 .app-menu-edge {
   display: none;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 768px) {
   .app-menu-edge {
     display: block;
     position: fixed;
     inset: 0 auto 0 0;
     width: 12px;
-    z-index: 64;
+    z-index: 66;
     pointer-events: none;
     background: linear-gradient(90deg, var(--accent) 3px, transparent 3px);
     opacity: 0.22;
@@ -542,6 +566,16 @@ body {
 
   .app-menu-edge.is-hot {
     opacity: 0.6;
+  }
+
+  /* La ligne s'efface quand le panneau est RÉVÉLÉ (ouvert, épinglé, focus
+     DANS le panneau — pas le focus du bouton Menu, d'où le :has) et sous une
+     surface bloquante (même miroir que la tranche ci-dessus). */
+  .app-menu.is-open .app-menu-edge,
+  .app-menu.is-pinned .app-menu-edge,
+  .app-menu:has(.app-nav-panel:focus-within) .app-menu-edge,
+  body:has([aria-modal='true'], .portfolio-editor-fullscreen) .app-menu-edge {
+    opacity: 0;
   }
 }
 

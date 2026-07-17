@@ -92,9 +92,10 @@ function LogoutIcon() {
 const MENU_HOVER_OPEN_MS = 150
 const MENU_HOVER_TRAVEL_MS = 1600
 const MENU_HOVER_CLOSE_MS = 350
-/* Zone de déclenchement du bord gauche (px) — tenir en phase avec la largeur
-   de `.app-menu-edge` dans global.css (la réglette n'est que l'affordance
-   visuelle ; le déclenchement est géométrique, cf. l'effet de veille). */
+/* Zone de déclenchement du bord gauche (px) — à garder >= à la tranche de
+   panneau laissée visible au repos (10px) et à la largeur de `.app-menu-edge`
+   dans global.css (l'affordance visuelle ; le déclenchement, lui, est
+   géométrique, cf. l'effet de veille). */
 const MENU_EDGE_ZONE_PX = 12
 /* Surfaces bloquantes : tant que l'une d'elles est ouverte, le bord gauche
    ne doit pas faire surgir le tiroir par-dessus (aide modale, éditeur de
@@ -205,6 +206,34 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   function handlePanelPointerEnter(event) {
     if (event.pointerType === 'touch') return
     window.clearTimeout(hoverTimersRef.current.close)
+  }
+
+  /**
+   * Clic POINTEUR sur un lien du panneau : le tiroir TRANSITOIRE se referme
+   * aussitôt. L'effet de changement de route ne suffit pas : un lien vers la
+   * rubrique courante (ou une autre section de la même rubrique) ne change
+   * pas `route.name`, et le tiroir restait devant la page chargée — flagrant
+   * sur petit écran, où il recouvre tout. Épinglé : la punaise prime.
+   *
+   * Trois gestes dans la fermeture pointeur :
+   * — `blur()` : Chrome focus le lien cliqué, et la révélation
+   *   `:focus-within` maintiendrait sinon le panneau visuellement ouvert
+   *   malgré `menuOpen` retombé ;
+   * — désarmement du bord : le clic peut avoir eu lieu dans la zone des
+   *   12px (le panneau la recouvre) — sans cela la veille rouvrirait le
+   *   tiroir au premier frémissement (réarmement à la première vraie sortie) ;
+   * — activation CLAVIER (detail === 0) : on ne touche à RIEN. Le panneau
+   *   reste révélé par le focus tant qu'on y tabule, et Échap fonctionne car
+   *   `menuOpen` reste vrai — fermer l'état ici tuerait Échap.
+   */
+  function handleNavClick(event) {
+    if (pinned) return
+    if (event.detail === 0) return
+    const link = event.target.closest('a')
+    if (!link) return
+    edgeDisarmedRef.current = true
+    setMenuOpen(false)
+    link.blur()
   }
 
   function handlePanelPointerLeave(event) {
@@ -369,7 +398,13 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     }
     const onPointerDown = (event) => {
       if (pinned) return
-      if (menuRef.current && !menuRef.current.contains(event.target)) setMenuOpen(false)
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        // Même logique que le clic de lien : l'appui a pu se faire dans la
+        // zone du bord — on désarme jusqu'à une vraie sortie pour que la
+        // veille ne rouvre pas ce qu'on vient de congédier.
+        edgeDisarmedRef.current = true
+        setMenuOpen(false)
+      }
     }
     document.addEventListener('keydown', onKey)
     document.addEventListener('pointerdown', onPointerDown)
@@ -622,7 +657,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
                   <PinIcon />
                 </button>
               </div>
-              <nav className="app-nav" aria-label="Navigation principale">
+              <nav className="app-nav" aria-label="Navigation principale" onClick={handleNavClick}>
                 {groups.map((family) => (
                   // role=group : un div nu n'expose pas son aria-label aux
                   // lecteurs d'écran (nommage interdit sur role générique).

@@ -312,6 +312,49 @@ describe('App — thème, épinglage persistant, clic extérieur (refonte ergono
     ).toBe('true')
   })
 
+  it('un clic sur un lien du panneau referme le tiroir transitoire (même sans changement de route), pas l’épinglé', () => {
+    window.location.hash = '#/'
+    renderApp()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Menu de navigation' }))
+    const menu = document.querySelector('.app-menu')
+    expect(menu.className).toContain('is-open')
+
+    // Lien vers la rubrique COURANTE : aucun hashchange, l'effet de route ne
+    // se déclenche pas — seul le clic peut refermer. C'était le trou : sur
+    // petit écran le tiroir restait devant la page chargée. Le clic POINTEUR
+    // (detail > 0) doit aussi retirer le focus du lien, sinon la révélation
+    // :focus-within maintient le panneau visuellement ouvert (Chrome focus
+    // les liens au clic).
+    const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
+    const homeLink = nav.getByRole('link', { name: 'Accueil' })
+    homeLink.focus()
+    fireEvent.click(homeLink, { detail: 1 })
+    expect(menu.className).not.toContain('is-open')
+    expect(document.activeElement).not.toBe(homeLink)
+
+    // Activation CLAVIER (detail === 0) : on ne touche à rien — le panneau
+    // reste révélé (focus conservé, état ouvert), et Échap le referme
+    // toujours (il resterait mort si l'état était fermé ici).
+    fireEvent.click(screen.getByRole('button', { name: 'Menu de navigation' }))
+    homeLink.focus()
+    fireEvent.click(homeLink, { detail: 0 })
+    expect(menu.className).toContain('is-open')
+    expect(document.activeElement).toBe(homeLink)
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(menu.className).not.toContain('is-open')
+
+    // Épinglé : naviguer depuis le panneau ne referme pas ET ne vole pas le
+    // focus (seul effet observable du garde `pinned` au clic pointeur).
+    fireEvent.click(screen.getByRole('button', { name: 'Menu de navigation' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Épingler le panneau ouvert' }))
+    const refLink = nav.getByRole('link', { name: 'Référentiel' })
+    refLink.focus()
+    fireEvent.click(refLink, { detail: 1 })
+    expect(menu.className).toContain('is-pinned')
+    expect(document.activeElement).toBe(refLink)
+  })
+
   it('menu fermé, les liens du panneau restent dans le DOM et focusables (a11y, jamais display:none)', () => {
     window.location.hash = '#/'
     renderApp()
@@ -525,6 +568,31 @@ describe('App — menu au survol (bouton + bord gauche géométrique)', () => {
     // doit PAS rouvrir ce qu'Échap vient de fermer.
     fireEvent.keyDown(document, { key: 'Escape' })
     expect(menu.className).not.toContain('is-open')
+    movePointer(8)
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+
+    // Une vraie sortie de zone réarme le bord.
+    movePointer(300)
+    movePointer(5)
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
+  })
+
+  it('la fermeture par clic de lien désarme le bord : pas de réouverture avant une vraie sortie de zone', () => {
+    const { menu } = renderWithFakeTimers()
+
+    movePointer(5)
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
+
+    // Le panneau ouvert recouvre la zone des 12px : un clic de lien s'y fait
+    // souvent. Fermeture…
+    const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
+    fireEvent.click(nav.getByRole('link', { name: 'Accueil' }), { detail: 1 })
+    expect(menu.className).not.toContain('is-open')
+
+    // …et le frémissement dans la zone ne rouvre PAS ce qu'on vient de fermer.
     movePointer(8)
     act(() => vi.advanceTimersByTime(1000))
     expect(menu.className).not.toContain('is-open')

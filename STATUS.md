@@ -9,6 +9,37 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **Tranche de panneau visible au bord + fermeture au clic de lien (demandes utilisateur).**
+  - **Poignée visible** : sur pointeur à survol, le panneau fermé ne sort plus entièrement de
+    l'écran — repos à `translateX(calc(10px - 100%))`, une TRANCHE de 10 px reste visible
+    (fond carte + ombre + ligne d'accent `.app-menu-edge` passée à z-index 66, effacée quand
+    le panneau est révélé). L'approche du bord (veille géométrique inchangée, zone 12 px) la
+    fait glisser vers la droite jusqu'à visibilité complète. Tactile : panneau hors écran
+    comme avant, bouton Menu seul accès. Impression : déjà masqué via `.app-header-actions`.
+  - **Clic sur un lien du panneau non épinglé = fermeture immédiate.** Deux verrous
+    tombaient mal : `route.name` inchangé (lien vers la rubrique courante ou une autre
+    section de la même rubrique) ne déclenchait pas l'effet de route, ET Chrome focus le
+    lien cliqué — la révélation `:focus-within` maintenait le panneau visuellement ouvert
+    devant la page chargée (le symptôme smartphone signalé). Délégation `onClick` sur la
+    nav : `setMenuOpen(false)` + `blur()` du lien pour les clics POINTEUR (`detail > 0`) ;
+    l'activation clavier (`detail === 0`) garde le focus (contrat d'accessibilité de la
+    révélation au focus). Épinglé : inchangé, la punaise prime.
+  - **Correctifs issus de la revue adversariale du diff** (5 confirmés) : la tranche au
+    repos ne reste plus peinte par-dessus les surfaces bloquantes (miroir CSS de
+    `MENU_EDGE_BLOCKERS` via `body:has(...)` → rentrée complète, ligne effacée ; vérifié
+    navigateur avec l'aide modale) ; tranche et ligne limitées à `min-width: 768px` (sous
+    ce seuil la `.view-toolbar` basse occupe le coin — la veille reste active) ; fermeture
+    par clic de lien ou clic extérieur DÉSARME le bord (le clic se fait souvent dans la
+    zone des 12 px : sans cela la veille rouvrait au premier frémissement) ; activation
+    clavier d'un lien = état intact (Échap restait mort sinon — `menuOpen` doit rester
+    vrai pour que son effet soit branché) ; la ligne ne s'efface qu'au focus DANS le
+    panneau (`:has(.app-nav-panel:focus-within)`), plus au focus du bouton Menu.
+  - Vérifié navigateur desktop (tranche au repos clair/sombre, glissement complet au
+    survol, clic « Accueil » sans hashchange → panneau refermé + focus rendu, page
+    visible ; modale → tranche rentrée puis revenue) et viewport mobile 375 px (tap
+    burger → tiroir, tap « Référentiel » → tiroir refermé, page visible).
+    Suites : web **887** (30 tests App).
+
 - 2026-07-17 — **D16 — Banc d'essai : score vs référence, multi-run croisé A/B, coût réel
   mesuré et persisté (retours utilisateur sur D15).**
   - **Score chiffré vs référence** (`scoreVsReference`) : précision/rappel/F1 par PUR calcul
