@@ -9,6 +9,31 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D12 (v1.2) — Résultat Twin9 dans le sunburst évolutif + stockage opt-in RGPD.**
+  Le résultat d'une analyse approfondie (carto_evolutive.json) n'était rendu que dans sa vue dédiée
+  (jauges + narratifs) ; il alimente désormais **le même sunburst évolutif** que toute cartographie,
+  et devient **conservable à long terme** sous le même contrat d'opt-in RGPD.
+  - **Adaptateur moteur** `engine/src/twin9/mapper.js` (`twin9ToMergeDocument`) : reconstruit un
+    document-jour par journée ATTESTÉE (attestation = présence établie avec ses scores du jour ;
+    signal de renvoi daté = renvoi au cartographe ; `jour_index → date` résolu sur TOUTES les
+    compétences — **jamais de date inventée**, un signal non datable est ignoré et documenté), puis
+    réutilise `mergeDays` + `buildMergeDocument` (aucune logique d'agrégation/quintiles/archétypes/
+    ipsatif dupliquée — même patron que l'adaptateur Twin6). Narratifs pris dans carto_evolutive
+    (histoires, rapports de pôle, kairos). Fichier NOUVEAU, hors périmètre de parité CPython.
+  - **Vue résultats** : section « Cartographie évolutive — sunburst » (MergeView + timeline) quand le
+    référentiel est là ; dégradation silencieuse sans journée datée. Bouton **« Enregistrer dans mes
+    cartographies »** : sauvegarde LOCALE du carto_evolutive NATIF (type `twin9`), masqué en démo ;
+    la **copie serveur reste un choix explicite daté** via le panneau existant (POST /api/cartographies
+    = la décision, `opt_in_at` horodaté). Migration `021` (ENUM + 'twin9'), route élargie,
+    visionneuse de l'espace re-dérive la vue merge du document natif stocké, panneau étiqueté.
+    `confidentialite.md` documente le stockage opt-in du RÉSULTAT (jamais le portfolio).
+  - **Tests** : mapper moteur (11, dont vecteur figé réel + règles fines et « strictement valide au
+    schéma » sur fixture 7 pôles), web (sunburst/save/démo-sans-save, visionneuse twin9, store),
+    PHP (opt-in twin9). Suites **toutes vertes : PHP 516, engine 938, web 750**.
+  - **Vérifié au navigateur** (démo Twin9 de bout en bout) : run mock → **sunburst réel** (15 secteurs,
+    couleurs des pôles, timeline évolutive « Feuille 2 / 2 — 05/03/2026 · score du jour 2 »), bouton
+    d'enregistrement correctement ABSENT en démo.
+
 - 2026-07-17 — **D10 (plan v1.1) — Garde-fou de publication + structure GitBook (parties
   autonomes).** Le dépôt est déjà public (`4nd4ny/humanome`, historique purgé au jalon précédent) ;
   cette session en industrialise la publiabilité et prépare GitBook. Les actions restantes sont
