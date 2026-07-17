@@ -8,11 +8,12 @@ import { apiFetch } from '../../api/client.js'
 
 // --- 1. Rôles ----------------------------------------------------------------
 
-/** GET api/admin/users?query=&page= -> {users, total, page, pageSize} */
-export async function listUsers({ query = '', page = 1 } = {}, fetchFn) {
+/** GET api/admin/users?query=&page=&role= -> {users, total, page, pageSize} */
+export async function listUsers({ query = '', page = 1, role = '' } = {}, fetchFn) {
   const params = new URLSearchParams()
   if (query) params.set('query', query)
   if (page && page > 1) params.set('page', String(page))
+  if (role) params.set('role', role)
   const suffix = params.toString() ? `?${params.toString()}` : ''
   const data = await apiFetch(`admin/users${suffix}`, { fetchFn })
   return {
@@ -107,6 +108,28 @@ export async function listPublishedPackages(fetchFn) {
 }
 
 /** Les 7 rôles du référentiel §2 attribuables (le visiteur = absence de session). */
+// --- Monitoring --------------------------------------------------------------
+
+/** GET api/admin/monitoring?days= -> agrégats du tableau de bord (lecture seule). */
+export function fetchMonitoring({ days = 30 } = {}, fetchFn) {
+  return apiFetch(`admin/monitoring?days=${encodeURIComponent(days)}`, { fetchFn })
+}
+
+/** Micro-USD signés -> libellé en dollars ("12,50 $"), fr-FR. */
+export function usd(microusd) {
+  const value = (Number(microusd) || 0) / 1_000_000
+  return `${value.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $`
+}
+
+/** Entier -> libellé fr-FR compact (12 345 ; 1,2 M au-delà du million). */
+export function nb(n) {
+  const value = Number(n) || 0
+  if (Math.abs(value) >= 1_000_000) {
+    return `${(value / 1_000_000).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} M`
+  }
+  return value.toLocaleString('fr-FR')
+}
+
 export const ASSIGNABLE_ROLES = [
   'apprenant',
   'cartographe',

@@ -114,6 +114,19 @@ final class ShareTest extends AuthTestBase
         self::assertSame('contenu-opt-in', $payload['document']['secret']);
         self::assertArrayHasKey('garantie', $payload);
         self::assertNull($payload['garantie'], 'garantie arrives with P9, field must exist and be null');
+
+        // Monitoring : la consultation réussie laisse une trace d'audit avec
+        // les ids seulement — pas de token, pas d'IP, pas de session (§6.5).
+        $audit = self::$pdo->query(
+            "SELECT user_id, details FROM audit_events WHERE type = 'share_consulted'"
+        )->fetchAll();
+        self::assertCount(1, $audit);
+        self::assertNull($audit[0]['user_id']);
+        $details = json_decode((string) $audit[0]['details'], true);
+        self::assertSame($this->cartoId, $details['cartographieId']);
+        self::assertSame($share['shareId'], $details['shareLinkId']);
+        self::assertStringNotContainsString($share['token'], (string) $audit[0]['details']);
+        self::assertStringNotContainsString('198.51.100', (string) $audit[0]['details']);
     }
 
     public function testWrongPasswordIs403(): void

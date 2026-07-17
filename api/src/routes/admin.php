@@ -12,7 +12,8 @@ declare(strict_types=1);
  * (routes/auth.php) on every mutating method.
  *
  * Sections (docs/administration.md):
- *   1. Roles      GET  /admin/users?query=&page=
+ *   0. Monitoring GET  /admin/monitoring?days=
+ *   1. Roles      GET  /admin/users?query=&page=&role=
  *                 POST /admin/users/{id}/roles {role}
  *                 DELETE /admin/users/{id}/roles/{role}   (anti-lockout)
  *   2. Golden     POST /admin/golden {document}           (private import)
@@ -31,6 +32,7 @@ declare(strict_types=1);
 use Humanome\Admin\AdminException;
 use Humanome\Admin\DemoConfigService;
 use Humanome\Admin\GoldenRepository;
+use Humanome\Admin\Monitoring;
 use Humanome\Admin\PlatformStatus;
 use Humanome\Admin\UserDirectory;
 use Humanome\Db;
@@ -87,13 +89,21 @@ return function (App $app): void {
     // 1. Roles
     // ==================================================================
 
-    // GET /api/admin/users?query=&page= — accounts with their roles.
+    // GET /api/admin/users?query=&page=&role= — accounts with their roles.
     $app->get('/admin/users', $wrap(function (Request $request, Response $response) use ($json): Response {
         $params = $request->getQueryParams();
         $query = \is_string($params['query'] ?? null) ? $params['query'] : '';
         $page = (int) ($params['page'] ?? 1);
+        $role = \is_string($params['role'] ?? null) ? $params['role'] : '';
 
-        return $json($response, (new UserDirectory(Db::get()))->list($query, $page));
+        return $json($response, (new UserDirectory(Db::get()))->list($query, $page, $role));
+    }))->add($admin);
+
+    // GET /api/admin/monitoring?days=30 — tableau de bord (lecture seule).
+    $app->get('/admin/monitoring', $wrap(function (Request $request, Response $response) use ($json): Response {
+        $days = (int) (($request->getQueryParams()['days'] ?? 30));
+
+        return $json($response, (new Monitoring(Db::get()))->overview($days));
     }))->add($admin);
 
     // POST /api/admin/users/{id}/roles {role} — grant a cahier §2 role.

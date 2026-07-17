@@ -7,6 +7,7 @@
 //
 // Sections :
 //   null       -> accueil (liens vers les sections + rappel du rôle)
+//   monitoring -> tableau de bord : activité, finances, connexions, votes
 //   roles      -> comptes et rôles : attribuer / retirer (anti-verrouillage)
 //   golden     -> Golden Prompt : import privé, liste, autorisation promptologue
 //   reglages   -> réglages plateforme : paquet par défaut, plafonds démo, worker
@@ -19,8 +20,10 @@ import GoldenSection from './admin/GoldenSection.jsx'
 import ReglagesSection from './admin/ReglagesSection.jsx'
 import ConfigSection from './admin/ConfigSection.jsx'
 import Twin9Section from './admin/Twin9Section.jsx'
+import MonitoringSection from './admin/MonitoringSection.jsx'
 
 const SECTIONS = [
+  { id: 'monitoring', label: 'Monitoring', hint: 'Activité, finances, connexions, votes' },
   { id: 'roles', label: 'Rôles', hint: 'Comptes et attribution des rôles' },
   { id: 'golden', label: 'Golden Prompt', hint: 'Import privé et autorisations' },
   { id: 'reglages', label: 'Réglages', hint: 'Démo publique, paquet par défaut, worker' },
@@ -118,6 +121,8 @@ export default function AdminView({ section, deps = {} }) {
     )
   } else if (section === null) {
     body = <AdminHome />
+  } else if (section === 'monitoring') {
+    body = <MonitoringSection fetchFn={deps.fetchFn} />
   } else if (section === 'roles') {
     body = <RolesSection currentUserId={currentUserId} fetchFn={deps.fetchFn} />
   } else if (section === 'golden') {

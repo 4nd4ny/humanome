@@ -171,6 +171,7 @@ const BASE = {
       'La gestion de la plateforme : rôles des comptes, Golden Prompt, réglages de la démo publique ' +
       'et configuration serveur.',
     points: [
+      '« Monitoring » : activité, finances, tokens consommés, connexions (pays, réseau tronqué — jamais d’IP) et état des votes.',
       '« Rôles » : attribuez cartographe, promptologue, épistémiarque, établissement ou admin à un compte.',
       '« Réglages » : activez/désactivez la démo, choisissez le modèle, réglez tokens et budget — effet immédiat.',
       '« Golden Prompt » : import privé, autorisation d’accès au cas par cas.',

@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 
 use Humanome\Auth\Audit;
+use Humanome\Auth\LoginJournal;
 use Humanome\Auth\RateLimiter;
 use Humanome\Auth\Session;
 use Humanome\Auth\Users;
@@ -231,6 +232,7 @@ return function (App $app): void {
         // Code valide : active + ouvre la session (premier login qui confirme).
         Users::markVerified($pdo, (int) $user['id']);
         $csrfToken = Session::openForUser((int) $user['id']);
+        LoginJournal::success($pdo, (int) $user['id'], $clientIp($request));
         $fresh = Users::findById($pdo, (int) $user['id']);
 
         return $json($response, [
@@ -312,6 +314,7 @@ return function (App $app): void {
         $hash = $user === null ? Users::dummyHash() : (string) $user['password_hash'];
         if (!password_verify($password, $hash) || $user === null) {
             $limiter->hit($bucket);
+            LoginJournal::failure($pdo, $user === null ? null : (int) $user['id'], $clientIp($request));
 
             return $json($response, ['error' => 'Identifiants invalides'], 401);
         }
@@ -329,6 +332,7 @@ return function (App $app): void {
 
         $limiter->reset($bucket);
         $csrfToken = Session::openForUser((int) $user['id']);
+        LoginJournal::success($pdo, (int) $user['id'], $clientIp($request));
 
         return $json($response, [
             'user' => $userPayload($pdo, $user),

@@ -107,7 +107,7 @@ final class ShareLinks
     public function findByToken(string $token): ?array
     {
         $stmt = $this->pdo->prepare(
-            'SELECT s.id, s.password_hash, s.expires_at, s.revoked_at,
+            'SELECT s.id, s.cartographie_id, s.password_hash, s.expires_at, s.revoked_at,
                     (s.expires_at IS NOT NULL AND s.expires_at <= NOW()) AS expired,
                     c.titre, c.type, c.document
                FROM share_links s

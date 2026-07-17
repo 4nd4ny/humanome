@@ -29,11 +29,12 @@ final class UserDirectory
 
     /**
      * Paginated account list with roles, optional case-insensitive search on
-     * email or display name. Deleted accounts (deleted_at) are excluded.
+     * email or display name, optional filter on a carried role (monitoring :
+     * « tous les comptes ayant tel rôle »). Deleted accounts are excluded.
      *
      * @return array{users: list<array{id: int, email: string, displayName: string, createdAt: string, roles: list<string>}>, total: int, page: int, pageSize: int}
      */
-    public function list(string $query = '', int $page = 1): array
+    public function list(string $query = '', int $page = 1, string $role = ''): array
     {
         $page = max(1, $page);
         $offset = ($page - 1) * self::PAGE_SIZE;
@@ -46,6 +47,14 @@ final class UserDirectory
             $like = '%' . self::escapeLike($query) . '%';
             $params[] = $like;
             $params[] = $like;
+        }
+        $role = trim($role);
+        if ($role !== '') {
+            // Rôle inconnu -> liste vide (le filtre vient d'un menu fermé).
+            $where .= ' AND EXISTS (SELECT 1 FROM user_roles ur
+                                     JOIN roles r ON r.id = ur.role_id
+                                    WHERE ur.user_id = u.id AND r.name = ?)';
+            $params[] = $role;
         }
 
         $countStmt = $this->pdo->prepare("SELECT COUNT(*) FROM users u WHERE {$where}");

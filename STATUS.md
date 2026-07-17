@@ -9,6 +9,40 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-18 — **Panneau de monitoring admin (`#/admin/monitoring`) — demande utilisateur. PAS ENCORE DÉPLOYÉ (attente feu vert).**
+  - **Backend** : `GET /api/admin/monitoring?days=1..365` (`Admin\Monitoring`, RequireRole admin,
+    lecture seule) — utilisateurs (total, actifs < 15 min via `sessions`, inscriptions/jour, par
+    rôle), cartographies (volumes, partages actifs, consultations), finances (soldes `twin9_credits`,
+    mouvements par nature/jour, captures PayPal), tokens/jour et par modèle (`llm_usage_daily` +
+    `tuteur_usage_daily` + débits `twin9_credit_events` — série anti-anomalies), connexions, votes
+    (propositions `review` des DEUX grains, décompte `MajorityTally`, retardataires à relancer).
+    Filtre `role=` ajouté à `GET /admin/users` (UserDirectory).
+  - **Journal des connexions (nouveau, prospectif)** : `Auth\LoginJournal` → `audit_events` type
+    `login`/`login_failed` sur login, activation et échec. **RGPD §6.5 préservé** : détails =
+    `{pays, reseau}` seulement — pays résolu LOCALEMENT (`Geo\CountryResolver`, MMDB via env
+    `GEOIP_DB`, dépendance `maxmind-db/reader` ajoutée ; fichier absent → null, AUCUN service
+    tiers) et réseau tronqué (`Geo\IpAnonymizer` : v4 /24, v6 /48) — jamais d'IP brute. Purge
+    opportuniste > 365 j. Consultations de partage : événement `share_consulted` (ids seulement)
+    dans `POST /share/{token}` (+ `cartographie_id` exposé par `ShareLinks::findByToken`).
+  - **Front** : section « Monitoring » première de `#/admin` — tuiles de synthèse, période
+    7/30/90/365 j, graphiques SVG maison (barres empilées connexions/tokens, barres divergentes
+    finances ; palette `--mon-*` validée clair ET sombre par le validateur dataviz — sarcelle
+    `#0f766e` recalée pour chroma insuffisant → `#0d9488` ; légende, infobulles `<title>`, table
+    de secours « Voir les données »), tables (par pays, dernières connexions, par modèle,
+    mouvements), bloc votes (verdict entérinable/en attente/rejetée + « écrire aux retardataires »
+    mailto bcc), comptes par rôle. Aide `#/admin` mise à jour.
+  - **Tests** : PHP **529** (AdminMonitoringTest 6, GeoIpAnonymizerTest 4, audit `share_consulted`
+    dans ShareTest), web **894** (MonitoringSection 7), build OK. Vérifié navigateur bout-en-bout
+    (docker + dev server, admin réel) : tuiles vivantes, MA connexion journalisée en direct
+    (réseau /24, pays « — » sans MMDB), graphiques clair/sombre. NB : le volet de prévisualisation
+    ne peint que le haut de page (bug du volet, contrôlé sur `#/referentiel` intact) — vérification
+    par remontée des blocs.
+  - **Reste côté admin/déploiement** : (1) feu vert puis `stage-api.sh` + `deploy.mjs api` +
+    `deploy.mjs static` (aucune migration) ; (2) pour le PAYS des connexions : déposer une base
+    « IP to Country Lite » (db-ip.com, ~10 Mo, format MMDB) dans `~/app/shared/` et ajouter
+    `GEOIP_DB=...` au `.env` prod (download→merge→upload, JAMAIS d'append) — sans elle le panneau
+    fonctionne, pays « — ».
+
 - 2026-07-17 — **Tranche de panneau visible au bord + fermeture au clic de lien (demandes utilisateur).**
   - **Poignée visible** : sur pointeur à survol, le panneau fermé ne sort plus entièrement de
     l'écran — repos à `translateX(calc(10px - 100%))`, une TRANCHE de 10 px reste visible

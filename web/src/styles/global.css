@@ -111,6 +111,17 @@
   --fam-evoluer: #be185d;
   --fam-administrer: #475569;
   --fam-compte: #15803d;
+
+  /* Séries des graphiques du monitoring admin — palette catégorielle validée
+     (bande de luminance, plancher de chroma, séparation CVD, contraste 3:1
+     sur --card) par scripts/validate_palette (skill dataviz). --mon-bad et
+     --mon-good sont des couleurs d'ÉTAT (échec / argent entrant), pas des
+     séries supplémentaires. */
+  --mon-s1: #2563eb;
+  --mon-s2: #0d9488;
+  --mon-s3: #7c3aed;
+  --mon-bad: #b91c1c;
+  --mon-good: #15803d;
 }
 
 /* ================= THÈME : tokens sombre =================
@@ -167,6 +178,13 @@
     --fam-evoluer: #f472b6;
     --fam-administrer: #94a3b8;
     --fam-compte: #4ade80;
+    /* Séries monitoring : marches PROPRES au sombre (validées sur --card
+       #141d31), pas un simple recyclage du clair. */
+    --mon-s1: #3b82f6;
+    --mon-s2: #0d9488;
+    --mon-s3: #8b5cf6;
+    --mon-bad: #ef4444;
+    --mon-good: #16a34a;
   }
 }
 
@@ -218,6 +236,11 @@
   --fam-evoluer: #f472b6;
   --fam-administrer: #94a3b8;
   --fam-compte: #4ade80;
+  --mon-s1: #3b82f6;
+  --mon-s2: #0d9488;
+  --mon-s3: #8b5cf6;
+  --mon-bad: #ef4444;
+  --mon-good: #16a34a;
 }
 
 /* Focus clavier visible partout (liens, boutons, résumés dépliables). */
@@ -3852,6 +3875,247 @@ body:has([aria-modal='true'], .portfolio-editor-fullscreen)
   color: var(--ink-soft);
   font-weight: 500;
   width: 55%;
+}
+
+/* --- Monitoring (tableau de bord admin) --- */
+
+.mon-periods {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.mon-periods button {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.mon-periods button[aria-pressed='true'] {
+  background: var(--accent-solid);
+  border-color: var(--accent-solid);
+  color: #ffffff;
+}
+
+.mon-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.mon-tile {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.mon-tile-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.mon-tile-label {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.mon-tile-hint {
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+}
+
+.mon-block {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.25rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.mon-block h3 {
+  margin: 0 0 0.75rem;
+}
+
+.mon-block h4 {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.mon-chart {
+  margin: 0 0 0.75rem;
+}
+
+.mon-chart figcaption {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.mon-chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mon-grid {
+  stroke: var(--line);
+  stroke-width: 0.5;
+}
+
+.mon-axis {
+  stroke: var(--ink-faint);
+  stroke-width: 1;
+}
+
+.mon-tick {
+  fill: var(--ink-faint);
+  font-size: 10px;
+}
+
+.mon-empty {
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.mon-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  padding: 0;
+  margin: 0.4rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.mon-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mon-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.mon-data summary {
+  cursor: pointer;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+.mon-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.mon-compact th,
+.mon-compact td {
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+}
+
+.mon-note {
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+  margin: 0.75rem 0 0;
+}
+
+.mon-props {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mon-prop {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.mon-prop-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.mon-prop-semver {
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+}
+
+.mon-outcome {
+  font-size: 0.8rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid;
+}
+
+.mon-outcome-ok {
+  color: var(--ok);
+  background: var(--ok-bg);
+  border-color: var(--ok-border);
+}
+
+.mon-outcome-bad {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border-color: var(--danger-border);
+}
+
+.mon-outcome-wait {
+  color: var(--warn);
+  background: var(--warn-bg);
+  border-color: var(--warn-border);
+}
+
+.mon-prop-counts {
+  margin: 0.4rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.mon-prop-late {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+}
+
+.mon-role-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.mon-role-picker select {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
 }
 
 /* --- Démo publique éditable (chantier A) --- */

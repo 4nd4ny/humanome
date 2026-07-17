@@ -194,6 +194,13 @@ return function (App $app): void {
             return $json($response, ['error' => 'Mot de passe incorrect'], 403);
         }
 
+        // Monitoring (§6.5 : compteurs, jamais de contenu ni d'IP) : trace la
+        // consultation réussie — l'employeur consultant n'a pas de session.
+        Audit::record($pdo, null, 'share_consulted', [
+            'cartographieId' => (int) $row['cartographie_id'],
+            'shareLinkId' => (int) $row['id'],
+        ]);
+
         // P9: standing garantie of the shared cartography. When it freezes a
         // revision, serve THAT document — never a later modification (§8).
         $garanti = (new Garanties($pdo))->forShareLink((int) $row['id']);
