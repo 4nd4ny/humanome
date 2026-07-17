@@ -1,0 +1,243 @@
+/* Interface V3 — thèmes composables (spec §15) : surface système/clair/sombre,
+   distinctions renforcées (daltonisme), impression. Les couleurs sémantiques
+   des familles gardent symbole et motif dans tous les thèmes. WCAG 2.2 AA :
+   contrastes texte ≥ 4,5:1, composants ≥ 3:1, focus visible partout. */
+
+.v3-root {
+  --v3-bg: #ffffff;
+  --v3-surface: #f4f5f7;
+  --v3-surface-2: #e8eaee;
+  --v3-text: #1a2233;
+  --v3-muted: #4a5568;
+  --v3-border: #c3c9d4;
+  --v3-accent: #2563eb;
+  --v3-focus: #b45309;
+  color: var(--v3-text);
+  background: var(--v3-bg);
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+/* Thème sombre : surfaces hiérarchisées, pas de noir pur (§15.2). */
+.v3-root[data-surface='dark'] {
+  --v3-bg: #151a24;
+  --v3-surface: #1d2432;
+  --v3-surface-2: #273044;
+  --v3-text: #e8ecf4;
+  --v3-muted: #a8b3c7;
+  --v3-border: #3d485e;
+  --v3-accent: #7ea8ff;
+  --v3-focus: #fbbf24;
+}
+@media (prefers-color-scheme: dark) {
+  .v3-root[data-surface='system'] {
+    --v3-bg: #151a24;
+    --v3-surface: #1d2432;
+    --v3-surface-2: #273044;
+    --v3-text: #e8ecf4;
+    --v3-muted: #a8b3c7;
+    --v3-border: #3d485e;
+    --v3-accent: #7ea8ff;
+    --v3-focus: #fbbf24;
+  }
+}
+
+.v3-root :is(button, select, input, textarea, summary):focus-visible {
+  outline: 3px solid var(--v3-focus);
+  outline-offset: 2px;
+}
+.v3-root path:focus-visible,
+.v3-root .v3-cell:focus-visible {
+  outline: 3px solid var(--v3-focus);
+  outline-offset: 1px;
+}
+
+/* --- Barre de contexte (toujours visible §14.3) --- */
+.v3-context-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--v3-surface);
+  border: 1px solid var(--v3-border);
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.v3-badge {
+  background: var(--v3-focus);
+  color: #1a1206;
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-weight: 600;
+}
+.v3-panels-menu { position: relative; }
+.v3-panels-menu ul {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0.5rem 0.75rem;
+  background: var(--v3-surface-2);
+  border: 1px solid var(--v3-border);
+  border-radius: 6px;
+  min-width: 14rem;
+}
+
+/* --- Disposition --- */
+.v3-layout {
+  display: grid;
+  grid-template-columns: minmax(230px, 1fr) minmax(320px, 2fr) minmax(280px, 1.4fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+.v3-mode-simplified .v3-layout { grid-template-columns: minmax(320px, 2fr) minmax(280px, 1.2fr); }
+.v3-mode-simplified .v3-tree { display: none; }
+.v3-mode-simplified .v3-layout > .v3-center { grid-column: 1; }
+@media (max-width: 900px) {
+  .v3-layout, .v3-mode-simplified .v3-layout { grid-template-columns: 1fr; }
+}
+.v3-center, .v3-side { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+
+.v3-panel {
+  background: var(--v3-surface);
+  border: 1px solid var(--v3-border);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+}
+.v3-panel h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+.v3-note { color: var(--v3-muted); font-size: 0.85em; }
+.v3-link { background: none; border: none; color: var(--v3-accent); cursor: pointer; text-decoration: underline; padding: 0; font: inherit; }
+.v3-errors { color: #b91c1c; }
+.v3-root[data-surface='dark'] .v3-errors { color: #fda4af; }
+@media (prefers-color-scheme: dark) {
+  .v3-root[data-surface='system'] .v3-errors { color: #fda4af; }
+}
+
+/* --- Arbre --- */
+.v3-tree ul { list-style: none; margin: 0; padding-left: 0.9rem; }
+.v3-tree > ul { padding-left: 0; }
+.v3-tree-row { display: flex; align-items: baseline; gap: 0.25rem; min-height: 44px; align-items: center; }
+.v3-chevron { width: 1.6rem; min-width: 1.6rem; background: none; border: none; cursor: pointer; color: var(--v3-muted); font-size: 1rem; }
+.v3-tree-label { background: none; border: none; text-align: left; cursor: pointer; color: var(--v3-text); font: inherit; padding: 0.15rem 0.3rem; border-left: 4px solid var(--family-color, transparent); }
+.v3-tree-label.v3-active { background: var(--v3-surface-2); font-weight: 600; }
+.v3-tree-leaf { background: none; border: none; color: var(--v3-accent); cursor: pointer; font: inherit; padding: 0.35rem 0.3rem; }
+.v3-count { color: var(--v3-muted); }
+.v3-symbol { display: inline-block; width: 1.1em; }
+
+/* --- Soleil --- */
+.v3-sun svg { width: 100%; height: auto; }
+.v3-sun-head { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.v3-sun-center { fill: var(--v3-surface-2); stroke: var(--v3-border); cursor: pointer; }
+.v3-sector { cursor: pointer; stroke: var(--v3-bg); stroke-width: 1; }
+.v3-sector-ghost { fill: none; stroke: var(--v3-border); stroke-width: 0.6; stroke-dasharray: 2 3; }
+.v3-sector-future { fill: none; stroke: var(--v3-muted); stroke-width: 1.4; stroke-dasharray: 5 3; }
+.v3-halo { stroke: var(--v3-focus); stroke-width: 3; }
+.v3-chip { background: var(--v3-surface-2); border-radius: 999px; padding: 0.1rem 0.6rem; }
+.v3-chip button { background: none; border: none; cursor: pointer; color: inherit; }
+
+/* Motifs par famille (mode renforcé §15.3) : traits distincts par famille. */
+.v3-pattern-diagonal { stroke-dasharray: 6 2; stroke-width: 2; }
+.v3-pattern-dots { stroke-dasharray: 1 3; stroke-width: 2.4; }
+.v3-pattern-cross { stroke-dasharray: 8 2 2 2; stroke-width: 2; }
+.v3-pattern-horizontal { stroke-dasharray: 10 4; stroke-width: 2; }
+.v3-pattern-vertical { stroke-dasharray: 3 3; stroke-width: 2.4; }
+.v3-pattern-grid { stroke-dasharray: 12 2 3 2; stroke-width: 2; }
+.v3-root[data-vision='reinforced'] .v3-sector { stroke: var(--v3-text); }
+
+/* --- Heatmap --- */
+.v3-heatmap-head { display: flex; justify-content: space-between; align-items: baseline; }
+.v3-heatmap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14px, 1fr)); gap: 2px; }
+.v3-cell {
+  aspect-ratio: 1;
+  min-width: 12px;
+  border: 1px solid var(--v3-border);
+  border-radius: 2px;
+  background: var(--v3-surface-2);
+  padding: 0;
+  cursor: pointer;
+}
+.v3-level-1 { background: color-mix(in srgb, var(--cell-color, var(--v3-accent)) 30%, var(--v3-surface)); }
+.v3-level-2 { background: color-mix(in srgb, var(--cell-color, var(--v3-accent)) 55%, var(--v3-surface)); }
+.v3-level-3 { background: color-mix(in srgb, var(--cell-color, var(--v3-accent)) 78%, var(--v3-surface)); }
+.v3-level-4 { background: var(--cell-color, var(--v3-accent)); }
+/* Jour multidomaine : rayé, jamais gris uniforme (synthèse §2). */
+.v3-multi.v3-level-1, .v3-multi.v3-level-2, .v3-multi.v3-level-3, .v3-multi.v3-level-4 {
+  background: repeating-linear-gradient(45deg, var(--v3-accent) 0 3px, var(--v3-surface) 3px 6px);
+}
+.v3-root[data-vision='reinforced'] .v3-level-1 { background: repeating-linear-gradient(90deg, var(--v3-text) 0 1px, var(--v3-surface) 1px 6px); }
+.v3-root[data-vision='reinforced'] .v3-level-2 { background: repeating-linear-gradient(45deg, var(--v3-text) 0 1px, var(--v3-surface) 1px 5px); }
+.v3-root[data-vision='reinforced'] .v3-level-3 { background: repeating-linear-gradient(0deg, var(--v3-text) 0 2px, var(--v3-surface) 2px 5px); }
+.v3-root[data-vision='reinforced'] .v3-level-4 { background: var(--v3-text); }
+.v3-playhead { outline: 3px solid var(--v3-accent); outline-offset: 1px; }
+.v3-inspected { outline: 3px dashed var(--v3-focus); outline-offset: 1px; }
+.v3-future { opacity: 0.55; border-style: dashed; }
+
+/* --- Timeline --- */
+.v3-timeline-controls { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+.v3-timeline-controls button { min-width: 44px; min-height: 44px; }
+.v3-timeline input[type='range'] { width: 100%; }
+.v3-timeline-date { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* --- Portfolio --- */
+.v3-portfolio-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+.v3-observation { border-top: 1px solid var(--v3-border); padding-top: 0.5rem; margin-top: 0.5rem; }
+.v3-passage { margin: 0.4rem 0; padding: 0.4rem 0.6rem; background: var(--v3-surface-2); border-left: 3px solid var(--v3-accent); border-radius: 4px; }
+.v3-passage footer { color: var(--v3-muted); font-size: 0.85em; }
+.v3-provenance { color: var(--v3-muted); font-size: 0.85em; }
+.v3-review button { min-height: 32px; }
+.v3-share-toggle { display: block; margin-top: 0.3rem; }
+
+/* --- Dialog, comparaison, partage --- */
+.v3-dialog {
+  position: fixed;
+  inset: 10% 15%;
+  overflow: auto;
+  z-index: 30;
+  background: var(--v3-surface);
+  border: 2px solid var(--v3-border);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+@media (max-width: 700px) { .v3-dialog { inset: 5%; } }
+.v3-dialog-head { display: flex; justify-content: space-between; align-items: baseline; }
+.v3-why-days { columns: 3; list-style: none; padding: 0; }
+.v3-compare-presets { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.v3-recit li { margin-bottom: 0.3rem; }
+.v3-share-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+@media (max-width: 700px) { .v3-share-grid { grid-template-columns: 1fr; } }
+.v3-share-grid label { display: block; min-height: 32px; }
+.v3-share-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.6rem; }
+.v3-plan { border: 2px solid var(--v3-focus); border-radius: 6px; padding: 0.6rem; margin: 0.5rem 0; }
+.v3-preview-banner { background: var(--v3-surface-2); border: 1px dashed var(--v3-border); padding: 0.4rem 0.6rem; border-radius: 4px; }
+
+/* --- Vue employeur --- */
+.v3-employer-list { list-style: none; padding: 0; }
+.v3-employer-list li { display: grid; grid-template-columns: minmax(180px, 1.4fr) 1fr auto; gap: 0.5rem; align-items: center; min-height: 34px; }
+.v3-swatch { display: inline-block; width: 0.9em; height: 0.9em; border-radius: 2px; margin-right: 0.3em; vertical-align: baseline; border: 1px solid var(--v3-border); }
+.v3-bar { display: block; height: 10px; background: var(--v3-surface-2); border-radius: 5px; overflow: hidden; }
+.v3-bar > span { display: block; height: 100%; }
+
+/* --- Tableau équivalent (accessibilité + impression) --- */
+.v3-sun-table { margin-top: 1rem; border-collapse: collapse; width: 100%; }
+.v3-sun-table :is(th, td) { border: 1px solid var(--v3-border); padding: 0.25rem 0.5rem; text-align: left; }
+@media screen { .v3-sun-table { position: absolute; left: -9999px; } } /* visible aux lecteurs d'écran et à l'impression */
+
+/* --- Mouvement réduit (§15.5) --- */
+@media (prefers-reduced-motion: reduce) {
+  .v3-root * { transition: none !important; animation: none !important; }
+}
+
+/* --- Impression (§15.4) : fond blanc, texte sombre, commandes supprimées --- */
+@media print {
+  .v3-root { --v3-bg: #fff; --v3-surface: #fff; --v3-surface-2: #eee; --v3-text: #111; --v3-muted: #333; --v3-border: #888; }
+  .v3-context-bar, .v3-timeline, button, select, input, .v3-panels-menu, .v3-share, .v3-json-editor { display: none !important; }
+  .v3-sun-table { position: static !important; left: auto !important; }
+  .v3-passage, .v3-observation { break-inside: avoid; }
+  .v3-layout { grid-template-columns: 1fr !important; }
+}

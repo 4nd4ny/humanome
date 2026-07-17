@@ -21,6 +21,21 @@ const BASE = {
       '« Référentiel » : les 61 compétences, en 7 pôles, sur lesquelles tout repose.',
     ],
   },
+  cartographie: {
+    titre: 'La cartographie ipsative (interface V3)',
+    intro:
+      'Le soleil, la heatmap, l’arbre et le portfolio montrent le MÊME historique : chaque secteur ' +
+      'est une compétence, son rayon compte les journées documentées par des preuves. Vous êtes ' +
+      'comparé à vos propres états antérieurs, jamais à d’autres personnes.',
+    points: [
+      '« Pourquoi ce rayon ? » (touche w sur un secteur) montre la métrique, les journées et les preuves.',
+      'Inspecter une journée (heatmap) ouvre son portfolio ; « Voir l’état à cette date » déplace la lecture.',
+      'Confirmez, nuancez ou contestez chaque association passage–compétence : c’est votre droit de réponse.',
+      'Le mode expert ajoute l’arbre, l’audit d’import, l’éditeur JSON et le constructeur de partage détaillé.',
+      '« Préparer un partage » construit une version employeur par liste positive : rien ne part sans votre choix explicite.',
+      'Tout reste dans votre navigateur ; l’export employeur est un fichier JSON assaini que vous remettez vous-même.',
+    ],
+  },
   merge: {
     titre: 'La cartographie évolutive',
     intro:

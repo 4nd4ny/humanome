@@ -46,7 +46,7 @@ describe('App', () => {
     const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
     expect(
       nav.getByRole('link', { name: 'Cartographie (démonstration)' }).getAttribute('href'),
-    ).toBe('#/merge')
+    ).toBe('#/cartographie')
     expect(nav.getByRole('link', { name: 'Référentiel' }).getAttribute('href')).toBe(
       '#/referentiel',
     )
@@ -155,16 +155,20 @@ describe('App', () => {
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
   })
 
-  it('route #/merge -> vue merge sur les données de démonstration', () => {
+  it('routes #/cartographie et #/merge (démo) -> interface V3, plus l’ancienne vue merge', () => {
+    // D14 : l'interface V3 REMPLACE la vue merge pour la démonstration. Le
+    // comportement détaillé de la V3 est testé dans v3/ui/V3View.test.jsx avec
+    // ses coutures ; ici on vérifie le REMPLACEMENT de route.
     window.location.hash = '#/'
     renderApp()
 
-    setHash('#/merge')
+    setHash('#/cartographie')
+    expect(document.querySelector('.v3-root')).not.toBeNull()
+    expect(screen.queryByText('Feuilles de portfolio')).toBeNull() // ancienne vue absente
 
-    expect(screen.getByText('Feuilles de portfolio')).toBeDefined()
-    expect(screen.getByText('59')).toBeDefined() // les 59 feuilles du corpus réel
-    expect(screen.getByText(/Touchez un secteur du diagramme/)).toBeDefined()
-    expect(document.querySelectorAll('rect.heatmap-day')).toHaveLength(59)
+    setHash('#/merge')
+    expect(document.querySelector('.v3-root')).not.toBeNull()
+    expect(screen.queryByText(/Touchez un secteur du diagramme/)).toBeNull()
   })
 
   it('route #/referentiel -> arbre public (repli embarqué sans réseau)', async () => {

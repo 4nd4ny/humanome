@@ -34,6 +34,7 @@ export function isValidIsoDate(value) {
  * Parses a location hash into a route object.
  * @param {string} hash e.g. '#/jour/2026-03-15?focus=1.01' (leading '#' optional)
  * @returns {{name: 'home'}
+ *   | {name: 'cartographie'}
  *   | {name: 'merge'}
  *   | {name: 'day', date: string, focus: string | null}
  *   | {name: 'referentiel', code: string | null}
@@ -51,6 +52,8 @@ export function parseHash(hash) {
   const query = queryIndex === -1 ? '' : raw.slice(queryIndex + 1)
 
   if (path === '' || path === '/') return { name: 'home' }
+  // Interface V3 de cartographie ipsative (remplace l'ancienne vue merge).
+  if (path === '/cartographie') return { name: 'cartographie' }
   if (path === '/merge') return { name: 'merge' }
   if (path === '/essayer') return { name: 'essayer' }
   if (path === '/portfolio') return { name: 'portfolio' }

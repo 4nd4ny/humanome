@@ -7,7 +7,7 @@ describe('navGroups (sept familles d’intention)', () => {
     expect(groups.map((g) => g.id)).toEqual(['decouvrir', 'compte'])
     expect(groups[0].items.map((i) => i.href)).toEqual([
       '#/',
-      '#/merge',
+      '#/cartographie',
       '#/essayer',
       '#/referentiel',
       '#/guides',

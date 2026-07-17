@@ -45,7 +45,7 @@ export const FAMILIES = [
     audience: 'Tous — visiteur compris',
     items: [
       { href: '#/', label: 'Accueil', route: 'home' },
-      { href: '#/merge', label: 'Cartographie (démonstration)', route: 'merge' },
+      { href: '#/cartographie', label: 'Cartographie (démonstration)', route: 'cartographie' },
       { href: '#/essayer', label: 'Essayer', route: 'essayer', badge: 'gratuit', hint: 'sans compte' },
       { href: '#/referentiel', label: 'Référentiel', route: 'referentiel', hint: '7 pôles, 61 compétences' },
       { href: '#/guides', label: 'Guides', route: 'guides', hint: 'prise en main par profil' },

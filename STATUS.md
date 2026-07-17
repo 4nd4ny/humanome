@@ -9,6 +9,52 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D14 (v1.2) — Interface de cartographie ipsative V3 (périmètre initial §25.1).**
+  Implémente `prototype cartographies/specifications-fonctionnelles-interface-v3.md` et **remplace
+  l'interface de consultation existante** : `#/cartographie` (nouvelle route, nav mise à jour) et
+  `#/merge` (démo) rendent l'interface V3 ; l'ancienne MergeView ne subsiste que pour un document
+  `cartographie-merge` chargé par l'utilisateur (la V3 exige un adaptateur par format, spec §7) et
+  pour les vues embarquées (Twin6/Twin9/espace/partage). **Entièrement client-first (ADR-001) : le
+  master privé ne quitte jamais le navigateur, zéro changement d'API.**
+  - **Cœur logique** `web/src/v3/core/` (10 modules, 47 tests) : identifiants stables UUIDv5 dérivés
+    des octets immuables (AC-DATA-03/09) ; adaptateurs historiques carto_Pn/kairos/document-jour avec
+    rapport 4 gravités (référence pendante, numéro dupliqué, trace-par-pid : alerte, jamais de
+    devinette — §6.4) ; import avec quarantaine (AC-DATA-01) et variantes concurrentes « à arbitrer »
+    jamais additionnées (AC-DATA-02) ; admissibilité §10 (établie + non court-circuitée + ≥1 preuve
+    résolue non contestée + variante active — la confiance du verdict n'entre jamais, AC-DATA-05) ;
+    métriques versionnées documented-days/months/public-presence-v1 avec rayon log2 plafonné (§11) ;
+    révisions immuables + droit de réponse confirmer/nuancer/contester (AC-EDIT-01→04) ; comparaison
+    ipsative par préréglages + récit déterministe référencé (AC-REFL-01/02) ; calcul des panneaux
+    availablePanels = format ∩ audience ∩ mode (AC-UI-04) ; projet de partage par LISTE POSITIVE avec
+    cases 3 états, cascades §18.5, constructeur 8 étapes avec REMAPPAGE d'identifiants par projection
+    (AC-SHARE-07), anti-fuite des verbatims exclus (AC-SHARE-12, mémoïsé), précision temporelle
+    jour/mois/masquée avec métrique assortie (AC-SHARE-10/17/19), verrou de prévisualisation
+    sourceDigest/policyDigest/outputDigest (AC-SHARE-15), confirmation d'irrévocabilité (AC-SHARE-13) ;
+    JSON canonique trié + digest SHA-256 (§19.4) ; réimport avec contrôle d'intégrité bloquant
+    (AC-SHARE-20) et duplication monotone sans lien au master (AC-SHARE-18) ; lecteur ZIP sans
+    dépendance (chemins traversants rejetés) ; persistance IndexedDB séparée des préférences.
+  - **UI** `web/src/v3/ui/` : arbre + soleil (angles FIXES par compétence, rayon = journées
+    documentées, halo, contours fantômes du futur) + heatmap (grille clavier, jours multidomaines
+    rayés, seuils fixes §11.3) + portfolio (provenance, revue, note privée, inclusion au partage) +
+    lecteur temporel (avant/arrière/vitesse, inspection ≠ tête de lecture, AC-SYNC-03/04) ;
+    « Pourquoi ce rayon ? » (unités exactes de la métrique courante, AC-SYNC-05) ; comparaison +
+    « Ce qui a changé » ; modes simplifié/expert conservant l'état (AC-UI-01) ; panneaux masquables
+    avec « Réafficher » toujours accessible (AC-UI-03) ; thèmes système/clair/sombre + distinctions
+    renforcées (symboles/motifs par famille) + impression (tableau équivalent au soleil) ; éditeur
+    JSON expert refusant l'invalide (AC-EDIT-02) ; constructeur de partage avec récapitulatif avant
+    inclusion groupée (AC-SHARE-14) ; vue employeur = MÊME moteur que la prévisualisation (§18.8).
+  - **Vérifié au navigateur sur le corpus RÉEL** (59 journées) : 61 emplacements, **54 secteurs
+    documentés** (= les 54 compétences établies du corpus), 365 cellules ; le rapport d'import a
+    attrapé une **vraie anomalie du corpus** (numéro de pièce dupliqué, 5.02 au 2026-02-14 — le cas
+    §6.4) ; filtre soleil→arbre→heatmap synchronisés ; inspection sans déplacement de lecture ;
+    parcours de partage complet → prévisualisation exacte (54 forces). Perf corpus entier : import
+    210 ms, inclusion groupée 1795 liens 215 ms, instantané + anti-fuite 181 ms (§22.2).
+  - Suites **toutes vertes : PHP 518 (inchangé), engine 938 (inchangé), web 798 (+47)**.
+  - **Reste pour les itérations suivantes** (documenté, hors périmètre initial strict) : adaptateur
+    cartographie-merge (§7 : à déclarer compatible avec tests), corpus multi-ZIP réel Christ300 à
+    valider sur pièce, préférences persistées par appareil (§14.4 — store prêt), impression mensuelle
+    dédiée, V3.1 (liens hébergés, fusion sélective, caviardage).
+
 - 2026-07-17 — **D13 (v1.2) — Restauration des versions de gabarit Twin9 (retour arrière).**
   L'archivage automatique existait (chaque écrasement versionne l'ancien contenu) mais le « retour
   arrière » promis par ADR-010 §6 n'était pas implémenté : l'historique n'exposait que des métadonnées,

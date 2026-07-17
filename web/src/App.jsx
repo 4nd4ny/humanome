@@ -7,6 +7,7 @@ import { applyTheme, resolvedTheme, subscribeSystemTheme } from './lib/theme.js'
 import Help from './help/Help.jsx'
 import HomeView from './views/HomeView.jsx'
 import MergeView from './views/MergeView.jsx'
+import V3View from './v3/ui/V3View.jsx'
 import DayView from './views/DayView.jsx'
 import ReferentielView from './views/ReferentielView.jsx'
 import EssayerView from './views/EssayerView.jsx'
@@ -267,8 +268,20 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
 
   let view
   switch (route.name) {
+    case 'cartographie':
+      // Interface V3 (spec « prototype cartographies ») : remplace l'ancienne
+      // vue merge comme interface de consultation/édition/partage.
+      view = <V3View />
+      break
     case 'merge':
-      view = <MergeView mergeDoc={mergeDoc} referentiel={referentiel} lib={lib} />
+      // L'ancienne vue merge ne subsiste QUE pour un document cartographie-merge
+      // chargé par l'utilisateur (la V3 n'a pas d'adaptateur merge, spec §7) ;
+      // la démonstration passe par l'interface V3.
+      view = userMerge ? (
+        <MergeView mergeDoc={mergeDoc} referentiel={referentiel} lib={lib} />
+      ) : (
+        <V3View />
+      )
       break
     case 'day':
       view = (
