@@ -39,6 +39,11 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
     visible ; modale → tranche rentrée puis revenue) et viewport mobile 375 px (tap
     burger → tiroir, tap « Référentiel » → tiroir refermé, page visible).
     Suites : web **887** (30 tests App).
+  - **Déployé** (static, autorisé par l'utilisateur) avec les trois lots nav de la
+    journée (`426c297`, `7a7ea9c`, `189f20e`) : build Vite + `deploy.mjs static`
+    (2 fichiers envoyés, ancien bundle purgé), puis vérifié EN LIGNE sur
+    https://humanome.xyz — tranche visible, ouverture à l'approche du bord, fermeture
+    au clic de lien avec focus rendu.
 
 - 2026-07-17 — **D16 — Banc d'essai : score vs référence, multi-run croisé A/B, coût réel
   mesuré et persisté (retours utilisateur sur D15).**
