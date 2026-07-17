@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Humanome\Geo;
 
+use Humanome\Bootstrap;
 use Humanome\Env;
 use MaxMind\Db\Reader;
 
@@ -64,6 +65,14 @@ final class CountryResolver
         }
 
         $path = Env::get('GEOIP_DB', '');
+        // Chemin relatif : résolu contre le dossier du .env (~/app/shared en
+        // prod) — le chemin absolu du home OVH n'a pas besoin d'être connu.
+        if ($path !== '' && !is_file($path) && !str_starts_with($path, '/')) {
+            $envDir = Bootstrap::envDir();
+            if ($envDir !== null) {
+                $path = $envDir . '/' . $path;
+            }
+        }
         if ($path === '' || !is_file($path) || !class_exists(Reader::class)) {
             self::$unavailable = true;
 

@@ -77,9 +77,12 @@ final class Bootstrap
     }
 
     /**
-     * Secrets directory: ~/app/shared on OVH (outside webroot), the api/ dir in dev.
+     * Secrets directory: ~/app/shared on OVH (outside webroot), the api/ dir
+     * in dev. Public: data files living next to the .env (GEOIP_DB) are
+     * referenced RELATIVE to this directory — the OVH absolute home path
+     * never needs to be known (Geo\CountryResolver).
      */
-    private static function envDir(): ?string
+    public static function envDir(): ?string
     {
         $candidates = [
             Env::get('HUMANOME_SHARED_DIR'), // set by the www/api front controller (ADR-008)
