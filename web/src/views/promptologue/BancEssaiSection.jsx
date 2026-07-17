@@ -33,6 +33,7 @@ import { buildConsistencyView } from '../../lib/consistency-view.js'
 import { renderMarkdown } from '../../lib/md.js'
 import { normalizeDraftEntry } from './api.js'
 import {
+  buildAbMultiReport,
   buildAbReport,
   buildCompetenceDiff,
   buildMultiRunReport,
@@ -40,9 +41,12 @@ import {
   detectReferentielEnDur,
   filterDayGroups,
   normalizeReferenceImport,
+  realCostUsd,
   reportDataUrl,
   runVersionOnDays,
+  scoreVsReference,
   summarizeDocument,
+  sumUsages,
   usesTwin6Engine,
 } from './bench.js'
 import {
@@ -72,6 +76,11 @@ export function fixtureDayGroups() {
 const RUN_COUNTS = [2, 3, 4, 5]
 
 const EMBARQUE = 'embarque'
+
+/** Compteurs de tokens au format français (séparateur de milliers). */
+function formatTokens(n) {
+  return new Intl.NumberFormat('fr-FR').format(Number(n) || 0)
+}
 
 function emptyProviderChoice() {
   return { mode: 'humanome', provider: PROVIDERS[0].id, apiKey: '', model: '' }
@@ -157,6 +166,7 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
   const [selA, setSelA] = useState('builtin')
   const [selB, setSelB] = useState('builtin')
   const [nRuns, setNRuns] = useState(2)
+  const [nRunsAb, setNRunsAb] = useState(1) // runs PAR BRANCHE en A/B (croisé)
   const [portfolioChoice, setPortfolioChoice] = useState('fixture')
   const [daySel, setDaySel] = useState({ type: 'tous', jour: '', du: '', au: '' })
   const [perimetreChoice, setPerimetreChoice] = useState('tout')
@@ -386,6 +396,10 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
       version: versionKey,
       fournisseur: prov.mode === 'humanome' ? 'service humanome' : prov.provider,
       modele: bundle.model,
+      // Modèle de TARIFICATION : en mode service, bundle.model vaut « demo »
+      // (hors table de prix) — le coût réel se chiffre sur le modèle de
+      // référence du service, comme l'estimation.
+      modeleTarif: bundle.estimationModel,
       referentiel: referentielChoice === EMBARQUE ? 'embarqué (RESPIRE v7)' : referentielChoice,
       perimetre: perimetreChoice,
       journees: daySel.type,
@@ -412,6 +426,8 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
   // Runs du mode multi déjà achevés (avec leur contexte d'affichage) :
   // conservés hors du try pour proposer un rapport partiel après interruption.
   const multiRunsRef = useRef(null)
+  // Idem pour l'A/B multi-run : branches et runs achevés au fil de l'eau.
+  const abSalvageRef = useRef(null)
 
   async function execute() {
     // Verrou SYNCHRONE anti double-clic : disabled={running} ne protège pas la
@@ -423,6 +439,7 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
     setNotice(null)
     setRunning({ text: 'Préparation…' })
     multiRunsRef.current = null
+    abSalvageRef.current = null
     try {
       const { label, dayGroups: allDays } = await resolveDayGroups()
       const dayGroups = filterDayGroups(allDays, daySel)
@@ -556,40 +573,69 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
         ]
           .filter((x) => x.det.enDur)
           .map((x) => `${x.pkg.id}@${x.pkg.version} : ${x.det.motif}`)
-        setRunning({ text: 'Exécution de la version A…' })
-        const runA = await runFn({
-          ...baseParams,
-          pkg: pkgA,
-          referentiel: referentielA,
-          provider: bundleA.provider,
-          model: bundleA.model,
-          maxTokens: bundleA.maxTokens,
-        })
-        setRunning({ text: 'Exécution de la version B…' })
-        const runB = await runFn({
-          ...baseParams,
-          pkg: pkgB,
-          referentiel: referentielB,
-          provider: bundleB.provider,
-          model: bundleB.model,
-          maxTokens: bundleB.maxTokens,
-        })
+        // Multi-run croisé : nRunsAb runs PAR BRANCHE — la consistance interne
+        // de chaque branche distingue un vrai écart de prompt du bruit.
         const configs = {
           a: describeBranch(selA, provA, bundleA, refChoice),
           b: describeBranch(selB, dualProvider ? provB : provA, bundleB, dualRef ? refChoiceB : refChoice),
         }
-        const report = buildAbReport({
-          portfolioLabel: label,
-          a: runA,
-          b: runB,
-          estimates: { a: estimateFor(bundleA, referentielA), b: estimateFor(bundleB, referentielB) },
-          configs,
-        })
+        const branches = [
+          { nom: 'A', pkg: pkgA, referentiel: referentielA, bundle: bundleA, runs: [] },
+          { nom: 'B', pkg: pkgB, referentiel: referentielB, bundle: bundleB, runs: [] },
+        ]
+        // Sauvetage après interruption : les runs déjà achevés valent un
+        // rapport partiel (buildAbMultiReport accepte dès 1 run par branche).
+        abSalvageRef.current = { branches, label, competenceNames, configs, alertes }
+        for (const branche of branches) {
+          for (let i = 0; i < nRunsAb; i++) {
+            const prefix =
+              nRunsAb > 1
+                ? `Branche ${branche.nom} — run ${i + 1}/${nRunsAb} — `
+                : `Branche ${branche.nom} — `
+            setRunning({ text: `${prefix}exécution…` })
+            branche.runs.push(
+              await runFn({
+                ...baseParams,
+                onProgress: (info) => setRunning({ text: progressText(info, prefix) }),
+                pkg: branche.pkg,
+                referentiel: branche.referentiel,
+                provider: branche.bundle.provider,
+                model: branche.bundle.model,
+                maxTokens: branche.bundle.maxTokens,
+              }),
+            )
+          }
+        }
+        abSalvageRef.current = null
+        const [runA, runB] = [branches[0].runs[0], branches[1].runs[0]]
+        const abMulti =
+          nRunsAb > 1
+            ? {
+                ...buildAbMultiReport({ runsA: branches[0].runs, runsB: branches[1].runs }),
+                // Consommation TOTALE de session par branche (les lignes du
+                // tableau A/B ne couvrent que le run 1 de chaque branche).
+                usage: {
+                  a: sumUsages(branches[0].runs.map((r) => r.usage)),
+                  b: sumUsages(branches[1].runs.map((r) => r.usage)),
+                },
+              }
+            : null
+        const report = {
+          ...buildAbReport({
+            portfolioLabel: label,
+            a: runA,
+            b: runB,
+            estimates: { a: estimateFor(bundleA, referentielA), b: estimateFor(bundleB, referentielB) },
+            configs,
+          }),
+          ...(abMulti ? { multiRun: abMulti } : {}),
+        }
         setResult({
           mode: 'ab',
           label,
           report,
           diff: buildCompetenceDiff(runA, runB),
+          abMulti,
           labels: { a: 'A', b: 'B' },
           competenceNames,
           alertes,
@@ -618,7 +664,7 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
             'Aucune journée commune entre le run généré et la référence importée : le diff liste chaque côté séparément.',
           )
         }
-        const report = buildAbReport({
+        const baseReport = buildAbReport({
           portfolioLabel: label,
           a: runA,
           b: runB,
@@ -628,11 +674,30 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
             b: { version: 'référence importée', fichier: refImport.fileName },
           },
         })
+        // Score chiffré vs référence : pur algorithme d'ensembles (jamais une
+        // note générée par IA) — TP=communes, FP=seulement généré, FN=manquées.
+        // Périmètre restreint : les compétences de la référence hors périmètre
+        // ne comptent pas comme « manquées ».
+        const codesRetenus = perimetre
+          ? restreindreReferentiel(referentielA, perimetre).referentiel.competences.map(
+              (c) => c.code,
+            )
+          : undefined
+        const score = scoreVsReference(baseReport, { codesRetenus })
+        if (score.joursExclus.length > 0) {
+          alertes.push(
+            `Score calculé sur ${score.parJour.length} journée(s) commune(s) aux deux côtés ; ` +
+              `${score.joursExclus.length} journée(s) exclue(s) (couvertes d'un seul côté) : ` +
+              `${score.joursExclus.join(', ')}.`,
+          )
+        }
+        const report = { ...baseReport, score }
         setResult({
           mode: 'ab',
           label,
           report,
           diff: buildCompetenceDiff(runA, runB),
+          score,
           labels: { a: 'Généré', b: 'Référence' },
           competenceNames,
           alertes,
@@ -640,9 +705,10 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
       }
     } catch (err) {
       if (controller.signal.aborted) {
-        // Interruption VOLONTAIRE : statut neutre, pas une erreur — et en
-        // multi-run, les runs déjà achevés valent un rapport partiel.
+        // Interruption VOLONTAIRE : statut neutre, pas une erreur — et les
+        // runs déjà achevés valent un rapport partiel (multi comme A/B).
         const salvage = multiRunsRef.current
+        const abSalvage = abSalvageRef.current
         if (mode === 'multi' && salvage && salvage.runs.length >= 2) {
           setResult({
             mode: 'multi',
@@ -652,6 +718,46 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
             competenceNames: salvage.competenceNames,
             alertes: [
               `Run interrompu : rapport partiel sur les ${salvage.runs.length} runs achevés.`,
+            ],
+          })
+          setNotice('Run interrompu — rapport partiel affiché.')
+        } else if (
+          mode === 'ab' &&
+          abSalvage &&
+          abSalvage.branches[0].runs.length >= 1 &&
+          abSalvage.branches[1].runs.length >= 1
+        ) {
+          const [runsA, runsB] = [abSalvage.branches[0].runs, abSalvage.branches[1].runs]
+          const abMulti =
+            runsA.length > 1 || runsB.length > 1
+              ? {
+                  ...buildAbMultiReport({ runsA, runsB }),
+                  usage: {
+                    a: sumUsages(runsA.map((r) => r.usage)),
+                    b: sumUsages(runsB.map((r) => r.usage)),
+                  },
+                }
+              : null
+          const report = {
+            ...buildAbReport({
+              portfolioLabel: abSalvage.label,
+              a: runsA[0],
+              b: runsB[0],
+              configs: abSalvage.configs,
+            }),
+            ...(abMulti ? { multiRun: abMulti } : {}),
+          }
+          setResult({
+            mode: 'ab',
+            label: abSalvage.label,
+            report,
+            diff: buildCompetenceDiff(runsA[0], runsB[0]),
+            abMulti,
+            labels: { a: 'A', b: 'B' },
+            competenceNames: abSalvage.competenceNames,
+            alertes: [
+              ...abSalvage.alertes,
+              `Run interrompu : rapport partiel sur ${runsA.length} run(s) A et ${runsB.length} run(s) B achevés.`,
             ],
           })
           setNotice('Run interrompu — rapport partiel affiché.')
@@ -675,6 +781,7 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
       selA,
       selB,
       nRuns,
+      nRunsAb,
       portfolioChoice,
       daySelection: daySel,
       perimetre: perimetreChoice,
@@ -711,6 +818,7 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
     const selBValue = pick(config.selB, versionKeys, 'builtin', 'version')
     if (selBValue !== null) setSelB(selBValue)
     if (RUN_COUNTS.includes(config.nRuns)) setNRuns(config.nRuns)
+    if ([1, 2, 3, 4, 5].includes(config.nRunsAb)) setNRunsAb(config.nRunsAb)
     const portfolioValue = pick(config.portfolioChoice, portfolioKeys, 'fixture', 'portfolio')
     if (portfolioValue !== null) setPortfolioChoice(portfolioValue)
     if (config.daySelection && typeof config.daySelection === 'object') {
@@ -975,6 +1083,22 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
 
       {versionSelect(selA, setSelA, mode === 'ab' ? 'Version A' : 'Version à tester')}
       {mode === 'ab' ? versionSelect(selB, setSelB, 'Version B') : null}
+      {mode === 'ab' ? (
+        <label className="promptologue-field">
+          Runs par branche (1 = comparaison sèche ; 2+ = consistance croisée)
+          <select
+            value={nRunsAb}
+            onChange={(event) => setNRunsAb(Number(event.target.value))}
+            aria-label="Runs par branche"
+          >
+            {[1, 2, 3, 4, 5].map((n) => (
+              <option key={n} value={n}>
+                {n}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
       {mode === 'multi' ? (
         <label className="promptologue-field">
           Nombre de runs
@@ -1226,6 +1350,8 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
       {result?.mode === 'ab' ? (
         <>
           <AbResult result={result} />
+          {result.score ? <ScoreResult score={result.score} /> : null}
+          {result.abMulti ? <AbMultiResult abMulti={result.abMulti} competenceNames={result.competenceNames ?? {}} /> : null}
           <CompetenceDiff
             diff={result.diff}
             labelA={result.labels?.a ?? 'A'}
@@ -1238,9 +1364,117 @@ export default function BancEssaiSection({ api, user, deps = {} }) {
   )
 }
 
+/** Score chiffré vs référence — pur calcul d'ensembles (jamais une note IA). */
+function ScoreResult({ score }) {
+  const pct = (v) => (v === null ? '—' : `${Math.round(v * 1000) / 10} %`)
+  return (
+    <section aria-label="Score vs référence" data-testid="banc-score">
+      <h3>Score vs référence (calcul d’ensembles, sans IA)</h3>
+      <p>
+        Précision <strong>{pct(score.precision)}</strong> · Rappel{' '}
+        <strong>{pct(score.rappel)}</strong> · F1 <strong>{pct(score.f1)}</strong> —{' '}
+        {score.vraisPositifs} établie(s) commune(s), {score.fauxPositifs} établie(s) seulement par
+        le run généré (faux positifs), {score.fauxNegatifs} de la référence manquée(s) (faux
+        négatifs).
+      </p>
+      {score.parJour.length > 1 ? (
+        <p>
+          Par journée :{' '}
+          {score.parJour
+            .map((j) => `${j.iso} (P ${pct(j.precision)}, R ${pct(j.rappel)})`)
+            .join(' ; ')}
+        </p>
+      ) : null}
+      {score.joursExclus.length > 0 ? (
+        <p>
+          Journée(s) hors score (couverte(s) d’un seul côté) : {score.joursExclus.join(', ')}.
+        </p>
+      ) : null}
+    </section>
+  )
+}
+
+/** Multi-run croisé A/B : écarts francs (signal prompt) vs bruit stochastique. */
+function AbMultiResult({ abMulti, competenceNames }) {
+  const { nbRunsA, nbRunsB, consistance, lignes, resume } = abMulti
+  const ecarts = lignes.filter((l) => l.classe === 'ecart-vers-a' || l.classe === 'ecart-vers-b')
+  const bruit = lignes.filter((l) => l.classe === 'bruit')
+  const pct = (p) => `${Math.round(p * 100)} %`
+  const nom = (code) => (competenceNames[code] ? `${code} — ${competenceNames[code]}` : code)
+  return (
+    <section aria-label="Multi-run croisé A/B" data-testid="banc-ab-multi">
+      <h3>
+        Multi-run croisé : {nbRunsA} runs A × {nbRunsB} runs B
+      </h3>
+      <p>
+        <strong>{resume.ecartsVersA + resume.ecartsVersB}</strong> écart(s) franc(s) — signal
+        attribuable au prompt (stable dans les deux branches, verdicts opposés) ;{' '}
+        <strong>{resume.bruit}</strong> compétence(s) dans le bruit stochastique (instable dans au
+        moins une branche) ; {resume.accords} accord(s) stable(s).
+        {consistance.a && consistance.b
+          ? ` Distance structurelle moyenne interne — A : ${consistance.a.distanceMoyenne.toFixed(3)}, B : ${consistance.b.distanceMoyenne.toFixed(3)} (0 = runs identiques, 1 = désaccord maximal).`
+          : ''}
+      </p>
+      <p>
+        Le tableau A/B et le diff du jury ci-dessous portent sur le <strong>run 1</strong> de
+        chaque branche ; cette section, elle, agrège l’ensemble des runs.
+      </p>
+      {ecarts.length > 0 ? (
+        <table className="promptologue-table">
+          <thead>
+            <tr>
+              <th scope="col">Jour</th>
+              <th scope="col">Compétence</th>
+              <th scope="col">Établie par A</th>
+              <th scope="col">Établie par B</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ecarts.map((l) => (
+              <tr key={`${l.iso}-${l.code}`}>
+                <td>{l.iso}</td>
+                <td>{nom(l.code)}</td>
+                <td>{pct(l.pA)} des runs</td>
+                <td>{pct(l.pB)} des runs</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>Aucun écart franc : les différences observées relèvent du bruit ou de l’accord.</p>
+      )}
+      {bruit.length > 0 ? (
+        <details>
+          <summary>{bruit.length} compétence(s) dans le bruit (détail)</summary>
+          <p>
+            {bruit
+              .map((l) => `${l.iso} ${nom(l.code)} (A ${pct(l.pA)}, B ${pct(l.pB)})`)
+              .join(' ; ')}
+          </p>
+        </details>
+      ) : null}
+    </section>
+  )
+}
+
+/** Ligne « tokens réels + coût réel » d'un run (mesure autoritaire vs estimation). */
+function UsageLine({ usage, model }) {
+  if (!usage || (usage.mesures ?? 0) === 0) return null
+  const cost = realCostUsd(usage, model)
+  return (
+    <p data-testid="banc-usage">
+      Tokens réels : {formatTokens(usage.inputTokens)} entrée /{' '}
+      {formatTokens(usage.outputTokens)} sortie
+      {cost !== null
+        ? ` — coût réel ${cost} $ (table de prix indicative)`
+        : ' — coût réel indisponible (modèle hors table de prix)'}
+    </p>
+  )
+}
+
 function SimpleResult({ result }) {
   const { run, label, config } = result
-  if (run.twin6) return <Twin6Result run={run} label={label} />
+  if (run.twin6) return <Twin6Result run={run} label={label} config={config} />
   const runReport = buildRunReport({ portfolioLabel: label, run, config })
   return (
     <section aria-label="Résultat du run" data-testid="banc-simple">
@@ -1251,6 +1485,7 @@ function SimpleResult({ result }) {
         {run.days.length} journée(s), {run.llmCalls} appel(s) LLM, {Math.round(run.durationMs / 1000)}{' '}
         s — exécution {run.engine ? 'moteur embarqué' : 'sandbox'}.
       </p>
+      <UsageLine usage={run.usage} model={config?.modeleTarif ?? config?.modele} />
       <table className="promptologue-table">
         <thead>
           <tr>
@@ -1286,7 +1521,7 @@ function SimpleResult({ result }) {
   )
 }
 
-function Twin6Result({ run, label }) {
+function Twin6Result({ run, label, config }) {
   const doc = run.mergeDoc ?? {}
   const nbFeuilles = doc.periode?.nbFeuilles ?? doc.feuilles?.length ?? 0
   const nbCompetences = (doc.domains ?? []).reduce(
@@ -1303,6 +1538,7 @@ function Twin6Result({ run, label }) {
         {run.llmCalls} appel(s) LLM, {Math.round(run.durationMs / 1000)} s — run sur le portfolio
         entier (7 scan-pôle + kairos), mappé en cartographie globale.
       </p>
+      <UsageLine usage={run.usage} model={config?.modeleTarif ?? config?.modele} />
       <p>
         <a href={reportDataUrl(doc)} download={`twin6-${run.pkg.id}-${run.pkg.version}.json`}>
           Télécharger la cartographie (JSON)
@@ -1391,6 +1627,16 @@ function AbResult({ result }) {
           .filter(Boolean)
           .join(' · ') || '—'
       : '—'
+  const multiRun = report.multiRun ?? null
+  const usageCell = (usage) =>
+    usage && (usage.mesures ?? 0) > 0
+      ? `${formatTokens(usage.inputTokens)} / ${formatTokens(usage.outputTokens)}`
+      : '—'
+  const costCell = (usage, config) => {
+    const cost = realCostUsd(usage, config?.modeleTarif ?? config?.modele)
+    if (cost !== null) return `${cost} $`
+    return usage && (usage.mesures ?? 0) > 0 ? 'modèle hors table de prix' : '—'
+  }
   return (
     <section aria-label="Comparaison A/B" data-testid="banc-ab">
       <h3>
@@ -1424,6 +1670,30 @@ function AbResult({ result }) {
             <td>{a.llmCalls}</td>
             <td>{b.llmCalls}</td>
           </tr>
+          <tr>
+            <th scope="row">Tokens réels (entrée / sortie){multiRun ? ' — run 1' : ''}</th>
+            <td>{usageCell(a.usage)}</td>
+            <td>{usageCell(b.usage)}</td>
+          </tr>
+          <tr>
+            <th scope="row">Coût réel (table de prix){multiRun ? ' — run 1' : ''}</th>
+            <td>{costCell(a.usage, configs.a)}</td>
+            <td>{costCell(b.usage, configs.b)}</td>
+          </tr>
+          {multiRun?.usage ? (
+            <>
+              <tr>
+                <th scope="row">Tokens réels session ({multiRun.nbRunsA + multiRun.nbRunsB} runs)</th>
+                <td>{usageCell(multiRun.usage.a)}</td>
+                <td>{usageCell(multiRun.usage.b)}</td>
+              </tr>
+              <tr>
+                <th scope="row">Coût réel session</th>
+                <td>{costCell(multiRun.usage.a, configs.a)}</td>
+                <td>{costCell(multiRun.usage.b, configs.b)}</td>
+              </tr>
+            </>
+          ) : null}
           <tr>
             <th scope="row">Durée mesurée</th>
             <td>{Math.round(a.durationMs / 1000)} s</td>

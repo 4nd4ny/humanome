@@ -177,6 +177,10 @@ describe('executeRun — moteur réel, stockage mémoire', () => {
     expect(result.mergeError).toBeNull()
     expect(result.dayDocuments).toHaveLength(3)
     expect(provider.callCount).toBe(24) // 3 journées × (7 pôles + kairos)
+    // Usage RÉEL cumulé sur les appels de la session (mock : estimateTokens).
+    expect(result.usage.mesures).toBe(24)
+    expect(result.usage.inputTokens).toBeGreaterThan(0)
+    expect(result.usage.outputTokens).toBeGreaterThan(0)
 
     const { valid, errors } = validateDocument('cartographie-merge', result.document)
     expect(errors ?? []).toEqual([])

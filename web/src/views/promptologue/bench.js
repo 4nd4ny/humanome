@@ -10,6 +10,7 @@
 
 import { extractDay, restreindreReferentiel } from '@engine/pipeline/extract.js'
 import { compareRuns } from '@engine/consistency.js'
+import { getModelPricing } from '@engine/providers/index.js'
 import { executerTwin6 } from '@engine/twin6/index.js'
 import { validateDocument } from '@engine/validation.js'
 import { runPackageInSandbox, usesEngineOrchestration } from '../../lib/sandbox/index.js'
@@ -280,6 +281,7 @@ export function buildRunReport({ portfolioLabel, run, config = {}, now = () => n
     config,
     llmCalls: run.llmCalls,
     durationMs: run.durationMs,
+    usage: run.usage ?? null,
     days: run.days,
   }
 }
@@ -364,6 +366,168 @@ export function normalizeReferenceImport(json, { validateFn = validateDocument }
   }
 }
 
+/**
+ * Coût RÉEL d'un run à partir des tokens mesurés (table de prix indicative du
+ * moteur). Pur calcul — null si le modèle est inconnu de la table ou si aucun
+ * usage n'a été mesuré (fournisseur muet sur les compteurs).
+ *
+ * @param {{inputTokens: number, outputTokens: number, mesures?: number}} usage
+ * @param {string} model
+ * @returns {number|null} coût USD arrondi au dix-millième — le banc mesure des
+ *   runs volontairement petits (périmètre restreint) : au centième, un run
+ *   payant réel s'afficherait « 0 $ », indistinguable d'un modèle local gratuit
+ */
+export function realCostUsd(usage, model) {
+  if (!usage || (usage.mesures ?? 0) === 0) return null
+  const pricing = getModelPricing(model)
+  if (!pricing) return null
+  const cost =
+    (usage.inputTokens * pricing.input) / 1e6 + (usage.outputTokens * pricing.output) / 1e6
+  return Math.round(cost * 1e4) / 1e4
+}
+
+/**
+ * Additionne des compteurs d'usage (totaux de session multi-run).
+ * @param {Array<{inputTokens: number, outputTokens: number, mesures: number}|null>} usages
+ * @returns {{inputTokens: number, outputTokens: number, mesures: number}}
+ */
+export function sumUsages(usages) {
+  const total = { inputTokens: 0, outputTokens: 0, mesures: 0 }
+  for (const u of usages ?? []) {
+    if (!u || typeof u !== 'object') continue
+    total.inputTokens += Number(u.inputTokens) || 0
+    total.outputTokens += Number(u.outputTokens) || 0
+    total.mesures += Number(u.mesures) || 0
+  }
+  return total
+}
+
+/**
+ * Score chiffré vs référence — PUR ALGORITHME d'ensembles, aucune IA :
+ * depuis le rapport A/B (A = généré, B = référence), les communes sont des
+ * vrais positifs, les « seulement A » des faux positifs, les « seulement B »
+ * des faux négatifs. Précision = TP/(TP+FP), rappel = TP/(TP+FN),
+ * F1 = moyenne harmonique (0 si précision et rappel sont définis et nuls —
+ * désaccord total, pas indétermination ; null seulement sans donnée).
+ *
+ * Seules les journées couvertes par LES DEUX côtés sont scorées (drapeaux
+ * couvertA/couvertB de buildAbReport ; absents = couvert, compat rapports
+ * anciens) : comparer une journée testée à une référence de 5 jours ne doit
+ * pas compter les 4 jours non testés comme « manqués ». Les journées écartées
+ * sont rendues dans joursExclus. Un périmètre restreint se déclare via
+ * codesRetenus : les compétences de la référence hors périmètre sont ignorées.
+ *
+ * @param {{parJour: Array<{iso, communes: string[], seulementA: string[],
+ *   seulementB: string[], couvertA?: boolean, couvertB?: boolean}>}} report
+ * @param {{codesRetenus?: Set<string>|string[]}} [options]
+ * @returns {{vraisPositifs: number, fauxPositifs: number, fauxNegatifs: number,
+ *   precision: number|null, rappel: number|null, f1: number|null,
+ *   joursExclus: string[],
+ *   parJour: Array<{iso: string, precision: number|null, rappel: number|null}>}}
+ */
+export function scoreVsReference(report, { codesRetenus } = {}) {
+  const retenus =
+    codesRetenus === undefined || codesRetenus === null ? null : new Set(codesRetenus)
+  const garde = (codes) => (retenus === null ? codes : codes.filter((c) => retenus.has(c)))
+  let tp = 0
+  let fp = 0
+  let fn = 0
+  const parJour = []
+  const joursExclus = []
+  for (const jour of report?.parJour ?? []) {
+    if (jour.couvertA === false || jour.couvertB === false) {
+      joursExclus.push(jour.iso)
+      continue
+    }
+    const jtp = garde(jour.communes).length
+    const jfp = garde(jour.seulementA).length
+    const jfn = garde(jour.seulementB).length
+    tp += jtp
+    fp += jfp
+    fn += jfn
+    parJour.push({
+      iso: jour.iso,
+      precision: jtp + jfp > 0 ? jtp / (jtp + jfp) : null,
+      rappel: jtp + jfn > 0 ? jtp / (jtp + jfn) : null,
+    })
+  }
+  const precision = tp + fp > 0 ? tp / (tp + fp) : null
+  const rappel = tp + fn > 0 ? tp / (tp + fn) : null
+  const f1 =
+    precision !== null && rappel !== null
+      ? precision + rappel > 0
+        ? (2 * precision * rappel) / (precision + rappel)
+        : 0
+      : null
+  return {
+    vraisPositifs: tp,
+    fauxPositifs: fp,
+    fauxNegatifs: fn,
+    precision,
+    rappel,
+    f1,
+    joursExclus,
+    parJour,
+  }
+}
+
+/**
+ * Multi-run croisé A/B — distinguer un VRAI écart de prompt du bruit
+ * stochastique. Pur calcul : pour chaque (journée, compétence) établie dans au
+ * moins un run, pA = fraction des runs A qui l'établissent, pB idem côté B.
+ *   - « écart franc » : les deux branches sont STABLES (p ≤ 0.25 ou ≥ 0.75)
+ *     et concluent à l'OPPOSÉ — c'est le signal attribuable au prompt ;
+ *   - « bruit » : au moins une branche est instable (0.25 < p < 0.75) — un
+ *     écart observé sur UN run n'y serait pas fiable ;
+ *   - « accord » : les deux branches stables du même côté.
+ * La consistance interne de chaque branche (engine compareRuns) est jointe.
+ *
+ * @param {{runsA: Array<{days: Array}>, runsB: Array<{days: Array}>}} params
+ * @returns {{nbRunsA: number, nbRunsB: number,
+ *   consistance: {a: object|null, b: object|null},
+ *   lignes: Array<{iso, code, pA, pB, classe}>,
+ *   resume: {ecartsVersA: number, ecartsVersB: number, bruit: number, accords: number}}}
+ */
+export function buildAbMultiReport({ runsA, runsB }) {
+  if (!Array.isArray(runsA) || !Array.isArray(runsB) || runsA.length < 1 || runsB.length < 1) {
+    throw new TypeError('buildAbMultiReport : au moins 1 run par branche requis')
+  }
+  const etabliesDe = (run, iso) => {
+    const doc = run.days.find((d) => d.iso === iso)?.document
+    return doc ? new Set(summarizeDocument(doc).etablies) : new Set()
+  }
+  const isos = [
+    ...new Set([...runsA, ...runsB].flatMap((run) => run.days.map((d) => d.iso))),
+  ].sort()
+  const stable = (p) => p <= 0.25 || p >= 0.75
+  const lignes = []
+  const resume = { ecartsVersA: 0, ecartsVersB: 0, bruit: 0, accords: 0 }
+  for (const iso of isos) {
+    const setsA = runsA.map((run) => etabliesDe(run, iso))
+    const setsB = runsB.map((run) => etabliesDe(run, iso))
+    const codes = [...new Set([...setsA, ...setsB].flatMap((s) => [...s]))].sort()
+    for (const code of codes) {
+      const pA = setsA.filter((s) => s.has(code)).length / setsA.length
+      const pB = setsB.filter((s) => s.has(code)).length / setsB.length
+      let classe
+      if (!stable(pA) || !stable(pB)) classe = 'bruit'
+      else if (pA >= 0.75 && pB <= 0.25) classe = 'ecart-vers-a'
+      else if (pB >= 0.75 && pA <= 0.25) classe = 'ecart-vers-b'
+      else classe = 'accord'
+      lignes.push({ iso, code, pA, pB, classe })
+      if (classe === 'ecart-vers-a') resume.ecartsVersA += 1
+      else if (classe === 'ecart-vers-b') resume.ecartsVersB += 1
+      else if (classe === 'bruit') resume.bruit += 1
+      else resume.accords += 1
+    }
+  }
+  const consistance = {
+    a: runsA.length >= 2 ? buildMultiRunReport(runsA) : null,
+    b: runsB.length >= 2 ? buildMultiRunReport(runsB) : null,
+  }
+  return { nbRunsA: runsA.length, nbRunsB: runsB.length, consistance, lignes, resume }
+}
+
 /** Note affichée quand un périmètre restreint est demandé sur un paquet Twin6. */
 export const TWIN6_PERIMETRE_NOTE =
   'Périmètre restreint indisponible pour les paquets Twin6 : leurs fiches embarquent le '
@@ -430,12 +594,26 @@ export async function runVersionOnDays({
   sandboxRunner = runPackageInSandbox,
   executerTwin6Fn = executerTwin6,
 } = {}) {
-  // Température : injectée au niveau du provider pour couvrir uniformément les
-  // trois chemins (moteur, sandbox, Twin6).
-  const provider =
-    temperature === undefined || temperature === null
-      ? rawProvider
-      : { complete: (params) => rawProvider.complete({ ...params, temperature }) }
+  // Enveloppe UNIQUE du provider, pour couvrir uniformément les trois chemins
+  // (moteur, sandbox, Twin6) : température injectée, et usage RÉEL cumulé
+  // (compteurs {inputTokens, outputTokens} renvoyés par chaque fournisseur —
+  // la mesure autoritaire, par opposition aux estimations pré-run).
+  const usage = { inputTokens: 0, outputTokens: 0, mesures: 0 }
+  const provider = {
+    complete: async (params) => {
+      const withTemp =
+        temperature === undefined || temperature === null
+          ? params
+          : { ...params, temperature }
+      const res = await rawProvider.complete(withTemp)
+      if (res?.usage && typeof res.usage === 'object') {
+        usage.inputTokens += Number(res.usage.inputTokens) || 0
+        usage.outputTokens += Number(res.usage.outputTokens) || 0
+        usage.mesures += 1
+      }
+      return res
+    },
+  }
 
   // Périmètre restreint : calculé UNE fois ici pour router (le moteur refait
   // son propre filtrage via l'option perimetre d'extractDay).
@@ -477,6 +655,7 @@ export async function runVersionOnDays({
       days: [],
       llmCalls: calls || 8,
       durationMs: Date.now() - startedAt,
+      usage,
     }
   }
 
@@ -548,6 +727,7 @@ export async function runVersionOnDays({
     days,
     llmCalls,
     durationMs: Date.now() - startedAt,
+    usage,
   }
 }
 
@@ -616,12 +796,22 @@ export function buildAbReport({
     const resumeA = docA ? summarizeDocument(docA) : vide
     const resumeB = docB ? summarizeDocument(docB) : vide
     const diff = compareCodes(resumeA.etablies, resumeB.etablies)
-    return { iso, a: resumeA, b: resumeB, ...diff }
+    // couvertA/couvertB : une journée absente d'un côté n'est pas un désaccord
+    // (scoreVsReference l'écarte du score au lieu de la compter FP/FN).
+    return {
+      iso,
+      couvertA: Boolean(docA),
+      couvertB: Boolean(docB),
+      a: resumeA,
+      b: resumeB,
+      ...diff,
+    }
   })
   const totals = (runResult) => ({
     version: `${runResult.pkg.id}@${runResult.pkg.version}`,
     llmCalls: runResult.llmCalls,
     durationMs: runResult.durationMs,
+    usage: runResult.usage ?? null,
     etabliesTotal: runResult.days.reduce(
       (sum, d) => sum + summarizeDocument(d.document).etablies.length,
       0,

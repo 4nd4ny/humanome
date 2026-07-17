@@ -9,6 +9,42 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D16 — Banc d'essai : score vs référence, multi-run croisé A/B, coût réel
+  mesuré et persisté (retours utilisateur sur D15).**
+  - **Score chiffré vs référence** (`scoreVsReference`) : précision/rappel/F1 par PUR calcul
+    d'ensembles (exigence utilisateur : jamais une note générée par IA) — TP = établies
+    communes, FP = seulement générées, FN = manquées. Seules les journées couvertes des DEUX
+    côtés sont scorées (drapeaux `couvertA/couvertB` de buildAbReport, `joursExclus` signalés) ;
+    un périmètre restreint écarte les compétences de la référence hors périmètre
+    (`codesRetenus`) ; F1 = 0 en désaccord total (null réservé à l'absence de donnée).
+  - **Multi-run croisé A/B** (`buildAbMultiReport`) : N runs PAR BRANCHE (1..5) ; pour chaque
+    (journée, compétence), fraction d'établissement pA/pB ; classes « écart franc » (stables
+    et opposées = signal attribuable au prompt), « bruit » (instable dans au moins une
+    branche), « accord » ; consistance interne par branche (compareRuns). Interruption =
+    rapport partiel sur les runs achevés (comme le mode multi). Provenance affichée (tableau
+    et diff jury = run 1 ; la section multi agrège tout).
+  - **Coût réel mesuré** : enveloppe provider unique dans runVersionOnDays (température +
+    cumul `usage {inputTokens, outputTokens, mesures}` sur les trois chemins) ; lignes
+    « Tokens réels » et « Coût réel » (table de prix, arrondi au dix-millième — un micro-run
+    payant ne s'affiche jamais « 0 $ ») + totaux de SESSION en multi-run ; en mode service
+    humanome le coût se chiffre sur le modèle de référence (`modeleTarif`), cohérent avec
+    l'estimation. Compteurs au format fr-FR.
+  - **Persistance en base à chaque génération** (demande utilisateur) : `executeRun`
+    (run-launcher) mesure enfin l'usage réel que le pipeline jetait — RunWizard le range dans
+    `runMeta.usage` (compteurs seulement, RGPD §6.5), stocké localement avec chaque
+    cartographie et transmis TEL QUEL au serveur à la copie opt-in via la colonne `run_meta`
+    (migration 007 — AUCUNE migration nécessaire, payload déjà validé ≤ 64 Ko). Affiché en fin
+    de run (« Consommation réelle de cette session… »). Twin9 : déjà couvert côté serveur
+    (facture/crédit au coût réel).
+  - Revue adversariale (24 agents, 19 constats confirmés ~11 défauts distincts, TOUS
+    corrigés) : journées non communes exclues du score, arrondi du coût, F1=0, tarif du mode
+    service, totaux ×N, sauvetage A/B après interruption, nRunsAb dans le carnet, usage
+    Twin6 affiché, libellé de distance harmonisé, provenance run 1, séparateurs de milliers.
+  - Vérifié navigateur (mock service, compte promptologue dev) : A/B croisé 2×2 runs (tokens
+    2 917/2 206 par run, session 5 834/4 412, coûts 0.0418 $/0.0837 $), boucle export run
+    partiel → réimport référence → score 100 %, phase PoW affichée pendant la préparation,
+    zéro erreur console. Suites : moteur **945**, web **885** (+15), build OK. NON déployé.
+
 - 2026-07-17 — **D15 — Refonte du banc d'essai promptologue (demande utilisateur).**
   Le banc (P10.4) passe d'un comparateur sommaire à un banc paramétrable complet :
   - **Périmètre du journal** : tout le portfolio, UNE journée, ou une période [du..au]

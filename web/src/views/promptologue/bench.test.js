@@ -8,6 +8,7 @@ import referentielFixture from '../../../../schemas/fixtures/referentiel-respire
 import { BUILTIN_PACKAGE } from '../../lib/run-launcher.js'
 import {
   TWIN6_PERIMETRE_NOTE,
+  buildAbMultiReport,
   buildAbReport,
   buildCompetenceDiff,
   buildMultiRunReport,
@@ -19,9 +20,12 @@ import {
   extractTwin6Templates,
   filterDayGroups,
   normalizeReferenceImport,
+  realCostUsd,
   reportDataUrl,
   runVersionOnDays,
+  scoreVsReference,
   summarizeDocument,
+  sumUsages,
   usesTwin6Engine,
   validatePartialJour,
 } from './bench.js'
@@ -222,6 +226,7 @@ describe('buildAbReport — comparaison A/B téléchargeable', () => {
       version: 'aurora-demo@1.0.0',
       llmCalls: 8,
       durationMs: 2000,
+      usage: null,
       etabliesTotal: 4,
     })
     expect(report.versions.b.etabliesTotal).toBe(3)
@@ -605,6 +610,9 @@ describe('buildAbReport — union des journées des deux côtés', () => {
     const report = buildAbReport({ portfolioLabel: 'Maya', a, b, now: () => 'T' })
     expect(report.parJour.map((j) => j.iso)).toEqual(['2026-01-05', '2026-01-06'])
     expect(report.portfolio.jours).toEqual(['2026-01-05', '2026-01-06'])
+    // Drapeaux de couverture : le 06 n'existe que côté B (scoreVsReference s'en sert).
+    expect(report.parJour[0]).toMatchObject({ couvertA: true, couvertB: true })
+    expect(report.parJour[1]).toMatchObject({ couvertA: false, couvertB: true })
     // Cohérence interne : etabliesTotal de B = somme des lignes parJour côté b.
     const sommeLignes = report.parJour.reduce((s, j) => s + j.b.etablies.length, 0)
     expect(report.versions.b.etabliesTotal).toBe(sommeLignes)
@@ -631,5 +639,192 @@ describe('buildAbReport — configurations par branche', () => {
     })
     expect(report.configurations.a.modele).toBe('claude-sonnet-5')
     expect(report.configurations.b.fournisseur).toBe('openai')
+  })
+})
+
+describe('runVersionOnDays — usage réel cumulé (D16)', () => {
+  it('cumule les compteurs usage des réponses provider (moteur)', async () => {
+    const provider = {
+      complete: async () => ({ text: '', usage: { inputTokens: 100, outputTokens: 40 } }),
+    }
+    const extractDayFn = vi.fn(async ({ provider: p, date }) => {
+      await p.complete({ model: 'test', prompt: 'a' })
+      await p.complete({ model: 'test', prompt: 'b' })
+      return { ...structuredClone(jourFixture), date }
+    })
+    const result = await runVersionOnDays({
+      pkg: BUILTIN_PACKAGE,
+      dayGroups: DAYS,
+      referentiel: referentielFixture,
+      provider,
+      model: 'test',
+      extractDayFn,
+      sandboxRunner: vi.fn(),
+    })
+    expect(result.usage).toEqual({ inputTokens: 400, outputTokens: 160, mesures: 4 })
+  })
+
+  it('fournisseur muet sur usage -> compteurs à zéro, mesures 0', async () => {
+    const provider = { complete: async () => ({ text: '' }) }
+    const extractDayFn = vi.fn(async ({ provider: p, date }) => {
+      await p.complete({ model: 'test', prompt: 'a' })
+      return { ...structuredClone(jourFixture), date }
+    })
+    const result = await runVersionOnDays({
+      pkg: BUILTIN_PACKAGE,
+      dayGroups: [DAYS[0]],
+      referentiel: referentielFixture,
+      provider,
+      model: 'test',
+      extractDayFn,
+      sandboxRunner: vi.fn(),
+    })
+    expect(result.usage.mesures).toBe(0)
+  })
+})
+
+describe('realCostUsd — coût réel depuis la table de prix (D16)', () => {
+  it('calcule depuis les tokens mesurés, null si modèle hors table ou sans mesure', () => {
+    const usage = { inputTokens: 1_000_000, outputTokens: 1_000_000, mesures: 8 }
+    // claude-sonnet : 3 $/M entrée + 15 $/M sortie.
+    expect(realCostUsd(usage, 'claude-sonnet-5')).toBe(18)
+    expect(realCostUsd(usage, 'modele-inconnu-de-la-table')).toBeNull()
+    expect(realCostUsd({ inputTokens: 0, outputTokens: 0, mesures: 0 }, 'claude-sonnet-5')).toBeNull()
+    expect(realCostUsd(null, 'claude-sonnet-5')).toBeNull()
+  })
+
+  it('micro-run payant : arrondi au dix-millième, jamais un faux « 0 $ »', () => {
+    // gpt-4o-mini : 0.15 $/M entrée + 0.6 $/M sortie -> 0.0014 $ (pas 0).
+    const usage = { inputTokens: 6000, outputTokens: 800, mesures: 1 }
+    expect(realCostUsd(usage, 'gpt-4o-mini')).toBeCloseTo(0.0014, 6)
+    expect(realCostUsd(usage, 'gpt-4o-mini')).toBeGreaterThan(0)
+  })
+})
+
+describe('sumUsages — totaux de session multi-run (D16)', () => {
+  it('additionne, tolère null et champs manquants', () => {
+    expect(
+      sumUsages([
+        { inputTokens: 100, outputTokens: 40, mesures: 2 },
+        null,
+        { inputTokens: 50, outputTokens: 10, mesures: 1 },
+      ]),
+    ).toEqual({ inputTokens: 150, outputTokens: 50, mesures: 3 })
+    expect(sumUsages([])).toEqual({ inputTokens: 0, outputTokens: 0, mesures: 0 })
+  })
+})
+
+describe('scoreVsReference — pur calcul d’ensembles (D16)', () => {
+  it('précision/rappel/F1 depuis communes / seulementA / seulementB', () => {
+    const report = {
+      parJour: [
+        { iso: '2026-01-05', communes: ['a', 'b', 'c'], seulementA: ['x'], seulementB: ['y', 'z'] },
+        { iso: '2026-01-06', communes: ['d'], seulementA: [], seulementB: [] },
+      ],
+    }
+    const score = scoreVsReference(report)
+    expect(score.vraisPositifs).toBe(4)
+    expect(score.fauxPositifs).toBe(1)
+    expect(score.fauxNegatifs).toBe(2)
+    expect(score.precision).toBeCloseTo(4 / 5)
+    expect(score.rappel).toBeCloseTo(4 / 6)
+    expect(score.f1).toBeCloseTo((2 * (4 / 5) * (4 / 6)) / (4 / 5 + 4 / 6))
+    expect(score.parJour[1]).toEqual({ iso: '2026-01-06', precision: 1, rappel: 1 })
+  })
+
+  it('dénominateurs nuls -> null (jamais NaN)', () => {
+    const score = scoreVsReference({ parJour: [{ iso: 'x', communes: [], seulementA: [], seulementB: [] }] })
+    expect(score.precision).toBeNull()
+    expect(score.rappel).toBeNull()
+    expect(score.f1).toBeNull()
+  })
+
+  it('désaccord total : F1 = 0 (pire score), pas null (indétermination)', () => {
+    const score = scoreVsReference({
+      parJour: [{ iso: 'x', communes: [], seulementA: ['a'], seulementB: ['b'] }],
+    })
+    expect(score.precision).toBe(0)
+    expect(score.rappel).toBe(0)
+    expect(score.f1).toBe(0)
+  })
+
+  it('journées couvertes d’un seul côté : exclues du score, listées dans joursExclus', () => {
+    // Référence de 2 jours, run généré d'1 jour parfait sur le jour commun :
+    // le jour non testé ne doit PAS plomber le rappel.
+    const score = scoreVsReference({
+      parJour: [
+        { iso: '2026-01-05', couvertA: true, couvertB: true, communes: ['a', 'b'], seulementA: [], seulementB: [] },
+        { iso: '2026-01-06', couvertA: false, couvertB: true, communes: [], seulementA: [], seulementB: ['c', 'd'] },
+      ],
+    })
+    expect(score.precision).toBe(1)
+    expect(score.rappel).toBe(1)
+    expect(score.f1).toBe(1)
+    expect(score.joursExclus).toEqual(['2026-01-06'])
+    expect(score.parJour.map((j) => j.iso)).toEqual(['2026-01-05'])
+  })
+
+  it('périmètre restreint (codesRetenus) : les compétences hors périmètre ne comptent pas', () => {
+    const score = scoreVsReference(
+      {
+        parJour: [
+          // La référence établit aussi 3.04 et 5.03, hors du périmètre testé.
+          { iso: 'x', communes: ['2.01'], seulementA: [], seulementB: ['3.04', '5.03'] },
+        ],
+      },
+      { codesRetenus: ['2.01'] },
+    )
+    expect(score.fauxNegatifs).toBe(0)
+    expect(score.rappel).toBe(1)
+    expect(score.f1).toBe(1)
+  })
+})
+
+describe('buildAbMultiReport — écarts francs vs bruit stochastique (D16)', () => {
+  const docSans = (code) => {
+    const doc = structuredClone(jourFixture)
+    for (const pole of doc.poles) {
+      for (const comp of pole.competences) {
+        if (comp.code === code) comp.verdict.statut = 'présence non établie'
+      }
+    }
+    return doc
+  }
+  const run = (doc) => ({ days: [{ iso: '2026-01-05', document: doc }] })
+
+  it('classe écart franc (stable opposé), bruit (instable), accord (stable identique)', () => {
+    // A établit 2.01 dans ses 2 runs ; B jamais -> écart franc vers A.
+    // 3.04 : établi 1 run sur 2 côté B -> bruit.
+    const report = buildAbMultiReport({
+      runsA: [run(structuredClone(jourFixture)), run(structuredClone(jourFixture))],
+      runsB: [run(docSans('2.01')), run(docSans('3.04'))],
+    })
+    const byCode = Object.fromEntries(report.lignes.map((l) => [l.code, l]))
+    expect(byCode['2.01'].classe).toBe('bruit') // B : 1/2 -> instable
+    // Recomposons un cas net : B sans 2.01 dans SES DEUX runs.
+    const net = buildAbMultiReport({
+      runsA: [run(structuredClone(jourFixture)), run(structuredClone(jourFixture))],
+      runsB: [run(docSans('2.01')), run(docSans('2.01'))],
+    })
+    const netByCode = Object.fromEntries(net.lignes.map((l) => [l.code, l]))
+    expect(netByCode['2.01']).toMatchObject({ classe: 'ecart-vers-a', pA: 1, pB: 0 })
+    expect(netByCode['3.04'].classe).toBe('accord')
+    expect(net.resume.ecartsVersA).toBe(1)
+    expect(net.consistance.a.nbRuns).toBe(2)
+    expect(net.consistance.b.nbRuns).toBe(2)
+  })
+
+  it('1 run par branche : pas de consistance interne, classes calculées sur p ∈ {0,1}', () => {
+    const report = buildAbMultiReport({
+      runsA: [run(structuredClone(jourFixture))],
+      runsB: [run(docSans('2.01'))],
+    })
+    expect(report.consistance).toEqual({ a: null, b: null })
+    const l = report.lignes.find((x) => x.code === '2.01')
+    expect(l.classe).toBe('ecart-vers-a')
+  })
+
+  it('exige au moins 1 run par branche', () => {
+    expect(() => buildAbMultiReport({ runsA: [], runsB: [run(jourFixture)] })).toThrow(/au moins 1/)
   })
 })

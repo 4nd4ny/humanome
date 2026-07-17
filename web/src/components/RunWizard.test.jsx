@@ -171,7 +171,13 @@ describe('RunWizard — exécution', () => {
       expect(entry.referentiel.id).toBe('respire')
       expect(entry.serverId).toBeNull()
       expect(entry.runMeta.portfolioId).toBe('p-1')
+      // Tokens RÉELS mesurés : compteurs conservés avec la cartographie
+      // (runMeta part en base à la copie opt-in — jamais de contenu).
+      expect(entry.runMeta.usage.mesures).toBe(24) // 3 jours × (7 pôles + kairos)
+      expect(entry.runMeta.usage.inputTokens).toBeGreaterThan(0)
+      expect(entry.runMeta.usage.outputTokens).toBeGreaterThan(0)
     }
+    expect(screen.getByTestId('run-usage').textContent).toContain('Consommation réelle')
     expect(carto.saved[3].document.kind).toBe('cartographie-merge')
 
     // La clé est mémorisée en local (case cochée par défaut).

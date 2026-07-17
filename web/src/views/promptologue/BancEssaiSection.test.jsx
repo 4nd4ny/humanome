@@ -304,6 +304,61 @@ describe('BancEssaiSection — diff A/B avec traces du jury (D15)', () => {
   })
 })
 
+describe('BancEssaiSection — multi-run croisé A/B et score vs référence (D16)', () => {
+  it('A/B avec 2 runs par branche : 4 runs, section multi-run croisé rendue', async () => {
+    const variant = structuredClone(jourFixture)
+    for (const pole of variant.poles) {
+      for (const comp of pole.competences) {
+        if (comp.code === '2.01') comp.verdict.statut = 'présence non établie'
+      }
+    }
+    let call = 0
+    const runFn = vi.fn(async ({ pkg }) => {
+      call += 1
+      // Runs 1-2 = branche A (fixture) ; runs 3-4 = branche B (sans 2.01).
+      return {
+        ...okRun(pkg),
+        days: [{ iso: '2026-01-05', document: call <= 2 ? jourFixture : variant }],
+      }
+    })
+    render(<BancEssaiSection api={fakeApi()} user={user} deps={fakeDeps(runFn)} />)
+    await screen.findByLabelText('Version à tester')
+    fireEvent.click(screen.getByRole('radio', { name: /A\/B/ }))
+    fireEvent.change(screen.getByLabelText('Runs par branche'), { target: { value: '2' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer' }))
+    await screen.findByTestId('banc-ab')
+    expect(runFn).toHaveBeenCalledTimes(4)
+    const multi = screen.getByTestId('banc-ab-multi')
+    expect(multi.textContent).toContain('2 runs A × 2 runs B')
+    expect(multi.textContent).toContain('écart(s) franc(s)')
+    expect(multi.textContent).toContain('2.01')
+    // Consistance interne des deux branches (runs identiques -> 0.000).
+    expect(multi.textContent).toContain('Distance structurelle moyenne interne — A : 0.000, B : 0.000')
+    // Provenance explicite : tableau et diff = run 1, cette section = agrégat.
+    expect(multi.textContent).toContain('run 1')
+  })
+
+  it('mode référence : score précision/rappel/F1 calculé par ensembles', async () => {
+    const runFn = vi.fn(async ({ pkg }) => okRun(pkg))
+    const reference = JSON.stringify(structuredClone(jourFixture))
+    const deps = { ...fakeDeps(runFn), readFileTextFn: vi.fn(async () => reference) }
+    render(<BancEssaiSection api={fakeApi()} user={user} deps={deps} />)
+    await screen.findByLabelText('Version à tester')
+    fireEvent.click(screen.getByRole('radio', { name: /Vs référence importée/ }))
+    const file = new File([reference], 'reference.json', { type: 'application/json' })
+    fireEvent.change(screen.getByLabelText('JSON de référence'), { target: { files: [file] } })
+    await screen.findByText(/reference\.json/)
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer' }))
+    await screen.findByTestId('banc-ab')
+    const score = screen.getByTestId('banc-score')
+    // Généré = référence (même fixture) -> précision, rappel et F1 à 100 %.
+    expect(score.textContent).toContain('Précision 100 %')
+    expect(score.textContent).toContain('Rappel 100 %')
+    expect(score.textContent).toContain('F1 100 %')
+    expect(score.textContent).toContain('sans IA')
+  })
+})
+
 describe('BancEssaiSection — carnet du banc (D15)', () => {
   function memStorage() {
     const map = new Map()

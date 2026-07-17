@@ -338,7 +338,11 @@ export function buildLocalNarratives(merged) {
  * @param {() => string} [params.now] horloge injectable (tests)
  * @returns {Promise<{runId: string, aborted: boolean, resumedFrom: number,
  *   status: object, document: object|null, dayDocuments: object[],
- *   mergeError: string|null}>}
+ *   mergeError: string|null,
+ *   usage: {inputTokens: number, outputTokens: number, mesures: number}}>}
+ *   `usage` : tokens RÉELS cumulés sur les appels de CETTE session (les
+ *   journées reprises depuis un checkpoint n'ont pas re-consommé d'appels) —
+ *   compteurs seulement, destinés à runMeta (RGPD §6.5 : jamais de contenu).
  *   `document` (cartographie-merge) n'est non-nul que si toutes les journées
  *   sont checkpointées ET que la fusion est constructible : le schéma
  *   cartographie-merge exige 7 pôles portant chacun AU MOINS une compétence
@@ -364,6 +368,22 @@ export async function executeRun({
   const positions = new Map(days.map((d, i) => [d.iso, i + 1]))
   let mergeError = null
 
+  // Usage RÉEL cumulé : chaque réponse provider porte {inputTokens,
+  // outputTokens} — la mesure autoritaire (vs l'estimation pré-run), jetée
+  // jusqu'ici. Enveloppe locale : aucun changement du moteur.
+  const usage = { inputTokens: 0, outputTokens: 0, mesures: 0 }
+  const meteredProvider = {
+    complete: async (params) => {
+      const res = await provider.complete(params)
+      if (res?.usage && typeof res.usage === 'object') {
+        usage.inputTokens += Number(res.usage.inputTokens) || 0
+        usage.outputTokens += Number(res.usage.outputTokens) || 0
+        usage.mesures += 1
+      }
+      return res
+    },
+  }
+
   const run = createRun({
     runId,
     days,
@@ -376,7 +396,7 @@ export async function executeRun({
         dayText: day.texte,
         date: day.iso,
         referentiel,
-        provider,
+        provider: meteredProvider,
         model,
         maxTokens,
         signal: ctx.signal,
@@ -433,5 +453,6 @@ export async function executeRun({
     document: result.document,
     dayDocuments: await run.getDayDocuments(),
     mergeError,
+    usage,
   }
 }

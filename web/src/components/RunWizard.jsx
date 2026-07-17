@@ -98,6 +98,7 @@ export default function RunWizard({ session, deps = {} }) {
   const [failedDays, setFailedDays] = useState([])
   const [mergeNotice, setMergeNotice] = useState(null) // fusion non constructible (portfolio creux)
   const [saveFallback, setSaveFallback] = useState(null) // JSON à télécharger si carto-store absent
+  const [runUsage, setRunUsage] = useState(null) // tokens réels mesurés sur la session de run
   const controllerRef = useRef(null)
   const storageRef = useRef(null)
 
@@ -161,7 +162,7 @@ export default function RunWizard({ session, deps = {} }) {
     }
   }
 
-  async function saveResults(document, dayDocuments) {
+  async function saveResults(document, dayDocuments, usage) {
     const refMeta = { id: referentiel.id ?? 'respire', version: referentiel.version ?? null }
     const pkgMeta = { id: selectedPackage.id, version: selectedPackage.version }
     const runMeta = {
@@ -172,6 +173,17 @@ export default function RunWizard({ session, deps = {} }) {
       model: mode === 'humanome' ? 'impose par la plateforme' : model,
       jours: dayGroups.length,
       generatedAt: new Date().toISOString(),
+      // Tokens RÉELS mesurés sur cette session de run (compteurs seulement,
+      // RGPD §6.5) — conservés en base avec la cartographie à la copie opt-in.
+      ...(usage && usage.mesures > 0
+        ? {
+            usage: {
+              inputTokens: usage.inputTokens,
+              outputTokens: usage.outputTokens,
+              mesures: usage.mesures,
+            },
+          }
+        : {}),
     }
     const store = await cartoStoreLoader()
     if (!store) {
@@ -282,7 +294,8 @@ export default function RunWizard({ session, deps = {} }) {
 
       setRunState('saving')
       setMergeNotice(result.mergeError)
-      await saveResults(result.document, result.dayDocuments)
+      setRunUsage(result.usage?.mesures > 0 ? result.usage : null)
+      await saveResults(result.document, result.dayDocuments, result.usage)
       setRunState('done')
     } catch (err) {
       if (controller.signal.aborted || isAbortError(err)) {
@@ -651,6 +664,15 @@ export default function RunWizard({ session, deps = {} }) {
               {mergeNotice ? (
                 <p role="status" className="privacy-note" data-testid="run-merge-notice">
                   {mergeNotice}
+                </p>
+              ) : null}
+              {runUsage ? (
+                <p className="privacy-note" data-testid="run-usage">
+                  Consommation réelle de cette session :{' '}
+                  {new Intl.NumberFormat('fr-FR').format(runUsage.inputTokens)} tokens d’entrée /{' '}
+                  {new Intl.NumberFormat('fr-FR').format(runUsage.outputTokens)} tokens de sortie
+                  sur {runUsage.mesures} appel(s) — compteurs conservés avec la cartographie
+                  (jamais le contenu).
                 </p>
               ) : null}
               {saveFallback ? (
