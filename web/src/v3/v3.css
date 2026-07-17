@@ -117,6 +117,7 @@
   gap: 0.75rem;
 }
 .v3-tile {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -126,6 +127,27 @@
   background: var(--v3-surface);
   overflow: hidden;
 }
+/* Poignée de redimensionnement (coin bas-droit) : geste souris/doigt quantisé
+   sur la grille ; le menu de taille reste le chemin clavier/lecteur d'écran. */
+.v3-tile-resize {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 3px 1px 0;
+  cursor: nwse-resize;
+  color: var(--v3-muted);
+  font-size: 0.8rem;
+  touch-action: none;
+  user-select: none;
+}
+.v3-tile-resize:hover { color: var(--v3-text); }
+.v3-tile-resizing { outline: 2px solid var(--v3-accent); outline-offset: -2px; }
+.v3-tile-resizing .v3-tile-content { pointer-events: none; } /* pas de sélection pendant le geste */
 .v3-tile-bar {
   display: flex;
   align-items: center;

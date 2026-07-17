@@ -2,7 +2,7 @@
 // réordonnancement (boutons ◀ ▶ = chemin tactile/clavier du glisser-déposer),
 // tailles prédéterminées, empans bornés par les colonnes disponibles.
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { TileGrid, columnsForWidth, moveTile, orderedTiles, TILE_SIZES } from './tile-grid.jsx'
 
 afterEach(cleanup)
@@ -54,6 +54,46 @@ describe('tile-grid — composant', () => {
     render(<TileGrid tiles={tiles} layout={{ order: [], sizes: {} }} onLayoutChange={onChange} />)
     fireEvent.change(screen.getAllByRole('combobox')[0], { target: { value: '3x2' } })
     expect(onChange).toHaveBeenCalledWith({ order: ['sun', 'tree'], sizes: { sun: { w: 3, h: 2 } } })
+  })
+
+  it('redimensionnement au pointeur : quantisé sur la grille, commit au relâchement', () => {
+    const onChange = vi.fn()
+    render(<TileGrid tiles={tiles} layout={{ order: [], sizes: {} }} onLayoutChange={onChange} />)
+    const handle = screen.getByText('contenu soleil').closest('.v3-tile').querySelector('.v3-tile-resize')
+
+    // jsdom : pas de PointerEvent — on dispatche des Event bruts avec les
+    // coordonnées assignées. clientWidth = 0 → repli 3 colonnes × 340 px :
+    // colonne ≈ 344 px (gap 12), rangée = 248 px : +400 px / +260 px =
+    // +1 colonne, +1 rangée (quantisation à la cellule la plus proche).
+    const ev = (type, x, y) => Object.assign(new Event(type, { bubbles: true }), { clientX: x, clientY: y })
+    act(() => handle.dispatchEvent(ev('pointerdown', 100, 100)))
+    act(() => window.dispatchEvent(ev('pointermove', 500, 360)))
+    // Pendant le geste : taille transitoire appliquée, RIEN n'est persisté.
+    expect(onChange).not.toHaveBeenCalled()
+    const tile = screen.getByText('contenu soleil').closest('.v3-tile')
+    expect(tile.className).toContain('v3-tile-resizing')
+    expect(tile.style.gridColumn).toBe('span 2')
+    expect(tile.style.gridRow).toBe('span 2')
+    // Relâchement : la taille finale quantisée est persistée.
+    act(() => window.dispatchEvent(new Event('pointerup')))
+    expect(onChange).toHaveBeenCalledWith({ order: ['sun', 'tree'], sizes: { sun: { w: 2, h: 2 } } })
+    expect(screen.getByText('contenu soleil').closest('.v3-tile').className).not.toContain('v3-tile-resizing')
+  })
+
+  it('une taille libre (souris) hors préréglages s’affiche telle quelle dans le menu', () => {
+    render(
+      <TileGrid tiles={tiles} layout={{ order: [], sizes: { sun: { w: 2, h: 2 } } }} onLayoutChange={() => {}} />,
+    )
+    // 2×2 est un préréglage — vérifie plutôt une taille libre 3×2 clampée… non :
+    // utilise directement une taille hors liste (4×2 n'existe pas en préréglage).
+    cleanup()
+    render(
+      <TileGrid tiles={tiles} layout={{ order: [], sizes: { sun: { w: 4, h: 2 } } }} onLayoutChange={() => {}} />,
+    )
+    const select = screen.getByText('contenu soleil').closest('.v3-tile').querySelector('select')
+    expect(select.value).toBe('libre')
+    // L'empan rendu est borné aux 3 colonnes jsdom, l'option affiche la taille réelle.
+    expect(select.querySelector('option[value="libre"]').textContent).toBe('3×2')
   })
 
   it('l’empan est borné par les colonnes disponibles (pleine largeur = 99 → span colonnes)', () => {

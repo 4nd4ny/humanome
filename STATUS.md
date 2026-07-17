@@ -9,6 +9,22 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D14quater — Tuiles V3 : redimensionnement à la souris + mémoire du mode.**
+  - **Redimensionnement au pointeur** (souris, doigt, stylet — pointer events) : poignée ◢ au coin
+    bas-droit de chaque tuile ; le geste est **quantisé sur la grille virtuelle** (cellule la plus
+    proche, bornée 1..colonnes × 1..6) et appliqué EN DIRECT — la grille CSS (auto-flow dense)
+    **réagence les autres tuiles pendant le geste sans les redimensionner** ; la taille finale n'est
+    persistée qu'au relâchement. Une taille libre hors préréglages s'affiche telle quelle (« 3×2 »)
+    dans le menu, qui reste le chemin clavier/lecteur d'écran. Contenu de la tuile désactivé pendant
+    le geste (pas de sélection parasite), contour accentué.
+  - **Mémoire de présentation** (§14.4) : le mode expert/simplifié ET les panneaux visibles par mode
+    sont restaurés en revenant sur la vue (localStorage `humanome-v3-presentation`, distinct des
+    données d'évaluation) ; `renderedPanels` ré-intersecte toujours `availablePanels` — une préférence
+    mémorisée ne réaffiche jamais un panneau interdit (AC-UI-04 préservé).
+  - Vérifié navigateur : geste +450/+300 px sur la Heatmap → 2×1 → 3×2 en direct (marqueur visuel,
+    rien de persisté pendant le geste) → commit au relâchement → **rechargement complet : mode expert
+    ET taille 3×2 restaurés**. Suites : web **807** (+2).
+
 - 2026-07-17 — **D14ter — Mode expert V3 : pleine largeur + grille de tuiles éditable (demande
   utilisateur ; anticipe la « personnalisation avancée » V3.1 §25.2).**
   - **Pleine largeur** : les routes V3 (`#/cartographie`, `#/merge` démo) échappent au plafond de

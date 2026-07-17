@@ -34,6 +34,29 @@ const PANEL_LABELS = {
 }
 
 const TILES_STORAGE_KEY = 'humanome-v3-tiles-expert'
+const PRESENTATION_STORAGE_KEY = 'humanome-v3-presentation'
+
+/** Restaure les préférences de présentation (§14.4) — mode et panneaux par mode. */
+function initialUiState() {
+  let saved = null
+  try {
+    saved = JSON.parse(localStorage.getItem(PRESENTATION_STORAGE_KEY))
+  } catch {
+    /* stockage indisponible */
+  }
+  const state = initialState({
+    audience: 'learner',
+    interfaceMode: saved?.interfaceMode === 'expert' ? 'expert' : 'simplified',
+  })
+  if (Array.isArray(saved?.visiblePanels)) state.visiblePanels = new Set(saved.visiblePanels)
+  if (saved?.overrides) {
+    state.panelOverridesByMode = {
+      simplified: Array.isArray(saved.overrides.simplified) ? new Set(saved.overrides.simplified) : null,
+      expert: Array.isArray(saved.overrides.expert) ? new Set(saved.overrides.expert) : null,
+    }
+  }
+  return state
+}
 
 /** Tailles par défaut des tuiles du mode expert (l × h sur la grille). */
 const DEFAULT_TILE_SIZES = {
@@ -69,7 +92,7 @@ export default function V3View({ deps = {} }) {
   const [referential, setReferential] = useState(null)
   const [master, setMaster] = useState(null)
   const [report, setReport] = useState([])
-  const [ui, setUi] = useState(() => initialState({ audience: 'learner' }))
+  const [ui, setUi] = useState(initialUiState)
   const [project, setProject] = useState(null)
   const [previewSnapshot, setPreviewSnapshot] = useState(null)
   const [openedShare, setOpenedShare] = useState(null) // fichier employeur réimporté
@@ -94,6 +117,28 @@ export default function V3View({ deps = {} }) {
       /* stockage indisponible : la disposition reste en mémoire */
     }
   }, [])
+
+  // Mémorise mode + panneaux par mode (préférence de présentation §14.4) :
+  // revenir sur la vue restaure expert/simplifié tel quel. renderedPanels
+  // ré-intersecte toujours availablePanels — une préférence mémorisée ne peut
+  // rien réafficher d'interdit (AC-UI-04).
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        PRESENTATION_STORAGE_KEY,
+        JSON.stringify({
+          interfaceMode: ui.interfaceMode,
+          visiblePanels: [...ui.visiblePanels],
+          overrides: {
+            simplified: ui.panelOverridesByMode.simplified ? [...ui.panelOverridesByMode.simplified] : null,
+            expert: ui.panelOverridesByMode.expert ? [...ui.panelOverridesByMode.expert] : null,
+          },
+        }),
+      )
+    } catch {
+      /* stockage indisponible */
+    }
+  }, [ui.interfaceMode, ui.visiblePanels, ui.panelOverridesByMode])
 
   // Référentiel versionné (obligatoire, §6.3) puis corpus de démonstration.
   useEffect(() => {
