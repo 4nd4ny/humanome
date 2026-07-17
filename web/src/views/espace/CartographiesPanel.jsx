@@ -19,7 +19,7 @@ const VISIBILITY_LABELS = {
   publique: 'Publique (partageable)',
 }
 
-const TYPE_LABELS = { jour: 'Journée', merge: 'Parcours (merge)' }
+const TYPE_LABELS = { jour: 'Journée', merge: 'Parcours (merge)', twin9: 'Analyse Twin9' }
 
 /** @param {string} iso @returns {string} date française courte */
 function frShort(iso) {

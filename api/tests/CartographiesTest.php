@@ -62,6 +62,31 @@ final class CartographiesTest extends AuthTestBase
         );
     }
 
+    public function testPostAcceptsTwin9TypeWithSameOptInContract(): void
+    {
+        // D12 : le carto_evolutive NATIF d'une analyse Twin9 est stockable
+        // sous le même contrat d'opt-in (le POST est la décision datée).
+        $response = $this->post(self::body([
+            'type' => 'twin9',
+            'titre' => 'Twin9 — plant-merge (2026-01-05 → 2026-01-19)',
+            'document' => [
+                'journal_id' => 'plant-merge',
+                'date' => '2026-02-01',
+                'competences' => ['1.01' => ['attestations' => [], 'signaux' => []]],
+            ],
+        ]));
+        self::assertSame(201, $response->getStatusCode(), (string) $response->getBody());
+        $id = self::json($response)['id'];
+
+        $row = self::$pdo->query('SELECT * FROM cartographies WHERE id = ' . $id)->fetch();
+        self::assertSame('twin9', $row['type']);
+        self::assertNotNull($row['opt_in_at']);
+        // La liste du compte rend le type tel quel (le front sait l'étiqueter).
+        $liste = $this->request('GET', '/api/cartographies', null, ['X-CSRF-Token' => $this->csrf]);
+        $types = array_column(self::json($liste), 'type');
+        self::assertContains('twin9', $types);
+    }
+
     public function testPostRequiresAuthenticationAndRole(): void
     {
         $this->cookieSid = null; // visitor

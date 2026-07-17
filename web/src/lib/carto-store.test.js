@@ -60,6 +60,13 @@ describe('carto-store — CRUD (contrat M6)', () => {
     expect(VISIBILITIES).toEqual(['privee', 'cartographe', 'publique'])
   })
 
+  it('accepte le type twin9 (D12 : carto_evolutive native d’une analyse)', async () => {
+    const store = makeStore()
+    const { id } = await store.saveCartography({ type: 'twin9', titre: 'Twin9 — demo' })
+    const record = await store.getCartography(id)
+    expect(record.type).toBe('twin9')
+  })
+
   it('listCartographies trie par updatedAt décroissant', async () => {
     const store = makeStore()
     const a = await store.saveCartography({ titre: 'Ancienne' })

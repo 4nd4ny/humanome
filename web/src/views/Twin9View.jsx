@@ -12,7 +12,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ApiError, ApiUnavailableError, fetchMe } from '../api/client.js'
-import { fetchTwin9Meta, makeServerBackend, formatUsd } from '../api/twin9.js'
+import { fetchTwin9Meta, makeServerBackend, formatUsd, referentielPourMoteur } from '../api/twin9.js'
 import { executerTwin9 } from '@engine/twin9/index.js'
 import { pyJsonDumpsWriteJson } from '@engine/twin9/py/pyJson.js'
 import ResultatsTwin9 from './twin9/ResultatsTwin9.jsx'
@@ -526,9 +526,14 @@ export default function Twin9View({ section = null, deps = {} }) {
             ) : null}
           </section>
 
-          {/* 6. Résultats. */}
+          {/* 6. Résultats — le référentiel (forme moteur) active le sunburst. */}
           {run.status === 'done' && run.carto ? (
-            <ResultatsTwin9 carto={run.carto} cartoStr={run.cartoStr} demonstration={demonstration} />
+            <ResultatsTwin9
+              carto={run.carto}
+              cartoStr={run.cartoStr}
+              demonstration={demonstration}
+              referentiel={referentielPourMoteur(referentiel)}
+            />
           ) : null}
         </div>
       ) : null}

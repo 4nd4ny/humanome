@@ -4,10 +4,15 @@
 // parseur maison + DOMPurify, ADR-007) avant tout dangerouslySetInnerHTML — aucun
 // HTML brut du modèle n'atteint le DOM sans assainissement.
 
+import { useMemo, useState } from 'react'
 import { renderMarkdown } from '../../lib/md.js'
 import { formatUsd } from '../../api/twin9.js'
 import { downloadJson } from '../../lib/download-json.js'
 import { journeesDepuisCarto } from './run-helpers.js'
+import { twin9ToMergeDocument } from '@engine/twin9/mapper.js'
+import { saveCartography } from '../../lib/carto-store.js'
+import { useSunburstLib } from '../view-helpers.js'
+import MergeView from '../MergeView.jsx'
 
 /** Bloc markdown assaini (null si vide). */
 function Markdown({ md, className }) {
@@ -22,10 +27,59 @@ function Markdown({ md, className }) {
  *   (via JSON.parse(pyJsonDumpsWriteJson(...)) — Maps/PyFloat aplanis)
  * @param {string} [props.cartoStr] mêmes octets, pour l'export « un clic »
  * @param {boolean} [props.demonstration] true = données fictives (mode démo)
+ * @param {object} [props.referentiel] forme moteur {poles, competences} — active
+ *   le sunburst évolutif (adaptateur carto_evolutive → cartographie-merge)
+ * @param {object} [props.lib] module sunburst injecté (tests)
  * @param {(str: string, nom: string) => void} [props.onExport] couture de test
+ * @param {typeof saveCartography} [props.saveFn] couture de test (carto-store)
  */
-export default function ResultatsTwin9({ carto, cartoStr, demonstration = false, onExport = downloadJson }) {
+export default function ResultatsTwin9({
+  carto,
+  cartoStr,
+  demonstration = false,
+  referentiel = null,
+  lib: injectedLib,
+  onExport = downloadJson,
+  saveFn = saveCartography,
+}) {
+  const { lib } = useSunburstLib(injectedLib)
+  const [sauvegarde, setSauvegarde] = useState({ status: 'idle', message: '' })
+
+  // Projection sunburst : l'adaptateur refuse (message français) un document
+  // sans attestation datée — dans ce cas la section sunburst est simplement
+  // absente, les autres blocs (narratifs, jauges) restent.
+  const mergeDoc = useMemo(() => {
+    if (!carto || !referentiel) return null
+    try {
+      return twin9ToMergeDocument(carto, referentiel, { generatedAt: carto.date ?? null })
+    } catch {
+      return null
+    }
+  }, [carto, referentiel])
+
   if (!carto) return null
+
+  async function enregistrer() {
+    setSauvegarde({ status: 'saving', message: '' })
+    try {
+      await saveFn({
+        type: 'twin9',
+        titre: `Twin9 — ${carto.journal_id ?? 'analyse'}${carto.periode?.debut ? ` (${carto.periode.debut} → ${carto.periode.fin ?? carto.periode.debut})` : ''}`,
+        document: carto,
+        visibility: 'privee',
+      })
+      setSauvegarde({
+        status: 'done',
+        message:
+          'Enregistrée dans « Mes cartographies » (ce navigateur uniquement). La copie serveur, elle, reste un choix explicite : Mon espace → Mes cartographies → « Copier sur le serveur ».',
+      })
+    } catch (error) {
+      setSauvegarde({
+        status: 'error',
+        message: error?.message ?? 'Enregistrement local impossible (stockage navigateur indisponible).',
+      })
+    }
+  }
   const apprenant = carto.kairos?.kairos?.apprenant ?? null
   const rapport = carto.rapport ?? null
   const profil = carto.profil_ipsatif ?? {}
@@ -55,7 +109,40 @@ export default function ResultatsTwin9({ carto, cartoStr, demonstration = false,
         <button type="button" className="twin9-export" onClick={() => onExport(cartoStr ?? '', nomFichier)}>
           Exporter le JSON (carto_evolutive.json)
         </button>
+        {!demonstration ? (
+          <span className="twin9-sauvegarde">
+            <button
+              type="button"
+              className="twin9-export"
+              onClick={enregistrer}
+              disabled={sauvegarde.status === 'saving' || sauvegarde.status === 'done'}
+            >
+              {sauvegarde.status === 'done'
+                ? 'Enregistrée dans mes cartographies ✓'
+                : 'Enregistrer dans mes cartographies'}
+            </button>
+            {sauvegarde.message ? (
+              <span
+                className="twin9-resultats-meta"
+                role={sauvegarde.status === 'error' ? 'alert' : 'status'}
+              >
+                {sauvegarde.message}
+              </span>
+            ) : null}
+          </span>
+        ) : null}
       </header>
+
+      {mergeDoc ? (
+        <article className="twin9-bloc" data-testid="twin9-sunburst">
+          <h3>Cartographie évolutive — sunburst</h3>
+          <p className="twin9-resultats-meta">
+            La même visualisation que toute cartographie du site, projetée depuis les journées
+            attestées de l’analyse Twin9.
+          </p>
+          <MergeView mergeDoc={mergeDoc} referentiel={referentiel} lib={lib} />
+        </article>
+      ) : null}
 
       {apprenant?.syntheseCompleteMarkdown ? (
         <article className="twin9-bloc">

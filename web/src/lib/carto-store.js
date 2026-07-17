@@ -132,7 +132,9 @@ export function createIndexedDbAdapter({ dbName = DB_NAME, storeName = STORE_NAM
 function normalize(entry, id, stamp) {
   return {
     id,
-    type: entry.type === 'merge' ? 'merge' : 'jour',
+    // 'twin9' (D12) = carto_evolutive native d'une analyse approfondie ; la
+    // visionneuse la projette vers le sunburst via l'adaptateur du moteur.
+    type: ['merge', 'twin9'].includes(entry.type) ? entry.type : 'jour',
     titre: entry.titre ?? 'Cartographie sans titre',
     visibility: VISIBILITIES.includes(entry.visibility) ? entry.visibility : 'privee',
     document: entry.document ?? null,

@@ -87,22 +87,9 @@ export function makeOwnKeyProvider({ provider = 'anthropic', apiKey, fetchFn } =
   })
 }
 
-/**
- * Transforme la structure de référentiel de /meta ([{num, nom, competences:
- * [{code, nom}]}]) vers la forme attendue par le moteur (executerTwin6) :
- * {poles: [{num, nom}], competences: [{code, nom, pole}]}.
- *
- * @param {Array<{num:number, nom:string, competences?:Array<{code:string, nom:string}>}>} metaReferentiel
- */
-export function referentielPourMoteur(metaReferentiel) {
-  const src = Array.isArray(metaReferentiel) ? metaReferentiel : []
-  return {
-    poles: src.map((p) => ({ num: p.num, nom: p.nom })),
-    competences: src.flatMap((p) =>
-      (p.competences ?? []).map((c) => ({ code: c.code, nom: c.nom, pole: p.num })),
-    ),
-  }
-}
+// referentielPourMoteur a déménagé dans api/twin9.js (D12 : il sert les DEUX
+// adaptateurs, Twin6 et Twin9) — ré-exporté ici pour les importeurs existants.
+export { referentielPourMoteur } from './twin9.js'
 
 /**
  * Prix Twin6 (contribution +10 % déjà appliquée) par modèle + état de la promo

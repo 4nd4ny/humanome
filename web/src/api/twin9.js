@@ -142,3 +142,20 @@ export function formatUsd(microusd) {
   const usd = (Number(microusd) || 0) / 1_000_000
   return `${usd.toFixed(usd !== 0 && Math.abs(usd) < 0.01 ? 4 : 2).replace('.', ',')} $`
 }
+
+/**
+ * Référentiel du /twin9/meta ([{num, nom, competences:[{code, nom}]}]) mis à la
+ * forme moteur/adaptateurs : { poles: [{num, nom}], competences: [{code, nom,
+ * pole}] }. Utilisé par les adaptateurs Twin6 ET Twin9 (mapper → sunburst).
+ *
+ * @param {Array<{num:number, nom:string, competences?:Array<{code:string, nom:string}>}>} metaReferentiel
+ */
+export function referentielPourMoteur(metaReferentiel) {
+  const src = Array.isArray(metaReferentiel) ? metaReferentiel : []
+  return {
+    poles: src.map((p) => ({ num: p.num, nom: p.nom })),
+    competences: src.flatMap((p) =>
+      (p.competences ?? []).map((c) => ({ code: c.code, nom: c.nom, pole: p.num })),
+    ),
+  }
+}

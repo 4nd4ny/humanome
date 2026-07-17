@@ -8,6 +8,7 @@ import Twin9View from './Twin9View.jsx'
 import ResultatsTwin9 from './twin9/ResultatsTwin9.jsx'
 import { createMemoryTwin9Store } from './twin9/twin9-store.js'
 import { ApiError } from '../api/client.js'
+import * as fakeSunburstLib from '../test/fake-sunburst-lib.js'
 
 afterEach(cleanup)
 
@@ -314,6 +315,67 @@ describe('Twin9View — offre clé perso pilotée par la promo (twin9_cle_perso_
     expect(screen.queryByTestId('twin9-pause')).toBeNull()
     expect(screen.queryByTestId('twin9-progression')).toBeNull()
     expect(screen.queryByText(/appels effectués/)).toBeNull()
+  })
+})
+
+// Référentiel forme moteur (7 pôles — le mapper émet un domaine par pôle).
+const REFERENTIEL_MOTEUR = {
+  poles: [
+    { num: 1, nom: 'TÊTE — Penser & Comprendre' },
+    { num: 2, nom: 'CŒUR — Relier & Naviguer' },
+    { num: 3, nom: 'MAIN — Créer & Incarner' },
+    { num: 4, nom: 'ÂME — Discerner & Juger' },
+    { num: 5, nom: 'RACINES — Évoluer & Résister' },
+    { num: 6, nom: 'CITÉ — Gouverner & S’ouvrir' },
+    { num: 7, nom: 'FLAMBEAU — Transmettre & Piloter' },
+  ],
+  competences: [
+    { code: '1.01', nom: 'Pensée critique', pole: 1 },
+    { code: '1.05', nom: 'Pensée systémique', pole: 1 },
+  ],
+}
+
+describe('ResultatsTwin9 — sunburst et enregistrement local (D12)', () => {
+  it('projette carto_evolutive dans le sunburst quand le référentiel est là', () => {
+    render(
+      <ResultatsTwin9
+        carto={CARTO_FIXTURE}
+        cartoStr={JSON.stringify(CARTO_FIXTURE)}
+        referentiel={REFERENTIEL_MOTEUR}
+        lib={fakeSunburstLib}
+      />,
+    )
+    // La section sunburst est là, avec la visualisation merge (fake lib).
+    expect(screen.getByTestId('twin9-sunburst')).toBeTruthy()
+    expect(screen.getByText('Cartographie évolutive — sunburst')).toBeTruthy()
+  })
+
+  it('sans référentiel (ou sans journée datée), pas de section sunburst — le reste tient', () => {
+    render(<ResultatsTwin9 carto={CARTO_FIXTURE} cartoStr="{}" />)
+    expect(screen.queryByTestId('twin9-sunburst')).toBeNull()
+    expect(screen.getByText(/Une pratique réflexive qui se précise/)).toBeTruthy()
+  })
+
+  it('« Enregistrer dans mes cartographies » sauve le carto_evolutive NATIF en type twin9', async () => {
+    const saveFn = vi.fn().mockResolvedValue({ id: 'c1' })
+    render(
+      <ResultatsTwin9 carto={CARTO_FIXTURE} cartoStr="{}" saveFn={saveFn} />,
+    )
+    fireEvent.click(screen.getByText('Enregistrer dans mes cartographies'))
+    await waitFor(() => expect(saveFn).toHaveBeenCalledTimes(1))
+    expect(saveFn.mock.calls[0][0]).toMatchObject({
+      type: 'twin9',
+      document: CARTO_FIXTURE,
+      visibility: 'privee',
+    })
+    expect(saveFn.mock.calls[0][0].titre).toContain('demo')
+    // Le message rappelle que la copie serveur reste un choix explicite (RGPD).
+    expect((await screen.findByRole('status')).textContent).toContain('choix explicite')
+  })
+
+  it('en démonstration (données fictives), pas d’enregistrement possible', () => {
+    render(<ResultatsTwin9 carto={CARTO_FIXTURE} cartoStr="{}" demonstration />)
+    expect(screen.queryByText('Enregistrer dans mes cartographies')).toBeNull()
   })
 })
 

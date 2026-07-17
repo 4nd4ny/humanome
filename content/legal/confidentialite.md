@@ -94,9 +94,16 @@ serveur puis par le fournisseur du modèle choisi**, le temps de l'analyse. Ce
 texte n'est **pas conservé côté serveur** : les appels sont sans état, seuls des
 compteurs (nombre d'appels, tokens, modèle — jamais de contenu) sont journalisés
 pour la facturation. L'état de l'analyse et ses résultats restent en local dans
-votre navigateur. Chaque lancement requiert un **consentement explicite**. Pour
-des journaux d'élèves réels soumis à des exigences renforcées de protection des
-données, l'outil local (hors ligne) reste la réponse appropriée.
+votre navigateur. Chaque lancement requiert un **consentement explicite**.
+
+Le **résultat** de l'analyse (le document JSON produit, jamais votre portfolio)
+peut, comme toute cartographie, être **enregistré sur nos serveurs si — et
+seulement si — vous le décidez** : l'enregistrement se fait d'abord dans votre
+navigateur, puis la copie serveur est un choix explicite et daté (opt-in),
+réversible à tout moment depuis « Mes cartographies ». Rien n'est stocké côté
+serveur sans cette décision. Pour des journaux d'élèves réels soumis à des
+exigences renforcées de protection des données, l'outil local (hors ligne)
+reste la réponse appropriée.
 
 ## Cookies
 

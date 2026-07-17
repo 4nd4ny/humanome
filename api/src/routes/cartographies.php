@@ -68,8 +68,10 @@ return function (App $app): void {
 
         $errors = [];
         $type = $data['type'] ?? null;
-        if (!\in_array($type, ['jour', 'merge'], true)) {
-            $errors['type'] = 'Type invalide (attendu : "jour" ou "merge")';
+        // 'twin9' (D12) : carto_evolutive natif d'une analyse approfondie,
+        // même contrat d'opt-in que les autres types.
+        if (!\in_array($type, ['jour', 'merge', 'twin9'], true)) {
+            $errors['type'] = 'Type invalide (attendu : "jour", "merge" ou "twin9")';
         }
         $titre = \is_string($data['titre'] ?? null) ? trim($data['titre']) : '';
         if ($titre === '' || mb_strlen($titre) > 190) {
