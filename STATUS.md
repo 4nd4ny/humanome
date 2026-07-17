@@ -9,6 +9,28 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **Bord gauche fiabilisé : déclenchement GÉOMÉTRIQUE (retour utilisateur).**
+  L'utilisateur signalait que le bord gauche n'ouvrait pas le menu. Deux causes distinctes :
+  (1) son serveur de dev ne tournait plus (page en cache navigateur = ancien code) — HMR
+  vérifié fonctionnel sur Dropbox/CloudStorage, pas de config à changer ; (2) un vrai bug
+  reproduit en navigateur : le déclenchement par survol d'élément (`pointerenter` sur la
+  réglette) est structurellement fragile — souris DÉJÀ posée sur le bord au chargement
+  (l'événement part avant le montage React) ou glissant LE LONG du bord = aucune frontière
+  franchie, bord mort. Remplacé par une **veille géométrique** : écouteur `pointermove` du
+  document (actif menu fermé et non épinglé), x ≤ 12 px = zone, transitions seulement.
+  Gardes (audit 4 agents + revue adversariale 14 agents, 3 corrections intégrées) :
+  tactile ignoré, glisser (`buttons`) ignoré, surfaces bloquantes (`aria-modal`, éditeur
+  plein écran) suspendent le bord, appui souris annule l'attente, Échap DÉSARME le bord
+  jusqu'à une vraie sortie de zone (pas de réouverture au frémissement), les entrées
+  bloquées ne consomment pas la transition (le bord revit dès la levée du blocage), pas
+  d'ouverture-éclair en sortie de fenêtre (fausse-positive en glisser-sélection ; fenêtre
+  maximisée le curseur se cale à x=0 et la voie normale suffit). La réglette devient
+  purement décorative (`pointer-events:none`, surbrillance `is-hot` posée par la veille) ;
+  sortie du panneau vers la page = grâce courte, vers hors-fenêtre = grâce longue (lecture
+  du `relatedTarget` NATIF, React substitue `window` au synthétique). Vérifié navigateur
+  (scénario mort rejoué : souris posée sur le bord + rechargement + glissement le long du
+  bord → ouverture ; Échap/désarmement/réarmement). Suites : web **820** (28 tests App).
+
 - 2026-07-17 — **Menu au survol persistant + réglette du bord gauche (demande utilisateur).**
   Le va-et-vient bouton (droite) ↔ panneau (gauche) était pénible : l'aperçu au survol
   (CSS pur, grâce de 0,32 s) se rétractait pendant la traversée de l'écran. L'ouverture au

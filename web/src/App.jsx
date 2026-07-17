@@ -92,6 +92,14 @@ function LogoutIcon() {
 const MENU_HOVER_OPEN_MS = 150
 const MENU_HOVER_TRAVEL_MS = 1600
 const MENU_HOVER_CLOSE_MS = 350
+/* Zone de déclenchement du bord gauche (px) — tenir en phase avec la largeur
+   de `.app-menu-edge` dans global.css (la réglette n'est que l'affordance
+   visuelle ; le déclenchement est géométrique, cf. l'effet de veille). */
+const MENU_EDGE_ZONE_PX = 12
+/* Surfaces bloquantes : tant que l'une d'elles est ouverte, le bord gauche
+   ne doit pas faire surgir le tiroir par-dessus (aide modale, éditeur de
+   portfolio plein écran). */
+const MENU_EDGE_BLOCKERS = '[aria-modal="true"], .portfolio-editor-fullscreen'
 
 /**
  * Shell applicatif : routeur hash (ADR-009) -> vues, données de démonstration
@@ -143,7 +151,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     }
   }, [pinned])
 
-  // Ouverture au survol (souris) : survoler le bouton Menu OU la réglette du
+  // Ouverture au survol (souris) : survoler le bouton Menu OU approcher le
   // bord gauche ouvre le panneau via l'état — et non plus en CSS pur — pour
   // qu'il RESTE ouvert pendant la traversée de l'écran (bouton à droite,
   // panneau à gauche : le va-et-vient était la friction n°1 de ce menu).
@@ -153,6 +161,13 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   // extérieur/Échap/changement de route comme avant.
   const hoverOpenedRef = useRef(false)
   const hoverTimersRef = useRef({ open: 0, close: 0 })
+  // Réglette du bord : mise en évidence quand le pointeur est dans la zone
+  // (elle est pointer-events:none, son :hover n'existe plus).
+  const [edgeHot, setEdgeHot] = useState(false)
+  // Échap désarme le bord tant que la souris n'en est pas VRAIMENT ressortie
+  // (sinon le menu explicitement congédié rouvrirait au moindre frémissement
+  // du pointeur resté posé à gauche).
+  const edgeDisarmedRef = useRef(false)
 
   function clearHoverTimers() {
     window.clearTimeout(hoverTimersRef.current.open)
@@ -168,9 +183,9 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     }, delay)
   }
 
-  /** Entrée sur un déclencheur (bouton Menu, réglette) : ouverture différée. */
+  /** Entrée sur le bouton Menu : ouverture différée (filtre les passages). */
   function handleHoverTriggerEnter(event) {
-    if (event.pointerType === 'touch') return
+    if (event.pointerType === 'touch' || event.buttons) return
     window.clearTimeout(hoverTimersRef.current.close)
     if (menuOpen || pinned) return
     window.clearTimeout(hoverTimersRef.current.open)
@@ -180,7 +195,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     }, MENU_HOVER_OPEN_MS)
   }
 
-  /** Sortie d'un déclencheur : grâce de traversée (entrer dans le panneau l'annule). */
+  /** Sortie du bouton : grâce de traversée (entrer dans le panneau l'annule). */
   function handleHoverTriggerLeave(event) {
     if (event.pointerType === 'touch') return
     window.clearTimeout(hoverTimersRef.current.open)
@@ -194,8 +209,92 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
 
   function handlePanelPointerLeave(event) {
     if (event.pointerType === 'touch') return
-    scheduleHoverClose(MENU_HOVER_CLOSE_MS)
+    // relatedTarget NATIF nul = le pointeur a quitté la FENÊTRE depuis le
+    // panneau (survitesse) : grâce longue, il va revenir. React substitue
+    // `window` au relatedTarget synthétique, d'où la lecture du natif.
+    const leftWindow = !event.nativeEvent?.relatedTarget
+    scheduleHoverClose(leftWindow ? MENU_HOVER_TRAVEL_MS : MENU_HOVER_CLOSE_MS)
   }
+
+  // Veille géométrique du bord gauche. Le déclenchement par survol d'élément
+  // (pointerenter sur la réglette) ratait deux cas réels : souris DÉJÀ posée
+  // sur le bord au chargement (l'événement d'entrée part avant le montage de
+  // React) et glissement LE LONG du bord (aucune frontière franchie). On
+  // écoute donc les pointermove du document : x <= MENU_EDGE_ZONE_PX vaut
+  // entrée en zone, quels que soient l'élément sous le pointeur, son z-index
+  // ou ses pointer-events. Actif seulement menu fermé et non épinglé.
+  useEffect(() => {
+    if (menuOpen || pinned) return undefined
+    let inZone = false
+    const cancelPendingOpen = () => {
+      window.clearTimeout(hoverTimersRef.current.open)
+      setEdgeHot(false)
+    }
+    const onPointerMove = (event) => {
+      if (event.pointerType === 'touch') return
+      // Réarmement post-Échap : exige une vraie sortie de zone.
+      if (edgeDisarmedRef.current && event.clientX > MENU_EDGE_ZONE_PX) {
+        edgeDisarmedRef.current = false
+      }
+      // Pointeur sur le panneau (révélé au focus clavier) ou le bouton : les
+      // handlers d'éléments s'en chargent, la veille n'a rien à faire.
+      if (menuRef.current && menuRef.current.contains(event.target)) return
+      if (event.clientX > MENU_EDGE_ZONE_PX) {
+        if (inZone) {
+          inZone = false
+          cancelPendingOpen()
+        }
+        return
+      }
+      if (inZone) return
+      // L'entrée en zone n'est CONSOMMÉE que si elle déclenche. Bloquée
+      // (désarmée, glisser en cours — `buttons`, surface modale ouverte),
+      // elle reste disponible pour le prochain mouvement propre : sinon le
+      // bord resterait inerte après la levée du blocage tant que la souris
+      // n'est pas ressortie de la zone.
+      if (edgeDisarmedRef.current || event.buttons) return
+      if (document.querySelector(MENU_EDGE_BLOCKERS)) return
+      inZone = true
+      setEdgeHot(true)
+      window.clearTimeout(hoverTimersRef.current.open)
+      hoverTimersRef.current.open = window.setTimeout(() => {
+        setEdgeHot(false)
+        hoverOpenedRef.current = true
+        setMenuOpen(true)
+      }, MENU_HOVER_OPEN_MS)
+    }
+    // Un appui n'est jamais une intention d'ouverture (sélection de texte née
+    // dans la gouttière, aucune pointermove entre l'appui et le glisser) : on
+    // annule ET on oublie la présence en zone, pour que le bord revive au
+    // premier mouvement propre après le relâchement.
+    const onPointerDown = () => {
+      inZone = false
+      cancelPendingOpen()
+    }
+    // Sortie de la fenêtre (survitesse au-delà du bord, chrome du navigateur,
+    // boutons de fenêtre macOS en haut à gauche…) : on annule simplement
+    // l'ouverture en attente. PAS d'ouverture-éclair ici : elle se
+    // déclencherait aussi en plein glisser-sélection débordant à gauche, et
+    // fenêtre maximisée (cas courant) le curseur ne sort jamais — il se cale
+    // à x=0, où la zone l'attrape par la voie normale.
+    const onDocPointerLeave = (event) => {
+      if (event.pointerType === 'touch') return
+      inZone = false
+      cancelPendingOpen()
+    }
+    document.addEventListener('pointermove', onPointerMove, { passive: true })
+    document.addEventListener('pointerdown', onPointerDown, true)
+    document.documentElement.addEventListener('pointerleave', onDocPointerLeave)
+    return () => {
+      document.removeEventListener('pointermove', onPointerMove)
+      document.removeEventListener('pointerdown', onPointerDown, true)
+      document.documentElement.removeEventListener('pointerleave', onDocPointerLeave)
+      // Seul le timer d'OUVERTURE appartient à la veille : ne pas toucher à
+      // une fermeture de grâce qu'un autre chemin vient de programmer.
+      window.clearTimeout(hoverTimersRef.current.open)
+      setEdgeHot(false)
+    }
+  }, [menuOpen, pinned])
 
   // Fermé par un autre chemin (clic extérieur, Échap, route) : l'ouverture
   // n'est plus « née du survol ». Timers purgés au démontage.
@@ -260,6 +359,9 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     if (!menuOpen && !pinned) return undefined
     const onKey = (event) => {
       if (event.key === 'Escape') {
+        // Congédié explicitement : le bord gauche reste désarmé tant que la
+        // souris n'est pas vraiment ressortie de la zone (veille ci-dessus).
+        edgeDisarmedRef.current = true
         setMenuOpen(false)
         setPinned(false)
         burgerRef.current?.focus()
@@ -462,18 +564,15 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
             className={`app-menu${menuOpen ? ' is-open' : ''}${pinned ? ' is-pinned' : ''}`}
             ref={menuRef}
           >
-            {/* Réglette du bord gauche : rappel visuel permanent du tiroir,
-                ouverture au survol sans aller chercher le bouton (souris
-                uniquement — masquée en CSS pour les pointeurs sans survol).
-                Simple affordance : pas focusable, le bouton reste l'accès
-                clavier/tactile. */}
-            <div
-              className="app-menu-edge"
-              aria-hidden="true"
-              title="Ouvrir le menu"
-              onPointerEnter={handleHoverTriggerEnter}
-              onPointerLeave={handleHoverTriggerLeave}
-            />
+            {/* Réglette du bord gauche : rappel visuel permanent du tiroir.
+                PUREMENT décorative (pointer-events:none, aria-hidden) : le
+                déclenchement est géométrique — la veille pointermove du
+                document, plus haut — pour fonctionner même si la souris est
+                déjà posée sur le bord au chargement ou glisse le long du
+                bord. `is-hot` = pointeur dans la zone (ouverture imminente).
+                Masquée en CSS pour les pointeurs sans survol (tactile) : le
+                bouton reste l'accès clavier/tactile. */}
+            <div className={`app-menu-edge${edgeHot ? ' is-hot' : ''}`} aria-hidden="true" />
             <button
               type="button"
               className="app-burger"

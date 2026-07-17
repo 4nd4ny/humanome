@@ -343,11 +343,16 @@ describe('App — thème, épinglage persistant, clic extérieur (refonte ergono
   })
 })
 
-// Ouverture au SURVOL (souris) : le survol du bouton Menu ou de la réglette du
+// Ouverture au SURVOL (souris) : le survol du bouton Menu ou l'approche du
 // bord gauche ouvre le panneau via l'état (App.jsx), avec une grâce longue le
 // temps de traverser l'écran — le bouton est à droite, le panneau à gauche.
-// Les délais (150/1600/350 ms) sont ceux des constantes MENU_HOVER_* d'App.jsx.
-describe('App — menu au survol (bouton + réglette du bord gauche)', () => {
+// Le bord gauche est GÉOMÉTRIQUE (pointermove document, x <= 12) : un survol
+// d'élément raterait la souris déjà posée sur le bord au chargement ou
+// glissant le long du bord. Délais : constantes MENU_HOVER_* d'App.jsx
+// (ouverture 150 ms, traversée 1600 ms, sortie de panneau 350 ms).
+// jsdom n'a pas PointerEvent : on simule avec MouseEvent (clientX/relatedTarget
+// pris en charge) + expando pointerType, relayés tels quels par React.
+describe('App — menu au survol (bouton + bord gauche géométrique)', () => {
   function renderWithFakeTimers() {
     vi.useFakeTimers()
     window.location.hash = '#/'
@@ -357,6 +362,26 @@ describe('App — menu au survol (bouton + réglette du bord gauche)', () => {
       burger: screen.getByRole('button', { name: 'Menu de navigation' }),
       panel: document.querySelector('.app-nav-panel'),
     }
+  }
+
+  /** pointermove document en (x, 300) — la veille ne lit que la géométrie. */
+  function movePointer(x, { pointerType, buttons = 0 } = {}) {
+    const evt = new window.MouseEvent('pointermove', {
+      bubbles: true,
+      clientX: x,
+      clientY: 300,
+      buttons,
+    })
+    if (pointerType) evt.pointerType = pointerType
+    fireEvent(document.body, evt)
+  }
+
+  /** Sortie de la fenêtre (pointerleave sur <html>, sans bulle). */
+  function leaveWindow(clientX, clientY) {
+    fireEvent(
+      document.documentElement,
+      new window.MouseEvent('pointerleave', { bubbles: false, clientX, clientY }),
+    )
   }
 
   afterEach(() => {
@@ -382,9 +407,13 @@ describe('App — menu au survol (bouton + réglette du bord gauche)', () => {
     act(() => vi.advanceTimersByTime(5000))
     expect(menu.className).toContain('is-open')
 
-    // …et en ressortir referme (courte grâce) une ouverture née du survol.
-    fireEvent.pointerOut(panel)
-    act(() => vi.advanceTimersByTime(1000))
+    // …et en ressortir VERS LA PAGE (relatedTarget non nul) referme après la
+    // courte grâce une ouverture née du survol.
+    fireEvent(
+      panel,
+      new window.MouseEvent('pointerout', { bubbles: true, relatedTarget: document.body }),
+    )
+    act(() => vi.advanceTimersByTime(500))
     expect(menu.className).not.toContain('is-open')
   })
 
@@ -400,19 +429,39 @@ describe('App — menu au survol (bouton + réglette du bord gauche)', () => {
     expect(menu.className).not.toContain('is-open')
   })
 
-  it('la réglette du bord gauche ouvre au survol ; un clic sur le bouton CONFIRME l’aperçu (ne referme pas)', () => {
+  it('quitter la FENÊTRE depuis le panneau (relatedTarget natif nul) laisse la grâce longue', () => {
+    const { menu, burger, panel } = renderWithFakeTimers()
+
+    fireEvent.pointerOver(burger)
+    act(() => vi.advanceTimersByTime(200))
+    fireEvent.pointerOver(panel)
+
+    // Event nu : pas de relatedTarget -> sortie de fenêtre (survitesse), le
+    // panneau attend le retour (1600 ms) au lieu de la courte grâce (350 ms).
+    fireEvent(panel, new window.Event('pointerout', { bubbles: true }))
+    act(() => vi.advanceTimersByTime(500))
+    expect(menu.className).toContain('is-open')
+    act(() => vi.advanceTimersByTime(1500))
+    expect(menu.className).not.toContain('is-open')
+  })
+
+  it('bord gauche : la souris déjà posée sur le bord au chargement ouvre au premier mouvement (bug corrigé)', () => {
     const { menu, burger } = renderWithFakeTimers()
     const edge = document.querySelector('.app-menu-edge')
-    expect(edge).not.toBeNull()
     // Affordance purement visuelle : hors de l'arbre d'accessibilité.
     expect(edge.getAttribute('aria-hidden')).toBe('true')
 
-    fireEvent.pointerOver(edge)
+    // AUCUN pointerenter préalable (il serait parti avant le montage React) :
+    // un simple pointermove dans la zone suffit — c'est le cas qui échouait.
+    movePointer(5)
+    expect(edge.className).toContain('is-hot')
+    expect(menu.className).not.toContain('is-open')
     act(() => vi.advanceTimersByTime(200))
     expect(menu.className).toContain('is-open')
+    expect(edge.className).not.toContain('is-hot')
 
     // Clic pendant l'aperçu : bascule en ouverture explicite (reste ouvert,
-    // et la sortie du panneau ne referme plus).
+    // la sortie du panneau ne referme plus).
     fireEvent.click(burger)
     expect(menu.className).toContain('is-open')
     fireEvent.pointerOut(document.querySelector('.app-nav-panel'))
@@ -420,15 +469,116 @@ describe('App — menu au survol (bouton + réglette du bord gauche)', () => {
     expect(menu.className).toContain('is-open')
   })
 
-  it('un survol tactile (pointerType touch) n’ouvre pas le panneau', () => {
+  it('bord gauche : ressortir de la zone avant le délai annule l’ouverture', () => {
+    const { menu } = renderWithFakeTimers()
+    const edge = document.querySelector('.app-menu-edge')
+
+    movePointer(5)
+    expect(edge.className).toContain('is-hot')
+    movePointer(300)
+    expect(edge.className).not.toContain('is-hot')
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+  })
+
+  it('sortir de la fenêtre (par la gauche ou le haut) annule l’ouverture en attente, sans ouverture-éclair', () => {
+    const { menu } = renderWithFakeTimers()
+
+    // Survitesse au-delà du bord gauche : pas d'ouverture-éclair (elle se
+    // déclencherait aussi en plein glisser-sélection) — fenêtre maximisée, le
+    // curseur ne sort de toute façon jamais, il se cale à x=0 dans la zone.
+    movePointer(5)
+    leaveWindow(-2, 300)
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+
+    // Sortie par le haut en longeant le bord (boutons de fenêtre macOS).
+    movePointer(5)
+    leaveWindow(5, -5)
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+  })
+
+  it('un appui souris pendant l’attente (sélection née dans la gouttière) annule — puis le bord revit', () => {
+    const { menu } = renderWithFakeTimers()
+
+    movePointer(5)
+    fireEvent.pointerDown(document.body)
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+
+    // L'appui a rendu l'entrée : après relâchement, le mouvement suivant dans
+    // la zone suffit, sans exiger une sortie au-delà de x=12.
+    movePointer(8)
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
+  })
+
+  it('Échap désarme le bord gauche jusqu’à une vraie sortie de zone', () => {
+    const { menu } = renderWithFakeTimers()
+
+    movePointer(5)
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
+
+    // Congédié explicitement : le frémissement du pointeur resté à gauche ne
+    // doit PAS rouvrir ce qu'Échap vient de fermer.
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(menu.className).not.toContain('is-open')
+    movePointer(8)
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+
+    // Une vraie sortie de zone réarme le bord.
+    movePointer(300)
+    movePointer(5)
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
+  })
+
+  it('une surface bloquante ouverte (aria-modal) suspend le bord gauche — qui revit dès sa fermeture', () => {
+    const { menu } = renderWithFakeTimers()
+
+    const modal = document.createElement('div')
+    modal.setAttribute('aria-modal', 'true')
+    document.body.appendChild(modal)
+    try {
+      movePointer(5)
+      act(() => vi.advanceTimersByTime(1000))
+      expect(menu.className).not.toContain('is-open')
+    } finally {
+      modal.remove()
+    }
+
+    // L'entrée bloquée n'a pas été consommée : modale fermée, le mouvement
+    // suivant dans la zone suffit (pas besoin de ressortir au-delà de x=12).
+    movePointer(8)
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
+  })
+
+  it('le tactile n’ouvre rien : ni survol du bouton, ni mouvement dans la zone du bord', () => {
     const { menu, burger } = renderWithFakeTimers()
 
-    // jsdom n'a pas PointerEvent : on pose pointerType sur un Event nu, que
-    // React relaie tel quel dans l'événement synthétique.
     const touchOver = new window.Event('pointerover', { bubbles: true })
     touchOver.pointerType = 'touch'
     fireEvent(burger, touchOver)
+    movePointer(5, { pointerType: 'touch' })
     act(() => vi.advanceTimersByTime(1000))
     expect(menu.className).not.toContain('is-open')
+  })
+
+  it('un glisser en cours (buttons ≠ 0) traversant la zone n’ouvre pas — le bord revit après relâchement', () => {
+    const { menu } = renderWithFakeTimers()
+
+    movePointer(5, { buttons: 1 })
+    act(() => vi.advanceTimersByTime(1000))
+    expect(menu.className).not.toContain('is-open')
+
+    // Le glisser n'a pas consommé l'entrée : bouton relâché, le mouvement
+    // suivant dans la zone déclenche normalement.
+    movePointer(8)
+    act(() => vi.advanceTimersByTime(200))
+    expect(menu.className).toContain('is-open')
   })
 })
