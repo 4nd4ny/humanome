@@ -43,7 +43,10 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
   - Vérifié navigateur (mock service, compte promptologue dev) : A/B croisé 2×2 runs (tokens
     2 917/2 206 par run, session 5 834/4 412, coûts 0.0418 $/0.0837 $), boucle export run
     partiel → réimport référence → score 100 %, phase PoW affichée pendant la préparation,
-    zéro erreur console. Suites : moteur **945**, web **885** (+15), build OK. NON déployé.
+    zéro erreur console. Suites : moteur **945**, web **885** (+15), build OK. Déployé (static)
+    le 2026-07-17 avec D15 (autorisation utilisateur) — bundle vérifié en prod (chaînes D15/D16
+    présentes, health ok, console propre). Abandonné sur décision utilisateur : la surcharge
+    de variables de gabarit à la volée.
 
 - 2026-07-17 — **D15 — Refonte du banc d'essai promptologue (demande utilisateur).**
   Le banc (P10.4) passe d'un comparateur sommaire à un banc paramétrable complet :
@@ -89,7 +92,7 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
   - Vérifié navigateur (compte promptologue dev, mock) : run restreint, A/B
     moteur-vs-sandbox avec périmètre, carnet persistant restaurant toute la configuration
     après rechargement, zéro erreur console. Suites : moteur **945**, web **870** (+50),
-    build de production OK. NON déployé (autorisation par chantier).
+    build de production OK. Déployé (static) le 2026-07-17 avec D16 (autorisation utilisateur).
 
 - 2026-07-17 — **Bord gauche fiabilisé : déclenchement GÉOMÉTRIQUE (retour utilisateur).**
   L'utilisateur signalait que le bord gauche n'ouvrait pas le menu. Deux causes distinctes :
