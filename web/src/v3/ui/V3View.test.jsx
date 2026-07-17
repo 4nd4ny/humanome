@@ -78,6 +78,31 @@ describe('V3View', () => {
     expect(bar.textContent).toContain('Filtre : comp-') // état conservé
   })
 
+  it('les titres « Référentiel » et « Journées » réinitialisent leur sélection', async () => {
+    // localStorage peut porter le mode expert d'un test précédent : on force
+    // un état propre puis on passe en expert (arbre + heatmap visibles).
+    localStorage.clear()
+    render(<V3View deps={deps()} />)
+    await screen.findByRole('toolbar', { name: 'Barre de contexte' })
+    fireEvent.change(screen.getByLabelText(/Mode/), { target: { value: 'expert' } })
+    await screen.findByRole('navigation', { name: 'Référentiel de compétences' })
+
+    // Filtre actif (secteur du soleil) → le titre-bouton « Référentiel » le retire.
+    fireEvent.click(document.querySelector('.v3-sector:not(.v3-sector-family)'))
+    const bar = screen.getByRole('toolbar', { name: 'Barre de contexte' })
+    expect(bar.textContent).toContain('Filtre : comp-')
+    fireEvent.click(screen.getByRole('button', { name: 'Référentiel — réinitialiser la sélection' }))
+    expect(bar.textContent).toContain('Toutes les compétences')
+
+    // Journée inspectée → le titre-bouton « Journées » réinitialise l'inspection.
+    fireEvent.click(await screen.findByRole('gridcell', { name: /2026-01-04 : \d+ compétences/ }))
+    expect(await screen.findByRole('region', { name: 'Portfolio de la journée 2026-01-04' })).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Journées — réinitialiser la sélection' }))
+    expect(screen.queryByRole('region', { name: 'Portfolio de la journée 2026-01-04' })).toBeNull()
+    // La tête de lecture, elle, n'a pas été touchée (AC-SYNC-04).
+    expect(bar.textContent).toContain('état complet')
+  })
+
   it('« Pourquoi ce rayon ? » (touche w) montre la métrique et les journées exactes (AC-SYNC-05)', async () => {
     render(<V3View deps={deps()} />)
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })

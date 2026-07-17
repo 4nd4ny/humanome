@@ -10,11 +10,25 @@ import { heatmapLevel } from '../core/metrics.js'
 
 // ---- Arbre du référentiel (§13.1) -------------------------------------------
 
-export function TreePanel({ referential, snapshot, uiState, onToggleBranch, onSelectScope, onSelectLeaf }) {
+export function TreePanel({ referential, snapshot, uiState, onToggleBranch, onSelectScope, onSelectLeaf, onReset }) {
   const expanded = uiState.effectiveExpanded
   return (
     <nav className="v3-panel v3-tree" aria-label="Référentiel de compétences">
-      <h3>Référentiel</h3>
+      {/* Le titre EST le bouton de réinitialisation de la sélection (économie
+          d'espace, demande utilisateur) — même geste que le centre du soleil.
+          Seule la SÉLECTION est réinitialisée, jamais les branches ouvertes
+          (états séparés, spec §3.4). */}
+      <h3>
+        <button
+          type="button"
+          className="v3-reset-title"
+          title="Réinitialiser la sélection (toutes les compétences)"
+          aria-label="Référentiel — réinitialiser la sélection"
+          onClick={onReset}
+        >
+          Référentiel
+        </button>
+      </h3>
       <ul role="tree" aria-label={`${referential.id} ${referential.version}`}>
         {referential.families.map((f) => {
           const isOpen = expanded.has(f.id)
@@ -301,7 +315,7 @@ export function SunPanel({ referential, snapshot, uiState, reinforced, onSelectS
 
 // ---- Heatmap (§11.3, §13.3) --------------------------------------------------
 
-export function HeatmapPanel({ snapshot, uiState, referential, reinforced, onInspect, onSetPlayhead, onChangeYear }) {
+export function HeatmapPanel({ snapshot, uiState, referential, reinforced, onInspect, onSetPlayhead, onChangeYear, onReset }) {
   const gridRef = useRef(null)
   const dates = [...snapshot.competenciesByDate.keys()].sort()
   if (dates.length === 0) return null
@@ -331,7 +345,20 @@ export function HeatmapPanel({ snapshot, uiState, referential, reinforced, onIns
   return (
     <section className="v3-panel v3-heatmap" aria-label="Calendrier des journées documentées">
       <div className="v3-heatmap-head">
-        <h3>Journées</h3>
+        {/* Titre-bouton : réinitialise la SÉLECTION de la heatmap (journée
+            inspectée + année visible) — la tête de lecture, elle, appartient
+            à la timeline et n'est pas touchée (AC-SYNC-04). */}
+        <h3>
+          <button
+            type="button"
+            className="v3-reset-title"
+            title="Réinitialiser la sélection (journée inspectée, année)"
+            aria-label="Journées — réinitialiser la sélection"
+            onClick={onReset}
+          >
+            Journées
+          </button>
+        </h3>
         {years.length > 1 ? (
           <label>
             Année{' '}

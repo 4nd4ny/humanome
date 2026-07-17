@@ -189,6 +189,25 @@
   padding: 0.6rem 0.75rem;
 }
 .v3-panel h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+/* Titre-bouton (arbre, heatmap) : le libellé du panneau réinitialise sa
+   sélection — même style que le h3, affordance au survol/focus. */
+.v3-reset-title {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: inherit;
+  color: inherit;
+  cursor: pointer;
+  min-height: 32px;
+}
+.v3-reset-title:hover::after,
+.v3-reset-title:focus-visible::after {
+  content: ' ⟲';
+  color: var(--v3-muted);
+  font-weight: normal;
+}
+.v3-reset-title:hover { text-decoration: underline; }
 .v3-note { color: var(--v3-muted); font-size: 0.85em; }
 .v3-link { background: none; border: none; color: var(--v3-accent); cursor: pointer; text-decoration: underline; padding: 0; font: inherit; }
 .v3-errors { color: #b91c1c; }

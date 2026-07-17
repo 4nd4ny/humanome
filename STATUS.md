@@ -9,6 +9,17 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-07-17 — **D14quinquies — Titres-boutons de réinitialisation (arbre et heatmap).**
+  Le soleil se réinitialisait déjà (clic hors du disque ou au centre) ; l'arbre et la heatmap n'avaient
+  pas d'équivalent. Pour économiser l'espace (demande utilisateur), les titres `h3` **« Référentiel »**
+  (arbre) et **« Journées »** (heatmap) deviennent des BOUTONS de réinitialisation, libellés inchangés
+  (sémantique de titre conservée : `h3 > button`, aria-label explicite, affordance ⟲ au survol/focus).
+  - « Référentiel » retire le filtre de portée (même geste que le centre du soleil) — les branches
+    OUVERTES ne sont pas touchées (états séparés, spec §3.4).
+  - « Journées » réinitialise la journée inspectée et l'année visible — la tête de lecture appartient
+    à la timeline et n'est pas modifiée (AC-SYNC-04).
+  - Vérifié navigateur (filtre → reset, inspection → reset). Suites : web **808** (+1).
+
 - 2026-07-17 — **D14quater — Tuiles V3 : redimensionnement à la souris + mémoire du mode.**
   - **Redimensionnement au pointeur** (souris, doigt, stylet — pointer events) : poignée ◢ au coin
     bas-droit de chaque tuile ; le geste est **quantisé sur la grille virtuelle** (cellule la plus

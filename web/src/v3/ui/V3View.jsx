@@ -435,6 +435,7 @@ export default function V3View({ deps = {} }) {
                   doSelectScope(`comp-${code}`)
                   setUi((s) => inspectDay(s, { day: date, source: 'tree', pinnedCompetencyIds: [code] }))
                 }}
+                onReset={() => setUi(clearScope)}
               />
             ) : null,
             sun: rendered.has('sun') ? (
@@ -458,6 +459,7 @@ export default function V3View({ deps = {} }) {
                 onInspect={(date) => setUi((s) => inspectDay(s, { day: date, source: 'heatmap' }))}
                 onSetPlayhead={(date) => setUi((s) => setPlayhead(s, date))}
                 onChangeYear={(y) => setUi((s) => ({ ...s, visibleHeatmapPeriod: y }))}
+                onReset={() => setUi((s) => ({ ...s, inspection: null, visibleHeatmapPeriod: null }))}
               />
             ) : null,
             timeline: rendered.has('timeline') ? (
