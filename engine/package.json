@@ -10,7 +10,8 @@
     ".": "./src/index.js"
   },
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:usecases": "vitest run test/usecases"
   },
   "devDependencies": {
     "vitest": "^2.1.8"

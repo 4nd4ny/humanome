@@ -25,7 +25,14 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit"
+        ],
+        "test:usecases": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit --testsuite usecases-unit,usecases-functional"
+        ]
     },
     "config": {
         "platform": {

@@ -7,6 +7,16 @@
     <testsuites>
         <testsuite name="api">
             <directory>tests</directory>
+            <exclude>tests/UseCases</exclude>
+        </testsuite>
+        <!-- Use-case suites (docs/cas-utilisation/): unit = classes called
+             directly, functional = the documented scenario played through
+             the HTTP API. Both run with: composer test:usecases -->
+        <testsuite name="usecases-unit">
+            <directory>tests/UseCases/Unit</directory>
+        </testsuite>
+        <testsuite name="usecases-functional">
+            <directory>tests/UseCases/Functional</directory>
         </testsuite>
     </testsuites>
     <source>
