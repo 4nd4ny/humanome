@@ -189,6 +189,6 @@ cd web && npx vitest run test/usecases/unit/uc-car-01 test/usecases/functional/u
 - Aucun moyen de **défaire** un lien (ni côté apprenant, ni côté cartographe)
   hors suppression de compte : l'apprenant garde la main par la visibilité de
   chaque cartographie (UC-APP-04, UC-CAR-02 E2).
-- Le champ de saisie est limité à 10 caractères : un code collé précédé
-  d'espaces est tronqué par le navigateur avant la normalisation (le `trim`
-  n'aide que pour la saisie simulée).
+- Le champ de saisie est limité à 10 caractères (`maxLength`) : un code
+  collé précédé d'espaces est tronqué par le navigateur avant la
+  normalisation, si bien que le `trim` n'a pas d'effet utile en pratique.
