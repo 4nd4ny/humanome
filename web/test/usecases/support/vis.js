@@ -181,3 +181,79 @@ export function browserFile(content, name, type = 'application/json') {
   Object.defineProperty(file, 'text', { value: async () => new TextDecoder().decode(bytes) })
   return file
 }
+
+// --- Faux serveur de la démo LLM (contrat de api/src/routes/llm.php) ---------
+
+/**
+ * Émule le contrat HTTP de la démo publique, avec les MÊMES règles que le
+ * serveur PHP : défi à usage unique au format v1.<exp>.<aléa>.<mac>, preuve
+ * vérifiée par sha256(challenge + ':' + nonce) (node:crypto, comme PHP),
+ * champ piège « website » vide, quota optionnel. Les réponses LLM sont
+ * fournies par `answer(body, n, init)` ; `challengeAnswer(n)` peut surcharger le défi.
+ *
+ * @param {{difficultyBits?: number, answer: (body: object, n: number, init: object) => object,
+ *   challengeAnswer?: (n: number) => object | undefined, createHash: Function,
+ *   extra?: (url: string, init?: object) => any}} opts
+ */
+export function fakeDemoServer({ difficultyBits = 4, answer, challengeAnswer, createHash, extra }) {
+  const issued = new Set()
+  const redeemed = new Set()
+  const posts = []
+  const rejected = []
+  let challenges = 0
+  const zeroBits = (hex) => {
+    let bits = 0
+    for (const ch of hex) {
+      const nibble = parseInt(ch, 16)
+      if (nibble === 0) {
+        bits += 4
+        continue
+      }
+      bits += nibble < 2 ? 3 : nibble < 4 ? 2 : nibble < 8 ? 1 : 0
+      break
+    }
+    return bits
+  }
+  const mock = vi.fn(async (url, init = {}) => {
+    const u = String(url)
+    if (extra) {
+      const answered = await extra(u, init)
+      if (answered !== undefined) return answered
+    }
+    if (u === 'api/llm/challenge') {
+      challenges += 1
+      const override = challengeAnswer?.(challenges)
+      if (override) return override
+      const expires = Math.floor(Date.now() / 1000) + 300
+      const challenge = `v1.${expires}.${String(challenges).padStart(16, '0')}.${'ab'.repeat(32)}`
+      issued.add(challenge)
+      return jsonResponse(200, { challenge, difficultyBits, expiresAt: expires })
+    }
+    if (u === 'api/llm' || u === 'api/tuteur') {
+      const body = JSON.parse(init.body)
+      if (typeof body.website === 'string' && body.website.trim() !== '') {
+        rejected.push('honeypot')
+        return jsonResponse(400, { error: 'Requête invalide' })
+      }
+      if (!issued.has(body.challenge)) {
+        rejected.push('pow_invalid')
+        return jsonResponse(400, { error: 'Preuve de travail invalide.', code: 'pow_invalid' })
+      }
+      if (redeemed.has(body.challenge)) {
+        rejected.push('pow_reused')
+        return jsonResponse(429, { error: 'Défi déjà utilisé : demandez un nouveau défi.', code: 'pow_reused' })
+      }
+      const digest = createHash('sha256').update(`${body.challenge}:${body.nonce}`, 'utf8').digest('hex')
+      if (zeroBits(digest) < difficultyBits) {
+        rejected.push('pow_weak')
+        return jsonResponse(400, { error: 'Preuve de travail invalide.', code: 'pow_invalid' })
+      }
+      redeemed.add(body.challenge)
+      posts.push(body)
+      return answer(body, posts.length, init)
+    }
+    return jsonResponse(404, { error: 'absent' })
+  })
+  vi.stubGlobal('fetch', mock)
+  return { mock, posts, rejected, issuedCount: () => challenges }
+}
