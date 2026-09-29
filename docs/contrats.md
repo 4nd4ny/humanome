@@ -202,3 +202,24 @@ chaînes). Node ≥ 17.5 les refuse : `scripts/validate-corpus.mjs` enregistre
 donc un hook de loader (`node:module` `register`) qui sert les `.json` comme
 modules ES, ce qui permet de valider le corpus avec **exactement** le même code
 que l'application, sans dupliquer la configuration ajv.
+
+## 6. Frictions de format relevées par les cas d'utilisation (2026-09)
+
+L'analyse des cas d'utilisation (`docs/cas-utilisation/`) a mis au jour des
+écarts de format **entre modules**. Conformément à la règle du dépôt, aucun
+champ n'a été renommé pour les contourner : chacun est décrit ici et dans la
+fiche concernée (section « Anomalies constatées »), et le comportement actuel
+est figé par un test vert commenté comme tel.
+
+| Producteur → consommateur | Écart | Effet | Fiche |
+|---|---|---|---|
+| Assistant de run (`web/src/lib/run-launcher.js`) → archive (`web/src/lib/archive.js`, schéma `archive-export`) | `runMeta` écrit `{mode, provider, model, generatedAt, usage}` ; l'archive n'accepte que `{modele, dateRun, tokens?, coutEstime?}` | À l'export, `modele` devient « inconnu » et les jetons mesurés sont perdus | UC-APP-06 (A-02) |
+| Runner Node (`scripts/runner-node/runner.mjs`) → `POST /api/worker/jobs/{id}/result` (`api/src/routes/worker.php`) | Le runner envoie `tokens: {inputTokens, outputTokens}` ; la route lit `tokens.input` / `tokens.output` | Les jetons des journées traitées par le runner sont enregistrés à 0 | UC-SYS-01 |
+| `GET /api/referentiel/versions` (`ReferentielRepository::metadata`) → banc d'essai et rétrospective (`web/src/views/promptologue/BancEssaiSection.jsx`, `retro.js`) | L'API renvoie la clé `semver` ; le front filtre sur `version` | Seul le référentiel embarqué est proposé au banc ; la rétrospective ne propose jamais de référentiel plus récent | UC-PRO-05, UC-PRO-06 (AN-1) |
+| `GET /api/cartographies` → `RetroSection.jsx` | L'API renvoie `type` ; le front affiche `kind` | Le type des cartographies n'apparaît pas dans la liste | UC-PRO-06 |
+| Schéma `cartographie-jour` → `DayView.jsx` (`findDayNode`) | `poleNum` est une **chaîne** (`"1"`…`"7"`) ; la vue le compare à un **nombre** | Le rapport d'un pôle n'est jamais affiché sur un document conforme | UC-VIS-01 (AN1) |
+| Corps JSON décodé en tableaux PHP → `Validation::validate` | Un objet vide `{}` (ex. `reserved.piecesData` des documents merge) devient `[]` et le schéma, qui exige un objet, le refuse | Révision d'un parcours (merge) réel refusée en 422 | UC-CAR-04 (AN3) |
+| Colonnes `JSON` MySQL → diff de configuration Twin9 (`web/src/views/admin/Twin9Section.jsx`) | MySQL réordonne les clés des objets stockés | Après le premier enregistrement, le diff signale des changements fictifs | UC-ADM-05 |
+
+Les autres anomalies (comportements, gardes, messages) sont indexées dans
+[`docs/cas-utilisation/README.md`](cas-utilisation/README.md#index-des-anomalies-de-production).

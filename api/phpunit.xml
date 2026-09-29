@@ -7,6 +7,16 @@
     <testsuites>
         <testsuite name="api">
             <directory>tests</directory>
+            <exclude>tests/UseCases</exclude>
+        </testsuite>
+        <!-- Use-case suites (docs/cas-utilisation/): unit = classes called
+             directly, functional = the documented scenario played through
+             the HTTP API. Both run with: composer test:usecases -->
+        <testsuite name="usecases-unit">
+            <directory>tests/UseCases/Unit</directory>
+        </testsuite>
+        <testsuite name="usecases-functional">
+            <directory>tests/UseCases/Functional</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -18,7 +28,9 @@
         <!-- PHPUnit retains every TestCase instance until the end of the
              run: at ~320 tests the suite already sat at 114 MB, right under
              the 128 MB container default — each new test class now tips it
-             over. Test-runner-only setting; production php.ini is untouched. -->
-        <ini name="memory_limit" value="512M"/>
+             over. The use-case suites (~1 100 more tests) exhaust 512 MB when
+             run together with or without the legacy suite, hence 2 GB.
+             Test-runner-only setting; production php.ini is untouched. -->
+        <ini name="memory_limit" value="2048M"/>
     </php>
 </phpunit>

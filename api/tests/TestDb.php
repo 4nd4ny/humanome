@@ -12,10 +12,25 @@ use PDO;
  * Test database helpers: everything runs against a dedicated humanome_test
  * database (created as MySQL root) so the humanome dev database is never
  * polluted by the test suite.
+ *
+ * DB_TEST_NAME overrides the database name so that several PHPUnit processes
+ * (e.g. the use-case suites and the legacy suite) can run side by side
+ * against the same MySQL server without dropping each other's schema.
  */
 final class TestDb
 {
     public const NAME = 'humanome_test';
+
+    /** Effective test database name (DB_TEST_NAME, default humanome_test). */
+    public static function name(): string
+    {
+        $name = Env::get('DB_TEST_NAME', self::NAME);
+        if (preg_match('/^[a-z0-9_]{1,64}$/', $name) !== 1) {
+            throw new \RuntimeException('DB_TEST_NAME must match [a-z0-9_]{1,64}');
+        }
+
+        return $name;
+    }
 
     /** @var array<string, string|null> */
     private static array $savedEnv = [];
@@ -39,10 +54,10 @@ final class TestDb
     public static function fresh(): PDO
     {
         $pdo = self::rootPdo();
-        $pdo->exec('DROP DATABASE IF EXISTS ' . self::NAME);
-        $pdo->exec('CREATE DATABASE ' . self::NAME
+        $pdo->exec('DROP DATABASE IF EXISTS ' . self::name());
+        $pdo->exec('CREATE DATABASE ' . self::name()
             . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
-        $pdo->exec('USE ' . self::NAME);
+        $pdo->exec('USE ' . self::name());
 
         return $pdo;
     }
@@ -51,9 +66,9 @@ final class TestDb
     public static function pdo(): PDO
     {
         $pdo = self::rootPdo();
-        $pdo->exec('CREATE DATABASE IF NOT EXISTS ' . self::NAME
+        $pdo->exec('CREATE DATABASE IF NOT EXISTS ' . self::name()
             . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
-        $pdo->exec('USE ' . self::NAME);
+        $pdo->exec('USE ' . self::name());
 
         return $pdo;
     }
@@ -61,7 +76,7 @@ final class TestDb
     /** Point the app's Db singleton (env-config) at humanome_test. */
     public static function overrideEnv(): void
     {
-        self::setEnv('DB_NAME', self::NAME);
+        self::setEnv('DB_NAME', self::name());
         self::setEnv('DB_USER', 'root');
         self::setEnv('DB_PASSWORD', Env::get('DB_ROOT_PASSWORD', 'root_dev'));
         Db::reset();

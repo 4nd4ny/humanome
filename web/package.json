@@ -10,6 +10,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
+    "test:usecases": "vitest run test/usecases",
     "test:watch": "vitest",
     "test:dist": "node scripts/smoke-dist.mjs",
     "test:e2e": "playwright test",

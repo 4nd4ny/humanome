@@ -50,6 +50,21 @@ const DOCS_GROUPS = [
   ],
 ]
 
+// Cas d'utilisation (docs/cas-utilisation/) : l'index puis une fiche par cas,
+// rangées par acteur dans l'ordre du catalogue ; fiches triées par identifiant.
+const USE_CASE_ACTORS = [
+  ['visiteur', 'Visiteur'],
+  ['compte', 'Compte'],
+  ['apprenant', 'Apprenant'],
+  ['cartographe', 'Cartographe'],
+  ['employeur', 'Employeur'],
+  ['promptologue', 'Promptologue'],
+  ['epistemiarque', 'Épistémiarque'],
+  ['etablissement', 'Établissement'],
+  ['administration', 'Administration'],
+  ['systeme', 'Système et exploitation'],
+]
+
 /** Titre d'un markdown : frontmatter `titre:` sinon premier `# H1` sinon nom. */
 function titleOf(absPath, fallback) {
   let text
@@ -103,6 +118,25 @@ function buildSummary() {
     for (const file of files) {
       const abs = resolve(repo, 'docs', file)
       lines.push(`  * [${titleOf(abs, file)}](docs/${file})`)
+    }
+  }
+
+  const useCasesDir = resolve(repo, 'docs/cas-utilisation')
+  lines.push('', '## Cas d’utilisation', '')
+  lines.push(
+    `* [${titleOf(resolve(useCasesDir, 'README.md'), 'Catalogue')}](docs/cas-utilisation/README.md)`,
+  )
+  for (const [actor, label] of USE_CASE_ACTORS) {
+    let files
+    try {
+      files = readdirSync(resolve(useCasesDir, actor)).filter((f) => /^UC-.*\.md$/.test(f)).sort()
+    } catch {
+      continue
+    }
+    if (files.length === 0) continue
+    lines.push(`  * ${label}`)
+    for (const f of files) {
+      lines.push(`    * [${titleOf(resolve(useCasesDir, actor, f), f)}](docs/cas-utilisation/${actor}/${f})`)
     }
   }
 

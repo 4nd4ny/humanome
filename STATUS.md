@@ -9,6 +9,75 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
+  - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
+    régénère d'abord les données dérivées lues par `engine/src/pipeline/merge.test.js`
+    (convertisseurs d'`INSTALL.md` §2, sans dépendance npm) ; `engine/src/twin9/referentiel.test.js`
+    ne lit plus l'oracle Twin9 gitignoré quand il est absent (le corps d'un
+    `describe.skipIf` est évalué à la collecte ; même garde que `parite.test.js`).
+  - **Référentiel 7.1.0** (`web/src/data/referentiel-v710.test.js`) : pas de défaut de code,
+    le test lit l'export statique produit depuis la base. `INSTALL.md` était faux : le
+    conteneur `php` travaille dans `api/`, donc `php scripts/migrate.php` échouait
+    (« Could not open input file ») → `../scripts/…` ; étapes manquantes ajoutées
+    (`enrich-referentiel`, import de la 7.1.0, `export-referentiel-static`). En-têtes
+    « Usage » de `import-referentiel.php`, `import-prompt-packages.php` et
+    `export-referentiel-static.php` alignés.
+  - **Twin6 (UC-SYS-04 AN-2), correction PARTIELLE** : `generate-fiches.mjs` crée son dossier
+    de sortie ; `stage-api.sh` régénère les P*.md avant le paquet Twin6 au lieu de dépendre
+    d'un build du front antérieur. Tests UC-SYS-04-U06 et F11 mis à jour.
+    **Reste (décision utilisateur)** : versionner les trois gabarits publics
+    (`0-mega-prompt.md`, `1-scan-pole.md`, `2-kairos-final.md`) ; tant qu'ils manquent,
+    `web/src/views/promptologue/twin6-prompt-package.test.js` échoue hors du poste de
+    l'auteur. Leur ajout depuis la copie servie en production a été refusé par le
+    garde-fou de sécurité de l'agent.
+  - **Vérification** (checkout propre + modifications) : PHPUnit **1 470 verts** ; moteur
+    **60/60 fichiers**, 1 069 verts + 17 sautés ; web **1 941 verts**, seul
+    `twin6-prompt-package.test.js` en échec (gabarits absents).
+
+- 2026-09-29 — **Catalogue des cas d'utilisation + jeux de tests unitaires et fonctionnels (demande utilisateur, PR 4nd4ny/humanome#4 — code de production inchangé).**
+  - **Documentation** : `docs/cas-utilisation/` — **58 fiches** en 10 dossiers d'acteurs
+    (visiteur 5, compte 6, apprenant 12, cartographe 7, employeur 1, promptologue 8,
+    épistémiarque 4, établissement 4, administration 6, système 5). Chaque fiche : objectif,
+    déclencheur, préconditions, garanties, scénarios nominal/alternatifs/d'erreur, règles de
+    gestion, données et RGPD, code sollicité, jeux de tests (traçabilité), anomalies constatées. `README.md` = conventions,
+    catalogue et index des anomalies GÉNÉRÉS (entre marqueurs `<!-- catalogue:… -->` /
+    `<!-- anomalies:… -->`), méthode de vérification, outillage hors périmètre. Section
+    « Cas d'utilisation » ajoutée au `SUMMARY.md` GitBook (`scripts/build-gitbook-summary.mjs`).
+  - **Tests**, rangés à part des suites historiques, identifiés `UC-XXX-NN-Unn` (unitaire :
+    code appelé directement) / `UC-XXX-NN-Fnn` (fonctionnel : scénario de la fiche rejoué par
+    l'API HTTP in-process ou par `<App/>` rendu en jsdom) — 963 identifiants unitaires et
+    1 140 fonctionnels distincts : PHP **941** tests (`api/tests/UseCases/{Unit,Functional}/`,
+    helpers `Support/`), web **1 051** (`web/test/usecases/`), moteur **141**
+    (`engine/test/usecases/unit/`, joués aussi par la CI GitHub : fichiers versionnés seulement).
+  - **Vérification** : rédaction depuis le code réel → relecture adversariale indépendante
+    par cas (affirmation par affirmation, corps des tests lus, tests non discriminants
+    traqués) → correction contre-vérifiée → balayage de complétude (routes API/CLI, routes
+    front, vues, composants, scripts ; d'où UC-SYS-04 « artefacts dérivés » et UC-SYS-05
+    « sauvegarde/restauration ») → traçabilité fiche↔tests (0 écart d'identifiant), liens
+    (0 cassé) → toutes les suites (historiques + cas d'utilisation) rejouées sur un checkout
+    propre de HEAD : PHPUnit **1 470 verts** (13 961 assertions), Vitest web **1 937 verts**,
+    moteur **1 060 verts + 14 sautés**. Seuls 3 fichiers historiques ne se chargent pas, faute
+    de données non versionnées (oracle Twin9, export statique du référentiel depuis la base,
+    gabarits Twin6 déposés à la main) — échec identique sur `main`, sans lien avec la PR.
+  - **214 anomalies de production documentées, NON corrigées** (hors périmètre de la demande) :
+    chacune est figée par un test vert « comportement actuel » et indexée dans le README du
+    catalogue — corriger une anomalie = modifier le code, le test qui l'épingle et la fiche.
+  - **Frictions de format** relevées (runMeta vs archive, tokens runner, `semver`/`version`,
+    `type`/`kind`, `poleNum` chaîne/nombre, `{}` décodé en `[]`, ordre des clés JSON MySQL) :
+    `docs/contrats.md` §6. `docs/strategie-tests.md` : nouvelle section « Tests par cas
+    d'utilisation » + volumétrie.
+  - **Infra de test** : `TestDb::name()` (env `DB_TEST_NAME`, défaut `humanome_test`, pour
+    des bases de test parallèles) ; suites PHPUnit `usecases-unit` / `usecases-functional`
+    (exclues de la suite `api`, toutes jouées par `composer test`) + `composer test:usecases` ;
+    `Composer\Config::disableProcessTimeout` (la suite complète dépasse 300 s) ;
+    `memory_limit` des tests 512M → 2048M ; `npm run test:usecases` (web, moteur).
+  - **CI « Tests moteur » rouge AVANT cette PR** (sur `main` depuis l'exécution n° 5) :
+    `engine/src/pipeline/merge.test.js` et `engine/src/twin9/referentiel.test.js` lisent des
+    données gitignorées absentes en CI. Correctif proposé en commentaire de la PR (génération
+    des données dérivées dans le workflow + lecture gardée de l'oracle), non intégré pour ne
+    pas élargir le périmètre. Tous les autres tests moteur, dont ceux de cas d'utilisation,
+    passent en CI.
+
 - 2026-07-18 — **Panneau de monitoring admin ✅ DÉPLOYÉ EN PROD (autorisé par l'utilisateur, release `v1.1.0-20-g471d7cd`).**
   - API + front déployés, aucune migration (`applied:[]`), gates référentiel/golden « unchanged ».
     Smoke : health ok, `/api/admin/monitoring` et `?role=` → 401 sans session, front servi.

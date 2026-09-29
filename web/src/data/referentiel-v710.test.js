@@ -6,8 +6,10 @@
 // === b246101c… (parité oracles moteur/Twin9 intacte). C'est cette version que
 // #/referentiel charge (première entrée d'index.json).
 //
-// Test de traçabilité pur (lecture des JSON commités, aucun réseau) : garde un
-// invariant jusqu'ici vérifié à la main.
+// Test de traçabilité pur (lecture de fichiers, aucun réseau) : garde un
+// invariant jusqu'ici vérifié à la main. Seule la source des définitions est
+// versionnée ; les artefacts de web/public/data/referentiel/ sont générés
+// (INSTALL.md §2 : enrich-referentiel ; §3 : import puis export statique).
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 

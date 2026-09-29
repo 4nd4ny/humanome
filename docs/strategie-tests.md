@@ -16,8 +16,33 @@ Selenium ne ferait que dupliquer cette couche avec un outil plus fragile.
 | **Unitaire + composant** | **Vitest** (Node) | Moteur ESM (parité octet Twin9, merge, sunburst) et front React (vues, hooks, lib, aide, thème) en **jsdom** | `engine/src/**/*.test.js`, `web/src/**/*.test.{js,jsx}` | À chaque changement JS, avant chaque commit/release |
 | **Bout-en-bout (e2e)** | **Playwright** (Chromium) | Parcours réels dans un vrai navigateur : apprenant, cartographe, promptologue, nav/burger, timeline, guides — avec l'API docker en provider **mock** | `web/e2e/*.e2e.js` | Avant une release, et sur tout changement touchant un parcours utilisateur |
 
-**Volumétrie actuelle (2026-07-16)** : PHPUnit **481** tests, Vitest **926**
-(engine) + **696** (web), Playwright **~9** scénarios e2e.
+### Tests par cas d'utilisation
+
+Transversalement à ces couches, chaque **cas d'utilisation** documenté dans
+[`docs/cas-utilisation/`](cas-utilisation/README.md) (58 fiches) a ses propres
+jeux de tests, rangés à part des suites historiques et identifiés
+`UC-XXX-NN-Unn` (unitaires : le code sollicité appelé directement) et
+`UC-XXX-NN-Fnn` (fonctionnels : le scénario de la fiche rejoué par l'API HTTP
+ou par l'IHM) :
+
+| Couche | Emplacement | Lancement ciblé |
+|---|---|---|
+| API PHP | `api/tests/UseCases/{Unit,Functional}/` (suites PHPUnit `usecases-unit`, `usecases-functional`) | `docker compose run --rm php composer test:usecases` |
+| Front | `web/test/usecases/{unit,functional}/` | `cd web && npm run test:usecases` |
+| Moteur | `engine/test/usecases/unit/` (aussi joué en CI) | `cd engine && npm run test:usecases` |
+
+Ces suites sont incluses dans `composer test` et `npm test` : la checklist
+ci-dessous les exécute sans commande supplémentaire. Les anomalies de
+production qu'elles ont mises au jour sont figées par des tests verts
+« comportement actuel » et indexées dans le catalogue.
+
+**Volumétrie (2026-09-29, checkout propre)** : PHPUnit **1 470** tests (dont **941**
+de cas d'utilisation), Vitest **1 086** (moteur, dont **141** de cas d'utilisation ;
+17 sautés faute des oracles Twin9, gitignorés) + **1 941** (web, dont **1 051** de cas
+d'utilisation), Playwright **~9** scénarios e2e. Les données dérivées sont d'abord
+générées (`INSTALL.md` §2 et §3). Le compte web exclut
+`web/src/views/promptologue/twin6-prompt-package.test.js`, qui ne se charge qu'avec les
+gabarits Twin6 publics, non versionnés à ce jour (UC-SYS-04, AN-2).
 
 ## Ce qui garantit la non-régression entre releases
 
@@ -41,7 +66,7 @@ non-régression ne repose pas sur un seul outil e2e mais sur la **combinaison** 
 ```sh
 # 1. API (PHP) — base MySQL réelle (Docker)
 docker compose up -d
-docker compose run --rm php composer test          # PHPUnit, doit être 100 % vert
+docker compose run --rm php composer test          # PHPUnit (historique + cas d'utilisation), 100 % vert
 
 # 2. Moteur
 cd engine && npm test                              # Vitest
